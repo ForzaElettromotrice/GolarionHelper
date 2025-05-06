@@ -3,35 +3,41 @@ import os.path
 import requests
 from bs4 import BeautifulSoup
 
+from logs import log_debug
+
+BASE_PATH = "../data/html"
 
 def get_spell(link:str, name:str):
-    if os.path.exists(f"./data/{name}.html"):
+    if os.path.exists(f"{BASE_PATH}/{name}.html"):
         return
 
-    if not os.path.exists(f"../data/"):
-        os.makedirs(f"../data/")
+    if not os.path.exists(BASE_PATH):
+        os.makedirs(BASE_PATH)
 
     name = name.replace("/", "_")
     page = requests.get(link)
-    with open(f"../data/{name}.html", "w", encoding = "utf-8") as f:
+    with open(f"{BASE_PATH}{name}.html", "w", encoding = "utf-8") as f:
         f.write(page.text)
-    print(f"{name}.html written")
+    log_debug(f"{name}.html written")
 
 
 
 if __name__ == '__main__':
 
-    if not os.path.exists("../data/table.html"):
+    if not os.path.exists(f"{BASE_PATH}/table.html"):
 
         URL = "https://golarion.altervista.org/wiki/Database_Incantesimi"
 
         response = requests.get(URL)
         response.raise_for_status()
+        
+        if not os.path.exists(f"../data/html"):
+            os.makedirs(f"../data/html")
 
-        with open(f"../data/table.html", "w", encoding = "utf-8") as f:
+        with open(f"{BASE_PATH}/table.html", "w", encoding = "utf-8") as f:
             f.write(response.text)
 
-    with open(f"../data/table.html", "r", encoding = "utf-8") as f:
+    with open(f"{BASE_PATH}/table.html", "r", encoding = "utf-8") as f:
         tableHTML = f.read()
 
     soup = BeautifulSoup(tableHTML, 'html.parser')
