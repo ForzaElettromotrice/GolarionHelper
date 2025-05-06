@@ -1,9 +1,6 @@
 from collections import namedtuple
 from typing import Any
 
-Spell = namedtuple("Spell", ["name", "level", "school", "domain", "stirpe", "components",
-                             "casting_time", "range_", "effect", "area", "target", "duration",
-                             "saving_throw", "spell_resistance", "description"])
 
 class Class:
     def __init__(self, name: str):
@@ -28,7 +25,7 @@ class SpellList:
         self.__num_known_spells = known_spells
         self.__spell_slots = spell_slots
         self.__magic_characteristics = magic_characteristics
-        self.__spells:list[list[Spell]] = []
+        self.__spells:list[list[dict[str, Any]]] = [[] for _ in range(10)]
         self.__spontaneus = spontaneus
 
     def update_num_known_spells(self, known_spells: list[int]):
@@ -37,11 +34,11 @@ class SpellList:
     def update_spell_slots(self, spell_slots: list[int]):
         self.__spell_slots = spell_slots
 
-    def add_spell(self, spell: Spell):
-        if self.__spontaneus and self.__num_known_spells[spell.level] == len(self.__spells[spell.level]):
+    def add_spell(self, spell: dict[str,Any], spell_level: int):
+        if self.__spontaneus and self.__num_known_spells[spell_level] == len(self.__spells[spell_level]):
             raise ValueError("Non puoi aggiungere più incantesimi di quelli conosciuti!")
 
-        self.__spells[spell.level].append(spell)
+        self.__spells[spell_level].append(spell)
 
     def __repr__(self):
         return f"SpellList({"Spontaneo" if self.__spontaneus else "Preparato"})"
