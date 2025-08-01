@@ -5,18 +5,24 @@ package org.golarion;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.golarion.view.DisplayMan;
+import org.golarion.view.roots.Roots;
 
 public class App extends Application
 {
     public static void main(String[] args)
     {
-        System.out.println("Hello, World!");
+        System.out.println("Starting app...");
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) throws Exception
+    public void start(Stage stage)
     {
-        stage.show();
+        stage.setTitle("Golarion Helper");
+        DisplayMan.Builder.setWindow(stage);
+        DisplayMan.getInstance().display(Roots.MAIN_MENU);
+
+        DisplayMan.getInstance().show();
     }
 }
