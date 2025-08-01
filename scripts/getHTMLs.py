@@ -16,7 +16,7 @@ def get_spell(link:str, name:str):
 
     name = name.replace("/", "_")
     page = requests.get(link)
-    with open(f"{BASE_PATH}{name}.html", "w", encoding = "utf-8") as f:
+    with open(f"{BASE_PATH}/{name}.html", "w", encoding = "utf-8") as f:
         f.write(page.text)
     log_debug(f"{name}.html written")
 
