@@ -6,6 +6,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import org.golarion.view.DisplayMan;
 
 public class MainMenu implements GRoot
 {
@@ -14,23 +16,31 @@ public class MainMenu implements GRoot
 
     public MainMenu()
     {
-        Button startButton = new Button("Start Game");
-        startButton.setPrefWidth(100);
-        startButton.setPrefHeight(50);
-        Button quitButton = new Button("Quit Game");
-        quitButton.setPrefWidth(100);
-        quitButton.setPrefHeight(50);
-        VBox buttonBox = new VBox(startButton, quitButton);
-        buttonBox.setAlignment(Pos.CENTER);
-        buttonBox.setPrefWidth(200);
-        buttonBox.setPrefHeight(100);
-        buttonBox.setBackground(Background.fill(javafx.scene.paint.Color.LIGHTGRAY));
+        Button newSheet = new Button();
+        Button loadSheet = new Button();
+        Button quit = new Button();
+        newSheet.setPrefSize(120, 60);
+        loadSheet.setPrefSize(120, 60);
+        quit.setPrefSize(120, 60);
+        newSheet.setText("Nuova Scheda");
+        loadSheet.setText("Carica Scheda");
+        quit.setText("Esci");
 
-        root = new AnchorPane(buttonBox);
-        root.setPrefSize(800, 400);
-        buttonBox.setLayoutX(root.getPrefWidth() / 2 - buttonBox.getPrefWidth() / 2);
-        System.out.println(buttonBox.getPrefWidth() / 2);
+        newSheet.setOnAction(actionEvent -> DisplayMan.getInstance().popUpSheet("Nuova Scheda"));
+        quit.setOnAction(actionEvent -> DisplayMan.getInstance().close());
 
+        VBox box = new VBox(newSheet, loadSheet, quit);
+        box.setSpacing(25);
+        box.setPrefSize(200, 300);
+        box.setAlignment(Pos.CENTER);
+        box.setBackground(Background.fill(Color.LIGHTGRAY));
+
+        root = new AnchorPane(box);
+        root.setPrefSize(300, 400);
+
+
+        box.setLayoutX(root.getPrefWidth() / 2 - box.getPrefWidth() / 2);
+        box.setLayoutY(root.getPrefHeight() / 2 - box.getPrefHeight() / 2);
     }
 
     @Override

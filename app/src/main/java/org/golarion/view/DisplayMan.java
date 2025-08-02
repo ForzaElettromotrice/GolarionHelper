@@ -9,6 +9,10 @@ import org.golarion.exceptions.IllegalBuildException;
 import org.golarion.view.roots.GRoot;
 import org.golarion.view.roots.MainMenu;
 import org.golarion.view.roots.Roots;
+import org.golarion.view.roots.SheetView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DisplayMan
 {
@@ -47,6 +51,7 @@ public class DisplayMan
 
     private final Stage window;
     private final GRoot[] roots;
+    private final List<Stage> sheets;
 
     /**
      * Constructor for the {@link DisplayMan} class.
@@ -56,6 +61,8 @@ public class DisplayMan
         this.window = primaryStage;
         this.window.setScene(new Scene(new AnchorPane()));
         this.roots = new GRoot[Roots.values().length];
+
+        sheets = new ArrayList<>();
     }
 
     /**
@@ -89,6 +96,16 @@ public class DisplayMan
         window.getScene().setRoot(pane);
     }
 
+    public void popUpSheet(String title)
+    {
+        Stage sheet = new Stage();
+        SheetView sheetView = new SheetView();
+        sheet.setTitle(title);
+        sheet.setScene(new Scene(sheetView.getRoot()));
+        sheets.add(sheet);
+        sheet.show();
+    }
+
     /**
      * Displays the main window
      */
@@ -96,5 +113,13 @@ public class DisplayMan
     {
         window.show();
 
+    }
+
+    /**
+     * Closes the main window
+     */
+    public void close()
+    {
+        window.close();
     }
 }
