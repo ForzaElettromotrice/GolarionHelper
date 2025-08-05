@@ -9,6 +9,7 @@ plugins {
     java
     application
     id("org.openjfx.javafxplugin") version "0.1.0"
+
 }
 
 repositories {
@@ -18,20 +19,14 @@ repositories {
 
 javafx {
     version = "21"
-    modules("javafx.controls", "javafx.fxml")
+    modules("javafx.controls", "javafx.graphics")
 }
 
+var lombokVersion = "1.18.38"
+
 dependencies {
-    // Use JUnit Jupiter for testing.
-    testImplementation(libs.junit.jupiter)
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    // This dependency is used by the application.
-    implementation(libs.guava)
-    
-    compileOnly("org.projectlombok:lombok:1.18.38")
-    annotationProcessor("org.projectlombok:lombok:1.18.38")
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
