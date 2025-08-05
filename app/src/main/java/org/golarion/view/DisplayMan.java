@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lombok.Setter;
 import org.golarion.exceptions.IllegalBuildException;
+import org.golarion.model.Sheet;
 import org.golarion.view.roots.GRoot;
 import org.golarion.view.roots.MainMenu;
 import org.golarion.view.roots.Roots;
@@ -18,7 +19,6 @@ public class DisplayMan
 {
     public static class Builder
     {
-
         @Setter
         private static Stage window;
 
@@ -31,6 +31,11 @@ public class DisplayMan
                 throw new IllegalBuildException("Can't create DisplayMan without the main window!");
 
             instance = new DisplayMan(window);
+        }
+
+
+        private Builder()
+        {
         }
 
     }
@@ -99,11 +104,13 @@ public class DisplayMan
     public void popUpSheet(String title)
     {
         Stage sheet = new Stage();
-        SheetView sheetView = new SheetView();
+        SheetView sheetView = new SheetView(new Sheet());
         sheet.setTitle(title);
         sheet.setScene(new Scene(sheetView.getRoot()));
         sheets.add(sheet);
         sheet.show();
+
+        sheetView.getRoot().requestFocus(); //Per evitare che la tastiera vada subito sulle caratteristiche
     }
 
     /**

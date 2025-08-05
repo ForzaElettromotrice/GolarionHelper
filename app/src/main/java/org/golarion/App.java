@@ -8,11 +8,15 @@ import javafx.stage.Stage;
 import org.golarion.view.DisplayMan;
 import org.golarion.view.roots.Roots;
 
+import java.util.logging.Logger;
+
 public class App extends Application
 {
+    private static final Logger logger = Logger.getLogger(App.class.getName());
+
     public static void main(String[] args)
     {
-        System.out.println("Starting app...");
+        logger.info("Starting Golarion Helper Application");
         launch(args);
     }
 
