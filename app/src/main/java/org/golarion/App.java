@@ -12,11 +12,11 @@ import java.util.logging.Logger;
 
 public class App extends Application
 {
-    private static final Logger logger = Logger.getLogger(App.class.getName());
+    public static final Logger logger = Logger.getLogger(App.class.getName());
 
     public static void main(String[] args)
     {
-        logger.info("Starting Golarion Helper Application");
+        logger.info("Starting Golarion Helper");
         launch(args);
     }
 

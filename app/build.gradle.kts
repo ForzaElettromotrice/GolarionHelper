@@ -21,7 +21,7 @@ dependencies {
 }
 
 application {
-    mainClass = "org.golarion.Launcher"
+    mainClass = "org.golarion.App"
     mainModule = "org.golarion"
 }
 
