@@ -49,6 +49,19 @@ public class Stats
         return sum;
     }
 
+    public int getBaseCharacteristic(Characteristic characteristic)
+    {
+        return switch (characteristic)
+        {
+            case STRENGTH -> strength.get("base");
+            case DEXTERITY -> dexterity.get("base");
+            case CONSTITUTION -> constitution.get("base");
+            case INTELLIGENCE -> intelligence.get("base");
+            case WISDOM -> wisdom.get("base");
+            case CHARISMA -> charisma.get("base");
+        };
+    }
+
     public void updateCharacteristic(Characteristic characteristic, String key, int value)
     {
         HashMap<String, Integer> target = switch (characteristic)
