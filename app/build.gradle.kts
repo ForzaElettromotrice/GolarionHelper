@@ -1,7 +1,10 @@
+import org.gradle.internal.os.OperatingSystem
+
 plugins {
     java
     application
-    alias(libs.plugins.shadow)
+    alias(libs.plugins.javafx)
+    alias(libs.plugins.jlink)
 }
 
 repositories {
@@ -9,17 +12,9 @@ repositories {
 }
 
 dependencies {
-    val osName = System.getProperty("os.name").lowercase()
-    val javafxPlatform = when {
-        osName.contains("win") -> "win"
-        osName.contains("mac") -> "mac"
-        osName.contains("linux") -> "linux"
-        else -> throw GradleException("Unknown OS: $osName")
-    }
-
-    implementation("org.openjfx:javafx-controls:${libs.versions.javafx.get()}:$javafxPlatform")
-    implementation("org.openjfx:javafx-graphics:${libs.versions.javafx.get()}:$javafxPlatform")
-    implementation("org.openjfx:javafx-base:${libs.versions.javafx.get()}:$javafxPlatform")
+    implementation("org.openjfx:javafx-controls:${libs.versions.javafx.get()}")
+    implementation("org.openjfx:javafx-graphics:${libs.versions.javafx.get()}")
+    implementation("org.openjfx:javafx-base:${libs.versions.javafx.get()}")
 
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
@@ -27,6 +22,12 @@ dependencies {
 
 application {
     mainClass = "org.golarion.Launcher"
+    mainModule = "org.golarion"
+}
+
+javafx {
+    version = libs.versions.javafx.get()
+    modules = listOf("javafx.controls", "javafx.graphics", "javafx.base")
 }
 
 tasks {
@@ -35,11 +36,32 @@ tasks {
             languageVersion = JavaLanguageVersion.of(21)
         }
     }
+}
 
-    shadowJar {
-        archiveClassifier.set("")
-        manifest {
-            attributes("Main-Class" to "org.golarion.Launcher")
+jlink {
+    imageZip = project.file("${layout.buildDirectory}/distributions/app-${javafx.platform.classifier}.zip")
+    options = listOf("--strip-debug", "--compress", "zip-6", "--no-header-files", "--no-man-pages")
+    launcher {
+        name = "golarion-app"
+    }
+    jpackage {
+        imageName = "Golarion"
+        installerName = "Golarion-Installer"
+        appVersion = "1.0.0"
+
+        val os = OperatingSystem.current()
+        when {
+            os.isWindows -> {
+                installerType = "msi"
+                installerOptions = listOf(
+                    "--win-per-user-install",
+                    "--win-dir-chooser",
+                    "--win-menu",
+                    "--win-shortcut"
+                )
+            }
+
+            else -> throw GradleException("Unsupported OS: ${os.name}")
         }
     }
 }
