@@ -10,7 +10,7 @@ import org.golarion.model.Sheet;
 import org.golarion.view.roots.GRoot;
 import org.golarion.view.roots.MainMenu;
 import org.golarion.view.roots.Roots;
-import org.golarion.view.roots.SheetView;
+import org.golarion.view.roots.sheet.SheetView;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,6 @@
 import org.gradle.internal.os.OperatingSystem
 
+
 plugins {
     java
     application
@@ -15,6 +16,7 @@ dependencies {
     implementation("org.openjfx:javafx-controls:${libs.versions.javafx.get()}")
     implementation("org.openjfx:javafx-graphics:${libs.versions.javafx.get()}")
     implementation("org.openjfx:javafx-base:${libs.versions.javafx.get()}")
+    implementation("com.google.code.gson:gson:2.11.0")
 
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)

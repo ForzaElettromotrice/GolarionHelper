@@ -1,4 +1,4 @@
-package org.golarion.view.roots;
+package org.golarion.view.roots.sheet;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -7,8 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.golarion.model.stats.Characteristic;
 import org.golarion.model.stats.Stats;
-
-import java.util.Map;
+import org.golarion.view.roots.GRoot;
 
 public class CharacteristicView implements GRoot
 {
@@ -48,12 +47,11 @@ public class CharacteristicView implements GRoot
             HBox characteristicsBox = new HBox(label, valueField);
             characteristicsBox.setStyle("-fx-border-color: BLACK; -fx-border-width: 1px; -fx-padding: 5px;");
 
-            StringBuilder builder = new StringBuilder();
-            for (Map.Entry<String, Integer> entry : relatedStats.getCharacteristicMap(c))
-                builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
-            builder.setLength(builder.length() - 1);
 
-            Label infoLabel = new Label(builder.toString());
+            Label infoLabel = new Label(relatedStats.getCharacteristicMap(c).stream()
+                    .map(entry -> entry.getKey() + ": " + entry.getValue())
+                    .reduce((a, b) -> a + "\n" + b)
+                    .orElse(""));
 
             label.setOnMouseClicked(mouseEvent -> clickCharacteristic(label, characteristicsBox, c));
             valueField.setOnAction(event -> enterStats(valueField, c));

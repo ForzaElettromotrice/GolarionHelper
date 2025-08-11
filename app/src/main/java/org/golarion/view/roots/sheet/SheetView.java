@@ -1,8 +1,9 @@
-package org.golarion.view.roots;
+package org.golarion.view.roots.sheet;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import org.golarion.model.Sheet;
+import org.golarion.view.roots.GRoot;
 
 import java.util.logging.Logger;
 

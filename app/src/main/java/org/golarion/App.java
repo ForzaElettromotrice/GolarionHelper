@@ -3,21 +3,36 @@
  */
 package org.golarion;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.golarion.model.spell.Spell;
+import org.golarion.model.spell.SpellParser;
 import org.golarion.view.DisplayMan;
 import org.golarion.view.roots.Roots;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 public class App extends Application
 {
     public static final Logger logger = Logger.getLogger(App.class.getName());
 
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
         logger.info("Starting Golarion Helper");
-        launch(args);
+
+        //load a json from a file
+        String json = new String(Files.readAllBytes(Paths.get("C:\\Users\\minga\\IdeaProjects\\GolarionHelper\\app\\src\\main\\resources\\spells.json")));
+        JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
+        Spell spell = SpellParser.parse(jsonObject.getAsJsonObject("Palla di Fuoco"));
+
+        System.out.println(spell);
+
+//        launch(args);
     }
 
     @Override
