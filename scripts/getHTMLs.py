@@ -5,9 +5,21 @@ from bs4 import BeautifulSoup
 
 from logs import log_debug
 
-BASE_PATH = "../data/html"
+BASE_PATH = "data/html"
 
-def get_spell(link:str, name:str):
+start = False
+
+
+def get_spell(link: str, name: str):
+    global start
+    print(name)
+
+    if name == "Nebbia Solida":
+        start = True
+
+    if not start:
+        return
+
     if os.path.exists(f"{BASE_PATH}/{name}.html"):
         return
 
@@ -21,7 +33,6 @@ def get_spell(link:str, name:str):
     log_debug(f"{name}.html written")
 
 
-
 if __name__ == '__main__':
 
     if not os.path.exists(f"{BASE_PATH}/table.html"):
@@ -30,9 +41,9 @@ if __name__ == '__main__':
 
         response = requests.get(URL)
         response.raise_for_status()
-        
-        if not os.path.exists(f"../data/html"):
-            os.makedirs(f"../data/html")
+
+        if not os.path.exists(BASE_PATH):
+            os.makedirs(BASE_PATH)
 
         with open(f"{BASE_PATH}/table.html", "w", encoding = "utf-8") as f:
             f.write(response.text)
@@ -42,10 +53,9 @@ if __name__ == '__main__':
 
     soup = BeautifulSoup(tableHTML, 'html.parser')
 
-
-    table = soup.find('table', id= "wiki_table_filter")
+    table = soup.find('table', id = "wiki_table_filter")
 
     for row in table.find_all('tr')[1:]:
-            cells = row.find_all('td')
-            if cells:
-                get_spell("https://golarion.altervista.org/" + cells[0].find('a').get('href'), cells[0].text.strip())
+        cells = row.find_all('td')
+        if cells:
+            get_spell("https://golarion.altervista.org/" + cells[0].find('a').get('href'), cells[0].text.strip())

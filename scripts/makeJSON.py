@@ -4,8 +4,10 @@ from typing import Any
 
 from bs4 import BeautifulSoup
 
+from logs import log_debug
 
-def makeSpell(path:str)-> dict[str:Any]:
+
+def make_spell(path: str) -> dict[str, Any]:
     with open(path, "r", encoding = "utf-8") as f:
         html = f.read()
 
@@ -14,7 +16,8 @@ def makeSpell(path:str)-> dict[str:Any]:
     paragraph = soup.find("p").text
 
     spell = {
-        "Nome": os.path.basename(path).replace(".html",    "")
+        "Nome": os.path.basename(path).replace(".html", ""),
+        "Link": f"https://golarion.altervista.org/wiki/Incantesimi/{os.path.basename(path).replace(".html", "")}"
     }
 
     for line in paragraph.split("\n"):
@@ -23,24 +26,25 @@ def makeSpell(path:str)-> dict[str:Any]:
             continue
         if line.startswith("Livello"):
             spell["Livello"] = [tuple(x.strip().split(" ")) for x in line.split(":")[1].split(",")]
-        for _type in ["Scuola", "Dominio", "Stirpe", "Componenti", "Tempo di Lancio", "Raggio di Azione", "Effetto", "Area", "Bersaglio", "Durata", "Tiro Salvezza", "Resistenza agli Incantesimi", "Descrizione"]:
+        for _type in ["Scuola:", "Scuola Elementale", "Dominio", "Stirpe", "Componenti", "Tempo di Lancio", "Raggio di Azione", "Effetto", "Area", "Bersaglio", "Durata", "Tiro Salvezza", "Resistenza agli Incantesimi", "Descrizione"]:
             if line.startswith(_type):
                 try:
-                    spell[_type] = line.split(":")[1].strip()
+                    spell[_type.replace(":", "")] = line.split(":")[1].strip()
                 except IndexError:
-                    spell[_type] = line.split(_type)[1].strip()
+                    spell[_type.replace(":", "")] = line.split(_type)[1].strip()
                 break
+    log_debug(f"Spell {spell['Nome']} processed")
     return spell
 
 
 if __name__ == '__main__':
 
-    spells = {}
+    spells = { }
 
-    for file in os.listdir("../data/html"):
+    for file in os.listdir("data/html"):
         if file == "table.html":
             continue
-        spells[file.replace(".html", "")] = makeSpell(f"../data/html/{file}")
+        spells[file.replace(".html", "")] = make_spell(f"data/html/{file}")
 
-    with open("../data/spells.json", "w", encoding = "utf-8") as f:
+    with open("data/spells.json", "w", encoding = "utf-8") as f:
         json.dump(spells, f, indent = 8)
