@@ -17,7 +17,7 @@ def make_spell(path: str) -> dict[str, Any]:
 
     spell = {
         "Nome": os.path.basename(path).replace(".html", ""),
-        "Link": f"https://golarion.altervista.org/wiki/Incantesimi/{os.path.basename(path).replace(".html", "")}"
+        "Link": f"https://golarion.altervista.org/wiki/Incantesimi/{os.path.basename(path).replace(".html", "").replace(" ", "_")}"
     }
 
     for line in paragraph.split("\n"):
@@ -25,7 +25,15 @@ def make_spell(path: str) -> dict[str, Any]:
         if not line:
             continue
         if line.startswith("Livello"):
-            spell["Livello"] = [tuple(x.strip().split(" ")) for x in line.split(":")[1].split(",")]
+            spell["Livello"] = [[x.strip()[:-2], x.strip()[-1]] for x in line.split(":")[1].split(",")]
+            for i, (class_name, level) in enumerate(spell["Livello"][::-1]):
+                if "/" in class_name:
+                    spell["Livello"] += [(x.strip(), level) for x in class_name.split("/")]
+                    spell["Livello"].remove([class_name, level])
+                if class_name == "Sciamano 5 Stregone":
+                    spell["Livello"] += [("Sciamano", "5"), ("Stregone", "5")]
+                    spell["Livello"].remove(["Sciamano 5 Stregone", level])
+
         for _type in ["Scuola:", "Scuola Elementale", "Dominio", "Stirpe", "Componenti", "Tempo di Lancio", "Raggio di Azione", "Effetto", "Area", "Bersaglio", "Durata", "Tiro Salvezza", "Resistenza agli Incantesimi", "Descrizione"]:
             if line.startswith(_type):
                 try:
