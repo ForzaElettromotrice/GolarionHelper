@@ -1,5 +1,5 @@
 package org.golarion.model.spell;
 
-public interface Domain
+public enum CastTime
 {
 }

@@ -1,13 +1,12 @@
 import json
 import os
-from typing import Any
 
 from bs4 import BeautifulSoup
 
 from logs import log_debug
 
 
-def make_spell(path: str) -> dict[str, Any]:
+def make_spell(path: str) -> dict[str, str | list]:
     with open(path, "r", encoding = "utf-8") as f:
         html = f.read()
 
@@ -15,7 +14,7 @@ def make_spell(path: str) -> dict[str, Any]:
 
     paragraph = soup.find("p").text
 
-    spell = {
+    spell: dict[str, str | list] = {
         "Nome": os.path.basename(path).replace(".html", ""),
         "Link": f"https://golarion.altervista.org/wiki/Incantesimi/{os.path.basename(path).replace(".html", "").replace(" ", "_")}"
     }

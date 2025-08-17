@@ -13,7 +13,7 @@ public class SpellParser
         School school = School.valueOf(jsonObject.get("Scuola").getAsString().toUpperCase());
 //        Descriptor descriptor = Descriptor.valueOf(jsonObject.get("descriptor").getAsString().toUpperCase());
 //        Map<GClass, Integer> classLevels = GClass.parseClassLevels(jsonObject.get("Livello").getAsJsonObject());
-        Domain domain = Domain.valueOf(jsonObject.get("Dominio").getAsString().toUpperCase());
+        DomainList domain = DomainList.valueOf(jsonObject.get("Dominio").getAsString().toUpperCase());
 //        Bloodline bloodline = Bloodline.valueOf(jsonObject.get("Stirpe").getAsString().toUpperCase());
         String components = jsonObject.get("Componenti").getAsString();
         String castTime = jsonObject.get("Tempo di Lancio").getAsString().toUpperCase();
