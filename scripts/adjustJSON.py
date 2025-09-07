@@ -64,6 +64,25 @@ def parse_components(spell: dict) -> None:
     spell["Componenti"] = components
 
 
+def parse_cast_time(spell: dict) -> None:
+    cast_time = spell["Tempo di Lancio"]
+
+    out = []
+
+    if "standard" in cast_time.lower():
+        out.append("standard")
+    if "round" in cast_time.lower():
+        out.append("round")
+    if "veloce" in cast_time.lower():
+        out.append("veloce")
+    if "immediata" in cast_time.lower():
+        out.append("immediata")
+
+    out.append(cast_time)
+
+    spell["Tempo di Lancio"] = out
+
+
 def parse_duration(spell: dict) -> None:
     duration = spell["Durata"]
 
@@ -101,8 +120,8 @@ def parse_range(spell: dict) -> None:
         out.append("vicino")
     if "medio" in range_.lower():
         out.append("medio")
-    if "lontano" in range_.lower():
-        out.append("lontano")
+    if "lungo" in range_.lower():
+        out.append("lungo")
     if "illimitato" in range_.lower():
         out.append("illimitato")
     out.append(range_)
@@ -137,6 +156,10 @@ def parse_spell_resistance(spell: dict) -> None:
         out.append("no")
     if "si " in spell_resistance.lower():
         out.append("si")
+    if "si" == spell_resistance.lower():
+        out.append("si")
+    if "no" == spell_resistance.lower():
+        out.append("no")
 
     out.append(spell_resistance)
 
@@ -168,6 +191,9 @@ def main():
 
         if "Componenti" in spell:
             parse_components(spell)
+
+        if "Tempo di Lancio" in spell:
+            parse_cast_time(spell)
 
         if "Durata" in spell:
             parse_duration(spell)
