@@ -8,14 +8,13 @@ import javafx.stage.Stage;
 import org.golarion.view.DisplayMan;
 import org.golarion.view.roots.Roots;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
 public class App extends Application
 {
     public static final Logger logger = Logger.getLogger(App.class.getName());
 
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
         logger.info("Starting Golarion Helper");
 

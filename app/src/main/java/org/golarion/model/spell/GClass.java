@@ -1,54 +1,53 @@
 package org.golarion.model.spell;
 
-import com.google.gson.JsonObject;
 import lombok.Getter;
-
-import java.util.Map;
 
 public enum GClass
 {
-    BARBARIAN("Barbaro"),
-    BARD("Bardo"),
-    CLERIC("Chierico"),
-    DRUID("Druido"),
-    FIGHTER("Guerriero"),
-    ROGUE("Ladro"),
-    WIZARD("Mago"),
-    MONK("Monaco"),
-    PALADIN("Paladino"),
+    BARBARO("Barbaro"),
+    BARDO("Bardo"),
+    CHIERICO("Chierico"),
+    DRUIDO("Druido"),
+    GUERRIERO("Guerriero"),
+    LADRO("Ladro"),
+    MAGO("Mago"),
+    MONACO("Monaco"),
+    PALADINO("Paladino"),
     RANGER("Ranger"),
-    SORCERER("Stregone"),
-    ALCHEMIST("Alchimista"),
-    CAVALIER("Cavaliere"),
-    SUMMONER("Convocatore"),
-    WITCH("Fattucchiere"),
-    INQUISITOR("Inquisitore"),
+    STREGONE("Stregone"),
+    ALCHIMISTA("Alchimista"),
+    CAVALIERE("Cavaliere"),
+    CONVOCATORE("Convocatore"),
+    FATTUCCHIERE("Fattucchiere"),
+    INQUISITORE("Inquisitore"),
     MAGUS("Magus"),
-    SHIFTER("Morfico"),
-    ORACLE("Oracolo"),
-    GUNSLINGER("Pistolero"),
+    MORFICO("Morfico"),
+    ORACOLO("Oracolo"),
+    PISTOLERO("Pistolero"),
     VIGILANTE("Vigilante"),
-    ANTIPALADIN("Antipaladino"),
+    ANTIPALADINO("Antipaladino"),
     NINJA("Ninja"),
     SAMURAI("Samurai"),
-    ARCANIST("Arcanista"),
-    BRAWLER("Attaccabrighe"),
-    HUNTER("Cacciatore"),
-    SWASHBUCKLER("Intrepido"),
-    INVESTIGATOR("Investigatore"),
-    BLOODRAGER("Iracondo di Stirpe"),
-    SLAYER("Predatore"),
-    WARPRIEST("Sacerdote Guerriero"),
-    SKALD("Scaldo"),
-    SHAMAN("Sciamano");
-
-    public static Map<GClass, Integer> parseClassLevels(JsonObject classLevels)
-    {
-        return classLevels.entrySet().stream()
-                .collect(java.util.stream.Collectors.toMap(
-                        e -> GClass.valueOf(e.getKey().toUpperCase()),
-                        e -> e.getValue().getAsInt()));
-    }
+    ARCANISTA("Arcanista"),
+    ATTACCABRIGHE("Attaccabrighe"),
+    CACCIATORE("Cacciatore"),
+    INTREPIDO("Intrepido"),
+    INVESTIGATORE("Investigatore"),
+    IRACONDO_DI_STIRPE("Iracondo di Stirpe"),
+    PREDATORE("Predatore"),
+    SACERDOTE_GUERRIERO("Sacerdote Guerriero"),
+    SCALDO("Scaldo"),
+    SCIAMANO("Sciamano"),
+    CINETA("Cineta"),
+    MEDIUM("Medium"),
+    MESMERISTA("Mesmerista"),
+    OCCULTISTA("Occultista"),
+    PARAPSICHICO("Parapsichico"),
+    SPIRITISTA("Spiritista"),
+    BARBARO_RIVISITATO("Barbaro Rivisitato"),
+    CONVOCATORE_RIVISITATO("Convocatore Rivisitato"),
+    LADRO_RIVISITATO("Ladro Rivisitato"),
+    MONACO_RIVISITATO("Monaco Rivisitato");
 
     @Getter
     private final String toString;

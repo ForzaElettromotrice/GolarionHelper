@@ -13,9 +13,9 @@ def parse_school(spell: dict) -> None:
 
     ss = splitted[0].split("(")
     school = ss[0].strip()
-    subschool = ss[1].replace(")", "").strip() if len(ss) > 1 else None
+    subschool = ss[1].replace(")", "").replace("ombre", "ombra").strip() if len(ss) > 1 else None
 
-    descriptors = [x.strip().lower() for x in splitted[1].replace("]", "").replace("(solo per quanto riguarda il fetore)", "").replace("vedi testo", "").replace(";", "").replace(" o ", ",").split(",") if x.strip()] if len(splitted) > 1 else []
+    descriptors = [x.strip().lower().replace("ombre", "ombra") for x in splitted[1].replace("]", "").replace("(solo per quanto riguarda il fetore)", "").replace("vedi testo", "").replace(";", "").replace(" o ", ",").split(",") if x.strip()] if len(splitted) > 1 else []
 
     spell["Scuola"] = school
     if subschool:

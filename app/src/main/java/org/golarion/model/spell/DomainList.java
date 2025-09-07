@@ -36,7 +36,7 @@ public enum DomainList implements Domain
     SOLE("Sole"),
     TEMPO_ATMOSFERICO("Tempo Atmosferico"),
     TERRA("Terra"),
-    VEGETAZIONE("Vegetazione"),
+    VEGETALE("Vegetale"),
     VIAGGIO("Viaggio"),
     VUOTO("Vuoto");
 

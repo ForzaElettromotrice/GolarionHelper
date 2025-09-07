@@ -11,7 +11,8 @@ public enum School
     ILLUSIONE("Illusione"),
     INVOCAZIONE("Invocazione"),
     NECROMANZIA("Necromanzia"),
-    TRASMUTAZIONE("Trasmutazione");
+    TRASMUTAZIONE("Trasmutazione"),
+    UNIVERSALE("Universale");
 
     @Getter
     private final String toString;

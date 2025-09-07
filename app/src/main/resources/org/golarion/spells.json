@@ -4389,9 +4389,9 @@
             "si"
         ],
         "Descrizione": "L'ombra del bersaglio diventa una fune flessibile che lo ancora al quadretto in cui si trova attualmente. La creatura puo muoversi fino a 1,5 metri da quel quadretto senza subire penalita, ma se si allontana piu di 1,5 metri dal punto di ancoraggio deve effettuare una prova di manovra in combattimento Spingere contro una DMC di 10 + 1/2 del livello dell'incantatore + il modificatore di Intelligenza (se Fattucchiere o Mago) o il modificatore di Carisma (se Bardo o Stregone) dell'incantatore + la Categoria dell'incantatore. Il bersaglio subisce penalita \u00ad-1 per ogni 1,5 metri di distanza tra lui e il quadretto a cui e ancorato. Se il bersaglio fallisce questa prova, il suo movimento viene sprecato e non puo allontanarsi ulteriormente. Se fallisce la prova di 10 o piu, viene trascinato di 1,5 metri verso il quadretto di ancoraggio e cade a terra Prono. Se supera la prova di 10 o piu, l'incantesimo termina. Questo incantesimo non funziona sulle creature prive di ombra o riflesso.",
-        "Sottoscuola": "ombre",
+        "Sottoscuola": "ombra",
         "Descrittore": [
-            "ombre"
+            "ombra"
         ]
     },
     "Ancora d'Ombra": {
@@ -4458,9 +4458,9 @@
             "si"
         ],
         "Descrizione": "L'ombra del bersaglio diventa una fune flessibile che lo ancora al quadretto in cui si trova attualmente. La creatura puo muoversi fino a 1,5 metri da quel quadretto senza subire penalita, ma se si allontana piu di 1,5 metri dal punto di ancoraggio deve effettuare una prova di manovra in combattimento Spingere contro una DMC di 10 + 1/2 del livello dell'incantatore + il modificatore di Intelligenza (se Fattucchiere o Mago) o il modificatore di Carisma (se Bardo o Stregone) dell'incantatore. Il bersaglio subisce penalita \u00ad1 per ogni 1,5 metri di distanza tra lui e il quadretto a cui e ancorato. Se il bersaglio fallisce questa prova, il suo movimento viene sprecato e non puo allontanarsi ulteriormente. Se fallisce la prova di 10 o piu, viene trascinato di 1,5 metri verso il quadretto di ancoraggio e cade a terra Prono. Se supera la prova di 10 o piu, l'incantesimo termina. Questo incantesimo non funziona sulle creature prive di ombra o riflesso. Se il bersaglio usa un effetto di teletrasporto o lascia il piano in cui si trova attualmente, l'incantesimo termina.",
-        "Sottoscuola": "ombre",
+        "Sottoscuola": "ombra",
         "Descrittore": [
-            "ombre"
+            "ombra"
         ]
     },
     "Ancora Dimensionale": {
@@ -4523,8 +4523,8 @@
         ],
         "Dominio": [
             [
-                "interdizion",
-                "i"
+                "interdizioni",
+                "4"
             ]
         ],
         "Tempo di Lancio": [
@@ -11636,7 +11636,7 @@
             "no"
         ],
         "Descrizione": "Si imbandisce un grande banchetto, completo di una magnifica tavola, sedie, stoviglie, cibo e bevande. Consumare il banchetto richiede 1 ora e gli effetti benefici non hanno luogo finche l'ora non e trascorsa. Coloro che prendono parte al banchetto vengono curati da ogni Infermita e Nausea; ricevono i benefici di Neutralizza Veleno e Rimuovi Malattia, e ottengono 1d8 Punti Ferita Temporanei +1 punto ogni 2 livelli dell'incantatore (massimo +10) dopo aver brindato con il nettare servito al banchetto. Il cibo simile all'ambrosia che viene mangiato garantisce ad ogni creatura che lo consuma Bonus Morale +1 ai Tiri per Colpire e ai Tiri Salvezza su Volonta e Bonus Morale +4 ai Tiri Salvezza contro Veleno e Paura per 12 ore.",
-        "Descrittore": [
+        "Sottoscuola": [
             "creazione"
         ]
     },
@@ -14452,7 +14452,8 @@
         "Descrizione": "Si crea un blocco emozionale nella mente del bersaglio, aggiungendo una componente emotiva a ogni incantesimo o capacita magica che usa. Questo si aggiunge a qualsiasi altra componente gia richiesta dall'incantesimo e non sostituisce la componente somatica. Le capacita magiche del bersaglio richiedono questa componente emotiva, anche se normalmente non necessitano di componenti degli incantesimi.",
         "Sottoscuola": "compulsione",
         "Descrittore": [
-            "emozione influenza mentale"
+            "emozione",
+            "influenza mentale"
         ]
     },
     "Blocco Mentale": {
@@ -20599,7 +20600,7 @@
         ],
         "Descrizione": "Tutte le creature all'interno dell'area ottengono gli effetti di un incantesimo Protezione dal Caos, e nessuna creatura caotica convocata puo entrare nell'area. Le creature nell'area, o chi vi entra in seguito, possono effettuare un solo tentativo per sopprimere gli effetti che li controllano. Se hanno successo, tali effetti vengono soppressi fintanto che esse rimangono nell'area. Le creature che lasciano l'area e ritornano in seguito non sono protette. Occorre superare la Resistenza agli Incantesimi di una creatura per tenerla a bada (come per il terzo uso illustrato di protezione dal caos), ma la deviazione e i bonus di resistenza e la protezione dal controllo mentale si applicano indipendentemente dalla Resistenza agli Incantesimi degli avversari.",
         "Descrittore": [
-            "legge"
+            "legale"
         ]
     },
     "Cerchio Magico Contro il Male": {
@@ -20826,20 +20827,12 @@
                 "4"
             ],
             [
-                "Inquisitore",
-                "4"
-            ],
-            [
                 "Medium",
                 "3"
             ],
             [
                 "Mago",
                 "4"
-            ],
-            [
-                "Medium",
-                "3"
             ],
             [
                 "Occultista",
@@ -21977,10 +21970,7 @@
             "si",
             "si (innocuo, oggetto)"
         ],
-        "Descrizione": "Questo incantesimo trasforma le munizioni sparate dalla Macchina d'Assedio a distanza bersaglio in munizioni fatte di pura energia. Quando si lancia questo incantesimo, si seleziona uno dei seguenti tipi di energia",
-        "Descrittore": [
-            "variabile"
-        ]
+        "Descrizione": "Questo incantesimo trasforma le munizioni sparate dalla Macchina d'Assedio a distanza bersaglio in munizioni fatte di pura energia. Quando si lancia questo incantesimo, si seleziona uno dei seguenti tipi di energia"
     },
     "Colpo di Energia d'Assedio": {
         "Nome": "Colpo di Energia d'Assedio",
@@ -22036,10 +22026,7 @@
             "si",
             "si (innocuo, oggetto)"
         ],
-        "Descrizione": "Questo incantesimo trasforma le munizioni sparate dalla Macchina d'Assedio a distanza bersaglio in munizioni fatte di pura energia. Quando si lancia questo incantesimo, si seleziona uno dei seguenti tipi di energia",
-        "Descrittore": [
-            "variabile"
-        ]
+        "Descrizione": "Questo incantesimo trasforma le munizioni sparate dalla Macchina d'Assedio a distanza bersaglio in munizioni fatte di pura energia. Quando si lancia questo incantesimo, si seleziona uno dei seguenti tipi di energia"
     },
     "Colpo di Ghiaccio Freddo": {
         "Nome": "Colpo di Ghiaccio Freddo",
@@ -34956,7 +34943,7 @@
         ],
         "Descrizione": "Si viene circondati da un alone di energia legale azzurra costante. Questo potere ha tre effetti",
         "Descrittore": [
-            "legge"
+            "legale"
         ]
     },
     "Dissolvi il Male": {
@@ -39933,10 +39920,7 @@
             "no"
         ],
         "Descrizione": "Questi sono in realta 9 incantesimi differenti, rispettivamente dal 1\u00b0 al 9\u00b0 livello.",
-        "Sottoscuola": "convocazione",
-        "Descrittore": [
-            "dipende"
-        ]
+        "Sottoscuola": "convocazione"
     },
     "Evoca Mostri II": {
         "Nome": "Evoca Mostri II",
@@ -39972,10 +39956,7 @@
             "no"
         ],
         "Descrizione": "Questi sono in realta 9 incantesimi differenti, rispettivamente dal 1\u00b0 al 9\u00b0 livello.",
-        "Sottoscuola": "convocazione",
-        "Descrittore": [
-            "dipende"
-        ]
+        "Sottoscuola": "convocazione"
     },
     "Evoca Mostri III": {
         "Nome": "Evoca Mostri III",
@@ -40011,10 +39992,7 @@
             "no"
         ],
         "Descrizione": "Questi sono in realta 9 incantesimi differenti, rispettivamente dal 1\u00b0 al 9\u00b0 livello.",
-        "Sottoscuola": "convocazione",
-        "Descrittore": [
-            "dipende"
-        ]
+        "Sottoscuola": "convocazione"
     },
     "Evoca Mostri IV": {
         "Nome": "Evoca Mostri IV",
@@ -40050,10 +40028,7 @@
             "no"
         ],
         "Descrizione": "Questi sono in realta 9 incantesimi differenti, rispettivamente dal 1\u00b0 al 9\u00b0 livello.",
-        "Sottoscuola": "convocazione",
-        "Descrittore": [
-            "dipende"
-        ]
+        "Sottoscuola": "convocazione"
     },
     "Evoca Mostri IX": {
         "Nome": "Evoca Mostri IX",
@@ -40089,10 +40064,7 @@
             "no"
         ],
         "Descrizione": "Questi sono in realta 9 incantesimi differenti, rispettivamente dal 1\u00b0 al 9\u00b0 livello.",
-        "Sottoscuola": "convocazione",
-        "Descrittore": [
-            "dipende"
-        ]
+        "Sottoscuola": "convocazione"
     },
     "Evoca Mostri Minori": {
         "Nome": "Evoca Mostri Minori",
@@ -40222,10 +40194,7 @@
             "no"
         ],
         "Descrizione": "Questi sono in realta 9 incantesimi differenti, rispettivamente dal 1\u00b0 al 9\u00b0 livello.",
-        "Sottoscuola": "convocazione",
-        "Descrittore": [
-            "dipende"
-        ]
+        "Sottoscuola": "convocazione"
     },
     "Evoca Mostri VI": {
         "Nome": "Evoca Mostri VI",
@@ -40261,10 +40230,7 @@
             "no"
         ],
         "Descrizione": "Questi sono in realta 9 incantesimi differenti, rispettivamente dal 1\u00b0 al 9\u00b0 livello.",
-        "Sottoscuola": "convocazione",
-        "Descrittore": [
-            "dipende"
-        ]
+        "Sottoscuola": "convocazione"
     },
     "Evoca Mostri VII": {
         "Nome": "Evoca Mostri VII",
@@ -40300,10 +40266,7 @@
             "no"
         ],
         "Descrizione": "Questi sono in realta 9 incantesimi differenti, rispettivamente dal 1\u00b0 al 9\u00b0 livello.",
-        "Sottoscuola": "convocazione",
-        "Descrittore": [
-            "dipende"
-        ]
+        "Sottoscuola": "convocazione"
     },
     "Evoca Mostri VIII": {
         "Nome": "Evoca Mostri VIII",
@@ -40339,10 +40302,7 @@
             "no"
         ],
         "Descrizione": "Questi sono in realta 9 incantesimi differenti, rispettivamente dal 1\u00b0 al 9\u00b0 livello.",
-        "Sottoscuola": "convocazione",
-        "Descrittore": [
-            "dipende"
-        ]
+        "Sottoscuola": "convocazione"
     },
     "Evoca Protoplasma Nero (Mitico)P": {
         "Nome": "Evoca Protoplasma Nero (Mitico)P",
@@ -44384,7 +44344,7 @@
             "si"
         ],
         "Descrizione": "Si trasforma l'Animale in una Bestia Magica Piccola, creando una giovane versione magica dello stesso per un breve periodo. Mentre e in questa forma, il bersaglio ha solo i DV (Punti Ferita massimi), e subisce penalita -4 a Forza, Costituzione, Intelligenza e Saggezza (minimo 1). La creatura ottiene inoltre Bonus di Taglia +4 alla Destrezza e Bonus di Armatura Naturale +2.",
-        "Descrittore": [
+        "Sottoscuola": [
             "metamorfosi"
         ]
     },
@@ -48211,7 +48171,7 @@
         ],
         "Descrizione": "Si scaglia una freccia scintillante di puro ordine dal proprio simbolo sacro a un bersaglio qualsiasi nel raggio d'azione come attacco di contatto a distanza. Una creatura caotica colpita da una Freccia delle Legge subisce 1d8 danni ogni 2 livelli dell'incantatore (massimo 5d8). Un esterno caotico invece subisce 1d6 danni per livello dell'incantatore (massimo 10d6) ed e Frastornato per 1 round. Un Tiro Salvezza su Volonta riuscito dimezza il danno e nega l'effetto frastornante. Questo incantesimo infligge solo meta del danno a creature che non siano ne caotiche ne legali, ed esse non vengono frastornate. La freccia non ha effetto su creature legali.",
         "Descrittore": [
-            "legge"
+            "legale"
         ]
     },
     "Freccia Divina": {
@@ -68492,10 +68452,12 @@
         ],
         "Descrizione": "Si scaglia una maledizione su una creatura in modo che non possa sopportare di vedere uno specifico attivatore, che potrebbe essere una creatura, un oggetto o una condizione indicata dall'incantatore. Quando il soggetto si trova entro 9 metri da un attivatore ed e cosciente di esso, ottiene la condizione Infermo e sente la necessita di andarsene. Un Tiro Salvezza sulla Volonta riuscito nega la necessita di andarsene, ma la condizione Infermo persiste finche il soggetto si trova entro 9 metri da un attivatore e ne e cosciente. Tipici attivatori includono mendicanti, vestiti sudici, creature ammalate, il re, sangue, ragni, ratti, cadaveri e liquame.",
         "Descrittore": [
-            "compulsione",
             "emozione",
             "influenza mentale",
             "maledizione"
+        ],
+        "Sottoscuola": [
+            "compulsione"
         ]
     },
     "Maledizione del Reietto": {
@@ -70265,7 +70227,7 @@
         ],
         "Descrizione": "Un flusso casuale di colori circonda i soggetti, proteggendoli dagli attacchi, conferendo loro Resistenza agli Incantesimi lanciati da creature legali e rendendo confuse le creature legali che li colpiscono. Questa abiurazione ha quattro effetti.",
         "Descrittore": [
-            "caotico"
+            "caos"
         ]
     },
     "Manto dei Sogni": {
@@ -71059,7 +71021,7 @@
         ],
         "Descrizione": "Si scatena un flusso di potere caotico per punire i nemici. Il potere si manifesta sotto forma di un\u2019esplosione multicolore di energia pulsante e turbinante. Solo le creature legali e neutrali (non quelle caotiche) subiscono gli effetti di questo incantesimo.",
         "Descrittore": [
-            "caotico"
+            "caos"
         ]
     },
     "Martello del Caos": {
@@ -71118,7 +71080,7 @@
         ],
         "Descrizione": "Si scatena un flusso di potere caotico per punire i nemici. Il potere si manifesta sotto forma di un'esplosione multicolore di energia pulsante e turbinante. Solo le creature legali e neutrali (non quelle caotiche) subiscono gli effetti di questo incantesimo.",
         "Descrittore": [
-            "caotico"
+            "caos"
         ]
     },
     "Mascelle Serrate": {
@@ -81053,7 +81015,7 @@
         ],
         "Descrizione": "Qualsiasi creatura non caotica entro l\u2019area di effetto dell\u2019incantesimo che senta la Parola del Caos (Mitico) subisce i seguenti effetti, a seconda dei suoi DV. Nel determinare l'effetto dell'incantesimo su creature non mitiche, si aggiunge la Categoria al livello dell'incantatore.",
         "Descrittore": [
-            "caotico",
+            "caos",
             "sonoro"
         ]
     },
@@ -81107,7 +81069,7 @@
         ],
         "Descrizione": "Qualsiasi creatura non caotica entro l\u2019area di effetto dell\u2019incantesimo che senta la parola del caos subisce i seguenti effetti, a seconda dei suoi DV.",
         "Descrittore": [
-            "caotico",
+            "caos",
             "sonoro"
         ]
     },
@@ -85517,10 +85479,7 @@
             "si",
             "si"
         ],
-        "Descrizione": "L'incantatore trasforma le pinne, la coda o le ali natatorie del bersaglio in gambe e piedi, consentendogli di camminare sulla terraferma. Il bersaglio perde la propria velocita di nuotare, ma ottiene una velocita base di movimento appropriata per un Umanoide della sua Taglia (velocita 9 metri se Media o superiore, velocita 6 metri se Piccola). Se la creatura si immerge in acqua per piu di 1 round, la trasformazione si inverte, consentendole di nuotare normalmente. Un round dopo che e uscita dall'acqua, la trasformazione si verifica di nuovo consentendole di camminare.",
-        "Descrittore": [
-            "metamorfosi"
-        ]
+        "Descrizione": "L'incantatore trasforma le pinne, la coda o le ali natatorie del bersaglio in gambe e piedi, consentendogli di camminare sulla terraferma. Il bersaglio perde la propria velocita di nuotare, ma ottiene una velocita base di movimento appropriata per un Umanoide della sua Taglia (velocita 9 metri se Media o superiore, velocita 6 metri se Piccola). Se la creatura si immerge in acqua per piu di 1 round, la trasformazione si inverte, consentendole di nuotare normalmente. Un round dopo che e uscita dall'acqua, la trasformazione si verifica di nuovo consentendole di camminare."
     },
     "Pioggia di Fuoco": {
         "Nome": "Pioggia di Fuoco",
@@ -88430,7 +88389,8 @@
         "Descrizione": "Si proibisce ai bersagli una singola azione, che devono evitare al meglio delle loro capacita. Ogni creatura deve avere la stessa azione proibita. Si puo chiedere ai bersagli di non compiere azioni che ricadono in una delle seguenti opzioni",
         "Sottoscuola": "compulsione",
         "Descrittore": [
-            "dipendente dal linguaggio influenza mentale"
+            "dipendente dal linguaggio",
+            "influenza mentale"
         ]
     },
     "Proibire Azione": {
@@ -88494,7 +88454,8 @@
         "Descrizione": "Si proibisce al bersaglio una singola azione, che deve evitare al meglio delle sue capacita. Si puo chiedere al bersaglio di non compiere azioni che ricadono in una delle seguenti opzioni",
         "Sottoscuola": "compulsione",
         "Descrittore": [
-            "dipendente dal linguaggio influenza mentale"
+            "dipendente dal linguaggio",
+            "influenza mentale"
         ]
     },
     "Proibizione": {
@@ -89101,7 +89062,8 @@
         "Descrizione": "Si altera l'umore del bersaglio, variando il suo atteggiamento verso l'incantatore o un'altra creatura indicata di un passo positivamente o negativamente (vedi Diplomazia). Si puo usare, invece, questo incantesimo per supportare le prove di Diplomazia, Intimidire, Intrattenere, Intuizione o Raggirare proprie o di un alleato, concedendo bonus intrinseco +5 contro il bersaglio di Proiezione Telempatica senza Tiro Salvezza. In questo caso, la durata dell'incantesimo termina immediatamente al completamento della prova di abilita.",
         "Sottoscuola": "compulsione",
         "Descrittore": [
-            "emozione influenza mentale"
+            "emozione",
+            "influenza mentale"
         ]
     },
     "Pronostico": {
@@ -90420,7 +90382,7 @@
         ],
         "Descrizione": "L'incantesimo protegge una creatura dagli attacchi di creature legali, dal controllo mentale e dalle creature evocate. Crea una barriera magica attorno al bersaglio, alla distanza di 30 cm. La barriera si sposta con lui e ha tre effetti principali.",
         "Descrittore": [
-            "caotico"
+            "caos"
         ]
     },
     "Protezione dalla Legge Collettivo": {
@@ -90499,7 +90461,7 @@
         ],
         "Descrizione": "L'incantesimo protegge le creature toccate dagli attacchi di creature legali, dal controllo mentale e dalle creature evocate. Crea una barriera magica attorno ai bersagli, alla distanza di 30 cm. La barriera si sposta con loro e ha tre effetti principali.",
         "Descrittore": [
-            "caotico"
+            "caos"
         ]
     },
     "Protezione dalla Legge": {
@@ -90608,7 +90570,7 @@
         ],
         "Descrizione": "L'incantesimo protegge una creatura dagli attacchi di creature legali, dal controllo mentale e dalle creature evocate. Crea una barriera magica attorno al bersaglio, alla distanza di 30 cm. La barriera si sposta con lui e ha tre effetti principali.",
         "Descrittore": [
-            "caotico"
+            "caos"
         ]
     },
     "Protezione dalle Fatture (Mitico)P": {
@@ -90739,10 +90701,6 @@
                 "2"
             ],
             [
-                "Parapsichico",
-                "3"
-            ],
-            [
                 "Spiritista",
                 "2"
             ],
@@ -90796,8 +90754,12 @@
                 "3"
             ],
             [
-                "Convocatore 3 Convocatore Rivisitato",
+                "Convocatore",
                 "3"
+            ],
+            [
+                "Convocatore Rivisitato",
+                 "3"
             ],
             [
                 "Investigatore",
@@ -90886,10 +90848,6 @@
             [
                 "Parapsichico",
                 "2"
-            ],
-            [
-                "Parapsichico",
-                "3"
             ],
             [
                 "Spiritista",
@@ -92676,7 +92634,8 @@
         ],
         "Descrizione": "Si bersagliano i propri nemici con accecanti raggi di luce solare. Si puo lanciare un raggio, piu un raggio aggiuntivo ogni 4 livelli oltre al 3\u00b0 (fino ad un massimo di tre raggi all'11\u00b0 livello). Ogni raggio richiede un attacco di contatto a distanza per colpire. Se un raggio colpisce il bersaglio, esplode in potenti particelle di luce, e quest'ultimo deve superare un Tiro Salvezza e diventare cosi Abbagliato. Fallendo il bersaglio e, invece, Accecato per 1d4 round. Se il bersaglio ha Cecita alla Luce, Sensibilita alla Luce o altra vulnerabilita alla luce e, invece, Accecato per 1d4 round se supera il Tiro Salvezza e permanentemente Accecato e subisce 1d4 danni ogni due livelli dell'incantatore (massimo 5d4) se fallisce. Qualsiasi creatura Accecata dal raggio emette luce come una Verga del Sole per la durata della sua cecita. I raggi possono essere lanciati contro lo stesso bersaglio o contro bersagli diversi, ma tutti devono essere diretti contro bersagli entro 9 metri di distanza tra loro e lanciati simultaneamente.",
         "Descrittore": [
-            "bene luce"
+            "bene",
+            "luce"
         ]
     },
     "Raggio Accecante": {
@@ -92732,7 +92691,8 @@
         ],
         "Descrizione": "Si bersagliano i propri nemici con accecanti raggi di luce solare. Si puo lanciare un raggio, piu un raggio aggiuntivo ogni 4 livelli oltre al 3\u00b0 (fino ad un massimo di tre raggi all'11\u00b0 livello). Ogni raggio richiede un attacco di contatto a distanza per colpire. Se un raggio colpisce il bersaglio, esplode in potenti particelle di luce, e quest'ultimo deve superare un Tiro Salvezza o diventa Accecato per 1 round. Se il bersaglio ha Cecita alla Luce, Sensibilita alla Luce o e altrimenti vulnerabile alla luce intensa, deve superare invece un Tiro Salvezza o diventa Accecato per 1d4 round e subisce 1d4 danni ogni due livelli dell'incantatore (massimo 5d4). Qualsiasi creatura Accecata dal raggio emette luce come una Verga del Sole per la durata della sua cecita. I raggi possono essere lanciati contro lo stesso bersaglio o contro bersagli diversi, ma tutti devono essere diretti contro bersagli entro 9 metri di distanza tra loro e lanciati simultaneamente.",
         "Descrittore": [
-            "bene luce"
+            "bene",
+            "luce"
         ]
     },
     "Raggio di Debilitazione": {
@@ -95252,10 +95212,6 @@
                 "2"
             ],
             [
-                "Parapsichico",
-                "3"
-            ],
-            [
                 "Ranger",
                 "1"
             ],
@@ -95474,10 +95430,6 @@
             [
                 "Parapsichico",
                 "2"
-            ],
-            [
-                "Parapsichico",
-                "3"
             ],
             [
                 "Ranger",
@@ -96082,7 +96034,7 @@
         "Descrizione": "Questo incantesimo funziona come una Resurrezione Falsa, tranne per il fatto che richiama un Diavolo Ingannatore con l'Archetipo Giovane a possedere il corpo e tutte le parti di Resurrezione Falsa che funzionano come Resurrezione funzionano invece come Resurrezione Pura.",
         "Sottoscuola": "Richiamo",
         "Descrittore": [
-            "caotico",
+            "caos",
             "male",
             "trucco"
         ]
@@ -96139,7 +96091,7 @@
         "Descrizione": "Questo incantesimo funziona come Resurrezione, tranne per il fatto che invece di richiamare in vita l'anima morta, l'incantesimo chiama un Demone d'Ombra con l'Archetipo Avanzato a possederne il corpo. Se non si riesce a superare la Resistenza agli Incantesimi del soggetto, l'anima del soggetto puo negare il richiamo e ottenere la possibilita di tornare in vita (come Resurrezione) nel corpo restaurato. Altrimenti, la possessione funziona (come Possessione), tranne che per il fatto che l'anima del soggetto non e presente per resistere. Quando la Resurrezione Falsa termina o il demone viene rimosso dal soggetto, il demone torna nell'Abisso, lasciando il corpo vivo ma privo di anima (come quello creato da Clone). Se l'anima non e gia stata riportata in vita, ha la possibilita di tornare nel corpo ormai vuoto se e ancora in vita (come Resurrezione). Se il corpo e stato ucciso, il demone viene rimandato nell'Abisso ma il soggetto rimane morto.",
         "Sottoscuola": "Richiamo",
         "Descrittore": [
-            "caotico",
+            "caos",
             "male",
             "trucco"
         ]
@@ -99155,10 +99107,7 @@
             "si",
             "si (innocuo)"
         ],
-        "Descrizione": "Questo incantesimo scaccia le sensazioni di stanchezza. Per la durata dell'incantesimo, i soggetti non subiscono penalita dalle condizioni da Affaticamento ed Esaurimento. L'effetto di Rinvigorire di Massa, pero, e semplicemente un'illusione, non un sostituto del riposo reale. Quando l'incantesimo termina, i soggetti subiscono 1d6 Danni Non Letali, con il ripristino delle condizioni originali. Una creatura puo essere sotto l'effetto di un solo incantesimo Rinvigorire di Massa per volta; se viene lanciato una seconda volta su quella creatura, il primo effetto termina immediatamente.",
-        "Descrittore": [
-            "finzione"
-        ]
+        "Descrizione": "Questo incantesimo scaccia le sensazioni di stanchezza. Per la durata dell'incantesimo, i soggetti non subiscono penalita dalle condizioni da Affaticamento ed Esaurimento. L'effetto di Rinvigorire di Massa, pero, e semplicemente un'illusione, non un sostituto del riposo reale. Quando l'incantesimo termina, i soggetti subiscono 1d6 Danni Non Letali, con il ripristino delle condizioni originali. Una creatura puo essere sotto l'effetto di un solo incantesimo Rinvigorire di Massa per volta; se viene lanciato una seconda volta su quella creatura, il primo effetto termina immediatamente."
     },
     "Rinvigorire": {
         "Nome": "Rinvigorire",
@@ -99210,10 +99159,7 @@
             "si",
             "si (innocuo)"
         ],
-        "Descrizione": "Questo incantesimo scaccia le sensazioni di stanchezza. Per la durata dell\u2019incantesimo, il soggetto non subisce penalita dalle condizioni da Affaticamento ed Esaurimento. L\u2019effetto di Rinvigorire, pero, e semplicemente un\u2019illusione, non un sostituto del riposo reale. Quando l\u2019incantesimo termina, il soggetto subisce 1d6 Danni Non Letali, con il ripristino delle condizioni originali. Una creatura puo essere sotto l\u2019effetto di un solo incantesimo Rinvigorire per volta; se viene lanciato una seconda volta su quella creatura, il primo effetto termina immediatamente.",
-        "Descrittore": [
-            "finzione"
-        ]
+        "Descrizione": "Questo incantesimo scaccia le sensazioni di stanchezza. Per la durata dell\u2019incantesimo, il soggetto non subisce penalita dalle condizioni da Affaticamento ed Esaurimento. L\u2019effetto di Rinvigorire, pero, e semplicemente un\u2019illusione, non un sostituto del riposo reale. Quando l\u2019incantesimo termina, il soggetto subisce 1d6 Danni Non Letali, con il ripristino delle condizioni originali. Una creatura puo essere sotto l\u2019effetto di un solo incantesimo Rinvigorire per volta; se viene lanciato una seconda volta su quella creatura, il primo effetto termina immediatamente."
     },
     "Riparare Non Morti di Massa": {
         "Nome": "Riparare Non Morti di Massa",
@@ -113512,10 +113458,7 @@
             "si"
         ],
         "Descrizione": "L'incantesimo Sonno (Mitico) fa cadere in un sonno magico 8 DV di creature e l'incantatore puo scegliere l'ordine in cui le creature vengono influenzate dall'incantesimo. Altrimenti, le creature con meno DV vengono colpite per prime, mentre tra creature con lo stesso numero di DV, vengono colpite per prime quelle piu vicine al punto di origine dell'incantesimo. I DV che non sono sufficienti ad influenzare una creatura vanno sprecati. Le creature addormentate sono Indifese. Se vengono ferite o schiaffeggiate non si risvegliano ma ottengono un nuovo Tiro Salvezza su Volonta per svegliarsi, mentre i normali rumori non sono sufficienti. Svegliare una creatura e un'Azione Standard (un'applicazione dell'azione di Aiutare un Altro). Sonno (Mitico) non ha effetto sulle creature Prive di Sensi, Costrutti o i Non Morti.",
-        "Sottoscuola": "compulsione",
-        "Descrittore": [
-            "effetto mentale"
-        ]
+        "Sottoscuola": "compulsione"
     },
     "Sonno Immemore": {
         "Nome": "Sonno Immemore",
@@ -113650,10 +113593,7 @@
             "si"
         ],
         "Descrizione": "L'incantesimo Sonno Profondo (Mitico) fa cadere in un sonno magico 20 DV di creature. Le creature con meno DV vengono colpite per prime. Tra creature con lo stesso numero di DV, vengono colpite per prime quelle piu vicine al punto di origine dell'incantesimo. I DV che non sono sufficienti ad influenzare una creatura vanno sprecati. Le creature addormentate sono Indifese. Se vengono ferite o schiaffeggiate non si risvegliano ma ottengono un nuovo Tiro Salvezza su Volonta per svegliarsi, mentre i normali rumori non sono sufficienti. Svegliare una creatura e un'Azione Standard (un'applicazione dell'azione di Aiutare un Altro).",
-        "Sottoscuola": "compulsione",
-        "Descrittore": [
-            "effetto mentale"
-        ]
+        "Sottoscuola": "compulsione"
     },
     "Sonno Profondo": {
         "Nome": "Sonno Profondo",
@@ -115292,7 +115232,8 @@
         "Descrizione": "Si acquisisce la capacita di individuare la Paura, come con Percepire Paura, ma si percepiscono solo le creature entro un raggio di azione medio.",
         "Sottoscuola": "teletrasporto",
         "Descrittore": [
-            "influenza mentale male paura"
+            "male",
+            "paura"
         ]
     },
     "Spostamento Planare (Mitico)P": {
@@ -118412,7 +118353,7 @@
         "Livello": [
             [
                 "Parapsichico ",
-                "."
+                "9"
             ],
             [
                 "Chierico",
@@ -124339,6 +124280,10 @@
             [
                 "Druido",
                 "8"
+            ],
+            [
+                "sciamano",
+                "8"
             ]
         ],
         "Dominio": [
@@ -124348,10 +124293,6 @@
             ],
             [
                 "tempo atmosferico",
-                "8"
-            ],
-            [
-                "sciamano",
                 "8"
             ]
         ],
@@ -129235,10 +129176,7 @@
             "si"
         ],
         "Descrizione": "Si fa dimenticare al bersaglio cio che e successo dal momento del lancio dell'incantesimo indietro fino all'inizio del turno prima del suo ultimo turno. Il bersaglio, inoltre, dimentica un round addizionale, dall'inizio del turno prima dell'ultimo. Cio puo permettere di ritirare una prova di Diplomazia, di Intimidire o una prova contrapposta di abilita, ma solo nei confronti del bersaglio e non verso altre creature che potevano essere presenti.",
-        "Sottoscuola": "compulsione",
-        "Descrittore": [
-            "effetto mentale"
-        ]
+        "Sottoscuola": "compulsione"
     },
     "Vuoto di Memoria": {
         "Nome": "Vuoto di Memoria",
