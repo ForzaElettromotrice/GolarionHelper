@@ -15,6 +15,7 @@ public class SheetView implements GRoot
 
     private final Pane root;
     private final CharacteristicView cView;
+    private final SpellListView sView;
 
     public SheetView(Sheet relatedSheet)
     {
@@ -24,9 +25,9 @@ public class SheetView implements GRoot
         root.setPrefSize(800, 600);
 
         cView = new CharacteristicView(relatedSheet.getStats());
+        sView = new SpellListView(relatedSheet.getSpellList());
 
-
-        root.getChildren().addAll(cView.getRoot());
+        root.getChildren().addAll(cView.getRoot(), sView.getRoot());
     }
 
 
