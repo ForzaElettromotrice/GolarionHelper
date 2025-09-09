@@ -27,7 +27,7 @@ public class SheetView implements GRoot
         cView = new CharacteristicView(relatedSheet.getStats());
         sView = new SpellListView(relatedSheet.getSpellList());
 
-        root.getChildren().addAll(cView.getRoot(), sView.getRoot());
+        root.getChildren().addAll(cView.getRoot());
     }
 
 

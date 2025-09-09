@@ -49,6 +49,11 @@ public class Stats
         return sum;
     }
 
+    public int getCharacteristicModifier(Characteristic characteristic)
+    {
+        return (getCharacteristic(characteristic) - 10) / 2;
+    }
+
     public int getBaseCharacteristic(Characteristic characteristic)
     {
         return switch (characteristic)

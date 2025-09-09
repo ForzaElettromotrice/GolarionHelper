@@ -1,5 +1,6 @@
 package org.golarion.view.roots.sheet;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -15,10 +16,8 @@ public class CharacteristicView implements GRoot
 
     private final VBox root;
 
-    private final Label[] characteristicLabels;
-    private final TextField[] characteristicFields;
-    private final HBox[] characteristicsBoxes;
-    private final Label[] characteristicInfos;
+    private final Label[] infos;
+    private final Label[] modifiers;
 
 
     public CharacteristicView(Stats relatedStats)
@@ -27,44 +26,46 @@ public class CharacteristicView implements GRoot
 
         root = new VBox();
 
-        characteristicLabels = new Label[Characteristic.values().length];
-        characteristicFields = new TextField[Characteristic.values().length];
-        characteristicsBoxes = new HBox[Characteristic.values().length];
-        characteristicInfos = new Label[Characteristic.values().length];
+        infos = new Label[Characteristic.values().length];
+        modifiers = new Label[Characteristic.values().length];
 
         for (Characteristic c : Characteristic.values())
         {
-            Label label = new Label(c.getShortName().toUpperCase());
-            label.setStyle("-fx-font-weight: bold;");
-            label.setPrefWidth(30);
-            label.setUserData(false);
+            Label name = new Label(c.getShortName().toUpperCase());
+            name.setStyle("-fx-font-weight: bold;");
+            name.setPrefWidth(30);
+            name.setUserData(false);
 
 
             TextField valueField = new TextField();
             valueField.setText(relatedStats.getCharacteristic(c) + "");
-            valueField.setPrefWidth(30);
-
-            HBox characteristicsBox = new HBox(label, valueField);
-            characteristicsBox.setStyle("-fx-border-color: BLACK; -fx-border-width: 1px; -fx-padding: 5px;");
+            valueField.setPrefSize(30, 25);
 
 
-            Label infoLabel = new Label(relatedStats.getCharacteristicMap(c).stream()
+            Label modifier = new Label(relatedStats.getCharacteristicModifier(c) + "");
+            modifier.setStyle("-fx-border-color: BLACK; -fx-border-width: 1px; -fx-border-radius: 2px;");
+            modifier.setAlignment(Pos.CENTER);
+            modifier.setPrefSize(30, 25);
+
+            HBox box = new HBox(name, valueField, modifier);
+            box.setSpacing(5);
+            box.setStyle("-fx-border-color: BLACK; -fx-border-width: 1px; -fx-padding: 5px;");
+
+            Label info = new Label(relatedStats.getCharacteristicMap(c).stream()
                     .map(entry -> entry.getKey() + ": " + entry.getValue())
                     .reduce((a, b) -> a + "\n" + b)
                     .orElse(""));
 
-            label.setOnMouseClicked(mouseEvent -> clickCharacteristic(label, characteristicsBox, c));
+            name.setOnMouseClicked(mouseEvent -> clickCharacteristic(name, box, c));
             valueField.setOnAction(event -> enterStats(valueField, c));
             valueField.setOnMouseEntered(mouseEvent -> overEnteredStats(valueField, c));
             valueField.setOnMouseExited(mouseEvent -> overExitedStats(valueField, c));
 
 
-            characteristicLabels[c.ordinal()] = label;
-            characteristicFields[c.ordinal()] = valueField;
-            characteristicsBoxes[c.ordinal()] = characteristicsBox;
-            characteristicInfos[c.ordinal()] = infoLabel;
+            infos[c.ordinal()] = info;
+            modifiers[c.ordinal()] = modifier;
 
-            root.getChildren().addAll(characteristicsBox);
+            root.getChildren().addAll(box);
         }
     }
 
@@ -76,13 +77,15 @@ public class CharacteristicView implements GRoot
 
         relatedStats.updateCharacteristic(c, "base", Integer.parseInt(input));
 
-        characteristicInfos[c.ordinal()].setText(
+        infos[c.ordinal()].setText(
                 relatedStats.getCharacteristicMap(c).stream()
                         .map(entry -> entry.getKey() + ": " + entry.getValue())
                         .reduce((a, b) -> a + "\n" + b)
                         .orElse("")
         );
         field.setText(relatedStats.getCharacteristic(c) + "");
+        modifiers[c.ordinal()].setText(relatedStats.getCharacteristicModifier(c) + "");
+
         root.requestFocus();
     }
 
@@ -104,11 +107,11 @@ public class CharacteristicView implements GRoot
     {
         if ((boolean) label.getUserData())
         {
-            root.getChildren().remove(characteristicInfos[c.ordinal()]);
+            root.getChildren().remove(infos[c.ordinal()]);
             label.setUserData(false);
         } else
         {
-            root.getChildren().add(root.getChildren().indexOf(box) + 1, characteristicInfos[c.ordinal()]);
+            root.getChildren().add(root.getChildren().indexOf(box) + 1, infos[c.ordinal()]);
             label.setUserData(true);
         }
 
