@@ -127,6 +127,10 @@ public class DisplayMan
      */
     public void close()
     {
+        for (Stage sheet : sheets)
+        {
+            sheet.close();
+        }
         window.close();
     }
 }

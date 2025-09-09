@@ -1,16 +1,16 @@
 package org.golarion.model.spell;
 
+import org.golarion.exceptions.MaxSpellSlotsException;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.golarion.exceptions.MaxSpellSlotsException;
 
 public class SpellList
 {
     private final int[] maxSpellSlotsCounter;
     private final int[] currentSpellSlotsCounter;
     private final List<Spell>[] spellsByLevel;
-    
+
     @SuppressWarnings("unchecked")
     public SpellList()
     {
@@ -47,9 +47,11 @@ public class SpellList
     {
         if (level < 0 || level >= spellsByLevel.length)
             throw new IllegalArgumentException("Level must be between 0 and " + (spellsByLevel.length - 1));
+
+        //TODO: check if spell already exists
         spellsByLevel[level].add(spell);
     }
-   
+
     public List<Spell> getSpellsByLevel(int level)
     {
         if (level < 0 || level >= spellsByLevel.length)

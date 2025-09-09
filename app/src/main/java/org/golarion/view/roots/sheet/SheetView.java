@@ -7,34 +7,23 @@ import javafx.scene.layout.Pane;
 import org.golarion.model.Sheet;
 import org.golarion.view.roots.GRoot;
 
-import java.util.logging.Logger;
-
 public class SheetView implements GRoot
 {
-    private static final Logger logger = Logger.getLogger(SheetView.class.getName());
-
-    private final Sheet relatedSheet;
 
     private final Pane root;
 
-    private final TabPane tabPane;
-
-    private final CharacteristicView cView;
-    private final SpellListView sView;
-
     public SheetView(Sheet relatedSheet)
     {
-        this.relatedSheet = relatedSheet;
 
         root = new AnchorPane();
         root.setPrefSize(800, 600);
 
-        tabPane = new TabPane();
+        TabPane tabPane = new TabPane();
         tabPane.setPrefSize(800, 600);
 
 
-        cView = new CharacteristicView(relatedSheet.getStats());
-        sView = new SpellListView(relatedSheet.getSpellList());
+        CharacteristicView cView = new CharacteristicView(relatedSheet.getStats());
+        SpellListView sView = new SpellListView(relatedSheet.getSpellList());
 
 
         Pane principal = new Pane(cView.getRoot());
