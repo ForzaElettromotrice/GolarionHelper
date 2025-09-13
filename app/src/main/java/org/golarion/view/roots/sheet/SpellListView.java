@@ -121,7 +121,7 @@ public class SpellListView implements GRoot
         {
             relatedSpellList.modifyCurrentCounter(level, -1);
             counter.setText(String.valueOf(val - 1));
-            ((Label) spellListBoxes[level].getChildren().getFirst()).setText("Level " + level + " - " + (val - 1) + "/" + relatedSpellList.getMaxSpellSlots(level));
+            ((Label) spellListBoxes[level].getChildren().getFirst()).setText("Level " + level + " - " + (relatedSpellList.getCurrentCounter(level)) + "/" + relatedSpellList.getMaxSpellSlots(level));
 
         }
     }
@@ -137,7 +137,7 @@ public class SpellListView implements GRoot
             return;
         }
         counter.setText(String.valueOf(val + 1));
-        ((Label) spellListBoxes[level].getChildren().getFirst()).setText("Level " + level + " - " + (val + 1) + "/" + relatedSpellList.getMaxSpellSlots(level));
+        ((Label) spellListBoxes[level].getChildren().getFirst()).setText("Level " + level + " - " + (relatedSpellList.getCurrentCounter(level)) + "/" + relatedSpellList.getMaxSpellSlots(level));
 
 
     }

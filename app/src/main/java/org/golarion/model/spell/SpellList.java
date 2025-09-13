@@ -43,6 +43,13 @@ public class SpellList
             currentSpellSlotsCounter[level] = 0;
     }
 
+    public int getCurrentCounter(int level)
+    {
+        if (level < 0 || level >= currentSpellSlotsCounter.length)
+            throw new IllegalArgumentException("Level must be between 0 and " + (currentSpellSlotsCounter.length - 1));
+        return currentSpellSlotsCounter[level];
+    }
+
     public void addSpell(int level, Spell spell)
     {
         if (level < 0 || level >= spellsByLevel.length)
