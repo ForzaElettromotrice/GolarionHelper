@@ -117,6 +117,11 @@ public class CharacteristicView implements GRoot
 
     }
 
+    public void update()
+    {
+        //TODO
+    }
+
     @Override
     public Pane getRoot()
     {

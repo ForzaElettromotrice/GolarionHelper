@@ -25,7 +25,7 @@ public class SheetView implements GRoot
 
 
         cView = new CharacteristicView(relatedSheet.getStats());
-        sView = new SpellListView(relatedSheet.getSpellList());
+        sView = new SpellListView(relatedSheet);
 
 
         Pane principal = new Pane(cView.getRoot());
@@ -49,7 +49,7 @@ public class SheetView implements GRoot
 
     public void update()
     {
-//        cView.update();
+        cView.update();
         sView.update();
     }
 
