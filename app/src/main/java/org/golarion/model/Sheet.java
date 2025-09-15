@@ -6,6 +6,7 @@ import com.google.gson.JsonParser;
 import lombok.Getter;
 import lombok.Setter;
 import org.golarion.App;
+import org.golarion.model.spell.GClass;
 import org.golarion.model.spell.Spell;
 import org.golarion.model.spell.SpellList;
 import org.golarion.model.spell.SpellParser;
@@ -14,6 +15,8 @@ import org.golarion.model.stats.Stats;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -22,12 +25,15 @@ public class Sheet
 
     private final Stats stats;
     private final SpellList spellList;
+    private final List<GClass> classes;
 
     public Sheet()
     {
         stats = new Stats();
         spellList = new SpellList();
+        classes = new ArrayList<>();
 
+        classes.add(GClass.BARDO);
         spellList.modifyMaxCounter(0, 3);
         spellList.modifyMaxCounter(1, 2);
         spellList.modifyMaxCounter(2, 1);
@@ -57,5 +63,10 @@ public class Sheet
         }
 
 
+    }
+
+    public List<GClass> getClasses()
+    {
+        return List.copyOf(classes);
     }
 }

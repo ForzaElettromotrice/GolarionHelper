@@ -17,12 +17,16 @@ public class SpellListView implements GRoot
 {
     private final SpellList relatedSpellList;
 
+    private final SpellsView sView;
+
     private final Pane root;
     private final VBox[] spellListBoxes;
 
     public SpellListView(SpellList relatedSpellList)
     {
         this.relatedSpellList = relatedSpellList;
+
+        sView = new SpellsView();
 
         root = new AnchorPane();
         root.setPrefSize(800, 600);
@@ -60,12 +64,11 @@ public class SpellListView implements GRoot
         this.update();
     }
 
-    private void update()
+    public void update()
     {
         for (int i = 0; i < 10; i++)
         {
             int maxSlots = relatedSpellList.getMaxSpellSlots(i);
-            // int currentSlots = relatedSpellList.getCurrentSpellSlots(i);
             if (maxSlots == 0)
             {
                 spellListBoxes[i].setVisible(false);

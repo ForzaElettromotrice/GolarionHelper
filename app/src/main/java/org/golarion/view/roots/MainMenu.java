@@ -7,7 +7,12 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import org.golarion.model.Sheet;
 import org.golarion.view.DisplayMan;
+import org.golarion.view.SheetMan;
+import org.golarion.view.roots.sheet.SheetView;
+
+import java.util.UUID;
 
 public class MainMenu implements GRoot
 {
@@ -26,7 +31,7 @@ public class MainMenu implements GRoot
         loadSheet.setText("Carica Scheda");
         quit.setText("Esci");
 
-        newSheet.setOnAction(actionEvent -> DisplayMan.getInstance().popUpSheet("Nuova Scheda"));
+        newSheet.setOnAction(actionEvent -> SheetMan.getInstance().open("Nuova Scheda", UUID.randomUUID(), new SheetView(new Sheet())));
         quit.setOnAction(actionEvent -> DisplayMan.getInstance().close());
 
         VBox box = new VBox(newSheet, loadSheet, quit);

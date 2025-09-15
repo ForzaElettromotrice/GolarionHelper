@@ -6,14 +6,9 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lombok.Setter;
 import org.golarion.exceptions.IllegalBuildException;
-import org.golarion.model.Sheet;
 import org.golarion.view.roots.GRoot;
 import org.golarion.view.roots.MainMenu;
 import org.golarion.view.roots.Roots;
-import org.golarion.view.roots.sheet.SheetView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DisplayMan
 {
@@ -56,7 +51,6 @@ public class DisplayMan
 
     private final Stage window;
     private final GRoot[] roots;
-    private final List<Stage> sheets;
 
     /**
      * Constructor for the {@link DisplayMan} class.
@@ -66,8 +60,6 @@ public class DisplayMan
         this.window = primaryStage;
         this.window.setScene(new Scene(new AnchorPane()));
         this.roots = new GRoot[Roots.values().length];
-
-        sheets = new ArrayList<>();
     }
 
     /**
@@ -101,18 +93,6 @@ public class DisplayMan
         window.getScene().setRoot(pane);
     }
 
-    public void popUpSheet(String title)
-    {
-        Stage sheet = new Stage();
-        SheetView sheetView = new SheetView(new Sheet());
-        sheet.setTitle(title);
-        sheet.setScene(new Scene(sheetView.getRoot()));
-        sheets.add(sheet);
-        sheet.show();
-
-        sheetView.getRoot().requestFocus(); //Per evitare che la tastiera vada subito sulle caratteristiche
-    }
-
     /**
      * Displays the main window
      */
@@ -127,10 +107,7 @@ public class DisplayMan
      */
     public void close()
     {
-        for (Stage sheet : sheets)
-        {
-            sheet.close();
-        }
+        SheetMan.getInstance().closeAll();
         window.close();
     }
 }

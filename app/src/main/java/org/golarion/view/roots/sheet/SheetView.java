@@ -12,9 +12,11 @@ public class SheetView implements GRoot
 
     private final Pane root;
 
+    private final CharacteristicView cView;
+    private final SpellListView sView;
+
     public SheetView(Sheet relatedSheet)
     {
-
         root = new AnchorPane();
         root.setPrefSize(800, 600);
 
@@ -22,8 +24,8 @@ public class SheetView implements GRoot
         tabPane.setPrefSize(800, 600);
 
 
-        CharacteristicView cView = new CharacteristicView(relatedSheet.getStats());
-        SpellListView sView = new SpellListView(relatedSheet.getSpellList());
+        cView = new CharacteristicView(relatedSheet.getStats());
+        sView = new SpellListView(relatedSheet.getSpellList());
 
 
         Pane principal = new Pane(cView.getRoot());
@@ -44,6 +46,12 @@ public class SheetView implements GRoot
         root.getChildren().addAll(tabPane);
     }
 
+
+    public void update()
+    {
+//        cView.update();
+        sView.update();
+    }
 
     @Override
     public Pane getRoot()

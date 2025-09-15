@@ -5,6 +5,7 @@ package org.golarion;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.golarion.model.Sheet;
 import org.golarion.view.DisplayMan;
 import org.golarion.view.roots.Roots;
 
@@ -18,7 +19,10 @@ public class App extends Application
     {
         logger.info("Starting Golarion Helper");
 
+        Sheet s = new Sheet();
+
         launch(args);
+//        System.exit(0);
     }
 
     @Override
