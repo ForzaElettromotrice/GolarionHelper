@@ -65,34 +65,15 @@ public class SpellParser
                 }).toList() : null;
         List<CastTime> castTime = jsonObject.has("Tempo di Lancio") ? new ArrayList<>(jsonObject.get("Tempo di Lancio").getAsJsonArray().asList().stream()
                 .map(e ->
-                {
-                    try
-                    {
-                        return CastTime.valueOf(e.getAsString().toUpperCase());
-                    } catch (IllegalArgumentException ignored)
-                    {
-                        return null;
-                    }
-                }).toList()) : null;
-        if (castTime != null && castTime.getLast() == null)
-            castTime.removeLast();
+                        CastTime.valueOf(e.getAsString().toUpperCase())).toList()) : null;
 
-        String castTimeDescription = jsonObject.has("Tempo di Lancio") ? jsonObject.get("Tempo di Lancio").getAsJsonArray().asList().getLast().getAsString() : "";
+        String castTimeDescription = jsonObject.has("castTimeDescription") ? jsonObject.get("castTimeDescription").getAsString() : "";
 
         List<GRange> range = jsonObject.has("Raggio di Azione") ? new ArrayList<>(jsonObject.get("Raggio di Azione").getAsJsonArray().asList().stream()
                 .map(e ->
-                {
-                    try
-                    {
-                        return GRange.valueOf(e.getAsString().toUpperCase());
-                    } catch (IllegalArgumentException ignored)
-                    {
-                        return null;
-                    }
-                }).toList()) : null;
-        if (range != null && range.getLast() == null)
-            range.removeLast();
-        String rangeDescription = jsonObject.has("Raggio di Azione") ? jsonObject.get("Raggio di Azione").getAsJsonArray().asList().getLast().getAsString() : "";
+                        GRange.valueOf(e.getAsString().toUpperCase())).toList()) : null;
+
+        String rangeDescription = jsonObject.has("rangeDescription") ? jsonObject.get("rangeDescription").getAsString() : "";
 
         String target = jsonObject.has("Bersaglio") ? jsonObject.get("Bersaglio").getAsString() : "";
         String effect = jsonObject.has("Effetto") ? jsonObject.get("Effetto").getAsString() : "";
@@ -100,40 +81,20 @@ public class SpellParser
 
         List<GDuration> duration = jsonObject.has("Durata") ? new ArrayList<>(jsonObject.get("Durata").getAsJsonArray().asList().stream()
                 .map(e ->
-                {
-                    try
-                    {
-                        return GDuration.valueOf(e.getAsString().toUpperCase());
-                    } catch (IllegalArgumentException ignored)
-                    {
-                        return null;
-                    }
-                }).toList()) : null;
-        if (duration != null && duration.getLast() == null)
-            duration.removeLast();
-        String durationDescription = jsonObject.has("Durata") ? jsonObject.get("Durata").getAsJsonArray().asList().getLast().getAsString() : "";
+                        GDuration.valueOf(e.getAsString().toUpperCase())).toList()) : null;
+
+        String durationDescription = jsonObject.has("durationDescription") ? jsonObject.get("durationDescription").getAsString() : "";
 
         List<SavingThrow> savingThrow = jsonObject.has("Tiro Salvezza") ? new ArrayList<>(jsonObject.get("Tiro Salvezza").getAsJsonArray().asList().stream()
                 .map(e ->
-                {
-                    try
-                    {
-                        return SavingThrow.valueOf(e.getAsString().toUpperCase());
-                    } catch (IllegalArgumentException ignored)
-                    {
-                        return null;
-                    }
-                }).toList()) : null;
-        if (savingThrow != null && savingThrow.getLast() == null)
-            savingThrow.removeLast();
-        String savingThrowDescription = jsonObject.has("Tiro Salvezza") ? jsonObject.get("Tiro Salvezza").getAsJsonArray().asList().getLast().getAsString() : "";
+                        SavingThrow.valueOf(e.getAsString().toUpperCase())).toList()) : null;
+
+        String savingThrowDescription = jsonObject.has("savingThrowDescription") ? jsonObject.get("savingThrowDescription").getAsString() : "";
 
         List<String> spellResistance = jsonObject.has("Resistenza agli Incantesimi") ? new ArrayList<>(jsonObject.get("Resistenza agli Incantesimi").getAsJsonArray().asList().stream()
                 .map(JsonElement::getAsString).toList()) : null;
-        if (spellResistance != null)
-            spellResistance.removeLast();
 
-        String spellResistanceDescription = jsonObject.has("Resistenza agli Incantesimi") ? jsonObject.get("Resistenza agli Incantesimi").getAsJsonArray().asList().getLast().getAsString() : "";
+        String spellResistanceDescription = jsonObject.has("spellResistanceDescription") ? jsonObject.get("spellResistanceDescription").getAsString() : "";
 
         String description = jsonObject.has("Descrizione") ? jsonObject.get("Descrizione").getAsString() : "";
 

@@ -94,11 +94,6 @@ public class SpellsView implements GRoot
                         }
                     }).toList();
 
-            for (Map.Entry<String, JsonElement> entry : filtered)
-            {
-                logger.info(entry.getKey());
-            }
-
         } catch (IOException | NullPointerException err)
         {
             logger.warning(err.getMessage());
