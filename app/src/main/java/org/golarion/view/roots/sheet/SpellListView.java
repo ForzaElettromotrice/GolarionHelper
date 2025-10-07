@@ -76,7 +76,9 @@ public class SpellListView implements GRoot
                 spellListBoxes[i].setVisible(false);
                 continue;
             }
+            Label label = (Label) spellListBoxes[i].getChildren().getFirst();
             spellListBoxes[i].getChildren().clear();
+            spellListBoxes[i].getChildren().add(label);
             for (Spell s : relateSheet.getSpellList().getSpellsByLevel(i))
             {
                 Label spellLabel = new Label(s.name());
