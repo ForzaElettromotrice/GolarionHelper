@@ -37,10 +37,10 @@ public enum Bloodline
     VERDEGGIANTE("Verdeggiante");
 
     @Getter
-    private final String toString;
+    private final String name;
 
-    Bloodline(String toString)
+    Bloodline(String name)
     {
-        this.toString = toString;
+        this.name = name;
     }
 }

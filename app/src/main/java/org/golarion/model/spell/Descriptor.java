@@ -32,10 +32,10 @@ public enum Descriptor
     VELENO("Veleno");
 
     @Getter
-    private final String toString;
+    private final String name;
 
-    Descriptor(String toString)
+    Descriptor(String name)
     {
-        this.toString = toString;
+        this.name = name;
     }
 }

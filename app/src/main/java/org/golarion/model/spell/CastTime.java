@@ -10,10 +10,10 @@ public enum CastTime
     IMMEDIATA("Immediata");
 
     @Getter
-    private final String toString;
+    private final String name;
 
-    CastTime(String toString)
+    CastTime(String name)
     {
-        this.toString = toString;
+        this.name = name;
     }
 }

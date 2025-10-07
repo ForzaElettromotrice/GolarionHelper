@@ -15,10 +15,10 @@ public enum School
     UNIVERSALE("Universale");
 
     @Getter
-    private final String toString;
+    private final String name;
 
-    School(String toString)
+    School(String name)
     {
-        this.toString = toString;
+        this.name = name;
     }
 }

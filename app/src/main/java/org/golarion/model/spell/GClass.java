@@ -50,10 +50,10 @@ public enum GClass
     MONACO_RIVISITATO("Monaco Rivisitato");
 
     @Getter
-    private final String toString;
+    private final String name;
 
-    GClass(String toString)
+    GClass(String name)
     {
-        this.toString = toString;
+        this.name = name;
     }
 }

@@ -19,7 +19,7 @@ public class App extends Application
         logger.info("Starting Golarion Helper");
 
         launch(args);
-//        System.exit(0);
+        //System.exit(0);
     }
 
     @Override

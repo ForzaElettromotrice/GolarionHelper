@@ -10,10 +10,10 @@ public enum SavingThrow
     VOLONTA("Volontà");
 
     @Getter
-    private final String toString;
+    private final String name;
 
-    SavingThrow(String toString)
+    SavingThrow(String name)
     {
-        this.toString = toString;
+        this.name = name;
     }
 }

@@ -80,10 +80,10 @@ public enum Subdomain implements Domain
     STELLE("Stelle");
 
     @Getter
-    private final String toString;
+    private final String name;
 
-    Subdomain(String toString)
+    Subdomain(String name)
     {
-        this.toString = toString;
+        this.name = name;
     }
 }

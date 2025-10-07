@@ -11,10 +11,10 @@ public enum GDuration
     ISTANTANEO("Istantaneo");
 
     @Getter
-    private final String toString;
+    private final String name;
 
-    GDuration(String toString)
+    GDuration(String name)
     {
-        this.toString = toString;
+        this.name = name;
     }
 }

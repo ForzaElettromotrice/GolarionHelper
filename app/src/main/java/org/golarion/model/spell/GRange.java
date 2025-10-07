@@ -12,10 +12,10 @@ public enum GRange
     ILLIMITATO("Illimitato");
 
     @Getter
-    private final String toString;
+    private final String name;
 
-    GRange(String toString)
+    GRange(String name)
     {
-        this.toString = toString;
+        this.name = name;
     }
 }

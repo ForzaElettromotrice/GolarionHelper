@@ -41,10 +41,10 @@ public enum DomainList implements Domain
     VUOTO("Vuoto");
 
     @Getter
-    private final String toString;
+    private final String name;
 
-    DomainList(String toString)
+    DomainList(String name)
     {
-        this.toString = toString;
+        this.name = name;
     }
 }
