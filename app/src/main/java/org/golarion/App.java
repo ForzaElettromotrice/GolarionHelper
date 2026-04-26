@@ -5,8 +5,6 @@ package org.golarion;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.golarion.view.DisplayMan;
-import org.golarion.view.roots.Roots;
 
 import java.util.logging.Logger;
 
@@ -26,9 +24,6 @@ public class App extends Application
     public void start(Stage stage)
     {
         stage.setTitle("Golarion Helper");
-        DisplayMan.Builder.setWindow(stage);
-        DisplayMan.getInstance().display(Roots.MAIN_MENU);
-
-        DisplayMan.getInstance().show();
+        stage.show();
     }
 }
