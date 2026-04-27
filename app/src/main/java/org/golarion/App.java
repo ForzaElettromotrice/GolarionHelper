@@ -4,7 +4,11 @@
 package org.golarion;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.golarion.model.character.CharacterSheet;
+import org.golarion.view.CharacterSheetView;
 
 import java.util.logging.Logger;
 
@@ -14,7 +18,7 @@ public class App extends Application
 
     public static void main(String[] args)
     {
-        logger.info("Starting Golarion Helper");
+        logger.info("Avvio di Golarion Helper");
 
         launch(args);
         //System.exit(0);
@@ -23,7 +27,19 @@ public class App extends Application
     @Override
     public void start(Stage stage)
     {
+        CharacterSheet sheet = new CharacterSheet("Nuovo personaggio");
+        Scene scene = new Scene(new CharacterSheetView(sheet), 1200, 780);
+
         stage.setTitle("Golarion Helper");
+        stage.setScene(scene);
+        stage.setMinWidth(960);
+        stage.setMinHeight(720);
         stage.show();
+
+        Platform.runLater(() ->
+        {
+            stage.toFront();
+            stage.requestFocus();
+        });
     }
 }
