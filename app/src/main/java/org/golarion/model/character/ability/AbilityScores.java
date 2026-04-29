@@ -1,4 +1,4 @@
-package org.golarion.model.character;
+package org.golarion.model.character.ability;
 
 import lombok.Getter;
 

@@ -1,6 +1,7 @@
-package org.golarion.model.character;
+package org.golarion.model.character.ability;
 
 import lombok.Getter;
+import org.golarion.model.character.modifier.BonusType;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,8 +1,9 @@
-package org.golarion.model.character;
+package org.golarion.model.character.ability;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AccessLevel;
+import org.golarion.model.character.modifier.BonusType;
 
 import java.util.UUID;
 

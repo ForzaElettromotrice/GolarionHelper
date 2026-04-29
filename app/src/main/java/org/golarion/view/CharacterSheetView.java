@@ -1,10 +1,13 @@
 package org.golarion.view;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.golarion.model.character.CharacterSheet;
 
@@ -18,7 +21,15 @@ public class CharacterSheetView extends BorderPane
         VBox header = new VBox(characterNameLabel);
         header.setPadding(new Insets(16, 16, 12, 16));
 
-        Tab mainTab = new Tab("Principale", new CharacterAbilitiesView(sheet));
+        HBox mainContent = new HBox(24, new CharacterAbilitiesView(sheet), new CharacterSkillsView(sheet));
+        mainContent.setAlignment(Pos.TOP_LEFT);
+
+        ScrollPane mainScrollPane = new ScrollPane(mainContent);
+        mainScrollPane.setFitToHeight(false);
+        mainScrollPane.setFitToWidth(true);
+        mainScrollPane.setPannable(true);
+
+        Tab mainTab = new Tab("Principale", mainScrollPane);
         mainTab.setClosable(false);
 
         TabPane tabPane = new TabPane(mainTab);

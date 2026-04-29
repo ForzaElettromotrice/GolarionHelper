@@ -7,7 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
-import org.golarion.model.character.*;
+import org.golarion.model.character.CharacterSheet;
+import org.golarion.model.character.ability.Ability;
+import org.golarion.model.character.ability.AbilityBonus;
+import org.golarion.model.character.ability.AbilityPenalty;
+import org.golarion.model.character.ability.AbilityScore;
 
 import java.util.EnumSet;
 
@@ -23,6 +27,11 @@ public class CharacterAbilitiesView extends BorderPane
 
     public CharacterAbilitiesView(CharacterSheet sheet)
     {
+        if (sheet == null)
+        {
+            throw new IllegalArgumentException("sheet must not be null");
+        }
+
         this.sheet = sheet;
         this.expandedAbilities = EnumSet.noneOf(Ability.class);
 
