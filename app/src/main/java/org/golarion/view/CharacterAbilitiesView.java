@@ -7,11 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
+import org.golarion.model.api.AbilityData;
+import org.golarion.model.api.BonusData;
+import org.golarion.model.api.PenaltyData;
 import org.golarion.model.character.CharacterSheet;
 import org.golarion.model.character.ability.Ability;
-import org.golarion.model.character.ability.AbilityBonus;
-import org.golarion.model.character.ability.AbilityPenalty;
-import org.golarion.model.character.ability.AbilityScore;
 
 import java.util.EnumSet;
 
@@ -24,16 +24,27 @@ public class CharacterAbilitiesView extends BorderPane
 
     private final CharacterSheet sheet;
     private final EnumSet<Ability> expandedAbilities;
+    private final Runnable onAbilitiesChanged;
 
     public CharacterAbilitiesView(CharacterSheet sheet)
+    {
+        this(sheet, () -> {});
+    }
+
+    public CharacterAbilitiesView(CharacterSheet sheet, Runnable onAbilitiesChanged)
     {
         if (sheet == null)
         {
             throw new IllegalArgumentException("sheet must not be null");
         }
+        if (onAbilitiesChanged == null)
+        {
+            throw new IllegalArgumentException("onAbilitiesChanged must not be null");
+        }
 
         this.sheet = sheet;
         this.expandedAbilities = EnumSet.noneOf(Ability.class);
+        this.onAbilitiesChanged = onAbilitiesChanged;
 
         setPadding(new Insets(12));
         setFocusTraversable(true);
@@ -49,7 +60,7 @@ public class CharacterAbilitiesView extends BorderPane
         boolean firstRow = true;
         for (Ability ability : Ability.values())
         {
-            AbilityScore score = getScore(ability);
+            AbilityData abilityData = getAbilityData(ability);
             boolean expanded = expandedAbilities.contains(ability);
 
             GridPane summaryRow = new GridPane();
@@ -57,8 +68,8 @@ public class CharacterAbilitiesView extends BorderPane
             summaryRow.setMaxWidth(Region.USE_PREF_SIZE);
 
             HBox abilityCell = buildAbilityCell(ability);
-            TextField baseValueField = new TextField(Integer.toString(score.getTotalValue()));
-            Label modifierLabel = new Label(formatModifier(score.getModifier()));
+            TextField baseValueField = new TextField(Integer.toString(abilityData.totalValue()));
+            Label modifierLabel = new Label(formatModifier(abilityData.modifier()));
 
             styleContainerCell(abilityCell, ABILITY_COLUMN_WIDTH, firstRow, 0, expanded);
             styleEditableCell(baseValueField, VALUE_COLUMN_WIDTH, firstRow, 1, expanded);
@@ -72,7 +83,7 @@ public class CharacterAbilitiesView extends BorderPane
 
             if (expanded)
             {
-                VBox detailsRow = buildDetailsRow(score);
+                VBox detailsRow = buildDetailsRow(abilityData);
                 styleDetailsRow(detailsRow);
                 list.getChildren().add(detailsRow);
             }
@@ -117,23 +128,23 @@ public class CharacterAbilitiesView extends BorderPane
         return abilityCell;
     }
 
-    private VBox buildDetailsRow(AbilityScore score)
+    private VBox buildDetailsRow(AbilityData abilityData)
     {
         VBox detailsRow = new VBox(4);
         detailsRow.setMaxWidth(TABLE_WIDTH);
 
-        if (score.getBonuses().isEmpty() && score.getPenalties().isEmpty())
+        if (abilityData.bonuses().isEmpty() && abilityData.penalties().isEmpty())
         {
             detailsRow.getChildren().add(buildDetailsLabel("Nessun bonus o malus"));
             return detailsRow;
         }
 
-        for (AbilityBonus bonus : score.getBonuses())
+        for (BonusData bonus : abilityData.bonuses())
         {
             detailsRow.getChildren().add(buildDetailsLabel(formatBonus(bonus)));
         }
 
-        for (AbilityPenalty penalty : score.getPenalties())
+        for (PenaltyData penalty : abilityData.penalties())
         {
             detailsRow.getChildren().add(buildDetailsLabel(formatPenalty(penalty)));
         }
@@ -141,9 +152,9 @@ public class CharacterAbilitiesView extends BorderPane
         return detailsRow;
     }
 
-    private AbilityScore getScore(Ability ability)
+    private AbilityData getAbilityData(Ability ability)
     {
-        return sheet.getAbilityScores().get(ability);
+        return sheet.getAbility(ability);
     }
 
     private String abbreviate(Ability ability)
@@ -157,16 +168,16 @@ public class CharacterAbilitiesView extends BorderPane
         return modifier >= 0 ? "+" + modifier : Integer.toString(modifier);
     }
 
-    private String formatBonus(AbilityBonus bonus)
+    private String formatBonus(BonusData bonus)
     {
-        String status = bonus.isEnabled() ? "" : " [disattivo]";
-        return "+ " + bonus.getValue() + " " + bonus.getBonusType().getDisplayName() + " - " + bonus.getSource() + status;
+        String status = bonus.enabled() ? "" : " [disattivo]";
+        return "+ " + bonus.value() + " " + bonus.bonusType().getDisplayName() + " - " + bonus.source() + status;
     }
 
-    private String formatPenalty(AbilityPenalty penalty)
+    private String formatPenalty(PenaltyData penalty)
     {
-        String status = penalty.isEnabled() ? "" : " [disattivo]";
-        return "- " + penalty.getValue() + " - " + penalty.getSource() + status;
+        String status = penalty.enabled() ? "" : " [disattivo]";
+        return "- " + penalty.value() + " - " + penalty.source() + status;
     }
 
     private Label buildDetailsLabel(String text)
@@ -219,8 +230,9 @@ public class CharacterAbilitiesView extends BorderPane
         try
         {
             int baseValue = Integer.parseInt(rawValue);
-            sheet.getAbilityScores().setBaseValue(ability, baseValue);
+            sheet.setAbilityBaseValue(ability, baseValue);
             refreshRow(ability, baseValueField, modifierLabel);
+            onAbilitiesChanged.run();
         } catch (IllegalArgumentException exception)
         {
             refreshRow(ability, baseValueField, modifierLabel);
@@ -235,7 +247,7 @@ public class CharacterAbilitiesView extends BorderPane
     private void refreshRow(Ability ability, TextField baseValueField, Label modifierLabel)
     {
         refreshValueField(ability, baseValueField);
-        modifierLabel.setText(formatModifier(getScore(ability).getModifier()));
+        modifierLabel.setText(formatModifier(getAbilityData(ability).modifier()));
     }
 
     private void refreshValueField(Ability ability, TextField baseValueField)
@@ -251,12 +263,12 @@ public class CharacterAbilitiesView extends BorderPane
 
     private void showBaseValue(Ability ability, TextField baseValueField)
     {
-        baseValueField.setText(Integer.toString(getScore(ability).getBaseValue()));
+        baseValueField.setText(Integer.toString(getAbilityData(ability).baseValue()));
     }
 
     private void showTotalValue(Ability ability, TextField baseValueField)
     {
-        baseValueField.setText(Integer.toString(getScore(ability).getTotalValue()));
+        baseValueField.setText(Integer.toString(getAbilityData(ability).totalValue()));
     }
 
     private void styleCell(Label label, double minWidth, boolean firstRow, int column, boolean expanded)

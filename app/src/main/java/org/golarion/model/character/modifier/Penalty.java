@@ -1,36 +1,38 @@
-package org.golarion.model.character.ability;
+package org.golarion.model.character.modifier;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.AccessLevel;
-import org.golarion.model.character.modifier.BonusType;
+import org.golarion.model.api.PenaltyData;
 
 import java.util.UUID;
 
 @Getter
-public class AbilityBonus
+public class Penalty
 {
     private final UUID id;
     private final String source;
-    private final BonusType bonusType;
     private final int value;
-    @Setter(AccessLevel.PACKAGE)
+    @Setter
     private boolean enabled;
     private final String description;
 
-    public AbilityBonus(String source, BonusType bonusType, int value)
+    public Penalty(String source, int value)
     {
-        this(source, bonusType, value, true, "");
+        this(source, value, true, "");
     }
 
-    public AbilityBonus(String source, BonusType bonusType, int value, boolean enabled, String description)
+    public Penalty(String source, int value, boolean enabled, String description)
     {
         this.id = UUID.randomUUID();
         this.source = validateSource(source);
-        this.bonusType = validateBonusType(bonusType);
         this.value = validateValue(value);
         this.enabled = enabled;
         this.description = normalize(description);
+    }
+
+    public PenaltyData toData()
+    {
+        return new PenaltyData(id, source, value, enabled, description);
     }
 
     private static String validateSource(String source)
@@ -42,16 +44,6 @@ public class AbilityBonus
         }
 
         return normalizedSource;
-    }
-
-    private static BonusType validateBonusType(BonusType bonusType)
-    {
-        if (bonusType == null)
-        {
-            throw new IllegalArgumentException("bonusType must not be null");
-        }
-
-        return bonusType;
     }
 
     private static int validateValue(int value)

@@ -21,7 +21,9 @@ public class CharacterSheetView extends BorderPane
         VBox header = new VBox(characterNameLabel);
         header.setPadding(new Insets(16, 16, 12, 16));
 
-        HBox mainContent = new HBox(24, new CharacterAbilitiesView(sheet), new CharacterSkillsView(sheet));
+        CharacterSkillsView skillsView = new CharacterSkillsView(sheet);
+        CharacterAbilitiesView abilitiesView = new CharacterAbilitiesView(sheet, skillsView::refresh);
+        HBox mainContent = new HBox(24, abilitiesView, skillsView);
         mainContent.setAlignment(Pos.TOP_LEFT);
 
         ScrollPane mainScrollPane = new ScrollPane(mainContent);

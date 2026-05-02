@@ -27,7 +27,7 @@ public class App extends Application
     @Override
     public void start(Stage stage)
     {
-        CharacterSheet sheet = new CharacterSheet("Nuovo personaggio");
+        CharacterSheet sheet = new CharacterSheet();
         Scene scene = new Scene(new CharacterSheetView(sheet), 1200, 780);
 
         stage.setTitle("Golarion Helper");

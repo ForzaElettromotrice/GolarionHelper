@@ -1,18 +1,27 @@
 package org.golarion.model.character.skill;
 
 import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+import org.golarion.model.api.BonusData;
+import org.golarion.model.api.PenaltyData;
+import org.golarion.model.api.SkillData;
+import org.golarion.model.character.modifier.Bonus;
+import org.golarion.model.character.modifier.Penalty;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
+
 public class SkillEntry
 {
-    private final List<SkillBonus> bonuses;
-    private final List<SkillPenalty> penalties;
+    private final List<Bonus> bonuses;
+    private final List<Penalty> penalties;
+    @Getter
     private int ranks;
+    @Setter
+    @Getter
     private boolean classSkill;
 
     public SkillEntry()
@@ -40,22 +49,17 @@ public class SkillEntry
         this.ranks = ranks;
     }
 
-    public void setClassSkill(boolean classSkill)
+    public List<BonusData> getBonuses()
     {
-        this.classSkill = classSkill;
+        return bonuses.stream().map(Bonus::toData).toList();
     }
 
-    public List<SkillBonus> getBonuses()
+    public List<PenaltyData> getPenalties()
     {
-        return Collections.unmodifiableList(bonuses);
+        return penalties.stream().map(Penalty::toData).toList();
     }
 
-    public List<SkillPenalty> getPenalties()
-    {
-        return Collections.unmodifiableList(penalties);
-    }
-
-    public void addBonus(SkillBonus bonus)
+    public void addBonus(Bonus bonus)
     {
         if (bonus == null)
         {
@@ -80,7 +84,7 @@ public class SkillEntry
         findBonusById(bonusId).setEnabled(enabled);
     }
 
-    public void addPenalty(SkillPenalty penalty)
+    public void addPenalty(Penalty penalty)
     {
         if (penalty == null)
         {
@@ -105,7 +109,22 @@ public class SkillEntry
         findPenaltyById(penaltyId).setEnabled(enabled);
     }
 
-    private SkillBonus findBonusById(UUID bonusId)
+    public int getTotalBonus()
+    {
+        return Bonus.calculateTotal(bonuses);
+    }
+
+    public int getTotalPenalty()
+    {
+        return penalties.stream().filter(Penalty::isEnabled).mapToInt(Penalty::getValue).sum();
+    }
+
+    public SkillData toData(@NonNull SkillType skillType, @NonNull String specialization, int totalModifer)
+    {
+        return new SkillData(skillType, specialization, classSkill, ranks, totalModifer, getBonuses(), getPenalties());
+    }
+
+    private Bonus findBonusById(UUID bonusId)
     {
         if (bonusId == null)
         {
@@ -113,12 +132,12 @@ public class SkillEntry
         }
 
         return bonuses.stream()
-            .filter(bonus -> bonus.getId().equals(bonusId))
-            .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("bonusId not found: " + bonusId));
+                .filter(bonus -> bonus.getId().equals(bonusId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("bonusId not found: " + bonusId));
     }
 
-    private SkillPenalty findPenaltyById(UUID penaltyId)
+    private Penalty findPenaltyById(UUID penaltyId)
     {
         if (penaltyId == null)
         {
@@ -126,8 +145,8 @@ public class SkillEntry
         }
 
         return penalties.stream()
-            .filter(penalty -> penalty.getId().equals(penaltyId))
-            .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("penaltyId not found: " + penaltyId));
+                .filter(penalty -> penalty.getId().equals(penaltyId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("penaltyId not found: " + penaltyId));
     }
 }

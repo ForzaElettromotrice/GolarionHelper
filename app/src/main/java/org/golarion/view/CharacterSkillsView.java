@@ -13,11 +13,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import org.golarion.model.api.SkillData;
 import org.golarion.model.character.CharacterSheet;
-import org.golarion.model.character.skill.SkillEntry;
 import org.golarion.model.character.skill.SkillType;
-
-import java.util.Map;
 
 public class CharacterSkillsView extends BorderPane
 {
@@ -60,9 +58,9 @@ public class CharacterSkillsView extends BorderPane
                 continue;
             }
 
-            for (Map.Entry<String, SkillEntry> specializationEntry : sheet.getSkills().getSpecializations(skillType).entrySet())
+            for (String specialization : sheet.getSkillSpecializations(skillType))
             {
-                list.getChildren().add(buildSpecializationRow(skillType, specializationEntry.getKey(), specializationEntry.getValue()));
+                list.getChildren().add(buildSpecializationRow(skillType, specialization));
             }
         }
 
@@ -75,9 +73,10 @@ public class CharacterSkillsView extends BorderPane
         row.setAlignment(Pos.TOP_LEFT);
         row.setMaxWidth(Region.USE_PREF_SIZE);
 
+        SkillData skillData = getSkillData(skillType);
         Region classSkillCell = buildClassSkillCell(skillType);
         Region nameCell = buildSkillNameCell(skillType);
-        Label valueLabel = new Label(formatModifier(sheet.getSkillModifier(skillType)));
+        Label valueLabel = new Label(formatModifier(skillData.totalModifier()));
         TextField ranksField = buildRanksField(skillType);
 
         styleContainerCell(classSkillCell, CLASS_COLUMN_WIDTH, firstRow, 0);
@@ -93,16 +92,17 @@ public class CharacterSkillsView extends BorderPane
         return row;
     }
 
-    private GridPane buildSpecializationRow(SkillType skillType, String specialization, SkillEntry entry)
+    private GridPane buildSpecializationRow(SkillType skillType, String specialization)
     {
         GridPane row = new GridPane();
         row.setAlignment(Pos.TOP_LEFT);
         row.setMaxWidth(Region.USE_PREF_SIZE);
 
+        SkillData skillData = getSkillData(skillType, specialization);
         Region deleteCell = buildDeleteCell(skillType, specialization);
         Label nameLabel = new Label(specialization);
-        Label valueLabel = new Label(formatModifier(sheet.getSkillModifier(skillType, specialization)));
-        TextField ranksField = new TextField(Integer.toString(entry.getRanks()));
+        Label valueLabel = new Label(formatModifier(skillData.totalModifier()));
+        TextField ranksField = new TextField(Integer.toString(skillData.ranks()));
 
         bindSpecializationRanksField(skillType, specialization, ranksField);
 
@@ -122,11 +122,11 @@ public class CharacterSkillsView extends BorderPane
     private Region buildClassSkillCell(SkillType skillType)
     {
         CheckBox checkBox = new CheckBox();
-        checkBox.setSelected(sheet.getSkills().isClassSkill(skillType));
+        checkBox.setSelected(getSkillData(skillType).classSkill());
         checkBox.setFocusTraversable(false);
         checkBox.setOnAction(event ->
         {
-            sheet.getSkills().setClassSkill(skillType, checkBox.isSelected());
+            sheet.setSkillClassSkill(skillType, checkBox.isSelected());
             refreshGrid();
         });
 
@@ -201,7 +201,7 @@ public class CharacterSkillsView extends BorderPane
         deleteButton.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
         deleteButton.setOnAction(event ->
         {
-            sheet.getSkills().removeSpecialization(skillType, specialization);
+            sheet.removeSkillSpecialization(skillType, specialization);
             refreshGrid();
         });
 
@@ -222,8 +222,7 @@ public class CharacterSkillsView extends BorderPane
             return ranksField;
         }
 
-        SkillEntry entry = sheet.getSkills().get(skillType);
-        ranksField.setText(Integer.toString(entry.getRanks()));
+        ranksField.setText(Integer.toString(getSkillData(skillType).ranks()));
         bindRanksField(skillType, ranksField);
         return ranksField;
     }
@@ -238,7 +237,7 @@ public class CharacterSkillsView extends BorderPane
 
         try
         {
-            sheet.getSkills().getOrCreateSpecialization(skillType, specialization);
+            sheet.addSkillSpecialization(skillType, specialization);
         }
         catch (IllegalArgumentException ignored)
         {
@@ -266,7 +265,7 @@ public class CharacterSkillsView extends BorderPane
         {
             if (event.getCode() == KeyCode.ESCAPE)
             {
-                ranksField.setText(Integer.toString(sheet.getSkills().get(skillType).getRanks()));
+                ranksField.setText(Integer.toString(getSkillData(skillType).ranks()));
                 requestFocus();
             }
         });
@@ -290,7 +289,7 @@ public class CharacterSkillsView extends BorderPane
         {
             if (event.getCode() == KeyCode.ESCAPE)
             {
-                ranksField.setText(Integer.toString(sheet.getSkills().getSpecialization(skillType, specialization).getRanks()));
+                ranksField.setText(Integer.toString(getSkillData(skillType, specialization).ranks()));
                 requestFocus();
             }
         });
@@ -302,7 +301,7 @@ public class CharacterSkillsView extends BorderPane
 
         try
         {
-            sheet.getSkills().setRanks(skillType, Integer.parseInt(rawValue));
+            sheet.setSkillRanks(skillType, Integer.parseInt(rawValue));
         }
         catch (IllegalArgumentException ignored)
         {
@@ -317,7 +316,7 @@ public class CharacterSkillsView extends BorderPane
 
         try
         {
-            sheet.getSkills().setRanks(skillType, specialization, Integer.parseInt(rawValue));
+            sheet.setSkillRanks(skillType, specialization, Integer.parseInt(rawValue));
         }
         catch (IllegalArgumentException ignored)
         {
@@ -329,6 +328,16 @@ public class CharacterSkillsView extends BorderPane
     private String formatModifier(int modifier)
     {
         return modifier >= 0 ? "+" + modifier : Integer.toString(modifier);
+    }
+
+    private SkillData getSkillData(SkillType skillType)
+    {
+        return sheet.getSkill(skillType);
+    }
+
+    private SkillData getSkillData(SkillType skillType, String specialization)
+    {
+        return sheet.getSkill(skillType, specialization);
     }
 
     private void styleCell(Label label, double minWidth, boolean firstRow, int column)
@@ -382,6 +391,9 @@ public class CharacterSkillsView extends BorderPane
         label.setMinWidth(NAME_COLUMN_WIDTH);
         label.setPrefWidth(NAME_COLUMN_WIDTH);
         label.setMaxWidth(NAME_COLUMN_WIDTH);
+        label.setMinHeight(ROW_HEIGHT);
+        label.setPrefHeight(ROW_HEIGHT);
+        label.setMaxHeight(ROW_HEIGHT);
         label.setAlignment(Pos.CENTER_LEFT);
         label.setPadding(new Insets(6, 8, 6, 24));
         label.setStyle("-fx-border-color: #666666; -fx-border-width: " + borderWidth + ";");
@@ -400,5 +412,10 @@ public class CharacterSkillsView extends BorderPane
     private void refreshGrid()
     {
         setTop(buildSkillList());
+    }
+
+    public void refresh()
+    {
+        refreshGrid();
     }
 }

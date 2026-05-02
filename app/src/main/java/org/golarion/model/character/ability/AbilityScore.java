@@ -1,34 +1,37 @@
 package org.golarion.model.character.ability;
 
 import lombok.Getter;
+import lombok.NonNull;
+import org.golarion.model.api.AbilityData;
+import org.golarion.model.api.BonusData;
+import org.golarion.model.api.PenaltyData;
+import org.golarion.model.character.modifier.Bonus;
 import org.golarion.model.character.modifier.BonusType;
+import org.golarion.model.character.modifier.Penalty;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
-@Getter
+
 public class AbilityScore
 {
     private static final EnumSet<BonusType> ALLOWED_BONUS_TYPES = EnumSet.of(
-        BonusType.ALCHEMICAL,
-        BonusType.LUCK,
-        BonusType.INHERENT,
-        BonusType.MORALE,
-        BonusType.ENHANCEMENT,
-        BonusType.PROFANE,
-        BonusType.RACIAL,
-        BonusType.SACRED,
-        BonusType.SIZE
+            BonusType.ALCHEMICAL,
+            BonusType.LUCK,
+            BonusType.INHERENT,
+            BonusType.MORALE,
+            BonusType.ENHANCEMENT,
+            BonusType.PROFANE,
+            BonusType.RACIAL,
+            BonusType.SACRED,
+            BonusType.SIZE
     );
-
+    private final List<Bonus> bonuses;
+    private final List<Penalty> penalties;
+    @Getter
     private int baseValue;
-    private final List<AbilityBonus> bonuses;
-    private final List<AbilityPenalty> penalties;
 
     public AbilityScore(int baseValue)
     {
@@ -48,22 +51,8 @@ public class AbilityScore
         this.baseValue = baseValue;
     }
 
-    public List<AbilityBonus> getBonuses()
+    public void addBonus(@NonNull Bonus bonus)
     {
-        return Collections.unmodifiableList(bonuses);
-    }
-
-    public List<AbilityPenalty> getPenalties()
-    {
-        return Collections.unmodifiableList(penalties);
-    }
-
-    public void addBonus(AbilityBonus bonus)
-    {
-        if (bonus == null)
-        {
-            throw new IllegalArgumentException("bonus must not be null");
-        }
         if (!ALLOWED_BONUS_TYPES.contains(bonus.getBonusType()))
         {
             throw new IllegalArgumentException("bonusType " + bonus.getBonusType() + " is not applicable to an ability score");
@@ -72,49 +61,35 @@ public class AbilityScore
         bonuses.add(bonus);
     }
 
-    public void removeBonus(UUID bonusId)
+    public void removeBonus(@NonNull UUID bonusId)
     {
-        if (bonusId == null)
-        {
-            throw new IllegalArgumentException("bonusId must not be null");
-        }
-
         bonuses.removeIf(bonus -> bonus.getId().equals(bonusId));
     }
 
-    public void setBonusEnabled(UUID bonusId, boolean enabled)
+    public void setBonusEnabled(@NonNull UUID bonusId, boolean enabled)
     {
         findBonusById(bonusId).setEnabled(enabled);
     }
 
-    public void addPenalty(AbilityPenalty penalty)
+    public void addPenalty(@NonNull Penalty penalty)
     {
-        if (penalty == null)
-        {
-            throw new IllegalArgumentException("penalty must not be null");
-        }
 
         penalties.add(penalty);
     }
 
-    public void removePenalty(UUID penaltyId)
+    public void removePenalty(@NonNull UUID penaltyId)
     {
-        if (penaltyId == null)
-        {
-            throw new IllegalArgumentException("penaltyId must not be null");
-        }
-
         penalties.removeIf(penalty -> penalty.getId().equals(penaltyId));
     }
 
-    public void setPenaltyEnabled(UUID penaltyId, boolean enabled)
+    public void setPenaltyEnabled(@NonNull UUID penaltyId, boolean enabled)
     {
         findPenaltyById(penaltyId).setEnabled(enabled);
     }
 
-    public int getTotalValue()
+    public AbilityData toData(@NonNull Ability ability)
     {
-        return baseValue + calculateTotalBonus() - calculateTotalPenalty();
+        return new AbilityData(ability, baseValue, getTotalValue(), getModifier(), getBonuses(), getPenalties());
     }
 
     public int getModifier()
@@ -122,108 +97,47 @@ public class AbilityScore
         return Math.floorDiv(getTotalValue() - 10, 2);
     }
 
-    private int calculateTotalBonus()
+    private List<BonusData> getBonuses()
     {
-        Map<BonusType, List<AbilityBonus>> bonusesByType = new EnumMap<>(BonusType.class);
-
-        for (AbilityBonus bonus : bonuses)
-        {
-            if (!bonus.isEnabled())
-            {
-                continue;
-            }
-
-            bonusesByType
-                .computeIfAbsent(bonus.getBonusType(), ignored -> new ArrayList<>())
-                .add(bonus);
-        }
-
-        return bonusesByType.entrySet().stream()
-            .mapToInt(entry -> calculateBonusGroup(entry.getKey(), entry.getValue()))
-            .sum();
+        return bonuses.stream().map(Bonus::toData).toList();
     }
 
-    private int calculateBonusGroup(BonusType bonusType, List<AbilityBonus> typedBonuses)
+    private List<PenaltyData> getPenalties()
     {
-        int total = switch (bonusType.getStackingRule())
-        {
-            case HIGHEST_ONLY -> typedBonuses.stream()
-                .mapToInt(AbilityBonus::getValue)
-                .max()
-                .orElse(0);
+        return penalties.stream().map(Penalty::toData).toList();
+    }
 
-            case STACKS -> typedBonuses.stream()
-                .mapToInt(AbilityBonus::getValue)
+    private int getTotalValue()
+    {
+        return baseValue + getTotalBonus() - getTotalPenalty();
+    }
+
+    private int getTotalBonus()
+    {
+        return Bonus.calculateTotal(bonuses);
+    }
+
+    private int getTotalPenalty()
+    {
+        return penalties.stream()
+                .filter(Penalty::isEnabled)
+                .mapToInt(Penalty::getValue)
                 .sum();
-
-            case STACKS_UNLESS_SAME_SOURCE -> calculateBonusesThatStackUnlessSameSource(typedBonuses);
-        };
-
-        if (bonusType == BonusType.INHERENT)
-        {
-            return Math.min(total, 5);
-        }
-
-        return total;
     }
 
-    private int calculateBonusesThatStackUnlessSameSource(List<AbilityBonus> typedBonuses)
+    private Bonus findBonusById(@NonNull UUID bonusId)
     {
-        Map<String, Integer> highestBonusBySource = new java.util.HashMap<>();
-
-        for (AbilityBonus bonus : typedBonuses)
-        {
-            highestBonusBySource.merge(
-                bonus.getSource(),
-                bonus.getValue(),
-                Math::max
-            );
-        }
-
-        return highestBonusBySource.values().stream()
-            .mapToInt(Integer::intValue)
-            .sum();
-    }
-
-    private int calculateTotalPenalty()
-    {
-        return penalties.stream()
-            .filter(AbilityPenalty::isEnabled)
-            .mapToInt(AbilityPenalty::getValue)
-            .sum();
-    }
-
-    private AbilityBonus findBonusById(UUID bonusId)
-    {
-        if (bonusId == null)
-        {
-            throw new IllegalArgumentException("bonusId must not be null");
-        }
-
         return bonuses.stream()
-            .filter(bonus -> bonus.getId().equals(bonusId))
-            .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("bonusId not found: " + bonusId));
+                .filter(bonus -> bonus.getId().equals(bonusId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("bonusId not found: " + bonusId));
     }
 
-    private AbilityPenalty findPenaltyById(UUID penaltyId)
+    private Penalty findPenaltyById(@NonNull UUID penaltyId)
     {
-        if (penaltyId == null)
-        {
-            throw new IllegalArgumentException("penaltyId must not be null");
-        }
-
         return penalties.stream()
-            .filter(penalty -> penalty.getId().equals(penaltyId))
-            .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("penaltyId not found: " + penaltyId));
-    }
-
-    private void validateBonusTypeApplicability(BonusType bonusType)
-    {
-        if (!ALLOWED_BONUS_TYPES.contains(bonusType))
-        {
-            throw new IllegalArgumentException("bonusType " + bonusType + " is not applicable to an ability score");
-        }
+                .filter(penalty -> penalty.getId().equals(penaltyId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("penaltyId not found: " + penaltyId));
     }
 }
