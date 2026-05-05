@@ -1,11 +1,9 @@
-package org.golarion.model.character.skill;
+package org.golarion.model.character.armorclass;
 
-import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
+import org.golarion.model.api.ArmorClassData;
 import org.golarion.model.api.BonusData;
 import org.golarion.model.api.PenaltyData;
-import org.golarion.model.api.SkillData;
 import org.golarion.model.character.modifier.Bonus;
 import org.golarion.model.character.modifier.BonusType;
 import org.golarion.model.character.modifier.Penalty;
@@ -15,53 +13,41 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.UUID;
 
-
-public class SkillEntry
+public class ArmorClassEntry
 {
     private static final EnumSet<BonusType> ALLOWED_BONUS_TYPES = EnumSet.of(
             BonusType.ALCHEMICAL,
+            BonusType.ARMOR,
+            BonusType.NATURAL_ARMOR,
             BonusType.CIRCUMSTANCE,
             BonusType.INSIGHT,
-            BonusType.COMPETENCE,
+            BonusType.DEFLECTION,
             BonusType.LUCK,
             BonusType.MORALE,
             BonusType.ENHANCEMENT,
             BonusType.PROFANE,
             BonusType.RACIAL,
             BonusType.SACRED,
+            BonusType.DODGE,
+            BonusType.SHIELD,
             BonusType.SIZE
+    );
+    private static final EnumSet<BonusType> TOUCH_EXCLUDED_BONUS_TYPES = EnumSet.of(
+            BonusType.ARMOR,
+            BonusType.NATURAL_ARMOR,
+            BonusType.ENHANCEMENT,
+            BonusType.SHIELD
+    );
+    private static final EnumSet<BonusType> FLAT_FOOTED_EXCLUDED_BONUS_TYPES = EnumSet.of(
+            BonusType.DODGE
     );
     private final List<Bonus> bonuses;
     private final List<Penalty> penalties;
-    @Getter
-    private int ranks;
-    @Setter
-    @Getter
-    private boolean classSkill;
 
-    public SkillEntry()
+    public ArmorClassEntry()
     {
-        this(0, false);
-    }
-
-    public SkillEntry(int ranks, boolean classSkill)
-    {
-        this.ranks = 0;
-        this.classSkill = classSkill;
         this.bonuses = new ArrayList<>();
         this.penalties = new ArrayList<>();
-
-        setRanks(ranks);
-    }
-
-    public void setRanks(int ranks)
-    {
-        if (ranks < 0)
-        {
-            throw new IllegalArgumentException("ranks must not be negative");
-        }
-
-        this.ranks = ranks;
     }
 
     public List<BonusData> getBonuses()
@@ -78,7 +64,7 @@ public class SkillEntry
     {
         if (!ALLOWED_BONUS_TYPES.contains(bonus.getBonusType()))
         {
-            throw new IllegalArgumentException("bonusType " + bonus.getBonusType() + " is not applicable to a skill");
+            throw new IllegalArgumentException("bonusType " + bonus.getBonusType() + " is not applicable to armor class");
         }
 
         bonuses.add(bonus);
@@ -109,19 +95,44 @@ public class SkillEntry
         findPenaltyById(penaltyId).setEnabled(enabled);
     }
 
-    public int getTotalBonus()
+    public int getACTotalValue()
+    {
+        return 10 + getTotalBonus() - getTotalPenalty();
+    }
+
+    public int getACTouch()
+    {
+        return 10 + getTotalBonusExcluding(TOUCH_EXCLUDED_BONUS_TYPES) - getTotalPenalty();
+    }
+
+    public int getACFlatFooted()
+    {
+        return 10 + getTotalBonusExcluding(FLAT_FOOTED_EXCLUDED_BONUS_TYPES) - getTotalPenalty();
+    }
+
+    public ArmorClassData toData(int totalValue, int touchValue, int flatFootedValue)
+    {
+        return new ArmorClassData(totalValue, touchValue, flatFootedValue, getBonuses(), getPenalties());
+    }
+
+    private int getTotalBonus()
     {
         return Bonus.calculateTotal(bonuses);
     }
 
-    public int getTotalPenalty()
+    private int getTotalBonusExcluding(@NonNull EnumSet<BonusType> excludedBonusTypes)
     {
-        return penalties.stream().filter(Penalty::isEnabled).mapToInt(Penalty::getValue).sum();
+        return Bonus.calculateTotal(
+                bonuses.stream()
+                        .filter(Bonus::isEnabled)
+                        .filter(bonus -> !excludedBonusTypes.contains(bonus.getBonusType()))
+                        .toList()
+        );
     }
 
-    public SkillData toData(@NonNull SkillType skillType, @NonNull String specialization, int totalModifer)
+    private int getTotalPenalty()
     {
-        return new SkillData(skillType, specialization, classSkill, ranks, totalModifer, getBonuses(), getPenalties());
+        return penalties.stream().filter(Penalty::isEnabled).mapToInt(Penalty::getValue).sum();
     }
 
     private Bonus findBonusById(@NonNull UUID bonusId)

@@ -11,7 +11,7 @@ import org.golarion.model.api.AbilityData;
 import org.golarion.model.api.BonusData;
 import org.golarion.model.api.PenaltyData;
 import org.golarion.model.character.CharacterSheet;
-import org.golarion.model.character.ability.Ability;
+import org.golarion.model.character.ability.AbilityType;
 
 import java.util.EnumSet;
 
@@ -23,12 +23,14 @@ public class CharacterAbilitiesView extends BorderPane
     private static final double TABLE_WIDTH = ABILITY_COLUMN_WIDTH + VALUE_COLUMN_WIDTH + MODIFIER_COLUMN_WIDTH;
 
     private final CharacterSheet sheet;
-    private final EnumSet<Ability> expandedAbilities;
+    private final EnumSet<AbilityType> expandedAbilities;
     private final Runnable onAbilitiesChanged;
 
     public CharacterAbilitiesView(CharacterSheet sheet)
     {
-        this(sheet, () -> {});
+        this(sheet, () ->
+        {
+        });
     }
 
     public CharacterAbilitiesView(CharacterSheet sheet, Runnable onAbilitiesChanged)
@@ -43,7 +45,7 @@ public class CharacterAbilitiesView extends BorderPane
         }
 
         this.sheet = sheet;
-        this.expandedAbilities = EnumSet.noneOf(Ability.class);
+        this.expandedAbilities = EnumSet.noneOf(AbilityType.class);
         this.onAbilitiesChanged = onAbilitiesChanged;
 
         setPadding(new Insets(12));
@@ -58,23 +60,23 @@ public class CharacterAbilitiesView extends BorderPane
         list.setMaxWidth(Region.USE_PREF_SIZE);
 
         boolean firstRow = true;
-        for (Ability ability : Ability.values())
+        for (AbilityType abilityType : AbilityType.values())
         {
-            AbilityData abilityData = getAbilityData(ability);
-            boolean expanded = expandedAbilities.contains(ability);
+            AbilityData abilityData = getAbilityData(abilityType);
+            boolean expanded = expandedAbilities.contains(abilityType);
 
             GridPane summaryRow = new GridPane();
             summaryRow.setAlignment(Pos.TOP_LEFT);
             summaryRow.setMaxWidth(Region.USE_PREF_SIZE);
 
-            HBox abilityCell = buildAbilityCell(ability);
+            HBox abilityCell = buildAbilityCell(abilityType);
             TextField baseValueField = new TextField(Integer.toString(abilityData.totalValue()));
             Label modifierLabel = new Label(formatModifier(abilityData.modifier()));
 
             styleContainerCell(abilityCell, ABILITY_COLUMN_WIDTH, firstRow, 0, expanded);
             styleEditableCell(baseValueField, VALUE_COLUMN_WIDTH, firstRow, 1, expanded);
             styleCell(modifierLabel, MODIFIER_COLUMN_WIDTH, firstRow, 2, expanded);
-            bindBaseValueField(ability, baseValueField, modifierLabel);
+            bindBaseValueField(abilityType, baseValueField, modifierLabel);
 
             summaryRow.add(abilityCell, 0, 0);
             summaryRow.add(baseValueField, 1, 0);
@@ -94,12 +96,12 @@ public class CharacterAbilitiesView extends BorderPane
         return list;
     }
 
-    private HBox buildAbilityCell(Ability ability)
+    private HBox buildAbilityCell(AbilityType abilityType)
     {
         Button gearButton = new Button("⚙");
-        Label abilityLabel = new Label(abbreviate(ability));
+        Label abilityLabel = new Label(abbreviate(abilityType));
         HBox abilityCell = new HBox(4, gearButton, abilityLabel);
-        boolean expanded = expandedAbilities.contains(ability);
+        boolean expanded = expandedAbilities.contains(abilityType);
 
         gearButton.setVisible(expanded);
         gearButton.setManaged(gearButton.isVisible());
@@ -108,7 +110,7 @@ public class CharacterAbilitiesView extends BorderPane
         gearButton.setMinSize(16, 16);
         gearButton.setPrefSize(16, 16);
         gearButton.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
-        gearButton.setOnAction(event -> toggleDetails(ability));
+        gearButton.setOnAction(event -> toggleDetails(abilityType));
 
         abilityCell.setOnMouseEntered(event ->
         {
@@ -117,7 +119,7 @@ public class CharacterAbilitiesView extends BorderPane
         });
         abilityCell.setOnMouseExited(event ->
         {
-            if (!expandedAbilities.contains(ability))
+            if (!expandedAbilities.contains(abilityType))
             {
                 gearButton.setVisible(false);
                 gearButton.setManaged(false);
@@ -152,14 +154,14 @@ public class CharacterAbilitiesView extends BorderPane
         return detailsRow;
     }
 
-    private AbilityData getAbilityData(Ability ability)
+    private AbilityData getAbilityData(AbilityType abilityType)
     {
-        return sheet.getAbility(ability);
+        return sheet.getAbility(abilityType);
     }
 
-    private String abbreviate(Ability ability)
+    private String abbreviate(AbilityType abilityType)
     {
-        String displayName = ability.getDisplayName().toUpperCase();
+        String displayName = abilityType.getDisplayName().toUpperCase();
         return displayName.substring(0, Math.min(3, displayName.length()));
     }
 
@@ -188,87 +190,87 @@ public class CharacterAbilitiesView extends BorderPane
         return label;
     }
 
-    private void bindBaseValueField(Ability ability, TextField baseValueField, Label modifierLabel)
+    private void bindBaseValueField(AbilityType abilityType, TextField baseValueField, Label modifierLabel)
     {
         baseValueField.hoverProperty().addListener((ignored, wasHover, isHover) ->
         {
             if (!baseValueField.isFocused() && wasHover != isHover)
             {
-                refreshValueField(ability, baseValueField);
+                refreshValueField(abilityType, baseValueField);
             }
         });
         baseValueField.setOnAction(event ->
         {
-            applyBaseValue(ability, baseValueField, modifierLabel);
+            applyBaseValue(abilityType, baseValueField, modifierLabel);
             requestFocus();
         });
         baseValueField.focusedProperty().addListener((ignored, hadFocus, hasFocus) ->
         {
             if (hasFocus)
             {
-                showBaseValue(ability, baseValueField);
+                showBaseValue(abilityType, baseValueField);
                 baseValueField.selectAll();
             } else if (hadFocus)
             {
-                applyBaseValue(ability, baseValueField, modifierLabel);
+                applyBaseValue(abilityType, baseValueField, modifierLabel);
             }
         });
         baseValueField.setOnKeyPressed(event ->
         {
             if (event.getCode() == KeyCode.ESCAPE)
             {
-                resetBaseValueField(ability, baseValueField);
+                resetBaseValueField(abilityType, baseValueField);
                 requestFocus();
             }
         });
     }
 
-    private void applyBaseValue(Ability ability, TextField baseValueField, Label modifierLabel)
+    private void applyBaseValue(AbilityType abilityType, TextField baseValueField, Label modifierLabel)
     {
         String rawValue = baseValueField.getText() == null ? "" : baseValueField.getText().trim();
 
         try
         {
             int baseValue = Integer.parseInt(rawValue);
-            sheet.setAbilityBaseValue(ability, baseValue);
-            refreshRow(ability, baseValueField, modifierLabel);
+            sheet.setAbilityBaseValue(abilityType, baseValue);
+            refreshRow(abilityType, baseValueField, modifierLabel);
             onAbilitiesChanged.run();
         } catch (IllegalArgumentException exception)
         {
-            refreshRow(ability, baseValueField, modifierLabel);
+            refreshRow(abilityType, baseValueField, modifierLabel);
         }
     }
 
-    private void resetBaseValueField(Ability ability, TextField baseValueField)
+    private void resetBaseValueField(AbilityType abilityType, TextField baseValueField)
     {
-        refreshValueField(ability, baseValueField);
+        refreshValueField(abilityType, baseValueField);
     }
 
-    private void refreshRow(Ability ability, TextField baseValueField, Label modifierLabel)
+    private void refreshRow(AbilityType abilityType, TextField baseValueField, Label modifierLabel)
     {
-        refreshValueField(ability, baseValueField);
-        modifierLabel.setText(formatModifier(getAbilityData(ability).modifier()));
+        refreshValueField(abilityType, baseValueField);
+        modifierLabel.setText(formatModifier(getAbilityData(abilityType).modifier()));
     }
 
-    private void refreshValueField(Ability ability, TextField baseValueField)
+    private void refreshValueField(AbilityType abilityType, TextField baseValueField)
     {
         if (baseValueField.isFocused() || baseValueField.isHover())
         {
-            showBaseValue(ability, baseValueField);
+            showBaseValue(abilityType, baseValueField);
             return;
         }
 
-        showTotalValue(ability, baseValueField);
+        showTotalValue(abilityType, baseValueField);
     }
 
-    private void showBaseValue(Ability ability, TextField baseValueField)
+    private void showBaseValue(AbilityType abilityType, TextField baseValueField)
     {
-        baseValueField.setText(Integer.toString(getAbilityData(ability).baseValue()));
+        baseValueField.setText(Integer.toString(getAbilityData(abilityType).baseValue()));
     }
 
-    private void showTotalValue(Ability ability, TextField baseValueField)
+    private void showTotalValue(AbilityType abilityType, TextField baseValueField)
     {
-        baseValueField.setText(Integer.toString(getAbilityData(ability).totalValue()));
+        baseValueField.setText(Integer.toString(getAbilityData(abilityType).totalValue()));
     }
 
     private void styleCell(Label label, double minWidth, boolean firstRow, int column, boolean expanded)
@@ -319,14 +321,14 @@ public class CharacterAbilitiesView extends BorderPane
         return top + " " + right + " " + bottom + " " + left;
     }
 
-    private void toggleDetails(Ability ability)
+    private void toggleDetails(AbilityType abilityType)
     {
-        if (expandedAbilities.contains(ability))
+        if (expandedAbilities.contains(abilityType))
         {
-            expandedAbilities.remove(ability);
+            expandedAbilities.remove(abilityType);
         } else
         {
-            expandedAbilities.add(ability);
+            expandedAbilities.add(abilityType);
         }
 
         refreshGrid();

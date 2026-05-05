@@ -1,14 +1,10 @@
 package org.golarion.model.api;
 
-import org.golarion.model.character.ability.AbilityType;
-
 import java.util.List;
 
-public record AbilityData(
-        AbilityType abilityType,
+public record InitiativeData(
         int baseValue,
         int totalValue,
-        int modifier,
         List<BonusData> bonuses,
         List<PenaltyData> penalties
 )

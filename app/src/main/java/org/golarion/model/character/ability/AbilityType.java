@@ -3,7 +3,7 @@ package org.golarion.model.character.ability;
 import lombok.Getter;
 
 @Getter
-public enum Ability
+public enum AbilityType
 {
     STRENGTH("Forza"),
     DEXTERITY("Destrezza"),
@@ -14,7 +14,7 @@ public enum Ability
 
     private final String displayName;
 
-    Ability(String displayName)
+    AbilityType(String displayName)
     {
         this.displayName = displayName;
     }

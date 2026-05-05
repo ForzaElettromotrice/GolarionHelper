@@ -87,9 +87,9 @@ public class AbilityScore
         findPenaltyById(penaltyId).setEnabled(enabled);
     }
 
-    public AbilityData toData(@NonNull Ability ability)
+    public AbilityData toData(@NonNull AbilityType abilityType)
     {
-        return new AbilityData(ability, baseValue, getTotalValue(), getModifier(), getBonuses(), getPenalties());
+        return new AbilityData(abilityType, baseValue, getTotalValue(), getModifier(), getBonuses(), getPenalties());
     }
 
     public int getModifier()

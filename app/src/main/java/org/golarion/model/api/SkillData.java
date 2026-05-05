@@ -9,7 +9,7 @@ public record SkillData(
         String specialization,
         boolean classSkill,
         int ranks,
-        int totalModifier,
+        int totalValue,
         List<BonusData> bonuses,
         List<PenaltyData> penalties
 )

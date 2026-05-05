@@ -22,8 +22,20 @@ public class CharacterSheetView extends BorderPane
         header.setPadding(new Insets(16, 16, 12, 16));
 
         CharacterSkillsView skillsView = new CharacterSkillsView(sheet);
-        CharacterAbilitiesView abilitiesView = new CharacterAbilitiesView(sheet, skillsView::refresh);
-        HBox mainContent = new HBox(24, abilitiesView, skillsView);
+        CharacterSavingThrowsView savingThrowsView = new CharacterSavingThrowsView(sheet);
+        CharacterInitiativeView initiativeView = new CharacterInitiativeView(sheet);
+        CharacterArmorClassView armorClassView = new CharacterArmorClassView(sheet);
+        CharacterHitPointsView hitPointsView = new CharacterHitPointsView(sheet);
+        CharacterAbilitiesView abilitiesView = new CharacterAbilitiesView(sheet, () ->
+        {
+            skillsView.refresh();
+            savingThrowsView.refresh();
+            initiativeView.refresh();
+            armorClassView.refresh();
+        });
+        VBox leftColumn = new VBox(12, abilitiesView, savingThrowsView, hitPointsView, initiativeView, armorClassView);
+        leftColumn.setAlignment(Pos.TOP_LEFT);
+        HBox mainContent = new HBox(24, leftColumn, skillsView);
         mainContent.setAlignment(Pos.TOP_LEFT);
 
         ScrollPane mainScrollPane = new ScrollPane(mainContent);

@@ -1,67 +1,39 @@
-package org.golarion.model.character.skill;
+package org.golarion.model.character.initiative;
 
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 import org.golarion.model.api.BonusData;
+import org.golarion.model.api.InitiativeData;
 import org.golarion.model.api.PenaltyData;
-import org.golarion.model.api.SkillData;
 import org.golarion.model.character.modifier.Bonus;
-import org.golarion.model.character.modifier.BonusType;
 import org.golarion.model.character.modifier.Penalty;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.UUID;
 
-
-public class SkillEntry
+public class InitiativeEntry
 {
-    private static final EnumSet<BonusType> ALLOWED_BONUS_TYPES = EnumSet.of(
-            BonusType.ALCHEMICAL,
-            BonusType.CIRCUMSTANCE,
-            BonusType.INSIGHT,
-            BonusType.COMPETENCE,
-            BonusType.LUCK,
-            BonusType.MORALE,
-            BonusType.ENHANCEMENT,
-            BonusType.PROFANE,
-            BonusType.RACIAL,
-            BonusType.SACRED,
-            BonusType.SIZE
-    );
     private final List<Bonus> bonuses;
     private final List<Penalty> penalties;
     @Getter
-    private int ranks;
-    @Setter
-    @Getter
-    private boolean classSkill;
+    private int baseValue;
 
-    public SkillEntry()
+    public InitiativeEntry()
     {
-        this(0, false);
-    }
-
-    public SkillEntry(int ranks, boolean classSkill)
-    {
-        this.ranks = 0;
-        this.classSkill = classSkill;
+        this.baseValue = 0;
         this.bonuses = new ArrayList<>();
         this.penalties = new ArrayList<>();
-
-        setRanks(ranks);
     }
 
-    public void setRanks(int ranks)
+    public void setBaseValue(int baseValue)
     {
-        if (ranks < 0)
+        if (baseValue < 0)
         {
-            throw new IllegalArgumentException("ranks must not be negative");
+            throw new IllegalArgumentException("baseValue must not be negative");
         }
 
-        this.ranks = ranks;
+        this.baseValue = baseValue;
     }
 
     public List<BonusData> getBonuses()
@@ -76,11 +48,6 @@ public class SkillEntry
 
     public void addBonus(@NonNull Bonus bonus)
     {
-        if (!ALLOWED_BONUS_TYPES.contains(bonus.getBonusType()))
-        {
-            throw new IllegalArgumentException("bonusType " + bonus.getBonusType() + " is not applicable to a skill");
-        }
-
         bonuses.add(bonus);
     }
 
@@ -109,19 +76,24 @@ public class SkillEntry
         findPenaltyById(penaltyId).setEnabled(enabled);
     }
 
-    public int getTotalBonus()
+    public int getTotalValue()
+    {
+        return baseValue + getTotalBonus() - getTotalPenalty();
+    }
+
+    public InitiativeData toData(int totalModifier)
+    {
+        return new InitiativeData(baseValue, totalModifier, getBonuses(), getPenalties());
+    }
+
+    private int getTotalBonus()
     {
         return Bonus.calculateTotal(bonuses);
     }
 
-    public int getTotalPenalty()
+    private int getTotalPenalty()
     {
         return penalties.stream().filter(Penalty::isEnabled).mapToInt(Penalty::getValue).sum();
-    }
-
-    public SkillData toData(@NonNull SkillType skillType, @NonNull String specialization, int totalModifer)
-    {
-        return new SkillData(skillType, specialization, classSkill, ranks, totalModifer, getBonuses(), getPenalties());
     }
 
     private Bonus findBonusById(@NonNull UUID bonusId)

@@ -2,13 +2,18 @@ package org.golarion.model.character;
 
 import lombok.Getter;
 import lombok.NonNull;
-import org.golarion.model.api.AbilityData;
-import org.golarion.model.api.SkillData;
-import org.golarion.model.character.ability.Ability;
+import org.golarion.model.api.*;
 import org.golarion.model.character.ability.AbilityScore;
+import org.golarion.model.character.ability.AbilityType;
+import org.golarion.model.character.armorclass.ArmorClassEntry;
+import org.golarion.model.character.hitpoints.HitPointField;
+import org.golarion.model.character.hitpoints.HitPointsEntry;
+import org.golarion.model.character.initiative.InitiativeEntry;
 import org.golarion.model.character.modifier.Bonus;
 import org.golarion.model.character.modifier.BonusType;
 import org.golarion.model.character.modifier.Penalty;
+import org.golarion.model.character.savingthrow.SavingThrowEntry;
+import org.golarion.model.character.savingthrow.SavingThrowType;
 import org.golarion.model.character.skill.SkillType;
 import org.golarion.model.character.skill.Skills;
 
@@ -18,7 +23,11 @@ import java.util.UUID;
 
 public class CharacterSheet
 {
-    private final EnumMap<Ability, AbilityScore> abilityScores;
+    private final EnumMap<AbilityType, AbilityScore> abilityScores;
+    private final EnumMap<SavingThrowType, SavingThrowEntry> savingThrows;
+    private final ArmorClassEntry armorClass;
+    private final HitPointsEntry hitPoints;
+    private final InitiativeEntry initiative;
     private final Skills skills;
     @Getter
     private String characterName;
@@ -26,11 +35,19 @@ public class CharacterSheet
     public CharacterSheet()
     {
         this.characterName = "Franco";
-        this.abilityScores = new EnumMap<>(Ability.class);
-        for (Ability ability : Ability.values())
+        this.abilityScores = new EnumMap<>(AbilityType.class);
+        for (AbilityType abilityType : AbilityType.values())
         {
-            abilityScores.put(ability, new AbilityScore(10));
+            abilityScores.put(abilityType, new AbilityScore(10));
         }
+        this.savingThrows = new EnumMap<>(SavingThrowType.class);
+        for (SavingThrowType savingThrowType : SavingThrowType.values())
+        {
+            savingThrows.put(savingThrowType, new SavingThrowEntry());
+        }
+        this.armorClass = new ArmorClassEntry();
+        this.hitPoints = new HitPointsEntry();
+        this.initiative = new InitiativeEntry();
         this.skills = new Skills();
         setCharacterName(characterName);
     }
@@ -46,48 +63,202 @@ public class CharacterSheet
         this.characterName = normalizedName;
     }
 
-    public UUID addAbilityBonus(@NonNull Ability ability, @NonNull String source, @NonNull BonusType bonusType, int value, @NonNull String description)
+    public UUID addAbilityBonus(@NonNull AbilityType abilityType, @NonNull String source, @NonNull BonusType bonusType, int value, @NonNull String description)
     {
         Bonus bonus = new Bonus(source, bonusType, value, true, description);
-        getAbilityScore(ability).addBonus(bonus);
+        getAbilityScore(abilityType).addBonus(bonus);
         return bonus.getId();
     }
 
-    public void removeAbilityBonus(@NonNull Ability ability, @NonNull UUID bonusId)
+    public void removeAbilityBonus(@NonNull AbilityType abilityType, @NonNull UUID bonusId)
     {
-        getAbilityScore(ability).removeBonus(bonusId);
+        getAbilityScore(abilityType).removeBonus(bonusId);
     }
 
-    public void setAbiltyBonusEnable(@NonNull Ability ability, @NonNull UUID bonusId, boolean enabled)
+    public void setAbiltyBonusEnable(@NonNull AbilityType abilityType, @NonNull UUID bonusId, boolean enabled)
     {
-        getAbilityScore(ability).setBonusEnabled(bonusId, enabled);
+        getAbilityScore(abilityType).setBonusEnabled(bonusId, enabled);
     }
 
-    public UUID addAbilityPenalty(@NonNull Ability ability, @NonNull String source, int value, @NonNull String description)
+    public UUID addAbilityPenalty(@NonNull AbilityType abilityType, @NonNull String source, int value, @NonNull String description)
     {
         Penalty penalty = new Penalty(source, value, true, description);
-        getAbilityScore(ability).addPenalty(penalty);
+        getAbilityScore(abilityType).addPenalty(penalty);
         return penalty.getId();
     }
 
-    public void removeAbilityPenalty(@NonNull Ability ability, @NonNull UUID penaltyId)
+    public void removeAbilityPenalty(@NonNull AbilityType abilityType, @NonNull UUID penaltyId)
     {
-        getAbilityScore(ability).removePenalty(penaltyId);
+        getAbilityScore(abilityType).removePenalty(penaltyId);
     }
 
-    public void setAbiltyPenaltyEnable(@NonNull Ability ability, @NonNull UUID penaltyId, boolean enabled)
+    public void setAbiltyPenaltyEnable(@NonNull AbilityType abilityType, @NonNull UUID penaltyId, boolean enabled)
     {
-        getAbilityScore(ability).setPenaltyEnabled(penaltyId, enabled);
+        getAbilityScore(abilityType).setPenaltyEnabled(penaltyId, enabled);
     }
 
-    public void setAbilityBaseValue(@NonNull Ability ability, int baseValue)
+    public void setAbilityBaseValue(@NonNull AbilityType abilityType, int baseValue)
     {
-        getAbilityScore(ability).setBaseValue(baseValue);
+        getAbilityScore(abilityType).setBaseValue(baseValue);
     }
 
-    public AbilityData getAbility(Ability ability)
+    public AbilityData getAbility(AbilityType abilityType)
     {
-        return getAbilityScore(ability).toData(ability);
+        return getAbilityScore(abilityType).toData(abilityType);
+    }
+
+    public void setSavingThrowBaseValue(@NonNull SavingThrowType savingThrowType, int baseValue)
+    {
+        getSavingThrowEntry(savingThrowType).setBaseValue(baseValue);
+    }
+
+    public UUID addSavingThrowBonus(@NonNull SavingThrowType savingThrowType, @NonNull String source, @NonNull BonusType bonusType, int value, @NonNull String description)
+    {
+        Bonus bonus = new Bonus(source, bonusType, value, true, description);
+        getSavingThrowEntry(savingThrowType).addBonus(bonus);
+        return bonus.getId();
+    }
+
+    public void removeSavingThrowBonus(@NonNull SavingThrowType savingThrowType, @NonNull UUID bonusId)
+    {
+        getSavingThrowEntry(savingThrowType).removeBonus(bonusId);
+    }
+
+    public void setSavingThrowBonusEnable(@NonNull SavingThrowType savingThrowType, @NonNull UUID bonusId, boolean enabled)
+    {
+        getSavingThrowEntry(savingThrowType).setBonusEnabled(bonusId, enabled);
+    }
+
+    public UUID addSavingThrowPenalty(@NonNull SavingThrowType savingThrowType, @NonNull String source, int value, @NonNull String description)
+    {
+        Penalty penalty = new Penalty(source, value, true, description);
+        getSavingThrowEntry(savingThrowType).addPenalty(penalty);
+        return penalty.getId();
+    }
+
+    public void removeSavingThrowPenalty(@NonNull SavingThrowType savingThrowType, @NonNull UUID penaltyId)
+    {
+        getSavingThrowEntry(savingThrowType).removePenalty(penaltyId);
+    }
+
+    public void setSavingThrowPenaltyEnable(@NonNull SavingThrowType savingThrowType, @NonNull UUID penaltyId, boolean enabled)
+    {
+        getSavingThrowEntry(savingThrowType).setPenaltyEnabled(penaltyId, enabled);
+    }
+
+    public SavingThrowData getSavingThrow(@NonNull SavingThrowType savingThrowType)
+    {
+        int totalModifier = getAbilityScore(savingThrowType.getKeyAbility()).getModifier()
+                + getSavingThrowEntry(savingThrowType).getTotalValue();
+
+        return getSavingThrowEntry(savingThrowType).toData(savingThrowType, totalModifier);
+    }
+
+    public UUID addArmorClassBonus(@NonNull String source, @NonNull BonusType bonusType, int value, @NonNull String description)
+    {
+        Bonus bonus = new Bonus(source, bonusType, value, true, description);
+        armorClass.addBonus(bonus);
+        return bonus.getId();
+    }
+
+    public void removeArmorClassBonus(@NonNull UUID bonusId)
+    {
+        armorClass.removeBonus(bonusId);
+    }
+
+    public void setArmorClassBonusEnable(@NonNull UUID bonusId, boolean enabled)
+    {
+        armorClass.setBonusEnabled(bonusId, enabled);
+    }
+
+    public UUID addArmorClassPenalty(@NonNull String source, int value, @NonNull String description)
+    {
+        Penalty penalty = new Penalty(source, value, true, description);
+        armorClass.addPenalty(penalty);
+        return penalty.getId();
+    }
+
+    public void removeArmorClassPenalty(@NonNull UUID penaltyId)
+    {
+        armorClass.removePenalty(penaltyId);
+    }
+
+    public void setArmorClassPenaltyEnable(@NonNull UUID penaltyId, boolean enabled)
+    {
+        armorClass.setPenaltyEnabled(penaltyId, enabled);
+    }
+
+    public ArmorClassData getArmorClass()
+    {
+        int totalValue = getAbilityScore(AbilityType.DEXTERITY).getModifier()
+                + armorClass.getACTotalValue();
+        int touchValue = getAbilityScore(AbilityType.DEXTERITY).getModifier()
+                + armorClass.getACTouch();
+        int flatFootedValue = armorClass.getACFlatFooted();
+
+        return armorClass.toData(totalValue, touchValue, flatFootedValue);
+    }
+
+    public void setHitPoints(@NonNull HitPointField field, int value)
+    {
+        hitPoints.set(field, value);
+    }
+
+    public void changeHitPoints(@NonNull HitPointField field, int delta)
+    {
+        hitPoints.change(field, delta);
+    }
+
+    public HitPointsData getHitPoints()
+    {
+        return hitPoints.toData(hitPoints.getMaxHp());
+    }
+
+    public void setInitiativeBaseValue(int baseValue)
+    {
+        initiative.setBaseValue(baseValue);
+    }
+
+    public UUID addInitiativeBonus(@NonNull String source, @NonNull BonusType bonusType, int value, @NonNull String description)
+    {
+        Bonus bonus = new Bonus(source, bonusType, value, true, description);
+        initiative.addBonus(bonus);
+        return bonus.getId();
+    }
+
+    public void removeInitiativeBonus(@NonNull UUID bonusId)
+    {
+        initiative.removeBonus(bonusId);
+    }
+
+    public void setInitiativeBonusEnable(@NonNull UUID bonusId, boolean enabled)
+    {
+        initiative.setBonusEnabled(bonusId, enabled);
+    }
+
+    public UUID addInitiativePenalty(@NonNull String source, int value, @NonNull String description)
+    {
+        Penalty penalty = new Penalty(source, value, true, description);
+        initiative.addPenalty(penalty);
+        return penalty.getId();
+    }
+
+    public void removeInitiativePenalty(@NonNull UUID penaltyId)
+    {
+        initiative.removePenalty(penaltyId);
+    }
+
+    public void setInitiativePenaltyEnable(@NonNull UUID penaltyId, boolean enabled)
+    {
+        initiative.setPenaltyEnabled(penaltyId, enabled);
+    }
+
+    public InitiativeData getInitiative()
+    {
+        int totalModifier = getAbilityScore(AbilityType.DEXTERITY).getModifier()
+                + initiative.getTotalValue();
+
+        return initiative.toData(totalModifier);
     }
 
     public List<String> getSkillSpecializations(@NonNull SkillType skillType)
@@ -240,8 +411,13 @@ public class CharacterSheet
         return skills.getSpecialization(skillType, specialization).toData(skillType, specialization, totalModifier);
     }
 
-    private AbilityScore getAbilityScore(@NonNull Ability ability)
+    private AbilityScore getAbilityScore(@NonNull AbilityType abilityType)
     {
-        return abilityScores.get(ability);
+        return abilityScores.get(abilityType);
+    }
+
+    private SavingThrowEntry getSavingThrowEntry(@NonNull SavingThrowType savingThrowType)
+    {
+        return savingThrows.get(savingThrowType);
     }
 }

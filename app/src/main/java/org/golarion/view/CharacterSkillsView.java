@@ -13,9 +13,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import org.golarion.model.api.BonusData;
+import org.golarion.model.api.PenaltyData;
 import org.golarion.model.api.SkillData;
 import org.golarion.model.character.CharacterSheet;
 import org.golarion.model.character.skill.SkillType;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class CharacterSkillsView extends BorderPane
 {
@@ -24,8 +29,10 @@ public class CharacterSkillsView extends BorderPane
     private static final double VALUE_COLUMN_WIDTH = 48;
     private static final double RANKS_COLUMN_WIDTH = 48;
     private static final double ROW_HEIGHT = 34;
+    private static final double TABLE_WIDTH = CLASS_COLUMN_WIDTH + NAME_COLUMN_WIDTH + VALUE_COLUMN_WIDTH + RANKS_COLUMN_WIDTH;
 
     private final CharacterSheet sheet;
+    private final Set<String> expandedRows;
 
     public CharacterSkillsView(CharacterSheet sheet)
     {
@@ -35,6 +42,7 @@ public class CharacterSkillsView extends BorderPane
         }
 
         this.sheet = sheet;
+        this.expandedRows = new HashSet<>();
 
         setPadding(new Insets(12));
         setFocusTraversable(true);
@@ -50,7 +58,15 @@ public class CharacterSkillsView extends BorderPane
         boolean firstVisibleRow = true;
         for (SkillType skillType : SkillType.values())
         {
-            list.getChildren().add(buildSummaryRow(skillType, firstVisibleRow));
+            SkillData skillData = getSkillData(skillType);
+            String summaryRowKey = buildSummaryRowKey(skillType);
+
+            list.getChildren().add(buildSummaryRow(skillType, skillData, summaryRowKey, firstVisibleRow));
+            if (isExpanded(summaryRowKey))
+            {
+                list.getChildren().add(buildDetailsRow(skillData));
+            }
+
             firstVisibleRow = false;
 
             if (!skillType.isRequiresSpecialization())
@@ -60,29 +76,36 @@ public class CharacterSkillsView extends BorderPane
 
             for (String specialization : sheet.getSkillSpecializations(skillType))
             {
-                list.getChildren().add(buildSpecializationRow(skillType, specialization));
+                SkillData specializationData = getSkillData(skillType, specialization);
+                String specializationRowKey = buildSpecializationRowKey(skillType, specialization);
+
+                list.getChildren().add(buildSpecializationRow(skillType, specialization, specializationData, specializationRowKey));
+                if (isExpanded(specializationRowKey))
+                {
+                    list.getChildren().add(buildDetailsRow(specializationData));
+                }
             }
         }
 
         return list;
     }
 
-    private GridPane buildSummaryRow(SkillType skillType, boolean firstRow)
+    private GridPane buildSummaryRow(SkillType skillType, SkillData skillData, String rowKey, boolean firstRow)
     {
         GridPane row = new GridPane();
         row.setAlignment(Pos.TOP_LEFT);
         row.setMaxWidth(Region.USE_PREF_SIZE);
 
-        SkillData skillData = getSkillData(skillType);
+        boolean expanded = isExpanded(rowKey);
         Region classSkillCell = buildClassSkillCell(skillType);
-        Region nameCell = buildSkillNameCell(skillType);
-        Label valueLabel = new Label(formatModifier(skillData.totalModifier()));
+        Region nameCell = buildSkillNameCell(skillType, rowKey);
+        Label valueLabel = new Label(formatModifier(skillData.totalValue()));
         TextField ranksField = buildRanksField(skillType);
 
-        styleContainerCell(classSkillCell, CLASS_COLUMN_WIDTH, firstRow, 0);
-        styleContainerCell(nameCell, NAME_COLUMN_WIDTH, firstRow, 1);
-        styleCell(valueLabel, VALUE_COLUMN_WIDTH, firstRow, 2);
-        styleEditableCell(ranksField, RANKS_COLUMN_WIDTH, firstRow, 3);
+        styleContainerCell(classSkillCell, CLASS_COLUMN_WIDTH, firstRow, 0, expanded);
+        styleContainerCell(nameCell, NAME_COLUMN_WIDTH, firstRow, 1, expanded);
+        styleCell(valueLabel, VALUE_COLUMN_WIDTH, firstRow, 2, expanded);
+        styleEditableCell(ranksField, RANKS_COLUMN_WIDTH, firstRow, 3, expanded);
 
         row.add(classSkillCell, 0, 0);
         row.add(nameCell, 1, 0);
@@ -92,27 +115,27 @@ public class CharacterSkillsView extends BorderPane
         return row;
     }
 
-    private GridPane buildSpecializationRow(SkillType skillType, String specialization)
+    private GridPane buildSpecializationRow(SkillType skillType, String specialization, SkillData skillData, String rowKey)
     {
         GridPane row = new GridPane();
         row.setAlignment(Pos.TOP_LEFT);
         row.setMaxWidth(Region.USE_PREF_SIZE);
 
-        SkillData skillData = getSkillData(skillType, specialization);
+        boolean expanded = isExpanded(rowKey);
         Region deleteCell = buildDeleteCell(skillType, specialization);
-        Label nameLabel = new Label(specialization);
-        Label valueLabel = new Label(formatModifier(skillData.totalModifier()));
+        Region nameCell = buildSpecializationNameCell(specialization, rowKey);
+        Label valueLabel = new Label(formatModifier(skillData.totalValue()));
         TextField ranksField = new TextField(Integer.toString(skillData.ranks()));
 
         bindSpecializationRanksField(skillType, specialization, ranksField);
 
-        styleContainerCell(deleteCell, CLASS_COLUMN_WIDTH, false, 0);
-        styleIndentedNameCell(nameLabel, false, 1);
-        styleCell(valueLabel, VALUE_COLUMN_WIDTH, false, 2);
-        styleEditableCell(ranksField, RANKS_COLUMN_WIDTH, false, 3);
+        styleContainerCell(deleteCell, CLASS_COLUMN_WIDTH, false, 0, expanded);
+        styleContainerCell(nameCell, NAME_COLUMN_WIDTH, false, 1, expanded);
+        styleCell(valueLabel, VALUE_COLUMN_WIDTH, false, 2, expanded);
+        styleEditableCell(ranksField, RANKS_COLUMN_WIDTH, false, 3, expanded);
 
         row.add(deleteCell, 0, 0);
-        row.add(nameLabel, 1, 0);
+        row.add(nameCell, 1, 0);
         row.add(valueLabel, 2, 0);
         row.add(ranksField, 3, 0);
 
@@ -135,13 +158,15 @@ public class CharacterSkillsView extends BorderPane
         return cell;
     }
 
-    private Region buildSkillNameCell(SkillType skillType)
+    private Region buildSkillNameCell(SkillType skillType, String rowKey)
     {
+        Button gearButton = buildGearButton(rowKey);
+
         if (!skillType.isRequiresSpecialization())
         {
-            HBox nameCell = new HBox();
+            HBox nameCell = new HBox(4, gearButton, new Label(skillType.getDisplayName()));
             nameCell.setAlignment(Pos.CENTER_LEFT);
-            nameCell.getChildren().add(new Label(skillType.getDisplayName()));
+            bindGearVisibility(nameCell, gearButton, rowKey);
             return nameCell;
         }
 
@@ -155,18 +180,18 @@ public class CharacterSkillsView extends BorderPane
         addField.setPrefHeight(22);
         addField.setMaxHeight(22);
         addField.setStyle(
-            "-fx-background-color: transparent; " +
-            "-fx-control-inner-background: transparent; " +
-            "-fx-background-insets: 0; " +
-            "-fx-background-radius: 0; " +
-            "-fx-focus-color: transparent; " +
-            "-fx-faint-focus-color: transparent; " +
-            "-fx-text-fill: #333333; " +
-            "-fx-prompt-text-fill: #888888; " +
-            "-fx-border-color: transparent transparent #999999 transparent; " +
-            "-fx-border-width: 0 0 1 0; " +
-            "-fx-border-radius: 0; " +
-            "-fx-padding: 0 4 0 4;"
+                "-fx-background-color: transparent; " +
+                        "-fx-control-inner-background: transparent; " +
+                        "-fx-background-insets: 0; " +
+                        "-fx-background-radius: 0; " +
+                        "-fx-focus-color: transparent; " +
+                        "-fx-faint-focus-color: transparent; " +
+                        "-fx-text-fill: #333333; " +
+                        "-fx-prompt-text-fill: #888888; " +
+                        "-fx-border-color: transparent transparent #999999 transparent; " +
+                        "-fx-border-width: 0 0 1 0; " +
+                        "-fx-border-radius: 0; " +
+                        "-fx-padding: 0 4 0 4;"
         );
 
         addField.setOnAction(event -> addSpecialization(skillType, addField));
@@ -186,8 +211,20 @@ public class CharacterSkillsView extends BorderPane
             }
         });
 
-        HBox nameCell = new HBox(8, nameLabel, addField);
+        HBox nameCell = new HBox(4, gearButton, nameLabel, addField);
         nameCell.setAlignment(Pos.CENTER_LEFT);
+        bindGearVisibility(nameCell, gearButton, rowKey);
+        return nameCell;
+    }
+
+    private Region buildSpecializationNameCell(String specialization, String rowKey)
+    {
+        Button gearButton = buildGearButton(rowKey);
+        Label nameLabel = new Label(specialization);
+        HBox nameCell = new HBox(4, gearButton, nameLabel);
+        nameCell.setAlignment(Pos.CENTER_LEFT);
+        nameCell.setPadding(new Insets(0, 0, 0, 16));
+        bindGearVisibility(nameCell, gearButton, rowKey);
         return nameCell;
     }
 
@@ -325,9 +362,47 @@ public class CharacterSkillsView extends BorderPane
         refreshGrid();
     }
 
+    private VBox buildDetailsRow(SkillData skillData)
+    {
+        VBox detailsRow = new VBox(4);
+        detailsRow.setMaxWidth(TABLE_WIDTH);
+        detailsRow.setPadding(new Insets(8));
+        detailsRow.setStyle("-fx-border-color: #666666; -fx-border-width: 1 1 1 1;");
+
+        if (skillData.bonuses().isEmpty() && skillData.penalties().isEmpty())
+        {
+            detailsRow.getChildren().add(buildDetailsLabel("Nessun bonus o malus"));
+            return detailsRow;
+        }
+
+        for (BonusData bonus : skillData.bonuses())
+        {
+            detailsRow.getChildren().add(buildDetailsLabel(formatBonus(bonus)));
+        }
+
+        for (PenaltyData penalty : skillData.penalties())
+        {
+            detailsRow.getChildren().add(buildDetailsLabel(formatPenalty(penalty)));
+        }
+
+        return detailsRow;
+    }
+
     private String formatModifier(int modifier)
     {
         return modifier >= 0 ? "+" + modifier : Integer.toString(modifier);
+    }
+
+    private String formatBonus(BonusData bonus)
+    {
+        String status = bonus.enabled() ? "" : " [disattivo]";
+        return "+ " + bonus.value() + " " + bonus.bonusType().getDisplayName() + " - " + bonus.source() + status;
+    }
+
+    private String formatPenalty(PenaltyData penalty)
+    {
+        String status = penalty.enabled() ? "" : " [disattivo]";
+        return "- " + penalty.value() + " - " + penalty.source() + status;
     }
 
     private SkillData getSkillData(SkillType skillType)
@@ -340,9 +415,48 @@ public class CharacterSkillsView extends BorderPane
         return sheet.getSkill(skillType, specialization);
     }
 
-    private void styleCell(Label label, double minWidth, boolean firstRow, int column)
+    private Label buildDetailsLabel(String text)
     {
-        String borderWidth = buildBorderWidth(firstRow, column);
+        Label label = new Label(text);
+        label.setWrapText(true);
+        label.setMaxWidth(TABLE_WIDTH - 16);
+        return label;
+    }
+
+    private Button buildGearButton(String rowKey)
+    {
+        Button gearButton = new Button("⚙");
+        gearButton.setVisible(isExpanded(rowKey));
+        gearButton.setManaged(gearButton.isVisible());
+        gearButton.setFocusTraversable(false);
+        gearButton.setPadding(new Insets(0));
+        gearButton.setMinSize(16, 16);
+        gearButton.setPrefSize(16, 16);
+        gearButton.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+        gearButton.setOnAction(event -> toggleDetails(rowKey));
+        return gearButton;
+    }
+
+    private void bindGearVisibility(Region rowRegion, Button gearButton, String rowKey)
+    {
+        rowRegion.setOnMouseEntered(event ->
+        {
+            gearButton.setVisible(true);
+            gearButton.setManaged(true);
+        });
+        rowRegion.setOnMouseExited(event ->
+        {
+            if (!isExpanded(rowKey))
+            {
+                gearButton.setVisible(false);
+                gearButton.setManaged(false);
+            }
+        });
+    }
+
+    private void styleCell(Label label, double minWidth, boolean firstRow, int column, boolean expanded)
+    {
+        String borderWidth = buildBorderWidth(firstRow, column, expanded);
 
         label.setMinWidth(minWidth);
         label.setPrefWidth(minWidth);
@@ -355,9 +469,9 @@ public class CharacterSkillsView extends BorderPane
         label.setStyle("-fx-border-color: #666666; -fx-border-width: " + borderWidth + ";");
     }
 
-    private void styleEditableCell(TextField textField, double minWidth, boolean firstRow, int column)
+    private void styleEditableCell(TextField textField, double minWidth, boolean firstRow, int column, boolean expanded)
     {
-        String borderWidth = buildBorderWidth(firstRow, column);
+        String borderWidth = buildBorderWidth(firstRow, column, expanded);
 
         textField.setMinWidth(minWidth);
         textField.setPrefWidth(minWidth);
@@ -370,9 +484,9 @@ public class CharacterSkillsView extends BorderPane
         textField.setStyle("-fx-border-color: #666666; -fx-border-width: " + borderWidth + "; -fx-background-insets: 0; -fx-background-radius: 0;");
     }
 
-    private void styleContainerCell(Region region, double minWidth, boolean firstRow, int column)
+    private void styleContainerCell(Region region, double minWidth, boolean firstRow, int column, boolean expanded)
     {
-        String borderWidth = buildBorderWidth(firstRow, column);
+        String borderWidth = buildBorderWidth(firstRow, column, expanded);
 
         region.setMinWidth(minWidth);
         region.setPrefWidth(minWidth);
@@ -384,29 +498,43 @@ public class CharacterSkillsView extends BorderPane
         region.setStyle("-fx-border-color: #666666; -fx-border-width: " + borderWidth + ";");
     }
 
-    private void styleIndentedNameCell(Label label, boolean firstRow, int column)
-    {
-        String borderWidth = buildBorderWidth(firstRow, column);
-
-        label.setMinWidth(NAME_COLUMN_WIDTH);
-        label.setPrefWidth(NAME_COLUMN_WIDTH);
-        label.setMaxWidth(NAME_COLUMN_WIDTH);
-        label.setMinHeight(ROW_HEIGHT);
-        label.setPrefHeight(ROW_HEIGHT);
-        label.setMaxHeight(ROW_HEIGHT);
-        label.setAlignment(Pos.CENTER_LEFT);
-        label.setPadding(new Insets(6, 8, 6, 24));
-        label.setStyle("-fx-border-color: #666666; -fx-border-width: " + borderWidth + ";");
-    }
-
-    private String buildBorderWidth(boolean firstRow, int column)
+    private String buildBorderWidth(boolean firstRow, int column, boolean expanded)
     {
         int top = firstRow ? 1 : 0;
         int right = 1;
-        int bottom = 1;
+        int bottom = expanded ? 0 : 1;
         int left = column == 0 ? 1 : 0;
 
         return top + " " + right + " " + bottom + " " + left;
+    }
+
+    private boolean isExpanded(String rowKey)
+    {
+        return expandedRows.contains(rowKey);
+    }
+
+    private String buildSummaryRowKey(SkillType skillType)
+    {
+        return skillType.name();
+    }
+
+    private String buildSpecializationRowKey(SkillType skillType, String specialization)
+    {
+        return skillType.name() + "::" + specialization;
+    }
+
+    private void toggleDetails(String rowKey)
+    {
+        if (isExpanded(rowKey))
+        {
+            expandedRows.remove(rowKey);
+        }
+        else
+        {
+            expandedRows.add(rowKey);
+        }
+
+        refreshGrid();
     }
 
     private void refreshGrid()
