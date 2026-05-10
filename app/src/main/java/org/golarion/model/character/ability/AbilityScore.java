@@ -1,13 +1,10 @@
 package org.golarion.model.character.ability;
 
-import lombok.Getter;
 import lombok.NonNull;
 import org.golarion.model.api.AbilityData;
-import org.golarion.model.api.BonusData;
-import org.golarion.model.api.PenaltyData;
-import org.golarion.model.character.modifier.Bonus;
 import org.golarion.model.character.modifier.BonusType;
-import org.golarion.model.character.modifier.Penalty;
+import org.golarion.model.character.modifier.Modifiable;
+import org.golarion.model.character.modifier.Modifier;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -15,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 
-public class AbilityScore
+public class AbilityScore implements Modifiable
 {
     private static final EnumSet<BonusType> ALLOWED_BONUS_TYPES = EnumSet.of(
             BonusType.ALCHEMICAL,
@@ -28,16 +25,13 @@ public class AbilityScore
             BonusType.SACRED,
             BonusType.SIZE
     );
-    private final List<Bonus> bonuses;
-    private final List<Penalty> penalties;
-    @Getter
+    private final List<Modifier> modifiers;
     private int baseValue;
 
     public AbilityScore(int baseValue)
     {
         this.baseValue = 10;
-        this.bonuses = new ArrayList<>();
-        this.penalties = new ArrayList<>();
+        this.modifiers = new ArrayList<>();
         setBaseValue(baseValue);
     }
 
@@ -51,45 +45,32 @@ public class AbilityScore
         this.baseValue = baseValue;
     }
 
-    public void addBonus(@NonNull Bonus bonus)
+    @Override
+    public void addModifier(@NonNull Modifier modifier)
     {
-        if (!ALLOWED_BONUS_TYPES.contains(bonus.getBonusType()))
+        if (modifier.getBonusType() != null && !ALLOWED_BONUS_TYPES.contains(modifier.getBonusType()))
         {
-            throw new IllegalArgumentException("bonusType " + bonus.getBonusType() + " is not applicable to an ability score");
+            throw new IllegalArgumentException("bonusType " + modifier.getBonusType() + " is not applicable to an ability score");
         }
 
-        bonuses.add(bonus);
+        modifiers.add(modifier);
     }
 
-    public void removeBonus(@NonNull UUID bonusId)
+    @Override
+    public void removeModifier(@NonNull UUID modifierId)
     {
-        bonuses.removeIf(bonus -> bonus.getId().equals(bonusId));
-    }
-
-    public void setBonusEnabled(@NonNull UUID bonusId, boolean enabled)
-    {
-        findBonusById(bonusId).setEnabled(enabled);
-    }
-
-    public void addPenalty(@NonNull Penalty penalty)
-    {
-
-        penalties.add(penalty);
-    }
-
-    public void removePenalty(@NonNull UUID penaltyId)
-    {
-        penalties.removeIf(penalty -> penalty.getId().equals(penaltyId));
-    }
-
-    public void setPenaltyEnabled(@NonNull UUID penaltyId, boolean enabled)
-    {
-        findPenaltyById(penaltyId).setEnabled(enabled);
+        modifiers.removeIf(modifier -> modifier.getId().equals(modifierId));
     }
 
     public AbilityData toData(@NonNull AbilityType abilityType)
     {
-        return new AbilityData(abilityType, baseValue, getTotalValue(), getModifier(), getBonuses(), getPenalties());
+        return new AbilityData(
+                abilityType,
+                baseValue,
+                getTotalValue(),
+                getModifier(),
+                modifiers.stream().map(Modifier::toData).toList()
+        );
     }
 
     public int getModifier()
@@ -97,47 +78,8 @@ public class AbilityScore
         return Math.floorDiv(getTotalValue() - 10, 2);
     }
 
-    private List<BonusData> getBonuses()
+    public int getTotalValue()
     {
-        return bonuses.stream().map(Bonus::toData).toList();
-    }
-
-    private List<PenaltyData> getPenalties()
-    {
-        return penalties.stream().map(Penalty::toData).toList();
-    }
-
-    private int getTotalValue()
-    {
-        return baseValue + getTotalBonus() - getTotalPenalty();
-    }
-
-    private int getTotalBonus()
-    {
-        return Bonus.calculateTotal(bonuses);
-    }
-
-    private int getTotalPenalty()
-    {
-        return penalties.stream()
-                .filter(Penalty::isEnabled)
-                .mapToInt(Penalty::getValue)
-                .sum();
-    }
-
-    private Bonus findBonusById(@NonNull UUID bonusId)
-    {
-        return bonuses.stream()
-                .filter(bonus -> bonus.getId().equals(bonusId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("bonusId not found: " + bonusId));
-    }
-
-    private Penalty findPenaltyById(@NonNull UUID penaltyId)
-    {
-        return penalties.stream()
-                .filter(penalty -> penalty.getId().equals(penaltyId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("penaltyId not found: " + penaltyId));
+        return baseValue + Modifier.calculateTotal(modifiers);
     }
 }

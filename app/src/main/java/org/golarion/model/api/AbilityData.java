@@ -9,8 +9,7 @@ public record AbilityData(
         int baseValue,
         int totalValue,
         int modifier,
-        List<BonusData> bonuses,
-        List<PenaltyData> penalties
+        List<ModifierData> modifiers
 )
 {
 }

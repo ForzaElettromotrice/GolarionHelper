@@ -10,8 +10,7 @@ public record SkillData(
         boolean classSkill,
         int ranks,
         int totalValue,
-        List<BonusData> bonuses,
-        List<PenaltyData> penalties
+        List<ModifierData> modifiers
 )
 {
 }

@@ -12,9 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import lombok.NonNull;
-import org.golarion.model.api.BonusData;
 import org.golarion.model.api.InitiativeData;
-import org.golarion.model.api.PenaltyData;
+import org.golarion.model.api.ModifierData;
 import org.golarion.model.character.CharacterSheet;
 
 public class CharacterInitiativeView extends BorderPane
@@ -115,20 +114,15 @@ public class CharacterInitiativeView extends BorderPane
         VBox detailsRow = new VBox(4);
         detailsRow.setMaxWidth(TABLE_WIDTH);
 
-        if (initiativeData.bonuses().isEmpty() && initiativeData.penalties().isEmpty())
+        if (initiativeData.modifiers().isEmpty())
         {
             detailsRow.getChildren().add(buildDetailsLabel("Nessun bonus o malus"));
             return detailsRow;
         }
 
-        for (BonusData bonus : initiativeData.bonuses())
+        for (ModifierData modifier : initiativeData.modifiers())
         {
-            detailsRow.getChildren().add(buildDetailsLabel(formatBonus(bonus)));
-        }
-
-        for (PenaltyData penalty : initiativeData.penalties())
-        {
-            detailsRow.getChildren().add(buildDetailsLabel(formatPenalty(penalty)));
+            detailsRow.getChildren().add(buildDetailsLabel(formatModifier(modifier)));
         }
 
         return detailsRow;
@@ -139,16 +133,9 @@ public class CharacterInitiativeView extends BorderPane
         return sheet.getInitiative();
     }
 
-    private String formatBonus(BonusData bonus)
+    private String formatModifier(ModifierData modifier)
     {
-        String status = bonus.enabled() ? "" : " [disattivo]";
-        return "+ " + bonus.value() + " " + bonus.bonusType().getDisplayName() + " - " + bonus.source() + status;
-    }
-
-    private String formatPenalty(PenaltyData penalty)
-    {
-        String status = penalty.enabled() ? "" : " [disattivo]";
-        return "- " + penalty.value() + " - " + penalty.source() + status;
+        return ModifierDisplayFormatter.format(modifier);
     }
 
     private Label buildDetailsLabel(String text)

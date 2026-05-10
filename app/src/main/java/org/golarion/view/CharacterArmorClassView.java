@@ -10,8 +10,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import lombok.NonNull;
 import org.golarion.model.api.ArmorClassData;
-import org.golarion.model.api.BonusData;
-import org.golarion.model.api.PenaltyData;
+import org.golarion.model.api.ModifierData;
 import org.golarion.model.character.CharacterSheet;
 
 public class CharacterArmorClassView extends BorderPane
@@ -132,20 +131,15 @@ public class CharacterArmorClassView extends BorderPane
         VBox detailsRow = new VBox(4);
         detailsRow.setMaxWidth(DETAILS_WIDTH);
 
-        if (armorClassData.bonuses().isEmpty() && armorClassData.penalties().isEmpty())
+        if (armorClassData.modifiers().isEmpty())
         {
             detailsRow.getChildren().add(buildDetailsLabel("Nessun bonus o malus"));
             return detailsRow;
         }
 
-        for (BonusData bonus : armorClassData.bonuses())
+        for (ModifierData modifier : armorClassData.modifiers())
         {
-            detailsRow.getChildren().add(buildDetailsLabel(formatBonus(bonus)));
-        }
-
-        for (PenaltyData penalty : armorClassData.penalties())
-        {
-            detailsRow.getChildren().add(buildDetailsLabel(formatPenalty(penalty)));
+            detailsRow.getChildren().add(buildDetailsLabel(formatModifier(modifier)));
         }
 
         return detailsRow;
@@ -166,16 +160,9 @@ public class CharacterArmorClassView extends BorderPane
         return label;
     }
 
-    private String formatBonus(BonusData bonus)
+    private String formatModifier(ModifierData modifier)
     {
-        String status = bonus.enabled() ? "" : " [disattivo]";
-        return "+ " + bonus.value() + " " + bonus.bonusType().getDisplayName() + " - " + bonus.source() + status;
-    }
-
-    private String formatPenalty(PenaltyData penalty)
-    {
-        String status = penalty.enabled() ? "" : " [disattivo]";
-        return "- " + penalty.value() + " - " + penalty.source() + status;
+        return ModifierDisplayFormatter.format(modifier);
     }
 
     private void styleCell(Region region, double width, boolean firstGroup, int column, boolean expanded)

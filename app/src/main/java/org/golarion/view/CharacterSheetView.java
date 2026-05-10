@@ -46,7 +46,24 @@ public class CharacterSheetView extends BorderPane
         Tab mainTab = new Tab("Principale", mainScrollPane);
         mainTab.setClosable(false);
 
-        TabPane tabPane = new TabPane(mainTab);
+        CharacterEnhancementsView enhancementsView = new CharacterEnhancementsView(sheet, () ->
+        {
+            abilitiesView.refresh();
+            skillsView.refresh();
+            savingThrowsView.refresh();
+            hitPointsView.refresh();
+            initiativeView.refresh();
+            armorClassView.refresh();
+        });
+        ScrollPane enhancementsScrollPane = new ScrollPane(enhancementsView);
+        enhancementsScrollPane.setFitToHeight(false);
+        enhancementsScrollPane.setFitToWidth(true);
+        enhancementsScrollPane.setPannable(true);
+
+        Tab enhancementsTab = new Tab("Potenziamenti", enhancementsScrollPane);
+        enhancementsTab.setClosable(false);
+
+        TabPane tabPane = new TabPane(mainTab, enhancementsTab);
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         setTop(header);

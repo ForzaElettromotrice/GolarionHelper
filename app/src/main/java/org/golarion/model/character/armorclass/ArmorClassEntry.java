@@ -2,18 +2,16 @@ package org.golarion.model.character.armorclass;
 
 import lombok.NonNull;
 import org.golarion.model.api.ArmorClassData;
-import org.golarion.model.api.BonusData;
-import org.golarion.model.api.PenaltyData;
-import org.golarion.model.character.modifier.Bonus;
 import org.golarion.model.character.modifier.BonusType;
-import org.golarion.model.character.modifier.Penalty;
+import org.golarion.model.character.modifier.Modifiable;
+import org.golarion.model.character.modifier.Modifier;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.UUID;
 
-public class ArmorClassEntry
+public class ArmorClassEntry implements Modifiable
 {
     private static final EnumSet<BonusType> ALLOWED_BONUS_TYPES = EnumSet.of(
             BonusType.ALCHEMICAL,
@@ -41,113 +39,62 @@ public class ArmorClassEntry
     private static final EnumSet<BonusType> FLAT_FOOTED_EXCLUDED_BONUS_TYPES = EnumSet.of(
             BonusType.DODGE
     );
-    private final List<Bonus> bonuses;
-    private final List<Penalty> penalties;
+    private final List<Modifier> modifiers;
 
     public ArmorClassEntry()
     {
-        this.bonuses = new ArrayList<>();
-        this.penalties = new ArrayList<>();
+        this.modifiers = new ArrayList<>();
     }
 
-    public List<BonusData> getBonuses()
+    @Override
+    public void addModifier(@NonNull Modifier modifier)
     {
-        return bonuses.stream().map(Bonus::toData).toList();
-    }
-
-    public List<PenaltyData> getPenalties()
-    {
-        return penalties.stream().map(Penalty::toData).toList();
-    }
-
-    public void addBonus(@NonNull Bonus bonus)
-    {
-        if (!ALLOWED_BONUS_TYPES.contains(bonus.getBonusType()))
+        if (modifier.getBonusType() != null && !ALLOWED_BONUS_TYPES.contains(modifier.getBonusType()))
         {
-            throw new IllegalArgumentException("bonusType " + bonus.getBonusType() + " is not applicable to armor class");
+            throw new IllegalArgumentException("bonusType " + modifier.getBonusType() + " is not applicable to armor class");
         }
 
-        bonuses.add(bonus);
+        modifiers.add(modifier);
     }
 
-    public void removeBonus(@NonNull UUID bonusId)
+    @Override
+    public void removeModifier(@NonNull UUID modifierId)
     {
-        bonuses.removeIf(bonus -> bonus.getId().equals(bonusId));
+        modifiers.removeIf(bonus -> bonus.getId().equals(modifierId));
     }
 
-    public void setBonusEnabled(@NonNull UUID bonusId, boolean enabled)
+    public ArmorClassData toData(int abilityModifier)
     {
-        findBonusById(bonusId).setEnabled(enabled);
-    }
-
-    public void addPenalty(@NonNull Penalty penalty)
-    {
-        penalties.add(penalty);
-    }
-
-    public void removePenalty(@NonNull UUID penaltyId)
-    {
-        penalties.removeIf(penalty -> penalty.getId().equals(penaltyId));
-    }
-
-    public void setPenaltyEnabled(@NonNull UUID penaltyId, boolean enabled)
-    {
-        findPenaltyById(penaltyId).setEnabled(enabled);
-    }
-
-    public int getACTotalValue()
-    {
-        return 10 + getTotalBonus() - getTotalPenalty();
-    }
-
-    public int getACTouch()
-    {
-        return 10 + getTotalBonusExcluding(TOUCH_EXCLUDED_BONUS_TYPES) - getTotalPenalty();
-    }
-
-    public int getACFlatFooted()
-    {
-        return 10 + getTotalBonusExcluding(FLAT_FOOTED_EXCLUDED_BONUS_TYPES) - getTotalPenalty();
-    }
-
-    public ArmorClassData toData(int totalValue, int touchValue, int flatFootedValue)
-    {
-        return new ArmorClassData(totalValue, touchValue, flatFootedValue, getBonuses(), getPenalties());
-    }
-
-    private int getTotalBonus()
-    {
-        return Bonus.calculateTotal(bonuses);
-    }
-
-    private int getTotalBonusExcluding(@NonNull EnumSet<BonusType> excludedBonusTypes)
-    {
-        return Bonus.calculateTotal(
-                bonuses.stream()
-                        .filter(Bonus::isEnabled)
-                        .filter(bonus -> !excludedBonusTypes.contains(bonus.getBonusType()))
-                        .toList()
+        return new ArmorClassData(
+                getTotalValue(abilityModifier),
+                getTouchValue(abilityModifier),
+                getFlatFootedValue(),
+                modifiers.stream().map(Modifier::toData).toList()
         );
     }
 
-    private int getTotalPenalty()
+    public int getTotalValue(int abilityModifier)
     {
-        return penalties.stream().filter(Penalty::isEnabled).mapToInt(Penalty::getValue).sum();
+        return 10 + abilityModifier + Modifier.calculateTotal(modifiers);
     }
 
-    private Bonus findBonusById(@NonNull UUID bonusId)
+    public int getTouchValue(int abilityModifier)
     {
-        return bonuses.stream()
-                .filter(bonus -> bonus.getId().equals(bonusId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("bonusId not found: " + bonusId));
+        return 10 + abilityModifier + getTotalModifierExcluding(TOUCH_EXCLUDED_BONUS_TYPES);
     }
 
-    private Penalty findPenaltyById(@NonNull UUID penaltyId)
+    public int getFlatFootedValue()
     {
-        return penalties.stream()
-                .filter(penalty -> penalty.getId().equals(penaltyId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("penaltyId not found: " + penaltyId));
+        return 10 + getTotalModifierExcluding(FLAT_FOOTED_EXCLUDED_BONUS_TYPES);
+    }
+
+    private int getTotalModifierExcluding(@NonNull EnumSet<BonusType> excludedBonusTypes)
+    {
+        return Modifier.calculateTotal(
+                modifiers.stream()
+                        .filter(Modifier::isEnabled)
+                        .filter(modifier -> modifier.getBonusType() == null || !excludedBonusTypes.contains(modifier.getBonusType()))
+                        .toList()
+        );
     }
 }

@@ -9,17 +9,14 @@ import org.golarion.model.character.armorclass.ArmorClassEntry;
 import org.golarion.model.character.hitpoints.HitPointField;
 import org.golarion.model.character.hitpoints.HitPointsEntry;
 import org.golarion.model.character.initiative.InitiativeEntry;
-import org.golarion.model.character.modifier.Bonus;
-import org.golarion.model.character.modifier.BonusType;
-import org.golarion.model.character.modifier.Penalty;
+import org.golarion.model.character.modifier.*;
 import org.golarion.model.character.savingthrow.SavingThrowEntry;
 import org.golarion.model.character.savingthrow.SavingThrowType;
 import org.golarion.model.character.skill.SkillType;
 import org.golarion.model.character.skill.Skills;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.function.IntSupplier;
 
 public class CharacterSheet
 {
@@ -29,6 +26,8 @@ public class CharacterSheet
     private final HitPointsEntry hitPoints;
     private final InitiativeEntry initiative;
     private final Skills skills;
+    private final TargetManager targetManager;
+    private final Map<UUID, EffectGroup> effectGroups;
     @Getter
     private String characterName;
 
@@ -50,6 +49,14 @@ public class CharacterSheet
         this.initiative = new InitiativeEntry();
         this.skills = new Skills();
         setCharacterName(characterName);
+
+        this.targetManager = new TargetManager();
+        this.effectGroups = new LinkedHashMap<>();
+
+        registerModifierTargets();
+        registerDeltaTargets();
+        registerValueTargets();
+        registerDerivedTargetVariables();
     }
 
     public void setCharacterName(@NonNull String characterName)
@@ -63,38 +70,80 @@ public class CharacterSheet
         this.characterName = normalizedName;
     }
 
-    public UUID addAbilityBonus(@NonNull AbilityType abilityType, @NonNull String source, @NonNull BonusType bonusType, int value, @NonNull String description)
+    public UUID createEffectGroup(@NonNull String name)
     {
-        Bonus bonus = new Bonus(source, bonusType, value, true, description);
-        getAbilityScore(abilityType).addBonus(bonus);
-        return bonus.getId();
+        EffectGroup group = new EffectGroup(name);
+        effectGroups.put(group.getId(), group);
+        return group.getId();
     }
 
-    public void removeAbilityBonus(@NonNull AbilityType abilityType, @NonNull UUID bonusId)
+    public UUID addEffect(@NonNull UUID effectGroup, @NonNull ModifierType modifierType, BonusType bonusType, @NonNull String expression, @NonNull String targetString, @NonNull String source, @NonNull String description)
     {
-        getAbilityScore(abilityType).removeBonus(bonusId);
+        Expression exp = new Expression(targetManager, expression);
+        targetManager.validateTargetExpression(targetString, exp);
+        EffectGroup group = getEffectGroup(effectGroup);
+
+        boolean isModifierTarget = targetManager.hasModifierTarget(targetString);
+        boolean isDeltaTarget = targetManager.hasDeltaTarget(targetString);
+
+        if (isModifierTarget == isDeltaTarget)
+        {
+            throw new IllegalArgumentException("target must resolve to exactly one operational target: " + targetString);
+        }
+
+        if (isModifierTarget)
+        {
+            Modifier mod = new Modifier(modifierType, source, true, description, bonusType, exp);
+            ModifierTarget target = targetManager.getModifierTarget(targetString);
+            target.addModifier(mod);
+            try
+            {
+                targetManager.resolveValue(targetString);
+            }
+            catch (IllegalArgumentException exception)
+            {
+                target.removeModifier(mod.getId());
+                throw exception;
+            }
+            return group.addEntry(new ModifierEffectEntry(targetString, target, mod));
+        }
+
+        DeltaTarget target = targetManager.getDeltaTarget(targetString);
+        return group.addEntry(new DeltaEffectEntry(targetString, target, source, description, exp));
     }
 
-    public void setAbiltyBonusEnable(@NonNull AbilityType abilityType, @NonNull UUID bonusId, boolean enabled)
+    public void removeEffect(@NonNull UUID effectGroup, @NonNull UUID effectId)
     {
-        getAbilityScore(abilityType).setBonusEnabled(bonusId, enabled);
+        getEffectGroup(effectGroup).removeEffect(effectId);
     }
 
-    public UUID addAbilityPenalty(@NonNull AbilityType abilityType, @NonNull String source, int value, @NonNull String description)
+    public void setEffectGroupEnabled(@NonNull UUID effectGroup, boolean enabled)
     {
-        Penalty penalty = new Penalty(source, value, true, description);
-        getAbilityScore(abilityType).addPenalty(penalty);
-        return penalty.getId();
+        getEffectGroup(effectGroup).setEnabled(enabled);
     }
 
-    public void removeAbilityPenalty(@NonNull AbilityType abilityType, @NonNull UUID penaltyId)
+    public void setEffectGroupName(@NonNull UUID effectGroup, @NonNull String name)
     {
-        getAbilityScore(abilityType).removePenalty(penaltyId);
+        getEffectGroup(effectGroup).setName(name);
     }
 
-    public void setAbiltyPenaltyEnable(@NonNull AbilityType abilityType, @NonNull UUID penaltyId, boolean enabled)
+    public void removeEffectGroup(@NonNull UUID effectGroup)
     {
-        getAbilityScore(abilityType).setPenaltyEnabled(penaltyId, enabled);
+        EffectGroup group = getEffectGroup(effectGroup);
+        group.removeAllEffects();
+        effectGroups.remove(effectGroup);
+    }
+
+    public List<EffectGroupData> getEffectGroups()
+    {
+        return effectGroups.values().stream().map(EffectGroup::toData).toList();
+    }
+
+    public List<String> getEffectTargets()
+    {
+        LinkedHashSet<String> targets = new LinkedHashSet<>(targetManager.getModifierTargetNames());
+        targets.addAll(targetManager.getDeltaTargetNames());
+        return targets.stream().toList();
     }
 
     public void setAbilityBaseValue(@NonNull AbilityType abilityType, int baseValue)
@@ -112,91 +161,16 @@ public class CharacterSheet
         getSavingThrowEntry(savingThrowType).setBaseValue(baseValue);
     }
 
-    public UUID addSavingThrowBonus(@NonNull SavingThrowType savingThrowType, @NonNull String source, @NonNull BonusType bonusType, int value, @NonNull String description)
-    {
-        Bonus bonus = new Bonus(source, bonusType, value, true, description);
-        getSavingThrowEntry(savingThrowType).addBonus(bonus);
-        return bonus.getId();
-    }
-
-    public void removeSavingThrowBonus(@NonNull SavingThrowType savingThrowType, @NonNull UUID bonusId)
-    {
-        getSavingThrowEntry(savingThrowType).removeBonus(bonusId);
-    }
-
-    public void setSavingThrowBonusEnable(@NonNull SavingThrowType savingThrowType, @NonNull UUID bonusId, boolean enabled)
-    {
-        getSavingThrowEntry(savingThrowType).setBonusEnabled(bonusId, enabled);
-    }
-
-    public UUID addSavingThrowPenalty(@NonNull SavingThrowType savingThrowType, @NonNull String source, int value, @NonNull String description)
-    {
-        Penalty penalty = new Penalty(source, value, true, description);
-        getSavingThrowEntry(savingThrowType).addPenalty(penalty);
-        return penalty.getId();
-    }
-
-    public void removeSavingThrowPenalty(@NonNull SavingThrowType savingThrowType, @NonNull UUID penaltyId)
-    {
-        getSavingThrowEntry(savingThrowType).removePenalty(penaltyId);
-    }
-
-    public void setSavingThrowPenaltyEnable(@NonNull SavingThrowType savingThrowType, @NonNull UUID penaltyId, boolean enabled)
-    {
-        getSavingThrowEntry(savingThrowType).setPenaltyEnabled(penaltyId, enabled);
-    }
-
     public SavingThrowData getSavingThrow(@NonNull SavingThrowType savingThrowType)
     {
-        int totalModifier = getAbilityScore(savingThrowType.getKeyAbility()).getModifier()
-                + getSavingThrowEntry(savingThrowType).getTotalValue();
-
-        return getSavingThrowEntry(savingThrowType).toData(savingThrowType, totalModifier);
-    }
-
-    public UUID addArmorClassBonus(@NonNull String source, @NonNull BonusType bonusType, int value, @NonNull String description)
-    {
-        Bonus bonus = new Bonus(source, bonusType, value, true, description);
-        armorClass.addBonus(bonus);
-        return bonus.getId();
-    }
-
-    public void removeArmorClassBonus(@NonNull UUID bonusId)
-    {
-        armorClass.removeBonus(bonusId);
-    }
-
-    public void setArmorClassBonusEnable(@NonNull UUID bonusId, boolean enabled)
-    {
-        armorClass.setBonusEnabled(bonusId, enabled);
-    }
-
-    public UUID addArmorClassPenalty(@NonNull String source, int value, @NonNull String description)
-    {
-        Penalty penalty = new Penalty(source, value, true, description);
-        armorClass.addPenalty(penalty);
-        return penalty.getId();
-    }
-
-    public void removeArmorClassPenalty(@NonNull UUID penaltyId)
-    {
-        armorClass.removePenalty(penaltyId);
-    }
-
-    public void setArmorClassPenaltyEnable(@NonNull UUID penaltyId, boolean enabled)
-    {
-        armorClass.setPenaltyEnabled(penaltyId, enabled);
+        int abilityModifier = getAbilityScore(savingThrowType.getKeyAbility()).getModifier();
+        return getSavingThrowEntry(savingThrowType).toData(savingThrowType, abilityModifier);
     }
 
     public ArmorClassData getArmorClass()
     {
-        int totalValue = getAbilityScore(AbilityType.DEXTERITY).getModifier()
-                + armorClass.getACTotalValue();
-        int touchValue = getAbilityScore(AbilityType.DEXTERITY).getModifier()
-                + armorClass.getACTouch();
-        int flatFootedValue = armorClass.getACFlatFooted();
-
-        return armorClass.toData(totalValue, touchValue, flatFootedValue);
+        int dexterityModifier = getAbilityScore(AbilityType.DEXTERITY).getModifier();
+        return armorClass.toData(dexterityModifier);
     }
 
     public void setHitPoints(@NonNull HitPointField field, int value)
@@ -211,7 +185,7 @@ public class CharacterSheet
 
     public HitPointsData getHitPoints()
     {
-        return hitPoints.toData(hitPoints.getMaxHp());
+        return hitPoints.toData();
     }
 
     public void setInitiativeBaseValue(int baseValue)
@@ -219,73 +193,21 @@ public class CharacterSheet
         initiative.setBaseValue(baseValue);
     }
 
-    public UUID addInitiativeBonus(@NonNull String source, @NonNull BonusType bonusType, int value, @NonNull String description)
-    {
-        Bonus bonus = new Bonus(source, bonusType, value, true, description);
-        initiative.addBonus(bonus);
-        return bonus.getId();
-    }
-
-    public void removeInitiativeBonus(@NonNull UUID bonusId)
-    {
-        initiative.removeBonus(bonusId);
-    }
-
-    public void setInitiativeBonusEnable(@NonNull UUID bonusId, boolean enabled)
-    {
-        initiative.setBonusEnabled(bonusId, enabled);
-    }
-
-    public UUID addInitiativePenalty(@NonNull String source, int value, @NonNull String description)
-    {
-        Penalty penalty = new Penalty(source, value, true, description);
-        initiative.addPenalty(penalty);
-        return penalty.getId();
-    }
-
-    public void removeInitiativePenalty(@NonNull UUID penaltyId)
-    {
-        initiative.removePenalty(penaltyId);
-    }
-
-    public void setInitiativePenaltyEnable(@NonNull UUID penaltyId, boolean enabled)
-    {
-        initiative.setPenaltyEnabled(penaltyId, enabled);
-    }
-
     public InitiativeData getInitiative()
     {
-        int totalModifier = getAbilityScore(AbilityType.DEXTERITY).getModifier()
-                + initiative.getTotalValue();
-
-        return initiative.toData(totalModifier);
+        int dexterityModifier = getAbilityScore(AbilityType.DEXTERITY).getModifier();
+        return initiative.toData(dexterityModifier);
     }
 
     public List<String> getSkillSpecializations(@NonNull SkillType skillType)
     {
-        if (!skillType.isRequiresSpecialization())
-        {
-            throw new IllegalArgumentException("skillType " + skillType + " does not support specialization");
-        }
         return skills.getSpecializations(skillType);
     }
 
     public void addSkillSpecialization(@NonNull SkillType skillType, @NonNull String specialization)
     {
-        if (!skillType.isRequiresSpecialization())
-        {
-            throw new IllegalArgumentException("skillType " + skillType + " does not support specialization");
-        }
-        if (specialization.trim().isBlank())
-        {
-            throw new IllegalArgumentException("specialization must not be blank");
-        }
-        if (skills.getSpecializations(skillType).contains(specialization.trim()))
-        {
-            throw new IllegalArgumentException("specialization already exists");
-        }
+
         skills.addSpecialization(skillType, specialization.trim());
-        skills.getSpecialization(skillType, specialization.trim()).setClassSkill(skills.get(skillType).isClassSkill());
     }
 
     public void removeSkillSpecialization(@NonNull SkillType skillType, @NonNull String specialization)
@@ -295,74 +217,6 @@ public class CharacterSheet
             throw new IllegalArgumentException("skillType " + skillType + " does not support specialization");
         }
         skills.removeSpecialization(skillType, specialization);
-    }
-
-    public UUID addSkillBonus(@NonNull SkillType skillType, @NonNull String source, @NonNull BonusType bonusType, int value, @NonNull String description)
-    {
-        Bonus bonus = new Bonus(source, bonusType, value, true, description);
-        skills.get(skillType).addBonus(bonus);
-        return bonus.getId();
-    }
-
-    public UUID addSkillBonus(@NonNull SkillType skillType, @NonNull String specialization, @NonNull String source, @NonNull BonusType bonusType, int value, @NonNull String description)
-    {
-        Bonus bonus = new Bonus(source, bonusType, value, true, description);
-        skills.getSpecialization(skillType, specialization).addBonus(bonus);
-        return bonus.getId();
-    }
-
-    public void removeSkillBonus(@NonNull SkillType skillType, @NonNull UUID bonusId)
-    {
-        skills.get(skillType).removeBonus(bonusId);
-    }
-
-    public void removeSkillBonus(@NonNull SkillType skillType, @NonNull String specialization, @NonNull UUID bonusId)
-    {
-        skills.getSpecialization(skillType, specialization).removeBonus(bonusId);
-    }
-
-    public void setSkillBonusEnable(@NonNull SkillType skillType, @NonNull UUID bonusId, boolean enabled)
-    {
-        skills.get(skillType).setBonusEnabled(bonusId, enabled);
-    }
-
-    public void setSkillBonusEnable(@NonNull SkillType skillType, @NonNull String specialization, @NonNull UUID bonusId, boolean enabled)
-    {
-        skills.getSpecialization(skillType, specialization).setBonusEnabled(bonusId, enabled);
-    }
-
-    public UUID addSkillPenalty(@NonNull SkillType skillType, @NonNull String source, int value, @NonNull String description)
-    {
-        Penalty penalty = new Penalty(source, value, true, description);
-        skills.get(skillType).addPenalty(penalty);
-        return penalty.getId();
-    }
-
-    public UUID addSkillPenalty(@NonNull SkillType skillType, @NonNull String specialization, @NonNull String source, int value, @NonNull String description)
-    {
-        Penalty penalty = new Penalty(source, value, true, description);
-        skills.getSpecialization(skillType, specialization).addPenalty(penalty);
-        return penalty.getId();
-    }
-
-    public void removeSkillPenalty(@NonNull SkillType skillType, @NonNull UUID penaltyId)
-    {
-        skills.get(skillType).removePenalty(penaltyId);
-    }
-
-    public void removeSkillPenalty(@NonNull SkillType skillType, @NonNull String specialization, @NonNull UUID penaltyId)
-    {
-        skills.getSpecialization(skillType, specialization).removePenalty(penaltyId);
-    }
-
-    public void setSkillPenaltyEnable(@NonNull SkillType skillType, @NonNull UUID penaltyId, boolean enabled)
-    {
-        skills.get(skillType).setPenaltyEnabled(penaltyId, enabled);
-    }
-
-    public void setSkillPenaltyEnable(@NonNull SkillType skillType, @NonNull String specialization, @NonNull UUID penaltyId, boolean enabled)
-    {
-        skills.getSpecialization(skillType, specialization).setPenaltyEnabled(penaltyId, enabled);
     }
 
     public void setSkillRanks(@NonNull SkillType skillType, int ranks)
@@ -376,39 +230,24 @@ public class CharacterSheet
 
     public void setSkillRanks(@NonNull SkillType skillType, @NonNull String specialization, int ranks)
     {
-        if (!skillType.isRequiresSpecialization())
-        {
-            throw new IllegalArgumentException("skillType " + skillType + " does not support specialization");
-        }
         skills.getSpecialization(skillType, specialization).setRanks(ranks);
     }
 
     public void setSkillClassSkill(@NonNull SkillType skillType, boolean classSkill)
     {
-        skills.get(skillType).setClassSkill(classSkill);
-        if (skillType.isRequiresSpecialization())
-        {
-            for (String specialization : skills.getSpecializations(skillType))
-            {
-                skills.getSpecialization(skillType, specialization).setClassSkill(classSkill);
-            }
-        }
+        skills.setClassSkill(skillType, classSkill);
     }
 
     public SkillData getSkill(@NonNull SkillType skillType)
     {
-        int totalModifier = getAbilityScore(skillType.getKeyAbility()).getModifier()
-                + skills.getTotalModifier(skillType);
-
-        return skills.get(skillType).toData(skillType, "", totalModifier);
+        int abilityModifier = getAbilityScore(skillType.getKeyAbility()).getModifier();
+        return skills.get(skillType).toData(skillType, "", abilityModifier);
     }
 
     public SkillData getSkill(@NonNull SkillType skillType, @NonNull String specialization)
     {
-        int totalModifier = getAbilityScore(skillType.getKeyAbility()).getModifier()
-                + skills.getTotalModifier(skillType, specialization);
-
-        return skills.getSpecialization(skillType, specialization).toData(skillType, specialization, totalModifier);
+        int abilityModifier = getAbilityScore(skillType.getKeyAbility()).getModifier();
+        return skills.getSpecialization(skillType, specialization).toData(skillType, specialization, abilityModifier);
     }
 
     private AbilityScore getAbilityScore(@NonNull AbilityType abilityType)
@@ -419,5 +258,156 @@ public class CharacterSheet
     private SavingThrowEntry getSavingThrowEntry(@NonNull SavingThrowType savingThrowType)
     {
         return savingThrows.get(savingThrowType);
+    }
+
+    private EffectGroup getEffectGroup(@NonNull UUID effectGroupId)
+    {
+        EffectGroup effectGroup = effectGroups.get(effectGroupId);
+        if (effectGroup == null)
+        {
+            throw new IllegalArgumentException("effectGroup not found: " + effectGroupId);
+        }
+
+        return effectGroup;
+    }
+
+    private void registerModifierTargets()
+    {
+        registerAbilityModifierTarget("strength", AbilityType.STRENGTH);
+        registerAbilityModifierTarget("dexterity", AbilityType.DEXTERITY);
+        registerAbilityModifierTarget("constitution", AbilityType.CONSTITUTION);
+        registerAbilityModifierTarget("intelligence", AbilityType.INTELLIGENCE);
+        registerAbilityModifierTarget("wisdom", AbilityType.WISDOM);
+        registerAbilityModifierTarget("charisma", AbilityType.CHARISMA);
+
+        registerSavingThrowModifierTarget("fortitude", SavingThrowType.FORTITUDE);
+        registerSavingThrowModifierTarget("reflex", SavingThrowType.REFLEX);
+        registerSavingThrowModifierTarget("will", SavingThrowType.WILL);
+
+        targetManager.registerModifierTarget("armorClass", new ModifierTarget()
+        {
+            @Override
+            public void addModifier(@NonNull Modifier modifier)
+            {
+                armorClass.addModifier(modifier);
+            }
+
+            @Override
+            public void removeModifier(@NonNull UUID modifierId)
+            {
+                armorClass.removeModifier(modifierId);
+            }
+        });
+
+        targetManager.registerModifierTarget("initiative", new ModifierTarget()
+        {
+            @Override
+            public void addModifier(@NonNull Modifier modifier)
+            {
+                initiative.addModifier(modifier);
+            }
+
+            @Override
+            public void removeModifier(@NonNull UUID modifierId)
+            {
+                initiative.removeModifier(modifierId);
+            }
+        });
+    }
+
+    private void registerDeltaTargets()
+    {
+        registerHitPointsDeltaTarget("maxHp", HitPointField.MAX);
+        registerHitPointsDeltaTarget("currentHp", HitPointField.CURRENT);
+        registerHitPointsDeltaTarget("temporaryHp", HitPointField.TEMPORARY);
+        registerHitPointsDeltaTarget("nonlethalDamage", HitPointField.NONLETHAL);
+    }
+
+    private void registerValueTargets()
+    {
+        registerValueTarget("strength", () -> getAbility(AbilityType.STRENGTH).totalValue());
+        registerValueTarget("dexterity", () -> getAbility(AbilityType.DEXTERITY).totalValue());
+        registerValueTarget("constitution", () -> getAbility(AbilityType.CONSTITUTION).totalValue());
+        registerValueTarget("intelligence", () -> getAbility(AbilityType.INTELLIGENCE).totalValue());
+        registerValueTarget("wisdom", () -> getAbility(AbilityType.WISDOM).totalValue());
+        registerValueTarget("charisma", () -> getAbility(AbilityType.CHARISMA).totalValue());
+
+        registerValueTarget("strengthModifier", () -> getAbility(AbilityType.STRENGTH).modifier());
+        registerValueTarget("dexterityModifier", () -> getAbility(AbilityType.DEXTERITY).modifier());
+        registerValueTarget("constitutionModifier", () -> getAbility(AbilityType.CONSTITUTION).modifier());
+        registerValueTarget("intelligenceModifier", () -> getAbility(AbilityType.INTELLIGENCE).modifier());
+        registerValueTarget("wisdomModifier", () -> getAbility(AbilityType.WISDOM).modifier());
+        registerValueTarget("charismaModifier", () -> getAbility(AbilityType.CHARISMA).modifier());
+
+        registerValueTarget("armorClass", () -> getArmorClass().totalValue());
+        registerValueTarget("touchArmorClass", () -> getArmorClass().touchValue());
+        registerValueTarget("flatFootedArmorClass", () -> getArmorClass().flatFootedValue());
+        registerValueTarget("initiative", () -> getInitiative().totalValue());
+        registerValueTarget("maxHp", () -> getHitPoints().maxHp());
+        registerValueTarget("currentHp", () -> getHitPoints().currentHp());
+        registerValueTarget("temporaryHp", () -> getHitPoints().temporaryHp());
+        registerValueTarget("nonlethalDamage", () -> getHitPoints().nonlethalDamage());
+        registerValueTarget("fortitude", () -> getSavingThrow(SavingThrowType.FORTITUDE).totalValue());
+        registerValueTarget("reflex", () -> getSavingThrow(SavingThrowType.REFLEX).totalValue());
+        registerValueTarget("will", () -> getSavingThrow(SavingThrowType.WILL).totalValue());
+    }
+
+    private void registerDerivedTargetVariables()
+    {
+        targetManager.registerForbiddenVariables("strength", "strengthModifier");
+        targetManager.registerForbiddenVariables("dexterity", "dexterityModifier");
+        targetManager.registerForbiddenVariables("constitution", "constitutionModifier");
+        targetManager.registerForbiddenVariables("intelligence", "intelligenceModifier");
+        targetManager.registerForbiddenVariables("wisdom", "wisdomModifier");
+        targetManager.registerForbiddenVariables("charisma", "charismaModifier");
+        targetManager.registerForbiddenVariables("armorClass", "touchArmorClass", "flatFootedArmorClass");
+    }
+
+    private void registerAbilityModifierTarget(@NonNull String name, @NonNull AbilityType abilityType)
+    {
+        AbilityScore abilityScore = getAbilityScore(abilityType);
+        targetManager.registerModifierTarget(name, new ModifierTarget()
+        {
+            @Override
+            public void addModifier(@NonNull Modifier modifier)
+            {
+                abilityScore.addModifier(modifier);
+            }
+
+            @Override
+            public void removeModifier(@NonNull UUID modifierId)
+            {
+                abilityScore.removeModifier(modifierId);
+            }
+        });
+    }
+
+    private void registerSavingThrowModifierTarget(@NonNull String name, @NonNull SavingThrowType savingThrowType)
+    {
+        SavingThrowEntry savingThrowEntry = getSavingThrowEntry(savingThrowType);
+        targetManager.registerModifierTarget(name, new ModifierTarget()
+        {
+            @Override
+            public void addModifier(@NonNull Modifier modifier)
+            {
+                savingThrowEntry.addModifier(modifier);
+            }
+
+            @Override
+            public void removeModifier(@NonNull UUID modifierId)
+            {
+                savingThrowEntry.removeModifier(modifierId);
+            }
+        });
+    }
+
+    private void registerHitPointsDeltaTarget(@NonNull String name, @NonNull HitPointField field)
+    {
+        targetManager.registerDeltaTarget(name, delta -> hitPoints.change(field, delta));
+    }
+
+    private void registerValueTarget(@NonNull String name, @NonNull IntSupplier valueResolver)
+    {
+        targetManager.registerValueTarget(name, valueResolver);
     }
 }

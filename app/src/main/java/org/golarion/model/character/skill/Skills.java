@@ -59,13 +59,34 @@ public class Skills
         return specializedEntries.get(skillType).keySet().stream().toList();
     }
 
+    public void setClassSkill(@NonNull SkillType skillType, boolean classSkill)
+    {
+        get(skillType).setClassSkill(classSkill);
+        if (skillType.isRequiresSpecialization())
+        {
+            for (String specialization : getSpecializations(skillType))
+            {
+                getSpecialization(skillType, specialization).setClassSkill(classSkill);
+            }
+        }
+    }
+
     public void addSpecialization(@NonNull SkillType skillType, @NonNull String specialization)
     {
         if (!skillType.isRequiresSpecialization())
         {
             throw new IllegalArgumentException("skillType " + skillType + " does not support specialization");
         }
+        if (specialization.trim().isBlank())
+        {
+            throw new IllegalArgumentException("specialization must not be blank");
+        }
+        if (getSpecializations(skillType).contains(specialization.trim()))
+        {
+            throw new IllegalArgumentException("specialization already exists");
+        }
         specializedEntries.get(skillType).put(specialization.trim(), new SkillEntry());
+        getSpecialization(skillType, specialization.trim()).setClassSkill(get(skillType).isClassSkill());
     }
 
     public void removeSpecialization(@NonNull SkillType skillType, @NonNull String specialization)
@@ -75,24 +96,5 @@ public class Skills
             throw new IllegalArgumentException("skillType " + skillType + " does not support specialization");
         }
         specializedEntries.get(skillType).remove(specialization.trim());
-    }
-
-    public int getTotalModifier(@NonNull SkillType skillType)
-    {
-        return get(skillType).getRanks()
-                + (get(skillType).isClassSkill() && get(skillType).getRanks() > 0 ? 3 : 0)
-                + get(skillType).getTotalBonus()
-                - get(skillType).getTotalPenalty();
-    }
-
-    public int getTotalModifier(@NonNull SkillType skillType, @NonNull String specialization)
-    {
-        SkillEntry genericEntry = get(skillType);
-        SkillEntry specializationEntry = getSpecialization(skillType, specialization);
-
-        return specializationEntry.getRanks()
-                + (genericEntry.isClassSkill() && specializationEntry.getRanks() > 0 ? 3 : 0)
-                + specializationEntry.getTotalBonus()
-                - specializationEntry.getTotalPenalty();
     }
 }

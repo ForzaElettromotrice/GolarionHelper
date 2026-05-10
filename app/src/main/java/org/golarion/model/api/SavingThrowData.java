@@ -8,8 +8,7 @@ public record SavingThrowData(
         SavingThrowType savingThrowType,
         int baseValue,
         int totalValue,
-        List<BonusData> bonuses,
-        List<PenaltyData> penalties
+        List<ModifierData> modifiers
 )
 {
 }

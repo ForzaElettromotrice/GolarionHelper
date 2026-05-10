@@ -13,8 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import org.golarion.model.api.BonusData;
-import org.golarion.model.api.PenaltyData;
+import org.golarion.model.api.ModifierData;
 import org.golarion.model.api.SkillData;
 import org.golarion.model.character.CharacterSheet;
 import org.golarion.model.character.skill.SkillType;
@@ -369,20 +368,15 @@ public class CharacterSkillsView extends BorderPane
         detailsRow.setPadding(new Insets(8));
         detailsRow.setStyle("-fx-border-color: #666666; -fx-border-width: 1 1 1 1;");
 
-        if (skillData.bonuses().isEmpty() && skillData.penalties().isEmpty())
+        if (skillData.modifiers().isEmpty())
         {
             detailsRow.getChildren().add(buildDetailsLabel("Nessun bonus o malus"));
             return detailsRow;
         }
 
-        for (BonusData bonus : skillData.bonuses())
+        for (ModifierData modifier : skillData.modifiers())
         {
-            detailsRow.getChildren().add(buildDetailsLabel(formatBonus(bonus)));
-        }
-
-        for (PenaltyData penalty : skillData.penalties())
-        {
-            detailsRow.getChildren().add(buildDetailsLabel(formatPenalty(penalty)));
+            detailsRow.getChildren().add(buildDetailsLabel(formatModifier(modifier)));
         }
 
         return detailsRow;
@@ -393,16 +387,9 @@ public class CharacterSkillsView extends BorderPane
         return modifier >= 0 ? "+" + modifier : Integer.toString(modifier);
     }
 
-    private String formatBonus(BonusData bonus)
+    private String formatModifier(ModifierData modifier)
     {
-        String status = bonus.enabled() ? "" : " [disattivo]";
-        return "+ " + bonus.value() + " " + bonus.bonusType().getDisplayName() + " - " + bonus.source() + status;
-    }
-
-    private String formatPenalty(PenaltyData penalty)
-    {
-        String status = penalty.enabled() ? "" : " [disattivo]";
-        return "- " + penalty.value() + " - " + penalty.source() + status;
+        return ModifierDisplayFormatter.format(modifier);
     }
 
     private SkillData getSkillData(SkillType skillType)

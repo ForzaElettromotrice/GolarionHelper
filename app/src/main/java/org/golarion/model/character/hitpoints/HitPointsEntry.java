@@ -4,9 +4,9 @@ import lombok.Getter;
 import lombok.NonNull;
 import org.golarion.model.api.HitPointsData;
 
-@Getter
 public class HitPointsEntry
 {
+    @Getter
     private int maxHp;
     private int currentHp;
     private int temporaryHp;
@@ -34,7 +34,7 @@ public class HitPointsEntry
         }
     }
 
-    public HitPointsData toData(int maxHp)
+    public HitPointsData toData()
     {
         return new HitPointsData(maxHp, currentHp, temporaryHp, nonlethalDamage);
     }

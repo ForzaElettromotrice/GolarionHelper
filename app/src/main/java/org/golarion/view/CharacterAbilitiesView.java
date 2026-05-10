@@ -8,8 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import org.golarion.model.api.AbilityData;
-import org.golarion.model.api.BonusData;
-import org.golarion.model.api.PenaltyData;
+import org.golarion.model.api.ModifierData;
 import org.golarion.model.character.CharacterSheet;
 import org.golarion.model.character.ability.AbilityType;
 
@@ -135,20 +134,15 @@ public class CharacterAbilitiesView extends BorderPane
         VBox detailsRow = new VBox(4);
         detailsRow.setMaxWidth(TABLE_WIDTH);
 
-        if (abilityData.bonuses().isEmpty() && abilityData.penalties().isEmpty())
+        if (abilityData.modifiers().isEmpty())
         {
             detailsRow.getChildren().add(buildDetailsLabel("Nessun bonus o malus"));
             return detailsRow;
         }
 
-        for (BonusData bonus : abilityData.bonuses())
+        for (ModifierData modifier : abilityData.modifiers())
         {
-            detailsRow.getChildren().add(buildDetailsLabel(formatBonus(bonus)));
-        }
-
-        for (PenaltyData penalty : abilityData.penalties())
-        {
-            detailsRow.getChildren().add(buildDetailsLabel(formatPenalty(penalty)));
+            detailsRow.getChildren().add(buildDetailsLabel(formatModifier(modifier)));
         }
 
         return detailsRow;
@@ -170,16 +164,9 @@ public class CharacterAbilitiesView extends BorderPane
         return modifier >= 0 ? "+" + modifier : Integer.toString(modifier);
     }
 
-    private String formatBonus(BonusData bonus)
+    private String formatModifier(ModifierData modifier)
     {
-        String status = bonus.enabled() ? "" : " [disattivo]";
-        return "+ " + bonus.value() + " " + bonus.bonusType().getDisplayName() + " - " + bonus.source() + status;
-    }
-
-    private String formatPenalty(PenaltyData penalty)
-    {
-        String status = penalty.enabled() ? "" : " [disattivo]";
-        return "- " + penalty.value() + " - " + penalty.source() + status;
+        return ModifierDisplayFormatter.format(modifier);
     }
 
     private Label buildDetailsLabel(String text)
@@ -337,5 +324,10 @@ public class CharacterAbilitiesView extends BorderPane
     private void refreshGrid()
     {
         setTop(buildAbilityList());
+    }
+
+    public void refresh()
+    {
+        refreshGrid();
     }
 }

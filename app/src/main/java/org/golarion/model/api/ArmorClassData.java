@@ -6,8 +6,7 @@ public record ArmorClassData(
         int totalValue,
         int touchValue,
         int flatFootedValue,
-        List<BonusData> bonuses,
-        List<PenaltyData> penalties
+        List<ModifierData> modifiers
 )
 {
 }
