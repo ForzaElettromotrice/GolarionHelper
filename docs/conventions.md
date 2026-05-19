@@ -18,4 +18,6 @@
 
 - Use Lombok annotations where appropriate to reduce boilerplate.
 - Prefer `@Getter` and `@Setter` instead of manually writing trivial accessors when that matches the existing code style.
+- For enums, always add `@Getter` when they expose fields such as `displayName` or similar metadata, since those accessors are expected to be used.
+- For regular classes, do not add getters preemptively. Add them only when there is an actual call site that needs them.
 - Prefer `@NonNull` on parameters and fields where null values are not allowed, especially in public APIs and domain model methods.
