@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import org.golarion.model.api.SkillData;
+import org.golarion.model.character.ability.AbilityType;
 import org.golarion.model.character.modifier.BonusType;
 import org.golarion.model.character.modifier.Modifier;
 
@@ -29,13 +30,18 @@ public class SkillEntry
             BonusType.SIZE
     );
     private final List<Modifier> modifiers;
+    @Getter
+    @Setter
+    @NonNull
+    private AbilityType abilityType;
     private int ranks;
     @Setter
     @Getter
     private boolean classSkill;
 
-    public SkillEntry()
+    public SkillEntry(@NonNull AbilityType abilityType)
     {
+        this.abilityType = abilityType;
         this.ranks = 0;
         this.classSkill = false;
         this.modifiers = new ArrayList<>();
@@ -82,6 +88,7 @@ public class SkillEntry
         return new SkillData(
                 skillType,
                 specialization,
+                abilityType,
                 classSkill,
                 ranks,
                 getTotalValue(abilityModifier),

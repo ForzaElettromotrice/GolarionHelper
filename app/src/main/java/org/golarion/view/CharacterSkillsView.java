@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -13,11 +14,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
 import org.golarion.model.api.ModifierData;
 import org.golarion.model.api.SkillData;
 import org.golarion.model.character.CharacterSheet;
+import org.golarion.model.character.ability.AbilityType;
 import org.golarion.model.character.skill.SkillType;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -63,7 +67,7 @@ public class CharacterSkillsView extends BorderPane
             list.getChildren().add(buildSummaryRow(skillType, skillData, summaryRowKey, firstVisibleRow));
             if (isExpanded(summaryRowKey))
             {
-                list.getChildren().add(buildDetailsRow(skillData));
+                list.getChildren().add(buildDetailsRow(skillType, skillData));
             }
 
             firstVisibleRow = false;
@@ -81,7 +85,7 @@ public class CharacterSkillsView extends BorderPane
                 list.getChildren().add(buildSpecializationRow(skillType, specialization, specializationData, specializationRowKey));
                 if (isExpanded(specializationRowKey))
                 {
-                    list.getChildren().add(buildDetailsRow(specializationData));
+                    list.getChildren().add(buildDetailsRow(skillType, specializationData));
                 }
             }
         }
@@ -361,12 +365,14 @@ public class CharacterSkillsView extends BorderPane
         refreshGrid();
     }
 
-    private VBox buildDetailsRow(SkillData skillData)
+    private VBox buildDetailsRow(SkillType skillType, SkillData skillData)
     {
         VBox detailsRow = new VBox(4);
         detailsRow.setMaxWidth(TABLE_WIDTH);
         detailsRow.setPadding(new Insets(8));
         detailsRow.setStyle("-fx-border-color: #666666; -fx-border-width: 1 1 1 1;");
+
+        detailsRow.getChildren().add(buildAbilityTypeRow(skillType, skillData));
 
         if (skillData.modifiers().isEmpty())
         {
@@ -380,6 +386,47 @@ public class CharacterSkillsView extends BorderPane
         }
 
         return detailsRow;
+    }
+
+    private HBox buildAbilityTypeRow(SkillType skillType, SkillData skillData)
+    {
+        Label label = new Label("Abilità:");
+
+        ComboBox<AbilityType> abilityTypeBox = new ComboBox<>();
+        abilityTypeBox.getItems().addAll(AbilityType.values());
+        abilityTypeBox.setValue(skillData.abilityType());
+        abilityTypeBox.setConverter(new StringConverter<>()
+        {
+            @Override
+            public String toString(AbilityType abilityType)
+            {
+                return abilityType == null ? "" : abilityType.getDisplayName();
+            }
+
+            @Override
+            public AbilityType fromString(String string)
+            {
+                return Arrays.stream(AbilityType.values())
+                        .filter(abilityType -> abilityType.getDisplayName().equals(string))
+                        .findFirst()
+                        .orElse(null);
+            }
+        });
+        abilityTypeBox.setOnAction(event ->
+        {
+            AbilityType selectedAbilityType = abilityTypeBox.getValue();
+            if (selectedAbilityType == null)
+            {
+                return;
+            }
+
+            sheet.setSkillAbilityType(skillType, selectedAbilityType);
+            refreshGrid();
+        });
+
+        HBox row = new HBox(8, label, abilityTypeBox);
+        row.setAlignment(Pos.CENTER_LEFT);
+        return row;
     }
 
     private String formatModifier(int modifier)

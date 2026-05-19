@@ -238,16 +238,19 @@ public class CharacterSheet
         skills.setClassSkill(skillType, classSkill);
     }
 
+    public void setSkillAbilityType(@NonNull SkillType skillType, @NonNull AbilityType abilityType)
+    {
+        skills.setAbilityType(skillType, abilityType);
+    }
+
     public SkillData getSkill(@NonNull SkillType skillType)
     {
-        int abilityModifier = getAbilityScore(skillType.getKeyAbility()).getModifier();
-        return skills.get(skillType).toData(skillType, "", abilityModifier);
+        return toSkillData(skillType, "", skills.get(skillType));
     }
 
     public SkillData getSkill(@NonNull SkillType skillType, @NonNull String specialization)
     {
-        int abilityModifier = getAbilityScore(skillType.getKeyAbility()).getModifier();
-        return skills.getSpecialization(skillType, specialization).toData(skillType, specialization, abilityModifier);
+        return toSkillData(skillType, specialization, skills.getSpecialization(skillType, specialization));
     }
 
     private AbilityScore getAbilityScore(@NonNull AbilityType abilityType)
@@ -409,5 +412,11 @@ public class CharacterSheet
     private void registerValueTarget(@NonNull String name, @NonNull IntSupplier valueResolver)
     {
         targetManager.registerValueTarget(name, valueResolver);
+    }
+
+    private SkillData toSkillData(@NonNull SkillType skillType, @NonNull String specialization, @NonNull org.golarion.model.character.skill.SkillEntry skillEntry)
+    {
+        int abilityModifier = getAbilityScore(skillEntry.getAbilityType()).getModifier();
+        return skillEntry.toData(skillType, specialization, abilityModifier);
     }
 }

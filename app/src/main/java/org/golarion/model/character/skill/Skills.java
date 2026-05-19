@@ -19,7 +19,7 @@ public class Skills
 
         for (SkillType skillType : SkillType.values())
         {
-            genericEntries.put(skillType, new SkillEntry());
+            genericEntries.put(skillType, new SkillEntry(skillType.getKeyAbility()));
 
             if (skillType.isRequiresSpecialization())
             {
@@ -71,6 +71,18 @@ public class Skills
         }
     }
 
+    public void setAbilityType(@NonNull SkillType skillType, @NonNull org.golarion.model.character.ability.AbilityType abilityType)
+    {
+        get(skillType).setAbilityType(abilityType);
+        if (skillType.isRequiresSpecialization())
+        {
+            for (String specialization : getSpecializations(skillType))
+            {
+                getSpecialization(skillType, specialization).setAbilityType(abilityType);
+            }
+        }
+    }
+
     public void addSpecialization(@NonNull SkillType skillType, @NonNull String specialization)
     {
         if (!skillType.isRequiresSpecialization())
@@ -85,8 +97,9 @@ public class Skills
         {
             throw new IllegalArgumentException("specialization already exists");
         }
-        specializedEntries.get(skillType).put(specialization.trim(), new SkillEntry());
+        specializedEntries.get(skillType).put(specialization.trim(), new SkillEntry(skillType.getKeyAbility()));
         getSpecialization(skillType, specialization.trim()).setClassSkill(get(skillType).isClassSkill());
+        getSpecialization(skillType, specialization.trim()).setAbilityType(get(skillType).getAbilityType());
     }
 
     public void removeSpecialization(@NonNull SkillType skillType, @NonNull String specialization)
