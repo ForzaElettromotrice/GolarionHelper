@@ -6,6 +6,10 @@ import org.golarion.model.api.*;
 import org.golarion.model.character.ability.AbilityScore;
 import org.golarion.model.character.ability.AbilityType;
 import org.golarion.model.character.armorclass.ArmorClassEntry;
+import org.golarion.model.character.attack.AttackEntry;
+import org.golarion.model.character.attack.AttackStats;
+import org.golarion.model.character.attack.AttackType;
+import org.golarion.model.character.attack.DamageType;
 import org.golarion.model.character.hitpoints.HitPointField;
 import org.golarion.model.character.hitpoints.HitPointsEntry;
 import org.golarion.model.character.initiative.InitiativeEntry;
@@ -26,6 +30,7 @@ public class CharacterSheet
     private final HitPointsEntry hitPoints;
     private final InitiativeEntry initiative;
     private final Skills skills;
+    private final AttackStats attackStats;
     private final TargetManager targetManager;
     private final Map<UUID, EffectGroup> effectGroups;
     @Getter
@@ -48,6 +53,7 @@ public class CharacterSheet
         this.hitPoints = new HitPointsEntry();
         this.initiative = new InitiativeEntry();
         this.skills = new Skills();
+        this.attackStats = new AttackStats();
         setCharacterName(characterName);
 
         this.targetManager = new TargetManager();
@@ -253,6 +259,67 @@ public class CharacterSheet
         return toSkillData(skillType, specialization, skills.getSpecialization(skillType, specialization));
     }
 
+    public UUID addAttack(@NonNull String name)
+    {
+        AttackEntry attack = new AttackEntry(name);
+        attackStats.addAttack(attack, targetManager);
+        return attack.getId();
+    }
+
+    public void removeAttack(@NonNull UUID attackId)
+    {
+        attackStats.removeAttack(attackId, targetManager);
+    }
+
+    public void setAttackType(@NonNull UUID attackId, @NonNull AttackType attackType)
+    {
+        attackStats.setAttackType(attackId, attackType);
+    }
+
+    public void setAttackAbilityType(@NonNull UUID attackId, @NonNull AbilityType abilityType)
+    {
+        attackStats.setAttackAbilityType(attackId, abilityType);
+    }
+
+    public void setAttackDamageAbilityType(@NonNull UUID attackId, AbilityType abilityType)
+    {
+        attackStats.setDamageAbilityType(attackId, abilityType);
+    }
+
+    public void addAttackDamage(@NonNull UUID attackId, @NonNull String damage, @NonNull DamageType damageType)
+    {
+        attackStats.addDamage(attackId, damage, damageType);
+    }
+
+    public void removeAttackDamage(@NonNull UUID attackId, @NonNull UUID damageId)
+    {
+        attackStats.removeDamage(attackId, damageId);
+    }
+
+    public void addAttackCriticalDamage(@NonNull UUID attackId, @NonNull String damage, @NonNull DamageType damageType)
+    {
+        attackStats.addCriticalDamage(attackId, damage, damageType);
+    }
+
+    public void removeAttackCriticalDamage(@NonNull UUID attackId, @NonNull UUID damageId)
+    {
+        attackStats.removeCriticalDamage(attackId, damageId);
+    }
+
+    public void setAttackCriticalThreatRange(@NonNull UUID attackId, int criticalThreatRange)
+    {
+        attackStats.setCriticalThreatRange(attackId, criticalThreatRange);
+    }
+
+    public void setAttackCriticalMultiplier(@NonNull UUID attackId, int criticalMultiplier)
+    {
+        attackStats.setCriticalMultiplier(attackId, criticalMultiplier);
+    }
+
+    public AttackStatsData getAttackStats()
+    {
+        return attackStats.toData(getBaseAttackBonus(), getAbilityModifiers());
+    }
     private AbilityScore getAbilityScore(@NonNull AbilityType abilityType)
     {
         return abilityScores.get(abilityType);
@@ -261,6 +328,11 @@ public class CharacterSheet
     private SavingThrowEntry getSavingThrowEntry(@NonNull SavingThrowType savingThrowType)
     {
         return savingThrows.get(savingThrowType);
+    }
+
+    private int getBaseAttackBonus()
+    {
+        return 0;
     }
 
     private EffectGroup getEffectGroup(@NonNull UUID effectGroupId)
@@ -316,6 +388,7 @@ public class CharacterSheet
                 initiative.removeModifier(modifierId);
             }
         });
+        attackStats.registerModifierTargets(targetManager);
     }
 
     private void registerDeltaTargets()
@@ -418,5 +491,15 @@ public class CharacterSheet
     {
         int abilityModifier = getAbilityScore(skillEntry.getAbilityType()).getModifier();
         return skillEntry.toData(skillType, specialization, abilityModifier);
+    }
+    private EnumMap<AbilityType, Integer> getAbilityModifiers()
+    {
+        EnumMap<AbilityType, Integer> abilityModifiers = new EnumMap<>(AbilityType.class);
+        for (AbilityType abilityType : AbilityType.values())
+        {
+            abilityModifiers.put(abilityType, getAbilityScore(abilityType).getModifier());
+        }
+
+        return abilityModifiers;
     }
 }

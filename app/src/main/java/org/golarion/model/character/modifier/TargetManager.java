@@ -35,6 +35,12 @@ public class TargetManager
         registerForbiddenVariables(name, name);
     }
 
+    public void removeModifierTarget(@NonNull String name)
+    {
+        removeTarget(modifierTargets, name, "modifier target");
+        forbiddenVariablesByTarget.remove(normalizeName(name));
+    }
+
     public void registerDeltaTarget(@NonNull String name, @NonNull DeltaTarget target)
     {
         registerTarget(deltaTargets, name, target, "delta target");
@@ -135,6 +141,15 @@ public class TargetManager
         }
 
         targets.put(normalizedName, target);
+    }
+
+    private <T> void removeTarget(Map<String, T> targets, String name, String targetType)
+    {
+        String normalizedName = normalizeName(name);
+        if (targets.remove(normalizedName) == null)
+        {
+            throw new IllegalArgumentException(targetType + " not found: " + name);
+        }
     }
 
     private <T> T getTarget(Map<String, T> targets, String name, String targetType)
