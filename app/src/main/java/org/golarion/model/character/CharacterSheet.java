@@ -50,6 +50,7 @@ public class CharacterSheet
         }
         this.armorClass = new ArmorClassEntry();
         this.hitPoints = new HitPointsEntry();
+        this.hitPoints.setMaxHpModifierResolver(this::getHitPointsConstitutionModifier);
         this.initiative = new InitiativeEntry();
         this.skills = new Skills();
         this.attackStats = new AttackStats();
@@ -331,6 +332,15 @@ public class CharacterSheet
         return savingThrows.get(savingThrowType);
     }
 
+    private int getHitPointsConstitutionModifier()
+    {
+        return getAbilityScore(AbilityType.CONSTITUTION).getModifier() * getTotalLevel();
+    }
+
+    private int getTotalLevel()
+    {
+        return 1;
+    }
 
     private int getBaseAttackBonus()
     {

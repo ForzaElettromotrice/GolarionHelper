@@ -1,16 +1,29 @@
 package org.golarion.model.character.hitpoints;
 
-import lombok.Getter;
 import lombok.NonNull;
 import org.golarion.model.api.HitPointsData;
 
+import java.util.function.IntSupplier;
+
 public class HitPointsEntry
 {
-    @Getter
-    private int maxHp;
+    @NonNull
+    private IntSupplier maxHpModifierResolver;
+    private int baseMaxHp;
     private int currentHp;
     private int temporaryHp;
     private int nonlethalDamage;
+
+    public HitPointsEntry()
+    {
+        this.maxHpModifierResolver = () -> 0;
+    }
+
+    public void setMaxHpModifierResolver(@NonNull IntSupplier maxHpModifierResolver)
+    {
+        this.maxHpModifierResolver = maxHpModifierResolver;
+        normalizeToMaxHp();
+    }
 
     public void set(@NonNull HitPointField field, int value)
     {
@@ -27,7 +40,7 @@ public class HitPointsEntry
     {
         switch (field)
         {
-            case MAX -> setMaxHp(maxHp + delta);
+            case MAX -> setMaxHp(baseMaxHp + delta);
             case CURRENT -> changeCurrentHp(delta);
             case TEMPORARY -> changeTemporaryHp(delta);
             case NONLETHAL -> changeNonlethalDamage(delta);
@@ -36,7 +49,8 @@ public class HitPointsEntry
 
     public HitPointsData toData()
     {
-        return new HitPointsData(maxHp, currentHp, temporaryHp, nonlethalDamage);
+        normalizeToMaxHp();
+        return new HitPointsData(getMaxHp(), currentHp, temporaryHp, nonlethalDamage);
     }
 
     private void changeNonlethalDamage(int delta)
@@ -47,23 +61,29 @@ public class HitPointsEntry
 
     private void setMaxHp(int maxHp)
     {
-        this.maxHp = Math.max(0, maxHp);
-        if (currentHp > this.maxHp)
+        this.baseMaxHp = Math.max(0, maxHp);
+        normalizeToMaxHp();
+    }
+
+    private void normalizeToMaxHp()
+    {
+        int maxHp = getMaxHp();
+        if (currentHp > maxHp)
         {
-            currentHp = this.maxHp;
+            currentHp = maxHp;
         }
 
-        if (nonlethalDamage > this.maxHp)
+        if (nonlethalDamage > maxHp)
         {
-            int overflowDamage = nonlethalDamage - this.maxHp;
-            nonlethalDamage = this.maxHp;
+            int overflowDamage = nonlethalDamage - maxHp;
+            nonlethalDamage = maxHp;
             subtractHitPoints(overflowDamage);
         }
     }
 
     private void setCurrentHp(int currentHp)
     {
-        this.currentHp = Math.min(currentHp, maxHp);
+        this.currentHp = Math.min(currentHp, getMaxHp());
     }
 
     private void changeCurrentHp(int delta)
@@ -107,6 +127,7 @@ public class HitPointsEntry
             return;
         }
 
+        int maxHp = getMaxHp();
         if (nonlethalDamage <= maxHp)
         {
             this.nonlethalDamage = nonlethalDamage;
@@ -115,6 +136,11 @@ public class HitPointsEntry
 
         this.nonlethalDamage = maxHp;
         subtractHitPoints(nonlethalDamage - maxHp);
+    }
+
+    private int getMaxHp()
+    {
+        return Math.max(0, baseMaxHp + maxHpModifierResolver.getAsInt());
     }
 
     private void subtractHitPoints(int amount)
