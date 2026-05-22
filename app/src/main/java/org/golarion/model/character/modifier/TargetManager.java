@@ -47,9 +47,20 @@ public class TargetManager
         registerForbiddenVariables(name, name);
     }
 
+    public void removeDeltaTarget(@NonNull String name)
+    {
+        removeTarget(deltaTargets, name, "delta target");
+        forbiddenVariablesByTarget.remove(normalizeName(name));
+    }
+
     public void registerValueTarget(@NonNull String name, @NonNull IntSupplier valueResolver)
     {
         registerTarget(valueTargets, name, valueResolver, "value target");
+    }
+
+    public void removeValueTarget(@NonNull String name)
+    {
+        removeTarget(valueTargets, name, "value target");
     }
 
     public void registerForbiddenVariables(@NonNull String targetName, @NonNull String... variableNames)

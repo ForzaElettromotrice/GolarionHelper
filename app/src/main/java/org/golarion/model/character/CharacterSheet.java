@@ -20,7 +20,6 @@ import org.golarion.model.character.skill.SkillType;
 import org.golarion.model.character.skill.Skills;
 
 import java.util.*;
-import java.util.function.IntSupplier;
 
 public class CharacterSheet
 {
@@ -75,6 +74,7 @@ public class CharacterSheet
 
         this.characterName = normalizedName;
     }
+
 
     public UUID createEffectGroup(@NonNull String name)
     {
@@ -320,6 +320,7 @@ public class CharacterSheet
     {
         return attackStats.toData(getBaseAttackBonus(), getAbilityModifiers());
     }
+
     private AbilityScore getAbilityScore(@NonNull AbilityType abilityType)
     {
         return abilityScores.get(abilityType);
@@ -329,6 +330,7 @@ public class CharacterSheet
     {
         return savingThrows.get(savingThrowType);
     }
+
 
     private int getBaseAttackBonus()
     {
@@ -348,84 +350,43 @@ public class CharacterSheet
 
     private void registerModifierTargets()
     {
-        registerAbilityModifierTarget("strength", AbilityType.STRENGTH);
-        registerAbilityModifierTarget("dexterity", AbilityType.DEXTERITY);
-        registerAbilityModifierTarget("constitution", AbilityType.CONSTITUTION);
-        registerAbilityModifierTarget("intelligence", AbilityType.INTELLIGENCE);
-        registerAbilityModifierTarget("wisdom", AbilityType.WISDOM);
-        registerAbilityModifierTarget("charisma", AbilityType.CHARISMA);
-
-        registerSavingThrowModifierTarget("fortitude", SavingThrowType.FORTITUDE);
-        registerSavingThrowModifierTarget("reflex", SavingThrowType.REFLEX);
-        registerSavingThrowModifierTarget("will", SavingThrowType.WILL);
-
-        targetManager.registerModifierTarget("armorClass", new ModifierTarget()
-        {
-            @Override
-            public void addModifier(@NonNull Modifier modifier)
-            {
-                armorClass.addModifier(modifier);
-            }
-
-            @Override
-            public void removeModifier(@NonNull UUID modifierId)
-            {
-                armorClass.removeModifier(modifierId);
-            }
-        });
-
-        targetManager.registerModifierTarget("initiative", new ModifierTarget()
-        {
-            @Override
-            public void addModifier(@NonNull Modifier modifier)
-            {
-                initiative.addModifier(modifier);
-            }
-
-            @Override
-            public void removeModifier(@NonNull UUID modifierId)
-            {
-                initiative.removeModifier(modifierId);
-            }
-        });
+        targetManager.registerModifierTarget("strength", getAbilityScore(AbilityType.STRENGTH));
+        targetManager.registerModifierTarget("dexterity", getAbilityScore(AbilityType.DEXTERITY));
+        targetManager.registerModifierTarget("constitution", getAbilityScore(AbilityType.CONSTITUTION));
+        targetManager.registerModifierTarget("intelligence", getAbilityScore(AbilityType.INTELLIGENCE));
+        targetManager.registerModifierTarget("wisdom", getAbilityScore(AbilityType.WISDOM));
+        targetManager.registerModifierTarget("charisma", getAbilityScore(AbilityType.CHARISMA));
+        targetManager.registerModifierTarget("fortitude", getSavingThrowEntry(SavingThrowType.FORTITUDE));
+        targetManager.registerModifierTarget("reflex", getSavingThrowEntry(SavingThrowType.REFLEX));
+        targetManager.registerModifierTarget("will", getSavingThrowEntry(SavingThrowType.WILL));
+        targetManager.registerModifierTarget("armorClass", armorClass);
+        targetManager.registerModifierTarget("initiative", initiative);
         attackStats.registerModifierTargets(targetManager);
     }
 
     private void registerDeltaTargets()
     {
-        registerHitPointsDeltaTarget("maxHp", HitPointField.MAX);
-        registerHitPointsDeltaTarget("currentHp", HitPointField.CURRENT);
-        registerHitPointsDeltaTarget("temporaryHp", HitPointField.TEMPORARY);
-        registerHitPointsDeltaTarget("nonlethalDamage", HitPointField.NONLETHAL);
+        targetManager.registerDeltaTarget("maxHp", delta -> hitPoints.change(HitPointField.MAX, delta));
+        targetManager.registerDeltaTarget("currentHp", delta -> hitPoints.change(HitPointField.CURRENT, delta));
+        targetManager.registerDeltaTarget("temporaryHp", delta -> hitPoints.change(HitPointField.TEMPORARY, delta));
+        targetManager.registerDeltaTarget("nonlethalDamage", delta -> hitPoints.change(HitPointField.NONLETHAL, delta));
     }
 
     private void registerValueTargets()
     {
-        registerValueTarget("strength", () -> getAbility(AbilityType.STRENGTH).totalValue());
-        registerValueTarget("dexterity", () -> getAbility(AbilityType.DEXTERITY).totalValue());
-        registerValueTarget("constitution", () -> getAbility(AbilityType.CONSTITUTION).totalValue());
-        registerValueTarget("intelligence", () -> getAbility(AbilityType.INTELLIGENCE).totalValue());
-        registerValueTarget("wisdom", () -> getAbility(AbilityType.WISDOM).totalValue());
-        registerValueTarget("charisma", () -> getAbility(AbilityType.CHARISMA).totalValue());
+        targetManager.registerValueTarget("strength", () -> getAbility(AbilityType.STRENGTH).totalValue());
+        targetManager.registerValueTarget("dexterity", () -> getAbility(AbilityType.DEXTERITY).totalValue());
+        targetManager.registerValueTarget("constitution", () -> getAbility(AbilityType.CONSTITUTION).totalValue());
+        targetManager.registerValueTarget("intelligence", () -> getAbility(AbilityType.INTELLIGENCE).totalValue());
+        targetManager.registerValueTarget("wisdom", () -> getAbility(AbilityType.WISDOM).totalValue());
+        targetManager.registerValueTarget("charisma", () -> getAbility(AbilityType.CHARISMA).totalValue());
 
-        registerValueTarget("strengthModifier", () -> getAbility(AbilityType.STRENGTH).modifier());
-        registerValueTarget("dexterityModifier", () -> getAbility(AbilityType.DEXTERITY).modifier());
-        registerValueTarget("constitutionModifier", () -> getAbility(AbilityType.CONSTITUTION).modifier());
-        registerValueTarget("intelligenceModifier", () -> getAbility(AbilityType.INTELLIGENCE).modifier());
-        registerValueTarget("wisdomModifier", () -> getAbility(AbilityType.WISDOM).modifier());
-        registerValueTarget("charismaModifier", () -> getAbility(AbilityType.CHARISMA).modifier());
-
-        registerValueTarget("armorClass", () -> getArmorClass().totalValue());
-        registerValueTarget("touchArmorClass", () -> getArmorClass().touchValue());
-        registerValueTarget("flatFootedArmorClass", () -> getArmorClass().flatFootedValue());
-        registerValueTarget("initiative", () -> getInitiative().totalValue());
-        registerValueTarget("maxHp", () -> getHitPoints().maxHp());
-        registerValueTarget("currentHp", () -> getHitPoints().currentHp());
-        registerValueTarget("temporaryHp", () -> getHitPoints().temporaryHp());
-        registerValueTarget("nonlethalDamage", () -> getHitPoints().nonlethalDamage());
-        registerValueTarget("fortitude", () -> getSavingThrow(SavingThrowType.FORTITUDE).totalValue());
-        registerValueTarget("reflex", () -> getSavingThrow(SavingThrowType.REFLEX).totalValue());
-        registerValueTarget("will", () -> getSavingThrow(SavingThrowType.WILL).totalValue());
+        targetManager.registerValueTarget("strengthModifier", () -> getAbility(AbilityType.STRENGTH).modifier());
+        targetManager.registerValueTarget("dexterityModifier", () -> getAbility(AbilityType.DEXTERITY).modifier());
+        targetManager.registerValueTarget("constitutionModifier", () -> getAbility(AbilityType.CONSTITUTION).modifier());
+        targetManager.registerValueTarget("intelligenceModifier", () -> getAbility(AbilityType.INTELLIGENCE).modifier());
+        targetManager.registerValueTarget("wisdomModifier", () -> getAbility(AbilityType.WISDOM).modifier());
+        targetManager.registerValueTarget("charismaModifier", () -> getAbility(AbilityType.CHARISMA).modifier());
     }
 
     private void registerDerivedTargetVariables()
@@ -436,55 +397,6 @@ public class CharacterSheet
         targetManager.registerForbiddenVariables("intelligence", "intelligenceModifier");
         targetManager.registerForbiddenVariables("wisdom", "wisdomModifier");
         targetManager.registerForbiddenVariables("charisma", "charismaModifier");
-        targetManager.registerForbiddenVariables("armorClass", "touchArmorClass", "flatFootedArmorClass");
-    }
-
-    private void registerAbilityModifierTarget(@NonNull String name, @NonNull AbilityType abilityType)
-    {
-        AbilityScore abilityScore = getAbilityScore(abilityType);
-        targetManager.registerModifierTarget(name, new ModifierTarget()
-        {
-            @Override
-            public void addModifier(@NonNull Modifier modifier)
-            {
-                abilityScore.addModifier(modifier);
-            }
-
-            @Override
-            public void removeModifier(@NonNull UUID modifierId)
-            {
-                abilityScore.removeModifier(modifierId);
-            }
-        });
-    }
-
-    private void registerSavingThrowModifierTarget(@NonNull String name, @NonNull SavingThrowType savingThrowType)
-    {
-        SavingThrowEntry savingThrowEntry = getSavingThrowEntry(savingThrowType);
-        targetManager.registerModifierTarget(name, new ModifierTarget()
-        {
-            @Override
-            public void addModifier(@NonNull Modifier modifier)
-            {
-                savingThrowEntry.addModifier(modifier);
-            }
-
-            @Override
-            public void removeModifier(@NonNull UUID modifierId)
-            {
-                savingThrowEntry.removeModifier(modifierId);
-            }
-        });
-    }
-
-    private void registerHitPointsDeltaTarget(@NonNull String name, @NonNull HitPointField field)
-    {
-        targetManager.registerDeltaTarget(name, delta -> hitPoints.change(field, delta));
-    }
-
-    private void registerValueTarget(@NonNull String name, @NonNull IntSupplier valueResolver)
-    {
-        targetManager.registerValueTarget(name, valueResolver);
     }
 
     private SkillData toSkillData(@NonNull SkillType skillType, @NonNull String specialization, @NonNull org.golarion.model.character.skill.SkillEntry skillEntry)
@@ -492,6 +404,7 @@ public class CharacterSheet
         int abilityModifier = getAbilityScore(skillEntry.getAbilityType()).getModifier();
         return skillEntry.toData(skillType, specialization, abilityModifier);
     }
+
     private EnumMap<AbilityType, Integer> getAbilityModifiers()
     {
         EnumMap<AbilityType, Integer> abilityModifiers = new EnumMap<>(AbilityType.class);

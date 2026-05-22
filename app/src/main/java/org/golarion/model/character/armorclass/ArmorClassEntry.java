@@ -3,15 +3,15 @@ package org.golarion.model.character.armorclass;
 import lombok.NonNull;
 import org.golarion.model.api.ArmorClassData;
 import org.golarion.model.character.modifier.BonusType;
-import org.golarion.model.character.modifier.Modifiable;
 import org.golarion.model.character.modifier.Modifier;
+import org.golarion.model.character.modifier.ModifierTarget;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.UUID;
 
-public class ArmorClassEntry implements Modifiable
+public class ArmorClassEntry implements ModifierTarget
 {
     private static final EnumSet<BonusType> ALLOWED_BONUS_TYPES = EnumSet.of(
             BonusType.ALCHEMICAL,

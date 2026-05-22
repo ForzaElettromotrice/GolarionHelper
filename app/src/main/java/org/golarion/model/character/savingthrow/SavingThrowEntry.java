@@ -3,12 +3,13 @@ package org.golarion.model.character.savingthrow;
 import lombok.NonNull;
 import org.golarion.model.api.SavingThrowData;
 import org.golarion.model.character.modifier.Modifier;
+import org.golarion.model.character.modifier.ModifierTarget;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class SavingThrowEntry
+public class SavingThrowEntry implements ModifierTarget
 {
     private final List<Modifier> modifiers;
     private int baseValue;
@@ -29,11 +30,13 @@ public class SavingThrowEntry
         this.baseValue = baseValue;
     }
 
+    @Override
     public void addModifier(@NonNull Modifier modifier)
     {
         modifiers.add(modifier);
     }
 
+    @Override
     public void removeModifier(@NonNull UUID modifierId)
     {
         modifiers.removeIf(modifier -> modifier.getId().equals(modifierId));

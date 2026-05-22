@@ -2,14 +2,14 @@ package org.golarion.model.character.initiative;
 
 import lombok.NonNull;
 import org.golarion.model.api.InitiativeData;
-import org.golarion.model.character.modifier.Modifiable;
 import org.golarion.model.character.modifier.Modifier;
+import org.golarion.model.character.modifier.ModifierTarget;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class InitiativeEntry implements Modifiable
+public class InitiativeEntry implements ModifierTarget
 {
     private final List<Modifier> modifiers;
     private int baseValue;
