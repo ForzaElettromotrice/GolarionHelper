@@ -7,6 +7,7 @@ import org.golarion.model.api.SkillData;
 import org.golarion.model.character.ability.AbilityType;
 import org.golarion.model.character.modifier.BonusType;
 import org.golarion.model.character.modifier.Modifier;
+import org.golarion.model.character.modifier.ModifierTarget;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 
-public class SkillEntry
+public class SkillEntry implements ModifierTarget
 {
     private static final EnumSet<BonusType> ALLOWED_BONUS_TYPES = EnumSet.of(
             BonusType.ALCHEMICAL,
@@ -59,6 +60,7 @@ public class SkillEntry
         this.ranks = ranks;
     }
 
+    @Override
     public void addModifier(@NonNull Modifier modifier)
     {
         if (modifier.getBonusType() != null && !ALLOWED_BONUS_TYPES.contains(modifier.getBonusType()))
@@ -69,18 +71,10 @@ public class SkillEntry
         modifiers.add(modifier);
     }
 
+    @Override
     public void removeModifier(@NonNull UUID modifierId)
     {
         modifiers.removeIf(bonus -> bonus.getId().equals(modifierId));
-    }
-
-    public void setModifierEnabled(@NonNull UUID modifierId, boolean enabled)
-    {
-        modifiers.stream()
-                .filter(modifier -> modifier.getId().equals(modifierId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("modifierId not found: " + modifierId))
-                .setEnabled(enabled);
     }
 
     public SkillData toData(@NonNull SkillType skillType, @NonNull String specialization, int abilityModifier)

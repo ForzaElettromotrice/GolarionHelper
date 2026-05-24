@@ -5,6 +5,7 @@ import org.golarion.model.api.AbilityData;
 import org.golarion.model.character.modifier.BonusType;
 import org.golarion.model.character.modifier.Modifier;
 import org.golarion.model.character.modifier.ModifierTarget;
+import org.golarion.model.character.modifier.TargetManager;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -71,6 +72,14 @@ public class AbilityScore implements ModifierTarget
                 getModifier(),
                 modifiers.stream().map(Modifier::toData).toList()
         );
+    }
+
+    public void registerTargets(@NonNull TargetManager targetManager, @NonNull String targetName)
+    {
+        targetManager.registerModifierTarget(targetName, this);
+        targetManager.registerValueTarget(targetName, this::getTotalValue);
+        targetManager.registerValueTarget(targetName + "Modifier", this::getModifier);
+        targetManager.registerForbiddenVariables(targetName, targetName + "Modifier");
     }
 
     public int getModifier()

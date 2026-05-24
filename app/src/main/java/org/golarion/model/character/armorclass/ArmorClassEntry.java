@@ -5,6 +5,7 @@ import org.golarion.model.api.ArmorClassData;
 import org.golarion.model.character.modifier.BonusType;
 import org.golarion.model.character.modifier.Modifier;
 import org.golarion.model.character.modifier.ModifierTarget;
+import org.golarion.model.character.modifier.TargetManager;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -39,11 +40,18 @@ public class ArmorClassEntry implements ModifierTarget
     private static final EnumSet<BonusType> FLAT_FOOTED_EXCLUDED_BONUS_TYPES = EnumSet.of(
             BonusType.DODGE
     );
+    private static final int NO_MAX_DEXTERITY_BONUS_LIMIT = -1;
     private final List<Modifier> modifiers;
+    private final MaxDexterityBonusModifiers maxDexterityBonusModifiers;
+    private final MaxDexterityBonusLimitModifiers maxDexterityBonusLimitModifiers;
+    private int maxDexterityBonus;
 
     public ArmorClassEntry()
     {
         this.modifiers = new ArrayList<>();
+        this.maxDexterityBonusModifiers = new MaxDexterityBonusModifiers();
+        this.maxDexterityBonusLimitModifiers = new MaxDexterityBonusLimitModifiers();
+        this.maxDexterityBonus = NO_MAX_DEXTERITY_BONUS_LIMIT;
     }
 
     @Override
@@ -69,18 +77,37 @@ public class ArmorClassEntry implements ModifierTarget
                 getTotalValue(abilityModifier),
                 getTouchValue(abilityModifier),
                 getFlatFootedValue(),
+                getMaxDexterityBonusDataValue(),
+                getMaxDexterityBonusModifierData(),
                 modifiers.stream().map(Modifier::toData).toList()
         );
     }
 
+    public void registerTargets(@NonNull TargetManager targetManager)
+    {
+        targetManager.registerModifierTarget("armorClass", this);
+        targetManager.registerModifierTarget("maxDex", maxDexterityBonusModifiers);
+        targetManager.registerModifierTarget("maxDexLimit", maxDexterityBonusLimitModifiers);
+    }
+
+    public void setMaxDexterityBonus(int maxDexterityBonus)
+    {
+        if (maxDexterityBonus < NO_MAX_DEXTERITY_BONUS_LIMIT)
+        {
+            throw new IllegalArgumentException("maxDexterityBonus must be -1 or greater");
+        }
+
+        this.maxDexterityBonus = maxDexterityBonus;
+    }
+
     public int getTotalValue(int abilityModifier)
     {
-        return 10 + abilityModifier + Modifier.calculateTotal(modifiers);
+        return 10 + getLimitedAbilityModifier(abilityModifier) + Modifier.calculateTotal(modifiers);
     }
 
     public int getTouchValue(int abilityModifier)
     {
-        return 10 + abilityModifier + getTotalModifierExcluding(TOUCH_EXCLUDED_BONUS_TYPES);
+        return 10 + getLimitedAbilityModifier(abilityModifier) + getTotalModifierExcluding(TOUCH_EXCLUDED_BONUS_TYPES);
     }
 
     public int getFlatFootedValue()
@@ -96,5 +123,47 @@ public class ArmorClassEntry implements ModifierTarget
                         .filter(modifier -> modifier.getBonusType() == null || !excludedBonusTypes.contains(modifier.getBonusType()))
                         .toList()
         );
+    }
+
+    private int getLimitedAbilityModifier(int abilityModifier)
+    {
+        Integer totalMaxDexterityBonus = getMaxDexterityBonusDataValue();
+        if (totalMaxDexterityBonus == null)
+        {
+            return abilityModifier;
+        }
+
+        return Math.min(abilityModifier, totalMaxDexterityBonus);
+    }
+
+    private int getTotalMaxDexterityBonus()
+    {
+        Integer limit = null;
+        if (maxDexterityBonus != NO_MAX_DEXTERITY_BONUS_LIMIT)
+        {
+            limit = Math.max(0, maxDexterityBonus + maxDexterityBonusModifiers.getTotalValue());
+        }
+
+        Integer externalLimit = maxDexterityBonusLimitModifiers.getLowestLimit();
+        if (externalLimit != null)
+        {
+            limit = limit == null ? externalLimit : Math.min(limit, externalLimit);
+        }
+
+        return limit == null ? NO_MAX_DEXTERITY_BONUS_LIMIT : limit;
+    }
+
+    private Integer getMaxDexterityBonusDataValue()
+    {
+        int totalMaxDexterityBonus = getTotalMaxDexterityBonus();
+        return totalMaxDexterityBonus == NO_MAX_DEXTERITY_BONUS_LIMIT ? null : totalMaxDexterityBonus;
+    }
+
+    private List<org.golarion.model.api.ModifierData> getMaxDexterityBonusModifierData()
+    {
+        List<org.golarion.model.api.ModifierData> data = new ArrayList<>();
+        data.addAll(maxDexterityBonusModifiers.toData());
+        data.addAll(maxDexterityBonusLimitModifiers.toData());
+        return data;
     }
 }

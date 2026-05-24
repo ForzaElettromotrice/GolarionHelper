@@ -4,6 +4,7 @@ import lombok.NonNull;
 import org.golarion.model.api.InitiativeData;
 import org.golarion.model.character.modifier.Modifier;
 import org.golarion.model.character.modifier.ModifierTarget;
+import org.golarion.model.character.modifier.TargetManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,11 @@ public class InitiativeEntry implements ModifierTarget
                 getTotalValue(abilityModifier),
                 modifiers.stream().map(Modifier::toData).toList()
         );
+    }
+
+    public void registerTargets(@NonNull TargetManager targetManager)
+    {
+        targetManager.registerModifierTarget("initiative", this);
     }
 
     private int getTotalValue(int abilityModifier)

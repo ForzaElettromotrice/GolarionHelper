@@ -4,6 +4,7 @@ import lombok.NonNull;
 import org.golarion.model.api.SavingThrowData;
 import org.golarion.model.character.modifier.Modifier;
 import org.golarion.model.character.modifier.ModifierTarget;
+import org.golarion.model.character.modifier.TargetManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,15 +43,6 @@ public class SavingThrowEntry implements ModifierTarget
         modifiers.removeIf(modifier -> modifier.getId().equals(modifierId));
     }
 
-    public void setModifierEnabled(@NonNull UUID modifierId, boolean enabled)
-    {
-        modifiers.stream()
-                .filter(bonus -> bonus.getId().equals(modifierId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("modifierId not found: " + modifierId))
-                .setEnabled(enabled);
-    }
-
     public SavingThrowData toData(@NonNull SavingThrowType savingThrowType, int abilityModifier)
     {
         return new SavingThrowData(
@@ -59,6 +51,11 @@ public class SavingThrowEntry implements ModifierTarget
                 getTotalValue(abilityModifier),
                 modifiers.stream().map(Modifier::toData).toList()
         );
+    }
+
+    public void registerTargets(@NonNull TargetManager targetManager, @NonNull String targetName)
+    {
+        targetManager.registerModifierTarget(targetName, this);
     }
 
     private int getTotalValue(int abilityModifier)

@@ -4,6 +4,7 @@ import lombok.NonNull;
 import org.golarion.model.api.AttackEntryData;
 import org.golarion.model.api.AttackStatsData;
 import org.golarion.model.api.AttackTypeModifierData;
+import org.golarion.model.api.CombatManeuverData;
 import org.golarion.model.character.ability.AbilityType;
 import org.golarion.model.character.modifier.Modifier;
 import org.golarion.model.character.modifier.ModifierTarget;
@@ -169,7 +170,10 @@ public class AttackStats
     private final GlobalAttackModifierTarget damageTarget;
     private final GlobalAttackModifierTarget criticalAttackTarget;
     private final GlobalAttackModifierTarget criticalDamageTarget;
+    private final CombatManeuverModifiers combatManeuverBonusModifiers;
+    private final CombatManeuverModifiers combatManeuverDefenseModifiers;
     private final Map<AttackType, AttackTypeModifierTarget> attackTypeTargets;
+    private AbilityType combatManeuverBonusAbilityType;
 
     public AttackStats()
     {
@@ -178,6 +182,9 @@ public class AttackStats
         this.damageTarget = new GlobalAttackModifierTarget(GlobalAttackModifierTargetType.DAMAGE);
         this.criticalAttackTarget = new GlobalAttackModifierTarget(GlobalAttackModifierTargetType.CRITICAL_ATTACK);
         this.criticalDamageTarget = new GlobalAttackModifierTarget(GlobalAttackModifierTargetType.CRITICAL_DAMAGE);
+        this.combatManeuverBonusModifiers = new CombatManeuverModifiers();
+        this.combatManeuverDefenseModifiers = new CombatManeuverModifiers();
+        this.combatManeuverBonusAbilityType = AbilityType.STRENGTH;
         this.attackTypeTargets = new EnumMap<>(AttackType.class);
         for (AttackType attackType : AttackType.values())
         {
@@ -230,6 +237,11 @@ public class AttackStats
         getAttack(attackId).setDamageAbilityType(abilityType);
     }
 
+    public void setCombatManeuverBonusAbilityType(@NonNull AbilityType abilityType)
+    {
+        this.combatManeuverBonusAbilityType = abilityType;
+    }
+
     public void addDamage(@NonNull UUID attackId, @NonNull String damage, @NonNull DamageType damageType)
     {
         getAttack(attackId).addDamage(damage, damageType);
@@ -266,6 +278,8 @@ public class AttackStats
         targetManager.registerModifierTarget("Damage", damageTarget);
         targetManager.registerModifierTarget("CriticalAttack", criticalAttackTarget);
         targetManager.registerModifierTarget("CriticalDamage", criticalDamageTarget);
+        targetManager.registerModifierTarget("CMB", combatManeuverBonusModifiers);
+        targetManager.registerModifierTarget("CMD", combatManeuverDefenseModifiers);
         for (Map.Entry<AttackType, AttackTypeModifierTarget> entry : attackTypeTargets.entrySet())
         {
             targetManager.registerModifierTarget(entry.getKey().toString(), entry.getValue());
@@ -280,8 +294,39 @@ public class AttackStats
                         .toList(),
                 attackTypeTargets.values().stream()
                         .map(AttackTypeModifierTarget::toData)
-                        .toList()
+                        .toList(),
+                toCombatManeuverBonusData(baseAttackBonus, abilityModifiers),
+                toCombatManeuverDefenseData(baseAttackBonus, abilityModifiers)
         );
+    }
+
+    private CombatManeuverData toCombatManeuverBonusData(int baseAttackBonus, @NonNull Map<AbilityType, Integer> abilityModifiers)
+    {
+        return new CombatManeuverData(
+                combatManeuverBonusAbilityType,
+                baseAttackBonus + getAbilityModifier(abilityModifiers, combatManeuverBonusAbilityType) + combatManeuverBonusModifiers.getTotalValue(),
+                combatManeuverBonusModifiers.toData()
+        );
+    }
+
+    private CombatManeuverData toCombatManeuverDefenseData(int baseAttackBonus, @NonNull Map<AbilityType, Integer> abilityModifiers)
+    {
+        return new CombatManeuverData(
+                AbilityType.STRENGTH,
+                10 + baseAttackBonus + getAbilityModifier(abilityModifiers, AbilityType.STRENGTH) + getAbilityModifier(abilityModifiers, AbilityType.DEXTERITY) + combatManeuverDefenseModifiers.getTotalValue(),
+                combatManeuverDefenseModifiers.toData()
+        );
+    }
+
+    private int getAbilityModifier(@NonNull Map<AbilityType, Integer> abilityModifiers, @NonNull AbilityType abilityType)
+    {
+        Integer abilityModifier = abilityModifiers.get(abilityType);
+        if (abilityModifier == null)
+        {
+            throw new IllegalArgumentException("ability modifier not found: " + abilityType);
+        }
+
+        return abilityModifier;
     }
 
     private AttackEntry getAttack(@NonNull UUID attackId)

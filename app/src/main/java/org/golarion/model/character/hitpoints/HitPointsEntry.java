@@ -2,6 +2,7 @@ package org.golarion.model.character.hitpoints;
 
 import lombok.NonNull;
 import org.golarion.model.api.HitPointsData;
+import org.golarion.model.character.modifier.TargetManager;
 
 import java.util.function.IntSupplier;
 
@@ -51,6 +52,14 @@ public class HitPointsEntry
     {
         normalizeToMaxHp();
         return new HitPointsData(getMaxHp(), currentHp, temporaryHp, nonlethalDamage);
+    }
+
+    public void registerDeltaTargets(@NonNull TargetManager targetManager)
+    {
+        targetManager.registerDeltaTarget("maxHp", delta -> change(HitPointField.MAX, delta));
+        targetManager.registerDeltaTarget("currentHp", delta -> change(HitPointField.CURRENT, delta));
+        targetManager.registerDeltaTarget("temporaryHp", delta -> change(HitPointField.TEMPORARY, delta));
+        targetManager.registerDeltaTarget("nonlethalDamage", delta -> change(HitPointField.NONLETHAL, delta));
     }
 
     private void changeNonlethalDamage(int delta)

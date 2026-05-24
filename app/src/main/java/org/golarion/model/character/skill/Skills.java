@@ -1,6 +1,9 @@
 package org.golarion.model.character.skill;
 
 import lombok.NonNull;
+import org.golarion.model.character.modifier.Modifier;
+import org.golarion.model.character.modifier.ModifierTarget;
+import org.golarion.model.character.modifier.TargetManager;
 
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
@@ -9,8 +12,39 @@ import java.util.Map;
 
 public class Skills
 {
+    private class SkillGroupModifierTarget implements ModifierTarget
+    {
+        private final List<SkillType> skillTypes;
+
+        private SkillGroupModifierTarget(@NonNull List<SkillType> skillTypes)
+        {
+            this.skillTypes = List.copyOf(skillTypes);
+        }
+
+        @Override
+        public void addModifier(@NonNull Modifier modifier)
+        {
+            for (SkillType skillType : skillTypes)
+            {
+                get(skillType).addModifier(modifier);
+            }
+        }
+
+        @Override
+        public void removeModifier(@NonNull java.util.UUID modifierId)
+        {
+            for (SkillType skillType : skillTypes)
+            {
+                get(skillType).removeModifier(modifierId);
+            }
+        }
+    }
+
     private final EnumMap<SkillType, SkillEntry> genericEntries;
     private final EnumMap<SkillType, Map<String, SkillEntry>> specializedEntries;
+    private final SkillGroupModifierTarget allSkillsTarget;
+    private final SkillGroupModifierTarget knowledgeSkillsTarget;
+    private final SkillGroupModifierTarget armorCheckPenaltySkillsTarget;
 
     public Skills()
     {
@@ -26,11 +60,34 @@ public class Skills
                 specializedEntries.put(skillType, new LinkedHashMap<>());
             }
         }
+
+        this.allSkillsTarget = new SkillGroupModifierTarget(List.of(SkillType.values()));
+        this.knowledgeSkillsTarget = new SkillGroupModifierTarget(
+                java.util.Arrays.stream(SkillType.values())
+                        .filter(SkillType::isKnowledge)
+                        .toList()
+        );
+        this.armorCheckPenaltySkillsTarget = new SkillGroupModifierTarget(
+                java.util.Arrays.stream(SkillType.values())
+                        .filter(SkillType::isArmorCheckPenaltyApplied)
+                        .toList()
+        );
     }
 
     public SkillEntry get(@NonNull SkillType skillType)
     {
         return genericEntries.get(skillType);
+    }
+
+    public void registerModifierTargets(@NonNull TargetManager targetManager)
+    {
+        targetManager.registerModifierTarget("Skills", allSkillsTarget);
+        targetManager.registerModifierTarget("Knowledge", knowledgeSkillsTarget);
+        targetManager.registerModifierTarget("ArmorCheckPenalty", armorCheckPenaltySkillsTarget);
+        for (SkillType skillType : SkillType.values())
+        {
+            targetManager.registerModifierTarget(skillType.toString(), get(skillType));
+        }
     }
 
     public SkillEntry getSpecialization(@NonNull SkillType skillType, @NonNull String specialization)

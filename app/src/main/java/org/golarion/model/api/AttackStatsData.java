@@ -4,7 +4,9 @@ import java.util.List;
 
 public record AttackStatsData(
         List<AttackEntryData> attacks,
-        List<AttackTypeModifierData> attackTypeModifiers
+        List<AttackTypeModifierData> attackTypeModifiers,
+        CombatManeuverData combatManeuverBonus,
+        CombatManeuverData combatManeuverDefense
 )
 {
 }

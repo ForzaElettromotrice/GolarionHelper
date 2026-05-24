@@ -59,4 +59,26 @@ public enum SkillType
         this.trainedOnly = trainedOnly;
         this.requiresSpecialization = requiresSpecialization;
     }
+
+    public boolean isKnowledge()
+    {
+        return name().startsWith("KNOWLEDGE_");
+    }
+
+    public boolean isArmorCheckPenaltyApplied()
+    {
+        return switch (this)
+        {
+            case ACROBATICS,
+                 CLIMB,
+                 DISABLE_DEVICE,
+                 ESCAPE_ARTIST,
+                 FLY,
+                 RIDE,
+                 SLEIGHT_OF_HAND,
+                 STEALTH,
+                 SWIM -> true;
+            default -> false;
+        };
+    }
 }

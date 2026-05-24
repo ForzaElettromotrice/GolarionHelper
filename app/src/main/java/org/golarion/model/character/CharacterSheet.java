@@ -2,27 +2,41 @@ package org.golarion.model.character;
 
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 import org.golarion.model.api.*;
 import org.golarion.model.character.ability.AbilityScore;
 import org.golarion.model.character.ability.AbilityType;
+import org.golarion.model.character.action.ActionSource;
+import org.golarion.model.character.action.ActionSourceType;
+import org.golarion.model.character.action.ApplySizeAction;
+import org.golarion.model.character.action.ReverseAction;
+import org.golarion.model.character.alignment.Alignment;
 import org.golarion.model.character.armorclass.ArmorClassEntry;
 import org.golarion.model.character.attack.AttackEntry;
 import org.golarion.model.character.attack.AttackStats;
 import org.golarion.model.character.attack.AttackType;
 import org.golarion.model.character.attack.DamageType;
+import org.golarion.model.character.equipment.Equipment;
+import org.golarion.model.character.equipment.EquipmentContainerEntry;
+import org.golarion.model.character.equipment.EquipmentEntry;
 import org.golarion.model.character.hitpoints.HitPointField;
 import org.golarion.model.character.hitpoints.HitPointsEntry;
 import org.golarion.model.character.initiative.InitiativeEntry;
 import org.golarion.model.character.modifier.*;
 import org.golarion.model.character.savingthrow.SavingThrowEntry;
 import org.golarion.model.character.savingthrow.SavingThrowType;
+import org.golarion.model.character.size.CharacterSize;
 import org.golarion.model.character.skill.SkillType;
 import org.golarion.model.character.skill.Skills;
+import org.golarion.model.character.speed.SpeedEntry;
 
 import java.util.*;
 
 public class CharacterSheet
 {
+    private static final ActionSource SIZE_ACTION_SOURCE = new ActionSource(ActionSourceType.SIZE, new UUID(0, 1));
+    private static final ActionSource EQUIPMENT_CARRYING_LOAD_ACTION_SOURCE = new ActionSource(ActionSourceType.EQUIP, new UUID(0, 2));
+
     private final EnumMap<AbilityType, AbilityScore> abilityScores;
     private final EnumMap<SavingThrowType, SavingThrowEntry> savingThrows;
     private final ArmorClassEntry armorClass;
@@ -30,10 +44,18 @@ public class CharacterSheet
     private final InitiativeEntry initiative;
     private final Skills skills;
     private final AttackStats attackStats;
+    private final Equipment equipment;
+    private final SpeedEntry speed;
     private final TargetManager targetManager;
     private final Map<UUID, EffectGroup> effectGroups;
+    private final Map<ActionSource, List<ReverseAction>> appliedActions;
     @Getter
     private String characterName;
+    @Setter
+    @Getter
+    private Alignment alignment;
+    @Getter
+    private CharacterSize size;
 
     public CharacterSheet()
     {
@@ -54,15 +76,21 @@ public class CharacterSheet
         this.initiative = new InitiativeEntry();
         this.skills = new Skills();
         this.attackStats = new AttackStats();
+        this.equipment = new Equipment();
+        this.equipment.setStrengthResolver(() -> getAbilityScore(AbilityType.STRENGTH).getTotalValue());
+        this.speed = new SpeedEntry();
+        this.alignment = Alignment.TRUE_NEUTRAL;
+        this.size = CharacterSize.MEDIUM;
         setCharacterName(characterName);
 
         this.targetManager = new TargetManager();
         this.effectGroups = new LinkedHashMap<>();
+        this.appliedActions = new LinkedHashMap<>();
 
+        registerAbilityTargets();
+        registerSavingThrowTargets();
         registerModifierTargets();
         registerDeltaTargets();
-        registerValueTargets();
-        registerDerivedTargetVariables();
     }
 
     public void setCharacterName(@NonNull String characterName)
@@ -76,6 +104,27 @@ public class CharacterSheet
         this.characterName = normalizedName;
     }
 
+    public void setSize(@NonNull CharacterSize size)
+    {
+        if (this.size == size)
+        {
+            return;
+        }
+
+        CharacterSize previousSize = this.size;
+        reverseActions(SIZE_ACTION_SOURCE);
+        this.size = size;
+
+        try
+        {
+            appliedActions.put(SIZE_ACTION_SOURCE, List.of(new ApplySizeAction(size).apply(this)));
+        } catch (RuntimeException exception)
+        {
+            this.size = previousSize;
+            appliedActions.put(SIZE_ACTION_SOURCE, List.of(new ApplySizeAction(previousSize).apply(this)));
+            throw exception;
+        }
+    }
 
     public UUID createEffectGroup(@NonNull String name)
     {
@@ -105,9 +154,8 @@ public class CharacterSheet
             target.addModifier(mod);
             try
             {
-                targetManager.resolveValue(targetString);
-            }
-            catch (IllegalArgumentException exception)
+                mod.getValue();
+            } catch (IllegalArgumentException exception)
             {
                 target.removeModifier(mod.getId());
                 throw exception;
@@ -180,6 +228,16 @@ public class CharacterSheet
         return armorClass.toData(dexterityModifier);
     }
 
+    public void setMaxDexterityBonus(int maxDexterityBonus)
+    {
+        armorClass.setMaxDexterityBonus(maxDexterityBonus);
+    }
+
+    public void changeCarryingCapacityMultiplier(double multiplier)
+    {
+        equipment.changeCarryingCapacityMultiplier(multiplier);
+    }
+
     public void setHitPoints(@NonNull HitPointField field, int value)
     {
         hitPoints.set(field, value);
@@ -204,6 +262,41 @@ public class CharacterSheet
     {
         int dexterityModifier = getAbilityScore(AbilityType.DEXTERITY).getModifier();
         return initiative.toData(dexterityModifier);
+    }
+
+    public void setBaseSpeedUnits(int baseUnits)
+    {
+        speed.setBaseUnits(baseUnits);
+    }
+
+    public SpeedData getSpeed()
+    {
+        return speed.toData();
+    }
+
+    public UUID addEquipmentContainer(@NonNull String name)
+    {
+        return equipment.addContainer(name).getId();
+    }
+
+    public void removeEquipmentContainer(@NonNull UUID containerId)
+    {
+        equipment.removeContainer(containerId);
+    }
+
+    public void addEquipmentItem(@NonNull UUID containerId, @NonNull EquipmentEntry item)
+    {
+        applyCarryingLoadAction(equipment.addItem(containerId, item));
+    }
+
+    public void moveEquipmentItem(@NonNull UUID itemId, @NonNull UUID destinationContainerId)
+    {
+        applyCarryingLoadAction(equipment.moveItem(itemId, destinationContainerId));
+    }
+
+    public void removeEquipmentItem(@NonNull UUID itemId)
+    {
+        applyCarryingLoadAction(equipment.removeItem(itemId));
     }
 
     public List<String> getSkillSpecializations(@NonNull SkillType skillType)
@@ -287,6 +380,11 @@ public class CharacterSheet
         attackStats.setDamageAbilityType(attackId, abilityType);
     }
 
+    public void setCombatManeuverBonusAbilityType(@NonNull AbilityType abilityType)
+    {
+        attackStats.setCombatManeuverBonusAbilityType(abilityType);
+    }
+
     public void addAttackDamage(@NonNull UUID attackId, @NonNull String damage, @NonNull DamageType damageType)
     {
         attackStats.addDamage(attackId, damage, damageType);
@@ -320,6 +418,23 @@ public class CharacterSheet
     public AttackStatsData getAttackStats()
     {
         return attackStats.toData(getBaseAttackBonus(), getAbilityModifiers());
+    }
+
+    private void applyCarryingLoadAction(@NonNull org.golarion.model.character.action.Action action)
+    {
+        reverseActions(EQUIPMENT_CARRYING_LOAD_ACTION_SOURCE);
+        appliedActions.put(EQUIPMENT_CARRYING_LOAD_ACTION_SOURCE, List.of(action.apply(this)));
+    }
+
+    private void reverseActions(@NonNull ActionSource actionSource)
+    {
+        List<ReverseAction> reverseActions = appliedActions.remove(actionSource);
+        if (reverseActions == null)
+        {
+            return;
+        }
+
+        reverseActions.forEach(ReverseAction::apply);
     }
 
     private AbilityScore getAbilityScore(@NonNull AbilityType abilityType)
@@ -360,53 +475,35 @@ public class CharacterSheet
 
     private void registerModifierTargets()
     {
-        targetManager.registerModifierTarget("strength", getAbilityScore(AbilityType.STRENGTH));
-        targetManager.registerModifierTarget("dexterity", getAbilityScore(AbilityType.DEXTERITY));
-        targetManager.registerModifierTarget("constitution", getAbilityScore(AbilityType.CONSTITUTION));
-        targetManager.registerModifierTarget("intelligence", getAbilityScore(AbilityType.INTELLIGENCE));
-        targetManager.registerModifierTarget("wisdom", getAbilityScore(AbilityType.WISDOM));
-        targetManager.registerModifierTarget("charisma", getAbilityScore(AbilityType.CHARISMA));
-        targetManager.registerModifierTarget("fortitude", getSavingThrowEntry(SavingThrowType.FORTITUDE));
-        targetManager.registerModifierTarget("reflex", getSavingThrowEntry(SavingThrowType.REFLEX));
-        targetManager.registerModifierTarget("will", getSavingThrowEntry(SavingThrowType.WILL));
-        targetManager.registerModifierTarget("armorClass", armorClass);
-        targetManager.registerModifierTarget("initiative", initiative);
+        armorClass.registerTargets(targetManager);
+        initiative.registerTargets(targetManager);
+        skills.registerModifierTargets(targetManager);
         attackStats.registerModifierTargets(targetManager);
+        equipment.registerModifierTargets(targetManager);
+        speed.registerTargets(targetManager);
     }
 
     private void registerDeltaTargets()
     {
-        targetManager.registerDeltaTarget("maxHp", delta -> hitPoints.change(HitPointField.MAX, delta));
-        targetManager.registerDeltaTarget("currentHp", delta -> hitPoints.change(HitPointField.CURRENT, delta));
-        targetManager.registerDeltaTarget("temporaryHp", delta -> hitPoints.change(HitPointField.TEMPORARY, delta));
-        targetManager.registerDeltaTarget("nonlethalDamage", delta -> hitPoints.change(HitPointField.NONLETHAL, delta));
+        hitPoints.registerDeltaTargets(targetManager);
+        equipment.registerDeltaTargets(targetManager);
     }
 
-    private void registerValueTargets()
+    private void registerAbilityTargets()
     {
-        targetManager.registerValueTarget("strength", () -> getAbility(AbilityType.STRENGTH).totalValue());
-        targetManager.registerValueTarget("dexterity", () -> getAbility(AbilityType.DEXTERITY).totalValue());
-        targetManager.registerValueTarget("constitution", () -> getAbility(AbilityType.CONSTITUTION).totalValue());
-        targetManager.registerValueTarget("intelligence", () -> getAbility(AbilityType.INTELLIGENCE).totalValue());
-        targetManager.registerValueTarget("wisdom", () -> getAbility(AbilityType.WISDOM).totalValue());
-        targetManager.registerValueTarget("charisma", () -> getAbility(AbilityType.CHARISMA).totalValue());
-
-        targetManager.registerValueTarget("strengthModifier", () -> getAbility(AbilityType.STRENGTH).modifier());
-        targetManager.registerValueTarget("dexterityModifier", () -> getAbility(AbilityType.DEXTERITY).modifier());
-        targetManager.registerValueTarget("constitutionModifier", () -> getAbility(AbilityType.CONSTITUTION).modifier());
-        targetManager.registerValueTarget("intelligenceModifier", () -> getAbility(AbilityType.INTELLIGENCE).modifier());
-        targetManager.registerValueTarget("wisdomModifier", () -> getAbility(AbilityType.WISDOM).modifier());
-        targetManager.registerValueTarget("charismaModifier", () -> getAbility(AbilityType.CHARISMA).modifier());
+        getAbilityScore(AbilityType.STRENGTH).registerTargets(targetManager, "strength");
+        getAbilityScore(AbilityType.DEXTERITY).registerTargets(targetManager, "dexterity");
+        getAbilityScore(AbilityType.CONSTITUTION).registerTargets(targetManager, "constitution");
+        getAbilityScore(AbilityType.INTELLIGENCE).registerTargets(targetManager, "intelligence");
+        getAbilityScore(AbilityType.WISDOM).registerTargets(targetManager, "wisdom");
+        getAbilityScore(AbilityType.CHARISMA).registerTargets(targetManager, "charisma");
     }
 
-    private void registerDerivedTargetVariables()
+    private void registerSavingThrowTargets()
     {
-        targetManager.registerForbiddenVariables("strength", "strengthModifier");
-        targetManager.registerForbiddenVariables("dexterity", "dexterityModifier");
-        targetManager.registerForbiddenVariables("constitution", "constitutionModifier");
-        targetManager.registerForbiddenVariables("intelligence", "intelligenceModifier");
-        targetManager.registerForbiddenVariables("wisdom", "wisdomModifier");
-        targetManager.registerForbiddenVariables("charisma", "charismaModifier");
+        getSavingThrowEntry(SavingThrowType.FORTITUDE).registerTargets(targetManager, "fortitude");
+        getSavingThrowEntry(SavingThrowType.REFLEX).registerTargets(targetManager, "reflex");
+        getSavingThrowEntry(SavingThrowType.WILL).registerTargets(targetManager, "will");
     }
 
     private SkillData toSkillData(@NonNull SkillType skillType, @NonNull String specialization, @NonNull org.golarion.model.character.skill.SkillEntry skillEntry)

@@ -6,6 +6,8 @@ public record ArmorClassData(
         int totalValue,
         int touchValue,
         int flatFootedValue,
+        Integer maxDexterityBonus,
+        List<ModifierData> maxDexterityBonusModifiers,
         List<ModifierData> modifiers
 )
 {
