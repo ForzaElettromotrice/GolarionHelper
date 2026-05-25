@@ -1,11 +1,14 @@
 package org.golarion.model.character.equipment;
 
 import lombok.NonNull;
+import org.golarion.model.character.action.Action;
 import org.golarion.model.item.EquipmentSlot;
 import org.golarion.model.item.HandUsage;
 
 import java.util.EnumMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class EquipmentLoadout
@@ -17,25 +20,58 @@ public class EquipmentLoadout
         this.equippedItems = new EnumMap<>(EquipmentLoadoutSlot.class);
     }
 
-    public void equip(@NonNull EquipmentEntry item, @NonNull EquipmentLoadoutSlot slot)
+    public Action equip(@NonNull EquipmentEntry item, @NonNull EquipmentLoadoutSlot slot)
     {
         EquipmentSlot equipmentSlot = requireEquipmentSlot(item);
         occupy(item, getOccupiedSlots(equipmentSlot, item.getHandUsage(), slot));
+        return item.getEquippedAction();
     }
 
-    public void unequip(@NonNull UUID itemId)
+    public EquipmentEntry unequip(@NonNull UUID itemId)
     {
-        if (!isEquipped(itemId))
-        {
-            throw new IllegalArgumentException("item is not equipped");
-        }
+        EquipmentEntry item = findEquippedItem(itemId);
 
         equippedItems.entrySet().removeIf(entry -> entry.getValue().getId().equals(itemId));
+        return item;
     }
 
     public boolean isEquipped(@NonNull UUID itemId)
     {
         return equippedItems.values().stream().anyMatch(item -> item.getId().equals(itemId));
+    }
+
+    public Action getActivatedAction(@NonNull UUID itemId)
+    {
+        return findEquippedItem(itemId).getActivatedAction();
+    }
+
+    public long getTotalWeightGrams()
+    {
+        try
+        {
+            long totalWeight = 0;
+            Set<UUID> countedItems = new HashSet<>();
+            for (EquipmentEntry item : equippedItems.values())
+            {
+                if (countedItems.add(item.getId()))
+                {
+                    totalWeight = Math.addExact(totalWeight, item.getTotalWeightGrams());
+                }
+            }
+
+            return totalWeight;
+        } catch (ArithmeticException exception)
+        {
+            throw new IllegalArgumentException("loadout weight is too large", exception);
+        }
+    }
+
+    private EquipmentEntry findEquippedItem(@NonNull UUID itemId)
+    {
+        return equippedItems.values().stream()
+                .filter(item -> item.getId().equals(itemId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("item is not equipped"));
     }
 
     private void occupy(@NonNull EquipmentEntry item, @NonNull List<EquipmentLoadoutSlot> slots)

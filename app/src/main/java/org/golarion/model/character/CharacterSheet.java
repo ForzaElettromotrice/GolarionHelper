@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.golarion.model.api.*;
 import org.golarion.model.character.ability.AbilityScore;
 import org.golarion.model.character.ability.AbilityType;
+import org.golarion.model.character.action.Action;
 import org.golarion.model.character.action.ActionSource;
 import org.golarion.model.character.action.ActionSourceType;
 import org.golarion.model.character.action.ApplySizeAction;
@@ -19,6 +20,7 @@ import org.golarion.model.character.attack.DamageType;
 import org.golarion.model.character.equipment.Equipment;
 import org.golarion.model.character.equipment.EquipmentContainerEntry;
 import org.golarion.model.character.equipment.EquipmentEntry;
+import org.golarion.model.character.equipment.EquipmentLoadoutSlot;
 import org.golarion.model.character.hitpoints.HitPointField;
 import org.golarion.model.character.hitpoints.HitPointsEntry;
 import org.golarion.model.character.initiative.InitiativeEntry;
@@ -322,7 +324,12 @@ public class CharacterSheet
 
     public void removeEquipmentContainer(@NonNull UUID containerId)
     {
-        equipment.removeContainer(containerId);
+        applyCarryingLoadAction(equipment.removeContainer(containerId));
+    }
+
+    public void setEquipmentContainerContentWeightIgnored(@NonNull UUID containerId, boolean contentWeightIgnored)
+    {
+        applyCarryingLoadAction(equipment.setContainerContentWeightIgnored(containerId, contentWeightIgnored));
     }
 
     public void addEquipmentItem(@NonNull UUID containerId, @NonNull EquipmentEntry item)
@@ -338,6 +345,39 @@ public class CharacterSheet
     public void removeEquipmentItem(@NonNull UUID itemId)
     {
         applyCarryingLoadAction(equipment.removeItem(itemId));
+    }
+
+    public void equipEquipmentItem(@NonNull UUID itemId, @NonNull EquipmentLoadoutSlot slot)
+    {
+        Action action = equipment.equipItem(itemId, slot);
+        appliedActions.put(getEquipmentItemActionSource(itemId), List.of(action.apply(this)));
+        applyCarryingLoadAction(equipment.refreshCarriedWeight());
+    }
+
+    public void unequipEquipmentItem(@NonNull UUID itemId, @NonNull UUID destinationContainerId)
+    {
+        equipment.unequipItem(itemId, destinationContainerId);
+        reverseActions(getEquipmentItemActionSource(itemId));
+        applyCarryingLoadAction(equipment.refreshCarriedWeight());
+    }
+
+    public void activateEquipmentItem(@NonNull UUID itemId)
+    {
+        ActionSource actionSource = getActivatedItemActionSource(itemId);
+        if (appliedActions.containsKey(actionSource))
+        {
+            throw new IllegalStateException("item is already activated");
+        }
+
+        Action action = equipment.getActivatedAction(itemId);
+        appliedActions.put(actionSource, List.of(action.apply(this)));
+        applyCarryingLoadAction(equipment.refreshCarriedWeight());
+    }
+
+    public void deactivateEquipmentItem(@NonNull UUID itemId)
+    {
+        reverseActions(getActivatedItemActionSource(itemId));
+        applyCarryingLoadAction(equipment.refreshCarriedWeight());
     }
 
     public List<String> getSkillSpecializations(@NonNull SkillType skillType)
@@ -465,6 +505,16 @@ public class CharacterSheet
     {
         reverseActions(EQUIPMENT_CARRYING_LOAD_ACTION_SOURCE);
         appliedActions.put(EQUIPMENT_CARRYING_LOAD_ACTION_SOURCE, List.of(action.apply(this)));
+    }
+
+    private ActionSource getEquipmentItemActionSource(@NonNull UUID itemId)
+    {
+        return new ActionSource(ActionSourceType.EQUIP, itemId);
+    }
+
+    private ActionSource getActivatedItemActionSource(@NonNull UUID itemId)
+    {
+        return new ActionSource(ActionSourceType.ACTIVATE, itemId);
     }
 
     private void reverseActions(@NonNull ActionSource actionSource)

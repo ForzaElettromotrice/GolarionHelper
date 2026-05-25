@@ -2,6 +2,8 @@ package org.golarion.model.item;
 
 import lombok.Getter;
 import lombok.NonNull;
+import org.golarion.model.character.action.Action;
+import org.golarion.model.character.action.NoAction;
 
 import java.util.Objects;
 
@@ -15,6 +17,8 @@ public class ItemDefinition
         private Integer priceInCopperPieces;
         private EquipmentSlot equipmentSlot;
         private HandUsage handUsage = HandUsage.NONE;
+        private Action equippedAction = NoAction.INSTANCE;
+        private Action activatedAction = NoAction.INSTANCE;
         private String description;
 
         public Builder name(String name)
@@ -47,6 +51,18 @@ public class ItemDefinition
             return this;
         }
 
+        public Builder equippedAction(Action equippedAction)
+        {
+            this.equippedAction = equippedAction == null ? NoAction.INSTANCE : equippedAction;
+            return this;
+        }
+
+        public Builder activatedAction(Action activatedAction)
+        {
+            this.activatedAction = activatedAction == null ? NoAction.INSTANCE : activatedAction;
+            return this;
+        }
+
         public Builder description(String description)
         {
             this.description = description;
@@ -71,6 +87,10 @@ public class ItemDefinition
     private final EquipmentSlot equipmentSlot;
     @NonNull
     private final HandUsage handUsage;
+    @NonNull
+    private final Action equippedAction;
+    @NonNull
+    private final Action activatedAction;
     private final String description;
 
     private ItemDefinition(@NonNull Builder builder)
@@ -80,6 +100,8 @@ public class ItemDefinition
         this.priceInCopperPieces = validatePrice(builder.priceInCopperPieces);
         this.equipmentSlot = builder.equipmentSlot;
         this.handUsage = validateHandUsage(builder.equipmentSlot, builder.handUsage);
+        this.equippedAction = builder.equippedAction;
+        this.activatedAction = builder.activatedAction;
         this.description = normalizeOptional(builder.description);
     }
 

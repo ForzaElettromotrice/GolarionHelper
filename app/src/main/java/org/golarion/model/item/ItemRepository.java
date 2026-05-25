@@ -2,6 +2,9 @@ package org.golarion.model.item;
 
 import com.google.gson.JsonObject;
 import lombok.NonNull;
+import org.golarion.model.character.action.Action;
+import org.golarion.model.character.action.ActionJsonParser;
+import org.golarion.model.character.action.NoAction;
 import org.golarion.model.json.JsonResourceParser;
 
 import java.util.LinkedHashMap;
@@ -67,27 +70,35 @@ public class ItemRepository
 
     private ItemDefinition parseItemDefinition(JsonObject jsonObject)
     {
+        String itemName = readRequiredString(jsonObject, "name");
         return ItemDefinition.builder()
-                .name(readRequiredString(jsonObject))
+                .name(itemName)
                 .weightGrams(readRequiredLong(jsonObject))
                 .priceInCopperPieces(readOptionalInteger(jsonObject))
                 .equipmentSlot(readOptionalEnum(jsonObject, "equipmentSlot", EquipmentSlot.class))
                 .handUsage(readOptionalEnum(jsonObject, "handUsage", HandUsage.class))
+                .equippedAction(readOptionalAction(jsonObject, "equippedAction", itemName))
+                .activatedAction(readOptionalAction(jsonObject, "activatedAction", itemName))
                 .description(readOptionalString(jsonObject))
                 .build();
     }
 
     private String readRequiredString(JsonObject jsonObject)
     {
-        if (!jsonObject.has("name") || jsonObject.get("name").isJsonNull())
+        return readRequiredString(jsonObject, "name");
+    }
+
+    private String readRequiredString(JsonObject jsonObject, String fieldName)
+    {
+        if (!jsonObject.has(fieldName) || jsonObject.get(fieldName).isJsonNull())
         {
-            throw new IllegalArgumentException("name" + " is required");
+            throw new IllegalArgumentException(fieldName + " is required");
         }
 
-        String value = jsonObject.get("name").getAsString().trim();
+        String value = jsonObject.get(fieldName).getAsString().trim();
         if (value.isBlank())
         {
-            throw new IllegalArgumentException("name" + " must not be blank");
+            throw new IllegalArgumentException(fieldName + " must not be blank");
         }
 
         return value;
@@ -132,6 +143,27 @@ public class ItemRepository
         }
 
         return Enum.valueOf(enumClass, jsonObject.get(fieldName).getAsString());
+    }
+
+    private Action readOptionalAction(JsonObject jsonObject, String fieldName, String itemName)
+    {
+        if (!jsonObject.has(fieldName) || jsonObject.get(fieldName).isJsonNull())
+        {
+            return NoAction.INSTANCE;
+        }
+
+        return ActionJsonParser.parse(jsonObject.getAsJsonObject(fieldName), itemName);
+    }
+
+    private String readOptionalString(JsonObject jsonObject, String fieldName, String defaultValue)
+    {
+        if (!jsonObject.has(fieldName) || jsonObject.get(fieldName).isJsonNull())
+        {
+            return defaultValue;
+        }
+
+        String value = jsonObject.get(fieldName).getAsString().trim();
+        return value.isBlank() ? defaultValue : value;
     }
 
     private String normalizeName(@NonNull String name)

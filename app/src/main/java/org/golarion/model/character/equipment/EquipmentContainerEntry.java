@@ -2,7 +2,6 @@ package org.golarion.model.character.equipment;
 
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,6 @@ public class EquipmentContainerEntry
     private final String name;
     private final List<EquipmentEntry> items;
     @Getter
-    @Setter
     private boolean contentWeightIgnored;
 
     public EquipmentContainerEntry(@NonNull String name)
@@ -46,6 +44,11 @@ public class EquipmentContainerEntry
     public void removeItem(@NonNull UUID itemId)
     {
         items.removeIf(item -> item.getId().equals(itemId));
+    }
+
+    public void setContentWeightIgnored(boolean contentWeightIgnored)
+    {
+        this.contentWeightIgnored = contentWeightIgnored;
     }
 
     public long getTotalWeightGrams()

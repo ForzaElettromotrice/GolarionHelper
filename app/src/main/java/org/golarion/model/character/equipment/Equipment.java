@@ -14,12 +14,14 @@ public class Equipment
     @Getter
     private final MoneyEntry money;
     private final WeightEntry weightEntry;
+    private final EquipmentLoadout loadout;
     private final List<EquipmentContainerEntry> containers;
 
     public Equipment()
     {
         this.money = new MoneyEntry();
         this.weightEntry = new WeightEntry();
+        this.loadout = new EquipmentLoadout();
         this.containers = new ArrayList<>();
     }
 
@@ -35,9 +37,16 @@ public class Equipment
         return container;
     }
 
-    public void removeContainer(@NonNull UUID containerId)
+    public Action removeContainer(@NonNull UUID containerId)
     {
         containers.removeIf(container -> container.getId().equals(containerId));
+        return refreshCarriedWeight();
+    }
+
+    public Action setContainerContentWeightIgnored(@NonNull UUID containerId, boolean contentWeightIgnored)
+    {
+        findContainer(containerId).setContentWeightIgnored(contentWeightIgnored);
+        return refreshCarriedWeight();
     }
 
     public Action addItem(@NonNull UUID containerId, @NonNull EquipmentEntry item)
@@ -48,20 +57,57 @@ public class Equipment
         }
 
         findContainer(containerId).addItem(item);
-        return weightEntry.changeWeightGrams(item.getTotalWeightGrams());
+        return refreshCarriedWeight();
     }
 
     public Action moveItem(@NonNull UUID itemId, @NonNull UUID destinationContainerId)
     {
         EquipmentEntry item = removeItemFromAnyContainer(itemId);
         findContainer(destinationContainerId).addItem(item);
-        return weightEntry.setCarriedWeightGrams(getTotalWeightGrams());
+        return refreshCarriedWeight();
     }
 
     public Action removeItem(@NonNull UUID itemId)
     {
-        EquipmentEntry item = removeItemFromAnyContainer(itemId);
-        return weightEntry.changeWeightGrams(-item.getTotalWeightGrams());
+        removeItemFromAnyContainer(itemId);
+        return refreshCarriedWeight();
+    }
+
+    public Action equipItem(@NonNull UUID itemId, @NonNull EquipmentLoadoutSlot slot)
+    {
+        EquipmentContainerEntry sourceContainer = findContainerContainingItem(itemId);
+        EquipmentEntry item = findItem(sourceContainer, itemId);
+        Action action = loadout.equip(item, slot);
+        sourceContainer.removeItem(itemId);
+        return action;
+    }
+
+    public void unequipItem(@NonNull UUID itemId, @NonNull UUID destinationContainerId)
+    {
+        EquipmentContainerEntry destinationContainer = findContainer(destinationContainerId);
+        EquipmentEntry item = loadout.unequip(itemId);
+        destinationContainer.addItem(item);
+    }
+
+    public Action getActivatedAction(@NonNull UUID itemId)
+    {
+        EquipmentEntry containerItem = findItemInContainers(itemId);
+        if (containerItem != null)
+        {
+            return containerItem.getActivatedAction();
+        }
+
+        if (!loadout.isEquipped(itemId))
+        {
+            throw new IllegalArgumentException("item not found");
+        }
+
+        return loadout.getActivatedAction(itemId);
+    }
+
+    public Action refreshCarriedWeight()
+    {
+        return weightEntry.setCarriedWeightGrams(getTotalWeightGrams());
     }
 
     public long getTotalWeightGrams()
@@ -73,6 +119,7 @@ public class Equipment
             {
                 totalWeight = Math.addExact(totalWeight, container.getTotalWeightGrams());
             }
+            totalWeight = Math.addExact(totalWeight, loadout.getTotalWeightGrams());
 
             return totalWeight;
         } catch (ArithmeticException exception)
@@ -108,7 +155,8 @@ public class Equipment
     {
         return containers.stream()
                 .flatMap(container -> container.getItems().stream())
-                .anyMatch(item -> item.getId().equals(itemId));
+                .anyMatch(item -> item.getId().equals(itemId))
+                || loadout.isEquipped(itemId);
     }
 
     private EquipmentEntry removeItemFromAnyContainer(@NonNull UUID itemId)
@@ -126,5 +174,37 @@ public class Equipment
         }
 
         throw new IllegalArgumentException("item not found");
+    }
+
+    private EquipmentEntry findItemInContainers(@NonNull UUID itemId)
+    {
+        for (EquipmentContainerEntry container : containers)
+        {
+            for (EquipmentEntry item : container.getItems())
+            {
+                if (item.getId().equals(itemId))
+                {
+                    return item;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private EquipmentContainerEntry findContainerContainingItem(@NonNull UUID itemId)
+    {
+        return containers.stream()
+                .filter(container -> container.getItems().stream().anyMatch(item -> item.getId().equals(itemId)))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("item not found"));
+    }
+
+    private EquipmentEntry findItem(@NonNull EquipmentContainerEntry container, @NonNull UUID itemId)
+    {
+        return container.getItems().stream()
+                .filter(item -> item.getId().equals(itemId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("item not found"));
     }
 }

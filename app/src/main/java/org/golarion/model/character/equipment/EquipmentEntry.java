@@ -2,6 +2,9 @@ package org.golarion.model.character.equipment;
 
 import lombok.Getter;
 import lombok.NonNull;
+import org.golarion.model.api.EquipmentEntryData;
+import org.golarion.model.character.action.Action;
+import org.golarion.model.character.action.NoAction;
 import org.golarion.model.item.EquipmentSlot;
 import org.golarion.model.item.HandUsage;
 import org.golarion.model.item.ItemDefinition;
@@ -19,6 +22,8 @@ public class EquipmentEntry
         equipmentEntry.setUnitPriceInCopperPieces(itemDefinition.getPriceInCopperPieces());
         equipmentEntry.setEquipmentSlot(itemDefinition.getEquipmentSlot());
         equipmentEntry.setHandUsage(itemDefinition.getHandUsage());
+        equipmentEntry.setEquippedAction(itemDefinition.getEquippedAction());
+        equipmentEntry.setActivatedAction(itemDefinition.getActivatedAction());
         equipmentEntry.setDescription(itemDefinition.getDescription());
         return equipmentEntry;
     }
@@ -30,6 +35,10 @@ public class EquipmentEntry
     private EquipmentSlot equipmentSlot;
     @NonNull
     private HandUsage handUsage;
+    @NonNull
+    private Action equippedAction;
+    @NonNull
+    private Action activatedAction;
     private String description;
     private int quantity;
 
@@ -38,6 +47,8 @@ public class EquipmentEntry
         this.id = UUID.randomUUID();
         this.name = normalizeName(name);
         this.handUsage = HandUsage.NONE;
+        this.equippedAction = NoAction.INSTANCE;
+        this.activatedAction = NoAction.INSTANCE;
         this.quantity = 1;
     }
 
@@ -80,6 +91,16 @@ public class EquipmentEntry
         this.handUsage = validateHandUsage(equipmentSlot, handUsage);
     }
 
+    public void setEquippedAction(Action equippedAction)
+    {
+        this.equippedAction = equippedAction == null ? NoAction.INSTANCE : equippedAction;
+    }
+
+    public void setActivatedAction(Action activatedAction)
+    {
+        this.activatedAction = activatedAction == null ? NoAction.INSTANCE : activatedAction;
+    }
+
     public void setDescription(String description)
     {
         this.description = normalizeOptional(description);
@@ -104,6 +125,21 @@ public class EquipmentEntry
         {
             throw new IllegalArgumentException("equipment weight is too large", exception);
         }
+    }
+
+    public EquipmentEntryData toData()
+    {
+        return new EquipmentEntryData(
+                id,
+                name,
+                unitWeightGrams,
+                unitPriceInCopperPieces,
+                equipmentSlot,
+                handUsage,
+                activatedAction == NoAction.INSTANCE ? null : activatedAction,
+                description,
+                quantity
+        );
     }
 
     private String normalizeName(String value)

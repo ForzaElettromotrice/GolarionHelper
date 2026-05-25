@@ -7,6 +7,7 @@ public enum ActionSourceType
 {
     CLASS("Classe"),
     EQUIP("Equipaggiamento"),
+    ACTIVATE("Attivazione"),
     SIZE("Taglia");
 
     private final String displayName;
