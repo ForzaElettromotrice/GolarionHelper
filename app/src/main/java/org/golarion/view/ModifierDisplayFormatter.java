@@ -1,6 +1,7 @@
 package org.golarion.view;
 
 import lombok.NonNull;
+import org.golarion.model.api.ConditionalModifierData;
 import org.golarion.model.api.ModifierData;
 import org.golarion.model.character.modifier.ModifierType;
 
@@ -18,6 +19,20 @@ public final class ModifierDisplayFormatter
         String bonusType = modifier.bonusType() == null ? "" : modifier.bonusType().getDisplayName() + " ";
 
         return prefix + expression + " " + bonusType + "- " + modifier.source() + status;
+    }
+
+    public static String format(@NonNull ConditionalModifierData modifier)
+    {
+        String prefix = modifier.modifierType() == ModifierType.BONUS ? "+ " : "- ";
+        String bonusType = modifier.bonusType() == null ? "" : modifier.bonusType().getDisplayName() + " ";
+
+        return prefix
+                + modifier.displayValue()
+                + " "
+                + bonusType
+                + modifier.condition()
+                + " - "
+                + modifier.source();
     }
 
     private static String normalizeExpression(@NonNull ModifierData modifier)

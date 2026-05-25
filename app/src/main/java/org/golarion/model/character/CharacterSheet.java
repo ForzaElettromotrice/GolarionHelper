@@ -167,6 +167,47 @@ public class CharacterSheet
         return group.addEntry(new DeltaEffectEntry(targetString, target, source, description, exp));
     }
 
+    public UUID addConditionalEffect(
+            @NonNull UUID effectGroup,
+            @NonNull ModifierType modifierType,
+            BonusType bonusType,
+            @NonNull String expression,
+            @NonNull String targetString,
+            @NonNull String source,
+            @NonNull String description,
+            @NonNull String condition)
+    {
+        Expression exp = new Expression(targetManager, expression);
+        targetManager.validateTargetExpression(targetString, exp);
+        EffectGroup group = getEffectGroup(effectGroup);
+
+        if (!targetManager.hasModifierTarget(targetString))
+        {
+            throw new IllegalArgumentException("conditional effects can target only modifier targets: " + targetString);
+        }
+
+        ConditionalModifier modifier = new ConditionalModifier(
+                modifierType,
+                source,
+                description,
+                condition,
+                bonusType,
+                exp
+        );
+        ModifierTarget target = targetManager.getModifierTarget(targetString);
+        target.addConditionalModifier(modifier);
+        try
+        {
+            modifier.getValue();
+        } catch (RuntimeException exception)
+        {
+            target.removeConditionalModifier(modifier.getId());
+            throw exception;
+        }
+
+        return group.addEntry(new ConditionalModifierEffectEntry(targetString, target, modifier));
+    }
+
     public void removeEffect(@NonNull UUID effectGroup, @NonNull UUID effectId)
     {
         getEffectGroup(effectGroup).removeEffect(effectId);

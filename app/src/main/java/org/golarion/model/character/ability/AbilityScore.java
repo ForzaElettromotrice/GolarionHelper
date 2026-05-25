@@ -3,13 +3,13 @@ package org.golarion.model.character.ability;
 import lombok.NonNull;
 import org.golarion.model.api.AbilityData;
 import org.golarion.model.character.modifier.BonusType;
+import org.golarion.model.character.modifier.ConditionalModifier;
 import org.golarion.model.character.modifier.Modifier;
+import org.golarion.model.character.modifier.ModifierSet;
 import org.golarion.model.character.modifier.ModifierTarget;
 import org.golarion.model.character.modifier.TargetManager;
 
-import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.List;
 import java.util.UUID;
 
 
@@ -26,13 +26,13 @@ public class AbilityScore implements ModifierTarget
             BonusType.SACRED,
             BonusType.SIZE
     );
-    private final List<Modifier> modifiers;
+    private final ModifierSet modifiers;
     private int baseValue;
 
     public AbilityScore(int baseValue)
     {
         this.baseValue = 10;
-        this.modifiers = new ArrayList<>();
+        this.modifiers = new ModifierSet();
         setBaseValue(baseValue);
     }
 
@@ -54,13 +54,30 @@ public class AbilityScore implements ModifierTarget
             throw new IllegalArgumentException("bonusType " + modifier.getBonusType() + " is not applicable to an ability score");
         }
 
-        modifiers.add(modifier);
+        modifiers.addModifier(modifier);
     }
 
     @Override
     public void removeModifier(@NonNull UUID modifierId)
     {
-        modifiers.removeIf(modifier -> modifier.getId().equals(modifierId));
+        modifiers.removeModifier(modifierId);
+    }
+
+    @Override
+    public void addConditionalModifier(@NonNull ConditionalModifier modifier)
+    {
+        if (modifier.getBonusType() != null && !ALLOWED_BONUS_TYPES.contains(modifier.getBonusType()))
+        {
+            throw new IllegalArgumentException("bonusType " + modifier.getBonusType() + " is not applicable to an ability score");
+        }
+
+        modifiers.addConditionalModifier(modifier);
+    }
+
+    @Override
+    public void removeConditionalModifier(@NonNull UUID modifierId)
+    {
+        modifiers.removeConditionalModifier(modifierId);
     }
 
     public AbilityData toData(@NonNull AbilityType abilityType)
@@ -70,7 +87,7 @@ public class AbilityScore implements ModifierTarget
                 baseValue,
                 getTotalValue(),
                 getModifier(),
-                modifiers.stream().map(Modifier::toData).toList()
+                modifiers.toData()
         );
     }
 
@@ -89,6 +106,6 @@ public class AbilityScore implements ModifierTarget
 
     public int getTotalValue()
     {
-        return baseValue + Modifier.calculateTotal(modifiers);
+        return baseValue + modifiers.calculateTotal();
     }
 }

@@ -2,23 +2,23 @@ package org.golarion.model.character.savingthrow;
 
 import lombok.NonNull;
 import org.golarion.model.api.SavingThrowData;
+import org.golarion.model.character.modifier.ConditionalModifier;
 import org.golarion.model.character.modifier.Modifier;
+import org.golarion.model.character.modifier.ModifierSet;
 import org.golarion.model.character.modifier.ModifierTarget;
 import org.golarion.model.character.modifier.TargetManager;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class SavingThrowEntry implements ModifierTarget
 {
-    private final List<Modifier> modifiers;
+    private final ModifierSet modifiers;
     private int baseValue;
 
     public SavingThrowEntry()
     {
         this.baseValue = 0;
-        this.modifiers = new ArrayList<>();
+        this.modifiers = new ModifierSet();
     }
 
     public void setBaseValue(int baseValue)
@@ -34,13 +34,25 @@ public class SavingThrowEntry implements ModifierTarget
     @Override
     public void addModifier(@NonNull Modifier modifier)
     {
-        modifiers.add(modifier);
+        modifiers.addModifier(modifier);
     }
 
     @Override
     public void removeModifier(@NonNull UUID modifierId)
     {
-        modifiers.removeIf(modifier -> modifier.getId().equals(modifierId));
+        modifiers.removeModifier(modifierId);
+    }
+
+    @Override
+    public void addConditionalModifier(@NonNull ConditionalModifier modifier)
+    {
+        modifiers.addConditionalModifier(modifier);
+    }
+
+    @Override
+    public void removeConditionalModifier(@NonNull UUID modifierId)
+    {
+        modifiers.removeConditionalModifier(modifierId);
     }
 
     public SavingThrowData toData(@NonNull SavingThrowType savingThrowType, int abilityModifier)
@@ -49,7 +61,7 @@ public class SavingThrowEntry implements ModifierTarget
                 savingThrowType,
                 baseValue,
                 getTotalValue(abilityModifier),
-                modifiers.stream().map(Modifier::toData).toList()
+                modifiers.toData()
         );
     }
 
@@ -60,6 +72,6 @@ public class SavingThrowEntry implements ModifierTarget
 
     private int getTotalValue(int abilityModifier)
     {
-        return abilityModifier + baseValue + Modifier.calculateTotal(modifiers);
+        return abilityModifier + baseValue + modifiers.calculateTotal();
     }
 }

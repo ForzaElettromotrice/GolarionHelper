@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import lombok.NonNull;
+import org.golarion.model.api.ConditionalModifierData;
 import org.golarion.model.api.ModifierData;
 import org.golarion.model.api.SavingThrowData;
 import org.golarion.model.character.CharacterSheet;
@@ -127,13 +128,17 @@ public class CharacterSavingThrowsView extends BorderPane
         VBox detailsRow = new VBox(4);
         detailsRow.setMaxWidth(TABLE_WIDTH);
 
-        if (savingThrowData.modifiers().isEmpty())
+        if (savingThrowData.modifiers().modifiers().isEmpty() && savingThrowData.modifiers().conditionalModifiers().isEmpty())
         {
             detailsRow.getChildren().add(buildDetailsLabel("Nessun bonus o malus"));
             return detailsRow;
         }
 
-        for (ModifierData modifier : savingThrowData.modifiers())
+        for (ModifierData modifier : savingThrowData.modifiers().modifiers())
+        {
+            detailsRow.getChildren().add(buildDetailsLabel(formatModifier(modifier)));
+        }
+        for (ConditionalModifierData modifier : savingThrowData.modifiers().conditionalModifiers())
         {
             detailsRow.getChildren().add(buildDetailsLabel(formatModifier(modifier)));
         }
@@ -147,6 +152,11 @@ public class CharacterSavingThrowsView extends BorderPane
     }
 
     private String formatModifier(ModifierData modifier)
+    {
+        return ModifierDisplayFormatter.format(modifier);
+    }
+
+    private String formatModifier(ConditionalModifierData modifier)
     {
         return ModifierDisplayFormatter.format(modifier);
     }

@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import org.golarion.model.api.AbilityData;
+import org.golarion.model.api.ConditionalModifierData;
 import org.golarion.model.api.ModifierData;
 import org.golarion.model.character.CharacterSheet;
 import org.golarion.model.character.ability.AbilityType;
@@ -134,13 +135,17 @@ public class CharacterAbilitiesView extends BorderPane
         VBox detailsRow = new VBox(4);
         detailsRow.setMaxWidth(TABLE_WIDTH);
 
-        if (abilityData.modifiers().isEmpty())
+        if (abilityData.modifiers().modifiers().isEmpty() && abilityData.modifiers().conditionalModifiers().isEmpty())
         {
             detailsRow.getChildren().add(buildDetailsLabel("Nessun bonus o malus"));
             return detailsRow;
         }
 
-        for (ModifierData modifier : abilityData.modifiers())
+        for (ModifierData modifier : abilityData.modifiers().modifiers())
+        {
+            detailsRow.getChildren().add(buildDetailsLabel(formatModifier(modifier)));
+        }
+        for (ConditionalModifierData modifier : abilityData.modifiers().conditionalModifiers())
         {
             detailsRow.getChildren().add(buildDetailsLabel(formatModifier(modifier)));
         }
@@ -165,6 +170,11 @@ public class CharacterAbilitiesView extends BorderPane
     }
 
     private String formatModifier(ModifierData modifier)
+    {
+        return ModifierDisplayFormatter.format(modifier);
+    }
+
+    private String formatModifier(ConditionalModifierData modifier)
     {
         return ModifierDisplayFormatter.format(modifier);
     }

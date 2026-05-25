@@ -5,13 +5,16 @@ import org.golarion.model.api.EffectEntryData;
 
 import java.util.UUID;
 
-public class ModifierEffectEntry implements EffectEntry
+public class ConditionalModifierEffectEntry implements EffectEntry
 {
     private final String targetName;
     private final ModifierTarget target;
-    private final Modifier modifier;
+    private final ConditionalModifier modifier;
 
-    public ModifierEffectEntry(@NonNull String targetName, @NonNull ModifierTarget target, @NonNull Modifier modifier)
+    public ConditionalModifierEffectEntry(
+            @NonNull String targetName,
+            @NonNull ModifierTarget target,
+            @NonNull ConditionalModifier modifier)
     {
         this.targetName = targetName;
         this.target = target;
@@ -27,13 +30,12 @@ public class ModifierEffectEntry implements EffectEntry
     @Override
     public void setEnabled(boolean enabled)
     {
-        modifier.setEnabled(enabled);
     }
 
     @Override
     public void remove()
     {
-        target.removeModifier(modifier.getId());
+        target.removeConditionalModifier(modifier.getId());
     }
 
     @Override
@@ -41,15 +43,15 @@ public class ModifierEffectEntry implements EffectEntry
     {
         return new EffectEntryData(
                 modifier.getId(),
-                EffectEntryType.MODIFIER,
+                EffectEntryType.CONDITIONAL_MODIFIER,
                 targetName,
                 modifier.getType(),
                 modifier.getBonusType(),
                 modifier.getSource(),
-                modifier.isEnabled(),
+                true,
                 modifier.getDescription(),
                 modifier.getExpression().getExpression(),
-                null
+                modifier.getCondition()
         );
     }
 }
