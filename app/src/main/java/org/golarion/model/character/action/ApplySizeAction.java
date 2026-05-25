@@ -7,7 +7,8 @@ import org.golarion.model.character.modifier.ModifierType;
 import org.golarion.model.character.size.CharacterSize;
 import org.golarion.model.character.skill.SkillType;
 
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ApplySizeAction implements Action
 {
@@ -27,29 +28,7 @@ public class ApplySizeAction implements Action
             return NoAction.INSTANCE;
         }
 
-        UUID effectGroupId = characterSheet.createEffectGroup("Taglia: " + size.getDisplayName());
-        try
-        {
-            characterSheet.changeCarryingCapacityMultiplier(size.getCarryingCapacityMultiplier());
-            addSizeModifier(characterSheet, effectGroupId, "armorClass", size.getCombatModifier());
-            addSizeModifier(characterSheet, effectGroupId, "Attack", size.getCombatModifier());
-            addSizeModifier(characterSheet, effectGroupId, SkillType.STEALTH.toString(), size.getStealthModifier());
-            addSizeModifier(characterSheet, effectGroupId, SkillType.FLY.toString(), size.getFlyModifier());
-            addSizeModifier(characterSheet, effectGroupId, "CMB", size.getCombatManeuverModifier());
-            addSizeModifier(characterSheet, effectGroupId, "CMD", size.getCombatManeuverModifier());
-        }
-        catch (RuntimeException exception)
-        {
-            characterSheet.changeCarryingCapacityMultiplier(1 / size.getCarryingCapacityMultiplier());
-            characterSheet.removeEffectGroup(effectGroupId);
-            throw exception;
-        }
-
-        return () ->
-        {
-            characterSheet.changeCarryingCapacityMultiplier(1 / size.getCarryingCapacityMultiplier());
-            characterSheet.removeEffectGroup(effectGroupId);
-        };
+        return buildAction().apply(characterSheet);
     }
 
     private boolean hasNoEffects()
@@ -61,7 +40,36 @@ public class ApplySizeAction implements Action
                 && size.getCarryingCapacityMultiplier() == 1.0;
     }
 
-    private void addSizeModifier(@NonNull CharacterSheet characterSheet, @NonNull UUID effectGroupId, @NonNull String target, int modifier)
+    private Action buildAction()
+    {
+        List<Action> actions = new ArrayList<>();
+        if (size.getCarryingCapacityMultiplier() != 1.0)
+        {
+            actions.add(new ChangeCarryingCapacityMultiplierAction(size.getCarryingCapacityMultiplier()));
+        }
+
+        List<AddEffectsAction.Effect> effects = buildEffects();
+        if (!effects.isEmpty())
+        {
+            actions.add(new AddEffectsAction("Taglia: " + size.getDisplayName(), effects));
+        }
+
+        return new ActionGroup(actions);
+    }
+
+    private List<AddEffectsAction.Effect> buildEffects()
+    {
+        List<AddEffectsAction.Effect> effects = new ArrayList<>();
+        addSizeModifier(effects, "armorClass", size.getCombatModifier());
+        addSizeModifier(effects, "Attack", size.getCombatModifier());
+        addSizeModifier(effects, SkillType.STEALTH.toString(), size.getStealthModifier());
+        addSizeModifier(effects, SkillType.FLY.toString(), size.getFlyModifier());
+        addSizeModifier(effects, "CMB", size.getCombatManeuverModifier());
+        addSizeModifier(effects, "CMD", size.getCombatManeuverModifier());
+        return effects;
+    }
+
+    private void addSizeModifier(@NonNull List<AddEffectsAction.Effect> effects, @NonNull String target, int modifier)
     {
         if (modifier == 0)
         {
@@ -69,15 +77,14 @@ public class ApplySizeAction implements Action
         }
 
         ModifierType modifierType = modifier >= 0 ? ModifierType.BONUS : ModifierType.PENALTY;
-        characterSheet.addEffect(
-                effectGroupId,
+        effects.add(AddEffectsAction.Effect.modifier(
                 modifierType,
                 modifierType == ModifierType.BONUS ? BonusType.SIZE : null,
                 Integer.toString(modifier),
                 target,
                 SOURCE,
                 size.getDisplayName()
-        );
+        ));
     }
 
 }

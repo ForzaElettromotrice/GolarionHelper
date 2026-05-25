@@ -6,7 +6,8 @@ import org.golarion.model.character.CharacterSheet;
 import org.golarion.model.character.equipment.CarryingLoad;
 import org.golarion.model.character.modifier.ModifierType;
 
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ApplyCarryingLoadAction implements Action
 {
@@ -27,60 +28,44 @@ public class ApplyCarryingLoadAction implements Action
             return NoAction.INSTANCE;
         }
 
-        UUID effectGroupId = characterSheet.createEffectGroup("Ingombro: " + carryingLoad.getDisplayName());
-        try
-        {
-            applyEffects(characterSheet, effectGroupId);
-        }
-        catch (RuntimeException exception)
-        {
-            characterSheet.removeEffectGroup(effectGroupId);
-            throw exception;
-        }
-
-        return () -> characterSheet.removeEffectGroup(effectGroupId);
+        return buildEffectsAction(characterSheet).apply(characterSheet);
     }
 
-    private void applyEffects(@NonNull CharacterSheet characterSheet, @NonNull UUID effectGroupId)
+    private AddEffectsAction buildEffectsAction(@NonNull CharacterSheet characterSheet)
     {
+        return new AddEffectsAction("Ingombro: " + carryingLoad.getDisplayName(), buildEffects(characterSheet));
+    }
+
+    private List<AddEffectsAction.Effect> buildEffects(@NonNull CharacterSheet characterSheet)
+    {
+        List<AddEffectsAction.Effect> effects = new ArrayList<>();
+
         switch (carryingLoad)
         {
-            case MEDIUM -> applyLoadEffects(characterSheet, effectGroupId, 3, 3, getReducedSpeedUnits(characterSheet.getSpeed()));
-            case HEAVY -> applyLoadEffects(characterSheet, effectGroupId, 1, 6, getReducedSpeedUnits(characterSheet.getSpeed()));
-            case OVERLOADED -> applyLoadEffects(characterSheet, effectGroupId, 0, 6, 1);
+            case MEDIUM -> addLoadEffects(effects, characterSheet, 3, 3, getReducedSpeedUnits(characterSheet.getSpeed()));
+            case HEAVY -> addLoadEffects(effects, characterSheet, 1, 6, getReducedSpeedUnits(characterSheet.getSpeed()));
+            case OVERLOADED -> addLoadEffects(effects, characterSheet, 0, 6, 1);
             case LIGHT -> throw new IllegalStateException("light load has no effects");
         }
+
+        return effects;
     }
 
-    private void applyLoadEffects(@NonNull CharacterSheet characterSheet, @NonNull UUID effectGroupId, int maxDexterityBonusLimit, int armorCheckPenalty, int targetSpeedUnits)
+    private void addLoadEffects(
+            @NonNull List<AddEffectsAction.Effect> effects,
+            @NonNull CharacterSheet characterSheet,
+            int maxDexterityBonusLimit,
+            int armorCheckPenalty,
+            int targetSpeedUnits)
     {
-        addLimitEffect(characterSheet, effectGroupId, "maxDexLimit", maxDexterityBonusLimit);
-        addPenaltyEffect(characterSheet, effectGroupId, "ArmorCheckPenalty", armorCheckPenalty);
-        addSpeedPenalty(characterSheet, effectGroupId, targetSpeedUnits);
+        effects.add(createPenaltyEffect("maxDexLimit", maxDexterityBonusLimit));
+        addPenaltyEffect(effects, "ArmorCheckPenalty", armorCheckPenalty);
+        addSpeedPenalty(effects, characterSheet, targetSpeedUnits);
     }
 
-    private void addLimitEffect(@NonNull CharacterSheet characterSheet, @NonNull UUID effectGroupId, @NonNull String target, int limit)
+    private AddEffectsAction.Effect createPenaltyEffect(@NonNull String target, int penalty)
     {
-        characterSheet.addEffect(
-                effectGroupId,
-                ModifierType.PENALTY,
-                null,
-                Integer.toString(limit),
-                target,
-                SOURCE,
-                carryingLoad.getDisplayName()
-        );
-    }
-
-    private void addPenaltyEffect(@NonNull CharacterSheet characterSheet, @NonNull UUID effectGroupId, @NonNull String target, int penalty)
-    {
-        if (penalty == 0)
-        {
-            return;
-        }
-
-        characterSheet.addEffect(
-                effectGroupId,
+        return AddEffectsAction.Effect.modifier(
                 ModifierType.PENALTY,
                 null,
                 Integer.toString(penalty),
@@ -90,11 +75,24 @@ public class ApplyCarryingLoadAction implements Action
         );
     }
 
-    private void addSpeedPenalty(@NonNull CharacterSheet characterSheet, @NonNull UUID effectGroupId, int targetSpeedUnits)
+    private void addPenaltyEffect(@NonNull List<AddEffectsAction.Effect> effects, @NonNull String target, int penalty)
+    {
+        if (penalty == 0)
+        {
+            return;
+        }
+
+        effects.add(createPenaltyEffect(target, penalty));
+    }
+
+    private void addSpeedPenalty(
+            @NonNull List<AddEffectsAction.Effect> effects,
+            @NonNull CharacterSheet characterSheet,
+            int targetSpeedUnits)
     {
         int currentSpeedUnits = characterSheet.getSpeed().totalUnits();
         int penalty = Math.max(0, currentSpeedUnits - targetSpeedUnits);
-        addPenaltyEffect(characterSheet, effectGroupId, "speed", penalty);
+        addPenaltyEffect(effects, "speed", penalty);
     }
 
     private int getReducedSpeedUnits(@NonNull SpeedData speedData)
