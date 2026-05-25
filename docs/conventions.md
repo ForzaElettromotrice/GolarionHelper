@@ -13,6 +13,7 @@
 - Source code must be written in English, including class names, method names, variable names, package names, and comments in code unless there is a project-specific reason to do otherwise.
 - Keep technical identifiers, code symbols, class names, method names, package names, and source code in their original form.
 - Be concise and pragmatic in explanations unless the user explicitly asks for more detail.
+- When the user asks about an approach or design, discuss and create only the explicitly requested piece first. Do not immediately implement or wire it into the rest of the system unless the user asks to proceed.
 
 ## Java Conventions
 
