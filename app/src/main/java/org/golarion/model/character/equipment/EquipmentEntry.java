@@ -69,7 +69,7 @@ public class EquipmentEntry
     public void setEquipmentSlot(EquipmentSlot equipmentSlot)
     {
         this.equipmentSlot = equipmentSlot;
-        if (equipmentSlot != EquipmentSlot.HAND)
+        if (!canUseHands(equipmentSlot))
         {
             this.handUsage = HandUsage.NONE;
         }
@@ -131,11 +131,16 @@ public class EquipmentEntry
     private HandUsage validateHandUsage(EquipmentSlot equipmentSlot, HandUsage handUsage)
     {
         HandUsage normalizedHandUsage = handUsage == null ? HandUsage.NONE : handUsage;
-        if (equipmentSlot != EquipmentSlot.HAND && normalizedHandUsage != HandUsage.NONE)
+        if (!canUseHands(equipmentSlot) && normalizedHandUsage != HandUsage.NONE)
         {
-            throw new IllegalArgumentException("handUsage can be set only for hand equipment");
+            throw new IllegalArgumentException("handUsage can be set only for hand or shield equipment");
         }
 
         return normalizedHandUsage;
+    }
+
+    private boolean canUseHands(EquipmentSlot equipmentSlot)
+    {
+        return equipmentSlot == EquipmentSlot.HAND || equipmentSlot == EquipmentSlot.SHIELD;
     }
 }

@@ -1,9 +1,9 @@
-package org.golarion.model.item;
+package org.golarion.model.character.equipment;
 
 import lombok.Getter;
 
 @Getter
-public enum EquipmentSlot
+public enum EquipmentLoadoutSlot
 {
     HEAD("Testa"),
     HEADBAND("Fronte"),
@@ -16,14 +16,16 @@ public enum EquipmentSlot
     BELT("Cintura"),
     WRISTS("Polsi"),
     HANDS("Mani"),
-    RING("Anello"),
+    LEFT_RING("Anello Sinistro"),
+    RIGHT_RING("Anello Destro"),
     FEET("Piedi"),
     SHIELD("Scudo"),
-    HAND("Mano");
+    MAIN_HAND("Mano Principale"),
+    OFF_HAND("Mano Secondaria");
 
     private final String displayName;
 
-    EquipmentSlot(String displayName)
+    EquipmentLoadoutSlot(String displayName)
     {
         this.displayName = displayName;
     }
