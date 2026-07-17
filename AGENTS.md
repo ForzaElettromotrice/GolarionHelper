@@ -7,6 +7,8 @@
 - Avoid broad refactors, unrelated cleanup, or multiple features in the same change.
 - When a larger change is necessary, split it into smaller steps and complete only the current step before proceeding.
 - Ask before expanding the scope beyond the requested step.
+- Work directly on `master` by default.
+- Do not create feature branches or pull requests unless the user explicitly requests them.
 
 ## Language
 

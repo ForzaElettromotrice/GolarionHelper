@@ -19,6 +19,7 @@ Build a JavaFX desktop helper for Pathfinder 1e character sheets. The applicatio
 - Domain mutations go through `CharacterSheet`; views consume DTO records from `model/api`.
 - Effects use named targets and expressions, and equipment/size/load behavior is represented with reversible actions.
 - Packaging must remain platform-specific. Windows produces an MSI installer; Arch Linux currently produces a self-contained application image. A native Arch Linux package would require a separate PKGBUILD/AUR workflow.
+- Development happens directly on `master` by default. Feature branches and pull requests are created only when explicitly requested by the user.
 
 ## Development Setup
 
