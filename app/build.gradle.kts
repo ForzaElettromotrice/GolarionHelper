@@ -63,6 +63,10 @@ jlink {
                 )
             }
 
+            os.isLinux -> {
+                skipInstaller = true
+            }
+
             else -> throw GradleException("Unsupported OS: ${os.name}")
         }
     }
