@@ -1,5 +1,4 @@
-#ifndef GOLARION_H
-#define GOLARION_H
+#pragma once
 
 #if defined(_WIN32)
     #if defined(GH_BUILDING_LIBRARY)
@@ -24,6 +23,3 @@ GH_API void gh_character_sheet_destroy(GhCharacterSheet *sheet);
 #ifdef __cplusplus
 }
 #endif
-
-#endif
-

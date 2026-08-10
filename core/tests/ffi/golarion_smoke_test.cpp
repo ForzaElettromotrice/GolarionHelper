@@ -1,4 +1,4 @@
-#include "golarion/golarion.h"
+#include "golarion/ffi/golarion.h"
 
 #include <cassert>
 
@@ -11,4 +11,3 @@ int main()
     gh_character_sheet_destroy(sheet);
     return 0;
 }
-

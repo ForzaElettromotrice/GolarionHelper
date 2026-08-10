@@ -18,6 +18,7 @@
 ## C++ Conventions
 
 - Use C++20.
+- Use `#pragma once` in header files.
 - Prefer RAII and value semantics; avoid owning raw pointers.
 - Keep the domain model independent from the C interoperability layer.
 - Expose only opaque handles and C-compatible types through the public C API.
@@ -34,4 +35,3 @@
 
 - Use the Golarion wiki as the primary Pathfinder rules and setting reference: <https://golarion.altervista.org/wiki/Pagina_principale>.
 - Follow the English wiki reference linked from the relevant Golarion page for official English terminology.
-

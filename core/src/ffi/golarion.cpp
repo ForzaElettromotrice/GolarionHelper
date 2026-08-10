@@ -1,6 +1,6 @@
-#include "golarion/golarion.h"
+#include "golarion/ffi/golarion.h"
 
-#include "golarion/character_sheet.hpp"
+#include "golarion/character/character_sheet.hpp"
 
 #include <new>
 
@@ -25,4 +25,3 @@ extern "C" void gh_character_sheet_destroy(GhCharacterSheet *sheet)
 {
     delete sheet;
 }
-
