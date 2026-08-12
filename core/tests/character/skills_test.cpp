@@ -46,7 +46,11 @@ int main()
 
     Skills skills(resourceManager);
     skills.setRanks(SkillType::Acrobatics, 2);
-    skills.setClassSkill(SkillType::Acrobatics, true);
+    resourceManager.addToCollection(SkillClassSkillGrantsResource, SkillClassSkillGrant(SkillClassSkillGrantDefinition{
+        .id = "rogueAcrobatics",
+        .source = "Ladro",
+        .targetResourceName = "skill.acrobatics"
+    }));
     assert(resourceManager.modifierTotal("skill.acrobatics") == 0);
 
     resourceManager.addModifier("skill.all", Modifier(ModifierType::Bonus, "Tratto", "Bonus a tutte le abilità", BonusType::Racial, "1"));
@@ -54,12 +58,21 @@ int main()
     assert(resourceManager.modifierTotal("skill.acrobatics") == -1);
     assert(resourceManager.modifierTotal("skill.perception") == 1);
 
-    skills.setClassSkill(SkillType::Craft, true);
+    resourceManager.addToCollection(SkillClassSkillGrantsResource, SkillClassSkillGrant(SkillClassSkillGrantDefinition{
+        .id = "artisanCraft",
+        .source = "Artigiano",
+        .targetResourceName = "skill.craft"
+    }));
     skills.setSpecializationRanks(SkillType::Craft, "alchemy", 3);
     resourceManager.addModifier("skill.craft", Modifier(ModifierType::Bonus, "Laboratorio", "Bonus ad Artigianato", BonusType::Competence, "2"));
     assert(resourceManager.modifierTotal("skill.craft.alchemy") == 3);
 
-    skills.setAbilityType(SkillType::Craft, AbilityType::Wisdom);
+    resourceManager.addToCollection(SkillAbilityReplacementsResource, SkillAbilityReplacement(SkillAbilityReplacementDefinition{
+        .id = "inspiredCraft",
+        .source = "Artigiano ispirato",
+        .targetResourceName = "skill.craft",
+        .abilityType = AbilityType::Wisdom
+    }));
     skills.setSpecializationRanks(SkillType::Craft, "weapons", 1);
     assert(resourceManager.modifierTotal("skill.craft.weapons") == 3);
 
@@ -68,6 +81,26 @@ int main()
 
     skills.addSpecialization(SkillType::Craft, "customClockwork", "Meccanismi Personalizzati");
     assert(resourceManager.modifierTotal("skill.craft.customClockwork") == 3);
+
+    const ResourceManagerView resourceView = resourceManager.toView();
+    const auto enhanceableResource = [&resourceView](std::string_view name) -> const ResourceManagerView::EnhanceableResourceView &
+    {
+        const auto entry = std::ranges::find(resourceView.enhanceableResources, name, &ResourceManagerView::EnhanceableResourceView::name);
+        if (entry == resourceView.enhanceableResources.end())
+        {
+            throw std::invalid_argument("enhanceable resource is missing");
+        }
+        return *entry;
+    };
+    assert(enhanceableResource("skill.all").parentResources.empty());
+    assert(enhanceableResource("skill.craft").parentResources == std::vector<std::string>{"skill.all"});
+    assert(enhanceableResource("skill.craft.alchemy").parentResources == std::vector<std::string>{"skill.craft"});
+    assert(enhanceableResource("skill.craft.customClockwork").parentResources == std::vector<std::string>{"skill.craft"});
+    assert(enhanceableResource("skill.knowledge").parentResources == std::vector<std::string>{"skill.all"});
+    assert(enhanceableResource("skill.knowledge.arcana").parentResources == std::vector<std::string>{"skill.knowledge"});
+    assert(enhanceableResource("skill.armorCheckPenalty").parentResources == std::vector<std::string>{"skill.all"});
+    assert(enhanceableResource("skill.acrobatics").parentResources == std::vector<std::string>{"skill.armorCheckPenalty"});
+    assert(enhanceableResource("skill.perception").parentResources == std::vector<std::string>{"skill.all"});
 
     const SkillsView view = skills.toView();
     assert(view.skills.size() == 99);
@@ -79,8 +112,16 @@ int main()
     assert(!alchemyView->custom);
     assert(alchemyView->ranks == 3);
     assert(alchemyView->classSkill);
-    assert(alchemyView->abilityType == AbilityType::Wisdom);
-    assert(alchemyView->totalValue == 10);
+    assert(alchemyView->classSkillGrants.size() == 1);
+    assert(alchemyView->classSkillGrants[0].id == "artisanCraft");
+    assert(alchemyView->classSkillGrants[0].targetResourceName == "skill.craft");
+    assert(alchemyView->abilityOptions.size() == 2);
+    assert(alchemyView->abilityOptions[0].abilityType == AbilityType::Intelligence);
+    assert(alchemyView->abilityOptions[0].totalValue == 9);
+    assert(alchemyView->abilityOptions[1].replacementId == "inspiredCraft");
+    assert(alchemyView->abilityOptions[1].source == "Artigiano ispirato");
+    assert(alchemyView->abilityOptions[1].abilityType == AbilityType::Wisdom);
+    assert(alchemyView->abilityOptions[1].totalValue == 10);
 
     const auto customView = std::ranges::find_if(view.skills, [](const SkillView &skillView)
     {
@@ -89,6 +130,46 @@ int main()
     assert(customView != view.skills.end());
     assert(customView->custom);
     assert(customView->name == "Meccanismi Personalizzati");
+    assert(customView->classSkill);
+    assert(customView->classSkillGrants.size() == 1);
+    assert(customView->classSkillGrants[0].id == "artisanCraft");
+    assert(customView->abilityOptions.size() == 2);
+    assert(customView->abilityOptions[1].replacementId == "inspiredCraft");
+
+    assert(throwsInvalidArgument([&resourceManager]
+    {
+        resourceManager.addToCollection(SkillAbilityReplacementsResource, SkillAbilityReplacement(SkillAbilityReplacementDefinition{
+            .id = "inspiredCraft",
+            .source = "Duplicato",
+            .targetResourceName = "skill.craft",
+            .abilityType = AbilityType::Charisma
+        }));
+    }));
+    assert(throwsInvalidArgument([&resourceManager]
+    {
+        resourceManager.addToCollection(SkillClassSkillGrantsResource, SkillClassSkillGrant(SkillClassSkillGrantDefinition{
+            .id = "artisanCraft",
+            .source = "Duplicato",
+            .targetResourceName = "skill.craft"
+        }));
+    }));
+    assert(throwsInvalidArgument([&resourceManager]
+    {
+        resourceManager.addToCollection(SkillClassSkillGrantsResource, SkillClassSkillGrant(SkillClassSkillGrantDefinition{
+            .id = "invalidTarget",
+            .source = "Target non valido",
+            .targetResourceName = "str"
+        }));
+    }));
+    assert(throwsInvalidArgument([&resourceManager]
+    {
+        resourceManager.addToCollection(SkillAbilityReplacementsResource, SkillAbilityReplacement(SkillAbilityReplacementDefinition{
+            .id = "invalidTarget",
+            .source = "Target non valido",
+            .targetResourceName = "str",
+            .abilityType = AbilityType::Charisma
+        }));
+    }));
 
     const SkillsSaveData saveData = skills.toSaveData();
     assert(saveData.skills.size() == 99);
@@ -104,6 +185,33 @@ int main()
     });
     assert(savedCustom != saveData.skills.end());
     assert(savedCustom->custom);
+
+    resourceManager.removeFromCollection(SkillAbilityReplacementsResource, "inspiredCraft");
+    const SkillsView viewWithoutReplacement = skills.toView();
+    const auto alchemyWithoutReplacement = std::ranges::find_if(viewWithoutReplacement.skills, [](const SkillView &skillView)
+    {
+        return skillView.resourceName == "skill.craft.alchemy";
+    });
+    assert(alchemyWithoutReplacement != viewWithoutReplacement.skills.end());
+    assert(alchemyWithoutReplacement->abilityOptions.size() == 1);
+    assert(throwsInvalidArgument([&resourceManager]
+    {
+        resourceManager.removeFromCollection(SkillAbilityReplacementsResource, "inspiredCraft");
+    }));
+
+    resourceManager.removeFromCollection(SkillClassSkillGrantsResource, "artisanCraft");
+    const SkillsView viewWithoutClassSkillGrant = skills.toView();
+    const auto alchemyWithoutClassSkillGrant = std::ranges::find_if(viewWithoutClassSkillGrant.skills, [](const SkillView &skillView)
+    {
+        return skillView.resourceName == "skill.craft.alchemy";
+    });
+    assert(alchemyWithoutClassSkillGrant != viewWithoutClassSkillGrant.skills.end());
+    assert(!alchemyWithoutClassSkillGrant->classSkill);
+    assert(alchemyWithoutClassSkillGrant->classSkillGrants.empty());
+    assert(throwsInvalidArgument([&resourceManager]
+    {
+        resourceManager.removeFromCollection(SkillClassSkillGrantsResource, "artisanCraft");
+    }));
 
     assert(throwsInvalidArgument([&]
     {

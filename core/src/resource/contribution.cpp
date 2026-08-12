@@ -1,6 +1,5 @@
 #include "golarion/resource/contribution.hpp"
 
-#include "golarion/data/contribution_save_data.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/util/string_utils.hpp"
 #include "golarion/view/contribution_view.hpp"
@@ -13,21 +12,9 @@ namespace golarion
     {
     }
 
-    Contribution::Contribution(const ContributionSaveData &data) : Contribution(data.id, data.expression)
-    {
-    }
-
     ContributionView Contribution::toView(ResourceManager &resourceManager) const
     {
         return toView(resolveValue(resourceManager));
-    }
-
-    ContributionSaveData Contribution::toSaveData() const
-    {
-        return ContributionSaveData{
-            .id = id_,
-            .expression = expression_
-        };
     }
 
     int Contribution::resolveValue(ResourceManager &resourceManager) const

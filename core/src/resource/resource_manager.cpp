@@ -183,6 +183,45 @@ namespace golarion
         return contributionSet(resourceName).calculateTotal(*this);
     }
 
+    bool ResourceManager::enhanceableResourceIsOrInheritsFrom(std::string_view resourceName, std::string_view ancestorResourceName) const
+    {
+        const std::string normalizedResourceName = normalize(resourceName);
+        const std::string normalizedAncestorName = normalize(ancestorResourceName);
+        if (!enhanceableResources_.contains(normalizedResourceName))
+        {
+            throw std::invalid_argument("resource is not registered: " + normalizedResourceName);
+        }
+        if (!enhanceableResources_.contains(normalizedAncestorName))
+        {
+            throw std::invalid_argument("ancestor resource is not registered: " + normalizedAncestorName);
+        }
+        if (normalizedResourceName == normalizedAncestorName)
+        {
+            return true;
+        }
+
+        std::vector<std::string> pending{normalizedResourceName};
+        std::unordered_set<std::string> visited;
+        while (!pending.empty())
+        {
+            const std::string current = std::move(pending.back());
+            pending.pop_back();
+            if (!visited.insert(current).second)
+            {
+                continue;
+            }
+            for (const std::string &parent : enhanceableResources_.at(current).parentResources)
+            {
+                if (parent == normalizedAncestorName)
+                {
+                    return true;
+                }
+                pending.push_back(parent);
+            }
+        }
+        return false;
+    }
+
     ContributionSetView ResourceManager::contributionSetView(std::string_view resourceName)
     {
         return contributionSet(resourceName).toView(*this);

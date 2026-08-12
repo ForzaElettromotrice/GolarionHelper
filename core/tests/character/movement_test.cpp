@@ -1,5 +1,4 @@
 #include "golarion/character/movement.hpp"
-#include "golarion/data/movement_save_data.hpp"
 #include "golarion/resource/modifier.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/view/movement_view.hpp"

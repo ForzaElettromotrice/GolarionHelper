@@ -1,10 +1,12 @@
 #pragma once
 
 #include "golarion/character/saving_throw.hpp"
-#include "golarion/data/saving_throws_save_data.hpp"
 #include "golarion/view/saving_throws_view.hpp"
 
 #include <array>
+#include <map>
+#include <string>
+#include <string_view>
 
 namespace golarion
 {
@@ -21,20 +23,18 @@ namespace golarion
         SavingThrows(SavingThrows &&) = delete;
         SavingThrows &operator=(SavingThrows &&) = delete;
 
-        void setBaseValue(SavingThrowType type, int baseValue);
-        void setAbilityType(SavingThrowType type, AbilityType abilityType);
         SavingThrowsView toView();
-        SavingThrowsSaveData toSaveData() const;
 
     private:
         friend class CharacterSheet;
 
         static constexpr std::size_t SavingThrowCount = 3;
 
-        SavingThrow &savingThrow(SavingThrowType type);
-        void load(const SavingThrowsSaveData &data);
+        void addAbilityReplacement(SavingThrowAbilityReplacement replacement);
+        void removeAbilityReplacement(std::string_view replacementId);
 
         ResourceManager &resourceManager_;
         std::array<SavingThrow, SavingThrowCount> savingThrows_;
+        std::map<std::string, SavingThrowAbilityReplacement> abilityReplacements_;
     };
 }

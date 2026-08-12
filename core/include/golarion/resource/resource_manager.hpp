@@ -44,6 +44,7 @@ namespace golarion
         int evaluateExpression(std::string_view expression);
         int modifierTotal(std::string_view resourceName);
         int contributionTotal(std::string_view resourceName);
+        bool enhanceableResourceIsOrInheritsFrom(std::string_view resourceName, std::string_view ancestorResourceName) const;
         ContributionSetView contributionSetView(std::string_view resourceName);
         ModifierSetView modifierSetView(std::string_view resourceName);
         ResourceManagerView toView();

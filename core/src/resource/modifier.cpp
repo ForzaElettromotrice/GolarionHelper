@@ -1,6 +1,5 @@
 #include "golarion/resource/modifier.hpp"
 
-#include "golarion/data/modifier_save_data.hpp"
 #include "golarion/view/modifier_view.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/util/string_utils.hpp"
@@ -12,6 +11,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <utility>
+#include <vector>
 
 namespace
 {
@@ -42,6 +42,7 @@ namespace
 
         return stream.str();
     }
+
 }
 
 namespace golarion
@@ -78,6 +79,8 @@ namespace golarion
     {
         switch (type)
         {
+            case BonusType::Generic:
+                return "Generico";
             case BonusType::Alchemical:
                 return "Alchemico";
             case BonusType::Armor:
@@ -123,6 +126,7 @@ namespace golarion
     {
         switch (type)
         {
+            case BonusType::Generic:
             case BonusType::Racial:
             case BonusType::Dodge:
                 return StackingRule::Stacks;
@@ -134,24 +138,25 @@ namespace golarion
     }
 
     Modifier::Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression)
-        : Modifier(type, std::move(source), std::move(description), bonusType, std::move(expression), std::nullopt)
+        : Modifier(type, std::move(source), std::move(description), bonusType, std::move(expression), std::nullopt, {})
     {
     }
 
     Modifier::Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition)
-        : Modifier(generateUuid(), type, std::move(source), std::move(description), bonusType, std::move(expression), std::move(condition))
+        : Modifier(type, std::move(source), std::move(description), bonusType, std::move(expression), std::move(condition), {})
     {
     }
 
-    Modifier::Modifier(const ModifierSaveData &data)
-        : Modifier(data.id, data.type, data.source, data.description, data.bonusType, data.expression, data.condition)
+    Modifier::Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition, std::vector<Requirement> requirements)
+        : Modifier(generateUuid(), type, std::move(source), std::move(description), bonusType, std::move(expression), std::move(condition), std::move(requirements))
     {
     }
 
-    Modifier::Modifier(std::string id, ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition)
+    Modifier::Modifier(std::string id, ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition, std::vector<Requirement> requirements)
         : id_(normalize(id)),
           type_(type),
-          bonusType_(bonusType)
+          bonusType_(bonusType),
+          requirements_(std::move(requirements))
     {
         if (type == ModifierType::Bonus && !bonusType.has_value())
         {
@@ -173,33 +178,27 @@ namespace golarion
 
     ModifierView Modifier::toView(ResourceManager &resourceManager) const
     {
-        return toView(resolveValue(resourceManager));
-    }
+        std::vector<RequirementView> requirementViews;
+        requirementViews.reserve(requirements_.size());
+        bool active = true;
+        for (const Requirement &requirement : requirements_)
+        {
+            RequirementView view = requirement.toView(resourceManager);
+            active = active && view.satisfied;
+            requirementViews.push_back(std::move(view));
+        }
 
-    ModifierSaveData Modifier::toSaveData() const
-    {
-        return ModifierSaveData{
+        return ModifierView{
             .id = id_,
             .type = type_,
             .source = source_,
             .description = description_,
             .bonusType = bonusType_,
             .expression = expression_,
-            .condition = condition_
-        };
-    }
-
-    ModifierView Modifier::toView(int resolvedValue) const
-    {
-        return ModifierView{
-            id_,
-            type_,
-            source_,
-            description_,
-            bonusType_,
-            expression_,
-            condition_,
-            resolvedValue
+            .condition = condition_,
+            .resolvedValue = resolveValue(resourceManager),
+            .active = active,
+            .requirements = std::move(requirementViews)
         };
     }
 
@@ -211,6 +210,18 @@ namespace golarion
             throw std::invalid_argument("modifier expression must not resolve to a negative value: " + expression_);
         }
         return value;
+    }
+
+    bool Modifier::requirementsSatisfied(ResourceManager &resourceManager) const
+    {
+        for (const Requirement &requirement : requirements_)
+        {
+            if (!requirement.isSatisfied(resourceManager))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     const std::string &Modifier::id() const
@@ -246,5 +257,10 @@ namespace golarion
     const std::optional<std::string> &Modifier::condition() const
     {
         return condition_;
+    }
+
+    const std::vector<Requirement> &Modifier::requirements() const
+    {
+        return requirements_;
     }
 }

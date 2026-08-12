@@ -1,11 +1,12 @@
 #include "golarion/resource/modifier.hpp"
-#include "golarion/data/modifier_save_data.hpp"
+#include "golarion/resource/requirement.hpp"
 #include "golarion/view/modifier_view.hpp"
 #include "golarion/resource/resource_manager.hpp"
 
 #include <cassert>
 #include <stdexcept>
 #include <string>
+#include <vector>
 
 namespace
 {
@@ -50,15 +51,6 @@ int main()
     assert(!penalty.condition().has_value());
     assert(penalty.id() != bonus.id());
 
-    ModifierSaveData saveData = bonus.toSaveData();
-    assert(saveData.id == bonus.id());
-    assert(saveData.type == ModifierType::Bonus);
-    assert(saveData.source == "Cintura della forza");
-    assert(saveData.description == "Bonus alla Forza");
-    assert(saveData.bonusType == BonusType::Enhancement);
-    assert(saveData.expression == "2 + @level");
-    assert(saveData.condition == "contro il veleno");
-
     assert(throwsInvalidArgument([]
     {
         Modifier invalid(ModifierType::Bonus, "Sorgente", "Descrizione", std::nullopt, "2");
@@ -73,10 +65,12 @@ int main()
     }));
 
     assert(displayName(ModifierType::Penalty) == "Penalità");
+    assert(displayName(BonusType::Generic) == "Generico");
     assert(displayName(BonusType::Enhancement) == "Potenziamento");
     assert(displayName(StackingRule::HighestOnly) == "Solo il più alto");
     assert(stackingRule(BonusType::Dodge) == StackingRule::Stacks);
     assert(stackingRule(BonusType::Circumstance) == StackingRule::StacksUnlessSameSource);
+    assert(stackingRule(BonusType::Generic) == StackingRule::Stacks);
     assert(stackingRule(BonusType::Luck) == StackingRule::HighestOnly);
 
     ResourceManager manager;
@@ -90,6 +84,30 @@ int main()
     assert(view.bonusType == BonusType::Racial);
     assert(view.expression == "@level + 1");
     assert(view.resolvedValue == 4);
+    assert(view.active);
+    assert(view.requirements.empty());
+
+    manager.registerTarget("armor.worn", []
+    {
+        return 1;
+    });
+    Modifier restricted(
+        ModifierType::Bonus,
+        "Monaco",
+        "Bonus alla CA",
+        BonusType::Dodge,
+        "@level",
+        std::nullopt,
+        std::vector<Requirement>{Requirement("@armor.worn == 0", "Non applicabile mentre indossi un'armatura")}
+    );
+    const ModifierView restrictedView = restricted.toView(manager);
+    assert(!restrictedView.active);
+    assert(restrictedView.resolvedValue == 3);
+    assert(restrictedView.requirements.size() == 1);
+    assert(!restrictedView.requirements[0].satisfied);
+
+    assert(restricted.requirements().size() == 1);
+    assert(restricted.requirements()[0].expression() == "@armor.worn == 0");
 
     return 0;
 }

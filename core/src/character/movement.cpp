@@ -1,6 +1,5 @@
 #include "golarion/character/movement.hpp"
 
-#include "golarion/data/movement_save_data.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/util/string_utils.hpp"
 #include "golarion/view/movement_view.hpp"
@@ -152,31 +151,6 @@ namespace golarion
         }
     }
 
-    MovementGrant::MovementGrant(const MovementGrantSaveData &data) : MovementGrant(MovementGrantDefinition{
-        .id = data.id,
-        .source = data.source,
-        .type = data.type,
-        .baseSpeedExpression = data.baseSpeedExpression,
-        .maneuverability = data.maneuverability,
-        .affectedByArmor = data.affectedByArmor,
-        .affectedByLoad = data.affectedByLoad
-    })
-    {
-    }
-
-    MovementGrantSaveData MovementGrant::toSaveData() const
-    {
-        return MovementGrantSaveData{
-            .id = id_,
-            .source = source_,
-            .type = type_,
-            .baseSpeedExpression = baseSpeedExpression_,
-            .maneuverability = maneuverability_,
-            .affectedByArmor = affectedByArmor_,
-            .affectedByLoad = affectedByLoad_
-        };
-    }
-
     MovementAdjustment::MovementAdjustment(MovementAdjustmentDefinition definition)
         : id_(normalize(definition.id)),
           source_(normalize(definition.source)),
@@ -211,31 +185,6 @@ namespace golarion
         {
             throw std::invalid_argument("maneuverability adjustments can only target fly movement");
         }
-    }
-
-    MovementAdjustment::MovementAdjustment(const MovementAdjustmentSaveData &data) : MovementAdjustment(MovementAdjustmentDefinition{
-        .id = data.id,
-        .source = data.source,
-        .description = data.description,
-        .type = data.type,
-        .selector = data.selector,
-        .expression = data.expression,
-        .condition = data.condition
-    })
-    {
-    }
-
-    MovementAdjustmentSaveData MovementAdjustment::toSaveData() const
-    {
-        return MovementAdjustmentSaveData{
-            .id = id_,
-            .source = source_,
-            .description = description_,
-            .type = type_,
-            .selector = selector_,
-            .expression = expression_,
-            .condition = condition_
-        };
     }
 
     Movement::Movement(ResourceManager &resourceManager) : resourceManager_(resourceManager)

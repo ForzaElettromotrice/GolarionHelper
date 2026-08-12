@@ -58,7 +58,7 @@ int main()
         manager.targetValue("hp.temporary");
     }));
 
-    hitPoints.damage(5, DamageType::NonLethal);
+    hitPoints.damage(5, DamageLethality::NonLethal);
     HitPointsView view = hitPoints.toView();
     assert(view.baseMax == 10);
     assert(view.max == 13);
@@ -80,7 +80,7 @@ int main()
     assert(view.current == 13);
     assert(view.nonLethal == 0);
 
-    hitPoints.damage(20, DamageType::Lethal);
+    hitPoints.damage(20, DamageLethality::Lethal);
     assert(hitPoints.toView().current == -7);
 
     hitPoints.setMax(5);
@@ -111,20 +111,20 @@ int main()
     }));
     assert(throwsInvalidArgument([&]
     {
-        hitPoints.damage(-1, DamageType::Lethal);
+        hitPoints.damage(-1, DamageLethality::Lethal);
     }));
 
     hitPoints.addTemporary("manual", 2, std::nullopt);
     assert(throwsInvalidArgument([&]
     {
-        hitPoints.damage(1, static_cast<DamageType>(99));
+        hitPoints.damage(1, static_cast<DamageLethality>(99));
     }));
     assert(hitPoints.toView().temporary.total == 2);
 
     hitPoints.setCurrent(hitPoints.toView().max - std::numeric_limits<int>::max());
     assert(throwsInvalidArgument([&]
     {
-        hitPoints.damage(3, DamageType::Lethal);
+        hitPoints.damage(3, DamageLethality::Lethal);
     }));
     assert(hitPoints.toView().temporary.total == 2);
     assert(hitPoints.toView().current == hitPoints.toView().max - std::numeric_limits<int>::max());
@@ -137,8 +137,8 @@ int main()
     assert(data.temporary.pools[0].remaining == 2);
     assert(data.nonLethal == 0);
 
-    assert(displayName(DamageType::Lethal) == "Letale");
-    assert(displayName(DamageType::NonLethal) == "Non letale");
+    assert(displayName(DamageLethality::Lethal) == "Letale");
+    assert(displayName(DamageLethality::NonLethal) == "Non letale");
 
     return 0;
 }

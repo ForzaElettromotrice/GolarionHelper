@@ -2,6 +2,7 @@
 
 #include "golarion/character/ability.hpp"
 
+#include <map>
 #include <optional>
 #include <string>
 #include <string_view>
@@ -10,8 +11,12 @@
 namespace golarion
 {
     class ResourceManager;
+    class Skills;
     struct SkillSaveData;
     struct SkillView;
+
+    inline constexpr std::string_view SkillAbilityReplacementsResource = "skill.abilityReplacements";
+    inline constexpr std::string_view SkillClassSkillGrantsResource = "skill.classSkillGrants";
 
     enum class SkillType
     {
@@ -59,6 +64,50 @@ namespace golarion
     bool requiresSpecialization(SkillType type);
     bool appliesArmorCheckPenalty(SkillType type);
 
+    struct SkillAbilityReplacementDefinition
+    {
+        std::string id;
+        std::string source;
+        std::string targetResourceName;
+        AbilityType abilityType;
+    };
+
+    class SkillAbilityReplacement final
+    {
+    public:
+        explicit SkillAbilityReplacement(SkillAbilityReplacementDefinition definition);
+
+    private:
+        friend class Skill;
+        friend class Skills;
+
+        std::string id_;
+        std::string source_;
+        std::string targetResourceName_;
+        AbilityType abilityType_;
+    };
+
+    struct SkillClassSkillGrantDefinition
+    {
+        std::string id;
+        std::string source;
+        std::string targetResourceName;
+    };
+
+    class SkillClassSkillGrant final
+    {
+    public:
+        explicit SkillClassSkillGrant(SkillClassSkillGrantDefinition definition);
+
+    private:
+        friend class Skill;
+        friend class Skills;
+
+        std::string id_;
+        std::string source_;
+        std::string targetResourceName_;
+    };
+
     class Skill final
     {
     public:
@@ -66,12 +115,10 @@ namespace golarion
         Skill(SkillType type, const std::string &specializationId, const std::string &specialization);
 
         void setRanks(int ranks);
-        void setClassSkill(bool classSkill);
-        void setAbilityType(AbilityType abilityType);
         void registerResources(ResourceManager &resourceManager) const;
         void registerResources(ResourceManager &resourceManager, std::vector<std::string> parentResources) const;
 
-        SkillView toView(ResourceManager &resourceManager) const;
+        SkillView toView(ResourceManager &resourceManager, const std::map<std::string, SkillAbilityReplacement> &abilityReplacements = {}, const std::map<std::string, SkillClassSkillGrant> &classSkillGrants = {}) const;
         SkillSaveData toSaveData() const;
         int totalValue(ResourceManager &resourceManager) const;
         bool usable() const;
@@ -81,8 +128,6 @@ namespace golarion
         std::optional<std::string> specializationId_;
         std::optional<std::string> specialization_;
         std::string resourceName_;
-        AbilityType abilityType_;
         int ranks_;
-        bool classSkill_;
     };
 }

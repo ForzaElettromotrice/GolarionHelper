@@ -11,8 +11,6 @@ namespace golarion
     inline constexpr std::string_view MovementAdjustmentsResource = "movement.adjustments";
 
     class ResourceManager;
-    struct MovementAdjustmentSaveData;
-    struct MovementGrantSaveData;
     struct MovementView;
 
     enum class MovementType
@@ -64,9 +62,6 @@ namespace golarion
     {
     public:
         explicit MovementGrant(MovementGrantDefinition definition);
-        explicit MovementGrant(const MovementGrantSaveData &data);
-
-        MovementGrantSaveData toSaveData() const;
 
     private:
         friend class Movement;
@@ -101,9 +96,6 @@ namespace golarion
     {
     public:
         explicit MovementAdjustment(MovementAdjustmentDefinition definition);
-        explicit MovementAdjustment(const MovementAdjustmentSaveData &data);
-
-        MovementAdjustmentSaveData toSaveData() const;
 
     private:
         friend class Movement;

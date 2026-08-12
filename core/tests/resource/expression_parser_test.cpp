@@ -46,6 +46,11 @@ int main()
     assert(ExpressionParser::evaluate("-(2 + 3) * +2", resolveTarget) == -10);
     assert(ExpressionParser::evaluate("@ability.strength / 2 + 2", resolveTarget) == 11);
     assert(ExpressionParser::evaluate("@level / 2", resolveTarget) == 2);
+    assert(ExpressionParser::evaluate("@strength >= 18", resolveTarget) == 1);
+    assert(ExpressionParser::evaluate("@level < 5", resolveTarget) == 0);
+    assert(ExpressionParser::evaluate("@level == 5 && @strength != 10", resolveTarget) == 1);
+    assert(ExpressionParser::evaluate("@level > 10 || !0", resolveTarget) == 1);
+    assert(ExpressionParser::evaluate("1 + 2 * 3 == 7 && (0 || 4)", resolveTarget) == 1);
 
     assert(throwsInvalidArgument([&]
     {
@@ -78,6 +83,10 @@ int main()
     assert(throwsInvalidArgument([&]
     {
         ExpressionParser::evaluate("50000 * 50000", resolveTarget);
+    }));
+    assert(throwsInvalidArgument([&]
+    {
+        ExpressionParser::evaluate("1 &&", resolveTarget);
     }));
 
     return 0;

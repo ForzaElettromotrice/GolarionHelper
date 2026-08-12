@@ -1,27 +1,11 @@
 #include "golarion/character/saving_throws.hpp"
 
 #include "golarion/resource/resource_manager.hpp"
+#include "golarion/util/string_utils.hpp"
 
-#include <array>
 #include <stdexcept>
+#include <string>
 #include <utility>
-
-namespace
-{
-    std::size_t savingThrowIndex(golarion::SavingThrowType type)
-    {
-        switch (type)
-        {
-            case golarion::SavingThrowType::Fortitude:
-                return 0;
-            case golarion::SavingThrowType::Reflex:
-                return 1;
-            case golarion::SavingThrowType::Will:
-                return 2;
-        }
-        throw std::invalid_argument("unknown saving throw type");
-    }
-}
 
 namespace golarion
 {
@@ -34,16 +18,13 @@ namespace golarion
         {
             entry.registerResources(resourceManager_, {"savingThrow.all"});
         }
-    }
-
-    void SavingThrows::setBaseValue(SavingThrowType type, int baseValue)
-    {
-        savingThrow(type).setBaseValue(baseValue);
-    }
-
-    void SavingThrows::setAbilityType(SavingThrowType type, AbilityType abilityType)
-    {
-        savingThrow(type).setAbilityType(abilityType);
+        resourceManager_.registerCollectionResource<SavingThrowAbilityReplacement>(SavingThrowAbilityReplacementsResource, [this](SavingThrowAbilityReplacement replacement)
+        {
+            addAbilityReplacement(std::move(replacement));
+        }, [this](std::string_view replacementId)
+        {
+            removeAbilityReplacement(replacementId);
+        });
     }
 
     SavingThrowsView SavingThrows::toView()
@@ -52,45 +33,26 @@ namespace golarion
         views.reserve(savingThrows_.size());
         for (const SavingThrow &entry : savingThrows_)
         {
-            views.push_back(entry.toView(resourceManager_));
+            views.push_back(entry.toView(resourceManager_, abilityReplacements_));
         }
         return SavingThrowsView{.savingThrows = std::move(views)};
     }
 
-    SavingThrowsSaveData SavingThrows::toSaveData() const
+    void SavingThrows::addAbilityReplacement(SavingThrowAbilityReplacement replacement)
     {
-        std::vector<SavingThrowSaveData> data;
-        data.reserve(savingThrows_.size());
-        for (const SavingThrow &entry : savingThrows_)
+        const std::string id = replacement.id_;
+        if (!abilityReplacements_.emplace(id, std::move(replacement)).second)
         {
-            data.push_back(entry.toSaveData());
-        }
-        return SavingThrowsSaveData{.savingThrows = std::move(data)};
-    }
-
-    void SavingThrows::load(const SavingThrowsSaveData &data)
-    {
-        if (data.savingThrows.size() != SavingThrowCount)
-        {
-            throw std::invalid_argument("saving throw save must contain exactly three entries");
-        }
-
-        std::array<bool, SavingThrowCount> loaded{};
-        for (const SavingThrowSaveData &entry : data.savingThrows)
-        {
-            const std::size_t index = savingThrowIndex(entry.type);
-            if (loaded[index])
-            {
-                throw std::invalid_argument("saving throw is duplicated in save data");
-            }
-            savingThrows_[index].setBaseValue(entry.baseValue);
-            savingThrows_[index].setAbilityType(entry.abilityType);
-            loaded[index] = true;
+            throw std::invalid_argument("saving throw ability replacement is already registered: " + id);
         }
     }
 
-    SavingThrow &SavingThrows::savingThrow(SavingThrowType type)
+    void SavingThrows::removeAbilityReplacement(std::string_view replacementId)
     {
-        return savingThrows_[savingThrowIndex(type)];
+        const std::string id = normalize(replacementId);
+        if (abilityReplacements_.erase(id) == 0)
+        {
+            throw std::invalid_argument("saving throw ability replacement is not registered: " + id);
+        }
     }
 }

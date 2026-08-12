@@ -35,7 +35,7 @@ namespace
 
         int evaluate()
         {
-            int value = parseExpression();
+            int value = parseLogicalOr();
             skipWhitespace();
             if (!isAtEnd())
             {
@@ -46,7 +46,87 @@ namespace
         }
 
     private:
-        int parseExpression()
+        int parseLogicalOr()
+        {
+            int value = parseLogicalAnd();
+            while (true)
+            {
+                skipWhitespace();
+                if (!match("||"))
+                {
+                    return value;
+                }
+                const int right = parseLogicalAnd();
+                value = (value != 0 || right != 0) ? 1 : 0;
+            }
+        }
+
+        int parseLogicalAnd()
+        {
+            int value = parseEquality();
+            while (true)
+            {
+                skipWhitespace();
+                if (!match("&&"))
+                {
+                    return value;
+                }
+                const int right = parseEquality();
+                value = (value != 0 && right != 0) ? 1 : 0;
+            }
+        }
+
+        int parseEquality()
+        {
+            int value = parseComparison();
+            while (true)
+            {
+                skipWhitespace();
+                if (match("=="))
+                {
+                    value = value == parseComparison() ? 1 : 0;
+                }
+                else if (match("!="))
+                {
+                    value = value != parseComparison() ? 1 : 0;
+                }
+                else
+                {
+                    return value;
+                }
+            }
+        }
+
+        int parseComparison()
+        {
+            int value = parseAdditive();
+            while (true)
+            {
+                skipWhitespace();
+                if (match("<="))
+                {
+                    value = value <= parseAdditive() ? 1 : 0;
+                }
+                else if (match(">="))
+                {
+                    value = value >= parseAdditive() ? 1 : 0;
+                }
+                else if (match('<'))
+                {
+                    value = value < parseAdditive() ? 1 : 0;
+                }
+                else if (match('>'))
+                {
+                    value = value > parseAdditive() ? 1 : 0;
+                }
+                else
+                {
+                    return value;
+                }
+            }
+        }
+
+        int parseAdditive()
         {
             int value = parseTerm();
 
@@ -70,18 +150,18 @@ namespace
 
         int parseTerm()
         {
-            int value = parseFactor();
+            int value = parseUnary();
 
             while (true)
             {
                 skipWhitespace();
                 if (match('*'))
                 {
-                    value = checkedArithmetic(static_cast<long long>(value) * parseFactor());
+                    value = checkedArithmetic(static_cast<long long>(value) * parseUnary());
                 }
                 else if (match('/'))
                 {
-                    const int divisor = parseFactor();
+                    const int divisor = parseUnary();
                     if (divisor == 0)
                     {
                         throw std::invalid_argument("division by zero is not allowed");
@@ -95,21 +175,33 @@ namespace
             }
         }
 
-        int parseFactor()
+        int parseUnary()
         {
             skipWhitespace();
 
+            if (match('!'))
+            {
+                return parseUnary() == 0 ? 1 : 0;
+            }
             if (match('+'))
             {
-                return parseFactor();
+                return parseUnary();
             }
             if (match('-'))
             {
-                return checkedArithmetic(-static_cast<long long>(parseFactor()));
+                return checkedArithmetic(-static_cast<long long>(parseUnary()));
             }
+
+            return parsePrimary();
+        }
+
+        int parsePrimary()
+        {
+            skipWhitespace();
+
             if (match('('))
             {
-                const int value = parseExpression();
+                const int value = parseLogicalOr();
                 skipWhitespace();
                 if (!match(')'))
                 {
@@ -185,6 +277,17 @@ namespace
             }
 
             ++position_;
+            return true;
+        }
+
+        bool match(std::string_view expected)
+        {
+            if (expression_.compare(position_, expected.size(), expected) != 0)
+            {
+                return false;
+            }
+
+            position_ += expected.size();
             return true;
         }
 

@@ -4,9 +4,10 @@
 
 namespace golarion
 {
-    struct ContributionSaveData
+    struct RequirementView
     {
-        std::string id;
         std::string expression;
+        std::string failureReason;
+        bool satisfied;
     };
 }

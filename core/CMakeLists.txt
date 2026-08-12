@@ -1,24 +1,25 @@
 add_library(golarion_model STATIC
     src/character/ability.cpp
+    src/character/armor_class.cpp
+    src/character/attack.cpp
+    src/character/attack_distance.cpp
+    src/character/base_attack_bonus.cpp
     src/character/character_sheet.cpp
+    src/character/combat_maneuvers.cpp
+    src/character/damage.cpp
     src/character/hit_points.cpp
     src/character/temporary_hit_points.cpp
     src/character/initiative.cpp
     src/character/movement.cpp
-    src/character/movement_group.cpp
-    src/character/movement_group_manager.cpp
     src/character/saving_throw.cpp
     src/character/saving_throws.cpp
     src/character/skill.cpp
     src/character/skills.cpp
     src/resource/modifier.cpp
-    src/resource/modifier_group.cpp
-    src/resource/modifier_group_manager.cpp
+    src/resource/requirement.cpp
     src/resource/modifier_set.cpp
     src/resource/expression_parser.cpp
     src/resource/contribution.cpp
-    src/resource/contribution_group.cpp
-    src/resource/contribution_group_manager.cpp
     src/resource/contribution_set.cpp
     src/resource/resource_manager.cpp
     src/util/string_utils.cpp
@@ -77,9 +78,29 @@ if(BUILD_TESTING)
     target_link_libraries(ability_test PRIVATE golarion_model)
     add_test(NAME ability_test COMMAND ability_test)
 
+    add_executable(armor_class_test tests/character/armor_class_test.cpp)
+    target_link_libraries(armor_class_test PRIVATE golarion_model)
+    add_test(NAME armor_class_test COMMAND armor_class_test)
+
+    add_executable(attack_test tests/character/attack_test.cpp)
+    target_link_libraries(attack_test PRIVATE golarion_model)
+    add_test(NAME attack_test COMMAND attack_test)
+
+    add_executable(base_attack_bonus_test tests/character/base_attack_bonus_test.cpp)
+    target_link_libraries(base_attack_bonus_test PRIVATE golarion_model)
+    add_test(NAME base_attack_bonus_test COMMAND base_attack_bonus_test)
+
     add_executable(character_sheet_test tests/character/character_sheet_test.cpp)
     target_link_libraries(character_sheet_test PRIVATE golarion_model)
     add_test(NAME character_sheet_test COMMAND character_sheet_test)
+
+    add_executable(combat_maneuvers_test tests/character/combat_maneuvers_test.cpp)
+    target_link_libraries(combat_maneuvers_test PRIVATE golarion_model)
+    add_test(NAME combat_maneuvers_test COMMAND combat_maneuvers_test)
+
+    add_executable(damage_test tests/character/damage_test.cpp)
+    target_link_libraries(damage_test PRIVATE golarion_model)
+    add_test(NAME damage_test COMMAND damage_test)
 
     add_executable(initiative_test tests/character/initiative_test.cpp)
     target_link_libraries(initiative_test PRIVATE golarion_model)
@@ -88,14 +109,6 @@ if(BUILD_TESTING)
     add_executable(movement_test tests/character/movement_test.cpp)
     target_link_libraries(movement_test PRIVATE golarion_model)
     add_test(NAME movement_test COMMAND movement_test)
-
-    add_executable(movement_group_test tests/character/movement_group_test.cpp)
-    target_link_libraries(movement_group_test PRIVATE golarion_model)
-    add_test(NAME movement_group_test COMMAND movement_group_test)
-
-    add_executable(movement_group_manager_test tests/character/movement_group_manager_test.cpp)
-    target_link_libraries(movement_group_manager_test PRIVATE golarion_model)
-    add_test(NAME movement_group_manager_test COMMAND movement_group_manager_test)
 
     add_executable(hit_points_test tests/character/hit_points_test.cpp)
     target_link_libraries(hit_points_test PRIVATE golarion_model)
@@ -133,13 +146,9 @@ if(BUILD_TESTING)
     target_link_libraries(modifier_test PRIVATE golarion_model)
     add_test(NAME modifier_test COMMAND modifier_test)
 
-    add_executable(modifier_group_test tests/resource/modifier_group_test.cpp)
-    target_link_libraries(modifier_group_test PRIVATE golarion_model)
-    add_test(NAME modifier_group_test COMMAND modifier_group_test)
-
-    add_executable(modifier_group_manager_test tests/resource/modifier_group_manager_test.cpp)
-    target_link_libraries(modifier_group_manager_test PRIVATE golarion_model)
-    add_test(NAME modifier_group_manager_test COMMAND modifier_group_manager_test)
+    add_executable(requirement_test tests/resource/requirement_test.cpp)
+    target_link_libraries(requirement_test PRIVATE golarion_model)
+    add_test(NAME requirement_test COMMAND requirement_test)
 
     add_executable(resource_manager_test tests/resource/resource_manager_test.cpp)
     target_link_libraries(resource_manager_test PRIVATE golarion_model)
@@ -148,14 +157,6 @@ if(BUILD_TESTING)
     add_executable(contribution_set_test tests/resource/contribution_set_test.cpp)
     target_link_libraries(contribution_set_test PRIVATE golarion_model)
     add_test(NAME contribution_set_test COMMAND contribution_set_test)
-
-    add_executable(contribution_group_test tests/resource/contribution_group_test.cpp)
-    target_link_libraries(contribution_group_test PRIVATE golarion_model)
-    add_test(NAME contribution_group_test COMMAND contribution_group_test)
-
-    add_executable(contribution_group_manager_test tests/resource/contribution_group_manager_test.cpp)
-    target_link_libraries(contribution_group_manager_test PRIVATE golarion_model)
-    add_test(NAME contribution_group_manager_test COMMAND contribution_group_manager_test)
 
     add_executable(expression_parser_test tests/resource/expression_parser_test.cpp)
     target_link_libraries(expression_parser_test PRIVATE golarion_model)

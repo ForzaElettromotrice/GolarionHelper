@@ -1,7 +1,7 @@
 #include "golarion/character/initiative.hpp"
 
-#include "golarion/data/initiative_save_data.hpp"
 #include "golarion/resource/resource_manager.hpp"
+#include "golarion/util/string_utils.hpp"
 #include "golarion/view/initiative_view.hpp"
 
 #include <limits>
@@ -11,8 +11,6 @@
 
 namespace
 {
-    constexpr std::string_view InitiativeResource = "initiative";
-
     int checkedInitiativeValue(long long value)
     {
         if (value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max())
@@ -25,37 +23,71 @@ namespace
 
 namespace golarion
 {
-    Initiative::Initiative(ResourceManager &resourceManager) : resourceManager_(resourceManager), abilityType_(AbilityType::Dexterity)
+    InitiativeAbilityReplacement::InitiativeAbilityReplacement(InitiativeAbilityReplacementDefinition definition)
+        : id_(normalize(definition.id)),
+          source_(normalize(definition.source)),
+          abilityType_(definition.abilityType)
     {
-        resourceManager_.registerEnhanceableResource(InitiativeResource);
     }
 
-    void Initiative::setAbilityType(AbilityType abilityType)
+    Initiative::Initiative(ResourceManager &resourceManager) : resourceManager_(resourceManager)
     {
-        abilityType_ = abilityType;
+        resourceManager_.registerEnhanceableResource(InitiativeResource);
+        resourceManager_.registerCollectionResource<InitiativeAbilityReplacement>(InitiativeAbilityReplacementsResource, [this](InitiativeAbilityReplacement replacement)
+        {
+            addAbilityReplacement(std::move(replacement));
+        }, [this](std::string_view replacementId)
+        {
+            removeAbilityReplacement(replacementId);
+        });
     }
 
     InitiativeView Initiative::toView()
     {
         ModifierSetView modifiers = resourceManager_.modifierSetView(InitiativeResource);
-        const int abilityModifier = resourceManager_.targetValue(std::string(resourceName(abilityType_)) + "Mod");
-        const int total = checkedInitiativeValue(static_cast<long long>(abilityModifier) + modifiers.total);
+        std::vector<InitiativeAbilityOptionView> abilityOptions;
+        abilityOptions.reserve(abilityReplacements_.size() + 1);
+        const int dexterityModifier = resourceManager_.targetValue("dexMod");
+        abilityOptions.push_back(InitiativeAbilityOptionView{
+            .replacementId = std::nullopt,
+            .source = "Base",
+            .abilityType = AbilityType::Dexterity,
+            .abilityModifier = dexterityModifier,
+            .totalValue = checkedInitiativeValue(static_cast<long long>(dexterityModifier) + modifiers.total)
+        });
+        for (const auto &[id, replacement] : abilityReplacements_)
+        {
+            const int abilityModifier = resourceManager_.targetValue(std::string(resourceName(replacement.abilityType_)) + "Mod");
+            abilityOptions.push_back(InitiativeAbilityOptionView{
+                .replacementId = id,
+                .source = replacement.source_,
+                .abilityType = replacement.abilityType_,
+                .abilityModifier = abilityModifier,
+                .totalValue = checkedInitiativeValue(static_cast<long long>(abilityModifier) + modifiers.total)
+            });
+        }
 
         return InitiativeView{
-            .abilityType = abilityType_,
-            .abilityModifier = abilityModifier,
-            .totalValue = total,
+            .abilityOptions = std::move(abilityOptions),
             .modifiers = std::move(modifiers)
         };
     }
 
-    InitiativeSaveData Initiative::toSaveData() const
+    void Initiative::addAbilityReplacement(InitiativeAbilityReplacement replacement)
     {
-        return InitiativeSaveData{.abilityType = abilityType_};
+        const std::string id = replacement.id_;
+        if (!abilityReplacements_.emplace(id, std::move(replacement)).second)
+        {
+            throw std::invalid_argument("initiative ability replacement is already registered: " + id);
+        }
     }
 
-    void Initiative::load(const InitiativeSaveData &data)
+    void Initiative::removeAbilityReplacement(std::string_view replacementId)
     {
-        setAbilityType(data.abilityType);
+        const std::string id = normalize(replacementId);
+        if (abilityReplacements_.erase(id) == 0)
+        {
+            throw std::invalid_argument("initiative ability replacement is not registered: " + id);
+        }
     }
 }

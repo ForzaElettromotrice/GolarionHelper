@@ -6,6 +6,7 @@
 #include "golarion/view/skill_view.hpp"
 
 #include <cassert>
+#include <map>
 #include <stdexcept>
 
 namespace
@@ -55,23 +56,43 @@ int main()
     }));
 
     acrobatics.setRanks(2);
-    acrobatics.setClassSkill(true);
     manager.addModifier("skill.acrobatics", Modifier(ModifierType::Bonus, "Talento", "Bonus ad Acrobazia", BonusType::Competence, "2"));
-    assert(acrobatics.totalValue(manager) == 9);
+    assert(acrobatics.totalValue(manager) == 6);
 
-    acrobatics.setAbilityType(AbilityType::Strength);
-    assert(acrobatics.totalValue(manager) == 7);
-    const SkillView acrobaticsView = acrobatics.toView(manager);
+    std::map<std::string, SkillAbilityReplacement> abilityReplacements;
+    abilityReplacements.emplace("muscleMemory", SkillAbilityReplacement(SkillAbilityReplacementDefinition{
+        .id = "muscleMemory",
+        .source = "Memoria muscolare",
+        .targetResourceName = "skill.acrobatics",
+        .abilityType = AbilityType::Strength
+    }));
+    std::map<std::string, SkillClassSkillGrant> classSkillGrants;
+    classSkillGrants.emplace("rogueClassSkill", SkillClassSkillGrant(SkillClassSkillGrantDefinition{
+        .id = "rogueClassSkill",
+        .source = "Ladro",
+        .targetResourceName = "skill.acrobatics"
+    }));
+    assert(acrobatics.totalValue(manager) == 6);
+    const SkillView acrobaticsView = acrobatics.toView(manager, abilityReplacements, classSkillGrants);
     assert(acrobaticsView.type == SkillType::Acrobatics);
     assert(!acrobaticsView.specializationId);
     assert(acrobaticsView.name == "Acrobazia");
     assert(acrobaticsView.resourceName == "skill.acrobatics");
-    assert(acrobaticsView.abilityType == AbilityType::Strength);
-    assert(acrobaticsView.abilityModifier == 0);
     assert(acrobaticsView.ranks == 2);
     assert(acrobaticsView.classSkill);
     assert(acrobaticsView.classSkillBonus == 3);
-    assert(acrobaticsView.totalValue == 7);
+    assert(acrobaticsView.classSkillGrants.size() == 1);
+    assert(acrobaticsView.classSkillGrants[0].source == "Ladro");
+    assert(acrobaticsView.classSkillGrants[0].targetResourceName == "skill.acrobatics");
+    assert(acrobaticsView.abilityOptions.size() == 2);
+    assert(!acrobaticsView.abilityOptions[0].replacementId.has_value());
+    assert(acrobaticsView.abilityOptions[0].abilityType == AbilityType::Dexterity);
+    assert(acrobaticsView.abilityOptions[0].abilityModifier == 2);
+    assert(acrobaticsView.abilityOptions[0].totalValue == 9);
+    assert(acrobaticsView.abilityOptions[1].replacementId == "muscleMemory");
+    assert(acrobaticsView.abilityOptions[1].abilityType == AbilityType::Strength);
+    assert(acrobaticsView.abilityOptions[1].abilityModifier == 0);
+    assert(acrobaticsView.abilityOptions[1].totalValue == 7);
     assert(!acrobaticsView.trainedOnly);
     assert(acrobaticsView.usable);
     assert(!acrobaticsView.custom);
@@ -80,7 +101,6 @@ int main()
     assert(acrobaticsData.type == SkillType::Acrobatics);
     assert(!acrobaticsData.specializationId);
     assert(acrobaticsData.ranks == 2);
-    assert(acrobaticsData.classSkill);
     assert(!acrobaticsData.custom);
 
     Skill handleAnimal(SkillType::HandleAnimal);

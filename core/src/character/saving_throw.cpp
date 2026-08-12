@@ -1,7 +1,7 @@
 #include "golarion/character/saving_throw.hpp"
 
-#include "golarion/data/saving_throw_save_data.hpp"
 #include "golarion/resource/resource_manager.hpp"
+#include "golarion/util/string_utils.hpp"
 #include "golarion/view/saving_throw_view.hpp"
 
 #include <limits>
@@ -51,6 +51,11 @@ namespace golarion
         throw std::invalid_argument("unknown saving throw type");
     }
 
+    std::string baseResourceName(SavingThrowType type)
+    {
+        return std::string(resourceName(type)) + ".base";
+    }
+
     AbilityType defaultAbility(SavingThrowType type)
     {
         switch (type)
@@ -65,57 +70,68 @@ namespace golarion
         throw std::invalid_argument("unknown saving throw type");
     }
 
-    SavingThrow::SavingThrow(SavingThrowType type) : type_(type), baseValue_(0), abilityType_(defaultAbility(type))
+    SavingThrow::SavingThrow(SavingThrowType type) : type_(type)
     {
     }
 
-    void SavingThrow::setBaseValue(int baseValue)
+    SavingThrowAbilityReplacement::SavingThrowAbilityReplacement(SavingThrowAbilityReplacementDefinition definition)
+        : id_(normalize(definition.id)),
+          source_(normalize(definition.source)),
+          savingThrowType_(definition.savingThrowType),
+          abilityType_(definition.abilityType)
     {
-        if (baseValue < 0)
-        {
-            throw std::invalid_argument("saving throw base value must not be negative");
-        }
-        baseValue_ = baseValue;
-    }
-
-    void SavingThrow::setAbilityType(AbilityType abilityType)
-    {
-        abilityType_ = abilityType;
     }
 
     void SavingThrow::registerResources(ResourceManager &resourceManager, std::vector<std::string> parentResources) const
     {
         resourceManager.registerEnhanceableResource(resourceName(type_), std::move(parentResources));
+        resourceManager.registerAccumulatedResource(baseResourceName(type_));
     }
 
-    SavingThrowView SavingThrow::toView(ResourceManager &resourceManager) const
+    SavingThrowView SavingThrow::toView(ResourceManager &resourceManager, const std::map<std::string, SavingThrowAbilityReplacement> &abilityReplacements) const
     {
         ModifierSetView modifiers = resourceManager.modifierSetView(resourceName(type_));
-        const int abilityModifier = resourceManager.targetValue(std::string(resourceName(abilityType_)) + "Mod");
-        const int total = checkedSavingThrowValue(static_cast<long long>(baseValue_) + abilityModifier + modifiers.total);
+        ContributionSetView baseContributions = resourceManager.contributionSetView(baseResourceName(type_));
+        const int baseValue = baseContributions.total;
+        std::vector<SavingThrowAbilityOptionView> abilityOptions;
+        const AbilityType baseAbilityType = defaultAbility(type_);
+        const int baseAbilityModifier = resourceManager.targetValue(std::string(resourceName(baseAbilityType)) + "Mod");
+        abilityOptions.push_back(SavingThrowAbilityOptionView{
+            .replacementId = std::nullopt,
+            .source = "Base",
+            .abilityType = baseAbilityType,
+            .abilityModifier = baseAbilityModifier,
+            .totalValue = checkedSavingThrowValue(static_cast<long long>(baseValue) + baseAbilityModifier + modifiers.total)
+        });
+        for (const auto &[id, replacement] : abilityReplacements)
+        {
+            if (replacement.savingThrowType_ != type_)
+            {
+                continue;
+            }
+            const int abilityModifier = resourceManager.targetValue(std::string(resourceName(replacement.abilityType_)) + "Mod");
+            abilityOptions.push_back(SavingThrowAbilityOptionView{
+                .replacementId = id,
+                .source = replacement.source_,
+                .abilityType = replacement.abilityType_,
+                .abilityModifier = abilityModifier,
+                .totalValue = checkedSavingThrowValue(static_cast<long long>(baseValue) + abilityModifier + modifiers.total)
+            });
+        }
 
         return SavingThrowView{
             .type = type_,
-            .baseValue = baseValue_,
-            .abilityType = abilityType_,
-            .abilityModifier = abilityModifier,
-            .totalValue = total,
+            .baseValue = baseValue,
+            .baseContributions = std::move(baseContributions),
+            .abilityOptions = std::move(abilityOptions),
             .modifiers = std::move(modifiers)
-        };
-    }
-
-    SavingThrowSaveData SavingThrow::toSaveData() const
-    {
-        return SavingThrowSaveData{
-            .type = type_,
-            .baseValue = baseValue_,
-            .abilityType = abilityType_
         };
     }
 
     int SavingThrow::totalValue(ResourceManager &resourceManager) const
     {
-        const int abilityModifier = resourceManager.targetValue(std::string(resourceName(abilityType_)) + "Mod");
-        return checkedSavingThrowValue(static_cast<long long>(baseValue_) + abilityModifier + resourceManager.modifierTotal(resourceName(type_)));
+        const AbilityType abilityType = defaultAbility(type_);
+        const int abilityModifier = resourceManager.targetValue(std::string(resourceName(abilityType)) + "Mod");
+        return checkedSavingThrowValue(static_cast<long long>(resourceManager.contributionTotal(baseResourceName(type_))) + abilityModifier + resourceManager.modifierTotal(resourceName(type_)));
     }
 }

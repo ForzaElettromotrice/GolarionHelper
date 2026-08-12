@@ -1,14 +1,16 @@
 #pragma once
 
+#include "golarion/resource/requirement.hpp"
+
 #include <optional>
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace golarion
 {
     class ModifierSet;
     class ResourceManager;
-    struct ModifierSaveData;
     struct ModifierView;
 
     enum class ModifierType
@@ -26,6 +28,7 @@ namespace golarion
 
     enum class BonusType
     {
+        Generic,
         Alchemical,
         Armor,
         NaturalArmor,
@@ -56,10 +59,8 @@ namespace golarion
     public:
         Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression);
         Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition);
-        explicit Modifier(const ModifierSaveData &data);
-
+        Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition, std::vector<Requirement> requirements);
         ModifierView toView(ResourceManager &resourceManager) const;
-        ModifierSaveData toSaveData() const;
 
         const std::string &id() const;
         ModifierType type() const;
@@ -68,13 +69,14 @@ namespace golarion
         std::optional<BonusType> bonusType() const;
         const std::string &expression() const;
         const std::optional<std::string> &condition() const;
+        const std::vector<Requirement> &requirements() const;
 
     private:
         friend class ModifierSet;
 
-        Modifier(std::string id, ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition);
-        ModifierView toView(int resolvedValue) const;
+        Modifier(std::string id, ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition, std::vector<Requirement> requirements);
         int resolveValue(ResourceManager &resourceManager) const;
+        bool requirementsSatisfied(ResourceManager &resourceManager) const;
 
         std::string id_;
         ModifierType type_;
@@ -83,5 +85,6 @@ namespace golarion
         std::optional<BonusType> bonusType_;
         std::string expression_;
         std::optional<std::string> condition_;
+        std::vector<Requirement> requirements_;
     };
 }

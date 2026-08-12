@@ -143,7 +143,7 @@ namespace golarion
         {
             for (const Modifier &modifier : modifierSet->modifiers_)
             {
-                if (!modifier.condition().has_value())
+                if (!modifier.condition().has_value() && modifier.requirementsSatisfied(resourceManager))
                 {
                     permanentModifiers.push_back(ResolvedModifier{
                         .modifier = &modifier,
@@ -171,12 +171,19 @@ namespace golarion
             modifierViews.reserve(modifierViews.size() + modifierSet->modifiers_.size());
             for (const Modifier &modifier : modifierSet->modifiers_)
             {
-                const int value = modifier.resolveValue(resourceManager);
+                ModifierView modifierView = modifier.toView(resourceManager);
+                const int value = modifierView.resolvedValue;
                 const ResolvedModifier resolvedModifier{
                     .modifier = &modifier,
                     .value = value
                 };
-                modifierViews.push_back(modifier.toView(value));
+                const bool active = modifierView.active;
+                modifierViews.push_back(std::move(modifierView));
+
+                if (!active)
+                {
+                    continue;
+                }
 
                 if (!modifier.condition().has_value())
                 {

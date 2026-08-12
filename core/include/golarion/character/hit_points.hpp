@@ -12,13 +12,13 @@ namespace golarion
     struct HitPointsSaveData;
     struct HitPointsView;
 
-    enum class DamageType
+    enum class DamageLethality
     {
         Lethal,
         NonLethal
     };
 
-    std::string_view displayName(DamageType type);
+    std::string_view displayName(DamageLethality lethality);
 
     class HitPoints final
     {
@@ -32,7 +32,7 @@ namespace golarion
         void removeTemporary(std::string_view id);
         void advanceTime(GameDuration duration);
         void heal(int amount);
-        void damage(int amount, DamageType type);
+        void damage(int amount, DamageLethality lethality);
         HitPointsView toView();
         HitPointsSaveData toSaveData() const;
 

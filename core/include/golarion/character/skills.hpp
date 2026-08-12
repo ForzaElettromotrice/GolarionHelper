@@ -23,8 +23,6 @@ namespace golarion
         Skills &operator=(Skills &&) = delete;
 
         void setRanks(SkillType type, int ranks);
-        void setClassSkill(SkillType type, bool classSkill);
-        void setAbilityType(SkillType type, AbilityType abilityType);
 
         void addSpecialization(SkillType type, const std::string &specializationId, const std::string &specialization);
         void setSpecializationRanks(SkillType type, const std::string &specializationId, int ranks);
@@ -34,22 +32,20 @@ namespace golarion
     private:
         friend class CharacterSheet;
 
-        struct SpecializationDefaults
-        {
-            AbilityType abilityType;
-            bool classSkill;
-        };
-
         Skill &skill(SkillType type);
         Skill &specialization(SkillType type, const std::string &specializationId);
-        SpecializationDefaults &specializationDefaults(SkillType type);
         std::string removableSpecializationResourceName(SkillType type, const std::string &specializationId) const;
         void removeSpecialization(SkillType type, const std::string &specializationId);
         void load(const SkillsSaveData &data);
+        void addAbilityReplacement(SkillAbilityReplacement replacement);
+        void removeAbilityReplacement(std::string_view replacementId);
+        void addClassSkillGrant(SkillClassSkillGrant grant);
+        void removeClassSkillGrant(std::string_view grantId);
 
         ResourceManager &resourceManager_;
         std::map<SkillType, Skill> skills_;
         std::map<SkillType, std::map<std::string, Skill>> specializations_;
-        std::map<SkillType, SpecializationDefaults> specializationDefaults_;
+        std::map<std::string, SkillAbilityReplacement> abilityReplacements_;
+        std::map<std::string, SkillClassSkillGrant> classSkillGrants_;
     };
 }

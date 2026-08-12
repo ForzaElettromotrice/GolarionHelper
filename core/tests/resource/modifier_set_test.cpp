@@ -1,5 +1,6 @@
 #include "golarion/resource/modifier.hpp"
 #include "golarion/resource/modifier_set.hpp"
+#include "golarion/resource/requirement.hpp"
 #include "golarion/view/modifier_set_view.hpp"
 #include "golarion/resource/resource_manager.hpp"
 
@@ -8,6 +9,7 @@
 #include <stdexcept>
 #include <string>
 #include <utility>
+#include <vector>
 
 namespace
 {
@@ -82,6 +84,33 @@ int main()
     ModifierSet expression;
     expression.addModifier(bonus("Capacità", BonusType::Racial, "@strength / 2"));
     assert(expression.calculateTotal(manager) == 2);
+
+    int armorWorn = 1;
+    manager.registerTarget("armor.worn", [&armorWorn]
+    {
+        return armorWorn;
+    });
+    ModifierSet requirements;
+    requirements.addModifier(Modifier(
+        ModifierType::Bonus,
+        "Monaco",
+        "Bonus alla CA",
+        BonusType::Dodge,
+        "3",
+        std::nullopt,
+        std::vector<Requirement>{Requirement("@armor.worn == 0", "Non applicabile mentre indossi un'armatura")}
+    ));
+    assert(requirements.calculateTotal(manager) == 0);
+    ModifierSetView inactiveView = requirements.toView(manager);
+    assert(inactiveView.total == 0);
+    assert(!inactiveView.modifiers[0].active);
+    assert(!inactiveView.modifiers[0].requirements[0].satisfied);
+
+    armorWorn = 0;
+    assert(requirements.calculateTotal(manager) == 3);
+    ModifierSetView activeView = requirements.toView(manager);
+    assert(activeView.total == 3);
+    assert(activeView.modifiers[0].active);
 
     ModifierSet negative;
     negative.addModifier(penalty("Scosso", "-2"));

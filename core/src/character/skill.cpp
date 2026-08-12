@@ -132,9 +132,7 @@ namespace golarion
     Skill::Skill(SkillType type)
         : type_(type),
           resourceName_(resourceName(type)),
-          abilityType_(defaultAbility(type)),
-          ranks_(0),
-          classSkill_(false)
+          ranks_(0)
     {
         if (requiresSpecialization(type))
         {
@@ -147,14 +145,27 @@ namespace golarion
           specializationId_(normalizedSpecializationId(specializationId)),
           specialization_(normalize(specialization)),
           resourceName_(std::string(resourceName(type)) + "." + *specializationId_),
-          abilityType_(defaultAbility(type)),
-          ranks_(0),
-          classSkill_(false)
+          ranks_(0)
     {
         if (!requiresSpecialization(type))
         {
             throw std::invalid_argument("skill does not support specializations");
         }
+    }
+
+    SkillAbilityReplacement::SkillAbilityReplacement(SkillAbilityReplacementDefinition definition)
+        : id_(normalize(definition.id)),
+          source_(normalize(definition.source)),
+          targetResourceName_(normalize(definition.targetResourceName)),
+          abilityType_(definition.abilityType)
+    {
+    }
+
+    SkillClassSkillGrant::SkillClassSkillGrant(SkillClassSkillGrantDefinition definition)
+        : id_(normalize(definition.id)),
+          source_(normalize(definition.source)),
+          targetResourceName_(normalize(definition.targetResourceName))
+    {
     }
 
     void Skill::setRanks(int ranks)
@@ -164,16 +175,6 @@ namespace golarion
             throw std::invalid_argument("skill ranks must not be negative");
         }
         ranks_ = ranks;
-    }
-
-    void Skill::setClassSkill(bool classSkill)
-    {
-        classSkill_ = classSkill;
-    }
-
-    void Skill::setAbilityType(AbilityType abilityType)
-    {
-        abilityType_ = abilityType;
     }
 
     void Skill::registerResources(ResourceManager &resourceManager) const
@@ -186,28 +187,62 @@ namespace golarion
         resourceManager.registerEnhanceableResource(resourceName_, std::move(parentResources));
     }
 
-    SkillView Skill::toView(ResourceManager &resourceManager) const
+    SkillView Skill::toView(ResourceManager &resourceManager, const std::map<std::string, SkillAbilityReplacement> &abilityReplacements, const std::map<std::string, SkillClassSkillGrant> &classSkillGrants) const
     {
         ModifierSetView modifierView = resourceManager.modifierSetView(resourceName_);
-        const std::string abilityModifierTarget = std::string(resourceName(abilityType_)) + "Mod";
-        const int abilityModifier = resourceManager.targetValue(abilityModifierTarget);
-        const int classSkillBonus = classSkill_ && ranks_ > 0 ? 3 : 0;
-        const int total = checkedSkillValue(static_cast<long long>(abilityModifier) + ranks_ + classSkillBonus + modifierView.total);
+        std::vector<SkillClassSkillGrantView> applicableClassSkillGrants;
+        for (const auto &[id, grant] : classSkillGrants)
+        {
+            if (resourceManager.enhanceableResourceIsOrInheritsFrom(resourceName_, grant.targetResourceName_))
+            {
+                applicableClassSkillGrants.push_back(SkillClassSkillGrantView{
+                    .id = id,
+                    .source = grant.source_,
+                    .targetResourceName = grant.targetResourceName_
+                });
+            }
+        }
+        const bool classSkill = !applicableClassSkillGrants.empty();
+        const int classSkillBonus = classSkill && ranks_ > 0 ? 3 : 0;
+        std::vector<SkillAbilityOptionView> abilityOptions;
+        const AbilityType baseAbilityType = defaultAbility(type_);
+        const int baseAbilityModifier = resourceManager.targetValue(std::string(resourceName(baseAbilityType)) + "Mod");
+        abilityOptions.push_back(SkillAbilityOptionView{
+            .replacementId = std::nullopt,
+            .source = "Base",
+            .abilityType = baseAbilityType,
+            .abilityModifier = baseAbilityModifier,
+            .totalValue = checkedSkillValue(static_cast<long long>(baseAbilityModifier) + ranks_ + classSkillBonus + modifierView.total)
+        });
+        for (const auto &[id, replacement] : abilityReplacements)
+        {
+            if (!resourceManager.enhanceableResourceIsOrInheritsFrom(resourceName_, replacement.targetResourceName_))
+            {
+                continue;
+            }
+            const int abilityModifier = resourceManager.targetValue(std::string(resourceName(replacement.abilityType_)) + "Mod");
+            abilityOptions.push_back(SkillAbilityOptionView{
+                .replacementId = id,
+                .source = replacement.source_,
+                .abilityType = replacement.abilityType_,
+                .abilityModifier = abilityModifier,
+                .totalValue = checkedSkillValue(static_cast<long long>(abilityModifier) + ranks_ + classSkillBonus + modifierView.total)
+            });
+        }
 
         return SkillView{
             .type = type_,
             .specializationId = specializationId_,
             .name = specialization_.value_or(std::string(displayName(type_))),
             .resourceName = resourceName_,
-            .abilityType = abilityType_,
-            .abilityModifier = abilityModifier,
             .ranks = ranks_,
-            .classSkill = classSkill_,
+            .classSkill = classSkill,
             .classSkillBonus = classSkillBonus,
-            .totalValue = total,
             .trainedOnly = trainedOnly(type_),
             .usable = usable(),
             .custom = specializationId_.has_value(),
+            .classSkillGrants = std::move(applicableClassSkillGrants),
+            .abilityOptions = std::move(abilityOptions),
             .modifiers = std::move(modifierView)
         };
     }
@@ -218,20 +253,16 @@ namespace golarion
             .type = type_,
             .specializationId = specializationId_,
             .specialization = specialization_,
-            .abilityType = abilityType_,
             .ranks = ranks_,
-            .classSkill = classSkill_,
             .custom = specializationId_.has_value()
         };
     }
 
     int Skill::totalValue(ResourceManager &resourceManager) const
     {
-        const std::string abilityModifierTarget = std::string(resourceName(abilityType_)) + "Mod";
-        const int classSkillBonus = classSkill_ && ranks_ > 0 ? 3 : 0;
+        const std::string abilityModifierTarget = std::string(resourceName(defaultAbility(type_))) + "Mod";
         const long long total = static_cast<long long>(resourceManager.targetValue(abilityModifierTarget))
                                 + ranks_
-                                + classSkillBonus
                                 + resourceManager.modifierTotal(resourceName_);
         return checkedSkillValue(total);
     }

@@ -25,13 +25,13 @@ namespace
 
 namespace golarion
 {
-    std::string_view displayName(DamageType type)
+    std::string_view displayName(DamageLethality lethality)
     {
-        switch (type)
+        switch (lethality)
         {
-            case DamageType::Lethal:
+            case DamageLethality::Lethal:
                 return "Letale";
-            case DamageType::NonLethal:
+            case DamageLethality::NonLethal:
                 return "Non letale";
         }
         throw std::invalid_argument("unknown damage type");
@@ -111,14 +111,14 @@ namespace golarion
         nonLethal_ = std::max(0, nonLethal_ - std::min(nonLethal_, amount));
     }
 
-    void HitPoints::damage(int amount, DamageType type)
+    void HitPoints::damage(int amount, DamageLethality lethality)
     {
         if (amount < 0)
         {
             throw std::invalid_argument("damage amount must not be negative");
         }
 
-        if (type != DamageType::Lethal && type != DamageType::NonLethal)
+        if (lethality != DamageLethality::Lethal && lethality != DamageLethality::NonLethal)
         {
             throw std::invalid_argument("unknown damage type");
         }
@@ -128,12 +128,12 @@ namespace golarion
         int newDamageTaken = damageTaken_;
         int newNonLethal = nonLethal_;
 
-        switch (type)
+        switch (lethality)
         {
-            case DamageType::Lethal:
+            case DamageLethality::Lethal:
                 newDamageTaken = checkedHitPointValue(static_cast<long long>(damageTaken_) + remainingDamage);
                 break;
-            case DamageType::NonLethal:
+            case DamageLethality::NonLethal:
             {
                 const int maximum = maxValue();
                 const int nonLethalCapacity = std::max(0, maximum - std::min(nonLethal_, maximum));

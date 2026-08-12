@@ -26,8 +26,9 @@ namespace
         golarion::SkillType::Profession
     };
 
-    constexpr std::array SkillCategories{
-        std::string_view("skill.all"),
+    constexpr std::string_view SkillRootResource = "skill.all";
+
+    constexpr std::array SkillCategoryResources{
         std::string_view("skill.craft"),
         std::string_view("skill.perform"),
         std::string_view("skill.profession"),
@@ -115,22 +116,21 @@ namespace
         return type >= golarion::SkillType::KnowledgeArcana && type <= golarion::SkillType::KnowledgeReligion;
     }
 
-    std::vector<std::string> categoriesFor(golarion::SkillType type)
+    std::string parentResourceFor(golarion::SkillType type)
     {
-        std::vector<std::string> categories{"skill.all"};
         if (golarion::requiresSpecialization(type))
         {
-            categories.emplace_back(golarion::resourceName(type));
+            return std::string(golarion::resourceName(type));
         }
         if (isKnowledge(type))
         {
-            categories.emplace_back("skill.knowledge");
+            return "skill.knowledge";
         }
         if (golarion::appliesArmorCheckPenalty(type))
         {
-            categories.emplace_back("skill.armorCheckPenalty");
+            return "skill.armorCheckPenalty";
         }
-        return categories;
+        return std::string(SkillRootResource);
     }
 
     bool isCanonicalSpecialization(golarion::SkillType type, std::string_view specializationId)
@@ -161,18 +161,15 @@ namespace golarion
 {
     Skills::Skills(ResourceManager &resourceManager) : resourceManager_(resourceManager)
     {
-        for (std::string_view category : SkillCategories)
+        resourceManager_.registerEnhanceableResource(SkillRootResource);
+        for (std::string_view category : SkillCategoryResources)
         {
-            resourceManager_.registerEnhanceableResource(category);
+            resourceManager_.registerEnhanceableResource(category, {std::string(SkillRootResource)});
         }
 
         for (SkillType type : SpecializedSkillTypes)
         {
             specializations_.try_emplace(type);
-            specializationDefaults_.emplace(type, SpecializationDefaults{
-                .abilityType = defaultAbility(type),
-                .classSkill = false
-            });
         }
 
         const std::size_t skillTypeCount = static_cast<std::size_t>(SkillType::Fly) + 1;
@@ -189,7 +186,7 @@ namespace golarion
             {
                 throw std::logic_error("standard skill is duplicated");
             }
-            entry->second.registerResources(resourceManager_, categoriesFor(type));
+            entry->second.registerResources(resourceManager_, {parentResourceFor(type)});
         }
 
         for (const CanonicalSpecialization &specialization : CraftSpecializations)
@@ -204,41 +201,25 @@ namespace golarion
         {
             addSpecialization(SkillType::Profession, std::string(specialization.id), std::string(specialization.displayName));
         }
+        resourceManager_.registerCollectionResource<SkillAbilityReplacement>(SkillAbilityReplacementsResource, [this](SkillAbilityReplacement replacement)
+        {
+            addAbilityReplacement(std::move(replacement));
+        }, [this](std::string_view replacementId)
+        {
+            removeAbilityReplacement(replacementId);
+        });
+        resourceManager_.registerCollectionResource<SkillClassSkillGrant>(SkillClassSkillGrantsResource, [this](SkillClassSkillGrant grant)
+        {
+            addClassSkillGrant(std::move(grant));
+        }, [this](std::string_view grantId)
+        {
+            removeClassSkillGrant(grantId);
+        });
     }
 
     void Skills::setRanks(SkillType type, int ranks)
     {
         skill(type).setRanks(ranks);
-    }
-
-    void Skills::setClassSkill(SkillType type, bool classSkill)
-    {
-        if (!requiresSpecialization(type))
-        {
-            skill(type).setClassSkill(classSkill);
-            return;
-        }
-
-        specializationDefaults(type).classSkill = classSkill;
-        for (auto &[specializationId, specializedSkill] : specializations_.at(type))
-        {
-            specializedSkill.setClassSkill(classSkill);
-        }
-    }
-
-    void Skills::setAbilityType(SkillType type, AbilityType abilityType)
-    {
-        if (!requiresSpecialization(type))
-        {
-            skill(type).setAbilityType(abilityType);
-            return;
-        }
-
-        specializationDefaults(type).abilityType = abilityType;
-        for (auto &[specializationId, specializedSkill] : specializations_.at(type))
-        {
-            specializedSkill.setAbilityType(abilityType);
-        }
     }
 
     void Skills::addSpecialization(SkillType type, const std::string &specializationId, const std::string &specialization)
@@ -261,10 +242,7 @@ namespace golarion
             throw std::logic_error("skill specialization insertion failed");
         }
 
-        const SpecializationDefaults &defaults = specializationDefaults(type);
-        entry->second.setAbilityType(defaults.abilityType);
-        entry->second.setClassSkill(defaults.classSkill);
-        entry->second.registerResources(resourceManager_, categoriesFor(type));
+        entry->second.registerResources(resourceManager_, {parentResourceFor(type)});
     }
 
     void Skills::setSpecializationRanks(SkillType type, const std::string &specializationId, int ranks)
@@ -285,14 +263,14 @@ namespace golarion
 
         for (const auto &entry : skills_)
         {
-            skillViews.push_back(entry.second.toView(resourceManager_));
+            skillViews.push_back(entry.second.toView(resourceManager_, abilityReplacements_, classSkillGrants_));
         }
 
         for (const auto &[type, specializedSkills] : specializations_)
         {
             for (const auto &[specializationId, specializedSkill] : specializedSkills)
             {
-                SkillView view = specializedSkill.toView(resourceManager_);
+                SkillView view = specializedSkill.toView(resourceManager_, abilityReplacements_, classSkillGrants_);
                 view.custom = !isCanonicalSpecialization(type, specializationId);
                 skillViews.push_back(std::move(view));
             }
@@ -352,8 +330,6 @@ namespace golarion
     {
         using SkillIdentity = std::pair<SkillType, std::string>;
         std::set<SkillIdentity> identities;
-        std::map<SkillType, SpecializationDefaults> loadedSpecializationDefaults;
-
         for (const SkillSaveData &skillData : data.skills)
         {
             if (skillData.ranks < 0)
@@ -391,15 +367,6 @@ namespace golarion
                 throw std::invalid_argument("skill specialization is duplicated in save data: " + normalizedId);
             }
 
-            const SpecializationDefaults defaults{
-                .abilityType = skillData.abilityType,
-                .classSkill = skillData.classSkill
-            };
-            auto [entry, inserted] = loadedSpecializationDefaults.emplace(skillData.type, defaults);
-            if (!inserted && (entry->second.abilityType != defaults.abilityType || entry->second.classSkill != defaults.classSkill))
-            {
-                throw std::invalid_argument("specializations of the same skill have inconsistent defaults");
-            }
         }
 
         for (const auto &entry : skills_)
@@ -428,12 +395,6 @@ namespace golarion
             }
         }
 
-        for (const auto &[type, defaults] : loadedSpecializationDefaults)
-        {
-            setAbilityType(type, defaults.abilityType);
-            setClassSkill(type, defaults.classSkill);
-        }
-
         for (const SkillSaveData &skillData : data.skills)
         {
             if (requiresSpecialization(skillData.type))
@@ -443,8 +404,6 @@ namespace golarion
             }
 
             Skill &standardSkill = skill(skillData.type);
-            standardSkill.setAbilityType(skillData.abilityType);
-            standardSkill.setClassSkill(skillData.classSkill);
             standardSkill.setRanks(skillData.ranks);
         }
     }
@@ -474,6 +433,20 @@ namespace golarion
     {
         const std::string normalizedId = normalize(specializationId);
         const std::string specializationResource = removableSpecializationResourceName(type, normalizedId);
+        for (const auto &[replacementId, replacement] : abilityReplacements_)
+        {
+            if (replacement.targetResourceName_ == specializationResource)
+            {
+                throw std::invalid_argument("skill specialization is targeted by ability replacement: " + replacementId);
+            }
+        }
+        for (const auto &[grantId, grant] : classSkillGrants_)
+        {
+            if (grant.targetResourceName_ == specializationResource)
+            {
+                throw std::invalid_argument("skill specialization is targeted by class skill grant: " + grantId);
+            }
+        }
         resourceManager_.unregisterEnhanceableResource(specializationResource);
         specializations_.at(type).erase(normalizedId);
     }
@@ -509,13 +482,49 @@ namespace golarion
         return entry->second;
     }
 
-    Skills::SpecializationDefaults &Skills::specializationDefaults(SkillType type)
+    void Skills::addAbilityReplacement(SkillAbilityReplacement replacement)
     {
-        auto defaults = specializationDefaults_.find(type);
-        if (defaults == specializationDefaults_.end())
+        if (!resourceManager_.enhanceableResourceIsOrInheritsFrom(replacement.targetResourceName_, SkillRootResource))
         {
-            throw std::invalid_argument("skill does not support specializations");
+            throw std::invalid_argument("skill ability replacement target is not a skill resource: " + replacement.targetResourceName_);
         }
-        return defaults->second;
+
+        const std::string id = replacement.id_;
+        if (!abilityReplacements_.emplace(id, std::move(replacement)).second)
+        {
+            throw std::invalid_argument("skill ability replacement is already registered: " + id);
+        }
+    }
+
+    void Skills::removeAbilityReplacement(std::string_view replacementId)
+    {
+        const std::string id = normalize(replacementId);
+        if (abilityReplacements_.erase(id) == 0)
+        {
+            throw std::invalid_argument("skill ability replacement is not registered: " + id);
+        }
+    }
+
+    void Skills::addClassSkillGrant(SkillClassSkillGrant grant)
+    {
+        if (!resourceManager_.enhanceableResourceIsOrInheritsFrom(grant.targetResourceName_, SkillRootResource))
+        {
+            throw std::invalid_argument("class skill grant target is not a skill resource: " + grant.targetResourceName_);
+        }
+
+        const std::string id = grant.id_;
+        if (!classSkillGrants_.emplace(id, std::move(grant)).second)
+        {
+            throw std::invalid_argument("class skill grant is already registered: " + id);
+        }
+    }
+
+    void Skills::removeClassSkillGrant(std::string_view grantId)
+    {
+        const std::string id = normalize(grantId);
+        if (classSkillGrants_.erase(id) == 0)
+        {
+            throw std::invalid_argument("class skill grant is not registered: " + id);
+        }
     }
 }
