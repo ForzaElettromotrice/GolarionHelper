@@ -34,17 +34,17 @@ namespace golarion
         {
         }
 
-        static std::int64_t checkedRounds(std::int64_t value, std::int64_t roundsPerUnit)
+        static std::int64_t checkedRounds(std::int64_t value, std::int64_t multiplier)
         {
             if (value < 0)
             {
                 throw std::invalid_argument("game duration must not be negative");
             }
-            if (value > std::numeric_limits<std::int64_t>::max() / roundsPerUnit)
+            if (value > std::numeric_limits<std::int64_t>::max() / multiplier)
             {
                 throw std::invalid_argument("game duration is out of range");
             }
-            return value * roundsPerUnit;
+            return value * multiplier;
         }
 
         std::int64_t rounds_;

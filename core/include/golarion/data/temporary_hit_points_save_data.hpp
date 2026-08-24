@@ -12,7 +12,7 @@ namespace golarion
     {
         std::string id;
         int remaining;
-        std::optional<GameDuration> remainingDuration;
+        std::optional<GameDuration> duration;
     };
 
     struct TemporaryHitPointsSaveData

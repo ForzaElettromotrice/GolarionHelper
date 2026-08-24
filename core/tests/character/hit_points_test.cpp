@@ -30,6 +30,14 @@ int main()
     using namespace golarion;
 
     ResourceManager manager;
+    manager.registerTarget("conMod", []
+    {
+        return 0;
+    });
+    manager.registerTarget("level", []
+    {
+        return 1;
+    });
     HitPoints hitPoints(manager);
     manager.registerTarget("temporaryAmount", []
     {
@@ -67,7 +75,7 @@ int main()
     assert(view.temporary.pools.empty());
     assert(view.nonLethal == 13);
     assert(view.maxContributions.total == 3);
-    assert(view.maxContributions.contributions.size() == 1);
+    assert(view.maxContributions.contributions.size() == 2);
 
     hitPoints.heal(4);
     view = hitPoints.toView();

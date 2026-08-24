@@ -27,7 +27,6 @@ namespace golarion
         void add(std::string id, int amount, std::optional<GameDuration> duration);
         void remove(std::string_view id);
         int absorb(int damage);
-        void advanceTime(GameDuration duration);
         int total() const;
         TemporaryHitPointsView toView() const;
         TemporaryHitPointsSaveData toSaveData() const;
@@ -38,7 +37,7 @@ namespace golarion
         {
             std::string id;
             int remaining;
-            std::optional<GameDuration> remainingDuration;
+            std::optional<GameDuration> duration;
         };
 
         static bool expiresBefore(const Pool &left, const Pool &right);

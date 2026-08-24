@@ -1,6 +1,7 @@
 #include "golarion/character/hit_points.hpp"
 
 #include "golarion/data/hit_points_save_data.hpp"
+#include "golarion/resource/contribution.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/view/hit_points_view.hpp"
 
@@ -11,8 +12,6 @@
 
 namespace
 {
-    constexpr std::string_view MaxHitPointsResource = "hp.max";
-
     int checkedHitPointValue(long long value)
     {
         if (value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max())
@@ -41,6 +40,7 @@ namespace golarion
         : resourceManager_(resourceManager), baseMax_(0), damageTaken_(0), nonLethal_(0)
     {
         resourceManager_.registerAccumulatedResource(MaxHitPointsResource);
+        resourceManager_.addContribution(MaxHitPointsResource, Contribution("hitPoints.constitution", "@conMod * @level"));
         resourceManager_.registerCollectionResource<TemporaryHitPointGrant>(TemporaryHitPointsResource, [this](TemporaryHitPointGrant grant)
         {
             addTemporary(std::move(grant.id), resourceManager_.evaluateExpression(grant.amountExpression), grant.duration);
@@ -84,11 +84,6 @@ namespace golarion
     void HitPoints::removeTemporary(std::string_view id)
     {
         temporary_.remove(id);
-    }
-
-    void HitPoints::advanceTime(GameDuration duration)
-    {
-        temporary_.advanceTime(duration);
     }
 
     void HitPoints::setNonLethal(int value)

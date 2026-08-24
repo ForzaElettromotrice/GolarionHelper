@@ -41,7 +41,7 @@ int main()
     assert(view.total == 19);
     assert(view.pools[0].id == "short");
     assert(view.pools[0].remaining == 6);
-    assert(view.pools[0].remainingDuration->roundCount() == 3);
+    assert(view.pools[0].duration->roundCount() == 3);
     assert(view.pools[1].id == "long");
     assert(view.pools[2].id == "manual");
 
@@ -52,18 +52,12 @@ int main()
     assert(view.pools[0].remaining == 9);
     assert(view.pools[1].id == "manual");
 
-    temporary.advanceTime(GameDuration::fromRounds(5));
-    view = temporary.toView();
-    assert(view.total == 3);
-    assert(view.pools.size() == 1);
-    assert(view.pools[0].id == "manual");
-
     const TemporaryHitPointsSaveData data = temporary.toSaveData();
     TemporaryHitPoints restored;
     restored.load(data);
-    assert(restored.total() == 3);
+    assert(restored.total() == 12);
     restored.remove(" manual ");
-    assert(restored.total() == 0);
+    assert(restored.total() == 9);
 
     assert(throwsInvalidArgument([&]
     {
@@ -77,11 +71,10 @@ int main()
     {
         restored.add("zero", 1, GameDuration::fromRounds(0));
     }));
-
     const TemporaryHitPointsSaveData duplicateData{
         .pools = {
-            TemporaryHitPointPoolSaveData{.id = "same", .remaining = 1, .remainingDuration = std::nullopt},
-            TemporaryHitPointPoolSaveData{.id = " same ", .remaining = 2, .remainingDuration = std::nullopt}
+            TemporaryHitPointPoolSaveData{.id = "same", .remaining = 1, .duration = std::nullopt},
+            TemporaryHitPointPoolSaveData{.id = " same ", .remaining = 2, .duration = std::nullopt}
         }
     };
     assert(throwsInvalidArgument([&]

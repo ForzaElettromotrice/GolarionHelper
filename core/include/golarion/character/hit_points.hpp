@@ -8,6 +8,8 @@
 
 namespace golarion
 {
+    inline constexpr std::string_view MaxHitPointsResource = "hp.max";
+
     class ResourceManager;
     struct HitPointsSaveData;
     struct HitPointsView;
@@ -30,7 +32,6 @@ namespace golarion
         void setNonLethal(int value);
         void addTemporary(std::string id, int amount, std::optional<GameDuration> duration);
         void removeTemporary(std::string_view id);
-        void advanceTime(GameDuration duration);
         void heal(int amount);
         void damage(int amount, DamageLethality lethality);
         HitPointsView toView();

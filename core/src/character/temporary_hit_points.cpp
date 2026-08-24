@@ -20,11 +20,10 @@ namespace golarion
         {
             throw std::invalid_argument("temporary hit point amount must be greater than zero");
         }
-        if (duration && duration->roundCount() == 0)
+        if (duration.has_value() && duration->roundCount() == 0)
         {
             throw std::invalid_argument("temporary hit point duration must be greater than zero");
         }
-
         auto existing = std::ranges::find(pools_, id, &Pool::id);
         if (existing == pools_.end())
         {
@@ -35,12 +34,12 @@ namespace golarion
             pools_.push_back(Pool{
                 .id = std::move(id),
                 .remaining = amount,
-                .remainingDuration = duration
+                .duration = duration
             });
             return;
         }
 
-        if (amount > existing->remaining || (amount == existing->remaining && lastsLonger(duration, existing->remainingDuration)))
+        if (amount > existing->remaining || (amount == existing->remaining && lastsLonger(duration, existing->duration)))
         {
             const long long newTotal = static_cast<long long>(total()) - existing->remaining + amount;
             if (newTotal > std::numeric_limits<int>::max())
@@ -48,7 +47,7 @@ namespace golarion
                 throw std::invalid_argument("temporary hit point total is out of range");
             }
             existing->remaining = amount;
-            existing->remainingDuration = duration;
+            existing->duration = duration;
         }
     }
 
@@ -87,25 +86,6 @@ namespace golarion
         return damage;
     }
 
-    void TemporaryHitPoints::advanceTime(GameDuration duration)
-    {
-        const std::int64_t elapsedRounds = duration.roundCount();
-        for (Pool &pool : pools_)
-        {
-            if (!pool.remainingDuration)
-            {
-                continue;
-            }
-            const std::int64_t remainingRounds = std::max<std::int64_t>(0, pool.remainingDuration->roundCount() - elapsedRounds);
-            pool.remainingDuration = GameDuration::fromRounds(remainingRounds);
-        }
-
-        std::erase_if(pools_, [](const Pool &pool)
-        {
-            return pool.remainingDuration && pool.remainingDuration->roundCount() == 0;
-        });
-    }
-
     int TemporaryHitPoints::total() const
     {
         long long total = 0;
@@ -132,7 +112,7 @@ namespace golarion
             poolViews.push_back(TemporaryHitPointPoolView{
                 .id = pool.id,
                 .remaining = pool.remaining,
-                .remainingDuration = pool.remainingDuration
+                .duration = pool.duration
             });
         }
         return TemporaryHitPointsView{
@@ -153,7 +133,7 @@ namespace golarion
             poolData.push_back(TemporaryHitPointPoolSaveData{
                 .id = pool.id,
                 .remaining = pool.remaining,
-                .remainingDuration = pool.remainingDuration
+                .duration = pool.duration
             });
         }
         return TemporaryHitPointsSaveData{.pools = std::move(poolData)};
@@ -170,26 +150,26 @@ namespace golarion
             {
                 throw std::invalid_argument("temporary hit point pool is duplicated in save data: " + normalizedId);
             }
-            restored.add(normalizedId, pool.remaining, pool.remainingDuration);
+            restored.add(normalizedId, pool.remaining, pool.duration);
         }
         *this = std::move(restored);
     }
 
     bool TemporaryHitPoints::expiresBefore(const Pool &left, const Pool &right)
     {
-        if (left.remainingDuration && right.remainingDuration)
+        if (left.duration.has_value() && right.duration.has_value())
         {
-            if (left.remainingDuration->roundCount() != right.remainingDuration->roundCount())
+            if (left.duration->roundCount() != right.duration->roundCount())
             {
-                return left.remainingDuration->roundCount() < right.remainingDuration->roundCount();
+                return left.duration->roundCount() < right.duration->roundCount();
             }
             return left.id < right.id;
         }
-        if (left.remainingDuration)
+        if (left.duration.has_value())
         {
             return true;
         }
-        if (right.remainingDuration)
+        if (right.duration.has_value())
         {
             return false;
         }
@@ -198,11 +178,11 @@ namespace golarion
 
     bool TemporaryHitPoints::lastsLonger(const std::optional<GameDuration> &left, const std::optional<GameDuration> &right)
     {
-        if (!left)
+        if (!left.has_value())
         {
             return right.has_value();
         }
-        if (!right)
+        if (!right.has_value())
         {
             return false;
         }

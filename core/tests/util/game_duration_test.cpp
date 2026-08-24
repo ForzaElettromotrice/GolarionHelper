@@ -1,7 +1,6 @@
 #include "golarion/util/game_duration.hpp"
 
 #include <cassert>
-#include <cstdint>
 #include <limits>
 #include <stdexcept>
 
