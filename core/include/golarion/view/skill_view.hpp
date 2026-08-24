@@ -17,6 +17,7 @@ namespace golarion
         AbilityType abilityType;
         int abilityModifier;
         int totalValue;
+        ModifierSetView modifiers;
     };
 
     struct SkillClassSkillGrantView

@@ -162,6 +162,11 @@ namespace golarion
 
     ModifierSetView ModifierSet::toView(const std::vector<const ModifierSet *> &modifierSets, ResourceManager &resourceManager)
     {
+        return toView(modifierSets, resourceManager, {});
+    }
+
+    ModifierSetView ModifierSet::toView(const std::vector<const ModifierSet *> &modifierSets, ResourceManager &resourceManager, const std::vector<std::string> &activeConditions)
+    {
         std::vector<ResolvedModifier> permanentModifiers;
         std::vector<ConditionalGroup> conditionalGroups;
         std::vector<ModifierView> modifierViews;
@@ -210,6 +215,15 @@ namespace golarion
         }
 
         const int permanentTotal = calculateResolvedTotal(permanentModifiers);
+        std::vector<ResolvedModifier> activeModifiers = permanentModifiers;
+        for (const ConditionalGroup &group : conditionalGroups)
+        {
+            if (std::ranges::find(activeConditions, group.condition) != activeConditions.end())
+            {
+                activeModifiers.insert(activeModifiers.end(), group.modifiers.begin(), group.modifiers.end());
+            }
+        }
+        const int activeTotal = calculateResolvedTotal(activeModifiers);
         std::vector<ModifierSetView::ConditionalTotalView> conditionalTotals;
         conditionalTotals.reserve(conditionalGroups.size());
 
@@ -224,7 +238,8 @@ namespace golarion
         }
 
         return ModifierSetView{
-            .total = permanentTotal,
+            .permanentTotal = permanentTotal,
+            .total = activeTotal,
             .conditionalTotals = std::move(conditionalTotals),
             .modifiers = std::move(modifierViews)
         };

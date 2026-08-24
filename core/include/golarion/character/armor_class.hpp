@@ -13,6 +13,7 @@ namespace golarion
     inline constexpr std::string_view ArmorClassReflexiveResource = "armorClass.reflexive";
     inline constexpr std::string_view ArmorClassSolidResource = "armorClass.solid";
     inline constexpr std::string_view ArmorClassAbilityReplacementsResource = "armorClass.abilityReplacements";
+    inline constexpr std::string_view ArmorClassAbilitySuppressionsResource = "armorClass.abilitySuppressions";
     inline constexpr std::string_view MaximumDexterityLimitsResource = "armorClass.maxDexLimits";
     inline constexpr std::string_view MaximumDexterityAllResource = "armorClass.maxDex.all";
 
@@ -55,6 +56,12 @@ namespace golarion
         AbilityType abilityType;
     };
 
+    struct ArmorClassAbilitySuppressionDefinition
+    {
+        std::string id;
+        std::string source;
+    };
+
     class ArmorClassAbilityReplacement final
     {
     public:
@@ -82,6 +89,18 @@ namespace golarion
         std::string expression_;
     };
 
+    class ArmorClassAbilitySuppression final
+    {
+    public:
+        explicit ArmorClassAbilitySuppression(ArmorClassAbilitySuppressionDefinition definition);
+
+    private:
+        friend class ArmorClass;
+
+        std::string id_;
+        std::string source_;
+    };
+
     class ArmorClass final
     {
     public:
@@ -93,11 +112,14 @@ namespace golarion
     private:
         void addAbilityReplacement(ArmorClassAbilityReplacement replacement);
         void removeAbilityReplacement(std::string_view replacementId);
+        void addAbilitySuppression(ArmorClassAbilitySuppression suppression);
+        void removeAbilitySuppression(std::string_view suppressionId);
         void addMaximumDexterityLimit(MaximumDexterityLimit limit);
         void removeMaximumDexterityLimit(std::string_view limitId);
 
         ResourceManager &resourceManager_;
         std::map<std::string, ArmorClassAbilityReplacement> abilityReplacements_;
+        std::map<std::string, ArmorClassAbilitySuppression> abilitySuppressions_;
         std::map<std::string, MaximumDexterityLimit> maximumDexterityLimits_;
     };
 }

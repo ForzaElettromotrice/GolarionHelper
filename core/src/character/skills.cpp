@@ -161,11 +161,27 @@ namespace golarion
 {
     Skills::Skills(ResourceManager &resourceManager) : resourceManager_(resourceManager)
     {
+        for (AbilityType abilityType : {AbilityType::Strength, AbilityType::Dexterity, AbilityType::Constitution, AbilityType::Intelligence, AbilityType::Wisdom, AbilityType::Charisma})
+        {
+            resourceManager_.registerEnhanceableResource(skillCheckResourceName(abilityType));
+        }
         resourceManager_.registerEnhanceableResource(SkillRootResource);
         for (std::string_view category : SkillCategoryResources)
         {
             resourceManager_.registerEnhanceableResource(category, {std::string(SkillRootResource)});
         }
+        resourceManager_.registerTarget(ArmorCheckPenaltyTarget, [this]
+        {
+            return armorCheckPenalty();
+        });
+        resourceManager_.addModifier("skill.armorCheckPenalty", Modifier(ModifierType::Penalty, "Armatura e carico", "Penalità di armatura alla prova applicabile", std::nullopt, "@armorCheckPenalty"));
+        resourceManager_.registerCollectionResource<ArmorCheckPenalty>(ArmorCheckPenaltiesResource, [this](ArmorCheckPenalty penalty)
+        {
+            addArmorCheckPenalty(std::move(penalty));
+        }, [this](std::string_view penaltyId)
+        {
+            removeArmorCheckPenalty(penaltyId);
+        });
 
         for (SkillType type : SpecializedSkillTypes)
         {
@@ -252,6 +268,21 @@ namespace golarion
 
     SkillsView Skills::toView()
     {
+        const int resolvedArmorCheckPenalty = armorCheckPenalty();
+        std::vector<ArmorCheckPenaltySourceView> armorCheckPenaltySourceViews;
+        armorCheckPenaltySourceViews.reserve(armorCheckPenalties_.size());
+        for (const auto &[id, penalty] : armorCheckPenalties_)
+        {
+            const int resolvedValue = resourceManager_.evaluateExpression(penalty.expression_);
+            armorCheckPenaltySourceViews.push_back(ArmorCheckPenaltySourceView{
+                .id = id,
+                .source = penalty.source_,
+                .expression = penalty.expression_,
+                .resolvedValue = resolvedValue,
+                .constraining = resolvedValue == resolvedArmorCheckPenalty
+            });
+        }
+
         std::size_t skillCount = skills_.size();
         for (const auto &entry : specializations_)
         {
@@ -285,7 +316,13 @@ namespace golarion
             return left.specializationId < right.specializationId;
         });
 
-        return SkillsView{.skills = std::move(skillViews)};
+        return SkillsView{
+            .armorCheckPenalty = ArmorCheckPenaltyView{
+                .total = resolvedArmorCheckPenalty,
+                .sources = std::move(armorCheckPenaltySourceViews)
+            },
+            .skills = std::move(skillViews)
+        };
     }
 
     SkillsSaveData Skills::toSaveData() const
@@ -525,6 +562,40 @@ namespace golarion
         if (classSkillGrants_.erase(id) == 0)
         {
             throw std::invalid_argument("class skill grant is not registered: " + id);
+        }
+    }
+
+    int Skills::armorCheckPenalty()
+    {
+        int highestPenalty = 0;
+        for (const auto &[id, penalty] : armorCheckPenalties_)
+        {
+            static_cast<void>(id);
+            const int value = resourceManager_.evaluateExpression(penalty.expression_);
+            if (value < 0)
+            {
+                throw std::invalid_argument("armor check penalty expression must not resolve to a negative value: " + penalty.expression_);
+            }
+            highestPenalty = std::max(highestPenalty, value);
+        }
+        return highestPenalty;
+    }
+
+    void Skills::addArmorCheckPenalty(ArmorCheckPenalty penalty)
+    {
+        const std::string id = penalty.id_;
+        if (!armorCheckPenalties_.emplace(id, std::move(penalty)).second)
+        {
+            throw std::invalid_argument("armor check penalty is already registered: " + id);
+        }
+    }
+
+    void Skills::removeArmorCheckPenalty(std::string_view penaltyId)
+    {
+        const std::string id = normalize(penaltyId);
+        if (armorCheckPenalties_.erase(id) == 0)
+        {
+            throw std::invalid_argument("armor check penalty is not registered: " + id);
         }
     }
 }

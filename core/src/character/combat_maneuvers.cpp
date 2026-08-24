@@ -4,6 +4,7 @@
 #include "golarion/util/string_utils.hpp"
 #include "golarion/view/combat_maneuvers_view.hpp"
 
+#include <algorithm>
 #include <array>
 #include <limits>
 #include <stdexcept>
@@ -117,11 +118,15 @@ namespace golarion
     {
     }
 
+    CombatManeuverDefenseDexteritySuppression::CombatManeuverDefenseDexteritySuppression(CombatManeuverDefenseDexteritySuppressionDefinition definition)
+        : id_(normalize(definition.id)), source_(normalize(definition.source))
+    {
+    }
+
     CombatManeuvers::CombatManeuvers(ResourceManager &resourceManager) : resourceManager_(resourceManager)
     {
         resourceManager_.registerEnhanceableResource(CombatManeuverBonusAllResource, {"attack.all"});
         resourceManager_.registerEnhanceableResource(CombatManeuverDefenseAllResource);
-        resourceManager_.registerAccumulatedResource(CombatManeuverSizeModifierResource);
         for (const CombatManeuverType type : CombatManeuverTypes)
         {
             resourceManager_.registerEnhanceableResource(combatManeuverBonusResourceName(type), {std::string(CombatManeuverBonusAllResource)});
@@ -134,15 +139,31 @@ namespace golarion
         {
             removeAbilityReplacement(replacementId);
         });
+        resourceManager_.registerCollectionResource<CombatManeuverDefenseDexteritySuppression>(CombatManeuverDefenseDexteritySuppressionsResource, [this](CombatManeuverDefenseDexteritySuppression suppression)
+        {
+            addDexteritySuppression(std::move(suppression));
+        }, [this](std::string_view suppressionId)
+        {
+            removeDexteritySuppression(suppressionId);
+        });
     }
 
     CombatManeuversView CombatManeuvers::toView()
     {
         const int baseAttackBonus = resourceManager_.targetValue("bab");
-        ContributionSetView sizeContributions = resourceManager_.contributionSetView(CombatManeuverSizeModifierResource);
-        const int specialSizeModifier = sizeContributions.total;
         const int strengthModifier = abilityModifier(resourceManager_, AbilityType::Strength);
         const int dexterityModifier = abilityModifier(resourceManager_, AbilityType::Dexterity);
+        const bool dexterityBonusSuppressed = !dexteritySuppressions_.empty();
+        const int appliedDexterityModifier = dexterityBonusSuppressed ? std::min(dexterityModifier, 0) : dexterityModifier;
+        std::vector<CombatManeuverDefenseDexteritySuppressionView> dexteritySuppressionViews;
+        dexteritySuppressionViews.reserve(dexteritySuppressions_.size());
+        for (const auto &[id, suppression] : dexteritySuppressions_)
+        {
+            dexteritySuppressionViews.push_back(CombatManeuverDefenseDexteritySuppressionView{
+                .id = id,
+                .source = suppression.source_
+            });
+        }
         std::vector<CombatManeuverView> maneuverViews;
         maneuverViews.reserve(CombatManeuverTypes.size());
 
@@ -157,7 +178,7 @@ namespace golarion
                 .source = "Base",
                 .abilityType = AbilityType::Strength,
                 .abilityModifier = strengthModifier,
-                .totalValue = checkedCombatManeuverValue(static_cast<long long>(baseAttackBonus) + strengthModifier + specialSizeModifier + bonusModifiers.total)
+                .totalValue = checkedCombatManeuverValue(static_cast<long long>(baseAttackBonus) + strengthModifier + bonusModifiers.total)
             });
             for (const auto &[id, replacement] : abilityReplacements_)
             {
@@ -171,7 +192,7 @@ namespace golarion
                     .source = replacement.source_,
                     .abilityType = replacement.abilityType_,
                     .abilityModifier = replacementModifier,
-                    .totalValue = checkedCombatManeuverValue(static_cast<long long>(baseAttackBonus) + replacementModifier + specialSizeModifier + bonusModifiers.total)
+                    .totalValue = checkedCombatManeuverValue(static_cast<long long>(baseAttackBonus) + replacementModifier + bonusModifiers.total)
                 });
             }
 
@@ -185,7 +206,10 @@ namespace golarion
                 .defense = CombatManeuverDefenseView{
                     .strengthModifier = strengthModifier,
                     .dexterityModifier = dexterityModifier,
-                    .totalValue = checkedCombatManeuverValue(10LL + baseAttackBonus + strengthModifier + dexterityModifier + specialSizeModifier + defenseModifiers.total),
+                    .appliedDexterityModifier = appliedDexterityModifier,
+                    .dexterityBonusSuppressed = dexterityBonusSuppressed,
+                    .dexteritySuppressions = dexteritySuppressionViews,
+                    .totalValue = checkedCombatManeuverValue(10LL + baseAttackBonus + strengthModifier + appliedDexterityModifier + defenseModifiers.total),
                     .modifiers = std::move(defenseModifiers)
                 }
             });
@@ -193,8 +217,6 @@ namespace golarion
 
         return CombatManeuversView{
             .baseAttackBonus = baseAttackBonus,
-            .specialSizeModifier = specialSizeModifier,
-            .sizeModifierContributions = std::move(sizeContributions),
             .maneuvers = std::move(maneuverViews)
         };
     }
@@ -219,6 +241,24 @@ namespace golarion
         if (abilityReplacements_.erase(id) == 0)
         {
             throw std::invalid_argument("combat maneuver ability replacement is not registered: " + id);
+        }
+    }
+
+    void CombatManeuvers::addDexteritySuppression(CombatManeuverDefenseDexteritySuppression suppression)
+    {
+        const std::string id = suppression.id_;
+        if (!dexteritySuppressions_.emplace(id, std::move(suppression)).second)
+        {
+            throw std::invalid_argument("combat maneuver defense Dexterity suppression is already registered: " + id);
+        }
+    }
+
+    void CombatManeuvers::removeDexteritySuppression(std::string_view suppressionId)
+    {
+        const std::string id = normalize(suppressionId);
+        if (dexteritySuppressions_.erase(id) == 0)
+        {
+            throw std::invalid_argument("combat maneuver defense Dexterity suppression is not registered: " + id);
         }
     }
 }

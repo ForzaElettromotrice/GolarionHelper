@@ -41,11 +41,15 @@ namespace golarion
         void removeAbilityReplacement(std::string_view replacementId);
         void addClassSkillGrant(SkillClassSkillGrant grant);
         void removeClassSkillGrant(std::string_view grantId);
+        int armorCheckPenalty();
+        void addArmorCheckPenalty(ArmorCheckPenalty penalty);
+        void removeArmorCheckPenalty(std::string_view penaltyId);
 
         ResourceManager &resourceManager_;
         std::map<SkillType, Skill> skills_;
         std::map<SkillType, std::map<std::string, Skill>> specializations_;
         std::map<std::string, SkillAbilityReplacement> abilityReplacements_;
         std::map<std::string, SkillClassSkillGrant> classSkillGrants_;
+        std::map<std::string, ArmorCheckPenalty> armorCheckPenalties_;
     };
 }

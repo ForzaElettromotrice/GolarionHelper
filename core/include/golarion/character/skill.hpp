@@ -17,6 +17,8 @@ namespace golarion
 
     inline constexpr std::string_view SkillAbilityReplacementsResource = "skill.abilityReplacements";
     inline constexpr std::string_view SkillClassSkillGrantsResource = "skill.classSkillGrants";
+    inline constexpr std::string_view ArmorCheckPenaltiesResource = "skill.armorCheckPenalties";
+    inline constexpr std::string_view ArmorCheckPenaltyTarget = "armorCheckPenalty";
 
     enum class SkillType
     {
@@ -59,10 +61,31 @@ namespace golarion
 
     std::string_view displayName(SkillType type);
     std::string_view resourceName(SkillType type);
+    std::string skillCheckResourceName(AbilityType abilityType);
     AbilityType defaultAbility(SkillType type);
     bool trainedOnly(SkillType type);
     bool requiresSpecialization(SkillType type);
     bool appliesArmorCheckPenalty(SkillType type);
+
+    struct ArmorCheckPenaltyDefinition
+    {
+        std::string id;
+        std::string source;
+        std::string expression;
+    };
+
+    class ArmorCheckPenalty final
+    {
+    public:
+        explicit ArmorCheckPenalty(ArmorCheckPenaltyDefinition definition);
+
+    private:
+        friend class Skills;
+
+        std::string id_;
+        std::string source_;
+        std::string expression_;
+    };
 
     struct SkillAbilityReplacementDefinition
     {

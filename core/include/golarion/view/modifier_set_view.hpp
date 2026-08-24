@@ -15,6 +15,7 @@ namespace golarion
             int value;
         };
 
+        int permanentTotal;
         int total;
         std::vector<ConditionalTotalView> conditionalTotals;
         std::vector<ModifierView> modifiers;

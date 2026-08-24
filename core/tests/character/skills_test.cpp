@@ -54,7 +54,11 @@ int main()
     assert(resourceManager.modifierTotal("skill.acrobatics") == 0);
 
     resourceManager.addModifier("skill.all", Modifier(ModifierType::Bonus, "Tratto", "Bonus a tutte le abilità", BonusType::Racial, "1"));
-    resourceManager.addModifier("skill.armorCheckPenalty", Modifier(ModifierType::Penalty, "Armatura", "Penalità di armatura", std::nullopt, "2"));
+    resourceManager.addToCollection(ArmorCheckPenaltiesResource, ArmorCheckPenalty(ArmorCheckPenaltyDefinition{
+        .id = "armor",
+        .source = "Armatura",
+        .expression = "2"
+    }));
     assert(resourceManager.modifierTotal("skill.acrobatics") == -1);
     assert(resourceManager.modifierTotal("skill.perception") == 1);
 
@@ -101,8 +105,18 @@ int main()
     assert(enhanceableResource("skill.armorCheckPenalty").parentResources == std::vector<std::string>{"skill.all"});
     assert(enhanceableResource("skill.acrobatics").parentResources == std::vector<std::string>{"skill.armorCheckPenalty"});
     assert(enhanceableResource("skill.perception").parentResources == std::vector<std::string>{"skill.all"});
+    assert(enhanceableResource("skillCheck.str").parentResources.empty());
+    assert(enhanceableResource("skillCheck.dex").parentResources.empty());
+    assert(enhanceableResource("skillCheck.con").parentResources.empty());
+    assert(enhanceableResource("skillCheck.int").parentResources.empty());
+    assert(enhanceableResource("skillCheck.wis").parentResources.empty());
+    assert(enhanceableResource("skillCheck.cha").parentResources.empty());
 
     const SkillsView view = skills.toView();
+    assert(view.armorCheckPenalty.total == 2);
+    assert(view.armorCheckPenalty.sources.size() == 1);
+    assert(view.armorCheckPenalty.sources[0].id == "armor");
+    assert(view.armorCheckPenalty.sources[0].constraining);
     assert(view.skills.size() == 99);
     const auto alchemyView = std::ranges::find_if(view.skills, [](const SkillView &skillView)
     {

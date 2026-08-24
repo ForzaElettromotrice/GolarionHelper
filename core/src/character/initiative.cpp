@@ -32,7 +32,7 @@ namespace golarion
 
     Initiative::Initiative(ResourceManager &resourceManager) : resourceManager_(resourceManager)
     {
-        resourceManager_.registerEnhanceableResource(InitiativeResource);
+        resourceManager_.registerEnhanceableResource(InitiativeResource, {std::string(AbilityCheckRootResource)});
         resourceManager_.registerCollectionResource<InitiativeAbilityReplacement>(InitiativeAbilityReplacementsResource, [this](InitiativeAbilityReplacement replacement)
         {
             addAbilityReplacement(std::move(replacement));

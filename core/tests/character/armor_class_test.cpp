@@ -197,6 +197,8 @@ int main()
     ArmorClassView view = armorClass.toView();
     assert(!view.maximumDexterityBonus.has_value());
     assert(view.maximumDexterityLimits.empty());
+    assert(!view.abilityBonusSuppressed);
+    assert(view.abilitySuppressions.empty());
     assert(view.abilityOptions.size() == 2);
     assert(!view.abilityOptions[0].replacementId.has_value());
     assert(view.abilityOptions[0].abilityType == AbilityType::Dexterity);
@@ -214,6 +216,43 @@ int main()
     assert(view.abilityOptions[1].values[2].type == ArmorClassType::FlatFooted);
     assert(view.abilityOptions[1].values[2].appliedAbilityModifier == 0);
     assert(view.abilityOptions[1].values[2].totalValue == 26);
+
+    manager.addToCollection(MaximumDexterityLimitsResource, MaximumDexterityLimit(MaximumDexterityLimitDefinition{
+        .id = "suppressionTestArmor",
+        .source = "Armatura di prova",
+        .type = MaximumDexterityLimitType::Armor,
+        .expression = "2"
+    }));
+    assert(armorClass.maximumDexterityBonus() == 3);
+    assert(armorClassValue(armorClass, ArmorClassType::Normal, "scaledFist") == 28);
+    manager.addToCollection(ArmorClassAbilitySuppressionsResource, ArmorClassAbilitySuppression(ArmorClassAbilitySuppressionDefinition{
+        .id = " blinded ",
+        .source = " Accecato "
+    }));
+    view = armorClass.toView();
+    assert(view.abilityBonusSuppressed);
+    assert(view.abilitySuppressions.size() == 1);
+    assert(view.abilitySuppressions[0].id == "blinded");
+    assert(view.abilitySuppressions[0].source == "Accecato");
+    assert(armorClassValue(armorClass, ArmorClassType::Normal, "scaledFist") == 25);
+    assert(armorClassValue(armorClass, ArmorClassType::Touch, "scaledFist") == 18);
+    assert(armorClassValue(armorClass, ArmorClassType::FlatFooted, "scaledFist") == 26);
+    assert(armorClassValue(armorClass, ArmorClassType::Normal) == 23);
+    assert(throwsInvalidArgument([&manager]
+    {
+        manager.addToCollection(ArmorClassAbilitySuppressionsResource, ArmorClassAbilitySuppression(ArmorClassAbilitySuppressionDefinition{
+            .id = "blinded",
+            .source = "Duplicata"
+        }));
+    }));
+    manager.removeFromCollection(ArmorClassAbilitySuppressionsResource, "blinded");
+    assert(!armorClass.toView().abilityBonusSuppressed);
+    assert(armorClassValue(armorClass, ArmorClassType::Normal, "scaledFist") == 28);
+    assert(throwsInvalidArgument([&manager]
+    {
+        manager.removeFromCollection(ArmorClassAbilitySuppressionsResource, "blinded");
+    }));
+    manager.removeFromCollection(MaximumDexterityLimitsResource, "suppressionTestArmor");
 
     assert(throwsInvalidArgument([&manager]
     {

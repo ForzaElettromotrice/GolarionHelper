@@ -1,5 +1,5 @@
 #include "golarion/character/ability.hpp"
-#include "golarion/character/attack.hpp"
+#include "golarion/character/strike.hpp"
 #include "golarion/character/base_attack_bonus.hpp"
 #include "golarion/character/combat_maneuvers.hpp"
 #include "golarion/resource/contribution.hpp"
@@ -46,27 +46,30 @@ int main()
     {
         ability.registerResources(resourceManager);
     }
-    Attacks attacks(resourceManager);
+    Strikes attacks(resourceManager);
     CombatManeuvers combatManeuvers(resourceManager);
 
     resourceManager.addContribution(BaseAttackBonusResource, Contribution("fighter", "5"));
-    resourceManager.addContribution(CombatManeuverSizeModifierResource, Contribution("large", "1"));
     resourceManager.addModifier("attack.all", Modifier(ModifierType::Bonus, "Competenza", "Bonus a tutti gli attacchi", BonusType::Generic, "1"));
     resourceManager.addModifier(CombatManeuverBonusAllResource, Modifier(ModifierType::Bonus, "Addestramento", "Bonus a tutte le manovre", BonusType::Generic, "2"));
+    resourceManager.addModifier(CombatManeuverBonusAllResource, Modifier(ModifierType::Bonus, "Taglia", "Modificatore di taglia al BMC", BonusType::Size, "1"));
     resourceManager.addModifier(combatManeuverBonusResourceName(CombatManeuverType::Trip), Modifier(ModifierType::Bonus, "Sbilanciare Migliorato", "Bonus a Sbilanciare", BonusType::Generic, "3"));
     resourceManager.addModifier(CombatManeuverDefenseAllResource, Modifier(ModifierType::Bonus, "Difesa", "Bonus alla DMC", BonusType::Generic, "2"));
+    resourceManager.addModifier(CombatManeuverDefenseAllResource, Modifier(ModifierType::Bonus, "Taglia", "Modificatore di taglia alla DMC", BonusType::Size, "1"));
     resourceManager.addModifier(combatManeuverDefenseResourceName(CombatManeuverType::Trip), Modifier(ModifierType::Bonus, "Stabilità", "Bonus contro Sbilanciare", BonusType::Generic, "3"));
 
     CombatManeuversView view = combatManeuvers.toView();
     assert(view.baseAttackBonus == 5);
-    assert(view.specialSizeModifier == 1);
-    assert(view.sizeModifierContributions.contributions.size() == 1);
     assert(view.maneuvers.size() == 10);
     assert(view.maneuvers[0].type == CombatManeuverType::BullRush);
     assert(view.maneuvers[0].bonus.abilityOptions[0].totalValue == 12);
+    assert(view.maneuvers[0].defense.dexterityModifier == 2);
+    assert(view.maneuvers[0].defense.appliedDexterityModifier == 2);
+    assert(!view.maneuvers[0].defense.dexterityBonusSuppressed);
+    assert(view.maneuvers[0].defense.dexteritySuppressions.empty());
     assert(view.maneuvers[0].defense.totalValue == 23);
     assert(view.maneuvers[9].type == CombatManeuverType::Trip);
-    assert(view.maneuvers[9].bonus.modifiers.total == 6);
+    assert(view.maneuvers[9].bonus.modifiers.total == 7);
     assert(view.maneuvers[9].bonus.abilityOptions[0].totalValue == 15);
     assert(view.maneuvers[9].defense.totalValue == 26);
 
@@ -92,6 +95,34 @@ int main()
     view = combatManeuvers.toView();
     assert(view.maneuvers[0].bonus.abilityOptions.size() == 2);
     assert(view.maneuvers[9].bonus.abilityOptions.size() == 3);
+
+    resourceManager.addToCollection(CombatManeuverDefenseDexteritySuppressionsResource, CombatManeuverDefenseDexteritySuppression(CombatManeuverDefenseDexteritySuppressionDefinition{
+        .id = " flatFooted ",
+        .source = " Impreparato "
+    }));
+    view = combatManeuvers.toView();
+    assert(view.maneuvers[0].defense.dexterityModifier == 2);
+    assert(view.maneuvers[0].defense.appliedDexterityModifier == 0);
+    assert(view.maneuvers[0].defense.dexterityBonusSuppressed);
+    assert(view.maneuvers[0].defense.dexteritySuppressions.size() == 1);
+    assert(view.maneuvers[0].defense.dexteritySuppressions[0].id == "flatFooted");
+    assert(view.maneuvers[0].defense.dexteritySuppressions[0].source == "Impreparato");
+    assert(view.maneuvers[0].defense.totalValue == 21);
+    assert(view.maneuvers[9].defense.totalValue == 24);
+    assert(throwsInvalidArgument([&]
+    {
+        resourceManager.addToCollection(CombatManeuverDefenseDexteritySuppressionsResource, CombatManeuverDefenseDexteritySuppression(CombatManeuverDefenseDexteritySuppressionDefinition{
+            .id = "flatFooted",
+            .source = "Duplicata"
+        }));
+    }));
+    resourceManager.removeFromCollection(CombatManeuverDefenseDexteritySuppressionsResource, "flatFooted");
+    assert(!combatManeuvers.toView().maneuvers[0].defense.dexterityBonusSuppressed);
+    assert(combatManeuvers.toView().maneuvers[0].defense.totalValue == 23);
+    assert(throwsInvalidArgument([&]
+    {
+        resourceManager.removeFromCollection(CombatManeuverDefenseDexteritySuppressionsResource, "flatFooted");
+    }));
     assert(throwsInvalidArgument([&]
     {
         resourceManager.addToCollection(CombatManeuverAbilityReplacementsResource, CombatManeuverAbilityReplacement(CombatManeuverAbilityReplacementDefinition{

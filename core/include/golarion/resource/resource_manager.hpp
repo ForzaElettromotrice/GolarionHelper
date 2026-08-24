@@ -43,10 +43,14 @@ namespace golarion
         int targetValue(std::string_view name);
         int evaluateExpression(std::string_view expression);
         int modifierTotal(std::string_view resourceName);
+        int modifierTotal(const std::vector<std::string> &resourceNames);
         int contributionTotal(std::string_view resourceName);
         bool enhanceableResourceIsOrInheritsFrom(std::string_view resourceName, std::string_view ancestorResourceName) const;
         ContributionSetView contributionSetView(std::string_view resourceName);
         ModifierSetView modifierSetView(std::string_view resourceName);
+        ModifierSetView modifierSetView(std::string_view resourceName, const std::vector<std::string> &activeConditions);
+        ModifierSetView modifierSetView(const std::vector<std::string> &resourceNames);
+        ModifierSetView modifierSetView(const std::vector<std::string> &resourceNames, const std::vector<std::string> &activeConditions);
         ResourceManagerView toView();
 
         void addModifier(std::string_view resourceName, Modifier modifier);
@@ -75,6 +79,7 @@ namespace golarion
         ModifierSet &modifierSet(std::string_view name);
         CollectionResource &collectionResource(std::string_view name);
         std::vector<const ModifierSet *> inheritedModifierSets(std::string_view name) const;
+        std::vector<const ModifierSet *> inheritedModifierSets(const std::vector<std::string> &names) const;
         void collectModifierSets(const std::string &name, std::unordered_map<std::string, bool> &visitedResources, std::vector<const ModifierSet *> &modifierSets) const;
         std::string circularReference(std::string_view repeatedName) const;
 
@@ -120,4 +125,5 @@ namespace golarion
         }
         resource.addItem(std::any(std::move(item)));
     }
+
 }

@@ -21,7 +21,7 @@ namespace
         return static_cast<int>(value);
     }
 
-    std::vector<golarion::ArmorClassValueView> armorClassValues(golarion::ResourceManager &resourceManager, golarion::AbilityType abilityType, const std::optional<int> maximumDexterityBonus)
+    std::vector<golarion::ArmorClassValueView> armorClassValues(golarion::ResourceManager &resourceManager, golarion::AbilityType abilityType, const std::optional<int> maximumDexterityBonus, bool abilityBonusSuppressed)
     {
         const int abilityModifier = resourceManager.targetValue(std::string(golarion::resourceName(abilityType)) + "Mod");
         std::vector<golarion::ArmorClassValueView> values;
@@ -30,9 +30,13 @@ namespace
         for (const golarion::ArmorClassType type : {golarion::ArmorClassType::Normal, golarion::ArmorClassType::Touch, golarion::ArmorClassType::FlatFooted})
         {
             golarion::ModifierSetView modifiers = resourceManager.modifierSetView(golarion::resourceName(type));
-            const int appliedAbilityModifier = type == golarion::ArmorClassType::FlatFooted
+            int appliedAbilityModifier = type == golarion::ArmorClassType::FlatFooted
                 ? std::min(abilityModifier, 0)
                 : maximumDexterityBonus.has_value() ? std::min(abilityModifier, *maximumDexterityBonus) : abilityModifier;
+            if (abilityBonusSuppressed)
+            {
+                appliedAbilityModifier = std::min(appliedAbilityModifier, 0);
+            }
             values.push_back(golarion::ArmorClassValueView{
                 .type = type,
                 .appliedAbilityModifier = appliedAbilityModifier,
@@ -127,6 +131,11 @@ namespace golarion
     {
     }
 
+    ArmorClassAbilitySuppression::ArmorClassAbilitySuppression(ArmorClassAbilitySuppressionDefinition definition)
+        : id_(normalize(definition.id)), source_(normalize(definition.source))
+    {
+    }
+
     ArmorClass::ArmorClass(ResourceManager &resourceManager)
         : resourceManager_(resourceManager)
     {
@@ -142,6 +151,13 @@ namespace golarion
         }, [this](std::string_view replacementId)
         {
             removeAbilityReplacement(replacementId);
+        });
+        resourceManager_.registerCollectionResource<ArmorClassAbilitySuppression>(ArmorClassAbilitySuppressionsResource, [this](ArmorClassAbilitySuppression suppression)
+        {
+            addAbilitySuppression(std::move(suppression));
+        }, [this](std::string_view suppressionId)
+        {
+            removeAbilitySuppression(suppressionId);
         });
         resourceManager_.registerEnhanceableResource(MaximumDexterityAllResource);
         for (const MaximumDexterityLimitType type : {MaximumDexterityLimitType::Armor, MaximumDexterityLimitType::Shield, MaximumDexterityLimitType::Load, MaximumDexterityLimitType::Other})
@@ -198,6 +214,17 @@ namespace golarion
             });
         }
 
+        std::vector<ArmorClassAbilitySuppressionView> abilitySuppressionViews;
+        abilitySuppressionViews.reserve(abilitySuppressions_.size());
+        for (const auto &[id, suppression] : abilitySuppressions_)
+        {
+            abilitySuppressionViews.push_back(ArmorClassAbilitySuppressionView{
+                .id = id,
+                .source = suppression.source_
+            });
+        }
+        const bool abilityBonusSuppressed = !abilitySuppressions_.empty();
+
         std::vector<ArmorClassAbilityOptionView> abilityOptions;
         abilityOptions.reserve(abilityReplacements_.size() + 1);
         const int dexterityModifier = resourceManager_.targetValue("dexMod");
@@ -206,7 +233,7 @@ namespace golarion
             .source = "Base",
             .abilityType = AbilityType::Dexterity,
             .abilityModifier = dexterityModifier,
-            .values = armorClassValues(resourceManager_, AbilityType::Dexterity, maximum)
+            .values = armorClassValues(resourceManager_, AbilityType::Dexterity, maximum, abilityBonusSuppressed)
         });
         for (const auto &[id, replacement] : abilityReplacements_)
         {
@@ -216,13 +243,15 @@ namespace golarion
                 .source = replacement.source_,
                 .abilityType = replacement.abilityType_,
                 .abilityModifier = abilityModifier,
-                .values = armorClassValues(resourceManager_, replacement.abilityType_, maximum)
+                .values = armorClassValues(resourceManager_, replacement.abilityType_, maximum, abilityBonusSuppressed)
             });
         }
 
         return ArmorClassView{
             .maximumDexterityBonus = maximum,
             .maximumDexterityLimits = std::move(maximumDexterityLimits),
+            .abilityBonusSuppressed = abilityBonusSuppressed,
+            .abilitySuppressions = std::move(abilitySuppressionViews),
             .abilityOptions = std::move(abilityOptions)
         };
     }
@@ -242,6 +271,24 @@ namespace golarion
         if (abilityReplacements_.erase(id) == 0)
         {
             throw std::invalid_argument("armor class ability replacement is not registered: " + id);
+        }
+    }
+
+    void ArmorClass::addAbilitySuppression(ArmorClassAbilitySuppression suppression)
+    {
+        const std::string id = suppression.id_;
+        if (!abilitySuppressions_.emplace(id, std::move(suppression)).second)
+        {
+            throw std::invalid_argument("armor class ability suppression is already registered: " + id);
+        }
+    }
+
+    void ArmorClass::removeAbilitySuppression(std::string_view suppressionId)
+    {
+        const std::string id = normalize(suppressionId);
+        if (abilitySuppressions_.erase(id) == 0)
+        {
+            throw std::invalid_argument("armor class ability suppression is not registered: " + id);
         }
     }
 

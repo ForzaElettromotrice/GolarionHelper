@@ -1,7 +1,6 @@
 #pragma once
 
 #include "golarion/character/combat_maneuvers.hpp"
-#include "golarion/view/contribution_set_view.hpp"
 #include "golarion/view/modifier_set_view.hpp"
 
 #include <optional>
@@ -25,10 +24,19 @@ namespace golarion
         ModifierSetView modifiers;
     };
 
+    struct CombatManeuverDefenseDexteritySuppressionView
+    {
+        std::string id;
+        std::string source;
+    };
+
     struct CombatManeuverDefenseView
     {
         int strengthModifier;
         int dexterityModifier;
+        int appliedDexterityModifier;
+        bool dexterityBonusSuppressed;
+        std::vector<CombatManeuverDefenseDexteritySuppressionView> dexteritySuppressions;
         int totalValue;
         ModifierSetView modifiers;
     };
@@ -43,8 +51,6 @@ namespace golarion
     struct CombatManeuversView
     {
         int baseAttackBonus;
-        int specialSizeModifier;
-        ContributionSetView sizeModifierContributions;
         std::vector<CombatManeuverView> maneuvers;
     };
 }

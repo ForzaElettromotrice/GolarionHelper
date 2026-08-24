@@ -2,6 +2,7 @@
 
 #include "golarion/resource/modifier.hpp"
 
+#include <string>
 #include <string_view>
 #include <vector>
 
@@ -24,6 +25,7 @@ namespace golarion
 
         static int calculateTotal(const std::vector<const ModifierSet *> &modifierSets, ResourceManager &resourceManager);
         static ModifierSetView toView(const std::vector<const ModifierSet *> &modifierSets, ResourceManager &resourceManager);
+        static ModifierSetView toView(const std::vector<const ModifierSet *> &modifierSets, ResourceManager &resourceManager, const std::vector<std::string> &activeConditions);
 
         std::vector<Modifier> modifiers_;
     };

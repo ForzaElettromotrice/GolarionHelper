@@ -10,8 +10,8 @@ namespace golarion
 {
     inline constexpr std::string_view CombatManeuverBonusAllResource = "combatManeuver.bonus.all";
     inline constexpr std::string_view CombatManeuverDefenseAllResource = "combatManeuver.defense.all";
-    inline constexpr std::string_view CombatManeuverSizeModifierResource = "combatManeuver.sizeModifier";
     inline constexpr std::string_view CombatManeuverAbilityReplacementsResource = "combatManeuver.abilityReplacements";
+    inline constexpr std::string_view CombatManeuverDefenseDexteritySuppressionsResource = "combatManeuver.defense.dexteritySuppressions";
 
     class ResourceManager;
     struct CombatManeuversView;
@@ -42,6 +42,12 @@ namespace golarion
         AbilityType abilityType;
     };
 
+    struct CombatManeuverDefenseDexteritySuppressionDefinition
+    {
+        std::string id;
+        std::string source;
+    };
+
     class CombatManeuverAbilityReplacement final
     {
     public:
@@ -54,6 +60,18 @@ namespace golarion
         std::string source_;
         std::string targetResourceName_;
         AbilityType abilityType_;
+    };
+
+    class CombatManeuverDefenseDexteritySuppression final
+    {
+    public:
+        explicit CombatManeuverDefenseDexteritySuppression(CombatManeuverDefenseDexteritySuppressionDefinition definition);
+
+    private:
+        friend class CombatManeuvers;
+
+        std::string id_;
+        std::string source_;
     };
 
     class CombatManeuvers final
@@ -71,8 +89,11 @@ namespace golarion
     private:
         void addAbilityReplacement(CombatManeuverAbilityReplacement replacement);
         void removeAbilityReplacement(std::string_view replacementId);
+        void addDexteritySuppression(CombatManeuverDefenseDexteritySuppression suppression);
+        void removeDexteritySuppression(std::string_view suppressionId);
 
         ResourceManager &resourceManager_;
         std::map<std::string, CombatManeuverAbilityReplacement> abilityReplacements_;
+        std::map<std::string, CombatManeuverDefenseDexteritySuppression> dexteritySuppressions_;
     };
 }

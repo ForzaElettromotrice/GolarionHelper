@@ -133,6 +133,14 @@ int main()
     assert(snapshot.conditionalTotals[1].condition == "Contro la paura");
     assert(snapshot.conditionalTotals[1].value == 2);
 
+    manager.registerEnhanceableResource("conditionalCombination");
+    manager.addModifier("conditionalCombination", bonus("Oggetto permanente", BonusType::Resistance, "3"));
+    manager.addModifier("conditionalCombination", Modifier(ModifierType::Bonus, "Protezione dal veleno", "Bonus contro il veleno", BonusType::Resistance, "4", "Contro il veleno"));
+    manager.addModifier("conditionalCombination", Modifier(ModifierType::Bonus, "Protezione dalla paura", "Bonus contro la paura", BonusType::Resistance, "5", "Contro la paura"));
+    const ModifierSetView combinedSnapshot = manager.modifierSetView("conditionalCombination", {"Contro il veleno", "Contro la paura"});
+    assert(combinedSnapshot.permanentTotal == 3);
+    assert(combinedSnapshot.total == 5);
+
     int evaluations = 0;
     manager.registerTarget("dynamic", [&evaluations]
     {

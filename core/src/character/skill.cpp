@@ -109,6 +109,11 @@ namespace golarion
         return definition(type).resourceName;
     }
 
+    std::string skillCheckResourceName(AbilityType abilityType)
+    {
+        return "skillCheck." + std::string(resourceName(abilityType));
+    }
+
     AbilityType defaultAbility(SkillType type)
     {
         return definition(type).abilityType;
@@ -127,6 +132,11 @@ namespace golarion
     bool appliesArmorCheckPenalty(SkillType type)
     {
         return definition(type).appliesArmorCheckPenalty;
+    }
+
+    ArmorCheckPenalty::ArmorCheckPenalty(ArmorCheckPenaltyDefinition definition)
+        : id_(normalize(definition.id)), source_(normalize(definition.source)), expression_(normalize(definition.expression))
+    {
     }
 
     Skill::Skill(SkillType type)
@@ -207,12 +217,14 @@ namespace golarion
         std::vector<SkillAbilityOptionView> abilityOptions;
         const AbilityType baseAbilityType = defaultAbility(type_);
         const int baseAbilityModifier = resourceManager.targetValue(std::string(resourceName(baseAbilityType)) + "Mod");
+        ModifierSetView baseOptionModifiers = resourceManager.modifierSetView(std::vector<std::string>{resourceName_, skillCheckResourceName(baseAbilityType)});
         abilityOptions.push_back(SkillAbilityOptionView{
             .replacementId = std::nullopt,
             .source = "Base",
             .abilityType = baseAbilityType,
             .abilityModifier = baseAbilityModifier,
-            .totalValue = checkedSkillValue(static_cast<long long>(baseAbilityModifier) + ranks_ + classSkillBonus + modifierView.total)
+            .totalValue = checkedSkillValue(static_cast<long long>(baseAbilityModifier) + ranks_ + classSkillBonus + baseOptionModifiers.total),
+            .modifiers = std::move(baseOptionModifiers)
         });
         for (const auto &[id, replacement] : abilityReplacements)
         {
@@ -221,12 +233,14 @@ namespace golarion
                 continue;
             }
             const int abilityModifier = resourceManager.targetValue(std::string(resourceName(replacement.abilityType_)) + "Mod");
+            ModifierSetView optionModifiers = resourceManager.modifierSetView(std::vector<std::string>{resourceName_, skillCheckResourceName(replacement.abilityType_)});
             abilityOptions.push_back(SkillAbilityOptionView{
                 .replacementId = id,
                 .source = replacement.source_,
                 .abilityType = replacement.abilityType_,
                 .abilityModifier = abilityModifier,
-                .totalValue = checkedSkillValue(static_cast<long long>(abilityModifier) + ranks_ + classSkillBonus + modifierView.total)
+                .totalValue = checkedSkillValue(static_cast<long long>(abilityModifier) + ranks_ + classSkillBonus + optionModifiers.total),
+                .modifiers = std::move(optionModifiers)
             });
         }
 
@@ -261,9 +275,10 @@ namespace golarion
     int Skill::totalValue(ResourceManager &resourceManager) const
     {
         const std::string abilityModifierTarget = std::string(resourceName(defaultAbility(type_))) + "Mod";
+        const std::vector<std::string> modifierResources{resourceName_, skillCheckResourceName(defaultAbility(type_))};
         const long long total = static_cast<long long>(resourceManager.targetValue(abilityModifierTarget))
                                 + ranks_
-                                + resourceManager.modifierTotal(resourceName_);
+                                + resourceManager.modifierTotal(modifierResources);
         return checkedSkillValue(total);
     }
 

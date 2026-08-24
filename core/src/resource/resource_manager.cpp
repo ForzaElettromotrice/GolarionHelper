@@ -178,6 +178,11 @@ namespace golarion
         return ModifierSet::calculateTotal(inheritedModifierSets(resourceName), *this);
     }
 
+    int ResourceManager::modifierTotal(const std::vector<std::string> &resourceNames)
+    {
+        return ModifierSet::calculateTotal(inheritedModifierSets(resourceNames), *this);
+    }
+
     int ResourceManager::contributionTotal(std::string_view resourceName)
     {
         return contributionSet(resourceName).calculateTotal(*this);
@@ -230,6 +235,41 @@ namespace golarion
     ModifierSetView ResourceManager::modifierSetView(std::string_view resourceName)
     {
         return ModifierSet::toView(inheritedModifierSets(resourceName), *this);
+    }
+
+    ModifierSetView ResourceManager::modifierSetView(std::string_view resourceName, const std::vector<std::string> &activeConditions)
+    {
+        std::vector<std::string> normalizedConditions;
+        normalizedConditions.reserve(activeConditions.size());
+        for (const std::string &condition : activeConditions)
+        {
+            const std::string normalizedCondition = normalize(condition);
+            if (std::ranges::find(normalizedConditions, normalizedCondition) == normalizedConditions.end())
+            {
+                normalizedConditions.push_back(normalizedCondition);
+            }
+        }
+        return ModifierSet::toView(inheritedModifierSets(resourceName), *this, normalizedConditions);
+    }
+
+    ModifierSetView ResourceManager::modifierSetView(const std::vector<std::string> &resourceNames)
+    {
+        return ModifierSet::toView(inheritedModifierSets(resourceNames), *this);
+    }
+
+    ModifierSetView ResourceManager::modifierSetView(const std::vector<std::string> &resourceNames, const std::vector<std::string> &activeConditions)
+    {
+        std::vector<std::string> normalizedConditions;
+        normalizedConditions.reserve(activeConditions.size());
+        for (const std::string &condition : activeConditions)
+        {
+            const std::string normalizedCondition = normalize(condition);
+            if (std::ranges::find(normalizedConditions, normalizedCondition) == normalizedConditions.end())
+            {
+                normalizedConditions.push_back(normalizedCondition);
+            }
+        }
+        return ModifierSet::toView(inheritedModifierSets(resourceNames), *this, normalizedConditions);
     }
 
     ResourceManagerView ResourceManager::toView()
@@ -348,6 +388,27 @@ namespace golarion
         std::unordered_map<std::string, bool> visitedResources;
         std::vector<const ModifierSet *> modifierSets;
         collectModifierSets(normalizedName, visitedResources, modifierSets);
+        return modifierSets;
+    }
+
+    std::vector<const ModifierSet *> ResourceManager::inheritedModifierSets(const std::vector<std::string> &names) const
+    {
+        if (names.empty())
+        {
+            throw std::invalid_argument("at least one enhanceable resource is required");
+        }
+
+        std::unordered_map<std::string, bool> visitedResources;
+        std::vector<const ModifierSet *> modifierSets;
+        for (const std::string &name : names)
+        {
+            const std::string normalizedName = normalize(name);
+            if (!enhanceableResources_.contains(normalizedName))
+            {
+                throw std::invalid_argument("resource is not registered: " + normalizedName);
+            }
+            collectModifierSets(normalizedName, visitedResources, modifierSets);
+        }
         return modifierSets;
     }
 

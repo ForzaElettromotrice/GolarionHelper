@@ -45,6 +45,12 @@ int main()
     strength.registerResources(manager);
     dexterity.registerResources(manager);
     intelligence.registerResources(manager);
+    for (AbilityType abilityType : {AbilityType::Strength, AbilityType::Dexterity, AbilityType::Constitution, AbilityType::Intelligence, AbilityType::Wisdom, AbilityType::Charisma})
+    {
+        manager.registerEnhanceableResource(skillCheckResourceName(abilityType));
+    }
+    assert(skillCheckResourceName(AbilityType::Strength) == "skillCheck.str");
+    assert(skillCheckResourceName(AbilityType::Dexterity) == "skillCheck.dex");
 
     Skill acrobatics(SkillType::Acrobatics);
     acrobatics.registerResources(manager);
@@ -57,7 +63,10 @@ int main()
 
     acrobatics.setRanks(2);
     manager.addModifier("skill.acrobatics", Modifier(ModifierType::Bonus, "Talento", "Bonus ad Acrobazia", BonusType::Competence, "2"));
-    assert(acrobatics.totalValue(manager) == 6);
+    manager.addModifier(skillCheckResourceName(AbilityType::Dexterity), Modifier(ModifierType::Bonus, "Agilità", "Bonus alle prove basate su Destrezza", BonusType::Competence, "4"));
+    manager.addModifier(skillCheckResourceName(AbilityType::Dexterity), Modifier(ModifierType::Penalty, "Accecato", "Penalità alle prove basate su Destrezza", std::nullopt, "4", "Quando la cecità ostacola la prova"));
+    manager.addModifier(skillCheckResourceName(AbilityType::Strength), Modifier(ModifierType::Penalty, "Accecato", "Penalità alle prove basate su Forza", std::nullopt, "4", "Quando la cecità ostacola la prova"));
+    assert(acrobatics.totalValue(manager) == 8);
 
     std::map<std::string, SkillAbilityReplacement> abilityReplacements;
     abilityReplacements.emplace("muscleMemory", SkillAbilityReplacement(SkillAbilityReplacementDefinition{
@@ -66,13 +75,19 @@ int main()
         .targetResourceName = "skill.acrobatics",
         .abilityType = AbilityType::Strength
     }));
+    abilityReplacements.emplace("analyticalMovement", SkillAbilityReplacement(SkillAbilityReplacementDefinition{
+        .id = "analyticalMovement",
+        .source = "Movimento analitico",
+        .targetResourceName = "skill.acrobatics",
+        .abilityType = AbilityType::Intelligence
+    }));
     std::map<std::string, SkillClassSkillGrant> classSkillGrants;
     classSkillGrants.emplace("rogueClassSkill", SkillClassSkillGrant(SkillClassSkillGrantDefinition{
         .id = "rogueClassSkill",
         .source = "Ladro",
         .targetResourceName = "skill.acrobatics"
     }));
-    assert(acrobatics.totalValue(manager) == 6);
+    assert(acrobatics.totalValue(manager) == 8);
     const SkillView acrobaticsView = acrobatics.toView(manager, abilityReplacements, classSkillGrants);
     assert(acrobaticsView.type == SkillType::Acrobatics);
     assert(!acrobaticsView.specializationId);
@@ -84,15 +99,25 @@ int main()
     assert(acrobaticsView.classSkillGrants.size() == 1);
     assert(acrobaticsView.classSkillGrants[0].source == "Ladro");
     assert(acrobaticsView.classSkillGrants[0].targetResourceName == "skill.acrobatics");
-    assert(acrobaticsView.abilityOptions.size() == 2);
+    assert(acrobaticsView.abilityOptions.size() == 3);
     assert(!acrobaticsView.abilityOptions[0].replacementId.has_value());
     assert(acrobaticsView.abilityOptions[0].abilityType == AbilityType::Dexterity);
     assert(acrobaticsView.abilityOptions[0].abilityModifier == 2);
-    assert(acrobaticsView.abilityOptions[0].totalValue == 9);
-    assert(acrobaticsView.abilityOptions[1].replacementId == "muscleMemory");
-    assert(acrobaticsView.abilityOptions[1].abilityType == AbilityType::Strength);
+    assert(acrobaticsView.abilityOptions[0].totalValue == 11);
+    assert(acrobaticsView.abilityOptions[0].modifiers.permanentTotal == 4);
+    assert(acrobaticsView.abilityOptions[0].modifiers.conditionalTotals.size() == 1);
+    assert(acrobaticsView.abilityOptions[0].modifiers.conditionalTotals[0].value == -4);
+    assert(acrobaticsView.abilityOptions[1].replacementId == "analyticalMovement");
+    assert(acrobaticsView.abilityOptions[1].abilityType == AbilityType::Intelligence);
     assert(acrobaticsView.abilityOptions[1].abilityModifier == 0);
     assert(acrobaticsView.abilityOptions[1].totalValue == 7);
+    assert(acrobaticsView.abilityOptions[1].modifiers.conditionalTotals.empty());
+    assert(acrobaticsView.abilityOptions[2].replacementId == "muscleMemory");
+    assert(acrobaticsView.abilityOptions[2].abilityType == AbilityType::Strength);
+    assert(acrobaticsView.abilityOptions[2].abilityModifier == 0);
+    assert(acrobaticsView.abilityOptions[2].totalValue == 7);
+    assert(acrobaticsView.abilityOptions[2].modifiers.conditionalTotals.size() == 1);
+    assert(acrobaticsView.abilityOptions[2].modifiers.conditionalTotals[0].value == -4);
     assert(!acrobaticsView.trainedOnly);
     assert(acrobaticsView.usable);
     assert(!acrobaticsView.custom);
