@@ -1,6 +1,6 @@
 #include "golarion/character/attack_distance.hpp"
 
-#include "golarion/character/attack.hpp"
+#include "golarion/character/strike.hpp"
 #include "golarion/util/string_utils.hpp"
 
 #include <stdexcept>
@@ -79,9 +79,9 @@ namespace golarion
         return std::string(resourceRoot(property)) + "." + attackResourceName(tag).substr(std::string("attack.").size());
     }
 
-    std::string attackDistanceResourceName(AttackDistanceProperty property, std::string_view grantId)
+    std::string attackDistanceResourceName(AttackDistanceProperty property, std::string_view strikeId)
     {
-        return std::string(resourceRoot(property)) + ".grant." + normalize(grantId);
+        return std::string(resourceRoot(property)) + ".strike." + normalize(strikeId);
     }
 
     AttackDistanceAdjustment::AttackDistanceAdjustment(AttackDistanceAdjustmentDefinition definition)

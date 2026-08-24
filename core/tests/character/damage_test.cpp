@@ -35,10 +35,15 @@ int main()
     assert(damageDice.toView().diceCount == 2);
     assert(damageDice.toView().dieSize == 6);
     assert(damageDice.toView().expression == "2d6");
-    assert(DamageDice(DamageDiceDefinition{.diceCount = 1, .dieSize = 8}).adjustedByProgression(1).toString() == "2d6");
-    assert(DamageDice(DamageDiceDefinition{.diceCount = 1, .dieSize = 10}).adjustedByProgression(1).toString() == "2d8");
-    assert(DamageDice(DamageDiceDefinition{.diceCount = 2, .dieSize = 6}).adjustedByProgression(-1).toString() == "1d8");
-    assert(DamageDice(DamageDiceDefinition{.diceCount = 1, .dieSize = 3}).adjustedByProgression(-1).toString() == "1");
+    assert(DamageDice(DamageDiceDefinition{.diceCount = 1, .dieSize = 8}).adjustedByProgression(1).toString() == "1d10");
+    assert(DamageDice(DamageDiceDefinition{.diceCount = 1, .dieSize = 10}).adjustedByProgression(1).toString() == "2d6");
+    assert(DamageDice(DamageDiceDefinition{.diceCount = 2, .dieSize = 6}).adjustedByProgression(-1).toString() == "1d10");
+    assert(DamageDice(DamageDiceDefinition{.diceCount = 1, .dieSize = 4}).adjustedByProgression(-1).toString() == "1d3");
+    assert(DamageDice(DamageDiceDefinition{.diceCount = 1, .dieSize = 3}).adjustedByProgression(-2).toString() == "1");
+    assert(DamageDice(DamageDiceDefinition{.diceCount = 2, .dieSize = 4}).adjustedByProgression(1).toString() == "1d10");
+    assert(DamageDice(DamageDiceDefinition{.diceCount = 1, .dieSize = 12}).adjustedByProgression(1).toString() == "2d8");
+    assert(DamageDice(DamageDiceDefinition{.diceCount = 2, .dieSize = 10}).adjustedByProgression(-1).toString() == "2d8");
+    assert(DamageDice(DamageDiceDefinition{.diceCount = 2, .dieSize = 10}).adjustedByProgression(1).toString() == "4d8");
     assert(DamageDice(DamageDiceDefinition{.diceCount = 2, .dieSize = 6}).multiplied(2).toString() == "4d6");
     assert(throwsInvalidArgument([]
     {

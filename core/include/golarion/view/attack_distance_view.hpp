@@ -29,6 +29,7 @@ namespace golarion
     {
         std::string resourceName;
         int baseValue;
+        int permanentValue;
         int effectiveValue;
         std::vector<ConditionalAttackDistanceValueView> conditionalValues;
         ModifierSetView modifiers;

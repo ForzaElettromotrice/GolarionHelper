@@ -32,7 +32,7 @@ namespace golarion
     std::string attackDistanceResourceName(AttackDistanceProperty property);
     std::string attackDistanceResourceName(AttackDistanceProperty property, AttackMode mode);
     std::string attackDistanceResourceName(AttackDistanceProperty property, AttackTag tag);
-    std::string attackDistanceResourceName(AttackDistanceProperty property, std::string_view grantId);
+    std::string attackDistanceResourceName(AttackDistanceProperty property, std::string_view strikeId);
 
     struct AttackReachDefinition
     {
@@ -63,7 +63,7 @@ namespace golarion
         explicit AttackDistanceAdjustment(AttackDistanceAdjustmentDefinition definition);
 
     private:
-        friend class Attacks;
+        friend class Strikes;
 
         std::string id_;
         std::string source_;

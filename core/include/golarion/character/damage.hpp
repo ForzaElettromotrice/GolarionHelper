@@ -57,12 +57,20 @@ namespace golarion
         Set
     };
 
+    enum class DamageComponentOriginFilter
+    {
+        Any,
+        Intrinsic,
+        ExternalGrant
+    };
+
     std::string_view displayName(DamageType type);
     std::string_view displayName(DamageTypeMode mode);
     std::string_view displayName(DamageCriticalRule rule);
     std::string_view displayName(DamageTrait trait);
     std::string_view displayName(DamageComponentRole role);
     std::string_view displayName(DamageDiceAdjustmentType type);
+    std::string_view displayName(DamageComponentOriginFilter filter);
 
     struct DamageDiceDefinition
     {
@@ -103,8 +111,8 @@ namespace golarion
         explicit DamageComponent(DamageComponentDefinition definition);
 
     private:
-        friend class AttackGrant;
-        friend class Attacks;
+        friend class StrikeGrant;
+        friend class Strikes;
 
         std::string id_;
         std::string source_;

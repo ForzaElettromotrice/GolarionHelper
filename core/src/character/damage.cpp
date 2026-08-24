@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <array>
+#include <iterator>
 #include <limits>
 #include <stdexcept>
 #include <utility>
@@ -22,36 +23,62 @@ namespace
     {
         int diceCount;
         int dieSize;
-        int smallerDiceCount;
-        int smallerDieSize;
-        int largerDiceCount;
-        int largerDieSize;
     };
 
     constexpr std::array DiceProgression{
-        DiceProgressionEntry{.diceCount = 1, .dieSize = 2, .smallerDiceCount = 1, .smallerDieSize = 1, .largerDiceCount = 1, .largerDieSize = 3},
-        DiceProgressionEntry{.diceCount = 1, .dieSize = 3, .smallerDiceCount = 1, .smallerDieSize = 1, .largerDiceCount = 1, .largerDieSize = 4},
-        DiceProgressionEntry{.diceCount = 1, .dieSize = 4, .smallerDiceCount = 1, .smallerDieSize = 2, .largerDiceCount = 1, .largerDieSize = 6},
-        DiceProgressionEntry{.diceCount = 1, .dieSize = 6, .smallerDiceCount = 1, .smallerDieSize = 3, .largerDiceCount = 1, .largerDieSize = 8},
-        DiceProgressionEntry{.diceCount = 1, .dieSize = 8, .smallerDiceCount = 1, .smallerDieSize = 4, .largerDiceCount = 2, .largerDieSize = 6},
-        DiceProgressionEntry{.diceCount = 1, .dieSize = 10, .smallerDiceCount = 1, .smallerDieSize = 6, .largerDiceCount = 2, .largerDieSize = 8},
-        DiceProgressionEntry{.diceCount = 1, .dieSize = 12, .smallerDiceCount = 1, .smallerDieSize = 8, .largerDiceCount = 3, .largerDieSize = 6},
-        DiceProgressionEntry{.diceCount = 2, .dieSize = 4, .smallerDiceCount = 1, .smallerDieSize = 4, .largerDiceCount = 2, .largerDieSize = 6},
-        DiceProgressionEntry{.diceCount = 2, .dieSize = 6, .smallerDiceCount = 1, .smallerDieSize = 8, .largerDiceCount = 3, .largerDieSize = 6},
-        DiceProgressionEntry{.diceCount = 2, .dieSize = 8, .smallerDiceCount = 1, .smallerDieSize = 10, .largerDiceCount = 3, .largerDieSize = 8},
-        DiceProgressionEntry{.diceCount = 2, .dieSize = 10, .smallerDiceCount = 2, .smallerDieSize = 6, .largerDiceCount = 4, .largerDieSize = 8},
-        DiceProgressionEntry{.diceCount = 3, .dieSize = 6, .smallerDiceCount = 2, .smallerDieSize = 6, .largerDiceCount = 4, .largerDieSize = 6},
-        DiceProgressionEntry{.diceCount = 3, .dieSize = 8, .smallerDiceCount = 2, .smallerDieSize = 8, .largerDiceCount = 4, .largerDieSize = 8},
-        DiceProgressionEntry{.diceCount = 4, .dieSize = 6, .smallerDiceCount = 3, .smallerDieSize = 6, .largerDiceCount = 6, .largerDieSize = 6},
-        DiceProgressionEntry{.diceCount = 4, .dieSize = 8, .smallerDiceCount = 3, .smallerDieSize = 8, .largerDiceCount = 6, .largerDieSize = 8},
-        DiceProgressionEntry{.diceCount = 6, .dieSize = 6, .smallerDiceCount = 4, .smallerDieSize = 6, .largerDiceCount = 8, .largerDieSize = 6},
-        DiceProgressionEntry{.diceCount = 6, .dieSize = 8, .smallerDiceCount = 4, .smallerDieSize = 8, .largerDiceCount = 8, .largerDieSize = 8},
-        DiceProgressionEntry{.diceCount = 8, .dieSize = 6, .smallerDiceCount = 6, .smallerDieSize = 6, .largerDiceCount = 12, .largerDieSize = 6},
-        DiceProgressionEntry{.diceCount = 8, .dieSize = 8, .smallerDiceCount = 6, .smallerDieSize = 8, .largerDiceCount = 12, .largerDieSize = 8},
-        DiceProgressionEntry{.diceCount = 12, .dieSize = 6, .smallerDiceCount = 8, .smallerDieSize = 6, .largerDiceCount = 16, .largerDieSize = 6},
-        DiceProgressionEntry{.diceCount = 12, .dieSize = 8, .smallerDiceCount = 8, .smallerDieSize = 8, .largerDiceCount = 16, .largerDieSize = 8},
-        DiceProgressionEntry{.diceCount = 16, .dieSize = 6, .smallerDiceCount = 12, .smallerDieSize = 6, .largerDiceCount = 24, .largerDieSize = 6},
-        DiceProgressionEntry{.diceCount = 16, .dieSize = 8, .smallerDiceCount = 12, .smallerDieSize = 8, .largerDiceCount = 24, .largerDieSize = 8}
+        DiceProgressionEntry{.diceCount = 1, .dieSize = 1},
+        DiceProgressionEntry{.diceCount = 1, .dieSize = 2},
+        DiceProgressionEntry{.diceCount = 1, .dieSize = 3},
+        DiceProgressionEntry{.diceCount = 1, .dieSize = 4},
+        DiceProgressionEntry{.diceCount = 1, .dieSize = 6},
+        DiceProgressionEntry{.diceCount = 1, .dieSize = 8},
+        DiceProgressionEntry{.diceCount = 1, .dieSize = 10},
+        DiceProgressionEntry{.diceCount = 2, .dieSize = 6},
+        DiceProgressionEntry{.diceCount = 2, .dieSize = 8},
+        DiceProgressionEntry{.diceCount = 3, .dieSize = 6},
+        DiceProgressionEntry{.diceCount = 3, .dieSize = 8},
+        DiceProgressionEntry{.diceCount = 4, .dieSize = 6},
+        DiceProgressionEntry{.diceCount = 4, .dieSize = 8},
+        DiceProgressionEntry{.diceCount = 6, .dieSize = 6},
+        DiceProgressionEntry{.diceCount = 6, .dieSize = 8},
+        DiceProgressionEntry{.diceCount = 8, .dieSize = 6},
+        DiceProgressionEntry{.diceCount = 8, .dieSize = 8},
+        DiceProgressionEntry{.diceCount = 12, .dieSize = 6},
+        DiceProgressionEntry{.diceCount = 12, .dieSize = 8},
+        DiceProgressionEntry{.diceCount = 16, .dieSize = 6}
+    };
+
+    struct DiceProgressionAlias
+    {
+        int diceCount;
+        int dieSize;
+        int canonicalDiceCount;
+        int canonicalDieSize;
+    };
+
+    constexpr std::array DiceProgressionAliases{
+        DiceProgressionAlias{.diceCount = 2, .dieSize = 4, .canonicalDiceCount = 1, .canonicalDieSize = 8},
+        DiceProgressionAlias{.diceCount = 3, .dieSize = 4, .canonicalDiceCount = 2, .canonicalDieSize = 6},
+        DiceProgressionAlias{.diceCount = 4, .dieSize = 4, .canonicalDiceCount = 2, .canonicalDieSize = 8},
+        DiceProgressionAlias{.diceCount = 5, .dieSize = 4, .canonicalDiceCount = 3, .canonicalDieSize = 6},
+        DiceProgressionAlias{.diceCount = 6, .dieSize = 4, .canonicalDiceCount = 3, .canonicalDieSize = 8},
+        DiceProgressionAlias{.diceCount = 7, .dieSize = 4, .canonicalDiceCount = 4, .canonicalDieSize = 6},
+        DiceProgressionAlias{.diceCount = 8, .dieSize = 4, .canonicalDiceCount = 4, .canonicalDieSize = 8},
+        DiceProgressionAlias{.diceCount = 12, .dieSize = 4, .canonicalDiceCount = 6, .canonicalDieSize = 8},
+        DiceProgressionAlias{.diceCount = 16, .dieSize = 4, .canonicalDiceCount = 8, .canonicalDieSize = 8},
+        DiceProgressionAlias{.diceCount = 20, .dieSize = 4, .canonicalDiceCount = 12, .canonicalDieSize = 6},
+        DiceProgressionAlias{.diceCount = 24, .dieSize = 4, .canonicalDiceCount = 12, .canonicalDieSize = 8},
+        DiceProgressionAlias{.diceCount = 1, .dieSize = 12, .canonicalDiceCount = 2, .canonicalDieSize = 6},
+        DiceProgressionAlias{.diceCount = 2, .dieSize = 12, .canonicalDiceCount = 4, .canonicalDieSize = 6},
+        DiceProgressionAlias{.diceCount = 3, .dieSize = 12, .canonicalDiceCount = 6, .canonicalDieSize = 6},
+        DiceProgressionAlias{.diceCount = 4, .dieSize = 12, .canonicalDiceCount = 8, .canonicalDieSize = 6},
+        DiceProgressionAlias{.diceCount = 6, .dieSize = 12, .canonicalDiceCount = 12, .canonicalDieSize = 6},
+        DiceProgressionAlias{.diceCount = 8, .dieSize = 12, .canonicalDiceCount = 16, .canonicalDieSize = 6},
+        DiceProgressionAlias{.diceCount = 3, .dieSize = 10, .canonicalDiceCount = 4, .canonicalDieSize = 8},
+        DiceProgressionAlias{.diceCount = 4, .dieSize = 10, .canonicalDiceCount = 6, .canonicalDieSize = 8},
+        DiceProgressionAlias{.diceCount = 5, .dieSize = 10, .canonicalDiceCount = 8, .canonicalDieSize = 8},
+        DiceProgressionAlias{.diceCount = 7, .dieSize = 10, .canonicalDiceCount = 12, .canonicalDieSize = 8},
+        DiceProgressionAlias{.diceCount = 8, .dieSize = 10, .canonicalDiceCount = 16, .canonicalDieSize = 6}
     };
 }
 
@@ -161,6 +188,21 @@ namespace golarion
         throw std::invalid_argument("unknown damage dice adjustment type");
     }
 
+    std::string_view displayName(DamageComponentOriginFilter filter)
+    {
+        switch (filter)
+        {
+            case DamageComponentOriginFilter::Any:
+                return "Qualsiasi origine";
+            case DamageComponentOriginFilter::Intrinsic:
+                return "Componente intrinseco";
+            case DamageComponentOriginFilter::ExternalGrant:
+                return "Componente aggiunto";
+        }
+
+        throw std::invalid_argument("unknown damage component origin filter");
+    }
+
     DamageDice::DamageDice(DamageDiceDefinition definition)
         : diceCount_(definition.diceCount),
           dieSize_(definition.dieSize)
@@ -201,6 +243,21 @@ namespace golarion
         const long long stepCount = steps < 0 ? -static_cast<long long>(steps) : steps;
         for (long long step = 0; step < stepCount; ++step)
         {
+            if (diceCount == 2 && dieSize == 10)
+            {
+                diceCount = direction > 0 ? 4 : 2;
+                dieSize = 8;
+                continue;
+            }
+            const auto alias = std::ranges::find_if(DiceProgressionAliases, [diceCount, dieSize](const DiceProgressionAlias &candidate)
+            {
+                return candidate.diceCount == diceCount && candidate.dieSize == dieSize;
+            });
+            if (alias != DiceProgressionAliases.end())
+            {
+                diceCount = alias->canonicalDiceCount;
+                dieSize = alias->canonicalDieSize;
+            }
             const auto entry = std::ranges::find_if(DiceProgression, [diceCount, dieSize](const DiceProgressionEntry &candidate)
             {
                 return candidate.diceCount == diceCount && candidate.dieSize == dieSize;
@@ -209,8 +266,13 @@ namespace golarion
             {
                 throw std::invalid_argument("damage dice are not supported by the size progression: " + std::to_string(diceCount) + "d" + std::to_string(dieSize));
             }
-            diceCount = direction > 0 ? entry->largerDiceCount : entry->smallerDiceCount;
-            dieSize = direction > 0 ? entry->largerDieSize : entry->smallerDieSize;
+            if ((direction < 0 && entry == DiceProgression.begin()) || (direction > 0 && std::next(entry) == DiceProgression.end()))
+            {
+                throw std::invalid_argument("damage dice progression exceeds the supported range");
+            }
+            const auto adjusted = direction > 0 ? std::next(entry) : std::prev(entry);
+            diceCount = adjusted->diceCount;
+            dieSize = adjusted->dieSize;
         }
         return DamageDice(DamageDiceDefinition{.diceCount = diceCount, .dieSize = dieSize});
     }

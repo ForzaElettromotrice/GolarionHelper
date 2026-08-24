@@ -21,6 +21,8 @@ namespace golarion
         std::string source;
         std::string targetResourceName;
         DamageComponentRole targetRole;
+        DamageComponentOriginFilter targetOrigin;
+        std::optional<std::string> targetComponentGrantId;
         std::optional<std::string> targetComponentId;
         DamageDiceAdjustmentType type;
         std::optional<std::string> expression;

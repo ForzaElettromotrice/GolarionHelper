@@ -1,334 +1,57 @@
 #pragma once
 
-#include "golarion/character/ability.hpp"
-#include "golarion/character/attack_distance.hpp"
-#include "golarion/character/armor_class.hpp"
-#include "golarion/character/damage.hpp"
-#include "golarion/resource/requirement.hpp"
+#include "golarion/data/attacks_data.hpp"
 
 #include <map>
-#include <optional>
 #include <string>
 #include <string_view>
 #include <vector>
 
 namespace golarion
 {
-    inline constexpr std::string_view AttackGrantsResource = "attack.grants";
-    inline constexpr std::string_view DamageComponentGrantsResource = "damage.componentGrants";
-    inline constexpr std::string_view CriticalAdjustmentsResource = "attack.criticalAdjustments";
-    inline constexpr std::string_view AttackAbilityReplacementsResource = "attack.abilityReplacements";
-    inline constexpr std::string_view DamageAbilityReplacementsResource = "damage.abilityReplacements";
-    inline constexpr std::string_view DamageDiceAdjustmentsResource = "damage.diceAdjustments";
-    inline constexpr std::string_view AttackRequirementsResource = "attack.requirements";
-    inline constexpr std::string_view AttackDefenseReplacementsResource = "attack.defenseReplacements";
-
-    class ResourceManager;
+    class AttackRoutines;
+    class Strikes;
+    struct StrikeCalculationContext;
     struct AttacksView;
 
-    enum class AttackMode
-    {
-        Melee,
-        Ranged
-    };
-
-    enum class AttackTag
-    {
-        Weapon,
-        Thrown,
-        Projectile,
-        Natural,
-        Unarmed,
-        Primary,
-        Secondary
-    };
-
-    enum class DamageAbilityRule
-    {
-        None,
-        Full,
-        HalfPositiveFullPenalty,
-        OneAndHalfPositiveFullPenalty,
-        PenaltyOnly
-    };
-
-    enum class CriticalAdjustmentType
-    {
-        ThreatRangeMultiplier,
-        ThreatMinimum,
-        MultiplierIncrease,
-        MultiplierSet
-    };
-
-    std::string_view displayName(AttackMode mode);
-    std::string_view displayName(AttackTag tag);
-    std::string_view displayName(DamageAbilityRule rule);
-    std::string_view displayName(CriticalAdjustmentType type);
-    AbilityType defaultAttackAbility(AttackMode mode);
-    std::string attackResourceName(AttackMode mode);
-    std::string attackResourceName(AttackTag tag);
-    std::string attackResourceName(std::string_view grantId);
-    std::string damageResourceName(AttackMode mode);
-    std::string damageResourceName(AttackTag tag);
-    std::string damageResourceName(std::string_view grantId);
-    std::string criticalConfirmationResourceName(AttackMode mode);
-    std::string criticalConfirmationResourceName(AttackTag tag);
-    std::string criticalConfirmationResourceName(std::string_view grantId);
-
-    struct AttackGrantDefinition
-    {
-        std::string id;
-        std::string source;
-        std::string name;
-        AttackMode mode;
-        std::vector<AttackTag> tags;
-        std::vector<DamageComponent> damageComponents;
-        DamageAbilityRule damageAbilityRule;
-        int criticalThreatMinimum;
-        int criticalMultiplier;
-        ArmorClassType defenseType = ArmorClassType::Normal;
-        std::optional<AttackReachDefinition> reach;
-        std::optional<AttackRangeDefinition> range;
-        std::vector<Requirement> requirements;
-    };
-
-    class AttackGrant final
+    class Attack final
     {
     public:
-        explicit AttackGrant(AttackGrantDefinition definition);
+        Attack(const Attack &) = default;
+        Attack &operator=(const Attack &) = default;
+        Attack(Attack &&) noexcept = default;
+        Attack &operator=(Attack &&) noexcept = default;
 
     private:
         friend class Attacks;
 
+        Attack(std::string id, std::string name, std::string routineId);
+
         std::string id_;
-        std::string source_;
         std::string name_;
-        AttackMode mode_;
-        std::vector<AttackTag> tags_;
-        std::vector<DamageComponent> damageComponents_;
-        DamageAbilityRule damageAbilityRule_;
-        int criticalThreatMinimum_;
-        int criticalMultiplier_;
-        ArmorClassType defenseType_;
-        std::optional<AttackReachDefinition> reach_;
-        std::optional<AttackRangeDefinition> range_;
-        std::vector<Requirement> requirements_;
-    };
-
-    struct AttackRequirementDefinition
-    {
-        std::string id;
-        std::string source;
-        std::string targetResourceName;
-        Requirement requirement;
-        std::optional<std::string> condition;
-    };
-
-    class AttackRequirement final
-    {
-    public:
-        explicit AttackRequirement(AttackRequirementDefinition definition);
-
-    private:
-        friend class Attacks;
-
-        std::string id_;
-        std::string source_;
-        std::string targetResourceName_;
-        Requirement requirement_;
-        std::optional<std::string> condition_;
-    };
-
-    struct AttackDefenseReplacementDefinition
-    {
-        std::string id;
-        std::string source;
-        std::string targetResourceName;
-        ArmorClassType defenseType;
-        std::optional<std::string> condition;
-    };
-
-    class AttackDefenseReplacement final
-    {
-    public:
-        explicit AttackDefenseReplacement(AttackDefenseReplacementDefinition definition);
-
-    private:
-        friend class Attacks;
-
-        std::string id_;
-        std::string source_;
-        std::string targetResourceName_;
-        ArmorClassType defenseType_;
-        std::optional<std::string> condition_;
-    };
-
-    struct DamageComponentGrantDefinition
-    {
-        std::string id;
-        std::string source;
-        std::string targetResourceName;
-        DamageComponent component;
-    };
-
-    class DamageComponentGrant final
-    {
-    public:
-        explicit DamageComponentGrant(DamageComponentGrantDefinition definition);
-
-    private:
-        friend class Attacks;
-
-        std::string id_;
-        std::string source_;
-        std::string targetResourceName_;
-        DamageComponent component_;
-    };
-
-    struct CriticalAdjustmentDefinition
-    {
-        std::string id;
-        std::string source;
-        std::string targetResourceName;
-        CriticalAdjustmentType type;
-        std::string expression;
-        std::optional<int> maximumMultiplier;
-        std::optional<std::string> condition;
-    };
-
-    class CriticalAdjustment final
-    {
-    public:
-        explicit CriticalAdjustment(CriticalAdjustmentDefinition definition);
-
-    private:
-        friend class Attacks;
-
-        std::string id_;
-        std::string source_;
-        std::string targetResourceName_;
-        CriticalAdjustmentType type_;
-        std::string expression_;
-        std::optional<int> maximumMultiplier_;
-        std::optional<std::string> condition_;
-    };
-
-    struct AttackAbilityReplacementDefinition
-    {
-        std::string id;
-        std::string source;
-        std::string targetResourceName;
-        AbilityType abilityType;
-    };
-
-    class AttackAbilityReplacement final
-    {
-    public:
-        explicit AttackAbilityReplacement(AttackAbilityReplacementDefinition definition);
-
-    private:
-        friend class Attacks;
-
-        std::string id_;
-        std::string source_;
-        std::string targetResourceName_;
-        AbilityType abilityType_;
-    };
-
-    struct DamageAbilityReplacementDefinition
-    {
-        std::string id;
-        std::string source;
-        std::string targetResourceName;
-        AbilityType abilityType;
-    };
-
-    class DamageAbilityReplacement final
-    {
-    public:
-        explicit DamageAbilityReplacement(DamageAbilityReplacementDefinition definition);
-
-    private:
-        friend class Attacks;
-
-        std::string id_;
-        std::string source_;
-        std::string targetResourceName_;
-        AbilityType abilityType_;
-    };
-
-    struct DamageDiceAdjustmentDefinition
-    {
-        std::string id;
-        std::string source;
-        std::string targetResourceName;
-        DamageComponentRole targetRole;
-        std::optional<std::string> targetComponentId;
-        DamageDiceAdjustmentType type;
-        std::optional<std::string> expression;
-        std::optional<DamageDice> setDice;
-        std::optional<std::string> condition;
-    };
-
-    class DamageDiceAdjustment final
-    {
-    public:
-        explicit DamageDiceAdjustment(DamageDiceAdjustmentDefinition definition);
-
-    private:
-        friend class Attacks;
-
-        std::string id_;
-        std::string source_;
-        std::string targetResourceName_;
-        DamageComponentRole targetRole_;
-        std::optional<std::string> targetComponentId_;
-        DamageDiceAdjustmentType type_;
-        std::optional<std::string> expression_;
-        std::optional<DamageDice> setDice_;
-        std::optional<std::string> condition_;
+        std::string routineId_;
+        std::map<std::string, std::string> assignments_;
     };
 
     class Attacks final
     {
     public:
-        explicit Attacks(ResourceManager &resourceManager);
+        Attacks(AttackRoutines &attackRoutines, Strikes &strikes);
 
+        void create(std::string_view id, std::string_view name, std::string_view routineId);
+        void remove(std::string_view attackId);
+        void assignStrike(std::string_view attackId, std::string_view slotId, std::string_view strikeGrantId);
+        void unassignStrike(std::string_view attackId, std::string_view slotId);
         AttacksView toView();
+        AttacksView toView(const StrikeCalculationContext &context);
+        AttacksData toData() const;
+        void load(const AttacksData &data);
 
     private:
-        void addGrant(AttackGrant grant);
-        void removeGrant(std::string_view grantId);
-        void addDamageComponentGrant(DamageComponentGrant grant);
-        void removeDamageComponentGrant(std::string_view grantId);
-        void addCriticalAdjustment(CriticalAdjustment adjustment);
-        void removeCriticalAdjustment(std::string_view adjustmentId);
-        void addAttackAbilityReplacement(AttackAbilityReplacement replacement);
-        void removeAttackAbilityReplacement(std::string_view replacementId);
-        void addDamageAbilityReplacement(DamageAbilityReplacement replacement);
-        void removeDamageAbilityReplacement(std::string_view replacementId);
-        void addDamageDiceAdjustment(DamageDiceAdjustment adjustment);
-        void removeDamageDiceAdjustment(std::string_view adjustmentId);
-        void addDistanceAdjustment(AttackDistanceAdjustment adjustment);
-        void removeDistanceAdjustment(std::string_view adjustmentId);
-        void addRequirement(AttackRequirement requirement);
-        void removeRequirement(std::string_view requirementId);
-        void addDefenseReplacement(AttackDefenseReplacement replacement);
-        void removeDefenseReplacement(std::string_view replacementId);
-        std::vector<std::string> attackParentResources(const AttackGrant &grant) const;
-        std::vector<std::string> damageParentResources(const AttackGrant &grant) const;
-        std::vector<std::string> criticalConfirmationParentResources(const AttackGrant &grant) const;
-        std::vector<std::string> distanceParentResources(AttackDistanceProperty property, const AttackGrant &grant) const;
+        Attack &attack(std::string_view attackId);
 
-        ResourceManager &resourceManager_;
-        std::vector<AttackGrant> grants_;
-        std::map<std::string, DamageComponentGrant> damageComponentGrants_;
-        std::map<std::string, CriticalAdjustment> criticalAdjustments_;
-        std::map<std::string, AttackAbilityReplacement> attackAbilityReplacements_;
-        std::map<std::string, DamageAbilityReplacement> damageAbilityReplacements_;
-        std::map<std::string, DamageDiceAdjustment> damageDiceAdjustments_;
-        std::map<std::string, AttackDistanceAdjustment> distanceAdjustments_;
-        std::map<std::string, AttackRequirement> requirements_;
-        std::map<std::string, AttackDefenseReplacement> defenseReplacements_;
+        AttackRoutines &attackRoutines_;
+        Strikes &strikes_;
+        std::vector<Attack> attacks_;
     };
 }
