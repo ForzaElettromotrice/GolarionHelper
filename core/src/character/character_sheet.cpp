@@ -1,7 +1,7 @@
 #include "golarion/character/character_sheet.hpp"
 
+#include "conditions/condition_factories.hpp"
 #include "golarion/persistence/json.hpp"
-#include "golarion/resource/contribution.hpp"
 #include <stdexcept>
 #include <utility>
 
@@ -32,7 +32,8 @@ namespace
 namespace golarion
 {
     CharacterSheet::CharacterSheet()
-        : baseAttackBonus_(resourceManager_),
+        : abilityChecks_(resourceManager_),
+          baseAttackBonus_(resourceManager_),
           abilities_{
               AbilityScore(AbilityType::Strength),
               AbilityScore(AbilityType::Dexterity),
@@ -41,14 +42,20 @@ namespace golarion
               AbilityScore(AbilityType::Wisdom),
               AbilityScore(AbilityType::Charisma)
           },
-          attacks_(resourceManager_),
+          strikes_(resourceManager_),
+          attackRoutines_(resourceManager_, strikes_),
+          attacks_(attackRoutines_, strikes_),
           combatManeuvers_(resourceManager_),
           hitPoints_(resourceManager_),
           initiative_(resourceManager_),
           armorClass_(resourceManager_),
           skills_(resourceManager_),
           savingThrows_(resourceManager_),
-          movement_(resourceManager_)
+          movement_(resourceManager_),
+          carryingCapacity_(resourceManager_),
+          encumbrance_(resourceManager_, carryingCapacity_),
+          sizeManager_(resourceManager_),
+          conditionManager_(resourceManager_)
     {
         for (AbilityScore &abilityScore : abilities_)
         {
@@ -58,21 +65,12 @@ namespace golarion
         {
             return level();
         });
-        resourceManager_.addContribution("hp.max", Contribution("hitPoints.constitution", "@conMod * @level"));
-        resourceManager_.addToCollection(MovementGrantsResource, MovementGrant(MovementGrantDefinition{
-            .id = "racial",
-            .source = "Velocità razziale",
-            .type = MovementType::Land,
-            .baseSpeedExpression = "6",
-            .maneuverability = std::nullopt,
-            .affectedByArmor = true,
-            .affectedByLoad = true
-        }));
+        registerCanonicalConditions(conditionManager_);
     }
 
     CharacterSheet::CharacterSheet(const CharacterSheetSaveData &data) : CharacterSheet()
     {
-        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14)
+        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18)
         {
             throw std::invalid_argument("unsupported character sheet format version: " + std::to_string(data.formatVersion));
         }
@@ -96,6 +94,8 @@ namespace golarion
 
         skills_.load(data.skills);
         hitPoints_.load(data.hitPoints);
+        attacks_.load(data.attacks);
+        conditionManager_.load(data.conditions);
     }
 
     CharacterSheet CharacterSheet::load(const std::filesystem::path &path)
@@ -106,11 +106,6 @@ namespace golarion
     void CharacterSheet::setAbilityBaseValue(AbilityType type, int baseValue)
     {
         ability(type).setBaseValue(baseValue);
-    }
-
-    void CharacterSheet::advanceTime(GameDuration duration)
-    {
-        hitPoints_.advanceTime(duration);
     }
 
     void CharacterSheet::heal(int amount)
@@ -143,8 +138,44 @@ namespace golarion
         skills_.setSpecializationRanks(type, specializationId, ranks);
     }
 
+    void CharacterSheet::createAttack(std::string_view id, std::string_view name, std::string_view routineId)
+    {
+        attacks_.create(id, name, routineId);
+    }
+
+    void CharacterSheet::removeAttack(std::string_view attackId)
+    {
+        attacks_.remove(attackId);
+    }
+
+    void CharacterSheet::assignStrikeToAttack(std::string_view attackId, std::string_view slotId, std::string_view strikeGrantId)
+    {
+        attacks_.assignStrike(attackId, slotId, strikeGrantId);
+    }
+
+    void CharacterSheet::unassignStrikeFromAttack(std::string_view attackId, std::string_view slotId)
+    {
+        attacks_.unassignStrike(attackId, slotId);
+    }
+
+    void CharacterSheet::addCondition(ConditionEntry entry)
+    {
+        conditionManager_.addManualEntry(std::move(entry));
+    }
+
+    void CharacterSheet::removeCondition(std::string_view entryId)
+    {
+        conditionManager_.removeManualEntry(entryId);
+    }
+
     CharacterSheetView CharacterSheet::toView()
     {
+        return toView(StrikeCalculationContext{});
+    }
+
+    CharacterSheetView CharacterSheet::toView(const StrikeCalculationContext &strikeContext)
+    {
+        EncumbranceView encumbranceView = encumbrance_.toView();
         std::vector<AbilityView> abilityViews;
         abilityViews.reserve(abilities_.size());
 
@@ -156,14 +187,20 @@ namespace golarion
         return CharacterSheetView{
             .abilities = std::move(abilityViews),
             .baseAttackBonus = baseAttackBonus_.toView(),
-            .attacks = attacks_.toView(),
+            .strikes = strikes_.toView(strikeContext),
+            .attackRoutines = attackRoutines_.toView(),
+            .attacks = attacks_.toView(strikeContext),
             .combatManeuvers = combatManeuvers_.toView(),
             .hitPoints = hitPoints_.toView(),
             .initiative = initiative_.toView(),
             .armorClass = armorClass_.toView(),
             .savingThrows = savingThrows_.toView(),
             .skills = skills_.toView(),
-            .movement = movement_.toView()
+            .movement = movement_.toView(),
+            .carryingCapacity = carryingCapacity_.toView(),
+            .encumbrance = std::move(encumbranceView),
+            .size = sizeManager_.toView(),
+            .conditions = conditionManager_.toView()
         };
     }
 
@@ -178,10 +215,12 @@ namespace golarion
         }
 
         return CharacterSheetSaveData{
-            .formatVersion = 14,
+            .formatVersion = 18,
             .abilities = std::move(abilityData),
             .hitPoints = hitPoints_.toSaveData(),
-            .skills = skills_.toSaveData()
+            .skills = skills_.toSaveData(),
+            .attacks = attacks_.toData(),
+            .conditions = conditionManager_.toSaveData()
         };
     }
 

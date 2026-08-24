@@ -114,15 +114,15 @@ namespace
         Json pools = Json::array();
         for (const golarion::TemporaryHitPointPoolSaveData &pool : data.pools)
         {
-            Json remainingRounds = nullptr;
-            if (pool.remainingDuration)
+            Json durationRounds = nullptr;
+            if (pool.duration.has_value())
             {
-                remainingRounds = pool.remainingDuration->roundCount();
+                durationRounds = pool.duration->roundCount();
             }
             pools.push_back(Json{
                 {"id", pool.id},
                 {"remaining", pool.remaining},
-                {"remainingRounds", std::move(remainingRounds)}
+                {"durationRounds", std::move(durationRounds)}
             });
         }
         return Json{{"pools", std::move(pools)}};
@@ -134,15 +134,19 @@ namespace
         pools.reserve(json.at("pools").size());
         for (const Json &pool : json.at("pools"))
         {
-            std::optional<golarion::GameDuration> remainingDuration;
-            if (!pool.at("remainingRounds").is_null())
+            std::optional<golarion::GameDuration> duration;
+            if (pool.contains("durationRounds") && !pool.at("durationRounds").is_null())
             {
-                remainingDuration = golarion::GameDuration::fromRounds(pool.at("remainingRounds").get<std::int64_t>());
+                duration = golarion::GameDuration::fromRounds(pool.at("durationRounds").get<std::int64_t>());
+            }
+            else if (pool.contains("remainingRounds") && !pool.at("remainingRounds").is_null())
+            {
+                duration = golarion::GameDuration::fromRounds(pool.at("remainingRounds").get<std::int64_t>());
             }
             pools.push_back(golarion::TemporaryHitPointPoolSaveData{
                 .id = pool.at("id").get<std::string>(),
                 .remaining = pool.at("remaining").get<int>(),
-                .remainingDuration = remainingDuration
+                .duration = duration
             });
         }
         return golarion::TemporaryHitPointsSaveData{.pools = std::move(pools)};
@@ -235,6 +239,111 @@ namespace
         return golarion::SkillsSaveData{.skills = std::move(skills)};
     }
 
+    Json attacksToJson(const golarion::AttacksData &data)
+    {
+        Json attacks = Json::array();
+        for (const golarion::AttackData &attack : data.attacks)
+        {
+            Json assignments = Json::array();
+            for (const golarion::AttackAssignmentData &assignment : attack.assignments)
+            {
+                assignments.push_back(Json{
+                    {"slotId", assignment.slotId},
+                    {"strikeGrantId", assignment.strikeGrantId}
+                });
+            }
+            attacks.push_back(Json{
+                {"id", attack.id},
+                {"name", attack.name},
+                {"routineId", attack.routineId},
+                {"assignments", std::move(assignments)}
+            });
+        }
+        return Json{{"attacks", std::move(attacks)}};
+    }
+
+    golarion::AttacksData attacksFromJson(const Json &json)
+    {
+        std::vector<golarion::AttackData> attacks;
+        attacks.reserve(json.at("attacks").size());
+        for (const Json &attack : json.at("attacks"))
+        {
+            std::vector<golarion::AttackAssignmentData> assignments;
+            assignments.reserve(attack.at("assignments").size());
+            for (const Json &assignment : attack.at("assignments"))
+            {
+                assignments.push_back(golarion::AttackAssignmentData{
+                    .slotId = assignment.at("slotId").get<std::string>(),
+                    .strikeGrantId = assignment.at("strikeGrantId").get<std::string>()
+                });
+            }
+            attacks.push_back(golarion::AttackData{
+                .id = attack.at("id").get<std::string>(),
+                .name = attack.at("name").get<std::string>(),
+                .routineId = attack.at("routineId").get<std::string>(),
+                .assignments = std::move(assignments)
+            });
+        }
+        return golarion::AttacksData{.attacks = std::move(attacks)};
+    }
+
+    Json conditionsToJson(const golarion::ConditionManagerSaveData &data)
+    {
+        Json manualEntries = Json::array();
+        for (const golarion::ConditionEntrySaveData &entry : data.manualEntries)
+        {
+            Json stackingGroup = nullptr;
+            if (entry.stackingGroup.has_value())
+            {
+                stackingGroup = *entry.stackingGroup;
+            }
+            Json parameter = nullptr;
+            if (entry.parameter.has_value())
+            {
+                parameter = *entry.parameter;
+            }
+            manualEntries.push_back(Json{
+                {"id", entry.id},
+                {"conditionId", entry.conditionId},
+                {"source", entry.source},
+                {"severity", entry.severity},
+                {"contributesToEscalation", entry.contributesToEscalation},
+                {"stackingGroup", std::move(stackingGroup)},
+                {"parameter", std::move(parameter)}
+            });
+        }
+        return Json{{"manualEntries", std::move(manualEntries)}};
+    }
+
+    golarion::ConditionManagerSaveData conditionsFromJson(const Json &json)
+    {
+        std::vector<golarion::ConditionEntrySaveData> manualEntries;
+        manualEntries.reserve(json.at("manualEntries").size());
+        for (const Json &entry : json.at("manualEntries"))
+        {
+            std::optional<std::string> stackingGroup;
+            if (!entry.at("stackingGroup").is_null())
+            {
+                stackingGroup = entry.at("stackingGroup").get<std::string>();
+            }
+            std::optional<std::string> parameter;
+            if (entry.contains("parameter") && !entry.at("parameter").is_null())
+            {
+                parameter = entry.at("parameter").get<std::string>();
+            }
+            manualEntries.push_back(golarion::ConditionEntrySaveData{
+                .id = entry.at("id").get<std::string>(),
+                .conditionId = entry.at("conditionId").get<std::string>(),
+                .source = entry.at("source").get<std::string>(),
+                .severity = entry.at("severity").get<int>(),
+                .contributesToEscalation = entry.at("contributesToEscalation").get<bool>(),
+                .stackingGroup = std::move(stackingGroup),
+                .parameter = std::move(parameter)
+            });
+        }
+        return golarion::ConditionManagerSaveData{.manualEntries = std::move(manualEntries)};
+    }
+
 }
 
 namespace golarion::persistence
@@ -251,7 +360,9 @@ namespace golarion::persistence
             {"formatVersion", data.formatVersion},
             {"abilities", std::move(abilities)},
             {"hitPoints", hitPointsToJson(data.hitPoints)},
-            {"skills", skillsToJson(data.skills)}
+            {"skills", skillsToJson(data.skills)},
+            {"attacks", attacksToJson(data.attacks)},
+            {"conditions", conditionsToJson(data.conditions)}
         }.dump(4);
     }
 
@@ -266,11 +377,14 @@ namespace golarion::persistence
             abilities.push_back(abilityFromJson(ability));
         }
 
+        const int formatVersion = json.at("formatVersion").get<int>();
         return CharacterSheetSaveData{
-            .formatVersion = json.at("formatVersion").get<int>(),
+            .formatVersion = formatVersion,
             .abilities = std::move(abilities),
             .hitPoints = hitPointsFromJson(json.at("hitPoints")),
-            .skills = skillsFromJson(json.at("skills"))
+            .skills = skillsFromJson(json.at("skills")),
+            .attacks = json.contains("attacks") ? attacksFromJson(json.at("attacks")) : AttacksData{},
+            .conditions = formatVersion >= 17 ? conditionsFromJson(json.at("conditions")) : ConditionManagerSaveData{}
         };
     }
 
