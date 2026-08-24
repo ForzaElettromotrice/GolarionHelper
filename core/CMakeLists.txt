@@ -2,19 +2,61 @@ add_library(golarion_model STATIC
     src/character/ability.cpp
     src/character/armor_class.cpp
     src/character/attack.cpp
+    src/character/attack_routine.cpp
+    src/character/strike.cpp
     src/character/attack_distance.cpp
     src/character/base_attack_bonus.cpp
+    src/character/carrying_capacity.cpp
     src/character/character_sheet.cpp
     src/character/combat_maneuvers.cpp
+    src/character/condition.cpp
+    src/character/conditions/bleeding.cpp
+    src/character/conditions/blinded.cpp
+    src/character/conditions/confused.cpp
+    src/character/conditions/cowering.cpp
+    src/character/conditions/dazed.cpp
+    src/character/conditions/dazzled.cpp
+    src/character/conditions/dead.cpp
+    src/character/conditions/deafened.cpp
+    src/character/conditions/disabled.cpp
+    src/character/conditions/dying.cpp
+    src/character/conditions/entangled.cpp
+    src/character/conditions/fascinated.cpp
+    src/character/conditions/fatigue.cpp
+    src/character/conditions/fear.cpp
+    src/character/conditions/flat_footed.cpp
+    src/character/conditions/grappled.cpp
+    src/character/conditions/helpless.cpp
+    src/character/conditions/incorporeal.cpp
+    src/character/conditions/invisible.cpp
+    src/character/conditions/nauseated.cpp
+    src/character/conditions/negative_levels.cpp
+    src/character/conditions/paralyzed.cpp
+    src/character/conditions/petrified.cpp
+    src/character/conditions/pinned.cpp
+    src/character/conditions/prone.cpp
+    src/character/conditions/register_conditions.cpp
+    src/character/conditions/sickened.cpp
+    src/character/conditions/stable.cpp
+    src/character/conditions/staggered.cpp
+    src/character/conditions/stunned.cpp
+    src/character/conditions/unconscious.cpp
     src/character/damage.cpp
+    src/character/encumbrance.cpp
     src/character/hit_points.cpp
     src/character/temporary_hit_points.cpp
     src/character/initiative.cpp
     src/character/movement.cpp
     src/character/saving_throw.cpp
     src/character/saving_throws.cpp
+    src/character/size.cpp
     src/character/skill.cpp
     src/character/skills.cpp
+    src/equipment/equipment_slot.cpp
+    src/equipment/inventory.cpp
+    src/equipment/item.cpp
+    src/equipment/item_definition_manager.cpp
+    src/equipment/item_location.cpp
     src/resource/modifier.cpp
     src/resource/requirement.cpp
     src/resource/modifier_set.cpp
@@ -26,6 +68,13 @@ add_library(golarion_model STATIC
 )
 
 find_package(nlohmann_json 3.12 REQUIRED)
+
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/resources/items.json" ITEM_DEFINITION_CATALOG_JSON)
+configure_file(
+    src/equipment/item_definition_catalog.hpp.in
+    "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/equipment/item_definition_catalog.hpp"
+    @ONLY
+)
 
 add_library(golarion_persistence STATIC
     src/persistence/json.cpp
@@ -48,9 +97,11 @@ set_target_properties(golarion_model PROPERTIES POSITION_INDEPENDENT_CODE ON)
 target_include_directories(golarion_model
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
+    PRIVATE
+        "${CMAKE_CURRENT_BINARY_DIR}/generated"
 )
 
-target_link_libraries(golarion_model PRIVATE golarion_persistence)
+target_link_libraries(golarion_model PRIVATE golarion_persistence nlohmann_json::nlohmann_json)
 
 add_library(golarion SHARED
     src/ffi/golarion.cpp
@@ -82,13 +133,25 @@ if(BUILD_TESTING)
     target_link_libraries(armor_class_test PRIVATE golarion_model)
     add_test(NAME armor_class_test COMMAND armor_class_test)
 
-    add_executable(attack_test tests/character/attack_test.cpp)
-    target_link_libraries(attack_test PRIVATE golarion_model)
-    add_test(NAME attack_test COMMAND attack_test)
+    add_executable(attack_routine_test tests/character/attack_routine_test.cpp)
+    target_link_libraries(attack_routine_test PRIVATE golarion_model)
+    add_test(NAME attack_routine_test COMMAND attack_routine_test)
+
+    add_executable(attacks_test tests/character/attacks_test.cpp)
+    target_link_libraries(attacks_test PRIVATE golarion_model)
+    add_test(NAME attacks_test COMMAND attacks_test)
+
+    add_executable(strike_test tests/character/strike_test.cpp)
+    target_link_libraries(strike_test PRIVATE golarion_model)
+    add_test(NAME strike_test COMMAND strike_test)
 
     add_executable(base_attack_bonus_test tests/character/base_attack_bonus_test.cpp)
     target_link_libraries(base_attack_bonus_test PRIVATE golarion_model)
     add_test(NAME base_attack_bonus_test COMMAND base_attack_bonus_test)
+
+    add_executable(carrying_capacity_test tests/character/carrying_capacity_test.cpp)
+    target_link_libraries(carrying_capacity_test PRIVATE golarion_model)
+    add_test(NAME carrying_capacity_test COMMAND carrying_capacity_test)
 
     add_executable(character_sheet_test tests/character/character_sheet_test.cpp)
     target_link_libraries(character_sheet_test PRIVATE golarion_model)
@@ -98,9 +161,17 @@ if(BUILD_TESTING)
     target_link_libraries(combat_maneuvers_test PRIVATE golarion_model)
     add_test(NAME combat_maneuvers_test COMMAND combat_maneuvers_test)
 
+    add_executable(condition_test tests/character/condition_test.cpp)
+    target_link_libraries(condition_test PRIVATE golarion_model)
+    add_test(NAME condition_test COMMAND condition_test)
+
     add_executable(damage_test tests/character/damage_test.cpp)
     target_link_libraries(damage_test PRIVATE golarion_model)
     add_test(NAME damage_test COMMAND damage_test)
+
+    add_executable(encumbrance_test tests/character/encumbrance_test.cpp)
+    target_link_libraries(encumbrance_test PRIVATE golarion_model)
+    add_test(NAME encumbrance_test COMMAND encumbrance_test)
 
     add_executable(initiative_test tests/character/initiative_test.cpp)
     target_link_libraries(initiative_test PRIVATE golarion_model)
@@ -134,9 +205,33 @@ if(BUILD_TESTING)
     target_link_libraries(saving_throws_test PRIVATE golarion_model)
     add_test(NAME saving_throws_test COMMAND saving_throws_test)
 
+    add_executable(size_test tests/character/size_test.cpp)
+    target_link_libraries(size_test PRIVATE golarion_model)
+    add_test(NAME size_test COMMAND size_test)
+
     add_executable(skills_test tests/character/skills_test.cpp)
     target_link_libraries(skills_test PRIVATE golarion_model)
     add_test(NAME skills_test COMMAND skills_test)
+
+    add_executable(item_test tests/equipment/item_test.cpp)
+    target_link_libraries(item_test PRIVATE golarion_model)
+    add_test(NAME item_test COMMAND item_test)
+
+    add_executable(item_definition_manager_test tests/equipment/item_definition_manager_test.cpp)
+    target_link_libraries(item_definition_manager_test PRIVATE golarion_model)
+    add_test(NAME item_definition_manager_test COMMAND item_definition_manager_test)
+
+    add_executable(equipment_slot_test tests/equipment/equipment_slot_test.cpp)
+    target_link_libraries(equipment_slot_test PRIVATE golarion_model)
+    add_test(NAME equipment_slot_test COMMAND equipment_slot_test)
+
+    add_executable(inventory_test tests/equipment/inventory_test.cpp)
+    target_link_libraries(inventory_test PRIVATE golarion_model)
+    add_test(NAME inventory_test COMMAND inventory_test)
+
+    add_executable(item_location_test tests/equipment/item_location_test.cpp)
+    target_link_libraries(item_location_test PRIVATE golarion_model)
+    add_test(NAME item_location_test COMMAND item_location_test)
 
     add_executable(golarion_smoke_test tests/ffi/golarion_smoke_test.cpp)
     target_link_libraries(golarion_smoke_test PRIVATE golarion)
