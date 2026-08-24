@@ -20,6 +20,31 @@ namespace golarion
         std::optional<int> resolvedValue;
     };
 
+    struct RunAdjustmentView
+    {
+        std::string id;
+        std::string source;
+        std::string description;
+        RunAdjustmentType type;
+        std::string stackingGroup;
+        std::optional<std::string> expression;
+        std::optional<std::string> condition;
+        std::optional<int> resolvedValue;
+        bool applied;
+        std::optional<std::string> notAppliedReason;
+    };
+
+    struct RunView
+    {
+        bool supported;
+        bool usable;
+        int baseMultiplier;
+        std::optional<int> effectiveMultiplier;
+        std::optional<int> distanceUnits;
+        std::vector<std::string> notUsableReasons;
+        std::vector<RunAdjustmentView> adjustments;
+    };
+
     struct MovementGrantView
     {
         std::string id;
@@ -34,6 +59,7 @@ namespace golarion
         bool affectedByArmor;
         bool affectedByLoad;
         bool usable;
+        RunView run;
         ModifierSetView modifiers;
         std::vector<MovementAdjustmentView> adjustments;
     };
