@@ -26,7 +26,15 @@ namespace golarion
                         conditionEffects::perEntryPenalty("skillChecks", "–1 alle prove di abilità", "Livello Negativo", "skill.all", "1"),
                         conditionEffects::perEntryPenalty("abilityChecks", "–1 alle prove di caratteristica", "Livello Negativo", std::string(AbilityCheckRootResource), "1"),
                         conditionEffects::perEntryPenalty("combatManeuverDefense", "–1 alla Difesa da Manovra in Combattimento", "Livello Negativo", std::string(CombatManeuverDefenseAllResource), "1"),
-                        conditionEffects::contribution("hitPoints", "–5 ai punti ferita massimi e attuali", std::string(MaxHitPointsResource), "-5")
+                        conditionEffects::contribution("hitPoints", "–5 ai punti ferita massimi e attuali", std::string(MaxHitPointsResource), "-5"),
+                        conditionEffects::contextualReminder("levelDependentValues", "Conta come un livello in meno per i parametri dipendenti dal livello", [](const ConditionEffectContext &context)
+                        {
+                            return "Livello Negativo (" + context.source.value() + "): conta come un livello in meno per i parametri dipendenti dal livello, senza perdere incantesimi preparati o slot.";
+                        }),
+                        conditionEffects::contextualReminder("removalAndDeath", "Verifica durata, tiro salvezza di rimozione e soglia di morte", [](const ConditionEffectContext &context)
+                        {
+                            return "Livello Negativo (" + context.source.value() + "): verifica dalla fonte se è temporaneo o permanente e l'eventuale tiro salvezza giornaliero. Se i livelli negativi totali raggiungono i Dadi Vita, il personaggio muore.";
+                        })
                     }
                 }
             }

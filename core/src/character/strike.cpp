@@ -74,25 +74,6 @@ namespace
         return static_cast<int>(value);
     }
 
-    int damageAbilityContribution(int abilityModifier, golarion::DamageAbilityRule rule)
-    {
-        switch (rule)
-        {
-            case golarion::DamageAbilityRule::None:
-                return 0;
-            case golarion::DamageAbilityRule::Full:
-                return abilityModifier;
-            case golarion::DamageAbilityRule::HalfPositiveFullPenalty:
-                return abilityModifier > 0 ? abilityModifier / 2 : abilityModifier;
-            case golarion::DamageAbilityRule::OneAndHalfPositiveFullPenalty:
-                return abilityModifier > 0 ? checkedAttackValue(static_cast<long long>(abilityModifier) * 3 / 2) : abilityModifier;
-            case golarion::DamageAbilityRule::PenaltyOnly:
-                return std::min(abilityModifier, 0);
-        }
-
-        throw std::invalid_argument("unknown damage ability rule");
-    }
-
     struct ResolvedCriticalAdjustment
     {
         golarion::CriticalAdjustmentType type;
@@ -337,6 +318,8 @@ namespace golarion
                 return "Attacco naturale secondario";
             case StrikeUsage::SingleNatural:
                 return "Unico attacco naturale";
+            case StrikeUsage::NaturalSecondaryWhenCombined:
+                return "Secondario se combinato con uno strike non naturale";
         }
 
         throw std::invalid_argument("unknown strike usage");
@@ -384,6 +367,25 @@ namespace golarion
                 return "Una volta e mezzo il bonus, penalità completa";
             case DamageAbilityRule::PenaltyOnly:
                 return "Solo penalità";
+        }
+
+        throw std::invalid_argument("unknown damage ability rule");
+    }
+
+    int damageAbilityContribution(int abilityModifier, DamageAbilityRule rule)
+    {
+        switch (rule)
+        {
+            case DamageAbilityRule::None:
+                return 0;
+            case DamageAbilityRule::Full:
+                return abilityModifier;
+            case DamageAbilityRule::HalfPositiveFullPenalty:
+                return abilityModifier > 0 ? abilityModifier / 2 : abilityModifier;
+            case DamageAbilityRule::OneAndHalfPositiveFullPenalty:
+                return abilityModifier > 0 ? checkedAttackValue(static_cast<long long>(abilityModifier) * 3 / 2) : abilityModifier;
+            case DamageAbilityRule::PenaltyOnly:
+                return std::min(abilityModifier, 0);
         }
 
         throw std::invalid_argument("unknown damage ability rule");
@@ -837,6 +839,10 @@ namespace golarion
             if (grant == grants_.end())
             {
                 throw std::invalid_argument("strike usage override targets an unregistered grant: " + grantId);
+            }
+            if (override.usage == StrikeUsage::NaturalSecondaryWhenCombined)
+            {
+                throw std::invalid_argument("context-dependent strike usage must be resolved before strike calculation: " + grantId);
             }
             if (override.usage != StrikeUsage::Default && !contains(grant->tags_, AttackTag::Natural))
             {

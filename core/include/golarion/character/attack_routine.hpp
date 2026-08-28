@@ -14,8 +14,18 @@ namespace golarion
     inline constexpr std::string_view AttackRoutinesResource = "attackRoutine.grants";
     inline constexpr std::string_view AttackRoutineProgressionGrantsResource = "attackRoutine.progressionGrants";
     inline constexpr std::string_view AttackRoutineBonusAdjustmentsResource = "attackRoutine.attackBonusAdjustments";
+    inline constexpr std::string_view StandardAttackRoutineId = "base.standardAttack";
+    inline constexpr std::string_view FullAttackRoutineId = "base.fullAttack";
+    inline constexpr std::string_view TwoWeaponFightingRoutineId = "base.twoWeaponFighting";
+    inline constexpr std::string_view StandardAttackSlotId = "strike";
+    inline constexpr std::string_view FullAttackWeaponSlotId = "weapon";
+    inline constexpr std::string_view FullAttackNaturalSlotId = "natural";
+    inline constexpr std::string_view TwoWeaponFightingMainHandSlotId = "mainHand";
+    inline constexpr std::string_view TwoWeaponFightingOffHandSlotId = "offHand";
+    inline constexpr std::string_view TwoWeaponFightingNaturalSlotId = "natural";
 
     class ResourceManager;
+    class ActionManager;
     class Strikes;
     struct AttackRoutinesView;
 
@@ -31,8 +41,22 @@ namespace golarion
         BaseAttackBonusIteratives
     };
 
+    enum class HandUsage
+    {
+        OneHanded,
+        TwoHanded
+    };
+
+    enum class AttackHandRole
+    {
+        Primary,
+        OffHand
+    };
+
     std::string_view displayName(RoutineSlotSelectionMode mode);
     std::string_view displayName(RoutineAttackProgressionType type);
+    std::string_view displayName(HandUsage usage);
+    std::string_view displayName(AttackHandRole role);
 
     struct StrikeSelectorDefinition
     {
@@ -88,6 +112,9 @@ namespace golarion
         std::vector<RoutineAttackProgression> progressions;
         std::optional<DamageAbilityRule> damageAbilityRuleOverride;
         std::string baseAttackBonusAdjustmentExpression = "0";
+        std::optional<HandUsage> handUsage;
+        std::optional<AttackHandRole> handRole;
+        bool assignmentRequired = true;
     };
 
     class RoutineSlot final
@@ -107,6 +134,9 @@ namespace golarion
         std::vector<RoutineAttackProgression> progressions_;
         std::optional<DamageAbilityRule> damageAbilityRuleOverride_;
         std::string baseAttackBonusAdjustmentExpression_;
+        std::optional<HandUsage> handUsage_;
+        std::optional<AttackHandRole> handRole_;
+        bool assignmentRequired_;
     };
 
     struct AttackRoutineDefinition
@@ -114,6 +144,7 @@ namespace golarion
         std::string id;
         std::string source;
         std::string name;
+        std::string actionId;
         std::vector<RoutineSlot> slots;
     };
 
@@ -128,6 +159,7 @@ namespace golarion
         std::string id_;
         std::string source_;
         std::string name_;
+        std::string actionId_;
         std::vector<RoutineSlot> slots_;
     };
 
@@ -208,7 +240,7 @@ namespace golarion
     class AttackRoutines final
     {
     public:
-        AttackRoutines(ResourceManager &resourceManager, Strikes &strikes);
+        AttackRoutines(ResourceManager &resourceManager, ActionManager &actionManager, Strikes &strikes);
 
         AttackRoutinesView toView();
 
@@ -219,8 +251,10 @@ namespace golarion
         void removeProgressionGrant(std::string_view grantId);
         void addAttackBonusAdjustment(RoutineAttackBonusAdjustment adjustment);
         void removeAttackBonusAdjustment(std::string_view adjustmentId);
+        void registerCanonicalRoutines();
 
         ResourceManager &resourceManager_;
+        ActionManager &actionManager_;
         Strikes &strikes_;
         std::vector<AttackRoutine> routines_;
         std::map<std::string, RoutineProgressionGrant> progressionGrants_;

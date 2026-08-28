@@ -170,11 +170,6 @@ namespace golarion
         {
             resourceManager_.registerEnhanceableResource(category, {std::string(SkillRootResource)});
         }
-        resourceManager_.registerTarget(ArmorCheckPenaltyTarget, [this]
-        {
-            return armorCheckPenalty();
-        });
-        resourceManager_.addModifier("skill.armorCheckPenalty", Modifier(ModifierType::Penalty, "Armatura e carico", "Penalità di armatura alla prova applicabile", std::nullopt, "@armorCheckPenalty"));
         resourceManager_.registerCollectionResource<ArmorCheckPenalty>(ArmorCheckPenaltiesResource, [this](ArmorCheckPenalty penalty)
         {
             addArmorCheckPenalty(std::move(penalty));
@@ -294,14 +289,14 @@ namespace golarion
 
         for (const auto &entry : skills_)
         {
-            skillViews.push_back(entry.second.toView(resourceManager_, abilityReplacements_, classSkillGrants_));
+            skillViews.push_back(entry.second.toView(resourceManager_, abilityReplacements_, classSkillGrants_, resolvedArmorCheckPenalty));
         }
 
         for (const auto &[type, specializedSkills] : specializations_)
         {
             for (const auto &[specializationId, specializedSkill] : specializedSkills)
             {
-                SkillView view = specializedSkill.toView(resourceManager_, abilityReplacements_, classSkillGrants_);
+                SkillView view = specializedSkill.toView(resourceManager_, abilityReplacements_, classSkillGrants_, resolvedArmorCheckPenalty);
                 view.custom = !isCanonicalSpecialization(type, specializationId);
                 skillViews.push_back(std::move(view));
             }

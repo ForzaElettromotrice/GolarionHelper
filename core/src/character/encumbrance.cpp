@@ -1,5 +1,6 @@
 #include "golarion/character/encumbrance.hpp"
 
+#include "golarion/character/action.hpp"
 #include "golarion/character/armor_class.hpp"
 #include "golarion/character/movement.hpp"
 #include "golarion/character/skill.hpp"
@@ -19,6 +20,9 @@ namespace
     constexpr std::string_view LoadArmorCheckPenaltyId = "encumbrance.load.armorCheckPenalty";
     constexpr std::string_view LoadMovementAdjustmentId = "encumbrance.load.movement";
     constexpr std::string_view LoadRunAdjustmentId = "encumbrance.load.run";
+    constexpr std::string_view LoadRunActionInhibitionId = "encumbrance.load.runActionInhibition";
+    constexpr std::string_view LoadChargeActionInhibitionId = "encumbrance.load.chargeActionInhibition";
+    constexpr std::string_view LoadMoveCostReplacementId = "encumbrance.load.moveCostReplacement";
 
     struct LoadDefinition
     {
@@ -294,6 +298,40 @@ namespace golarion
             effectCleanups_.push_back([this]
             {
                 resourceManager_.removeFromCollection(RunAdjustmentsResource, LoadRunAdjustmentId);
+            });
+        }
+
+        if (category == LoadCategory::Overloaded)
+        {
+            resourceManager_.addToCollection(ActionInhibitionsResource, ActionInhibition(ActionInhibitionDefinition{
+                .id = std::string(LoadRunActionInhibitionId),
+                .source = std::string(LoadSource),
+                .selector = ActionSelector(ActionSelectorDefinition{.actionId = "base.run"}),
+                .reason = "Non può correre mentre è sovraccarico"
+            }));
+            effectCleanups_.push_back([this]
+            {
+                resourceManager_.removeFromCollection(ActionInhibitionsResource, LoadRunActionInhibitionId);
+            });
+            resourceManager_.addToCollection(ActionInhibitionsResource, ActionInhibition(ActionInhibitionDefinition{
+                .id = std::string(LoadChargeActionInhibitionId),
+                .source = std::string(LoadSource),
+                .selector = ActionSelector(ActionSelectorDefinition{.actionId = "base.charge"}),
+                .reason = "Non può caricare mentre è sovraccarico"
+            }));
+            effectCleanups_.push_back([this]
+            {
+                resourceManager_.removeFromCollection(ActionInhibitionsResource, LoadChargeActionInhibitionId);
+            });
+            resourceManager_.addToCollection(ActionCostReplacementsResource, ActionCostReplacement(ActionCostReplacementDefinition{
+                .id = std::string(LoadMoveCostReplacementId),
+                .source = std::string(LoadSource),
+                .actionId = "base.move",
+                .cost = ActionCost::FullRound
+            }));
+            effectCleanups_.push_back([this]
+            {
+                resourceManager_.removeFromCollection(ActionCostReplacementsResource, LoadMoveCostReplacementId);
             });
         }
 

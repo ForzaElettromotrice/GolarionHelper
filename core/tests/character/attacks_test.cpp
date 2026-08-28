@@ -1,7 +1,9 @@
 #include "golarion/character/ability.hpp"
+#include "golarion/character/action.hpp"
 #include "golarion/character/attack.hpp"
 #include "golarion/character/attack_routine.hpp"
 #include "golarion/character/base_attack_bonus.hpp"
+#include "golarion/resource/modifier.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/view/attacks_view.hpp"
 
@@ -43,7 +45,9 @@ int main()
     using namespace golarion;
 
     ResourceManager resourceManager;
+    ActionManager actionManager(resourceManager);
     BaseAttackBonus baseAttackBonus(resourceManager);
+    resourceManager.addContribution(BaseAttackBonusResource, Contribution("fighter", "11"));
     std::array abilities{
         AbilityScore(AbilityType::Strength, 16),
         AbilityScore(AbilityType::Dexterity, 14),
@@ -58,7 +62,7 @@ int main()
     }
 
     Strikes strikes(resourceManager);
-    AttackRoutines routines(resourceManager, strikes);
+    AttackRoutines routines(resourceManager, actionManager, strikes);
     Attacks attacks(routines, strikes);
 
     const auto addStrike = [&resourceManager](std::string id, std::string name, std::vector<AttackTag> tags, std::optional<NaturalAttackClassification> classification, std::vector<std::string> channels, std::optional<WeaponWeight> weaponWeight = std::nullopt)
@@ -71,7 +75,28 @@ int main()
             .tags = std::move(tags),
             .naturalAttackClassification = classification,
             .usageChannels = std::move(channels),
-            .damageComponents = {},
+            .damageComponents = {
+                DamageComponent(DamageComponentDefinition{
+                    .id = "base",
+                    .source = "Test",
+                    .role = DamageComponentRole::Base,
+                    .dice = DamageDice(DamageDiceDefinition{.diceCount = 1, .dieSize = 8}),
+                    .types = {DamageType::Slashing},
+                    .typeMode = DamageTypeMode::All,
+                    .criticalRule = DamageCriticalRule::Multiplied,
+                    .traits = {}
+                }),
+                DamageComponent(DamageComponentDefinition{
+                    .id = "critical",
+                    .source = "Test",
+                    .role = DamageComponentRole::Additional,
+                    .dice = DamageDice(DamageDiceDefinition{.diceCount = 1, .dieSize = 6}),
+                    .types = {DamageType::Untyped},
+                    .typeMode = DamageTypeMode::All,
+                    .criticalRule = DamageCriticalRule::CriticalOnly,
+                    .traits = {}
+                })
+            },
             .damageAbility = AbilityType::Strength,
             .damageAbilityRule = DamageAbilityRule::Full,
             .criticalThreatMinimum = 20,
@@ -87,11 +112,39 @@ int main()
     addStrike("rightClaw", "Artiglio destro", {AttackTag::Natural}, NaturalAttackClassification::Primary, {"hand.right"});
     addStrike("leftClaw", "Artiglio sinistro", {AttackTag::Natural}, NaturalAttackClassification::Primary, {"hand.left"});
     addStrike("bite", "Morso", {AttackTag::Natural}, NaturalAttackClassification::Primary, {"mouth"});
+    resourceManager.addModifier(criticalConfirmationResourceName("longsword"), Modifier(ModifierType::Bonus, "Critico focalizzato", "Bonus alla conferma", BonusType::Generic, "2"));
+
+    attacks.create("standard", "Attacco con spada", StandardAttackRoutineId);
+    attacks.assignStrike("standard", "strike", "longsword");
+    AttacksView canonicalView = attacks.toView();
+    assert(canonicalView.attacks[0].complete);
+    assert(canonicalView.attacks[0].calculatedAttacks.size() == 1);
+    assert(canonicalView.attacks[0].calculatedAttacks[0].strike.attackAbilityOptions[0].attackBonus == 14);
+    attacks.remove("standard");
+
+    attacks.create("naturalFull", "Attacco completo naturale", FullAttackRoutineId);
+    canonicalView = attacks.toView();
+    assert(canonicalView.attacks[0].complete);
+    assert(canonicalView.attacks[0].slots[0].assignmentRequired == false);
+    assert(canonicalView.attacks[0].slots[1].effectiveStrikeUsage == StrikeUsage::Default);
+    assert(canonicalView.attacks[0].calculatedAttacks.size() == 3);
+    assert(canonicalView.attacks[0].calculatedAttacks[0].strike.usage == StrikeUsage::Default);
+    assert(canonicalView.attacks[0].calculatedAttacks[0].strike.attackAbilityOptions[0].attackBonus == 14);
+    attacks.remove("naturalFull");
+
+    attacks.create("mixedCanonical", "Attacco completo misto", FullAttackRoutineId);
+    attacks.assignStrike("mixedCanonical", "weapon", "longsword");
+    canonicalView = attacks.toView();
+    assert(canonicalView.attacks[0].slots[1].effectiveStrikeUsage == StrikeUsage::NaturalSecondary);
+    assert(canonicalView.attacks[0].calculatedAttacks.size() == 5);
+    assert(canonicalView.attacks[0].calculatedAttacks[3].strike.usage == StrikeUsage::NaturalSecondary);
+    attacks.remove("mixedCanonical");
 
     resourceManager.addToCollection(AttackRoutinesResource, AttackRoutine(AttackRoutineDefinition{
         .id = "mixedFullAttack",
         .source = "Regole base",
         .name = "Attacco completo misto",
+        .actionId = "base.fullAttack",
         .slots = {
             RoutineSlot(RoutineSlotDefinition{
                 .id = "weapon",
@@ -109,7 +162,9 @@ int main()
                     .countExpression = std::nullopt,
                     .attackBonusAdjustmentExpression = "0"
                 })},
-                .damageAbilityRuleOverride = std::nullopt
+                .damageAbilityRuleOverride = std::nullopt,
+                .handUsage = HandUsage::OneHanded,
+                .handRole = AttackHandRole::Primary
             }),
             RoutineSlot(RoutineSlotDefinition{
                 .id = "natural",
@@ -131,20 +186,23 @@ int main()
         .id = "twoChosenStrikes",
         .source = "Test",
         .name = "Due strike scelti",
+        .actionId = "base.fullAttack",
         .slots = {
             RoutineSlot(RoutineSlotDefinition{
                 .id = "first",
                 .name = "Primo",
-                .selector = StrikeSelector(StrikeSelectorDefinition{}),
+                .selector = StrikeSelector(StrikeSelectorDefinition{.requiredTags = {AttackTag::Weapon}}),
                 .selectionMode = RoutineSlotSelectionMode::ChooseOne,
                 .strikeUsage = StrikeUsage::Default,
                 .progressions = {oneAttack()},
-                .damageAbilityRuleOverride = std::nullopt
+                .damageAbilityRuleOverride = std::nullopt,
+                .handUsage = HandUsage::OneHanded,
+                .handRole = AttackHandRole::Primary
             }),
             RoutineSlot(RoutineSlotDefinition{
                 .id = "second",
                 .name = "Secondo",
-                .selector = StrikeSelector(StrikeSelectorDefinition{}),
+                .selector = StrikeSelector(StrikeSelectorDefinition{.requiredTags = {AttackTag::Natural}}),
                 .selectionMode = RoutineSlotSelectionMode::ChooseOne,
                 .strikeUsage = StrikeUsage::Default,
                 .progressions = {oneAttack()},
@@ -157,6 +215,7 @@ int main()
         .id = "twoWeaponFighting",
         .source = "Regole base",
         .name = "Combattere con due armi",
+        .actionId = "base.fullAttack",
         .slots = {
             RoutineSlot(RoutineSlotDefinition{
                 .id = "mainHand",
@@ -166,7 +225,9 @@ int main()
                 .strikeUsage = StrikeUsage::Default,
                 .progressions = {oneAttack()},
                 .damageAbilityRuleOverride = std::nullopt,
-                .baseAttackBonusAdjustmentExpression = "-6"
+                .baseAttackBonusAdjustmentExpression = "-6",
+                .handUsage = HandUsage::OneHanded,
+                .handRole = AttackHandRole::Primary
             }),
             RoutineSlot(RoutineSlotDefinition{
                 .id = "offHand",
@@ -176,7 +237,9 @@ int main()
                 .strikeUsage = StrikeUsage::Default,
                 .progressions = {oneAttack()},
                 .damageAbilityRuleOverride = std::nullopt,
-                .baseAttackBonusAdjustmentExpression = "-10"
+                .baseAttackBonusAdjustmentExpression = "-10",
+                .handUsage = HandUsage::OneHanded,
+                .handRole = AttackHandRole::OffHand
             })
         }
     }));
@@ -239,11 +302,51 @@ int main()
     view = attacks.toView();
     assert(view.attacks[0].complete);
     assert(view.attacks[0].usable);
+    assert(view.attacks[0].actionId == "base.fullAttack");
+    assert(view.attacks[0].actionName == "Attacco completo");
     assert(view.attacks[0].slots[0].assignedGrantId == "longsword");
     assert((view.attacks[0].slots[0].effectiveGrantIds == std::vector<std::string>{"longsword"}));
     assert((view.attacks[0].slots[1].effectiveGrantIds == std::vector<std::string>{"leftClaw", "bite"}));
     assert(!view.attacks[0].slots[1].candidates[1].accepted);
     assert(view.attacks[0].slots[1].candidates[1].rejectionReasons.back() == "Un canale d'uso dello strike è già occupato");
+    assert(view.attacks[0].calculatedAttacks.size() == 5);
+    assert(view.attacks[0].calculatedAttacks[0].strikeGrantId == "longsword");
+    assert(view.attacks[0].calculatedAttacks[0].totalAttackBonusAdjustment == 0);
+    assert(view.attacks[0].calculatedAttacks[0].strike.attackAbilityOptions[0].attackBonus == 14);
+    assert(view.attacks[0].calculatedAttacks[0].strike.attackAbilityOptions[0].criticalConfirmationBonus == 16);
+    assert(view.attacks[0].calculatedAttacks[1].strike.attackAbilityOptions[0].attackBonus == 9);
+    assert(view.attacks[0].calculatedAttacks[1].strike.attackAbilityOptions[0].criticalConfirmationBonus == 11);
+    assert(view.attacks[0].calculatedAttacks[2].strike.attackAbilityOptions[0].attackBonus == 4);
+    assert(view.attacks[0].calculatedAttacks[2].strike.attackAbilityOptions[0].criticalConfirmationBonus == 6);
+    assert(view.attacks[0].calculatedAttacks[0].normalDamage.abilityOptions[0].bonus == 3);
+    assert(view.attacks[0].calculatedAttacks[0].normalDamage.abilityOptions[0].abilityContribution == 3);
+    assert(view.attacks[0].calculatedAttacks[0].criticalDamage.abilityOptions[0].bonus == 6);
+    assert(view.attacks[0].calculatedAttacks[0].criticalDamage.abilityOptions[0].abilityContribution == 6);
+    assert(view.attacks[0].calculatedAttacks[0].normalDamage.components.size() == 1);
+    assert(view.attacks[0].calculatedAttacks[0].normalDamage.components[0].component.effectiveDice.expression == "1d8");
+    assert(view.attacks[0].calculatedAttacks[0].normalDamage.components[0].occurrences == 1);
+    assert(view.attacks[0].calculatedAttacks[0].criticalDamage.components.size() == 2);
+    assert(view.attacks[0].calculatedAttacks[0].criticalDamage.components[0].occurrences == 2);
+    assert(view.attacks[0].calculatedAttacks[0].criticalDamage.components[1].component.effectiveDice.expression == "1d6");
+    assert(view.attacks[0].calculatedAttacks[0].criticalDamage.components[1].occurrences == 1);
+    assert(view.attacks[0].calculatedAttacks[3].strikeGrantId == "leftClaw");
+    assert(view.attacks[0].calculatedAttacks[3].strike.usage == StrikeUsage::NaturalSecondary);
+    assert(view.attacks[0].calculatedAttacks[3].strike.attackAbilityOptions[0].attackBonus == 9);
+    assert(view.attacks[0].calculatedAttacks[3].normalDamage.abilityOptions[0].bonus == 1);
+    assert(view.attacks[0].calculatedAttacks[3].criticalDamage.abilityOptions[0].bonus == 2);
+
+    resourceManager.addToCollection(ActionInhibitionsResource, ActionInhibition(ActionInhibitionDefinition{
+        .id = "staggeredFullAttack",
+        .source = "Barcollante",
+        .selector = ActionSelector(ActionSelectorDefinition{.actionId = "base.fullAttack"}),
+        .reason = "Non può compiere azioni di round completo"
+    }));
+    view = attacks.toView();
+    assert(view.attacks[0].complete);
+    assert(!view.attacks[0].usable);
+    assert(view.attacks[0].failureReasons[0] == "Barcollante: Non può compiere azioni di round completo");
+    resourceManager.removeFromCollection(ActionInhibitionsResource, "staggeredFullAttack");
+    assert(attacks.toView().attacks[0].usable);
 
     const AttacksData saved = attacks.toData();
     assert(saved.attacks.size() == 1);
@@ -253,6 +356,22 @@ int main()
     assert(saved.attacks[0].assignments[0].strikeGrantId == "longsword");
 
     addStrike("offhandSword", "Spada secondaria", {AttackTag::Weapon}, std::nullopt, {"hand.left"}, WeaponWeight::OneHanded);
+    attacks.create("canonicalDualWield", "Due armi canonico", TwoWeaponFightingRoutineId);
+    attacks.assignStrike("canonicalDualWield", "mainHand", "longsword");
+    attacks.assignStrike("canonicalDualWield", "offHand", "offhandSword");
+    view = attacks.toView();
+    assert(view.attacks[1].slots[0].effectiveAttackBonusAdjustment == -6);
+    assert(view.attacks[1].slots[1].effectiveAttackBonusAdjustment == -10);
+    assert(view.attacks[1].calculatedAttacks.size() == 5);
+    assert(view.attacks[1].calculatedAttacks[0].strike.attackAbilityOptions[0].attackBonus == 8);
+    assert(view.attacks[1].calculatedAttacks[1].strike.attackAbilityOptions[0].attackBonus == 3);
+    assert(view.attacks[1].calculatedAttacks[2].strike.attackAbilityOptions[0].attackBonus == -2);
+    assert(view.attacks[1].calculatedAttacks[3].strike.attackAbilityOptions[0].attackBonus == 4);
+    assert(view.attacks[1].calculatedAttacks[3].normalDamage.abilityOptions[0].bonus == 1);
+    assert(view.attacks[1].calculatedAttacks[4].strikeGrantId == "bite");
+    assert(view.attacks[1].calculatedAttacks[4].strike.usage == StrikeUsage::NaturalSecondary);
+    attacks.remove("canonicalDualWield");
+
     attacks.create("dualWield", "Due armi", "twoWeaponFighting");
     attacks.assignStrike("dualWield", "mainHand", "longsword");
     attacks.assignStrike("dualWield", "offHand", "offhandSword");
@@ -261,6 +380,9 @@ int main()
     assert(view.attacks[1].slots[0].effectiveAttackBonusAdjustment == -4);
     assert(view.attacks[1].slots[1].baseAttackBonusAdjustment == -10);
     assert(view.attacks[1].slots[1].effectiveAttackBonusAdjustment == -4);
+    const auto offHandCandidate = std::ranges::find(view.attacks[1].slots[1].candidates, "offhandSword", &RoutineStrikeCandidateView::grantId);
+    assert(offHandCandidate != view.attacks[1].slots[1].candidates.end());
+    assert(offHandCandidate->effectiveDamageAbilityRule == DamageAbilityRule::HalfPositiveFullPenalty);
     resourceManager.addToCollection(StrikeWeaponWeightAdjustmentsResource, StrikeWeaponWeightAdjustment(StrikeWeaponWeightAdjustmentDefinition{
         .id = "oversizedTwoWeaponFighting",
         .source = "Addestramento con armi sovradimensionate",

@@ -32,7 +32,9 @@ namespace
 namespace golarion
 {
     CharacterSheet::CharacterSheet()
-        : abilityChecks_(resourceManager_),
+        : actionManager_(resourceManager_),
+          reminderManager_(resourceManager_),
+          abilityChecks_(resourceManager_),
           baseAttackBonus_(resourceManager_),
           abilities_{
               AbilityScore(AbilityType::Strength),
@@ -43,7 +45,7 @@ namespace golarion
               AbilityScore(AbilityType::Charisma)
           },
           strikes_(resourceManager_),
-          attackRoutines_(resourceManager_, strikes_),
+          attackRoutines_(resourceManager_, actionManager_, strikes_),
           attacks_(attackRoutines_, strikes_),
           combatManeuvers_(resourceManager_),
           hitPoints_(resourceManager_),
@@ -51,6 +53,7 @@ namespace golarion
           armorClass_(resourceManager_),
           skills_(resourceManager_),
           savingThrows_(resourceManager_),
+          specialDefenses_(resourceManager_),
           movement_(resourceManager_),
           carryingCapacity_(resourceManager_),
           encumbrance_(resourceManager_, carryingCapacity_),
@@ -66,11 +69,13 @@ namespace golarion
             return level();
         });
         registerCanonicalConditions(conditionManager_);
+        hitPoints_.connectConditionEntries();
+        inventory_.emplace(resourceManager_);
     }
 
     CharacterSheet::CharacterSheet(const CharacterSheetSaveData &data) : CharacterSheet()
     {
-        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18)
+        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22)
         {
             throw std::invalid_argument("unsupported character sheet format version: " + std::to_string(data.formatVersion));
         }
@@ -92,10 +97,13 @@ namespace golarion
             loadedAbilities[index] = true;
         }
 
+        identity_ = CharacterIdentity(data.identity);
         skills_.load(data.skills);
         hitPoints_.load(data.hitPoints);
         attacks_.load(data.attacks);
         conditionManager_.load(data.conditions);
+        inventory_->load(data.inventory);
+        hitPoints_.reconcileConditionEntries();
     }
 
     CharacterSheet CharacterSheet::load(const std::filesystem::path &path)
@@ -103,9 +111,73 @@ namespace golarion
         return CharacterSheet(persistence::loadFromFile(path));
     }
 
+    void CharacterSheet::setName(std::string_view name)
+    {
+        identity_.setName(name);
+    }
+
+    void CharacterSheet::setPlayerName(std::string_view playerName)
+    {
+        identity_.setPlayerName(playerName);
+    }
+
+    void CharacterSheet::setAlignment(std::optional<Alignment> alignment)
+    {
+        identity_.setAlignment(alignment);
+    }
+
+    void CharacterSheet::setDeity(std::optional<std::string> deity)
+    {
+        identity_.setDeity(std::move(deity));
+    }
+
+    void CharacterSheet::setHomeland(std::optional<std::string> homeland)
+    {
+        identity_.setHomeland(std::move(homeland));
+    }
+
+    void CharacterSheet::setGender(std::optional<std::string> gender)
+    {
+        identity_.setGender(std::move(gender));
+    }
+
+    void CharacterSheet::setAge(std::optional<int> age)
+    {
+        identity_.setAge(age);
+    }
+
+    void CharacterSheet::setHeightCentimeters(std::optional<int> heightCentimeters)
+    {
+        identity_.setHeightCentimeters(heightCentimeters);
+    }
+
+    void CharacterSheet::setWeightGrams(std::optional<std::int64_t> weightGrams)
+    {
+        identity_.setWeightGrams(weightGrams);
+    }
+
+    void CharacterSheet::setHair(std::optional<std::string> hair)
+    {
+        identity_.setHair(std::move(hair));
+    }
+
+    void CharacterSheet::setEyes(std::optional<std::string> eyes)
+    {
+        identity_.setEyes(std::move(eyes));
+    }
+
+    void CharacterSheet::setAppearance(std::optional<std::string> appearance)
+    {
+        identity_.setAppearance(std::move(appearance));
+    }
+
     void CharacterSheet::setAbilityBaseValue(AbilityType type, int baseValue)
     {
         ability(type).setBaseValue(baseValue);
+        if (type == AbilityType::Constitution)
+        {
+            hitPoints_.initializeConditionEntries();
+        }
     }
 
     void CharacterSheet::heal(int amount)
@@ -161,11 +233,23 @@ namespace golarion
     void CharacterSheet::addCondition(ConditionEntry entry)
     {
         conditionManager_.addManualEntry(std::move(entry));
+        hitPoints_.reconcileConditionEntries();
     }
 
     void CharacterSheet::removeCondition(std::string_view entryId)
     {
         conditionManager_.removeManualEntry(entryId);
+        hitPoints_.reconcileConditionEntries();
+    }
+
+    void CharacterSheet::addMoney(CoinDenomination denomination, int quantity, std::string_view containerId)
+    {
+        inventory_->addMoney(denomination, quantity, containerId);
+    }
+
+    void CharacterSheet::removeMoney(CoinDenomination denomination, int quantity, std::string_view containerId)
+    {
+        inventory_->removeMoney(denomination, quantity, containerId);
     }
 
     CharacterSheetView CharacterSheet::toView()
@@ -175,6 +259,7 @@ namespace golarion
 
     CharacterSheetView CharacterSheet::toView(const StrikeCalculationContext &strikeContext)
     {
+        hitPoints_.reconcileConditionEntries();
         EncumbranceView encumbranceView = encumbrance_.toView();
         std::vector<AbilityView> abilityViews;
         abilityViews.reserve(abilities_.size());
@@ -185,6 +270,9 @@ namespace golarion
         }
 
         return CharacterSheetView{
+            .identity = identity_.toView(),
+            .actions = actionManager_.toView(),
+            .reminders = reminderManager_.toView(),
             .abilities = std::move(abilityViews),
             .baseAttackBonus = baseAttackBonus_.toView(),
             .strikes = strikes_.toView(strikeContext),
@@ -195,10 +283,12 @@ namespace golarion
             .initiative = initiative_.toView(),
             .armorClass = armorClass_.toView(),
             .savingThrows = savingThrows_.toView(),
+            .specialDefenses = specialDefenses_.toView(),
             .skills = skills_.toView(),
             .movement = movement_.toView(),
             .carryingCapacity = carryingCapacity_.toView(),
             .encumbrance = std::move(encumbranceView),
+            .inventory = inventory_->toView(),
             .size = sizeManager_.toView(),
             .conditions = conditionManager_.toView()
         };
@@ -215,12 +305,14 @@ namespace golarion
         }
 
         return CharacterSheetSaveData{
-            .formatVersion = 18,
+            .formatVersion = 22,
+            .identity = identity_.toSaveData(),
             .abilities = std::move(abilityData),
             .hitPoints = hitPoints_.toSaveData(),
             .skills = skills_.toSaveData(),
             .attacks = attacks_.toData(),
-            .conditions = conditionManager_.toSaveData()
+            .conditions = conditionManager_.toSaveData(),
+            .inventory = inventory_->toSaveData()
         };
     }
 

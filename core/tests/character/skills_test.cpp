@@ -59,8 +59,17 @@ int main()
         .source = "Armatura",
         .expression = "2"
     }));
-    assert(resourceManager.modifierTotal("skill.acrobatics") == -1);
+    resourceManager.addToCollection(ArmorCheckPenaltiesResource, ArmorCheckPenalty(ArmorCheckPenaltyDefinition{
+        .id = "load",
+        .source = "Carico",
+        .expression = "1"
+    }));
+    assert(resourceManager.modifierTotal("skill.acrobatics") == 1);
     assert(resourceManager.modifierTotal("skill.perception") == 1);
+    assert(throwsInvalidArgument([&resourceManager]
+    {
+        resourceManager.targetValue("armorCheckPenalty");
+    }));
 
     resourceManager.addToCollection(SkillClassSkillGrantsResource, SkillClassSkillGrant(SkillClassSkillGrantDefinition{
         .id = "artisanCraft",
@@ -114,10 +123,27 @@ int main()
 
     const SkillsView view = skills.toView();
     assert(view.armorCheckPenalty.total == 2);
-    assert(view.armorCheckPenalty.sources.size() == 1);
+    assert(view.armorCheckPenalty.sources.size() == 2);
     assert(view.armorCheckPenalty.sources[0].id == "armor");
     assert(view.armorCheckPenalty.sources[0].constraining);
+    assert(view.armorCheckPenalty.sources[1].id == "load");
+    assert(!view.armorCheckPenalty.sources[1].constraining);
     assert(view.skills.size() == 99);
+    const auto acrobaticsView = std::ranges::find_if(view.skills, [](const SkillView &skillView)
+    {
+        return skillView.type == SkillType::Acrobatics;
+    });
+    assert(acrobaticsView != view.skills.end());
+    assert(acrobaticsView->appliedArmorCheckPenalty == 2);
+    assert(acrobaticsView->abilityOptions[0].totalValue == 6);
+    assert(acrobaticsView->abilityOptions[0].modifiers.total == 1);
+    const auto perceptionView = std::ranges::find_if(view.skills, [](const SkillView &skillView)
+    {
+        return skillView.type == SkillType::Perception;
+    });
+    assert(perceptionView != view.skills.end());
+    assert(perceptionView->appliedArmorCheckPenalty == 0);
+    assert(perceptionView->abilityOptions[0].totalValue == 2);
     const auto alchemyView = std::ranges::find_if(view.skills, [](const SkillView &skillView)
     {
         return skillView.resourceName == "skill.craft.alchemy";

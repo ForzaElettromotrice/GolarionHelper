@@ -1,4 +1,5 @@
 #include "golarion/character/ability.hpp"
+#include "golarion/character/action.hpp"
 #include "golarion/character/armor_class.hpp"
 #include "golarion/character/carrying_capacity.hpp"
 #include "golarion/character/encumbrance.hpp"
@@ -37,6 +38,7 @@ int main()
     using namespace golarion;
 
     ResourceManager resourceManager;
+    ActionManager actionManager(resourceManager);
     std::array abilities{
         AbilityScore(AbilityType::Strength, 10),
         AbilityScore(AbilityType::Dexterity, 14),
@@ -91,6 +93,12 @@ int main()
         assert(grant != view.grants.end());
         return *grant;
     };
+    const auto actionView = [&actionManager](std::string_view id) -> ActionView
+    {
+        const std::optional<ActionView> action = actionManager.actionView(id);
+        assert(action.has_value());
+        return *action;
+    };
 
     EncumbranceView view = encumbrance.toView();
     assert(view.category == LoadCategory::Light);
@@ -103,6 +111,8 @@ int main()
     assert(skillView(SkillType::Acrobatics).abilityOptions[0].totalValue == 2);
     assert(movementGrantView("burdenedLand").effectiveUnits == 6);
     assert(movementGrantView("burdenedLand").run.effectiveMultiplier == 4);
+    assert(actionView("base.run").usable);
+    assert(actionView("base.move").effectiveCost == ActionCost::Move);
 
     resourceManager.addToCollection(CarriedWeightsResource, CarriedWeight(CarriedWeightDefinition{
         .id = "equipment",
@@ -183,6 +193,10 @@ int main()
     assert(movementGrantView("steadyLand").effectiveUnits == 6);
     assert(!movementGrantView("burdenedLand").run.usable);
     assert(!movementGrantView("steadyLand").run.usable);
+    assert(!actionView("base.run").usable);
+    assert(!actionView("base.charge").usable);
+    assert(actionView("base.move").baseCost == ActionCost::Move);
+    assert(actionView("base.move").effectiveCost == ActionCost::FullRound);
 
     assert(throwsInvalidArgument([&]
     {
@@ -214,6 +228,9 @@ int main()
     assert(skillView(SkillType::Acrobatics).abilityOptions[0].totalValue == 2);
     assert(movementGrantView("burdenedLand").effectiveUnits == 6);
     assert(movementGrantView("burdenedLand").run.effectiveMultiplier == 4);
+    assert(actionView("base.run").usable);
+    assert(actionView("base.charge").usable);
+    assert(actionView("base.move").effectiveCost == ActionCost::Move);
 
     assert(displayName(LoadCategory::Light) == "Leggero");
     assert(displayName(LoadCategory::Overloaded) == "Sovraccarico");

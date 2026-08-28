@@ -54,7 +54,8 @@ namespace golarion
     {
         Default,
         NaturalSecondary,
-        SingleNatural
+        SingleNatural,
+        NaturalSecondaryWhenCombined
     };
 
     enum class WeaponWeight
@@ -107,6 +108,7 @@ namespace golarion
     std::string_view displayName(WeaponWeightPurpose purpose);
     std::string_view displayName(DamageAbilityRule rule);
     std::string_view displayName(CriticalAdjustmentType type);
+    int damageAbilityContribution(int abilityModifier, DamageAbilityRule rule);
     AbilityType defaultAttackAbility(AttackMode mode);
     std::string attackResourceName(AttackMode mode);
     std::string attackResourceName(AttackTag tag);

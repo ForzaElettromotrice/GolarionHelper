@@ -4,89 +4,65 @@
 
 namespace golarion
 {
-    std::string_view displayName(MagicItemSlot slot)
+    std::string_view displayName(EquipmentSlot slot)
     {
         switch (slot)
         {
-            case MagicItemSlot::Ring:
+            case EquipmentSlot::Ring:
                 return "Anello";
-            case MagicItemSlot::Armor:
+            case EquipmentSlot::Armor:
                 return "Armatura";
-            case MagicItemSlot::Belt:
+            case EquipmentSlot::Belt:
                 return "Cintura";
-            case MagicItemSlot::Neck:
+            case EquipmentSlot::Neck:
                 return "Collo";
-            case MagicItemSlot::Body:
+            case EquipmentSlot::Body:
                 return "Corpo";
-            case MagicItemSlot::Headband:
+            case EquipmentSlot::Headband:
                 return "Fronte";
-            case MagicItemSlot::Hands:
+            case EquipmentSlot::Hands:
                 return "Mani";
-            case MagicItemSlot::Eyes:
+            case EquipmentSlot::Eyes:
                 return "Occhi";
-            case MagicItemSlot::Feet:
+            case EquipmentSlot::Feet:
                 return "Piedi";
-            case MagicItemSlot::Wrists:
+            case EquipmentSlot::Wrists:
                 return "Polsi";
-            case MagicItemSlot::Shield:
+            case EquipmentSlot::Shield:
                 return "Scudo";
-            case MagicItemSlot::Shoulders:
+            case EquipmentSlot::Shoulders:
                 return "Spalle";
-            case MagicItemSlot::Head:
+            case EquipmentSlot::Head:
                 return "Testa";
-            case MagicItemSlot::Chest:
+            case EquipmentSlot::Chest:
                 return "Torace";
         }
-        throw std::invalid_argument("unknown magic item slot");
+
+        throw std::invalid_argument("unknown equipment slot");
     }
 
-    std::string_view displayName(HandSlot slot)
+    std::size_t capacity(EquipmentSlot slot)
     {
         switch (slot)
         {
-            case HandSlot::Main:
-                return "Mano principale";
-            case HandSlot::Off:
-                return "Mano secondaria";
-        }
-        throw std::invalid_argument("unknown hand slot");
-    }
-
-    std::string_view displayName(HandUsage usage)
-    {
-        switch (usage)
-        {
-            case HandUsage::None:
-                return "Nessuna";
-            case HandUsage::OneHand:
-                return "Una mano";
-            case HandUsage::TwoHands:
-                return "Due mani";
-        }
-        throw std::invalid_argument("unknown hand usage");
-    }
-
-    std::size_t capacity(MagicItemSlot slot)
-    {
-        switch (slot)
-        {
-            case MagicItemSlot::Ring:
+            case EquipmentSlot::Ring:
                 return 2;
-            case MagicItemSlot::Armor:
-            case MagicItemSlot::Belt:
-            case MagicItemSlot::Neck:
-            case MagicItemSlot::Body:
-            case MagicItemSlot::Headband:
-            case MagicItemSlot::Hands:
-            case MagicItemSlot::Eyes:
-            case MagicItemSlot::Feet:
-            case MagicItemSlot::Wrists:
-            case MagicItemSlot::Shield:
-            case MagicItemSlot::Shoulders:
-            case MagicItemSlot::Head:
-            case MagicItemSlot::Chest:
+            case EquipmentSlot::Armor:
+            case EquipmentSlot::Belt:
+            case EquipmentSlot::Neck:
+            case EquipmentSlot::Body:
+            case EquipmentSlot::Headband:
+            case EquipmentSlot::Hands:
+            case EquipmentSlot::Eyes:
+            case EquipmentSlot::Feet:
+            case EquipmentSlot::Wrists:
+            case EquipmentSlot::Shield:
+            case EquipmentSlot::Shoulders:
+            case EquipmentSlot::Head:
+            case EquipmentSlot::Chest:
                 return 1;
         }
-        throw std::invalid_argument("unknown magic item slot");
+
+        throw std::invalid_argument("unknown equipment slot");
     }
 }

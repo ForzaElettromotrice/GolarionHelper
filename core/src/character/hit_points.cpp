@@ -1,5 +1,6 @@
 #include "golarion/character/hit_points.hpp"
 
+#include "golarion/character/condition.hpp"
 #include "golarion/data/hit_points_save_data.hpp"
 #include "golarion/resource/contribution.hpp"
 #include "golarion/resource/resource_manager.hpp"
@@ -37,7 +38,17 @@ namespace golarion
     }
 
     HitPoints::HitPoints(ResourceManager &resourceManager)
-        : resourceManager_(resourceManager), baseMax_(0), damageTaken_(0), nonLethal_(0)
+        : resourceManager_(resourceManager),
+          baseMax_(0),
+          damageTaken_(0),
+          nonLethal_(0),
+          dead_(false),
+          initialized_(false),
+          conditionEntriesConnected_(false),
+          disabledEntryActive_(false),
+          staggeredEntryActive_(false),
+          unconsciousEntryActive_(false),
+          deadEntryActive_(false)
     {
         resourceManager_.registerAccumulatedResource(MaxHitPointsResource);
         resourceManager_.addContribution(MaxHitPointsResource, Contribution("hitPoints.constitution", "@conMod * @level"));
@@ -58,6 +69,8 @@ namespace golarion
         }
         static_cast<void>(checkedHitPointValue(static_cast<long long>(value) + resourceManager_.contributionTotal(MaxHitPointsResource)));
         baseMax_ = value;
+        initialized_ = true;
+        reconcileConditionEntries();
     }
 
     void HitPoints::setCurrent(int value)
@@ -74,6 +87,8 @@ namespace golarion
             throw std::invalid_argument("hit point damage is out of range");
         }
         damageTaken_ = static_cast<int>(damageTaken);
+        initialized_ = true;
+        reconcileConditionEntries();
     }
 
     void HitPoints::addTemporary(std::string id, int amount, std::optional<GameDuration> duration)
@@ -93,6 +108,8 @@ namespace golarion
             throw std::invalid_argument("non-lethal damage must not be negative");
         }
         nonLethal_ = value;
+        initialized_ = true;
+        reconcileConditionEntries();
     }
 
     void HitPoints::heal(int amount)
@@ -101,9 +118,15 @@ namespace golarion
         {
             throw std::invalid_argument("healing amount must not be negative");
         }
+        if (dead_)
+        {
+            return;
+        }
 
         damageTaken_ -= std::min(damageTaken_, amount);
         nonLethal_ = std::max(0, nonLethal_ - std::min(nonLethal_, amount));
+        initialized_ = true;
+        reconcileConditionEntries();
     }
 
     void HitPoints::damage(int amount, DamageLethality lethality)
@@ -145,6 +168,8 @@ namespace golarion
         temporary_ = std::move(newTemporary);
         damageTaken_ = newDamageTaken;
         nonLethal_ = newNonLethal;
+        initialized_ = true;
+        reconcileConditionEntries();
     }
 
     HitPointsView HitPoints::toView()
@@ -168,8 +193,71 @@ namespace golarion
             .baseMax = baseMax_,
             .damageTaken = damageTaken_,
             .temporary = temporary_.toSaveData(),
-            .nonLethal = nonLethal_
+            .nonLethal = nonLethal_,
+            .dead = dead_
         };
+    }
+
+    void HitPoints::connectConditionEntries()
+    {
+        if (conditionEntriesConnected_)
+        {
+            return;
+        }
+        conditionEntriesConnected_ = true;
+        reconcileConditionEntries();
+    }
+
+    void HitPoints::initializeConditionEntries()
+    {
+        initialized_ = true;
+        reconcileConditionEntries();
+    }
+
+    void HitPoints::reconcileConditionEntries()
+    {
+        if (!conditionEntriesConnected_ || !initialized_)
+        {
+            return;
+        }
+
+        const int current = maxValue() - damageTaken_;
+        const int constitution = std::max(0, resourceManager_.targetValue("con"));
+        if (current <= -constitution)
+        {
+            dead_ = true;
+        }
+
+        const bool disabled = !dead_ && current <= 0;
+        const bool staggered = !dead_ && nonLethal_ > 0 && nonLethal_ == current;
+        const bool unconscious = !dead_ && nonLethal_ > 0 && nonLethal_ > current;
+
+        setConditionEntryActive(disabled, "hitPoints.disabled", "disabled", "Punti Ferita", disabledEntryActive_);
+        setConditionEntryActive(staggered, "hitPoints.nonLethal.staggered", "staggered", "Danni non letali", staggeredEntryActive_);
+        setConditionEntryActive(unconscious, "hitPoints.nonLethal.unconscious", "unconscious", "Danni non letali", unconsciousEntryActive_);
+        setConditionEntryActive(dead_, "hitPoints.dead", "dead", "Punti Ferita", deadEntryActive_);
+    }
+
+    void HitPoints::setConditionEntryActive(bool shouldBeActive, std::string_view entryId, std::string_view conditionId, std::string_view source, bool &isActive)
+    {
+        if (shouldBeActive == isActive)
+        {
+            return;
+        }
+
+        if (shouldBeActive)
+        {
+            resourceManager_.addToCollection(ConditionEntriesResource, ConditionEntry(ConditionEntryDefinition{
+                .id = std::string(entryId),
+                .conditionId = std::string(conditionId),
+                .source = std::string(source)
+            }));
+        }
+        else
+        {
+            resourceManager_.removeFromCollection(ConditionEntriesResource, entryId);
+        }
+        isActive = shouldBeActive;
     }
 
     int HitPoints::maxValue()
@@ -179,13 +267,27 @@ namespace golarion
 
     void HitPoints::load(const HitPointsSaveData &data)
     {
-        setMax(data.baseMax);
+        if (data.baseMax < 0)
+        {
+            throw std::invalid_argument("maximum hit points must not be negative");
+        }
+        static_cast<void>(checkedHitPointValue(static_cast<long long>(data.baseMax) + resourceManager_.contributionTotal(MaxHitPointsResource)));
         if (data.damageTaken < 0)
         {
             throw std::invalid_argument("hit point damage must not be negative");
         }
+
+        if (data.nonLethal < 0)
+        {
+            throw std::invalid_argument("non-lethal damage must not be negative");
+        }
+
+        baseMax_ = data.baseMax;
         damageTaken_ = data.damageTaken;
         temporary_.load(data.temporary);
-        setNonLethal(data.nonLethal);
+        nonLethal_ = data.nonLethal;
+        dead_ = data.dead;
+        initialized_ = data.baseMax != 0 || data.damageTaken != 0 || !data.temporary.pools.empty() || data.nonLethal != 0 || data.dead || maxValue() != 0;
+        reconcileConditionEntries();
     }
 }

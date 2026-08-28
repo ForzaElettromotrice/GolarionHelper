@@ -39,6 +39,7 @@ namespace golarion
         bool trainedOnly;
         bool usable;
         bool custom;
+        int appliedArmorCheckPenalty;
         std::vector<SkillClassSkillGrantView> classSkillGrants;
         std::vector<SkillAbilityOptionView> abilityOptions;
         ModifierSetView modifiers;

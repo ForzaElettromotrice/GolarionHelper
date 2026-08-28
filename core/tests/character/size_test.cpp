@@ -86,11 +86,7 @@ int main()
     assert(resourceManager.modifierTotal(CombatManeuverBonusAllResource) == 0);
     assert(resourceManager.modifierTotal(CombatManeuverDefenseAllResource) == 0);
     const ResourceManagerView resourceView = resourceManager.toView();
-    assert(resourceView.targets.size() == 2);
-    assert(std::ranges::any_of(resourceView.targets, [](const ResourceManagerView::TargetView &target)
-    {
-        return target.name == ArmorCheckPenaltyTarget;
-    }));
+    assert(resourceView.targets.size() == 1);
     assert(std::ranges::any_of(resourceView.targets, [](const ResourceManagerView::TargetView &target)
     {
         return target.name == "str";

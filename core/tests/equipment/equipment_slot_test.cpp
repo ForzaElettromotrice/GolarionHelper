@@ -9,24 +9,24 @@ int main()
     using namespace golarion;
 
     constexpr std::array slots{
-        MagicItemSlot::Ring,
-        MagicItemSlot::Armor,
-        MagicItemSlot::Belt,
-        MagicItemSlot::Neck,
-        MagicItemSlot::Body,
-        MagicItemSlot::Headband,
-        MagicItemSlot::Hands,
-        MagicItemSlot::Eyes,
-        MagicItemSlot::Feet,
-        MagicItemSlot::Wrists,
-        MagicItemSlot::Shield,
-        MagicItemSlot::Shoulders,
-        MagicItemSlot::Head,
-        MagicItemSlot::Chest
+        EquipmentSlot::Ring,
+        EquipmentSlot::Armor,
+        EquipmentSlot::Belt,
+        EquipmentSlot::Neck,
+        EquipmentSlot::Body,
+        EquipmentSlot::Headband,
+        EquipmentSlot::Hands,
+        EquipmentSlot::Eyes,
+        EquipmentSlot::Feet,
+        EquipmentSlot::Wrists,
+        EquipmentSlot::Shield,
+        EquipmentSlot::Shoulders,
+        EquipmentSlot::Head,
+        EquipmentSlot::Chest
     };
 
     std::size_t totalCapacity = 0;
-    for (MagicItemSlot slot : slots)
+    for (const EquipmentSlot slot : slots)
     {
         assert(!displayName(slot).empty());
         totalCapacity += capacity(slot);
@@ -34,14 +34,9 @@ int main()
 
     assert(slots.size() == 14);
     assert(totalCapacity == 15);
-    assert(capacity(MagicItemSlot::Ring) == 2);
-    assert(capacity(MagicItemSlot::Armor) == 1);
-    assert(displayName(MagicItemSlot::Headband) == "Fronte");
-    assert(displayName(HandSlot::Main) == "Mano principale");
-    assert(displayName(HandSlot::Off) == "Mano secondaria");
-    assert(displayName(HandUsage::None) == "Nessuna");
-    assert(displayName(HandUsage::OneHand) == "Una mano");
-    assert(displayName(HandUsage::TwoHands) == "Due mani");
+    assert(capacity(EquipmentSlot::Ring) == 2);
+    assert(capacity(EquipmentSlot::Armor) == 1);
+    assert(displayName(EquipmentSlot::Headband) == "Fronte");
 
     return 0;
 }

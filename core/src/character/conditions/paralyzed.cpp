@@ -20,7 +20,10 @@ namespace golarion
                     },
                     .effects = {
                         conditionEffects::finalAbilityReplacement("strengthFinalReplacement", "Forza considerata pari a 0", "Paralizzato", AbilityType::Strength, "0"),
-                        conditionEffects::movementAdjustment("movementBlock", "Non può utilizzare alcuna modalità di movimento", "Paralizzato", MovementAdjustmentType::Block, std::nullopt)
+                        conditionEffects::movementAdjustment("movementBlock", "Non può utilizzare alcuna modalità di movimento", "Paralizzato", MovementAdjustmentType::Block, std::nullopt),
+                        conditionEffects::reminder("mentalActions", "Paralizzato: può compiere esclusivamente azioni mentali."),
+                        conditionEffects::reminder("flightAndSwimming", "Paralizzato: se è alato e in volo precipita; se sta nuotando non può continuare a nuotare e potrebbe annegare."),
+                        conditionEffects::reminder("occupiedSpace", "Paralizzato: altre creature possono attraversare il suo spazio, ma ogni suo quadretto conta come 2 quadretti di movimento.")
                     }
                 }
             }

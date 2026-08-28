@@ -1,3 +1,4 @@
+#include "condition_effects.hpp"
 #include "condition_factories.hpp"
 
 #include "golarion/character/condition.hpp"
@@ -15,6 +16,9 @@ namespace golarion
                     .name = "Privo di Sensi",
                     .derivedConditions = {
                         DerivedConditionDefinition{.conditionId = "helpless"}
+                    },
+                    .effects = {
+                        conditionEffects::actionInhibition("actionInhibition", "Non può compiere azioni perché è privo di sensi", "Privo di Sensi", ActionSelector{})
                     }
                 }
             }

@@ -55,6 +55,18 @@ namespace
         std::pair{golarion::AbilityType::Charisma, std::string_view("charisma")}
     };
 
+    constexpr std::array AlignmentNames{
+        std::pair{golarion::Alignment::LawfulGood, std::string_view("lawfulGood")},
+        std::pair{golarion::Alignment::NeutralGood, std::string_view("neutralGood")},
+        std::pair{golarion::Alignment::ChaoticGood, std::string_view("chaoticGood")},
+        std::pair{golarion::Alignment::LawfulNeutral, std::string_view("lawfulNeutral")},
+        std::pair{golarion::Alignment::Neutral, std::string_view("neutral")},
+        std::pair{golarion::Alignment::ChaoticNeutral, std::string_view("chaoticNeutral")},
+        std::pair{golarion::Alignment::LawfulEvil, std::string_view("lawfulEvil")},
+        std::pair{golarion::Alignment::NeutralEvil, std::string_view("neutralEvil")},
+        std::pair{golarion::Alignment::ChaoticEvil, std::string_view("chaoticEvil")}
+    };
+
     constexpr std::array SkillTypeNames{
         std::pair{golarion::SkillType::Acrobatics, std::string_view("acrobatics")},
         std::pair{golarion::SkillType::HandleAnimal, std::string_view("handleAnimal")},
@@ -92,6 +104,69 @@ namespace
         std::pair{golarion::SkillType::Appraise, std::string_view("appraise")},
         std::pair{golarion::SkillType::Fly, std::string_view("fly")}
     };
+
+    template<typename Value>
+    Json optionalToJson(const std::optional<Value> &value)
+    {
+        return value.has_value() ? Json(*value) : Json(nullptr);
+    }
+
+    template<typename Value>
+    std::optional<Value> optionalFromJson(const Json &json, std::string_view field)
+    {
+        const std::string key(field);
+        if (!json.contains(key) || json.at(key).is_null())
+        {
+            return std::nullopt;
+        }
+        return json.at(key).get<Value>();
+    }
+
+    Json characterIdentityToJson(const golarion::CharacterIdentitySaveData &data)
+    {
+        Json alignment = nullptr;
+        if (data.alignment.has_value())
+        {
+            alignment = enumName(*data.alignment, AlignmentNames);
+        }
+        return Json{
+            {"name", data.name},
+            {"playerName", data.playerName},
+            {"alignment", std::move(alignment)},
+            {"deity", optionalToJson(data.deity)},
+            {"homeland", optionalToJson(data.homeland)},
+            {"gender", optionalToJson(data.gender)},
+            {"age", optionalToJson(data.age)},
+            {"heightCentimeters", optionalToJson(data.heightCentimeters)},
+            {"weightGrams", optionalToJson(data.weightGrams)},
+            {"hair", optionalToJson(data.hair)},
+            {"eyes", optionalToJson(data.eyes)},
+            {"appearance", optionalToJson(data.appearance)}
+        };
+    }
+
+    golarion::CharacterIdentitySaveData characterIdentityFromJson(const Json &json)
+    {
+        std::optional<golarion::Alignment> alignment;
+        if (json.contains("alignment") && !json.at("alignment").is_null())
+        {
+            alignment = enumValue(json.at("alignment"), AlignmentNames);
+        }
+        return golarion::CharacterIdentitySaveData{
+            .name = json.value("name", ""),
+            .playerName = json.value("playerName", ""),
+            .alignment = alignment,
+            .deity = optionalFromJson<std::string>(json, "deity"),
+            .homeland = optionalFromJson<std::string>(json, "homeland"),
+            .gender = optionalFromJson<std::string>(json, "gender"),
+            .age = optionalFromJson<int>(json, "age"),
+            .heightCentimeters = optionalFromJson<int>(json, "heightCentimeters"),
+            .weightGrams = optionalFromJson<std::int64_t>(json, "weightGrams"),
+            .hair = optionalFromJson<std::string>(json, "hair"),
+            .eyes = optionalFromJson<std::string>(json, "eyes"),
+            .appearance = optionalFromJson<std::string>(json, "appearance")
+        };
+    }
 
     Json abilityToJson(const golarion::AbilitySaveData &data)
     {
@@ -158,7 +233,8 @@ namespace
             {"baseMax", data.baseMax},
             {"damageTaken", data.damageTaken},
             {"temporary", temporaryHitPointsToJson(data.temporary)},
-            {"nonLethal", data.nonLethal}
+            {"nonLethal", data.nonLethal},
+            {"dead", data.dead}
         };
     }
 
@@ -168,7 +244,8 @@ namespace
             .baseMax = json.at("baseMax").get<int>(),
             .damageTaken = json.at("damageTaken").get<int>(),
             .temporary = temporaryHitPointsFromJson(json.at("temporary")),
-            .nonLethal = json.at("nonLethal").get<int>()
+            .nonLethal = json.at("nonLethal").get<int>(),
+            .dead = json.value("dead", false)
         };
     }
 
@@ -287,6 +364,153 @@ namespace
         return golarion::AttacksData{.attacks = std::move(attacks)};
     }
 
+    Json itemSelectorToJson(const golarion::ItemSelectorSaveData &data)
+    {
+        return Json{
+            {"definitionIds", data.definitionIds},
+            {"tags", data.tags}
+        };
+    }
+
+    golarion::ItemSelectorSaveData itemSelectorFromSaveJson(const Json &json)
+    {
+        return golarion::ItemSelectorSaveData{
+            .definitionIds = json.at("definitionIds").get<std::vector<std::string>>(),
+            .tags = json.at("tags").get<std::vector<std::string>>()
+        };
+    }
+
+    Json inventoryToJson(const golarion::InventorySaveData &data)
+    {
+        Json containers = Json::array();
+        for (const golarion::InventoryContainerSaveData &container : data.containers)
+        {
+            Json maximumContentsWeightGrams = nullptr;
+            if (container.maximumContentsWeightGrams.has_value())
+            {
+                maximumContentsWeightGrams = *container.maximumContentsWeightGrams;
+            }
+            Json maximumContentsVolumeMilliliters = nullptr;
+            if (container.maximumContentsVolumeMilliliters.has_value())
+            {
+                maximumContentsVolumeMilliliters = *container.maximumContentsVolumeMilliliters;
+            }
+            Json acceptedItems = nullptr;
+            if (container.acceptedItems.has_value())
+            {
+                acceptedItems = itemSelectorToJson(*container.acceptedItems);
+            }
+            Json quantityLimits = Json::array();
+            for (const golarion::ItemQuantityLimitSaveData &limit : container.quantityLimits)
+            {
+                Json selector = nullptr;
+                if (limit.selector.has_value())
+                {
+                    selector = itemSelectorToJson(*limit.selector);
+                }
+                quantityLimits.push_back(Json{
+                    {"maximumQuantity", limit.maximumQuantity},
+                    {"selector", std::move(selector)}
+                });
+            }
+            containers.push_back(Json{
+                {"id", container.id},
+                {"name", container.name},
+                {"maximumContentsWeightGrams", std::move(maximumContentsWeightGrams)},
+                {"maximumContentsVolumeMilliliters", std::move(maximumContentsVolumeMilliliters)},
+                {"acceptedItems", std::move(acceptedItems)},
+                {"quantityLimits", std::move(quantityLimits)},
+                {"ignoresContentsWeight", container.ignoresContentsWeight},
+                {"ignoresContentsVolume", container.ignoresContentsVolume},
+                {"allowsPossessionEffects", container.allowsPossessionEffects},
+                {"contributesToCarriedWeight", container.contributesToCarriedWeight}
+            });
+        }
+
+        Json items = Json::array();
+        for (const golarion::InventoryItemSaveData &item : data.items)
+        {
+            items.push_back(Json{
+                {"id", item.id},
+                {"itemDefinitionId", item.itemDefinitionId},
+                {"quantity", item.quantity},
+                {"containerId", item.containerId},
+                {"equipped", item.equipped}
+            });
+        }
+        return Json{
+            {"containers", std::move(containers)},
+            {"items", std::move(items)}
+        };
+    }
+
+    golarion::InventorySaveData inventoryFromJson(const Json &json)
+    {
+        std::vector<golarion::InventoryContainerSaveData> containers;
+        containers.reserve(json.at("containers").size());
+        for (const Json &container : json.at("containers"))
+        {
+            std::optional<std::int64_t> maximumContentsWeightGrams;
+            if (!container.at("maximumContentsWeightGrams").is_null())
+            {
+                maximumContentsWeightGrams = container.at("maximumContentsWeightGrams").get<std::int64_t>();
+            }
+            std::optional<std::int64_t> maximumContentsVolumeMilliliters;
+            if (!container.at("maximumContentsVolumeMilliliters").is_null())
+            {
+                maximumContentsVolumeMilliliters = container.at("maximumContentsVolumeMilliliters").get<std::int64_t>();
+            }
+            std::optional<golarion::ItemSelectorSaveData> acceptedItems;
+            if (!container.at("acceptedItems").is_null())
+            {
+                acceptedItems = itemSelectorFromSaveJson(container.at("acceptedItems"));
+            }
+            std::vector<golarion::ItemQuantityLimitSaveData> quantityLimits;
+            quantityLimits.reserve(container.at("quantityLimits").size());
+            for (const Json &limit : container.at("quantityLimits"))
+            {
+                std::optional<golarion::ItemSelectorSaveData> selector;
+                if (!limit.at("selector").is_null())
+                {
+                    selector = itemSelectorFromSaveJson(limit.at("selector"));
+                }
+                quantityLimits.push_back(golarion::ItemQuantityLimitSaveData{
+                    .maximumQuantity = limit.at("maximumQuantity").get<std::int64_t>(),
+                    .selector = std::move(selector)
+                });
+            }
+            containers.push_back(golarion::InventoryContainerSaveData{
+                .id = container.at("id").get<std::string>(),
+                .name = container.at("name").get<std::string>(),
+                .maximumContentsWeightGrams = maximumContentsWeightGrams,
+                .maximumContentsVolumeMilliliters = maximumContentsVolumeMilliliters,
+                .acceptedItems = std::move(acceptedItems),
+                .quantityLimits = std::move(quantityLimits),
+                .ignoresContentsWeight = container.at("ignoresContentsWeight").get<bool>(),
+                .ignoresContentsVolume = container.at("ignoresContentsVolume").get<bool>(),
+                .allowsPossessionEffects = container.at("allowsPossessionEffects").get<bool>(),
+                .contributesToCarriedWeight = container.value("contributesToCarriedWeight", false)
+            });
+        }
+
+        std::vector<golarion::InventoryItemSaveData> items;
+        items.reserve(json.at("items").size());
+        for (const Json &item : json.at("items"))
+        {
+            items.push_back(golarion::InventoryItemSaveData{
+                .id = item.at("id").get<std::string>(),
+                .itemDefinitionId = item.at("itemDefinitionId").get<std::string>(),
+                .quantity = item.at("quantity").get<int>(),
+                .containerId = item.at("containerId").get<std::string>(),
+                .equipped = item.at("equipped").get<bool>()
+            });
+        }
+        return golarion::InventorySaveData{
+            .containers = std::move(containers),
+            .items = std::move(items)
+        };
+    }
+
     Json conditionsToJson(const golarion::ConditionManagerSaveData &data)
     {
         Json manualEntries = Json::array();
@@ -358,11 +582,13 @@ namespace golarion::persistence
 
         return Json{
             {"formatVersion", data.formatVersion},
+            {"identity", characterIdentityToJson(data.identity)},
             {"abilities", std::move(abilities)},
             {"hitPoints", hitPointsToJson(data.hitPoints)},
             {"skills", skillsToJson(data.skills)},
             {"attacks", attacksToJson(data.attacks)},
-            {"conditions", conditionsToJson(data.conditions)}
+            {"conditions", conditionsToJson(data.conditions)},
+            {"inventory", inventoryToJson(data.inventory)}
         }.dump(4);
     }
 
@@ -380,11 +606,13 @@ namespace golarion::persistence
         const int formatVersion = json.at("formatVersion").get<int>();
         return CharacterSheetSaveData{
             .formatVersion = formatVersion,
+            .identity = formatVersion >= 22 ? characterIdentityFromJson(json.at("identity")) : CharacterIdentitySaveData{},
             .abilities = std::move(abilities),
             .hitPoints = hitPointsFromJson(json.at("hitPoints")),
             .skills = skillsFromJson(json.at("skills")),
             .attacks = json.contains("attacks") ? attacksFromJson(json.at("attacks")) : AttacksData{},
-            .conditions = formatVersion >= 17 ? conditionsFromJson(json.at("conditions")) : ConditionManagerSaveData{}
+            .conditions = formatVersion >= 17 ? conditionsFromJson(json.at("conditions")) : ConditionManagerSaveData{},
+            .inventory = formatVersion >= 19 ? inventoryFromJson(json.at("inventory")) : InventorySaveData{}
         };
     }
 

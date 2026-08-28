@@ -40,6 +40,10 @@ namespace golarion
     private:
         friend class CharacterSheet;
 
+        void connectConditionEntries();
+        void initializeConditionEntries();
+        void reconcileConditionEntries();
+        void setConditionEntryActive(bool shouldBeActive, std::string_view entryId, std::string_view conditionId, std::string_view source, bool &isActive);
         int maxValue();
         void load(const HitPointsSaveData &data);
 
@@ -48,5 +52,12 @@ namespace golarion
         int damageTaken_;
         TemporaryHitPoints temporary_;
         int nonLethal_;
+        bool dead_;
+        bool initialized_;
+        bool conditionEntriesConnected_;
+        bool disabledEntryActive_;
+        bool staggeredEntryActive_;
+        bool unconsciousEntryActive_;
+        bool deadEntryActive_;
     };
 }

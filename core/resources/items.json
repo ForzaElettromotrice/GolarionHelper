@@ -1,7 +1,80 @@
 [
   {
+    "id": "copperCoin",
+    "name": "Moneta di rame",
+    "weightGrams": 10,
+    "volumeMilliliters": 0,
+    "tags": ["coin", "currency"],
+    "coinDenomination": "copper"
+  },
+  {
+    "id": "silverCoin",
+    "name": "Moneta d'argento",
+    "weightGrams": 10,
+    "volumeMilliliters": 0,
+    "tags": ["coin", "currency"],
+    "coinDenomination": "silver"
+  },
+  {
+    "id": "goldCoin",
+    "name": "Moneta d'oro",
+    "weightGrams": 10,
+    "volumeMilliliters": 0,
+    "tags": ["coin", "currency"],
+    "coinDenomination": "gold"
+  },
+  {
+    "id": "platinumCoin",
+    "name": "Moneta di platino",
+    "weightGrams": 10,
+    "volumeMilliliters": 0,
+    "tags": ["coin", "currency"],
+    "coinDenomination": "platinum"
+  },
+  {
     "id": "hempRope15m",
     "name": "Corda di canapa (15 m)",
-    "weightGrams": 5000
+    "weightGrams": 5000,
+    "volumeMilliliters": 5000,
+    "tags": ["adventuringGear", "rope"]
+  },
+  {
+    "id": "commonBackpack",
+    "name": "Zaino comune",
+    "weightGrams": 1000,
+    "volumeMilliliters": 0,
+    "tags": ["adventuringGear", "backpack", "container"],
+    "container": {
+      "maximumContentsVolumeMilliliters": 57000
+    }
+  },
+  {
+    "id": "bagOfHoldingTypeI",
+    "name": "Borsa conservante (tipo I)",
+    "weightGrams": 7500,
+    "volumeMilliliters": 0,
+    "tags": ["adventuringGear", "bagOfHolding", "container", "wondrousItem"],
+    "container": {
+      "maximumContentsWeightGrams": 125000,
+      "maximumContentsVolumeMilliliters": 810000,
+      "ignoresContentsWeight": true,
+      "ignoresContentsVolume": true
+    }
+  },
+  {
+    "id": "cloakOfResistance1",
+    "name": "Mantello della Resistenza +1",
+    "weightGrams": 500,
+    "volumeMilliliters": 0,
+    "tags": ["cloak", "magicItem", "wondrousItem"],
+    "slot": "shoulders"
+  },
+  {
+    "id": "ringOfProtection1",
+    "name": "Anello di Protezione +1",
+    "weightGrams": 0,
+    "volumeMilliliters": 0,
+    "tags": ["magicItem", "ring"],
+    "slot": "ring"
   }
 ]

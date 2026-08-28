@@ -18,7 +18,6 @@ namespace golarion
     inline constexpr std::string_view SkillAbilityReplacementsResource = "skill.abilityReplacements";
     inline constexpr std::string_view SkillClassSkillGrantsResource = "skill.classSkillGrants";
     inline constexpr std::string_view ArmorCheckPenaltiesResource = "skill.armorCheckPenalties";
-    inline constexpr std::string_view ArmorCheckPenaltyTarget = "armorCheckPenalty";
 
     enum class SkillType
     {
@@ -141,9 +140,9 @@ namespace golarion
         void registerResources(ResourceManager &resourceManager) const;
         void registerResources(ResourceManager &resourceManager, std::vector<std::string> parentResources) const;
 
-        SkillView toView(ResourceManager &resourceManager, const std::map<std::string, SkillAbilityReplacement> &abilityReplacements = {}, const std::map<std::string, SkillClassSkillGrant> &classSkillGrants = {}) const;
+        SkillView toView(ResourceManager &resourceManager, const std::map<std::string, SkillAbilityReplacement> &abilityReplacements = {}, const std::map<std::string, SkillClassSkillGrant> &classSkillGrants = {}, int armorCheckPenalty = 0) const;
         SkillSaveData toSaveData() const;
-        int totalValue(ResourceManager &resourceManager) const;
+        int totalValue(ResourceManager &resourceManager, int armorCheckPenalty = 0) const;
         bool usable() const;
 
     private:

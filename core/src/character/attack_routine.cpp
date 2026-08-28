@@ -1,5 +1,6 @@
 #include "golarion/character/attack_routine.hpp"
 
+#include "golarion/character/action.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/util/string_utils.hpp"
 #include "golarion/view/attack_routines_view.hpp"
@@ -33,6 +34,53 @@ namespace
         }
         return static_cast<int>(value);
     }
+
+    bool isWeapon(const golarion::StrikeView &strike)
+    {
+        return contains(strike.tags, golarion::AttackTag::Weapon);
+    }
+
+    bool acceptsHandUsage(golarion::WeaponWeight weaponWeight, golarion::HandUsage handUsage)
+    {
+        return handUsage == golarion::HandUsage::TwoHanded || weaponWeight != golarion::WeaponWeight::TwoHanded;
+    }
+
+    golarion::DamageAbilityRule effectiveDamageAbilityRule(const golarion::StrikeView &strike, golarion::StrikeUsage strikeUsage, const std::optional<golarion::HandUsage> &handUsage, const std::optional<golarion::AttackHandRole> &handRole, const std::optional<golarion::DamageAbilityRule> &override)
+    {
+        if (override.has_value())
+        {
+            return *override;
+        }
+        if (!isWeapon(strike))
+        {
+            if (strikeUsage == golarion::StrikeUsage::NaturalSecondary)
+            {
+                return golarion::DamageAbilityRule::HalfPositiveFullPenalty;
+            }
+            if (strikeUsage == golarion::StrikeUsage::SingleNatural)
+            {
+                return golarion::DamageAbilityRule::OneAndHalfPositiveFullPenalty;
+            }
+            return strike.damageAbilityRule;
+        }
+        if (!handUsage.has_value() || !handRole.has_value())
+        {
+            return strike.damageAbilityRule;
+        }
+        if (strike.damageAbilityRule == golarion::DamageAbilityRule::None || strike.damageAbilityRule == golarion::DamageAbilityRule::PenaltyOnly)
+        {
+            return strike.damageAbilityRule;
+        }
+        if (*handRole == golarion::AttackHandRole::OffHand)
+        {
+            return golarion::DamageAbilityRule::HalfPositiveFullPenalty;
+        }
+        if (*handUsage == golarion::HandUsage::TwoHanded && strike.effectiveWeaponWeight != golarion::WeaponWeight::Light)
+        {
+            return golarion::DamageAbilityRule::OneAndHalfPositiveFullPenalty;
+        }
+        return golarion::DamageAbilityRule::Full;
+    }
 }
 
 namespace golarion
@@ -61,6 +109,32 @@ namespace golarion
         }
 
         throw std::invalid_argument("unknown routine attack progression type");
+    }
+
+    std::string_view displayName(HandUsage usage)
+    {
+        switch (usage)
+        {
+            case HandUsage::OneHanded:
+                return "Una mano";
+            case HandUsage::TwoHanded:
+                return "Due mani";
+        }
+
+        throw std::invalid_argument("unknown hand usage");
+    }
+
+    std::string_view displayName(AttackHandRole role)
+    {
+        switch (role)
+        {
+            case AttackHandRole::Primary:
+                return "Primaria";
+            case AttackHandRole::OffHand:
+                return "Secondaria";
+        }
+
+        throw std::invalid_argument("unknown attack hand role");
     }
 
     StrikeSelector::StrikeSelector(StrikeSelectorDefinition definition)
@@ -125,7 +199,10 @@ namespace golarion
           strikeUsage_(definition.strikeUsage),
           progressions_(std::move(definition.progressions)),
           damageAbilityRuleOverride_(definition.damageAbilityRuleOverride),
-          baseAttackBonusAdjustmentExpression_(normalize(definition.baseAttackBonusAdjustmentExpression))
+          baseAttackBonusAdjustmentExpression_(normalize(definition.baseAttackBonusAdjustmentExpression)),
+          handUsage_(definition.handUsage),
+          handRole_(definition.handRole),
+          assignmentRequired_(definition.assignmentRequired)
     {
         if (progressions_.empty())
         {
@@ -136,12 +213,21 @@ namespace golarion
         {
             throw std::invalid_argument("routine slot must not contain multiple BAB iterative progressions");
         }
+        if (handUsage_.has_value() != handRole_.has_value())
+        {
+            throw std::invalid_argument("routine slot hand usage and hand role must be defined together");
+        }
+        if (handUsage_ == HandUsage::TwoHanded && handRole_ == AttackHandRole::OffHand)
+        {
+            throw std::invalid_argument("an off-hand routine slot cannot use two hands");
+        }
     }
 
     AttackRoutine::AttackRoutine(AttackRoutineDefinition definition)
         : id_(normalize(definition.id)),
           source_(normalize(definition.source)),
           name_(normalize(definition.name)),
+          actionId_(normalize(definition.actionId)),
           slots_(std::move(definition.slots))
     {
         if (slots_.empty())
@@ -200,7 +286,7 @@ namespace golarion
         }
     }
 
-    AttackRoutines::AttackRoutines(ResourceManager &resourceManager, Strikes &strikes) : resourceManager_(resourceManager), strikes_(strikes)
+    AttackRoutines::AttackRoutines(ResourceManager &resourceManager, ActionManager &actionManager, Strikes &strikes) : resourceManager_(resourceManager), actionManager_(actionManager), strikes_(strikes)
     {
         resourceManager_.registerCollectionResource<AttackRoutine>(AttackRoutinesResource, [this](AttackRoutine routine)
         {
@@ -223,6 +309,7 @@ namespace golarion
         {
             removeAttackBonusAdjustment(adjustmentId);
         });
+        registerCanonicalRoutines();
     }
 
     AttackRoutinesView AttackRoutines::toView()
@@ -233,6 +320,19 @@ namespace golarion
 
         for (const AttackRoutine &routine : routines_)
         {
+            const std::optional<ActionView> action = actionManager_.actionView(routine.actionId_);
+            std::vector<std::string> failureReasons;
+            if (!action.has_value())
+            {
+                failureReasons.push_back("L'azione associata non è registrata");
+            }
+            else
+            {
+                for (const ActionInhibitionView &inhibition : action->inhibitions)
+                {
+                    failureReasons.push_back(inhibition.source + ": " + inhibition.reason);
+                }
+            }
             std::vector<RoutineSlotView> slotViews;
             slotViews.reserve(routine.slots_.size());
             for (const RoutineSlot &slot : routine.slots_)
@@ -343,10 +443,20 @@ namespace golarion
                     {
                         rejectionReasons.push_back("L'uso richiesto è riservato agli strike naturali");
                     }
+                    const bool weapon = isWeapon(strike);
+                    if (!weapon && slot.handUsage_.has_value())
+                    {
+                        rejectionReasons.push_back("L'impugnatura dello slot è riservata agli strike con arma");
+                    }
+                    if (weapon && slot.handUsage_.has_value() && !acceptsHandUsage(*strike.effectiveWeaponWeight, *slot.handUsage_))
+                    {
+                        rejectionReasons.push_back("L'arma richiede due mani");
+                    }
                     candidateViews.push_back(RoutineStrikeCandidateView{
                         .grantId = strike.grantId,
                         .name = strike.name,
                         .usageChannels = strike.usageChannels,
+                        .effectiveDamageAbilityRule = effectiveDamageAbilityRule(strike, slot.strikeUsage_, slot.handUsage_, slot.handRole_, slot.damageAbilityRuleOverride_),
                         .accepted = rejectionReasons.empty(),
                         .rejectionReasons = std::move(rejectionReasons)
                     });
@@ -368,6 +478,9 @@ namespace golarion
                     .progressions = std::move(progressionViews),
                     .attackBonusAdjustments = std::move(attackBonusAdjustmentViews),
                     .damageAbilityRuleOverride = slot.damageAbilityRuleOverride_,
+                    .handUsage = slot.handUsage_,
+                    .handRole = slot.handRole_,
+                    .assignmentRequired = slot.assignmentRequired_,
                     .candidates = std::move(candidateViews)
                 });
             }
@@ -375,6 +488,10 @@ namespace golarion
                 .id = routine.id_,
                 .source = routine.source_,
                 .name = routine.name_,
+                .actionId = routine.actionId_,
+                .actionName = action.has_value() ? std::optional(action->name) : std::nullopt,
+                .usable = action.has_value() && action->usable,
+                .failureReasons = std::move(failureReasons),
                 .slots = std::move(slotViews)
             });
         }

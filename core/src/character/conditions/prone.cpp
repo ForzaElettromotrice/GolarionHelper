@@ -21,7 +21,9 @@ namespace golarion
                     .effects = {
                         conditionEffects::penalty("meleeAttackPenalty", "–4 ai tiri per colpire in mischia", "Prono", attackResourceName(AttackMode::Melee), "4"),
                         conditionEffects::penalty("meleeArmorClassPenalty", "–4 alla Classe Armatura contro attacchi in mischia", "Prono", std::string(ArmorClassAllResource), "4", "Contro attacchi in mischia"),
-                        conditionEffects::genericBonus("rangedArmorClassBonus", "+4 alla Classe Armatura contro attacchi a distanza", "Prono", std::string(ArmorClassAllResource), "4", "Contro attacchi a distanza")
+                        conditionEffects::genericBonus("rangedArmorClassBonus", "+4 alla Classe Armatura contro attacchi a distanza", "Prono", std::string(ArmorClassAllResource), "4", "Contro attacchi a distanza"),
+                        conditionEffects::reminder("rangedWeapons", "Prono: non può usare armi a distanza, eccetto le balestre."),
+                        conditionEffects::reminder("standUp", "Prono: rialzarsi richiede un'azione di movimento e provoca Attacchi di Opportunità.")
                     }
                 }
             }

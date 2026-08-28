@@ -1,12 +1,16 @@
 add_library(golarion_model STATIC
+    src/character/action.cpp
+    src/character/canonical_actions.cpp
     src/character/ability.cpp
     src/character/armor_class.cpp
     src/character/attack.cpp
     src/character/attack_routine.cpp
+    src/character/canonical_attack_routines.cpp
     src/character/strike.cpp
     src/character/attack_distance.cpp
     src/character/base_attack_bonus.cpp
     src/character/carrying_capacity.cpp
+    src/character/character_identity.cpp
     src/character/character_sheet.cpp
     src/character/combat_maneuvers.cpp
     src/character/condition.cpp
@@ -47,16 +51,21 @@ add_library(golarion_model STATIC
     src/character/temporary_hit_points.cpp
     src/character/initiative.cpp
     src/character/movement.cpp
+    src/character/reminder.cpp
     src/character/saving_throw.cpp
     src/character/saving_throws.cpp
     src/character/size.cpp
     src/character/skill.cpp
     src/character/skills.cpp
+    src/character/special_defenses.cpp
+    src/equipment/container.cpp
+    src/equipment/coin.cpp
+    src/equipment/equipment.cpp
     src/equipment/equipment_slot.cpp
     src/equipment/inventory.cpp
     src/equipment/item.cpp
     src/equipment/item_definition_manager.cpp
-    src/equipment/item_location.cpp
+    src/equipment/money.cpp
     src/resource/modifier.cpp
     src/resource/requirement.cpp
     src/resource/modifier_set.cpp
@@ -125,6 +134,10 @@ else()
 endif()
 
 if(BUILD_TESTING)
+    add_executable(action_test tests/character/action_test.cpp)
+    target_link_libraries(action_test PRIVATE golarion_model)
+    add_test(NAME action_test COMMAND action_test)
+
     add_executable(ability_test tests/character/ability_test.cpp)
     target_link_libraries(ability_test PRIVATE golarion_model)
     add_test(NAME ability_test COMMAND ability_test)
@@ -153,9 +166,17 @@ if(BUILD_TESTING)
     target_link_libraries(carrying_capacity_test PRIVATE golarion_model)
     add_test(NAME carrying_capacity_test COMMAND carrying_capacity_test)
 
+    add_executable(canonical_action_inhibitions_test tests/character/canonical_action_inhibitions_test.cpp)
+    target_link_libraries(canonical_action_inhibitions_test PRIVATE golarion_model)
+    add_test(NAME canonical_action_inhibitions_test COMMAND canonical_action_inhibitions_test)
+
     add_executable(character_sheet_test tests/character/character_sheet_test.cpp)
     target_link_libraries(character_sheet_test PRIVATE golarion_model)
     add_test(NAME character_sheet_test COMMAND character_sheet_test)
+
+    add_executable(character_identity_test tests/character/character_identity_test.cpp)
+    target_link_libraries(character_identity_test PRIVATE golarion_model)
+    add_test(NAME character_identity_test COMMAND character_identity_test)
 
     add_executable(combat_maneuvers_test tests/character/combat_maneuvers_test.cpp)
     target_link_libraries(combat_maneuvers_test PRIVATE golarion_model)
@@ -164,6 +185,10 @@ if(BUILD_TESTING)
     add_executable(condition_test tests/character/condition_test.cpp)
     target_link_libraries(condition_test PRIVATE golarion_model)
     add_test(NAME condition_test COMMAND condition_test)
+
+    add_executable(condition_reminders_test tests/character/condition_reminders_test.cpp)
+    target_link_libraries(condition_reminders_test PRIVATE golarion_model)
+    add_test(NAME condition_reminders_test COMMAND condition_reminders_test)
 
     add_executable(damage_test tests/character/damage_test.cpp)
     target_link_libraries(damage_test PRIVATE golarion_model)
@@ -181,9 +206,21 @@ if(BUILD_TESTING)
     target_link_libraries(movement_test PRIVATE golarion_model)
     add_test(NAME movement_test COMMAND movement_test)
 
+    add_executable(reminder_test tests/character/reminder_test.cpp)
+    target_link_libraries(reminder_test PRIVATE golarion_model)
+    add_test(NAME reminder_test COMMAND reminder_test)
+
+    add_executable(special_defenses_test tests/character/special_defenses_test.cpp)
+    target_link_libraries(special_defenses_test PRIVATE golarion_model)
+    add_test(NAME special_defenses_test COMMAND special_defenses_test)
+
     add_executable(hit_points_test tests/character/hit_points_test.cpp)
     target_link_libraries(hit_points_test PRIVATE golarion_model)
     add_test(NAME hit_points_test COMMAND hit_points_test)
+
+    add_executable(hit_point_conditions_test tests/character/hit_point_conditions_test.cpp)
+    target_link_libraries(hit_point_conditions_test PRIVATE golarion_model)
+    add_test(NAME hit_point_conditions_test COMMAND hit_point_conditions_test)
 
     add_executable(temporary_hit_points_test tests/character/temporary_hit_points_test.cpp)
     target_link_libraries(temporary_hit_points_test PRIVATE golarion_model)
@@ -221,17 +258,25 @@ if(BUILD_TESTING)
     target_link_libraries(item_definition_manager_test PRIVATE golarion_model)
     add_test(NAME item_definition_manager_test COMMAND item_definition_manager_test)
 
+    add_executable(money_test tests/equipment/money_test.cpp)
+    target_link_libraries(money_test PRIVATE golarion_model)
+    add_test(NAME money_test COMMAND money_test)
+
+    add_executable(container_test tests/equipment/container_test.cpp)
+    target_link_libraries(container_test PRIVATE golarion_model)
+    add_test(NAME container_test COMMAND container_test)
+
     add_executable(equipment_slot_test tests/equipment/equipment_slot_test.cpp)
     target_link_libraries(equipment_slot_test PRIVATE golarion_model)
     add_test(NAME equipment_slot_test COMMAND equipment_slot_test)
 
+    add_executable(equipment_test tests/equipment/equipment_test.cpp)
+    target_link_libraries(equipment_test PRIVATE golarion_model)
+    add_test(NAME equipment_test COMMAND equipment_test)
+
     add_executable(inventory_test tests/equipment/inventory_test.cpp)
     target_link_libraries(inventory_test PRIVATE golarion_model)
     add_test(NAME inventory_test COMMAND inventory_test)
-
-    add_executable(item_location_test tests/equipment/item_location_test.cpp)
-    target_link_libraries(item_location_test PRIVATE golarion_model)
-    add_test(NAME item_location_test COMMAND item_location_test)
 
     add_executable(golarion_smoke_test tests/ffi/golarion_smoke_test.cpp)
     target_link_libraries(golarion_smoke_test PRIVATE golarion)

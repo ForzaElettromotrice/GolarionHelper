@@ -22,7 +22,11 @@ namespace golarion
                     },
                     .effects = {
                         conditionEffects::penalty("armorClassPenalty", "–4 alla Classe Armatura", "Immobilizzato", std::string(ArmorClassAllResource), "4"),
-                        conditionEffects::armorClassAbilitySuppression("armorClassAbilityBonusSuppression", "Perde il bonus di caratteristica alla Classe Armatura anche con Schivare Prodigioso", "Immobilizzato")
+                        conditionEffects::armorClassAbilitySuppression("armorClassAbilityBonusSuppression", "Perde il bonus di caratteristica alla Classe Armatura anche con Schivare Prodigioso", "Immobilizzato"),
+                        conditionEffects::actionInhibition("movementInhibition", "Non può muoversi mentre è immobilizzato", "Immobilizzato", ActionSelector(ActionSelectorDefinition{.requiredTags = {"movement"}})),
+                        conditionEffects::actionInhibition("attackInhibition", "Non può attaccare mentre è immobilizzato", "Immobilizzato", ActionSelector(ActionSelectorDefinition{.requiredTags = {"attack"}})),
+                        conditionEffects::actionInhibition("itemInhibition", "Non può manipolare oggetti mentre è immobilizzato", "Immobilizzato", ActionSelector(ActionSelectorDefinition{.categoryId = "items"})),
+                        conditionEffects::reminder("spellcasting", "Immobilizzato: può lanciare soltanto gli incantesimi consentiti dai componenti disponibili e deve superare la prova di Concentrazione prevista dalla lotta.")
                     }
                 }
             }

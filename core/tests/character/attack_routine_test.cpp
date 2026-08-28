@@ -1,4 +1,5 @@
 #include "golarion/character/ability.hpp"
+#include "golarion/character/action.hpp"
 #include "golarion/character/attack_routine.hpp"
 #include "golarion/character/base_attack_bonus.hpp"
 #include "golarion/resource/resource_manager.hpp"
@@ -11,6 +12,7 @@
 #include <optional>
 #include <stdexcept>
 #include <string>
+#include <string_view>
 #include <utility>
 #include <vector>
 
@@ -29,6 +31,13 @@ namespace
             return true;
         }
     }
+
+    const golarion::AttackRoutineView &routineView(const golarion::AttackRoutinesView &view, std::string_view id)
+    {
+        const auto routine = std::ranges::find(view.routines, id, &golarion::AttackRoutineView::id);
+        assert(routine != view.routines.end());
+        return *routine;
+    }
 }
 
 int main()
@@ -36,6 +45,7 @@ int main()
     using namespace golarion;
 
     ResourceManager resourceManager;
+    ActionManager actionManager(resourceManager);
     BaseAttackBonus baseAttackBonus(resourceManager);
     resourceManager.addContribution(BaseAttackBonusResource, Contribution("fighter", "11"));
     std::array abilities{
@@ -52,7 +62,7 @@ int main()
     }
 
     Strikes strikes(resourceManager);
-    AttackRoutines attackRoutines(resourceManager, strikes);
+    AttackRoutines attackRoutines(resourceManager, actionManager, strikes);
     const ResourceManagerView resourceManagerView = resourceManager.toView();
     assert(std::ranges::find(resourceManagerView.collections, AttackRoutinesResource) != resourceManagerView.collections.end());
     assert(std::ranges::find(resourceManagerView.collections, AttackRoutineProgressionGrantsResource) != resourceManagerView.collections.end());
@@ -118,6 +128,7 @@ int main()
         .id = "flurry",
         .source = "Raffica di colpi",
         .name = "Raffica di colpi",
+        .actionId = "base.fullAttack",
         .slots = {
             RoutineSlot(RoutineSlotDefinition{
                 .id = "weapon",
@@ -142,7 +153,9 @@ int main()
                         .attackBonusAdjustmentExpression = "0"
                     })
                 },
-                .damageAbilityRuleOverride = std::nullopt
+                .damageAbilityRuleOverride = std::nullopt,
+                .handUsage = HandUsage::OneHanded,
+                .handRole = AttackHandRole::Primary
             })
         }
     }));
@@ -163,6 +176,7 @@ int main()
         .id = "mixedFullAttack",
         .source = "Regole base",
         .name = "Attacco completo misto",
+        .actionId = "base.fullAttack",
         .slots = {
             RoutineSlot(RoutineSlotDefinition{
                 .id = "manufacturedWeapon",
@@ -182,7 +196,9 @@ int main()
                         .attackBonusAdjustmentExpression = "0"
                     })
                 },
-                .damageAbilityRuleOverride = std::nullopt
+                .damageAbilityRuleOverride = std::nullopt,
+                .handUsage = HandUsage::OneHanded,
+                .handRole = AttackHandRole::Primary
             }),
             RoutineSlot(RoutineSlotDefinition{
                 .id = "naturalWeapons",
@@ -207,23 +223,76 @@ int main()
         }
     }));
 
-    AttackRoutinesView view = attackRoutines.toView();
-    assert(view.routines.size() == 2);
-    assert(view.routines[0].id == "flurry");
-    assert(view.routines[0].slots.size() == 1);
-    assert(view.routines[0].slots[0].selectionMode == RoutineSlotSelectionMode::ChooseOne);
-    assert((view.routines[0].slots[0].progressions[0].attackBonusAdjustments == std::vector<int>{0, 0}));
-    assert((view.routines[0].slots[0].progressions[1].attackBonusAdjustments == std::vector<int>{0, -5, -10}));
-    assert((view.routines[0].slots[0].progressions[2].attackBonusAdjustments == std::vector<int>{-5}));
-    assert(view.routines[0].slots[0].progressions[2].grantId == "improvedFlurry");
-    assert(view.routines[0].slots[0].progressions[2].grantSource == "Raffica migliorata");
-    assert(view.routines[0].slots[0].candidates.size() == 3);
-    assert(view.routines[0].slots[0].candidates[0].grantId == "longsword");
-    assert(view.routines[0].slots[0].candidates[0].accepted);
-    assert((view.routines[0].slots[0].candidates[0].usageChannels == std::vector<std::string>{"hand.right"}));
-    assert(!view.routines[0].slots[0].candidates[1].accepted);
+    resourceManager.addToCollection(AttackRoutinesResource, AttackRoutine(AttackRoutineDefinition{
+        .id = "twoHandedAttack",
+        .source = "Regole base",
+        .name = "Attacco a due mani",
+        .actionId = "base.attack",
+        .slots = {
+            RoutineSlot(RoutineSlotDefinition{
+                .id = "weapon",
+                .name = "Arma a due mani",
+                .selector = StrikeSelector(StrikeSelectorDefinition{.requiredTags = {AttackTag::Weapon}}),
+                .selectionMode = RoutineSlotSelectionMode::ChooseOne,
+                .strikeUsage = StrikeUsage::Default,
+                .progressions = {
+                    RoutineAttackProgression(RoutineAttackProgressionDefinition{
+                        .type = RoutineAttackProgressionType::Fixed,
+                        .countExpression = "1",
+                        .attackBonusAdjustmentExpression = "0"
+                    })
+                },
+                .damageAbilityRuleOverride = std::nullopt,
+                .handUsage = HandUsage::TwoHanded,
+                .handRole = AttackHandRole::Primary
+            })
+        }
+    }));
 
-    const AttackRoutineView &mixedView = view.routines[1];
+    AttackRoutinesView view = attackRoutines.toView();
+    assert(view.routines.size() == 6);
+    const AttackRoutineView &standardAttackView = routineView(view, StandardAttackRoutineId);
+    assert(standardAttackView.name == "Attacco normale");
+    assert(standardAttackView.actionId == "base.attack");
+    assert(standardAttackView.slots.size() == 1);
+    assert(standardAttackView.slots[0].assignmentRequired);
+    assert((standardAttackView.slots[0].progressions[0].attackBonusAdjustments == std::vector<int>{0}));
+    assert(standardAttackView.slots[0].candidates[0].accepted);
+    assert(standardAttackView.slots[0].candidates[1].accepted);
+
+    const AttackRoutineView &fullAttackView = routineView(view, FullAttackRoutineId);
+    assert(fullAttackView.name == "Attacco completo");
+    assert(fullAttackView.actionId == "base.fullAttack");
+    assert(fullAttackView.slots.size() == 2);
+    assert(!fullAttackView.slots[0].assignmentRequired);
+    assert((fullAttackView.slots[0].progressions[0].attackBonusAdjustments == std::vector<int>{0, -5, -10}));
+    assert(fullAttackView.slots[1].selectionMode == RoutineSlotSelectionMode::AllMatching);
+    assert(fullAttackView.slots[1].strikeUsage == StrikeUsage::NaturalSecondaryWhenCombined);
+
+    const AttackRoutineView &twoWeaponFightingView = routineView(view, TwoWeaponFightingRoutineId);
+    assert(twoWeaponFightingView.name == "Combattere con due armi");
+    assert(twoWeaponFightingView.actionId == "base.fullAttack");
+    assert(twoWeaponFightingView.slots.size() == 3);
+    assert((twoWeaponFightingView.slots[0].progressions[0].attackBonusAdjustments == std::vector<int>{0, -5, -10}));
+    assert((twoWeaponFightingView.slots[1].progressions[0].attackBonusAdjustments == std::vector<int>{0}));
+    const AttackRoutineView &flurryView = routineView(view, "flurry");
+    assert(flurryView.actionId == "base.fullAttack");
+    assert(flurryView.actionName == "Attacco completo");
+    assert(flurryView.usable);
+    assert(flurryView.slots.size() == 1);
+    assert(flurryView.slots[0].selectionMode == RoutineSlotSelectionMode::ChooseOne);
+    assert((flurryView.slots[0].progressions[0].attackBonusAdjustments == std::vector<int>{0, 0}));
+    assert((flurryView.slots[0].progressions[1].attackBonusAdjustments == std::vector<int>{0, -5, -10}));
+    assert((flurryView.slots[0].progressions[2].attackBonusAdjustments == std::vector<int>{-5}));
+    assert(flurryView.slots[0].progressions[2].grantId == "improvedFlurry");
+    assert(flurryView.slots[0].progressions[2].grantSource == "Raffica migliorata");
+    assert(flurryView.slots[0].candidates.size() == 3);
+    assert(flurryView.slots[0].candidates[0].grantId == "longsword");
+    assert(flurryView.slots[0].candidates[0].accepted);
+    assert((flurryView.slots[0].candidates[0].usageChannels == std::vector<std::string>{"hand.right"}));
+    assert(!flurryView.slots[0].candidates[1].accepted);
+
+    const AttackRoutineView &mixedView = routineView(view, "mixedFullAttack");
     assert(mixedView.slots.size() == 2);
     assert(mixedView.slots[0].candidates[0].accepted);
     assert(!mixedView.slots[0].candidates[1].accepted);
@@ -233,8 +302,43 @@ int main()
     assert(mixedView.slots[1].candidates[1].accepted);
     assert(mixedView.slots[1].candidates[2].accepted);
 
+    const AttackRoutineView &twoHandedView = routineView(view, "twoHandedAttack");
+    assert(twoHandedView.slots[0].handUsage == HandUsage::TwoHanded);
+    assert(twoHandedView.slots[0].handRole == AttackHandRole::Primary);
+    assert(twoHandedView.slots[0].candidates[0].accepted);
+    assert(twoHandedView.slots[0].candidates[0].effectiveDamageAbilityRule == DamageAbilityRule::OneAndHalfPositiveFullPenalty);
+
+    resourceManager.removeFromCollection(ActionGrantsResource, "base.attack");
+    view = attackRoutines.toView();
+    assert(!routineView(view, "twoHandedAttack").usable);
+    assert(routineView(view, "twoHandedAttack").failureReasons == std::vector<std::string>{"L'azione associata non è registrata"});
+    resourceManager.addToCollection(ActionGrantsResource, Action(ActionDefinition{
+        .id = "base.attack",
+        .source = "Regole base",
+        .categoryId = "attacks",
+        .name = "Attaccare",
+        .description = "Effettua un attacco",
+        .cost = ActionCost::Standard,
+        .tags = {"attack"}
+    }));
+
+    resourceManager.addToCollection(ActionInhibitionsResource, ActionInhibition(ActionInhibitionDefinition{
+        .id = "staggeredFullAttack",
+        .source = "Barcollante",
+        .selector = ActionSelector(ActionSelectorDefinition{.actionId = "base.fullAttack"}),
+        .reason = "Non può compiere azioni di round completo"
+    }));
+    view = attackRoutines.toView();
+    assert(!routineView(view, "flurry").usable);
+    assert(routineView(view, "flurry").failureReasons == std::vector<std::string>{"Barcollante: Non può compiere azioni di round completo"});
+    assert(!routineView(view, "mixedFullAttack").usable);
+    assert(routineView(view, "twoHandedAttack").usable);
+    resourceManager.removeFromCollection(ActionInhibitionsResource, "staggeredFullAttack");
+
     assert(displayName(RoutineSlotSelectionMode::ChooseOne) == "Scegli uno");
     assert(displayName(RoutineAttackProgressionType::BaseAttackBonusIteratives) == "Attacchi iterativi da BAB");
+    assert(displayName(HandUsage::TwoHanded) == "Due mani");
+    assert(displayName(AttackHandRole::OffHand) == "Secondaria");
 
     const auto fixedSlot = [](std::string id)
     {
@@ -290,6 +394,7 @@ int main()
             .id = "empty",
             .source = "Test",
             .name = "Routine vuota",
+            .actionId = "base.attack",
             .slots = {}
         });
     }));
@@ -299,6 +404,7 @@ int main()
             .id = "duplicateSlots",
             .source = "Test",
             .name = "Slot duplicati",
+            .actionId = "base.attack",
             .slots = {fixedSlot("strike"), fixedSlot(" strike ")}
         });
     }));
@@ -308,6 +414,7 @@ int main()
             .id = "flurry",
             .source = "Test",
             .name = "Duplicata",
+            .actionId = "base.fullAttack",
             .slots = {
                 RoutineSlot(RoutineSlotDefinition{
                     .id = "strike",
@@ -332,10 +439,31 @@ int main()
     {
         resourceManager.removeFromCollection(AttackRoutinesResource, "flurry");
     }));
+    assert(throwsInvalidArgument([]
+    {
+        RoutineSlot(RoutineSlotDefinition{
+            .id = "invalidOffHand",
+            .name = "Secondaria non valida",
+            .selector = StrikeSelector(StrikeSelectorDefinition{.requiredTags = {AttackTag::Weapon}}),
+            .selectionMode = RoutineSlotSelectionMode::ChooseOne,
+            .strikeUsage = StrikeUsage::Default,
+            .progressions = {
+                RoutineAttackProgression(RoutineAttackProgressionDefinition{
+                    .type = RoutineAttackProgressionType::Fixed,
+                    .countExpression = "1",
+                    .attackBonusAdjustmentExpression = "0"
+                })
+            },
+            .damageAbilityRuleOverride = std::nullopt,
+            .handUsage = HandUsage::TwoHanded,
+            .handRole = AttackHandRole::OffHand
+        });
+    }));
     resourceManager.removeFromCollection(AttackRoutineProgressionGrantsResource, "improvedFlurry");
     resourceManager.removeFromCollection(AttackRoutinesResource, "flurry");
     resourceManager.removeFromCollection(AttackRoutinesResource, "mixedFullAttack");
-    assert(attackRoutines.toView().routines.empty());
+    resourceManager.removeFromCollection(AttackRoutinesResource, "twoHandedAttack");
+    assert(attackRoutines.toView().routines.size() == 3);
     assert(throwsInvalidArgument([&]
     {
         resourceManager.removeFromCollection(AttackRoutinesResource, "missing");

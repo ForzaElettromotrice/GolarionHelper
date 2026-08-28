@@ -21,6 +21,7 @@ namespace golarion
         std::string grantId;
         std::string name;
         std::vector<std::string> usageChannels;
+        DamageAbilityRule effectiveDamageAbilityRule;
         bool accepted;
         std::vector<std::string> rejectionReasons;
     };
@@ -65,6 +66,9 @@ namespace golarion
         std::vector<RoutineAttackProgressionView> progressions;
         std::vector<RoutineAttackBonusAdjustmentView> attackBonusAdjustments;
         std::optional<DamageAbilityRule> damageAbilityRuleOverride;
+        std::optional<HandUsage> handUsage;
+        std::optional<AttackHandRole> handRole;
+        bool assignmentRequired;
         std::vector<RoutineStrikeCandidateView> candidates;
     };
 
@@ -73,6 +77,10 @@ namespace golarion
         std::string id;
         std::string source;
         std::string name;
+        std::string actionId;
+        std::optional<std::string> actionName;
+        bool usable;
+        std::vector<std::string> failureReasons;
         std::vector<RoutineSlotView> slots;
     };
 

@@ -87,8 +87,8 @@ int main()
         .source = "Ladro",
         .targetResourceName = "skill.acrobatics"
     }));
-    assert(acrobatics.totalValue(manager) == 8);
-    const SkillView acrobaticsView = acrobatics.toView(manager, abilityReplacements, classSkillGrants);
+    assert(acrobatics.totalValue(manager, 3) == 5);
+    const SkillView acrobaticsView = acrobatics.toView(manager, abilityReplacements, classSkillGrants, 3);
     assert(acrobaticsView.type == SkillType::Acrobatics);
     assert(!acrobaticsView.specializationId);
     assert(acrobaticsView.name == "Acrobazia");
@@ -103,24 +103,25 @@ int main()
     assert(!acrobaticsView.abilityOptions[0].replacementId.has_value());
     assert(acrobaticsView.abilityOptions[0].abilityType == AbilityType::Dexterity);
     assert(acrobaticsView.abilityOptions[0].abilityModifier == 2);
-    assert(acrobaticsView.abilityOptions[0].totalValue == 11);
+    assert(acrobaticsView.abilityOptions[0].totalValue == 8);
     assert(acrobaticsView.abilityOptions[0].modifiers.permanentTotal == 4);
     assert(acrobaticsView.abilityOptions[0].modifiers.conditionalTotals.size() == 1);
     assert(acrobaticsView.abilityOptions[0].modifiers.conditionalTotals[0].value == -4);
     assert(acrobaticsView.abilityOptions[1].replacementId == "analyticalMovement");
     assert(acrobaticsView.abilityOptions[1].abilityType == AbilityType::Intelligence);
     assert(acrobaticsView.abilityOptions[1].abilityModifier == 0);
-    assert(acrobaticsView.abilityOptions[1].totalValue == 7);
+    assert(acrobaticsView.abilityOptions[1].totalValue == 4);
     assert(acrobaticsView.abilityOptions[1].modifiers.conditionalTotals.empty());
     assert(acrobaticsView.abilityOptions[2].replacementId == "muscleMemory");
     assert(acrobaticsView.abilityOptions[2].abilityType == AbilityType::Strength);
     assert(acrobaticsView.abilityOptions[2].abilityModifier == 0);
-    assert(acrobaticsView.abilityOptions[2].totalValue == 7);
+    assert(acrobaticsView.abilityOptions[2].totalValue == 4);
     assert(acrobaticsView.abilityOptions[2].modifiers.conditionalTotals.size() == 1);
     assert(acrobaticsView.abilityOptions[2].modifiers.conditionalTotals[0].value == -4);
     assert(!acrobaticsView.trainedOnly);
     assert(acrobaticsView.usable);
     assert(!acrobaticsView.custom);
+    assert(acrobaticsView.appliedArmorCheckPenalty == 3);
     assert(acrobaticsView.modifiers.total == 2);
     const SkillSaveData acrobaticsData = acrobatics.toSaveData();
     assert(acrobaticsData.type == SkillType::Acrobatics);
@@ -137,10 +138,12 @@ int main()
     craft.registerResources(manager);
     craft.setRanks(1);
     assert(craft.totalValue(manager) == 1);
+    assert(craft.totalValue(manager, 5) == 1);
     const SkillView craftView = craft.toView(manager);
     assert(craftView.specializationId == "alchemy");
     assert(craftView.name == "Alchimia");
     assert(craftView.custom);
+    assert(craftView.appliedArmorCheckPenalty == 0);
     const SkillSaveData craftData = craft.toSaveData();
     assert(craftData.specializationId == "alchemy");
     assert(craftData.specialization == "Alchimia");
@@ -161,6 +164,10 @@ int main()
     assert(throwsInvalidArgument([&]
     {
         acrobatics.setRanks(-1);
+    }));
+    assert(throwsInvalidArgument([&]
+    {
+        acrobatics.totalValue(manager, -1);
     }));
 
     return 0;

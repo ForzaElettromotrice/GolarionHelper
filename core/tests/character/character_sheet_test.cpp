@@ -1,5 +1,6 @@
 #include "golarion/character/ability.hpp"
 #include "golarion/character/character_sheet.hpp"
+#include "golarion/persistence/json.hpp"
 
 #include <algorithm>
 #include <cassert>
@@ -31,6 +32,18 @@ int main()
     using namespace golarion;
 
     CharacterSheet sheet;
+    sheet.setName("Seelah");
+    sheet.setPlayerName("Giocatore");
+    sheet.setAlignment(Alignment::LawfulGood);
+    sheet.setDeity("Iomedae");
+    sheet.setHomeland("Cheliax");
+    sheet.setGender("Donna");
+    sheet.setAge(27);
+    sheet.setHeightCentimeters(178);
+    sheet.setWeightGrams(72000);
+    sheet.setHair("Neri");
+    sheet.setEyes("Marroni");
+    sheet.setAppearance("Armatura splendente");
     sheet.setAbilityBaseValue(AbilityType::Strength, 16);
     sheet.setAbilityBaseValue(AbilityType::Dexterity, 9);
     sheet.setAbilityBaseValue(AbilityType::Charisma, 14);
@@ -58,6 +71,20 @@ int main()
     }));
 
     CharacterSheetView view = sheet.toView();
+    assert(view.identity.name == "Seelah");
+    assert(view.identity.playerName == "Giocatore");
+    assert(view.identity.alignment == Alignment::LawfulGood);
+    assert(view.identity.deity == "Iomedae");
+    assert(view.identity.homeland == "Cheliax");
+    assert(view.identity.gender == "Donna");
+    assert(view.identity.age == 27);
+    assert(view.identity.heightCentimeters == 178);
+    assert(view.identity.weightGrams == 72000);
+    assert(view.identity.hair == "Neri");
+    assert(view.identity.eyes == "Marroni");
+    assert(view.identity.appearance == "Armatura splendente");
+    assert(view.actions.categories.size() == 5);
+    assert(view.reminders.messages.empty());
     assert(view.abilities.size() == 6);
     assert(view.abilities[0].type == AbilityType::Strength);
     assert(view.abilities[0].baseValue == 16);
@@ -65,7 +92,10 @@ int main()
     assert(view.baseAttackBonus.total == 0);
     assert(view.baseAttackBonus.contributions.contributions.empty());
     assert(view.strikes.strikes.empty());
-    assert(view.attackRoutines.routines.empty());
+    assert(view.attackRoutines.routines.size() == 3);
+    assert(view.attackRoutines.routines[0].id == StandardAttackRoutineId);
+    assert(view.attackRoutines.routines[1].id == FullAttackRoutineId);
+    assert(view.attackRoutines.routines[2].id == TwoWeaponFightingRoutineId);
     assert(view.attacks.attacks.empty());
     assert(throwsInvalidArgument([&]
     {
@@ -116,11 +146,26 @@ int main()
     assert(view.carryingCapacity.mediumLoadMaxGrams == 76500);
     assert(view.carryingCapacity.heavyLoadMaxGrams == 115000);
     assert(view.encumbrance.totalWeightGrams == 0);
-    assert(view.encumbrance.weights.empty());
+    assert(view.encumbrance.weights.size() == 1);
+    assert(view.encumbrance.weights[0].id == InventoryWeightId);
+    assert(view.encumbrance.weights[0].source == "Inventario");
+    assert(view.encumbrance.weights[0].grams == 0);
     assert(view.encumbrance.category == LoadCategory::Light);
     assert(view.encumbrance.lightLoadMaxGrams == 38000);
     assert(view.encumbrance.effects.runMultiplierPenalty == 0);
     assert(!view.encumbrance.effects.preventsRunning);
+    assert(view.inventory.totalCarriedWeightGrams == 0);
+    assert(view.inventory.items.empty());
+    assert(view.inventory.containers.size() == 1);
+    assert(view.inventory.containers[0].id == MainContainerId);
+    assert(view.inventory.equipmentSlots.size() == 14);
+    assert(view.specialDefenses.energyResistances.empty());
+    assert(view.specialDefenses.damageReductions.empty());
+    assert(view.specialDefenses.damageReductionCombinations.empty());
+    assert(view.specialDefenses.immunities.empty());
+    assert(view.specialDefenses.spellResistances.empty());
+    assert(view.specialDefenses.fastHealing.empty());
+    assert(view.specialDefenses.regeneration.empty());
     assert(view.conditions.conditions.size() == 30);
     assert(std::ranges::any_of(view.conditions.conditions, [](const ConditionView &condition)
     {
@@ -165,7 +210,19 @@ int main()
     assert(view.combatManeuvers.maneuvers[0].bonus.abilityOptions[0].totalValue == 1);
 
     CharacterSheetSaveData saveData = sheet.toSaveData();
-    assert(saveData.formatVersion == 18);
+    assert(saveData.formatVersion == 22);
+    assert(saveData.identity.name == "Seelah");
+    assert(saveData.identity.playerName == "Giocatore");
+    assert(saveData.identity.alignment == Alignment::LawfulGood);
+    assert(saveData.identity.deity == "Iomedae");
+    assert(saveData.identity.homeland == "Cheliax");
+    assert(saveData.identity.gender == "Donna");
+    assert(saveData.identity.age == 27);
+    assert(saveData.identity.heightCentimeters == 178);
+    assert(saveData.identity.weightGrams == 72000);
+    assert(saveData.identity.hair == "Neri");
+    assert(saveData.identity.eyes == "Marroni");
+    assert(saveData.identity.appearance == "Armatura splendente");
     assert(saveData.abilities.size() == 6);
     assert(saveData.abilities[0].type == AbilityType::Strength);
     assert(saveData.abilities[0].baseValue == 16);
@@ -179,10 +236,24 @@ int main()
     assert(saveData.attacks.attacks.empty());
     assert(saveData.conditions.manualEntries.size() == 1);
     assert(saveData.conditions.manualEntries[0].id == "spell.sickened");
+    assert(saveData.inventory.containers.empty());
+    assert(saveData.inventory.items.empty());
     const std::filesystem::path savePath = "character_sheet_test_save.json";
     sheet.save(savePath);
     CharacterSheet loadedSheet = CharacterSheet::load(savePath);
     CharacterSheetView loadedView = loadedSheet.toView();
+    assert(loadedView.identity.name == "Seelah");
+    assert(loadedView.identity.playerName == "Giocatore");
+    assert(loadedView.identity.alignment == Alignment::LawfulGood);
+    assert(loadedView.identity.deity == "Iomedae");
+    assert(loadedView.identity.homeland == "Cheliax");
+    assert(loadedView.identity.gender == "Donna");
+    assert(loadedView.identity.age == 27);
+    assert(loadedView.identity.heightCentimeters == 178);
+    assert(loadedView.identity.weightGrams == 72000);
+    assert(loadedView.identity.hair == "Neri");
+    assert(loadedView.identity.eyes == "Marroni");
+    assert(loadedView.identity.appearance == "Armatura splendente");
     assert(loadedView.abilities[0].baseValue == 16);
     assert(loadedView.abilities[0].totalValue == 16);
     assert(loadedView.strikes.strikes.empty());
@@ -210,6 +281,8 @@ int main()
     assert(loadedView.carryingCapacity.heavyLoadMaxGrams == 115000);
     assert(loadedView.encumbrance.totalWeightGrams == 0);
     assert(loadedView.encumbrance.category == LoadCategory::Light);
+    assert(loadedView.inventory.items.empty());
+    assert(loadedView.inventory.containers.size() == 1);
     assert(loadedView.conditions.conditions.size() == 30);
     const auto loadedClockwork = std::ranges::find_if(loadedView.skills.skills, [](const SkillView &skillView)
     {
@@ -260,6 +333,64 @@ int main()
     loadedSheet.removeCondition("table.stable");
     assert(loadedSheet.toView().abilities[1].totalValue == 9);
     std::filesystem::remove(savePath);
+
+    saveData.inventory = InventorySaveData{
+        .containers = {
+            InventoryContainerSaveData{
+                .id = "home",
+                .name = "Casa",
+                .maximumContentsWeightGrams = std::nullopt,
+                .maximumContentsVolumeMilliliters = std::nullopt,
+                .acceptedItems = std::nullopt,
+                .quantityLimits = {},
+                .ignoresContentsWeight = false,
+                .ignoresContentsVolume = false,
+                .allowsPossessionEffects = false
+            }
+        },
+        .items = {
+            InventoryItemSaveData{
+                .id = "rope.saved",
+                .itemDefinitionId = "hempRope15m",
+                .quantity = 2,
+                .containerId = "item.backpack.saved",
+                .equipped = false
+            },
+            InventoryItemSaveData{
+                .id = "backpack.saved",
+                .itemDefinitionId = "commonBackpack",
+                .quantity = 1,
+                .containerId = "worn",
+                .equipped = false
+            },
+            InventoryItemSaveData{
+                .id = "cloak.saved",
+                .itemDefinitionId = "cloakOfResistance1",
+                .quantity = 1,
+                .containerId = "worn",
+                .equipped = true
+            }
+        }
+    };
+    const std::filesystem::path inventorySavePath = "character_sheet_inventory_test_save.json";
+    persistence::saveToFile(saveData, inventorySavePath);
+    CharacterSheet inventoryLoadedSheet = CharacterSheet::load(inventorySavePath);
+    const CharacterSheetView inventoryLoadedView = inventoryLoadedSheet.toView();
+    assert(inventoryLoadedView.inventory.totalCarriedWeightGrams == 11500);
+    assert(inventoryLoadedView.inventory.items.size() == 3);
+    assert(inventoryLoadedView.inventory.containers.size() == 3);
+    const auto savedRope = std::ranges::find(inventoryLoadedView.inventory.items, "rope.saved", &InventoryItemView::id);
+    assert(savedRope != inventoryLoadedView.inventory.items.end());
+    assert(savedRope->containerId == "item.backpack.saved");
+    const auto savedCloak = std::ranges::find(inventoryLoadedView.inventory.items, "cloak.saved", &InventoryItemView::id);
+    assert(savedCloak != inventoryLoadedView.inventory.items.end());
+    assert(savedCloak->equipped);
+    assert(savedCloak->containerId == MainContainerId);
+    assert(inventoryLoadedView.encumbrance.totalWeightGrams == 11500);
+    const InventorySaveData restoredInventory = inventoryLoadedSheet.toSaveData().inventory;
+    assert(restoredInventory.containers.size() == 1);
+    assert(restoredInventory.items.size() == 3);
+    std::filesystem::remove(inventorySavePath);
 
     sheet.removeSkillSpecialization(SkillType::Craft, "clockwork");
     sheet.removeCondition("spell.sickened");
@@ -365,6 +496,8 @@ int main()
     });
     assert(loadedBleeding != loadedBleedingView.conditions.conditions.end());
     assert(loadedBleeding->entries[0].parameter == "2d6 PF");
+    assert(loadedBleedingView.reminders.messages.size() == 1);
+    assert(loadedBleedingView.reminders.messages[0].find("2d6 PF") != std::string::npos);
     std::filesystem::remove(bleedingSavePath);
     conditionSmokeSheet.removeCondition("critical.bleeding");
 

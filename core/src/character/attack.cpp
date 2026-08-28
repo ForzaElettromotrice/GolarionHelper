@@ -62,6 +62,114 @@ namespace
     {
         return purpose == golarion::WeaponWeightPurpose::General ? strike.effectiveWeaponWeight : strike.twoWeaponFightingWeaponWeight;
     }
+
+    bool hasTag(const golarion::StrikeView &strike, golarion::AttackTag tag)
+    {
+        return std::ranges::find(strike.tags, tag) != strike.tags.end();
+    }
+
+    golarion::StrikeUsage effectiveStrikeUsage(const golarion::AttackSlotView &slot, const std::vector<golarion::AttackSlotView> &slots, const golarion::StrikesView &strikes)
+    {
+        if (slot.strikeUsage != golarion::StrikeUsage::NaturalSecondaryWhenCombined)
+        {
+            return slot.strikeUsage;
+        }
+        const bool combinedWithNonNaturalStrike = std::ranges::any_of(slots, [&strikes](const golarion::AttackSlotView &candidateSlot)
+        {
+            return std::ranges::any_of(candidateSlot.effectiveGrantIds, [&strikes](const std::string &grantId)
+            {
+                const golarion::StrikeView *strike = findStrike(strikes, grantId);
+                return strike != nullptr && !hasTag(*strike, golarion::AttackTag::Natural);
+            });
+        });
+        return combinedWithNonNaturalStrike ? golarion::StrikeUsage::NaturalSecondary : golarion::StrikeUsage::Default;
+    }
+
+    golarion::StrikeCalculationContext strikeContextForSlot(const golarion::StrikeCalculationContext &context, std::string_view grantId, golarion::StrikeUsage usage)
+    {
+        golarion::StrikeCalculationContext result = context;
+        const std::string normalizedGrantId = golarion::normalize(grantId);
+        std::erase_if(result.usageOverrides, [&normalizedGrantId](const golarion::StrikeUsageOverride &override)
+        {
+            return golarion::normalize(override.grantId) == normalizedGrantId;
+        });
+        if (usage != golarion::StrikeUsage::Default)
+        {
+            result.usageOverrides.push_back(golarion::StrikeUsageOverride{.grantId = normalizedGrantId, .usage = usage});
+        }
+        return result;
+    }
+
+    golarion::DamageAbilityRule effectiveDamageAbilityRule(const golarion::StrikeView &strike, const golarion::AttackSlotView &slot)
+    {
+        if (slot.damageAbilityRuleOverride.has_value())
+        {
+            return *slot.damageAbilityRuleOverride;
+        }
+        if (!hasTag(strike, golarion::AttackTag::Weapon) || !slot.handUsage.has_value() || !slot.handRole.has_value())
+        {
+            return strike.damageAbilityRule;
+        }
+        if (strike.damageAbilityRule == golarion::DamageAbilityRule::None || strike.damageAbilityRule == golarion::DamageAbilityRule::PenaltyOnly)
+        {
+            return strike.damageAbilityRule;
+        }
+        if (*slot.handRole == golarion::AttackHandRole::OffHand)
+        {
+            return golarion::DamageAbilityRule::HalfPositiveFullPenalty;
+        }
+        if (*slot.handUsage == golarion::HandUsage::TwoHanded && strike.effectiveWeaponWeight != golarion::WeaponWeight::Light)
+        {
+            return golarion::DamageAbilityRule::OneAndHalfPositiveFullPenalty;
+        }
+        return golarion::DamageAbilityRule::Full;
+    }
+
+    void applyDamageAbilityRule(golarion::StrikeView &strike, golarion::DamageAbilityRule rule)
+    {
+        strike.damageAbilityRule = rule;
+        for (golarion::DamageAbilityOptionView &option : strike.damageAbilityOptions)
+        {
+            option.abilityContribution = golarion::damageAbilityContribution(option.abilityModifier, rule);
+            option.damageBonus = checkedAttackAdjustment(static_cast<long long>(option.abilityContribution) + strike.damageModifiers.total);
+            option.criticalDamageBonus = checkedAttackAdjustment(static_cast<long long>(option.damageBonus) * strike.criticalProfile.multiplier);
+        }
+    }
+
+    golarion::CalculatedDamageView calculatedDamage(const golarion::StrikeView &strike, bool critical)
+    {
+        std::vector<golarion::CalculatedDamageAbilityOptionView> abilityOptions;
+        abilityOptions.reserve(strike.damageAbilityOptions.size());
+        for (const golarion::DamageAbilityOptionView &option : strike.damageAbilityOptions)
+        {
+            abilityOptions.push_back(golarion::CalculatedDamageAbilityOptionView{
+                .replacementId = option.replacementId,
+                .source = option.source,
+                .abilityType = option.abilityType,
+                .abilityModifier = option.abilityModifier,
+                .abilityContribution = critical ? checkedAttackAdjustment(static_cast<long long>(option.abilityContribution) * strike.criticalProfile.multiplier) : option.abilityContribution,
+                .bonus = critical ? option.criticalDamageBonus : option.damageBonus
+            });
+        }
+
+        std::vector<golarion::CalculatedDamageComponentView> components;
+        components.reserve(strike.damageComponents.size());
+        for (const golarion::DamageComponentView &component : strike.damageComponents)
+        {
+            if (!critical && !component.includedInNormalDamage)
+            {
+                continue;
+            }
+            components.push_back(golarion::CalculatedDamageComponentView{
+                .component = component,
+                .occurrences = critical ? component.criticalOccurrences : 1
+            });
+        }
+        return golarion::CalculatedDamageView{
+            .abilityOptions = std::move(abilityOptions),
+            .components = std::move(components)
+        };
+    }
 }
 
 namespace golarion
@@ -179,10 +287,13 @@ namespace golarion
                     .name = configuredAttack.name_,
                     .routineId = configuredAttack.routineId_,
                     .routineName = std::nullopt,
+                    .actionId = std::nullopt,
+                    .actionName = std::nullopt,
                     .complete = false,
                     .usable = false,
                     .failureReasons = {"La routine selezionata non è disponibile"},
-                    .slots = {}
+                    .slots = {},
+                    .calculatedAttacks = {}
                 });
                 continue;
             }
@@ -221,7 +332,7 @@ namespace golarion
             std::vector<AttackSlotView> slotViews;
             slotViews.reserve(routine->slots.size());
             bool complete = attackFailureReasons.empty();
-            bool usable = attackFailureReasons.empty();
+            bool usable = attackFailureReasons.empty() && routine->usable;
             for (const RoutineSlotView &routineSlot : routine->slots)
             {
                 const auto assignment = configuredAttack.assignments_.find(routineSlot.id);
@@ -274,9 +385,12 @@ namespace golarion
                 {
                     if (!assignedGrantId.has_value())
                     {
-                        slotComplete = false;
-                        slotUsable = false;
-                        slotFailureReasons.push_back("Nessuno strike è assegnato allo slot");
+                        if (routineSlot.assignmentRequired)
+                        {
+                            slotComplete = false;
+                            slotUsable = false;
+                            slotFailureReasons.push_back("Nessuno strike è assegnato allo slot");
+                        }
                     }
                     else
                     {
@@ -317,12 +431,16 @@ namespace golarion
                     .selector = routineSlot.selector,
                     .selectionMode = routineSlot.selectionMode,
                     .strikeUsage = routineSlot.strikeUsage,
+                    .effectiveStrikeUsage = routineSlot.strikeUsage,
                     .baseAttackBonusAdjustmentExpression = routineSlot.baseAttackBonusAdjustmentExpression,
                     .baseAttackBonusAdjustment = routineSlot.baseAttackBonusAdjustment,
                     .effectiveAttackBonusAdjustment = routineSlot.baseAttackBonusAdjustment,
                     .progressions = routineSlot.progressions,
                     .appliedAttackBonusAdjustments = {},
                     .damageAbilityRuleOverride = routineSlot.damageAbilityRuleOverride,
+                    .handUsage = routineSlot.handUsage,
+                    .handRole = routineSlot.handRole,
+                    .assignmentRequired = routineSlot.assignmentRequired,
                     .assignedGrantId = assignedGrantId,
                     .effectiveGrantIds = std::move(effectiveGrantIds),
                     .candidates = std::move(candidates),
@@ -374,6 +492,60 @@ namespace golarion
                 }
                 slot.effectiveAttackBonusAdjustment = checkedAttackAdjustment(effectiveAdjustment);
             }
+            for (AttackSlotView &slot : slotViews)
+            {
+                slot.effectiveStrikeUsage = effectiveStrikeUsage(slot, slotViews, strikesView);
+            }
+
+            std::vector<CalculatedAttackView> calculatedAttacks;
+            for (const AttackSlotView &slot : slotViews)
+            {
+                for (const std::string &grantId : slot.effectiveGrantIds)
+                {
+                    const StrikeCalculationContext slotContext = strikeContextForSlot(context, grantId, slot.effectiveStrikeUsage);
+                    const StrikesView contextualStrikes = strikes_.toView(slotContext);
+                    const StrikeView *contextualStrike = findStrike(contextualStrikes, grantId);
+                    if (contextualStrike == nullptr)
+                    {
+                        continue;
+                    }
+                    StrikeView slotStrike = *contextualStrike;
+                    applyDamageAbilityRule(slotStrike, effectiveDamageAbilityRule(slotStrike, slot));
+                    for (const RoutineAttackProgressionView &progression : slot.progressions)
+                    {
+                        for (int progressionAdjustment : progression.attackBonusAdjustments)
+                        {
+                            const int totalAdjustment = checkedAttackAdjustment(static_cast<long long>(slot.effectiveAttackBonusAdjustment) + progressionAdjustment);
+                            StrikeView calculatedStrike = slotStrike;
+                            for (AttackAbilityOptionView &option : calculatedStrike.attackAbilityOptions)
+                            {
+                                option.attackBonus = checkedAttackAdjustment(static_cast<long long>(option.attackBonus) + totalAdjustment);
+                                option.criticalConfirmationBonus = checkedAttackAdjustment(static_cast<long long>(option.criticalConfirmationBonus) + totalAdjustment);
+                            }
+                            calculatedAttacks.push_back(CalculatedAttackView{
+                                .slotId = slot.id,
+                                .slotName = slot.name,
+                                .strikeGrantId = grantId,
+                                .strikeName = calculatedStrike.name,
+                                .progressionGrantId = progression.grantId,
+                                .progressionGrantSource = progression.grantSource,
+                                .progressionAttackBonusAdjustment = progressionAdjustment,
+                                .routineAttackBonusAdjustment = slot.effectiveAttackBonusAdjustment,
+                                .totalAttackBonusAdjustment = totalAdjustment,
+                                .strike = calculatedStrike,
+                                .normalDamage = calculatedDamage(calculatedStrike, false),
+                                .criticalDamage = calculatedDamage(calculatedStrike, true)
+                            });
+                        }
+                    }
+                }
+            }
+            if (complete && calculatedAttacks.empty())
+            {
+                complete = false;
+                usable = false;
+                attackFailureReasons.push_back("La configurazione non produce alcun attacco");
+            }
             for (const AttackSlotView &slot : slotViews)
             {
                 for (const std::string &reason : slot.failureReasons)
@@ -381,15 +553,19 @@ namespace golarion
                     attackFailureReasons.push_back(slot.name + ": " + reason);
                 }
             }
+            attackFailureReasons.insert(attackFailureReasons.begin(), routine->failureReasons.begin(), routine->failureReasons.end());
             attackViews.push_back(AttackView{
                 .id = configuredAttack.id_,
                 .name = configuredAttack.name_,
                 .routineId = configuredAttack.routineId_,
                 .routineName = routine->name,
+                .actionId = routine->actionId,
+                .actionName = routine->actionName,
                 .complete = complete,
                 .usable = usable,
                 .failureReasons = std::move(attackFailureReasons),
-                .slots = std::move(slotViews)
+                .slots = std::move(slotViews),
+                .calculatedAttacks = std::move(calculatedAttacks)
             });
         }
 

@@ -19,7 +19,9 @@ namespace golarion
                     .name = "Stordito",
                     .effects = {
                         conditionEffects::penalty("armorClassPenalty", "–2 alla Classe Armatura", "Stordito", std::string(ArmorClassAllResource), "2"),
-                        conditionEffects::armorClassAbilitySuppression("armorClassAbilityBonusSuppression", "Perde il bonus di caratteristica alla Classe Armatura", "Stordito")
+                        conditionEffects::armorClassAbilitySuppression("armorClassAbilityBonusSuppression", "Perde il bonus di caratteristica alla Classe Armatura", "Stordito"),
+                        conditionEffects::actionInhibition("actionInhibition", "Non può compiere azioni mentre è stordito", "Stordito", ActionSelector{}),
+                        conditionEffects::reminder("dropHeldItems", "Stordito: lascia cadere a terra tutto ciò che impugna.")
                     }
                 }
             }

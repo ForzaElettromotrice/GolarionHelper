@@ -197,8 +197,13 @@ namespace golarion
         resourceManager.registerEnhanceableResource(resourceName_, std::move(parentResources));
     }
 
-    SkillView Skill::toView(ResourceManager &resourceManager, const std::map<std::string, SkillAbilityReplacement> &abilityReplacements, const std::map<std::string, SkillClassSkillGrant> &classSkillGrants) const
+    SkillView Skill::toView(ResourceManager &resourceManager, const std::map<std::string, SkillAbilityReplacement> &abilityReplacements, const std::map<std::string, SkillClassSkillGrant> &classSkillGrants, int armorCheckPenalty) const
     {
+        if (armorCheckPenalty < 0)
+        {
+            throw std::invalid_argument("armor check penalty must not be negative");
+        }
+        const int appliedArmorCheckPenalty = appliesArmorCheckPenalty(type_) ? armorCheckPenalty : 0;
         ModifierSetView modifierView = resourceManager.modifierSetView(resourceName_);
         std::vector<SkillClassSkillGrantView> applicableClassSkillGrants;
         for (const auto &[id, grant] : classSkillGrants)
@@ -223,7 +228,7 @@ namespace golarion
             .source = "Base",
             .abilityType = baseAbilityType,
             .abilityModifier = baseAbilityModifier,
-            .totalValue = checkedSkillValue(static_cast<long long>(baseAbilityModifier) + ranks_ + classSkillBonus + baseOptionModifiers.total),
+            .totalValue = checkedSkillValue(static_cast<long long>(baseAbilityModifier) + ranks_ + classSkillBonus + baseOptionModifiers.total - appliedArmorCheckPenalty),
             .modifiers = std::move(baseOptionModifiers)
         });
         for (const auto &[id, replacement] : abilityReplacements)
@@ -239,7 +244,7 @@ namespace golarion
                 .source = replacement.source_,
                 .abilityType = replacement.abilityType_,
                 .abilityModifier = abilityModifier,
-                .totalValue = checkedSkillValue(static_cast<long long>(abilityModifier) + ranks_ + classSkillBonus + optionModifiers.total),
+                .totalValue = checkedSkillValue(static_cast<long long>(abilityModifier) + ranks_ + classSkillBonus + optionModifiers.total - appliedArmorCheckPenalty),
                 .modifiers = std::move(optionModifiers)
             });
         }
@@ -255,6 +260,7 @@ namespace golarion
             .trainedOnly = trainedOnly(type_),
             .usable = usable(),
             .custom = specializationId_.has_value(),
+            .appliedArmorCheckPenalty = appliedArmorCheckPenalty,
             .classSkillGrants = std::move(applicableClassSkillGrants),
             .abilityOptions = std::move(abilityOptions),
             .modifiers = std::move(modifierView)
@@ -272,13 +278,18 @@ namespace golarion
         };
     }
 
-    int Skill::totalValue(ResourceManager &resourceManager) const
+    int Skill::totalValue(ResourceManager &resourceManager, int armorCheckPenalty) const
     {
+        if (armorCheckPenalty < 0)
+        {
+            throw std::invalid_argument("armor check penalty must not be negative");
+        }
         const std::string abilityModifierTarget = std::string(resourceName(defaultAbility(type_))) + "Mod";
         const std::vector<std::string> modifierResources{resourceName_, skillCheckResourceName(defaultAbility(type_))};
         const long long total = static_cast<long long>(resourceManager.targetValue(abilityModifierTarget))
                                 + ranks_
-                                + resourceManager.modifierTotal(modifierResources);
+                                + resourceManager.modifierTotal(modifierResources)
+                                - (appliesArmorCheckPenalty(type_) ? armorCheckPenalty : 0);
         return checkedSkillValue(total);
     }
 

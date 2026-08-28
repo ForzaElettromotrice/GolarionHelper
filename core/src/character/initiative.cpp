@@ -48,22 +48,26 @@ namespace golarion
         std::vector<InitiativeAbilityOptionView> abilityOptions;
         abilityOptions.reserve(abilityReplacements_.size() + 1);
         const int dexterityModifier = resourceManager_.targetValue("dexMod");
+        ModifierSetView dexterityModifiers = resourceManager_.modifierSetView(std::vector<std::string>{std::string(InitiativeResource), abilityCheckResourceName(AbilityType::Dexterity)});
         abilityOptions.push_back(InitiativeAbilityOptionView{
             .replacementId = std::nullopt,
             .source = "Base",
             .abilityType = AbilityType::Dexterity,
             .abilityModifier = dexterityModifier,
-            .totalValue = checkedInitiativeValue(static_cast<long long>(dexterityModifier) + modifiers.total)
+            .totalValue = checkedInitiativeValue(static_cast<long long>(dexterityModifier) + dexterityModifiers.total),
+            .modifiers = std::move(dexterityModifiers)
         });
         for (const auto &[id, replacement] : abilityReplacements_)
         {
             const int abilityModifier = resourceManager_.targetValue(std::string(resourceName(replacement.abilityType_)) + "Mod");
+            ModifierSetView optionModifiers = resourceManager_.modifierSetView(std::vector<std::string>{std::string(InitiativeResource), abilityCheckResourceName(replacement.abilityType_)});
             abilityOptions.push_back(InitiativeAbilityOptionView{
                 .replacementId = id,
                 .source = replacement.source_,
                 .abilityType = replacement.abilityType_,
                 .abilityModifier = abilityModifier,
-                .totalValue = checkedInitiativeValue(static_cast<long long>(abilityModifier) + modifiers.total)
+                .totalValue = checkedInitiativeValue(static_cast<long long>(abilityModifier) + optionModifiers.total),
+                .modifiers = std::move(optionModifiers)
             });
         }
 

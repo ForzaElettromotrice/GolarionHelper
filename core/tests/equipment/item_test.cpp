@@ -1,8 +1,4 @@
 #include "golarion/equipment/item.hpp"
-#include "golarion/character/carrying_capacity.hpp"
-#include "golarion/character/encumbrance.hpp"
-#include "golarion/resource/resource_manager.hpp"
-#include "golarion/view/encumbrance_view.hpp"
 
 #include <cassert>
 #include <stdexcept>
@@ -28,48 +24,27 @@ int main()
 {
     using namespace golarion;
 
-    ResourceManager resourceManager;
-    resourceManager.registerTarget("str", []
-    {
-        return 10;
-    });
-    CarryingCapacity carryingCapacity(resourceManager);
-    Encumbrance encumbrance(resourceManager, carryingCapacity);
-
     const ItemInstance rope(ItemInstanceDefinition{
         .id = "rope.1",
         .itemDefinitionId = "hempRope15m",
         .quantity = 2
     });
-    rope.registerWeight(resourceManager);
-    EncumbranceView encumbranceView = encumbrance.toView();
-    assert(encumbranceView.totalWeightGrams == 10000);
-    assert(encumbranceView.weights.size() == 1);
-    assert(encumbranceView.weights[0].id == "item.rope.1");
-    assert(encumbranceView.weights[0].source == "Corda di canapa (15 m)");
-    assert(encumbranceView.weights[0].grams == 10000);
+    assert(rope.weightGrams() == 10000);
+    assert(rope.volumeMilliliters() == 10000);
+    assert(rope.matches(ItemSelector(ItemSelectorDefinition{.definitionIds = {"hempRope15m"}})));
+    assert(rope.matches(ItemSelector(ItemSelectorDefinition{.tags = {"rope"}})));
+    assert(!rope.matches(ItemSelector(ItemSelectorDefinition{.definitionIds = {"arrow"}})));
+    assert(!rope.matches(ItemSelector(ItemSelectorDefinition{.tags = {"ammunition"}})));
+    assert(rope.matchingQuantity(ItemSelector(ItemSelectorDefinition{})) == 2);
+    assert(rope.matchingQuantity(ItemSelector(ItemSelectorDefinition{.tags = {"rope"}})) == 2);
+    assert(rope.matchingQuantity(ItemSelector(ItemSelectorDefinition{.tags = {"ammunition"}})) == 0);
     const ItemInstance updatedRope(ItemInstanceDefinition{
         .id = "rope.1",
         .itemDefinitionId = "hempRope15m",
         .quantity = 3
     });
-    updatedRope.refreshWeight(resourceManager);
-    encumbranceView = encumbrance.toView();
-    assert(encumbranceView.totalWeightGrams == 15000);
-    assert(encumbranceView.weights.size() == 1);
-    assert(encumbranceView.weights[0].grams == 15000);
-    assert(throwsInvalidArgument([&]
-    {
-        rope.registerWeight(resourceManager);
-    }));
-    rope.unregisterWeight(resourceManager);
-    encumbranceView = encumbrance.toView();
-    assert(encumbranceView.totalWeightGrams == 0);
-    assert(encumbranceView.weights.empty());
-    assert(throwsInvalidArgument([&]
-    {
-        rope.unregisterWeight(resourceManager);
-    }));
+    assert(updatedRope.weightGrams() == 15000);
+    assert(updatedRope.volumeMilliliters() == 15000);
 
     assert(throwsInvalidArgument([]
     {
@@ -78,6 +53,14 @@ int main()
             .itemDefinitionId = "missing",
             .quantity = 1
         }));
+    }));
+    assert(throwsInvalidArgument([]
+    {
+        static_cast<void>(ItemSelector(ItemSelectorDefinition{.tags = {"rope", "rope"}}));
+    }));
+    assert(throwsInvalidArgument([]
+    {
+        static_cast<void>(ItemSelector(ItemSelectorDefinition{.definitionIds = {" "}}));
     }));
     assert(throwsInvalidArgument([]
     {

@@ -10,5 +10,6 @@ namespace golarion
         int damageTaken;
         TemporaryHitPointsSaveData temporary;
         int nonLethal;
+        bool dead = false;
     };
 }

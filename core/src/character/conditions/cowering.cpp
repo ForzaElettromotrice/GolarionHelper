@@ -19,7 +19,8 @@ namespace golarion
                     .name = "Accovacciato",
                     .effects = {
                         conditionEffects::penalty("armorClassPenalty", "–2 alla Classe Armatura", "Accovacciato", std::string(ArmorClassAllResource), "2"),
-                        conditionEffects::armorClassAbilitySuppression("armorClassAbilityBonusSuppression", "Perde il bonus di caratteristica alla Classe Armatura", "Accovacciato")
+                        conditionEffects::armorClassAbilitySuppression("armorClassAbilityBonusSuppression", "Perde il bonus di caratteristica alla Classe Armatura", "Accovacciato"),
+                        conditionEffects::actionInhibition("actionInhibition", "Non può compiere azioni mentre è accovacciato", "Accovacciato", ActionSelector{})
                     }
                 }
             }

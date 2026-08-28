@@ -1,3 +1,4 @@
+#include "condition_effects.hpp"
 #include "condition_factories.hpp"
 
 #include "golarion/character/condition.hpp"
@@ -13,7 +14,9 @@ namespace golarion
                 ConditionStageDefinition{
                     .id = "dazed",
                     .name = "Frastornato",
-                    .effects = {}
+                    .effects = {
+                        conditionEffects::actionInhibition("actionInhibition", "Non può compiere azioni mentre è frastornato", "Frastornato", ActionSelector{})
+                    }
                 }
             }
         });

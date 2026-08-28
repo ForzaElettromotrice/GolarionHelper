@@ -1,21 +1,77 @@
 #pragma once
 
+#include "golarion/character/action.hpp"
 #include "golarion/character/ability.hpp"
 #include "golarion/character/armor_class.hpp"
 #include "golarion/character/combat_maneuvers.hpp"
 #include "golarion/character/condition.hpp"
 #include "golarion/character/movement.hpp"
+#include "golarion/character/reminder.hpp"
 #include "golarion/character/strike.hpp"
 #include "golarion/resource/contribution.hpp"
 #include "golarion/resource/modifier.hpp"
 #include "golarion/resource/resource_manager.hpp"
 
+#include <functional>
 #include <optional>
 #include <string>
 #include <utility>
 
 namespace golarion::conditionEffects
 {
+    using ReminderMessage = std::function<std::string(const ConditionEffectContext &)>;
+
+    inline ConditionEffectDefinition contextualReminder(std::string id, std::string description, ReminderMessage message)
+    {
+        return ConditionEffectDefinition{
+            .id = std::move(id),
+            .description = std::move(description),
+            .apply = [message = std::move(message)](ResourceManager &manager, const ConditionEffectContext &context)
+            {
+                manager.addToCollection(ReminderEntriesResource, Reminder(ReminderDefinition{
+                    .id = context.instanceId,
+                    .message = message(context)
+                }));
+                const std::string reminderId = context.instanceId;
+                return ConditionCleanup([&manager, reminderId]
+                {
+                    manager.removeFromCollection(ReminderEntriesResource, reminderId);
+                });
+            }
+        };
+    }
+
+    inline ConditionEffectDefinition reminder(std::string id, std::string message)
+    {
+        const std::string description = message;
+        return contextualReminder(std::move(id), description, [message = std::move(message)](const ConditionEffectContext &)
+        {
+            return message;
+        });
+    }
+
+    inline ConditionEffectDefinition actionInhibition(std::string id, std::string description, std::string source, ActionSelector selector)
+    {
+        return ConditionEffectDefinition{
+            .id = std::move(id),
+            .description = description,
+            .apply = [description = std::move(description), source = std::move(source), selector = std::move(selector)](ResourceManager &manager, const ConditionEffectContext &context)
+            {
+                manager.addToCollection(ActionInhibitionsResource, ActionInhibition(ActionInhibitionDefinition{
+                    .id = context.instanceId,
+                    .source = source,
+                    .selector = selector,
+                    .reason = description
+                }));
+                const std::string inhibitionId = context.instanceId;
+                return ConditionCleanup([&manager, inhibitionId]
+                {
+                    manager.removeFromCollection(ActionInhibitionsResource, inhibitionId);
+                });
+            }
+        };
+    }
+
     inline ConditionEffectDefinition modifier(std::string id, std::string description, std::string source, std::string resource, ModifierType type, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition = std::nullopt)
     {
         return ConditionEffectDefinition{
