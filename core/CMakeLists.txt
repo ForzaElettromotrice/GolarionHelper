@@ -178,6 +178,10 @@ if(BUILD_TESTING)
     target_link_libraries(character_identity_test PRIVATE golarion_model)
     add_test(NAME character_identity_test COMMAND character_identity_test)
 
+    add_executable(race_definition_test tests/character/race_definition_test.cpp)
+    target_link_libraries(race_definition_test PRIVATE golarion_model)
+    add_test(NAME race_definition_test COMMAND race_definition_test)
+
     add_executable(combat_maneuvers_test tests/character/combat_maneuvers_test.cpp)
     target_link_libraries(combat_maneuvers_test PRIVATE golarion_model)
     add_test(NAME combat_maneuvers_test COMMAND combat_maneuvers_test)
