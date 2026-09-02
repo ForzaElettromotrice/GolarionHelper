@@ -51,6 +51,11 @@ add_library(golarion_model STATIC
     src/character/temporary_hit_points.cpp
     src/character/initiative.cpp
     src/character/movement.cpp
+    src/character/race.cpp
+    src/character/race_definition_json.cpp
+    src/character/race_definition_manager.cpp
+    src/effect/effect_compiler.cpp
+    src/effect/effect_json.cpp
     src/character/reminder.cpp
     src/character/saving_throw.cpp
     src/character/saving_throws.cpp
@@ -82,6 +87,13 @@ file(READ "${CMAKE_CURRENT_SOURCE_DIR}/resources/items.json" ITEM_DEFINITION_CAT
 configure_file(
     src/equipment/item_definition_catalog.hpp.in
     "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/equipment/item_definition_catalog.hpp"
+    @ONLY
+)
+
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/resources/races.json" RACE_DEFINITION_CATALOG_JSON)
+configure_file(
+    src/character/race_definition_catalog.hpp.in
+    "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/character/race_definition_catalog.hpp"
     @ONLY
 )
 
@@ -181,6 +193,22 @@ if(BUILD_TESTING)
     add_executable(race_definition_test tests/character/race_definition_test.cpp)
     target_link_libraries(race_definition_test PRIVATE golarion_model)
     add_test(NAME race_definition_test COMMAND race_definition_test)
+
+    add_executable(race_definition_manager_test tests/character/race_definition_manager_test.cpp)
+    target_link_libraries(race_definition_manager_test PRIVATE golarion_model)
+    add_test(NAME race_definition_manager_test COMMAND race_definition_manager_test)
+
+    add_executable(race_test tests/character/race_test.cpp)
+    target_link_libraries(race_test PRIVATE golarion_model)
+    add_test(NAME race_test COMMAND race_test)
+
+    add_executable(effect_compiler_test tests/effect/effect_compiler_test.cpp)
+    target_link_libraries(effect_compiler_test PRIVATE golarion_model)
+    add_test(NAME effect_compiler_test COMMAND effect_compiler_test)
+
+    add_executable(effect_json_test tests/effect/effect_json_test.cpp)
+    target_link_libraries(effect_json_test PRIVATE golarion_model)
+    add_test(NAME effect_json_test COMMAND effect_json_test)
 
     add_executable(combat_maneuvers_test tests/character/combat_maneuvers_test.cpp)
     target_link_libraries(combat_maneuvers_test PRIVATE golarion_model)

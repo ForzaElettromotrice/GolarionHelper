@@ -23,6 +23,21 @@ namespace golarion
         std::optional<ItemSelectorView> selector;
     };
 
+    struct ItemChoiceOptionView
+    {
+        std::string id;
+        std::string name;
+        bool selected;
+    };
+
+    struct ItemChoiceView
+    {
+        std::string id;
+        std::string prompt;
+        std::size_t selectionCount;
+        std::vector<ItemChoiceOptionView> options;
+    };
+
     struct InventoryItemView
     {
         std::string id;
@@ -35,6 +50,7 @@ namespace golarion
         std::int64_t effectiveWeightGrams;
         std::int64_t effectiveVolumeMilliliters;
         std::optional<EquipmentSlot> equipmentSlot;
+        std::vector<ItemChoiceView> choices;
         std::string containerId;
         std::optional<std::string> ownedContainerId;
         bool equipped;

@@ -67,7 +67,19 @@
     "weightGrams": 500,
     "volumeMilliliters": 0,
     "tags": ["cloak", "magicItem", "wondrousItem"],
-    "slot": "shoulders"
+    "slot": "shoulders",
+    "effects": [
+      {
+        "id": "savingThrows",
+        "activation": "equipped",
+        "type": "modifier",
+        "resource": "savingThrow.all",
+        "description": "+1 ai tiri salvezza",
+        "modifierType": "bonus",
+        "bonusType": "resistance",
+        "expression": "1"
+      }
+    ]
   },
   {
     "id": "ringOfProtection1",
@@ -75,6 +87,122 @@
     "weightGrams": 0,
     "volumeMilliliters": 0,
     "tags": ["magicItem", "ring"],
-    "slot": "ring"
+    "slot": "ring",
+    "effects": [
+      {
+        "id": "armorClass",
+        "activation": "equipped",
+        "type": "modifier",
+        "resource": "armorClass.all",
+        "description": "+1 alla Classe Armatura",
+        "modifierType": "bonus",
+        "bonusType": "deflection",
+        "expression": "1"
+      }
+    ]
+  },
+  {
+    "id": "stoneOfGoodLuck",
+    "name": "Pietra della Buona Fortuna",
+    "weightGrams": 0,
+    "volumeMilliliters": 0,
+    "tags": ["magicItem", "slotless", "wondrousItem"],
+    "effects": [
+      {
+        "id": "savingThrows",
+        "activation": "possessed",
+        "type": "modifier",
+        "resource": "savingThrow.all",
+        "description": "+1 ai tiri salvezza",
+        "modifierType": "bonus",
+        "bonusType": "luck",
+        "expression": "1"
+      },
+      {
+        "id": "abilityChecks",
+        "activation": "possessed",
+        "type": "modifier",
+        "resource": "abilityCheck.all",
+        "description": "+1 alle prove di caratteristica",
+        "modifierType": "bonus",
+        "bonusType": "luck",
+        "expression": "1"
+      },
+      {
+        "id": "skillChecks",
+        "activation": "possessed",
+        "type": "modifier",
+        "resource": "skill.all",
+        "description": "+1 alle prove di abilità",
+        "modifierType": "bonus",
+        "bonusType": "luck",
+        "expression": "1"
+      }
+    ]
+  },
+  {
+    "id": "beltOfPhysicalMight2",
+    "name": "Cintura della Potenza Fisica +2",
+    "weightGrams": 500,
+    "volumeMilliliters": 0,
+    "tags": ["belt", "magicItem", "wondrousItem"],
+    "slot": "belt",
+    "choices": [
+      {
+        "id": "abilities",
+        "prompt": "Scegli due caratteristiche fisiche",
+        "selectionCount": 2,
+        "options": [
+          {
+            "id": "strength",
+            "name": "Forza",
+            "effects": [
+              {
+                "id": "enhancement",
+                "activation": "equipped",
+                "type": "modifier",
+                "resource": "str",
+                "description": "+2 a Forza",
+                "modifierType": "bonus",
+                "bonusType": "enhancement",
+                "expression": "2"
+              }
+            ]
+          },
+          {
+            "id": "dexterity",
+            "name": "Destrezza",
+            "effects": [
+              {
+                "id": "enhancement",
+                "activation": "equipped",
+                "type": "modifier",
+                "resource": "dex",
+                "description": "+2 a Destrezza",
+                "modifierType": "bonus",
+                "bonusType": "enhancement",
+                "expression": "2"
+              }
+            ]
+          },
+          {
+            "id": "constitution",
+            "name": "Costituzione",
+            "effects": [
+              {
+                "id": "enhancement",
+                "activation": "equipped",
+                "type": "modifier",
+                "resource": "con",
+                "description": "+2 a Costituzione",
+                "modifierType": "bonus",
+                "bonusType": "enhancement",
+                "expression": "2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]

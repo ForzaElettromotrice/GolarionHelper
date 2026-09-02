@@ -33,11 +33,18 @@ namespace golarion
         bool contributesToCarriedWeight = false;
     };
 
+    struct ItemChoiceSelectionSaveData
+    {
+        std::string choiceId;
+        std::vector<std::string> optionIds;
+    };
+
     struct InventoryItemSaveData
     {
         std::string id;
         std::string itemDefinitionId;
         int quantity;
+        std::vector<ItemChoiceSelectionSaveData> choices;
         std::string containerId;
         bool equipped;
     };

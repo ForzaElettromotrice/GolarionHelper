@@ -6,6 +6,7 @@
 #include "golarion/data/condition_manager_save_data.hpp"
 #include "golarion/data/hit_points_save_data.hpp"
 #include "golarion/data/inventory_save_data.hpp"
+#include "golarion/data/race_save_data.hpp"
 #include "golarion/data/skills_save_data.hpp"
 
 #include <vector>
@@ -16,6 +17,7 @@ namespace golarion
     {
         int formatVersion;
         CharacterIdentitySaveData identity;
+        RaceSaveData race;
         std::vector<AbilitySaveData> abilities;
         HitPointsSaveData hitPoints;
         SkillsSaveData skills;

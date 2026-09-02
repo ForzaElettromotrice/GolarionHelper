@@ -15,6 +15,7 @@
 #include "golarion/character/initiative.hpp"
 #include "golarion/character/hit_points.hpp"
 #include "golarion/character/movement.hpp"
+#include "golarion/character/race.hpp"
 #include "golarion/character/reminder.hpp"
 #include "golarion/character/saving_throws.hpp"
 #include "golarion/character/size.hpp"
@@ -31,6 +32,7 @@
 #include <optional>
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace golarion
 {
@@ -52,6 +54,11 @@ namespace golarion
         void setHair(std::optional<std::string> hair);
         void setEyes(std::optional<std::string> eyes);
         void setAppearance(std::optional<std::string> appearance);
+        void setRace(std::string_view raceDefinitionId);
+        void clearRace();
+        void selectAlternateRacialFeature(std::string_view featureId);
+        void removeAlternateRacialFeature(std::string_view featureId);
+        void setRacialChoice(std::string_view elementId, std::string_view choiceId, std::vector<std::string> optionIds);
         void setAbilityBaseValue(AbilityType type, int baseValue);
         void heal(int amount);
         void damage(int amount, DamageLethality lethality);
@@ -102,5 +109,6 @@ namespace golarion
         SizeManager sizeManager_;
         ConditionManager conditionManager_;
         std::optional<Inventory> inventory_;
+        Race race_;
     };
 }

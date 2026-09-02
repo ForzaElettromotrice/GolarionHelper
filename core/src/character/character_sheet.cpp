@@ -58,7 +58,8 @@ namespace golarion
           carryingCapacity_(resourceManager_),
           encumbrance_(resourceManager_, carryingCapacity_),
           sizeManager_(resourceManager_),
-          conditionManager_(resourceManager_)
+          conditionManager_(resourceManager_),
+          race_(resourceManager_)
     {
         for (AbilityScore &abilityScore : abilities_)
         {
@@ -75,7 +76,7 @@ namespace golarion
 
     CharacterSheet::CharacterSheet(const CharacterSheetSaveData &data) : CharacterSheet()
     {
-        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22)
+        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24)
         {
             throw std::invalid_argument("unsupported character sheet format version: " + std::to_string(data.formatVersion));
         }
@@ -98,6 +99,7 @@ namespace golarion
         }
 
         identity_ = CharacterIdentity(data.identity);
+        race_.load(data.race);
         skills_.load(data.skills);
         hitPoints_.load(data.hitPoints);
         attacks_.load(data.attacks);
@@ -169,6 +171,31 @@ namespace golarion
     void CharacterSheet::setAppearance(std::optional<std::string> appearance)
     {
         identity_.setAppearance(std::move(appearance));
+    }
+
+    void CharacterSheet::setRace(std::string_view raceDefinitionId)
+    {
+        race_.setRace(raceDefinitionId);
+    }
+
+    void CharacterSheet::clearRace()
+    {
+        race_.clearRace();
+    }
+
+    void CharacterSheet::selectAlternateRacialFeature(std::string_view featureId)
+    {
+        race_.selectAlternateFeature(featureId);
+    }
+
+    void CharacterSheet::removeAlternateRacialFeature(std::string_view featureId)
+    {
+        race_.removeAlternateFeature(featureId);
+    }
+
+    void CharacterSheet::setRacialChoice(std::string_view elementId, std::string_view choiceId, std::vector<std::string> optionIds)
+    {
+        race_.setChoice(elementId, choiceId, std::move(optionIds));
     }
 
     void CharacterSheet::setAbilityBaseValue(AbilityType type, int baseValue)
@@ -271,6 +298,7 @@ namespace golarion
 
         return CharacterSheetView{
             .identity = identity_.toView(),
+            .race = race_.toView(),
             .actions = actionManager_.toView(),
             .reminders = reminderManager_.toView(),
             .abilities = std::move(abilityViews),
@@ -305,8 +333,9 @@ namespace golarion
         }
 
         return CharacterSheetSaveData{
-            .formatVersion = 22,
+            .formatVersion = 24,
             .identity = identity_.toSaveData(),
+            .race = race_.toSaveData(),
             .abilities = std::move(abilityData),
             .hitPoints = hitPoints_.toSaveData(),
             .skills = skills_.toSaveData(),

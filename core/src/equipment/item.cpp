@@ -1,6 +1,7 @@
 #include "golarion/equipment/item.hpp"
 
 #include "golarion/equipment/item_definition_manager.hpp"
+#include "golarion/effect/effect_compiler.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/util/string_utils.hpp"
 
@@ -56,6 +57,66 @@ namespace
         return definition.volumeMilliliters * quantity;
     }
 
+    std::vector<golarion::ItemChoiceSelection> validatedChoices(const golarion::ItemDefinition &definition, std::vector<golarion::ItemChoiceSelection> selections)
+    {
+        for (golarion::ItemChoiceSelection &selection : selections)
+        {
+            selection.choiceId = golarion::normalize(selection.choiceId);
+            for (std::string &optionId : selection.optionIds)
+            {
+                optionId = golarion::normalize(optionId);
+            }
+            std::ranges::sort(selection.optionIds);
+            if (std::ranges::adjacent_find(selection.optionIds) != selection.optionIds.end())
+            {
+                throw std::invalid_argument("item choice selection contains duplicate options: " + selection.choiceId);
+            }
+        }
+        std::ranges::sort(selections, {}, &golarion::ItemChoiceSelection::choiceId);
+        if (std::ranges::adjacent_find(selections, {}, &golarion::ItemChoiceSelection::choiceId) != selections.end())
+        {
+            throw std::invalid_argument("item instance contains duplicate choice selections");
+        }
+
+        std::vector<golarion::ItemChoiceSelection> validated;
+        validated.reserve(definition.choices.size());
+        for (const golarion::ItemChoiceDefinition &choice : definition.choices)
+        {
+            const auto selection = std::ranges::find(selections, choice.id, &golarion::ItemChoiceSelection::choiceId);
+            if (selection == selections.end())
+            {
+                throw std::invalid_argument("item instance is missing choice selection: " + choice.id);
+            }
+            if (selection->optionIds.size() != choice.selectionCount)
+            {
+                throw std::invalid_argument("item choice selection has an invalid option count: " + choice.id);
+            }
+
+            std::vector<std::string> optionIds;
+            optionIds.reserve(choice.selectionCount);
+            for (const golarion::ItemChoiceOptionDefinition &option : choice.options)
+            {
+                if (std::ranges::binary_search(selection->optionIds, option.id))
+                {
+                    optionIds.push_back(option.id);
+                }
+            }
+            if (optionIds.size() != choice.selectionCount)
+            {
+                throw std::invalid_argument("item choice selection contains an unknown option: " + choice.id);
+            }
+            validated.push_back(golarion::ItemChoiceSelection{
+                .choiceId = choice.id,
+                .optionIds = std::move(optionIds)
+            });
+        }
+        if (validated.size() != selections.size())
+        {
+            throw std::invalid_argument("item instance contains an unknown choice selection");
+        }
+        return validated;
+    }
+
 }
 
 namespace golarion
@@ -84,11 +145,63 @@ namespace golarion
     ItemInstance::ItemInstance(ItemInstanceDefinition definition)
         : id_(normalize(definition.id)),
           itemDefinition_(ItemDefinitionManager::instance().get(definition.itemDefinitionId)),
-          quantity_(definition.quantity)
+          quantity_(definition.quantity),
+          choices_(validatedChoices(itemDefinition_.get(), std::move(definition.choices)))
     {
         if (quantity_ < 1)
         {
             throw std::invalid_argument("item quantity must be at least 1");
+        }
+        if (quantity_ != 1 && (!itemDefinition_.get().effects.empty() || !itemDefinition_.get().choices.empty()))
+        {
+            throw std::invalid_argument("item instances with effects or choices must have quantity 1");
+        }
+
+        const auto compile = [this](const ItemEffectDefinition &effect, const std::string &effectPath)
+        {
+            const std::string id = effectId(effect.effect);
+            EffectApply apply = compileEffect(effect.effect, EffectContext{
+                .instanceId = itemEffectInstanceId(id_, effectPath),
+                .source = itemDefinition_.get().name
+            });
+            if (!apply)
+            {
+                throw std::invalid_argument("compiled item effect must not be empty: " + id);
+            }
+
+            CompiledEffect compiled{
+                .id = id,
+                .apply = std::move(apply)
+            };
+            if (effect.activation == ItemEffectActivation::Possessed)
+            {
+                possessedEffects_.push_back(std::move(compiled));
+            }
+            else
+            {
+                equippedEffects_.push_back(std::move(compiled));
+            }
+        };
+
+        for (const ItemEffectDefinition &effect : itemDefinition_.get().effects)
+        {
+            compile(effect, "direct." + effectId(effect.effect));
+        }
+        for (std::size_t choiceIndex = 0; choiceIndex < itemDefinition_.get().choices.size(); ++choiceIndex)
+        {
+            const ItemChoiceDefinition &choice = itemDefinition_.get().choices[choiceIndex];
+            const ItemChoiceSelection &selection = choices_[choiceIndex];
+            for (const ItemChoiceOptionDefinition &option : choice.options)
+            {
+                if (std::ranges::find(selection.optionIds, option.id) == selection.optionIds.end())
+                {
+                    continue;
+                }
+                for (const ItemEffectDefinition &effect : option.effects)
+                {
+                    compile(effect, "choice." + choice.id + "." + option.id + "." + effectId(effect.effect));
+                }
+            }
         }
     }
 
@@ -125,26 +238,16 @@ namespace golarion
         return matches(selector) ? quantity_ : 0;
     }
 
-    std::vector<ItemEffectCleanup> ItemInstance::applyEffects(ResourceManager &resourceManager, ItemEffectActivation activation) const
+    std::vector<EffectCleanup> ItemInstance::applyEffects(ResourceManager &resourceManager, ItemEffectActivation activation) const
     {
-        std::vector<ItemEffectCleanup> cleanups;
+        const std::vector<CompiledEffect> &effects = activation == ItemEffectActivation::Possessed ? possessedEffects_ : equippedEffects_;
+        std::vector<EffectCleanup> cleanups;
+        cleanups.reserve(effects.size());
         try
         {
-            for (const ItemEffectDefinition &effect : itemDefinition_.get().effects)
+            for (const CompiledEffect &effect : effects)
             {
-                if (effect.activation != activation)
-                {
-                    continue;
-                }
-
-                ItemEffectCleanup cleanup = effect.apply(resourceManager, ItemEffectContext{
-                    .instanceId = itemEffectInstanceId(id_, effect.id),
-                    .itemInstanceId = id_,
-                    .itemDefinitionId = itemDefinition_.get().id,
-                    .effectId = effect.id,
-                    .source = itemDefinition_.get().name,
-                    .quantity = quantity_
-                });
+                EffectCleanup cleanup = effect.apply(resourceManager);
                 if (!cleanup)
                 {
                     throw std::invalid_argument("item effect cleanup callback must not be empty: " + effect.id);
@@ -160,7 +263,7 @@ namespace golarion
         return cleanups;
     }
 
-    void ItemInstance::removeEffects(std::vector<ItemEffectCleanup> &cleanups) const noexcept
+    void ItemInstance::removeEffects(std::vector<EffectCleanup> &cleanups) const noexcept
     {
         for (auto cleanup = cleanups.rbegin(); cleanup != cleanups.rend(); ++cleanup)
         {

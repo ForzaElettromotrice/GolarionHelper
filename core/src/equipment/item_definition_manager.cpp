@@ -1,5 +1,6 @@
 #include "golarion/equipment/item_definition_manager.hpp"
 
+#include "golarion/effect/effect_json.hpp"
 #include "golarion/equipment/item_definition_catalog.hpp"
 #include "golarion/util/string_utils.hpp"
 
@@ -138,6 +139,87 @@ namespace
         throw std::invalid_argument("unknown coin denomination: " + denomination);
     }
 
+    golarion::ItemEffectActivation itemEffectActivationFromJson(const Json &json)
+    {
+        const std::string activation = golarion::normalize(json.at("activation").get<std::string>());
+        if (activation == "possessed") return golarion::ItemEffectActivation::Possessed;
+        if (activation == "equipped") return golarion::ItemEffectActivation::Equipped;
+        throw std::invalid_argument("unknown item effect activation: " + activation);
+    }
+
+    std::vector<golarion::ItemEffectDefinition> itemEffectsFromJson(const Json &json, std::string_view ownerId)
+    {
+        std::vector<golarion::ItemEffectDefinition> effects;
+        for (const Json &effectJson : json)
+        {
+            golarion::ItemEffectDefinition effect{
+                .activation = itemEffectActivationFromJson(effectJson),
+                .effect = golarion::effectDefinitionFromJson(effectJson)
+            };
+            const std::string id = golarion::effectId(effect.effect);
+            if (std::ranges::any_of(effects, [&id](const golarion::ItemEffectDefinition &registeredEffect)
+            {
+                return golarion::effectId(registeredEffect.effect) == id;
+            }))
+            {
+                throw std::invalid_argument("item effects must have unique IDs within " + std::string(ownerId) + ": " + id);
+            }
+            effects.push_back(std::move(effect));
+        }
+        return effects;
+    }
+
+    std::vector<golarion::ItemChoiceDefinition> itemChoicesFromJson(const Json &json, std::string_view definitionId)
+    {
+        std::vector<golarion::ItemChoiceDefinition> choices;
+        for (const Json &choiceJson : json)
+        {
+            const std::string choiceId = golarion::normalize(choiceJson.at("id").get<std::string>());
+            if (std::ranges::any_of(choices, [&choiceId](const golarion::ItemChoiceDefinition &choice)
+            {
+                return choice.id == choiceId;
+            }))
+            {
+                throw std::invalid_argument("item choice is duplicated for definition " + std::string(definitionId) + ": " + choiceId);
+            }
+
+            const int selectionCount = choiceJson.at("selectionCount").get<int>();
+            if (selectionCount < 1)
+            {
+                throw std::invalid_argument("item choice selection count must be positive: " + choiceId);
+            }
+
+            std::vector<golarion::ItemChoiceOptionDefinition> options;
+            for (const Json &optionJson : choiceJson.at("options"))
+            {
+                const std::string optionId = golarion::normalize(optionJson.at("id").get<std::string>());
+                if (std::ranges::any_of(options, [&optionId](const golarion::ItemChoiceOptionDefinition &option)
+                {
+                    return option.id == optionId;
+                }))
+                {
+                    throw std::invalid_argument("item choice option is duplicated for " + choiceId + ": " + optionId);
+                }
+                options.push_back(golarion::ItemChoiceOptionDefinition{
+                    .id = optionId,
+                    .name = golarion::normalize(optionJson.at("name").get<std::string>()),
+                    .effects = itemEffectsFromJson(optionJson.value("effects", Json::array()), std::string(definitionId) + "." + choiceId + "." + optionId)
+                });
+            }
+            if (static_cast<std::size_t>(selectionCount) > options.size())
+            {
+                throw std::invalid_argument("item choice requires more selections than available options: " + choiceId);
+            }
+            choices.push_back(golarion::ItemChoiceDefinition{
+                .id = choiceId,
+                .prompt = golarion::normalize(choiceJson.at("prompt").get<std::string>()),
+                .selectionCount = static_cast<std::size_t>(selectionCount),
+                .options = std::move(options)
+            });
+        }
+        return choices;
+    }
+
     golarion::ItemDefinition itemDefinitionFromJson(const Json &json)
     {
         const std::string id = golarion::normalize(json.at("id").get<std::string>());
@@ -150,7 +232,8 @@ namespace
             .coinDenomination = coinDenominationFromJson(json),
             .slot = equipmentSlotFromJson(json),
             .container = itemContainerDefinitionFromJson(json),
-            .effects = {}
+            .effects = itemEffectsFromJson(json.value("effects", Json::array()), id),
+            .choices = itemChoicesFromJson(json.value("choices", Json::array()), id)
         };
         if (definition.weightGrams < 0)
         {
@@ -169,6 +252,10 @@ namespace
             if (definition.slot.has_value() || definition.container.has_value())
             {
                 throw std::invalid_argument("coin item definition cannot be equipped or contain items: " + definition.id);
+            }
+            if (!definition.effects.empty() || !definition.choices.empty())
+            {
+                throw std::invalid_argument("coin item definition cannot have effects or choices: " + definition.id);
             }
         }
         return definition;
@@ -198,41 +285,6 @@ namespace golarion
             throw std::invalid_argument("item definition is not registered: " + normalizedId);
         }
         return definition->second;
-    }
-
-    void ItemDefinitionManager::registerEffect(std::string_view itemDefinitionId, ItemEffectDefinition effect)
-    {
-        const std::string normalizedDefinitionId = normalize(itemDefinitionId);
-        const std::scoped_lock lock(mutex_);
-        if (!loaded_)
-        {
-            loadCatalog();
-        }
-
-        const auto definition = definitions_.find(normalizedDefinitionId);
-        if (definition == definitions_.end())
-        {
-            throw std::invalid_argument("item definition is not registered: " + normalizedDefinitionId);
-        }
-        if (definition->second.coinDenomination.has_value())
-        {
-            throw std::invalid_argument("coin item definitions cannot receive effects: " + normalizedDefinitionId);
-        }
-
-        effect.id = normalize(effect.id);
-        effect.description = normalize(effect.description);
-        if (!effect.apply)
-        {
-            throw std::invalid_argument("item effect apply callback must not be empty");
-        }
-        if (std::ranges::any_of(definition->second.effects, [&effect](const ItemEffectDefinition &registeredEffect)
-        {
-            return registeredEffect.id == effect.id;
-        }))
-        {
-            throw std::invalid_argument("item effect is already registered for definition: " + effect.id);
-        }
-        definition->second.effects.push_back(std::move(effect));
     }
 
     void ItemDefinitionManager::loadCatalog()

@@ -16,6 +16,7 @@
 #include "golarion/view/initiative_view.hpp"
 #include "golarion/view/inventory_view.hpp"
 #include "golarion/view/movement_view.hpp"
+#include "golarion/view/race_view.hpp"
 #include "golarion/view/reminders_view.hpp"
 #include "golarion/view/saving_throws_view.hpp"
 #include "golarion/view/size_view.hpp"
@@ -29,6 +30,7 @@ namespace golarion
     struct CharacterSheetView
     {
         CharacterIdentityView identity;
+        RaceView race;
         ActionsView actions;
         RemindersView reminders;
         std::vector<AbilityView> abilities;

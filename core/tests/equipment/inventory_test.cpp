@@ -1,7 +1,6 @@
 #include "golarion/equipment/inventory.hpp"
 #include "golarion/character/carrying_capacity.hpp"
 #include "golarion/character/encumbrance.hpp"
-#include "golarion/equipment/item_definition_manager.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/view/encumbrance_view.hpp"
 
@@ -35,6 +34,9 @@ int main()
     {
         return 30;
     });
+    resourceManager.registerEnhanceableResource("savingThrow.all");
+    resourceManager.registerEnhanceableResource("abilityCheck.all");
+    resourceManager.registerEnhanceableResource("skill.all");
     CarryingCapacity carryingCapacity(resourceManager);
     Encumbrance encumbrance(resourceManager, carryingCapacity);
     Inventory inventory(resourceManager);
@@ -246,57 +248,18 @@ int main()
         inventory.removeItem("rope.main");
     }));
 
-    int possessionApplications = 0;
-    int possessionCleanups = 0;
-    int equippedApplications = 0;
-    ItemDefinitionManager::instance().registerEffect("hempRope15m", ItemEffectDefinition{
-        .id = "test.possession",
-        .description = "Effetto mentre posseduto",
-        .activation = ItemEffectActivation::Possessed,
-        .apply = [&resourceManager, &possessionApplications, &possessionCleanups](ResourceManager &effectResourceManager, const ItemEffectContext &context)
-        {
-            assert(&effectResourceManager == &resourceManager);
-            assert(!context.instanceId.empty());
-            assert(context.itemDefinitionId == "hempRope15m");
-            assert(context.effectId == "test.possession");
-            assert(context.source == "Corda di canapa (15 m)");
-            if (context.itemInstanceId == "rope.effect.active")
-            {
-                assert(context.quantity == 2);
-            }
-            else
-            {
-                assert(context.itemInstanceId == "rope.effect.inactive");
-                assert(context.quantity == 1);
-            }
-            ++possessionApplications;
-            return [&possessionCleanups]
-            {
-                ++possessionCleanups;
-            };
-        }
-    });
-    ItemDefinitionManager::instance().registerEffect("hempRope15m", ItemEffectDefinition{
-        .id = "test.equipped",
-        .description = "Effetto mentre equipaggiato",
-        .activation = ItemEffectActivation::Equipped,
-        .apply = [&equippedApplications](ResourceManager &, const ItemEffectContext &)
-        {
-            ++equippedApplications;
-            return [] {};
-        }
-    });
-
     inventory.addItem(ItemInstanceDefinition{
-        .id = "rope.effect.active",
-        .itemDefinitionId = "hempRope15m",
-        .quantity = 2
+        .id = "stone.effect.active",
+        .itemDefinitionId = "stoneOfGoodLuck",
+        .quantity = 1
     });
-    assert(possessionApplications == 1);
-    assert(possessionCleanups == 0);
-    assert(equippedApplications == 0);
-    inventory.removeItem("rope.effect.active");
-    assert(possessionCleanups == 1);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 1);
+    assert(resourceManager.modifierTotal("abilityCheck.all") == 1);
+    assert(resourceManager.modifierTotal("skill.all") == 1);
+    inventory.removeItem("stone.effect.active");
+    assert(resourceManager.modifierTotal("savingThrow.all") == 0);
+    assert(resourceManager.modifierTotal("abilityCheck.all") == 0);
+    assert(resourceManager.modifierTotal("skill.all") == 0);
 
     assert(throwsInvalidArgument([&inventory]
     {
@@ -319,85 +282,56 @@ int main()
         .quantity = 1
     }, "home");
     inventory.addItem(ItemInstanceDefinition{
-        .id = "rope.effect.inactive",
-        .itemDefinitionId = "hempRope15m",
+        .id = "stone.effect.inactive",
+        .itemDefinitionId = "stoneOfGoodLuck",
         .quantity = 1
     }, "item.backpack.home");
-    assert(possessionApplications == 1);
-    assert(possessionCleanups == 1);
-    assert(equippedApplications == 0);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 0);
     assert(encumbrance.toView().totalWeightGrams == 0);
 
     inventory.moveItem("backpack.home");
-    assert(possessionApplications == 2);
-    assert(possessionCleanups == 1);
-    assert(equippedApplications == 0);
-    assert(encumbrance.toView().totalWeightGrams == 6000);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 1);
+    assert(encumbrance.toView().totalWeightGrams == 1000);
     inventory.moveItem("backpack.home");
-    assert(possessionApplications == 2);
-    assert(possessionCleanups == 1);
-    inventory.moveItem("rope.effect.inactive");
-    assert(possessionApplications == 2);
-    assert(possessionCleanups == 1);
-    assert(encumbrance.toView().totalWeightGrams == 6000);
-    inventory.moveItem("rope.effect.inactive", "item.backpack.home");
-    assert(possessionApplications == 2);
-    assert(possessionCleanups == 1);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 1);
+    inventory.moveItem("stone.effect.inactive");
+    assert(resourceManager.modifierTotal("savingThrow.all") == 1);
+    assert(encumbrance.toView().totalWeightGrams == 1000);
+    inventory.moveItem("stone.effect.inactive", "item.backpack.home");
+    assert(resourceManager.modifierTotal("savingThrow.all") == 1);
     inventory.moveItem("backpack.home", "home");
-    assert(possessionApplications == 2);
-    assert(possessionCleanups == 2);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 0);
     assert(encumbrance.toView().totalWeightGrams == 0);
 
-    inventory.moveItem("rope.effect.inactive");
-    assert(possessionApplications == 3);
-    assert(possessionCleanups == 2);
-    assert(encumbrance.toView().totalWeightGrams == 5000);
-    inventory.moveItem("rope.effect.inactive", "item.backpack.home");
-    assert(possessionApplications == 3);
-    assert(possessionCleanups == 3);
+    inventory.moveItem("stone.effect.inactive");
+    assert(resourceManager.modifierTotal("savingThrow.all") == 1);
     assert(encumbrance.toView().totalWeightGrams == 0);
-    inventory.removeItem("rope.effect.inactive");
+    inventory.moveItem("stone.effect.inactive", "item.backpack.home");
+    assert(resourceManager.modifierTotal("savingThrow.all") == 0);
+    assert(encumbrance.toView().totalWeightGrams == 0);
+    inventory.removeItem("stone.effect.inactive");
     inventory.removeItem("backpack.home");
-    assert(possessionCleanups == 3);
 
-    int rollbackApplications = 0;
-    int rollbackCleanups = 0;
-    ItemDefinitionManager::instance().registerEffect("bagOfHoldingTypeI", ItemEffectDefinition{
-        .id = "test.rollback.first",
-        .description = "Primo effetto transazionale",
-        .activation = ItemEffectActivation::Possessed,
-        .apply = [&rollbackApplications, &rollbackCleanups](ResourceManager &, const ItemEffectContext &)
-        {
-            ++rollbackApplications;
-            return [&rollbackCleanups]
-            {
-                ++rollbackCleanups;
-            };
-        }
-    });
-    ItemDefinitionManager::instance().registerEffect("bagOfHoldingTypeI", ItemEffectDefinition{
-        .id = "test.rollback.invalid",
-        .description = "Cleanup non valido",
-        .activation = ItemEffectActivation::Possessed,
-        .apply = [&rollbackApplications](ResourceManager &, const ItemEffectContext &)
-        {
-            ++rollbackApplications;
-            return ItemEffectCleanup{};
-        }
-    });
-    inventory.addItem(ItemInstanceDefinition{
-        .id = "bag.rollback",
-        .itemDefinitionId = "bagOfHoldingTypeI",
-        .quantity = 1
-    }, "home");
-    assert(throwsInvalidArgument([&inventory]
+    ResourceManager rollbackResourceManager;
+    rollbackResourceManager.registerTarget("str", []
     {
-        inventory.moveItem("bag.rollback");
+        return 10;
+    });
+    rollbackResourceManager.registerEnhanceableResource("savingThrow.all");
+    CarryingCapacity rollbackCarryingCapacity(rollbackResourceManager);
+    Encumbrance rollbackEncumbrance(rollbackResourceManager, rollbackCarryingCapacity);
+    Inventory rollbackInventory(rollbackResourceManager);
+    assert(throwsInvalidArgument([&rollbackInventory]
+    {
+        rollbackInventory.addItem(ItemInstanceDefinition{
+            .id = "stone.rollback",
+            .itemDefinitionId = "stoneOfGoodLuck",
+            .quantity = 1
+        });
     }));
-    assert(rollbackApplications == 2);
-    assert(rollbackCleanups == 1);
-    assert(encumbrance.toView().totalWeightGrams == 0);
-    inventory.removeItem("bag.rollback");
+    assert(rollbackResourceManager.modifierTotal("savingThrow.all") == 0);
+    assert(rollbackInventory.toView().items.empty());
+    assert(rollbackEncumbrance.toView().totalWeightGrams == 0);
 
     return 0;
 }

@@ -46,6 +46,19 @@ int main()
     assert(updatedRope.weightGrams() == 15000);
     assert(updatedRope.volumeMilliliters() == 15000);
 
+    const ItemInstance belt(ItemInstanceDefinition{
+        .id = "belt.1",
+        .itemDefinitionId = "beltOfPhysicalMight2",
+        .quantity = 1,
+        .choices = {
+            ItemChoiceSelection{
+                .choiceId = "abilities",
+                .optionIds = {"strength", "dexterity"}
+            }
+        }
+    });
+    assert(belt.weightGrams() == 500);
+
     assert(throwsInvalidArgument([]
     {
         static_cast<void>(ItemInstance(ItemInstanceDefinition{
@@ -68,6 +81,50 @@ int main()
             .id = "invalid.quantity",
             .itemDefinitionId = "hempRope15m",
             .quantity = 0
+        }));
+    }));
+    assert(throwsInvalidArgument([]
+    {
+        static_cast<void>(ItemInstance(ItemInstanceDefinition{
+            .id = "belt.missingChoice",
+            .itemDefinitionId = "beltOfPhysicalMight2",
+            .quantity = 1
+        }));
+    }));
+    assert(throwsInvalidArgument([]
+    {
+        static_cast<void>(ItemInstance(ItemInstanceDefinition{
+            .id = "belt.tooFewChoices",
+            .itemDefinitionId = "beltOfPhysicalMight2",
+            .quantity = 1,
+            .choices = {ItemChoiceSelection{.choiceId = "abilities", .optionIds = {"strength"}}}
+        }));
+    }));
+    assert(throwsInvalidArgument([]
+    {
+        static_cast<void>(ItemInstance(ItemInstanceDefinition{
+            .id = "belt.duplicateChoice",
+            .itemDefinitionId = "beltOfPhysicalMight2",
+            .quantity = 1,
+            .choices = {ItemChoiceSelection{.choiceId = "abilities", .optionIds = {"strength", "strength"}}}
+        }));
+    }));
+    assert(throwsInvalidArgument([]
+    {
+        static_cast<void>(ItemInstance(ItemInstanceDefinition{
+            .id = "belt.unknownChoice",
+            .itemDefinitionId = "beltOfPhysicalMight2",
+            .quantity = 1,
+            .choices = {ItemChoiceSelection{.choiceId = "abilities", .optionIds = {"strength", "wisdom"}}}
+        }));
+    }));
+    assert(throwsInvalidArgument([]
+    {
+        static_cast<void>(ItemInstance(ItemInstanceDefinition{
+            .id = "belt.stack",
+            .itemDefinitionId = "beltOfPhysicalMight2",
+            .quantity = 2,
+            .choices = {ItemChoiceSelection{.choiceId = "abilities", .optionIds = {"strength", "dexterity"}}}
         }));
     }));
 

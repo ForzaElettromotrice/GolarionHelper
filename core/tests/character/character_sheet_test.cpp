@@ -31,6 +31,66 @@ int main()
 {
     using namespace golarion;
 
+    {
+        CharacterSheet raceSheet;
+        CharacterSheetView raceView = raceSheet.toView();
+        assert(!raceView.race.race.has_value());
+        assert(raceView.race.activeElements.empty());
+
+        raceSheet.setRace("human");
+        raceView = raceSheet.toView();
+        assert(raceView.race.race.has_value());
+        assert(raceView.race.race->id == "human");
+        assert(raceView.race.activeElements.size() == 7);
+        const auto abilityScores = std::ranges::find(raceView.race.activeElements, "human.abilityScores", &RacialElementView::id);
+        assert(abilityScores != raceView.race.activeElements.end());
+        assert(abilityScores->missingChoices.size() == 1);
+        assert(raceView.movement.grants.size() == 1);
+        assert(raceView.reminders.messages.size() == 4);
+
+        raceSheet.setRacialChoice("human.abilityScores", "ability", {"strength"});
+        raceView = raceSheet.toView();
+        assert(raceView.abilities[0].totalValue == 12);
+        assert(std::ranges::find(raceView.race.activeElements, "human.abilityScores", &RacialElementView::id)->missingChoices.empty());
+
+        raceSheet.selectAlternateRacialFeature("human.dualTalent");
+        raceView = raceSheet.toView();
+        assert(raceView.race.activeElements.size() == 5);
+        assert(std::ranges::find(raceView.race.activeElements, "human.abilityScores", &RacialElementView::id) == raceView.race.activeElements.end());
+        assert(raceView.abilities[0].totalValue == 10);
+        raceSheet.setRacialChoice("human.dualTalent", "abilities", {"strength", "constitution"});
+        raceView = raceSheet.toView();
+        assert(raceView.abilities[0].totalValue == 12);
+        assert(raceView.abilities[2].totalValue == 12);
+
+        raceSheet.removeAlternateRacialFeature("human.dualTalent");
+        raceView = raceSheet.toView();
+        assert(raceView.abilities[0].totalValue == 12);
+        assert(raceView.abilities[2].totalValue == 10);
+
+        raceSheet.selectAlternateRacialFeature("human.dualTalent");
+        const std::filesystem::path raceSavePath = "race_character_sheet_test_save.json";
+        raceSheet.save(raceSavePath);
+        CharacterSheet loadedRaceSheet = CharacterSheet::load(raceSavePath);
+        CharacterSheetView loadedRaceView = loadedRaceSheet.toView();
+        assert(loadedRaceView.race.race->id == "human");
+        assert(loadedRaceView.race.activeElements.size() == 5);
+        assert(loadedRaceView.abilities[0].totalValue == 12);
+        assert(loadedRaceView.abilities[2].totalValue == 12);
+        loadedRaceSheet.removeAlternateRacialFeature("human.dualTalent");
+        loadedRaceView = loadedRaceSheet.toView();
+        assert(loadedRaceView.abilities[0].totalValue == 12);
+        assert(loadedRaceView.abilities[2].totalValue == 10);
+        std::filesystem::remove(raceSavePath);
+
+        raceSheet.clearRace();
+        raceView = raceSheet.toView();
+        assert(!raceView.race.race.has_value());
+        assert(raceView.movement.grants.empty());
+        assert(raceView.reminders.messages.empty());
+        assert(raceView.abilities[0].totalValue == 10);
+    }
+
     CharacterSheet sheet;
     sheet.setName("Seelah");
     sheet.setPlayerName("Giocatore");
@@ -83,6 +143,8 @@ int main()
     assert(view.identity.hair == "Neri");
     assert(view.identity.eyes == "Marroni");
     assert(view.identity.appearance == "Armatura splendente");
+    assert(!view.race.race.has_value());
+    assert(view.race.activeElements.empty());
     assert(view.actions.categories.size() == 5);
     assert(view.reminders.messages.empty());
     assert(view.abilities.size() == 6);
@@ -210,7 +272,7 @@ int main()
     assert(view.combatManeuvers.maneuvers[0].bonus.abilityOptions[0].totalValue == 1);
 
     CharacterSheetSaveData saveData = sheet.toSaveData();
-    assert(saveData.formatVersion == 22);
+    assert(saveData.formatVersion == 24);
     assert(saveData.identity.name == "Seelah");
     assert(saveData.identity.playerName == "Giocatore");
     assert(saveData.identity.alignment == Alignment::LawfulGood);
@@ -369,6 +431,19 @@ int main()
                 .quantity = 1,
                 .containerId = "worn",
                 .equipped = true
+            },
+            InventoryItemSaveData{
+                .id = "belt.saved",
+                .itemDefinitionId = "beltOfPhysicalMight2",
+                .quantity = 1,
+                .choices = {
+                    ItemChoiceSelectionSaveData{
+                        .choiceId = "abilities",
+                        .optionIds = {"strength", "constitution"}
+                    }
+                },
+                .containerId = "worn",
+                .equipped = true
             }
         }
     };
@@ -376,8 +451,8 @@ int main()
     persistence::saveToFile(saveData, inventorySavePath);
     CharacterSheet inventoryLoadedSheet = CharacterSheet::load(inventorySavePath);
     const CharacterSheetView inventoryLoadedView = inventoryLoadedSheet.toView();
-    assert(inventoryLoadedView.inventory.totalCarriedWeightGrams == 11500);
-    assert(inventoryLoadedView.inventory.items.size() == 3);
+    assert(inventoryLoadedView.inventory.totalCarriedWeightGrams == 12000);
+    assert(inventoryLoadedView.inventory.items.size() == 4);
     assert(inventoryLoadedView.inventory.containers.size() == 3);
     const auto savedRope = std::ranges::find(inventoryLoadedView.inventory.items, "rope.saved", &InventoryItemView::id);
     assert(savedRope != inventoryLoadedView.inventory.items.end());
@@ -386,10 +461,21 @@ int main()
     assert(savedCloak != inventoryLoadedView.inventory.items.end());
     assert(savedCloak->equipped);
     assert(savedCloak->containerId == MainContainerId);
-    assert(inventoryLoadedView.encumbrance.totalWeightGrams == 11500);
+    const auto savedBelt = std::ranges::find(inventoryLoadedView.inventory.items, "belt.saved", &InventoryItemView::id);
+    assert(savedBelt != inventoryLoadedView.inventory.items.end());
+    assert(savedBelt->equipped);
+    assert(savedBelt->choices.size() == 1);
+    assert(savedBelt->choices[0].options[0].selected);
+    assert(!savedBelt->choices[0].options[1].selected);
+    assert(savedBelt->choices[0].options[2].selected);
+    assert(inventoryLoadedView.encumbrance.totalWeightGrams == 12000);
     const InventorySaveData restoredInventory = inventoryLoadedSheet.toSaveData().inventory;
     assert(restoredInventory.containers.size() == 1);
-    assert(restoredInventory.items.size() == 3);
+    assert(restoredInventory.items.size() == 4);
+    const auto restoredBelt = std::ranges::find(restoredInventory.items, "belt.saved", &InventoryItemSaveData::id);
+    assert(restoredBelt != restoredInventory.items.end());
+    assert(restoredBelt->choices.size() == 1);
+    assert((restoredBelt->choices[0].optionIds == std::vector<std::string>{"strength", "constitution"}));
     std::filesystem::remove(inventorySavePath);
 
     sheet.removeSkillSpecialization(SkillType::Craft, "clockwork");

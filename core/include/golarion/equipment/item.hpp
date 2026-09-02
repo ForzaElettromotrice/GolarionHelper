@@ -2,7 +2,9 @@
 
 #include "golarion/equipment/coin.hpp"
 #include "golarion/equipment/equipment_slot.hpp"
+#include "golarion/effect/effect_compiler.hpp"
 
+#include <cstddef>
 #include <cstdint>
 #include <functional>
 #include <optional>
@@ -25,27 +27,31 @@ namespace golarion
 
     std::string_view displayName(ItemEffectActivation activation);
 
-    struct ItemEffectContext
-    {
-        std::string instanceId;
-        std::string itemInstanceId;
-        std::string itemDefinitionId;
-        std::string effectId;
-        std::string source;
-        int quantity;
-    };
-
-    // Cleanup callbacks must not throw: once an external resource has been changed,
-    // an arbitrary callback cannot be rolled back safely by Inventory.
-    using ItemEffectCleanup = std::function<void()>;
-    using ItemEffectApply = std::function<ItemEffectCleanup(ResourceManager &, const ItemEffectContext &)>;
-
     struct ItemEffectDefinition
     {
-        std::string id;
-        std::string description;
         ItemEffectActivation activation;
-        ItemEffectApply apply;
+        EffectDefinition effect;
+    };
+
+    struct ItemChoiceOptionDefinition
+    {
+        std::string id;
+        std::string name;
+        std::vector<ItemEffectDefinition> effects{};
+    };
+
+    struct ItemChoiceDefinition
+    {
+        std::string id;
+        std::string prompt;
+        std::size_t selectionCount;
+        std::vector<ItemChoiceOptionDefinition> options;
+    };
+
+    struct ItemChoiceSelection
+    {
+        std::string choiceId;
+        std::vector<std::string> optionIds;
     };
 
     struct ItemSelectorDefinition
@@ -95,6 +101,7 @@ namespace golarion
         std::optional<EquipmentSlot> slot;
         std::optional<ItemContainerDefinition> container;
         std::vector<ItemEffectDefinition> effects;
+        std::vector<ItemChoiceDefinition> choices;
     };
 
     struct ItemInstanceDefinition
@@ -102,6 +109,7 @@ namespace golarion
         std::string id;
         std::string itemDefinitionId;
         int quantity = 1;
+        std::vector<ItemChoiceSelection> choices{};
     };
 
     class ItemInstance final
@@ -119,11 +127,20 @@ namespace golarion
         friend class Inventory;
         friend class Money;
 
-        std::vector<ItemEffectCleanup> applyEffects(ResourceManager &resourceManager, ItemEffectActivation activation) const;
-        void removeEffects(std::vector<ItemEffectCleanup> &cleanups) const noexcept;
+        struct CompiledEffect
+        {
+            std::string id;
+            EffectApply apply;
+        };
+
+        std::vector<EffectCleanup> applyEffects(ResourceManager &resourceManager, ItemEffectActivation activation) const;
+        void removeEffects(std::vector<EffectCleanup> &cleanups) const noexcept;
 
         std::string id_;
         std::reference_wrapper<const ItemDefinition> itemDefinition_;
         int quantity_;
+        std::vector<ItemChoiceSelection> choices_;
+        std::vector<CompiledEffect> possessedEffects_;
+        std::vector<CompiledEffect> equippedEffects_;
     };
 }

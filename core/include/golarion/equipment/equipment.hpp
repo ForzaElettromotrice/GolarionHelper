@@ -36,6 +36,6 @@ namespace golarion
         ResourceManager &resourceManager_;
         std::map<EquipmentSlot, std::vector<std::string>> itemIdsBySlot_;
         std::map<std::string, EquipmentSlot> itemSlots_;
-        std::map<std::string, std::vector<ItemEffectCleanup>> appliedEffects_;
+        std::map<std::string, std::vector<EffectCleanup>> appliedEffects_;
     };
 }

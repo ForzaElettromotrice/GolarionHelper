@@ -9,7 +9,7 @@ int main()
     using namespace golarion;
 
     CharacterSheetSaveData original{
-        .formatVersion = 22,
+        .formatVersion = 24,
         .identity = CharacterIdentitySaveData{
             .name = "Merisiel",
             .playerName = "Giocatrice",
@@ -23,6 +23,22 @@ int main()
             .hair = "Neri",
             .eyes = "Verdi",
             .appearance = "Mantello scuro"
+        },
+        .race = RaceSaveData{
+            .raceDefinitionId = "human",
+            .alternateFeatureIds = {"human.dualTalent"},
+            .choices = {
+                RacialChoiceSelectionSaveData{
+                    .elementId = "human.abilityScores",
+                    .choiceId = "ability",
+                    .optionIds = {"dexterity"}
+                },
+                RacialChoiceSelectionSaveData{
+                    .elementId = "human.dualTalent",
+                    .choiceId = "abilities",
+                    .optionIds = {"strength", "constitution"}
+                }
+            }
         },
         .abilities = std::vector<AbilitySaveData>{
             AbilitySaveData{.type = AbilityType::Strength, .baseValue = 16},
@@ -126,6 +142,19 @@ int main()
                     .quantity = 1,
                     .containerId = "worn",
                     .equipped = true
+                },
+                InventoryItemSaveData{
+                    .id = "belt.saved",
+                    .itemDefinitionId = "beltOfPhysicalMight2",
+                    .quantity = 1,
+                    .choices = {
+                        ItemChoiceSelectionSaveData{
+                            .choiceId = "abilities",
+                            .optionIds = {"strength", "constitution"}
+                        }
+                    },
+                    .containerId = "worn",
+                    .equipped = true
                 }
             }
         }
@@ -134,7 +163,9 @@ int main()
     const std::string json = persistence::toJson(original);
     const CharacterSheetSaveData restored = persistence::fromJson(json);
 
-    assert(json.find("\"formatVersion\": 22") != std::string::npos);
+    assert(json.find("\"formatVersion\": 24") != std::string::npos);
+    assert(json.find("\"raceDefinitionId\": \"human\"") != std::string::npos);
+    assert(json.find("\"human.dualTalent\"") != std::string::npos);
     assert(json.find("\"alignment\": \"chaoticNeutral\"") != std::string::npos);
     assert(json.find("\"durationRounds\": 8") != std::string::npos);
     assert(json.find("\"remainingRounds\"") == std::string::npos);
@@ -149,7 +180,7 @@ int main()
     assert(json.find("\"manualEntries\"") != std::string::npos);
     assert(json.find("\"spell.fear\"") != std::string::npos);
     assert(json.find("\"inventory\"") != std::string::npos);
-    assert(restored.formatVersion == 22);
+    assert(restored.formatVersion == 24);
     assert(restored.identity.name == "Merisiel");
     assert(restored.identity.playerName == "Giocatrice");
     assert(restored.identity.alignment == Alignment::ChaoticNeutral);
@@ -162,6 +193,13 @@ int main()
     assert(restored.identity.hair == "Neri");
     assert(restored.identity.eyes == "Verdi");
     assert(restored.identity.appearance == "Mantello scuro");
+    assert(restored.race.raceDefinitionId == "human");
+    assert((restored.race.alternateFeatureIds == std::vector<std::string>{"human.dualTalent"}));
+    assert(restored.race.choices.size() == 2);
+    assert(restored.race.choices[0].elementId == "human.abilityScores");
+    assert((restored.race.choices[0].optionIds == std::vector<std::string>{"dexterity"}));
+    assert(restored.race.choices[1].elementId == "human.dualTalent");
+    assert((restored.race.choices[1].optionIds == std::vector<std::string>{"strength", "constitution"}));
     assert(restored.abilities.size() == 2);
     assert(restored.abilities[0].type == AbilityType::Strength);
     assert(restored.abilities[0].baseValue == 16);
@@ -201,11 +239,14 @@ int main()
     assert(restored.inventory.containers[0].contributesToCarriedWeight);
     assert((restored.inventory.containers[0].acceptedItems->tags == std::vector<std::string>{"adventuringGear"}));
     assert(restored.inventory.containers[0].quantityLimits.size() == 1);
-    assert(restored.inventory.items.size() == 2);
+    assert(restored.inventory.items.size() == 3);
     assert(restored.inventory.items[0].id == "rope.saved");
     assert(restored.inventory.items[0].containerId == "home");
     assert(!restored.inventory.items[0].equipped);
     assert(restored.inventory.items[1].equipped);
+    assert(restored.inventory.items[2].choices.size() == 1);
+    assert(restored.inventory.items[2].choices[0].choiceId == "abilities");
+    assert((restored.inventory.items[2].choices[0].optionIds == std::vector<std::string>{"strength", "constitution"}));
 
     const std::string legacyJson = R"({
         "formatVersion": 16,
@@ -218,6 +259,7 @@ int main()
     assert(legacy.identity.name.empty());
     assert(legacy.identity.playerName.empty());
     assert(!legacy.identity.alignment.has_value());
+    assert(!legacy.race.raceDefinitionId.has_value());
     assert(!legacy.hitPoints.dead);
     assert(legacy.conditions.manualEntries.empty());
     assert(legacy.inventory.containers.empty());

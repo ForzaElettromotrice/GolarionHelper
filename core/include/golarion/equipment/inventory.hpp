@@ -77,7 +77,7 @@ namespace golarion
         std::map<std::string, ItemInstance> items_;
         std::map<std::string, Container> containers_;
         std::map<std::string, std::string> itemContainerIds_;
-        std::map<std::string, std::vector<ItemEffectCleanup>> appliedPossessionEffects_;
+        std::map<std::string, std::vector<EffectCleanup>> appliedPossessionEffects_;
         Money money_;
     };
 }

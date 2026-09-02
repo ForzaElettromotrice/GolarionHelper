@@ -1,0 +1,10 @@
+#pragma once
+
+#include <string_view>
+
+namespace golarion::embedded
+{
+    inline constexpr std::string_view RaceDefinitionCatalogJson = R"golarion_json(
+@RACE_DEFINITION_CATALOG_JSON@
+)golarion_json";
+}

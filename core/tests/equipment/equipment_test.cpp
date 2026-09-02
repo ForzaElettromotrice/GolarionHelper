@@ -1,7 +1,6 @@
 #include "golarion/character/carrying_capacity.hpp"
 #include "golarion/character/encumbrance.hpp"
 #include "golarion/equipment/inventory.hpp"
-#include "golarion/equipment/item_definition_manager.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/view/encumbrance_view.hpp"
 
@@ -31,13 +30,14 @@ int main()
 {
     using namespace golarion;
 
-    int equipmentApplications = 0;
-    int equipmentCleanups = 0;
     ResourceManager resourceManager;
     resourceManager.registerTarget("str", []
     {
         return 10;
     });
+    resourceManager.registerEnhanceableResource("str");
+    resourceManager.registerEnhanceableResource("savingThrow.all");
+    resourceManager.registerEnhanceableResource("armorClass.all");
     CarryingCapacity carryingCapacity(resourceManager);
     Encumbrance encumbrance(resourceManager, carryingCapacity);
     Inventory inventory(resourceManager);
@@ -46,22 +46,6 @@ int main()
         .name = "Casa",
         .allowsPossessionEffects = false
     });
-    ItemDefinitionManager::instance().registerEffect("cloakOfResistance1", ItemEffectDefinition{
-        .id = "test.equipped",
-        .description = "Effetto mentre equipaggiato",
-        .activation = ItemEffectActivation::Equipped,
-        .apply = [&equipmentApplications, &equipmentCleanups](ResourceManager &, const ItemEffectContext &context)
-        {
-            assert(context.itemDefinitionId == "cloakOfResistance1");
-            assert(context.quantity == 1);
-            ++equipmentApplications;
-            return [&equipmentCleanups]
-            {
-                ++equipmentCleanups;
-            };
-        }
-    });
-
     inventory.addItem(ItemInstanceDefinition{
         .id = "rope.slotless",
         .itemDefinitionId = "hempRope15m",
@@ -78,11 +62,10 @@ int main()
         .quantity = 1
     }, "home");
     assert(encumbrance.toView().totalWeightGrams == 5000);
-    assert(equipmentApplications == 0);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 0);
     inventory.equip("cloak.home");
     assert(encumbrance.toView().totalWeightGrams == 5500);
-    assert(equipmentApplications == 1);
-    assert(equipmentCleanups == 0);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 1);
     InventoryView inventoryView = inventory.toView();
     const auto equippedCloak = std::ranges::find(inventoryView.items, "cloak.home", &InventoryItemView::id);
     assert(equippedCloak != inventoryView.items.end());
@@ -104,10 +87,10 @@ int main()
         inventory.removeItem("cloak.home");
     }));
     inventory.equip("cloak.home");
-    assert(equipmentApplications == 1);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 1);
     inventory.unequip("cloak.home", "home");
     assert(encumbrance.toView().totalWeightGrams == 5000);
-    assert(equipmentCleanups == 1);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 0);
 
     inventory.addItem(ItemInstanceDefinition{
         .id = "cloak.main",
@@ -115,27 +98,27 @@ int main()
         .quantity = 1
     });
     inventory.equip("cloak.main");
-    assert(equipmentApplications == 2);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 1);
     assert(encumbrance.toView().totalWeightGrams == 5500);
     assert(throwsInvalidArgument([&inventory]
     {
         inventory.equip("cloak.home");
     }));
-    assert(equipmentApplications == 2);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 1);
     assert(encumbrance.toView().totalWeightGrams == 5500);
     inventory.unequip("cloak.main");
-    assert(equipmentCleanups == 2);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 0);
     assert(encumbrance.toView().totalWeightGrams == 5500);
 
     inventory.equip("cloak.home");
-    assert(equipmentApplications == 3);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 1);
     assert(encumbrance.toView().totalWeightGrams == 6000);
     assert(throwsInvalidArgument([&inventory]
     {
         inventory.moveItem("cloak.home", "home");
     }));
     inventory.unequip("cloak.home", "home");
-    assert(equipmentCleanups == 3);
+    assert(resourceManager.modifierTotal("savingThrow.all") == 0);
     assert(encumbrance.toView().totalWeightGrams == 5500);
     assert(throwsInvalidArgument([&inventory]
     {
@@ -152,12 +135,14 @@ int main()
     inventory.addItem(ItemInstanceDefinition{.id = "ring.3", .itemDefinitionId = "ringOfProtection1", .quantity = 1});
     inventory.equip("ring.1");
     inventory.equip("ring.2");
+    assert(resourceManager.modifierTotal("armorClass.all") == 1);
     assert(throwsInvalidArgument([&inventory]
     {
         inventory.equip("ring.3");
     }));
     inventory.unequip("ring.1");
     inventory.equip("ring.3");
+    assert(resourceManager.modifierTotal("armorClass.all") == 1);
     assert(throwsInvalidArgument([&inventory]
     {
         inventory.removeItem("ring.2");
@@ -167,47 +152,40 @@ int main()
     inventory.unequip("ring.3");
     inventory.removeItem("ring.1");
     inventory.removeItem("ring.3");
+    assert(resourceManager.modifierTotal("armorClass.all") == 0);
 
-    inventory.addItem(ItemInstanceDefinition{.id = "ring.stack", .itemDefinitionId = "ringOfProtection1", .quantity = 2});
     assert(throwsInvalidArgument([&inventory]
     {
-        inventory.equip("ring.stack");
+        inventory.addItem(ItemInstanceDefinition{.id = "ring.stack", .itemDefinitionId = "ringOfProtection1", .quantity = 2});
     }));
-    inventory.removeItem("ring.stack");
 
-    int rollbackApplications = 0;
-    int rollbackCleanups = 0;
-    ItemDefinitionManager::instance().registerEffect("ringOfProtection1", ItemEffectDefinition{
-        .id = "test.rollback.first",
-        .description = "Primo effetto transazionale",
-        .activation = ItemEffectActivation::Equipped,
-        .apply = [&rollbackApplications, &rollbackCleanups](ResourceManager &, const ItemEffectContext &)
-        {
-            ++rollbackApplications;
-            return [&rollbackCleanups]
-            {
-                ++rollbackCleanups;
-            };
-        }
+    inventory.addItem(ItemInstanceDefinition{
+        .id = "belt.rollback",
+        .itemDefinitionId = "beltOfPhysicalMight2",
+        .quantity = 1,
+        .choices = {ItemChoiceSelection{.choiceId = "abilities", .optionIds = {"strength", "dexterity"}}}
     });
-    ItemDefinitionManager::instance().registerEffect("ringOfProtection1", ItemEffectDefinition{
-        .id = "test.rollback.invalid",
-        .description = "Cleanup non valido",
-        .activation = ItemEffectActivation::Equipped,
-        .apply = [&rollbackApplications](ResourceManager &, const ItemEffectContext &)
-        {
-            ++rollbackApplications;
-            return ItemEffectCleanup{};
-        }
-    });
-    inventory.addItem(ItemInstanceDefinition{.id = "ring.rollback", .itemDefinitionId = "ringOfProtection1", .quantity = 1});
     assert(throwsInvalidArgument([&inventory]
     {
-        inventory.equip("ring.rollback");
+        inventory.equip("belt.rollback");
     }));
-    assert(rollbackApplications == 2);
-    assert(rollbackCleanups == 1);
-    inventory.removeItem("ring.rollback");
+    assert(resourceManager.modifierTotal("str") == 0);
+    assert(!inventory.toView().items.back().equipped);
+
+    resourceManager.registerEnhanceableResource("dex");
+    inventory.equip("belt.rollback");
+    assert(resourceManager.modifierTotal("str") == 2);
+    assert(resourceManager.modifierTotal("dex") == 2);
+    const InventoryItemView &beltView = inventory.toView().items.back();
+    assert(beltView.choices.size() == 1);
+    assert(beltView.choices[0].options.size() == 3);
+    assert(beltView.choices[0].options[0].selected);
+    assert(beltView.choices[0].options[1].selected);
+    assert(!beltView.choices[0].options[2].selected);
+    inventory.unequip("belt.rollback");
+    assert(resourceManager.modifierTotal("str") == 0);
+    assert(resourceManager.modifierTotal("dex") == 0);
+    inventory.removeItem("belt.rollback");
 
     return 0;
 }

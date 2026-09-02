@@ -549,6 +549,29 @@ namespace golarion
         for (const auto &[id, item] : items_)
         {
             const ItemDefinition &definition = item.itemDefinition_.get();
+            std::vector<ItemChoiceView> choiceViews;
+            choiceViews.reserve(definition.choices.size());
+            for (std::size_t choiceIndex = 0; choiceIndex < definition.choices.size(); ++choiceIndex)
+            {
+                const ItemChoiceDefinition &choice = definition.choices[choiceIndex];
+                const ItemChoiceSelection &selection = item.choices_[choiceIndex];
+                std::vector<ItemChoiceOptionView> optionViews;
+                optionViews.reserve(choice.options.size());
+                for (const ItemChoiceOptionDefinition &option : choice.options)
+                {
+                    optionViews.push_back(ItemChoiceOptionView{
+                        .id = option.id,
+                        .name = option.name,
+                        .selected = std::ranges::find(selection.optionIds, option.id) != selection.optionIds.end()
+                    });
+                }
+                choiceViews.push_back(ItemChoiceView{
+                    .id = choice.id,
+                    .prompt = choice.prompt,
+                    .selectionCount = choice.selectionCount,
+                    .options = std::move(optionViews)
+                });
+            }
             itemViews.push_back(InventoryItemView{
                 .id = id,
                 .itemDefinitionId = definition.id,
@@ -560,6 +583,7 @@ namespace golarion
                 .effectiveWeightGrams = effectiveWeightGrams(id),
                 .effectiveVolumeMilliliters = effectiveVolumeMilliliters(id),
                 .equipmentSlot = definition.slot,
+                .choices = std::move(choiceViews),
                 .containerId = itemContainerIds_.at(id),
                 .ownedContainerId = definition.container.has_value() ? std::optional<std::string>(itemContainerId(id)) : std::nullopt,
                 .equipped = equipment_.isEquipped(id),
@@ -673,10 +697,20 @@ namespace golarion
         itemData.reserve(items_.size());
         for (const auto &[id, item] : items_)
         {
+            std::vector<ItemChoiceSelectionSaveData> choices;
+            choices.reserve(item.choices_.size());
+            for (const ItemChoiceSelection &choice : item.choices_)
+            {
+                choices.push_back(ItemChoiceSelectionSaveData{
+                    .choiceId = choice.choiceId,
+                    .optionIds = choice.optionIds
+                });
+            }
             itemData.push_back(InventoryItemSaveData{
                 .id = id,
                 .itemDefinitionId = item.itemDefinition_.get().id,
                 .quantity = item.quantity_,
+                .choices = std::move(choices),
                 .containerId = itemContainerIds_.at(id),
                 .equipped = equipment_.isEquipped(id)
             });
@@ -747,7 +781,20 @@ namespace golarion
                 addItem(ItemInstanceDefinition{
                     .id = item->id,
                     .itemDefinitionId = item->itemDefinitionId,
-                    .quantity = item->quantity
+                    .quantity = item->quantity,
+                    .choices = [&item]
+                    {
+                        std::vector<ItemChoiceSelection> choices;
+                        choices.reserve(item->choices.size());
+                        for (const ItemChoiceSelectionSaveData &choice : item->choices)
+                        {
+                            choices.push_back(ItemChoiceSelection{
+                                .choiceId = choice.choiceId,
+                                .optionIds = choice.optionIds
+                            });
+                        }
+                        return choices;
+                    }()
                 }, item->containerId);
                 item = pendingItems.erase(item);
                 addedItem = true;

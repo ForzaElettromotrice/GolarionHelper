@@ -20,7 +20,6 @@ namespace golarion
         ItemDefinitionManager &operator=(ItemDefinitionManager &&) = delete;
 
         const ItemDefinition &get(std::string_view itemDefinitionId);
-        void registerEffect(std::string_view itemDefinitionId, ItemEffectDefinition effect);
 
     private:
         ItemDefinitionManager() = default;

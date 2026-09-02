@@ -168,6 +168,43 @@ namespace
         };
     }
 
+    Json raceToJson(const golarion::RaceSaveData &data)
+    {
+        Json choices = Json::array();
+        for (const golarion::RacialChoiceSelectionSaveData &choice : data.choices)
+        {
+            choices.push_back(Json{
+                {"elementId", choice.elementId},
+                {"choiceId", choice.choiceId},
+                {"optionIds", choice.optionIds}
+            });
+        }
+        return Json{
+            {"raceDefinitionId", optionalToJson(data.raceDefinitionId)},
+            {"alternateFeatureIds", data.alternateFeatureIds},
+            {"choices", std::move(choices)}
+        };
+    }
+
+    golarion::RaceSaveData raceFromJson(const Json &json)
+    {
+        std::vector<golarion::RacialChoiceSelectionSaveData> choices;
+        choices.reserve(json.at("choices").size());
+        for (const Json &choice : json.at("choices"))
+        {
+            choices.push_back(golarion::RacialChoiceSelectionSaveData{
+                .elementId = choice.at("elementId").get<std::string>(),
+                .choiceId = choice.at("choiceId").get<std::string>(),
+                .optionIds = choice.at("optionIds").get<std::vector<std::string>>()
+            });
+        }
+        return golarion::RaceSaveData{
+            .raceDefinitionId = optionalFromJson<std::string>(json, "raceDefinitionId"),
+            .alternateFeatureIds = json.at("alternateFeatureIds").get<std::vector<std::string>>(),
+            .choices = std::move(choices)
+        };
+    }
+
     Json abilityToJson(const golarion::AbilitySaveData &data)
     {
         return Json{
@@ -430,10 +467,19 @@ namespace
         Json items = Json::array();
         for (const golarion::InventoryItemSaveData &item : data.items)
         {
+            Json choices = Json::array();
+            for (const golarion::ItemChoiceSelectionSaveData &choice : item.choices)
+            {
+                choices.push_back(Json{
+                    {"choiceId", choice.choiceId},
+                    {"optionIds", choice.optionIds}
+                });
+            }
             items.push_back(Json{
                 {"id", item.id},
                 {"itemDefinitionId", item.itemDefinitionId},
                 {"quantity", item.quantity},
+                {"choices", std::move(choices)},
                 {"containerId", item.containerId},
                 {"equipped", item.equipped}
             });
@@ -497,10 +543,19 @@ namespace
         items.reserve(json.at("items").size());
         for (const Json &item : json.at("items"))
         {
+            std::vector<golarion::ItemChoiceSelectionSaveData> choices;
+            for (const Json &choice : item.value("choices", Json::array()))
+            {
+                choices.push_back(golarion::ItemChoiceSelectionSaveData{
+                    .choiceId = choice.at("choiceId").get<std::string>(),
+                    .optionIds = choice.at("optionIds").get<std::vector<std::string>>()
+                });
+            }
             items.push_back(golarion::InventoryItemSaveData{
                 .id = item.at("id").get<std::string>(),
                 .itemDefinitionId = item.at("itemDefinitionId").get<std::string>(),
                 .quantity = item.at("quantity").get<int>(),
+                .choices = std::move(choices),
                 .containerId = item.at("containerId").get<std::string>(),
                 .equipped = item.at("equipped").get<bool>()
             });
@@ -583,6 +638,7 @@ namespace golarion::persistence
         return Json{
             {"formatVersion", data.formatVersion},
             {"identity", characterIdentityToJson(data.identity)},
+            {"race", raceToJson(data.race)},
             {"abilities", std::move(abilities)},
             {"hitPoints", hitPointsToJson(data.hitPoints)},
             {"skills", skillsToJson(data.skills)},
@@ -607,6 +663,7 @@ namespace golarion::persistence
         return CharacterSheetSaveData{
             .formatVersion = formatVersion,
             .identity = formatVersion >= 22 ? characterIdentityFromJson(json.at("identity")) : CharacterIdentitySaveData{},
+            .race = formatVersion >= 24 ? raceFromJson(json.at("race")) : RaceSaveData{},
             .abilities = std::move(abilities),
             .hitPoints = hitPointsFromJson(json.at("hitPoints")),
             .skills = skillsFromJson(json.at("skills")),

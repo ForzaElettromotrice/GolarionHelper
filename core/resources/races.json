@@ -1,0 +1,302 @@
+[
+  {
+    "id": "human",
+    "name": "Umano",
+    "qualities": [
+      {
+        "id": "human.type",
+        "name": "Tipo",
+        "description": "Gli Umani sono Umanoidi con il Sottotipo Umano.",
+        "effects": [
+          {
+            "id": "bodyType",
+            "type": "carryingBodyType",
+            "bodyType": "biped"
+          },
+          {
+            "id": "creatureType",
+            "type": "reminder",
+            "message": "Il personaggio è un Umanoide con il Sottotipo Umano."
+          }
+        ]
+      },
+      {
+        "id": "human.size",
+        "name": "Taglia Media",
+        "description": "Come creature Medie, gli Umani non hanno bonus o penalità derivanti dalla loro taglia.",
+        "effects": [
+          {
+            "id": "size",
+            "type": "sizeBase",
+            "category": "medium"
+          }
+        ]
+      },
+      {
+        "id": "human.baseSpeed",
+        "name": "Velocità Normale",
+        "description": "La velocità base sul terreno degli Umani è 9 metri.",
+        "effects": [
+          {
+            "id": "landSpeed",
+            "type": "movementGrant",
+            "movementType": "land",
+            "baseSpeedExpression": "6",
+            "affectedByArmor": true,
+            "affectedByLoad": true,
+            "supportsRunning": true
+          }
+        ]
+      },
+      {
+        "id": "human.abilityScores",
+        "name": "Caratteristiche",
+        "description": "I personaggi Umani ricevono bonus +2 a un punteggio di caratteristica di loro scelta al momento della creazione del personaggio.",
+        "choices": [
+          {
+            "id": "ability",
+            "prompt": "Scegli una caratteristica",
+            "selectionCount": 1,
+            "options": [
+              {
+                "id": "strength",
+                "name": "Forza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "str",
+                    "description": "Bonus razziale di Umano",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "dexterity",
+                "name": "Destrezza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "dex",
+                    "description": "Bonus razziale di Umano",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "constitution",
+                "name": "Costituzione",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "con",
+                    "description": "Bonus razziale di Umano",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "intelligence",
+                "name": "Intelligenza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "int",
+                    "description": "Bonus razziale di Umano",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "wisdom",
+                "name": "Saggezza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "wis",
+                    "description": "Bonus razziale di Umano",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "charisma",
+                "name": "Carisma",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "cha",
+                    "description": "Bonus razziale di Umano",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "human.languages",
+        "name": "Linguaggi",
+        "description": "Gli Umani iniziano il gioco parlando Comune e possono scegliere qualsiasi linguaggio bonus non segreto.",
+        "effects": [
+          {
+            "id": "languages",
+            "type": "reminder",
+            "message": "Il personaggio parla Comune e può scegliere linguaggi bonus in base alla sua Intelligenza."
+          }
+        ]
+      }
+    ],
+    "standardFeatures": [
+      {
+        "id": "human.skilled",
+        "name": "Esperti",
+        "description": "Gli Umani ottengono 1 grado di Abilità aggiuntivo al 1° livello e ogni volta che avanzano di livello.",
+        "effects": [
+          {
+            "id": "skilled",
+            "type": "reminder",
+            "message": "Ottieni 1 grado di Abilità aggiuntivo al 1° livello e a ogni avanzamento di livello."
+          }
+        ]
+      },
+      {
+        "id": "human.bonusFeat",
+        "name": "Talento Bonus",
+        "description": "Gli Umani scelgono un talento addizionale al 1° livello.",
+        "effects": [
+          {
+            "id": "bonusFeat",
+            "type": "reminder",
+            "message": "Scegli un talento addizionale al 1° livello."
+          }
+        ]
+      }
+    ],
+    "alternateFeatures": [
+      {
+        "id": "human.dualTalent",
+        "name": "Doppia Dote",
+        "description": "Seleziona due punteggi di caratteristica e ottieni bonus razziale +2 a entrambi.",
+        "choices": [
+          {
+            "id": "abilities",
+            "prompt": "Scegli due caratteristiche diverse",
+            "selectionCount": 2,
+            "options": [
+              {
+                "id": "strength",
+                "name": "Forza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "str",
+                    "description": "Bonus razziale di Doppia Dote",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "dexterity",
+                "name": "Destrezza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "dex",
+                    "description": "Bonus razziale di Doppia Dote",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "constitution",
+                "name": "Costituzione",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "con",
+                    "description": "Bonus razziale di Doppia Dote",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "intelligence",
+                "name": "Intelligenza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "int",
+                    "description": "Bonus razziale di Doppia Dote",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "wisdom",
+                "name": "Saggezza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "wis",
+                    "description": "Bonus razziale di Doppia Dote",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "charisma",
+                "name": "Carisma",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "cha",
+                    "description": "Bonus razziale di Doppia Dote",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "replaces": ["human.abilityScores", "human.skilled", "human.bonusFeat"]
+      }
+    ]
+  }
+]

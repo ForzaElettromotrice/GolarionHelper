@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <stdexcept>
+#include <variant>
 
 namespace
 {
@@ -37,6 +38,7 @@ int main()
     assert(!rope.slot.has_value());
     assert(!rope.container.has_value());
     assert(rope.effects.empty());
+    assert(rope.choices.empty());
     assert(displayName(ItemEffectActivation::Possessed) == "Posseduto");
     assert(displayName(ItemEffectActivation::Equipped) == "Equipaggiato");
 
@@ -69,45 +71,37 @@ int main()
     assert(cloak.name == "Mantello della Resistenza +1");
     assert(cloak.weightGrams == 500);
     assert(cloak.slot == EquipmentSlot::Shoulders);
+    assert(cloak.effects.size() == 1);
+    assert(cloak.effects[0].activation == ItemEffectActivation::Equipped);
+    const ModifierEffectDefinition &cloakEffect = std::get<ModifierEffectDefinition>(cloak.effects[0].effect);
+    assert(cloakEffect.id == "savingThrows");
+    assert(cloakEffect.resource == "savingThrow.all");
+    assert(cloakEffect.type == ModifierType::Bonus);
+    assert(cloakEffect.bonusType == BonusType::Resistance);
+    assert(cloakEffect.expression == "1");
     const ItemDefinition &ring = manager.get("ringOfProtection1");
     assert(ring.name == "Anello di Protezione +1");
     assert(ring.weightGrams == 0);
     assert(ring.slot == EquipmentSlot::Ring);
+    assert(ring.effects.size() == 1);
+    assert(ring.effects[0].activation == ItemEffectActivation::Equipped);
+    const ModifierEffectDefinition &ringEffect = std::get<ModifierEffectDefinition>(ring.effects[0].effect);
+    assert(ringEffect.resource == "armorClass.all");
+    assert(ringEffect.bonusType == BonusType::Deflection);
 
-    manager.registerEffect("hempRope15m", ItemEffectDefinition{
-        .id = "test.effect",
-        .description = "Effetto di prova",
-        .activation = ItemEffectActivation::Possessed,
-        .apply = [](ResourceManager &, const ItemEffectContext &)
-        {
-            return [] {};
-        }
-    });
-    assert(rope.effects.size() == 1);
-    assert(rope.effects[0].id == "test.effect");
-    assert(rope.effects[0].description == "Effetto di prova");
-    assert(rope.effects[0].activation == ItemEffectActivation::Possessed);
-    assert(throws<std::invalid_argument>([&manager]
-    {
-        manager.registerEffect("hempRope15m", ItemEffectDefinition{
-            .id = "test.effect",
-            .description = "Duplicato",
-            .activation = ItemEffectActivation::Possessed,
-            .apply = [](ResourceManager &, const ItemEffectContext &)
-            {
-                return [] {};
-            }
-        });
-    }));
-    assert(throws<std::invalid_argument>([&manager]
-    {
-        manager.registerEffect("hempRope15m", ItemEffectDefinition{
-            .id = "empty.callback",
-            .description = "Callback assente",
-            .activation = ItemEffectActivation::Possessed,
-            .apply = {}
-        });
-    }));
+    const ItemDefinition &belt = manager.get("beltOfPhysicalMight2");
+    assert(belt.slot == EquipmentSlot::Belt);
+    assert(belt.effects.empty());
+    assert(belt.choices.size() == 1);
+    assert(belt.choices[0].id == "abilities");
+    assert(belt.choices[0].selectionCount == 2);
+    assert(belt.choices[0].options.size() == 3);
+    assert(belt.choices[0].options[0].id == "strength");
+    const ModifierEffectDefinition &strengthEffect = std::get<ModifierEffectDefinition>(belt.choices[0].options[0].effects[0].effect);
+    assert(strengthEffect.resource == "str");
+    assert(strengthEffect.bonusType == BonusType::Enhancement);
+    assert(strengthEffect.expression == "2");
+
     assert(throws<std::invalid_argument>([&manager]
     {
         static_cast<void>(manager.get("missing"));

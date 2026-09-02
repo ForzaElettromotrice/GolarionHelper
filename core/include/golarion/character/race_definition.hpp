@@ -1,5 +1,8 @@
 #pragma once
 
+#include "golarion/effect/effect_definition.hpp"
+
+#include <cstddef>
 #include <string>
 #include <vector>
 
@@ -9,13 +12,14 @@ namespace golarion
     {
         std::string id;
         std::string name;
+        std::vector<EffectDefinition> effects{};
     };
 
     struct RacialChoiceDefinition
     {
         std::string id;
         std::string prompt;
-        int selectionCount;
+        std::size_t selectionCount;
         std::vector<RacialChoiceOptionDefinition> options;
     };
 
@@ -24,8 +28,9 @@ namespace golarion
         std::string id;
         std::string name;
         std::string description;
-        std::vector<RacialChoiceDefinition> choices;
-        std::vector<std::string> replaces;
+        std::vector<EffectDefinition> effects{};
+        std::vector<RacialChoiceDefinition> choices{};
+        std::vector<std::string> replaces{};
     };
 
     struct RaceDefinition
