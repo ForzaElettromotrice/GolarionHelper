@@ -1,0 +1,10 @@
+# Character Foundation
+
+Read this document for repository state, `CharacterSheet` ownership, identity, resources, and reminders.
+
+- Development is taking place on the orphan branch `cpp-rebuild`.
+- The previous Java model rebuild is preserved on `model-rebuild` at commit `e99d776`.
+- The project currently contains only a minimal C++20 backend.
+- `CharacterSheet` owns a user-editable `CharacterIdentity` and exposes its complete `CharacterIdentityView`. Identity stores character name, player name, optional alignment, deity or philosophy, homeland, free-form gender, age, height in centimeters, body weight in grams, hair, eyes, and appearance. Alignment is a typed nine-value enum with Italian display names; a blank sheet has no selected alignment rather than defaulting to Neutral. Optional text rejects blank values and can be cleared with `nullopt`; age must be nonnegative, while present height and weight must be positive. Identity is persisted in `CharacterIdentitySaveData`; older saves receive an empty identity.
+- `CharacterSheet` owns and initializes one `ResourceManager` before registering its model components. It exposes rank changes and creation/removal of user-defined skill specializations, plus creation/removal of configured attacks and assignment/removal of their explicit strikes, without model getters or user-facing setters for structural rules. Removing a user-defined specialization unregisters its resource and fails while a structural modifier or skill option still targets it. Canonical specializations cannot be removed.
+- `CharacterSheet` owns a minimal `ReminderManager`. Components add and remove identity-bearing `Reminder` entries through the typed `reminder.entries` collection; the manager rejects duplicate IDs and exposes only the current Italian message strings in deterministic ID order through `RemindersView`. Reminders are derived runtime output and deliberately have no SaveData or JSON representation, so their owning components must recreate them after loading.

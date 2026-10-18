@@ -7,7 +7,8 @@
 - Avoid broad refactors, unrelated cleanup, or multiple features in the same change.
 - Ask before expanding the scope beyond the requested step.
 - Work directly on the current branch unless the user explicitly requests another branch.
-- Maintain `PROJECT_CONTEXT.md` when meaningful changes happen.
+- Use `.context/README.md` as the project-context entry point.
+- After meaningful changes, update only the relevant `.context/` documents and keep the index's current state and next steps aligned.
 
 ## Language
 
