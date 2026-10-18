@@ -250,6 +250,10 @@ if(BUILD_TESTING)
     target_link_libraries(special_defenses_test PRIVATE golarion_model)
     add_test(NAME special_defenses_test COMMAND special_defenses_test)
 
+    add_executable(energy_vulnerability_test tests/character/energy_vulnerability_test.cpp)
+    target_link_libraries(energy_vulnerability_test PRIVATE golarion_model)
+    add_test(NAME energy_vulnerability_test COMMAND energy_vulnerability_test)
+
     add_executable(hit_points_test tests/character/hit_points_test.cpp)
     target_link_libraries(hit_points_test PRIVATE golarion_model)
     add_test(NAME hit_points_test COMMAND hit_points_test)

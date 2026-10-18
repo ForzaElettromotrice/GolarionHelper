@@ -41,6 +41,20 @@ namespace golarion
         std::vector<EnergyResistanceGrantView> grants;
     };
 
+    struct EnergyVulnerabilityGrantView
+    {
+        std::string id;
+        std::string source;
+        std::optional<std::string> applicability;
+    };
+
+    struct EnergyVulnerabilityView
+    {
+        DamageType energy;
+        int damageIncreasePercent;
+        std::vector<EnergyVulnerabilityGrantView> grants;
+    };
+
     struct DamageReductionAdjustmentApplicationView
     {
         std::string id;
@@ -165,6 +179,7 @@ namespace golarion
     struct SpecialDefensesView
     {
         std::vector<EnergyResistanceView> energyResistances;
+        std::vector<EnergyVulnerabilityView> energyVulnerabilities;
         std::vector<DamageReductionGrantView> damageReductions;
         std::vector<DamageReductionCombinationView> damageReductionCombinations;
         std::vector<ImmunityView> immunities;

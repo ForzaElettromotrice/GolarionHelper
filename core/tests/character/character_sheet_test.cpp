@@ -222,6 +222,7 @@ int main()
     assert(view.inventory.containers[0].id == MainContainerId);
     assert(view.inventory.equipmentSlots.size() == 14);
     assert(view.specialDefenses.energyResistances.empty());
+    assert(view.specialDefenses.energyVulnerabilities.empty());
     assert(view.specialDefenses.damageReductions.empty());
     assert(view.specialDefenses.damageReductionCombinations.empty());
     assert(view.specialDefenses.immunities.empty());

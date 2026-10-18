@@ -2,6 +2,7 @@
 
 #include "golarion/character/damage.hpp"
 #include "golarion/character/damage_reduction.hpp"
+#include "golarion/character/energy_vulnerability.hpp"
 #include "golarion/character/fast_healing.hpp"
 #include "golarion/character/immunity.hpp"
 #include "golarion/character/regeneration.hpp"
@@ -17,6 +18,7 @@ namespace golarion
 {
     inline constexpr std::string_view EnergyResistanceGrantsResource = "specialDefense.energyResistance.grants";
     inline constexpr std::string_view EnergyResistanceAdjustmentsResource = "specialDefense.energyResistance.adjustments";
+    inline constexpr std::string_view EnergyVulnerabilityGrantsResource = "specialDefense.energyVulnerability.grants";
     inline constexpr std::string_view DamageReductionGrantsResource = "specialDefense.damageReduction.grants";
     inline constexpr std::string_view DamageReductionAdjustmentsResource = "specialDefense.damageReduction.adjustments";
     inline constexpr std::string_view ImmunityGrantsResource = "specialDefense.immunity.grants";
@@ -193,6 +195,8 @@ namespace golarion
         void removeEnergyResistance(std::string_view resistanceId);
         void addEnergyResistanceAdjustment(EnergyResistanceAdjustment adjustment);
         void removeEnergyResistanceAdjustment(std::string_view adjustmentId);
+        void addEnergyVulnerability(EnergyVulnerability vulnerability);
+        void removeEnergyVulnerability(std::string_view vulnerabilityId);
         void addDamageReduction(DamageReduction damageReduction);
         void removeDamageReduction(std::string_view damageReductionId);
         void addDamageReductionAdjustment(DamageReductionAdjustment adjustment);
@@ -211,6 +215,7 @@ namespace golarion
         ResourceManager &resourceManager_;
         std::map<std::string, EnergyResistance> energyResistances_;
         std::map<std::string, EnergyResistanceAdjustment> energyResistanceAdjustments_;
+        std::map<std::string, EnergyVulnerability> energyVulnerabilities_;
         std::map<std::string, DamageReduction> damageReductions_;
         std::map<std::string, DamageReductionAdjustment> damageReductionAdjustments_;
         std::map<std::string, Immunity> immunities_;

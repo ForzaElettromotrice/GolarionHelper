@@ -39,6 +39,14 @@ namespace
         }
     }
 
+    void validateEnergyVulnerabilityType(golarion::DamageType type)
+    {
+        if (!supportsEnergyResistance(type))
+        {
+            throw std::invalid_argument("damage type cannot be used for energy vulnerability");
+        }
+    }
+
     void normalizeUniqueValues(std::vector<std::string> &values, std::string_view field)
     {
         for (std::string &value : values)
@@ -401,6 +409,19 @@ namespace golarion
     {
     }
 
+    EnergyVulnerability::EnergyVulnerability(EnergyVulnerabilityDefinition definition)
+        : id_(normalize(definition.id)),
+          source_(normalize(definition.source)),
+          energy_(definition.energy),
+          applicability_(std::move(definition.applicability))
+    {
+        validateEnergyVulnerabilityType(energy_);
+        if (applicability_.has_value())
+        {
+            applicability_ = normalize(*applicability_);
+        }
+    }
+
     DamageReduction::DamageReduction(DamageReductionDefinition definition)
         : id_(normalize(definition.id)),
           source_(normalize(definition.source)),
@@ -476,6 +497,13 @@ namespace golarion
         }, [this](std::string_view adjustmentId)
         {
             removeEnergyResistanceAdjustment(adjustmentId);
+        });
+        resourceManager_.registerCollectionResource<EnergyVulnerability>(EnergyVulnerabilityGrantsResource, [this](EnergyVulnerability vulnerability)
+        {
+            addEnergyVulnerability(std::move(vulnerability));
+        }, [this](std::string_view vulnerabilityId)
+        {
+            removeEnergyVulnerability(vulnerabilityId);
         });
         resourceManager_.registerCollectionResource<DamageReduction>(DamageReductionGrantsResource, [this](DamageReduction damageReduction)
         {
@@ -650,6 +678,30 @@ namespace golarion
                 .effectiveValue = effectiveValue,
                 .grants = std::move(grantViews)
             });
+        }
+
+        std::map<DamageType, EnergyVulnerabilityView> vulnerabilityViewsByEnergy;
+        for (const auto &[vulnerabilityId, vulnerability] : energyVulnerabilities_)
+        {
+            auto [energy, inserted] = vulnerabilityViewsByEnergy.emplace(vulnerability.energy_, EnergyVulnerabilityView{
+                .energy = vulnerability.energy_,
+                .damageIncreasePercent = 50,
+                .grants = {}
+            });
+            static_cast<void>(inserted);
+            energy->second.grants.push_back(EnergyVulnerabilityGrantView{
+                .id = vulnerabilityId,
+                .source = vulnerability.source_,
+                .applicability = vulnerability.applicability_
+            });
+        }
+
+        std::vector<EnergyVulnerabilityView> vulnerabilityViews;
+        vulnerabilityViews.reserve(vulnerabilityViewsByEnergy.size());
+        for (auto &[energy, vulnerabilityView] : vulnerabilityViewsByEnergy)
+        {
+            static_cast<void>(energy);
+            vulnerabilityViews.push_back(std::move(vulnerabilityView));
         }
 
         std::vector<DamageReductionGrantView> damageReductionViews;
@@ -1118,6 +1170,7 @@ namespace golarion
 
         return SpecialDefensesView{
             .energyResistances = std::move(resistanceViews),
+            .energyVulnerabilities = std::move(vulnerabilityViews),
             .damageReductions = std::move(damageReductionViews),
             .damageReductionCombinations = std::move(damageReductionCombinations),
             .immunities = std::move(immunityViews),
@@ -1181,6 +1234,24 @@ namespace golarion
         if (energyResistanceAdjustments_.erase(id) == 0)
         {
             throw std::invalid_argument("energy resistance adjustment is not registered: " + id);
+        }
+    }
+
+    void SpecialDefenses::addEnergyVulnerability(EnergyVulnerability vulnerability)
+    {
+        const std::string id = vulnerability.id_;
+        if (!energyVulnerabilities_.emplace(id, std::move(vulnerability)).second)
+        {
+            throw std::invalid_argument("energy vulnerability grant is already registered: " + id);
+        }
+    }
+
+    void SpecialDefenses::removeEnergyVulnerability(std::string_view vulnerabilityId)
+    {
+        const std::string id = normalize(vulnerabilityId);
+        if (energyVulnerabilities_.erase(id) == 0)
+        {
+            throw std::invalid_argument("energy vulnerability grant is not registered: " + id);
         }
     }
 
