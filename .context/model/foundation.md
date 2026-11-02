@@ -2,7 +2,7 @@
 
 Read this document for repository state, `CharacterSheet` ownership, identity, resources, and reminders.
 
-- Development is taking place on the orphan branch `cpp-rebuild`.
+- Development is taking place on `main`, the default GitHub branch. It was renamed from `cpp-rebuild` on 2026-11-02 without changing its history; the previous `master` branch is retained separately.
 - The previous Java model rebuild is preserved on `model-rebuild` at commit `e99d776`.
 - The project currently contains only a minimal C++20 backend.
 - `CharacterSheet` owns a user-editable `CharacterIdentity` and exposes its complete `CharacterIdentityView`. Identity stores character name, player name, optional alignment, deity or philosophy, homeland, free-form gender, age, height in centimeters, body weight in grams, hair, eyes, and appearance. Alignment is a typed nine-value enum with Italian display names; a blank sheet has no selected alignment rather than defaulting to Neutral. Optional text rejects blank values and can be cleared with `nullopt`; age must be nonnegative, while present height and weight must be positive. Identity is persisted in `CharacterIdentitySaveData`; older saves receive an empty identity.

@@ -6,7 +6,7 @@ Build a local-first Pathfinder 1e character-sheet engine in C++, independent fro
 
 ## Current State
 
-- Development is on `cpp-rebuild`, synchronized with `origin/cpp-rebuild`; the previous Java rebuild remains preserved on `model-rebuild` at `e99d776`.
+- Development is on `main`, the default GitHub branch, tracking `origin/main`. The previous `master` branch is retained separately.
 - The C++20 backend, persistence, Views, and a minimal opaque-handle C API are in place; frontend work remains deferred.
 - Declarative `EffectDefinition` values and `compileEffect` are shared by races and items.
 - `RaceDefinitionManager` loads the embedded race catalog, while the per-character `Race` runtime applies effects, manages alternate features and choices, persists configuration, and exposes `RaceView`. The initial catalog contains Umano.
