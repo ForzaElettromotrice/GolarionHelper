@@ -36,3 +36,19 @@
 
 - Use the Golarion wiki as the primary Pathfinder rules and setting reference: <https://golarion.altervista.org/wiki/Pagina_principale>.
 - Follow the English wiki reference linked from the relevant Golarion page for official English terminology.
+
+## Project context
+
+- Use `.context/` as the authoritative context directory in this project.
+- Keep `.context/README.md` short: project goal, current state, next steps,
+  and a description of the directory structure. Link each topic and explain
+  when to read it. Read this index first, then only the relevant documents.
+- Split details by topic. Create files only when needed; when a topic grows,
+  give it a subdirectory with its own short README. Do not read the whole tree
+  recursively or repeat the same details in multiple files.
+- Keep current facts and decisions in the topic documents. Put useful past
+  events and superseded decisions in `history/`, clearly dated and separate
+  from current instructions. Verify old operational facts before relying on them.
+- After meaningful changes, update the affected documents and any changed
+  status, next steps, or structure in the index. Replace obsolete current
+  statements instead of accumulating contradictory updates.

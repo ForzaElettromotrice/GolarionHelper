@@ -295,8 +295,1324 @@
             ]
           }
         ],
-        "replaces": ["human.abilityScores", "human.skilled", "human.bonusFeat"]
+        "replaces": [
+          "human.abilityScores",
+          "human.skilled",
+          "human.bonusFeat"
+        ]
       }
     ]
+  },
+  {
+    "id": "elf",
+    "name": "Elfo",
+    "qualities": [
+      {
+        "id": "elf.type",
+        "name": "Tipo",
+        "description": "Umanoide con il sottotipo elfo.",
+        "effects": [
+          {
+            "id": "bodyType",
+            "type": "carryingBodyType",
+            "bodyType": "biped"
+          },
+          {
+            "id": "creatureType",
+            "type": "reminder",
+            "message": "Il personaggio è un Umanoide con il sottotipo elfo."
+          }
+        ]
+      },
+      {
+        "id": "elf.size",
+        "name": "Taglia Media",
+        "description": "Creatura di taglia Media.",
+        "effects": [
+          {
+            "id": "size",
+            "type": "sizeBase",
+            "category": "medium"
+          }
+        ]
+      },
+      {
+        "id": "elf.baseSpeed",
+        "name": "Velocità Normale",
+        "description": "Velocità terrestre di 9 metri.",
+        "effects": [
+          {
+            "id": "landSpeed",
+            "type": "movementGrant",
+            "movementType": "land",
+            "baseSpeedExpression": "6",
+            "affectedByArmor": true,
+            "affectedByLoad": true,
+            "supportsRunning": true
+          }
+        ]
+      },
+      {
+        "id": "elf.abilityScores",
+        "name": "Caratteristiche",
+        "description": "Destrezza +2, Intelligenza +2, Costituzione -2.",
+        "effects": [
+          {
+            "id": "dex",
+            "type": "modifier",
+            "resource": "dex",
+            "description": "Modificatore razziale di Elfo",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          },
+          {
+            "id": "int",
+            "type": "modifier",
+            "resource": "int",
+            "description": "Modificatore razziale di Elfo",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          },
+          {
+            "id": "con",
+            "type": "modifier",
+            "resource": "con",
+            "description": "Modificatore razziale di Elfo",
+            "modifierType": "penalty",
+            "expression": "2"
+          }
+        ]
+      },
+      {
+        "id": "elf.lowLightVision",
+        "name": "Visione Crepuscolare",
+        "description": "Con luce scarsa vede a una distanza doppia rispetto a un umano.",
+        "effects": [
+          {
+            "id": "lowLightVision",
+            "type": "reminder",
+            "message": "Con luce scarsa vede a una distanza doppia rispetto a un umano."
+          }
+        ]
+      },
+      {
+        "id": "elf.languages",
+        "name": "Linguaggi",
+        "description": "Linguaggi iniziali: Comune, Elfico. Bonus per Intelligenza: Celestiale, Draconico, Gnoll, Gnomico, Goblin, Orchesco, Silvano.",
+        "effects": [
+          {
+            "id": "languages",
+            "type": "reminder",
+            "message": "Linguaggi iniziali: Comune, Elfico. Bonus per Intelligenza: Celestiale, Draconico, Gnoll, Gnomico, Goblin, Orchesco, Silvano."
+          }
+        ]
+      }
+    ],
+    "standardFeatures": [
+      {
+        "id": "elf.weaponFamiliarity",
+        "name": "Familiarità nelle Armi",
+        "description": "Competenza in archi corti e lunghi, anche compositi, spada lunga e stocco; le armi elfiche sono considerate da guerra.",
+        "effects": [
+          {
+            "id": "weaponFamiliarity",
+            "type": "reminder",
+            "message": "Competenza in archi corti e lunghi, anche compositi, spada lunga e stocco; le armi elfiche sono considerate da guerra."
+          }
+        ]
+      },
+      {
+        "id": "elf.elvenImmunities",
+        "name": "Immunità degli Elfi",
+        "description": "Immunità al sonno magico; +2 razziale ai tiri salvezza contro ammaliamento.",
+        "effects": [
+          {
+            "id": "magicSleepImmunity",
+            "type": "reminder",
+            "message": "Immunità agli effetti di sonno magico."
+          },
+          {
+            "id": "enchantmentSaves",
+            "type": "modifier",
+            "resource": "savingThrow.all",
+            "description": "Immunità degli Elfi",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2",
+            "condition": "Contro incantesimi ed effetti di ammaliamento"
+          }
+        ]
+      },
+      {
+        "id": "elf.elvenMagic",
+        "name": "Magia degli Elfi",
+        "description": "+2 alle prove di livello dell’incantatore contro RI e a Sapienza Magica per identificare proprietà di oggetti magici.",
+        "effects": [
+          {
+            "id": "spellResistanceChecks",
+            "type": "reminder",
+            "message": "+2 razziale alle prove di livello dell’incantatore per superare la resistenza agli incantesimi."
+          },
+          {
+            "id": "identifyMagicItems",
+            "type": "modifier",
+            "resource": "skill.spellcraft",
+            "description": "Magia degli Elfi",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2",
+            "condition": "Per identificare le proprietà degli oggetti magici"
+          }
+        ]
+      },
+      {
+        "id": "elf.keenSenses",
+        "name": "Sensi Acuti",
+        "description": "+2 razziale alle prove di Percezione.",
+        "effects": [
+          {
+            "id": "perception",
+            "type": "modifier",
+            "resource": "skill.perception",
+            "description": "Sensi Acuti",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          }
+        ]
+      }
+    ],
+    "alternateFeatures": []
+  },
+  {
+    "id": "gnome",
+    "name": "Gnomo",
+    "qualities": [
+      {
+        "id": "gnome.type",
+        "name": "Tipo",
+        "description": "Umanoide con il sottotipo gnomo.",
+        "effects": [
+          {
+            "id": "bodyType",
+            "type": "carryingBodyType",
+            "bodyType": "biped"
+          },
+          {
+            "id": "creatureType",
+            "type": "reminder",
+            "message": "Il personaggio è un Umanoide con il sottotipo gnomo."
+          }
+        ]
+      },
+      {
+        "id": "gnome.size",
+        "name": "Taglia Piccola",
+        "description": "Creatura di taglia Piccola.",
+        "effects": [
+          {
+            "id": "size",
+            "type": "sizeBase",
+            "category": "small"
+          }
+        ]
+      },
+      {
+        "id": "gnome.baseSpeed",
+        "name": "Velocità Lenta",
+        "description": "Velocità terrestre di 6 metri.",
+        "effects": [
+          {
+            "id": "landSpeed",
+            "type": "movementGrant",
+            "movementType": "land",
+            "baseSpeedExpression": "4",
+            "affectedByArmor": true,
+            "affectedByLoad": true,
+            "supportsRunning": true
+          }
+        ]
+      },
+      {
+        "id": "gnome.abilityScores",
+        "name": "Caratteristiche",
+        "description": "Costituzione +2, Carisma +2, Forza -2.",
+        "effects": [
+          {
+            "id": "con",
+            "type": "modifier",
+            "resource": "con",
+            "description": "Modificatore razziale di Gnomo",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          },
+          {
+            "id": "cha",
+            "type": "modifier",
+            "resource": "cha",
+            "description": "Modificatore razziale di Gnomo",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          },
+          {
+            "id": "str",
+            "type": "modifier",
+            "resource": "str",
+            "description": "Modificatore razziale di Gnomo",
+            "modifierType": "penalty",
+            "expression": "2"
+          }
+        ]
+      },
+      {
+        "id": "gnome.lowLightVision",
+        "name": "Visione Crepuscolare",
+        "description": "Con luce scarsa vede a una distanza doppia rispetto a un umano.",
+        "effects": [
+          {
+            "id": "lowLightVision",
+            "type": "reminder",
+            "message": "Con luce scarsa vede a una distanza doppia rispetto a un umano."
+          }
+        ]
+      },
+      {
+        "id": "gnome.languages",
+        "name": "Linguaggi",
+        "description": "Linguaggi iniziali: Comune, Gnomesco, Silvano. Bonus per Intelligenza: Draconico, Elfico, Gigante, Goblin, Nanico, Orchesco.",
+        "effects": [
+          {
+            "id": "languages",
+            "type": "reminder",
+            "message": "Linguaggi iniziali: Comune, Gnomesco, Silvano. Bonus per Intelligenza: Draconico, Elfico, Gigante, Goblin, Nanico, Orchesco."
+          }
+        ]
+      }
+    ],
+    "standardFeatures": [
+      {
+        "id": "gnome.weaponFamiliarity",
+        "name": "Familiarità nelle Armi",
+        "description": "Le armi gnomesche sono considerate da guerra.",
+        "effects": [
+          {
+            "id": "weaponFamiliarity",
+            "type": "reminder",
+            "message": "Le armi gnomesche sono considerate da guerra."
+          }
+        ]
+      },
+      {
+        "id": "gnome.hatred",
+        "name": "Odio",
+        "description": "+1 ai tiri per colpire contro umanoidi rettili o goblinoidi.",
+        "effects": [
+          {
+            "id": "attack",
+            "type": "modifier",
+            "resource": "attack.all",
+            "description": "Odio",
+            "modifierType": "bonus",
+            "bonusType": "generic",
+            "expression": "1",
+            "condition": "Contro umanoidi del sottotipo rettile o goblinoide"
+          }
+        ]
+      },
+      {
+        "id": "gnome.defensiveTraining",
+        "name": "Addestramento Difensivo",
+        "description": "+4 di schivare alla CA contro creature del sottotipo gigante, se si conserva il bonus di Destrezza.",
+        "effects": [
+          {
+            "id": "giantArmorClass",
+            "type": "modifier",
+            "resource": "armorClass.reflexive",
+            "description": "Addestramento Difensivo",
+            "modifierType": "bonus",
+            "bonusType": "dodge",
+            "expression": "4",
+            "condition": "Contro creature del sottotipo gigante, se si conserva il bonus di Destrezza alla CA"
+          }
+        ]
+      },
+      {
+        "id": "gnome.illusionResistance",
+        "name": "Resistenza alle Illusioni",
+        "description": "+2 razziale ai tiri salvezza contro illusioni.",
+        "effects": [
+          {
+            "id": "illusionSaves",
+            "type": "modifier",
+            "resource": "savingThrow.all",
+            "description": "Resistenza alle Illusioni",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2",
+            "condition": "Contro incantesimi ed effetti di illusione"
+          }
+        ]
+      },
+      {
+        "id": "gnome.gnomeMagic",
+        "name": "Magia Gnomesca",
+        "description": "+1 alla CD delle proprie illusioni. Con Carisma almeno 11: Luci Danzanti, Parlare con gli Animali, Prestidigitazione e Suono Fantasma, ciascuno 1/giorno; LI pari al livello, CD 10 + livello dell’incantesimo + modificatore di Carisma.",
+        "effects": [
+          {
+            "id": "gnomeMagic",
+            "type": "reminder",
+            "message": "+1 alla CD delle proprie illusioni. Con Carisma almeno 11: Luci Danzanti, Parlare con gli Animali, Prestidigitazione e Suono Fantasma, ciascuno 1/giorno; LI pari al livello, CD 10 + livello dell’incantesimo + modificatore di Carisma."
+          }
+        ]
+      },
+      {
+        "id": "gnome.keenSenses",
+        "name": "Sensi Acuti",
+        "description": "+2 razziale alle prove di Percezione.",
+        "effects": [
+          {
+            "id": "perception",
+            "type": "modifier",
+            "resource": "skill.perception",
+            "description": "Sensi Acuti",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          }
+        ]
+      },
+      {
+        "id": "gnome.obsessive",
+        "name": "Ossessione",
+        "description": "+2 razziale a una singola abilità di Artigianato o Professione scelta dal personaggio.",
+        "effects": [
+          {
+            "id": "obsessive",
+            "type": "reminder",
+            "message": "+2 razziale a una singola abilità di Artigianato o Professione scelta dal personaggio."
+          }
+        ]
+      }
+    ],
+    "alternateFeatures": []
+  },
+  {
+    "id": "halfling",
+    "name": "Halfling",
+    "qualities": [
+      {
+        "id": "halfling.type",
+        "name": "Tipo",
+        "description": "Umanoide con il sottotipo halfling.",
+        "effects": [
+          {
+            "id": "bodyType",
+            "type": "carryingBodyType",
+            "bodyType": "biped"
+          },
+          {
+            "id": "creatureType",
+            "type": "reminder",
+            "message": "Il personaggio è un Umanoide con il sottotipo halfling."
+          }
+        ]
+      },
+      {
+        "id": "halfling.size",
+        "name": "Taglia Piccola",
+        "description": "Creatura di taglia Piccola.",
+        "effects": [
+          {
+            "id": "size",
+            "type": "sizeBase",
+            "category": "small"
+          }
+        ]
+      },
+      {
+        "id": "halfling.baseSpeed",
+        "name": "Velocità Lenta",
+        "description": "Velocità terrestre di 6 metri.",
+        "effects": [
+          {
+            "id": "landSpeed",
+            "type": "movementGrant",
+            "movementType": "land",
+            "baseSpeedExpression": "4",
+            "affectedByArmor": true,
+            "affectedByLoad": true,
+            "supportsRunning": true
+          }
+        ]
+      },
+      {
+        "id": "halfling.abilityScores",
+        "name": "Caratteristiche",
+        "description": "Destrezza +2, Carisma +2, Forza -2.",
+        "effects": [
+          {
+            "id": "dex",
+            "type": "modifier",
+            "resource": "dex",
+            "description": "Modificatore razziale di Halfling",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          },
+          {
+            "id": "cha",
+            "type": "modifier",
+            "resource": "cha",
+            "description": "Modificatore razziale di Halfling",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          },
+          {
+            "id": "str",
+            "type": "modifier",
+            "resource": "str",
+            "description": "Modificatore razziale di Halfling",
+            "modifierType": "penalty",
+            "expression": "2"
+          }
+        ]
+      },
+      {
+        "id": "halfling.languages",
+        "name": "Linguaggi",
+        "description": "Linguaggi iniziali: Comune, Halfling. Bonus per Intelligenza: Elfico, Gnomesco, Goblin, Nanico.",
+        "effects": [
+          {
+            "id": "languages",
+            "type": "reminder",
+            "message": "Linguaggi iniziali: Comune, Halfling. Bonus per Intelligenza: Elfico, Gnomesco, Goblin, Nanico."
+          }
+        ]
+      }
+    ],
+    "standardFeatures": [
+      {
+        "id": "halfling.weaponFamiliarity",
+        "name": "Familiarità nelle Armi",
+        "description": "Competenza nella fionda; le armi halfling sono considerate da guerra.",
+        "effects": [
+          {
+            "id": "weaponFamiliarity",
+            "type": "reminder",
+            "message": "Competenza nella fionda; le armi halfling sono considerate da guerra."
+          }
+        ]
+      },
+      {
+        "id": "halfling.halflingLuck",
+        "name": "Fortuna Halfling",
+        "description": "+1 razziale a tutti i tiri salvezza.",
+        "effects": [
+          {
+            "id": "savingThrows",
+            "type": "modifier",
+            "resource": "savingThrow.all",
+            "description": "Fortuna Halfling",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "1"
+          }
+        ]
+      },
+      {
+        "id": "halfling.fearless",
+        "name": "Temerarietà",
+        "description": "+2 razziale ai tiri salvezza contro paura, cumulabile con Fortuna Halfling.",
+        "effects": [
+          {
+            "id": "fearSaves",
+            "type": "modifier",
+            "resource": "savingThrow.all",
+            "description": "Temerarietà",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2",
+            "condition": "Contro effetti di paura"
+          }
+        ]
+      },
+      {
+        "id": "halfling.sureFooted",
+        "name": "Piede Saldo",
+        "description": "+2 razziale ad Acrobazia e Scalare.",
+        "effects": [
+          {
+            "id": "acrobatics",
+            "type": "modifier",
+            "resource": "skill.acrobatics",
+            "description": "Piede Saldo",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          },
+          {
+            "id": "climb",
+            "type": "modifier",
+            "resource": "skill.climb",
+            "description": "Piede Saldo",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          }
+        ]
+      },
+      {
+        "id": "halfling.keenSenses",
+        "name": "Sensi Acuti",
+        "description": "+2 razziale alle prove di Percezione.",
+        "effects": [
+          {
+            "id": "perception",
+            "type": "modifier",
+            "resource": "skill.perception",
+            "description": "Sensi Acuti",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          }
+        ]
+      }
+    ],
+    "alternateFeatures": []
+  },
+  {
+    "id": "halfElf",
+    "name": "Mezzelfo",
+    "qualities": [
+      {
+        "id": "halfElf.type",
+        "name": "Tipo",
+        "description": "Umanoide con i sottotipi elfo e umano.",
+        "effects": [
+          {
+            "id": "bodyType",
+            "type": "carryingBodyType",
+            "bodyType": "biped"
+          },
+          {
+            "id": "creatureType",
+            "type": "reminder",
+            "message": "Il personaggio è un Umanoide con i sottotipi elfo e umano."
+          }
+        ]
+      },
+      {
+        "id": "halfElf.elfBlood",
+        "name": "Sangue Elfico",
+        "description": "Conta come elfo e come umano per gli effetti legati alla razza.",
+        "effects": [
+          {
+            "id": "elfBlood",
+            "type": "reminder",
+            "message": "Conta come elfo e come umano per gli effetti legati alla razza."
+          }
+        ]
+      },
+      {
+        "id": "halfElf.size",
+        "name": "Taglia Media",
+        "description": "Creatura di taglia Media.",
+        "effects": [
+          {
+            "id": "size",
+            "type": "sizeBase",
+            "category": "medium"
+          }
+        ]
+      },
+      {
+        "id": "halfElf.baseSpeed",
+        "name": "Velocità Normale",
+        "description": "Velocità terrestre di 9 metri.",
+        "effects": [
+          {
+            "id": "landSpeed",
+            "type": "movementGrant",
+            "movementType": "land",
+            "baseSpeedExpression": "6",
+            "affectedByArmor": true,
+            "affectedByLoad": true,
+            "supportsRunning": true
+          }
+        ]
+      },
+      {
+        "id": "halfElf.abilityScores",
+        "name": "Caratteristiche",
+        "description": "+2 a una caratteristica scelta alla creazione.",
+        "choices": [
+          {
+            "id": "ability",
+            "prompt": "Scegli una caratteristica",
+            "selectionCount": 1,
+            "options": [
+              {
+                "id": "strength",
+                "name": "Forza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "str",
+                    "description": "Bonus razziale di Mezzelfo",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "dexterity",
+                "name": "Destrezza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "dex",
+                    "description": "Bonus razziale di Mezzelfo",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "constitution",
+                "name": "Costituzione",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "con",
+                    "description": "Bonus razziale di Mezzelfo",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "intelligence",
+                "name": "Intelligenza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "int",
+                    "description": "Bonus razziale di Mezzelfo",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "wisdom",
+                "name": "Saggezza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "wis",
+                    "description": "Bonus razziale di Mezzelfo",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "charisma",
+                "name": "Carisma",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "cha",
+                    "description": "Bonus razziale di Mezzelfo",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "halfElf.lowLightVision",
+        "name": "Visione Crepuscolare",
+        "description": "Con luce scarsa vede a una distanza doppia rispetto a un umano.",
+        "effects": [
+          {
+            "id": "lowLightVision",
+            "type": "reminder",
+            "message": "Con luce scarsa vede a una distanza doppia rispetto a un umano."
+          }
+        ]
+      },
+      {
+        "id": "halfElf.languages",
+        "name": "Linguaggi",
+        "description": "Linguaggi iniziali: Comune, Elfico. Bonus per Intelligenza: qualsiasi linguaggio non segreto.",
+        "effects": [
+          {
+            "id": "languages",
+            "type": "reminder",
+            "message": "Linguaggi iniziali: Comune, Elfico. Bonus per Intelligenza: qualsiasi linguaggio non segreto."
+          }
+        ]
+      }
+    ],
+    "standardFeatures": [
+      {
+        "id": "halfElf.elvenImmunities",
+        "name": "Immunità degli Elfi",
+        "description": "Immunità al sonno magico; +2 razziale ai tiri salvezza contro ammaliamento.",
+        "effects": [
+          {
+            "id": "magicSleepImmunity",
+            "type": "reminder",
+            "message": "Immunità agli effetti di sonno magico."
+          },
+          {
+            "id": "enchantmentSaves",
+            "type": "modifier",
+            "resource": "savingThrow.all",
+            "description": "Immunità degli Elfi",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2",
+            "condition": "Contro incantesimi ed effetti di ammaliamento"
+          }
+        ]
+      },
+      {
+        "id": "halfElf.keenSenses",
+        "name": "Sensi Acuti",
+        "description": "+2 razziale alle prove di Percezione.",
+        "effects": [
+          {
+            "id": "perception",
+            "type": "modifier",
+            "resource": "skill.perception",
+            "description": "Sensi Acuti",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          }
+        ]
+      },
+      {
+        "id": "halfElf.adaptability",
+        "name": "Adattabilità",
+        "description": "Ottiene Abilità Focalizzata come talento bonus al 1° livello.",
+        "effects": [
+          {
+            "id": "adaptability",
+            "type": "reminder",
+            "message": "Ottiene Abilità Focalizzata come talento bonus al 1° livello."
+          }
+        ]
+      },
+      {
+        "id": "halfElf.multitalented",
+        "name": "Doti Innate",
+        "description": "Sceglie due classi preferite al 1° livello; ogni livello in una delle due concede +1 punto ferita oppure +1 grado di abilità.",
+        "effects": [
+          {
+            "id": "multitalented",
+            "type": "reminder",
+            "message": "Sceglie due classi preferite al 1° livello; ogni livello in una delle due concede +1 punto ferita oppure +1 grado di abilità."
+          }
+        ]
+      }
+    ],
+    "alternateFeatures": []
+  },
+  {
+    "id": "halfOrc",
+    "name": "Mezzorco",
+    "qualities": [
+      {
+        "id": "halfOrc.type",
+        "name": "Tipo",
+        "description": "Umanoide con i sottotipi orco e umano.",
+        "effects": [
+          {
+            "id": "bodyType",
+            "type": "carryingBodyType",
+            "bodyType": "biped"
+          },
+          {
+            "id": "creatureType",
+            "type": "reminder",
+            "message": "Il personaggio è un Umanoide con i sottotipi orco e umano."
+          }
+        ]
+      },
+      {
+        "id": "halfOrc.orcBlood",
+        "name": "Sangue Orchesco",
+        "description": "Conta come orco e come umano per gli effetti legati alla razza.",
+        "effects": [
+          {
+            "id": "orcBlood",
+            "type": "reminder",
+            "message": "Conta come orco e come umano per gli effetti legati alla razza."
+          }
+        ]
+      },
+      {
+        "id": "halfOrc.size",
+        "name": "Taglia Media",
+        "description": "Creatura di taglia Media.",
+        "effects": [
+          {
+            "id": "size",
+            "type": "sizeBase",
+            "category": "medium"
+          }
+        ]
+      },
+      {
+        "id": "halfOrc.baseSpeed",
+        "name": "Velocità Normale",
+        "description": "Velocità terrestre di 9 metri.",
+        "effects": [
+          {
+            "id": "landSpeed",
+            "type": "movementGrant",
+            "movementType": "land",
+            "baseSpeedExpression": "6",
+            "affectedByArmor": true,
+            "affectedByLoad": true,
+            "supportsRunning": true
+          }
+        ]
+      },
+      {
+        "id": "halfOrc.abilityScores",
+        "name": "Caratteristiche",
+        "description": "+2 a una caratteristica scelta alla creazione.",
+        "choices": [
+          {
+            "id": "ability",
+            "prompt": "Scegli una caratteristica",
+            "selectionCount": 1,
+            "options": [
+              {
+                "id": "strength",
+                "name": "Forza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "str",
+                    "description": "Bonus razziale di Mezzorco",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "dexterity",
+                "name": "Destrezza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "dex",
+                    "description": "Bonus razziale di Mezzorco",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "constitution",
+                "name": "Costituzione",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "con",
+                    "description": "Bonus razziale di Mezzorco",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "intelligence",
+                "name": "Intelligenza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "int",
+                    "description": "Bonus razziale di Mezzorco",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "wisdom",
+                "name": "Saggezza",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "wis",
+                    "description": "Bonus razziale di Mezzorco",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              },
+              {
+                "id": "charisma",
+                "name": "Carisma",
+                "effects": [
+                  {
+                    "id": "abilityBonus",
+                    "type": "modifier",
+                    "resource": "cha",
+                    "description": "Bonus razziale di Mezzorco",
+                    "modifierType": "bonus",
+                    "bonusType": "racial",
+                    "expression": "2"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "halfOrc.darkvision",
+        "name": "Scurovisione",
+        "description": "Vede al buio entro 18 metri.",
+        "effects": [
+          {
+            "id": "darkvision",
+            "type": "reminder",
+            "message": "Vede al buio entro 18 metri."
+          }
+        ]
+      },
+      {
+        "id": "halfOrc.languages",
+        "name": "Linguaggi",
+        "description": "Linguaggi iniziali: Comune, Orchesco. Bonus per Intelligenza: Abissale, Draconico, Gigante, Gnoll, Goblin.",
+        "effects": [
+          {
+            "id": "languages",
+            "type": "reminder",
+            "message": "Linguaggi iniziali: Comune, Orchesco. Bonus per Intelligenza: Abissale, Draconico, Gigante, Gnoll, Goblin."
+          }
+        ]
+      }
+    ],
+    "standardFeatures": [
+      {
+        "id": "halfOrc.weaponFamiliarity",
+        "name": "Familiarità nelle Armi",
+        "description": "Competenza in ascia bipenne e falchion; le armi orchesche sono considerate da guerra.",
+        "effects": [
+          {
+            "id": "weaponFamiliarity",
+            "type": "reminder",
+            "message": "Competenza in ascia bipenne e falchion; le armi orchesche sono considerate da guerra."
+          }
+        ]
+      },
+      {
+        "id": "halfOrc.orcFerocity",
+        "name": "Ferocia degli Orchi",
+        "description": "Una volta al giorno, sotto 0 PF ma ancora vivo, può combattere per un altro round come Inabile. Al termine del turno successivo, senza PF positivi, perde i sensi e diventa Morente.",
+        "effects": [
+          {
+            "id": "orcFerocity",
+            "type": "reminder",
+            "message": "Una volta al giorno, sotto 0 PF ma ancora vivo, può combattere per un altro round come Inabile. Al termine del turno successivo, senza PF positivi, perde i sensi e diventa Morente."
+          }
+        ]
+      },
+      {
+        "id": "halfOrc.intimidating",
+        "name": "Intimidazione",
+        "description": "+2 razziale a Intimidire.",
+        "effects": [
+          {
+            "id": "intimidate",
+            "type": "modifier",
+            "resource": "skill.intimidate",
+            "description": "Intimidazione",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          }
+        ]
+      }
+    ],
+    "alternateFeatures": []
+  },
+  {
+    "id": "dwarf",
+    "name": "Nano",
+    "qualities": [
+      {
+        "id": "dwarf.type",
+        "name": "Tipo",
+        "description": "Umanoide con il sottotipo nano.",
+        "effects": [
+          {
+            "id": "bodyType",
+            "type": "carryingBodyType",
+            "bodyType": "biped"
+          },
+          {
+            "id": "creatureType",
+            "type": "reminder",
+            "message": "Il personaggio è un Umanoide con il sottotipo nano."
+          }
+        ]
+      },
+      {
+        "id": "dwarf.size",
+        "name": "Taglia Media",
+        "description": "Creatura di taglia Media.",
+        "effects": [
+          {
+            "id": "size",
+            "type": "sizeBase",
+            "category": "medium"
+          }
+        ]
+      },
+      {
+        "id": "dwarf.baseSpeed",
+        "name": "Lenti e Saldi",
+        "description": "6 metri; armatura e ingombro non riducono la velocità.",
+        "effects": [
+          {
+            "id": "landSpeed",
+            "type": "movementGrant",
+            "movementType": "land",
+            "baseSpeedExpression": "4",
+            "affectedByArmor": false,
+            "affectedByLoad": false,
+            "supportsRunning": true
+          }
+        ]
+      },
+      {
+        "id": "dwarf.abilityScores",
+        "name": "Caratteristiche",
+        "description": "Costituzione +2, Saggezza +2, Carisma -2.",
+        "effects": [
+          {
+            "id": "con",
+            "type": "modifier",
+            "resource": "con",
+            "description": "Modificatore razziale di Nano",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          },
+          {
+            "id": "wis",
+            "type": "modifier",
+            "resource": "wis",
+            "description": "Modificatore razziale di Nano",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2"
+          },
+          {
+            "id": "cha",
+            "type": "modifier",
+            "resource": "cha",
+            "description": "Modificatore razziale di Nano",
+            "modifierType": "penalty",
+            "expression": "2"
+          }
+        ]
+      },
+      {
+        "id": "dwarf.darkvision",
+        "name": "Scurovisione",
+        "description": "Vede al buio entro 18 metri.",
+        "effects": [
+          {
+            "id": "darkvision",
+            "type": "reminder",
+            "message": "Vede al buio entro 18 metri."
+          }
+        ]
+      },
+      {
+        "id": "dwarf.languages",
+        "name": "Linguaggi",
+        "description": "Linguaggi iniziali: Comune, Nanico. Bonus per Intelligenza: Gigante, Gnomesco, Goblin, Orchesco, Terran, Sottocomune.",
+        "effects": [
+          {
+            "id": "languages",
+            "type": "reminder",
+            "message": "Linguaggi iniziali: Comune, Nanico. Bonus per Intelligenza: Gigante, Gnomesco, Goblin, Orchesco, Terran, Sottocomune."
+          }
+        ]
+      }
+    ],
+    "standardFeatures": [
+      {
+        "id": "dwarf.weaponFamiliarity",
+        "name": "Familiarità nelle Armi",
+        "description": "Competenza in ascia da guerra, martello da guerra e piccone pesante; le armi naniche sono considerate da guerra.",
+        "effects": [
+          {
+            "id": "weaponFamiliarity",
+            "type": "reminder",
+            "message": "Competenza in ascia da guerra, martello da guerra e piccone pesante; le armi naniche sono considerate da guerra."
+          }
+        ]
+      },
+      {
+        "id": "dwarf.hatred",
+        "name": "Odio",
+        "description": "+1 razziale ai tiri per colpire contro umanoidi orchi o goblinoidi.",
+        "effects": [
+          {
+            "id": "attack",
+            "type": "modifier",
+            "resource": "attack.all",
+            "description": "Odio",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "1",
+            "condition": "Contro umanoidi del sottotipo orco o goblinoide"
+          }
+        ]
+      },
+      {
+        "id": "dwarf.defensiveTraining",
+        "name": "Addestramento Difensivo",
+        "description": "+4 di schivare alla CA contro creature del sottotipo gigante, se si conserva il bonus di Destrezza.",
+        "effects": [
+          {
+            "id": "giantArmorClass",
+            "type": "modifier",
+            "resource": "armorClass.reflexive",
+            "description": "Addestramento Difensivo",
+            "modifierType": "bonus",
+            "bonusType": "dodge",
+            "expression": "4",
+            "condition": "Contro creature del sottotipo gigante, se si conserva il bonus di Destrezza alla CA"
+          }
+        ]
+      },
+      {
+        "id": "dwarf.hardy",
+        "name": "Resistenza",
+        "description": "+2 razziale ai tiri salvezza contro veleni, incantesimi o capacità magiche.",
+        "effects": [
+          {
+            "id": "savingThrows",
+            "type": "modifier",
+            "resource": "savingThrow.all",
+            "description": "Resistenza",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2",
+            "condition": "Contro veleni, incantesimi o capacità magiche"
+          }
+        ]
+      },
+      {
+        "id": "dwarf.stability",
+        "name": "Stabilità",
+        "description": "+4 razziale alla DMC contro Spingere e Sbilanciare, se saldi sul terreno.",
+        "effects": [
+          {
+            "id": "bullRushDefense",
+            "type": "modifier",
+            "resource": "combatManeuver.defense.bullRush",
+            "description": "Stabilità",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "4",
+            "condition": "Quando si è saldi sul terreno"
+          },
+          {
+            "id": "tripDefense",
+            "type": "modifier",
+            "resource": "combatManeuver.defense.trip",
+            "description": "Stabilità",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "4",
+            "condition": "Quando si è saldi sul terreno"
+          }
+        ]
+      },
+      {
+        "id": "dwarf.greed",
+        "name": "Cupidigia",
+        "description": "+2 razziale a Valutare beni non magici con metalli preziosi o gemme.",
+        "effects": [
+          {
+            "id": "appraise",
+            "type": "modifier",
+            "resource": "skill.appraise",
+            "description": "Cupidigia",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2",
+            "condition": "Per valutare beni non magici contenenti metalli preziosi o gemme"
+          }
+        ]
+      },
+      {
+        "id": "dwarf.stonecunning",
+        "name": "Esperto Minatore",
+        "description": "+2 razziale a Percezione per opere insolite in muratura; prova anche senza cercare entro 3 metri.",
+        "effects": [
+          {
+            "id": "perception",
+            "type": "modifier",
+            "resource": "skill.perception",
+            "description": "Esperto Minatore",
+            "modifierType": "bonus",
+            "bonusType": "racial",
+            "expression": "2",
+            "condition": "Per individuare opere insolite in muratura"
+          },
+          {
+            "id": "automaticStoneworkCheck",
+            "type": "reminder",
+            "message": "Entro 3 metri da opere insolite in muratura, come trappole o porte segrete in pietra, effettua una prova di Percezione anche senza cercare."
+          }
+        ]
+      }
+    ],
+    "alternateFeatures": []
   }
 ]

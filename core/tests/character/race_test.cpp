@@ -5,6 +5,7 @@
 #include "golarion/character/movement.hpp"
 #include "golarion/character/race.hpp"
 #include "golarion/character/reminder.hpp"
+#include "golarion/character/saving_throws.hpp"
 #include "golarion/character/size.hpp"
 #include "golarion/character/skills.hpp"
 #include "golarion/character/strike.hpp"
@@ -13,11 +14,13 @@
 #include "golarion/view/movement_view.hpp"
 #include "golarion/view/size_view.hpp"
 
+#include <algorithm>
 #include <array>
 #include <cassert>
 #include <ranges>
 #include <stdexcept>
 #include <string>
+#include <string_view>
 
 namespace
 {
@@ -69,6 +72,7 @@ int main()
     CombatManeuvers combatManeuvers(resourceManager);
     ArmorClass armorClass(resourceManager);
     Skills skills(resourceManager);
+    SavingThrows savingThrows(resourceManager);
     ReminderManager reminderManager(resourceManager);
     Movement movement(resourceManager);
     CarryingCapacity carryingCapacity(resourceManager);
@@ -225,6 +229,123 @@ int main()
     {
         race.setRace("missing");
     }));
+
+    struct CoreRaceExpectation
+    {
+        std::string_view id;
+        std::array<int, 6> abilityScores;
+        SizeCategory size;
+        int speedUnits;
+        bool slowedByLoad;
+    };
+    const std::array coreRaces{
+        CoreRaceExpectation{"elf", {10, 12, 8, 12, 10, 10}, SizeCategory::Medium, 6, true},
+        CoreRaceExpectation{"gnome", {8, 10, 12, 10, 10, 12}, SizeCategory::Small, 4, true},
+        CoreRaceExpectation{"halfling", {8, 12, 10, 10, 10, 12}, SizeCategory::Small, 4, true},
+        CoreRaceExpectation{"halfElf", {10, 10, 10, 10, 10, 10}, SizeCategory::Medium, 6, true},
+        CoreRaceExpectation{"halfOrc", {10, 10, 10, 10, 10, 10}, SizeCategory::Medium, 6, true},
+        CoreRaceExpectation{"dwarf", {10, 10, 12, 10, 12, 8}, SizeCategory::Medium, 4, false}
+    };
+    const std::array<std::string_view, 6> abilityTargets{"str", "dex", "con", "int", "wis", "cha"};
+    const auto assertContextTotal = [&resourceManager](std::string_view resource, const std::string &condition, int expected)
+    {
+        assert(resourceManager.modifierSetView(resource, {condition}).total == expected);
+    };
+
+    for (const CoreRaceExpectation &expected : coreRaces)
+    {
+        race.setRace(expected.id);
+        assert(race.toView().race->id == expected.id);
+        for (std::size_t index = 0; index < abilityTargets.size(); ++index)
+        {
+            assert(resourceManager.targetValue(abilityTargets[index]) == expected.abilityScores[index]);
+        }
+        assert(sizeManager.toView().effectiveCategory == expected.size);
+        const MovementView movementView = movement.toView();
+        assert(movementView.grants.size() == 1);
+        assert(movementView.grants[0].effectiveUnits == expected.speedUnits);
+        assert(movementView.grants[0].affectedByArmor == expected.slowedByLoad);
+        assert(movementView.grants[0].affectedByLoad == expected.slowedByLoad);
+        assert(movementView.grants[0].run.supported);
+        const int sizeBonus = expected.size == SizeCategory::Small ? 1 : 0;
+        assert(resourceManager.modifierTotal("attack.melee") == sizeBonus);
+        assert(resourceManager.modifierTotal("armorClass.normal") == sizeBonus);
+        assert(resourceManager.modifierTotal("skill.stealth") == 4 * sizeBonus);
+        assert(resourceManager.modifierTotal("combatManeuver.defense.bullRush") == -sizeBonus);
+        assert(resourceManager.modifierTotal("savingThrow.all") == (expected.id == "halfling" ? 1 : 0));
+        assert(resourceManager.modifierTotal("skill.perception") == (expected.id == "halfOrc" || expected.id == "dwarf" ? 0 : 2));
+
+        if (expected.id == "elf" || expected.id == "halfElf")
+        {
+            assertContextTotal("savingThrow.fortitude", "Contro incantesimi ed effetti di ammaliamento", 2);
+        }
+        if (expected.id == "elf")
+        {
+            assert(resourceManager.modifierTotal("skill.spellcraft") == 0);
+            assertContextTotal("skill.spellcraft", "Per identificare le proprietà degli oggetti magici", 2);
+        }
+        if (expected.id == "gnome" || expected.id == "dwarf")
+        {
+            const std::string giantCondition = "Contro creature del sottotipo gigante, se si conserva il bonus di Destrezza alla CA";
+            assertContextTotal("armorClass.normal", giantCondition, sizeBonus + 4);
+            assertContextTotal("armorClass.touch", giantCondition, sizeBonus + 4);
+            assertContextTotal("armorClass.flatFooted", giantCondition, sizeBonus);
+            const std::string hatredCondition = expected.id == "gnome"
+                ? "Contro umanoidi del sottotipo rettile o goblinoide"
+                : "Contro umanoidi del sottotipo orco o goblinoide";
+            assertContextTotal("attack.melee", hatredCondition, sizeBonus + 1);
+            assertContextTotal("attack.ranged", hatredCondition, sizeBonus + 1);
+        }
+        if (expected.id == "gnome")
+        {
+            assertContextTotal("savingThrow.will", "Contro incantesimi ed effetti di illusione", 2);
+            assert(resourceManager.modifierTotal("skill.craft.alchemy") == 0);
+        }
+        if (expected.id == "halfling")
+        {
+            assert(resourceManager.modifierTotal("skill.acrobatics") == 2);
+            assert(resourceManager.modifierTotal("skill.climb") == 2);
+            assertContextTotal("savingThrow.will", "Contro effetti di paura", 3);
+        }
+        if (expected.id == "halfElf" || expected.id == "halfOrc")
+        {
+            assert(elementView(race.toView(), std::string(expected.id) + ".abilityScores").missingChoices.size() == 1);
+            race.setChoice(std::string(expected.id) + ".abilityScores", "ability", {"strength"});
+            assert(resourceManager.targetValue("str") == 12);
+        }
+        if (expected.id == "halfOrc")
+        {
+            assert(resourceManager.modifierTotal("skill.intimidate") == 2);
+        }
+        if (expected.id == "dwarf")
+        {
+            const ModifierSetView hardy = resourceManager.modifierSetView("savingThrow.all", {"Contro veleni, incantesimi o capacità magiche"});
+            assert(hardy.total == 2);
+            assert(hardy.modifiers.size() == 1);
+            assertContextTotal("combatManeuver.defense.bullRush", "Quando si è saldi sul terreno", 4);
+            assertContextTotal("combatManeuver.defense.trip", "Quando si è saldi sul terreno", 4);
+            assertContextTotal("combatManeuver.defense.grapple", "Quando si è saldi sul terreno", 0);
+            assertContextTotal("skill.appraise", "Per valutare beni non magici contenenti metalli preziosi o gemme", 2);
+            assertContextTotal("skill.perception", "Per individuare opere insolite in muratura", 2);
+        }
+
+        const RaceSaveData coreSave = race.toSaveData();
+        race.clearRace();
+        for (std::string_view target : abilityTargets)
+        {
+            assert(resourceManager.targetValue(target) == 10);
+        }
+        for (std::string_view resource : {"attack.melee", "attack.ranged", "armorClass.normal", "skill.stealth", "skill.perception", "skill.intimidate", "skill.acrobatics", "skill.climb", "savingThrow.all"})
+        {
+            assert(resourceManager.modifierSetView(resource).modifiers.empty());
+        }
+        assert(movement.toView().grants.empty());
+        assert(reminderManager.toView().messages.empty());
+        assert(!sizeManager.toView().base.has_value());
+        race.load(coreSave);
+        assert(race.toView().race->id == expected.id);
+        assert(resourceManager.targetValue("str") == (expected.id == "halfElf" || expected.id == "halfOrc" ? 12 : expected.abilityScores[0]));
+    }
 
     return 0;
 }
