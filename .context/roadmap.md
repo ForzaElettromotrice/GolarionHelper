@@ -2,6 +2,7 @@
 
 ## Pending Work
 
+- Continue game management in small backend steps after the implemented `core/play/` TCP presence prototype. Stable membership/identity, roles, shared sheet ID/name assignments, persistence, and authenticated protected Internet connections remain pending; `game-management.md` records confirmed requirements and structural decisions separately from the prototype and the larger proposal. Communication scope is network synchronization, with no in-app chat/voice/video.
 - Expand `EffectDefinition` and `compileEffect` with the typed entry points needed by the core-race gaps documented in `model/races.md`; all seven standard profiles are already present with supported effects and reminders. Add the separate catalog View needed to choose a race and its alternate features. Runtime mechanics must never be inferred from Italian names or descriptions.
 - The planned structured `SpecialDefenses` categories are complete for the informational sheet model. Concrete sources such as Resistenza Potenziata and Veste della Regina Fatata must register Reminder entries for their contextual exceptions. Decide the exceptional conversion of energy resistance above a threshold into immunity when the first canonical source requires it; the current RE model deliberately performs no such implicit conversion.
 - Channel resistance is not a new `SpecialDefenses` category: canonical Resistenza ad Incanalare is a conditional bonus to Will saves and should use the existing conditional Modifier pipeline. Fortification and event-resolution capabilities such as Evasion are informational/reminder concerns unless a future incoming-attack or saving-throw resolver gives them structured context.
@@ -23,4 +24,4 @@
 
 - Decide whether conditional ability substitutions need explicit model support. A possible implementation is a signed, non-stacking delta modifier such as `-@wisMod + @chaMod`, shared by skills and saving throws. This is optional: the application may instead leave situational substitutions for the player to remember and apply at the table.
 - Design the complete C API only after the C++ character-sheet model has stabilized.
-- Select and build the portable frontend after the backend and C API are complete.
+- Select and build the native desktop C++ frontend. Resolve its application API boundary as part of the new game-management design; the toolkit and implementation schedule remain open.

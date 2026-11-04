@@ -1,9 +1,9 @@
 # Architecture
 
 - The domain model is implemented in modern C++.
-- `core/` is the backend module container; `core/CMakeLists.txt` adds the existing `sheet` module. All current engine code, resources, public headers, tests, persistence, and C bindings live in `core/sheet/`. Existing target names and `golarion/...` includes remain unchanged. Shared infrastructure will be extracted only when another concrete module needs it.
-- A thin API with C linkage will be the only boundary exposed to a future frontend through FFI.
-- C++ types, STL containers, ownership, and exceptions do not cross that boundary.
+- `core/` is the backend module container; `core/CMakeLists.txt` adds `sheet` and `play`. The sheet engine, catalogs, persistence, C bindings, and tests live in `core/sheet/`; `core/play/` owns the independent C++20 TCP presence model, transport, and diagnostic executables. Existing sheet targets/includes are unchanged. Shared infrastructure will be extracted only when concrete callers need it.
+- The application target is native desktop software in C++. A minimal API with C linkage already exposes the sheet through FFI. Whether the future desktop frontend uses that boundary or a typed C++ application interface remains open; see `game-management.md` for the game-management design proposal.
+- C++ types, STL containers, ownership, and exceptions do not cross the C API boundary.
 - Complex frontend snapshots may later be exchanged as JSON, but no serialization dependency is introduced yet.
 - GUI snapshots use `View`/`toView`; future persistence structures will use `SaveData`/`toSaveData` to keep calculated presentation state separate from serialized source state.
 - Character-sheet components register enhanceable resources by name; they neither create nor retain their `ModifierSet`.
