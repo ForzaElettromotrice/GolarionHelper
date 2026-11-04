@@ -172,8 +172,12 @@ namespace
                 lastError = socketError();
                 continue;
             }
-            configureSocket(socket.get());
-            if (::connect(socket.get(), address->ai_addr, static_cast<int>(address->ai_addrlen)) == 0) return socket;
+            if (::connect(socket.get(), address->ai_addr, static_cast<int>(address->ai_addrlen)) == 0)
+            {
+                // On POSIX, SO_SNDTIMEO also limits connect(), so configure it only after the connection succeeds.
+                configureSocket(socket.get());
+                return socket;
+            }
             lastError = socketError();
         }
         throw std::system_error(lastError, std::system_category(), "connect");

@@ -23,10 +23,12 @@ ctest --test-dir build/play-cmake -C Debug --output-on-failure
 The network process test is included when Python is available. The host and client diagnostic tools are C++ executables. In three separate Windows terminals, run the following commands from the workspace root (append `Debug/` to the executable directory for a multi-configuration CMake generator):
 
 ```powershell
-./build/play-cmake/golarion_play_host.exe 42500 127.0.0.1 "Partita di prova"
+./build/play-cmake/golarion_play_host.exe 127.0.0.1 42500 "Partita di prova"
 ./build/play-cmake/golarion_play_client.exe 127.0.0.1 42500 Alice
 ./build/play-cmake/golarion_play_client.exe 127.0.0.1 42500 Bob
 ```
+
+Both tools take the address first and the port second: `golarion_play_host <IPv4 address> <port> [game name]` and `golarion_play_client <host address> <port> <participant name>`. The host's game name defaults to `Partita di prova`; address and port are required. Host port `0` requests an ephemeral port for automated tests.
 
 Both clients show the current participant list and refresh it on joins and disconnects. Close with Ctrl+C. A host is not automatically a participant; run a client on its PC too if that person wants to join. For a LAN test, bind the host to its LAN IPv4 address or `0.0.0.0`, then connect clients to that PC's LAN IPv4 address; firewall rules must already permit the chosen port. The tools do not change firewall/router settings. Authentication, encryption, roles, and saved membership are not implemented yet.
 
@@ -43,6 +45,8 @@ python core/play/tests/network_process_test.py build/play/golarion_play_host.exe
 ```
 
 Create `build/play/` before running these manual commands. The loopback process test needs local socket permissions; the current sandbox denies connects with WSA error 10013, while execution with those permissions passes. The POSIX transport branch has not been tested in this Windows environment.
+
+For Linux error 115 during connection, update the client: its one-second send timeout must be configured after `connect()`, not before it. This ordering was verified with delayed Linux socket connections under WSL; no C++ compiler is installed in that Ubuntu environment. Diagnose reachability independently from the game client, for example with `python3 -c "import socket; socket.create_connection(('HOST_IPV4', 42500), 10).close(); print('TCP OK')"` on the remote PC. A Python timeout still indicates a network/firewall/access-policy problem; a Tailscale ping alone does not establish that the application TCP port is reachable. Firewall changes, when needed, should be limited to the intended host address, TCP port, and remote VPN peer.
 
 ## Dependencies
 

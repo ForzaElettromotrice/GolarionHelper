@@ -9,15 +9,15 @@
 int main(int argc, char *argv[])
 {
     using namespace golarion::play;
-    if (argc > 4)
+    if (argc < 3 || argc > 4)
     {
-        std::cerr << "Uso: golarion_play_host [porta] [indirizzo IPv4] [nome partita]\n";
+        std::cerr << "Uso: golarion_play_host <indirizzo IPv4> <porta> [nome partita]\n";
         return 1;
     }
     try
     {
-        const std::uint16_t port = argc > 1 ? tools::parsePort(argv[1], true) : 42500;
-        const std::string address = argc > 2 ? argv[2] : "127.0.0.1";
+        const std::string address = argv[1];
+        const std::uint16_t port = tools::parsePort(argv[2], true);
         const std::string name = argc > 3 ? argv[3] : "Partita di prova";
         GameHost host(Game("game", name), address, port);
         tools::installStopHandlers();

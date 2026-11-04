@@ -6,7 +6,7 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 ## Current State
 
-- Development is on `main`, the default GitHub branch, tracking `origin/main`. The previous `master` branch is retained separately.
+- Game-host development is on `feat/game-host`, tracking `origin/feat/game-host`; `main` is the default GitHub branch. The previous `master` branch is retained separately.
 - The C++20 backend, persistence, Views, and a minimal opaque-handle C API are in place; frontend work remains deferred.
 - `core/` groups backend modules. The character-sheet engine lives in `core/sheet/`. The independent `core/play/` C++20 module now provides a real TCP host/client prototype with synchronized connected-participant lists and diagnostic console tools. Model/protocol tests and a process-based loopback test pass. Roles, sheet bindings, persistence, authentication, and frontend remain future steps; the full game requirements and confirmed structural choices are in `game-management.md`. In-app chat/voice/video are outside scope.
 - Declarative `EffectDefinition` values and `compileEffect` are shared by races and items.

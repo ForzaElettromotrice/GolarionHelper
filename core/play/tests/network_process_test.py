@@ -86,7 +86,7 @@ def snapshot_names(payload):
 def main(host_executable, client_executable):
     processes = []
     try:
-        host = Process(host_executable, '0')
+        host = Process(host_executable, '127.0.0.1', '0')
         processes.append(host)
         listening = host.wait_line(lambda line: line.startswith('In ascolto su '))
         port = re.search(r':(\d+)$', listening).group(1)
