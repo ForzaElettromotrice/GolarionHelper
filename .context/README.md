@@ -10,7 +10,7 @@ Build a local-first Pathfinder 1e character-sheet engine in C++, independent fro
 - The C++20 backend, persistence, Views, and a minimal opaque-handle C API are in place; frontend work remains deferred.
 - Declarative `EffectDefinition` values and `compileEffect` are shared by races and items.
 - `RaceDefinitionManager` loads the embedded catalog of all seven core races, while the per-character `Race` runtime applies effects, manages alternate features and choices, persists configuration, and exposes `RaceView`. Standard traits use supported effects and explicit situational bonuses; unsupported mechanics remain reminders. Umano also retains Doppia Dote.
-- `FeatDefinition` describes feats declaratively, but no feat catalog, runtime manager, View, or persistence exists yet.
+- `FeatDefinitionManager` loads immutable feat definitions from embedded JSON. `CharacterSheet` owns `Feats` with source-owned slots, prerequisite alternatives/exemptions, repeatability, choice-matched dependencies, and stable-state activation. Sheet changes automatically recheck prerequisites; manual text requirements are informational. Format 25 persists selection IDs and choices; Views expose distinct acquisitions and slots. The minimal catalog remains Iniziativa Migliorata.
 - Informational special defenses cover the planned categories, including the locally implemented energy vulnerabilities.
 
 ## Next Steps
@@ -18,8 +18,8 @@ Build a local-first Pathfinder 1e character-sheet engine in C++, independent fro
 Continue in small, separate changes:
 
 1. Add declarative support for the documented core-race gaps in small, separate changes.
-2. Add the catalog View needed to choose a race and its alternate features.
-3. Add and review alternate racial features or further canonical races one at a time.
+2. The planned feat infrastructure is implemented. Future sheet mutation APIs must maintain the feat recheck convention.
+3. Keep feat catalog expansion and catalog Views deferred. The race catalog View and further alternate racial features/races remain roadmap items, to address one at a time.
 
 ## Context Structure
 

@@ -54,6 +54,10 @@ add_library(golarion_model STATIC
     src/character/race.cpp
     src/character/race_definition_json.cpp
     src/character/race_definition_manager.cpp
+    src/character/feat_definition_json.cpp
+    src/character/feat_definition_manager.cpp
+    src/character/feat_prerequisite_registry.cpp
+    src/character/feats.cpp
     src/effect/effect_compiler.cpp
     src/effect/effect_json.cpp
     src/character/reminder.cpp
@@ -94,6 +98,14 @@ file(READ "${CMAKE_CURRENT_SOURCE_DIR}/resources/races.json" RACE_DEFINITION_CAT
 configure_file(
     src/character/race_definition_catalog.hpp.in
     "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/character/race_definition_catalog.hpp"
+    @ONLY
+)
+
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/resources/feats.json")
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/resources/feats.json" FEAT_DEFINITION_CATALOG_JSON)
+configure_file(
+    src/character/feat_definition_catalog.hpp.in
+    "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/character/feat_definition_catalog.hpp"
     @ONLY
 )
 
@@ -146,6 +158,22 @@ else()
 endif()
 
 if(BUILD_TESTING)
+    add_executable(feats_test tests/character/feats_test.cpp)
+    target_link_libraries(feats_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME feats_test COMMAND feats_test)
+
+    add_executable(feats_recheck_test tests/character/feats_recheck_test.cpp)
+    target_link_libraries(feats_recheck_test PRIVATE golarion_model)
+    add_test(NAME feats_recheck_test COMMAND feats_recheck_test)
+
+    add_executable(feat_prerequisite_registry_test tests/character/feat_prerequisite_registry_test.cpp)
+    target_link_libraries(feat_prerequisite_registry_test PRIVATE golarion_model)
+    add_test(NAME feat_prerequisite_registry_test COMMAND feat_prerequisite_registry_test)
+
+    add_executable(feat_definition_manager_test tests/character/feat_definition_manager_test.cpp)
+    target_link_libraries(feat_definition_manager_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME feat_definition_manager_test COMMAND feat_definition_manager_test)
+
     add_executable(action_test tests/character/action_test.cpp)
     target_link_libraries(action_test PRIVATE golarion_model)
     add_test(NAME action_test COMMAND action_test)

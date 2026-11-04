@@ -1,5 +1,7 @@
 #pragma once
 
+#include "golarion/character/feats.hpp"
+
 #include "golarion/character/action.hpp"
 #include "golarion/character/ability.hpp"
 #include "golarion/character/armor_class.hpp"
@@ -56,6 +58,9 @@ namespace golarion
         void setAppearance(std::optional<std::string> appearance);
         void setRace(std::string_view raceDefinitionId);
         void clearRace();
+        void selectFeat(std::string_view slotId, std::string_view featId, FeatChoices choices = {});
+        void removeFeat(std::string_view slotId);
+        void recheckFeatPrerequisites();
         void selectAlternateRacialFeature(std::string_view featureId);
         void removeAlternateRacialFeature(std::string_view featureId);
         void setRacialChoice(std::string_view elementId, std::string_view choiceId, std::vector<std::string> optionIds);
@@ -107,6 +112,7 @@ namespace golarion
         CarryingCapacity carryingCapacity_;
         Encumbrance encumbrance_;
         SizeManager sizeManager_;
+        Feats feats_;
         ConditionManager conditionManager_;
         std::optional<Inventory> inventory_;
         Race race_;

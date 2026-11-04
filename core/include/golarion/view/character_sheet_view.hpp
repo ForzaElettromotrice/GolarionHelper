@@ -1,5 +1,7 @@
 #pragma once
 
+#include "golarion/view/feats_view.hpp"
+
 #include "golarion/view/actions_view.hpp"
 #include "golarion/view/ability_view.hpp"
 #include "golarion/view/armor_class_view.hpp"
@@ -31,6 +33,7 @@ namespace golarion
     {
         CharacterIdentityView identity;
         RaceView race;
+        FeatsView feats;
         ActionsView actions;
         RemindersView reminders;
         std::vector<AbilityView> abilities;

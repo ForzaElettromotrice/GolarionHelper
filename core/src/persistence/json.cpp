@@ -168,6 +168,25 @@ namespace
         };
     }
 
+    Json featsToJson(const golarion::FeatsData &data)
+    {
+        Json selections = Json::array();
+        for (const auto &selection : data.selections)
+            selections.push_back({{"slotId", selection.slotId}, {"featId", selection.featId}, {"choices", selection.choices}});
+        return Json{{"selections", std::move(selections)}};
+    }
+
+    golarion::FeatsData featsFromJson(const Json &json)
+    {
+        const auto &selections = json.at("selections");
+        if (!selections.is_array()) throw std::invalid_argument("feat selections must be an array");
+        golarion::FeatsData data;
+        for (const auto &selection : selections)
+            data.selections.push_back({selection.at("slotId").get<std::string>(), selection.at("featId").get<std::string>(),
+                selection.at("choices").get<std::map<std::string, std::vector<std::string>>>()});
+        return data;
+    }
+
     Json raceToJson(const golarion::RaceSaveData &data)
     {
         Json choices = Json::array();
@@ -644,7 +663,8 @@ namespace golarion::persistence
             {"skills", skillsToJson(data.skills)},
             {"attacks", attacksToJson(data.attacks)},
             {"conditions", conditionsToJson(data.conditions)},
-            {"inventory", inventoryToJson(data.inventory)}
+            {"inventory", inventoryToJson(data.inventory)},
+            {"feats", featsToJson(data.feats)}
         }.dump(4);
     }
 
@@ -669,7 +689,8 @@ namespace golarion::persistence
             .skills = skillsFromJson(json.at("skills")),
             .attacks = json.contains("attacks") ? attacksFromJson(json.at("attacks")) : AttacksData{},
             .conditions = formatVersion >= 17 ? conditionsFromJson(json.at("conditions")) : ConditionManagerSaveData{},
-            .inventory = formatVersion >= 19 ? inventoryFromJson(json.at("inventory")) : InventorySaveData{}
+            .inventory = formatVersion >= 19 ? inventoryFromJson(json.at("inventory")) : InventorySaveData{},
+            .feats = formatVersion >= 25 ? featsFromJson(json.at("feats")) : FeatsData{}
         };
     }
 

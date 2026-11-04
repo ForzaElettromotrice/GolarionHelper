@@ -58,6 +58,7 @@ namespace golarion
           carryingCapacity_(resourceManager_),
           encumbrance_(resourceManager_, carryingCapacity_),
           sizeManager_(resourceManager_),
+          feats_(resourceManager_),
           conditionManager_(resourceManager_),
           race_(resourceManager_)
     {
@@ -70,13 +71,14 @@ namespace golarion
             return level();
         });
         registerCanonicalConditions(conditionManager_);
+        feats_.setLevel(level());
         hitPoints_.connectConditionEntries();
         inventory_.emplace(resourceManager_);
     }
 
     CharacterSheet::CharacterSheet(const CharacterSheetSaveData &data) : CharacterSheet()
     {
-        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24)
+        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24 && data.formatVersion != 25)
         {
             throw std::invalid_argument("unsupported character sheet format version: " + std::to_string(data.formatVersion));
         }
@@ -105,7 +107,9 @@ namespace golarion
         attacks_.load(data.attacks);
         conditionManager_.load(data.conditions);
         inventory_->load(data.inventory);
+        feats_.load(data.feats);
         hitPoints_.reconcileConditionEntries();
+        feats_.recheckPrerequisites();
     }
 
     CharacterSheet CharacterSheet::load(const std::filesystem::path &path)
@@ -126,11 +130,13 @@ namespace golarion
     void CharacterSheet::setAlignment(std::optional<Alignment> alignment)
     {
         identity_.setAlignment(alignment);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::setDeity(std::optional<std::string> deity)
     {
         identity_.setDeity(std::move(deity));
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::setHomeland(std::optional<std::string> homeland)
@@ -146,6 +152,7 @@ namespace golarion
     void CharacterSheet::setAge(std::optional<int> age)
     {
         identity_.setAge(age);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::setHeightCentimeters(std::optional<int> heightCentimeters)
@@ -156,6 +163,7 @@ namespace golarion
     void CharacterSheet::setWeightGrams(std::optional<std::int64_t> weightGrams)
     {
         identity_.setWeightGrams(weightGrams);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::setHair(std::optional<std::string> hair)
@@ -176,26 +184,46 @@ namespace golarion
     void CharacterSheet::setRace(std::string_view raceDefinitionId)
     {
         race_.setRace(raceDefinitionId);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::clearRace()
     {
         race_.clearRace();
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::selectFeat(std::string_view slotId, std::string_view featId, FeatChoices choices)
+    {
+        feats_.selectFeat(slotId, featId, std::move(choices));
+    }
+
+    void CharacterSheet::removeFeat(std::string_view slotId)
+    {
+        feats_.removeFeat(slotId);
+    }
+
+    void CharacterSheet::recheckFeatPrerequisites()
+    {
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::selectAlternateRacialFeature(std::string_view featureId)
     {
         race_.selectAlternateFeature(featureId);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::removeAlternateRacialFeature(std::string_view featureId)
     {
         race_.removeAlternateFeature(featureId);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::setRacialChoice(std::string_view elementId, std::string_view choiceId, std::vector<std::string> optionIds)
     {
         race_.setChoice(elementId, choiceId, std::move(optionIds));
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::setAbilityBaseValue(AbilityType type, int baseValue)
@@ -205,36 +233,43 @@ namespace golarion
         {
             hitPoints_.initializeConditionEntries();
         }
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::heal(int amount)
     {
         hitPoints_.heal(amount);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::damage(int amount, DamageLethality lethality)
     {
         hitPoints_.damage(amount, lethality);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::setSkillRanks(SkillType type, int ranks)
     {
         skills_.setRanks(type, ranks);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::addSkillSpecialization(SkillType type, const std::string &specializationId, const std::string &specialization)
     {
         skills_.addSpecialization(type, specializationId, specialization);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::removeSkillSpecialization(SkillType type, const std::string &specializationId)
     {
         skills_.removeSpecialization(type, specializationId);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::setSkillSpecializationRanks(SkillType type, const std::string &specializationId, int ranks)
     {
         skills_.setSpecializationRanks(type, specializationId, ranks);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::createAttack(std::string_view id, std::string_view name, std::string_view routineId)
@@ -261,22 +296,26 @@ namespace golarion
     {
         conditionManager_.addManualEntry(std::move(entry));
         hitPoints_.reconcileConditionEntries();
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::removeCondition(std::string_view entryId)
     {
         conditionManager_.removeManualEntry(entryId);
         hitPoints_.reconcileConditionEntries();
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::addMoney(CoinDenomination denomination, int quantity, std::string_view containerId)
     {
         inventory_->addMoney(denomination, quantity, containerId);
+        feats_.recheckPrerequisites();
     }
 
     void CharacterSheet::removeMoney(CoinDenomination denomination, int quantity, std::string_view containerId)
     {
         inventory_->removeMoney(denomination, quantity, containerId);
+        feats_.recheckPrerequisites();
     }
 
     CharacterSheetView CharacterSheet::toView()
@@ -287,6 +326,7 @@ namespace golarion
     CharacterSheetView CharacterSheet::toView(const StrikeCalculationContext &strikeContext)
     {
         hitPoints_.reconcileConditionEntries();
+        feats_.recheckPrerequisites();
         EncumbranceView encumbranceView = encumbrance_.toView();
         std::vector<AbilityView> abilityViews;
         abilityViews.reserve(abilities_.size());
@@ -299,6 +339,7 @@ namespace golarion
         return CharacterSheetView{
             .identity = identity_.toView(),
             .race = race_.toView(),
+            .feats = feats_.toView(),
             .actions = actionManager_.toView(),
             .reminders = reminderManager_.toView(),
             .abilities = std::move(abilityViews),
@@ -333,7 +374,7 @@ namespace golarion
         }
 
         return CharacterSheetSaveData{
-            .formatVersion = 24,
+            .formatVersion = 25,
             .identity = identity_.toSaveData(),
             .race = race_.toSaveData(),
             .abilities = std::move(abilityData),
@@ -341,7 +382,8 @@ namespace golarion
             .skills = skills_.toSaveData(),
             .attacks = attacks_.toData(),
             .conditions = conditionManager_.toSaveData(),
-            .inventory = inventory_->toSaveData()
+            .inventory = inventory_->toSaveData(),
+            .feats = feats_.toData()
         };
     }
 

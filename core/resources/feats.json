@@ -1,0 +1,19 @@
+[
+  {
+    "id": "improvedInitiative",
+    "name": "Iniziativa Migliorata",
+    "description": "Ottieni un bonus di +4 alle prove di Iniziativa.",
+    "types": ["combat"],
+    "effects": [
+      {
+        "id": "initiativeBonus",
+        "type": "modifier",
+        "resource": "initiative",
+        "description": "Bonus di Iniziativa Migliorata",
+        "modifierType": "bonus",
+        "bonusType": "generic",
+        "expression": "4"
+      }
+    ]
+  }
+]

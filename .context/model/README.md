@@ -1,5 +1,9 @@
 # Model Context
 
+- [`feats.md`](feats.md): per-character feat slots, selection, qualification, cleanup, and current runtime limitations.
+
+- [`feat-prerequisites.md`](feat-prerequisites.md): prerequisite value alternatives, source callbacks, and the boundary with slot eligibility and exemptions.
+
 Read only the document for the subsystem being changed. Cross-cutting decisions remain in [`../architecture.md`](../architecture.md).
 
 - [`declarative-content.md`](declarative-content.md): shared effect definitions and the current declarative feat boundary.
