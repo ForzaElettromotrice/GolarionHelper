@@ -2,12 +2,13 @@
 
 ## Project Goal
 
-Build a local-first Pathfinder 1e character-sheet engine in C++, independent from its future portable frontend.
+Build a local-first tabletop role-playing application, expanding toward a virtual tabletop in the style of Roll20. The implemented rules engine remains Pathfinder 1e; support for another ruleset is not implied.
 
 ## Current State
 
 - Development is on `main`, the default GitHub branch, tracking `origin/main`. The previous `master` branch is retained separately.
 - The C++20 backend, persistence, Views, and a minimal opaque-handle C API are in place; frontend work remains deferred.
+- `core/` groups backend modules. The complete character-sheet engine now lives in `core/sheet/`, including headers, sources, catalogs, persistence, C API, and tests. Future play modules have not been designed or implemented yet.
 - Declarative `EffectDefinition` values and `compileEffect` are shared by races and items.
 - `RaceDefinitionManager` loads the embedded catalog of all seven core races, while the per-character `Race` runtime applies effects, manages alternate features and choices, persists configuration, and exposes `RaceView`. Standard traits use supported effects and explicit situational bonuses; unsupported mechanics remain reminders. Umano also retains Doppia Dote.
 - `FeatDefinitionManager` loads immutable feat definitions from embedded JSON. `CharacterSheet` owns `Feats` with source-owned slots, prerequisite alternatives/exemptions, repeatability, choice-matched dependencies, and stable-state activation. Sheet changes automatically recheck prerequisites; manual text requirements are informational. Format 25 persists selection IDs and choices; Views expose distinct acquisitions and slots. The minimal catalog remains Iniziativa Migliorata.
