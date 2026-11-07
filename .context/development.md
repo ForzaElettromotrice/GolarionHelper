@@ -8,7 +8,7 @@ cmake --build build
 ctest --test-dir build --output-on-failure
 ```
 
-The root build includes `core/sheet/` and `core/play/` through `core/CMakeLists.txt`. Sheet executables/libraries are generated under `build/core/sheet/`, and play targets under `build/core/play/`. Existing sheet target names and root build/test commands are unchanged.
+The root build includes `core/sheet/` and `core/play/` through `core/CMakeLists.txt`. Session, its function registry, and RoleManager are part of `golarion_play`. Session construction requires an explicit host user ID; its subsystem wiring is independent of the TCP diagnostic tools. Sheet executables/libraries are generated under `build/core/sheet/`, and play targets under `build/core/play/`. Existing sheet target names and root build/test commands are unchanged.
 
 ## Standalone Play Backend
 
@@ -30,7 +30,7 @@ The network process test is included when Python is available. The host and clie
 
 Both tools take the address first and the port second: `golarion_play_host <IPv4 address> <port> [game name]` and `golarion_play_client <host address> <port> <participant name>`. The host's game name defaults to `Partita di prova`; address and port are required. Host port `0` requests an ephemeral port for automated tests.
 
-Both clients show the current participant list and refresh it on joins and disconnects. Close with Ctrl+C. A host is not automatically a participant; run a client on its PC too if that person wants to join. For a LAN test, bind the host to its LAN IPv4 address or `0.0.0.0`, then connect clients to that PC's LAN IPv4 address; firewall rules must already permit the chosen port. The tools do not change firewall/router settings. Authentication, encryption, roles, and saved membership are not implemented yet.
+Both clients show the current participant list and refresh it on joins and disconnects. Close with Ctrl+C. A host is not automatically a participant; run a client on its PC too if that person wants to join. For a LAN test, bind the host to its LAN IPv4 address or `0.0.0.0`, then connect clients to that PC's LAN IPv4 address; firewall rules must already permit the chosen port. The tools do not change firewall/router settings. These tools do not yet integrate RoleManager, authentication, encryption, or saved membership.
 
 CMake is currently absent from the execution environment. The verified Windows builds use the installed GCC directly and produce executables under `build/play/`:
 
@@ -39,8 +39,12 @@ g++ -std=c++20 -Wall -Wextra -Wpedantic -I core/play/include core/play/src/game.
 g++ -std=c++20 -Wall -Wextra -Wpedantic -I core/play/include core/play/src/game.cpp core/play/src/protocol.cpp core/play/src/network.cpp core/play/tools/client.cpp -lws2_32 -o build/play/golarion_play_client.exe
 g++ -std=c++20 -Wall -Wextra -Wpedantic -I core/play/include core/play/src/game.cpp core/play/tests/game_test.cpp -o build/play/play_game_test.exe
 g++ -std=c++20 -Wall -Wextra -Wpedantic -I core/play/include -I core/play/src core/play/src/protocol.cpp core/play/tests/protocol_test.cpp -o build/play/play_protocol_test.exe
+g++ -std=c++20 -Wall -Wextra -Wpedantic -I core/play/include core/play/src/resource_manager.cpp core/play/tests/resource_manager_test.cpp -o build/play/play_resource_manager_test.exe
+g++ -std=c++20 -Wall -Wextra -Wpedantic -I core/play/include core/play/src/resource_manager.cpp core/play/src/role_manager.cpp core/play/src/session.cpp core/play/tests/role_manager_test.cpp -o build/play/play_role_manager_test.exe
 ./build/play/play_game_test.exe
 ./build/play/play_protocol_test.exe
+./build/play/play_resource_manager_test.exe
+./build/play/play_role_manager_test.exe
 python core/play/tests/network_process_test.py build/play/golarion_play_host.exe build/play/golarion_play_client.exe
 ```
 

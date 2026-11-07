@@ -9,6 +9,9 @@ add_library(golarion_play STATIC
     src/game.cpp
     src/network.cpp
     src/protocol.cpp
+    src/resource_manager.cpp
+    src/role_manager.cpp
+    src/session.cpp
 )
 
 target_compile_features(golarion_play PUBLIC cxx_std_20)
@@ -35,6 +38,14 @@ if(MSVC)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(play_role_manager_test tests/role_manager_test.cpp)
+    target_link_libraries(play_role_manager_test PRIVATE golarion_play)
+    add_test(NAME play_role_manager_test COMMAND play_role_manager_test)
+
+    add_executable(play_resource_manager_test tests/resource_manager_test.cpp)
+    target_link_libraries(play_resource_manager_test PRIVATE golarion_play)
+    add_test(NAME play_resource_manager_test COMMAND play_resource_manager_test)
+
     add_executable(play_game_test tests/game_test.cpp)
     target_link_libraries(play_game_test PRIVATE golarion_play)
     add_test(NAME play_game_test COMMAND play_game_test)

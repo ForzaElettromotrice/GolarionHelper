@@ -6,9 +6,11 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 ## Current State
 
-- Game-host development is on `feat/game-host`, tracking `origin/feat/game-host`; `main` is the default GitHub branch. The previous `master` branch is retained separately.
+- `main` is the default development and GitHub branch. The game-host feature branch is `feat/game-host`; the previous `master` branch is retained separately.
 - The C++20 backend, persistence, Views, and a minimal opaque-handle C API are in place; frontend work remains deferred.
-- `core/` groups backend modules. The character-sheet engine lives in `core/sheet/`. The independent `core/play/` C++20 module now provides a real TCP host/client prototype with synchronized connected-participant lists and diagnostic console tools. Model/protocol tests and a process-based loopback test pass. Roles, sheet bindings, persistence, authentication, and frontend remain future steps; the full game requirements and confirmed structural choices are in `game-management.md`. In-app chat/voice/video are outside scope.
+- `core/` groups backend modules. The character-sheet engine lives in `core/sheet/`. The independent `core/play/` C++20 module provides the Session model and a separate real TCP host/client prototype with synchronized connected-participant lists and diagnostic console tools. The prototype's model/protocol tests and process-based loopback test pass. Its network role integration, sheet bindings, persistence, authentication, and frontend remain future steps; see `game-management.md`. In-app chat/voice/video are outside scope.
+- `golarion::play::Session`, the main play aggregate, now requires an explicit host user ID and owns ResourceManager plus RoleManager, passing the registry by reference. RoleManager enforces immutable host/master/player/spectator permissions and publishes `roles.registerUser`, `roles.getRole`, `roles.hasAtLeastRole`, and `roles.setRole`; focused tests pass. See `session-roles.md`. Server ownership and connected-user management remain future steps.
+- The session ResourceManager lives in `core/play/` and implements typed function registration, invocation, and removal, with focused C++20 tests passing. Each Session has an independent registry. See `architecture.md` for the API and lifetime rules; the sheet-specific `golarion::ResourceManager` retains its existing responsibilities.
 - Declarative `EffectDefinition` values and `compileEffect` are shared by races and items.
 - `RaceDefinitionManager` loads the embedded catalog of all seven core races, while the per-character `Race` runtime applies effects, manages alternate features and choices, persists configuration, and exposes `RaceView`. Standard traits use supported effects and explicit situational bonuses; unsupported mechanics remain reminders. Umano also retains Doppia Dote.
 - `FeatDefinitionManager` loads immutable feat definitions from embedded JSON. `CharacterSheet` owns `Feats` with source-owned slots, prerequisite alternatives/exemptions, repeatability, choice-matched dependencies, and stable-state activation. Sheet changes automatically recheck prerequisites; manual text requirements are informational. Format 25 persists selection IDs and choices; Views expose distinct acquisitions and slots. The minimal catalog remains Iniziativa Migliorata.
@@ -18,7 +20,7 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 Continue in small, separate changes:
 
-1. Agree on the next small backend step after TCP presence. `game-management.md` records the already confirmed choices for shared sheet control, master administration, and revocation without deleting sheets; implement those features incrementally.
+1. Introduce ProtocolManager command registration and minimum-role checks using RoleManager's registered features, passing the Session-owned ResourceManager by reference. Use `session-protocol.md` to finalize detailed message schemas before network integration; server ownership, user identity/token management, and each further subsystem remain separate steps.
 2. Add declarative support for the documented core-race gaps in small, separate changes.
 3. The planned feat infrastructure is implemented. Future sheet mutation APIs must maintain the feat recheck convention.
 4. Keep feat catalog expansion and catalog Views deferred. The race catalog View and further alternate racial features/races remain roadmap items, to address one at a time.
@@ -26,8 +28,10 @@ Continue in small, separate changes:
 ## Context Structure
 
 - [`model/README.md`](model/README.md): index of model subsystems. Start there, then read only the document relevant to the current change.
-- [`architecture.md`](architecture.md): cross-cutting architectural decisions. Read before changing ownership, persistence, Views, or the C boundary.
+- [`architecture.md`](architecture.md): cross-cutting architectural decisions and the session ResourceManager API/lifetime rules. Read before changing subsystem registration, ownership, persistence, Views, or the C boundary.
 - [`game-management.md`](game-management.md): implemented TCP presence slice, confirmed multiplayer requirements/structural decisions, and the larger proposed game lifecycle, permissions, sheet import, and recovery. Read before changing `core/play/` or planning further game management and networking.
+- [`session-roles.md`](session-roles.md): implemented RoleManager API, user-ID semantics, feature signatures, ownership, and permission-test coverage. Read before changing roles or consuming `roles.*` through ResourceManager.
+- [`session-protocol.md`](session-protocol.md): confirmed JSON/TCP, session-code, identity-token, and reconnection decisions, proposed admission/role messages, and remaining technical details. Read before changing the protocol or implementing the user subsystem; the new contract is not implemented yet.
 - [`development.md`](development.md): local build and test commands and required packages.
 - [`roadmap.md`](roadmap.md): pending model work and deferred post-character-sheet work. Read when selecting or planning the next implementation step.
 
