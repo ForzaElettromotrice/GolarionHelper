@@ -1,6 +1,7 @@
 # Architecture
 
 - The domain model is implemented in modern C++.
+- Rule categories are a closed system and must use enum classes. JSON may use stable English names, but parsers reject names outside the enum vocabulary. IDs and descriptive text remain strings. The current change aligns spell metadata and feat types/slot filters/Views; it does not silently migrate unrelated existing subsystems.
 - `core/` is the backend module container; `core/CMakeLists.txt` adds `sheet` and `play`. The sheet engine, catalogs, persistence, C bindings, and tests live in `core/sheet/`; `core/play/` owns the independent C++20 session model, function registry, TCP presence prototype, and diagnostic executables.
 - `golarion::play::Session` is the aggregate for play subsystems, analogous to `CharacterSheet`. Its constructor requires a host user ID. It owns ResourceManager first and RoleManager second, passing the registry by reference so it outlives the registered provider. Server ownership and the connected-user subsystem remain future steps; the existing TCP prototype remains separate.
 - The application target is native desktop software in C++. A minimal API with C linkage already exposes the sheet through FFI. Whether the future desktop frontend uses that boundary or a typed C++ application interface remains open; see `game-management.md` for the game-management design proposal.

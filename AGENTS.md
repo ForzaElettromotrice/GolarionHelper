@@ -26,6 +26,7 @@
 - Never allow C++ exceptions to cross the C API boundary.
 - Keep all parameters on the same line in function and constructor declarations.
 - Add public getters only when an actual call site needs them.
+- Treat the rules domain as a closed system: always use enum classes for categories and rule types, never open strings. Strings remain appropriate for instance/catalog IDs and descriptive text. JSON names must be converted to enums at the input boundary, rejecting unknown values.
 
 ## Testing
 

@@ -1,5 +1,13 @@
 # Model Context
 
+- [`granted-spells.md`](granted-spells.md): single-spell grants, own/shared usages, item bindings, effect JSON and format-29 persistence.
+
+- [`spells.md`](spells.md): spell definitions/catalog, class-list selection, slot grants, all three casting modes, container/format-27 persistence, and research for single-spell grants.
+
+- [`metamagic.md`](metamagic.md): typed applications, preparation/casting grant endpoints, verified rule distinctions, and pending runtime integration.
+
+- [`languages.md`](languages.md): granted/learned languages, learning quotas, reminders, persistence, and pending racial integration.
+
 - [`feats.md`](feats.md): per-character feat slots, selection, qualification, cleanup, and current runtime limitations.
 
 - [`feat-prerequisites.md`](feat-prerequisites.md): prerequisite value alternatives, source callbacks, and the boundary with slot eligibility and exemptions.
