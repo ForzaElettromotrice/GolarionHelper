@@ -1,4 +1,5 @@
 #include "golarion/persistence/json.hpp"
+#include "spellcastings_json.hpp"
 
 #include <nlohmann/json.hpp>
 
@@ -6,6 +7,7 @@
 #include <cstdint>
 #include <fstream>
 #include <iterator>
+#include <limits>
 #include <optional>
 #include <stdexcept>
 #include <string>
@@ -166,6 +168,51 @@ namespace
             .eyes = optionalFromJson<std::string>(json, "eyes"),
             .appearance = optionalFromJson<std::string>(json, "appearance")
         };
+    }
+
+    constexpr std::array LanguageOriginNames{
+        std::pair{golarion::LanguageOrigin::Intelligence, std::string_view("intelligence")},
+        std::pair{golarion::LanguageOrigin::Linguistics, std::string_view("linguistics")}
+    };
+
+    Json languagesToJson(const golarion::LanguagesData &data)
+    {
+        Json learned = Json::array();
+        for (const auto &entry : data.learned)
+            learned.push_back({{"languageId", entry.languageId}, {"origin", enumName(entry.origin, LanguageOriginNames)}});
+        return Json{{"intelligenceBonus", data.intelligenceBonus}, {"learned", std::move(learned)}};
+    }
+
+    golarion::LanguagesData languagesFromJson(const Json &json)
+    {
+        if (!json.at("learned").is_array()) throw std::invalid_argument("learned languages must be an array");
+        const auto &bonus = json.at("intelligenceBonus");
+        if (!bonus.is_number_integer() || bonus < 0 || bonus > std::numeric_limits<int>::max())
+            throw std::invalid_argument("intelligence language bonus must be a nonnegative integer");
+        golarion::LanguagesData data{bonus.get<int>(), {}};
+        for (const auto &entry : json.at("learned"))
+            data.learned.push_back({entry.at("languageId").get<std::string>(), enumValue(entry.at("origin"), LanguageOriginNames)});
+        return data;
+    }
+
+    Json grantedSpellsToJson(const golarion::GrantedSpellsData &data)
+    {
+        Json spells = Json::array();
+        for (const auto &entry : data.spells) spells.push_back({{"id", entry.id}, {"remaining", entry.remaining}});
+        return spells;
+    }
+
+    golarion::GrantedSpellsData grantedSpellsFromJson(const Json &json)
+    {
+        if (!json.is_array()) throw std::invalid_argument("granted spell state must be an array");
+        golarion::GrantedSpellsData data;
+        for (const auto &entry : json)
+        {
+            const auto &count = entry.at("remaining");
+            if (!count.is_number_integer() || count < 0 || count > std::numeric_limits<int>::max()) throw std::invalid_argument("invalid granted spell remaining uses");
+            data.spells.push_back({entry.at("id").get<std::string>(), count.get<int>()});
+        }
+        return data;
     }
 
     Json featsToJson(const golarion::FeatsData &data)
@@ -500,7 +547,8 @@ namespace
                 {"quantity", item.quantity},
                 {"choices", std::move(choices)},
                 {"containerId", item.containerId},
-                {"equipped", item.equipped}
+                {"equipped", item.equipped},
+                {"remainingUses", item.remainingUses ? Json(*item.remainingUses) : Json(nullptr)}
             });
         }
         return Json{
@@ -509,7 +557,7 @@ namespace
         };
     }
 
-    golarion::InventorySaveData inventoryFromJson(const Json &json)
+    golarion::InventorySaveData inventoryFromJson(const Json &json, bool requireUsageState)
     {
         std::vector<golarion::InventoryContainerSaveData> containers;
         containers.reserve(json.at("containers").size());
@@ -570,13 +618,27 @@ namespace
                     .optionIds = choice.at("optionIds").get<std::vector<std::string>>()
                 });
             }
+            std::optional<std::map<std::string, int>> remainingUses;
+            if (requireUsageState || (item.contains("remainingUses") && !item.at("remainingUses").is_null()))
+            {
+                const auto &states = item.at("remainingUses");
+                if (!states.is_object()) throw std::invalid_argument("item remaining uses must be an object");
+                remainingUses.emplace();
+                for (const auto &[id, count] : states.items())
+                {
+                    if (!count.is_number_integer() || count < 0 || count > std::numeric_limits<int>::max())
+                        throw std::invalid_argument("item remaining uses must be nonnegative integers");
+                    remainingUses->emplace(id, count.get<int>());
+                }
+            }
             items.push_back(golarion::InventoryItemSaveData{
                 .id = item.at("id").get<std::string>(),
                 .itemDefinitionId = item.at("itemDefinitionId").get<std::string>(),
                 .quantity = item.at("quantity").get<int>(),
                 .choices = std::move(choices),
                 .containerId = item.at("containerId").get<std::string>(),
-                .equipped = item.at("equipped").get<bool>()
+                .equipped = item.at("equipped").get<bool>(),
+                .remainingUses = std::move(remainingUses)
             });
         }
         return golarion::InventorySaveData{
@@ -664,7 +726,10 @@ namespace golarion::persistence
             {"attacks", attacksToJson(data.attacks)},
             {"conditions", conditionsToJson(data.conditions)},
             {"inventory", inventoryToJson(data.inventory)},
-            {"feats", featsToJson(data.feats)}
+            {"feats", featsToJson(data.feats)},
+            {"languages", languagesToJson(data.languages)},
+            {"spellcastings", spellcastingsToJson(data.spellcastings)},
+            {"grantedSpells", grantedSpellsToJson(data.grantedSpells)}
         }.dump(4);
     }
 
@@ -689,8 +754,11 @@ namespace golarion::persistence
             .skills = skillsFromJson(json.at("skills")),
             .attacks = json.contains("attacks") ? attacksFromJson(json.at("attacks")) : AttacksData{},
             .conditions = formatVersion >= 17 ? conditionsFromJson(json.at("conditions")) : ConditionManagerSaveData{},
-            .inventory = formatVersion >= 19 ? inventoryFromJson(json.at("inventory")) : InventorySaveData{},
-            .feats = formatVersion >= 25 ? featsFromJson(json.at("feats")) : FeatsData{}
+            .inventory = formatVersion >= 19 ? inventoryFromJson(json.at("inventory"), formatVersion >= 28) : InventorySaveData{},
+            .feats = formatVersion >= 25 ? featsFromJson(json.at("feats")) : FeatsData{},
+            .languages = formatVersion >= 26 ? languagesFromJson(json.at("languages")) : LanguagesData{},
+            .spellcastings = formatVersion >= 27 ? spellcastingsFromJson(json.at("spellcastings")) : SpellcastingsData{},
+            .grantedSpells = formatVersion >= 29 ? grantedSpellsFromJson(json.at("grantedSpells")) : GrantedSpellsData{}
         };
     }
 

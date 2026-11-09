@@ -32,7 +32,7 @@ namespace
             "id": " test ",
             "name": "Talento di prova",
             "description": "Descrizione di prova.",
-            "types": ["combat", "custom"],
+            "types": ["combat", "teamwork"],
             "requirements": [
                 {"description": "Requisito numerico", "expression": "@bab >= 1"},
                 {"description": "Verifica al tavolo"}
@@ -81,6 +81,8 @@ int main()
     assert(featDefinitionFromJson(repeatable).repeatability == FeatRepeatability::Unlimited);
     assert(parsed.id == "test");
     assert(parsed.types.size() == 2);
+    assert(parsed.types[0] == FeatType::Combat);
+    assert(parsed.types[1] == FeatType::Teamwork);
     assert(parsed.requirements[0].expression == "@bab >= 1");
     assert(!parsed.requirements[1].expression.has_value());
     const auto &option = parsed.choices.at(0).options.at(0);
@@ -101,6 +103,7 @@ int main()
         expectInvalid([&] { featDefinitionFromJson(invalid); });
     };
     rejectChange([](Json &j) { j["types"].push_back(" combat "); });
+    rejectChange([](Json &j) { j["types"] = {"custom"}; });
     rejectChange([](Json &j) { j["choices"].push_back(j["choices"][0]); });
     rejectChange([](Json &j) { j["choices"][0]["options"].push_back(j["choices"][0]["options"][0]); });
     rejectChange([](Json &j) { j["effects"].push_back(j["effects"][0]); });

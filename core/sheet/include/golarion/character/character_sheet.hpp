@@ -1,6 +1,9 @@
 #pragma once
 
 #include "golarion/character/feats.hpp"
+#include "golarion/character/languages.hpp"
+#include "golarion/character/spellcastings.hpp"
+#include "golarion/character/granted_spells.hpp"
 
 #include "golarion/character/action.hpp"
 #include "golarion/character/ability.hpp"
@@ -61,6 +64,14 @@ namespace golarion
         void selectFeat(std::string_view slotId, std::string_view featId, FeatChoices choices = {});
         void removeFeat(std::string_view slotId);
         void recheckFeatPrerequisites();
+        void setLanguageIntelligenceBonus(int bonus);
+        void addLanguage(std::string_view languageId, LanguageOrigin origin);
+        void removeLanguage(std::string_view languageId);
+        void consumeGrantedSpell(std::string_view id);
+        void refillGrantedSpell(std::string_view id);
+        void restoreGrantedSpell(std::string_view id, int amount);
+        void refillItemUsagePool(std::string_view itemId, std::string_view poolId);
+        void restoreItemUsagePool(std::string_view itemId, std::string_view poolId, int amount);
         void selectAlternateRacialFeature(std::string_view featureId);
         void removeAlternateRacialFeature(std::string_view featureId);
         void setRacialChoice(std::string_view elementId, std::string_view choiceId, std::vector<std::string> optionIds);
@@ -112,6 +123,9 @@ namespace golarion
         CarryingCapacity carryingCapacity_;
         Encumbrance encumbrance_;
         SizeManager sizeManager_;
+        Languages languages_;
+        Spellcastings spellcastings_;
+        GrantedSpells grantedSpells_;
         Feats feats_;
         ConditionManager conditionManager_;
         std::optional<Inventory> inventory_;

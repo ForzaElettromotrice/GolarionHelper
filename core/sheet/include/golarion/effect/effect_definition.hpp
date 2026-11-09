@@ -1,6 +1,8 @@
 #pragma once
 
 #include "golarion/character/carrying_capacity.hpp"
+#include "golarion/character/granted_spell.hpp"
+#include "golarion/character/feat_slot_filter.hpp"
 #include "golarion/character/movement.hpp"
 #include "golarion/character/size.hpp"
 #include "golarion/resource/modifier.hpp"
@@ -58,13 +60,40 @@ namespace golarion
         std::string message;
     };
 
+    struct LanguageGrantEffectDefinition
+    {
+        std::string id;
+        std::string languageId;
+    };
+
+    struct FeatSlotGrantEffectDefinition
+    {
+        std::string id;
+        FeatSlotFilter filter = AnyFeat{};
+    };
+
+    struct SpellGrantEffectDefinition
+    {
+        std::string id;
+        std::string spellId;
+        GrantedSpellUsage usage;
+        int capacity = 0;
+        std::optional<std::string> poolId = std::nullopt;
+        int cost = 1;
+    };
+
+    void validateSpellGrantEffectDefinition(const SpellGrantEffectDefinition &effect);
+
     using EffectDefinition = std::variant<
         ModifierEffectDefinition,
         ContributionEffectDefinition,
         SizeBaseEffectDefinition,
         MovementGrantEffectDefinition,
         CarryingBodyTypeEffectDefinition,
-        ReminderEffectDefinition>;
+        ReminderEffectDefinition,
+        LanguageGrantEffectDefinition,
+        FeatSlotGrantEffectDefinition,
+        SpellGrantEffectDefinition>;
 
     inline const std::string &effectId(const EffectDefinition &definition)
     {

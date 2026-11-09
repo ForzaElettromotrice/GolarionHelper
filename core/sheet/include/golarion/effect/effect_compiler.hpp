@@ -13,6 +13,7 @@ namespace golarion
     {
         std::string instanceId;
         std::string source;
+        std::function<std::shared_ptr<UsagePool>(std::string_view)> usagePool{};
     };
 
     using EffectCleanup = std::function<void()>;

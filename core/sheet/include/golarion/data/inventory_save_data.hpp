@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <map>
 #include <optional>
 #include <string>
 #include <vector>
@@ -47,6 +48,7 @@ namespace golarion
         std::vector<ItemChoiceSelectionSaveData> choices;
         std::string containerId;
         bool equipped;
+        std::optional<std::map<std::string, int>> remainingUses = std::nullopt;
     };
 
     struct InventorySaveData

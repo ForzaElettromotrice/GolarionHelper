@@ -5,6 +5,8 @@
 #include <nlohmann/json.hpp>
 
 #include <optional>
+#include <limits>
+#include <set>
 #include <stdexcept>
 #include <string>
 #include <string_view>
@@ -187,6 +189,77 @@ namespace golarion
             return ReminderEffectDefinition{
                 .id = id,
                 .message = normalize(json.at("message").get<std::string>())
+            };
+        }
+
+        if (type == "featSlotGrant")
+        {
+            FeatSlotFilter filter = AnyFeat{};
+            if (json.contains("filter"))
+            {
+                const auto &value = json.at("filter");
+                if (!value.is_object()) throw std::invalid_argument("feat slot filter must be an object");
+                const auto kind = value.at("kind").get<std::string>();
+                if (kind == "any")
+                {
+                    if (value.size() != 1) throw std::invalid_argument("any feat filter cannot contain restrictions");
+                }
+                else if (kind == "type")
+                {
+                    if (value.size() != 2 || !value.contains("featType")) throw std::invalid_argument("type feat filter requires only featType");
+                    filter = FeatTypeFilter{featTypeFromName(normalize(value.at("featType").get<std::string>()))};
+                }
+                else if (kind == "ids")
+                {
+                    if (value.size() != 2 || !value.contains("featIds")) throw std::invalid_argument("ID feat filter requires only featIds");
+                    const auto &ids = value.at("featIds");
+                    if (!ids.is_array() || ids.empty()) throw std::invalid_argument("featIds must be a nonempty array");
+                    FeatIdFilter result;
+                    std::set<std::string> seen;
+                    for (const auto &entry : ids)
+                    {
+                        auto featId = normalize(entry.get<std::string>());
+                        if (!seen.insert(featId).second) throw std::invalid_argument("duplicate feat ID in slot filter");
+                        result.ids.push_back(std::move(featId));
+                    }
+                    filter = std::move(result);
+                }
+                else throw std::invalid_argument("unknown feat slot filter kind: " + kind);
+            }
+            return FeatSlotGrantEffectDefinition{.id = id, .filter = std::move(filter)};
+        }
+
+        if (type == "spellGrant")
+        {
+            const auto &usage = json.at("usage");
+            const auto kind = usage.at("type").get<std::string>();
+            GrantedSpellUsage mode;
+            if (kind == "limited") mode = GrantedSpellUsage::Limited;
+            else if (kind == "atWill") mode = GrantedSpellUsage::AtWill;
+            else if (kind == "constant") mode = GrantedSpellUsage::Constant;
+            else if (kind == "sharedPool") mode = GrantedSpellUsage::SharedPool;
+            else throw std::invalid_argument("unknown granted spell usage: " + kind);
+            const auto positive = [](const Json &value)
+            {
+                if (!value.is_number_integer() || value <= 0 || value > std::numeric_limits<int>::max()) throw std::invalid_argument("spell usage value must be a positive integer");
+                return value.get<int>();
+            };
+            SpellGrantEffectDefinition effect{id, normalize(json.at("spellId").get<std::string>()), mode};
+            if (usage.contains("capacity")) effect.capacity = positive(usage.at("capacity"));
+            if (usage.contains("poolId")) effect.poolId = normalize(usage.at("poolId").get<std::string>());
+            if (usage.contains("cost")) effect.cost = positive(usage.at("cost"));
+            for (const auto &[key, value] : usage.items())
+                if (key != "type" && !(mode == GrantedSpellUsage::Limited && key == "capacity") &&
+                    !(mode == GrantedSpellUsage::SharedPool && (key == "poolId" || key == "cost")))
+                    throw std::invalid_argument("unexpected spell usage field: " + key);
+            validateSpellGrantEffectDefinition(effect);
+            return effect;
+        }
+        if (type == "languageGrant")
+        {
+            return LanguageGrantEffectDefinition{
+                .id = normalize(json.at("id").get<std::string>()),
+                .languageId = normalize(json.at("languageId").get<std::string>())
             };
         }
         throw std::invalid_argument("unknown effect definition type: " + type);

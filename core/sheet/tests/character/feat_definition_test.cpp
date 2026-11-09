@@ -13,7 +13,7 @@ int main()
         .id = "powerAttack",
         .name = "Attacco Poderoso",
         .description = "Prerequisiti: Forza 13, Bonus di Attacco Base +1. Beneficio: si possono sferrare attacchi in mischia particolarmente efficaci sacrificando la precisione.",
-        .types = {"combat"},
+        .types = {FeatType::Combat},
         .requirements = {
             FeatRequirementDefinition{
                 .description = "Richiede Forza 13",
@@ -31,7 +31,7 @@ int main()
     };
 
     assert(powerAttack.id == "powerAttack");
-    assert(powerAttack.types == std::vector<std::string>{"combat"});
+    assert(powerAttack.types == std::vector<FeatType>{FeatType::Combat});
     assert(powerAttack.requirements.size() == 2);
     assert(powerAttack.requirements[0].expression == "@str >= 13");
     assert(powerAttack.choices.empty());
@@ -41,7 +41,7 @@ int main()
         .id = "weaponFocus",
         .name = "Arma Focalizzata",
         .description = "Prerequisiti: competenza nell'arma prescelta, Bonus di Attacco Base +1. Beneficio: si sceglie un tipo di arma con cui si è particolarmente efficaci. Speciale: si può acquisire questo talento più volte scegliendo ogni volta un'arma diversa.",
-        .types = {"combat"},
+        .types = {FeatType::Combat},
         .requirements = {FeatRequirementDefinition{
             .description = "Richiede Bonus di Attacco Base +1",
             .expression = "@bab >= 1"

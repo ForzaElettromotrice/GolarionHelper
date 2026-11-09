@@ -524,6 +524,16 @@ namespace golarion
         items_.erase(item);
     }
 
+    void Inventory::refillUsagePool(std::string_view itemId, std::string_view poolId)
+    {
+        items_.at(normalize(itemId)).usagePool(poolId)->refill();
+    }
+
+    void Inventory::restoreUsagePool(std::string_view itemId, std::string_view poolId, int amount)
+    {
+        items_.at(normalize(itemId)).usagePool(poolId)->restore(amount);
+    }
+
     void Inventory::addMoney(CoinDenomination denomination, int quantity, std::string_view containerId)
     {
         money_.add(denomination, quantity, containerId);
@@ -587,7 +597,8 @@ namespace golarion
                 .containerId = itemContainerIds_.at(id),
                 .ownedContainerId = definition.container.has_value() ? std::optional<std::string>(itemContainerId(id)) : std::nullopt,
                 .equipped = equipment_.isEquipped(id),
-                .possessionEffectsActive = appliedPossessionEffects_.contains(id)
+                .possessionEffectsActive = appliedPossessionEffects_.contains(id),
+                .description = definition.description
             });
         }
 
@@ -712,7 +723,13 @@ namespace golarion
                 .quantity = item.quantity_,
                 .choices = std::move(choices),
                 .containerId = itemContainerIds_.at(id),
-                .equipped = equipment_.isEquipped(id)
+                .equipped = equipment_.isEquipped(id),
+                .remainingUses = [&item]
+                {
+                    std::map<std::string, int> remaining;
+                    for (const auto &[poolId, pool] : item.usagePools_) remaining.emplace(poolId, pool->remaining());
+                    return remaining;
+                }()
             });
         }
 
@@ -794,7 +811,8 @@ namespace golarion
                             });
                         }
                         return choices;
-                    }()
+                    }(),
+                    .remainingUses = item->remainingUses
                 }, item->containerId);
                 item = pendingItems.erase(item);
                 addedItem = true;

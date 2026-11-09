@@ -1,6 +1,7 @@
 #pragma once
 
 #include "golarion/character/feat_prerequisite_registry.hpp"
+#include "golarion/character/feat_slot_filter.hpp"
 #include "golarion/data/feats_data.hpp"
 #include "golarion/effect/effect_compiler.hpp"
 #include "golarion/view/feats_view.hpp"
@@ -12,10 +13,6 @@ namespace golarion
 {
     inline constexpr std::string_view FeatSlotsResource = "feat.slots";
 
-    struct AnyFeat {};
-    struct FeatTypeFilter { std::string type; };
-    struct FeatIdFilter { std::vector<std::string> ids; };
-    using FeatSlotFilter = std::variant<AnyFeat, FeatTypeFilter, FeatIdFilter>;
     using FeatChoices = std::map<std::string, std::vector<std::string>>;
 
     struct FeatSlot

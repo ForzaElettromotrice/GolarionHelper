@@ -1,6 +1,8 @@
 #pragma once
 
 #include "golarion/view/feats_view.hpp"
+#include "golarion/view/languages_view.hpp"
+#include "golarion/character/granted_spell.hpp"
 
 #include "golarion/view/actions_view.hpp"
 #include "golarion/view/ability_view.hpp"
@@ -34,6 +36,8 @@ namespace golarion
         CharacterIdentityView identity;
         RaceView race;
         FeatsView feats;
+        LanguagesView languages;
+        std::vector<GrantedSpellView> grantedSpells;
         ActionsView actions;
         RemindersView reminders;
         std::vector<AbilityView> abilities;

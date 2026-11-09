@@ -38,6 +38,8 @@ namespace golarion
         void unequip(std::string_view itemId, std::optional<std::string> containerId = std::nullopt);
         void moveItem(std::string_view itemId, std::optional<std::string> containerId = std::nullopt);
         void removeItem(std::string_view itemId);
+        void refillUsagePool(std::string_view itemId, std::string_view poolId);
+        void restoreUsagePool(std::string_view itemId, std::string_view poolId, int amount);
         void addMoney(CoinDenomination denomination, int quantity, std::string_view containerId);
         void removeMoney(CoinDenomination denomination, int quantity, std::string_view containerId);
         InventoryView toView() const;

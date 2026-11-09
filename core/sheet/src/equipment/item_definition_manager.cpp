@@ -1,4 +1,5 @@
 #include "golarion/equipment/item_definition_manager.hpp"
+#include <limits>
 
 #include "golarion/effect/effect_json.hpp"
 #include "golarion/equipment/item_definition_catalog.hpp"
@@ -220,6 +221,22 @@ namespace
         return choices;
     }
 
+    std::vector<golarion::ItemUsagePoolDefinition> usagePoolsFromJson(const Json &json)
+    {
+        if (!json.is_array()) throw std::invalid_argument("item usage pools must be an array");
+        std::vector<golarion::ItemUsagePoolDefinition> definitions;
+        for (const auto &entry : json)
+        {
+            const auto &capacity = entry.at("capacity");
+            if (!capacity.is_number_integer() || capacity <= 0 || capacity > std::numeric_limits<int>::max())
+                throw std::invalid_argument("item usage capacity must be a positive integer");
+            if (entry.contains("recovery")) throw std::invalid_argument("item usage recovery belongs in descriptive text");
+            definitions.push_back({golarion::normalize(entry.at("id").get<std::string>()), capacity.get<int>()});
+        }
+        golarion::createItemUsagePools(definitions);
+        return definitions;
+    }
+
     golarion::ItemDefinition itemDefinitionFromJson(const Json &json)
     {
         const std::string id = golarion::normalize(json.at("id").get<std::string>());
@@ -233,7 +250,9 @@ namespace
             .slot = equipmentSlotFromJson(json),
             .container = itemContainerDefinitionFromJson(json),
             .effects = itemEffectsFromJson(json.value("effects", Json::array()), id),
-            .choices = itemChoicesFromJson(json.value("choices", Json::array()), id)
+            .choices = itemChoicesFromJson(json.value("choices", Json::array()), id),
+            .usagePools = usagePoolsFromJson(json.value("usagePools", Json::array())),
+            .description = json.value("description", std::string{})
         };
         if (definition.weightGrams < 0)
         {
@@ -253,9 +272,9 @@ namespace
             {
                 throw std::invalid_argument("coin item definition cannot be equipped or contain items: " + definition.id);
             }
-            if (!definition.effects.empty() || !definition.choices.empty())
+            if (!definition.effects.empty() || !definition.choices.empty() || !definition.usagePools.empty())
             {
-                throw std::invalid_argument("coin item definition cannot have effects or choices: " + definition.id);
+                throw std::invalid_argument("coin item definition cannot have effects, choices or usage pools: " + definition.id);
             }
         }
         return definition;

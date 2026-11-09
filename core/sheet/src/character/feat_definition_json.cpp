@@ -125,13 +125,13 @@ namespace golarion
             }
             const Json &typesJson = json.at("types");
             requireArray(typesJson, "types");
-            std::vector<std::string> types;
+            std::vector<FeatType> types;
             std::set<std::string> typeIds;
             for (const Json &entry : typesJson)
             {
                 const std::string type = normalize(entry.get<std::string>());
                 registerId(typeIds, type, "type");
-                types.push_back(type);
+                types.push_back(featTypeFromName(type));
             }
             const auto repeatabilityName = json.value("repeatability", std::string("once"));
             const auto repeatability = repeatabilityName == "once" ? FeatRepeatability::Once

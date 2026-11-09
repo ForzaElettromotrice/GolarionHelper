@@ -273,7 +273,7 @@ int main()
     assert(view.combatManeuvers.maneuvers[0].bonus.abilityOptions[0].totalValue == 1);
 
     CharacterSheetSaveData saveData = sheet.toSaveData();
-    assert(saveData.formatVersion == 25);
+    assert(saveData.formatVersion == 29);
     assert(saveData.identity.name == "Seelah");
     assert(saveData.identity.playerName == "Giocatore");
     assert(saveData.identity.alignment == Alignment::LawfulGood);
@@ -449,6 +449,7 @@ int main()
         }
     };
     const std::filesystem::path inventorySavePath = "character_sheet_inventory_test_save.json";
+    for (auto &item : saveData.inventory.items) item.remainingUses = std::map<std::string, int>{};
     persistence::saveToFile(saveData, inventorySavePath);
     CharacterSheet inventoryLoadedSheet = CharacterSheet::load(inventorySavePath);
     const CharacterSheetView inventoryLoadedView = inventoryLoadedSheet.toView();

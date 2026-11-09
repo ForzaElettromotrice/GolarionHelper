@@ -50,14 +50,14 @@ int main()
         assert(feats.toView().slots.size() == 3);
         expectInvalid([&] { feats.setLevel(-1); });
 
-        resources.addToCollection(FeatSlotsResource, FeatSlot{.id = "class.combat", .source = "Classe", .filter = FeatTypeFilter{" combat "}});
+        resources.addToCollection(FeatSlotsResource, FeatSlot{.id = "class.combat", .source = "Classe", .filter = FeatTypeFilter{FeatType::Combat}});
         resources.addToCollection(FeatSlotsResource, FeatSlot{.id = "class.list", .source = "Classe", .filter = FeatIdFilter{{"improvedInitiative"}}});
         resources.addToCollection(FeatSlotsResource, FeatSlot{.id = "class.other", .source = "Classe", .filter = FeatIdFilter{{"other"}}});
         assert(feats.qualifies("class.combat", initiative));
         assert(feats.qualifies("class.list", initiative));
         for (const auto &slot : feats.toView().slots)
         {
-            if (slot.id == "class.combat") assert(slot.allowedType == "combat");
+            if (slot.id == "class.combat") assert(slot.allowedType == FeatType::Combat);
             if (slot.id == "class.list") assert(slot.allowedFeatIds == std::vector<std::string>{"improvedInitiative"});
         }
         assert(!feats.qualifies("class.other", initiative));
@@ -103,13 +103,13 @@ int main()
         assert(feats.qualifies("class.combat", restricted));
 
         resources.addToCollection(FeatSlotsResource, FeatSlot{
-            .id = "exempt", .source = "Fonte speciale", .filter = FeatTypeFilter{"combat"},
+            .id = "exempt", .source = "Fonte speciale", .filter = FeatTypeFilter{FeatType::Combat},
             .exempts = [](const auto &, const auto &) { return true; }
         });
         assert(feats.qualifies("exempt", restricted));
-        restricted.types = {"general"};
+        restricted.types = {FeatType::General};
         assert(!feats.qualifies("exempt", restricted));
-        restricted.types = {"combat"};
+        restricted.types = {FeatType::Combat};
         restricted.requirements.clear();
         restricted.choices = {{"weapon", "Scegli", 1, {{"dagger", "Pugnale", {{"Intelligenza richiesta", "@int >= 13"}}, {}}}}};
         assert(!feats.qualifies("class.combat", restricted));

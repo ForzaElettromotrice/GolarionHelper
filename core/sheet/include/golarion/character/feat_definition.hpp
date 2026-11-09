@@ -1,6 +1,7 @@
 #pragma once
 
 #include "golarion/effect/effect_definition.hpp"
+#include "golarion/character/feat_type.hpp"
 
 #include <cstddef>
 #include <map>
@@ -47,7 +48,7 @@ namespace golarion
         std::string id;
         std::string name;
         std::string description;
-        std::vector<std::string> types;
+        std::vector<FeatType> types;
         std::vector<FeatRequirementDefinition> requirements{};
         std::vector<EffectDefinition> effects{};
         std::vector<FeatChoiceDefinition> choices{};

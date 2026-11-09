@@ -146,23 +146,32 @@ namespace golarion
         : id_(normalize(definition.id)),
           itemDefinition_(ItemDefinitionManager::instance().get(definition.itemDefinitionId)),
           quantity_(definition.quantity),
-          choices_(validatedChoices(itemDefinition_.get(), std::move(definition.choices)))
+          choices_(validatedChoices(itemDefinition_.get(), std::move(definition.choices))),
+          usagePools_(createItemUsagePools(itemDefinition_.get().usagePools, definition.remainingUses))
     {
         if (quantity_ < 1)
         {
             throw std::invalid_argument("item quantity must be at least 1");
         }
-        if (quantity_ != 1 && (!itemDefinition_.get().effects.empty() || !itemDefinition_.get().choices.empty()))
+        if (quantity_ != 1 && (!itemDefinition_.get().effects.empty() || !itemDefinition_.get().choices.empty() || !usagePools_.empty()))
         {
-            throw std::invalid_argument("item instances with effects or choices must have quantity 1");
+            throw std::invalid_argument("item instances with effects, choices or usage pools must have quantity 1");
         }
 
         const auto compile = [this](const ItemEffectDefinition &effect, const std::string &effectPath)
         {
+            if (const auto *spell = std::get_if<SpellGrantEffectDefinition>(&effect.effect); spell && spell->usage == GrantedSpellUsage::Limited)
+                throw std::invalid_argument("limited item spells must reference an item usage pool");
             const std::string id = effectId(effect.effect);
             EffectApply apply = compileEffect(effect.effect, EffectContext{
                 .instanceId = itemEffectInstanceId(id_, effectPath),
-                .source = itemDefinition_.get().name
+                .source = itemDefinition_.get().name,
+                .usagePool = [pools = usagePools_](std::string_view id)
+                {
+                    const auto found = pools.find(normalize(id));
+                    if (found == pools.end()) throw std::invalid_argument("unknown item usage pool in effect");
+                    return found->second;
+                }
             });
             if (!apply)
             {
@@ -208,6 +217,13 @@ namespace golarion
     std::int64_t ItemInstance::weightGrams() const
     {
         return totalWeight(itemDefinition_.get(), quantity_);
+    }
+
+    std::shared_ptr<ItemUsagePool> ItemInstance::usagePool(std::string_view id)
+    {
+        const auto found = usagePools_.find(normalize(id));
+        if (found == usagePools_.end()) throw std::invalid_argument("unknown item usage pool");
+        return found->second;
     }
 
     std::int64_t ItemInstance::volumeMilliliters() const

@@ -55,6 +55,7 @@ namespace golarion
         std::optional<std::string> ownedContainerId;
         bool equipped;
         bool possessionEffectsActive;
+        std::string description;
     };
 
     struct InventoryContainerView

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "golarion/character/feat_type.hpp"
+
 #include <optional>
 #include <string>
 #include <vector>
@@ -25,7 +27,7 @@ namespace golarion
         std::string id;
         std::string name;
         std::string description;
-        std::vector<std::string> types;
+        std::vector<FeatType> types;
         std::vector<FeatChoiceView> choices;
         bool active;
     };
@@ -36,7 +38,7 @@ namespace golarion
         std::string source;
         std::optional<std::string> featId;
         // No type and no IDs means unrestricted.
-        std::optional<std::string> allowedType;
+        std::optional<FeatType> allowedType;
         std::vector<std::string> allowedFeatIds;
     };
 

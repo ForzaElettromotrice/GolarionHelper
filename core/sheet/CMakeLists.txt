@@ -58,6 +58,19 @@ add_library(golarion_model STATIC
     src/character/feat_definition_manager.cpp
     src/character/feat_prerequisite_registry.cpp
     src/character/feats.cpp
+    src/character/languages.cpp
+    src/character/spell_definition.cpp
+    src/character/spellcasting.cpp
+    src/character/spellcastings.cpp
+    src/character/granted_spells.cpp
+    src/character/prepared_spellcasting.cpp
+    src/character/spontaneous_spellcasting.cpp
+    src/character/flexible_spellcasting.cpp
+    src/character/spell_preparation_cost.cpp
+    src/character/spell_preparation_rules.cpp
+    src/character/metamagic.cpp
+    src/character/spell_definition_json.cpp
+    src/character/spell_definition_manager.cpp
     src/effect/effect_compiler.cpp
     src/effect/effect_json.cpp
     src/character/reminder.cpp
@@ -73,6 +86,7 @@ add_library(golarion_model STATIC
     src/equipment/equipment_slot.cpp
     src/equipment/inventory.cpp
     src/equipment/item.cpp
+    src/equipment/item_usage_pool.cpp
     src/equipment/item_definition_manager.cpp
     src/equipment/money.cpp
     src/resource/modifier.cpp
@@ -82,10 +96,19 @@ add_library(golarion_model STATIC
     src/resource/contribution.cpp
     src/resource/contribution_set.cpp
     src/resource/resource_manager.cpp
+    src/resource/usage_pool.cpp
     src/util/string_utils.cpp
 )
 
 find_package(nlohmann_json 3.12 REQUIRED)
+
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/resources/spells.json")
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/resources/spells.json" SPELL_DEFINITION_CATALOG_JSON)
+configure_file(
+    src/character/spell_definition_catalog.hpp.in
+    "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/character/spell_definition_catalog.hpp"
+    @ONLY
+)
 
 file(READ "${CMAKE_CURRENT_SOURCE_DIR}/resources/items.json" ITEM_DEFINITION_CATALOG_JSON)
 configure_file(
@@ -111,6 +134,7 @@ configure_file(
 
 add_library(golarion_persistence STATIC
     src/persistence/json.cpp
+    src/persistence/spellcastings_json.cpp
 )
 
 set_target_properties(golarion_persistence PROPERTIES POSITION_INDEPENDENT_CODE ON)
@@ -158,6 +182,65 @@ else()
 endif()
 
 if(BUILD_TESTING)
+    add_executable(granted_spells_test tests/character/granted_spells_test.cpp src/equipment/item_definition_manager.cpp)
+    target_include_directories(granted_spells_test PRIVATE tests/fixtures/item_usage)
+    target_link_libraries(granted_spells_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME granted_spells_test COMMAND granted_spells_test)
+
+    # Compile the catalog loader against an isolated fixture, without adding test items to production.
+    add_executable(item_usage_pool_test tests/equipment/item_usage_pool_test.cpp src/equipment/item_definition_manager.cpp)
+    target_include_directories(item_usage_pool_test PRIVATE tests/fixtures/item_usage)
+    target_link_libraries(item_usage_pool_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME item_usage_pool_test COMMAND item_usage_pool_test)
+
+    add_executable(spellcasting_persistence_test tests/character/spellcasting_persistence_test.cpp)
+    target_link_libraries(spellcasting_persistence_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME spellcasting_persistence_test COMMAND spellcasting_persistence_test)
+
+    add_executable(spellcastings_test tests/character/spellcastings_test.cpp)
+    target_link_libraries(spellcastings_test PRIVATE golarion_model)
+    add_test(NAME spellcastings_test COMMAND spellcastings_test)
+
+    add_executable(flexible_spellcasting_test tests/character/flexible_spellcasting_test.cpp)
+    target_link_libraries(flexible_spellcasting_test PRIVATE golarion_model)
+    add_test(NAME flexible_spellcasting_test COMMAND flexible_spellcasting_test)
+
+    add_executable(spontaneous_spellcasting_test tests/character/spontaneous_spellcasting_test.cpp)
+    target_link_libraries(spontaneous_spellcasting_test PRIVATE golarion_model)
+    add_test(NAME spontaneous_spellcasting_test COMMAND spontaneous_spellcasting_test)
+
+    add_executable(prepared_metamagic_test tests/character/prepared_metamagic_test.cpp)
+    target_link_libraries(prepared_metamagic_test PRIVATE golarion_model)
+    add_test(NAME prepared_metamagic_test COMMAND prepared_metamagic_test)
+
+    add_executable(metamagic_test tests/character/metamagic_test.cpp)
+    target_link_libraries(metamagic_test PRIVATE golarion_model)
+    add_test(NAME metamagic_test COMMAND metamagic_test)
+
+    add_executable(spell_preparation_rules_test tests/character/spell_preparation_rules_test.cpp)
+    target_link_libraries(spell_preparation_rules_test PRIVATE golarion_model)
+    add_test(NAME spell_preparation_rules_test COMMAND spell_preparation_rules_test)
+
+    add_executable(spell_preparation_cost_test tests/character/spell_preparation_cost_test.cpp)
+    target_link_libraries(spell_preparation_cost_test PRIVATE golarion_model)
+    add_test(NAME spell_preparation_cost_test COMMAND spell_preparation_cost_test)
+
+    add_executable(prepared_spellcasting_test tests/character/prepared_spellcasting_test.cpp)
+    target_link_libraries(prepared_spellcasting_test PRIVATE golarion_model)
+    add_test(NAME prepared_spellcasting_test COMMAND prepared_spellcasting_test)
+
+    add_executable(spellcasting_test tests/character/spellcasting_test.cpp)
+    target_link_libraries(spellcasting_test PRIVATE golarion_model)
+    add_test(NAME spellcasting_test COMMAND spellcasting_test)
+
+    add_executable(spell_definition_manager_test tests/character/spell_definition_manager_test.cpp)
+    target_link_libraries(spell_definition_manager_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME spell_definition_manager_test COMMAND spell_definition_manager_test)
+
+    add_executable(languages_test tests/character/languages_test.cpp)
+    target_link_libraries(languages_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME languages_test COMMAND languages_test)
+
     add_executable(feats_test tests/character/feats_test.cpp)
     target_link_libraries(feats_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
     add_test(NAME feats_test COMMAND feats_test)
@@ -221,6 +304,10 @@ if(BUILD_TESTING)
     add_executable(feat_definition_test tests/character/feat_definition_test.cpp)
     target_link_libraries(feat_definition_test PRIVATE golarion_model)
     add_test(NAME feat_definition_test COMMAND feat_definition_test)
+
+    add_executable(spell_definition_test tests/character/spell_definition_test.cpp)
+    target_link_libraries(spell_definition_test PRIVATE golarion_model)
+    add_test(NAME spell_definition_test COMMAND spell_definition_test)
 
     add_executable(race_definition_test tests/character/race_definition_test.cpp)
     target_link_libraries(race_definition_test PRIVATE golarion_model)

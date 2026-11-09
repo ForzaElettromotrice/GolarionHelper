@@ -58,6 +58,9 @@ namespace golarion
           carryingCapacity_(resourceManager_),
           encumbrance_(resourceManager_, carryingCapacity_),
           sizeManager_(resourceManager_),
+          languages_(resourceManager_, [this] { return skills_.skill(SkillType::Linguistics).toSaveData().ranks; }),
+          spellcastings_(resourceManager_),
+          grantedSpells_(resourceManager_),
           feats_(resourceManager_),
           conditionManager_(resourceManager_),
           race_(resourceManager_)
@@ -78,7 +81,7 @@ namespace golarion
 
     CharacterSheet::CharacterSheet(const CharacterSheetSaveData &data) : CharacterSheet()
     {
-        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24 && data.formatVersion != 25)
+        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24 && data.formatVersion != 25 && data.formatVersion != 26 && data.formatVersion != 27 && data.formatVersion != 28 && data.formatVersion != 29)
         {
             throw std::invalid_argument("unsupported character sheet format version: " + std::to_string(data.formatVersion));
         }
@@ -108,8 +111,11 @@ namespace golarion
         conditionManager_.load(data.conditions);
         inventory_->load(data.inventory);
         feats_.load(data.feats);
+        languages_.load(data.languages);
         hitPoints_.reconcileConditionEntries();
         feats_.recheckPrerequisites();
+        if (data.formatVersion >= 27) spellcastings_.load(data.spellcastings);
+        if (data.formatVersion >= 29) grantedSpells_.load(data.grantedSpells);
     }
 
     CharacterSheet CharacterSheet::load(const std::filesystem::path &path)
@@ -121,6 +127,12 @@ namespace golarion
     {
         identity_.setName(name);
     }
+
+    void CharacterSheet::consumeGrantedSpell(std::string_view id) { grantedSpells_.consume(id); }
+    void CharacterSheet::refillGrantedSpell(std::string_view id) { grantedSpells_.refill(id); }
+    void CharacterSheet::restoreGrantedSpell(std::string_view id, int amount) { grantedSpells_.restore(id, amount); }
+    void CharacterSheet::refillItemUsagePool(std::string_view itemId, std::string_view poolId) { inventory_->refillUsagePool(itemId, poolId); }
+    void CharacterSheet::restoreItemUsagePool(std::string_view itemId, std::string_view poolId, int amount) { inventory_->restoreUsagePool(itemId, poolId, amount); }
 
     void CharacterSheet::setPlayerName(std::string_view playerName)
     {
@@ -208,6 +220,21 @@ namespace golarion
         feats_.recheckPrerequisites();
     }
 
+    void CharacterSheet::setLanguageIntelligenceBonus(int bonus)
+    {
+        languages_.setIntelligenceBonus(bonus);
+    }
+
+    void CharacterSheet::addLanguage(std::string_view languageId, LanguageOrigin origin)
+    {
+        languages_.add(languageId, origin);
+    }
+
+    void CharacterSheet::removeLanguage(std::string_view languageId)
+    {
+        languages_.remove(languageId);
+    }
+
     void CharacterSheet::selectAlternateRacialFeature(std::string_view featureId)
     {
         race_.selectAlternateFeature(featureId);
@@ -251,6 +278,7 @@ namespace golarion
     void CharacterSheet::setSkillRanks(SkillType type, int ranks)
     {
         skills_.setRanks(type, ranks);
+        languages_.refreshReminders();
         feats_.recheckPrerequisites();
     }
 
@@ -325,6 +353,7 @@ namespace golarion
 
     CharacterSheetView CharacterSheet::toView(const StrikeCalculationContext &strikeContext)
     {
+        languages_.refreshReminders();
         hitPoints_.reconcileConditionEntries();
         feats_.recheckPrerequisites();
         EncumbranceView encumbranceView = encumbrance_.toView();
@@ -340,6 +369,8 @@ namespace golarion
             .identity = identity_.toView(),
             .race = race_.toView(),
             .feats = feats_.toView(),
+            .languages = languages_.toView(),
+            .grantedSpells = grantedSpells_.toView(),
             .actions = actionManager_.toView(),
             .reminders = reminderManager_.toView(),
             .abilities = std::move(abilityViews),
@@ -374,7 +405,7 @@ namespace golarion
         }
 
         return CharacterSheetSaveData{
-            .formatVersion = 25,
+            .formatVersion = 29,
             .identity = identity_.toSaveData(),
             .race = race_.toSaveData(),
             .abilities = std::move(abilityData),
@@ -383,7 +414,10 @@ namespace golarion
             .attacks = attacks_.toData(),
             .conditions = conditionManager_.toSaveData(),
             .inventory = inventory_->toSaveData(),
-            .feats = feats_.toData()
+            .feats = feats_.toData(),
+            .languages = languages_.toData(),
+            .spellcastings = spellcastings_.toData(),
+            .grantedSpells = grantedSpells_.toData()
         };
     }
 

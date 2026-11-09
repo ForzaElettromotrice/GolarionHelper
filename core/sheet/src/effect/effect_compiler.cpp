@@ -3,6 +3,9 @@
 #include "golarion/character/carrying_capacity.hpp"
 #include "golarion/character/movement.hpp"
 #include "golarion/character/reminder.hpp"
+#include "golarion/character/languages.hpp"
+#include "golarion/character/granted_spells.hpp"
+#include "golarion/character/feats.hpp"
 #include "golarion/character/size.hpp"
 #include "golarion/resource/contribution.hpp"
 #include "golarion/resource/modifier.hpp"
@@ -15,6 +18,27 @@
 
 namespace golarion
 {
+    void validateSpellGrantEffectDefinition(const SpellGrantEffectDefinition &effect)
+    {
+        normalize(effect.id);
+        normalize(effect.spellId);
+        switch (effect.usage)
+        {
+        case GrantedSpellUsage::Limited:
+            if (effect.capacity <= 0 || effect.poolId || effect.cost != 1) throw std::invalid_argument("invalid limited spell grant");
+            break;
+        case GrantedSpellUsage::SharedPool:
+            if (!effect.poolId || effect.capacity != 0 || effect.cost <= 0) throw std::invalid_argument("invalid shared spell grant");
+            normalize(*effect.poolId);
+            break;
+        case GrantedSpellUsage::AtWill:
+        case GrantedSpellUsage::Constant:
+            if (effect.capacity != 0 || effect.poolId || effect.cost != 1) throw std::invalid_argument("unlimited spell cannot have usage costs");
+            break;
+        default: throw std::invalid_argument("unknown granted spell usage");
+        }
+    }
+
     EffectApply compileEffect(EffectDefinition definition, EffectContext context)
     {
         context.instanceId = normalize(context.instanceId);
@@ -99,6 +123,49 @@ namespace golarion
                     return EffectCleanup([&resourceManager, instanceId = context.instanceId]
                     {
                         resourceManager.removeFromCollection(CarryingCapacityBodyTypeResource, instanceId);
+                    });
+                };
+            }
+            else if constexpr (std::is_same_v<Effect, SpellGrantEffectDefinition>)
+            {
+                validateSpellGrantEffectDefinition(effect);
+                std::shared_ptr<UsagePool> pool;
+                if (effect.poolId)
+                {
+                    if (!context.usagePool) throw std::invalid_argument("spell grant requires a source usage pool resolver");
+                    pool = context.usagePool(normalize(*effect.poolId));
+                    if (!pool || effect.cost > pool->capacity()) throw std::invalid_argument("invalid spell grant usage pool");
+                }
+                return [effect = std::move(effect), context, pool = std::move(pool)](ResourceManager &resourceManager)
+                {
+                    EffectCleanup cleanup = [&resourceManager, id = context.instanceId]
+                    {
+                        resourceManager.removeFromCollection(GrantedSpells::Resource, id);
+                    };
+                    resourceManager.addToCollection(GrantedSpells::Resource, GrantedSpellDefinition{
+                        context.instanceId, context.source, effect.spellId, effect.usage, effect.capacity, pool, effect.cost});
+                    return cleanup;
+                };
+            }
+            else if constexpr (std::is_same_v<Effect, FeatSlotGrantEffectDefinition>)
+            {
+                return [effect = std::move(effect), context](ResourceManager &resourceManager)
+                {
+                    resourceManager.addToCollection(FeatSlotsResource, FeatSlot{.id = context.instanceId, .source = context.source, .filter = effect.filter});
+                    return EffectCleanup([&resourceManager, instanceId = context.instanceId]
+                    {
+                        resourceManager.removeFromCollection(FeatSlotsResource, instanceId);
+                    });
+                };
+            }
+            else if constexpr (std::is_same_v<Effect, LanguageGrantEffectDefinition>)
+            {
+                return [effect = std::move(effect), context](ResourceManager &resourceManager)
+                {
+                    resourceManager.addToCollection(SpokenLanguagesResource, LanguageGrant{context.instanceId, context.source, effect.languageId});
+                    return EffectCleanup([&resourceManager, instanceId = context.instanceId]
+                    {
+                        resourceManager.removeFromCollection(SpokenLanguagesResource, instanceId);
                     });
                 };
             }

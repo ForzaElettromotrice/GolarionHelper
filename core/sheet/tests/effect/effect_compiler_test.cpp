@@ -1,4 +1,5 @@
 #include "golarion/character/armor_class.hpp"
+#include "golarion/character/feats.hpp"
 #include "golarion/character/carrying_capacity.hpp"
 #include "golarion/character/combat_maneuvers.hpp"
 #include "golarion/character/movement.hpp"
@@ -39,6 +40,25 @@ int main()
     using namespace golarion;
 
     ResourceManager resourceManager;
+    resourceManager.registerEnhanceableResource("initiative");
+    Feats feats(resourceManager);
+    feats.setLevel(1);
+    auto anySlot = compileEffect(FeatSlotGrantEffectDefinition{"bonus", AnyFeat{}}, {"race.bonusFeat", "Razza"})(resourceManager);
+    assert(feats.toView().slots.size() == 2);
+    feats.selectFeat("race.bonusFeat", "improvedInitiative");
+    assert(resourceManager.modifierTotal("initiative") == 4);
+    anySlot();
+    assert(feats.toView().slots.size() == 1);
+    assert(feats.toView().feats.empty());
+    assert(resourceManager.modifierTotal("initiative") == 0);
+    auto combatSlot = compileEffect(FeatSlotGrantEffectDefinition{"bonus", FeatTypeFilter{FeatType::Combat}}, {"class.combat", "Classe"})(resourceManager);
+    feats.selectFeat("class.combat", "improvedInitiative");
+    feats.removeFeat("class.combat");
+    assert(feats.toView().slots.size() == 2);
+    combatSlot();
+    auto listSlot = compileEffect(FeatSlotGrantEffectDefinition{"bonus", FeatIdFilter{{"other"}}}, {"class.list", "Classe"})(resourceManager);
+    assert(throwsInvalidArgument([&] { feats.selectFeat("class.list", "improvedInitiative"); }));
+    listSlot();
     resourceManager.registerEnhanceableResource("effect.test");
     resourceManager.registerAccumulatedResource("effect.total");
     resourceManager.registerTarget("str", []

@@ -3,6 +3,9 @@
 #include "golarion/data/ability_save_data.hpp"
 #include "golarion/data/attacks_data.hpp"
 #include "golarion/data/feats_data.hpp"
+#include "golarion/data/languages_data.hpp"
+#include "golarion/data/spellcastings_data.hpp"
+#include "golarion/data/granted_spells_data.hpp"
 #include "golarion/data/character_identity_save_data.hpp"
 #include "golarion/data/condition_manager_save_data.hpp"
 #include "golarion/data/hit_points_save_data.hpp"
@@ -26,5 +29,8 @@ namespace golarion
         ConditionManagerSaveData conditions;
         InventorySaveData inventory;
         FeatsData feats;
+        LanguagesData languages;
+        SpellcastingsData spellcastings;
+        GrantedSpellsData grantedSpells;
     };
 }

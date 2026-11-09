@@ -18,7 +18,7 @@ namespace golarion
     const FeatDefinition &FeatDefinitionManager::get(std::string_view id)
     {
         static const FeatDefinition fixture{
-            .id = "test", .name = "Talento di prova", .description = "Descrizione", .types = {"combat"},
+            .id = "test", .name = "Talento di prova", .description = "Descrizione", .types = {FeatType::Combat},
             .requirements = {{"Forza 13", "@strength >= 13"}},
             .effects = {ModifierEffectDefinition{.id = "bonus", .resource = "initiative", .description = "Bonus", .type = ModifierType::Bonus, .bonusType = BonusType::Generic, .expression = "4"}},
             .choices = {{"choice", "Scegli", 1, {{"option", "Opzione", {{"Destrezza 13", "@dexterity >= 13"}}, {}}}}}
@@ -30,6 +30,10 @@ namespace golarion
             root.id = "root";
             root.choices.clear();
             definitions.emplace(root.id, root);
+            auto nested = root;
+            nested.id = "nested";
+            nested.effects = {FeatSlotGrantEffectDefinition{"slot", AnyFeat{}}};
+            definitions.emplace(nested.id, nested);
             auto dependent = root;
             dependent.id = "dependent";
             dependent.requirements = {{"Talento base", std::nullopt, FeatDependencyDefinition{"root", {}}}};
@@ -152,6 +156,11 @@ int main()
 
     feats.setLevel(5);
     strength = 13;
+    failed = false;
+    try { feats.selectFeat("base.feat.level1", "nested"); }
+    catch (const std::invalid_argument &) { failed = true; }
+    assert(failed && feats.toData().selections.empty());
+    assert(feats.toView().slots.size() == 4);
     // Deliberately load the chain in reverse dependency/slot order.
     feats.load({{{"base.feat.level1", "leaf", {}}, {"base.feat.level3", "dependent", {}}, {"base.feat.level5", "root", {}}}});
     assert(resources.modifierTotal("initiative") == 12);

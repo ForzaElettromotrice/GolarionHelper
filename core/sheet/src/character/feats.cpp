@@ -73,8 +73,7 @@ namespace golarion
         std::visit([](auto &filter)
         {
             using T = std::decay_t<decltype(filter)>;
-            if constexpr (std::is_same_v<T, FeatTypeFilter>) filter.type = normalize(filter.type);
-            else if constexpr (std::is_same_v<T, FeatIdFilter>)
+            if constexpr (std::is_same_v<T, FeatIdFilter>)
             {
                 if (filter.ids.empty()) throw std::invalid_argument("feat slot ID filter must not be empty");
                 std::set<std::string> ids;
@@ -262,6 +261,10 @@ namespace golarion
         {
             for (const auto &effect : effects)
             {
+                // Rechecks rebuild feat effects; withdrawing a nested slot would erase its selection.
+                // Until nested slot lifecycles are modeled, reject them before applying any effects.
+                if (std::holds_alternative<FeatSlotGrantEffectDefinition>(effect))
+                    throw std::invalid_argument("feat-owned feat slots are not supported");
                 // Length-prefixed components prevent collisions between dotted IDs.
                 const auto part = [](const std::string &value) { return std::to_string(value.size()) + ":" + value; };
                 applications.push_back(compileEffect(effect, {.instanceId = "feat:" + part(key) + part(definition.id) + part(path) + part(effectId(effect)), .source = definition.name}));

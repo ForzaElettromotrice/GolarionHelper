@@ -111,5 +111,28 @@ int main()
         static_cast<void>(effectDefinitionFromJson(Json{{"id", "invalid"}, {"type", "unknown"}}));
     }));
 
+    const auto parseSlot = [](const Json &filter)
+    {
+        return std::get<FeatSlotGrantEffectDefinition>(effectDefinitionFromJson(Json{
+            {"id", "bonusFeat"}, {"type", "featSlotGrant"}, {"filter", filter}
+        }));
+    };
+    const auto unrestricted = std::get<FeatSlotGrantEffectDefinition>(effectDefinitionFromJson(Json{{"id", "bonusFeat"}, {"type", "featSlotGrant"}}));
+    assert(std::holds_alternative<AnyFeat>(unrestricted.filter));
+    assert(std::holds_alternative<AnyFeat>(parseSlot({{"kind", "any"}}).filter));
+    assert(std::get<FeatTypeFilter>(parseSlot({{"kind", "type"}, {"featType", " combat "}}).filter).type == FeatType::Combat);
+    const auto filtered = parseSlot({{"kind", "ids"}, {"featIds", {" improvedInitiative ", "other"}}});
+    assert(std::get<FeatIdFilter>(filtered.filter).ids == std::vector<std::string>({"improvedInitiative", "other"}));
+    for (const Json &invalid : {
+        Json{{"kind", "unknown"}}, Json::array(),
+        Json{{"kind", "any"}, {"featType", "combat"}},
+        Json{{"kind", "type"}, {"featType", " "}},
+        Json{{"kind", "type"}, {"featType", "custom"}},
+        Json{{"kind", "ids"}, {"featIds", Json::array()}},
+        Json{{"kind", "ids"}, {"featIds", "improvedInitiative"}},
+        Json{{"kind", "ids"}, {"featIds", {"one", " one "}}},
+        Json{{"kind", "type"}, {"featType", "combat"}, {"featIds", {"one"}}}
+    }) assert(throwsInvalidArgument([&] { parseSlot(invalid); }));
+
     return 0;
 }

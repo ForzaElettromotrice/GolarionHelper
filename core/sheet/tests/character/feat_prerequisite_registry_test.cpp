@@ -26,8 +26,8 @@ int main()
     resources.registerTarget("bab", [&] { return bab; });
     resources.registerTarget("class.test.level", [&] { return classLevel; });
     resources.registerTarget("int", [] { return 10; });
-    const FeatDefinition combat{.id = "test", .name = "Prova", .description = "Prova.", .types = {"combat"}};
-    const FeatDefinition general{.id = "other", .name = "Altro", .description = "Altro.", .types = {"general"}};
+    const FeatDefinition combat{.id = "test", .name = "Prova", .description = "Prova.", .types = {FeatType::Combat}};
+    const FeatDefinition general{.id = "other", .name = "Altro", .description = "Altro.", .types = {FeatType::General}};
     const FeatPrerequisiteContext bonusContext{combat, "class.bonus1", "Classe di prova", {{"weapon", {"dagger"}}}};
     const FeatPrerequisiteContext ordinaryContext{combat, "base.level1", "Regole base"};
     const FeatPrerequisiteContext otherContext{general, "class.bonus1", "Classe di prova"};
@@ -43,7 +43,7 @@ int main()
             .applies = [](const auto &context)
             {
                 return context.slotId == "class.bonus1" &&
-                    std::find(context.feat.types.begin(), context.feat.types.end(), "combat") != context.feat.types.end();
+                    std::find(context.feat.types.begin(), context.feat.types.end(), FeatType::Combat) != context.feat.types.end();
             },
             .calculate = [](const auto &, const FeatTargetResolver &read)
             {
