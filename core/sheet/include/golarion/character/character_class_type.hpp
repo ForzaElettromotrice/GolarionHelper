@@ -1,0 +1,53 @@
+#pragma once
+
+namespace golarion
+{
+    enum class CharacterClassType
+    {
+        Barbarian,
+        Bard,
+        Cleric,
+        Druid,
+        Fighter,
+        Rogue,
+        Wizard,
+        Monk,
+        Paladin,
+        Ranger,
+        Sorcerer,
+        Alchemist,
+        Cavalier,
+        Summoner,
+        Witch,
+        Inquisitor,
+        Magus,
+        Shifter,
+        Oracle,
+        Gunslinger,
+        Vigilante,
+        Antipaladin,
+        Ninja,
+        Samurai,
+        Arcanist,
+        Brawler,
+        Hunter,
+        Swashbuckler,
+        Investigator,
+        Bloodrager,
+        Slayer,
+        Warpriest,
+        Skald,
+        Shaman,
+        Kineticist,
+        Medium,
+        Mesmerist,
+        Occultist,
+        Psychic,
+        Spiritualist,
+        UnchainedBarbarian,
+        UnchainedSummoner,
+        UnchainedRogue,
+        UnchainedMonk,
+        Adept
+    };
+}
