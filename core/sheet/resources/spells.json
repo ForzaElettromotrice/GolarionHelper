@@ -1,0 +1,23 @@
+[
+  {
+    "id": "fireball",
+    "name": "Palla di Fuoco",
+    "school": "EVOCATION",
+    "descriptors": ["FIRE"],
+    "spellLevelByClass": {"ARCANIST": 3, "BLOODRAGER": 3, "WIZARD": 3, "MAGUS": 3, "OCCULTIST": 3, "SORCERER": 3},
+    "spellLevelByDomain": {"domain": {"FIRE": 3}},
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "Un'azione standard",
+    "components": ["VERBAL", "SOMATIC", "MATERIAL"],
+    "materialComponentDescription": "Guano di pipistrello con zolfo.",
+    "rangeType": "LONG",
+    "rangeDescription": "120 metri, più 12 per livello dell'incantatore.",
+    "area": "Propagazione con raggio di 6 metri.",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "Effetto istantaneo",
+    "savingThrows": [{"savingThrowType": "REFLEX", "effect": "HALF", "description": "Un successo dimezza i danni."}],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "Applicabile",
+    "description": "Esplosione che infligge 1d6 danni da fuoco per livello dell'incantatore, fino a 10d6. Questa voce iniziale è un riepilogo: per le regole complete consultare Golarion."
+  }
+]
