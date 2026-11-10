@@ -1,0 +1,32 @@
+# Favored Classes
+
+Read when changing favored-class eligibility, per-level rewards, or their declarative sources.
+
+## Ownership and API
+
+- `Classes` exposes `setFavoredClass(type)`, `setFavoredClasses(set)`, `selectFavoredClassBonus(type, classLevel, optionId)` and `clearFavoredClassBonus(type, classLevel)`. CharacterSheet forwards these and refreshes feat prerequisites and HP conditions. Class levels are one-based within the specified class. Favored classes may be selected before acquiring their first level; bonuses require an acquired level.
+- The default choice capacity is one. A separate `FavoredClasses` runtime owns endpoint registrations, selections and applied effects. The sheet constructs it before feat/race/item providers so it outlives their cleanup; Classes references it and clears bonus effects before class and consumer destruction. Standalone users must likewise keep the runtime, resources and consumers alive until Classes is destroyed. One Classes container per FavoredClasses runtime is supported.
+- This is editable sheet state, not enforcement of character-creation timing or retraining rules. Changing favored classes retains per-level choices, deactivating those no longer eligible. If a capacity source disappears and too many classes remain selected, explicitly granted/all-class eligibility still works but all manual class selections become inactive until corrected; the View reports this rather than choosing which class to keep.
+
+## Endpoints and Effects
+
+- `classes.favored.grants` accepts `FavoredClassGrant`: stable source ID, source label, nonnegative additional choice capacity, an explicit enum set of granted classes, and optional all-class eligibility. Grants stack by source; removal withdraws only that source.
+- `classes.favored.options` accepts `FavoredClassBonusOption`: source-owned ID, Italian name/description, enum class restrictions (empty means all eligible classes), benefit effects, base options to replace, and positive `selectionsPerBenefit`. The fixed options `base.hitPoint` and `base.skillRank` each grant one point through `hp.max` or `skill.ranks.max`.
+- Replacement is limited to the closed `FavoredClassBaseBonus` enum (HitPoint/SkillRank). It suppresses the selected base options only for the provider's class scope; unrelated racial/custom options remain available. Existing selections are not automatically converted. Removed/unavailable options leave inactive selections in Data/View, and re-registration of the same source ID reactivates them.
+- JSON `favoredClassGrant` has `id`, optional `additionalChoices`, `classes` and `allClasses`. JSON `favoredClassBonus` has `id`, `name`, `description`, `effects`, optional `classes`, `replaces` (`hitPoint`/`skillRank`) and `selectionsPerBenefit` (default 1). Class names are parsed through the existing enum converter; malformed arrays, unknown enum strings, duplicate entries and nonintegral counts are rejected.
+- The compiler uses the owning effect's stable instance ID as the option/grant registration ID, preventing cross-source collisions; obtain selectable IDs from the View. Benefit effects use the existing compiler and source pool resolver. Class-owned nested expressions also bind `@classLevel`. Recursive favored grants/options inside benefits are forbidden.
+- A combined HP/rank option replaces both base choices and contains two contribution effects. A fractional reward uses `selectionsPerBenefit = 6` for one effect application per six selections, counted independently per option and class, not floating-point arithmetic. Every completed group owns a stable effect instance; unrelated selections or count increases preserve existing groups and their mutable state. Source removal removes those instances normally.
+- Updates apply additions before removing obsolete effects and roll back failed additions without changing previous selections. Cleanup callbacks must not throw. Conflicting exclusive resources reject the change rather than destructively rebuilding existing state.
+- Favored bonuses may grant feat slots, including one slot per completed selection group. Losing the group withdraws the slot and deactivates its feat without erasing the saved selection; restoring it makes the acquisition available for the next prerequisite check. Feat-owned eligibility/option effects can also provide these rewards: nested cleanup does not reenter the running feat check. Unchanged active feats retain their effects and counters. No new race/feat catalog entries are included.
+
+## Persistence and View
+
+- Format 33 adds top-level `favoredClasses` JSON with `selectedClasses` and `bonuses` (`type`, `classLevel`, `optionId`), stored in `ClassesData.favoredClasses`. Definitions, grants, capacities, counters and derived bonuses are reconstructed. Versions before 33 restore empty selections without assuming any favored class.
+- Classes loads class sources first; `loadFavoredClasses` is a separate restoration phase after race/item sources and before saved feat selections and spell usage. Feat effects can subsequently register their providers and reactivate saved selections. HP state is restored after those bonuses to avoid evaluating a saved wound total against an incomplete maximum. Feat-owned providers are reconstructed as their acquired feats activate; unavailable child acquisitions retain their selections until their providers return.
+- Saved selections must refer to acquired levels, be unique per class/level and have nonempty IDs. An absent source ID is intentionally retained as inactive, as is a selection exceeding current eligibility/capacity.
+- `ClassesView.favoredClasses` exposes chosen classes, capacity/excess, acquired-class eligibility, unassigned eligible levels, available/suppressed options, cumulative selection/completed-benefit counts and active/inactive saved choices. An active fractional selection is valid even before it completes a benefit group.
+- Focused tests cover default rewards, corrections, multiclass eligibility, additional/all-class grants, combined replacement, sixth-step rewards, source withdrawal/regrant, rollback, cleanup lifetime, definition/compiler/parser integration, malformed saves, round trips and migration. Only sheet tests are run.
+
+## Rules References
+
+- [Classes](https://golarion.altervista.org/wiki/Classi), [Half-Elf](https://golarion.altervista.org/wiki/Mezzelfo), [Fast Learner](https://golarion.altervista.org/wiki/Apprendimento_Rapido), [Multitalented Mastery](https://golarion.altervista.org/wiki/Padronanza_delle_Doti_Innate).

@@ -1,5 +1,10 @@
 # Model Context
 
+- [`archetypes.md`](archetypes.md): archetype compatibility, structural feature edits, shared choice APIs and format-31 persistence.
+
+- [`classes.md`](classes.md): class definitions/runtime, sheet integration, level/choice progression, HP/skill-rank advancement, persistence and Views.
+- [`favored-classes.md`](favored-classes.md): eligibility grants, per-level bonus choices, cumulative benefits, declarative effects and format-33 persistence.
+
 - [`granted-spells.md`](granted-spells.md): single-spell grants, own/shared usages, item bindings, effect JSON and format-29 persistence.
 
 - [`spells.md`](spells.md): spell definitions/catalog, class-list selection, slot grants, all three casting modes, container/format-27 persistence, and research for single-spell grants.

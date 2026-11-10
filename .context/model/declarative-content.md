@@ -2,6 +2,8 @@
 
 Read this document when changing shared declarative effects or feat definitions.
 
+- `favoredClassGrant` and `favoredClassBonus` register favored-class eligibility and reward options through typed endpoints. Benefits reuse ordinary effects, class restrictions use enums, base replacements use a closed enum, and fractional rewards count selections. Recursive favored grants remain unsupported; nested feat-slot rewards use the guarded incremental feat lifecycle. See [favored-classes.md](favored-classes.md) for JSON fields, source lifetime and format-33 persistence.
+
 - `SpellDefinition` also stores a list of shared `EffectDefinition` values and parses optional JSON `effects`. This is metadata only: spell targeting and runtime application are not connected to `consume()` or `GrantedSpell`. See [spells.md](spells.md).
 
 - `SpellGrantEffectDefinition` adds `spellGrant` with closed Limited/AtWill/Constant/SharedPool usage through `spells.granted`. `EffectContext` now optionally resolves source-local usage pools; items bind their instance's handles, while racial own-use effects need no resolver. Limited item effects must use declared item pools so activation does not reset charges. See [granted-spells.md](granted-spells.md) for JSON, lifecycle, validation and persistence; full Spellcasting creation effects remain separate.
