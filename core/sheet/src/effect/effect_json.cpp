@@ -10,6 +10,7 @@
 #include <stdexcept>
 #include <string>
 #include <string_view>
+#include <type_traits>
 
 namespace
 {
@@ -190,6 +191,59 @@ namespace golarion
                 .id = id,
                 .message = normalize(json.at("message").get<std::string>())
             };
+        }
+
+        if (type == "favoredClassGrant" || type == "favoredClassBonus")
+        {
+            std::set<CharacterClassType> classes;
+            if (json.contains("classes"))
+            {
+                if (!json.at("classes").is_array()) throw std::invalid_argument("favored classes must be an array");
+                for (const auto &entry : json.at("classes"))
+                    if (!classes.insert(characterClassFromId(entry.get<std::string>())).second) throw std::invalid_argument("duplicate favored class restriction");
+            }
+            auto integer = [&](const char *field, int fallback, int minimum)
+            {
+                if (!json.contains(field)) return fallback;
+                const auto &value = json.at(field);
+                if (!value.is_number_integer() || value < minimum || value > std::numeric_limits<int>::max()) throw std::invalid_argument("invalid favored class integer field");
+                return value.get<int>();
+            };
+            if (type == "favoredClassGrant")
+                return FavoredClassGrantEffectDefinition{id, integer("additionalChoices", 0, 0), std::move(classes), json.value("allClasses", false)};
+
+            FavoredClassBonusEffectDefinition option{
+                .id = id, .name = normalize(json.at("name").get<std::string>()), .description = json.at("description").get<std::string>(),
+                .classes = std::move(classes), .selectionsPerBenefit = integer("selectionsPerBenefit", 1, 1)
+            };
+            if (json.contains("replaces"))
+            {
+                if (!json.at("replaces").is_array()) throw std::invalid_argument("favored class replacements must be an array");
+                for (const auto &entry : json.at("replaces"))
+                {
+                    const auto name = entry.get<std::string>();
+                    FavoredClassBaseBonus base;
+                    if (name == "hitPoint") base = FavoredClassBaseBonus::HitPoint;
+                    else if (name == "skillRank") base = FavoredClassBaseBonus::SkillRank;
+                    else throw std::invalid_argument("unknown favored class base bonus");
+                    if (!option.replaces.insert(base).second) throw std::invalid_argument("duplicate favored class replacement");
+                }
+            }
+            if (!json.at("effects").is_array()) throw std::invalid_argument("favored class benefits must be an array");
+            std::set<std::string> ids;
+            for (const auto &entry : json.at("effects"))
+            {
+                const auto nestedType = normalize(entry.at("type").get<std::string>());
+                if (nestedType == "favoredClassGrant" || nestedType == "favoredClassBonus") throw std::invalid_argument("favored class benefits cannot grant favored class rules");
+                auto effect = effectDefinitionFromJson(entry);
+                if (!ids.insert(effectId(effect)).second) throw std::invalid_argument("duplicate favored class benefit ID");
+                option.effects.push_back(std::visit([](auto value) -> FavoredClassBenefitEffect
+                {
+                    if constexpr (std::is_constructible_v<FavoredClassBenefitEffect, decltype(value)>) return value;
+                    else throw std::invalid_argument("unsupported favored class benefit effect");
+                }, std::move(effect)));
+            }
+            return option;
         }
 
         if (type == "featSlotGrant")

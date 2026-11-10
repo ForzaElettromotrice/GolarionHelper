@@ -9,6 +9,7 @@
 #include <iterator>
 #include <limits>
 #include <optional>
+#include <set>
 #include <stdexcept>
 #include <string>
 #include <string_view>
@@ -213,6 +214,111 @@ namespace
             data.spells.push_back({entry.at("id").get<std::string>(), count.get<int>()});
         }
         return data;
+    }
+
+    Json favoredClassesToJson(const golarion::FavoredClassesData &data)
+    {
+        Json selected = Json::array(), bonuses = Json::array();
+        for (auto type : data.selectedClasses) selected.push_back(golarion::characterClassId(type));
+        for (const auto &bonus : data.bonuses)
+            bonuses.push_back({{"type", golarion::characterClassId(bonus.type)}, {"classLevel", bonus.classLevel}, {"optionId", bonus.optionId}});
+        return {{"selectedClasses", std::move(selected)}, {"bonuses", std::move(bonuses)}};
+    }
+
+    golarion::FavoredClassesData favoredClassesFromJson(const Json &json)
+    {
+        golarion::FavoredClassesData result;
+        if (!json.at("selectedClasses").is_array() || !json.at("bonuses").is_array()) throw std::invalid_argument("favored class selections must be arrays");
+        for (const auto &value : json.at("selectedClasses"))
+            if (!result.selectedClasses.insert(golarion::characterClassFromId(value.get<std::string>())).second)
+                throw std::invalid_argument("duplicate favored class");
+        std::set<std::pair<golarion::CharacterClassType, int>> keys;
+        for (const auto &value : json.at("bonuses"))
+        {
+            const auto type = golarion::characterClassFromId(value.at("type").get<std::string>());
+            const auto &level = value.at("classLevel");
+            const auto id = value.at("optionId").get<std::string>();
+            if (!level.is_number_integer() || level < 1 || level > std::numeric_limits<int>::max() || id.empty() || !keys.emplace(type, level.get<int>()).second)
+                throw std::invalid_argument("invalid or duplicate favored class bonus");
+            result.bonuses.push_back({type, level.get<int>(), id});
+        }
+        return result;
+    }
+
+    Json classesToJson(const golarion::ClassesData &data)
+    {
+        Json result = Json::array();
+        for (const auto &entry : data.classes)
+        {
+            Json choices = Json::array();
+            for (const auto &choice : entry.choices)
+                choices.push_back({{"acquisitionId", choice.acquisitionId}, {"choiceId", choice.choiceId}, {"optionIds", choice.optionIds}});
+            Json dice = Json::array();
+            for (const auto &[level, value] : entry.hitDieResults) dice.push_back({{"level", level}, {"result", value}});
+            result.push_back({{"type", golarion::characterClassId(entry.type)}, {"level", entry.level}, {"choices", std::move(choices)}, {"archetypeIds", entry.archetypeIds}, {"hitDieResults", std::move(dice)}});
+        }
+        return result;
+    }
+
+    golarion::ClassesData classesFromJson(const Json &json, bool hasArchetypes, bool hasHitDice)
+    {
+        if (!json.is_array()) throw std::invalid_argument("classes must be an array");
+        golarion::ClassesData result;
+        std::set<golarion::CharacterClassType> types;
+        long long total = 0;
+        for (const auto &entry : json)
+        {
+            const auto type = golarion::characterClassFromId(entry.at("type").get<std::string>());
+            const auto &level = entry.at("level");
+            if (!level.is_number_integer() || level < 1 || level > std::numeric_limits<int>::max() || !types.insert(type).second)
+                throw std::invalid_argument("invalid saved class level or duplicate class");
+            golarion::CharacterClassData value{type, level.get<int>(), {}};
+            if (hasHitDice)
+            {
+                if (!entry.at("hitDieResults").is_array()) throw std::invalid_argument("hit die results must be an array");
+                for (const auto &die : entry.at("hitDieResults"))
+                {
+                    const auto &dieLevel = die.at("level");
+                    const auto &result = die.at("result");
+                    if (!dieLevel.is_number_integer() || dieLevel < 1 || dieLevel > value.level ||
+                        !result.is_number_integer() || result < 1 || result > 12 ||
+                        !value.hitDieResults.emplace(dieLevel.get<int>(), result.get<int>()).second)
+                        throw std::invalid_argument("invalid or duplicate saved hit die result");
+                }
+            }
+            if (hasArchetypes)
+            {
+                if (!entry.at("archetypeIds").is_array()) throw std::invalid_argument("archetype IDs must be an array");
+                std::set<std::string> ids;
+                for (const auto &item : entry.at("archetypeIds"))
+                {
+                    auto id = item.get<std::string>();
+                    if (id.empty() || !ids.insert(id).second) throw std::invalid_argument("invalid or duplicate saved archetype");
+                    value.archetypeIds.push_back(std::move(id));
+                }
+            }
+            total += value.level;
+            if (total > std::numeric_limits<int>::max()) throw std::invalid_argument("total class level exceeds integer range");
+            if (!entry.at("choices").is_array()) throw std::invalid_argument("class choices must be an array");
+            std::set<std::pair<std::string, std::string>> keys;
+            for (const auto &choice : entry.at("choices"))
+            {
+                golarion::ClassChoiceData saved{choice.at("acquisitionId").get<std::string>(), choice.at("choiceId").get<std::string>(), {}};
+                if (saved.acquisitionId.empty() || saved.choiceId.empty() || !keys.emplace(saved.acquisitionId, saved.choiceId).second)
+                    throw std::invalid_argument("invalid or duplicate saved class choice");
+                if (!choice.at("optionIds").is_array()) throw std::invalid_argument("class option IDs must be an array");
+                std::set<std::string> options;
+                for (const auto &option : choice.at("optionIds"))
+                {
+                    auto id = option.get<std::string>();
+                    if (id.empty() || !options.insert(id).second) throw std::invalid_argument("invalid or duplicate saved class option");
+                    saved.optionIds.push_back(std::move(id));
+                }
+                value.choices.push_back(std::move(saved));
+            }
+            result.classes.push_back(std::move(value));
+        }
+        return result;
     }
 
     Json featsToJson(const golarion::FeatsData &data)
@@ -729,7 +835,10 @@ namespace golarion::persistence
             {"feats", featsToJson(data.feats)},
             {"languages", languagesToJson(data.languages)},
             {"spellcastings", spellcastingsToJson(data.spellcastings)},
-            {"grantedSpells", grantedSpellsToJson(data.grantedSpells)}
+            {"grantedSpells", grantedSpellsToJson(data.grantedSpells)},
+            {"classes", classesToJson(data.classes)},
+            {"favoredClasses", favoredClassesToJson(data.classes.favoredClasses)},
+            {"legacyFirstLevelFeatSlot", data.legacyFirstLevelFeatSlot}
         }.dump(4);
     }
 
@@ -745,6 +854,8 @@ namespace golarion::persistence
         }
 
         const int formatVersion = json.at("formatVersion").get<int>();
+        auto classes = formatVersion >= 30 ? classesFromJson(json.at("classes"), formatVersion >= 31, formatVersion >= 32) : ClassesData{};
+        if (formatVersion >= 33) classes.favoredClasses = favoredClassesFromJson(json.at("favoredClasses"));
         return CharacterSheetSaveData{
             .formatVersion = formatVersion,
             .identity = formatVersion >= 22 ? characterIdentityFromJson(json.at("identity")) : CharacterIdentitySaveData{},
@@ -758,7 +869,9 @@ namespace golarion::persistence
             .feats = formatVersion >= 25 ? featsFromJson(json.at("feats")) : FeatsData{},
             .languages = formatVersion >= 26 ? languagesFromJson(json.at("languages")) : LanguagesData{},
             .spellcastings = formatVersion >= 27 ? spellcastingsFromJson(json.at("spellcastings")) : SpellcastingsData{},
-            .grantedSpells = formatVersion >= 29 ? grantedSpellsFromJson(json.at("grantedSpells")) : GrantedSpellsData{}
+            .grantedSpells = formatVersion >= 29 ? grantedSpellsFromJson(json.at("grantedSpells")) : GrantedSpellsData{},
+            .classes = std::move(classes),
+            .legacyFirstLevelFeatSlot = formatVersion >= 30 ? json.at("legacyFirstLevelFeatSlot").get<bool>() : false
         };
     }
 

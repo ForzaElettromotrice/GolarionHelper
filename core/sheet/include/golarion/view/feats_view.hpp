@@ -40,6 +40,7 @@ namespace golarion
         // No type and no IDs means unrestricted.
         std::optional<FeatType> allowedType;
         std::vector<std::string> allowedFeatIds;
+        bool available = true;
     };
 
     struct FeatsView

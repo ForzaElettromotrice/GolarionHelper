@@ -2,13 +2,12 @@
 
 #include "golarion/character/spellcasting.hpp"
 #include "golarion/data/spellcastings_data.hpp"
+#include "golarion/view/spellcastings_view.hpp"
 
 #include <memory>
 
 namespace golarion
 {
-    enum class SpellcastingMode { Prepared, Spontaneous, Flexible };
-
     struct SpellcastingGrant
     {
         std::string id;
@@ -32,6 +31,7 @@ namespace golarion
         // The reference remains valid until its grant is removed or this owner is destroyed.
         Spellcasting &get(std::string_view id);
         SpellcastingsData toData() const;
+        SpellcastingsView toView() const;
         void load(const SpellcastingsData &data);
 
     private:

@@ -1,4 +1,9 @@
 add_library(golarion_model STATIC
+    src/character/character_class.cpp
+    src/character/character_class_archetypes.cpp
+    src/character/classes.cpp
+    src/character/favored_classes.cpp
+    src/character/class_definition_manager.cpp
     src/character/action.cpp
     src/character/canonical_actions.cpp
     src/character/ability.cpp
@@ -133,6 +138,7 @@ configure_file(
 )
 
 add_library(golarion_persistence STATIC
+    src/character/character_class_type.cpp
     src/persistence/json.cpp
     src/persistence/spellcastings_json.cpp
 )
@@ -300,6 +306,42 @@ if(BUILD_TESTING)
     add_executable(character_identity_test tests/character/character_identity_test.cpp)
     target_link_libraries(character_identity_test PRIVATE golarion_model)
     add_test(NAME character_identity_test COMMAND character_identity_test)
+
+    add_executable(classes_persistence_test tests/character/classes_persistence_test.cpp)
+    target_link_libraries(classes_persistence_test PRIVATE golarion_model)
+    add_test(NAME classes_persistence_test COMMAND classes_persistence_test)
+
+    add_executable(class_advancement_test tests/character/class_advancement_test.cpp)
+    target_link_libraries(class_advancement_test PRIVATE golarion_model)
+    add_test(NAME class_advancement_test COMMAND class_advancement_test)
+
+    add_executable(favored_classes_test tests/character/favored_classes_test.cpp)
+    target_link_libraries(favored_classes_test PRIVATE golarion_model)
+    add_test(NAME favored_classes_test COMMAND favored_classes_test)
+
+    add_executable(feat_slot_availability_test tests/character/feat_slot_availability_test.cpp)
+    target_link_libraries(feat_slot_availability_test PRIVATE golarion_model)
+    add_test(NAME feat_slot_availability_test COMMAND feat_slot_availability_test)
+
+    add_executable(classes_test tests/character/classes_test.cpp)
+    target_link_libraries(classes_test PRIVATE golarion_model)
+    add_test(NAME classes_test COMMAND classes_test)
+
+    add_executable(character_class_test tests/character/character_class_test.cpp)
+    target_link_libraries(character_class_test PRIVATE golarion_model)
+    add_test(NAME character_class_test COMMAND character_class_test)
+
+    add_executable(archetypes_test tests/character/archetypes_test.cpp)
+    target_link_libraries(archetypes_test PRIVATE golarion_model)
+    add_test(NAME archetypes_test COMMAND archetypes_test)
+
+    add_executable(archetype_definition_test tests/character/archetype_definition_test.cpp)
+    target_link_libraries(archetype_definition_test PRIVATE golarion_model)
+    add_test(NAME archetype_definition_test COMMAND archetype_definition_test)
+
+    add_executable(class_definition_test tests/character/class_definition_test.cpp)
+    target_link_libraries(class_definition_test PRIVATE golarion_model)
+    add_test(NAME class_definition_test COMMAND class_definition_test)
 
     add_executable(feat_definition_test tests/character/feat_definition_test.cpp)
     target_link_libraries(feat_definition_test PRIVATE golarion_model)

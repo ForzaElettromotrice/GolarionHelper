@@ -147,6 +147,14 @@ namespace golarion
         }
     }
 
+    void ResourceManager::unregisterTarget(std::string_view name)
+    {
+        if (targets_.erase(normalize(name)) == 0)
+        {
+            throw std::invalid_argument("target is not registered: " + std::string(name));
+        }
+    }
+
     int ResourceManager::targetValue(std::string_view name)
     {
         std::string normalizedName = normalize(name);

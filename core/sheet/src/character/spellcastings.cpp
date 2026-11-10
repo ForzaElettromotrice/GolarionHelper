@@ -75,6 +75,23 @@ namespace golarion
         return data;
     }
 
+    SpellcastingsView Spellcastings::toView() const
+    {
+        SpellcastingsView view;
+        for (const auto &[id, entry] : entries_)
+        {
+            SpellcastingView casting{id, entry.grant.source, entry.grant.mode, {entry.casting->repertoire_.begin(), entry.casting->repertoire_.end()}, {}};
+            switch (entry.grant.mode)
+            {
+            case SpellcastingMode::Prepared: casting.state = static_cast<const PreparedSpellcasting &>(*entry.casting).toView(); break;
+            case SpellcastingMode::Spontaneous: casting.state = static_cast<const SpontaneousSpellcasting &>(*entry.casting).toView(); break;
+            case SpellcastingMode::Flexible: casting.state = static_cast<const FlexibleSpellcasting &>(*entry.casting).toView(); break;
+            }
+            view.castings.push_back(std::move(casting));
+        }
+        return view;
+    }
+
     void Spellcastings::load(const SpellcastingsData &data)
     {
         std::set<std::string> ids;

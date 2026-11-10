@@ -1,4 +1,5 @@
 #include "golarion/character/feat_definition_manager.hpp"
+#include "../fixtures/class_definition.hpp"
 #include "golarion/character/character_sheet.hpp"
 #include "golarion/character/feats.hpp"
 #include "golarion/resource/resource_manager.hpp"
@@ -34,6 +35,14 @@ namespace golarion
             nested.id = "nested";
             nested.effects = {FeatSlotGrantEffectDefinition{"slot", AnyFeat{}}};
             definitions.emplace(nested.id, nested);
+            auto brokenNested = nested;
+            brokenNested.id = "brokenNested";
+            brokenNested.effects.push_back(ContributionEffectDefinition{"failure", "missing.resource", "1"});
+            definitions.emplace(brokenNested.id, brokenNested);
+            auto favoredProvider = root;
+            favoredProvider.id = "favoredProvider";
+            favoredProvider.effects = {FavoredClassGrantEffectDefinition{.id = "eligibility", .allClasses = true}};
+            definitions.emplace(favoredProvider.id, favoredProvider);
             auto dependent = root;
             dependent.id = "dependent";
             dependent.requirements = {{"Talento base", std::nullopt, FeatDependencyDefinition{"root", {}}}};
@@ -107,8 +116,19 @@ int main()
         assert(resources.modifierTotal("initiative") == (active ? 4 : 0));
     };
     check(true);
+    resources.removeFromCollection(FeatSlotsResource, "slot");
+    check(false);
+    assert(!feats.toView().slots[0].available);
+    resources.addToCollection(FeatSlotsResource, FeatSlot{
+        .id = "slot", .source = "Fonte",
+        .exempts = [&](const auto &, const auto &) { return exempt; }
+    });
     feats.recheckPrerequisites();
     check(true);
+    const auto originalModifier = resources.modifierSetView("initiative").modifiers.front().id;
+    feats.recheckPrerequisites();
+    check(true);
+    assert(resources.modifierSetView("initiative").modifiers.front().id == originalModifier);
     strength = 12;
     feats.recheckPrerequisites();
     check(false);
@@ -157,12 +177,40 @@ int main()
     feats.setLevel(5);
     strength = 13;
     failed = false;
-    try { feats.selectFeat("base.feat.level1", "nested"); }
+    try { feats.selectFeat("base.feat.level1", "brokenNested"); }
     catch (const std::invalid_argument &) { failed = true; }
-    assert(failed && feats.toData().selections.empty());
+    assert(failed && feats.toData().selections.empty() && feats.toView().slots.size() == 4);
+    feats.selectFeat("base.feat.level1", "nested");
+    std::string childSlot;
+    for (const auto &slot : feats.toView().slots)
+        if (slot.id.starts_with("feat:")) childSlot = slot.id;
+    assert(!childSlot.empty());
+    feats.selectFeat(childSlot, "root");
+    const auto nestedSave = feats.toData();
+    strength = 12;
+    feats.recheckPrerequisites();
+    assert(feats.toData().selections.size() == 2);
+    for (const auto &feat : feats.toView().feats) assert(!feat.active);
+    strength = 13;
+    feats.recheckPrerequisites();
+    for (const auto &feat : feats.toView().feats) assert(feat.active);
+    assert(resources.modifierTotal("initiative") == 4);
+    feats.removeFeat("base.feat.level1");
+    assert(resources.modifierTotal("initiative") == 0);
+    feats.removeFeat(childSlot);
+    feats.load(nestedSave);
+    assert(resources.modifierTotal("initiative") == 4);
+    feats.removeFeat("base.feat.level1");
+    feats.removeFeat(childSlot);
     assert(feats.toView().slots.size() == 4);
     // Deliberately load the chain in reverse dependency/slot order.
     feats.load({{{"base.feat.level1", "leaf", {}}, {"base.feat.level3", "dependent", {}}, {"base.feat.level5", "root", {}}}});
+    assert(resources.modifierTotal("initiative") == 12);
+    feats.setLevel(3);
+    assert(feats.toData().selections.size() == 3);
+    assert(resources.modifierTotal("initiative") == 0);
+    for (const auto &feat : feats.toView().feats) assert(!feat.active);
+    feats.setLevel(5);
     assert(resources.modifierTotal("initiative") == 12);
     strength = 12;
     feats.recheckPrerequisites();
@@ -217,7 +265,56 @@ int main()
     assert(failed && feats.toData().selections.empty());
     assert(resources.modifierTotal("initiative") == 0);
 
-    CharacterSheet sheet;
+    const ClassDefinitionManager classCatalog({test::classDefinition(CharacterClassType::Fighter)});
+    {
+        ResourceManager ownedResources;
+        ownedResources.registerEnhanceableResource("initiative");
+        ownedResources.registerTarget("strength", [] { return 13; });
+        {
+            Feats owned(ownedResources);
+            owned.setLevel(1);
+            owned.selectFeat("base.feat.level1", "nested");
+            for (const auto &slot : owned.toView().slots)
+                if (slot.id.starts_with("feat:")) owned.selectFeat(slot.id, "root");
+        }
+        assert(ownedResources.modifierTotal("initiative") == 0);
+    }
+    {
+        ResourceManager nestedResources;
+        nestedResources.registerEnhanceableResource("initiative");
+        for (const auto *name : {"hp.max", "skill.ranks.max", "baseAttackBonus", "savingThrow.fortitude.base", "savingThrow.reflex.base", "savingThrow.will.base"})
+            nestedResources.registerAccumulatedResource(name);
+        nestedResources.registerTarget("intMod", [] { return 0; });
+        nestedResources.registerTarget("conMod", [] { return 0; });
+        nestedResources.registerTarget("strength", [&] { return strength; });
+        FavoredClasses favored(nestedResources);
+        Feats nestedFeats(nestedResources);
+        Classes classes(nestedResources, favored, classCatalog);
+        classes.addLevel(CharacterClassType::Fighter, 4);
+        classes.addLevel(CharacterClassType::Fighter, 4);
+        nestedFeats.setLevel(2);
+        nestedResources.addToCollection(FavoredClasses::OptionsResource, FavoredClassBonusOption{
+            .id = "bonusSlot", .name = "Talento", .description = "Ogni due scelte",
+            .effects = {FeatSlotGrantEffectDefinition{"slot"}}, .selectionsPerBenefit = 2
+        });
+        favored.load({{}, {{CharacterClassType::Fighter, 1, "bonusSlot"}, {CharacterClassType::Fighter, 2, "bonusSlot"}}});
+        strength = 13;
+        nestedFeats.selectFeat("base.feat.level1", "favoredProvider");
+        std::string grantedSlot;
+        for (const auto &slot : nestedFeats.toView().slots)
+            if (slot.id.starts_with("favored.")) grantedSlot = slot.id;
+        assert(!grantedSlot.empty());
+        nestedFeats.selectFeat(grantedSlot, "root");
+        strength = 12;
+        nestedFeats.recheckPrerequisites();
+        for (const auto &feat : nestedFeats.toView().feats) assert(!feat.active);
+        strength = 13;
+        nestedFeats.recheckPrerequisites();
+        for (const auto &feat : nestedFeats.toView().feats) assert(feat.active);
+        // Destruction also removes source-owned slots without recursively reactivating the provider.
+    }
+    CharacterSheet sheet(classCatalog);
+    sheet.addClassLevel(CharacterClassType::Fighter);
     sheet.setAbilityBaseValue(AbilityType::Strength, 13);
     sheet.selectFeat("base.feat.level1", "sheet");
     assert(sheet.toView().feats.feats[0].active);

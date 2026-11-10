@@ -48,9 +48,10 @@ int main()
     feats.selectFeat("race.bonusFeat", "improvedInitiative");
     assert(resourceManager.modifierTotal("initiative") == 4);
     anySlot();
-    assert(feats.toView().slots.size() == 1);
-    assert(feats.toView().feats.empty());
+    assert(feats.toView().slots.size() == 2);
+    assert(!feats.toView().slots[1].available && !feats.toView().feats[0].active);
     assert(resourceManager.modifierTotal("initiative") == 0);
+    feats.removeFeat("race.bonusFeat");
     auto combatSlot = compileEffect(FeatSlotGrantEffectDefinition{"bonus", FeatTypeFilter{FeatType::Combat}}, {"class.combat", "Classe"})(resourceManager);
     feats.selectFeat("class.combat", "improvedInitiative");
     feats.removeFeat("class.combat");

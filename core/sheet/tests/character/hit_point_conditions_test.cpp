@@ -1,5 +1,6 @@
 #include "golarion/character/ability.hpp"
 #include "golarion/character/character_sheet.hpp"
+#include "../fixtures/class_definition.hpp"
 #include "golarion/view/condition_view.hpp"
 
 #include <algorithm>
@@ -24,7 +25,9 @@ int main()
 {
     using namespace golarion;
 
-    CharacterSheet sheet;
+    const ClassDefinitionManager classCatalog({test::levelOnlyClassDefinition()});
+    CharacterSheet sheet(classCatalog);
+    sheet.addClassLevel(CharacterClassType::Fighter);
     assert(!conditionIsActive(sheet.toView(), "disabled"));
 
     sheet.setAbilityBaseValue(AbilityType::Constitution, 30);
@@ -70,7 +73,7 @@ int main()
 
     const std::filesystem::path savePath = "hit_point_conditions_test_save.json";
     sheet.save(savePath);
-    CharacterSheet loaded = CharacterSheet::load(savePath);
+    CharacterSheet loaded = CharacterSheet::load(savePath, classCatalog);
     assert(loaded.toView().hitPoints.current == -25);
     assert(conditionIsActive(loaded.toView(), "dead"));
     loaded.heal(100);

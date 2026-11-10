@@ -37,6 +37,7 @@ namespace golarion
         void registerAccumulatedResource(std::string_view name);
         void unregisterAccumulatedResource(std::string_view name);
         void registerTarget(std::string_view name, std::function<int()> valueSupplier);
+        void unregisterTarget(std::string_view name);
         template<typename Item> void registerCollectionResource(std::string_view name, std::function<void(Item)> addItem, std::function<void(std::string_view)> removeItem);
         void unregisterCollectionResource(std::string_view name);
 

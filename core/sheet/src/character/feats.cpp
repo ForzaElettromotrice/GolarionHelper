@@ -8,10 +8,17 @@
 #include <algorithm>
 #include <set>
 #include <stdexcept>
+#include <tuple>
 #include <utility>
 
 namespace
 {
+    struct EffectMutationGuard
+    {
+        int &depth;
+        explicit EffectMutationGuard(int &value) : depth(value) { ++depth; }
+        ~EffectMutationGuard() { --depth; }
+    };
     constexpr std::string_view BasePrefix = "base.feat.level";
 
     bool accepts(const golarion::FeatSlotFilter &filter, const golarion::FeatDefinition &feat)
@@ -39,7 +46,11 @@ namespace golarion
 
     Feats::~Feats()
     {
-        for (auto &[id, slot] : slots_) clear(slot);
+        destroying_ = true;
+        std::vector<std::string> ids;
+        for (const auto &[id, slot] : slots_) ids.push_back(id);
+        for (const auto &id : ids)
+            if (const auto found = slots_.find(id); found != slots_.end()) clear(found->second);
         resourceManager_.unregisterCollectionResource(FeatSlotsResource);
     }
 
@@ -52,14 +63,24 @@ namespace golarion
 
     void Feats::deactivate(SlotState &slot)
     {
-        for (auto it = slot.cleanups.rbegin(); it != slot.cleanups.rend(); ++it) (*it)();
-        slot.cleanups.clear();
+        EffectMutationGuard guard(effectMutationDepth_);
+        auto cleanups = std::move(slot.cleanups);
+        slot.cleanups = {};
         slot.active = false;
+        for (auto it = cleanups.rbegin(); it != cleanups.rend(); ++it) (*it)();
     }
 
     void Feats::addNormalizedSlot(FeatSlot slot)
     {
         const std::string id = slot.id;
+        const auto found = slots_.find(id);
+        if (found != slots_.end() && !found->second.available)
+        {
+            // Restore the provider, not a fresh acquisition. Its new restrictions are checked on recheck.
+            found->second.slot = std::move(slot);
+            found->second.available = true;
+            return;
+        }
         if (!slots_.emplace(id, SlotState{.slot = std::move(slot), .choices = {}, .cleanups = {}}).second)
             throw std::invalid_argument("feat slot is already registered: " + id);
     }
@@ -91,8 +112,15 @@ namespace golarion
     {
         const auto key = normalize(id);
         if (key.starts_with(BasePrefix)) throw std::invalid_argument("base feat slots are owned by level progression");
-        removeFeat(key);
-        slots_.erase(key);
+        const auto found = slots_.find(key);
+        if (found == slots_.end() || !found->second.available) throw std::invalid_argument("feat slot is not registered: " + key);
+        auto &slot = found->second;
+        slot.available = false;
+        // Never retain callbacks that can refer to a destroyed provider.
+        slot.slot.exempts = {};
+        deactivate(slot);
+        if (!slot.selected) slots_.erase(found);
+        recheckPrerequisites();
     }
 
     void Feats::setLevel(int level)
@@ -103,18 +131,28 @@ namespace golarion
         for (long long n = 1; n <= level; n += 2)
         {
             const auto id = std::string(BasePrefix) + std::to_string(n);
-            if (n > level_) additions.emplace(id, SlotState{.slot = {.id = id, .source = "Avanzamento del personaggio"}, .choices = {}, .cleanups = {}});
+            if (!slots_.contains(id)) additions.emplace(id, SlotState{.slot = {.id = id, .source = "Avanzamento del personaggio"}, .choices = {}, .cleanups = {}});
         }
         for (long long n = 1; n <= level_; n += 2)
         {
             if (n > level)
             {
                 const auto id = std::string(BasePrefix) + std::to_string(n);
-                clear(slots_.at(id));
-                slots_.erase(id);
+                auto &slot = slots_.at(id);
+                slot.available = false;
+                deactivate(slot);
+                if (!slot.selected) slots_.erase(id);
             }
         }
         slots_.merge(additions);
+        for (long long n = 1; n <= level; n += 2)
+        {
+            auto &slot = slots_.at(std::string(BasePrefix) + std::to_string(n));
+            slot.available = true;
+            slot.slot.source = "Avanzamento del personaggio";
+            slot.slot.filter = AnyFeat{};
+            slot.slot.exempts = {};
+        }
         level_ = level;
         recheckPrerequisites();
     }
@@ -176,7 +214,7 @@ namespace golarion
         const auto found = slots_.find(normalize(slotId));
         if (found == slots_.end()) throw std::invalid_argument("feat slot is not registered");
         const auto &slot = found->second;
-        if (!accepts(slot.slot.filter, definition)) return false;
+        if (!slot.available || !accepts(slot.slot.filter, definition)) return false;
         const FeatPrerequisiteContext context{definition, slot.slot.id, slot.slot.source, choices};
         for (const auto &requirement : definition.requirements)
             if (!requirementSatisfied(requirement, slot, context)) return false;
@@ -212,6 +250,7 @@ namespace golarion
         const auto found = slots_.find(key);
         if (found == slots_.end()) throw std::invalid_argument("feat slot is not registered: " + key);
         auto &slot = found->second;
+        if (!restoring && !slot.available) throw std::invalid_argument("feat slot is unavailable: " + key);
         if (slot.selected) throw std::invalid_argument("feat slot is occupied; remove its feat first");
         const auto &definition = FeatDefinitionManager::instance().get(featId);
         FeatChoices normalized;
@@ -229,7 +268,7 @@ namespace golarion
                  (definition.repeatability == FeatRepeatability::DifferentChoices && other.choices == normalized)))
                 throw std::invalid_argument("feat repeatability does not allow this acquisition");
         // Validate structure independently: an acquired feat may lack prerequisites on load.
-        if (!accepts(slot.slot.filter, definition) || normalized.size() != definition.choices.size())
+        if ((!restoring && !accepts(slot.slot.filter, definition)) || normalized.size() != definition.choices.size())
             throw std::invalid_argument("invalid feat slot or choices");
         for (const auto &choice : definition.choices)
         {
@@ -253,6 +292,7 @@ namespace golarion
     void Feats::activate(SlotState &slot)
     {
         if (slot.active) return;
+        EffectMutationGuard guard(effectMutationDepth_);
         const auto &key = slot.slot.id;
         const auto &definition = *slot.selected;
         const auto &normalized = slot.choices;
@@ -261,10 +301,6 @@ namespace golarion
         {
             for (const auto &effect : effects)
             {
-                // Rechecks rebuild feat effects; withdrawing a nested slot would erase its selection.
-                // Until nested slot lifecycles are modeled, reject them before applying any effects.
-                if (std::holds_alternative<FeatSlotGrantEffectDefinition>(effect))
-                    throw std::invalid_argument("feat-owned feat slots are not supported");
                 // Length-prefixed components prevent collisions between dotted IDs.
                 const auto part = [](const std::string &value) { return std::to_string(value.size()) + ":" + value; };
                 applications.push_back(compileEffect(effect, {.instanceId = "feat:" + part(key) + part(definition.id) + part(path) + part(effectId(effect)), .source = definition.name}));
@@ -292,34 +328,53 @@ namespace golarion
 
     void Feats::recheckPrerequisites()
     {
-        // Start without feat benefits: cycles cannot sustain themselves after a prerequisite loss.
-        for (auto &[id, slot] : slots_) deactivate(slot);
-        std::set<std::vector<bool>> visited;
-        try
+        // Nested cleanup requests are handled by the next pass of the outer operation.
+        if (destroying_ || rechecking_ || effectMutationDepth_ != 0) return;
+        rechecking_ = true;
+        struct Guard { bool &value; ~Guard() { value = false; } } guard{rechecking_};
+        using State = std::vector<std::tuple<std::string, bool, bool>>;
+        std::set<State> visited;
+        for (;;)
         {
-            for (;;)
+            State state;
+            std::vector<std::string> ids;
+            for (const auto &[id, slot] : slots_)
             {
-                std::vector<bool> current, next;
-                for (const auto &[id, slot] : slots_)
+                ids.push_back(id);
+                state.emplace_back(id, slot.available, slot.active);
+            }
+            if (!visited.insert(std::move(state)).second)
+                throw std::logic_error("feat prerequisites do not converge");
+
+            bool changed = false;
+            // Complete dependency loss propagation before trying to reactivate any feat.
+            for (const auto &id : ids)
+            {
+                const auto found = slots_.find(id);
+                if (found == slots_.end()) continue;
+                auto &slot = found->second;
+                if (slot.active && !qualifies(id, *slot.selected, slot.choices))
                 {
-                    current.push_back(slot.active);
-                    next.push_back(slot.selected && qualifies(id, *slot.selected, slot.choices));
-                }
-                if (current == next) return;
-                if (!visited.insert(current).second)
-                    throw std::logic_error("feat prerequisites do not converge");
-                std::size_t index = 0;
-                for (auto &[id, slot] : slots_)
-                {
-                    if (next[index++]) activate(slot);
-                    else deactivate(slot);
+                    deactivate(slot);
+                    changed = true;
                 }
             }
-        }
-        catch (...)
-        {
-            for (auto &[id, slot] : slots_) deactivate(slot);
-            throw;
+            if (changed) continue;
+
+            // Restart from fresh slot IDs after each activation: its effects may grant slots.
+            for (const auto &id : ids)
+            {
+                const auto found = slots_.find(id);
+                if (found == slots_.end()) continue;
+                auto &slot = found->second;
+                if (!slot.active && slot.selected && qualifies(id, *slot.selected, slot.choices))
+                {
+                    activate(slot);
+                    changed = true;
+                    break;
+                }
+            }
+            if (!changed) return;
         }
     }
 
@@ -328,6 +383,7 @@ namespace golarion
         const auto found = slots_.find(normalize(slotId));
         if (found == slots_.end()) throw std::invalid_argument("feat slot is not registered");
         clear(found->second);
+        if (!found->second.available) slots_.erase(found);
         recheckPrerequisites();
     }
 
@@ -336,7 +392,7 @@ namespace golarion
         FeatsView view;
         for (const auto &[id, slot] : slots_)
         {
-            FeatSlotView slotView{id, slot.slot.source, slot.selected ? std::optional(slot.selected->id) : std::nullopt, std::nullopt, {}};
+            FeatSlotView slotView{id, slot.slot.source, slot.selected ? std::optional(slot.selected->id) : std::nullopt, std::nullopt, {}, slot.available};
             std::visit([&](const auto &filter)
             {
                 using T = std::decay_t<decltype(filter)>;
@@ -376,12 +432,20 @@ namespace golarion
             if (slot.selected) throw std::invalid_argument("feat loading requires empty slots");
         std::vector<std::string> restored;
         restored.reserve(data.selections.size());
+        std::vector<std::string> placeholders;
+        placeholders.reserve(data.selections.size());
         try
         {
             for (const auto &selection : data.selections)
             {
+                const auto key = normalize(selection.slotId);
+                if (!slots_.contains(key))
+                {
+                    placeholders.push_back(key);
+                    slots_.emplace(key, SlotState{.slot = {.id = key, .source = "Fonte non disponibile"}, .available = false, .choices = {}, .cleanups = {}});
+                }
                 // Store the ID before applying effects so allocation cannot break rollback.
-                restored.push_back(normalize(selection.slotId));
+                restored.push_back(key);
                 try { select(restored.back(), selection.featId, selection.choices, true); }
                 catch (...) { restored.pop_back(); throw; }
             }
@@ -390,6 +454,7 @@ namespace golarion
         catch (...)
         {
             for (auto it = restored.rbegin(); it != restored.rend(); ++it) clear(slots_.at(*it));
+            for (const auto &id : placeholders) slots_.erase(id);
             throw;
         }
     }

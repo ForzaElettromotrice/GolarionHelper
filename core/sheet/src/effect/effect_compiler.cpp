@@ -6,6 +6,7 @@
 #include "golarion/character/languages.hpp"
 #include "golarion/character/granted_spells.hpp"
 #include "golarion/character/feats.hpp"
+#include "golarion/character/favored_classes.hpp"
 #include "golarion/character/size.hpp"
 #include "golarion/resource/contribution.hpp"
 #include "golarion/resource/modifier.hpp"
@@ -167,6 +168,29 @@ namespace golarion
                     {
                         resourceManager.removeFromCollection(SpokenLanguagesResource, instanceId);
                     });
+                };
+            }
+            else if constexpr (std::is_same_v<Effect, FavoredClassGrantEffectDefinition>)
+            {
+                if (effect.additionalChoices < 0) throw std::invalid_argument("favored class choice grant must not be negative");
+                for (auto type : effect.classes) characterClassId(type);
+                return [effect = std::move(effect), context](ResourceManager &resources) -> EffectCleanup
+                {
+                    resources.addToCollection(FavoredClasses::GrantsResource, FavoredClassGrant{context.instanceId, context.source, effect.additionalChoices, effect.classes, effect.allClasses});
+                    return [&resources, id = context.instanceId] { resources.removeFromCollection(FavoredClasses::GrantsResource, id); };
+                };
+            }
+            else if constexpr (std::is_same_v<Effect, FavoredClassBonusEffectDefinition>)
+            {
+                if (effect.selectionsPerBenefit < 1) throw std::invalid_argument("favored class benefit interval must be positive");
+                for (auto type : effect.classes) characterClassId(type);
+                for (auto base : effect.replaces)
+                    if (base != FavoredClassBaseBonus::HitPoint && base != FavoredClassBaseBonus::SkillRank) throw std::invalid_argument("unknown favored class base bonus");
+                for (const auto &benefit : effect.effects) std::visit([&](const auto &value) { compileEffect(value, context); }, benefit);
+                return [effect = std::move(effect), context](ResourceManager &resources) -> EffectCleanup
+                {
+                    resources.addToCollection(FavoredClasses::OptionsResource, FavoredClassBonusOption{context.instanceId, effect.name, effect.description, effect.classes, effect.effects, effect.replaces, effect.selectionsPerBenefit, context.usagePool});
+                    return [&resources, id = context.instanceId] { resources.removeFromCollection(FavoredClasses::OptionsResource, id); };
                 };
             }
             else

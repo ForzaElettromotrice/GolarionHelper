@@ -1,5 +1,6 @@
 #include "golarion/character/ability.hpp"
 #include "golarion/character/character_sheet.hpp"
+#include "../fixtures/class_definition.hpp"
 #include "golarion/persistence/json.hpp"
 
 #include <algorithm>
@@ -91,7 +92,9 @@ int main()
         assert(raceView.abilities[0].totalValue == 10);
     }
 
-    CharacterSheet sheet;
+    const ClassDefinitionManager classCatalog({test::levelOnlyClassDefinition()});
+    CharacterSheet sheet(classCatalog);
+    sheet.addClassLevel(CharacterClassType::Fighter);
     sheet.setName("Seelah");
     sheet.setPlayerName("Giocatore");
     sheet.setAlignment(Alignment::LawfulGood);
@@ -152,7 +155,7 @@ int main()
     assert(view.abilities[0].baseValue == 16);
     assert(view.abilities[0].totalValue == 16);
     assert(view.baseAttackBonus.total == 0);
-    assert(view.baseAttackBonus.contributions.contributions.empty());
+    assert(view.baseAttackBonus.contributions.contributions.size() == 1);
     assert(view.strikes.strikes.empty());
     assert(view.attackRoutines.routines.size() == 3);
     assert(view.attackRoutines.routines[0].id == StandardAttackRoutineId);
@@ -273,7 +276,7 @@ int main()
     assert(view.combatManeuvers.maneuvers[0].bonus.abilityOptions[0].totalValue == 1);
 
     CharacterSheetSaveData saveData = sheet.toSaveData();
-    assert(saveData.formatVersion == 29);
+    assert(saveData.formatVersion == 33);
     assert(saveData.identity.name == "Seelah");
     assert(saveData.identity.playerName == "Giocatore");
     assert(saveData.identity.alignment == Alignment::LawfulGood);
@@ -303,7 +306,7 @@ int main()
     assert(saveData.inventory.items.empty());
     const std::filesystem::path savePath = "character_sheet_test_save.json";
     sheet.save(savePath);
-    CharacterSheet loadedSheet = CharacterSheet::load(savePath);
+    CharacterSheet loadedSheet = CharacterSheet::load(savePath, classCatalog);
     CharacterSheetView loadedView = loadedSheet.toView();
     assert(loadedView.identity.name == "Seelah");
     assert(loadedView.identity.playerName == "Giocatore");
@@ -451,7 +454,7 @@ int main()
     const std::filesystem::path inventorySavePath = "character_sheet_inventory_test_save.json";
     for (auto &item : saveData.inventory.items) item.remainingUses = std::map<std::string, int>{};
     persistence::saveToFile(saveData, inventorySavePath);
-    CharacterSheet inventoryLoadedSheet = CharacterSheet::load(inventorySavePath);
+    CharacterSheet inventoryLoadedSheet = CharacterSheet::load(inventorySavePath, classCatalog);
     const CharacterSheetView inventoryLoadedView = inventoryLoadedSheet.toView();
     assert(inventoryLoadedView.inventory.totalCarriedWeightGrams == 12000);
     assert(inventoryLoadedView.inventory.items.size() == 4);

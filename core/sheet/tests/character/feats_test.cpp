@@ -1,4 +1,5 @@
 #include "golarion/character/character_sheet.hpp"
+#include "../fixtures/class_definition.hpp"
 #include "golarion/character/feat_definition_manager.hpp"
 #include "golarion/character/feats.hpp"
 #include "golarion/resource/resource_manager.hpp"
@@ -44,10 +45,14 @@ int main()
         assert(resources.modifierTotal("initiative") == 0);
         feats.selectFeat("base.feat.level5", "improvedInitiative");
         feats.setLevel(3);
-        assert(feats.toView().slots.size() == 2);
+        assert(feats.toView().slots.size() == 3);
+        assert(!feats.toView().slots[2].available && !feats.toView().feats[0].active);
         assert(resources.modifierTotal("initiative") == 0);
         feats.setLevel(5);
         assert(feats.toView().slots.size() == 3);
+        assert(feats.toView().slots[2].available && feats.toView().feats[0].active);
+        assert(resources.modifierTotal("initiative") == 4);
+        feats.removeFeat("base.feat.level5");
         expectInvalid([&] { feats.setLevel(-1); });
 
         resources.addToCollection(FeatSlotsResource, FeatSlot{.id = "class.combat", .source = "Classe", .filter = FeatTypeFilter{FeatType::Combat}});
@@ -77,6 +82,8 @@ int main()
         assert(resources.modifierTotal("initiative") == 4);
         resources.removeFromCollection(FeatSlotsResource, "class.list");
         assert(resources.modifierTotal("initiative") == 0);
+        assert(feats.toData().selections[0].featId == "improvedInitiative");
+        feats.removeFeat("class.list");
         expectInvalid([&] { feats.removeFeat("class.list"); });
 
         auto restricted = initiative;
@@ -137,11 +144,16 @@ int main()
     expectInvalid([&] { retry.load({{valid, valid}}); });
     assert(retry.toData().selections.empty());
     assert(incomplete.modifierTotal("initiative") == 0);
-    expectInvalid([&] { retry.load({{{"missing", "improvedInitiative", {}}}}); });
+    retry.load({{{"missing", "improvedInitiative", {}}}});
+    assert(!retry.toView().feats[0].active);
+    retry.removeFeat("missing");
     expectInvalid([&] { retry.load({{{"base.feat.level1", "missing", {}}}}); });
     expectInvalid([&] { retry.load({{{"base.feat.level1", "improvedInitiative", {{"unknown", {"option"}}}}}}); });
 
-    CharacterSheet sheet;
+    const ClassDefinitionManager classCatalog({test::classDefinition(CharacterClassType::Fighter)});
+    CharacterSheet sheet(classCatalog);
+    assert(sheet.level() == 0 && sheet.toView().feats.slots.empty());
+    sheet.addClassLevel(CharacterClassType::Fighter);
     assert(sheet.toView().feats.slots.size() == 1);
     const int initial = sheet.toView().initiative.abilityOptions[0].totalValue;
     sheet.selectFeat("base.feat.level1", "improvedInitiative");
@@ -156,7 +168,7 @@ int main()
     const auto json = persistence::toJson(sheet.toSaveData());
     const auto path = std::filesystem::temp_directory_path() / "golarion_feats_round_trip.json";
     sheet.save(path);
-    auto restored = CharacterSheet::load(path);
+    auto restored = CharacterSheet::load(path, classCatalog);
     assert(restored.toView().initiative.abilityOptions[0].totalValue == initial + 4);
     assert(restored.toView().feats.feats[0].id == initiative.id);
     restored.removeFeat("base.feat.level1");

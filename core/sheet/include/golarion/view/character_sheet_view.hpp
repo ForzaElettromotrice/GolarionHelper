@@ -1,6 +1,8 @@
 #pragma once
 
 #include "golarion/view/feats_view.hpp"
+#include "golarion/view/classes_view.hpp"
+#include "golarion/view/spellcastings_view.hpp"
 #include "golarion/view/languages_view.hpp"
 #include "golarion/character/granted_spell.hpp"
 
@@ -58,5 +60,8 @@ namespace golarion
         InventoryView inventory;
         SizeView size;
         ConditionManagerView conditions;
+        ClassesView classes;
+        bool legacyFirstLevelFeatSlot;
+        SpellcastingsView spellcastings;
     };
 }

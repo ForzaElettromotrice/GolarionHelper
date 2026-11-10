@@ -115,7 +115,7 @@ int main()
     assert(restored.toView().languages.remainingLinguistics == 1);
 
     auto json = nlohmann::json::parse(persistence::toJson(sheet.toSaveData()));
-    assert(json["formatVersion"] == 29);
+    assert(json["formatVersion"] == 33);
     auto invalid = json;
     invalid["languages"]["learned"][0]["origin"] = "unknown";
     rejects([&] { persistence::fromJson(invalid.dump()); });

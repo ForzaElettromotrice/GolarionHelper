@@ -58,7 +58,7 @@ int main()
     const auto saved = castings.toData();
     const auto json = serialize(saved);
     const auto decoded = persistence::fromJson(json);
-    assert(decoded.formatVersion == 29);
+    assert(decoded.formatVersion == 33);
     assert(serialize(decoded.spellcastings) == json);
     assert(json.find("dailyCapacityByLevel") == std::string::npos);
     assert(json.find("usageCost") == std::string::npos);
@@ -140,6 +140,6 @@ int main()
     wire.erase("spellcastings");
     assert(persistence::fromJson(wire.dump()).spellcastings.castings.empty());
     auto empty = CharacterSheet().toSaveData();
-    assert(empty.formatVersion == 29 && empty.spellcastings.castings.empty());
+    assert(empty.formatVersion == 33 && empty.spellcastings.castings.empty());
     assert(persistence::fromJson(persistence::toJson(empty)).spellcastings.castings.empty());
 }

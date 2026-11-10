@@ -1,6 +1,7 @@
 #pragma once
 
 #include "golarion/character/carrying_capacity.hpp"
+#include "golarion/character/character_class_type.hpp"
 #include "golarion/character/granted_spell.hpp"
 #include "golarion/character/feat_slot_filter.hpp"
 #include "golarion/character/movement.hpp"
@@ -8,8 +9,10 @@
 #include "golarion/resource/modifier.hpp"
 
 #include <optional>
+#include <set>
 #include <string>
 #include <variant>
+#include <vector>
 
 namespace golarion
 {
@@ -84,7 +87,8 @@ namespace golarion
 
     void validateSpellGrantEffectDefinition(const SpellGrantEffectDefinition &effect);
 
-    using EffectDefinition = std::variant<
+    // Favored bonuses may contain ordinary effects, but cannot recursively grant favored options.
+    using FavoredClassBenefitEffect = std::variant<
         ModifierEffectDefinition,
         ContributionEffectDefinition,
         SizeBaseEffectDefinition,
@@ -94,6 +98,40 @@ namespace golarion
         LanguageGrantEffectDefinition,
         FeatSlotGrantEffectDefinition,
         SpellGrantEffectDefinition>;
+
+    enum class FavoredClassBaseBonus { HitPoint, SkillRank };
+
+    struct FavoredClassGrantEffectDefinition
+    {
+        std::string id;
+        int additionalChoices = 0;
+        std::set<CharacterClassType> classes{};
+        bool allClasses = false;
+    };
+
+    struct FavoredClassBonusEffectDefinition
+    {
+        std::string id;
+        std::string name;
+        std::string description;
+        std::set<CharacterClassType> classes{};
+        std::vector<FavoredClassBenefitEffect> effects{};
+        std::set<FavoredClassBaseBonus> replaces{};
+        int selectionsPerBenefit = 1;
+    };
+
+    using EffectDefinition = std::variant<
+        ModifierEffectDefinition,
+        ContributionEffectDefinition,
+        SizeBaseEffectDefinition,
+        MovementGrantEffectDefinition,
+        CarryingBodyTypeEffectDefinition,
+        ReminderEffectDefinition,
+        LanguageGrantEffectDefinition,
+        FeatSlotGrantEffectDefinition,
+        SpellGrantEffectDefinition,
+        FavoredClassGrantEffectDefinition,
+        FavoredClassBonusEffectDefinition>;
 
     inline const std::string &effectId(const EffectDefinition &definition)
     {

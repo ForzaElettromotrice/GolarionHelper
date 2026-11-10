@@ -1,4 +1,5 @@
 #include "golarion/character/spellcastings.hpp"
+#include "golarion/character/character_sheet.hpp"
 #include "golarion/character/prepared_spellcasting.hpp"
 #include "golarion/character/spontaneous_spellcasting.hpp"
 #include "golarion/character/flexible_spellcasting.hpp"
@@ -29,6 +30,8 @@ int main()
     const SpellSlotGrant slots{"base", "Class", {{3, 1}}};
     {
         Spellcastings castings(resources);
+        assert(castings.toView().castings.empty());
+        assert(CharacterSheet().toView().spellcastings.castings.empty());
         rejects([&] { castings.get("class.wizard"); });
         rejects([&] { Spellcastings duplicate(resources); });
         resources.addToCollection(Spellcastings::Resource, wizard);
@@ -49,11 +52,37 @@ int main()
         spontaneous.addToRepertoire("fireball");
         spontaneous.consume({"base", 3, 0}, "fireball");
 
+        resources.addToCollection(spellSlotsResource("flexible"), slots);
+        resources.addToCollection(preparationSlotsResource("flexible"), SpellSlotGrant{"prepared", "Preparazione", {{3, 1}}});
+        flexible.addToRepertoire("fireball");
+        flexible.prepare({"prepared", 3, 0}, "fireball");
+        flexible.consume({"base", 3, 0}, {"prepared", 3, 0});
+        const auto snapshot = castings.toView();
+        assert(snapshot.castings.size() == 3);
+        assert(snapshot.castings[0].id == wizard.id);
+        assert(snapshot.castings[0].source == wizard.source);
+        assert(snapshot.castings[0].mode == SpellcastingMode::Prepared);
+        assert(snapshot.castings[0].repertoire == std::vector<std::string>{"fireball"});
+        const auto &preparedView = std::get<PreparedSpellcastingView>(snapshot.castings[0].state);
+        assert(preparedView.spellListClass == CharacterClassType::Wizard);
+        assert(preparedView.groups[0].slots[0].state == PreparedSpellSlotState::Consumed);
+        assert(preparedView.groups[0].slots[0].spellId == "fireball");
+        assert(snapshot.castings[1].id == "flexible" && snapshot.castings[1].source == "Flexible");
+        assert(snapshot.castings[1].mode == SpellcastingMode::Flexible);
+        const auto &flexibleView = std::get<FlexibleSpellcastingView>(snapshot.castings[1].state);
+        assert(flexibleView.preparationGroups[0].preparations[0].spellId == "fireball");
+        assert(flexibleView.slotGroups[0].slots[0].state == SpontaneousSpellSlotState::Consumed);
+        assert(snapshot.castings[2].id == "other" && snapshot.castings[2].mode == SpellcastingMode::Spontaneous);
+        assert(std::get<SpontaneousSpellcastingView>(snapshot.castings[2].state).groups[0].slots[0].state == SpontaneousSpellSlotState::Consumed);
+
         // Updating capacity keeps the same casting and repertoire, but resets this group.
         resources.removeFromCollection(spellSlotsResource(wizard.id), "base");
         resources.addToCollection(spellSlotsResource(wizard.id), SpellSlotGrant{"base", "Wizard", {{3, 2}, {4, 1}}});
         assert(&castings.get(wizard.id) == &prepared);
         assert(prepared.toData().preparations.empty());
+        assert(preparedView.groups[0].slots.size() == 1);
+        assert(preparedView.groups[0].slots[0].state == PreparedSpellSlotState::Consumed);
+        assert(std::get<PreparedSpellcastingView>(castings.toView().castings[0].state).groups[0].slots.size() == 3);
         prepared.prepare({"base", 3, 1}, "fireball");
         assert(spontaneous.toData().consumedSlots.size() == 1);
         rejects([&] { resources.addToCollection(Spellcastings::Resource, wizard); });
@@ -82,6 +111,8 @@ int main()
         resources.addToCollection(Spellcastings::Resource, collision);
 
         resources.removeFromCollection(Spellcastings::Resource, " class.wizard ");
+        assert(snapshot.castings[0].id == wizard.id && snapshot.castings[0].repertoire.size() == 1);
+        for (const auto &entry : castings.toView().castings) assert(entry.id != wizard.id);
         rejects([&] { castings.get(wizard.id); });
         rejects([&] { resources.addToCollection(spellSlotsResource(wizard.id), slots); });
         resources.addToCollection(Spellcastings::Resource, wizard);

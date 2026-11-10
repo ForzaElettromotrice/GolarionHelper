@@ -1,6 +1,7 @@
 #pragma once
 
 #include "golarion/data/ability_save_data.hpp"
+#include "golarion/data/classes_data.hpp"
 #include "golarion/data/attacks_data.hpp"
 #include "golarion/data/feats_data.hpp"
 #include "golarion/data/languages_data.hpp"
@@ -32,5 +33,8 @@ namespace golarion
         LanguagesData languages;
         SpellcastingsData spellcastings;
         GrantedSpellsData grantedSpells;
+        ClassesData classes;
+        // Preserve an old level-one feat until a real class is assigned.
+        bool legacyFirstLevelFeatSlot = false;
     };
 }

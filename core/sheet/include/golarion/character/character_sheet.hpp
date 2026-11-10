@@ -1,6 +1,7 @@
 #pragma once
 
 #include "golarion/character/feats.hpp"
+#include "golarion/character/classes.hpp"
 #include "golarion/character/languages.hpp"
 #include "golarion/character/spellcastings.hpp"
 #include "golarion/character/granted_spells.hpp"
@@ -44,8 +45,19 @@ namespace golarion
     class CharacterSheet final
     {
     public:
-        CharacterSheet();
-        static CharacterSheet load(const std::filesystem::path &path);
+        explicit CharacterSheet(const ClassDefinitionManager &classDefinitions = ClassDefinitionManager::instance());
+        static CharacterSheet load(const std::filesystem::path &path, const ClassDefinitionManager &classDefinitions = ClassDefinitionManager::instance());
+        void addClassLevel(CharacterClassType type, std::optional<int> hitDieResult = std::nullopt);
+        void setClassHitDieResult(CharacterClassType type, int classLevel, int result);
+        void setFavoredClass(CharacterClassType type);
+        void setFavoredClasses(std::set<CharacterClassType> types);
+        void selectFavoredClassBonus(CharacterClassType type, int classLevel, std::string optionId);
+        void clearFavoredClassBonus(CharacterClassType type, int classLevel);
+        void addClassArchetype(CharacterClassType type, const std::string &archetypeId);
+        void removeClassArchetype(CharacterClassType type, const std::string &archetypeId);
+        int level() const;
+        void selectClassOption(CharacterClassType type, const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId);
+        void unselectClassOption(CharacterClassType type, const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId);
 
         void setName(std::string_view name);
         void setPlayerName(std::string_view playerName);
@@ -98,9 +110,8 @@ namespace golarion
     private:
         static constexpr std::size_t AbilityCount = 6;
 
-        explicit CharacterSheet(const CharacterSheetSaveData &data);
+        CharacterSheet(const CharacterSheetSaveData &data, const ClassDefinitionManager &classDefinitions);
         AbilityScore &ability(AbilityType type);
-        int level() const;
 
         ResourceManager resourceManager_;
         CharacterIdentity identity_;
@@ -126,9 +137,12 @@ namespace golarion
         Languages languages_;
         Spellcastings spellcastings_;
         GrantedSpells grantedSpells_;
+        FavoredClasses favoredClasses_;
         Feats feats_;
         ConditionManager conditionManager_;
         std::optional<Inventory> inventory_;
         Race race_;
+        Classes classes_;
+        bool legacyFirstLevelFeatSlot_ = false;
     };
 }

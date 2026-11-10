@@ -9,6 +9,8 @@
 
 namespace golarion
 {
+    inline constexpr std::string_view MaxSkillRanksResource = "skill.ranks.max";
+
     class CharacterSheet;
     class ResourceManager;
 

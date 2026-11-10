@@ -2,6 +2,7 @@
 
 #include "conditions/condition_factories.hpp"
 #include "golarion/persistence/json.hpp"
+#include <algorithm>
 #include <stdexcept>
 #include <utility>
 
@@ -31,7 +32,7 @@ namespace
 
 namespace golarion
 {
-    CharacterSheet::CharacterSheet()
+    CharacterSheet::CharacterSheet(const ClassDefinitionManager &classDefinitions)
         : actionManager_(resourceManager_),
           reminderManager_(resourceManager_),
           abilityChecks_(resourceManager_),
@@ -61,9 +62,11 @@ namespace golarion
           languages_(resourceManager_, [this] { return skills_.skill(SkillType::Linguistics).toSaveData().ranks; }),
           spellcastings_(resourceManager_),
           grantedSpells_(resourceManager_),
+          favoredClasses_(resourceManager_),
           feats_(resourceManager_),
           conditionManager_(resourceManager_),
-          race_(resourceManager_)
+          race_(resourceManager_),
+          classes_(resourceManager_, favoredClasses_, classDefinitions)
     {
         for (AbilityScore &abilityScore : abilities_)
         {
@@ -79,9 +82,9 @@ namespace golarion
         inventory_.emplace(resourceManager_);
     }
 
-    CharacterSheet::CharacterSheet(const CharacterSheetSaveData &data) : CharacterSheet()
+    CharacterSheet::CharacterSheet(const CharacterSheetSaveData &data, const ClassDefinitionManager &classDefinitions) : CharacterSheet(classDefinitions)
     {
-        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24 && data.formatVersion != 25 && data.formatVersion != 26 && data.formatVersion != 27 && data.formatVersion != 28 && data.formatVersion != 29)
+        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24 && data.formatVersion != 25 && data.formatVersion != 26 && data.formatVersion != 27 && data.formatVersion != 28 && data.formatVersion != 29 && data.formatVersion != 30 && data.formatVersion != 31 && data.formatVersion != 32 && data.formatVersion != 33)
         {
             throw std::invalid_argument("unsupported character sheet format version: " + std::to_string(data.formatVersion));
         }
@@ -104,13 +107,18 @@ namespace golarion
         }
 
         identity_ = CharacterIdentity(data.identity);
+        if (data.formatVersion >= 30) classes_.load(data.classes);
+        legacyFirstLevelFeatSlot_ = data.formatVersion >= 30 ? data.legacyFirstLevelFeatSlot : std::ranges::any_of(data.feats.selections, [](const auto &selection) { return selection.slotId == "base.feat.level1"; });
+        if (legacyFirstLevelFeatSlot_ && level() != 0) throw std::invalid_argument("legacy feat slot cannot coexist with class levels");
+        feats_.setLevel(legacyFirstLevelFeatSlot_ ? 1 : level());
         race_.load(data.race);
         skills_.load(data.skills);
-        hitPoints_.load(data.hitPoints);
         attacks_.load(data.attacks);
         conditionManager_.load(data.conditions);
         inventory_->load(data.inventory);
+        classes_.loadFavoredClasses(data.classes.favoredClasses);
         feats_.load(data.feats);
+        hitPoints_.load(data.hitPoints);
         languages_.load(data.languages);
         hitPoints_.reconcileConditionEntries();
         feats_.recheckPrerequisites();
@@ -118,9 +126,9 @@ namespace golarion
         if (data.formatVersion >= 29) grantedSpells_.load(data.grantedSpells);
     }
 
-    CharacterSheet CharacterSheet::load(const std::filesystem::path &path)
+    CharacterSheet CharacterSheet::load(const std::filesystem::path &path, const ClassDefinitionManager &classDefinitions)
     {
-        return CharacterSheet(persistence::loadFromFile(path));
+        return CharacterSheet(persistence::loadFromFile(path), classDefinitions);
     }
 
     void CharacterSheet::setName(std::string_view name)
@@ -390,7 +398,10 @@ namespace golarion
             .encumbrance = std::move(encumbranceView),
             .inventory = inventory_->toView(),
             .size = sizeManager_.toView(),
-            .conditions = conditionManager_.toView()
+            .conditions = conditionManager_.toView(),
+            .classes = classes_.toView(),
+            .legacyFirstLevelFeatSlot = legacyFirstLevelFeatSlot_,
+            .spellcastings = spellcastings_.toView()
         };
     }
 
@@ -405,7 +416,7 @@ namespace golarion
         }
 
         return CharacterSheetSaveData{
-            .formatVersion = 29,
+            .formatVersion = 33,
             .identity = identity_.toSaveData(),
             .race = race_.toSaveData(),
             .abilities = std::move(abilityData),
@@ -417,7 +428,9 @@ namespace golarion
             .feats = feats_.toData(),
             .languages = languages_.toData(),
             .spellcastings = spellcastings_.toData(),
-            .grantedSpells = grantedSpells_.toData()
+            .grantedSpells = grantedSpells_.toData(),
+            .classes = classes_.toData(),
+            .legacyFirstLevelFeatSlot = legacyFirstLevelFeatSlot_
         };
     }
 
@@ -433,6 +446,69 @@ namespace golarion
 
     int CharacterSheet::level() const
     {
-        return 1;
+        return classes_.level();
+    }
+
+    void CharacterSheet::addClassArchetype(CharacterClassType type, const std::string &archetypeId)
+    {
+        classes_.addArchetype(type, archetypeId);
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::removeClassArchetype(CharacterClassType type, const std::string &archetypeId)
+    {
+        classes_.removeArchetype(type, archetypeId);
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::addClassLevel(CharacterClassType type, std::optional<int> hitDieResult)
+    {
+        classes_.addLevel(type, hitDieResult);
+        legacyFirstLevelFeatSlot_ = false;
+        feats_.setLevel(level());
+        if (hitDieResult) hitPoints_.initializeConditionEntries();
+        else hitPoints_.reconcileConditionEntries();
+    }
+
+    void CharacterSheet::setFavoredClass(CharacterClassType type) { setFavoredClasses({type}); }
+
+    void CharacterSheet::setFavoredClasses(std::set<CharacterClassType> types)
+    {
+        classes_.setFavoredClasses(std::move(types));
+        feats_.recheckPrerequisites();
+        hitPoints_.reconcileConditionEntries();
+    }
+
+    void CharacterSheet::selectFavoredClassBonus(CharacterClassType type, int classLevel, std::string optionId)
+    {
+        classes_.selectFavoredClassBonus(type, classLevel, std::move(optionId));
+        feats_.recheckPrerequisites();
+        hitPoints_.initializeConditionEntries();
+    }
+
+    void CharacterSheet::clearFavoredClassBonus(CharacterClassType type, int classLevel)
+    {
+        classes_.clearFavoredClassBonus(type, classLevel);
+        feats_.recheckPrerequisites();
+        hitPoints_.reconcileConditionEntries();
+    }
+
+    void CharacterSheet::setClassHitDieResult(CharacterClassType type, int classLevel, int result)
+    {
+        classes_.setHitDieResult(type, classLevel, result);
+        feats_.recheckPrerequisites();
+        hitPoints_.initializeConditionEntries();
+    }
+
+    void CharacterSheet::selectClassOption(CharacterClassType type, const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId)
+    {
+        classes_.selectOption(type, acquisitionId, choiceId, optionId);
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::unselectClassOption(CharacterClassType type, const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId)
+    {
+        classes_.unselectOption(type, acquisitionId, choiceId, optionId);
+        feats_.recheckPrerequisites();
     }
 }

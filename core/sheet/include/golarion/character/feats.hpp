@@ -41,13 +41,14 @@ namespace golarion
         bool qualifies(std::string_view slotId, const FeatDefinition &definition, const FeatChoices &choices = {}) const;
         FeatsView toView() const;
         FeatsData toData() const;
-        // Restore into empty slots after their sources have been reconstructed.
+        // Restore selections after sources; missing slots remain unavailable until granted again.
         void load(const FeatsData &data);
 
     private:
         struct SlotState
         {
             FeatSlot slot;
+            bool available = true;
             const FeatDefinition *selected = nullptr;
             bool active = false;
             FeatChoices choices;
@@ -57,8 +58,8 @@ namespace golarion
         void removeSlot(std::string_view id);
         void addNormalizedSlot(FeatSlot slot);
         bool requirementSatisfied(const FeatRequirementDefinition &requirement, const SlotState &slot, const FeatPrerequisiteContext &context) const;
-        static void clear(SlotState &slot);
-        static void deactivate(SlotState &slot);
+        void clear(SlotState &slot);
+        void deactivate(SlotState &slot);
         void activate(SlotState &slot);
         void select(std::string_view slotId, std::string_view featId, FeatChoices choices, bool restoring);
 
@@ -66,5 +67,8 @@ namespace golarion
         FeatPrerequisiteRegistry prerequisites_;
         std::map<std::string, SlotState> slots_;
         int level_ = 0;
+        bool rechecking_ = false;
+        bool destroying_ = false;
+        int effectMutationDepth_ = 0;
     };
 }

@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <array>
+#include <limits>
 #include <set>
 #include <stdexcept>
 #include <string>
@@ -161,6 +162,7 @@ namespace golarion
 {
     Skills::Skills(ResourceManager &resourceManager) : resourceManager_(resourceManager)
     {
+        resourceManager_.registerAccumulatedResource(MaxSkillRanksResource);
         for (AbilityType abilityType : {AbilityType::Strength, AbilityType::Dexterity, AbilityType::Constitution, AbilityType::Intelligence, AbilityType::Wisdom, AbilityType::Charisma})
         {
             resourceManager_.registerEnhanceableResource(skillCheckResourceName(abilityType));
@@ -311,12 +313,19 @@ namespace golarion
             return left.specializationId < right.specializationId;
         });
 
+        const int maxRanks = std::max(0, resourceManager_.contributionTotal(MaxSkillRanksResource));
+        long long spentRanks = 0;
+        for (const auto &skill : skillViews) spentRanks += skill.ranks;
+        if (spentRanks > std::numeric_limits<int>::max()) throw std::overflow_error("spent skill ranks exceed integer range");
         return SkillsView{
             .armorCheckPenalty = ArmorCheckPenaltyView{
                 .total = resolvedArmorCheckPenalty,
                 .sources = std::move(armorCheckPenaltySourceViews)
             },
-            .skills = std::move(skillViews)
+            .skills = std::move(skillViews),
+            .maxRanks = maxRanks,
+            .spentRanks = static_cast<int>(spentRanks),
+            .remainingRanks = maxRanks - static_cast<int>(spentRanks)
         };
     }
 

@@ -26,5 +26,8 @@ namespace golarion
     {
         ArmorCheckPenaltyView armorCheckPenalty;
         std::vector<SkillView> skills;
+        int maxRanks = 0;
+        int spentRanks = 0;
+        int remainingRanks = 0;
     };
 }

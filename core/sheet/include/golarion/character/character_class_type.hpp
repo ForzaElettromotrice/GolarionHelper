@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string_view>
+
 namespace golarion
 {
     enum class CharacterClassType
@@ -50,4 +52,7 @@ namespace golarion
         UnchainedMonk,
         Adept
     };
+
+    std::string_view characterClassId(CharacterClassType type);
+    CharacterClassType characterClassFromId(std::string_view id);
 }
