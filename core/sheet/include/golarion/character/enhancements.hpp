@@ -2,8 +2,6 @@
 
 #include "golarion/view/enhancements_view.hpp"
 #include "golarion/effect/effect_compiler.hpp"
-
-#include <map>
 #include <memory>
 
 namespace golarion
@@ -11,44 +9,40 @@ namespace golarion
     class EnhancementGroup final
     {
     public:
-        EnhancementGroup(ResourceManager &resources, std::string id, std::string name);
+        EnhancementGroup(ResourceManager &resources, EnhancementGroupDefinition definition);
         ~EnhancementGroup();
         EnhancementGroup(const EnhancementGroup &) = delete;
         EnhancementGroup &operator=(const EnhancementGroup &) = delete;
-        void add(EnhancementDefinition data);
+        void add(EffectDefinition definition);
         void remove(std::string_view id);
-        void setActive(std::string_view id, bool active);
+        void setActive(bool active);
         EnhancementGroupData toData() const;
         EnhancementGroupView toView() const;
 
     private:
-        struct Entry
-        {
-            EnhancementData data;
-            EffectCleanup cleanup;
-        };
-        void activate(Entry &entry);
+        void deactivate();
         ResourceManager &resources_;
-        std::string id_;
-        std::string name_;
-        std::map<std::string, Entry> entries_;
+        EnhancementGroupData data_;
+        std::vector<EffectCleanup> cleanups_;
     };
 
     class Enhancements final
     {
     public:
         explicit Enhancements(ResourceManager &resources);
-        void addGroup(EnhancementGroupDefinition data);
+        ~Enhancements();
+        void addGroup(EnhancementGroupDefinition definition);
         void removeGroup(std::string_view id);
-        void add(std::string_view groupId, EnhancementDefinition data);
+        void add(std::string_view groupId, EffectDefinition definition);
         void remove(std::string_view groupId, std::string_view id);
-        void setActive(std::string_view groupId, std::string_view id, bool active);
+        void setGroupActive(std::string_view groupId, bool active);
         EnhancementsData toData() const;
         EnhancementsView toView() const;
 
     private:
+        struct Group { std::string id; std::unique_ptr<EnhancementGroup> instance; };
         EnhancementGroup &group(std::string_view id);
         ResourceManager &resources_;
-        std::map<std::string, std::unique_ptr<EnhancementGroup>> groups_;
+        std::vector<Group> groups_;
     };
 }

@@ -27,6 +27,7 @@ int main()
     auto custom = SpellDefinitionManager::instance().get("fireball");
     custom.id = "custom.flame";
     custom.name = "Fiamma personale";
+    custom.maxTargetsExpression = "2";
     custom.spellLevelByDomain = {{DomainType::Healing, 1}, {SubdomainType::Healing, 2}};
     custom.spellLevelByBloodline = {{BloodlineType::Arcane, 3}};
     custom.effects.push_back(effectDefinitionFromJson(Json::parse(R"({"id":"note","type":"reminder","message":"Effetto da applicare manualmente"})")));

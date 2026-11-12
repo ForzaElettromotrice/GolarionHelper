@@ -40,7 +40,7 @@ int main()
         rejects([&] { casting.addToRepertoire("unknown"); });
         rejects([&] { casting.consume(third, {"unknown"}); });
         const auto result = casting.consume({" base ", 3, 0}, {" fireball "});
-        assert(result.spellId == "fireball" && result.effectiveSpellLevel == 3);
+        assert(result.metamagic->spellId == "fireball" && result.metamagic->effectiveSpellLevel == 3);
         assert(casting.slotState(third) == SpontaneousSpellSlotState::Consumed);
         rejects([&] { casting.consume(third, {"fireball"}); });
         casting.consume({"base", 3, 1}, {"fireball"});
@@ -111,7 +111,7 @@ int main()
         resources.addToCollection(castingMetamagicGrantsResource("sorcerer"), feat);
         rejects([&] { casting.consume(third, {"fireball", {featApplication}}); });
         rejects([&] { casting.consume(fifth, {"fireball", {featApplication, featApplication}}); });
-        assert(casting.consume(fifth, {"fireball", {featApplication}}).requiredSlotLevel == 5);
+        assert(casting.consume(fifth, {"fireball", {featApplication}}).metamagic->requiredSlotLevel == 5);
         assert(casting.toData().consumedSlots.size() == 2); // No stored spell/metamagic selection.
 
         SpontaneousSpellcasting other(resources, "other", CharacterClassType::Bard);

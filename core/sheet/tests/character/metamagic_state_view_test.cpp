@@ -76,8 +76,8 @@ int main()
         cloneResources.addToCollection(preparationSlotsResource("flex"), SpellSlotGrant{"preparations", "Classe", {{3, 1}}});
         clone.load(decoded.spellcastings);
         assert(clonePool->remaining() == 1);
-        assert(dynamic_cast<PreparedSpellcasting &>(clone.get("prepared")).consume({"slots", 3, 0}).nominalSlotLevel == 4);
-        assert(dynamic_cast<FlexibleSpellcasting &>(clone.get("flex")).consume({"slots", 3, 0}, {{"preparations", 3, 0}}).requiredSlotLevel == 3);
+        assert(dynamic_cast<PreparedSpellcasting &>(clone.get("prepared")).consume({"slots", 3, 0}).metamagic->nominalSlotLevel == 4);
+        assert(dynamic_cast<FlexibleSpellcasting &>(clone.get("flex")).consume({"slots", 3, 0}, {{"preparations", 3, 0}}).metamagic->requiredSlotLevel == 3);
         assert(clonePool->remaining() == 1);
     }
     pool->reset(9);
@@ -86,8 +86,8 @@ int main()
     assert(flex.toView().metamagic.empty() && flex.toView().mixingPermissions.empty());
     const auto flexibleCast = flex.consume({"slots", 3, 0}, {{"preparations", 3, 0}});
     const auto preparedCast = prepared.consume({"slots", 3, 0});
-    assert(flexibleCast.requiredSlotLevel == 3 && preparedCast.requiredSlotLevel == 3);
-    assert(flexibleCast.nominalSlotLevel == 4 && preparedCast.nominalSlotLevel == 4);
+    assert(flexibleCast.metamagic->requiredSlotLevel == 3 && preparedCast.metamagic->requiredSlotLevel == 3);
+    assert(flexibleCast.metamagic->nominalSlotLevel == 4 && preparedCast.metamagic->nominalSlotLevel == 4);
     assert(pool->remaining() == 1); // Restoring/casting never pays a preparation cost again.
     flex.clearPreparation({"preparations", 3, 0});
     rejects([&] { flex.prepare({"preparations", 3, 0}, {"fireball", {{MetamagicType::Silent, "silent", {}}}}); });

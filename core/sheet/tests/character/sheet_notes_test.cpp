@@ -20,7 +20,7 @@ int main()
     sheet.save(path);
     auto restored = CharacterSheet::load(path);
     assert(restored.toView().notes == notes);
-    assert(restored.toSaveData().formatVersion == 41);
+    assert(restored.toSaveData().formatVersion == 42);
     restored.setNotes("");
     restored.save(path);
     assert(CharacterSheet::load(path).toView().notes.empty());

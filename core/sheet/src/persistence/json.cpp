@@ -1,4 +1,5 @@
 #include "golarion/persistence/json.hpp"
+#include "golarion/effect/effect_json.hpp"
 #include "golarion/equipment/item_definition_json.hpp"
 #include "golarion/character/spell_definition_json.hpp"
 #include "golarion/character/feat_definition_json.hpp"
@@ -82,31 +83,27 @@ namespace
         std::pair{golarion::BonusType::Size, std::string_view("size")}
     };
 
+    constexpr std::array EnhancementOriginNames{
+        std::pair{golarion::EnhancementOriginType::Custom, std::string_view("custom")},
+        std::pair{golarion::EnhancementOriginType::Spell, std::string_view("spell")},
+        std::pair{golarion::EnhancementOriginType::Item, std::string_view("item")},
+        std::pair{golarion::EnhancementOriginType::Ability, std::string_view("ability")}
+    };
+
     Json enhancementsToJson(const golarion::EnhancementsData &data)
     {
         Json groups = Json::array();
         for (const auto &group : data.groups)
         {
             Json entries = Json::array();
-            for (const auto &entry : group.enhancements)
-            {
-                entries.push_back(std::visit([&](const auto &definition)
-                {
-                    Json json{{"id", definition.id}, {"resource", definition.resource}, {"expression", definition.expression}, {"active", entry.active}};
-                    if constexpr (std::is_same_v<std::decay_t<decltype(definition)>, golarion::ModifierEffectDefinition>)
-                    {
-                        json["type"] = "modifier";
-                        json["description"] = definition.description;
-                        json["modifierType"] = enumName(definition.type, ModifierTypeNames);
-                        json["skillRankBudget"] = enumName(definition.skillRankBudget, SkillRankBudgetNames);
-                        if (definition.bonusType) json["bonusType"] = enumName(*definition.bonusType, BonusTypeNames);
-                        if (definition.condition) json["condition"] = *definition.condition;
-                    }
-                    else json["type"] = "contribution";
-                    return json;
-                }, entry.definition));
-            }
-            groups.push_back(Json{{"id", group.id}, {"name", group.name}, {"enhancements", std::move(entries)}});
+            for (const auto &effect : group.enhancements) entries.push_back(golarion::effectDefinitionToJson(effect));
+            Json origin = nullptr;
+            if (group.origin)
+                origin = {{"type", enumName(group.origin->type, EnhancementOriginNames)},
+                    {"definitionId", group.origin->definitionId ? Json(*group.origin->definitionId) : Json(nullptr)},
+                    {"sourceSheetId", group.origin->sourceSheetId ? Json(*group.origin->sourceSheetId) : Json(nullptr)}};
+            groups.push_back(Json{{"id", group.id}, {"name", group.name}, {"active", group.active},
+                {"description", group.description ? Json(*group.description) : Json(nullptr)}, {"origin", origin}, {"effects", std::move(entries)}});
         }
         return groups;
     }
@@ -118,26 +115,21 @@ namespace
         EnhancementsData data;
         for (const auto &group : json)
         {
-            EnhancementGroupData result{group.at("id").get<std::string>(), group.at("name").get<std::string>(), {}};
-            if (!group.at("enhancements").is_array()) throw std::invalid_argument("enhancements must be an array");
-            for (const auto &entry : group.at("enhancements"))
+            EnhancementGroupData result{group.at("id").get<std::string>(), group.at("name").get<std::string>(), {}, group.at("active").get<bool>(), {}, {}};
+            if (group.contains("enhancements")) throw std::invalid_argument("obsolete enhancement entry format");
+            if (!group.at("effects").is_array()) throw std::invalid_argument("effects must be an array");
+            for (const auto &entry : group.at("effects"))
             {
-                const auto id = entry.at("id").get<std::string>();
-                const auto resource = entry.at("resource").get<std::string>();
-                const auto expression = entry.at("expression").get<std::string>();
-                const bool active = entry.at("active").get<bool>();
-                const auto type = entry.at("type").get<std::string>();
-                if (type == "contribution") result.enhancements.push_back({ContributionEffectDefinition{id, resource, expression}, active});
-                else if (type == "modifier")
-                {
-                    ModifierEffectDefinition definition{id, resource, entry.at("description").get<std::string>(), enumValue(entry.at("modifierType"), ModifierTypeNames), {}, expression};
-                    if (entry.contains("bonusType")) definition.bonusType = enumValue(entry.at("bonusType"), BonusTypeNames);
-                    if ((definition.type == ModifierType::Bonus) != definition.bonusType.has_value()) throw std::invalid_argument("invalid enhancement bonus type");
-                    if (entry.contains("condition")) definition.condition = entry.at("condition").get<std::string>();
-                    definition.skillRankBudget = enumValue(entry.at("skillRankBudget"), SkillRankBudgetNames);
-                    result.enhancements.push_back({std::move(definition), active});
-                }
-                else throw std::invalid_argument("unknown enhancement type: " + type);
+                if (entry.contains("active")) throw std::invalid_argument("individual enhancement activation is not supported");
+                result.enhancements.push_back(effectDefinitionFromJson(entry));
+            }
+            if (!group.at("description").is_null()) result.description = group.at("description").get<std::string>();
+            if (!group.at("origin").is_null())
+            {
+                const auto &origin = group.at("origin");
+                result.origin = EnhancementOrigin{enumValue(origin.at("type"), EnhancementOriginNames), {}, {}};
+                if (!origin.at("definitionId").is_null()) result.origin->definitionId = origin.at("definitionId").get<std::string>();
+                if (!origin.at("sourceSheetId").is_null()) result.origin->sourceSheetId = origin.at("sourceSheetId").get<std::string>();
             }
             data.groups.push_back(std::move(result));
         }

@@ -26,7 +26,7 @@ namespace golarion
 
         void prepare(const SpellSlotId &slot, const SpellPreparationDefinition &definition);
         void prepare(const std::vector<SpellSlotId> &slots, const SpellPreparationDefinition &definition);
-        MetamagicEvaluation consume(const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition = {});
+        SpellCastResult consume(const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition = {});
         void clear(const SpellSlotId &slot);
         PreparedSpellSlot slotState(const SpellSlotId &slot) const;
         PreparedSpellcastingData toData() const;

@@ -132,7 +132,7 @@ namespace golarion
         preparations_.erase(checkedSlot(preparationId, preparationGroups_));
     }
 
-    MetamagicEvaluation FlexibleSpellcasting::consume(const SpellSlotId &slotId, const FlexibleSpellConsumptionDefinition &definition)
+    SpellCastResult FlexibleSpellcasting::consume(const SpellSlotId &slotId, const FlexibleSpellConsumptionDefinition &definition)
     {
         const auto &[preparationId, applications, mixingPermissionId] = definition;
         const auto slot = checkedSlot(slotId, slotPools());
@@ -173,7 +173,7 @@ namespace golarion
         MetamagicRegistry::pay(evaluation.usageCosts);
         evaluation.usageCosts.clear();
         consumedSlots_.swap(updated);
-        return evaluation;
+        return exportCast(std::move(evaluation));
     }
 
     void FlexibleSpellcasting::clearSlot(const SpellSlotId &slotId)

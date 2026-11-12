@@ -59,7 +59,7 @@ int main()
     const auto saved = castings.toData();
     const auto json = serialize(saved);
     const auto decoded = persistence::fromJson(json);
-    assert(decoded.formatVersion == 41);
+    assert(decoded.formatVersion == 42);
     assert(serialize(decoded.spellcastings) == json);
     assert(json.find("dailyCapacityByLevel") == std::string::npos);
     assert(json.find("usageCost") == std::string::npos);
@@ -118,7 +118,7 @@ int main()
     unconsumed.preparations[0].consumed = false;
     prepared.load(unconsumed);
     const auto restoredCast = prepared.consume({"base", 4, 0});
-    assert(restoredCast.baseSpellLevel == 3 && restoredCast.effectiveSpellLevel == 3 && restoredCast.requiredSlotLevel == 4);
+    assert(restoredCast.metamagic->baseSpellLevel == 3 && restoredCast.metamagic->effectiveSpellLevel == 3 && restoredCast.metamagic->requiredSlotLevel == 4);
     assert(prepared.slotState({"base", 4, 1}).state == PreparedSpellSlotState::Consumed);
     assert(pool->remaining() == 0);
     for (int error = 0; error < 5; ++error)
@@ -186,6 +186,6 @@ int main()
     wire.erase("spellcastings");
     assert(persistence::fromJson(wire.dump()).spellcastings.castings.empty());
     auto empty = CharacterSheet().toSaveData();
-    assert(empty.formatVersion == 41 && empty.spellcastings.castings.empty());
+    assert(empty.formatVersion == 42 && empty.spellcastings.castings.empty());
     assert(persistence::fromJson(persistence::toJson(empty)).spellcastings.castings.empty());
 }

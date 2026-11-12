@@ -172,7 +172,7 @@ int main()
     assert(restored.toView().languages.remainingLinguistics == 1);
 
     auto json = nlohmann::json::parse(persistence::toJson(savedSheet));
-    assert(json["formatVersion"] == 41);
+    assert(json["formatVersion"] == 42);
     assert(!json["languages"].contains("intelligenceBonus"));
     auto oldSave = json;
     oldSave["formatVersion"] = 34;

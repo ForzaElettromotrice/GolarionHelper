@@ -77,7 +77,13 @@ namespace golarion
         if (found == spells_.end()) throw std::invalid_argument("spell grant does not exist");
         return found->second;
     }
-    void GrantedSpells::consume(std::string_view id) { get(id).consume(); }
+    SpellCastResult GrantedSpells::consume(std::string_view id)
+    {
+        auto &grant = get(id);
+        grant.consume();
+        const auto &spell = catalog_ ? catalog_->get(grant.definition_.spellId) : SpellDefinitionManager::instance().get(grant.definition_.spellId);
+        return exportSpellCast(spell, resources_);
+    }
     void GrantedSpells::refill(std::string_view id) { get(id).refill(); }
     void GrantedSpells::restore(std::string_view id, int amount) { get(id).restore(amount); }
     std::vector<GrantedSpellView> GrantedSpells::toView() const

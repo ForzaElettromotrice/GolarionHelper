@@ -59,10 +59,10 @@ int main()
         casting.prepare(enhanced, {"fireball", {empowerment}});
         assert(casting.toData().preparations.size() == 2); // Same spell, distinct versions.
         rejects([&] { casting.consume(plain, {enhanced}); });
-        assert(casting.consume(enhanced, {enhanced}).requiredSlotLevel == 5);
+        assert(casting.consume(enhanced, {enhanced}).metamagic->requiredSlotLevel == 5);
         assert(casting.toData().preparations.size() == 2);
         casting.clearSlot(enhanced);
-        assert(casting.consume(enhanced, {plain, {empowerment}}).applications.size() == 1);
+        assert(casting.consume(enhanced, {plain, {empowerment}}).metamagic->applications.size() == 1);
         casting.clearSlot(enhanced);
 
         auto spellPool = std::make_shared<MetamagicUsagePool>("spell-uses", 2);
@@ -75,7 +75,7 @@ int main()
         resources.addToCollection(mixing, MetamagicMixingPermission{"no", "Test", [](const auto &) { return false; }});
         rejects([&] { casting.consume(sixth, {enhanced, {silence}}); });
         resources.addToCollection(mixing, MetamagicMixingPermission{"free", "Test", [](const auto &context) { return context.additions.size() == 1; }});
-        assert(casting.consume(sixth, {enhanced, {silence}}).applications.size() == 2);
+        assert(casting.consume(sixth, {enhanced, {silence}}).metamagic->applications.size() == 2);
         assert(spellPool->remaining() == 1);
         casting.clearSlot(sixth);
         resources.removeFromCollection(mixing, "free");

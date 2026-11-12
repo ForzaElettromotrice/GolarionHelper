@@ -42,7 +42,7 @@ namespace golarion
         void prepare(const SpellSlotId &preparationId, const SpellPreparationDefinition &definition);
         void clearPreparation(const SpellSlotId &preparationId);
         // A paid mixing permission must be selected explicitly. Otherwise only free permissions are considered.
-        MetamagicEvaluation consume(const SpellSlotId &slotId, const FlexibleSpellConsumptionDefinition &definition);
+        SpellCastResult consume(const SpellSlotId &slotId, const FlexibleSpellConsumptionDefinition &definition);
         void clearSlot(const SpellSlotId &slotId);
         FlexibleSpellcastingData toData() const;
         void load(const FlexibleSpellcastingData &data);

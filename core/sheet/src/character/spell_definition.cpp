@@ -417,6 +417,7 @@ namespace golarion
 {
     void validateSpellDefinition(const SpellDefinition &definition)
     {
+        static_cast<void>(normalize(definition.maxTargetsExpression));
         std::set<std::string> effectIds;
         for (const auto &effect : definition.effects)
             if (!effectIds.insert(normalize(effectId(effect))).second)

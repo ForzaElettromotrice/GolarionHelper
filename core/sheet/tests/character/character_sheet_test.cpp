@@ -277,7 +277,7 @@ int main()
     assert(view.combatManeuvers.maneuvers[0].bonus.abilityOptions[0].totalValue == 1);
 
     CharacterSheetSaveData saveData = sheet.toSaveData();
-    assert(saveData.formatVersion == 41);
+    assert(saveData.formatVersion == 42);
     assert(saveData.identity.name == "Seelah");
     assert(saveData.identity.playerName == "Giocatore");
     assert(saveData.identity.alignment == Alignment::LawfulGood);

@@ -46,7 +46,7 @@ int main()
     assert(casting.slotState(fifth).metamagic.front().type == MetamagicType::Empower);
     assert(casting.toView().groups[0].slots[3].metamagic.size() == 1);
     const auto normal = casting.consume(fifth);
-    assert(normal.requiredSlotLevel == 5 && normal.effectiveSpellLevel == 3);
+    assert(normal.metamagic->requiredSlotLevel == 5 && normal.metamagic->effectiveSpellLevel == 3);
     casting.clear(fifth);
     casting.load(saved);
     assert(casting.slotState(fifth).state == PreparedSpellSlotState::Prepared);
@@ -58,7 +58,7 @@ int main()
     const SpellSlotId eighth{"base", 8, 0};
     casting.prepare(eighth, {"fireball", {heighten, {MetamagicType::Quicken, "quicken", {}}}});
     const auto heightened = casting.consume(eighth);
-    assert(heightened.requiredSlotLevel == 8 && heightened.effectiveSpellLevel == 4);
+    assert(heightened.metamagic->requiredSlotLevel == 8 && heightened.metamagic->effectiveSpellLevel == 4);
     casting.clear(eighth);
 
     auto pool = std::make_shared<MetamagicUsagePool>("rod.uses", 3);
@@ -71,8 +71,8 @@ int main()
     const MetamagicApplication rodEmpower{MetamagicType::Empower, "rod", {}};
     casting.prepare(third, {"fireball"});
     const auto empoweredCast = casting.consume(third, {std::nullopt, {rodEmpower}});
-    assert(empoweredCast.requiredSlotLevel == 3 && empoweredCast.nominalSlotLevel == 5);
-    assert(empoweredCast.applications.size() == 1 && pool->remaining() == 2);
+    assert(empoweredCast.metamagic->requiredSlotLevel == 3 && empoweredCast.metamagic->nominalSlotLevel == 5);
+    assert(empoweredCast.metamagic->applications.size() == 1 && pool->remaining() == 2);
     assert(casting.slotState(third).metamagic.empty()); // Casting additions are transient.
     casting.clear(third);
     casting.prepare(fifth, {"fireball", {empower}});
@@ -90,7 +90,7 @@ int main()
     rodMax.rodGrade = MetamagicRodGrade::Normal;
     resources.addToCollection(cast, rodMax);
     const auto combined = casting.consume(fifth, {std::nullopt, {maximize}});
-    assert(combined.applications.size() == 2 && combined.requiredSlotLevel == 5 && combined.nominalSlotLevel == 8);
+    assert(combined.metamagic->applications.size() == 2 && combined.metamagic->requiredSlotLevel == 5 && combined.metamagic->nominalSlotLevel == 8);
     assert(pool->remaining() == 1);
     casting.clear(fifth);
     casting.prepare(third, {"fireball"});
@@ -167,7 +167,7 @@ int main()
     casting.prepare(fifth, {"fireball", {empower}});
     rejects([&] { casting.consume(fifth, {std::nullopt, {empower}}); });
     const auto converted = casting.consume(fifth, {"fireball", {empower}});
-    assert(converted.applications.size() == 1 && converted.requiredSlotLevel == 5);
+    assert(converted.metamagic->applications.size() == 1 && converted.metamagic->requiredSlotLevel == 5);
     casting.clear(fifth);
     casting.prepare(third, {"fireball"});
     rejects([&] { casting.consume(third, {"fireball", {empower}}); });

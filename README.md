@@ -4,7 +4,7 @@ Local-first tabletop role-playing application, expanding toward a virtual tablet
 
 The C++ backend provides the Pathfinder 1e character-sheet engine and an initial TCP host/client prototype for shared game presence. The desktop frontend and further play features will be introduced later.
 
-Version 1.0.0 marks the first character-sheet backend release: C++ model, save data, Views and custom items/spells/feats/enhancements, including free-text sheet notes. Save schema version 41 is independent of the software version; supported older saves load with empty notes.
+Version 1.0.0 marks the first character-sheet backend release: C++ model, save data, Views and custom items/spells/feats/enhancements, including free-text sheet notes. Save schema version 42 is independent of the software version; older per-entry enhancement groups are unsupported; unrelated existing compatibility paths remain. Notes default to empty in supported pre-note saves.
 
 Complete rules datasets, frontend editing, full C/FFI bindings and completion of the play module are outside this milestone. See the [Data/View audit](.context/model/backend-v1.md).
 

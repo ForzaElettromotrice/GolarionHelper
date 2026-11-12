@@ -4,17 +4,14 @@
 
 namespace golarion
 {
-    struct EnhancementData
-    {
-        EnhancementEffectDefinition definition;
-        bool active = true;
-    };
-
     struct EnhancementGroupData
     {
         std::string id;
         std::string name;
-        std::vector<EnhancementData> enhancements;
+        std::vector<EffectDefinition> enhancements;
+        bool active = true;
+        std::optional<std::string> description;
+        std::optional<EnhancementOrigin> origin;
     };
 
     struct EnhancementsData

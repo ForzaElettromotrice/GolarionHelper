@@ -55,7 +55,7 @@ int main()
     assert(preparationDefinition.spellId == "fireball" && preparationDefinition.metamagic.size() == 1);
     sheet.prepareFlexibleSpell(key("f"), preparation, {"fireball"});
     auto result = sheet.consumePreparedSpell(key("p"), p);
-    assert(result.requiredSlotLevel == 4);
+    assert(result.metamagic->requiredSlotLevel == 4);
     sheet.consumeSpontaneousSpell(key("s"), s, {"fireball"});
     sheet.consumeFlexibleSpell(key("f"), f, {preparation});
     rejects([&] { sheet.consumeSpontaneousSpell(key("s"), s, {"fireball"}); });

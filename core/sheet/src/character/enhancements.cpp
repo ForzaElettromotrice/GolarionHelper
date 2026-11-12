@@ -1,155 +1,157 @@
 #include "golarion/character/enhancements.hpp"
+#include "golarion/effect/effect_json.hpp"
 #include "golarion/resource/resource_manager.hpp"
-
-#include <type_traits>
+#include <nlohmann/json.hpp>
+#include <algorithm>
 
 namespace golarion
 {
     namespace
     {
-        std::string key(std::string_view value)
+        std::string key(std::string_view value) { return std::to_string(value.size()) + ":" + std::string(value); }
+        std::string source(std::string_view id) { return "enhancement.group." + key(normalize(id)); }
+        std::optional<int> numericValue(const EffectDefinition &effect, ResourceManager &resources)
         {
-            return std::to_string(value.size()) + ":" + std::string(value);
+            return std::visit([&](const auto &definition) -> std::optional<int>
+            {
+                using T = std::decay_t<decltype(definition)>;
+                if constexpr (std::is_same_v<T, ContributionEffectDefinition> || std::is_same_v<T, ModifierEffectDefinition>)
+                {
+                    const int value = resources.evaluateExpression(definition.expression);
+                    if constexpr (std::is_same_v<T, ModifierEffectDefinition>)
+                        if (value < 0) throw std::invalid_argument("enhancement modifier magnitude must not be negative");
+                    return value;
+                }
+                else return std::nullopt;
+            }, effect);
         }
     }
 
-    EnhancementGroup::EnhancementGroup(ResourceManager &resources, std::string id, std::string name)
-        : resources_(resources), id_(normalize(id)), name_(normalize(name)) {}
-
-    EnhancementGroup::~EnhancementGroup()
+    std::string enhancementEffectId(std::string_view groupId, std::string_view effectId)
     {
-        for (auto &[id, entry] : entries_) if (entry.cleanup) entry.cleanup();
+        return source(groupId) + key(normalize(effectId));
     }
 
-    void EnhancementGroup::activate(Entry &entry)
+    EnhancementGroup::EnhancementGroup(ResourceManager &resources, EnhancementGroupDefinition definition)
+        : resources_(resources), data_{normalize(definition.id), normalize(definition.name), {}, false, std::move(definition.description), std::move(definition.origin)}
     {
-        std::visit([&](const auto &definition)
+        if (data_.origin)
         {
-            using Definition = std::decay_t<decltype(definition)>;
-            const auto source = "enhancement.group." + key(id_);
-            if constexpr (std::is_same_v<Definition, ContributionEffectDefinition>)
+            switch (data_.origin->type)
             {
-                const auto runtimeId = source + key(definition.id);
-                entry.cleanup = [this, resource = definition.resource, runtimeId] { resources_.removeContribution(resource, runtimeId); };
-                try { resources_.addContribution(definition.resource, Contribution(runtimeId, definition.expression)); }
-                catch (...) { entry.cleanup = {}; throw; }
+            case EnhancementOriginType::Custom: case EnhancementOriginType::Spell:
+            case EnhancementOriginType::Item: case EnhancementOriginType::Ability: break;
+            default: throw std::invalid_argument("unknown enhancement origin type");
             }
-            else
-            {
-                Modifier modifier({.type = definition.type, .source = source, .description = definition.description, .bonusType = definition.bonusType, .expression = definition.expression, .condition = definition.condition, .requirements = {}, .skillRankBudget = definition.skillRankBudget});
-                entry.cleanup = [this, resource = definition.resource, id = modifier.id()] { resources_.removeModifier(resource, id); };
-                try { resources_.addModifier(definition.resource, std::move(modifier)); }
-                catch (...) { entry.cleanup = {}; throw; }
-            }
-            try
-            {
-                const int value = resources_.evaluateExpression(definition.expression);
-                if constexpr (std::is_same_v<Definition, ModifierEffectDefinition>)
-                    if (value < 0) throw std::invalid_argument("enhancement modifier magnitude must not be negative");
-            }
-            catch (...) { entry.cleanup(); entry.cleanup = {}; throw; }
-        }, entry.data.definition);
+            if (data_.origin->definitionId) data_.origin->definitionId = normalize(*data_.origin->definitionId);
+            if (data_.origin->sourceSheetId) data_.origin->sourceSheetId = normalize(*data_.origin->sourceSheetId);
+        }
+        for (auto &effect : definition.enhancements) add(std::move(effect));
+        setActive(definition.active);
     }
 
-    void EnhancementGroup::add(EnhancementDefinition data)
+    EnhancementGroup::~EnhancementGroup() { deactivate(); }
+
+    void EnhancementGroup::deactivate()
     {
-        const auto id = std::visit([&](auto &definition)
+        while (!cleanups_.empty())
         {
-            definition.id = normalize(definition.id);
-            definition.resource = normalize(definition.resource);
-            definition.expression = normalize(definition.expression);
-            // Inactive entries retain their definitions even when a target is unavailable.
-            // Runtime expression and resource validation happens on activation.
-            if constexpr (std::is_same_v<std::decay_t<decltype(definition)>, ModifierEffectDefinition>)
+            cleanups_.back()();
+            cleanups_.pop_back();
+        }
+        data_.active = false;
+    }
+
+    void EnhancementGroup::setActive(bool active)
+    {
+        if (active == data_.active) return;
+        if (!active) { deactivate(); return; }
+        cleanups_.reserve(data_.enhancements.size());
+        try
+        {
+            for (const auto &effect : data_.enhancements)
             {
-                displayName(definition.type);
-                if (definition.bonusType) stackingRule(*definition.bonusType);
-                if (definition.skillRankBudget != SkillRankBudgetPolicy::Included && definition.skillRankBudget != SkillRankBudgetPolicy::Excluded)
-                    throw std::invalid_argument("unknown skill rank budget policy");
-                definition.description = normalize(definition.description);
-                if (definition.condition) definition.condition = normalize(*definition.condition);
-                Modifier modifier({.type = definition.type, .source = id_, .description = definition.description, .bonusType = definition.bonusType, .expression = definition.expression, .condition = definition.condition, .requirements = {}, .skillRankBudget = definition.skillRankBudget});
+                auto apply = compileEffect(effect, {enhancementEffectId(data_.id, effectId(effect)), source(data_.id)});
+                cleanups_.push_back(apply(resources_));
+                numericValue(effect, resources_);
             }
-            return definition.id;
-        }, data.definition);
-        auto [position, inserted] = entries_.try_emplace(id, Entry{EnhancementData{std::move(data.definition), data.active}, {}});
-        if (!inserted) throw std::invalid_argument("duplicate enhancement ID: " + id);
-        try { if (position->second.data.active) activate(position->second); }
-        catch (...) { entries_.erase(position); throw; }
+            data_.active = true;
+        }
+        catch (...) { deactivate(); throw; }
+    }
+
+    void EnhancementGroup::add(EffectDefinition definition)
+    {
+        if (data_.active) throw std::invalid_argument("cannot edit an active enhancement group");
+        // Reuse the shared structural schema; resource references are checked on activation.
+        definition = effectDefinitionFromJson(effectDefinitionToJson(definition));
+        const auto id = effectId(definition);
+        if (std::ranges::any_of(data_.enhancements, [&](const auto &entry) { return effectId(entry) == id; }))
+            throw std::invalid_argument("duplicate enhancement ID: " + id);
+        compileEffect(definition, {enhancementEffectId(data_.id, id), source(data_.id)});
+        data_.enhancements.push_back(std::move(definition));
     }
 
     void EnhancementGroup::remove(std::string_view id)
     {
-        auto position = entries_.find(normalize(id));
-        if (position == entries_.end()) throw std::invalid_argument("unknown enhancement ID");
-        if (position->second.cleanup) position->second.cleanup();
-        entries_.erase(position);
+        if (data_.active) throw std::invalid_argument("cannot edit an active enhancement group");
+        const auto normalized = normalize(id);
+        const auto found = std::ranges::find_if(data_.enhancements, [&](const auto &effect) { return effectId(effect) == normalized; });
+        if (found == data_.enhancements.end()) throw std::invalid_argument("unknown enhancement ID");
+        data_.enhancements.erase(found);
     }
 
-    void EnhancementGroup::setActive(std::string_view id, bool active)
-    {
-        auto position = entries_.find(normalize(id));
-        if (position == entries_.end()) throw std::invalid_argument("unknown enhancement ID");
-        auto &entry = position->second;
-        if (entry.data.active == active) return;
-        if (active) activate(entry);
-        else { entry.cleanup(); entry.cleanup = {}; }
-        entry.data.active = active;
-    }
-
-    EnhancementGroupData EnhancementGroup::toData() const
-    {
-        EnhancementGroupData result{id_, name_, {}};
-        for (const auto &[id, entry] : entries_) result.enhancements.push_back(entry.data);
-        return result;
-    }
+    EnhancementGroupData EnhancementGroup::toData() const { return data_; }
 
     EnhancementGroupView EnhancementGroup::toView() const
     {
-        EnhancementGroupView result{id_, name_, {}};
-        for (const auto &[id, entry] : entries_)
-        {
-            std::optional<int> value;
-            if (entry.data.active) value = std::visit([&](const auto &definition) { return resources_.evaluateExpression(definition.expression); }, entry.data.definition);
-            result.enhancements.push_back({entry.data, value});
-        }
-        return result;
+        EnhancementGroupView view{data_.id, data_.name, {}, data_.active, data_.description, data_.origin};
+        for (const auto &effect : data_.enhancements)
+            view.enhancements.push_back({effect, data_.active ? numericValue(effect, resources_) : std::nullopt});
+        return view;
     }
 
     Enhancements::Enhancements(ResourceManager &resources) : resources_(resources) {}
+    Enhancements::~Enhancements() { while (!groups_.empty()) groups_.pop_back(); }
 
     EnhancementGroup &Enhancements::group(std::string_view id)
     {
-        auto position = groups_.find(normalize(id));
-        if (position == groups_.end()) throw std::invalid_argument("unknown enhancement group ID");
-        return *position->second;
+        const auto normalized = normalize(id);
+        const auto found = std::ranges::find(groups_, normalized, &Group::id);
+        if (found == groups_.end()) throw std::invalid_argument("unknown enhancement group ID");
+        return *found->instance;
     }
 
-    void Enhancements::addGroup(EnhancementGroupDefinition data)
+    void Enhancements::addGroup(EnhancementGroupDefinition definition)
     {
-        const auto id = normalize(data.id);
-        if (groups_.contains(id)) throw std::invalid_argument("duplicate enhancement group ID: " + id);
-        auto group = std::make_unique<EnhancementGroup>(resources_, id, std::move(data.name));
-        for (auto &entry : data.enhancements) group->add(std::move(entry));
-        groups_.emplace(id, std::move(group));
+        const auto id = normalize(definition.id);
+        if (std::ranges::find(groups_, id, &Group::id) != groups_.end()) throw std::invalid_argument("duplicate enhancement group ID");
+        groups_.reserve(groups_.size() + 1);
+        auto instance = std::make_unique<EnhancementGroup>(resources_, std::move(definition));
+        groups_.push_back({id, std::move(instance)});
     }
 
-    void Enhancements::removeGroup(std::string_view id) { group(id); groups_.erase(normalize(id)); }
-    void Enhancements::add(std::string_view groupId, EnhancementDefinition data) { group(groupId).add(std::move(data)); }
+    void Enhancements::removeGroup(std::string_view id)
+    {
+        group(id).setActive(false);
+        const auto normalized = normalize(id);
+        groups_.erase(std::ranges::find(groups_, normalized, &Group::id));
+    }
+    void Enhancements::add(std::string_view groupId, EffectDefinition definition) { group(groupId).add(std::move(definition)); }
     void Enhancements::remove(std::string_view groupId, std::string_view id) { group(groupId).remove(id); }
-    void Enhancements::setActive(std::string_view groupId, std::string_view id, bool active) { group(groupId).setActive(id, active); }
+    void Enhancements::setGroupActive(std::string_view groupId, bool active) { group(groupId).setActive(active); }
 
     EnhancementsData Enhancements::toData() const
     {
-        EnhancementsData result;
-        for (const auto &[id, group] : groups_) result.groups.push_back(group->toData());
-        return result;
+        EnhancementsData data;
+        for (const auto &group : groups_) data.groups.push_back(group.instance->toData());
+        return data;
     }
 
     EnhancementsView Enhancements::toView() const
     {
-        EnhancementsView result;
-        for (const auto &[id, group] : groups_) result.groups.push_back(group->toView());
-        return result;
+        EnhancementsView view;
+        for (const auto &group : groups_) view.groups.push_back(group.instance->toView());
+        return view;
     }
 }

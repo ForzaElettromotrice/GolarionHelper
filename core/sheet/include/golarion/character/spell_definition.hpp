@@ -49,6 +49,7 @@ namespace golarion
         std::string spellResistanceDescription;
         std::string description;
         std::vector<EffectDefinition> effects{};
+        std::string maxTargetsExpression = "-1";
     };
 
     void validateSpellDefinition(const SpellDefinition &definition);

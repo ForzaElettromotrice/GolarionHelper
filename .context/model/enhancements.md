@@ -1,15 +1,39 @@
-# Custom Enhancements
+# Enhancement groups
 
-Read this document when changing user-created numeric bonuses/contributions, their lifecycle, persistence or sheet operations.
+Read when changing user-created or received effects, group lifecycle, sheet APIs or saved enhancement state.
 
-- `CharacterSheet` owns `Enhancements`, a container of `EnhancementGroup` instances. Groups have stable IDs and user-facing names; entries have group-local IDs and an independent active flag.
-- `EnhancementEffectDefinition` is a closed variant of the existing `ContributionEffectDefinition` and `ModifierEffectDefinition`. `EnhancementDefinition` combines it with an initial active flag; `EnhancementGroupDefinition` supplies group identity/name and initial entries. Public creation APIs accept these domain definitions, not saved Data. No arbitrary effects, custom items or custom spells are included in this slice.
-- Contributions target accumulated resources and may be signed. Modifiers target enhanceable resources and retain the existing bonus/penalty, bonus type, condition and skill-rank-budget metadata. Their expression magnitude must be nonnegative when active. Ordinary stacking rules remain unchanged.
-- A group is the shared modifier source, using a namespaced, length-prefixed ID rather than its editable/display name. Contribution runtime IDs include both group and entry identities. Cleanup removes only the owned registration.
-- Public sheet operations: `addEnhancementGroup`, `removeEnhancementGroup`, `addEnhancement`, `removeEnhancement`, `setEnhancementActive`. Every successful operation rechecks feat prerequisites. Removing a group removes its registrations; disabling an entry keeps its complete definition. Repeated activation/deactivation is idempotent.
-- Group creation cleans up preceding entries if a later entry fails. Failed activation removes the tentative registration and preserves the inactive entry. Active registration checks resource kind, current expression evaluation, negative modifier magnitudes and circular targets. Inactive entries validate structural metadata but defer runtime resource/expression checks until activation, so unavailable targets do not prevent saving/restoring a disabled entry.
-- Expressions remain live, not frozen numbers. The caller must avoid expressions that become invalid after unrelated state changes, as with other resource expressions. Resources must outlive active registrations; dynamic resources must exist before activating an entry.
-- `EnhancementsData` saves groups, definitions and flags; sheet format 36 restores them after class/race/inventory resources and skill specializations, before feats and mutable HP state. Older sheets restore no custom enhancements. No calculated totals or runtime modifier UUIDs are persisted.
-- `EnhancementsView` exposes group identity/name and each entry's complete definition/state plus an optional raw resolved value for active entries. This is not a stacking result; ordinary resource Views show effective stacking. Disabled expressions are not evaluated for the View. Groups/entries are returned in stable ID order.
-- Focused coverage: `enhancements_test` tests both resource kinds, source stacking, live expressions, toggle idempotence, cleanup, rollback, invalid/circular expressions, sheet operations, inactive/unavailable definitions, JSON enum rejection, round trips and format-35 compatibility.
-- Frontend/C API editing and custom catalog entries remain separate steps. No commit or push is implicit in this implementation.
+## Definitions and ownership
+
+- `EnhancementGroupDefinition` contains ID, display name, ordered `EffectDefinition` entries, one `active` flag (default true), optional description and optional provenance.
+- `EnhancementOrigin` uses the closed `EnhancementOriginType` enum (Custom, Spell, Item, Ability), optional definition ID and source-sheet ID. Provenance is informational and grants no permissions.
+- Individual effects no longer have an active flag or a separate EnhancementDefinition/Data wrapper. There is no per-entry activation API.
+- Runtime registration uses the shared `compileEffect` pipeline and its cleanup callbacks. Group/entry IDs are namespaced with length prefixes. `enhancementEffectId(groupId, effectId)` gives the runtime ID for explicit references between effects. Display names never identify registrations.
+- No extra destination/type allowlist is introduced. Shared schema/compiler and endpoint validation still apply; a source-dependent effect without its required runtime provider/context fails rather than bypassing validation.
+
+## Lifecycle
+
+- `CharacterSheet` exposes add/removeEnhancementGroup, add/removeEnhancement and `setEnhancementGroupActive(groupId, active)`. Each successful mutation rechecks feat prerequisites.
+- Add/remove individual effects is allowed only while the group is inactive. Activation applies the entire ordered sequence; deactivation and destruction clean up in reverse order. Repeated group activation/deactivation is idempotent.
+- A failed activation rolls back completed registrations and leaves the group inactive. Failed creation does not publish the group. Definitions are structurally validated while inactive; unavailable resources and live numeric evaluation are deferred to activation.
+- Numeric contributions/modifiers retain evaluation, negative-magnitude and circular-expression checks at activation. They retain ordinary live-expression and stacking behavior.
+- Keep dependent effects inside the same group and declare providers before consumers. External providers must outlive consumers, as for other source effects. There is no dependency graph across independent sources and no automatic ordering inferred from arbitrary resource strings.
+- Groups preserve insertion order in runtime, Data and View; the container destroys them in reverse insertion order. This avoids alphabetic reordering of declared effects or reconstruction.
+- By user decision, toggling may reset state owned by recreated grants (uses, slots, temporary pools). No special state preservation or resource allowlist is added.
+
+## Data and View
+
+- Save format 42 stores group `id`, `name`, `active`, `description`, `origin` and ordered `effects`, using the shared effect JSON codec.
+- The old per-entry enhancement schema is rejected without migration. No existing files are deleted. Pre-existing compatibility code for unrelated save fields remains outside this change; saves containing enhancements require the new version/schema.
+- `EnhancementGroupData` is distinct from the creation definition. Views expose group state/metadata and the effect definitions; `resolvedValue` is present only for active numeric modifiers/contributions, not for nonnumeric or inactive effects.
+- Sources restore before feats and mutable spell/HP state, allowing enhancements to supply feat slots and casting instances before their saved selections are loaded.
+
+## Spell integration boundary
+
+- Spell targeting, recipient authorization and application belong to the play/application layer, not this subsystem.
+- The game session's sheet manager will apply exported spell effects as recipient groups; no automatic recipient application remains to implement in the sheet backend.
+- Spell consumption now exports values such as caster `@level` as concrete literals in copied definitions. No live caster link is introduced. Relative rules such as bounded movement remain recipient-side. Automatic recipient/group application remains separate; see [spells.md](spells.md).
+- Effects received from a spell can use one group per application, including self-targeting. Instant damage/healing is not represented as a reversible group.
+
+## Verification
+
+The sheet-only build and all 93 sheet tests pass. Focused enhancement tests cover group-only toggling, inactive-only editing, declared effect order, reverse cleanup of casting/slot dependencies, rollback, numeric validation, source isolation/stacking, nonnumeric grants, metadata, JSON rejection of the old shape, round trips and feat activation after slot withdrawal/regrant. No play tests were executed.

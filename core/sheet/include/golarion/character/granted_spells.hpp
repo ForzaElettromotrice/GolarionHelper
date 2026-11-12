@@ -1,6 +1,7 @@
 #pragma once
 
 #include "golarion/character/granted_spell.hpp"
+#include "golarion/character/spell_cast_result.hpp"
 #include "golarion/data/granted_spells_data.hpp"
 #include <map>
 #include <string_view>
@@ -19,7 +20,7 @@ namespace golarion
         GrantedSpells &operator=(const GrantedSpells &) = delete;
         GrantedSpells(GrantedSpells &&) = delete;
         GrantedSpells &operator=(GrantedSpells &&) = delete;
-        void consume(std::string_view id);
+        SpellCastResult consume(std::string_view id);
         void refill(std::string_view id);
         void restore(std::string_view id, int amount);
         std::vector<GrantedSpellView> toView() const;

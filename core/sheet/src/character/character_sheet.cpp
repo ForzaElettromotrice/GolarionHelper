@@ -12,6 +12,20 @@
 
 namespace
 {
+    template<class Cast> golarion::SpellCastResult castAndRecheck(golarion::Feats &feats, Cast cast)
+    {
+        golarion::SpellCastResult result;
+        try { result = cast(); }
+        catch (...)
+        {
+            // Export can fail after the slot or source uses have been spent.
+            feats.recheckPrerequisites();
+            throw;
+        }
+        feats.recheckPrerequisites();
+        return result;
+    }
+
     template<class Casting> Casting &castingAs(golarion::Spellcastings &castings, std::string_view id)
     {
         auto *casting = dynamic_cast<Casting *>(&castings.get(id));
@@ -54,7 +68,7 @@ namespace golarion
         feats_.recheckPrerequisites();
     }
 
-    void CharacterSheet::addEnhancement(std::string_view groupId, EnhancementDefinition data)
+    void CharacterSheet::addEnhancement(std::string_view groupId, EffectDefinition data)
     {
         enhancements_.add(groupId, std::move(data));
         feats_.recheckPrerequisites();
@@ -66,9 +80,9 @@ namespace golarion
         feats_.recheckPrerequisites();
     }
 
-    void CharacterSheet::setEnhancementActive(std::string_view groupId, std::string_view id, bool active)
+    void CharacterSheet::setEnhancementGroupActive(std::string_view groupId, bool active)
     {
-        enhancements_.setActive(groupId, id, active);
+        enhancements_.setGroupActive(groupId, active);
         feats_.recheckPrerequisites();
     }
 
@@ -154,25 +168,19 @@ namespace golarion
         feats_.recheckPrerequisites();
     }
 
-    MetamagicEvaluation CharacterSheet::consumePreparedSpell(std::string_view castingId, const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition)
+    SpellCastResult CharacterSheet::consumePreparedSpell(std::string_view castingId, const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition)
     {
-        auto result = castingAs<PreparedSpellcasting>(spellcastings_, castingId).consume(slot, definition);
-        feats_.recheckPrerequisites();
-        return result;
+        return castAndRecheck(feats_, [&] { return castingAs<PreparedSpellcasting>(spellcastings_, castingId).consume(slot, definition); });
     }
 
-    MetamagicEvaluation CharacterSheet::consumeSpontaneousSpell(std::string_view castingId, const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition)
+    SpellCastResult CharacterSheet::consumeSpontaneousSpell(std::string_view castingId, const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition)
     {
-        auto result = castingAs<SpontaneousSpellcasting>(spellcastings_, castingId).consume(slot, definition);
-        feats_.recheckPrerequisites();
-        return result;
+        return castAndRecheck(feats_, [&] { return castingAs<SpontaneousSpellcasting>(spellcastings_, castingId).consume(slot, definition); });
     }
 
-    MetamagicEvaluation CharacterSheet::consumeFlexibleSpell(std::string_view castingId, const SpellSlotId &slot, const FlexibleSpellConsumptionDefinition &definition)
+    SpellCastResult CharacterSheet::consumeFlexibleSpell(std::string_view castingId, const SpellSlotId &slot, const FlexibleSpellConsumptionDefinition &definition)
     {
-        auto result = castingAs<FlexibleSpellcasting>(spellcastings_, castingId).consume(slot, definition);
-        feats_.recheckPrerequisites();
-        return result;
+        return castAndRecheck(feats_, [&] { return castingAs<FlexibleSpellcasting>(spellcastings_, castingId).consume(slot, definition); });
     }
 
     void CharacterSheet::clearSpellSlot(std::string_view castingId, const SpellSlotId &slot)
@@ -244,7 +252,7 @@ namespace golarion
 
     CharacterSheet::CharacterSheet(const CharacterSheetSaveData &data, const ClassDefinitionManager &classDefinitions) : CharacterSheet(classDefinitions)
     {
-        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24 && data.formatVersion != 25 && data.formatVersion != 26 && data.formatVersion != 27 && data.formatVersion != 28 && data.formatVersion != 29 && data.formatVersion != 30 && data.formatVersion != 31 && data.formatVersion != 32 && data.formatVersion != 33 && data.formatVersion != 34 && data.formatVersion != 35 && data.formatVersion != 36 && data.formatVersion != 37 && data.formatVersion != 38 && data.formatVersion != 39 && data.formatVersion != 40 && data.formatVersion != 41)
+        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24 && data.formatVersion != 25 && data.formatVersion != 26 && data.formatVersion != 27 && data.formatVersion != 28 && data.formatVersion != 29 && data.formatVersion != 30 && data.formatVersion != 31 && data.formatVersion != 32 && data.formatVersion != 33 && data.formatVersion != 34 && data.formatVersion != 35 && data.formatVersion != 36 && data.formatVersion != 37 && data.formatVersion != 38 && data.formatVersion != 39 && data.formatVersion != 40 && data.formatVersion != 41 && data.formatVersion != 42)
         {
             throw std::invalid_argument("unsupported character sheet format version: " + std::to_string(data.formatVersion));
         }
@@ -266,6 +274,7 @@ namespace golarion
             loadedAbilities[index] = true;
         }
 
+        if (data.formatVersion < 42 && !data.enhancements.groups.empty()) throw std::invalid_argument("obsolete enhancement save format");
         if (data.formatVersion >= 39)
             for (const auto &definition : data.customFeatDefinitions) featCatalog_.add(definition);
         if (data.formatVersion >= 38)
@@ -287,10 +296,7 @@ namespace golarion
         if (data.formatVersion >= 36)
             for (const auto &group : data.enhancements.groups)
             {
-                EnhancementGroupDefinition definition{group.id, group.name, {}};
-                for (const auto &entry : group.enhancements)
-                    definition.enhancements.push_back({entry.definition, entry.active});
-                enhancements_.addGroup(std::move(definition));
+                enhancements_.addGroup({group.id, group.name, group.enhancements, group.active, group.description, group.origin});
             }
         feats_.load(data.feats);
         hitPoints_.load(data.hitPoints);
@@ -316,7 +322,7 @@ namespace golarion
         identity_.setName(name);
     }
 
-    void CharacterSheet::consumeGrantedSpell(std::string_view id) { grantedSpells_.consume(id); }
+    SpellCastResult CharacterSheet::consumeGrantedSpell(std::string_view id) { return castAndRecheck(feats_, [&] { return grantedSpells_.consume(id); }); }
     void CharacterSheet::refillGrantedSpell(std::string_view id) { grantedSpells_.refill(id); }
     void CharacterSheet::restoreGrantedSpell(std::string_view id, int amount) { grantedSpells_.restore(id, amount); }
     void CharacterSheet::refillItemUsagePool(std::string_view itemId, std::string_view poolId) { inventory_->refillUsagePool(itemId, poolId); }
@@ -612,7 +618,7 @@ namespace golarion
         }
 
         return CharacterSheetSaveData{
-            .formatVersion = 41,
+            .formatVersion = 42,
             .identity = identity_.toSaveData(),
             .race = race_.toSaveData(),
             .abilities = std::move(abilityData),

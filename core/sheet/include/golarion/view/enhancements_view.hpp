@@ -6,8 +6,8 @@ namespace golarion
 {
     struct EnhancementView
     {
-        EnhancementData data;
-        // Raw expression value, not the result of stacking with other sources.
+        EffectDefinition definition;
+        // Only numeric contributions/modifiers have a raw expression value.
         std::optional<int> resolvedValue;
     };
 
@@ -16,6 +16,9 @@ namespace golarion
         std::string id;
         std::string name;
         std::vector<EnhancementView> enhancements;
+        bool active;
+        std::optional<std::string> description;
+        std::optional<EnhancementOrigin> origin;
     };
 
     struct EnhancementsView

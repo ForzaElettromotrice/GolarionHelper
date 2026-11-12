@@ -8,6 +8,12 @@
 
 namespace golarion
 {
+    SpellCastResult Spellcasting::exportCast(MetamagicEvaluation evaluation)
+    {
+        const auto &spell = spellDefinition(evaluation.spellId);
+        return exportSpellCast(spell, resources_, std::move(evaluation));
+    }
+
     MetamagicUsagePools Spellcasting::usagePools() const
     {
         return metamagic_.usagePools();

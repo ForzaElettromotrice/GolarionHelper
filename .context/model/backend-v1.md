@@ -1,6 +1,6 @@
 # Character-sheet backend 1.0.0
 
-Read for the release boundary and the Data/View coverage review performed on 2026-11-12.
+Read for the release boundary and the Data/View coverage review performed on 2026-11-12. This records the 1.0.0 milestone at save format 41; the subsequent group-only generic enhancement change uses format 42 and is documented in [enhancements.md](enhancements.md).
 
 ## Scope
 

@@ -466,6 +466,7 @@ namespace golarion
         for (const auto &save : d.savingThrows)
             result["savingThrows"].push_back({{"savingThrowType", enumName(save.type)}, {"effect", enumName(save.effect)}, {"description", save.description}});
         result["effects"] = Json::array();
+        result["maxTargetsExpression"] = d.maxTargetsExpression;
         for (const auto &effect : d.effects) result["effects"].push_back(effectDefinitionToJson(effect));
         return result;
     }
@@ -531,7 +532,8 @@ namespace golarion
                 .spellResistanceType = enumFromJson<SpellResistanceType>(json.at("spellResistanceType")),
                 .spellResistanceDescription = text("spellResistanceDescription"),
                 .description = text("description"),
-                .effects = std::move(effects)
+                .effects = std::move(effects),
+                .maxTargetsExpression = json.contains("maxTargetsExpression") ? text("maxTargetsExpression") : "-1"
             };
             validateSpellDefinition(definition);
             return definition;

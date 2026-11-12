@@ -96,7 +96,7 @@ namespace golarion
         return *level;
     }
 
-    MetamagicEvaluation PreparedSpellcasting::consume(const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition)
+    SpellCastResult PreparedSpellcasting::consume(const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition)
     {
         const auto &[replacementSpellId, applications] = definition;
         const auto key = checkedSlot(slot);
@@ -130,7 +130,7 @@ namespace golarion
                 MetamagicRegistry::pay(evaluation.usageCosts);
                 evaluation.usageCosts.clear();
                 if (!preserve) preparation.state.state = PreparedSpellSlotState::Consumed;
-                return evaluation;
+                return exportCast(std::move(evaluation));
             }
         throw std::invalid_argument("spell slot is not prepared");
     }

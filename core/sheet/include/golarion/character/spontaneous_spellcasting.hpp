@@ -18,7 +18,7 @@ namespace golarion
         explicit SpontaneousSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel = {}, const SpellCatalog *catalog = nullptr);
         ~SpontaneousSpellcasting() override;
 
-        MetamagicEvaluation consume(const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition);
+        SpellCastResult consume(const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition);
         void clear(const SpellSlotId &slot);
         SpontaneousSpellSlotState slotState(const SpellSlotId &slot) const;
         SpontaneousSpellcastingData toData() const;

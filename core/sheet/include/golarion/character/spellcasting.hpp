@@ -3,6 +3,7 @@
 #include "golarion/character/character_class_type.hpp"
 #include "golarion/character/spell_slot_grant.hpp"
 #include "golarion/character/metamagic.hpp"
+#include "golarion/character/spell_cast_result.hpp"
 
 #include "golarion/character/spell_repertoire.hpp"
 
@@ -38,6 +39,7 @@ namespace golarion
     protected:
         explicit Spellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, const SpellCatalog *catalog = nullptr, bool allowManualRepertoire = true);
         const SpellDefinition &spellDefinition(std::string_view id) const;
+        SpellCastResult exportCast(MetamagicEvaluation evaluation);
         bool knowsSpell(std::string_view spellId) const;
         CharacterClassType spellListClass() const;
         const MetamagicRegistry &metamagic() const { return metamagic_; }

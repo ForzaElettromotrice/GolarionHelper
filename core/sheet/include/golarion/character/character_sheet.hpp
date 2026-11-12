@@ -67,9 +67,9 @@ namespace golarion
         int level() const;
         void addEnhancementGroup(EnhancementGroupDefinition data);
         void removeEnhancementGroup(std::string_view groupId);
-        void addEnhancement(std::string_view groupId, EnhancementDefinition data);
+        void addEnhancement(std::string_view groupId, EffectDefinition data);
         void removeEnhancement(std::string_view groupId, std::string_view id);
-        void setEnhancementActive(std::string_view groupId, std::string_view id, bool active);
+        void setEnhancementGroupActive(std::string_view groupId, bool active);
         void selectClassOption(CharacterClassType type, const ClassOptionDefinition &definition);
         void unselectClassOption(CharacterClassType type, const ClassOptionDefinition &definition);
 
@@ -102,12 +102,12 @@ namespace golarion
         void removeRepertoireSelection(std::string_view castingId, RepertoireSelectionDefinition selection);
         void prepareSpell(std::string_view castingId, const std::vector<SpellSlotId> &slots, const SpellPreparationDefinition &definition);
         void prepareFlexibleSpell(std::string_view castingId, const SpellSlotId &preparation, const SpellPreparationDefinition &definition);
-        MetamagicEvaluation consumePreparedSpell(std::string_view castingId, const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition = {});
-        MetamagicEvaluation consumeSpontaneousSpell(std::string_view castingId, const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition);
-        MetamagicEvaluation consumeFlexibleSpell(std::string_view castingId, const SpellSlotId &slot, const FlexibleSpellConsumptionDefinition &definition);
+        SpellCastResult consumePreparedSpell(std::string_view castingId, const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition = {});
+        SpellCastResult consumeSpontaneousSpell(std::string_view castingId, const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition);
+        SpellCastResult consumeFlexibleSpell(std::string_view castingId, const SpellSlotId &slot, const FlexibleSpellConsumptionDefinition &definition);
         void clearSpellSlot(std::string_view castingId, const SpellSlotId &slot);
         void clearFlexiblePreparation(std::string_view castingId, const SpellSlotId &preparation);
-        void consumeGrantedSpell(std::string_view id);
+        SpellCastResult consumeGrantedSpell(std::string_view id);
         void refillGrantedSpell(std::string_view id);
         void restoreGrantedSpell(std::string_view id, int amount);
         void refillItemUsagePool(std::string_view itemId, std::string_view poolId);

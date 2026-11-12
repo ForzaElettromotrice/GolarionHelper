@@ -42,7 +42,7 @@ namespace golarion
         return key;
     }
 
-    MetamagicEvaluation SpontaneousSpellcasting::consume(const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition)
+    SpellCastResult SpontaneousSpellcasting::consume(const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition)
     {
         const auto &[spellId, applications] = definition;
         const auto key = checkedSlot(slot);
@@ -70,7 +70,7 @@ namespace golarion
         MetamagicRegistry::pay(evaluation.usageCosts);
         evaluation.usageCosts.clear();
         consumedSlots_.swap(updated);
-        return evaluation;
+        return exportCast(std::move(evaluation));
     }
 
     void SpontaneousSpellcasting::clear(const SpellSlotId &slot)

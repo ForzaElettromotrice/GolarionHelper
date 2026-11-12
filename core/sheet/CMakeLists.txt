@@ -1,4 +1,5 @@
 add_library(golarion_model STATIC
+    src/character/spell_cast_result.cpp
     src/effect/effect_to_json.cpp
     src/effect/collection_effect_to_json.cpp
     src/effect/casting_rule_effect_to_json.cpp
@@ -207,6 +208,9 @@ endif()
 
 if(BUILD_TESTING)
     add_executable(sheet_notes_test tests/character/sheet_notes_test.cpp)
+    add_executable(spell_cast_result_test tests/character/spell_cast_result_test.cpp)
+    target_link_libraries(spell_cast_result_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME spell_cast_result_test COMMAND spell_cast_result_test)
     target_link_libraries(sheet_notes_test PRIVATE golarion_model golarion_persistence)
     add_test(NAME sheet_notes_test COMMAND sheet_notes_test)
 
