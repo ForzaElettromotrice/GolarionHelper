@@ -6,7 +6,7 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 ## Current State
 
-- Character-sheet backend v1 is complete within the agreed scope; project/library version is `1.0.0`. Free-text `notes` is exposed through `setNotes`, Data and View; save format is `42`, with empty notes for older saves. See the [Data/View audit and release scope](model/backend-v1.md). Complete datasets, frontend/full FFI and `core/play` completion remain separate.
+- Character-sheet backend is complete within the agreed scope; project/library version is `1.1.0`, adding generic enhancement groups and spell-effect export. Applying exported effects belongs to the game session's sheet manager. Free-text `notes` is exposed through `setNotes`, Data and View; save format is `42`, with empty notes for older saves. See the [Data/View audit and release scope](model/backend-v1.md). Complete datasets, frontend/full FFI and `core/play` completion remain separate.
 
 - Pending-choice reporting is implemented across sheet subsystems. Class/racial choices declare whether they block advancement; feat selection remains atomic. Reports are derived and are not persisted. Blocking entries now prevent +1 class-level advancement. See [`model/pending-choices.md`](model/pending-choices.md).
 

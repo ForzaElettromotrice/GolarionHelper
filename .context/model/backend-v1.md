@@ -1,5 +1,13 @@
 # Character-sheet backend 1.0.0
 
+## Current release: 1.1.0 (2026-11-13)
+
+Project/library version is now 1.1.0; SOVERSION remains 1 and save schema is 42. This release adds generic group-only enhancements with provenance and reversible ordered effects, plus spell consumption results carrying target limits, caster-frozen effect definitions and optional metamagic. Export errors do not refund slots or uses. See [enhancements.md](enhancements.md) and [spells.md](spells.md).
+
+The sheet-side work is complete for this feature: recipient application belongs to the game session's sheet manager. All 94 sheet tests pass; play tests are excluded. The audit below records the historical 1.0.0 milestone, not the current enhancement schema.
+
+## Historical 1.0.0 audit
+
 Read for the release boundary and the Data/View coverage review performed on 2026-11-12. This records the 1.0.0 milestone at save format 41; the subsequent group-only generic enhancement change uses format 42 and is documented in [enhancements.md](enhancements.md).
 
 ## Scope
