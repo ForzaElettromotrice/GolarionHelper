@@ -21,7 +21,7 @@ namespace
         return static_cast<int>(value);
     }
 
-    std::vector<golarion::ArmorClassValueView> armorClassValues(golarion::ResourceManager &resourceManager, golarion::AbilityType abilityType, const std::optional<int> maximumDexterityBonus, bool abilityBonusSuppressed)
+    std::vector<golarion::ArmorClassValueView> armorClassValues(golarion::ResourceManager &resourceManager, golarion::AbilityType abilityType, const std::optional<int> maximumDexterityBonus, bool abilityBonusSuppressed, bool retainFlatFooted = false)
     {
         const int abilityModifier = resourceManager.targetValue(std::string(golarion::resourceName(abilityType)) + "Mod");
         std::vector<golarion::ArmorClassValueView> values;
@@ -30,7 +30,7 @@ namespace
         for (const golarion::ArmorClassType type : {golarion::ArmorClassType::Normal, golarion::ArmorClassType::Touch, golarion::ArmorClassType::FlatFooted})
         {
             golarion::ModifierSetView modifiers = resourceManager.modifierSetView(golarion::resourceName(type));
-            int appliedAbilityModifier = type == golarion::ArmorClassType::FlatFooted
+            int appliedAbilityModifier = type == golarion::ArmorClassType::FlatFooted && !retainFlatFooted
                 ? std::min(abilityModifier, 0)
                 : maximumDexterityBonus.has_value() ? std::min(abilityModifier, *maximumDexterityBonus) : abilityModifier;
             if (abilityBonusSuppressed)
@@ -51,6 +51,16 @@ namespace
 
 namespace golarion
 {
+    void validateArmorClassSuppressionCause(ArmorClassSuppressionCause cause)
+    {
+        switch (cause)
+        {
+        case ArmorClassSuppressionCause::Other: case ArmorClassSuppressionCause::FlatFooted:
+        case ArmorClassSuppressionCause::InvisibleAttacker: case ArmorClassSuppressionCause::Feint:
+        case ArmorClassSuppressionCause::Pinned: return;
+        }
+        throw std::invalid_argument("unknown armor class suppression cause");
+    }
     std::string_view displayName(ArmorClassType type)
     {
         switch (type)
@@ -132,13 +142,29 @@ namespace golarion
     }
 
     ArmorClassAbilitySuppression::ArmorClassAbilitySuppression(ArmorClassAbilitySuppressionDefinition definition)
-        : id_(normalize(definition.id)), source_(normalize(definition.source))
+        : id_(normalize(definition.id)), source_(normalize(definition.source)), cause_(definition.cause)
     {
+        validateArmorClassSuppressionCause(cause_);
     }
 
     ArmorClass::ArmorClass(ResourceManager &resourceManager)
         : resourceManager_(resourceManager)
     {
+        resourceManager_.registerCollectionResource<ArmorClassDexterityRetention>(ArmorClassDexterityRetentionsResource,
+            [this](ArmorClassDexterityRetention grant)
+            {
+                grant.id = normalize(grant.id);
+                grant.source = normalize(grant.source);
+                if (grant.causes.empty()) throw std::invalid_argument("retention requires at least one cause");
+                for (auto cause : grant.causes)
+                    if (cause != ArmorClassSuppressionCause::FlatFooted && cause != ArmorClassSuppressionCause::InvisibleAttacker)
+                        throw std::invalid_argument("this suppression cause cannot be overridden");
+                const auto id = grant.id;
+                if (!dexterityRetentions_.emplace(id, std::move(grant)).second) throw std::invalid_argument("duplicate Dexterity retention");
+            }, [this](std::string_view id)
+            {
+                if (!dexterityRetentions_.erase(normalize(id))) throw std::invalid_argument("unknown Dexterity retention");
+            });
         resourceManager_.registerEnhanceableResource(ArmorClassAllResource);
         resourceManager_.registerEnhanceableResource(ArmorClassReflexiveResource, {std::string(ArmorClassAllResource)});
         resourceManager_.registerEnhanceableResource(ArmorClassSolidResource, {std::string(ArmorClassAllResource)});
@@ -215,15 +241,26 @@ namespace golarion
         }
 
         std::vector<ArmorClassAbilitySuppressionView> abilitySuppressionViews;
+        std::set<ArmorClassSuppressionCause> retainedCauses;
+        std::vector<ArmorClassDexterityRetention> retentions;
+        for (const auto &[id, grant] : dexterityRetentions_)
+        {
+            retainedCauses.insert(grant.causes.begin(), grant.causes.end());
+            retentions.push_back(grant);
+        }
+        bool dexteritySuppressed = false;
         abilitySuppressionViews.reserve(abilitySuppressions_.size());
         for (const auto &[id, suppression] : abilitySuppressions_)
         {
             abilitySuppressionViews.push_back(ArmorClassAbilitySuppressionView{
                 .id = id,
-                .source = suppression.source_
+                .source = suppression.source_,
+                .cause = suppression.cause_,
+                .dexterityRetained = retainedCauses.contains(suppression.cause_)
             });
+            dexteritySuppressed |= !retainedCauses.contains(suppression.cause_);
         }
-        const bool abilityBonusSuppressed = !abilitySuppressions_.empty();
+        const bool abilityBonusSuppressed = dexteritySuppressed;
 
         std::vector<ArmorClassAbilityOptionView> abilityOptions;
         abilityOptions.reserve(abilityReplacements_.size() + 1);
@@ -233,7 +270,7 @@ namespace golarion
             .source = "Base",
             .abilityType = AbilityType::Dexterity,
             .abilityModifier = dexterityModifier,
-            .values = armorClassValues(resourceManager_, AbilityType::Dexterity, maximum, abilityBonusSuppressed)
+            .values = armorClassValues(resourceManager_, AbilityType::Dexterity, maximum, dexteritySuppressed, retainedCauses.contains(ArmorClassSuppressionCause::FlatFooted))
         });
         for (const auto &[id, replacement] : abilityReplacements_)
         {
@@ -243,7 +280,7 @@ namespace golarion
                 .source = replacement.source_,
                 .abilityType = replacement.abilityType_,
                 .abilityModifier = abilityModifier,
-                .values = armorClassValues(resourceManager_, replacement.abilityType_, maximum, abilityBonusSuppressed)
+                .values = armorClassValues(resourceManager_, replacement.abilityType_, maximum, replacement.abilityType_ == AbilityType::Dexterity ? dexteritySuppressed : !abilitySuppressions_.empty(), replacement.abilityType_ == AbilityType::Dexterity && retainedCauses.contains(ArmorClassSuppressionCause::FlatFooted))
             });
         }
 
@@ -252,7 +289,8 @@ namespace golarion
             .maximumDexterityLimits = std::move(maximumDexterityLimits),
             .abilityBonusSuppressed = abilityBonusSuppressed,
             .abilitySuppressions = std::move(abilitySuppressionViews),
-            .abilityOptions = std::move(abilityOptions)
+            .abilityOptions = std::move(abilityOptions),
+            .dexterityRetentions = std::move(retentions)
         };
     }
 

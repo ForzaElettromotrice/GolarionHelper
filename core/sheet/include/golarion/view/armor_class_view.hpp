@@ -40,6 +40,8 @@ namespace golarion
     {
         std::string id;
         std::string source;
+        ArmorClassSuppressionCause cause = ArmorClassSuppressionCause::Other;
+        bool dexterityRetained = false;
     };
 
     struct ArmorClassView
@@ -49,5 +51,6 @@ namespace golarion
         bool abilityBonusSuppressed;
         std::vector<ArmorClassAbilitySuppressionView> abilitySuppressions;
         std::vector<ArmorClassAbilityOptionView> abilityOptions;
+        std::vector<ArmorClassDexterityRetention> dexterityRetentions;
     };
 }

@@ -143,16 +143,17 @@ namespace golarion::conditionEffects
         };
     }
 
-    inline ConditionEffectDefinition armorClassAbilitySuppression(std::string id, std::string description, std::string source)
+    inline ConditionEffectDefinition armorClassAbilitySuppression(std::string id, std::string description, std::string source, ArmorClassSuppressionCause cause = ArmorClassSuppressionCause::Other)
     {
         return ConditionEffectDefinition{
             .id = std::move(id),
             .description = std::move(description),
-            .apply = [source = std::move(source)](ResourceManager &manager, const ConditionEffectContext &context)
+            .apply = [source = std::move(source), cause](ResourceManager &manager, const ConditionEffectContext &context)
             {
                 manager.addToCollection(ArmorClassAbilitySuppressionsResource, ArmorClassAbilitySuppression(ArmorClassAbilitySuppressionDefinition{
                     .id = context.instanceId,
-                    .source = source
+                    .source = source,
+                    .cause = cause
                 }));
                 const std::string suppressionId = context.instanceId;
                 return ConditionCleanup([&manager, suppressionId]

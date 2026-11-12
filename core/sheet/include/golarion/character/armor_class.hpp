@@ -4,6 +4,7 @@
 
 #include <optional>
 #include <map>
+#include <set>
 #include <string>
 #include <string_view>
 
@@ -14,6 +15,16 @@ namespace golarion
     inline constexpr std::string_view ArmorClassSolidResource = "armorClass.solid";
     inline constexpr std::string_view ArmorClassAbilityReplacementsResource = "armorClass.abilityReplacements";
     inline constexpr std::string_view ArmorClassAbilitySuppressionsResource = "armorClass.abilitySuppressions";
+    inline constexpr std::string_view ArmorClassDexterityRetentionsResource = "armorClass.dexterityRetentions";
+    enum class ArmorClassSuppressionCause { Other, FlatFooted, InvisibleAttacker, Feint, Pinned };
+    void validateArmorClassSuppressionCause(ArmorClassSuppressionCause cause);
+
+    struct ArmorClassDexterityRetention
+    {
+        std::string id;
+        std::string source;
+        std::set<ArmorClassSuppressionCause> causes;
+    };
     inline constexpr std::string_view MaximumDexterityLimitsResource = "armorClass.maxDexLimits";
     inline constexpr std::string_view MaximumDexterityAllResource = "armorClass.maxDex.all";
 
@@ -60,6 +71,7 @@ namespace golarion
     {
         std::string id;
         std::string source;
+        ArmorClassSuppressionCause cause = ArmorClassSuppressionCause::Other;
     };
 
     class ArmorClassAbilityReplacement final
@@ -99,6 +111,7 @@ namespace golarion
 
         std::string id_;
         std::string source_;
+        ArmorClassSuppressionCause cause_;
     };
 
     class ArmorClass final
@@ -120,6 +133,7 @@ namespace golarion
         ResourceManager &resourceManager_;
         std::map<std::string, ArmorClassAbilityReplacement> abilityReplacements_;
         std::map<std::string, ArmorClassAbilitySuppression> abilitySuppressions_;
+        std::map<std::string, ArmorClassDexterityRetention> dexterityRetentions_;
         std::map<std::string, MaximumDexterityLimit> maximumDexterityLimits_;
     };
 }

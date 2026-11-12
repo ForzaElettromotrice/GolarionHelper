@@ -15,7 +15,7 @@ namespace golarion
                     .id = "flatFooted",
                     .name = "Impreparato",
                     .effects = {
-                        conditionEffects::armorClassAbilitySuppression("armorClassAbilityBonusSuppression", "Perde il bonus di caratteristica alla Classe Armatura", "Impreparato"),
+                        conditionEffects::armorClassAbilitySuppression("armorClassAbilityBonusSuppression", "Perde il bonus di caratteristica alla Classe Armatura", "Impreparato", ArmorClassSuppressionCause::FlatFooted),
                         conditionEffects::combatManeuverDefenseDexteritySuppression("combatManeuverDefenseDexterityBonusSuppression", "Perde il bonus di Destrezza alla Difesa da Manovra in Combattimento", "Impreparato"),
                         conditionEffects::reminder("opportunityAttacks", "Impreparato: non può compiere Attacchi di Opportunità, salvo capacità come Riflessi in Combattimento.")
                     }
