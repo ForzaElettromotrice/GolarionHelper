@@ -92,5 +92,32 @@ int main()
     assert(migrated.toView().classes.classes[0].hitDieResults.empty());
     migrated.setClassHitDieResult(CharacterClassType::Fighter, 1, 4);
     assert(migrated.toView().classes.classes[0].hitDieResults.at(1) == 4);
+    auto intelligenceClass = test::classDefinition(CharacterClassType::Wizard);
+    intelligenceClass.skillRanksPerLevel = 2;
+    intelligenceClass.features = {{.id = "intelligence", .name = "Intelligenza", .description = "Bonus di prova", .progression = {
+        {.id = "bonuses", .level = 1, .effects = {
+            ModifierEffectDefinition{"permanent", std::string(PermanentIntelligenceResource), "Bonus permanente", ModifierType::Bonus, BonusType::Enhancement, "4", std::nullopt, SkillRankBudgetPolicy::Excluded},
+            ModifierEffectDefinition{"included", std::string(PermanentIntelligenceResource), "Bonus ordinario", ModifierType::Bonus, BonusType::Enhancement, "2"},
+            ModifierEffectDefinition{"temporary", std::string(TemporaryIntelligenceResource), "Bonus temporaneo", ModifierType::Bonus, BonusType::Enhancement, "6"},
+            SkillRankGrantEffectDefinition{"ranks", SkillType::Spellcraft, "@classLevel + 3"}
+        }}
+    }}};
+    const ClassDefinitionManager intelligenceCatalog({intelligenceClass});
+    CharacterSheet intelligenceSheet(intelligenceCatalog);
+    intelligenceSheet.addClassLevel(CharacterClassType::Wizard, 4);
+    assert(intelligenceSheet.toView().skills.maxRanks == 3); // 2 base + 1 from the included enhancement.
+    assert(intelligenceSheet.toView().languages.remainingIntelligence == 2);
+    intelligenceSheet.setSkillRanks(SkillType::Spellcraft, 1);
+    assert(intelligenceSheet.toView().skills.spentRanks == 1);
+    for (const auto &skill : intelligenceSheet.toView().skills.skills)
+        if (skill.type == SkillType::Spellcraft) assert(skill.ranks == 1 && skill.effectiveRanks == 4);
+    intelligenceSheet.save(path);
+    auto restoredIntelligence = CharacterSheet::load(path, intelligenceCatalog);
+    assert(restoredIntelligence.toView().skills.maxRanks == 3);
+    assert(restoredIntelligence.toView().languages.remainingIntelligence == 2);
+    assert(restoredIntelligence.toView().skills.spentRanks == 1);
+    for (const auto &skill : restoredIntelligence.toView().skills.skills)
+        if (skill.type == SkillType::Spellcraft) assert(skill.ranks == 1 && skill.effectiveRanks == 4);
+    assert(persistence::toJson(restoredIntelligence.toSaveData()) == persistence::toJson(intelligenceSheet.toSaveData()));
     std::filesystem::remove(path);
 }

@@ -65,6 +65,14 @@ namespace golarion
     bool trainedOnly(SkillType type);
     bool requiresSpecialization(SkillType type);
     bool appliesArmorCheckPenalty(SkillType type);
+    std::string skillRankGrantsResource(SkillType type, std::optional<std::string> specializationId = std::nullopt);
+
+    struct SkillRankGrant
+    {
+        std::string id;
+        std::string source;
+        std::string expression;
+    };
 
     struct ArmorCheckPenaltyDefinition
     {
@@ -143,13 +151,16 @@ namespace golarion
         SkillView toView(ResourceManager &resourceManager, const std::map<std::string, SkillAbilityReplacement> &abilityReplacements = {}, const std::map<std::string, SkillClassSkillGrant> &classSkillGrants = {}, int armorCheckPenalty = 0) const;
         SkillSaveData toSaveData() const;
         int totalValue(ResourceManager &resourceManager, int armorCheckPenalty = 0) const;
-        bool usable() const;
+        bool usable(ResourceManager &resourceManager) const;
+        int effectiveRanks(ResourceManager &resourceManager) const;
 
     private:
+        friend class Skills;
         SkillType type_;
         std::optional<std::string> specializationId_;
         std::optional<std::string> specialization_;
         std::string resourceName_;
         int ranks_;
+        mutable std::map<std::string, SkillRankGrant> rankGrants_;
     };
 }

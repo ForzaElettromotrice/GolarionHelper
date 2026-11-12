@@ -15,8 +15,6 @@ namespace golarion
 
     struct LanguagesData
     {
-        // Initial entitlement, not the current Intelligence modifier.
-        int intelligenceBonus = 0;
         std::vector<LearnedLanguageData> learned;
     };
 }

@@ -1,19 +1,24 @@
 #include "golarion/effect/effect_compiler.hpp"
+#include "collection_effect.hpp"
 
 #include "golarion/character/carrying_capacity.hpp"
 #include "golarion/character/movement.hpp"
 #include "golarion/character/reminder.hpp"
 #include "golarion/character/languages.hpp"
 #include "golarion/character/granted_spells.hpp"
+#include "golarion/character/spellcastings.hpp"
+#include "golarion/character/flexible_spellcasting.hpp"
 #include "golarion/character/feats.hpp"
 #include "golarion/character/favored_classes.hpp"
 #include "golarion/character/size.hpp"
 #include "golarion/resource/contribution.hpp"
 #include "golarion/resource/modifier.hpp"
 #include "golarion/resource/resource_manager.hpp"
+#include "golarion/resource/expression_parser.hpp"
 #include "golarion/util/string_utils.hpp"
 
 #include <type_traits>
+#include <algorithm>
 #include <utility>
 #include <variant>
 
@@ -53,11 +58,42 @@ namespace golarion
         {
             using Effect = std::decay_t<decltype(effect)>;
 
-            if constexpr (std::is_same_v<Effect, ModifierEffectDefinition>)
+            if constexpr (std::is_same_v<Effect, CastingRuleEffectDefinition>)
+            {
+                return compileCastingRuleEffect(std::move(effect), context);
+            }
+            else if constexpr (std::is_same_v<Effect, FeatPrerequisiteAlternativeEffectDefinition>)
+            {
+                effect.target = normalize(effect.target);
+                effect.expression = normalize(effect.expression);
+                return [effect = std::move(effect), context](ResourceManager &resources) -> EffectCleanup
+                {
+                    EffectCleanup cleanup = [&resources, id = context.instanceId] { resources.removeFromCollection(FeatPrerequisiteAlternativesResource, id); };
+                    resources.addToCollection(FeatPrerequisiteAlternativesResource, FeatPrerequisiteAlternative{
+                        context.instanceId, context.source, effect.target,
+                        [filter = effect.filter](const FeatPrerequisiteContext &query)
+                        {
+                            return std::visit([&](const auto &value)
+                            {
+                                using Filter = std::decay_t<decltype(value)>;
+                                if constexpr (std::is_same_v<Filter, AnyFeat>) return true;
+                                else if constexpr (std::is_same_v<Filter, FeatTypeFilter>) return std::find(query.feat.types.begin(), query.feat.types.end(), value.type) != query.feat.types.end();
+                                else return std::find(value.ids.begin(), value.ids.end(), query.feat.id) != value.ids.end();
+                            }, filter);
+                        }, [expression = effect.expression](const FeatPrerequisiteContext &, const FeatTargetResolver &read)
+                        { return ExpressionParser::evaluate(expression, read); }});
+                    return cleanup;
+                };
+            }
+            else if constexpr (std::is_same_v<Effect, CollectionEffectDefinition>)
+            {
+                return compileCollectionEffect(std::move(effect), context);
+            }
+            else if constexpr (std::is_same_v<Effect, ModifierEffectDefinition>)
             {
                 return [effect = std::move(effect), context](ResourceManager &resourceManager)
                 {
-                    Modifier modifier(effect.type, context.source, effect.description, effect.bonusType, effect.expression, effect.condition);
+                    Modifier modifier(effect.type, context.source, effect.description, effect.bonusType, effect.expression, effect.condition, {}, effect.skillRankBudget);
                     const std::string modifierId = modifier.id();
                     resourceManager.addModifier(effect.resource, std::move(modifier));
                     return EffectCleanup([&resourceManager, resource = effect.resource, modifierId]
@@ -148,6 +184,45 @@ namespace golarion
                     return cleanup;
                 };
             }
+            else if constexpr (std::is_same_v<Effect, SpellcastingGrantEffectDefinition>)
+            {
+                characterClassId(effect.spellListClass);
+                switch (effect.mode)
+                {
+                case SpellcastingMode::Prepared: case SpellcastingMode::Spontaneous: case SpellcastingMode::Flexible: break;
+                default: throw std::invalid_argument("invalid spellcasting mode");
+                }
+                return [effect, context](ResourceManager &resources)
+                {
+                    EffectCleanup cleanup = [&resources, id = context.instanceId]
+                    {
+                        resources.removeFromCollection(Spellcastings::Resource, id);
+                    };
+                    resources.addToCollection(Spellcastings::Resource, SpellcastingGrant{
+                        context.instanceId, context.source, effect.mode, effect.spellListClass});
+                    return cleanup;
+                };
+            }
+            else if constexpr (std::is_same_v<Effect, SpellSlotGrantEffectDefinition>)
+            {
+                std::string resource;
+                switch (effect.pool)
+                {
+                case SpellSlotPoolType::Casting: resource = spellSlotsResource(effect.castingId); break;
+                case SpellSlotPoolType::Preparation: resource = preparationSlotsResource(effect.castingId); break;
+                default: throw std::invalid_argument("invalid spell slot pool type");
+                }
+                auto grant = normalizeSpellSlotGrant({context.instanceId, context.source, effect.dailyCapacityByLevel, effect.allowedSpellIds});
+                return [resource = std::move(resource), grant = std::move(grant)](ResourceManager &resources)
+                {
+                    EffectCleanup cleanup = [&resources, resource, id = grant.id]
+                    {
+                        resources.removeFromCollection(resource, id);
+                    };
+                    resources.addToCollection(resource, grant);
+                    return cleanup;
+                };
+            }
             else if constexpr (std::is_same_v<Effect, FeatSlotGrantEffectDefinition>)
             {
                 return [effect = std::move(effect), context](ResourceManager &resourceManager)
@@ -157,6 +232,53 @@ namespace golarion
                     {
                         resourceManager.removeFromCollection(FeatSlotsResource, instanceId);
                     });
+                };
+            }
+            else if constexpr (std::is_same_v<Effect, HandUsagePermissionEffectDefinition>)
+            {
+                effect.strikeGrantId = normalize(effect.strikeGrantId);
+                displayName(effect.handUsage);
+                if (effect.routineId) effect.routineId = normalize(*effect.routineId);
+                if (effect.slotId) effect.slotId = normalize(*effect.slotId);
+                if (effect.slotId && !effect.routineId) throw std::invalid_argument("hand usage slot restriction requires a routine");
+                return [effect = std::move(effect), context](ResourceManager &resources)
+                {
+                    EffectCleanup cleanup = [&resources, id = context.instanceId]
+                    {
+                        resources.removeFromCollection(HandUsagePermissionsResource, id);
+                    };
+                    resources.addToCollection(HandUsagePermissionsResource, HandUsagePermission{
+                        context.instanceId, context.source, effect.strikeGrantId, effect.handUsage,
+                        effect.requirements, effect.routineId, effect.slotId});
+                    return cleanup;
+                };
+            }
+            else if constexpr (std::is_same_v<Effect, SkillRankGrantEffectDefinition>)
+            {
+                auto endpoint = skillRankGrantsResource(effect.skill, effect.specializationId);
+                effect.expression = normalize(effect.expression);
+                return [endpoint = std::move(endpoint), expression = std::move(effect.expression), context](ResourceManager &resources)
+                {
+                    EffectCleanup cleanup = [&resources, endpoint, id = context.instanceId]
+                    {
+                        resources.removeFromCollection(endpoint, id);
+                    };
+                    resources.addToCollection(endpoint, SkillRankGrant{context.instanceId, context.source, expression});
+                    return cleanup;
+                };
+            }
+            else if constexpr (std::is_same_v<Effect, LanguageOptionsEffectDefinition>)
+            {
+                if (effect.origin != LanguageOrigin::Intelligence && effect.origin != LanguageOrigin::Linguistics)
+                    throw std::invalid_argument("unknown language origin");
+                std::set<std::string> ids;
+                for (const auto &id : effect.languageIds)
+                    if (!ids.insert(normalize(id)).second) throw std::invalid_argument("duplicate language option");
+                return [ids = std::move(ids), origin = effect.origin, context](ResourceManager &resources)
+                {
+                    EffectCleanup cleanup = [&resources, id = context.instanceId] { resources.removeFromCollection(LanguageOptionsResource, id); };
+                    resources.addToCollection(LanguageOptionsResource, LanguageOptionsGrant{context.instanceId, context.source, origin, ids});
+                    return cleanup;
                 };
             }
             else if constexpr (std::is_same_v<Effect, LanguageGrantEffectDefinition>)

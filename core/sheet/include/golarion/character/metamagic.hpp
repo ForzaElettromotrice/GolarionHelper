@@ -1,7 +1,10 @@
 #pragma once
+#include "golarion/character/metamagic_types.hpp"
 
 #include "golarion/character/damage.hpp"
 #include "golarion/character/spell_definition.hpp"
+#include "golarion/data/prepared_metamagic_data.hpp"
+#include "golarion/resource/usage_pool.hpp"
 
 #include <array>
 #include <map>
@@ -16,18 +19,8 @@
 namespace golarion
 {
     class ResourceManager;
-
-    // Initial supported vocabulary: core feats and the choice-bearing cases below.
-    enum class MetamagicType
-    {
-        Empower, Enlarge, Extend, Heighten, Maximize, Quicken, Silent, Still, Widen,
-        Elemental, Reach, Intensified, Selective
-    };
-    enum class MetamagicPhase { Preparation, Casting };
-    enum class ElementalDamageMode { Replace, Split };
-    enum class MetamagicRodGrade { Lesser, Normal, Greater };
-    enum class MetamagicSlotCostPolicy { Standard, Waived };
-    enum class CastingMetamagicScope { AnyCast, SpontaneousConversionOnly };
+    struct MetamagicGrantView;
+    struct MetamagicUsageCostView;
 
     struct HeightenMetamagicOptions { int effectiveSpellLevel; };
     struct ReachMetamagicOptions { int rangeSteps; };
@@ -53,14 +46,19 @@ namespace golarion
     {
     public:
         explicit MetamagicUsagePool(std::string_view id, int remaining);
+        // The source owns recovery and persistence; this adapter never copies its balance.
+        MetamagicUsagePool(std::string_view id, std::shared_ptr<UsagePool> pool);
         MetamagicUsagePool(const MetamagicUsagePool &) = delete;
         MetamagicUsagePool &operator=(const MetamagicUsagePool &) = delete;
-        int remaining() const noexcept { return remaining_; }
+        int remaining() const noexcept { return linkedPool_ ? linkedPool_->remaining() : remaining_; }
+        bool isExternallyOwned() const noexcept { return static_cast<bool>(linkedPool_); }
+        const std::string &id() const noexcept { return id_; }
         void reset(int remaining);
     private:
         friend class MetamagicRegistry;
         std::string id_;
         int remaining_;
+        std::shared_ptr<UsagePool> linkedPool_;
     };
 
     struct MetamagicUsageCost
@@ -98,6 +96,12 @@ namespace golarion
         std::vector<MetamagicUsageCost> usageCosts;
     };
 
+    PreparedMetamagicData preparationSnapshot(const MetamagicEvaluation &evaluation, CharacterClassType spellListClass, int paidSlots = 1);
+    MetamagicEvaluation restorePreparationSnapshot(std::string_view spellId, const std::vector<MetamagicApplication> &applications, const PreparedMetamagicData &snapshot, CharacterClassType spellListClass);
+    using MetamagicUsagePools = std::map<std::string, std::shared_ptr<MetamagicUsagePool>>;
+    void collectMetamagicPool(MetamagicUsagePools &pools, const MetamagicUsageCost &cost);
+    MetamagicUsageCostView metamagicUsageCostView(const MetamagicUsageCost &cost);
+
     struct MetamagicLevelAdjustment
     {
         int slotLevelIncrease;
@@ -126,6 +130,8 @@ namespace golarion
         MetamagicGrant resolve(MetamagicPhase phase, const MetamagicApplication &application) const;
         MetamagicEvaluation evaluate(MetamagicPhase phase, const SpellDefinition &spell, int baseSpellLevel, const std::vector<MetamagicApplication> &applications, bool conversion = false, const MetamagicEvaluation *prepared = nullptr) const;
         static void pay(const std::vector<MetamagicUsageCost> &costs);
+        std::vector<MetamagicGrantView> toView() const;
+        MetamagicUsagePools usagePools() const;
 
     private:
         void add(MetamagicPhase phase, MetamagicGrant grant);

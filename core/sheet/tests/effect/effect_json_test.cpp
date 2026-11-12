@@ -134,5 +134,92 @@ int main()
         Json{{"kind", "type"}, {"featType", "combat"}, {"featIds", {"one"}}}
     }) assert(throwsInvalidArgument([&] { parseSlot(invalid); }));
 
+    for (const auto &[name, mode] : {std::pair{"prepared", SpellcastingMode::Prepared}, {"spontaneous", SpellcastingMode::Spontaneous}, {"flexible", SpellcastingMode::Flexible}})
+    {
+        const auto effect = std::get<SpellcastingGrantEffectDefinition>(effectDefinitionFromJson(Json{
+            {"id", "casting"}, {"type", "spellcastingGrant"}, {"mode", name}, {"spellListClass", "wizard"}}));
+        assert(effect.id == "casting" && effect.mode == mode && effect.spellListClass == CharacterClassType::Wizard);
+    }
+    for (const auto &[mode, list] : {std::pair{"unknown", "wizard"}, {"prepared", "unknown"}, {" ", "wizard"}})
+        assert(throwsInvalidArgument([&] { effectDefinitionFromJson(Json{
+            {"id", "casting"}, {"type", "spellcastingGrant"}, {"mode", mode}, {"spellListClass", list}}); }));
+    for (const auto field : {"mode", "spellListClass"})
+    {
+        Json invalid{{"id", "casting"}, {"type", "spellcastingGrant"}, {"mode", "prepared"}, {"spellListClass", "wizard"}};
+        invalid.erase(field);
+        bool rejected = false;
+        try { effectDefinitionFromJson(invalid); } catch (const Json::exception &) { rejected = true; }
+        assert(rejected);
+    }
+    Json slotEffect{{"id", "slots"}, {"type", "spellSlotGrant"}, {"castingId", "caster"}, {"pool", "casting"},
+        {"slots", Json::array({Json{{"level", 0}, {"capacity", 3}}, Json{{"level", 3}, {"capacity", 2}}})}};
+    auto parsedSlots = std::get<SpellSlotGrantEffectDefinition>(effectDefinitionFromJson(slotEffect));
+    assert(parsedSlots.pool == SpellSlotPoolType::Casting && parsedSlots.castingId == "caster");
+    assert(parsedSlots.dailyCapacityByLevel.at(0) == 3 && parsedSlots.dailyCapacityByLevel.at(3) == 2);
+    assert(!parsedSlots.allowedSpellIds);
+    slotEffect["pool"] = "preparation";
+    slotEffect["allowedSpellIds"] = {" fireball "};
+    parsedSlots = std::get<SpellSlotGrantEffectDefinition>(effectDefinitionFromJson(slotEffect));
+    assert(parsedSlots.pool == SpellSlotPoolType::Preparation && parsedSlots.allowedSpellIds->contains("fireball"));
+    slotEffect["allowedSpellIds"] = Json::array();
+    assert(std::get<SpellSlotGrantEffectDefinition>(effectDefinitionFromJson(slotEffect)).allowedSpellIds->empty());
+    for (int error = 0; error < 13; ++error)
+    {
+        auto invalid = slotEffect;
+        switch (error)
+        {
+        case 0: invalid["pool"] = "unknown"; break;
+        case 1: invalid["castingId"] = " "; break;
+        case 2: invalid["slots"] = Json::array(); break;
+        case 3: invalid["slots"][0]["level"] = -1; break;
+        case 4: invalid["slots"][0]["level"] = 10; break;
+        case 5: invalid["slots"][0]["level"] = 1.5; break;
+        case 6: invalid["slots"][0]["capacity"] = 0; break;
+        case 7: invalid["slots"][0]["capacity"] = 2.5; break;
+        case 8: invalid["slots"].push_back(invalid["slots"][0]); break;
+        case 9: invalid["allowedSpellIds"] = {"fireball", " fireball "}; break;
+        case 10: invalid["allowedSpellIds"] = nullptr; break;
+        case 11: invalid["slots"] = Json::object(); break;
+        case 12: invalid["slots"][0]["capacity"] = 4294967296ULL; break;
+        }
+        assert(throwsInvalidArgument([&] { effectDefinitionFromJson(invalid); }));
+    }
+    Json budgetEffect{{"id", "intelligence"}, {"type", "modifier"}, {"resource", "intelligence.permanent"},
+        {"description", "Bonus alla caratteristica"}, {"modifierType", "bonus"}, {"bonusType", "enhancement"}, {"expression", "4"}};
+    assert(std::get<ModifierEffectDefinition>(effectDefinitionFromJson(budgetEffect)).skillRankBudget == SkillRankBudgetPolicy::Included);
+    budgetEffect["skillRankBudget"] = "excluded";
+    assert(std::get<ModifierEffectDefinition>(effectDefinitionFromJson(budgetEffect)).skillRankBudget == SkillRankBudgetPolicy::Excluded);
+    budgetEffect["skillRankBudget"] = "included";
+    assert(std::get<ModifierEffectDefinition>(effectDefinitionFromJson(budgetEffect)).skillRankBudget == SkillRankBudgetPolicy::Included);
+    budgetEffect["skillRankBudget"] = "unknown";
+    assert(throwsInvalidArgument([&] { effectDefinitionFromJson(budgetEffect); }));
+    Json handEffect{{"id", "grip"}, {"type", "handUsagePermission"}, {"strikeGrantId", " weapon "}, {"handUsage", "oneHanded"}};
+    auto hand = std::get<HandUsagePermissionEffectDefinition>(effectDefinitionFromJson(handEffect));
+    assert(hand.strikeGrantId == "weapon" && hand.handUsage == HandUsage::OneHanded);
+    assert(hand.requirements.empty() && !hand.routineId && !hand.slotId);
+    handEffect["handUsage"] = "twoHanded";
+    handEffect["routineId"] = "routine";
+    handEffect["slotId"] = "slot";
+    handEffect["requirements"] = Json::array({{{"expression", "@level >= 3"}, {"failureReason", "Livello insufficiente"}}});
+    hand = std::get<HandUsagePermissionEffectDefinition>(effectDefinitionFromJson(handEffect));
+    assert(hand.handUsage == HandUsage::TwoHanded && hand.requirements.size() == 1);
+    assert(hand.requirements[0].expression() == "@level >= 3" && hand.slotId == "slot");
+    for (int error = 0; error < 9; ++error)
+    {
+        auto invalid = handEffect;
+        switch (error)
+        {
+        case 0: invalid["handUsage"] = "unknown"; break;
+        case 1: invalid["strikeGrantId"] = " "; break;
+        case 2: invalid.erase("routineId"); break;
+        case 3: invalid["routineId"] = " "; break;
+        case 4: invalid["slotId"] = " "; break;
+        case 5: invalid["requirements"] = Json::object(); break;
+        case 6: invalid["requirements"][0]["expression"] = " "; break;
+        case 7: invalid["requirements"][0]["failureReason"] = " "; break;
+        case 8: invalid["requirements"] = nullptr; break;
+        }
+        assert(throwsInvalidArgument([&] { effectDefinitionFromJson(invalid); }));
+    }
     return 0;
 }

@@ -309,7 +309,29 @@ namespace golarion
         {
             removeAttackBonusAdjustment(adjustmentId);
         });
+        resourceManager_.registerCollectionResource<HandUsagePermission>(HandUsagePermissionsResource,
+            [this](HandUsagePermission permission) { addHandUsagePermission(std::move(permission)); },
+            [this](std::string_view id) { removeHandUsagePermission(id); });
         registerCanonicalRoutines();
+    }
+
+    void AttackRoutines::addHandUsagePermission(HandUsagePermission permission)
+    {
+        permission.id = normalize(permission.id);
+        permission.source = normalize(permission.source);
+        permission.strikeGrantId = normalize(permission.strikeGrantId);
+        displayName(permission.handUsage);
+        if (permission.routineId) permission.routineId = normalize(*permission.routineId);
+        if (permission.slotId) permission.slotId = normalize(*permission.slotId);
+        if (permission.slotId && !permission.routineId) throw std::invalid_argument("hand usage slot restriction requires a routine");
+        const auto id = permission.id;
+        if (!handUsagePermissions_.emplace(id, std::move(permission)).second)
+            throw std::invalid_argument("hand usage permission is already registered");
+    }
+
+    void AttackRoutines::removeHandUsagePermission(std::string_view id)
+    {
+        if (!handUsagePermissions_.erase(normalize(id))) throw std::invalid_argument("hand usage permission is not registered");
     }
 
     AttackRoutinesView AttackRoutines::toView()
@@ -448,7 +470,27 @@ namespace golarion
                     {
                         rejectionReasons.push_back("L'impugnatura dello slot è riservata agli strike con arma");
                     }
-                    if (weapon && slot.handUsage_.has_value() && !acceptsHandUsage(*strike.effectiveWeaponWeight, *slot.handUsage_))
+                    bool handUsagePermitted = false;
+                    std::vector<HandUsagePermissionView> permissionViews;
+                    if (weapon && slot.handUsage_)
+                    {
+                        for (const auto &[id, permission] : handUsagePermissions_)
+                        {
+                            if (permission.strikeGrantId != strike.grantId || permission.handUsage != *slot.handUsage_ ||
+                                (permission.routineId && *permission.routineId != routine.id_) ||
+                                (permission.slotId && *permission.slotId != slot.id_)) continue;
+                            HandUsagePermissionView permissionView{id, permission.source, true, {}};
+                            for (const auto &requirement : permission.requirements)
+                            {
+                                auto requirementView = requirement.toView(resourceManager_);
+                                permissionView.active = permissionView.active && requirementView.satisfied;
+                                permissionView.requirements.push_back(std::move(requirementView));
+                            }
+                            handUsagePermitted = handUsagePermitted || permissionView.active;
+                            permissionViews.push_back(std::move(permissionView));
+                        }
+                    }
+                    if (weapon && slot.handUsage_.has_value() && !acceptsHandUsage(*strike.effectiveWeaponWeight, *slot.handUsage_) && !handUsagePermitted)
                     {
                         rejectionReasons.push_back("L'arma richiede due mani");
                     }
@@ -458,7 +500,8 @@ namespace golarion
                         .usageChannels = strike.usageChannels,
                         .effectiveDamageAbilityRule = effectiveDamageAbilityRule(strike, slot.strikeUsage_, slot.handUsage_, slot.handRole_, slot.damageAbilityRuleOverride_),
                         .accepted = rejectionReasons.empty(),
-                        .rejectionReasons = std::move(rejectionReasons)
+                        .rejectionReasons = std::move(rejectionReasons),
+                        .handUsagePermissions = std::move(permissionViews)
                     });
                 }
 

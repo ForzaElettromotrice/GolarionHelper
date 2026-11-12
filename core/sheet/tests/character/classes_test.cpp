@@ -70,6 +70,8 @@ int main()
     resources.registerAccumulatedResource("hp.max");
     resources.registerAccumulatedResource("skill.ranks.max");
     resources.registerTarget("intMod", [] { return 0; });
+    resources.registerTarget("intPermanentMod", [] { return 0; });
+    resources.registerTarget("intSkillRanksMod", [] { return 0; });
     resources.registerAccumulatedResource("bonus");
     FavoredClasses favored(resources);
     for (auto type : {SavingThrowType::Fortitude, SavingThrowType::Reflex, SavingThrowType::Will})

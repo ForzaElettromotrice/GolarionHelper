@@ -14,6 +14,7 @@ namespace golarion
     inline constexpr std::string_view AttackRoutinesResource = "attackRoutine.grants";
     inline constexpr std::string_view AttackRoutineProgressionGrantsResource = "attackRoutine.progressionGrants";
     inline constexpr std::string_view AttackRoutineBonusAdjustmentsResource = "attackRoutine.attackBonusAdjustments";
+    inline constexpr std::string_view HandUsagePermissionsResource = "attackRoutine.handUsagePermissions";
     inline constexpr std::string_view StandardAttackRoutineId = "base.standardAttack";
     inline constexpr std::string_view FullAttackRoutineId = "base.fullAttack";
     inline constexpr std::string_view TwoWeaponFightingRoutineId = "base.twoWeaponFighting";
@@ -51,6 +52,17 @@ namespace golarion
     {
         Primary,
         OffHand
+    };
+
+    struct HandUsagePermission
+    {
+        std::string id;
+        std::string source;
+        std::string strikeGrantId;
+        HandUsage handUsage;
+        std::vector<Requirement> requirements{};
+        std::optional<std::string> routineId = std::nullopt;
+        std::optional<std::string> slotId = std::nullopt;
     };
 
     std::string_view displayName(RoutineSlotSelectionMode mode);
@@ -252,6 +264,8 @@ namespace golarion
         void addAttackBonusAdjustment(RoutineAttackBonusAdjustment adjustment);
         void removeAttackBonusAdjustment(std::string_view adjustmentId);
         void registerCanonicalRoutines();
+        void addHandUsagePermission(HandUsagePermission permission);
+        void removeHandUsagePermission(std::string_view id);
 
         ResourceManager &resourceManager_;
         ActionManager &actionManager_;
@@ -259,5 +273,6 @@ namespace golarion
         std::vector<AttackRoutine> routines_;
         std::map<std::string, RoutineProgressionGrant> progressionGrants_;
         std::map<std::string, RoutineAttackBonusAdjustment> attackBonusAdjustments_;
+        std::map<std::string, HandUsagePermission> handUsagePermissions_;
     };
 }

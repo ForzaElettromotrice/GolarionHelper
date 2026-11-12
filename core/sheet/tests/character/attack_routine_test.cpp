@@ -2,8 +2,13 @@
 #include "golarion/character/action.hpp"
 #include "golarion/character/attack_routine.hpp"
 #include "golarion/character/base_attack_bonus.hpp"
+#include "golarion/character/attack.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/view/attack_routines_view.hpp"
+#include "golarion/view/strikes_view.hpp"
+#include "golarion/effect/effect_compiler.hpp"
+#include "golarion/effect/effect_json.hpp"
+#include <nlohmann/json.hpp>
 #include "golarion/view/resource_manager_view.hpp"
 
 #include <algorithm>
@@ -469,5 +474,72 @@ int main()
         resourceManager.removeFromCollection(AttackRoutinesResource, "missing");
     }));
 
+    resourceManager.addToCollection(StrikeGrantsResource, StrikeGrant(StrikeGrantDefinition{
+        .id = "heavyWeapon", .source = "Arma", .name = "Arma a due mani", .mode = AttackMode::Melee,
+        .tags = {AttackTag::Weapon}, .damageComponents = {}, .damageAbility = AbilityType::Strength,
+        .damageAbilityRule = DamageAbilityRule::Full, .criticalThreatMinimum = 20, .criticalMultiplier = 2,
+        .defenseType = ArmorClassType::Normal, .reach = AttackReachDefinition{.minimumUnits = 1, .maximumUnits = 1},
+        .weaponWeight = WeaponWeight::TwoHanded
+    }));
+    const auto candidate = [&](std::string_view slotId)
+    {
+        const auto snapshot = attackRoutines.toView();
+        const auto &routine = routineView(snapshot, TwoWeaponFightingRoutineId);
+        const auto slot = std::ranges::find(routine.slots, slotId, &RoutineSlotView::id);
+        assert(slot != routine.slots.end());
+        const auto found = std::ranges::find(slot->candidates, "heavyWeapon", &RoutineStrikeCandidateView::grantId);
+        assert(found != slot->candidates.end());
+        return *found;
+    };
+    int enabled = 0;
+    Attacks configuredAttacks(attackRoutines, strikes);
+    configuredAttacks.create("specialGripAttack", "Attacco speciale", TwoWeaponFightingRoutineId);
+    assert(throwsInvalidArgument([&] { configuredAttacks.assignStrike("specialGripAttack", TwoWeaponFightingMainHandSlotId, "heavyWeapon"); }));
+    resourceManager.registerTarget("specialGrip", [&] { return enabled; });
+    HandUsagePermission permission{
+        "grip", "Privilegio", "heavyWeapon", HandUsage::OneHanded,
+        {Requirement("@specialGrip == 1", "Impugnatura speciale non disponibile")},
+        std::string(TwoWeaponFightingRoutineId), std::string(TwoWeaponFightingMainHandSlotId)};
+    assert(!candidate(TwoWeaponFightingMainHandSlotId).accepted);
+    const auto permissionDefinition = effectDefinitionFromJson(nlohmann::json{
+        {"id", "localPermission"}, {"type", "handUsagePermission"}, {"strikeGrantId", "heavyWeapon"},
+        {"handUsage", "oneHanded"}, {"routineId", TwoWeaponFightingRoutineId}, {"slotId", TwoWeaponFightingMainHandSlotId},
+        {"requirements", nlohmann::json::array({{{"expression", "@specialGrip == 1"}, {"failureReason", "Impugnatura speciale non disponibile"}}})}
+    });
+    const auto permissionApply = compileEffect(permissionDefinition, {"grip", "Privilegio"});
+    auto permissionCleanup = permissionApply(resourceManager);
+    assert(throwsInvalidArgument([&] { permissionApply(resourceManager); }));
+    assert(!candidate(TwoWeaponFightingMainHandSlotId).accepted);
+    assert(!candidate(TwoWeaponFightingMainHandSlotId).handUsagePermissions[0].active);
+    assert(throwsInvalidArgument([&] { resourceManager.addToCollection(HandUsagePermissionsResource, permission); }));
+    enabled = 1;
+    assert(candidate(TwoWeaponFightingMainHandSlotId).accepted);
+    configuredAttacks.assignStrike("specialGripAttack", TwoWeaponFightingMainHandSlotId, "heavyWeapon");
+    assert(candidate(TwoWeaponFightingMainHandSlotId).effectiveDamageAbilityRule == DamageAbilityRule::Full);
+    assert(!candidate(TwoWeaponFightingOffHandSlotId).accepted);
+    for (const auto &strike : strikes.toView().strikes) if (strike.grantId == "heavyWeapon")
+    {
+        assert(strike.effectiveWeaponWeight == WeaponWeight::TwoHanded);
+        assert(strike.twoWeaponFightingWeaponWeight == WeaponWeight::TwoHanded);
+    }
+    auto other = permission;
+    other.id = "other";
+    other.requirements.clear();
+    resourceManager.addToCollection(HandUsagePermissionsResource, other);
+    enabled = 0;
+    assert(candidate(TwoWeaponFightingMainHandSlotId).accepted); // Any active permission suffices.
+    resourceManager.removeFromCollection(HandUsagePermissionsResource, "other");
+    assert(!candidate(TwoWeaponFightingMainHandSlotId).accepted);
+    enabled = 1;
+    permissionCleanup();
+    assert(!candidate(TwoWeaponFightingMainHandSlotId).accepted);
+    assert(candidate(TwoWeaponFightingMainHandSlotId).handUsagePermissions.empty());
+    assert(throwsInvalidArgument([&] { configuredAttacks.assignStrike("specialGripAttack", TwoWeaponFightingMainHandSlotId, "heavyWeapon"); }));
+    assert(throwsInvalidArgument([&] { resourceManager.removeFromCollection(HandUsagePermissionsResource, "missing"); }));
+    permission.handUsage = static_cast<HandUsage>(999);
+    assert(throwsInvalidArgument([&] { resourceManager.addToCollection(HandUsagePermissionsResource, permission); }));
+    permission.handUsage = HandUsage::OneHanded;
+    permission.routineId.reset();
+    assert(throwsInvalidArgument([&] { resourceManager.addToCollection(HandUsagePermissionsResource, permission); }));
     return 0;
 }

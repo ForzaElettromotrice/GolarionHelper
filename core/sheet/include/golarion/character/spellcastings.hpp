@@ -20,6 +20,8 @@ namespace golarion
     {
     public:
         static constexpr std::string_view Resource = "spellcastings";
+        // Sources register pools here when they must survive even without active casting grants.
+        static constexpr std::string_view UsagePoolsResource = "spellcastings.metamagicUsagePools";
 
         explicit Spellcastings(ResourceManager &resources);
         ~Spellcastings();
@@ -37,6 +39,7 @@ namespace golarion
     private:
         void grant(SpellcastingGrant grant);
         void revoke(std::string_view id);
+        MetamagicUsagePools usagePools() const;
 
         struct Entry
         {
@@ -45,5 +48,6 @@ namespace golarion
         };
         ResourceManager &resources_;
         std::map<std::string, Entry> entries_;
+        MetamagicUsagePools sourcePools_;
     };
 }

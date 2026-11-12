@@ -188,7 +188,7 @@ namespace golarion
     FlexibleSpellcastingData FlexibleSpellcasting::toData() const
     {
         FlexibleSpellcastingData data;
-        for (const auto &[id, evaluation] : preparations_) data.preparations.push_back({id, evaluation.spellId, evaluation.applications});
+        for (const auto &[id, evaluation] : preparations_) data.preparations.push_back({id, evaluation.spellId, evaluation.applications, preparationSnapshot(evaluation, spellListClass())});
         data.consumedSlots.assign(consumedSlots_.begin(), consumedSlots_.end());
         return data;
     }
@@ -205,7 +205,15 @@ namespace golarion
         for (const auto &entry : data.preparations)
         {
             const auto key = checkedSlot(entry.preparationId, preparationGroups_);
-            auto evaluation = checkedPreparation(key, normalize(entry.spellId), entry.metamagic);
+            const auto spellId = normalize(entry.spellId);
+            if (entry.evaluation && entry.evaluation->paidSlots != 1) throw std::invalid_argument("flexible preparation requires one preparation slot");
+            auto evaluation = entry.evaluation ? restorePreparationSnapshot(spellId, entry.metamagic, *entry.evaluation, spellListClass())
+                                               : checkedPreparation(key, spellId, entry.metamagic);
+            SpellDefinitionManager::instance().get(spellId);
+            const auto &group = preparationGroups_.at(key.groupId);
+            if (!knowsSpell(spellId) || evaluation.requiredSlotLevel > key.spellLevel ||
+                (group.allowedSpellIds && !group.allowedSpellIds->contains(spellId)))
+                throw std::invalid_argument("saved preparation is incompatible with its slot");
             evaluation.usageCosts.clear();
             if (!prepared.emplace(key, std::move(evaluation)).second) throw std::invalid_argument("duplicate preparation slot");
         }
@@ -221,6 +229,9 @@ namespace golarion
     FlexibleSpellcastingView FlexibleSpellcasting::toView() const
     {
         FlexibleSpellcastingView view{spellListClass(), {}, {}};
+        view.metamagic = metamagic().toView();
+        for (const auto &[id, permission] : mixingPermissions_)
+            view.mixingPermissions.push_back({id, permission.source, permission.usageCost ? std::optional(metamagicUsageCostView(*permission.usageCost)) : std::nullopt});
         for (const auto &[groupId, grant] : preparationGroups_)
         {
             FlexiblePreparationGroupView group{grant, {}};
@@ -233,6 +244,7 @@ namespace golarion
                     {
                         entry.spellId = found->second.spellId;
                         entry.metamagic = found->second.applications;
+                        entry.evaluation = preparationSnapshot(found->second, spellListClass());
                     }
                     group.preparations.push_back(std::move(entry));
                 }
@@ -250,5 +262,13 @@ namespace golarion
             view.slotGroups.push_back(std::move(group));
         }
         return view;
+    }
+
+    MetamagicUsagePools FlexibleSpellcasting::usagePools() const
+    {
+        auto pools = Spellcasting::usagePools();
+        for (const auto &[id, permission] : mixingPermissions_)
+            if (permission.usageCost && permission.usageCost->pool) collectMetamagicPool(pools, *permission.usageCost);
+        return pools;
     }
 }

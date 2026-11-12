@@ -598,7 +598,14 @@ namespace golarion
                 .ownedContainerId = definition.container.has_value() ? std::optional<std::string>(itemContainerId(id)) : std::nullopt,
                 .equipped = equipment_.isEquipped(id),
                 .possessionEffectsActive = appliedPossessionEffects_.contains(id),
-                .description = definition.description
+                .description = definition.description,
+                .usagePools = [&item]
+                {
+                    std::vector<ItemUsagePoolView> pools;
+                    for (const auto &[poolId, pool] : item.usagePools_)
+                        pools.push_back({poolId, pool->capacity(), pool->remaining()});
+                    return pools;
+                }()
             });
         }
 

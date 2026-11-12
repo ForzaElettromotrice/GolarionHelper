@@ -1,8 +1,15 @@
 #pragma once
+#include "golarion/effect/collection_effect.hpp"
+#include "golarion/effect/casting_rule_effect.hpp"
 
 #include "golarion/character/carrying_capacity.hpp"
 #include "golarion/character/character_class_type.hpp"
 #include "golarion/character/granted_spell.hpp"
+#include "golarion/character/spellcasting_mode.hpp"
+#include "golarion/character/spell_slot_grant.hpp"
+#include "golarion/data/languages_data.hpp"
+#include "golarion/character/skill.hpp"
+#include "golarion/character/attack_routine.hpp"
 #include "golarion/character/feat_slot_filter.hpp"
 #include "golarion/character/movement.hpp"
 #include "golarion/character/size.hpp"
@@ -25,6 +32,7 @@ namespace golarion
         std::optional<BonusType> bonusType;
         std::string expression;
         std::optional<std::string> condition = std::nullopt;
+        SkillRankBudgetPolicy skillRankBudget = SkillRankBudgetPolicy::Included;
     };
 
     struct ContributionEffectDefinition
@@ -75,6 +83,31 @@ namespace golarion
         FeatSlotFilter filter = AnyFeat{};
     };
 
+    struct LanguageOptionsEffectDefinition
+    {
+        std::string id;
+        LanguageOrigin origin;
+        std::set<std::string> languageIds;
+    };
+
+    struct SkillRankGrantEffectDefinition
+    {
+        std::string id;
+        SkillType skill;
+        std::string expression;
+        std::optional<std::string> specializationId = std::nullopt;
+    };
+
+    struct HandUsagePermissionEffectDefinition
+    {
+        std::string id;
+        std::string strikeGrantId;
+        HandUsage handUsage;
+        std::vector<Requirement> requirements{};
+        std::optional<std::string> routineId = std::nullopt;
+        std::optional<std::string> slotId = std::nullopt;
+    };
+
     struct SpellGrantEffectDefinition
     {
         std::string id;
@@ -87,8 +120,28 @@ namespace golarion
 
     void validateSpellGrantEffectDefinition(const SpellGrantEffectDefinition &effect);
 
+    struct SpellcastingGrantEffectDefinition
+    {
+        std::string id;
+        SpellcastingMode mode;
+        CharacterClassType spellListClass;
+    };
+
+    enum class SpellSlotPoolType { Casting, Preparation };
+
+    struct SpellSlotGrantEffectDefinition
+    {
+        std::string id;
+        std::string castingId;
+        SpellSlotPoolType pool;
+        std::map<int, int> dailyCapacityByLevel;
+        std::optional<std::set<std::string>> allowedSpellIds = std::nullopt;
+    };
+
     // Favored bonuses may contain ordinary effects, but cannot recursively grant favored options.
     using FavoredClassBenefitEffect = std::variant<
+        CastingRuleEffectDefinition, FeatPrerequisiteAlternativeEffectDefinition,
+        CollectionEffectDefinition,
         ModifierEffectDefinition,
         ContributionEffectDefinition,
         SizeBaseEffectDefinition,
@@ -96,8 +149,13 @@ namespace golarion
         CarryingBodyTypeEffectDefinition,
         ReminderEffectDefinition,
         LanguageGrantEffectDefinition,
+        LanguageOptionsEffectDefinition,
+        SkillRankGrantEffectDefinition,
+        HandUsagePermissionEffectDefinition,
         FeatSlotGrantEffectDefinition,
-        SpellGrantEffectDefinition>;
+        SpellGrantEffectDefinition,
+        SpellcastingGrantEffectDefinition,
+        SpellSlotGrantEffectDefinition>;
 
     enum class FavoredClassBaseBonus { HitPoint, SkillRank };
 
@@ -121,6 +179,8 @@ namespace golarion
     };
 
     using EffectDefinition = std::variant<
+        CastingRuleEffectDefinition, FeatPrerequisiteAlternativeEffectDefinition,
+        CollectionEffectDefinition,
         ModifierEffectDefinition,
         ContributionEffectDefinition,
         SizeBaseEffectDefinition,
@@ -128,8 +188,13 @@ namespace golarion
         CarryingBodyTypeEffectDefinition,
         ReminderEffectDefinition,
         LanguageGrantEffectDefinition,
+        LanguageOptionsEffectDefinition,
+        SkillRankGrantEffectDefinition,
+        HandUsagePermissionEffectDefinition,
         FeatSlotGrantEffectDefinition,
         SpellGrantEffectDefinition,
+        SpellcastingGrantEffectDefinition,
+        SpellSlotGrantEffectDefinition,
         FavoredClassGrantEffectDefinition,
         FavoredClassBonusEffectDefinition>;
 

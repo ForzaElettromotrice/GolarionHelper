@@ -134,6 +134,13 @@ namespace golarion
         return definition(type).appliesArmorCheckPenalty;
     }
 
+    std::string skillRankGrantsResource(SkillType type, std::optional<std::string> specializationId)
+    {
+        if (requiresSpecialization(type) != specializationId.has_value())
+            throw std::invalid_argument("skill rank grant specialization does not match skill type");
+        return std::string(resourceName(type)) + (specializationId ? "." + normalizedSpecializationId(*specializationId) : "") + ".rankGrants";
+    }
+
     ArmorCheckPenalty::ArmorCheckPenalty(ArmorCheckPenaltyDefinition definition)
         : id_(normalize(definition.id)), source_(normalize(definition.source)), expression_(normalize(definition.expression))
     {
@@ -195,6 +202,23 @@ namespace golarion
     void Skill::registerResources(ResourceManager &resourceManager, std::vector<std::string> parentResources) const
     {
         resourceManager.registerEnhanceableResource(resourceName_, std::move(parentResources));
+        try
+        {
+            resourceManager.registerCollectionResource<SkillRankGrant>(skillRankGrantsResource(type_, specializationId_),
+                [this](SkillRankGrant grant)
+                {
+                    grant.id = normalize(grant.id);
+                    grant.source = normalize(grant.source);
+                    grant.expression = normalize(grant.expression);
+                    const auto id = grant.id;
+                    if (!rankGrants_.emplace(id, std::move(grant)).second) throw std::invalid_argument("skill rank grant is already registered");
+                },
+                [this](std::string_view id)
+                {
+                    if (!rankGrants_.erase(normalize(id))) throw std::invalid_argument("skill rank grant is not registered");
+                });
+        }
+        catch (...) { resourceManager.unregisterEnhanceableResource(resourceName_); throw; }
     }
 
     SkillView Skill::toView(ResourceManager &resourceManager, const std::map<std::string, SkillAbilityReplacement> &abilityReplacements, const std::map<std::string, SkillClassSkillGrant> &classSkillGrants, int armorCheckPenalty) const
@@ -218,7 +242,11 @@ namespace golarion
             }
         }
         const bool classSkill = !applicableClassSkillGrants.empty();
-        const int classSkillBonus = classSkill && ranks_ > 0 ? 3 : 0;
+        const int effective = effectiveRanks(resourceManager);
+        const int classSkillBonus = classSkill && effective > 0 ? 3 : 0;
+        std::vector<SkillRankGrantView> rankViews;
+        for (const auto &[id, grant] : rankGrants_)
+            rankViews.push_back({id, grant.source, grant.expression, resourceManager.evaluateExpression(grant.expression)});
         std::vector<SkillAbilityOptionView> abilityOptions;
         const AbilityType baseAbilityType = defaultAbility(type_);
         const int baseAbilityModifier = resourceManager.targetValue(std::string(resourceName(baseAbilityType)) + "Mod");
@@ -228,7 +256,7 @@ namespace golarion
             .source = "Base",
             .abilityType = baseAbilityType,
             .abilityModifier = baseAbilityModifier,
-            .totalValue = checkedSkillValue(static_cast<long long>(baseAbilityModifier) + ranks_ + classSkillBonus + baseOptionModifiers.total - appliedArmorCheckPenalty),
+            .totalValue = checkedSkillValue(static_cast<long long>(baseAbilityModifier) + effective + classSkillBonus + baseOptionModifiers.total - appliedArmorCheckPenalty),
             .modifiers = std::move(baseOptionModifiers)
         });
         for (const auto &[id, replacement] : abilityReplacements)
@@ -244,7 +272,7 @@ namespace golarion
                 .source = replacement.source_,
                 .abilityType = replacement.abilityType_,
                 .abilityModifier = abilityModifier,
-                .totalValue = checkedSkillValue(static_cast<long long>(abilityModifier) + ranks_ + classSkillBonus + optionModifiers.total - appliedArmorCheckPenalty),
+                .totalValue = checkedSkillValue(static_cast<long long>(abilityModifier) + effective + classSkillBonus + optionModifiers.total - appliedArmorCheckPenalty),
                 .modifiers = std::move(optionModifiers)
             });
         }
@@ -258,12 +286,14 @@ namespace golarion
             .classSkill = classSkill,
             .classSkillBonus = classSkillBonus,
             .trainedOnly = trainedOnly(type_),
-            .usable = usable(),
+            .usable = !trainedOnly(type_) || effective > 0,
             .custom = specializationId_.has_value(),
             .appliedArmorCheckPenalty = appliedArmorCheckPenalty,
             .classSkillGrants = std::move(applicableClassSkillGrants),
             .abilityOptions = std::move(abilityOptions),
-            .modifiers = std::move(modifierView)
+            .modifiers = std::move(modifierView),
+            .effectiveRanks = effective,
+            .rankGrants = std::move(rankViews)
         };
     }
 
@@ -287,14 +317,26 @@ namespace golarion
         const std::string abilityModifierTarget = std::string(resourceName(defaultAbility(type_))) + "Mod";
         const std::vector<std::string> modifierResources{resourceName_, skillCheckResourceName(defaultAbility(type_))};
         const long long total = static_cast<long long>(resourceManager.targetValue(abilityModifierTarget))
-                                + ranks_
+                                + effectiveRanks(resourceManager)
                                 + resourceManager.modifierTotal(modifierResources)
                                 - (appliesArmorCheckPenalty(type_) ? armorCheckPenalty : 0);
         return checkedSkillValue(total);
     }
 
-    bool Skill::usable() const
+    int Skill::effectiveRanks(ResourceManager &resourceManager) const
     {
-        return !trainedOnly(type_) || ranks_ > 0;
+        int result = ranks_;
+        for (const auto &[id, grant] : rankGrants_)
+        {
+            const int granted = resourceManager.evaluateExpression(grant.expression);
+            if (granted < 0) throw std::invalid_argument("granted skill ranks must not be negative");
+            result = std::max(result, granted);
+        }
+        return result;
+    }
+
+    bool Skill::usable(ResourceManager &resourceManager) const
+    {
+        return !trainedOnly(type_) || effectiveRanks(resourceManager) > 0;
     }
 }

@@ -38,6 +38,13 @@ namespace golarion
         std::vector<ItemChoiceOptionView> options;
     };
 
+    struct ItemUsagePoolView
+    {
+        std::string id;
+        int capacity;
+        int remaining;
+    };
+
     struct InventoryItemView
     {
         std::string id;
@@ -56,6 +63,7 @@ namespace golarion
         bool equipped;
         bool possessionEffectsActive;
         std::string description;
+        std::vector<ItemUsagePoolView> usagePools{};
     };
 
     struct InventoryContainerView

@@ -132,11 +132,41 @@ namespace
         for (const auto &entry : array(json)) applications.push_back(applicationFromJson(entry));
         return applications;
     }
+
+    std::optional<PreparedMetamagicData> snapshotFromJson(const Json &json)
+    {
+        if (json.is_null()) return std::nullopt;
+        return PreparedMetamagicData{integer<int>(json.at("baseSpellLevel"), 0, 9), integer<int>(json.at("effectiveSpellLevel"), 0, 9),
+            integer<int>(json.at("requiredSlotLevel"), 0, 9), integer<int>(json.at("nominalSlotLevel"), 0, std::numeric_limits<int>::max()),
+            characterClassFromId(json.at("spellListClass").get<std::string>()), integer<int>(json.at("paidSlots"), 1, std::numeric_limits<int>::max())};
+    }
+
+    Json snapshotToJson(const std::optional<PreparedMetamagicData> &snapshot, bool required)
+    {
+        if (!snapshot)
+        {
+            if (required) throw std::invalid_argument("prepared evaluation is required in this save format");
+            return nullptr;
+        }
+        Json json{{"baseSpellLevel", snapshot->baseSpellLevel}, {"effectiveSpellLevel", snapshot->effectiveSpellLevel},
+            {"requiredSlotLevel", snapshot->requiredSlotLevel}, {"nominalSlotLevel", snapshot->nominalSlotLevel},
+            {"spellListClass", characterClassId(snapshot->spellListClass)}, {"paidSlots", snapshot->paidSlots}};
+        snapshotFromJson(json);
+        return json;
+    }
+
+    std::optional<PreparedMetamagicData> readSnapshot(const Json &selection, bool required)
+    {
+        if (!required) return std::nullopt; // Pre-34 saves must use legacy validation.
+        const auto snapshot = snapshotFromJson(selection.at("evaluation"));
+        if (!snapshot) throw std::invalid_argument("missing prepared evaluation");
+        return snapshot;
+    }
 }
 
 namespace golarion::persistence
 {
-    Json spellcastingsToJson(const SpellcastingsData &data)
+    Json spellcastingsToJson(const SpellcastingsData &data, bool requireSnapshots)
     {
         auto json = Json::array();
         for (const auto &casting : data.castings)
@@ -151,7 +181,7 @@ namespace golarion::persistence
                     entry["preparations"] = Json::array();
                     for (const auto &selection : state.preparations)
                         entry["preparations"].push_back({{"slot", slotToJson(selection.slot)}, {"spellId", selection.spellId},
-                            {"consumed", selection.consumed}, {"additionalSlots", slotsToJson(selection.additionalSlots)}, {"metamagic", applicationsToJson(selection.metamagic)}});
+                            {"consumed", selection.consumed}, {"additionalSlots", slotsToJson(selection.additionalSlots)}, {"metamagic", applicationsToJson(selection.metamagic)}, {"evaluation", snapshotToJson(selection.evaluation, requireSnapshots)}});
                 }
                 else
                 {
@@ -162,7 +192,7 @@ namespace golarion::persistence
                         entry["mode"] = "flexible";
                         entry["preparations"] = Json::array();
                         for (const auto &selection : state.preparations)
-                            entry["preparations"].push_back({{"preparationId", slotToJson(selection.preparationId)}, {"spellId", selection.spellId}, {"metamagic", applicationsToJson(selection.metamagic)}});
+                            entry["preparations"].push_back({{"preparationId", slotToJson(selection.preparationId)}, {"spellId", selection.spellId}, {"metamagic", applicationsToJson(selection.metamagic)}, {"evaluation", snapshotToJson(selection.evaluation, requireSnapshots)}});
                     }
                 }
             }, casting.state);
@@ -171,7 +201,7 @@ namespace golarion::persistence
         return json;
     }
 
-    SpellcastingsData spellcastingsFromJson(const Json &json)
+    SpellcastingsData spellcastingsFromJson(const Json &json, bool requireSnapshots)
     {
         SpellcastingsData data;
         for (const auto &entry : array(json))
@@ -183,7 +213,7 @@ namespace golarion::persistence
                 PreparedSpellcastingData state;
                 for (const auto &selection : array(entry.at("preparations")))
                     state.preparations.push_back({slotFromJson(selection.at("slot")), selection.at("spellId").get<std::string>(),
-                        selection.at("consumed").get<bool>(), slotsFromJson(selection.at("additionalSlots")), applicationsFromJson(selection.at("metamagic"))});
+                        selection.at("consumed").get<bool>(), slotsFromJson(selection.at("additionalSlots")), applicationsFromJson(selection.at("metamagic")), readSnapshot(selection, requireSnapshots)});
                 casting.state = std::move(state);
             }
             else if (mode == "spontaneous") casting.state = SpontaneousSpellcastingData{slotsFromJson(entry.at("consumedSlots"))};
@@ -192,12 +222,33 @@ namespace golarion::persistence
                 FlexibleSpellcastingData state;
                 state.consumedSlots = slotsFromJson(entry.at("consumedSlots"));
                 for (const auto &selection : array(entry.at("preparations")))
-                    state.preparations.push_back({slotFromJson(selection.at("preparationId")), selection.at("spellId").get<std::string>(), applicationsFromJson(selection.at("metamagic"))});
+                    state.preparations.push_back({slotFromJson(selection.at("preparationId")), selection.at("spellId").get<std::string>(), applicationsFromJson(selection.at("metamagic")), readSnapshot(selection, requireSnapshots)});
                 casting.state = std::move(state);
             }
             else throw std::invalid_argument("unknown spellcasting mode: " + mode);
             data.castings.push_back(std::move(casting));
         }
         return data;
+    }
+
+    std::map<std::string, int> metamagicUsesFromJson(const Json &json)
+    {
+        if (!json.is_object()) throw std::invalid_argument("metamagic uses must be an object");
+        std::map<std::string, int> uses;
+        for (const auto &[id, remaining] : json.items())
+        {
+            if (id.empty() || id.find_first_not_of(" \t\r\n") == std::string::npos)
+                throw std::invalid_argument("metamagic pool ID must not be blank");
+            uses.emplace(id, integer<int>(remaining, 0, std::numeric_limits<int>::max()));
+        }
+        return uses;
+    }
+
+    Json metamagicUsesToJson(const std::optional<std::map<std::string, int>> &uses)
+    {
+        if (!uses) throw std::invalid_argument("metamagic uses are required in this save format");
+        Json json = *uses;
+        metamagicUsesFromJson(json);
+        return json;
     }
 }

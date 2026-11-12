@@ -25,5 +25,6 @@ namespace golarion
     struct SpellcastingsView
     {
         std::vector<SpellcastingView> castings;
+        std::vector<MetamagicUsagePoolView> metamagicPools{};
     };
 }

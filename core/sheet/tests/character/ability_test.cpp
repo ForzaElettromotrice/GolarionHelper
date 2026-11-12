@@ -175,5 +175,44 @@ int main()
     assert(resourceName(AbilityType::Charisma) == "cha");
     assert(abilityReplacementsResourceName(AbilityType::Dexterity) == "ability.dex.replacements");
 
+    AbilityScore intelligence(AbilityType::Intelligence, 10);
+    intelligence.registerResources(manager);
+    manager.addModifier("int", Modifier(ModifierType::Bonus, "Razza", "Bonus razziale", BonusType::Racial, "2"));
+    manager.addModifier(PermanentIntelligenceResource, Modifier(ModifierType::Bonus, "Permanente", "Potenziamento", BonusType::Enhancement, "4"));
+    Modifier temporary(ModifierType::Bonus, "Temporaneo", "Potenziamento", BonusType::Enhancement, "6");
+    const auto temporaryId = temporary.id();
+    manager.addModifier(TemporaryIntelligenceResource, std::move(temporary));
+    assert(manager.targetValue("int") == 18); // One enhancement bonus across both endpoints.
+    assert(manager.targetValue("intMod") == 4);
+    assert(manager.targetValue("intPermanent") == 16);
+    assert(manager.targetValue(PermanentIntelligenceModifierTarget) == 3);
+    const auto intelligenceView = intelligence.toView(manager);
+    assert(intelligenceView.totalValue == 18 && intelligenceView.modifiers.total == 8);
+    assert(intelligenceView.permanentValue == 16 && intelligenceView.permanentModifier == 3);
+    manager.removeModifier(TemporaryIntelligenceResource, temporaryId);
+    assert(intelligence.totalValue(manager) == 16);
+    manager.addModifier(TemporaryIntelligenceResource, Modifier(ModifierType::Penalty, "Temporaneo", "Penalità", std::nullopt, "3"));
+    assert(intelligence.totalValue(manager) == 13 && manager.targetValue("intPermanent") == 16);
+    intelligence.setBaseValue(9);
+    assert(manager.targetValue("intPermanent") == 15 && manager.targetValue(PermanentIntelligenceModifierTarget) == 2);
+    assert(!strength.toView(manager).permanentValue);
+    Modifier headband(ModifierType::Bonus, "Fascia", "Potenziamento", BonusType::Enhancement, "8", std::nullopt, {}, SkillRankBudgetPolicy::Excluded);
+    const auto headbandId = headband.id();
+    assert(headband.toView(manager).skillRankBudget == SkillRankBudgetPolicy::Excluded);
+    manager.addModifier(PermanentIntelligenceResource, std::move(headband));
+    assert(manager.targetValue("intPermanent") == 19);
+    assert(manager.targetValue("int") == 16); // Temporary penalty still applies to the ordinary total.
+    assert(manager.targetValue("intSkillRanks") == 15); // The included +4 enhancement still applies.
+    assert(manager.targetValue(SkillRankIntelligenceModifierTarget) == 2);
+    const auto budgetView = intelligence.toView(manager);
+    assert(budgetView.skillRankBudgetValue == 15 && budgetView.skillRankBudgetModifier == 2);
+    manager.addModifier(PermanentIntelligenceResource, Modifier(ModifierType::Bonus, "Condizionale", "Bonus", BonusType::Enhancement, "100", "Condizione"));
+    assert(manager.targetValue("intSkillRanks") == 15);
+    manager.removeModifier(PermanentIntelligenceResource, headbandId);
+    assert(manager.targetValue("intPermanent") == 15 && manager.targetValue("intSkillRanks") == 15);
+    assert(throwsInvalidArgument([&]
+    {
+        Modifier invalid(ModifierType::Bonus, "Fonte", "Bonus", BonusType::Enhancement, "2", std::nullopt, {}, static_cast<SkillRankBudgetPolicy>(999));
+    }));
     return 0;
 }

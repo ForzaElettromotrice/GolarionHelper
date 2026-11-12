@@ -42,6 +42,44 @@ namespace
             else position = end;
         }
     }
+
+    void bindLevel(std::optional<std::string> &expression, const std::string &target)
+    {
+        if (expression) bindLevel(*expression, target);
+    }
+
+    template<class Effect> void bindEffectLevel(Effect &value, const std::string &target)
+    {
+        if constexpr (requires { value.expression; }) bindLevel(value.expression, target);
+        if constexpr (requires { value.condition; }) bindLevel(value.condition, target);
+        if constexpr (requires { value.baseSpeedExpression; }) bindLevel(value.baseSpeedExpression, target);
+        if constexpr (requires { value.amountExpression; }) bindLevel(value.amountExpression, target);
+        if constexpr (requires { value.attackPenaltyExpression; }) bindLevel(value.attackPenaltyExpression, target);
+        if constexpr (requires { value.countExpression; }) bindLevel(value.countExpression, target);
+        if constexpr (requires { value.attackBonusAdjustmentExpression; }) bindLevel(value.attackBonusAdjustmentExpression, target);
+        if constexpr (requires { value.baseAttackBonusAdjustmentExpression; }) bindLevel(value.baseAttackBonusAdjustmentExpression, target);
+        if constexpr (requires { value.progression; }) bindEffectLevel(value.progression, target);
+        if constexpr (requires { value.progressions; }) for (auto &entry : value.progressions) bindEffectLevel(entry, target);
+        if constexpr (requires { value.slots; }) for (auto &entry : value.slots) bindEffectLevel(entry, target);
+        if constexpr (requires { value.requirement; })
+        {
+            auto expression = value.requirement.expression();
+            bindLevel(expression, target);
+            value.requirement = golarion::Requirement(std::move(expression), value.requirement.failureReason());
+        }
+        if constexpr (requires { value.requirements; }) for (auto &requirement : value.requirements)
+        {
+            if constexpr (requires { requirement.expression(); })
+            {
+                auto expression = requirement.expression();
+                bindLevel(expression, target);
+                requirement = golarion::Requirement(std::move(expression), requirement.failureReason());
+            }
+        }
+        if constexpr (requires { value.entry; }) std::visit([&](auto &entry) { bindEffectLevel(entry, target); }, value.entry);
+        if constexpr (requires { value.effects; }) for (auto &entry : value.effects)
+            std::visit([&](auto &effect) { bindEffectLevel(effect, target); }, entry);
+    }
 }
 
 namespace golarion
@@ -105,7 +143,7 @@ namespace golarion
             base("skillRanks", std::string(MaxSkillRanksResource), [this]
             {
                 if (level_ == 0) return 0;
-                const long long intelligence = resources_.evaluateExpression("@intMod");
+                const long long intelligence = resources_.targetValue(SkillRankIntelligenceModifierTarget);
                 return checkedTotal(level_ * std::max(1LL, definition_.skillRanksPerLevel + intelligence));
             });
             base("bab", std::string(BaseAttackBonusResource), [this] { return level_ == 0 ? 0 : levelDefinition(level_).baseAttackBonus; });
@@ -187,16 +225,7 @@ namespace golarion
                 std::visit([this](auto &value)
                 {
                     const auto target = "class." + id_ + ".level";
-                    if constexpr (requires { value.expression; }) bindLevel(value.expression, target);
-                    if constexpr (requires { value.condition; }) if (value.condition) bindLevel(*value.condition, target);
-                    if constexpr (requires { value.baseSpeedExpression; }) bindLevel(value.baseSpeedExpression, target);
-                    if constexpr (requires { value.effects; }) for (auto &benefit : value.effects)
-                        std::visit([&](auto &nested)
-                        {
-                            if constexpr (requires { nested.expression; }) bindLevel(nested.expression, target);
-                            if constexpr (requires { nested.condition; }) if (nested.condition) bindLevel(*nested.condition, target);
-                            if constexpr (requires { nested.baseSpeedExpression; }) bindLevel(nested.baseSpeedExpression, target);
-                        }, benefit);
+                    bindEffectLevel(value, target);
                 }, effect);
                 if (!effects_.emplace(key, compileEffect(std::move(effect), {key, definition_.name})).second)
                     throw std::invalid_argument("duplicate class effect ID");

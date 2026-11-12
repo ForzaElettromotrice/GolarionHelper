@@ -255,7 +255,7 @@ int main()
     resources.addToCollection(exemptions, SpellPreparationCostExemption{"research", "Feat", "opposition"});
     linked.prepare(first, "fireball");
     resources.removeFromCollection(exemptions, "research");
-    // Rule changes affect future preparation/load, not already prepared spells.
+    // Rule changes affect future preparation, not historical prepared snapshots.
     linked.consume(first);
     linked.clear(first);
     rejects([&] { linked.prepare(first, "fireball"); });

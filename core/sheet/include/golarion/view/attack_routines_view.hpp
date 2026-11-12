@@ -1,6 +1,7 @@
 #pragma once
 
 #include "golarion/character/attack_routine.hpp"
+#include "golarion/view/requirement_view.hpp"
 
 #include <optional>
 #include <string>
@@ -16,6 +17,14 @@ namespace golarion
         std::vector<std::string> allowedGrantIds;
     };
 
+    struct HandUsagePermissionView
+    {
+        std::string id;
+        std::string source;
+        bool active;
+        std::vector<RequirementView> requirements;
+    };
+
     struct RoutineStrikeCandidateView
     {
         std::string grantId;
@@ -24,6 +33,7 @@ namespace golarion
         DamageAbilityRule effectiveDamageAbilityRule;
         bool accepted;
         std::vector<std::string> rejectionReasons;
+        std::vector<HandUsagePermissionView> handUsagePermissions{};
     };
 
     struct RoutineAttackProgressionView

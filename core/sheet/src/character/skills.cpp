@@ -474,6 +474,8 @@ namespace golarion
     {
         const std::string normalizedId = normalize(specializationId);
         const std::string specializationResource = removableSpecializationResourceName(type, normalizedId);
+        if (!specializations_.at(type).at(normalizedId).rankGrants_.empty())
+            throw std::invalid_argument("skill specialization has active rank grants");
         for (const auto &[replacementId, replacement] : abilityReplacements_)
         {
             if (replacement.targetResourceName_ == specializationResource)
@@ -489,6 +491,7 @@ namespace golarion
             }
         }
         resourceManager_.unregisterEnhanceableResource(specializationResource);
+        resourceManager_.unregisterCollectionResource(skillRankGrantsResource(type, normalizedId));
         specializations_.at(type).erase(normalizedId);
     }
 

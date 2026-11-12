@@ -84,6 +84,10 @@ namespace
 
 namespace golarion
 {
+    DamageComponent DamageComponent::withSource(std::string source) const
+    {
+        return DamageComponent({id_, std::move(source), role_, dice_, types_, typeMode_, criticalRule_, traits_});
+    }
     std::string_view displayName(DamageType type)
     {
         switch (type)

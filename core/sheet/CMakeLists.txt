@@ -1,4 +1,8 @@
 add_library(golarion_model STATIC
+    src/effect/collection_effect.cpp
+    src/effect/collection_effect_json.cpp
+    src/effect/casting_rule_effect.cpp
+    src/effect/casting_rule_effect_json.cpp
     src/character/character_class.cpp
     src/character/character_class_archetypes.cpp
     src/character/classes.cpp
@@ -188,6 +192,18 @@ else()
 endif()
 
 if(BUILD_TESTING)
+    add_executable(casting_rule_effect_test tests/effect/casting_rule_effect_test.cpp)
+    target_link_libraries(casting_rule_effect_test PRIVATE golarion_model)
+    add_test(NAME casting_rule_effect_test COMMAND casting_rule_effect_test)
+    add_executable(collection_effect_test tests/effect/collection_effect_test.cpp)
+    target_link_libraries(collection_effect_test PRIVATE golarion_model)
+    add_test(NAME collection_effect_test COMMAND collection_effect_test)
+    add_executable(backend_rules_test tests/character/backend_rules_test.cpp)
+    target_link_libraries(backend_rules_test PRIVATE golarion_model)
+    add_test(NAME backend_rules_test COMMAND backend_rules_test)
+    add_executable(sheet_operations_test tests/character/sheet_operations_test.cpp)
+    target_link_libraries(sheet_operations_test PRIVATE golarion_model)
+    add_test(NAME sheet_operations_test COMMAND sheet_operations_test)
     add_executable(granted_spells_test tests/character/granted_spells_test.cpp src/equipment/item_definition_manager.cpp)
     target_include_directories(granted_spells_test PRIVATE tests/fixtures/item_usage)
     target_link_libraries(granted_spells_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
@@ -202,6 +218,10 @@ if(BUILD_TESTING)
     add_executable(spellcasting_persistence_test tests/character/spellcasting_persistence_test.cpp)
     target_link_libraries(spellcasting_persistence_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
     add_test(NAME spellcasting_persistence_test COMMAND spellcasting_persistence_test)
+
+    add_executable(metamagic_state_view_test tests/character/metamagic_state_view_test.cpp)
+    target_link_libraries(metamagic_state_view_test PRIVATE golarion_model)
+    add_test(NAME metamagic_state_view_test COMMAND metamagic_state_view_test)
 
     add_executable(spellcastings_test tests/character/spellcastings_test.cpp)
     target_link_libraries(spellcastings_test PRIVATE golarion_model)
@@ -430,6 +450,9 @@ if(BUILD_TESTING)
     add_executable(skill_test tests/character/skill_test.cpp)
     target_link_libraries(skill_test PRIVATE golarion_model)
     add_test(NAME skill_test COMMAND skill_test)
+    add_executable(skill_rank_grant_test tests/character/skill_rank_grant_test.cpp)
+    target_link_libraries(skill_rank_grant_test PRIVATE golarion_model)
+    add_test(NAME skill_rank_grant_test COMMAND skill_rank_grant_test)
 
     add_executable(saving_throw_test tests/character/saving_throw_test.cpp)
     target_link_libraries(saving_throw_test PRIVATE golarion_model)

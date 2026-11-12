@@ -152,7 +152,7 @@ namespace golarion
         PreparedSpellcastingData data;
         for (const auto &[slot, preparation] : preparations_)
             data.preparations.push_back({slot, *preparation.state.spellId, preparation.state.state == PreparedSpellSlotState::Consumed,
-                {preparation.slots.begin() + 1, preparation.slots.end()}, preparation.state.metamagic});
+                {preparation.slots.begin() + 1, preparation.slots.end()}, preparation.state.metamagic, preparationSnapshot(preparation.evaluation, spellListClass(), static_cast<int>(preparation.slots.size()))});
         return data;
     }
 
@@ -170,7 +170,26 @@ namespace golarion
             const auto id = normalize(entry.spellId);
             auto slots = entry.additionalSlots;
             slots.push_back(entry.slot);
-            auto preparation = checkedPreparation(slots, id, PreparationValidation::Restoring, entry.metamagic);
+            auto preparation = [&]() -> Preparation
+            {
+                // Legacy saves do not contain a historical result and still need current grants.
+                if (!entry.evaluation) return checkedPreparation(slots, id, PreparationValidation::Restoring, entry.metamagic);
+                auto evaluation = restorePreparationSnapshot(id, entry.metamagic, *entry.evaluation, spellListClass());
+                if (slots.size() != static_cast<std::size_t>(entry.evaluation->paidSlots))
+                    throw std::invalid_argument("saved preparation slot payment does not match its snapshot");
+                SpellDefinitionManager::instance().get(id);
+                if (!knowsSpell(id)) throw std::invalid_argument("saved spell is not in the repertoire");
+                for (auto &slot : slots)
+                {
+                    slot = checkedSlot(slot);
+                    const auto &group = slotPools().at(slot.groupId);
+                    if (slot.spellLevel != entry.slot.spellLevel || slot.spellLevel < evaluation.requiredSlotLevel ||
+                        (group.allowedSpellIds && !group.allowedSpellIds->contains(id)))
+                        throw std::invalid_argument("saved preparation is incompatible with its slots");
+                }
+                std::ranges::sort(slots);
+                return {{PreparedSpellSlotState::Prepared, id, evaluation.applications}, slots, std::move(evaluation)};
+            }();
             for (const auto &key : preparation.slots)
                 if (!occupied.insert(key).second) throw std::invalid_argument("duplicate prepared spell slot");
             const auto state = entry.consumed ? PreparedSpellSlotState::Consumed : PreparedSpellSlotState::Prepared;
@@ -185,6 +204,7 @@ namespace golarion
     PreparedSpellcastingView PreparedSpellcasting::toView() const
     {
         PreparedSpellcastingView view{spellListClass(), {}};
+        view.metamagic = metamagic().toView();
         for (const auto &[id, grant] : slotPools())
         {
             PreparedSpellSlotGroupView group{grant, {}};
@@ -194,9 +214,14 @@ namespace golarion
                     const SpellSlotId slot{id, level, static_cast<std::size_t>(index)};
                     const auto state = slotState(slot);
                     std::optional<SpellSlotId> preparationSlot;
+                    std::optional<PreparedMetamagicData> evaluation;
                     for (const auto &[primary, preparation] : preparations_)
-                        if (std::ranges::find(preparation.slots, slot) != preparation.slots.end()) preparationSlot = primary;
-                    group.slots.push_back({slot, state.state, state.spellId, preparationSlot, state.metamagic});
+                        if (std::ranges::find(preparation.slots, slot) != preparation.slots.end())
+                        {
+                            preparationSlot = primary;
+                            evaluation = preparationSnapshot(preparation.evaluation, spellListClass(), static_cast<int>(preparation.slots.size()));
+                        }
+                    group.slots.push_back({slot, state.state, state.spellId, preparationSlot, state.metamagic, evaluation});
                 }
             view.groups.push_back(std::move(group));
         }

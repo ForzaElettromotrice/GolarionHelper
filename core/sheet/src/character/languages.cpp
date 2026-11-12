@@ -1,4 +1,5 @@
 #include "golarion/character/languages.hpp"
+#include "golarion/character/ability.hpp"
 
 #include "golarion/character/reminder.hpp"
 #include "golarion/resource/resource_manager.hpp"
@@ -17,17 +18,25 @@ namespace golarion
         resources_.registerCollectionResource<LanguageGrant>(SpokenLanguagesResource,
             [this](LanguageGrant entry) { grant(std::move(entry)); },
             [this](std::string_view id) { revoke(id); });
+        try
+        {
+            resources_.registerCollectionResource<LanguageOptionsGrant>(LanguageOptionsResource,
+                [this](LanguageOptionsGrant entry) { grantOptions(std::move(entry)); },
+                [this](std::string_view id) { revokeOptions(id); });
+        }
+        catch (...) { resources_.unregisterCollectionResource(SpokenLanguagesResource); throw; }
     }
 
     Languages::~Languages()
     {
         for (const auto &id : reminderIds_) resources_.removeFromCollection(ReminderEntriesResource, id);
         resources_.unregisterCollectionResource(SpokenLanguagesResource);
+        resources_.unregisterCollectionResource(LanguageOptionsResource);
     }
 
     int Languages::capacity(LanguageOrigin origin) const
     {
-        if (origin == LanguageOrigin::Intelligence) return intelligenceBonus_;
+        if (origin == LanguageOrigin::Intelligence) return std::max(0, resources_.targetValue(PermanentIntelligenceModifierTarget));
         if (origin != LanguageOrigin::Linguistics) throw std::invalid_argument("unknown language origin");
         const int ranks = linguisticsRanks_();
         if (ranks < 0) throw std::invalid_argument("linguistics ranks must not be negative");
@@ -41,13 +50,31 @@ namespace golarion
 
     bool Languages::allowed(std::string_view id, LanguageOrigin origin) const
     {
-        return !isAllowed_ || isAllowed_(id, origin);
+        const bool listed = std::any_of(options_.begin(), options_.end(), [&](const auto &entry)
+        {
+            return entry.second.origin == origin && entry.second.languageIds.contains(std::string(id));
+        });
+        return listed && (!isAllowed_ || isAllowed_(id, origin));
     }
 
-    void Languages::setIntelligenceBonus(int bonus)
+    void Languages::grantOptions(LanguageOptionsGrant entry)
     {
-        if (bonus < 0) throw std::invalid_argument("intelligence language bonus must not be negative");
-        intelligenceBonus_ = bonus;
+        entry.id = normalize(entry.id);
+        entry.source = normalize(entry.source);
+        if (entry.origin != LanguageOrigin::Intelligence && entry.origin != LanguageOrigin::Linguistics)
+            throw std::invalid_argument("unknown language origin");
+        std::set<std::string> ids;
+        for (const auto &id : entry.languageIds)
+            if (!ids.insert(normalize(id)).second) throw std::invalid_argument("duplicate language option");
+        entry.languageIds = std::move(ids);
+        const auto id = entry.id;
+        if (!options_.emplace(id, std::move(entry)).second) throw std::invalid_argument("language options are already registered");
+        refreshReminders();
+    }
+
+    void Languages::revokeOptions(std::string_view id)
+    {
+        if (!options_.erase(normalize(id))) throw std::invalid_argument("language options are not registered");
         refreshReminders();
     }
 
@@ -99,6 +126,10 @@ namespace golarion
             return used(origin) >= count ? 0 : static_cast<int>(count - used(origin));
         };
         LanguagesView view{{}, remaining(LanguageOrigin::Intelligence), remaining(LanguageOrigin::Linguistics)};
+        std::map<LanguageOrigin, std::set<std::string>> options;
+        for (const auto &[key, grant] : options_) for (const auto &id : grant.languageIds)
+            if (allowed(id, grant.origin)) options[grant.origin].insert(id);
+        for (const auto &[origin, ids] : options) view.options.push_back({origin, {ids.begin(), ids.end()}});
         for (auto &[id, entry] : entries) view.spoken.push_back(std::move(entry));
         return view;
     }
@@ -128,14 +159,13 @@ namespace golarion
 
     LanguagesData Languages::toData() const
     {
-        LanguagesData data{intelligenceBonus_, {}};
+        LanguagesData data;
         for (const auto &[id, origin] : learned_) data.learned.push_back({id, origin});
         return data;
     }
 
     void Languages::load(const LanguagesData &data)
     {
-        if (data.intelligenceBonus < 0) throw std::invalid_argument("intelligence language bonus must not be negative");
         std::map<std::string, LanguageOrigin> learned;
         for (const auto &entry : data.learned)
         {
@@ -145,7 +175,6 @@ namespace golarion
                 throw std::invalid_argument("duplicate learned language");
         }
         // Preserve selections after external quota/policy changes; report them instead of losing data.
-        intelligenceBonus_ = data.intelligenceBonus;
         learned_ = std::move(learned);
         refreshReminders();
     }

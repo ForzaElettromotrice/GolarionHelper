@@ -1,5 +1,6 @@
 #include "golarion/character/character_class.hpp"
 #include "golarion/character/feats.hpp"
+#include "golarion/character/spellcastings.hpp"
 #include "golarion/resource/resource_manager.hpp"
 
 #include <cassert>
@@ -69,6 +70,8 @@ int main()
     ResourceManager resources;
     for (const auto *name : {"baseAttackBonus", "bonus", "choice", "hp.max", "skill.ranks.max"}) resources.registerAccumulatedResource(name);
     resources.registerTarget("intMod", [] { return 0; });
+    resources.registerTarget("intPermanentMod", [] { return 0; });
+    resources.registerTarget("intSkillRanksMod", [] { return 0; });
     resources.registerTarget("conMod", [] { return 0; });
     for (auto type : {SavingThrowType::Fortitude, SavingThrowType::Reflex, SavingThrowType::Will}) resources.registerAccumulatedResource(baseResourceName(type));
     int skillCount = 0, slotAdds = 0, slotRemoves = 0;
@@ -165,5 +168,25 @@ int main()
     invalid = definition();
     invalid.features[0].progression[1].id = "first";
     rejects([&] { CharacterClass instance(resources, "invalid", invalid); });
+    {
+        Spellcastings castings(resources);
+        auto casterDefinition = definition();
+        casterDefinition.features = {{"casting", "Incantesimi", "Capacità di lancio", {
+            {.id = "initial", .level = 1, .effects = {SpellcastingGrantEffectDefinition{"casting", SpellcastingMode::Prepared, CharacterClassType::Wizard}}}
+        }}};
+        {
+            CharacterClass caster(resources, "caster", casterDefinition);
+            const auto id = castings.toView().castings.front().id;
+            auto *casting = &castings.get(id);
+            casting->addToRepertoire("fireball");
+            caster.setLevel(2);
+            caster.setLevel(1);
+            assert(&castings.get(id) == casting);
+            assert(castings.toData().castings.front().repertoire == std::vector<std::string>{"fireball"});
+            caster.setLevel(0);
+            assert(castings.toView().castings.empty());
+        }
+        assert(castings.toView().castings.empty());
+    }
     return 0;
 }

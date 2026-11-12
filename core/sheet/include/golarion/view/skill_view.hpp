@@ -27,6 +27,14 @@ namespace golarion
         std::string targetResourceName;
     };
 
+    struct SkillRankGrantView
+    {
+        std::string id;
+        std::string source;
+        std::string expression;
+        int ranks;
+    };
+
     struct SkillView
     {
         SkillType type;
@@ -43,5 +51,7 @@ namespace golarion
         std::vector<SkillClassSkillGrantView> classSkillGrants;
         std::vector<SkillAbilityOptionView> abilityOptions;
         ModifierSetView modifiers;
+        int effectiveRanks = 0;
+        std::vector<SkillRankGrantView> rankGrants{};
     };
 }

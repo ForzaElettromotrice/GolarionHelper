@@ -45,6 +45,7 @@ namespace golarion
         FlexibleSpellcastingData toData() const;
         void load(const FlexibleSpellcastingData &data);
         FlexibleSpellcastingView toView() const;
+        MetamagicUsagePools usagePools() const override;
 
     private:
         friend class Spellcastings;

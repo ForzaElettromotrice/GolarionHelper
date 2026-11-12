@@ -109,6 +109,7 @@ namespace golarion
     {
     public:
         explicit DamageComponent(DamageComponentDefinition definition);
+        DamageComponent withSource(std::string source) const;
 
     private:
         friend class StrikeGrant;

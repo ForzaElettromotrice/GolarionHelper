@@ -7,6 +7,10 @@
 #include "golarion/character/size.hpp"
 #include "golarion/character/skills.hpp"
 #include "golarion/character/strike.hpp"
+#include "golarion/character/spellcastings.hpp"
+#include "golarion/character/prepared_spellcasting.hpp"
+#include "golarion/character/spontaneous_spellcasting.hpp"
+#include "golarion/character/flexible_spellcasting.hpp"
 #include "golarion/effect/effect_compiler.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/view/carrying_capacity_view.hpp"
@@ -200,5 +204,82 @@ int main()
         }));
     }));
 
+    Spellcastings castings(resourceManager);
+    std::vector<EffectCleanup> castingCleanups;
+    int castingIndex = 0;
+    for (auto mode : {SpellcastingMode::Prepared, SpellcastingMode::Spontaneous, SpellcastingMode::Flexible})
+    {
+        const auto id = "effect.casting." + std::to_string(castingIndex++);
+        const auto apply = compileEffect(SpellcastingGrantEffectDefinition{"casting", mode, CharacterClassType::Wizard}, {id, "Classe"});
+        castingCleanups.push_back(apply(resourceManager));
+        auto &casting = castings.get(id);
+        if (mode == SpellcastingMode::Prepared) assert(dynamic_cast<PreparedSpellcasting *>(&casting));
+        if (mode == SpellcastingMode::Spontaneous) assert(dynamic_cast<SpontaneousSpellcasting *>(&casting));
+        if (mode == SpellcastingMode::Flexible) assert(dynamic_cast<FlexibleSpellcasting *>(&casting));
+        casting.addToRepertoire("fireball");
+        assert(throwsInvalidArgument([&] { apply(resourceManager); }));
+        assert(&castings.get(id) == &casting); // A duplicate grant cannot replace live state.
+    }
+    assert(castings.toView().castings.size() == 3);
+    auto savedCastings = castings.toData();
+    for (auto &cleanup : castingCleanups) cleanup();
+    assert(castings.toView().castings.empty());
+    assert(throwsInvalidArgument([&] { castings.get("effect.casting.0"); }));
+    // Reconstruct sources through effects before restoring mutable casting state.
+    castingCleanups.clear();
+    castingIndex = 0;
+    for (auto mode : {SpellcastingMode::Prepared, SpellcastingMode::Spontaneous, SpellcastingMode::Flexible})
+        castingCleanups.push_back(compileEffect(SpellcastingGrantEffectDefinition{"casting", mode, CharacterClassType::Wizard},
+            {"effect.casting." + std::to_string(castingIndex++), "Classe"})(resourceManager));
+    castings.load(savedCastings);
+    for (const auto &casting : castings.toData().castings) assert(casting.repertoire == std::vector<std::string>{"fireball"});
+    for (auto &cleanup : castingCleanups) cleanup();
+    assert(throwsInvalidArgument([&] { compileEffect(SpellcastingGrantEffectDefinition{"casting", static_cast<SpellcastingMode>(999), CharacterClassType::Wizard}, {"invalid", "Classe"}); }));
+    assert(throwsInvalidArgument([&] { compileEffect(SpellcastingGrantEffectDefinition{"casting", SpellcastingMode::Prepared, static_cast<CharacterClassType>(999)}, {"invalid", "Classe"}); }));
+    for (auto mode : {SpellcastingMode::Prepared, SpellcastingMode::Spontaneous, SpellcastingMode::Flexible})
+    {
+        const auto castingCleanup = compileEffect(SpellcastingGrantEffectDefinition{"casting", mode, CharacterClassType::Wizard}, {"caster", "Classe"})(resourceManager);
+        const auto slotsApply = compileEffect(SpellSlotGrantEffectDefinition{"slots", "caster", SpellSlotPoolType::Casting, {{0, 2}, {3, 1}}, std::set<std::string>{"fireball"}}, {"baseSlots", "Classe"});
+        auto slotsCleanup = slotsApply(resourceManager);
+        auto &casting = castings.get("caster");
+        casting.addToRepertoire("fireball");
+        assert(casting.slotPools().at("baseSlots").dailyCapacityByLevel.size() == 2);
+        assert(casting.slotPools().at("baseSlots").allowedSpellIds->contains("fireball"));
+        assert(throwsInvalidArgument([&] { slotsApply(resourceManager); }));
+        const auto preparationApply = compileEffect(SpellSlotGrantEffectDefinition{"preparations", "caster", SpellSlotPoolType::Preparation, {{3, 1}}}, {"preparationSlots", "Classe"});
+        EffectCleanup preparationCleanup;
+        if (mode == SpellcastingMode::Flexible)
+        {
+            preparationCleanup = preparationApply(resourceManager);
+            auto &flex = dynamic_cast<FlexibleSpellcasting &>(casting);
+            flex.prepare({"preparationSlots", 3, 0}, "fireball");
+        }
+        else assert(throwsInvalidArgument([&] { preparationApply(resourceManager); }));
+        if (mode == SpellcastingMode::Prepared)
+        {
+            auto &prepared = dynamic_cast<PreparedSpellcasting &>(casting);
+            assert(throwsInvalidArgument([&] { prepared.prepare({"baseSlots", 0, 0}, "fireball"); }));
+            prepared.prepare({"baseSlots", 3, 0}, "fireball");
+            prepared.consume({"baseSlots", 3, 0});
+        }
+        slotsCleanup();
+        assert(casting.slotPools().empty());
+        slotsCleanup = slotsApply(resourceManager);
+        if (mode == SpellcastingMode::Prepared)
+        {
+            auto &prepared = dynamic_cast<PreparedSpellcasting &>(casting);
+            prepared.prepare({"baseSlots", 3, 0}, "fireball");
+            prepared.consume({"baseSlots", 3, 0}); // Replacing a pool resets its state.
+        }
+        if (preparationCleanup) preparationCleanup();
+        slotsCleanup();
+        castingCleanup();
+        assert(throwsInvalidArgument([&] { slotsApply(resourceManager); }));
+    }
+    assert(throwsInvalidArgument([&] { compileEffect(SpellSlotGrantEffectDefinition{"slots", "caster", static_cast<SpellSlotPoolType>(999), {{1, 1}}}, {"slots", "Classe"}); }));
+    assert(throwsInvalidArgument([&] { compileEffect(SpellSlotGrantEffectDefinition{"slots", "caster", SpellSlotPoolType::Casting, {{10, 1}}}, {"slots", "Classe"}); }));
+    assert(throwsInvalidArgument([&] { compileEffect(HandUsagePermissionEffectDefinition{"grip", "weapon", static_cast<HandUsage>(999)}, {"grip", "Fonte"}); }));
+    assert(throwsInvalidArgument([&] { compileEffect(HandUsagePermissionEffectDefinition{"grip", "weapon", HandUsage::OneHanded, {}, std::nullopt, "slot"}, {"grip", "Fonte"}); }));
+    assert(throwsInvalidArgument([&] { compileEffect(HandUsagePermissionEffectDefinition{"grip", " ", HandUsage::OneHanded}, {"grip", "Fonte"}); }));
     return 0;
 }

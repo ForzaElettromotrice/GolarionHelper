@@ -15,10 +15,29 @@ namespace golarion
         resources_.registerCollectionResource<SpellcastingGrant>(Resource,
             [this](SpellcastingGrant entry) { grant(std::move(entry)); },
             [this](std::string_view id) { revoke(id); });
+        try
+        {
+            resources_.registerCollectionResource<std::shared_ptr<MetamagicUsagePool>>(UsagePoolsResource,
+                [this](std::shared_ptr<MetamagicUsagePool> pool)
+                {
+                    if (!pool) throw std::invalid_argument("metamagic source pool must not be null");
+                    const auto existing = usagePools();
+                    if (const auto found = existing.find(pool->id()); found != existing.end() && found->second != pool)
+                        throw std::invalid_argument("conflicting metamagic pool identities");
+                    const auto id = pool->id();
+                    if (!sourcePools_.emplace(id, std::move(pool)).second) throw std::invalid_argument("metamagic source pool is already registered");
+                },
+                [this](std::string_view id)
+                {
+                    if (!sourcePools_.erase(normalize(id))) throw std::invalid_argument("metamagic source pool is not registered");
+                });
+        }
+        catch (...) { resources_.unregisterCollectionResource(Resource); throw; }
     }
 
     Spellcastings::~Spellcastings()
     {
+        resources_.unregisterCollectionResource(UsagePoolsResource);
         resources_.unregisterCollectionResource(Resource);
     }
 
@@ -61,6 +80,9 @@ namespace golarion
     SpellcastingsData Spellcastings::toData() const
     {
         SpellcastingsData data;
+        data.metamagicUses.emplace();
+        for (const auto &[id, pool] : usagePools())
+            if (!pool->isExternallyOwned()) data.metamagicUses->emplace(id, pool->remaining());
         for (const auto &[id, entry] : entries_)
         {
             SpellcastingData saved{id, {entry.casting->repertoire_.begin(), entry.casting->repertoire_.end()}, {}};
@@ -78,6 +100,7 @@ namespace golarion
     SpellcastingsView Spellcastings::toView() const
     {
         SpellcastingsView view;
+        for (const auto &[id, pool] : usagePools()) view.metamagicPools.push_back({id, pool->remaining()});
         for (const auto &[id, entry] : entries_)
         {
             SpellcastingView casting{id, entry.grant.source, entry.grant.mode, {entry.casting->repertoire_.begin(), entry.casting->repertoire_.end()}, {}};
@@ -94,6 +117,20 @@ namespace golarion
 
     void Spellcastings::load(const SpellcastingsData &data)
     {
+        std::vector<std::pair<std::shared_ptr<MetamagicUsagePool>, int>> poolUpdates;
+        if (data.metamagicUses)
+        {
+            auto pools = usagePools();
+            // Linked balances belong to the source's save data, never to this container.
+            std::erase_if(pools, [](const auto &entry) { return entry.second->isExternallyOwned(); });
+            if (pools.size() != data.metamagicUses->size()) throw std::invalid_argument("saved metamagic pools do not match sources");
+            for (const auto &[id, remaining] : *data.metamagicUses)
+            {
+                const auto found = pools.find(id);
+                if (found == pools.end() || remaining < 0) throw std::invalid_argument("invalid saved metamagic pool");
+                poolUpdates.emplace_back(found->second, remaining);
+            }
+        }
         std::set<std::string> ids;
         std::vector<std::function<void()>> commits;
         for (const auto &saved : data.castings)
@@ -134,5 +171,15 @@ namespace golarion
         if (ids.size() != entries_.size()) throw std::invalid_argument("save is missing a granted spellcasting");
         // Every staged operation now consists only of non-throwing swaps. Never pay source uses here.
         for (auto &commit : commits) commit();
+        for (const auto &[pool, remaining] : poolUpdates) pool->reset(remaining);
+    }
+
+    MetamagicUsagePools Spellcastings::usagePools() const
+    {
+        auto pools = sourcePools_;
+        for (const auto &[id, entry] : entries_)
+            for (const auto &[poolId, pool] : entry.casting->usagePools())
+                collectMetamagicPool(pools, {poolId, 1, pool});
+        return pools;
     }
 }

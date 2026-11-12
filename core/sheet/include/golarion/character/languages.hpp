@@ -13,6 +13,15 @@ namespace golarion
 {
     class ResourceManager;
     inline constexpr std::string_view SpokenLanguagesResource = "languages.spoken";
+    inline constexpr std::string_view LanguageOptionsResource = "languages.options";
+
+    struct LanguageOptionsGrant
+    {
+        std::string id;
+        std::string source;
+        LanguageOrigin origin;
+        std::set<std::string> languageIds;
+    };
 
     struct LanguageGrant
     {
@@ -31,7 +40,6 @@ namespace golarion
         Languages(Languages &&) = delete;
         Languages &operator=(Languages &&) = delete;
 
-        void setIntelligenceBonus(int bonus);
         void add(std::string_view languageId, LanguageOrigin origin);
         void remove(std::string_view languageId);
         void refreshReminders();
@@ -45,12 +53,14 @@ namespace golarion
         bool allowed(std::string_view languageId, LanguageOrigin origin) const;
         void grant(LanguageGrant entry);
         void revoke(std::string_view id);
+        void grantOptions(LanguageOptionsGrant entry);
+        void revokeOptions(std::string_view id);
 
         ResourceManager &resources_;
         std::function<int()> linguisticsRanks_;
         std::function<bool(std::string_view, LanguageOrigin)> isAllowed_;
-        int intelligenceBonus_ = 0;
         std::map<std::string, LanguageGrant> grants_;
+        std::map<std::string, LanguageOptionsGrant> options_;
         std::map<std::string, LanguageOrigin> learned_;
         std::set<std::string> reminderIds_;
     };

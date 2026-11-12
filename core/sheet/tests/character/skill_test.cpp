@@ -54,7 +54,7 @@ int main()
 
     Skill acrobatics(SkillType::Acrobatics);
     acrobatics.registerResources(manager);
-    assert(acrobatics.usable());
+    assert(acrobatics.usable(manager));
     assert(acrobatics.totalValue(manager) == 2);
     assert(throwsInvalidArgument([&]
     {
@@ -130,9 +130,9 @@ int main()
     assert(!acrobaticsData.custom);
 
     Skill handleAnimal(SkillType::HandleAnimal);
-    assert(!handleAnimal.usable());
+    assert(!handleAnimal.usable(manager));
     handleAnimal.setRanks(1);
-    assert(handleAnimal.usable());
+    assert(handleAnimal.usable(manager));
 
     Skill craft(SkillType::Craft, "alchemy", "Alchimia");
     craft.registerResources(manager);

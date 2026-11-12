@@ -176,21 +176,27 @@ namespace
         std::pair{golarion::LanguageOrigin::Linguistics, std::string_view("linguistics")}
     };
 
-    Json languagesToJson(const golarion::LanguagesData &data)
+    Json languagesToJson(const golarion::LanguagesData &data, int formatVersion)
     {
         Json learned = Json::array();
         for (const auto &entry : data.learned)
             learned.push_back({{"languageId", entry.languageId}, {"origin", enumName(entry.origin, LanguageOriginNames)}});
-        return Json{{"intelligenceBonus", data.intelligenceBonus}, {"learned", std::move(learned)}};
+        Json result{{"learned", std::move(learned)}};
+        if (formatVersion < 35) result["intelligenceBonus"] = 0;
+        return result;
     }
 
     golarion::LanguagesData languagesFromJson(const Json &json)
     {
         if (!json.at("learned").is_array()) throw std::invalid_argument("learned languages must be an array");
-        const auto &bonus = json.at("intelligenceBonus");
-        if (!bonus.is_number_integer() || bonus < 0 || bonus > std::numeric_limits<int>::max())
-            throw std::invalid_argument("intelligence language bonus must be a nonnegative integer");
-        golarion::LanguagesData data{bonus.get<int>(), {}};
+        // Legacy entitlement is validated but no longer overrides permanent Intelligence.
+        if (json.contains("intelligenceBonus"))
+        {
+            const auto &bonus = json.at("intelligenceBonus");
+            if (!bonus.is_number_integer() || bonus < 0 || bonus > std::numeric_limits<int>::max())
+                throw std::invalid_argument("intelligence language bonus must be a nonnegative integer");
+        }
+        golarion::LanguagesData data;
         for (const auto &entry : json.at("learned"))
             data.learned.push_back({entry.at("languageId").get<std::string>(), enumValue(entry.at("origin"), LanguageOriginNames)});
         return data;
@@ -833,8 +839,9 @@ namespace golarion::persistence
             {"conditions", conditionsToJson(data.conditions)},
             {"inventory", inventoryToJson(data.inventory)},
             {"feats", featsToJson(data.feats)},
-            {"languages", languagesToJson(data.languages)},
-            {"spellcastings", spellcastingsToJson(data.spellcastings)},
+            {"languages", languagesToJson(data.languages, data.formatVersion)},
+            {"spellcastings", spellcastingsToJson(data.spellcastings, data.formatVersion >= 34)},
+            {"metamagicUses", data.formatVersion >= 34 ? metamagicUsesToJson(data.spellcastings.metamagicUses) : Json(nullptr)},
             {"grantedSpells", grantedSpellsToJson(data.grantedSpells)},
             {"classes", classesToJson(data.classes)},
             {"favoredClasses", favoredClassesToJson(data.classes.favoredClasses)},
@@ -856,6 +863,8 @@ namespace golarion::persistence
         const int formatVersion = json.at("formatVersion").get<int>();
         auto classes = formatVersion >= 30 ? classesFromJson(json.at("classes"), formatVersion >= 31, formatVersion >= 32) : ClassesData{};
         if (formatVersion >= 33) classes.favoredClasses = favoredClassesFromJson(json.at("favoredClasses"));
+        auto spellcastings = formatVersion >= 27 ? spellcastingsFromJson(json.at("spellcastings"), formatVersion >= 34) : SpellcastingsData{};
+        if (formatVersion >= 34) spellcastings.metamagicUses = metamagicUsesFromJson(json.at("metamagicUses"));
         return CharacterSheetSaveData{
             .formatVersion = formatVersion,
             .identity = formatVersion >= 22 ? characterIdentityFromJson(json.at("identity")) : CharacterIdentitySaveData{},
@@ -868,7 +877,7 @@ namespace golarion::persistence
             .inventory = formatVersion >= 19 ? inventoryFromJson(json.at("inventory"), formatVersion >= 28) : InventorySaveData{},
             .feats = formatVersion >= 25 ? featsFromJson(json.at("feats")) : FeatsData{},
             .languages = formatVersion >= 26 ? languagesFromJson(json.at("languages")) : LanguagesData{},
-            .spellcastings = formatVersion >= 27 ? spellcastingsFromJson(json.at("spellcastings")) : SpellcastingsData{},
+            .spellcastings = std::move(spellcastings),
             .grantedSpells = formatVersion >= 29 ? grantedSpellsFromJson(json.at("grantedSpells")) : GrantedSpellsData{},
             .classes = std::move(classes),
             .legacyFirstLevelFeatSlot = formatVersion >= 30 ? json.at("legacyFirstLevelFeatSlot").get<bool>() : false

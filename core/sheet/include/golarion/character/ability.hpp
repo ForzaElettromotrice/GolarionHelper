@@ -11,6 +11,10 @@
 namespace golarion
 {
     inline constexpr std::string_view AbilityCheckRootResource = "abilityCheck.all";
+    inline constexpr std::string_view PermanentIntelligenceResource = "intelligence.permanent";
+    inline constexpr std::string_view TemporaryIntelligenceResource = "intelligence.temporary";
+    inline constexpr std::string_view PermanentIntelligenceModifierTarget = "intPermanentMod";
+    inline constexpr std::string_view SkillRankIntelligenceModifierTarget = "intSkillRanksMod";
 
     struct AbilitySaveData;
     struct AbilityView;
@@ -83,6 +87,8 @@ namespace golarion
         int modifier(ResourceManager &resourceManager) const;
 
     private:
+        int permanentValue(ResourceManager &resourceManager, bool forSkillRankBudget = false) const;
+        std::vector<std::string> modifierResources() const;
         std::optional<int> replacementValue(AbilityReplacementStage stage, ResourceManager &resourceManager) const;
         void addReplacement(AbilityReplacement replacement) const;
         void removeReplacement(std::string_view replacementId) const;

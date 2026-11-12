@@ -41,6 +41,8 @@ int main()
         resources.registerAccumulatedResource(name);
     resources.registerTarget("conMod", [] { return 0; });
     resources.registerTarget("intMod", [] { return 0; });
+    resources.registerTarget("intPermanentMod", [] { return 0; });
+    resources.registerTarget("intSkillRanksMod", [] { return 0; });
     resources.registerEnhanceableResource("initiative");
     FavoredClasses favored(resources);
     Feats feats(resources);

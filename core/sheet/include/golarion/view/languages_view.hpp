@@ -15,10 +15,17 @@ namespace golarion
         std::optional<LanguageOrigin> learnedFrom;
     };
 
+    struct LanguageOptionsView
+    {
+        LanguageOrigin origin;
+        std::vector<std::string> languageIds;
+    };
+
     struct LanguagesView
     {
         std::vector<LanguageView> spoken;
         int remainingIntelligence;
         int remainingLinguistics;
+        std::vector<LanguageOptionsView> options{};
     };
 }

@@ -3,6 +3,7 @@
 #include "golarion/character/character_class_type.hpp"
 #include "golarion/character/prepared_spell_slot.hpp"
 #include "golarion/character/spell_slot_grant.hpp"
+#include "golarion/view/metamagic_view.hpp"
 
 #include <vector>
 
@@ -15,6 +16,7 @@ namespace golarion
         std::optional<std::string> spellId;
         std::optional<SpellSlotId> preparationSlot;
         std::vector<MetamagicApplication> metamagic;
+        std::optional<PreparedMetamagicData> evaluation = std::nullopt;
     };
 
     struct PreparedSpellSlotGroupView
@@ -27,5 +29,6 @@ namespace golarion
     {
         CharacterClassType spellListClass;
         std::vector<PreparedSpellSlotGroupView> groups;
+        std::vector<MetamagicGrantView> metamagic{};
     };
 }

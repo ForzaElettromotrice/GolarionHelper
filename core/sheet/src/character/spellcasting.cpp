@@ -7,6 +7,11 @@
 
 namespace golarion
 {
+    MetamagicUsagePools Spellcasting::usagePools() const
+    {
+        return metamagic_.usagePools();
+    }
+
     std::string spellSlotsResource(std::string_view castingId)
     {
         return "spellcasting." + normalize(castingId) + ".slots";

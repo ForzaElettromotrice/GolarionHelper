@@ -1,4 +1,5 @@
 #include "golarion/effect/effect_json.hpp"
+#include "collection_effect.hpp"
 
 #include "golarion/util/string_utils.hpp"
 
@@ -115,8 +116,22 @@ namespace golarion
 
         const std::string type = normalize(json.at("type").get<std::string>());
         const std::string id = normalize(json.at("id").get<std::string>());
+        if (type == "featPrerequisiteAlternative")
+        {
+            auto slotJson = json;
+            slotJson["type"] = "featSlotGrant";
+            auto filter = std::get<FeatSlotGrantEffectDefinition>(effectDefinitionFromJson(slotJson)).filter;
+            return FeatPrerequisiteAlternativeEffectDefinition{id, normalize(json.at("target").get<std::string>()), normalize(json.at("expression").get<std::string>()), std::move(filter)};
+        }
         if (type == "modifier")
         {
+            SkillRankBudgetPolicy budget = SkillRankBudgetPolicy::Included;
+            if (json.contains("skillRankBudget"))
+            {
+                const auto value = json.at("skillRankBudget").get<std::string>();
+                if (value == "excluded") budget = SkillRankBudgetPolicy::Excluded;
+                else if (value != "included") throw std::invalid_argument("unknown skill rank budget policy: " + value);
+            }
             const ModifierType modifierType = modifierTypeFromJson(json);
             std::optional<BonusType> bonusType;
             if (json.contains("bonusType"))
@@ -138,7 +153,8 @@ namespace golarion
                 .type = modifierType,
                 .bonusType = bonusType,
                 .expression = normalize(json.at("expression").get<std::string>()),
-                .condition = optionalString(json, "condition")
+                .condition = optionalString(json, "condition"),
+                .skillRankBudget = budget
             };
         }
         if (type == "contribution")
@@ -283,6 +299,48 @@ namespace golarion
             return FeatSlotGrantEffectDefinition{.id = id, .filter = std::move(filter)};
         }
 
+        if (type == "spellSlotGrant")
+        {
+            const auto poolName = normalize(json.at("pool").get<std::string>());
+            SpellSlotPoolType pool;
+            if (poolName == "casting") pool = SpellSlotPoolType::Casting;
+            else if (poolName == "preparation") pool = SpellSlotPoolType::Preparation;
+            else throw std::invalid_argument("unknown spell slot pool type: " + poolName);
+            SpellSlotGrantEffectDefinition effect{id, normalize(json.at("castingId").get<std::string>()), pool, {}};
+            const auto &slots = json.at("slots");
+            if (!slots.is_array() || slots.empty()) throw std::invalid_argument("spell slots must be a nonempty array");
+            for (const auto &entry : slots)
+            {
+                const auto &level = entry.at("level");
+                const auto &capacity = entry.at("capacity");
+                if (!level.is_number_integer() || level < 0 || level > 9 || !capacity.is_number_integer() || capacity <= 0 || capacity > std::numeric_limits<int>::max())
+                    throw std::invalid_argument("invalid spell slot level or capacity");
+                if (!effect.dailyCapacityByLevel.emplace(level.get<int>(), capacity.get<int>()).second)
+                    throw std::invalid_argument("duplicate spell slot level");
+            }
+            if (json.contains("allowedSpellIds"))
+            {
+                const auto &ids = json.at("allowedSpellIds");
+                if (!ids.is_array()) throw std::invalid_argument("allowed spell IDs must be an array");
+                effect.allowedSpellIds.emplace();
+                for (const auto &entry : ids)
+                    if (!effect.allowedSpellIds->insert(normalize(entry.get<std::string>())).second)
+                        throw std::invalid_argument("duplicate allowed spell ID");
+            }
+            return effect;
+        }
+
+        if (type == "spellcastingGrant")
+        {
+            const auto name = normalize(json.at("mode").get<std::string>());
+            SpellcastingMode mode;
+            if (name == "prepared") mode = SpellcastingMode::Prepared;
+            else if (name == "spontaneous") mode = SpellcastingMode::Spontaneous;
+            else if (name == "flexible") mode = SpellcastingMode::Flexible;
+            else throw std::invalid_argument("unknown spellcasting mode: " + name);
+            return SpellcastingGrantEffectDefinition{id, mode, characterClassFromId(json.at("spellListClass").get<std::string>())};
+        }
+
         if (type == "spellGrant")
         {
             const auto &usage = json.at("usage");
@@ -309,6 +367,57 @@ namespace golarion
             validateSpellGrantEffectDefinition(effect);
             return effect;
         }
+        if (type == "handUsagePermission")
+        {
+            const auto usage = normalize(json.at("handUsage").get<std::string>());
+            HandUsage handUsage;
+            if (usage == "oneHanded") handUsage = HandUsage::OneHanded;
+            else if (usage == "twoHanded") handUsage = HandUsage::TwoHanded;
+            else throw std::invalid_argument("unknown hand usage: " + usage);
+            HandUsagePermissionEffectDefinition effect{
+                id, normalize(json.at("strikeGrantId").get<std::string>()), handUsage, {},
+                optionalString(json, "routineId"), optionalString(json, "slotId")};
+            if (effect.slotId && !effect.routineId) throw std::invalid_argument("hand usage slot restriction requires a routine");
+            if (json.contains("requirements"))
+            {
+                const auto &requirements = json.at("requirements");
+                if (!requirements.is_array()) throw std::invalid_argument("hand usage requirements must be an array");
+                for (const auto &entry : requirements)
+                    effect.requirements.emplace_back(entry.at("expression").get<std::string>(), entry.at("failureReason").get<std::string>());
+            }
+            return effect;
+        }
+
+        if (type == "skillRankGrant")
+        {
+            const auto name = normalize(json.at("skill").get<std::string>());
+            std::optional<SkillType> skill;
+            for (int index = 0; index <= static_cast<int>(SkillType::Fly); ++index)
+            {
+                const auto candidate = static_cast<SkillType>(index);
+                if (resourceName(candidate) == name) { skill = candidate; break; }
+            }
+            if (!skill) throw std::invalid_argument("unknown skill type: " + name);
+            auto specialization = optionalString(json, "specializationId");
+            skillRankGrantsResource(*skill, specialization);
+            return SkillRankGrantEffectDefinition{id, *skill, normalize(json.at("expression").get<std::string>()), std::move(specialization)};
+        }
+
+        if (type == "languageOptions")
+        {
+            const auto name = normalize(json.at("origin").get<std::string>());
+            LanguageOrigin origin;
+            if (name == "intelligence") origin = LanguageOrigin::Intelligence;
+            else if (name == "linguistics") origin = LanguageOrigin::Linguistics;
+            else throw std::invalid_argument("unknown language origin: " + name);
+            const auto &values = json.at("languageIds");
+            if (!values.is_array()) throw std::invalid_argument("language options must be an array");
+            std::set<std::string> ids;
+            for (const auto &value : values)
+                if (!ids.insert(normalize(value.get<std::string>())).second) throw std::invalid_argument("duplicate language option");
+            return LanguageOptionsEffectDefinition{id, origin, std::move(ids)};
+        }
+
         if (type == "languageGrant")
         {
             return LanguageGrantEffectDefinition{
@@ -316,6 +425,8 @@ namespace golarion
                 .languageId = normalize(json.at("languageId").get<std::string>())
             };
         }
+        if (auto effect = collectionEffectFromJson(json)) return *effect;
+        if (auto effect = castingRuleEffectFromJson(json)) return *effect;
         throw std::invalid_argument("unknown effect definition type: " + type);
     }
 }

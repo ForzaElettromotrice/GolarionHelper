@@ -10,6 +10,7 @@ namespace golarion
         SpellSlotId preparationId;
         std::optional<std::string> spellId;
         std::vector<MetamagicApplication> metamagic;
+        std::optional<PreparedMetamagicData> evaluation = std::nullopt;
     };
 
     struct FlexiblePreparationGroupView
@@ -23,5 +24,7 @@ namespace golarion
         CharacterClassType spellListClass;
         std::vector<FlexiblePreparationGroupView> preparationGroups;
         std::vector<SpontaneousSpellSlotGroupView> slotGroups;
+        std::vector<MetamagicGrantView> metamagic{};
+        std::vector<MetamagicMixingPermissionView> mixingPermissions{};
     };
 }

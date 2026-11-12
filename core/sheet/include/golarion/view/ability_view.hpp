@@ -33,5 +33,9 @@ namespace golarion
         std::vector<AbilityReplacementView> replacements;
         int checkTotal;
         ModifierSetView checkModifiers;
+        std::optional<int> permanentValue = std::nullopt;
+        std::optional<int> permanentModifier = std::nullopt;
+        std::optional<int> skillRankBudgetValue = std::nullopt;
+        std::optional<int> skillRankBudgetModifier = std::nullopt;
     };
 }

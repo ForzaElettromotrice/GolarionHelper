@@ -26,6 +26,7 @@ namespace golarion
 
         const std::map<std::string, SpellSlotGrant> &slotPools() const;
         void addToRepertoire(std::string_view spellId);
+        virtual MetamagicUsagePools usagePools() const;
 
     protected:
         explicit Spellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass);

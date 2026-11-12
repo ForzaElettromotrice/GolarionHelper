@@ -3,6 +3,7 @@
 #include "golarion/character/character_class_type.hpp"
 #include "golarion/character/spell_slot_id.hpp"
 #include "golarion/character/spell_slot_grant.hpp"
+#include "golarion/view/metamagic_view.hpp"
 
 #include <vector>
 
@@ -26,5 +27,6 @@ namespace golarion
     {
         CharacterClassType spellListClass;
         std::vector<SpontaneousSpellSlotGroupView> groups;
+        std::vector<MetamagicGrantView> metamagic{};
     };
 }

@@ -285,6 +285,8 @@ int main()
         for (const auto *name : {"hp.max", "skill.ranks.max", "baseAttackBonus", "savingThrow.fortitude.base", "savingThrow.reflex.base", "savingThrow.will.base"})
             nestedResources.registerAccumulatedResource(name);
         nestedResources.registerTarget("intMod", [] { return 0; });
+        nestedResources.registerTarget("intPermanentMod", [] { return 0; });
+        nestedResources.registerTarget("intSkillRanksMod", [] { return 0; });
         nestedResources.registerTarget("conMod", [] { return 0; });
         nestedResources.registerTarget("strength", [&] { return strength; });
         FavoredClasses favored(nestedResources);

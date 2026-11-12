@@ -138,6 +138,22 @@ namespace golarion
         ResourceManager *manager = &resourceManager;
 
         resourceManager.registerEnhanceableResource(resource);
+        if (type_ == AbilityType::Intelligence)
+        {
+            // Legacy contributions to int remain permanent.
+            resourceManager.registerEnhanceableResource(PermanentIntelligenceResource, {resource});
+            resourceManager.registerEnhanceableResource(TemporaryIntelligenceResource);
+            resourceManager.registerTarget("intPermanent", [this, manager] { return permanentValue(*manager); });
+            resourceManager.registerTarget(PermanentIntelligenceModifierTarget, [this, manager]
+            {
+                return floorDivideByTwo(static_cast<long long>(permanentValue(*manager)) - 10);
+            });
+            resourceManager.registerTarget("intSkillRanks", [this, manager] { return permanentValue(*manager, true); });
+            resourceManager.registerTarget(SkillRankIntelligenceModifierTarget, [this, manager]
+            {
+                return floorDivideByTwo(static_cast<long long>(permanentValue(*manager, true)) - 10);
+            });
+        }
         resourceManager.registerTarget(resource, [this, manager]
         {
             return totalValue(*manager);
@@ -159,7 +175,7 @@ namespace golarion
     {
         const std::optional<int> baseReplacement = replacementValue(AbilityReplacementStage::Base, resourceManager);
         const std::optional<int> finalReplacement = replacementValue(AbilityReplacementStage::Final, resourceManager);
-        ModifierSetView modifiers = resourceManager.modifierSetView(resourceName(type_));
+        ModifierSetView modifiers = resourceManager.modifierSetView(modifierResources());
         const int effectiveBaseValue = baseReplacement.value_or(baseValue_);
         const int modifiedValue = checkedInt(static_cast<long long>(effectiveBaseValue) + modifiers.total);
         const int total = finalReplacement.value_or(modifiedValue);
@@ -202,7 +218,11 @@ namespace golarion
             .modifiers = std::move(modifiers),
             .replacements = std::move(replacementViews),
             .checkTotal = checkedInt(static_cast<long long>(abilityModifier) + checkModifiers.total),
-            .checkModifiers = std::move(checkModifiers)
+            .checkModifiers = std::move(checkModifiers),
+            .permanentValue = type_ == AbilityType::Intelligence ? std::optional<int>(permanentValue(resourceManager)) : std::nullopt,
+            .permanentModifier = type_ == AbilityType::Intelligence ? std::optional<int>(resourceManager.targetValue(PermanentIntelligenceModifierTarget)) : std::nullopt,
+            .skillRankBudgetValue = type_ == AbilityType::Intelligence ? std::optional<int>(permanentValue(resourceManager, true)) : std::nullopt,
+            .skillRankBudgetModifier = type_ == AbilityType::Intelligence ? std::optional<int>(resourceManager.targetValue(SkillRankIntelligenceModifierTarget)) : std::nullopt
         };
     }
 
@@ -222,13 +242,28 @@ namespace golarion
     int AbilityScore::totalValue(ResourceManager &resourceManager) const
     {
         const int effectiveBaseValue = replacementValue(AbilityReplacementStage::Base, resourceManager).value_or(baseValue_);
-        const int modifiedValue = checkedInt(static_cast<long long>(effectiveBaseValue) + resourceManager.modifierTotal(resourceName(type_)));
+        const int modifiedValue = checkedInt(static_cast<long long>(effectiveBaseValue) + resourceManager.modifierTotal(modifierResources()));
         return replacementValue(AbilityReplacementStage::Final, resourceManager).value_or(modifiedValue);
     }
 
     int AbilityScore::modifier(ResourceManager &resourceManager) const
     {
         return floorDivideByTwo(static_cast<long long>(totalValue(resourceManager)) - 10);
+    }
+
+    std::vector<std::string> AbilityScore::modifierResources() const
+    {
+        if (type_ == AbilityType::Intelligence)
+            return {std::string(PermanentIntelligenceResource), std::string(TemporaryIntelligenceResource)};
+        return {std::string(resourceName(type_))};
+    }
+
+    int AbilityScore::permanentValue(ResourceManager &resourceManager, bool forSkillRankBudget) const
+    {
+        const int base = replacementValue(AbilityReplacementStage::Base, resourceManager).value_or(baseValue_);
+        const int bonus = forSkillRankBudget ? resourceManager.modifierTotalForSkillRankBudget(PermanentIntelligenceResource) : resourceManager.modifierTotal(PermanentIntelligenceResource);
+        const int modified = checkedInt(static_cast<long long>(base) + bonus);
+        return replacementValue(AbilityReplacementStage::Final, resourceManager).value_or(modified);
     }
 
     std::optional<int> AbilityScore::replacementValue(AbilityReplacementStage stage, ResourceManager &resourceManager) const

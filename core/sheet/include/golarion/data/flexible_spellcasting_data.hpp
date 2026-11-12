@@ -12,6 +12,7 @@ namespace golarion
         SpellSlotId preparationId;
         std::string spellId;
         std::vector<MetamagicApplication> metamagic;
+        std::optional<PreparedMetamagicData> evaluation = std::nullopt;
     };
 
     struct FlexibleSpellcastingData

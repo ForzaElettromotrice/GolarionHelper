@@ -2,12 +2,21 @@
 
 #include "conditions/condition_factories.hpp"
 #include "golarion/persistence/json.hpp"
+#include "golarion/character/prepared_spellcasting.hpp"
+#include "golarion/character/spontaneous_spellcasting.hpp"
+#include "golarion/character/flexible_spellcasting.hpp"
 #include <algorithm>
 #include <stdexcept>
 #include <utility>
 
 namespace
 {
+    template<class Casting> Casting &castingAs(golarion::Spellcastings &castings, std::string_view id)
+    {
+        auto *casting = dynamic_cast<Casting *>(&castings.get(id));
+        if (!casting) throw std::invalid_argument("operation is not supported by this spellcasting mode");
+        return *casting;
+    }
     std::size_t abilityIndex(golarion::AbilityType type)
     {
         switch (type)
@@ -32,6 +41,97 @@ namespace
 
 namespace golarion
 {
+    void CharacterSheet::addContainer(ContainerDefinition definition)
+    {
+        inventory_->addContainer(std::move(definition));
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::addItem(ItemInstanceDefinition definition, std::optional<std::string> containerId)
+    {
+        inventory_->addItem(std::move(definition), std::move(containerId));
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::equipItem(std::string_view itemId)
+    {
+        inventory_->equip(itemId);
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::unequipItem(std::string_view itemId, std::optional<std::string> containerId)
+    {
+        inventory_->unequip(itemId, std::move(containerId));
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::moveItem(std::string_view itemId, std::optional<std::string> containerId)
+    {
+        inventory_->moveItem(itemId, std::move(containerId));
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::removeItem(std::string_view itemId)
+    {
+        inventory_->removeItem(itemId);
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::addSpellToRepertoire(std::string_view castingId, std::string_view spellId)
+    {
+        spellcastings_.get(castingId).addToRepertoire(spellId);
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::prepareSpell(std::string_view castingId, const std::vector<SpellSlotId> &slots, std::string_view spellId, const std::vector<MetamagicApplication> &metamagic)
+    {
+        castingAs<PreparedSpellcasting>(spellcastings_, castingId).prepare(slots, spellId, metamagic);
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::prepareFlexibleSpell(std::string_view castingId, const SpellSlotId &preparation, std::string_view spellId, const std::vector<MetamagicApplication> &metamagic)
+    {
+        castingAs<FlexibleSpellcasting>(spellcastings_, castingId).prepare(preparation, spellId, metamagic);
+        feats_.recheckPrerequisites();
+    }
+
+    MetamagicEvaluation CharacterSheet::consumePreparedSpell(std::string_view castingId, const SpellSlotId &slot, std::optional<std::string_view> replacementSpellId, const std::vector<MetamagicApplication> &metamagic)
+    {
+        auto result = castingAs<PreparedSpellcasting>(spellcastings_, castingId).consume(slot, replacementSpellId, metamagic);
+        feats_.recheckPrerequisites();
+        return result;
+    }
+
+    MetamagicEvaluation CharacterSheet::consumeSpontaneousSpell(std::string_view castingId, const SpellSlotId &slot, std::string_view spellId, const std::vector<MetamagicApplication> &metamagic)
+    {
+        auto result = castingAs<SpontaneousSpellcasting>(spellcastings_, castingId).consume(slot, spellId, metamagic);
+        feats_.recheckPrerequisites();
+        return result;
+    }
+
+    MetamagicEvaluation CharacterSheet::consumeFlexibleSpell(std::string_view castingId, const SpellSlotId &slot, const SpellSlotId &preparation, const std::vector<MetamagicApplication> &metamagic, std::optional<std::string_view> mixingPermissionId)
+    {
+        auto result = castingAs<FlexibleSpellcasting>(spellcastings_, castingId).consume(slot, preparation, metamagic, mixingPermissionId);
+        feats_.recheckPrerequisites();
+        return result;
+    }
+
+    void CharacterSheet::clearSpellSlot(std::string_view castingId, const SpellSlotId &slot)
+    {
+        auto &casting = spellcastings_.get(castingId);
+        if (auto *prepared = dynamic_cast<PreparedSpellcasting *>(&casting)) prepared->clear(slot);
+        else if (auto *spontaneous = dynamic_cast<SpontaneousSpellcasting *>(&casting)) spontaneous->clear(slot);
+        else if (auto *flexible = dynamic_cast<FlexibleSpellcasting *>(&casting)) flexible->clearSlot(slot);
+        else throw std::invalid_argument("unknown spellcasting mode");
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::clearFlexiblePreparation(std::string_view castingId, const SpellSlotId &preparation)
+    {
+        castingAs<FlexibleSpellcasting>(spellcastings_, castingId).clearPreparation(preparation);
+        feats_.recheckPrerequisites();
+    }
+
     CharacterSheet::CharacterSheet(const ClassDefinitionManager &classDefinitions)
         : actionManager_(resourceManager_),
           reminderManager_(resourceManager_),
@@ -84,7 +184,7 @@ namespace golarion
 
     CharacterSheet::CharacterSheet(const CharacterSheetSaveData &data, const ClassDefinitionManager &classDefinitions) : CharacterSheet(classDefinitions)
     {
-        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24 && data.formatVersion != 25 && data.formatVersion != 26 && data.formatVersion != 27 && data.formatVersion != 28 && data.formatVersion != 29 && data.formatVersion != 30 && data.formatVersion != 31 && data.formatVersion != 32 && data.formatVersion != 33)
+        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24 && data.formatVersion != 25 && data.formatVersion != 26 && data.formatVersion != 27 && data.formatVersion != 28 && data.formatVersion != 29 && data.formatVersion != 30 && data.formatVersion != 31 && data.formatVersion != 32 && data.formatVersion != 33 && data.formatVersion != 34 && data.formatVersion != 35)
         {
             throw std::invalid_argument("unsupported character sheet format version: " + std::to_string(data.formatVersion));
         }
@@ -228,11 +328,6 @@ namespace golarion
         feats_.recheckPrerequisites();
     }
 
-    void CharacterSheet::setLanguageIntelligenceBonus(int bonus)
-    {
-        languages_.setIntelligenceBonus(bonus);
-    }
-
     void CharacterSheet::addLanguage(std::string_view languageId, LanguageOrigin origin)
     {
         languages_.add(languageId, origin);
@@ -269,6 +364,7 @@ namespace golarion
             hitPoints_.initializeConditionEntries();
         }
         feats_.recheckPrerequisites();
+        if (type == AbilityType::Intelligence) languages_.refreshReminders();
     }
 
     void CharacterSheet::heal(int amount)
@@ -416,7 +512,7 @@ namespace golarion
         }
 
         return CharacterSheetSaveData{
-            .formatVersion = 33,
+            .formatVersion = 35,
             .identity = identity_.toSaveData(),
             .race = race_.toSaveData(),
             .abilities = std::move(abilityData),

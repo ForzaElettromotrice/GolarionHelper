@@ -30,12 +30,22 @@ int main()
     ResourceManager resources;
     ReminderManager reminders(resources);
     int ranks = 1;
+    int permanentIntelligenceModifier = 1;
+    resources.registerTarget(PermanentIntelligenceModifierTarget, [&] { return permanentIntelligenceModifier; });
     {
         Languages languages(resources, [&] { return ranks; }, [](auto id, auto origin)
         {
             return id != "druidic" && (origin != LanguageOrigin::Intelligence || id == "draconic");
         });
-        languages.setIntelligenceBonus(1);
+        languages.refreshReminders();
+        rejects([&] { languages.add("draconic", LanguageOrigin::Intelligence); });
+        auto optionsDefinition = effectDefinitionFromJson(nlohmann::json{
+            {"id", "options"}, {"type", "languageOptions"}, {"origin", "intelligence"}, {"languageIds", {"draconic", "orc"}}
+        });
+        auto optionsCleanup = compileEffect(optionsDefinition, {"race.options", "Razza"})(resources);
+        resources.addToCollection(LanguageOptionsResource, LanguageOptionsGrant{"skill.options", "Linguistica", LanguageOrigin::Linguistics, {"orc", "elf", "druidic"}});
+        assert(languages.toView().options.size() == 2);
+        assert(languages.toView().options[0].languageIds == std::vector<std::string>{"draconic"});
         assert(reminders.toView().messages.size() == 2);
         languages.refreshReminders();
         assert(reminders.toView().messages.size() == 2);
@@ -52,6 +62,13 @@ int main()
         assert(languages.toView().spoken.empty());
         rejects([&] { languages.add("orc", LanguageOrigin::Intelligence); });
         languages.add(" draconic ", LanguageOrigin::Intelligence);
+        resources.addToCollection(LanguageOptionsResource, LanguageOptionsGrant{"other.options", "Altra fonte", LanguageOrigin::Intelligence, {"draconic"}});
+        optionsCleanup();
+        assert(languages.toView().options[0].languageIds == std::vector<std::string>{"draconic"});
+        resources.removeFromCollection(LanguageOptionsResource, "other.options");
+        assert(languages.toData().learned.size() == 1);
+        assert(reminders.toView().messages.size() == 2); // Unspent Linguistics and invalid retained choice.
+        optionsCleanup = compileEffect(optionsDefinition, {"race.options", "Razza"})(resources);
         rejects([&] { languages.add("draconic", LanguageOrigin::Linguistics); });
         rejects([&] { languages.add("druidic", LanguageOrigin::Linguistics); });
         languages.add("orc", LanguageOrigin::Linguistics);
@@ -76,7 +93,7 @@ int main()
         languages.add("orc", LanguageOrigin::Linguistics);
         const auto saved = languages.toData();
         assert(saved.learned.size() == 2);
-        languages.setIntelligenceBonus(0);
+        permanentIntelligenceModifier = 0;
         ranks = 0;
         languages.refreshReminders();
         assert(languages.toView().spoken.size() == 2);
@@ -89,24 +106,64 @@ int main()
         duplicate.learned.push_back(saved.learned[0]);
         rejects([&] { languages.load(duplicate); });
         assert(languages.toData().learned.size() == 2);
-        rejects([&] { languages.setIntelligenceBonus(-1); });
+        permanentIntelligenceModifier = -2;
+        assert(languages.toView().remainingIntelligence == 0);
         rejects([&] { languages.add(" ", LanguageOrigin::Linguistics); });
         rejects([&] { languages.add("test", static_cast<LanguageOrigin>(-1)); });
+        rejects([&] { resources.addToCollection(LanguageOptionsResource, LanguageOptionsGrant{"bad", "Fonte", static_cast<LanguageOrigin>(-1), {"orc"}}); });
+        rejects([&] { resources.addToCollection(LanguageOptionsResource, LanguageOptionsGrant{"bad", "Fonte", LanguageOrigin::Intelligence, {"orc", " orc "}}); });
+        for (const auto invalid : {
+            nlohmann::json{{"origin", "unknown"}, {"languageIds", {"orc"}}},
+            nlohmann::json{{"origin", "intelligence"}, {"languageIds", {"orc", " orc "}}},
+            nlohmann::json{{"origin", "linguistics"}, {"languageIds", nullptr}}})
+        {
+            auto input = invalid;
+            input["id"] = "options";
+            input["type"] = "languageOptions";
+            rejects([&] { effectDefinitionFromJson(input); });
+        }
+    }
+    assert(reminders.toView().messages.empty());
+    {
+        Languages languages(resources, [] { return 2; });
+        permanentIntelligenceModifier = 2;
+        languages.refreshReminders();
+        const auto apply = compileEffect(LanguageOptionsEffectDefinition{"options", LanguageOrigin::Intelligence, {"draconic"}}, {"first", "Prima fonte"});
+        auto firstCleanup = apply(resources);
+        auto secondCleanup = compileEffect(LanguageOptionsEffectDefinition{"options", LanguageOrigin::Intelligence, {"orc"}}, {"second", "Seconda fonte"})(resources);
+        rejects([&] { apply(resources); });
+        rejects([&] { languages.add("draconic", LanguageOrigin::Linguistics); });
+        languages.add("draconic", LanguageOrigin::Intelligence);
+        languages.add("orc", LanguageOrigin::Intelligence);
+        assert(languages.toView().remainingIntelligence == 0);
+        const auto saved = languages.toData();
+        firstCleanup();
+        assert(languages.toView().options[0].languageIds == std::vector<std::string>{"orc"});
+        languages.remove("draconic");
+        rejects([&] { languages.add("draconic", LanguageOrigin::Intelligence); });
+        secondCleanup();
+        languages.load(saved);
+        assert(languages.toView().spoken.size() == 2 && languages.toView().options.empty());
+        assert(reminders.toView().messages.size() == 3);
+        firstCleanup = apply(resources);
+        assert(reminders.toView().messages.size() == 2);
+        firstCleanup();
     }
     assert(reminders.toView().messages.empty());
     // Endpoint and reminders are released with the component.
     Languages replacement(resources, [] { return 0; });
 
     CharacterSheet sheet;
-    sheet.setLanguageIntelligenceBonus(2);
+    sheet.setAbilityBaseValue(AbilityType::Intelligence, 14);
     sheet.setSkillRanks(SkillType::Linguistics, 1);
-    sheet.addLanguage("draconic", LanguageOrigin::Intelligence);
-    sheet.addLanguage("orc", LanguageOrigin::Linguistics);
-    assert(sheet.toView().languages.remainingIntelligence == 1);
+    rejects([&] { sheet.addLanguage("draconic", LanguageOrigin::Intelligence); });
+    // Persist historical selections even while their catalog sources are unavailable.
+    auto savedSheet = sheet.toSaveData();
+    savedSheet.languages.learned = {{"draconic", LanguageOrigin::Intelligence}, {"orc", LanguageOrigin::Linguistics}};
     sheet.setAbilityBaseValue(AbilityType::Intelligence, 20);
-    assert(sheet.toView().languages.remainingIntelligence == 1);
+    assert(sheet.toView().languages.remainingIntelligence == 5);
     const auto path = std::filesystem::temp_directory_path() / "golarion_languages_test.json";
-    sheet.save(path);
+    persistence::saveToFile(savedSheet, path);
     auto restored = CharacterSheet::load(path);
     assert(restored.toView().languages.spoken.size() == 2);
     assert(restored.toView().languages.remainingIntelligence == 1);
@@ -114,8 +171,19 @@ int main()
     restored.removeLanguage("orc");
     assert(restored.toView().languages.remainingLinguistics == 1);
 
-    auto json = nlohmann::json::parse(persistence::toJson(sheet.toSaveData()));
-    assert(json["formatVersion"] == 33);
+    auto json = nlohmann::json::parse(persistence::toJson(savedSheet));
+    assert(json["formatVersion"] == 35);
+    assert(!json["languages"].contains("intelligenceBonus"));
+    auto oldSave = json;
+    oldSave["formatVersion"] = 34;
+    oldSave["languages"]["intelligenceBonus"] = 99;
+    persistence::saveToFile(persistence::fromJson(oldSave.dump()), path);
+    auto migrated = CharacterSheet::load(path);
+    assert(migrated.toView().languages.spoken.size() == 2);
+    assert(migrated.toView().languages.remainingIntelligence == 1);
+    migrated.setAbilityBaseValue(AbilityType::Intelligence, 8);
+    assert(migrated.toView().languages.spoken.size() == 2);
+    assert(migrated.toView().languages.remainingIntelligence == 0);
     auto invalid = json;
     invalid["languages"]["learned"][0]["origin"] = "unknown";
     rejects([&] { persistence::fromJson(invalid.dump()); });

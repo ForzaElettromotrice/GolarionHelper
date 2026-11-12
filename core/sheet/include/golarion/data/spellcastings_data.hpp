@@ -5,6 +5,8 @@
 #include "golarion/data/flexible_spellcasting_data.hpp"
 
 #include <variant>
+#include <map>
+#include <optional>
 
 namespace golarion
 {
@@ -20,5 +22,7 @@ namespace golarion
     struct SpellcastingsData
     {
         std::vector<SpellcastingData> castings;
+        // Absent only for legacy saves; shared source pools are stored once, by stable ID.
+        std::optional<std::map<std::string, int>> metamagicUses = std::nullopt;
     };
 }

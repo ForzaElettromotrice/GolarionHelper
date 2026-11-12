@@ -204,6 +204,8 @@ int main()
     ResourceManager resources;
     for (const auto *name : {"baseAttackBonus", "original", "replacement", "hp.max", "skill.ranks.max"}) resources.registerAccumulatedResource(name);
     resources.registerTarget("intMod", [] { return 0; });
+    resources.registerTarget("intPermanentMod", [] { return 0; });
+    resources.registerTarget("intSkillRanksMod", [] { return 0; });
     for (auto type : {SavingThrowType::Fortitude, SavingThrowType::Reflex, SavingThrowType::Will}) resources.registerAccumulatedResource(baseResourceName(type));
     auto base = test::levelOnlyClassDefinition();
     base.features = {{.id = "base", .name = "Base", .description = "Privilegio originale", .progression = {{

@@ -109,6 +109,7 @@ namespace golarion
     SpontaneousSpellcastingView SpontaneousSpellcasting::toView() const
     {
         SpontaneousSpellcastingView view{spellListClass(), {}};
+        view.metamagic = metamagic().toView();
         for (const auto &[id, grant] : slotPools())
         {
             SpontaneousSpellSlotGroupView group{grant, {}};

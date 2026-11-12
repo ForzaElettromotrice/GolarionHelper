@@ -1,4 +1,5 @@
 #include "golarion/character/metamagic.hpp"
+#include "golarion/view/metamagic_view.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/util/string_utils.hpp"
 
@@ -46,13 +47,79 @@ namespace
 
 namespace golarion
 {
+    PreparedMetamagicData preparationSnapshot(const MetamagicEvaluation &evaluation, CharacterClassType spellListClass, int paidSlots)
+    {
+        return {evaluation.baseSpellLevel, evaluation.effectiveSpellLevel, evaluation.requiredSlotLevel, evaluation.nominalSlotLevel, spellListClass, paidSlots};
+    }
+
+    MetamagicEvaluation restorePreparationSnapshot(std::string_view spellId, const std::vector<MetamagicApplication> &applications, const PreparedMetamagicData &snapshot, CharacterClassType spellListClass)
+    {
+        characterClassId(snapshot.spellListClass);
+        if (snapshot.spellListClass != spellListClass || snapshot.paidSlots < 1)
+            throw std::invalid_argument("incompatible saved preparation context");
+        if (snapshot.baseSpellLevel < 0 || snapshot.baseSpellLevel > 9)
+            throw std::invalid_argument("invalid prepared base spell level");
+        int nominal = snapshot.baseSpellLevel, effective = snapshot.baseSpellLevel;
+        std::set<MetamagicType> types;
+        for (const auto &application : applications)
+        {
+            if (!types.insert(application.type).second) throw std::invalid_argument("duplicate prepared metamagic type");
+            const auto adjustment = standardMetamagicAdjustment(application, snapshot.baseSpellLevel);
+            nominal += adjustment.slotLevelIncrease;
+            effective += adjustment.effectiveLevelIncrease;
+        }
+        if (snapshot.nominalSlotLevel != nominal || snapshot.effectiveSpellLevel != effective || effective > 9 ||
+            snapshot.requiredSlotLevel < snapshot.baseSpellLevel || snapshot.requiredSlotLevel > nominal || snapshot.requiredSlotLevel > 9)
+            throw std::invalid_argument("inconsistent prepared metamagic levels");
+        return {normalize(spellId), snapshot.baseSpellLevel, effective, snapshot.requiredSlotLevel, nominal, applications, {}};
+    }
+
+    void collectMetamagicPool(MetamagicUsagePools &pools, const MetamagicUsageCost &cost)
+    {
+        if (!cost.pool || cost.uses <= 0 || normalize(cost.poolId) != cost.pool->id())
+            throw std::invalid_argument("metamagic usage pool is unavailable or inconsistent");
+        const auto [found, inserted] = pools.emplace(cost.pool->id(), cost.pool);
+        if (!inserted && found->second != cost.pool) throw std::invalid_argument("conflicting metamagic pool identities");
+    }
+
+    MetamagicUsageCostView metamagicUsageCostView(const MetamagicUsageCost &cost)
+    {
+        return {cost.poolId, cost.uses, cost.pool ? std::optional<int>(cost.pool->remaining()) : std::nullopt};
+    }
+
+    MetamagicUsagePools MetamagicRegistry::usagePools() const
+    {
+        MetamagicUsagePools pools;
+        for (const auto &phase : grants_) for (const auto &[id, grant] : phase)
+            if (grant.usageCost && grant.usageCost->pool) collectMetamagicPool(pools, *grant.usageCost);
+        return pools;
+    }
+
+    std::vector<MetamagicGrantView> MetamagicRegistry::toView() const
+    {
+        std::vector<MetamagicGrantView> view;
+        for (const auto phase : {MetamagicPhase::Preparation, MetamagicPhase::Casting})
+            for (const auto &[id, grant] : grants_[phaseIndex(phase)])
+                view.push_back({id, grant.source, phase, grant.type, grant.elementalEnergy, grant.slotCost, grant.rodGrade,
+                    grant.castingScope, grant.usageCost ? std::optional(metamagicUsageCostView(*grant.usageCost)) : std::nullopt,
+                    static_cast<bool>(grant.isApplicable)});
+        return view;
+    }
+
     MetamagicUsagePool::MetamagicUsagePool(std::string_view id, int remaining) : id_(normalize(id)), remaining_(0)
     {
         reset(remaining);
     }
 
+    MetamagicUsagePool::MetamagicUsagePool(std::string_view id, std::shared_ptr<UsagePool> pool)
+        : id_(normalize(id)), remaining_(0), linkedPool_(std::move(pool))
+    {
+        if (!linkedPool_) throw std::invalid_argument("linked metamagic usage pool must not be null");
+    }
+
     void MetamagicUsagePool::reset(int remaining)
     {
+        if (linkedPool_) throw std::invalid_argument("linked usage pools must be restored by their owner");
         if (remaining < 0) throw std::invalid_argument("remaining metamagic uses must not be negative");
         remaining_ = remaining;
     }
@@ -60,6 +127,7 @@ namespace golarion
     void MetamagicRegistry::pay(const std::vector<MetamagicUsageCost> &costs)
     {
         std::map<std::shared_ptr<MetamagicUsagePool>, int> totals;
+        std::map<std::shared_ptr<UsagePool>, int> linkedTotals;
         std::map<std::string, std::shared_ptr<MetamagicUsagePool>> identities;
         for (const auto &cost : costs)
         {
@@ -67,12 +135,13 @@ namespace golarion
                 throw std::invalid_argument("metamagic usage pool is unavailable or inconsistent");
             const auto [identity, inserted] = identities.emplace(cost.pool->id_, cost.pool);
             if (!inserted && identity->second != cost.pool) throw std::invalid_argument("conflicting metamagic pool identities");
-            auto &total = totals[cost.pool];
-            if (cost.uses > cost.pool->remaining_ - total) throw std::invalid_argument("insufficient metamagic uses");
+            auto &total = cost.pool->linkedPool_ ? linkedTotals[cost.pool->linkedPool_] : totals[cost.pool];
+            if (cost.uses > cost.pool->remaining() - total) throw std::invalid_argument("insufficient metamagic uses");
             total += cost.uses;
         }
         // No allocation, callbacks or other throwing work after validation.
         for (const auto &[pool, total] : totals) pool->remaining_ -= total;
+        for (const auto &[pool, total] : linkedTotals) pool->consume(total);
     }
 
     MetamagicEvaluation MetamagicRegistry::evaluate(MetamagicPhase phase, const SpellDefinition &spell, int baseSpellLevel, const std::vector<MetamagicApplication> &applications, bool conversion, const MetamagicEvaluation *prepared) const
