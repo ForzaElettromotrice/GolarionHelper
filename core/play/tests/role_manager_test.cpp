@@ -2,7 +2,9 @@
 #include "golarion/play/session.hpp"
 
 #include <array>
+#include <algorithm>
 #include <cassert>
+#include <future>
 #include <stdexcept>
 #include <string>
 #include <string_view>
@@ -102,7 +104,7 @@ namespace
             assert(rejects([&] { roles.setRole("host", "host", requested); }));
             assert(roles.getRole("host") == Role::Host);
         }
-        for (const Role invalid : {static_cast<Role>(-1), static_cast<Role>(4), static_cast<Role>(99)})
+        for (const Role invalid : {static_cast<Role>(-2), static_cast<Role>(4), static_cast<Role>(99)})
         {
             assert(rejects([&] { roles.setRole("host", "user", invalid); }));
             assert(rejects([&] { roles.hasAtLeastRole("host", invalid); }));
@@ -151,9 +153,47 @@ namespace
         assert(roles.getRole("player") == Role::Player);
     }
 
+    void anyIsOnlyAnAccessThreshold()
+    {
+        ResourceManager resources;
+        RoleManager roles(resources, "host");
+        const std::array<std::optional<UserId>, 5> users{std::nullopt, "spectator", "player", "master", "host"};
+        constexpr std::array<Role, 5> levels{Role::Any, Role::Spectator, Role::Player, Role::Master, Role::Host};
+        constexpr bool allowed[5][5]{
+            {true, false, false, false, false}, {true, true, false, false, false},
+            {true, true, true, false, false}, {true, true, true, true, false}, {true, true, true, true, true}
+        };
+        for (std::size_t index = 1; index < 4; ++index)
+        {
+            roles.registerUser(*users[index]);
+            roles.setRole("host", *users[index], levels[index]);
+        }
+        for (std::size_t user = 0; user < users.size(); ++user)
+        {
+            for (std::size_t minimum = 0; minimum < levels.size(); ++minimum)
+            {
+                assert(roles.hasAtLeastRole(users[user], levels[minimum]) == allowed[user][minimum]);
+                assert(resources.invoke<RoleManager::HasAtLeastRoleSignature>("roles.hasAtLeastRole", users[user], levels[minimum]) == allowed[user][minimum]);
+            }
+        }
+        assert(rejects([&] { roles.hasAtLeastRole("missing", Role::Any); }));
+        assert(rejects([&] { roles.hasAtLeastRole(UserId{}, Role::Any); }));
+        assert(rejects([&] { roles.hasAtLeastRole(std::nullopt, static_cast<Role>(99)); }));
+        for (std::size_t actor = 1; actor < users.size(); ++actor)
+        {
+            for (std::size_t target = 1; target < users.size(); ++target)
+            {
+                assert(rejects([&] { roles.setRole(*users[actor], *users[target], Role::Any); }));
+                assert(roles.getRole(*users[target]) == levels[target]);
+            }
+        }
+        assert(rejects([&] { roles.restoreSaveData({{"host", Role::Host}, {"anonymous", Role::Any}}); }));
+        assert(roles.toSaveData().size() == 4 && roles.getRole("master") == Role::Master);
+    }
+
     void registryLifetimeAndConstructionRollback()
     {
-        constexpr std::array<std::string_view, 4> features{"roles.getRole", "roles.hasAtLeastRole", "roles.setRole", "roles.registerUser"};
+        constexpr std::array<std::string_view, 7> features{"roles.getRole", "roles.hasAtLeastRole", "roles.setRole", "roles.registerUser", "roles.toSaveData", "roles.restoreSaveData", "roles.registerUserWithCommit"};
         ResourceManager resources;
         resources.registerFeature<int()>("unrelated", [] { return 9; });
         {
@@ -186,6 +226,86 @@ namespace
         assert(retry.getRole("retry-host") == Role::Host);
     }
 
+    void savedRolesAndInvalidRestoration()
+    {
+        ResourceManager resources;
+        RoleManager roles(resources, "host");
+        roles.registerUser("alice");
+        roles.setRole("host", "alice", Role::Master);
+        const auto saved = resources.invoke<RoleManager::ToSaveDataSignature>("roles.toSaveData");
+        assert(saved.size() == 2 && saved[0].userId == "alice" && saved[0].role == Role::Master);
+        roles.setRole("host", "alice", Role::Spectator);
+        resources.invoke<RoleManager::RestoreSaveDataSignature>("roles.restoreSaveData", saved);
+        assert(roles.getRole("alice") == Role::Master && roles.getRole("host") == Role::Host);
+        const std::vector<std::vector<UserRoleSaveData>> invalid{
+            {}, {{"alice", Role::Player}}, {{"host", Role::Player}},
+            {{"host", Role::Host}, {"other", Role::Host}}, {{"other", Role::Host}},
+            {{"host", Role::Host}, {"host", Role::Player}},
+            {{"host", Role::Host}, {"alice", static_cast<Role>(99)}},
+            {{"host", Role::Host}, {"bad id", Role::Player}}
+        };
+        for (const auto &data : invalid)
+        {
+            assert(rejects([&] { roles.restoreSaveData(data); }));
+            assert(roles.getRole("alice") == Role::Master && roles.getRole("host") == Role::Host);
+        }
+    }
+
+    void stagedRegistrationAndConcurrentAccess()
+    {
+        ResourceManager resources;
+        RoleManager roles(resources, "host");
+        roles.registerUser("alice");
+        roles.setRole("host", "alice", Role::Master);
+        bool called = false;
+        assert(rejects([&]
+        {
+            roles.registerUserWithCommit("candidate", [&](const auto &data)
+            {
+                called = true;
+                assert(data.size() == 3 && data[0].userId == "alice" && data[1].userId == "candidate" && data[1].role == Role::Player);
+                throw std::invalid_argument("simulated persistence failure");
+            });
+        }));
+        assert(called && rejects([&] { roles.getRole("candidate"); }));
+        assert(roles.getRole("alice") == Role::Master && roles.toSaveData().size() == 2);
+        called = false;
+        assert(rejects([&] { roles.registerUserWithCommit("alice", [&](const auto &) { called = true; }); }));
+        assert(!called);
+        assert(rejects([&] { roles.registerUserWithCommit("bad id", [&](const auto &) { called = true; }); }));
+        assert(!called);
+        assert(rejects([&] { roles.registerUserWithCommit("candidate", {}); }));
+        resources.invoke<RoleManager::RegisterUserWithCommitSignature>("roles.registerUserWithCommit", "candidate", [&](const auto &data)
+        {
+            called = true;
+            assert(data.size() == 3);
+        });
+        assert(called && roles.getRole("candidate") == Role::Player);
+
+        std::vector<std::future<void>> tasks;
+        for (int index = 0; index < 4; ++index)
+        {
+            tasks.push_back(std::async(std::launch::async, [&, index]
+            {
+                for (int iteration = 0; iteration < 25; ++iteration)
+                {
+                    const auto userId = "concurrent-" + std::to_string(index) + "-" + std::to_string(iteration);
+                    roles.registerUserWithCommit(userId, [&](const auto &data)
+                    {
+                        assert(std::any_of(data.begin(), data.end(), [&](const auto &entry) { return entry.userId == userId && entry.role == Role::Player; }));
+                    });
+                    roles.setRole("host", userId, Role::Master);
+                    assert(roles.getRole(userId) == Role::Master && roles.hasAtLeastRole(userId, Role::Player));
+                    const auto saved = roles.toSaveData();
+                    assert(std::is_sorted(saved.begin(), saved.end(), [](const auto &left, const auto &right) { return left.userId < right.userId; }));
+                    assert(roles.getRole("host") == Role::Host);
+                }
+            }));
+        }
+        for (auto &task : tasks) task.get();
+        assert(roles.toSaveData().size() == 103);
+    }
+
     void independentInstancesAndSessionConstruction()
     {
         ResourceManager firstResources;
@@ -210,6 +330,9 @@ int main()
     completePermissionMatrix();
     selfChangesAndInvalidRoles();
     minimumRoleAndRegistryDispatch();
+    anyIsOnlyAnAccessThreshold();
     registryLifetimeAndConstructionRollback();
+    savedRolesAndInvalidRestoration();
+    stagedRegistrationAndConcurrentAccess();
     independentInstancesAndSessionConstruction();
 }

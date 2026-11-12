@@ -1,25 +1,27 @@
 #pragma once
 
-#include "golarion/play/game.hpp"
+#include <nlohmann/json.hpp>
 
 #include <cstddef>
 #include <cstdint>
 #include <optional>
 #include <string>
-#include <string_view>
-#include <variant>
 #include <vector>
 
 namespace golarion::play::detail
 {
     inline constexpr std::size_t MaximumFrameBytes = 65536;
+    inline constexpr std::size_t MaximumJsonNesting = 64;
+    inline constexpr std::uint32_t JsonProtocolVersion = 2;
 
-    struct JoinRequest { std::string name; };
-    struct ConnectionRejected { std::string reason; };
-    using Message = std::variant<JoinRequest, GameSnapshot, ConnectionRejected>;
+    struct ProtocolMessage
+    {
+        std::string type;
+        std::optional<std::string> requestId = std::nullopt;
+        nlohmann::json payload = nlohmann::json::object();
+    };
 
-    std::vector<std::uint8_t> encodeJoin(std::string_view name);
-    std::vector<std::uint8_t> encodeSnapshot(const GameSnapshot &snapshot);
-    std::vector<std::uint8_t> encodeRejection(std::string_view reason);
-    std::optional<Message> extractMessage(std::vector<std::uint8_t> &buffer);
+    std::vector<std::uint8_t> encodeMessage(const ProtocolMessage &message);
+    std::optional<ProtocolMessage> decodeMessage(std::vector<std::uint8_t> &buffer);
+
 }
