@@ -1,4 +1,5 @@
 #pragma once
+#include "golarion/character/pending_choice.hpp"
 
 #include "golarion/effect/effect_compiler.hpp"
 #include "golarion/data/favored_classes_data.hpp"
@@ -55,6 +56,8 @@ namespace golarion
         FavoredClassesData toData() const;
         FavoredClassesView toView() const;
         void load(const FavoredClassesData &data);
+
+        std::vector<PendingChoice> pendingChoices() const;
 
     private:
         friend class Classes;

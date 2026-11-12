@@ -31,22 +31,22 @@ int main()
         FlexibleSpellcasting casting(resources, "arcanist", CharacterClassType::Arcanist);
         resources.addToCollection(slots, castingGrant);
         resources.addToCollection(preparations, preparationGrant);
-        rejects([&] { casting.consume(plain, plain); });
-        rejects([&] { casting.prepare(plain, "fireball"); });
+        rejects([&] { casting.consume(plain, {plain}); });
+        rejects([&] { casting.prepare(plain, {"fireball"}); });
         casting.addToRepertoire("fireball");
-        rejects([&] { casting.prepare({"base", 2, 0}, "fireball"); });
-        casting.prepare({" base ", 3, 0}, " fireball ");
-        rejects([&] { casting.prepare(plain, "fireball"); });
-        casting.consume(plain, plain);
-        casting.consume(second, plain); // One prepared selection, two independent payments.
+        rejects([&] { casting.prepare({"base", 2, 0}, {"fireball"}); });
+        casting.prepare({" base ", 3, 0}, {" fireball "});
+        rejects([&] { casting.prepare(plain, {"fireball"}); });
+        casting.consume(plain, {plain});
+        casting.consume(second, {plain}); // One prepared selection, two independent payments.
         assert(casting.toData().preparations.size() == 1);
         assert(casting.toData().consumedSlots.size() == 2);
-        rejects([&] { casting.consume(plain, plain); });
+        rejects([&] { casting.consume(plain, {plain}); });
         casting.clearPreparation(plain);
         assert(casting.toData().consumedSlots.size() == 2);
         casting.clearSlot(plain);
-        rejects([&] { casting.consume(plain, plain); });
-        casting.prepare(plain, "fireball");
+        rejects([&] { casting.consume(plain, {plain}); });
+        casting.prepare(plain, {"fireball"});
         casting.clearSlot(second);
         casting.clearSlot(second);
         assert(casting.toData().preparations.size() == 1);
@@ -56,13 +56,13 @@ int main()
         const MetamagicApplication empowerment{MetamagicType::Empower, "empower", {}};
         resources.addToCollection(preparationMetamagicGrantsResource("arcanist"), empower);
         resources.addToCollection(castingMetamagicGrantsResource("arcanist"), empower);
-        casting.prepare(enhanced, "fireball", {empowerment});
+        casting.prepare(enhanced, {"fireball", {empowerment}});
         assert(casting.toData().preparations.size() == 2); // Same spell, distinct versions.
-        rejects([&] { casting.consume(plain, enhanced); });
-        assert(casting.consume(enhanced, enhanced).requiredSlotLevel == 5);
+        rejects([&] { casting.consume(plain, {enhanced}); });
+        assert(casting.consume(enhanced, {enhanced}).requiredSlotLevel == 5);
         assert(casting.toData().preparations.size() == 2);
         casting.clearSlot(enhanced);
-        assert(casting.consume(enhanced, plain, {empowerment}).applications.size() == 1);
+        assert(casting.consume(enhanced, {plain, {empowerment}}).applications.size() == 1);
         casting.clearSlot(enhanced);
 
         auto spellPool = std::make_shared<MetamagicUsagePool>("spell-uses", 2);
@@ -70,37 +70,37 @@ int main()
         silent.usageCost = MetamagicUsageCost{"spell-uses", 1, spellPool};
         resources.addToCollection(castingMetamagicGrantsResource("arcanist"), silent);
         const MetamagicApplication silence{MetamagicType::Silent, "silent", {}};
-        rejects([&] { casting.consume(sixth, enhanced, {silence}); });
+        rejects([&] { casting.consume(sixth, {enhanced, {silence}}); });
         assert(spellPool->remaining() == 2);
         resources.addToCollection(mixing, MetamagicMixingPermission{"no", "Test", [](const auto &) { return false; }});
-        rejects([&] { casting.consume(sixth, enhanced, {silence}); });
+        rejects([&] { casting.consume(sixth, {enhanced, {silence}}); });
         resources.addToCollection(mixing, MetamagicMixingPermission{"free", "Test", [](const auto &context) { return context.additions.size() == 1; }});
-        assert(casting.consume(sixth, enhanced, {silence}).applications.size() == 2);
+        assert(casting.consume(sixth, {enhanced, {silence}}).applications.size() == 2);
         assert(spellPool->remaining() == 1);
         casting.clearSlot(sixth);
         resources.removeFromCollection(mixing, "free");
         auto mixPool = std::make_shared<MetamagicUsagePool>("reservoir", 0);
         resources.addToCollection(mixing, MetamagicMixingPermission{"paid", "Exploit", [](const auto &) { return true; }, MetamagicUsageCost{"reservoir", 1, mixPool}});
-        rejects([&] { casting.consume(sixth, enhanced, {silence}); }); // No implicit choice of a paid source.
-        rejects([&] { casting.consume(sixth, enhanced, {silence}, "paid"); });
+        rejects([&] { casting.consume(sixth, {enhanced, {silence}}); }); // No implicit choice of a paid source.
+        rejects([&] { casting.consume(sixth, {enhanced, {silence}, "paid"}); });
         assert(spellPool->remaining() == 1 && casting.toData().consumedSlots.empty());
         mixPool->reset(1);
         resources.addToCollection(exemptions, SpellConsumptionExemption{"throws", "Test", [](const auto &) -> bool { throw std::runtime_error("query failed"); }});
-        rejects<std::runtime_error>([&] { casting.consume(sixth, enhanced, {silence}, "paid"); });
+        rejects<std::runtime_error>([&] { casting.consume(sixth, {enhanced, {silence}, "paid"}); });
         assert(mixPool->remaining() == 1 && spellPool->remaining() == 1);
         resources.removeFromCollection(exemptions, "throws");
-        casting.consume(sixth, enhanced, {silence}, " paid ");
+        casting.consume(sixth, {enhanced, {silence}, " paid "});
         assert(mixPool->remaining() == 0 && spellPool->remaining() == 0);
         casting.clearSlot(sixth);
-        rejects([&] { casting.consume(sixth, enhanced, {empowerment}, "paid"); }); // Mixing never bypasses duplicate-type rules.
-        rejects([&] { casting.consume(plain, plain, {}, "paid"); });
+        rejects([&] { casting.consume(sixth, {enhanced, {empowerment}, "paid"}); }); // Mixing never bypasses duplicate-type rules.
+        rejects([&] { casting.consume(plain, {plain, {}, "paid"}); });
 
         const auto saved = casting.toData();
         const auto view = casting.toView();
         assert(view.preparationGroups.size() == 1 && view.slotGroups.size() == 1);
         assert(!view.preparationGroups[0].preparations[0].spellId);
         assert(view.preparationGroups[0].preparations.back().metamagic.size() == 1);
-        casting.consume(plain, plain);
+        casting.consume(plain, {plain});
         const auto consumedData = casting.toData();
         casting.load({});
         assert(casting.toData().preparations.empty() && casting.toData().consumedSlots.empty());
@@ -126,22 +126,22 @@ int main()
         resources.removeFromCollection(slots, "base");
         assert(casting.toData().preparations.size() == 2 && casting.toData().consumedSlots.empty());
         resources.addToCollection(slots, castingGrant);
-        casting.consume(plain, plain);
+        casting.consume(plain, {plain});
         resources.removeFromCollection(preparations, "base");
         assert(casting.toData().preparations.empty() && casting.toData().consumedSlots.size() == 1);
         resources.addToCollection(preparations, preparationGrant);
         casting.load(saved);
         resources.addToCollection(preparations, SpellSlotGrant{"blocked", "Test", {{3, 1}}, std::set<std::string>{}});
         resources.addToCollection(slots, SpellSlotGrant{"blocked", "Test", {{3, 1}}, std::set<std::string>{}});
-        rejects([&] { casting.prepare({"blocked", 3, 0}, "fireball"); });
-        rejects([&] { casting.consume({"blocked", 3, 0}, plain); });
+        rejects([&] { casting.prepare({"blocked", 3, 0}, {"fireball"}); });
+        rejects([&] { casting.consume({"blocked", 3, 0}, {plain}); });
         for (const SpellSlotId invalid : {SpellSlotId{"missing", 3, 0}, {" ", 3, 0}, {"base", -1, 0}, {"base", 3, std::numeric_limits<std::size_t>::max()}})
         {
-            rejects([&] { casting.prepare(invalid, "fireball"); });
+            rejects([&] { casting.prepare(invalid, {"fireball"}); });
             rejects([&] { casting.clearPreparation(invalid); });
             rejects([&] { casting.clearSlot(invalid); });
-            rejects([&] { casting.consume(invalid, plain); });
-            rejects([&] { casting.consume(plain, invalid); });
+            rejects([&] { casting.consume(invalid, {plain}); });
+            rejects([&] { casting.consume(plain, {invalid}); });
         }
         rejects([&] { resources.addToCollection(preparations, preparationGrant); });
         rejects([&] { resources.addToCollection(preparations, SpellSlotGrant{"bad", "Test", {{3, 0}}}); });
@@ -149,13 +149,13 @@ int main()
         rejects([&] { resources.addToCollection(mixing, MetamagicMixingPermission{"bad", "Test", [](const auto &) { return true; }, MetamagicUsageCost{"pool", 0}}); });
         rejects([&] { resources.addToCollection(exemptions, SpellConsumptionExemption{"bad", "Test", {}}); });
         resources.addToCollection(exemptions, SpellConsumptionExemption{"atWill", "Test", [](const auto &) { return true; }});
-        casting.consume(plain, plain);
-        casting.consume(plain, plain);
+        casting.consume(plain, {plain});
+        casting.consume(plain, {plain});
         assert(casting.toData().consumedSlots.empty());
         FlexibleSpellcasting other(resources, "other", CharacterClassType::Arcanist);
         resources.addToCollection(spellSlotsResource("other"), castingGrant);
         resources.addToCollection(preparationSlotsResource("other"), preparationGrant);
-        rejects([&] { other.consume(plain, plain); });
+        rejects([&] { other.consume(plain, {plain}); });
     }
     for (const auto &endpoint : {preparations, mixing, exemptions})
     {

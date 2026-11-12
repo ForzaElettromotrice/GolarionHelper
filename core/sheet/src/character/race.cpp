@@ -308,7 +308,8 @@ namespace golarion
                         .id = choice.id,
                         .prompt = choice.prompt,
                         .selectionCount = choice.selectionCount,
-                        .options = std::move(options)
+                        .options = std::move(options),
+                        .blocksAdvancement = choice.blocksAdvancement
                     });
                     continue;
                 }
@@ -594,4 +595,21 @@ namespace golarion
 
         appliedEffectIds_ = desiredIds;
     }
+    std::vector<PendingChoice> Race::pendingChoices() const
+    {
+        if (!definition_) return {{RaceChoiceReference{}, "Seleziona la razza", 1, true}};
+        std::vector<PendingChoice> result;
+        const auto &definition = definition_->get();
+        for (const auto *element : activeElements(definition, alternateFeatureIds_))
+            for (const auto &choice : element->choices)
+            {
+                const auto found = choices_.find({element->id, choice.id});
+                const auto count = found == choices_.end() ? 0 : found->second.size();
+                if (count < choice.selectionCount)
+                    result.push_back({RacialOptionChoiceReference{definition.id, element->id, choice.id},
+                        choice.prompt, choice.selectionCount - count, choice.blocksAdvancement});
+            }
+        return result;
+    }
+
 }

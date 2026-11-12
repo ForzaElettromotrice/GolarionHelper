@@ -7,12 +7,13 @@
 
 namespace golarion
 {
+    class SpellCatalog;
     class ResourceManager;
     class GrantedSpells final
     {
     public:
         static constexpr std::string_view Resource = "spells.granted";
-        explicit GrantedSpells(ResourceManager &resources);
+        explicit GrantedSpells(ResourceManager &resources, const SpellCatalog *catalog = nullptr);
         ~GrantedSpells();
         GrantedSpells(const GrantedSpells &) = delete;
         GrantedSpells &operator=(const GrantedSpells &) = delete;
@@ -26,6 +27,7 @@ namespace golarion
         void load(const GrantedSpellsData &data);
     private:
         GrantedSpell &get(std::string_view id);
+        const SpellCatalog *catalog_;
         ResourceManager &resources_;
         std::map<std::string, GrantedSpell> spells_;
     };

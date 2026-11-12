@@ -143,12 +143,17 @@ namespace golarion
     }
 
     ItemInstance::ItemInstance(ItemInstanceDefinition definition)
+        : ItemInstance(definition, ItemDefinitionManager::instance().get(definition.itemDefinitionId)) {}
+
+    ItemInstance::ItemInstance(ItemInstanceDefinition definition, const ItemDefinition &itemDefinition)
         : id_(normalize(definition.id)),
-          itemDefinition_(ItemDefinitionManager::instance().get(definition.itemDefinitionId)),
+          itemDefinition_(itemDefinition),
           quantity_(definition.quantity),
           choices_(validatedChoices(itemDefinition_.get(), std::move(definition.choices))),
           usagePools_(createItemUsagePools(itemDefinition_.get().usagePools, definition.remainingUses))
     {
+        if (normalize(definition.itemDefinitionId) != itemDefinition.id)
+            throw std::invalid_argument("item instance definition ID does not match its catalog definition");
         if (quantity_ < 1)
         {
             throw std::invalid_argument("item quantity must be at least 1");

@@ -1,4 +1,5 @@
 #pragma once
+#include "golarion/character/spell_operation_definition.hpp"
 
 #include "golarion/character/spellcasting.hpp"
 #include "golarion/character/spell_preparation_rules.hpp"
@@ -7,6 +8,7 @@
 
 namespace golarion
 {
+    class SpellCatalog;
     std::string preparationSlotsResource(std::string_view castingId);
     std::string metamagicMixingPermissionsResource(std::string_view castingId);
 
@@ -34,13 +36,13 @@ namespace golarion
     public:
         // Pure query used for both group kinds; must enforce list membership when unfiltered.
         using SpellLevelResolver = std::function<std::optional<int>(CharacterClassType, const SpellSlotGrant &, std::string_view)>;
-        explicit FlexibleSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel = {});
+        explicit FlexibleSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel = {}, const SpellCatalog *catalog = nullptr);
         ~FlexibleSpellcasting() override;
 
-        void prepare(const SpellSlotId &preparationId, std::string_view spellId, const std::vector<MetamagicApplication> &metamagic = {});
+        void prepare(const SpellSlotId &preparationId, const SpellPreparationDefinition &definition);
         void clearPreparation(const SpellSlotId &preparationId);
         // A paid mixing permission must be selected explicitly. Otherwise only free permissions are considered.
-        MetamagicEvaluation consume(const SpellSlotId &slotId, const SpellSlotId &preparationId, const std::vector<MetamagicApplication> &metamagic = {}, std::optional<std::string_view> mixingPermissionId = std::nullopt);
+        MetamagicEvaluation consume(const SpellSlotId &slotId, const FlexibleSpellConsumptionDefinition &definition);
         void clearSlot(const SpellSlotId &slotId);
         FlexibleSpellcastingData toData() const;
         void load(const FlexibleSpellcastingData &data);

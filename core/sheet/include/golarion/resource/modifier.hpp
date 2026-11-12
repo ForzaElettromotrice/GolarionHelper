@@ -56,12 +56,22 @@ namespace golarion
     std::string_view displayName(BonusType type);
     StackingRule stackingRule(BonusType type);
 
+    struct ModifierDefinition
+    {
+        ModifierType type;
+        std::string source;
+        std::string description;
+        std::optional<BonusType> bonusType;
+        std::string expression;
+        std::optional<std::string> condition{};
+        std::vector<Requirement> requirements{};
+        SkillRankBudgetPolicy skillRankBudget = SkillRankBudgetPolicy::Included;
+    };
+
     class Modifier final
     {
     public:
-        Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression);
-        Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition);
-        Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition, std::vector<Requirement> requirements, SkillRankBudgetPolicy skillRankBudget = SkillRankBudgetPolicy::Included);
+        explicit Modifier(ModifierDefinition definition);
         ModifierView toView(ResourceManager &resourceManager) const;
 
         const std::string &id() const;

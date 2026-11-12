@@ -124,17 +124,17 @@ int main()
     assert(resourceManager.enhanceableResourceIsOrInheritsFrom("criticalConfirmation.strike.equippedDaggerThrown", "criticalConfirmation.thrown"));
     assert(resourceManager.enhanceableResourceIsOrInheritsFrom("attackRange.increment.strike.equippedDaggerThrown", "attackRange.increment.thrown"));
 
-    resourceManager.addModifier("attack.all", Modifier(ModifierType::Bonus, "Test", "Bonus globale", BonusType::Generic, "1"));
-    resourceManager.addModifier("attack.ranged", Modifier(ModifierType::Bonus, "Test", "Bonus a distanza", BonusType::Generic, "2"));
-    resourceManager.addModifier("attack.thrown", Modifier(ModifierType::Bonus, "Test", "Bonus al lancio", BonusType::Generic, "3"));
-    Modifier exactModifier(ModifierType::Bonus, "Test", "Bonus al pugnale", BonusType::Generic, "4");
+    resourceManager.addModifier("attack.all", Modifier({.type = ModifierType::Bonus, .source = "Test", .description = "Bonus globale", .bonusType = BonusType::Generic, .expression = "1"}));
+    resourceManager.addModifier("attack.ranged", Modifier({.type = ModifierType::Bonus, .source = "Test", .description = "Bonus a distanza", .bonusType = BonusType::Generic, .expression = "2"}));
+    resourceManager.addModifier("attack.thrown", Modifier({.type = ModifierType::Bonus, .source = "Test", .description = "Bonus al lancio", .bonusType = BonusType::Generic, .expression = "3"}));
+    Modifier exactModifier({.type = ModifierType::Bonus, .source = "Test", .description = "Bonus al pugnale", .bonusType = BonusType::Generic, .expression = "4"});
     const std::string exactModifierId = exactModifier.id();
     resourceManager.addModifier("attack.strike.equippedDaggerThrown", std::move(exactModifier));
     assert(resourceManager.modifierTotal("attack.strike.equippedDaggerThrown") == 10);
-    resourceManager.addModifier("criticalConfirmation.weapon", Modifier(ModifierType::Bonus, "Critico Focalizzato", "Bonus alla conferma", BonusType::Circumstance, "4"));
+    resourceManager.addModifier("criticalConfirmation.weapon", Modifier({.type = ModifierType::Bonus, .source = "Critico Focalizzato", .description = "Bonus alla conferma", .bonusType = BonusType::Circumstance, .expression = "4"}));
     assert(resourceManager.modifierTotal("criticalConfirmation.strike.equippedDaggerThrown") == 14);
-    resourceManager.addModifier("attackRange.increment.thrown", Modifier(ModifierType::Bonus, "Tiro Lungo", "Incremento di gittata aumentato", BonusType::Generic, "2"));
-    resourceManager.addModifier("attackRange.penaltyPerAdditionalIncrement.ranged", Modifier(ModifierType::Bonus, "Tiro Lontano", "Penalità di gittata ridotta", BonusType::Generic, "1"));
+    resourceManager.addModifier("attackRange.increment.thrown", Modifier({.type = ModifierType::Bonus, .source = "Tiro Lungo", .description = "Incremento di gittata aumentato", .bonusType = BonusType::Generic, .expression = "2"}));
+    resourceManager.addModifier("attackRange.penaltyPerAdditionalIncrement.ranged", Modifier({.type = ModifierType::Bonus, .source = "Tiro Lontano", .description = "Penalità di gittata ridotta", .bonusType = BonusType::Generic, .expression = "1"}));
 
     resourceManager.addToCollection(DamageComponentGrantsResource, DamageComponentGrant(DamageComponentGrantDefinition{
         .id = "flamingWeapons",
@@ -177,7 +177,7 @@ int main()
     assert(resourceManager.enhanceableResourceIsOrInheritsFrom("damage.strike.equippedDaggerThrown", "damage.thrown"));
     assert(resourceManager.enhanceableResourceIsOrInheritsFrom("criticalConfirmation.strike.equippedDaggerThrown", "criticalConfirmation.thrown"));
     resourceManager.removeModifier("attack.strike.equippedDaggerThrown", exactModifierId);
-    Modifier exactConfirmationModifier(ModifierType::Bonus, "Test", "Bonus specifico alla conferma", BonusType::Generic, "2");
+    Modifier exactConfirmationModifier({.type = ModifierType::Bonus, .source = "Test", .description = "Bonus specifico alla conferma", .bonusType = BonusType::Generic, .expression = "2"});
     const std::string exactConfirmationModifierId = exactConfirmationModifier.id();
     resourceManager.addModifier("criticalConfirmation.strike.equippedDaggerThrown", std::move(exactConfirmationModifier));
     assert(throwsInvalidArgument([&]
@@ -439,7 +439,7 @@ int main()
     assert(!strikeView.conditionalUsability[0].usable);
     assert(strikeView.conditionalUsability[0].failureReasons.size() == 2);
     assert(strikeView.requirements.size() == 3);
-    resourceManager.addModifier("attack.thrown", Modifier(ModifierType::Bonus, "Nemico prescelto", "Bonus situazionale", BonusType::Generic, "2", "Contro giganti"));
+    resourceManager.addModifier("attack.thrown", Modifier({.type = ModifierType::Bonus, .source = "Nemico prescelto", .description = "Bonus situazionale", .bonusType = BonusType::Generic, .expression = "2", .condition = "Contro giganti"}));
     resourceManager.addToCollection(CriticalAdjustmentsResource, CriticalAdjustment(CriticalAdjustmentDefinition{
         .id = "giantCriticalMultiplier",
         .source = "Anatema dei giganti",
@@ -747,7 +747,7 @@ int main()
         .purpose = WeaponWeightPurpose::TwoWeaponFighting,
         .weaponWeight = WeaponWeight::Light
     }));
-    resourceManager.addModifier("attackReach.maximum.weapon", Modifier(ModifierType::Bonus, "Affondo", "Portata aumentata", BonusType::Generic, "1"));
+    resourceManager.addModifier("attackReach.maximum.weapon", Modifier({.type = ModifierType::Bonus, .source = "Affondo", .description = "Portata aumentata", .bonusType = BonusType::Generic, .expression = "1"}));
     resourceManager.addToCollection(AttackDistanceAdjustmentsResource, AttackDistanceAdjustment(AttackDistanceAdjustmentDefinition{
         .id = "doubledReach",
         .source = "Portata raddoppiata",

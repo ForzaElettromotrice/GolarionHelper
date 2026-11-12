@@ -50,13 +50,13 @@ int main()
     CombatManeuvers combatManeuvers(resourceManager);
 
     resourceManager.addContribution(BaseAttackBonusResource, Contribution("fighter", "5"));
-    resourceManager.addModifier("attack.all", Modifier(ModifierType::Bonus, "Competenza", "Bonus a tutti gli attacchi", BonusType::Generic, "1"));
-    resourceManager.addModifier(CombatManeuverBonusAllResource, Modifier(ModifierType::Bonus, "Addestramento", "Bonus a tutte le manovre", BonusType::Generic, "2"));
-    resourceManager.addModifier(CombatManeuverBonusAllResource, Modifier(ModifierType::Bonus, "Taglia", "Modificatore di taglia al BMC", BonusType::Size, "1"));
-    resourceManager.addModifier(combatManeuverBonusResourceName(CombatManeuverType::Trip), Modifier(ModifierType::Bonus, "Sbilanciare Migliorato", "Bonus a Sbilanciare", BonusType::Generic, "3"));
-    resourceManager.addModifier(CombatManeuverDefenseAllResource, Modifier(ModifierType::Bonus, "Difesa", "Bonus alla DMC", BonusType::Generic, "2"));
-    resourceManager.addModifier(CombatManeuverDefenseAllResource, Modifier(ModifierType::Bonus, "Taglia", "Modificatore di taglia alla DMC", BonusType::Size, "1"));
-    resourceManager.addModifier(combatManeuverDefenseResourceName(CombatManeuverType::Trip), Modifier(ModifierType::Bonus, "Stabilità", "Bonus contro Sbilanciare", BonusType::Generic, "3"));
+    resourceManager.addModifier("attack.all", Modifier({.type = ModifierType::Bonus, .source = "Competenza", .description = "Bonus a tutti gli attacchi", .bonusType = BonusType::Generic, .expression = "1"}));
+    resourceManager.addModifier(CombatManeuverBonusAllResource, Modifier({.type = ModifierType::Bonus, .source = "Addestramento", .description = "Bonus a tutte le manovre", .bonusType = BonusType::Generic, .expression = "2"}));
+    resourceManager.addModifier(CombatManeuverBonusAllResource, Modifier({.type = ModifierType::Bonus, .source = "Taglia", .description = "Modificatore di taglia al BMC", .bonusType = BonusType::Size, .expression = "1"}));
+    resourceManager.addModifier(combatManeuverBonusResourceName(CombatManeuverType::Trip), Modifier({.type = ModifierType::Bonus, .source = "Sbilanciare Migliorato", .description = "Bonus a Sbilanciare", .bonusType = BonusType::Generic, .expression = "3"}));
+    resourceManager.addModifier(CombatManeuverDefenseAllResource, Modifier({.type = ModifierType::Bonus, .source = "Difesa", .description = "Bonus alla DMC", .bonusType = BonusType::Generic, .expression = "2"}));
+    resourceManager.addModifier(CombatManeuverDefenseAllResource, Modifier({.type = ModifierType::Bonus, .source = "Taglia", .description = "Modificatore di taglia alla DMC", .bonusType = BonusType::Size, .expression = "1"}));
+    resourceManager.addModifier(combatManeuverDefenseResourceName(CombatManeuverType::Trip), Modifier({.type = ModifierType::Bonus, .source = "Stabilità", .description = "Bonus contro Sbilanciare", .bonusType = BonusType::Generic, .expression = "3"}));
 
     CombatManeuversView view = combatManeuvers.toView();
     assert(view.baseAttackBonus == 5);

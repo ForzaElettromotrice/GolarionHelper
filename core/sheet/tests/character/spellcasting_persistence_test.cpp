@@ -23,6 +23,7 @@ namespace
         for (const auto &[id, mode] : {std::pair{"a", SpellcastingMode::Prepared}, {"b", SpellcastingMode::Spontaneous}, {"c", SpellcastingMode::Flexible}})
         {
             resources.addToCollection(Spellcastings::Resource, SpellcastingGrant{id, "Class", mode, CharacterClassType::Wizard});
+            resources.addToCollection(repertoireQuotasResource(id), SpellRepertoireQuota{"known", "Class", {{3, 1}}});
             resources.addToCollection(spellSlotsResource(id), SpellSlotGrant{"base", "Class", {{3, 2}, {4, 2}, {8, 2}}});
             resources.addToCollection(preparationMetamagicGrantsResource(id), MetamagicGrant{
                 .id = "silent", .source = "Test", .type = MetamagicType::Silent, .usageCost = MetamagicUsageCost{"source", 1, pool}});
@@ -45,20 +46,20 @@ int main()
     Spellcastings castings(resources);
     const auto pool = std::make_shared<MetamagicUsagePool>("source", 2);
     reconstruct(resources, pool);
-    for (const auto id : {"a", "b", "c"}) castings.get(id).addToRepertoire("fireball");
+    for (const auto id : {"a", "b", "c"}) castings.get(id).selectRepertoireSpell({"known", 3, "fireball"});
     auto &prepared = dynamic_cast<PreparedSpellcasting &>(castings.get("a"));
-    prepared.prepare(std::vector<SpellSlotId>{{"base", 4, 0}, {"base", 4, 1}}, "fireball", {{MetamagicType::Silent, "silent", {}}});
+    prepared.prepare(std::vector<SpellSlotId>{{"base", 4, 0}, {"base", 4, 1}}, {"fireball", {{MetamagicType::Silent, "silent", {}}}});
     prepared.consume({"base", 4, 0});
     auto &spontaneous = dynamic_cast<SpontaneousSpellcasting &>(castings.get("b"));
-    spontaneous.consume({"base", 3, 0}, "fireball");
+    spontaneous.consume({"base", 3, 0}, {"fireball"});
     auto &flexible = dynamic_cast<FlexibleSpellcasting &>(castings.get("c"));
-    flexible.prepare({"prepared", 4, 0}, "fireball", {{MetamagicType::Silent, "silent", {}}});
-    flexible.consume({"base", 4, 0}, {"prepared", 4, 0});
+    flexible.prepare({"prepared", 4, 0}, {"fireball", {{MetamagicType::Silent, "silent", {}}}});
+    flexible.consume({"base", 4, 0}, {{"prepared", 4, 0}});
     assert(pool->remaining() == 0);
     const auto saved = castings.toData();
     const auto json = serialize(saved);
     const auto decoded = persistence::fromJson(json);
-    assert(decoded.formatVersion == 35);
+    assert(decoded.formatVersion == 41);
     assert(serialize(decoded.spellcastings) == json);
     assert(json.find("dailyCapacityByLevel") == std::string::npos);
     assert(json.find("usageCost") == std::string::npos);
@@ -71,7 +72,7 @@ int main()
     restored.load(decoded.spellcastings);
     assert(serialize(restored.toData()) == json);
     assert(exhausted->remaining() == 0);
-    dynamic_cast<FlexibleSpellcasting &>(restored.get("c")).consume({"base", 4, 1}, {"prepared", 4, 0});
+    dynamic_cast<FlexibleSpellcasting &>(restored.get("c")).consume({"base", 4, 1}, {{"prepared", 4, 0}});
     assert(exhausted->remaining() == 0);
     restored.load(decoded.spellcastings);
     assert(&restored.get("a") == original);
@@ -79,7 +80,7 @@ int main()
     // Failure in the last entry must not commit changes to earlier entries or repertoires.
     auto invalid = saved;
     exhausted->reset(7);
-    invalid.castings[0].repertoire.push_back("extra");
+    invalid.castings[0].repertoireData->manualSpellIds.push_back("extra");
     std::get<PreparedSpellcastingData>(invalid.castings[0].state).preparations.clear();
     std::get<FlexibleSpellcastingData>(invalid.castings[2].state).consumedSlots.push_back({"missing", 4, 0});
     rejects([&] { restored.load(invalid); });
@@ -94,9 +95,9 @@ int main()
         case 0: invalid.castings.push_back(saved.castings[0]); break;
         case 1: invalid.castings[0].id = "unknown"; break;
         case 2: invalid.castings[0].state = SpontaneousSpellcastingData{}; break;
-        case 3: invalid.castings[0].repertoire.push_back(" fireball "); break;
-        case 4: invalid.castings[0].repertoire.clear(); break;
-        case 5: invalid.castings[0].repertoire.push_back(" "); break;
+        case 3: invalid.castings[0].repertoireData->selections.push_back({"known", 3, " fireball "}); break;
+        case 4: invalid.castings[0].repertoireData->selections[0].spellLevel = 10; break;
+        case 5: invalid.castings[0].repertoireData->manualSpellIds.push_back(" "); break;
         case 6: invalid.castings.pop_back(); break;
         }
         rejects([&] { restored.load(invalid); });
@@ -108,8 +109,8 @@ int main()
     castings.load(saved);
     assert(serialize(castings.toData()) == json);
     assert(pool->remaining() == 0);
-    flexible.consume({"base", 4, 1}, {"prepared", 4, 0});
-    rejects([&] { flexible.prepare({"prepared", 4, 0}, "fireball", {{MetamagicType::Silent, "silent", {}}}); });
+    flexible.consume({"base", 4, 1}, {{"prepared", 4, 0}});
+    rejects([&] { flexible.prepare({"prepared", 4, 0}, {"fireball", {{MetamagicType::Silent, "silent", {}}}}); });
     castings.load(saved);
 
     // The snapshot retains both levels and linked-slot payment without the original grants/rules.
@@ -185,6 +186,6 @@ int main()
     wire.erase("spellcastings");
     assert(persistence::fromJson(wire.dump()).spellcastings.castings.empty());
     auto empty = CharacterSheet().toSaveData();
-    assert(empty.formatVersion == 35 && empty.spellcastings.castings.empty());
+    assert(empty.formatVersion == 41 && empty.spellcastings.castings.empty());
     assert(persistence::fromJson(persistence::toJson(empty)).spellcastings.castings.empty());
 }

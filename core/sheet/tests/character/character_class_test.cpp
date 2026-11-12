@@ -88,12 +88,12 @@ int main()
         assert(skillCount == 1 && slotAdds == 1);
         rejects([&] { CharacterClass duplicate(resources, "first", definition()); });
         assert(resources.targetValue("class.first.level") == 1);
-        first.selectOption("first", "path", "a");
+        first.selectOption({"first", "path", "a"});
         assert(resources.contributionTotal("choice") == 5);
-        rejects([&] { first.selectOption("first", "path", "a"); });
-        rejects([&] { first.selectOption("first", "path", "b"); });
-        rejects([&] { first.selectOption("unknown", "path", "a"); });
-        rejects([&] { first.unselectOption("first", "path", "b"); });
+        rejects([&] { first.selectOption({"first", "path", "a"}); });
+        rejects([&] { first.selectOption({"first", "path", "b"}); });
+        rejects([&] { first.selectOption({"unknown", "path", "a"}); });
+        rejects([&] { first.unselectOption({"first", "path", "b"}); });
         first.setLevel(2);
         first.setLevel(2);
         assert(resources.contributionTotal("choice") == 12);
@@ -106,7 +106,7 @@ int main()
         first.setLevel(3);
         assert(resources.contributionTotal("choice") == 0);
         assert(resources.contributionTotal("bonus") == 30);
-        rejects([&] { first.selectOption("first", "path", "b"); });
+        rejects([&] { first.selectOption({"first", "path", "b"}); });
         first.setLevel(4, 7);
         assert(first.toData().hitDieResults.at(4) == 7);
         assert(resources.contributionTotal("hp.max") == 7);
@@ -116,9 +116,9 @@ int main()
         assert(first.toData().hitDieResults.empty());
         assert(resources.contributionTotal("hp.max") == 0);
         assert(resources.contributionTotal("choice") == 12);
-        first.unselectOption("first", "path", "a");
+        first.unselectOption({"first", "path", "a"});
         assert(resources.contributionTotal("choice") == 0);
-        first.selectOption("first", "path", "b");
+        first.selectOption({"first", "path", "b"});
         assert(resources.contributionTotal("choice") == 9);
         {
             CharacterClass second(resources, "second", definition(), 1);
@@ -145,7 +145,7 @@ int main()
     {
         CharacterClass instance(resources, "failure", failing);
         instance.setHitDieResult(1, 6);
-        instance.selectOption("first", "path", "a");
+        instance.selectOption({"first", "path", "a"});
         const int adds = slotAdds, removes = slotRemoves;
         rejects([&] { instance.setLevel(2, 8); });
         assert(instance.toData().hitDieResults.size() == 1 && instance.toData().hitDieResults.at(1) == 6);

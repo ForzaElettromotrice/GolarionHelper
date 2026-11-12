@@ -16,6 +16,14 @@ namespace
 
 namespace golarion
 {
+    bool SpellDefinitionManager::contains(std::string_view id)
+    {
+        const auto key = normalize(id);
+        const std::scoped_lock lock(mutex_);
+        if (!loaded_) loadCatalog();
+        return definitions_.contains(key);
+    }
+
     SpellDefinitionManager &SpellDefinitionManager::instance()
     {
         static SpellDefinitionManager manager;

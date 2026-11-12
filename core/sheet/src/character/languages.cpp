@@ -178,4 +178,19 @@ namespace golarion
         learned_ = std::move(learned);
         refreshReminders();
     }
+    std::vector<PendingChoice> Languages::pendingChoices() const
+    {
+        std::vector<PendingChoice> result;
+        for (auto origin : {LanguageOrigin::Intelligence, LanguageOrigin::Linguistics})
+        {
+            const auto maximum = static_cast<std::size_t>(capacity(origin));
+            const auto selected = used(origin);
+            if (selected < maximum)
+                result.push_back({LanguageChoiceReference{origin},
+                    origin == LanguageOrigin::Intelligence ? "Scegli le lingue aggiuntive da Intelligenza" : "Scegli le lingue apprese con Linguistica",
+                    maximum - selected, false});
+        }
+        return result;
+    }
+
 }

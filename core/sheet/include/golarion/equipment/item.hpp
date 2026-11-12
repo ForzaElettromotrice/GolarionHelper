@@ -65,6 +65,7 @@ namespace golarion
     {
     public:
         explicit ItemSelector(ItemSelectorDefinition definition);
+        ItemSelectorDefinition toDefinition() const { return {definitionIds_, tags_}; }
 
     private:
         friend class ItemInstance;
@@ -136,6 +137,8 @@ namespace golarion
         friend class Equipment;
         friend class Inventory;
         friend class Money;
+
+        ItemInstance(ItemInstanceDefinition definition, const ItemDefinition &itemDefinition);
 
         struct CompiledEffect
         {

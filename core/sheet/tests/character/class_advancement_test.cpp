@@ -1,3 +1,4 @@
+#include "../fixtures/advance_sheet.hpp"
 #include "../fixtures/class_definition.hpp"
 #include "golarion/character/character_sheet.hpp"
 #include "golarion/persistence/json.hpp"
@@ -30,11 +31,11 @@ int main()
     CharacterSheet sheet(catalog);
     sheet.setAbilityBaseValue(AbilityType::Constitution, 8);
     sheet.setAbilityBaseValue(AbilityType::Intelligence, 4);
-    rejects([&] { sheet.addClassLevel(CharacterClassType::Fighter, 9); });
+    rejects([&] { test::advanceSheetFixture(sheet, CharacterClassType::Fighter, 9); });
     assert(sheet.level() == 0);
-    sheet.addClassLevel(CharacterClassType::Fighter, 2);
-    sheet.addClassLevel(CharacterClassType::Fighter, 5);
-    sheet.addClassLevel(CharacterClassType::Rogue, 8);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter, 2);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter, 5);
+    test::advanceSheetFixture(sheet, CharacterClassType::Rogue, 8);
     assert(sheet.toView().hitPoints.max == 12);
     assert(sheet.toView().skills.maxRanks == 7); // 2 * max(1, 2 - 3) + max(1, 8 - 3).
     sheet.setAbilityBaseValue(AbilityType::Constitution, 4);
@@ -46,7 +47,7 @@ int main()
     assert(sheet.toView().hitPoints.max == 23 && sheet.toView().hitPoints.current == 20);
     rejects([&] { sheet.setClassHitDieResult(CharacterClassType::Fighter, 3, 4); });
     rejects([&] { sheet.setClassHitDieResult(CharacterClassType::Fighter, 1, 0); });
-    rejects([&] { sheet.addClassLevel(CharacterClassType::Fighter, 9); });
+    rejects([&] { test::advanceSheetFixture(sheet, CharacterClassType::Fighter, 9); });
     assert(sheet.level() == 3 && sheet.toView().hitPoints.max == 23);
 
     sheet.setAbilityBaseValue(AbilityType::Intelligence, 8);
@@ -66,8 +67,29 @@ int main()
     assert(restored.toView().skills.maxRanks == 18);
     assert(restored.toView().classes.classes[0].hitDieResults.at(1) == 4);
     assert(persistence::toJson(restored.toSaveData()) == persistence::toJson(sheet.toSaveData()));
-    restored.addClassLevel(CharacterClassType::Fighter, 1);
+    test::advanceSheetFixture(restored, CharacterClassType::Fighter, 1);
     assert(restored.toView().skills.maxRanks == 27); // Class contribution plus independent endpoint grant.
+    restored.setFavoredClass(CharacterClassType::Fighter);
+    restored.selectFavoredClassBonus(CharacterClassType::Fighter, 3, "base.hitPoint");
+    restored.selectFeat("base.feat.level3", "improvedInitiative");
+    restored.removeClassLevel(CharacterClassType::Fighter);
+    assert(restored.level() == 3 && restored.toView().skills.maxRanks == 18);
+    assert(restored.toView().hitPoints.max == 23 && restored.toView().hitPoints.current == 20);
+    assert(!restored.toSaveData().classes.classes.front().hitDieResults.contains(3));
+    assert(restored.toSaveData().classes.favoredClasses.bonuses.empty());
+    restored.removeClassLevel(CharacterClassType::Rogue);
+    assert(restored.level() == 2 && restored.toView().classes.classes.size() == 1);
+    assert(!restored.toView().feats.feats.front().active);
+    restored.save(path);
+    auto reduced = CharacterSheet::load(path, catalog);
+    assert(persistence::toJson(reduced.toSaveData()) == persistence::toJson(restored.toSaveData()));
+    rejects([&] { reduced.removeClassLevel(CharacterClassType::Rogue); });
+    reduced.removeClassLevel(CharacterClassType::Fighter);
+    reduced.removeClassLevel(CharacterClassType::Fighter);
+    assert(reduced.level() == 0 && reduced.toView().classes.classes.empty());
+    rejects([&] { reduced.removeClassLevel(CharacterClassType::Fighter); });
+    test::advanceSheetFixture(reduced, CharacterClassType::Fighter, 4);
+    assert(reduced.level() == 1 && reduced.toSaveData().classes.classes.front().hitDieResults.size() == 1);
 
     const auto valid = nlohmann::json::parse(persistence::toJson(sheet.toSaveData()));
     auto malformed = valid;
@@ -104,7 +126,7 @@ int main()
     }}};
     const ClassDefinitionManager intelligenceCatalog({intelligenceClass});
     CharacterSheet intelligenceSheet(intelligenceCatalog);
-    intelligenceSheet.addClassLevel(CharacterClassType::Wizard, 4);
+    test::advanceSheetFixture(intelligenceSheet, CharacterClassType::Wizard, 4);
     assert(intelligenceSheet.toView().skills.maxRanks == 3); // 2 base + 1 from the included enhancement.
     assert(intelligenceSheet.toView().languages.remainingIntelligence == 2);
     intelligenceSheet.setSkillRanks(SkillType::Spellcraft, 1);

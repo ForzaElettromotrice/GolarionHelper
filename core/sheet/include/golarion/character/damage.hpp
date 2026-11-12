@@ -109,6 +109,7 @@ namespace golarion
     {
     public:
         explicit DamageComponent(DamageComponentDefinition definition);
+        DamageComponentDefinition toDefinition() const { return {id_, source_, role_, dice_, types_, typeMode_, criticalRule_, traits_}; }
         DamageComponent withSource(std::string source) const;
 
     private:

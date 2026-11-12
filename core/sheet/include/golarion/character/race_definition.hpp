@@ -21,6 +21,7 @@ namespace golarion
         std::string prompt;
         std::size_t selectionCount;
         std::vector<RacialChoiceOptionDefinition> options;
+        bool blocksAdvancement = true;
     };
 
     struct RacialElementDefinition

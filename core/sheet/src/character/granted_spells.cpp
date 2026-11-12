@@ -1,3 +1,4 @@
+#include "golarion/character/spell_catalog.hpp"
 #include "golarion/character/granted_spells.hpp"
 #include "golarion/character/spell_definition_manager.hpp"
 #include "golarion/resource/resource_manager.hpp"
@@ -7,13 +8,14 @@
 
 namespace golarion
 {
-    GrantedSpell::GrantedSpell(GrantedSpellDefinition definition) : definition_(std::move(definition))
+    GrantedSpell::GrantedSpell(GrantedSpellDefinition definition, const SpellCatalog *catalog) : definition_(std::move(definition))
     {
         auto &d = definition_;
         d.id = normalize(d.id);
         d.source = normalize(d.source);
         d.spellId = normalize(d.spellId);
-        SpellDefinitionManager::instance().get(d.spellId);
+        if (catalog) catalog->get(d.spellId);
+        else SpellDefinitionManager::instance().get(d.spellId);
         switch (d.usage)
         {
         case GrantedSpellUsage::Limited:
@@ -54,14 +56,14 @@ namespace golarion
             d.pool ? std::optional<int>(d.pool->remaining()) : std::nullopt, d.pool ? d.cost : 0};
     }
 
-    GrantedSpells::GrantedSpells(ResourceManager &resources) : resources_(resources)
+    GrantedSpells::GrantedSpells(ResourceManager &resources, const SpellCatalog *catalog) : catalog_(catalog), resources_(resources)
     {
         resources_.registerCollectionResource<GrantedSpellDefinition>(Resource,
             [this](GrantedSpellDefinition definition)
             {
                 const auto id = normalize(definition.id);
                 if (spells_.contains(id)) throw std::invalid_argument("spell grant already exists");
-                spells_.emplace(id, GrantedSpell(std::move(definition)));
+                spells_.emplace(id, GrantedSpell(std::move(definition), catalog_));
             },
             [this](std::string_view id)
             {

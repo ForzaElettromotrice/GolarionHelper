@@ -67,6 +67,7 @@ namespace golarion
     {
     public:
         explicit EnergyResistanceSelector(EnergyResistanceSelectorDefinition definition = {});
+        EnergyResistanceSelectorDefinition toDefinition() const { return {energy_, grantId_, anyTags_, excludedGrantIds_}; }
 
     private:
         friend class SpecialDefenses;
@@ -143,6 +144,7 @@ namespace golarion
     {
     public:
         explicit DamageReductionSelector(DamageReductionSelectorDefinition definition = {});
+        DamageReductionSelectorDefinition toDefinition() const { return {grantId_, anyTags_, excludedGrantIds_}; }
 
     private:
         friend class SpecialDefenses;

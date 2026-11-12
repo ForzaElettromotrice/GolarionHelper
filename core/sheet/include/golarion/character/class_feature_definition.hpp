@@ -25,6 +25,7 @@ namespace golarion
         std::string prompt;
         std::size_t selectionCount;
         std::vector<ClassChoiceOptionDefinition> options;
+        bool blocksAdvancement = true;
     };
 
     struct ClassFeatureProgressionDefinition

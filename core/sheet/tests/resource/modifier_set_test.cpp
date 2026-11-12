@@ -15,12 +15,12 @@ namespace
 {
     golarion::Modifier bonus(std::string source, golarion::BonusType bonusType, std::string expression)
     {
-        return golarion::Modifier(golarion::ModifierType::Bonus, std::move(source), "Test bonus", bonusType, std::move(expression));
+        return golarion::Modifier({.type = golarion::ModifierType::Bonus, .source = std::move(source), .description = "Test bonus", .bonusType = bonusType, .expression = std::move(expression)});
     }
 
     golarion::Modifier penalty(std::string source, std::string expression)
     {
-        return golarion::Modifier(golarion::ModifierType::Penalty, std::move(source), "Test penalty", std::nullopt, std::move(expression));
+        return golarion::Modifier({.type = golarion::ModifierType::Penalty, .source = std::move(source), .description = "Test penalty", .bonusType = std::nullopt, .expression = std::move(expression)});
     }
 
     template<typename Function>
@@ -74,7 +74,7 @@ int main()
 
     ModifierSet conditional;
     conditional.addModifier(bonus("Discendenza", BonusType::Racial, "2"));
-    conditional.addModifier(Modifier(ModifierType::Bonus, "Resistenza al veleno", "Bonus contro il veleno", BonusType::Racial, "4", "Contro il veleno"));
+    conditional.addModifier(Modifier({.type = ModifierType::Bonus, .source = "Resistenza al veleno", .description = "Bonus contro il veleno", .bonusType = BonusType::Racial, .expression = "4", .condition = "Contro il veleno"}));
     assert(conditional.calculateTotal(manager) == 2);
 
     manager.registerTarget("strength", []
@@ -91,15 +91,7 @@ int main()
         return armorWorn;
     });
     ModifierSet requirements;
-    requirements.addModifier(Modifier(
-        ModifierType::Bonus,
-        "Monaco",
-        "Bonus alla CA",
-        BonusType::Dodge,
-        "3",
-        std::nullopt,
-        std::vector<Requirement>{Requirement("@armor.worn == 0", "Non applicabile mentre indossi un'armatura")}
-    ));
+    requirements.addModifier(Modifier({.type = ModifierType::Bonus, .source = "Monaco", .description = "Bonus alla CA", .bonusType = BonusType::Dodge, .expression = "3", .condition = std::nullopt, .requirements = std::vector<Requirement>{Requirement("@armor.worn == 0", "Non applicabile mentre indossi un'armatura")}}));
     assert(requirements.calculateTotal(manager) == 0);
     ModifierSetView inactiveView = requirements.toView(manager);
     assert(inactiveView.total == 0);
@@ -121,8 +113,8 @@ int main()
 
     ModifierSet snapshotSet;
     snapshotSet.addModifier(bonus("Oggetto permanente", BonusType::Resistance, "3"));
-    snapshotSet.addModifier(Modifier(ModifierType::Bonus, "Protezione minore", "Bonus contro il veleno", BonusType::Resistance, "2", "Contro il veleno"));
-    snapshotSet.addModifier(Modifier(ModifierType::Bonus, "Protezione maggiore", "Bonus contro la paura", BonusType::Resistance, "5", "Contro la paura"));
+    snapshotSet.addModifier(Modifier({.type = ModifierType::Bonus, .source = "Protezione minore", .description = "Bonus contro il veleno", .bonusType = BonusType::Resistance, .expression = "2", .condition = "Contro il veleno"}));
+    snapshotSet.addModifier(Modifier({.type = ModifierType::Bonus, .source = "Protezione maggiore", .description = "Bonus contro la paura", .bonusType = BonusType::Resistance, .expression = "5", .condition = "Contro la paura"}));
 
     ModifierSetView snapshot = snapshotSet.toView(manager);
     assert(snapshot.total == 3);
@@ -135,8 +127,8 @@ int main()
 
     manager.registerEnhanceableResource("conditionalCombination");
     manager.addModifier("conditionalCombination", bonus("Oggetto permanente", BonusType::Resistance, "3"));
-    manager.addModifier("conditionalCombination", Modifier(ModifierType::Bonus, "Protezione dal veleno", "Bonus contro il veleno", BonusType::Resistance, "4", "Contro il veleno"));
-    manager.addModifier("conditionalCombination", Modifier(ModifierType::Bonus, "Protezione dalla paura", "Bonus contro la paura", BonusType::Resistance, "5", "Contro la paura"));
+    manager.addModifier("conditionalCombination", Modifier({.type = ModifierType::Bonus, .source = "Protezione dal veleno", .description = "Bonus contro il veleno", .bonusType = BonusType::Resistance, .expression = "4", .condition = "Contro il veleno"}));
+    manager.addModifier("conditionalCombination", Modifier({.type = ModifierType::Bonus, .source = "Protezione dalla paura", .description = "Bonus contro la paura", .bonusType = BonusType::Resistance, .expression = "5", .condition = "Contro la paura"}));
     const ModifierSetView combinedSnapshot = manager.modifierSetView("conditionalCombination", {"Contro il veleno", "Contro la paura"});
     assert(combinedSnapshot.permanentTotal == 3);
     assert(combinedSnapshot.total == 5);

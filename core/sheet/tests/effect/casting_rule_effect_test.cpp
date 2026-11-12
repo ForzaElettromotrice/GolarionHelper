@@ -1,3 +1,4 @@
+#include "../fixtures/definition_roundtrip.hpp"
 #include "golarion/character/spellcastings.hpp"
 #include "golarion/character/prepared_spellcasting.hpp"
 #include "golarion/character/flexible_spellcasting.hpp"
@@ -32,7 +33,7 @@ int main()
     auto pool = std::make_shared<UsagePool>(3);
     const auto apply = [&](const char *json, std::string id)
     {
-        return compileEffect(effectDefinitionFromJson(nlohmann::json::parse(json)), {id, "Fonte", [pool](std::string_view name)
+        return compileEffect(roundTripEffect(nlohmann::json::parse(json)), {id, "Fonte", [pool](std::string_view name)
         { if (name != "charges") throw std::invalid_argument("unknown pool"); return pool; }})(resources);
     };
     auto caster = apply(R"({"id":"x","type":"spellcastingGrant","mode":"prepared","spellListClass":"wizard"})", "caster");
@@ -40,12 +41,12 @@ int main()
     auto &prepared = dynamic_cast<PreparedSpellcasting &>(castings.get("caster"));
     prepared.addToRepertoire("fireball");
     auto rule = apply(R"({"id":"x","type":"preparationCost","castingId":"caster","school":"evocation","requiredSlots":2})", "cost");
-    rejects([&] { prepared.prepare(SpellSlotId{"slots", 3, 0}, "fireball"); });
+    rejects([&] { prepared.prepare(SpellSlotId{"slots", 3, 0}, {"fireball"}); });
     auto exemption = apply(R"({"id":"x","type":"preparationCostExemption","castingId":"caster","ruleId":"cost"})", "exempt");
     auto check = apply(R"({"id":"x","type":"preparationCheck","castingId":"caster","expression":"@permitted","filter":{"schools":["evocation"]}})", "check");
-    rejects([&] { prepared.prepare(SpellSlotId{"slots", 3, 0}, "fireball"); });
+    rejects([&] { prepared.prepare(SpellSlotId{"slots", 3, 0}, {"fireball"}); });
     auto checkExempt = apply(R"({"id":"x","type":"preparationCheckExemption","castingId":"caster","checkId":"check","filter":{"spellIds":["fireball"]}})", "checkExempt");
-    prepared.prepare(SpellSlotId{"slots", 3, 0}, "fireball");
+    prepared.prepare(SpellSlotId{"slots", 3, 0}, {"fireball"});
     checkExempt();
     permitted = 1;
     auto preserved = apply(R"({"id":"x","type":"consumptionExemption","castingId":"caster","filter":{"spellIds":["fireball"]}})", "preserve");
@@ -57,15 +58,15 @@ int main()
     prepared.clear({"slots", 3, 0});
     auto conversion = apply(R"({"id":"x","type":"spontaneousConversion","castingId":"caster","groupIds":["slots"],"replacements":[{"spellId":"fireball","level":3}]})", "conversion");
     auto rod = apply(R"({"id":"x","type":"metamagicGrant","castingId":"caster","phase":"casting","metamagic":"silent","slotCost":"waived","rodGrade":"lesser","poolId":"charges"})", "rod");
-    prepared.prepare(SpellSlotId{"slots", 3, 0}, "fireball");
-    prepared.consume({"slots", 3, 0}, "fireball", {{MetamagicType::Silent, "rod", {}}});
+    prepared.prepare(SpellSlotId{"slots", 3, 0}, {"fireball"});
+    prepared.consume({"slots", 3, 0}, {"fireball", {{MetamagicType::Silent, "rod", {}}}});
     assert(pool->remaining() == 2);
     assert(castings.toData().metamagicUses->empty());
     rod(); conversion();
     prepared.clear({"slots", 3, 0});
     auto level = apply(R"({"id":"x","type":"spellLevelOverride","castingId":"caster","groupId":"slots","spellId":"fireball","level":4})", "level");
-    rejects([&] { prepared.prepare(SpellSlotId{"slots", 3, 0}, "fireball"); });
-    prepared.prepare(SpellSlotId{"slots", 4, 0}, "fireball");
+    rejects([&] { prepared.prepare(SpellSlotId{"slots", 3, 0}, {"fireball"}); });
+    prepared.prepare(SpellSlotId{"slots", 4, 0}, {"fireball"});
     prepared.clear({"slots", 4, 0});
     level(); check(); exemption(); rule(); slots(); caster();
     assert(castings.toView().castings.empty());
@@ -78,12 +79,12 @@ int main()
     auto mixing = apply(R"({"id":"x","type":"metamagicMixingPermission","castingId":"flex","poolId":"charges","filter":{"spellIds":["fireball"]}})", "mix");
     auto &flex = dynamic_cast<FlexibleSpellcasting &>(castings.get("flex"));
     flex.addToRepertoire("fireball");
-    flex.prepare({"preparations", 4, 0}, "fireball", {{MetamagicType::Silent, "silent", {}}});
+    flex.prepare({"preparations", 4, 0}, {"fireball", {{MetamagicType::Silent, "silent", {}}}});
     pool->consume();
-    rejects([&] { flex.consume({"slots", 4, 0}, {"preparations", 4, 0}, {{MetamagicType::Still, "still", {}}}, "mix"); });
+    rejects([&] { flex.consume({"slots", 4, 0}, {{"preparations", 4, 0}, {{MetamagicType::Still, "still", {}}}, "mix"}); });
     assert(pool->remaining() == 1 && flex.toData().consumedSlots.empty());
     pool->refill();
-    flex.consume({"slots", 4, 0}, {"preparations", 4, 0}, {{MetamagicType::Still, "still", {}}}, "mix");
+    flex.consume({"slots", 4, 0}, {{"preparations", 4, 0}, {{MetamagicType::Still, "still", {}}}, "mix"});
     assert(pool->remaining() == 1);
     mixing(); still(); silent(); preparationSlots(); flexibleSlots(); flexibleGrant();
 

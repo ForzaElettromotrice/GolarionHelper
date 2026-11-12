@@ -299,15 +299,28 @@ namespace golarion
             return FeatSlotGrantEffectDefinition{.id = id, .filter = std::move(filter)};
         }
 
-        if (type == "spellSlotGrant")
+        if (type == "spellRepertoireList")
+            return SpellRepertoireListEffectDefinition{id, normalize(json.at("castingId").get<std::string>())};
+        if (type == "spellRepertoireGrant")
         {
-            const auto poolName = normalize(json.at("pool").get<std::string>());
+            SpellRepertoireGrantEffectDefinition effect{id, normalize(json.at("castingId").get<std::string>()), {}};
+            const auto &ids = json.at("spellIds");
+            if (!ids.is_array() || ids.empty()) throw std::invalid_argument("repertoire grant must contain spells");
+            for (const auto &entry : ids)
+                if (!effect.spellIds.insert(normalize(entry.get<std::string>())).second)
+                    throw std::invalid_argument("duplicate repertoire grant spell");
+            return effect;
+        }
+
+        if (type == "spellSlotGrant" || type == "spellRepertoireQuota")
+        {
+            const auto poolName = type == "spellRepertoireQuota" ? std::string("casting") : normalize(json.at("pool").get<std::string>());
             SpellSlotPoolType pool;
             if (poolName == "casting") pool = SpellSlotPoolType::Casting;
             else if (poolName == "preparation") pool = SpellSlotPoolType::Preparation;
             else throw std::invalid_argument("unknown spell slot pool type: " + poolName);
             SpellSlotGrantEffectDefinition effect{id, normalize(json.at("castingId").get<std::string>()), pool, {}};
-            const auto &slots = json.at("slots");
+            const auto &slots = json.at(type == "spellRepertoireQuota" ? "quotas" : "slots");
             if (!slots.is_array() || slots.empty()) throw std::invalid_argument("spell slots must be a nonempty array");
             for (const auto &entry : slots)
             {
@@ -327,6 +340,7 @@ namespace golarion
                     if (!effect.allowedSpellIds->insert(normalize(entry.get<std::string>())).second)
                         throw std::invalid_argument("duplicate allowed spell ID");
             }
+            if (type == "spellRepertoireQuota") return SpellRepertoireQuotaEffectDefinition{effect.id, effect.castingId, effect.dailyCapacityByLevel, effect.allowedSpellIds};
             return effect;
         }
 

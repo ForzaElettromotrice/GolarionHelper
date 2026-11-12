@@ -19,6 +19,7 @@ namespace golarion
         ItemDefinitionManager(ItemDefinitionManager &&) = delete;
         ItemDefinitionManager &operator=(ItemDefinitionManager &&) = delete;
 
+        bool contains(std::string_view itemDefinitionId);
         const ItemDefinition &get(std::string_view itemDefinitionId);
 
     private:

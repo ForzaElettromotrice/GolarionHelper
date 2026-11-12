@@ -1,4 +1,8 @@
 #pragma once
+#include "golarion/character/feat_definition.hpp"
+#include "golarion/character/spell_definition.hpp"
+#include "golarion/equipment/item.hpp"
+#include "golarion/view/enhancements_view.hpp"
 
 #include "golarion/view/feats_view.hpp"
 #include "golarion/view/classes_view.hpp"
@@ -29,6 +33,7 @@
 #include "golarion/view/skills_view.hpp"
 #include "golarion/view/special_defenses_view.hpp"
 
+#include <string>
 #include <vector>
 
 namespace golarion
@@ -63,5 +68,10 @@ namespace golarion
         ClassesView classes;
         bool legacyFirstLevelFeatSlot;
         SpellcastingsView spellcastings;
+        EnhancementsView enhancements;
+        std::vector<ItemDefinition> customItemDefinitions;
+        std::vector<SpellDefinition> customSpellDefinitions;
+        std::vector<FeatDefinition> customFeatDefinitions;
+        std::string notes;
     };
 }

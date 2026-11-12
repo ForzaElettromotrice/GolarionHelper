@@ -46,6 +46,7 @@ namespace golarion
     {
     public:
         explicit SpellResistanceSelector(SpellResistanceSelectorDefinition definition = {});
+        SpellResistanceSelectorDefinition toDefinition() const { return {grantId_, anyTags_, excludedGrantIds_}; }
 
     private:
         friend class SpecialDefenses;

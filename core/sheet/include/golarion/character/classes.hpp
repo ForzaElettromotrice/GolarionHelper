@@ -1,4 +1,6 @@
 #pragma once
+#include "golarion/character/pending_choice.hpp"
+#include "golarion/character/class_option_definition.hpp"
 
 #include "golarion/character/character_class.hpp"
 #include "golarion/character/class_definition_manager.hpp"
@@ -20,6 +22,7 @@ namespace golarion
         Classes &operator=(Classes &&) = delete;
 
         void addLevel(CharacterClassType type, std::optional<int> hitDieResult = std::nullopt);
+        void removeLevel(CharacterClassType type);
         void setHitDieResult(CharacterClassType type, int classLevel, int result);
         void setFavoredClass(CharacterClassType type);
         void setFavoredClasses(std::set<CharacterClassType> types);
@@ -33,8 +36,10 @@ namespace golarion
         ClassesView toView() const;
         // Restore class sources only; call loadFavoredClasses after reconstructing other providers.
         void load(const ClassesData &data);
-        void selectOption(CharacterClassType type, const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId);
-        void unselectOption(CharacterClassType type, const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId);
+        void selectOption(CharacterClassType type, const ClassOptionDefinition &definition);
+        void unselectOption(CharacterClassType type, const ClassOptionDefinition &definition);
+
+        std::vector<PendingChoice> pendingChoices() const;
 
     private:
         CharacterClass &characterClass(CharacterClassType type);

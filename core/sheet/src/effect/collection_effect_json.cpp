@@ -380,7 +380,13 @@ namespace golarion
         if (type == "temporaryHitPoints")
         {
             std::optional<GameDuration> duration;
-            if (j.contains("durationRounds")) duration = GameDuration::fromRounds(integer(j, "durationRounds", 0));
+            if (j.contains("durationRounds"))
+            {
+                const auto &rounds = j.at("durationRounds");
+                if (!rounds.is_number_integer() || rounds < 0 || rounds > std::numeric_limits<std::int64_t>::max())
+                    throw std::invalid_argument("invalid temporary hit point duration");
+                duration = GameDuration::fromRounds(rounds.get<std::int64_t>());
+            }
             return finish(TemporaryHitPointGrant{id, text(j, "expression"), duration});
         }
         if (type == "conditionEntry") return finish(ConditionEntryDefinition{id, text(j, "conditionId"), source, integer(j, "severity", 1),

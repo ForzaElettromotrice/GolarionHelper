@@ -103,7 +103,7 @@ int main()
         manager.targetValue("wis");
     }));
 
-    Modifier modifier(ModifierType::Bonus, "Cintura", "Bonus alla Forza", BonusType::Enhancement, "2");
+    Modifier modifier({.type = ModifierType::Bonus, .source = "Cintura", .description = "Bonus alla Forza", .bonusType = BonusType::Enhancement, .expression = "2"});
     const std::string modifierId = modifier.id();
     manager.addModifier("str", std::move(modifier));
     assert(manager.modifierTotal(" str ") == 2);
@@ -118,7 +118,7 @@ int main()
     }));
     assert(throwsInvalidArgument([&]
     {
-        manager.addModifier("dex", Modifier(ModifierType::Bonus, "Sorgente", "Descrizione", BonusType::Luck, "1"));
+        manager.addModifier("dex", Modifier({.type = ModifierType::Bonus, .source = "Sorgente", .description = "Descrizione", .bonusType = BonusType::Luck, .expression = "1"}));
     }));
     assert(throwsInvalidArgument([&]
     {
@@ -140,7 +140,7 @@ int main()
     assert(manager.contributionTotal("hp.max") == 24);
     assert(throwsInvalidArgument([&]
     {
-        manager.addModifier("hp.max", Modifier(ModifierType::Bonus, "Sorgente", "Descrizione", BonusType::Luck, "1"));
+        manager.addModifier("hp.max", Modifier({.type = ModifierType::Bonus, .source = "Sorgente", .description = "Descrizione", .bonusType = BonusType::Luck, .expression = "1"}));
     }));
     assert(throwsInvalidArgument([&]
     {
@@ -159,15 +159,15 @@ int main()
     inheritanceManager.registerEnhanceableResource("skill.movement");
     inheritanceManager.registerEnhanceableResource("skill.craft.alchemy", {"skill.all", "skill.craft", "skill.movement"});
 
-    Modifier allSkillsBonus(ModifierType::Bonus, "Tratto", "Bonus a tutte le abilità", BonusType::Racial, "1");
+    Modifier allSkillsBonus({.type = ModifierType::Bonus, .source = "Tratto", .description = "Bonus a tutte le abilità", .bonusType = BonusType::Racial, .expression = "1"});
     const std::string allSkillsBonusId = allSkillsBonus.id();
     inheritanceManager.addModifier("skill.all", std::move(allSkillsBonus));
 
-    Modifier craftBonus(ModifierType::Bonus, "Strumento", "Bonus ad Artigianato", BonusType::Competence, "2");
+    Modifier craftBonus({.type = ModifierType::Bonus, .source = "Strumento", .description = "Bonus ad Artigianato", .bonusType = BonusType::Competence, .expression = "2"});
     const std::string craftBonusId = craftBonus.id();
     inheritanceManager.addModifier("skill.craft", std::move(craftBonus));
 
-    Modifier alchemyBonus(ModifierType::Bonus, "Laboratorio", "Bonus ad Alchimia", BonusType::Competence, "4");
+    Modifier alchemyBonus({.type = ModifierType::Bonus, .source = "Laboratorio", .description = "Bonus ad Alchimia", .bonusType = BonusType::Competence, .expression = "4"});
     const std::string alchemyBonusId = alchemyBonus.id();
     inheritanceManager.addModifier("skill.craft.alchemy", std::move(alchemyBonus));
 

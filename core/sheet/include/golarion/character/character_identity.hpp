@@ -1,4 +1,5 @@
 #pragma once
+#include "golarion/character/pending_choice.hpp"
 
 #include <cstdint>
 #include <optional>
@@ -45,6 +46,8 @@ namespace golarion
         void setAppearance(std::optional<std::string> appearance);
         CharacterIdentityView toView() const;
         CharacterIdentitySaveData toSaveData() const;
+
+        std::vector<PendingChoice> pendingChoices() const;
 
     private:
         std::string name_;

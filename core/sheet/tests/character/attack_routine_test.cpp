@@ -493,7 +493,7 @@ int main()
     };
     int enabled = 0;
     Attacks configuredAttacks(attackRoutines, strikes);
-    configuredAttacks.create("specialGripAttack", "Attacco speciale", TwoWeaponFightingRoutineId);
+    configuredAttacks.create({std::string("specialGripAttack"), std::string("Attacco speciale"), std::string(TwoWeaponFightingRoutineId)});
     assert(throwsInvalidArgument([&] { configuredAttacks.assignStrike("specialGripAttack", TwoWeaponFightingMainHandSlotId, "heavyWeapon"); }));
     resourceManager.registerTarget("specialGrip", [&] { return enabled; });
     HandUsagePermission permission{

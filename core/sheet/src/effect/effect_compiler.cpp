@@ -93,7 +93,7 @@ namespace golarion
             {
                 return [effect = std::move(effect), context](ResourceManager &resourceManager)
                 {
-                    Modifier modifier(effect.type, context.source, effect.description, effect.bonusType, effect.expression, effect.condition, {}, effect.skillRankBudget);
+                    Modifier modifier({.type = effect.type, .source = context.source, .description = effect.description, .bonusType = effect.bonusType, .expression = effect.expression, .condition = effect.condition, .requirements = {}, .skillRankBudget = effect.skillRankBudget});
                     const std::string modifierId = modifier.id();
                     resourceManager.addModifier(effect.resource, std::move(modifier));
                     return EffectCleanup([&resourceManager, resource = effect.resource, modifierId]
@@ -220,6 +220,25 @@ namespace golarion
                         resources.removeFromCollection(resource, id);
                     };
                     resources.addToCollection(resource, grant);
+                    return cleanup;
+                };
+            }
+            else if constexpr (std::is_same_v<Effect, SpellRepertoireQuotaEffectDefinition> || std::is_same_v<Effect, SpellRepertoireGrantEffectDefinition> || std::is_same_v<Effect, SpellRepertoireListEffectDefinition>)
+            {
+                const auto resource = [&]
+                {
+                    if constexpr (std::is_same_v<Effect, SpellRepertoireQuotaEffectDefinition>) return repertoireQuotasResource(effect.castingId);
+                    else if constexpr (std::is_same_v<Effect, SpellRepertoireGrantEffectDefinition>) return repertoireGrantsResource(effect.castingId);
+                    else return repertoireListsResource(effect.castingId);
+                }();
+                return [effect, context, resource](ResourceManager &resources)
+                {
+                    EffectCleanup cleanup = [&resources, resource, id = context.instanceId] { resources.removeFromCollection(resource, id); };
+                    if constexpr (std::is_same_v<Effect, SpellRepertoireQuotaEffectDefinition>)
+                        resources.addToCollection(resource, SpellRepertoireQuota{context.instanceId, context.source, effect.capacityByLevel, effect.allowedSpellIds});
+                    else if constexpr (std::is_same_v<Effect, SpellRepertoireGrantEffectDefinition>)
+                        resources.addToCollection(resource, SpellRepertoireGrant{context.instanceId, context.source, effect.spellIds});
+                    else resources.addToCollection(resource, SpellRepertoireListGrant{context.instanceId, context.source});
                     return cleanup;
                 };
             }

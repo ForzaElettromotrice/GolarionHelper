@@ -137,22 +137,12 @@ namespace golarion
         }
     }
 
-    Modifier::Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression)
-        : Modifier(type, std::move(source), std::move(description), bonusType, std::move(expression), std::nullopt, {})
+    Modifier::Modifier(ModifierDefinition definition)
+        : Modifier(generateUuid(), definition.type, std::move(definition.source), std::move(definition.description), definition.bonusType, std::move(definition.expression), std::move(definition.condition), std::move(definition.requirements))
     {
-    }
-
-    Modifier::Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition)
-        : Modifier(type, std::move(source), std::move(description), bonusType, std::move(expression), std::move(condition), {})
-    {
-    }
-
-    Modifier::Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition, std::vector<Requirement> requirements, SkillRankBudgetPolicy skillRankBudget)
-        : Modifier(generateUuid(), type, std::move(source), std::move(description), bonusType, std::move(expression), std::move(condition), std::move(requirements))
-    {
-        if (skillRankBudget != SkillRankBudgetPolicy::Included && skillRankBudget != SkillRankBudgetPolicy::Excluded)
+        if (definition.skillRankBudget != SkillRankBudgetPolicy::Included && definition.skillRankBudget != SkillRankBudgetPolicy::Excluded)
             throw std::invalid_argument("unknown skill rank budget policy");
-        skillRankBudget_ = skillRankBudget;
+        skillRankBudget_ = definition.skillRankBudget;
     }
 
     Modifier::Modifier(std::string id, ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition, std::vector<Requirement> requirements)

@@ -180,4 +180,10 @@ namespace golarion
             .appearance = appearance_
         };
     }
+    std::vector<PendingChoice> CharacterIdentity::pendingChoices() const
+    {
+        if (!alignment_) return {{AlignmentChoiceReference{}, "Seleziona l'allineamento", 1, true}};
+        return {};
+    }
+
 }

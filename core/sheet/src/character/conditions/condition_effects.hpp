@@ -79,7 +79,7 @@ namespace golarion::conditionEffects
             .description = description,
             .apply = [description = std::move(description), source = std::move(source), resource = std::move(resource), type, bonusType, expression = std::move(expression), condition = std::move(condition)](ResourceManager &manager, const ConditionEffectContext &)
             {
-                Modifier appliedModifier(type, source, description, bonusType, expression, condition);
+                Modifier appliedModifier({.type = type, .source = source, .description = description, .bonusType = bonusType, .expression = expression, .condition = condition});
                 const std::string modifierId = appliedModifier.id();
                 manager.addModifier(resource, std::move(appliedModifier));
                 return ConditionCleanup([&manager, resource, modifierId]
@@ -102,7 +102,7 @@ namespace golarion::conditionEffects
             .description = description,
             .apply = [description = std::move(description), fallbackSource = std::move(fallbackSource), resource = std::move(resource), expression = std::move(expression)](ResourceManager &manager, const ConditionEffectContext &context)
             {
-                Modifier appliedModifier(ModifierType::Penalty, context.source.value_or(fallbackSource), description, std::nullopt, expression);
+                Modifier appliedModifier({.type = ModifierType::Penalty, .source = context.source.value_or(fallbackSource), .description = description, .bonusType = std::nullopt, .expression = expression});
                 const std::string modifierId = appliedModifier.id();
                 manager.addModifier(resource, std::move(appliedModifier));
                 return ConditionCleanup([&manager, resource, modifierId]

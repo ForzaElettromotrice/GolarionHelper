@@ -1,3 +1,4 @@
+#include "../fixtures/advance_sheet.hpp"
 #include "golarion/character/ability.hpp"
 #include "golarion/character/character_sheet.hpp"
 #include "../fixtures/class_definition.hpp"
@@ -94,7 +95,7 @@ int main()
 
     const ClassDefinitionManager classCatalog({test::levelOnlyClassDefinition()});
     CharacterSheet sheet(classCatalog);
-    sheet.addClassLevel(CharacterClassType::Fighter);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter);
     sheet.setName("Seelah");
     sheet.setPlayerName("Giocatore");
     sheet.setAlignment(Alignment::LawfulGood);
@@ -118,7 +119,7 @@ int main()
     assert(sheet.toView().hitPoints.current == 2);
     sheet.setSkillRanks(SkillType::Acrobatics, 2);
     sheet.setSkillSpecializationRanks(SkillType::Craft, "alchemy", 3);
-    sheet.addSkillSpecialization(SkillType::Craft, "clockwork", "Meccanismi");
+    sheet.addSkillSpecialization(SkillType::Craft, {"clockwork", "Meccanismi"});
     sheet.setSkillSpecializationRanks(SkillType::Craft, "clockwork", 1);
     assert(throwsInvalidArgument([&]
     {
@@ -130,7 +131,7 @@ int main()
     }));
     assert(throwsInvalidArgument([&]
     {
-        sheet.addSkillSpecialization(SkillType::Craft, "alchemy", "Alchimia");
+        sheet.addSkillSpecialization(SkillType::Craft, {"alchemy", "Alchimia"});
     }));
 
     CharacterSheetView view = sheet.toView();
@@ -164,7 +165,7 @@ int main()
     assert(view.attacks.attacks.empty());
     assert(throwsInvalidArgument([&]
     {
-        sheet.createAttack("attack", "Attacco", "missingRoutine");
+        sheet.createAttack({std::string("attack"), std::string("Attacco"), std::string("missingRoutine")});
     }));
     view = sheet.toView(StrikeCalculationContext{.activeConditions = {"Contro giganti"}});
     assert((view.strikes.activeConditions == std::vector<std::string>{"Contro giganti"}));
@@ -256,7 +257,7 @@ int main()
         sheet.setSkillSpecializationRanks(SkillType::Craft, "clockwork", 1);
     }));
 
-    sheet.addSkillSpecialization(SkillType::Craft, "clockwork", "Meccanismi");
+    sheet.addSkillSpecialization(SkillType::Craft, {"clockwork", "Meccanismi"});
     sheet.setSkillSpecializationRanks(SkillType::Craft, "clockwork", 4);
     sheet.addCondition(ConditionEntry(ConditionEntryDefinition{
         .id = "spell.sickened",
@@ -276,7 +277,7 @@ int main()
     assert(view.combatManeuvers.maneuvers[0].bonus.abilityOptions[0].totalValue == 1);
 
     CharacterSheetSaveData saveData = sheet.toSaveData();
-    assert(saveData.formatVersion == 35);
+    assert(saveData.formatVersion == 41);
     assert(saveData.identity.name == "Seelah");
     assert(saveData.identity.playerName == "Giocatore");
     assert(saveData.identity.alignment == Alignment::LawfulGood);

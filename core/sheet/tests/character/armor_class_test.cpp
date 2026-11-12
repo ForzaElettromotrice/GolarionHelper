@@ -78,13 +78,13 @@ int main()
     });
 
     ArmorClass armorClass(manager);
-    manager.addModifier(ArmorClassAllResource, Modifier(ModifierType::Bonus, "Anello", "Bonus di deviazione", BonusType::Deflection, "1"));
-    manager.addModifier(ArmorClassReflexiveResource, Modifier(ModifierType::Bonus, "Schivare", "Bonus di schivare", BonusType::Dodge, "1"));
-    manager.addModifier(ArmorClassSolidResource, Modifier(ModifierType::Bonus, "Armatura", "Bonus di armatura", BonusType::Armor, "6"));
-    manager.addModifier(ArmorClassSolidResource, Modifier(ModifierType::Bonus, "Scudo", "Bonus di scudo", BonusType::Shield, "2"));
-    manager.addModifier(resourceName(ArmorClassType::Normal), Modifier(ModifierType::Bonus, "Difesa", "Bonus solo alla CA normale", BonusType::Circumstance, "2"));
-    manager.addModifier(resourceName(ArmorClassType::Touch), Modifier(ModifierType::Bonus, "Campo", "Bonus solo a contatto", BonusType::Insight, "3"));
-    manager.addModifier(resourceName(ArmorClassType::FlatFooted), Modifier(ModifierType::Bonus, "Istinto", "Bonus solo da impreparato", BonusType::Luck, "4"));
+    manager.addModifier(ArmorClassAllResource, Modifier({.type = ModifierType::Bonus, .source = "Anello", .description = "Bonus di deviazione", .bonusType = BonusType::Deflection, .expression = "1"}));
+    manager.addModifier(ArmorClassReflexiveResource, Modifier({.type = ModifierType::Bonus, .source = "Schivare", .description = "Bonus di schivare", .bonusType = BonusType::Dodge, .expression = "1"}));
+    manager.addModifier(ArmorClassSolidResource, Modifier({.type = ModifierType::Bonus, .source = "Armatura", .description = "Bonus di armatura", .bonusType = BonusType::Armor, .expression = "6"}));
+    manager.addModifier(ArmorClassSolidResource, Modifier({.type = ModifierType::Bonus, .source = "Scudo", .description = "Bonus di scudo", .bonusType = BonusType::Shield, .expression = "2"}));
+    manager.addModifier(resourceName(ArmorClassType::Normal), Modifier({.type = ModifierType::Bonus, .source = "Difesa", .description = "Bonus solo alla CA normale", .bonusType = BonusType::Circumstance, .expression = "2"}));
+    manager.addModifier(resourceName(ArmorClassType::Touch), Modifier({.type = ModifierType::Bonus, .source = "Campo", .description = "Bonus solo a contatto", .bonusType = BonusType::Insight, .expression = "3"}));
+    manager.addModifier(resourceName(ArmorClassType::FlatFooted), Modifier({.type = ModifierType::Bonus, .source = "Istinto", .description = "Bonus solo da impreparato", .bonusType = BonusType::Luck, .expression = "4"}));
 
     assert(displayName(ArmorClassType::Normal) == "Classe Armatura");
     assert(displayName(ArmorClassType::Touch) == "Contatto");
@@ -104,7 +104,7 @@ int main()
     assert(armorClassValue(armorClass, ArmorClassType::Touch) == 17);
     assert(armorClassValue(armorClass, ArmorClassType::FlatFooted) == 23);
 
-    manager.addModifier(maximumDexterityResourceName(MaximumDexterityLimitType::Armor), Modifier(ModifierType::Bonus, "Addestramento nelle armature", "Aumento del bonus massimo di Destrezza", BonusType::Generic, "1"));
+    manager.addModifier(maximumDexterityResourceName(MaximumDexterityLimitType::Armor), Modifier({.type = ModifierType::Bonus, .source = "Addestramento nelle armature", .description = "Aumento del bonus massimo di Destrezza", .bonusType = BonusType::Generic, .expression = "1"}));
     assert(armorClass.maximumDexterityBonus() == 3);
     assert(armorClassValue(armorClass, ArmorClassType::Normal) == 25);
     assert(armorClassValue(armorClass, ArmorClassType::Touch) == 18);
@@ -164,7 +164,7 @@ int main()
             .expression = "1"
         }));
     }));
-    Modifier exactLimitModifier(ModifierType::Bonus, "Maestria con lo scudo", "Aumento del limite dello scudo", BonusType::Generic, "1");
+    Modifier exactLimitModifier({.type = ModifierType::Bonus, .source = "Maestria con lo scudo", .description = "Aumento del limite dello scudo", .bonusType = BonusType::Generic, .expression = "1"});
     const std::string exactLimitModifierId = exactLimitModifier.id();
     manager.addModifier(maximumDexterityResourceName("towerShield"), std::move(exactLimitModifier));
     assert(armorClass.maximumDexterityBonus() == 3);
@@ -176,15 +176,7 @@ int main()
     manager.removeFromCollection(MaximumDexterityLimitsResource, "towerShield");
     assert(!armorClass.maximumDexterityBonus().has_value());
 
-    manager.addModifier(ArmorClassAllResource, Modifier(
-        ModifierType::Bonus,
-        "Monaco",
-        "Bonus di Saggezza alla CA",
-        BonusType::Generic,
-        "@wisMod",
-        std::nullopt,
-        std::vector<Requirement>{Requirement("@armor.worn == 0", "Non applicabile mentre indossi un'armatura")}
-    ));
+    manager.addModifier(ArmorClassAllResource, Modifier({.type = ModifierType::Bonus, .source = "Monaco", .description = "Bonus di Saggezza alla CA", .bonusType = BonusType::Generic, .expression = "@wisMod", .condition = std::nullopt, .requirements = std::vector<Requirement>{Requirement("@armor.worn == 0", "Non applicabile mentre indossi un'armatura")}}));
     assert(armorClassValue(armorClass, ArmorClassType::Normal, "scaledFist") == 27);
     assert(armorClassValue(armorClass, ArmorClassType::Touch, "scaledFist") == 20);
     assert(armorClassValue(armorClass, ArmorClassType::FlatFooted, "scaledFist") == 23);

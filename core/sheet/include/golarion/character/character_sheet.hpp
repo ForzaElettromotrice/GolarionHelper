@@ -1,4 +1,12 @@
 #pragma once
+#include "golarion/character/pending_choice.hpp"
+#include "golarion/character/spell_catalog.hpp"
+#include "golarion/character/feat_catalog.hpp"
+#include "golarion/character/class_option_definition.hpp"
+#include "golarion/character/attack_definition.hpp"
+#include "golarion/character/skill_specialization_definition.hpp"
+#include "golarion/character/spell_operation_definition.hpp"
+#include "golarion/character/enhancements.hpp"
 
 #include "golarion/character/feats.hpp"
 #include "golarion/character/classes.hpp"
@@ -48,6 +56,7 @@ namespace golarion
         explicit CharacterSheet(const ClassDefinitionManager &classDefinitions = ClassDefinitionManager::instance());
         static CharacterSheet load(const std::filesystem::path &path, const ClassDefinitionManager &classDefinitions = ClassDefinitionManager::instance());
         void addClassLevel(CharacterClassType type, std::optional<int> hitDieResult = std::nullopt);
+        void removeClassLevel(CharacterClassType type);
         void setClassHitDieResult(CharacterClassType type, int classLevel, int result);
         void setFavoredClass(CharacterClassType type);
         void setFavoredClasses(std::set<CharacterClassType> types);
@@ -56,9 +65,15 @@ namespace golarion
         void addClassArchetype(CharacterClassType type, const std::string &archetypeId);
         void removeClassArchetype(CharacterClassType type, const std::string &archetypeId);
         int level() const;
-        void selectClassOption(CharacterClassType type, const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId);
-        void unselectClassOption(CharacterClassType type, const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId);
+        void addEnhancementGroup(EnhancementGroupDefinition data);
+        void removeEnhancementGroup(std::string_view groupId);
+        void addEnhancement(std::string_view groupId, EnhancementDefinition data);
+        void removeEnhancement(std::string_view groupId, std::string_view id);
+        void setEnhancementActive(std::string_view groupId, std::string_view id, bool active);
+        void selectClassOption(CharacterClassType type, const ClassOptionDefinition &definition);
+        void unselectClassOption(CharacterClassType type, const ClassOptionDefinition &definition);
 
+        void setNotes(std::string notes);
         void setName(std::string_view name);
         void setPlayerName(std::string_view playerName);
         void setAlignment(std::optional<Alignment> alignment);
@@ -73,17 +88,23 @@ namespace golarion
         void setAppearance(std::optional<std::string> appearance);
         void setRace(std::string_view raceDefinitionId);
         void clearRace();
+        void addCustomFeatDefinition(FeatDefinition definition);
+        void addExtraFeatSlot(std::string_view slotId);
+        void removeExtraFeatSlot(std::string_view slotId);
         void selectFeat(std::string_view slotId, std::string_view featId, FeatChoices choices = {});
         void removeFeat(std::string_view slotId);
         void recheckFeatPrerequisites();
         void addLanguage(std::string_view languageId, LanguageOrigin origin);
         void removeLanguage(std::string_view languageId);
         void addSpellToRepertoire(std::string_view castingId, std::string_view spellId);
-        void prepareSpell(std::string_view castingId, const std::vector<SpellSlotId> &slots, std::string_view spellId, const std::vector<MetamagicApplication> &metamagic = {});
-        void prepareFlexibleSpell(std::string_view castingId, const SpellSlotId &preparation, std::string_view spellId, const std::vector<MetamagicApplication> &metamagic = {});
-        MetamagicEvaluation consumePreparedSpell(std::string_view castingId, const SpellSlotId &slot, std::optional<std::string_view> replacementSpellId = std::nullopt, const std::vector<MetamagicApplication> &metamagic = {});
-        MetamagicEvaluation consumeSpontaneousSpell(std::string_view castingId, const SpellSlotId &slot, std::string_view spellId, const std::vector<MetamagicApplication> &metamagic = {});
-        MetamagicEvaluation consumeFlexibleSpell(std::string_view castingId, const SpellSlotId &slot, const SpellSlotId &preparation, const std::vector<MetamagicApplication> &metamagic = {}, std::optional<std::string_view> mixingPermissionId = std::nullopt);
+        void removeSpellFromRepertoire(std::string_view castingId, std::string_view spellId);
+        void selectRepertoireSpell(std::string_view castingId, RepertoireSelectionDefinition selection);
+        void removeRepertoireSelection(std::string_view castingId, RepertoireSelectionDefinition selection);
+        void prepareSpell(std::string_view castingId, const std::vector<SpellSlotId> &slots, const SpellPreparationDefinition &definition);
+        void prepareFlexibleSpell(std::string_view castingId, const SpellSlotId &preparation, const SpellPreparationDefinition &definition);
+        MetamagicEvaluation consumePreparedSpell(std::string_view castingId, const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition = {});
+        MetamagicEvaluation consumeSpontaneousSpell(std::string_view castingId, const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition);
+        MetamagicEvaluation consumeFlexibleSpell(std::string_view castingId, const SpellSlotId &slot, const FlexibleSpellConsumptionDefinition &definition);
         void clearSpellSlot(std::string_view castingId, const SpellSlotId &slot);
         void clearFlexiblePreparation(std::string_view castingId, const SpellSlotId &preparation);
         void consumeGrantedSpell(std::string_view id);
@@ -98,10 +119,10 @@ namespace golarion
         void heal(int amount);
         void damage(int amount, DamageLethality lethality);
         void setSkillRanks(SkillType type, int ranks);
-        void addSkillSpecialization(SkillType type, const std::string &specializationId, const std::string &specialization);
+        void addSkillSpecialization(SkillType type, const SkillSpecializationDefinition &definition);
         void removeSkillSpecialization(SkillType type, const std::string &specializationId);
         void setSkillSpecializationRanks(SkillType type, const std::string &specializationId, int ranks);
-        void createAttack(std::string_view id, std::string_view name, std::string_view routineId);
+        void createAttack(const AttackDefinition &definition);
         void removeAttack(std::string_view attackId);
         void assignStrikeToAttack(std::string_view attackId, std::string_view slotId, std::string_view strikeGrantId);
         void unassignStrikeFromAttack(std::string_view attackId, std::string_view slotId);
@@ -109,6 +130,8 @@ namespace golarion
         void removeCondition(std::string_view entryId);
         void addMoney(CoinDenomination denomination, int quantity, std::string_view containerId);
         void addContainer(ContainerDefinition definition);
+        void addCustomSpellDefinition(SpellDefinition definition);
+        void addCustomItemDefinition(ItemDefinition definition);
         void addItem(ItemInstanceDefinition definition, std::optional<std::string> containerId = std::nullopt);
         void equipItem(std::string_view itemId);
         void unequipItem(std::string_view itemId, std::optional<std::string> containerId = std::nullopt);
@@ -119,6 +142,8 @@ namespace golarion
         CharacterSheetView toView(const StrikeCalculationContext &strikeContext);
         CharacterSheetSaveData toSaveData() const;
         void save(const std::filesystem::path &path) const;
+
+        std::vector<PendingChoice> pendingChoices();
 
     private:
         static constexpr std::size_t AbilityCount = 6;
@@ -148,14 +173,19 @@ namespace golarion
         Encumbrance encumbrance_;
         SizeManager sizeManager_;
         Languages languages_;
+        SpellCatalog spellCatalog_;
         Spellcastings spellcastings_;
         GrantedSpells grantedSpells_;
         FavoredClasses favoredClasses_;
+        FeatCatalog featCatalog_;
         Feats feats_;
         ConditionManager conditionManager_;
+        ItemCatalog itemCatalog_;
         std::optional<Inventory> inventory_;
         Race race_;
         Classes classes_;
+        Enhancements enhancements_;
         bool legacyFirstLevelFeatSlot_ = false;
+        std::string notes_;
     };
 }

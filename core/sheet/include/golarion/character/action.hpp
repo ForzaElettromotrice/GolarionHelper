@@ -93,6 +93,7 @@ namespace golarion
     {
     public:
         explicit ActionSelector(ActionSelectorDefinition definition = {});
+        ActionSelectorDefinition toDefinition() const { return {actionId_, categoryId_, cost_, requiredTags_}; }
 
     private:
         friend class ActionManager;

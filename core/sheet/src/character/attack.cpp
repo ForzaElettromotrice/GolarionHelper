@@ -183,8 +183,9 @@ namespace golarion
     {
     }
 
-    void Attacks::create(std::string_view id, std::string_view name, std::string_view routineId)
+    void Attacks::create(const AttackDefinition &definition)
     {
+        const auto &[id, name, routineId] = definition;
         Attack newAttack{std::string(id), std::string(name), std::string(routineId)};
         if (std::ranges::find(attacks_, newAttack.id_, &Attack::id_) != attacks_.end())
         {

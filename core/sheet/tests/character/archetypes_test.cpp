@@ -1,3 +1,4 @@
+#include "../fixtures/advance_sheet.hpp"
 #include "../fixtures/class_definition.hpp"
 #include "golarion/character/character_sheet.hpp"
 #include "golarion/persistence/json.hpp"
@@ -23,7 +24,7 @@ namespace
                 .id = acquisition, .level = 1,
                 .effects = {ContributionEffectDefinition{"value", "baseAttackBonus", std::to_string(amount)}}
             }}
-        }}};
+        }}, .blocksAdvancement = false};
     }
 }
 
@@ -77,10 +78,10 @@ int main()
     const ClassDefinitionManager catalog({fighter, test::classDefinition(CharacterClassType::Wizard)}, {partial, replacement, conflict, failing, wrongClass});
     CharacterSheet sheet(catalog);
     rejects([&] { sheet.addClassArchetype(CharacterClassType::Fighter, "partial"); });
-    sheet.addClassLevel(CharacterClassType::Fighter);
-    sheet.addClassLevel(CharacterClassType::Fighter);
-    sheet.selectClassOption(CharacterClassType::Fighter, "original.2", "choice", "option");
-    sheet.selectClassOption(CharacterClassType::Fighter, "keep.1", "choice", "option");
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter);
+    sheet.selectClassOption(CharacterClassType::Fighter, {"original.2", "choice", "option"});
+    sheet.selectClassOption(CharacterClassType::Fighter, {"keep.1", "choice", "option"});
     assert(sheet.toView().baseAttackBonus.total == 13);
     std::string featSlot;
     for (const auto &slot : sheet.toView().feats.slots) if (!slot.id.starts_with("base.")) featSlot = slot.id;
@@ -95,11 +96,11 @@ int main()
     rejects([&] { sheet.addClassArchetype(CharacterClassType::Fighter, "missing"); });
     sheet.addClassArchetype(CharacterClassType::Fighter, "partial");
     assert(sheet.toView().baseAttackBonus.total == 8);
-    rejects([&] { sheet.selectClassOption(CharacterClassType::Fighter, "original.2", "choice", "option"); });
+    rejects([&] { sheet.selectClassOption(CharacterClassType::Fighter, {"original.2", "choice", "option"}); });
     rejects([&] { sheet.addClassArchetype(CharacterClassType::Fighter, "partial"); });
     rejects([&] { sheet.addClassArchetype(CharacterClassType::Fighter, "conflict"); });
     sheet.addClassArchetype(CharacterClassType::Fighter, "replacement");
-    sheet.selectClassOption(CharacterClassType::Fighter, "partial.2", "choice", "option");
+    sheet.selectClassOption(CharacterClassType::Fighter, {"partial.2", "choice", "option"});
     assert(sheet.toView().baseAttackBonus.total == 20);
     assert(sheet.toView().feats.feats[0].slotId == featSlot);
     assert(sheet.toView().grantedSpells[0].remaining == 1);
@@ -112,18 +113,18 @@ int main()
     assert(persistence::toJson(restored.toSaveData()) == persistence::toJson(sheet.toSaveData()));
     assert(restored.toView().baseAttackBonus.total == 20);
     assert(restored.toView().grantedSpells[0].remaining == 1);
-    restored.unselectClassOption(CharacterClassType::Fighter, "partial.2", "choice", "option");
+    restored.unselectClassOption(CharacterClassType::Fighter, {"partial.2", "choice", "option"});
     assert(restored.toView().baseAttackBonus.total == 13);
-    restored.addClassLevel(CharacterClassType::Fighter);
+    test::advanceSheetFixture(restored, CharacterClassType::Fighter);
     assert(restored.toView().baseAttackBonus.total == 14);
 
     CharacterSheet early(catalog);
-    early.addClassLevel(CharacterClassType::Fighter);
+    test::advanceSheetFixture(early, CharacterClassType::Fighter);
     early.addClassArchetype(CharacterClassType::Fighter, "partial");
     rejects([&] { early.addClassArchetype(CharacterClassType::Fighter, "conflict"); });
-    rejects([&] { early.selectClassOption(CharacterClassType::Fighter, "partial.2", "choice", "option"); });
-    early.addClassLevel(CharacterClassType::Fighter);
-    early.selectClassOption(CharacterClassType::Fighter, "partial.2", "choice", "option");
+    rejects([&] { early.selectClassOption(CharacterClassType::Fighter, {"partial.2", "choice", "option"}); });
+    test::advanceSheetFixture(early, CharacterClassType::Fighter);
+    early.selectClassOption(CharacterClassType::Fighter, {"partial.2", "choice", "option"});
 
     std::vector<ArchetypeDefinition> invalid;
     auto bad = partial;
@@ -151,7 +152,7 @@ int main()
     {
         const ClassDefinitionManager invalidCatalog({fighter}, {candidate});
         CharacterSheet target(invalidCatalog);
-        target.addClassLevel(CharacterClassType::Fighter);
+        test::advanceSheetFixture(target, CharacterClassType::Fighter);
         const auto previous = persistence::toJson(target.toSaveData());
         rejects([&] { target.addClassArchetype(CharacterClassType::Fighter, candidate.id); });
         assert(persistence::toJson(target.toSaveData()) == previous);
@@ -166,7 +167,7 @@ int main()
     rejects([&] { CharacterSheet::load(path, catalog); });
     // Format 30 had class selections but no archetypes.
     CharacterSheet old(catalog);
-    old.addClassLevel(CharacterClassType::Fighter);
+    test::advanceSheetFixture(old, CharacterClassType::Fighter);
     json = nlohmann::json::parse(persistence::toJson(old.toSaveData()));
     json["formatVersion"] = 30;
     json["classes"][0].erase("archetypeIds");
@@ -193,7 +194,7 @@ int main()
     sheet.removeClassArchetype(CharacterClassType::Fighter, "replacement");
     assert(sheet.toView().baseAttackBonus.total == 10);
     assert(sheet.toView().classes.classes[0].archetypes.empty());
-    sheet.selectClassOption(CharacterClassType::Fighter, "original.2", "choice", "option");
+    sheet.selectClassOption(CharacterClassType::Fighter, {"original.2", "choice", "option"});
     assert(sheet.toView().baseAttackBonus.total == 13);
     sheet.addClassArchetype(CharacterClassType::Fighter, "partial");
     assert(sheet.toView().baseAttackBonus.total == 8); // Old archetype option was not resurrected.
@@ -219,7 +220,7 @@ int main()
             .id = "new.1", .level = 1, .effects = {ContributionEffectDefinition{"value", "replacement", "5"}}, .choices = {choice("new.option", 7)}
         }}}}
     });
-    instance.selectOption("new.1", "choice", "option");
+    instance.selectOption({"new.1", "choice", "option"});
     resources.unregisterAccumulatedResource("original");
     rejects([&] { instance.removeArchetype("replacement"); });
     assert(instance.toData().archetypeIds == std::vector<std::string>{"replacement"});

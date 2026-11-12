@@ -1,3 +1,4 @@
+#include "../fixtures/advance_sheet.hpp"
 #include "golarion/character/ability.hpp"
 #include "golarion/character/character_sheet.hpp"
 #include "../fixtures/class_definition.hpp"
@@ -27,7 +28,7 @@ int main()
 
     const ClassDefinitionManager classCatalog({test::levelOnlyClassDefinition()});
     CharacterSheet sheet(classCatalog);
-    sheet.addClassLevel(CharacterClassType::Fighter);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter);
     assert(!conditionIsActive(sheet.toView(), "disabled"));
 
     sheet.setAbilityBaseValue(AbilityType::Constitution, 30);

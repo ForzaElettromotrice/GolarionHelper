@@ -1,3 +1,4 @@
+#include "../fixtures/advance_sheet.hpp"
 #include "golarion/character/feat_definition_manager.hpp"
 #include "../fixtures/class_definition.hpp"
 #include "golarion/character/character_sheet.hpp"
@@ -14,6 +15,12 @@ namespace golarion
     {
         static FeatDefinitionManager manager;
         return manager;
+    }
+
+    bool FeatDefinitionManager::contains(std::string_view id)
+    {
+        try { get(id); return true; }
+        catch (const std::invalid_argument &) { return false; }
     }
 
     const FeatDefinition &FeatDefinitionManager::get(std::string_view id)
@@ -316,7 +323,7 @@ int main()
         // Destruction also removes source-owned slots without recursively reactivating the provider.
     }
     CharacterSheet sheet(classCatalog);
-    sheet.addClassLevel(CharacterClassType::Fighter);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter);
     sheet.setAbilityBaseValue(AbilityType::Strength, 13);
     sheet.selectFeat("base.feat.level1", "sheet");
     assert(sheet.toView().feats.feats[0].active);

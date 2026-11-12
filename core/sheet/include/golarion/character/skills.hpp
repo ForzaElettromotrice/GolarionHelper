@@ -1,4 +1,6 @@
 #pragma once
+#include "golarion/character/pending_choice.hpp"
+#include "golarion/character/skill_specialization_definition.hpp"
 
 #include "golarion/character/skill.hpp"
 #include "golarion/data/skills_save_data.hpp"
@@ -26,10 +28,12 @@ namespace golarion
 
         void setRanks(SkillType type, int ranks);
 
-        void addSpecialization(SkillType type, const std::string &specializationId, const std::string &specialization);
+        void addSpecialization(SkillType type, const SkillSpecializationDefinition &definition);
         void setSpecializationRanks(SkillType type, const std::string &specializationId, int ranks);
         SkillsView toView();
         SkillsSaveData toSaveData() const;
+
+        std::vector<PendingChoice> pendingChoices();
 
     private:
         friend class CharacterSheet;

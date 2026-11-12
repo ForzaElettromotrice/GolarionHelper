@@ -1,4 +1,10 @@
 add_library(golarion_model STATIC
+    src/effect/effect_to_json.cpp
+    src/effect/collection_effect_to_json.cpp
+    src/effect/casting_rule_effect_to_json.cpp
+    src/equipment/item_definition_json.cpp
+    src/equipment/item_catalog.cpp
+    src/character/enhancements.cpp
     src/effect/collection_effect.cpp
     src/effect/collection_effect_json.cpp
     src/effect/casting_rule_effect.cpp
@@ -64,11 +70,13 @@ add_library(golarion_model STATIC
     src/character/race_definition_json.cpp
     src/character/race_definition_manager.cpp
     src/character/feat_definition_json.cpp
+    src/character/feat_catalog.cpp
     src/character/feat_definition_manager.cpp
     src/character/feat_prerequisite_registry.cpp
     src/character/feats.cpp
     src/character/languages.cpp
     src/character/spell_definition.cpp
+    src/character/spell_repertoire.cpp
     src/character/spellcasting.cpp
     src/character/spellcastings.cpp
     src/character/granted_spells.cpp
@@ -79,6 +87,7 @@ add_library(golarion_model STATIC
     src/character/spell_preparation_rules.cpp
     src/character/metamagic.cpp
     src/character/spell_definition_json.cpp
+    src/character/spell_catalog.cpp
     src/character/spell_definition_manager.cpp
     src/effect/effect_compiler.cpp
     src/effect/effect_json.cpp
@@ -151,6 +160,9 @@ set_target_properties(golarion_persistence PROPERTIES POSITION_INDEPENDENT_CODE 
 
 target_link_libraries(golarion_persistence
     PRIVATE
+        # Definition persistence reuses domain parsers/validation; CMake repeats
+        # the mutually dependent static archives when linking consumers.
+        golarion_model
         nlohmann_json::nlohmann_json
 )
 
@@ -174,6 +186,8 @@ add_library(golarion SHARED
     src/ffi/golarion.cpp
 )
 
+set_target_properties(golarion PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR})
+
 target_compile_definitions(golarion PRIVATE GH_BUILDING_LIBRARY)
 target_link_libraries(golarion PRIVATE golarion_model)
 target_include_directories(golarion
@@ -192,6 +206,34 @@ else()
 endif()
 
 if(BUILD_TESTING)
+    add_executable(sheet_notes_test tests/character/sheet_notes_test.cpp)
+    target_link_libraries(sheet_notes_test PRIVATE golarion_model golarion_persistence)
+    add_test(NAME sheet_notes_test COMMAND sheet_notes_test)
+
+    add_executable(advancement_gate_test tests/character/advancement_gate_test.cpp)
+    target_link_libraries(advancement_gate_test PRIVATE golarion_model)
+    add_test(NAME advancement_gate_test COMMAND advancement_gate_test)
+
+    add_executable(pending_choices_test tests/character/pending_choices_test.cpp src/character/race_definition_manager.cpp)
+    target_include_directories(pending_choices_test PRIVATE tests/fixtures/pending_choices)
+    target_link_libraries(pending_choices_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME pending_choices_test COMMAND pending_choices_test)
+
+    add_executable(custom_feats_test tests/character/custom_feats_test.cpp)
+    target_link_libraries(custom_feats_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME custom_feats_test COMMAND custom_feats_test)
+
+    add_executable(custom_spells_test tests/character/custom_spells_test.cpp)
+    target_link_libraries(custom_spells_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME custom_spells_test COMMAND custom_spells_test)
+
+    add_executable(custom_items_test tests/equipment/custom_items_test.cpp)
+    target_include_directories(custom_items_test PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/generated")
+    target_link_libraries(custom_items_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME custom_items_test COMMAND custom_items_test)
+    add_executable(enhancements_test tests/character/enhancements_test.cpp)
+    target_link_libraries(enhancements_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME enhancements_test COMMAND enhancements_test)
     add_executable(casting_rule_effect_test tests/effect/casting_rule_effect_test.cpp)
     target_link_libraries(casting_rule_effect_test PRIVATE golarion_model)
     add_test(NAME casting_rule_effect_test COMMAND casting_rule_effect_test)
@@ -222,6 +264,10 @@ if(BUILD_TESTING)
     add_executable(metamagic_state_view_test tests/character/metamagic_state_view_test.cpp)
     target_link_libraries(metamagic_state_view_test PRIVATE golarion_model)
     add_test(NAME metamagic_state_view_test COMMAND metamagic_state_view_test)
+
+    add_executable(spell_repertoire_test tests/character/spell_repertoire_test.cpp)
+    target_link_libraries(spell_repertoire_test PRIVATE golarion_model golarion_persistence)
+    add_test(NAME spell_repertoire_test COMMAND spell_repertoire_test)
 
     add_executable(spellcastings_test tests/character/spellcastings_test.cpp)
     target_link_libraries(spellcastings_test PRIVATE golarion_model)

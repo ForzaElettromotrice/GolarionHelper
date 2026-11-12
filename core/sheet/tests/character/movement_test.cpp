@@ -52,8 +52,8 @@ int main()
         .supportsRunning = true
     }));
 
-    manager.addModifier("speed.fly", Modifier(ModifierType::Bonus, "Velocità", "Bonus al volo", BonusType::Enhancement, "2"));
-    Modifier wingsModifier(ModifierType::Bonus, "Ali sviluppate", "Bonus alle ali", BonusType::Racial, "2");
+    manager.addModifier("speed.fly", Modifier({.type = ModifierType::Bonus, .source = "Velocità", .description = "Bonus al volo", .bonusType = BonusType::Enhancement, .expression = "2"}));
+    Modifier wingsModifier({.type = ModifierType::Bonus, .source = "Ali sviluppate", .description = "Bonus alle ali", .bonusType = BonusType::Racial, .expression = "2"});
     const std::string wingsModifierId = wingsModifier.id();
     manager.addModifier("speed.fly.naturalWings", std::move(wingsModifier));
     manager.addToCollection(MovementAdjustmentsResource, MovementAdjustment(MovementAdjustmentDefinition{

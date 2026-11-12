@@ -543,7 +543,7 @@ namespace golarion
                 if (requested < 0) throw std::invalid_argument("bounded movement bonus must be nonnegative");
                 const auto modifier = [&](int value)
                 {
-                    return Modifier(ModifierType::Bonus, bonus.source, bonus.description, bonus.bonusType, std::to_string(value));
+                    return Modifier({.type = ModifierType::Bonus, .source = bonus.source, .description = bonus.description, .bonusType = bonus.bonusType, .expression = std::to_string(value)});
                 };
                 const long long ceiling = static_cast<long long>(normalSpeed) * bonus.maximumPercent / 100;
                 int low = 0, high = requested;

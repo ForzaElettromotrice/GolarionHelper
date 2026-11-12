@@ -39,8 +39,8 @@ int main()
         "mix", "Privilegio", [](const auto &) { return true; }, MetamagicUsageCost{"source", 2, pool}});
     auto &flex = dynamic_cast<FlexibleSpellcasting &>(castings.get("flex"));
     auto &prepared = dynamic_cast<PreparedSpellcasting &>(castings.get("prepared"));
-    flex.prepare({"preparations", 3, 0}, "fireball", {{MetamagicType::Silent, "silent", {}}});
-    prepared.prepare({"slots", 3, 0}, "fireball", {{MetamagicType::Silent, "silent", {}}});
+    flex.prepare({"preparations", 3, 0}, {"fireball", {{MetamagicType::Silent, "silent", {}}}});
+    prepared.prepare({"slots", 3, 0}, {"fireball", {{MetamagicType::Silent, "silent", {}}}});
     const auto view = castings.toView();
     assert(view.metamagicPools.size() == 1 && view.metamagicPools[0].remaining == 1);
     const auto &flexView = std::get<FlexibleSpellcastingView>(view.castings[0].state);
@@ -77,20 +77,20 @@ int main()
         clone.load(decoded.spellcastings);
         assert(clonePool->remaining() == 1);
         assert(dynamic_cast<PreparedSpellcasting &>(clone.get("prepared")).consume({"slots", 3, 0}).nominalSlotLevel == 4);
-        assert(dynamic_cast<FlexibleSpellcasting &>(clone.get("flex")).consume({"slots", 3, 0}, {"preparations", 3, 0}).requiredSlotLevel == 3);
+        assert(dynamic_cast<FlexibleSpellcasting &>(clone.get("flex")).consume({"slots", 3, 0}, {{"preparations", 3, 0}}).requiredSlotLevel == 3);
         assert(clonePool->remaining() == 1);
     }
     pool->reset(9);
     castings.load(decoded.spellcastings);
     assert(pool->remaining() == 1);
     assert(flex.toView().metamagic.empty() && flex.toView().mixingPermissions.empty());
-    const auto flexibleCast = flex.consume({"slots", 3, 0}, {"preparations", 3, 0});
+    const auto flexibleCast = flex.consume({"slots", 3, 0}, {{"preparations", 3, 0}});
     const auto preparedCast = prepared.consume({"slots", 3, 0});
     assert(flexibleCast.requiredSlotLevel == 3 && preparedCast.requiredSlotLevel == 3);
     assert(flexibleCast.nominalSlotLevel == 4 && preparedCast.nominalSlotLevel == 4);
     assert(pool->remaining() == 1); // Restoring/casting never pays a preparation cost again.
     flex.clearPreparation({"preparations", 3, 0});
-    rejects([&] { flex.prepare({"preparations", 3, 0}, "fireball", {{MetamagicType::Silent, "silent", {}}}); });
+    rejects([&] { flex.prepare({"preparations", 3, 0}, {"fireball", {{MetamagicType::Silent, "silent", {}}}}); });
     castings.load(saved);
 
     for (int error = 0; error < 4; ++error)

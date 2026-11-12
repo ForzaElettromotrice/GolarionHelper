@@ -1,6 +1,7 @@
 # Architecture
 
 - The domain model is implemented in modern C++.
+- Item/effect definitions now have bidirectional JSON codecs reused by embedded catalogs and custom-item persistence. Saved custom definitions use domain parsers/validation; `golarion_persistence` and `golarion_model` therefore have a static-library dependency cycle, handled by CMake's repeated archive linking. Public target names and the C boundary are unchanged; see `model/equipment.md`.
 - Rule categories are a closed system and must use enum classes. JSON may use stable English names, but parsers reject names outside the enum vocabulary. IDs and descriptive text remain strings. The current change aligns spell metadata and feat types/slot filters/Views; it does not silently migrate unrelated existing subsystems.
 - `core/` is the backend module container; `core/CMakeLists.txt` adds `sheet` and `play`. The sheet engine, catalogs, persistence, C bindings, and tests live in `core/sheet/`; `core/play/` owns the independent C++20 session model, function registry, background TCP hosting, and the Session-based console host.
 - `golarion::play::Session` is a container/facade, requires a host user ID, and declares ResourceManager before ProtocolManager and RoleManager. Both managers receive the registry by reference. Registration precedes later providers; role lookup is deferred until dispatch. The registry outlives providers. Session stops hosting before member teardown, keeping RoleManager and registered providers alive until the worker joins. Client-side ProtocolManager remains unimplemented.

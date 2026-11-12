@@ -112,9 +112,9 @@ int main()
     addStrike("rightClaw", "Artiglio destro", {AttackTag::Natural}, NaturalAttackClassification::Primary, {"hand.right"});
     addStrike("leftClaw", "Artiglio sinistro", {AttackTag::Natural}, NaturalAttackClassification::Primary, {"hand.left"});
     addStrike("bite", "Morso", {AttackTag::Natural}, NaturalAttackClassification::Primary, {"mouth"});
-    resourceManager.addModifier(criticalConfirmationResourceName("longsword"), Modifier(ModifierType::Bonus, "Critico focalizzato", "Bonus alla conferma", BonusType::Generic, "2"));
+    resourceManager.addModifier(criticalConfirmationResourceName("longsword"), Modifier({.type = ModifierType::Bonus, .source = "Critico focalizzato", .description = "Bonus alla conferma", .bonusType = BonusType::Generic, .expression = "2"}));
 
-    attacks.create("standard", "Attacco con spada", StandardAttackRoutineId);
+    attacks.create({std::string("standard"), std::string("Attacco con spada"), std::string(StandardAttackRoutineId)});
     attacks.assignStrike("standard", "strike", "longsword");
     AttacksView canonicalView = attacks.toView();
     assert(canonicalView.attacks[0].complete);
@@ -122,7 +122,7 @@ int main()
     assert(canonicalView.attacks[0].calculatedAttacks[0].strike.attackAbilityOptions[0].attackBonus == 14);
     attacks.remove("standard");
 
-    attacks.create("naturalFull", "Attacco completo naturale", FullAttackRoutineId);
+    attacks.create({std::string("naturalFull"), std::string("Attacco completo naturale"), std::string(FullAttackRoutineId)});
     canonicalView = attacks.toView();
     assert(canonicalView.attacks[0].complete);
     assert(canonicalView.attacks[0].slots[0].assignmentRequired == false);
@@ -132,7 +132,7 @@ int main()
     assert(canonicalView.attacks[0].calculatedAttacks[0].strike.attackAbilityOptions[0].attackBonus == 14);
     attacks.remove("naturalFull");
 
-    attacks.create("mixedCanonical", "Attacco completo misto", FullAttackRoutineId);
+    attacks.create({std::string("mixedCanonical"), std::string("Attacco completo misto"), std::string(FullAttackRoutineId)});
     attacks.assignStrike("mixedCanonical", "weapon", "longsword");
     canonicalView = attacks.toView();
     assert(canonicalView.attacks[0].slots[1].effectiveStrikeUsage == StrikeUsage::NaturalSecondary);
@@ -272,14 +272,14 @@ int main()
         .requirements = {}
     }));
 
-    attacks.create("mixed", "Completo con spada", "mixedFullAttack");
+    attacks.create({std::string("mixed"), std::string("Completo con spada"), std::string("mixedFullAttack")});
     assert(throwsInvalidArgument([&]
     {
-        attacks.create("mixed", "Duplicato", "mixedFullAttack");
+        attacks.create({std::string("mixed"), std::string("Duplicato"), std::string("mixedFullAttack")});
     }));
     assert(throwsInvalidArgument([&]
     {
-        attacks.create("missingRoutine", "Routine assente", "missing");
+        attacks.create({std::string("missingRoutine"), std::string("Routine assente"), std::string("missing")});
     }));
 
     AttacksView view = attacks.toView();
@@ -356,7 +356,7 @@ int main()
     assert(saved.attacks[0].assignments[0].strikeGrantId == "longsword");
 
     addStrike("offhandSword", "Spada secondaria", {AttackTag::Weapon}, std::nullopt, {"hand.left"}, WeaponWeight::OneHanded);
-    attacks.create("canonicalDualWield", "Due armi canonico", TwoWeaponFightingRoutineId);
+    attacks.create({std::string("canonicalDualWield"), std::string("Due armi canonico"), std::string(TwoWeaponFightingRoutineId)});
     attacks.assignStrike("canonicalDualWield", "mainHand", "longsword");
     attacks.assignStrike("canonicalDualWield", "offHand", "offhandSword");
     view = attacks.toView();
@@ -372,7 +372,7 @@ int main()
     assert(view.attacks[1].calculatedAttacks[4].strike.usage == StrikeUsage::NaturalSecondary);
     attacks.remove("canonicalDualWield");
 
-    attacks.create("dualWield", "Due armi", "twoWeaponFighting");
+    attacks.create({std::string("dualWield"), std::string("Due armi"), std::string("twoWeaponFighting")});
     attacks.assignStrike("dualWield", "mainHand", "longsword");
     attacks.assignStrike("dualWield", "offHand", "offhandSword");
     view = attacks.toView();
@@ -412,7 +412,7 @@ int main()
     resourceManager.removeFromCollection(AttackRoutineProgressionGrantsResource, "improvedTwoWeaponFighting");
     resourceManager.removeFromCollection(StrikeWeaponWeightAdjustmentsResource, "oversizedTwoWeaponFighting");
 
-    attacks.create("dual", "Due strike", "twoChosenStrikes");
+    attacks.create({std::string("dual"), std::string("Due strike"), std::string("twoChosenStrikes")});
     attacks.assignStrike("dual", "first", "longsword");
     assert(throwsInvalidArgument([&]
     {

@@ -1,5 +1,4 @@
 #include "golarion/character/flexible_spellcasting.hpp"
-#include "golarion/character/spell_definition_manager.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/util/string_utils.hpp"
 
@@ -18,8 +17,8 @@ namespace golarion
         return "spellcasting." + normalize(castingId) + ".metamagicMixingPermissions";
     }
 
-    FlexibleSpellcasting::FlexibleSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel)
-        : Spellcasting(resources, castingId, spellListClass), resources_(resources), endpoints_{preparationSlotsResource(castingId), metamagicMixingPermissionsResource(castingId), consumptionExemptionsResource(castingId)}, resolveLevel_(std::move(resolveLevel))
+    FlexibleSpellcasting::FlexibleSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel, const SpellCatalog *catalog)
+        : Spellcasting(resources, castingId, spellListClass, catalog), resources_(resources), endpoints_{preparationSlotsResource(castingId), metamagicMixingPermissionsResource(castingId), consumptionExemptionsResource(castingId)}, resolveLevel_(std::move(resolveLevel))
     {
         std::size_t registered = 0;
         try
@@ -98,7 +97,7 @@ namespace golarion
     int FlexibleSpellcasting::spellLevel(const SpellSlotGrant &group, const std::string &id) const
     {
         if (group.allowedSpellIds && !group.allowedSpellIds->contains(id)) throw std::invalid_argument("spell is not allowed by the slot filter");
-        const auto &spell = SpellDefinitionManager::instance().get(id);
+        const auto &spell = spellDefinition(id);
         std::optional<int> level;
         if (resolveLevel_) level = resolveLevel_(spellListClass(), group, id);
         else if (const auto entry = spell.spellLevelByClass.find(spellListClass()); entry != spell.spellLevelByClass.end()) level = entry->second;
@@ -110,13 +109,14 @@ namespace golarion
     {
         if (!knowsSpell(spellId)) throw std::invalid_argument("spell is not in the repertoire");
         const auto level = spellLevel(preparationGroups_.at(id.groupId), spellId);
-        auto evaluation = metamagic().evaluate(MetamagicPhase::Preparation, SpellDefinitionManager::instance().get(spellId), level, applications);
+        auto evaluation = metamagic().evaluate(MetamagicPhase::Preparation, spellDefinition(spellId), level, applications);
         if (evaluation.requiredSlotLevel > id.spellLevel || evaluation.effectiveSpellLevel > 9) throw std::invalid_argument("spell exceeds preparation slot level");
         return evaluation;
     }
 
-    void FlexibleSpellcasting::prepare(const SpellSlotId &preparationId, std::string_view spellId, const std::vector<MetamagicApplication> &applications)
+    void FlexibleSpellcasting::prepare(const SpellSlotId &preparationId, const SpellPreparationDefinition &definition)
     {
+        const auto &[spellId, applications] = definition;
         const auto key = checkedSlot(preparationId, preparationGroups_);
         if (preparations_.contains(key)) throw std::invalid_argument("preparation slot is not free");
         auto evaluation = checkedPreparation(key, normalize(spellId), applications);
@@ -132,15 +132,16 @@ namespace golarion
         preparations_.erase(checkedSlot(preparationId, preparationGroups_));
     }
 
-    MetamagicEvaluation FlexibleSpellcasting::consume(const SpellSlotId &slotId, const SpellSlotId &preparationId, const std::vector<MetamagicApplication> &applications, std::optional<std::string_view> mixingPermissionId)
+    MetamagicEvaluation FlexibleSpellcasting::consume(const SpellSlotId &slotId, const FlexibleSpellConsumptionDefinition &definition)
     {
+        const auto &[preparationId, applications, mixingPermissionId] = definition;
         const auto slot = checkedSlot(slotId, slotPools());
         const auto selection = checkedSlot(preparationId, preparationGroups_);
         if (consumedSlots_.contains(slot)) throw std::invalid_argument("spell slot is already consumed");
         const auto entry = preparations_.find(selection);
         if (entry == preparations_.end()) throw std::invalid_argument("spell is not prepared");
         const auto &prepared = entry->second;
-        const auto &spell = SpellDefinitionManager::instance().get(prepared.spellId);
+        const auto &spell = spellDefinition(prepared.spellId);
         if (spellLevel(slotPools().at(slot.groupId), prepared.spellId) != prepared.baseSpellLevel)
             throw std::invalid_argument("casting group has an incompatible spell level");
         auto evaluation = metamagic().evaluate(MetamagicPhase::Casting, spell, prepared.baseSpellLevel, applications, false, &prepared);
@@ -209,9 +210,9 @@ namespace golarion
             if (entry.evaluation && entry.evaluation->paidSlots != 1) throw std::invalid_argument("flexible preparation requires one preparation slot");
             auto evaluation = entry.evaluation ? restorePreparationSnapshot(spellId, entry.metamagic, *entry.evaluation, spellListClass())
                                                : checkedPreparation(key, spellId, entry.metamagic);
-            SpellDefinitionManager::instance().get(spellId);
+            spellDefinition(spellId);
             const auto &group = preparationGroups_.at(key.groupId);
-            if (!knowsSpell(spellId) || evaluation.requiredSlotLevel > key.spellLevel ||
+            if (evaluation.requiredSlotLevel > key.spellLevel ||
                 (group.allowedSpellIds && !group.allowedSpellIds->contains(spellId)))
                 throw std::invalid_argument("saved preparation is incompatible with its slot");
             evaluation.usageCosts.clear();

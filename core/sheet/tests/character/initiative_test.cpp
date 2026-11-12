@@ -36,10 +36,10 @@ int main()
     charisma.registerResources(manager);
 
     Initiative initiative(manager);
-    manager.addModifier("initiative", Modifier(ModifierType::Bonus, "Test", "Bonus all'iniziativa", BonusType::Competence, "4"));
-    manager.addModifier(AbilityCheckRootResource, Modifier(ModifierType::Penalty, "Infermo", "Penalità alle prove di caratteristica", std::nullopt, "2"));
-    manager.addModifier(abilityCheckResourceName(AbilityType::Dexterity), Modifier(ModifierType::Penalty, "Test", "Penalità alle prove di Destrezza", std::nullopt, "3"));
-    manager.addModifier(abilityCheckResourceName(AbilityType::Charisma), Modifier(ModifierType::Bonus, "Test", "Bonus alle prove di Carisma", BonusType::Insight, "1"));
+    manager.addModifier("initiative", Modifier({.type = ModifierType::Bonus, .source = "Test", .description = "Bonus all'iniziativa", .bonusType = BonusType::Competence, .expression = "4"}));
+    manager.addModifier(AbilityCheckRootResource, Modifier({.type = ModifierType::Penalty, .source = "Infermo", .description = "Penalità alle prove di caratteristica", .bonusType = std::nullopt, .expression = "2"}));
+    manager.addModifier(abilityCheckResourceName(AbilityType::Dexterity), Modifier({.type = ModifierType::Penalty, .source = "Test", .description = "Penalità alle prove di Destrezza", .bonusType = std::nullopt, .expression = "3"}));
+    manager.addModifier(abilityCheckResourceName(AbilityType::Charisma), Modifier({.type = ModifierType::Bonus, .source = "Test", .description = "Bonus alle prove di Carisma", .bonusType = BonusType::Insight, .expression = "1"}));
 
     InitiativeView view = initiative.toView();
     assert(view.abilityOptions.size() == 1);

@@ -44,19 +44,20 @@ int main()
         assert(flexible.toView().preparationGroups.empty());
         resources.addToCollection(spellSlotsResource(wizard.id), slots);
         resources.addToCollection(spellSlotsResource("other"), slots);
-        rejects([&] { prepared.prepare({"base", 3, 0}, "fireball"); });
+        rejects([&] { prepared.prepare({"base", 3, 0}, {"fireball"}); });
         prepared.addToRepertoire("fireball");
-        prepared.prepare({"base", 3, 0}, "fireball");
+        prepared.prepare({"base", 3, 0}, {"fireball"});
         prepared.consume({"base", 3, 0});
-        rejects([&] { spontaneous.consume({"base", 3, 0}, "fireball"); });
-        spontaneous.addToRepertoire("fireball");
-        spontaneous.consume({"base", 3, 0}, "fireball");
+        rejects([&] { spontaneous.consume({"base", 3, 0}, {"fireball"}); });
+        resources.addToCollection(repertoireQuotasResource("other"), SpellRepertoireQuota{"known", "Class", {{3, 1}}});
+        spontaneous.selectRepertoireSpell({"known", 3, "fireball"});
+        spontaneous.consume({"base", 3, 0}, {"fireball"});
 
         resources.addToCollection(spellSlotsResource("flexible"), slots);
         resources.addToCollection(preparationSlotsResource("flexible"), SpellSlotGrant{"prepared", "Preparazione", {{3, 1}}});
         flexible.addToRepertoire("fireball");
-        flexible.prepare({"prepared", 3, 0}, "fireball");
-        flexible.consume({"base", 3, 0}, {"prepared", 3, 0});
+        flexible.prepare({"prepared", 3, 0}, {"fireball"});
+        flexible.consume({"base", 3, 0}, {{"prepared", 3, 0}});
         const auto snapshot = castings.toView();
         assert(snapshot.castings.size() == 3);
         assert(snapshot.castings[0].id == wizard.id);
@@ -83,7 +84,7 @@ int main()
         assert(preparedView.groups[0].slots.size() == 1);
         assert(preparedView.groups[0].slots[0].state == PreparedSpellSlotState::Consumed);
         assert(std::get<PreparedSpellcastingView>(castings.toView().castings[0].state).groups[0].slots.size() == 3);
-        prepared.prepare({"base", 3, 1}, "fireball");
+        prepared.prepare({"base", 3, 1}, {"fireball"});
         assert(spontaneous.toData().consumedSlots.size() == 1);
         rejects([&] { resources.addToCollection(Spellcastings::Resource, wizard); });
         rejects([&] { resources.addToCollection(Spellcastings::Resource, SpellcastingGrant{" class.wizard ", "Other", SpellcastingMode::Flexible, CharacterClassType::Wizard}); });
@@ -119,7 +120,7 @@ int main()
         auto &fresh = dynamic_cast<PreparedSpellcasting &>(castings.get(wizard.id));
         assert(fresh.slotPools().empty());
         resources.addToCollection(spellSlotsResource(wizard.id), slots);
-        rejects([&] { fresh.prepare({"base", 3, 0}, "fireball"); });
+        rejects([&] { fresh.prepare({"base", 3, 0}, {"fireball"}); });
 
         ResourceManager otherResources;
         Spellcastings other(otherResources);

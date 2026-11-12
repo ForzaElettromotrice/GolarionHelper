@@ -1,3 +1,4 @@
+#include "golarion/character/spell_catalog.hpp"
 #include "golarion/character/spellcasting.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/util/string_utils.hpp"
@@ -17,13 +18,18 @@ namespace golarion
         return "spellcasting." + normalize(castingId) + ".slots";
     }
 
+    const SpellDefinition &Spellcasting::spellDefinition(std::string_view id) const
+    {
+        return catalog_ ? catalog_->get(id) : SpellDefinitionManager::instance().get(id);
+    }
+
     Spellcasting::~Spellcasting()
     {
         resources_.unregisterCollectionResource(slotsResource_);
     }
 
-    Spellcasting::Spellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass)
-        : resources_(resources), slotsResource_(spellSlotsResource(castingId)), spellListClass_(spellListClass), metamagic_(resources, castingId)
+    Spellcasting::Spellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, const SpellCatalog *catalog, bool allowManualRepertoire)
+        : catalog_(catalog), resources_(resources), slotsResource_(spellSlotsResource(castingId)), spellListClass_(spellListClass), repertoire_(resources, castingId, spellListClass, allowManualRepertoire, [this](std::string_view id) -> const SpellDefinition & { return spellDefinition(id); }), metamagic_(resources, castingId)
     {
         switch (spellListClass_)
         {
@@ -112,12 +118,16 @@ namespace golarion
 
     void Spellcasting::addToRepertoire(std::string_view spellId)
     {
-        repertoire_.insert(normalize(spellId));
+        repertoire_.addManual(spellId);
     }
+
+    void Spellcasting::removeFromRepertoire(std::string_view spellId) { repertoire_.removeManual(spellId); }
+    void Spellcasting::selectRepertoireSpell(RepertoireSelectionDefinition selection) { repertoire_.select(std::move(selection)); }
+    void Spellcasting::removeRepertoireSelection(RepertoireSelectionDefinition selection) { repertoire_.unselect(std::move(selection)); }
 
     bool Spellcasting::knowsSpell(std::string_view spellId) const
     {
-        return repertoire_.contains(std::string(spellId));
+        return repertoire_.knows(spellId);
     }
 
     CharacterClassType Spellcasting::spellListClass() const

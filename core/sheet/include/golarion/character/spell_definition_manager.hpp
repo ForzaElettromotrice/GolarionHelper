@@ -19,6 +19,7 @@ namespace golarion
         SpellDefinitionManager(SpellDefinitionManager &&) = delete;
         SpellDefinitionManager &operator=(SpellDefinitionManager &&) = delete;
 
+        bool contains(std::string_view id);
         const SpellDefinition &get(std::string_view spellDefinitionId);
 
     private:

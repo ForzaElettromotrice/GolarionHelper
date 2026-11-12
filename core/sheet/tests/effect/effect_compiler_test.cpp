@@ -216,7 +216,8 @@ int main()
         if (mode == SpellcastingMode::Prepared) assert(dynamic_cast<PreparedSpellcasting *>(&casting));
         if (mode == SpellcastingMode::Spontaneous) assert(dynamic_cast<SpontaneousSpellcasting *>(&casting));
         if (mode == SpellcastingMode::Flexible) assert(dynamic_cast<FlexibleSpellcasting *>(&casting));
-        casting.addToRepertoire("fireball");
+        resourceManager.addToCollection(repertoireQuotasResource(id), SpellRepertoireQuota{"known", "Class", {{3, 1}}});
+        casting.selectRepertoireSpell({"known", 3, "fireball"});
         assert(throwsInvalidArgument([&] { apply(resourceManager); }));
         assert(&castings.get(id) == &casting); // A duplicate grant cannot replace live state.
     }
@@ -231,6 +232,8 @@ int main()
     for (auto mode : {SpellcastingMode::Prepared, SpellcastingMode::Spontaneous, SpellcastingMode::Flexible})
         castingCleanups.push_back(compileEffect(SpellcastingGrantEffectDefinition{"casting", mode, CharacterClassType::Wizard},
             {"effect.casting." + std::to_string(castingIndex++), "Classe"})(resourceManager));
+    for (int index = 0; index < 3; ++index)
+        resourceManager.addToCollection(repertoireQuotasResource("effect.casting." + std::to_string(index)), SpellRepertoireQuota{"known", "Class", {{3, 1}}});
     castings.load(savedCastings);
     for (const auto &casting : castings.toData().castings) assert(casting.repertoire == std::vector<std::string>{"fireball"});
     for (auto &cleanup : castingCleanups) cleanup();
@@ -238,11 +241,13 @@ int main()
     assert(throwsInvalidArgument([&] { compileEffect(SpellcastingGrantEffectDefinition{"casting", SpellcastingMode::Prepared, static_cast<CharacterClassType>(999)}, {"invalid", "Classe"}); }));
     for (auto mode : {SpellcastingMode::Prepared, SpellcastingMode::Spontaneous, SpellcastingMode::Flexible})
     {
+        const std::string id = "caster";
         const auto castingCleanup = compileEffect(SpellcastingGrantEffectDefinition{"casting", mode, CharacterClassType::Wizard}, {"caster", "Classe"})(resourceManager);
         const auto slotsApply = compileEffect(SpellSlotGrantEffectDefinition{"slots", "caster", SpellSlotPoolType::Casting, {{0, 2}, {3, 1}}, std::set<std::string>{"fireball"}}, {"baseSlots", "Classe"});
         auto slotsCleanup = slotsApply(resourceManager);
         auto &casting = castings.get("caster");
-        casting.addToRepertoire("fireball");
+        resourceManager.addToCollection(repertoireQuotasResource(id), SpellRepertoireQuota{"known", "Class", {{3, 1}}});
+        casting.selectRepertoireSpell({"known", 3, "fireball"});
         assert(casting.slotPools().at("baseSlots").dailyCapacityByLevel.size() == 2);
         assert(casting.slotPools().at("baseSlots").allowedSpellIds->contains("fireball"));
         assert(throwsInvalidArgument([&] { slotsApply(resourceManager); }));
@@ -252,14 +257,14 @@ int main()
         {
             preparationCleanup = preparationApply(resourceManager);
             auto &flex = dynamic_cast<FlexibleSpellcasting &>(casting);
-            flex.prepare({"preparationSlots", 3, 0}, "fireball");
+            flex.prepare({"preparationSlots", 3, 0}, {"fireball"});
         }
         else assert(throwsInvalidArgument([&] { preparationApply(resourceManager); }));
         if (mode == SpellcastingMode::Prepared)
         {
             auto &prepared = dynamic_cast<PreparedSpellcasting &>(casting);
-            assert(throwsInvalidArgument([&] { prepared.prepare({"baseSlots", 0, 0}, "fireball"); }));
-            prepared.prepare({"baseSlots", 3, 0}, "fireball");
+            assert(throwsInvalidArgument([&] { prepared.prepare({"baseSlots", 0, 0}, {"fireball"}); }));
+            prepared.prepare({"baseSlots", 3, 0}, {"fireball"});
             prepared.consume({"baseSlots", 3, 0});
         }
         slotsCleanup();
@@ -268,7 +273,7 @@ int main()
         if (mode == SpellcastingMode::Prepared)
         {
             auto &prepared = dynamic_cast<PreparedSpellcasting &>(casting);
-            prepared.prepare({"baseSlots", 3, 0}, "fireball");
+            prepared.prepare({"baseSlots", 3, 0}, {"fireball"});
             prepared.consume({"baseSlots", 3, 0}); // Replacing a pool resets its state.
         }
         if (preparationCleanup) preparationCleanup();

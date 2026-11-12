@@ -1,5 +1,4 @@
 #include "golarion/character/spontaneous_spellcasting.hpp"
-#include "golarion/character/spell_definition_manager.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/util/string_utils.hpp"
 
@@ -9,8 +8,8 @@
 
 namespace golarion
 {
-    SpontaneousSpellcasting::SpontaneousSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel)
-        : Spellcasting(resources, castingId, spellListClass), resources_(resources), exemptionsResource_(consumptionExemptionsResource(castingId)), resolveLevel_(std::move(resolveLevel))
+    SpontaneousSpellcasting::SpontaneousSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel, const SpellCatalog *catalog)
+        : Spellcasting(resources, castingId, spellListClass, catalog, false), resources_(resources), exemptionsResource_(consumptionExemptionsResource(castingId)), resolveLevel_(std::move(resolveLevel))
     {
         resources_.registerCollectionResource<SpellConsumptionExemption>(exemptionsResource_,
             [this](SpellConsumptionExemption exemption)
@@ -43,15 +42,16 @@ namespace golarion
         return key;
     }
 
-    MetamagicEvaluation SpontaneousSpellcasting::consume(const SpellSlotId &slot, std::string_view spellId, const std::vector<MetamagicApplication> &applications)
+    MetamagicEvaluation SpontaneousSpellcasting::consume(const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition)
     {
+        const auto &[spellId, applications] = definition;
         const auto key = checkedSlot(slot);
         if (consumedSlots_.contains(key)) throw std::invalid_argument("spell slot is already consumed");
         const auto id = normalize(spellId);
         if (!knowsSpell(id)) throw std::invalid_argument("spell is not in the repertoire");
         const auto &group = slotPools().at(key.groupId);
         if (group.allowedSpellIds && !group.allowedSpellIds->contains(id)) throw std::invalid_argument("spell is not allowed by the slot filter");
-        const auto &spell = SpellDefinitionManager::instance().get(id);
+        const auto &spell = spellDefinition(id);
         std::optional<int> level;
         if (resolveLevel_) level = resolveLevel_(spellListClass(), group, id);
         else if (const auto entry = spell.spellLevelByClass.find(spellListClass()); entry != spell.spellLevelByClass.end()) level = entry->second;

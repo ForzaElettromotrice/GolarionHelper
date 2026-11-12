@@ -1,4 +1,7 @@
 #include "golarion/persistence/json.hpp"
+#include "golarion/equipment/item_definition_json.hpp"
+#include "golarion/character/spell_definition_json.hpp"
+#include "golarion/character/feat_definition_json.hpp"
 #include "spellcastings_json.hpp"
 
 #include <nlohmann/json.hpp>
@@ -47,6 +50,98 @@ namespace
         }
 
         throw std::invalid_argument("unknown enum name: " + value);
+    }
+
+    constexpr std::array ModifierTypeNames{
+        std::pair{golarion::ModifierType::Bonus, std::string_view("bonus")},
+        std::pair{golarion::ModifierType::Penalty, std::string_view("penalty")}
+    };
+    constexpr std::array SkillRankBudgetNames{
+        std::pair{golarion::SkillRankBudgetPolicy::Included, std::string_view("included")},
+        std::pair{golarion::SkillRankBudgetPolicy::Excluded, std::string_view("excluded")}
+    };
+    constexpr std::array BonusTypeNames{
+        std::pair{golarion::BonusType::Generic, std::string_view("generic")},
+        std::pair{golarion::BonusType::Alchemical, std::string_view("alchemical")},
+        std::pair{golarion::BonusType::Armor, std::string_view("armor")},
+        std::pair{golarion::BonusType::NaturalArmor, std::string_view("naturalArmor")},
+        std::pair{golarion::BonusType::Circumstance, std::string_view("circumstance")},
+        std::pair{golarion::BonusType::Insight, std::string_view("insight")},
+        std::pair{golarion::BonusType::Competence, std::string_view("competence")},
+        std::pair{golarion::BonusType::Deflection, std::string_view("deflection")},
+        std::pair{golarion::BonusType::Luck, std::string_view("luck")},
+        std::pair{golarion::BonusType::Inherent, std::string_view("inherent")},
+        std::pair{golarion::BonusType::Morale, std::string_view("morale")},
+        std::pair{golarion::BonusType::Enhancement, std::string_view("enhancement")},
+        std::pair{golarion::BonusType::Profane, std::string_view("profane")},
+        std::pair{golarion::BonusType::Racial, std::string_view("racial")},
+        std::pair{golarion::BonusType::Resistance, std::string_view("resistance")},
+        std::pair{golarion::BonusType::Sacred, std::string_view("sacred")},
+        std::pair{golarion::BonusType::Dodge, std::string_view("dodge")},
+        std::pair{golarion::BonusType::Shield, std::string_view("shield")},
+        std::pair{golarion::BonusType::Size, std::string_view("size")}
+    };
+
+    Json enhancementsToJson(const golarion::EnhancementsData &data)
+    {
+        Json groups = Json::array();
+        for (const auto &group : data.groups)
+        {
+            Json entries = Json::array();
+            for (const auto &entry : group.enhancements)
+            {
+                entries.push_back(std::visit([&](const auto &definition)
+                {
+                    Json json{{"id", definition.id}, {"resource", definition.resource}, {"expression", definition.expression}, {"active", entry.active}};
+                    if constexpr (std::is_same_v<std::decay_t<decltype(definition)>, golarion::ModifierEffectDefinition>)
+                    {
+                        json["type"] = "modifier";
+                        json["description"] = definition.description;
+                        json["modifierType"] = enumName(definition.type, ModifierTypeNames);
+                        json["skillRankBudget"] = enumName(definition.skillRankBudget, SkillRankBudgetNames);
+                        if (definition.bonusType) json["bonusType"] = enumName(*definition.bonusType, BonusTypeNames);
+                        if (definition.condition) json["condition"] = *definition.condition;
+                    }
+                    else json["type"] = "contribution";
+                    return json;
+                }, entry.definition));
+            }
+            groups.push_back(Json{{"id", group.id}, {"name", group.name}, {"enhancements", std::move(entries)}});
+        }
+        return groups;
+    }
+
+    golarion::EnhancementsData enhancementsFromJson(const Json &json)
+    {
+        using namespace golarion;
+        if (!json.is_array()) throw std::invalid_argument("enhancement groups must be an array");
+        EnhancementsData data;
+        for (const auto &group : json)
+        {
+            EnhancementGroupData result{group.at("id").get<std::string>(), group.at("name").get<std::string>(), {}};
+            if (!group.at("enhancements").is_array()) throw std::invalid_argument("enhancements must be an array");
+            for (const auto &entry : group.at("enhancements"))
+            {
+                const auto id = entry.at("id").get<std::string>();
+                const auto resource = entry.at("resource").get<std::string>();
+                const auto expression = entry.at("expression").get<std::string>();
+                const bool active = entry.at("active").get<bool>();
+                const auto type = entry.at("type").get<std::string>();
+                if (type == "contribution") result.enhancements.push_back({ContributionEffectDefinition{id, resource, expression}, active});
+                else if (type == "modifier")
+                {
+                    ModifierEffectDefinition definition{id, resource, entry.at("description").get<std::string>(), enumValue(entry.at("modifierType"), ModifierTypeNames), {}, expression};
+                    if (entry.contains("bonusType")) definition.bonusType = enumValue(entry.at("bonusType"), BonusTypeNames);
+                    if ((definition.type == ModifierType::Bonus) != definition.bonusType.has_value()) throw std::invalid_argument("invalid enhancement bonus type");
+                    if (entry.contains("condition")) definition.condition = entry.at("condition").get<std::string>();
+                    definition.skillRankBudget = enumValue(entry.at("skillRankBudget"), SkillRankBudgetNames);
+                    result.enhancements.push_back({std::move(definition), active});
+                }
+                else throw std::invalid_argument("unknown enhancement type: " + type);
+            }
+            data.groups.push_back(std::move(result));
+        }
+        return data;
     }
 
     constexpr std::array AbilityTypeNames{
@@ -332,14 +427,20 @@ namespace
         Json selections = Json::array();
         for (const auto &selection : data.selections)
             selections.push_back({{"slotId", selection.slotId}, {"featId", selection.featId}, {"choices", selection.choices}});
-        return Json{{"selections", std::move(selections)}};
+        return Json{{"selections", std::move(selections)}, {"extraSlotIds", data.extraSlotIds}};
     }
 
-    golarion::FeatsData featsFromJson(const Json &json)
+    golarion::FeatsData featsFromJson(const Json &json, bool extraSlots)
     {
         const auto &selections = json.at("selections");
         if (!selections.is_array()) throw std::invalid_argument("feat selections must be an array");
         golarion::FeatsData data;
+        if (extraSlots)
+        {
+            const auto &ids = json.at("extraSlotIds");
+            if (!ids.is_array()) throw std::invalid_argument("extra feat slot IDs must be an array");
+            data.extraSlotIds = ids.get<std::vector<std::string>>();
+        }
         for (const auto &selection : selections)
             data.selections.push_back({selection.at("slotId").get<std::string>(), selection.at("featId").get<std::string>(),
                 selection.at("choices").get<std::map<std::string, std::vector<std::string>>>()});
@@ -828,8 +929,18 @@ namespace golarion::persistence
             abilities.push_back(abilityToJson(ability));
         }
 
+        Json customFeats = Json::array();
+        for (const auto &definition : data.customFeatDefinitions) customFeats.push_back(featDefinitionToJson(definition));
+        Json customSpells = Json::array();
+        for (const auto &definition : data.customSpellDefinitions) customSpells.push_back(spellDefinitionToJson(definition));
+        Json customItems = Json::array();
+        for (const auto &definition : data.customItemDefinitions) customItems.push_back(itemDefinitionToJson(definition));
         return Json{
+            {"customItemDefinitions", std::move(customItems)},
+            {"customSpellDefinitions", std::move(customSpells)},
+            {"customFeatDefinitions", std::move(customFeats)},
             {"formatVersion", data.formatVersion},
+            {"notes", data.notes},
             {"identity", characterIdentityToJson(data.identity)},
             {"race", raceToJson(data.race)},
             {"abilities", std::move(abilities)},
@@ -840,12 +951,13 @@ namespace golarion::persistence
             {"inventory", inventoryToJson(data.inventory)},
             {"feats", featsToJson(data.feats)},
             {"languages", languagesToJson(data.languages, data.formatVersion)},
-            {"spellcastings", spellcastingsToJson(data.spellcastings, data.formatVersion >= 34)},
+            {"spellcastings", spellcastingsToJson(data.spellcastings, data.formatVersion >= 34, data.formatVersion >= 40)},
             {"metamagicUses", data.formatVersion >= 34 ? metamagicUsesToJson(data.spellcastings.metamagicUses) : Json(nullptr)},
             {"grantedSpells", grantedSpellsToJson(data.grantedSpells)},
             {"classes", classesToJson(data.classes)},
             {"favoredClasses", favoredClassesToJson(data.classes.favoredClasses)},
-            {"legacyFirstLevelFeatSlot", data.legacyFirstLevelFeatSlot}
+            {"legacyFirstLevelFeatSlot", data.legacyFirstLevelFeatSlot},
+            {"enhancements", enhancementsToJson(data.enhancements)}
         }.dump(4);
     }
 
@@ -861,9 +973,30 @@ namespace golarion::persistence
         }
 
         const int formatVersion = json.at("formatVersion").get<int>();
+        std::vector<FeatDefinition> customFeats;
+        if (formatVersion >= 39)
+        {
+            const auto &definitions = json.at("customFeatDefinitions");
+            if (!definitions.is_array()) throw std::invalid_argument("custom feat definitions must be an array");
+            for (const auto &definition : definitions) customFeats.push_back(featDefinitionFromJson(definition));
+        }
+        std::vector<SpellDefinition> customSpells;
+        if (formatVersion >= 38)
+        {
+            const auto &definitions = json.at("customSpellDefinitions");
+            if (!definitions.is_array()) throw std::invalid_argument("custom spell definitions must be an array");
+            for (const auto &definition : definitions) customSpells.push_back(spellDefinitionFromJson(definition));
+        }
+        std::vector<ItemDefinition> customItems;
+        if (formatVersion >= 37)
+        {
+            const auto &definitions = json.at("customItemDefinitions");
+            if (!definitions.is_array()) throw std::invalid_argument("custom item definitions must be an array");
+            for (const auto &definition : definitions) customItems.push_back(itemDefinitionFromJson(definition));
+        }
         auto classes = formatVersion >= 30 ? classesFromJson(json.at("classes"), formatVersion >= 31, formatVersion >= 32) : ClassesData{};
         if (formatVersion >= 33) classes.favoredClasses = favoredClassesFromJson(json.at("favoredClasses"));
-        auto spellcastings = formatVersion >= 27 ? spellcastingsFromJson(json.at("spellcastings"), formatVersion >= 34) : SpellcastingsData{};
+        auto spellcastings = formatVersion >= 27 ? spellcastingsFromJson(json.at("spellcastings"), formatVersion >= 34, formatVersion >= 40) : SpellcastingsData{};
         if (formatVersion >= 34) spellcastings.metamagicUses = metamagicUsesFromJson(json.at("metamagicUses"));
         return CharacterSheetSaveData{
             .formatVersion = formatVersion,
@@ -875,12 +1008,17 @@ namespace golarion::persistence
             .attacks = json.contains("attacks") ? attacksFromJson(json.at("attacks")) : AttacksData{},
             .conditions = formatVersion >= 17 ? conditionsFromJson(json.at("conditions")) : ConditionManagerSaveData{},
             .inventory = formatVersion >= 19 ? inventoryFromJson(json.at("inventory"), formatVersion >= 28) : InventorySaveData{},
-            .feats = formatVersion >= 25 ? featsFromJson(json.at("feats")) : FeatsData{},
+            .feats = formatVersion >= 25 ? featsFromJson(json.at("feats"), formatVersion >= 39) : FeatsData{},
             .languages = formatVersion >= 26 ? languagesFromJson(json.at("languages")) : LanguagesData{},
             .spellcastings = std::move(spellcastings),
             .grantedSpells = formatVersion >= 29 ? grantedSpellsFromJson(json.at("grantedSpells")) : GrantedSpellsData{},
             .classes = std::move(classes),
-            .legacyFirstLevelFeatSlot = formatVersion >= 30 ? json.at("legacyFirstLevelFeatSlot").get<bool>() : false
+            .legacyFirstLevelFeatSlot = formatVersion >= 30 ? json.at("legacyFirstLevelFeatSlot").get<bool>() : false,
+            .enhancements = formatVersion >= 36 ? enhancementsFromJson(json.at("enhancements")) : EnhancementsData{},
+            .customItemDefinitions = std::move(customItems),
+            .customSpellDefinitions = std::move(customSpells),
+            .customFeatDefinitions = std::move(customFeats),
+            .notes = formatVersion >= 41 ? json.at("notes").get<std::string>() : std::string{}
         };
     }
 

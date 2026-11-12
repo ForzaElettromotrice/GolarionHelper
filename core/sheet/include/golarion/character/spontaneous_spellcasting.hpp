@@ -1,4 +1,5 @@
 #pragma once
+#include "golarion/character/spell_operation_definition.hpp"
 
 #include "golarion/character/spellcasting.hpp"
 #include "golarion/character/spell_preparation_rules.hpp"
@@ -7,16 +8,17 @@
 
 namespace golarion
 {
+    class SpellCatalog;
     class SpontaneousSpellcasting final : public Spellcasting
     {
     public:
         // Pure level/list query for special grants; omitted means catalog class-list lookup.
         // With no explicit slot filter, a custom resolver must enforce list membership.
         using SpellLevelResolver = std::function<std::optional<int>(CharacterClassType, const SpellSlotGrant &, std::string_view)>;
-        explicit SpontaneousSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel = {});
+        explicit SpontaneousSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel = {}, const SpellCatalog *catalog = nullptr);
         ~SpontaneousSpellcasting() override;
 
-        MetamagicEvaluation consume(const SpellSlotId &slot, std::string_view spellId, const std::vector<MetamagicApplication> &metamagic = {});
+        MetamagicEvaluation consume(const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition);
         void clear(const SpellSlotId &slot);
         SpontaneousSpellSlotState slotState(const SpellSlotId &slot) const;
         SpontaneousSpellcastingData toData() const;

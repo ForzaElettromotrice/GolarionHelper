@@ -100,7 +100,8 @@ namespace
                 .id = choiceId,
                 .prompt = golarion::normalize(choiceJson.at("prompt").get<std::string>()),
                 .selectionCount = static_cast<std::size_t>(selectionCount),
-                .options = std::move(options)
+                .options = std::move(options),
+                .blocksAdvancement = choiceJson.value("blocksAdvancement", true)
             });
         }
         return choices;

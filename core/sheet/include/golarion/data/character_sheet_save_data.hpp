@@ -1,4 +1,8 @@
 #pragma once
+#include "golarion/character/feat_definition.hpp"
+#include "golarion/character/spell_definition.hpp"
+#include "golarion/equipment/item.hpp"
+#include "golarion/data/enhancements_data.hpp"
 
 #include "golarion/data/ability_save_data.hpp"
 #include "golarion/data/classes_data.hpp"
@@ -14,6 +18,7 @@
 #include "golarion/data/race_save_data.hpp"
 #include "golarion/data/skills_save_data.hpp"
 
+#include <string>
 #include <vector>
 
 namespace golarion
@@ -36,5 +41,10 @@ namespace golarion
         ClassesData classes;
         // Preserve an old level-one feat until a real class is assigned.
         bool legacyFirstLevelFeatSlot = false;
+        EnhancementsData enhancements;
+        std::vector<ItemDefinition> customItemDefinitions;
+        std::vector<SpellDefinition> customSpellDefinitions;
+        std::vector<FeatDefinition> customFeatDefinitions;
+        std::string notes;
     };
 }

@@ -82,8 +82,8 @@ int main()
                 .usageCost = MetamagicUsageCost{"first.daily", 1, linked}});
             auto &casting = dynamic_cast<PreparedSpellcasting &>(castings.get(id));
             casting.addToRepertoire("fireball");
-            casting.prepare({"slots", 3, 0}, "fireball");
-            casting.consume({"slots", 3, 0}, std::nullopt, {{MetamagicType::Silent, "rod", {}}});
+            casting.prepare({"slots", 3, 0}, {"fireball"});
+            casting.consume({"slots", 3, 0}, {std::nullopt, {{MetamagicType::Silent, "rod", {}}}});
         }
         assert(daily->remaining() == 1 && second.usagePool("daily")->remaining() == 3);
         assert(castings.toView().metamagicPools.front().remaining == 1);
@@ -98,10 +98,10 @@ int main()
         assert(daily->remaining() == 0);
         auto &wizard = dynamic_cast<PreparedSpellcasting &>(castings.get("wizard"));
         wizard.clear({"slots", 3, 0});
-        wizard.prepare({"slots", 3, 0}, "fireball");
-        rejects([&] { wizard.consume({"slots", 3, 0}, std::nullopt, {{MetamagicType::Silent, "rod", {}}}); });
+        wizard.prepare({"slots", 3, 0}, {"fireball"});
+        rejects([&] { wizard.consume({"slots", 3, 0}, {std::nullopt, {{MetamagicType::Silent, "rod", {}}}}); });
         daily->refill();
-        wizard.consume({"slots", 3, 0}, std::nullopt, {{MetamagicType::Silent, "rod", {}}});
+        wizard.consume({"slots", 3, 0}, {std::nullopt, {{MetamagicType::Silent, "rod", {}}}});
         assert(daily->remaining() == 2);
         daily->refill();
     }

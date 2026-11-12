@@ -4,6 +4,8 @@
 #include "golarion/data/spontaneous_spellcasting_data.hpp"
 #include "golarion/data/flexible_spellcasting_data.hpp"
 
+#include "golarion/data/spell_repertoire_data.hpp"
+
 #include <variant>
 #include <map>
 #include <optional>
@@ -15,8 +17,10 @@ namespace golarion
     struct SpellcastingData
     {
         std::string id;
+        // Legacy flat knowledge; repertoireData is authoritative when present.
         std::vector<std::string> repertoire;
         SpellcastingStateData state;
+        std::optional<SpellRepertoireData> repertoireData = std::nullopt;
     };
 
     struct SpellcastingsData

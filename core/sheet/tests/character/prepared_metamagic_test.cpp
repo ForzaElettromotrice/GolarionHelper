@@ -30,17 +30,17 @@ int main()
     const MetamagicApplication heighten{MetamagicType::Heighten, "heighten", HeightenMetamagicOptions{4}};
     const auto damageCheck = [](const SpellDefinition &spell, const MetamagicApplication &) { return spell.id == "fireball"; };
     MetamagicGrant empowered{"empower", "Feat", MetamagicType::Empower};
-    rejects([&] { casting.prepare(fifth, "fireball", {empower}); });
+    rejects([&] { casting.prepare(fifth, {"fireball", {empower}}); });
     resources.addToCollection(prep, empowered);
-    rejects([&] { casting.prepare(fifth, "fireball", {empower}); }); // No damage schema; provider must confirm applicability.
+    rejects([&] { casting.prepare(fifth, {"fireball", {empower}}); }); // No damage schema; provider must confirm applicability.
     resources.removeFromCollection(prep, "empower");
     empowered.isApplicable = damageCheck;
     resources.addToCollection(prep, empowered);
     resources.addToCollection(prep, MetamagicGrant{"heighten", "Feat", MetamagicType::Heighten});
     resources.addToCollection(prep, MetamagicGrant{"quicken", "Feat", MetamagicType::Quicken});
-    rejects([&] { casting.prepare(third, "fireball", {empower}); });
-    rejects([&] { casting.prepare(fifth, "fireball", {empower, empower}); });
-    casting.prepare(fifth, "fireball", {empower});
+    rejects([&] { casting.prepare(third, {"fireball", {empower}}); });
+    rejects([&] { casting.prepare(fifth, {"fireball", {empower, empower}}); });
+    casting.prepare(fifth, {"fireball", {empower}});
     const auto saved = casting.toData();
     assert(saved.preparations.front().metamagic.size() == 1);
     assert(casting.slotState(fifth).metamagic.front().type == MetamagicType::Empower);
@@ -56,7 +56,7 @@ int main()
     assert(casting.slotState(fifth).state == PreparedSpellSlotState::Prepared);
     casting.clear(fifth);
     const SpellSlotId eighth{"base", 8, 0};
-    casting.prepare(eighth, "fireball", {heighten, {MetamagicType::Quicken, "quicken", {}}});
+    casting.prepare(eighth, {"fireball", {heighten, {MetamagicType::Quicken, "quicken", {}}}});
     const auto heightened = casting.consume(eighth);
     assert(heightened.requiredSlotLevel == 8 && heightened.effectiveSpellLevel == 4);
     casting.clear(eighth);
@@ -69,14 +69,14 @@ int main()
     rod.isApplicable = damageCheck;
     resources.addToCollection(cast, rod);
     const MetamagicApplication rodEmpower{MetamagicType::Empower, "rod", {}};
-    casting.prepare(third, "fireball");
-    const auto empoweredCast = casting.consume(third, std::nullopt, {rodEmpower});
+    casting.prepare(third, {"fireball"});
+    const auto empoweredCast = casting.consume(third, {std::nullopt, {rodEmpower}});
     assert(empoweredCast.requiredSlotLevel == 3 && empoweredCast.nominalSlotLevel == 5);
     assert(empoweredCast.applications.size() == 1 && pool->remaining() == 2);
     assert(casting.slotState(third).metamagic.empty()); // Casting additions are transient.
     casting.clear(third);
-    casting.prepare(fifth, "fireball", {empower});
-    rejects([&] { casting.consume(fifth, std::nullopt, {rodEmpower}); });
+    casting.prepare(fifth, {"fireball", {empower}});
+    rejects([&] { casting.consume(fifth, {std::nullopt, {rodEmpower}}); });
     assert(pool->remaining() == 2 && casting.slotState(fifth).state == PreparedSpellSlotState::Prepared);
 
     auto rodMax = rod;
@@ -84,22 +84,22 @@ int main()
     rodMax.type = MetamagicType::Maximize;
     resources.addToCollection(cast, rodMax);
     const MetamagicApplication maximize{MetamagicType::Maximize, "max-rod", {}};
-    rejects([&] { casting.consume(fifth, std::nullopt, {maximize}); }); // Lesser rod cannot modify a fifth-level payment.
+    rejects([&] { casting.consume(fifth, {std::nullopt, {maximize}}); }); // Lesser rod cannot modify a fifth-level payment.
     assert(pool->remaining() == 2);
     resources.removeFromCollection(cast, "max-rod");
     rodMax.rodGrade = MetamagicRodGrade::Normal;
     resources.addToCollection(cast, rodMax);
-    const auto combined = casting.consume(fifth, std::nullopt, {maximize});
+    const auto combined = casting.consume(fifth, {std::nullopt, {maximize}});
     assert(combined.applications.size() == 2 && combined.requiredSlotLevel == 5 && combined.nominalSlotLevel == 8);
     assert(pool->remaining() == 1);
     casting.clear(fifth);
-    casting.prepare(third, "fireball");
-    rejects([&] { casting.consume(third, std::nullopt, {rodEmpower, maximize}); });
+    casting.prepare(third, {"fireball"});
+    rejects([&] { casting.consume(third, {std::nullopt, {rodEmpower, maximize}}); });
     assert(pool->remaining() == 1);
     resources.addToCollection(consumptionExemptionsResource("wizard"), SpellConsumptionExemption{"repeat", "Test", [](const auto &) { return true; }});
-    casting.consume(third, std::nullopt, {rodEmpower});
+    casting.consume(third, {std::nullopt, {rodEmpower}});
     assert(pool->remaining() == 0 && casting.slotState(third).state == PreparedSpellSlotState::Prepared);
-    rejects([&] { casting.consume(third, std::nullopt, {rodEmpower}); });
+    rejects([&] { casting.consume(third, {std::nullopt, {rodEmpower}}); });
     assert(casting.slotState(third).state == PreparedSpellSlotState::Prepared);
     resources.removeFromCollection(cast, "rod");
     resources.addToCollection(cast, rod);
@@ -108,10 +108,10 @@ int main()
     resources.addToCollection(spellSlotsResource("other"), SpellSlotGrant{"base", "Class", {{3, 1}}});
     resources.addToCollection(castingMetamagicGrantsResource("other"), rod);
     other.addToRepertoire("fireball");
-    other.prepare(third, "fireball");
-    rejects([&] { other.consume(third, std::nullopt, {rodEmpower}); });
+    other.prepare(third, {"fireball"});
+    rejects([&] { other.consume(third, {std::nullopt, {rodEmpower}}); });
     pool->reset(1);
-    other.consume(third, std::nullopt, {rodEmpower});
+    other.consume(third, {std::nullopt, {rodEmpower}});
     assert(pool->remaining() == 0);
     resources.removeFromCollection(consumptionExemptionsResource("wizard"), "repeat");
     casting.clear(third);
@@ -122,7 +122,7 @@ int main()
     silent.usageCost = MetamagicUsageCost{"preparation.uses", 1, preparationPool};
     resources.addToCollection(prep, silent);
     const SpellSlotId fourth{"base", 4, 0};
-    casting.prepare(fourth, "fireball", {{MetamagicType::Silent, "silent", {}}});
+    casting.prepare(fourth, {"fireball", {{MetamagicType::Silent, "silent", {}}}});
     assert(preparationPool->remaining() == 0);
     const auto limitedSaved = casting.toData();
     casting.load(limitedSaved);
@@ -140,14 +140,14 @@ int main()
     stillCast.usageCost = MetamagicUsageCost{"empty", 1, emptyPool};
     resources.addToCollection(cast, silentCast);
     resources.addToCollection(cast, stillCast);
-    casting.prepare(fifth, "fireball");
-    rejects([&] { casting.consume(fifth, std::nullopt, {{MetamagicType::Silent, "silent", {}}, {MetamagicType::Still, "still", {}}}); });
+    casting.prepare(fifth, {"fireball"});
+    rejects([&] { casting.consume(fifth, {std::nullopt, {{MetamagicType::Silent, "silent", {}}, {MetamagicType::Still, "still", {}}}}); });
     assert(firstPool->remaining() == 2 && casting.slotState(fifth).state == PreparedSpellSlotState::Prepared);
     resources.removeFromCollection(cast, "still");
     stillCast.usageCost = MetamagicUsageCost{"first", 1, firstPool};
     stillCast.isApplicable = [](const auto &, const auto &) -> bool { throw std::runtime_error("applicability failed"); };
     resources.addToCollection(cast, stillCast);
-    rejects<std::runtime_error>([&] { casting.consume(fifth, std::nullopt, {{MetamagicType::Silent, "silent", {}}, {MetamagicType::Still, "still", {}}}); });
+    rejects<std::runtime_error>([&] { casting.consume(fifth, {std::nullopt, {{MetamagicType::Silent, "silent", {}}, {MetamagicType::Still, "still", {}}}}); });
     assert(firstPool->remaining() == 2 && casting.slotState(fifth).state == PreparedSpellSlotState::Prepared);
     rejects([&] { MetamagicRegistry::pay({{"first", 2, firstPool}, {"first", 1, firstPool}}); });
     assert(firstPool->remaining() == 2);
@@ -155,7 +155,7 @@ int main()
     resources.removeFromCollection(cast, "still");
     stillCast.isApplicable = {};
     resources.addToCollection(cast, stillCast);
-    casting.consume(fifth, std::nullopt, {{MetamagicType::Silent, "silent", {}}, {MetamagicType::Still, "still", {}}});
+    casting.consume(fifth, {std::nullopt, {{MetamagicType::Silent, "silent", {}}, {MetamagicType::Still, "still", {}}}});
     assert(firstPool->remaining() == 0);
     casting.clear(fifth);
 
@@ -164,13 +164,13 @@ int main()
     conversionGrant.castingScope = CastingMetamagicScope::SpontaneousConversionOnly;
     resources.addToCollection(cast, conversionGrant);
     resources.addToCollection(spontaneousConversionsResource("wizard"), SpontaneousConversion{"convert", "Test", [](const auto &) -> std::optional<int> { return 3; }});
-    casting.prepare(fifth, "fireball", {empower});
-    rejects([&] { casting.consume(fifth, std::nullopt, {empower}); });
-    const auto converted = casting.consume(fifth, "fireball", {empower});
+    casting.prepare(fifth, {"fireball", {empower}});
+    rejects([&] { casting.consume(fifth, {std::nullopt, {empower}}); });
+    const auto converted = casting.consume(fifth, {"fireball", {empower}});
     assert(converted.applications.size() == 1 && converted.requiredSlotLevel == 5);
     casting.clear(fifth);
-    casting.prepare(third, "fireball");
-    rejects([&] { casting.consume(third, "fireball", {empower}); });
+    casting.prepare(third, {"fireball"});
+    rejects([&] { casting.consume(third, {"fireball", {empower}}); });
     assert(casting.slotState(third).state == PreparedSpellSlotState::Prepared);
     casting.clear(third);
 

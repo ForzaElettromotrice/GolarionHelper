@@ -62,7 +62,7 @@ int main()
     resources.addToCollection(endpoint, SkillRankGrant{"invalid", "Fonte", "-1"});
     rejects([&] { skills.toView(); });
     resources.removeFromCollection(endpoint, "invalid");
-    skills.addSpecialization(SkillType::Craft, "test", "Prova");
+    skills.addSpecialization(SkillType::Craft, {"test", "Prova"});
     auto specializedCleanup = compileEffect(SkillRankGrantEffectDefinition{"ranks", SkillType::Craft, "4", "test"}, {"craft.ranks", "Oggetto"})(resources);
     assert(view(SkillType::Craft, "test").effectiveRanks == 4);
     assert(view(SkillType::Craft, "alchemy").effectiveRanks == 0);

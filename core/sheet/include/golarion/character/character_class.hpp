@@ -1,4 +1,6 @@
 #pragma once
+#include "golarion/character/pending_choice.hpp"
+#include "golarion/character/class_option_definition.hpp"
 
 #include "golarion/character/class_definition.hpp"
 #include "golarion/character/archetype_definition.hpp"
@@ -34,8 +36,10 @@ namespace golarion
         CharacterClassData toData() const;
         void load(const CharacterClassData &data);
         CharacterClassView toView() const;
-        void selectOption(const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId);
-        void unselectOption(const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId);
+        void selectOption(const ClassOptionDefinition &definition);
+        void unselectOption(const ClassOptionDefinition &definition);
+
+        std::vector<PendingChoice> pendingChoices() const;
 
     private:
         using ChoiceKey = std::pair<std::string, std::string>;

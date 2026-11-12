@@ -1,4 +1,5 @@
 #pragma once
+#include "golarion/character/feat_slot_origin.hpp"
 
 #include "golarion/character/feat_type.hpp"
 
@@ -41,6 +42,7 @@ namespace golarion
         std::optional<FeatType> allowedType;
         std::vector<std::string> allowedFeatIds;
         bool available = true;
+        FeatSlotOrigin origin = FeatSlotOrigin::Source;
     };
 
     struct FeatsView

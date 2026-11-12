@@ -62,10 +62,10 @@ int main()
     }));
 
     acrobatics.setRanks(2);
-    manager.addModifier("skill.acrobatics", Modifier(ModifierType::Bonus, "Talento", "Bonus ad Acrobazia", BonusType::Competence, "2"));
-    manager.addModifier(skillCheckResourceName(AbilityType::Dexterity), Modifier(ModifierType::Bonus, "Agilità", "Bonus alle prove basate su Destrezza", BonusType::Competence, "4"));
-    manager.addModifier(skillCheckResourceName(AbilityType::Dexterity), Modifier(ModifierType::Penalty, "Accecato", "Penalità alle prove basate su Destrezza", std::nullopt, "4", "Quando la cecità ostacola la prova"));
-    manager.addModifier(skillCheckResourceName(AbilityType::Strength), Modifier(ModifierType::Penalty, "Accecato", "Penalità alle prove basate su Forza", std::nullopt, "4", "Quando la cecità ostacola la prova"));
+    manager.addModifier("skill.acrobatics", Modifier({.type = ModifierType::Bonus, .source = "Talento", .description = "Bonus ad Acrobazia", .bonusType = BonusType::Competence, .expression = "2"}));
+    manager.addModifier(skillCheckResourceName(AbilityType::Dexterity), Modifier({.type = ModifierType::Bonus, .source = "Agilità", .description = "Bonus alle prove basate su Destrezza", .bonusType = BonusType::Competence, .expression = "4"}));
+    manager.addModifier(skillCheckResourceName(AbilityType::Dexterity), Modifier({.type = ModifierType::Penalty, .source = "Accecato", .description = "Penalità alle prove basate su Destrezza", .bonusType = std::nullopt, .expression = "4", .condition = "Quando la cecità ostacola la prova"}));
+    manager.addModifier(skillCheckResourceName(AbilityType::Strength), Modifier({.type = ModifierType::Penalty, .source = "Accecato", .description = "Penalità alle prove basate su Forza", .bonusType = std::nullopt, .expression = "4", .condition = "Quando la cecità ostacola la prova"}));
     assert(acrobatics.totalValue(manager) == 8);
 
     std::map<std::string, SkillAbilityReplacement> abilityReplacements;

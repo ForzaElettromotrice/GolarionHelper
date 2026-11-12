@@ -5,8 +5,8 @@
 
 namespace golarion::persistence
 {
-    nlohmann::json spellcastingsToJson(const SpellcastingsData &data, bool requireSnapshots = false);
-    SpellcastingsData spellcastingsFromJson(const nlohmann::json &json, bool requireSnapshots = false);
+    nlohmann::json spellcastingsToJson(const SpellcastingsData &data, bool requireSnapshots = false, bool requireRepertoireState = false);
+    SpellcastingsData spellcastingsFromJson(const nlohmann::json &json, bool requireSnapshots = false, bool requireRepertoireState = false);
     nlohmann::json metamagicUsesToJson(const std::optional<std::map<std::string, int>> &uses);
     std::map<std::string, int> metamagicUsesFromJson(const nlohmann::json &json);
 }

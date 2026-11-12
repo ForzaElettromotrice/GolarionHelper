@@ -19,6 +19,7 @@ namespace golarion
         FeatDefinitionManager(FeatDefinitionManager &&) = delete;
         FeatDefinitionManager &operator=(FeatDefinitionManager &&) = delete;
 
+        bool contains(std::string_view id);
         const FeatDefinition &get(std::string_view featDefinitionId);
 
     private:

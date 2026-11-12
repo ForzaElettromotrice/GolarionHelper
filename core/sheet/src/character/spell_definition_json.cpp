@@ -378,6 +378,13 @@ namespace
         throw std::invalid_argument("unknown spell enum value: " + name);
     }
 
+    template<typename Enum> std::string enumName(Enum value)
+    {
+        for (const auto &[name, entry] : EnumNames<Enum>::values)
+            if (entry == value) return std::string(name);
+        throw std::invalid_argument("invalid spell enum value");
+    }
+
     const Json &optionalCollection(const Json &json, const char *field, const Json &empty)
     {
         return !json.contains(field) || json.at(field).is_null() ? empty : json.at(field);
@@ -421,6 +428,48 @@ namespace
 
 namespace golarion
 {
+    nlohmann::json spellDefinitionToJson(const SpellDefinition &d)
+    {
+        validateSpellDefinition(d);
+        Json result{
+            {"id", d.id}, {"name", d.name}, {"school", enumName(d.school)},
+            {"castingTimeCategory", enumName(d.castingTimeCategory)}, {"castingTimeDescription", d.castingTimeDescription},
+            {"rangeType", enumName(d.rangeType)}, {"rangeDescription", d.rangeDescription},
+            {"durationType", enumName(d.durationType)}, {"durationDescription", d.durationDescription},
+            {"dismissible", d.dismissible}, {"spellResistanceType", enumName(d.spellResistanceType)},
+            {"spellResistanceDescription", d.spellResistanceDescription}, {"description", d.description}
+        };
+        const auto put = [&](const char *key, const auto &value) { if (value) result[key] = *value; };
+        if (d.subschool) result["subschool"] = enumName(*d.subschool);
+        put("materialComponentDescription", d.materialComponentDescription);
+        put("materialComponentCostInGoldPieces", d.materialComponentCostInGoldPieces);
+        put("focusComponentDescription", d.focusComponentDescription);
+        put("target", d.target);
+        put("effect", d.effect);
+        put("area", d.area);
+        result["descriptors"] = Json::array();
+        for (const auto value : d.descriptors) result["descriptors"].push_back(enumName(value));
+        result["components"] = Json::array();
+        for (const auto value : d.components) result["components"].push_back(enumName(value));
+        result["spellLevelByClass"] = Json::object();
+        for (const auto &[type, level] : d.spellLevelByClass) result["spellLevelByClass"][enumName(type)] = level;
+        result["spellLevelByBloodline"] = Json::object();
+        for (const auto &[type, level] : d.spellLevelByBloodline) result["spellLevelByBloodline"][enumName(type)] = level;
+        result["spellLevelByDomain"] = Json::object();
+        for (const auto &[type, level] : d.spellLevelByDomain)
+            std::visit([&](auto value)
+            {
+                const auto kind = std::holds_alternative<DomainType>(type) ? "domain" : "subdomain";
+                result["spellLevelByDomain"][kind][enumName(value)] = level;
+            }, type);
+        result["savingThrows"] = Json::array();
+        for (const auto &save : d.savingThrows)
+            result["savingThrows"].push_back({{"savingThrowType", enumName(save.type)}, {"effect", enumName(save.effect)}, {"description", save.description}});
+        result["effects"] = Json::array();
+        for (const auto &effect : d.effects) result["effects"].push_back(effectDefinitionToJson(effect));
+        return result;
+    }
+
     SpellDefinition spellDefinitionFromJson(const nlohmann::json &json)
     {
         try

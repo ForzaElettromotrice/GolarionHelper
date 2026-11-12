@@ -1,3 +1,4 @@
+#include "../fixtures/advance_sheet.hpp"
 #include "../fixtures/class_definition.hpp"
 #include "golarion/character/character_sheet.hpp"
 #include "golarion/persistence/json.hpp"
@@ -147,8 +148,8 @@ int main()
     const auto path = std::filesystem::temp_directory_path() / "golarion_favored_classes_test.json";
     CharacterSheet sheet(catalog);
     sheet.setFavoredClass(CharacterClassType::Fighter);
-    sheet.addClassLevel(CharacterClassType::Fighter, 4);
-    sheet.addClassLevel(CharacterClassType::Fighter, 4);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter, 4);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter, 4);
     sheet.selectFavoredClassBonus(CharacterClassType::Fighter, 1, "base.hitPoint");
     sheet.selectFavoredClassBonus(CharacterClassType::Fighter, 2, "base.skillRank");
     assert(sheet.toView().hitPoints.max == 9 && sheet.toView().skills.maxRanks == 5);
@@ -194,8 +195,8 @@ int main()
     }}};
     const ClassDefinitionManager providerCatalog({provider});
     CharacterSheet sourced(providerCatalog);
-    sourced.addClassLevel(CharacterClassType::Fighter, 4);
-    sourced.addClassLevel(CharacterClassType::Fighter, 4);
+    test::advanceSheetFixture(sourced, CharacterClassType::Fighter, 4);
+    test::advanceSheetFixture(sourced, CharacterClassType::Fighter, 4);
     std::string providedId;
     const auto sourcedView = sourced.toView();
     for (const auto &option : sourcedView.classes.favoredClasses.classes[0].options)

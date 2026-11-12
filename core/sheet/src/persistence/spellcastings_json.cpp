@@ -166,12 +166,21 @@ namespace
 
 namespace golarion::persistence
 {
-    Json spellcastingsToJson(const SpellcastingsData &data, bool requireSnapshots)
+    Json spellcastingsToJson(const SpellcastingsData &data, bool requireSnapshots, bool requireRepertoireState)
     {
         auto json = Json::array();
         for (const auto &casting : data.castings)
         {
             Json entry{{"id", casting.id}, {"repertoire", casting.repertoire}};
+            if (requireRepertoireState || casting.repertoireData)
+            {
+                if (!casting.repertoireData) throw std::invalid_argument("missing repertoire state");
+                const auto &repertoire = *casting.repertoireData;
+                auto selections = Json::array();
+                for (const auto &selection : repertoire.selections)
+                    selections.push_back({{"quotaId", selection.quotaId}, {"spellLevel", selection.spellLevel}, {"spellId", selection.spellId}});
+                entry["repertoire"] = {{"manualSpellIds", repertoire.manualSpellIds}, {"selections", selections}, {"unassignedSpellIds", repertoire.unassignedSpellIds}};
+            }
             std::visit([&](const auto &state)
             {
                 using T = std::decay_t<decltype(state)>;
@@ -201,12 +210,26 @@ namespace golarion::persistence
         return json;
     }
 
-    SpellcastingsData spellcastingsFromJson(const Json &json, bool requireSnapshots)
+    SpellcastingsData spellcastingsFromJson(const Json &json, bool requireSnapshots, bool requireRepertoireState)
     {
         SpellcastingsData data;
         for (const auto &entry : array(json))
         {
-            SpellcastingData casting{entry.at("id").get<std::string>(), array(entry.at("repertoire")).get<std::vector<std::string>>(), {}};
+            SpellcastingData casting{entry.at("id").get<std::string>(), {}, {}};
+            const auto &repertoire = entry.at("repertoire");
+            if (requireRepertoireState || repertoire.is_object())
+            {
+                SpellRepertoireData saved;
+                saved.manualSpellIds = array(repertoire.at("manualSpellIds")).get<std::vector<std::string>>();
+                saved.unassignedSpellIds = array(repertoire.at("unassignedSpellIds")).get<std::vector<std::string>>();
+                for (const auto &selection : array(repertoire.at("selections")))
+                {
+                    if (!selection.at("spellLevel").is_number_integer() || selection.at("spellLevel") < 0 || selection.at("spellLevel") > 9) throw std::invalid_argument("repertoire level must be an integer");
+                    saved.selections.push_back({selection.at("quotaId").get<std::string>(), selection.at("spellLevel").get<int>(), selection.at("spellId").get<std::string>()});
+                }
+                casting.repertoireData = std::move(saved);
+            }
+            else casting.repertoire = array(repertoire).get<std::vector<std::string>>();
             const auto mode = entry.at("mode").get<std::string>();
             if (mode == "prepared")
             {

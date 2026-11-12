@@ -160,6 +160,18 @@ namespace
 
 namespace golarion
 {
+    std::vector<PendingChoice> Skills::pendingChoices()
+    {
+        const int maximum = std::max(0, resourceManager_.contributionTotal(MaxSkillRanksResource));
+        long long spent = 0;
+        for (const auto &skill : toSaveData().skills) spent += skill.ranks;
+        if (spent > std::numeric_limits<int>::max()) throw std::overflow_error("spent skill ranks exceed integer range");
+        const auto remaining = maximum - static_cast<int>(spent);
+        if (remaining > 0)
+            return {{SkillRanksChoiceReference{}, "Assegna i gradi abilità", static_cast<std::size_t>(remaining), false}};
+        return {};
+    }
+
     Skills::Skills(ResourceManager &resourceManager) : resourceManager_(resourceManager)
     {
         resourceManager_.registerAccumulatedResource(MaxSkillRanksResource);
@@ -204,15 +216,15 @@ namespace golarion
 
         for (const CanonicalSpecialization &specialization : CraftSpecializations)
         {
-            addSpecialization(SkillType::Craft, std::string(specialization.id), std::string(specialization.displayName));
+            addSpecialization(SkillType::Craft, {std::string(specialization.id), std::string(specialization.displayName)});
         }
         for (const CanonicalSpecialization &specialization : PerformSpecializations)
         {
-            addSpecialization(SkillType::Perform, std::string(specialization.id), std::string(specialization.displayName));
+            addSpecialization(SkillType::Perform, {std::string(specialization.id), std::string(specialization.displayName)});
         }
         for (const CanonicalSpecialization &specialization : ProfessionSpecializations)
         {
-            addSpecialization(SkillType::Profession, std::string(specialization.id), std::string(specialization.displayName));
+            addSpecialization(SkillType::Profession, {std::string(specialization.id), std::string(specialization.displayName)});
         }
         resourceManager_.registerCollectionResource<SkillAbilityReplacement>(SkillAbilityReplacementsResource, [this](SkillAbilityReplacement replacement)
         {
@@ -235,8 +247,9 @@ namespace golarion
         skill(type).setRanks(ranks);
     }
 
-    void Skills::addSpecialization(SkillType type, const std::string &specializationId, const std::string &specialization)
+    void Skills::addSpecialization(SkillType type, const SkillSpecializationDefinition &definition)
     {
+        const auto &[specializationId, specialization] = definition;
         if (!requiresSpecialization(type))
         {
             throw std::invalid_argument("skill does not support specializations");
@@ -432,7 +445,7 @@ namespace golarion
         {
             if (skillData.custom)
             {
-                addSpecialization(skillData.type, *skillData.specializationId, *skillData.specialization);
+                addSpecialization(skillData.type, {*skillData.specializationId, *skillData.specialization});
             }
         }
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "golarion/character/pending_choice.hpp"
 
 #include "golarion/character/feat_prerequisite_registry.hpp"
 #include "golarion/character/feat_slot_filter.hpp"
@@ -11,6 +12,7 @@
 
 namespace golarion
 {
+    class FeatCatalog;
     inline constexpr std::string_view FeatSlotsResource = "feat.slots";
 
     using FeatChoices = std::map<std::string, std::vector<std::string>>;
@@ -27,13 +29,15 @@ namespace golarion
     class Feats final
     {
     public:
-        explicit Feats(ResourceManager &resourceManager);
+        explicit Feats(ResourceManager &resourceManager, const FeatCatalog *catalog = nullptr);
         ~Feats();
         Feats(const Feats &) = delete;
         Feats &operator=(const Feats &) = delete;
         Feats(Feats &&) = delete;
         Feats &operator=(Feats &&) = delete;
 
+        void addExtraSlot(std::string_view id);
+        void removeExtraSlot(std::string_view id);
         void setLevel(int level);
         void selectFeat(std::string_view slotId, std::string_view featId, FeatChoices choices = {});
         void removeFeat(std::string_view slotId);
@@ -44,10 +48,13 @@ namespace golarion
         // Restore selections after sources; missing slots remain unavailable until granted again.
         void load(const FeatsData &data);
 
+        std::vector<PendingChoice> pendingChoices() const;
+
     private:
         struct SlotState
         {
             FeatSlot slot;
+            FeatSlotOrigin origin = FeatSlotOrigin::Source;
             bool available = true;
             const FeatDefinition *selected = nullptr;
             bool active = false;
@@ -63,6 +70,7 @@ namespace golarion
         void activate(SlotState &slot);
         void select(std::string_view slotId, std::string_view featId, FeatChoices choices, bool restoring);
 
+        const FeatCatalog *catalog_;
         ResourceManager &resourceManager_;
         FeatPrerequisiteRegistry prerequisites_;
         std::map<std::string, SlotState> slots_;

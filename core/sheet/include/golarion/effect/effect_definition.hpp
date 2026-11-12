@@ -138,6 +138,22 @@ namespace golarion
         std::optional<std::set<std::string>> allowedSpellIds = std::nullopt;
     };
 
+    struct SpellRepertoireQuotaEffectDefinition
+    {
+        std::string id, castingId;
+        std::map<int, int> capacityByLevel;
+        std::optional<std::set<std::string>> allowedSpellIds = std::nullopt;
+    };
+    struct SpellRepertoireGrantEffectDefinition
+    {
+        std::string id, castingId;
+        std::set<std::string> spellIds;
+    };
+    struct SpellRepertoireListEffectDefinition
+    {
+        std::string id, castingId;
+    };
+
     // Favored bonuses may contain ordinary effects, but cannot recursively grant favored options.
     using FavoredClassBenefitEffect = std::variant<
         CastingRuleEffectDefinition, FeatPrerequisiteAlternativeEffectDefinition,
@@ -155,6 +171,9 @@ namespace golarion
         FeatSlotGrantEffectDefinition,
         SpellGrantEffectDefinition,
         SpellcastingGrantEffectDefinition,
+        SpellRepertoireQuotaEffectDefinition,
+        SpellRepertoireGrantEffectDefinition,
+        SpellRepertoireListEffectDefinition,
         SpellSlotGrantEffectDefinition>;
 
     enum class FavoredClassBaseBonus { HitPoint, SkillRank };
@@ -194,6 +213,9 @@ namespace golarion
         FeatSlotGrantEffectDefinition,
         SpellGrantEffectDefinition,
         SpellcastingGrantEffectDefinition,
+        SpellRepertoireQuotaEffectDefinition,
+        SpellRepertoireGrantEffectDefinition,
+        SpellRepertoireListEffectDefinition,
         SpellSlotGrantEffectDefinition,
         FavoredClassGrantEffectDefinition,
         FavoredClassBonusEffectDefinition>;

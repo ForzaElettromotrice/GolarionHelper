@@ -25,6 +25,7 @@ namespace golarion
         std::size_t selectionCount;
         std::size_t remainingSelections;
         std::vector<ClassOptionView> options;
+        bool blocksAdvancement = true;
     };
 
     struct ClassAcquisitionView

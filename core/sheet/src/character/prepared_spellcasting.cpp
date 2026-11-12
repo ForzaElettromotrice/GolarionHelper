@@ -1,5 +1,4 @@
 #include "golarion/character/prepared_spellcasting.hpp"
-#include "golarion/character/spell_definition_manager.hpp"
 #include "golarion/util/string_utils.hpp"
 
 #include <stdexcept>
@@ -8,8 +7,8 @@
 
 namespace golarion
 {
-    PreparedSpellcasting::PreparedSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel)
-        : Spellcasting(resources, castingId, spellListClass), resolveLevel_(std::move(resolveLevel)), preparationCosts_(resources, castingId), preparationRules_(resources, castingId) {}
+    PreparedSpellcasting::PreparedSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel, const SpellCatalog *catalog)
+        : Spellcasting(resources, castingId, spellListClass, catalog), resolveLevel_(std::move(resolveLevel)), preparationCosts_(resources, castingId), preparationRules_(resources, castingId) {}
 
     SpellSlotId PreparedSpellcasting::checkedSlot(const SpellSlotId &slot) const
     {
@@ -30,13 +29,14 @@ namespace golarion
         return {};
     }
 
-    void PreparedSpellcasting::prepare(const SpellSlotId &slot, std::string_view spellId, const std::vector<MetamagicApplication> &applications)
+    void PreparedSpellcasting::prepare(const SpellSlotId &slot, const SpellPreparationDefinition &definition)
     {
-        prepare(std::vector<SpellSlotId>{slot}, spellId, applications);
+        prepare(std::vector<SpellSlotId>{slot}, definition);
     }
 
-    void PreparedSpellcasting::prepare(const std::vector<SpellSlotId> &slots, std::string_view spellId, const std::vector<MetamagicApplication> &applications)
+    void PreparedSpellcasting::prepare(const std::vector<SpellSlotId> &slots, const SpellPreparationDefinition &definition)
     {
+        const auto &[spellId, applications] = definition;
         const auto id = normalize(spellId);
         auto preparation = checkedPreparation(slots, id, PreparationValidation::Preparing, applications);
         for (const auto &key : preparation.slots)
@@ -59,7 +59,7 @@ namespace golarion
             const auto key = checkedSlot(slot);
             if (key.spellLevel != slots.front().spellLevel) throw std::invalid_argument("preparation slots must have the same level");
             const int level = preparationLevel(key, id);
-            const auto &definition = SpellDefinitionManager::instance().get(id);
+            const auto &definition = spellDefinition(id);
             if (!evaluation) evaluation = metamagic().evaluate(MetamagicPhase::Preparation, definition, level, applications);
             if (evaluation->baseSpellLevel != level) throw std::invalid_argument("linked slots have incompatible spell levels");
             if (evaluation->requiredSlotLevel > key.spellLevel || evaluation->effectiveSpellLevel > 9)
@@ -70,7 +70,7 @@ namespace golarion
         }
         std::ranges::sort(keys);
         if (std::adjacent_find(keys.begin(), keys.end()) != keys.end()) throw std::invalid_argument("duplicate preparation slot");
-        const auto &definition = SpellDefinitionManager::instance().get(id);
+        const auto &definition = spellDefinition(id);
         const auto cost = preparationCosts_.calculate(definition.school, keys.front().spellLevel);
         if (keys.size() != static_cast<std::size_t>(cost.requiredSlots)) throw std::invalid_argument("incorrect number of preparation slots");
         return {{PreparedSpellSlotState::Prepared, id, evaluation->applications}, std::move(keys), std::move(*evaluation)};
@@ -87,7 +87,7 @@ namespace golarion
             level = resolveLevel_(spellListClass(), group, id);
         else if (!level)
         {
-            const auto &definition = SpellDefinitionManager::instance().get(id);
+            const auto &definition = spellDefinition(id);
             const auto entry = definition.spellLevelByClass.find(spellListClass());
             if (entry != definition.spellLevelByClass.end()) level = entry->second;
         }
@@ -96,19 +96,20 @@ namespace golarion
         return *level;
     }
 
-    MetamagicEvaluation PreparedSpellcasting::consume(const SpellSlotId &slot, std::optional<std::string_view> replacementSpellId, const std::vector<MetamagicApplication> &applications)
+    MetamagicEvaluation PreparedSpellcasting::consume(const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition)
     {
+        const auto &[replacementSpellId, applications] = definition;
         const auto key = checkedSlot(slot);
         for (auto &[primary, preparation] : preparations_)
             if (std::ranges::find(preparation.slots, key) != preparation.slots.end())
             {
                 if (preparation.state.state != PreparedSpellSlotState::Prepared) break;
-                const auto &prepared = SpellDefinitionManager::instance().get(*preparation.state.spellId);
+                const auto &prepared = spellDefinition(*preparation.state.spellId);
                 MetamagicEvaluation evaluation;
                 bool preserve = false;
                 if (replacementSpellId)
                 {
-                    const auto &replacement = SpellDefinitionManager::instance().get(normalize(*replacementSpellId));
+                    const auto &replacement = spellDefinition(normalize(*replacementSpellId));
                     const auto acceptsLevel = [&](int level)
                     {
                         evaluation = metamagic().evaluate(MetamagicPhase::Casting, replacement, level, applications, true);
@@ -177,8 +178,8 @@ namespace golarion
                 auto evaluation = restorePreparationSnapshot(id, entry.metamagic, *entry.evaluation, spellListClass());
                 if (slots.size() != static_cast<std::size_t>(entry.evaluation->paidSlots))
                     throw std::invalid_argument("saved preparation slot payment does not match its snapshot");
-                SpellDefinitionManager::instance().get(id);
-                if (!knowsSpell(id)) throw std::invalid_argument("saved spell is not in the repertoire");
+                spellDefinition(id);
+                // Historical preparation survives loss of its repertoire source.
                 for (auto &slot : slots)
                 {
                     slot = checkedSlot(slot);

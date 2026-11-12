@@ -1,4 +1,5 @@
 #pragma once
+#include "golarion/character/attack_definition.hpp"
 
 #include "golarion/data/attacks_data.hpp"
 
@@ -38,7 +39,7 @@ namespace golarion
     public:
         Attacks(AttackRoutines &attackRoutines, Strikes &strikes);
 
-        void create(std::string_view id, std::string_view name, std::string_view routineId);
+        void create(const AttackDefinition &definition);
         void remove(std::string_view attackId);
         void assignStrike(std::string_view attackId, std::string_view slotId, std::string_view strikeGrantId);
         void unassignStrike(std::string_view attackId, std::string_view slotId);

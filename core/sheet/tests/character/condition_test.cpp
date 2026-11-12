@@ -47,7 +47,7 @@ namespace
             .apply = [expression = std::move(expression), &applications, &cleanups](golarion::ResourceManager &resourceManager, const golarion::ConditionEffectContext &context)
             {
                 ++applications;
-                golarion::Modifier modifier(golarion::ModifierType::Penalty, context.conditionId, "Penalità di prova", std::nullopt, expression);
+                golarion::Modifier modifier({.type = golarion::ModifierType::Penalty, .source = context.conditionId, .description = "Penalità di prova", .bonusType = std::nullopt, .expression = expression});
                 const std::string modifierId = modifier.id();
                 resourceManager.addModifier("condition.test", std::move(modifier));
                 return [&resourceManager, modifierId, &cleanups]

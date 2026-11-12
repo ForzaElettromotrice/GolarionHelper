@@ -16,5 +16,6 @@ namespace golarion
     struct FeatsData
     {
         std::vector<FeatSelectionData> selections;
+        std::vector<std::string> extraSlotIds;
     };
 }

@@ -26,6 +26,8 @@ The complete executable JSON fixtures are in `core/sheet/tests/effect/collection
 
 The existing modifier, contribution, base-size/body, movement/language/feat/spell grants and favored-class effects remain available. Internally owned bookkeeping endpoints such as current carrying size and inventory weight are not duplicated by catalog sources.
 
+Repertoire sources additionally use `spellRepertoireQuota`, `spellRepertoireGrant` and `spellRepertoireList`; schemas and lifetime rules are in [repertoire.md](repertoire.md).
+
 ## Casting rules and feat prerequisites
 
 Each casting rule requires `castingId`. Examples and lifecycle tests are in `core/sheet/tests/effect/casting_rule_effect_test.cpp`.

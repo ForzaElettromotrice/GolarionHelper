@@ -6,6 +6,7 @@
 
 namespace golarion
 {
+    class SpellCatalog;
     enum class GrantedSpellUsage { Limited, AtWill, Constant, SharedPool };
 
     struct GrantedSpellDefinition
@@ -33,7 +34,7 @@ namespace golarion
     class GrantedSpell final
     {
     public:
-        explicit GrantedSpell(GrantedSpellDefinition definition);
+        explicit GrantedSpell(GrantedSpellDefinition definition, const SpellCatalog *catalog = nullptr);
         GrantedSpell(const GrantedSpell &) = delete;
         GrantedSpell &operator=(const GrantedSpell &) = delete;
         GrantedSpell(GrantedSpell &&) = default;

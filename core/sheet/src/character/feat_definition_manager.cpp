@@ -16,6 +16,14 @@ namespace
 
 namespace golarion
 {
+    bool FeatDefinitionManager::contains(std::string_view id)
+    {
+        const auto key = normalize(id);
+        const std::scoped_lock lock(mutex_);
+        if (!loaded_) loadCatalog();
+        return definitions_.contains(key);
+    }
+
     FeatDefinitionManager &FeatDefinitionManager::instance()
     {
         static FeatDefinitionManager manager;

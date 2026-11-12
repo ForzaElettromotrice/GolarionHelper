@@ -27,7 +27,7 @@ int main()
             assert(list == CharacterClassType::Wizard);
             if (id == "missing") return std::nullopt;
             if (id == "outside" && !group.allowedSpellIds) return std::nullopt;
-            if (id == "throws") throw std::runtime_error("resolver failed");
+            if (effectiveLevel == 99) throw std::runtime_error("resolver failed");
             return effectiveLevel;
         });
     const auto endpoint = spellSlotsResource("wizard");
@@ -38,59 +38,61 @@ int main()
     const SpellSlotId slot{"base", 2, 0};
     assert(casting.slotState(slot).state == PreparedSpellSlotState::Free);
     assert(!casting.slotState(slot).spellId);
-    rejects([&] { casting.prepare(slot, "fireball"); });
-    for (const auto *id : {"fireball", "outside", "missing", "throws"}) casting.addToRepertoire(id);
+    rejects([&] { casting.prepare(slot, {"fireball"}); });
+    casting.addToRepertoire("fireball");
+    for (const auto *id : {"outside", "missing", "throws"}) rejects([&] { casting.addToRepertoire(id); });
     casting.addToRepertoire(" fireball ");
     rejects([&] { casting.addToRepertoire(" "); });
-    rejects([&] { casting.prepare(slot, " "); });
+    rejects([&] { casting.prepare(slot, {" "}); });
     rejects([&] { casting.consume(slot); });
     casting.clear(slot);
 
-    casting.prepare({" base ", 2, 0}, " fireball ");
+    casting.prepare({" base ", 2, 0}, {" fireball "});
     assert(casting.slotState(slot).state == PreparedSpellSlotState::Prepared);
     assert(casting.slotState(slot).spellId == "fireball");
-    rejects([&] { casting.prepare(slot, "outside"); });
+    rejects([&] { casting.prepare(slot, {"outside"}); });
     assert(casting.slotState(slot).spellId == "fireball");
-    casting.prepare({"base", 2, 1}, "fireball");
+    casting.prepare({"base", 2, 1}, {"fireball"});
     casting.consume(slot);
     assert(casting.slotState(slot).state == PreparedSpellSlotState::Consumed);
     assert(casting.slotState(slot).spellId == "fireball");
     assert(casting.slotState({"base", 2, 1}).state == PreparedSpellSlotState::Prepared);
     rejects([&] { casting.consume(slot); });
-    rejects([&] { casting.prepare(slot, "fireball"); });
+    rejects([&] { casting.prepare(slot, {"fireball"}); });
     casting.clear(slot);
     assert(!casting.slotState(slot).spellId);
-    casting.prepare(slot, "fireball");
+    casting.prepare(slot, {"fireball"});
     casting.clear(slot);
     assert(casting.slotState(slot).state == PreparedSpellSlotState::Free);
-    rejects([&] { casting.prepare({"base", 1, 0}, "fireball"); });
-    casting.prepare({"base", 3, 0}, "fireball");
+    rejects([&] { casting.prepare({"base", 1, 0}, {"fireball"}); });
+    casting.prepare({"base", 3, 0}, {"fireball"});
 
-    rejects([&] { casting.prepare(slot, "outside"); });
-    rejects([&] { casting.prepare({"special", 2, 0}, "fireball"); });
-    rejects([&] { casting.prepare({"empty", 2, 0}, "fireball"); });
-    rejects([&] { casting.prepare({"special", 1, 0}, "outside"); });
-    rejects([&] { casting.prepare({"special", 2, 0}, "outside"); });
-    rejects([&] { casting.prepare({"special", 3, 0}, "outside"); });
-    rejects([&] { casting.prepare(slot, "missing"); });
-    rejects<std::runtime_error>([&] { casting.prepare(slot, "throws"); });
+    rejects([&] { casting.prepare(slot, {"outside"}); });
+    rejects([&] { casting.prepare({"special", 2, 0}, {"fireball"}); });
+    rejects([&] { casting.prepare({"empty", 2, 0}, {"fireball"}); });
+    rejects([&] { casting.prepare({"special", 1, 0}, {"outside"}); });
+    rejects([&] { casting.prepare({"special", 2, 0}, {"outside"}); });
+    rejects([&] { casting.prepare({"special", 3, 0}, {"outside"}); });
+    rejects([&] { casting.prepare(slot, {"missing"}); });
+    effectiveLevel = 99;
+    rejects<std::runtime_error>([&] { casting.prepare(slot, {"fireball"}); });
     for (int invalid : {-1, 10})
     {
         effectiveLevel = invalid;
-        rejects([&] { casting.prepare(slot, "fireball"); });
+        rejects([&] { casting.prepare(slot, {"fireball"}); });
         assert(casting.slotState(slot).state == PreparedSpellSlotState::Free);
     }
     effectiveLevel = 2;
 
     for (const SpellSlotId bad : {SpellSlotId{"unknown", 2, 0}, {" ", 2, 0}, {"base", -1, 0}, {"base", 4, 0}, {"base", 2, 2}, {"base", 2, std::numeric_limits<std::size_t>::max()}})
     {
-        rejects([&] { casting.prepare(bad, "fireball"); });
+        rejects([&] { casting.prepare(bad, {"fireball"}); });
         rejects([&] { casting.consume(bad); });
         rejects([&] { casting.clear(bad); });
         rejects([&] { casting.slotState(bad); });
     }
 
-    casting.prepare(slot, "fireball");
+    casting.prepare(slot, {"fireball"});
     casting.consume(slot);
     rejects([&] { resources.addToCollection(endpoint, base); });
     assert(casting.slotState(slot).state == PreparedSpellSlotState::Consumed);
@@ -101,7 +103,7 @@ int main()
     assert(!casting.slotState(slot).spellId);
     rejects([&] { casting.slotState({"base", 2, 1}); });
     assert(casting.slotState({"special", 2, 0}).state == PreparedSpellSlotState::Free);
-    casting.prepare(slot, "fireball");
+    casting.prepare(slot, {"fireball"});
     resources.removeFromCollection(endpoint, "base");
     resources.addToCollection(endpoint, base);
     assert(casting.slotState({"base", 2, 1}).state == PreparedSpellSlotState::Free);
@@ -111,20 +113,20 @@ int main()
     resources.addToCollection(spellSlotsResource("other"), base);
     assert(other.slotState(slot).state == PreparedSpellSlotState::Free);
     other.addToRepertoire("fireball");
-    rejects([&] { other.prepare(slot, "fireball"); });
+    rejects([&] { other.prepare(slot, {"fireball"}); });
     assert(other.slotState(slot).state == PreparedSpellSlotState::Free);
 
     PreparedSpellcasting wizard(resources, "catalogWizard", CharacterClassType::Wizard);
     resources.addToCollection(spellSlotsResource("catalogWizard"), SpellSlotGrant{"base", "Class", {{2, 1}, {3, 1}, {4, 1}}});
     wizard.addToRepertoire("fireball");
-    rejects([&] { wizard.prepare({"base", 2, 0}, "fireball"); });
-    wizard.prepare({"base", 3, 0}, "fireball");
-    wizard.prepare({"base", 4, 0}, "fireball");
+    rejects([&] { wizard.prepare({"base", 2, 0}, {"fireball"}); });
+    wizard.prepare({"base", 3, 0}, {"fireball"});
+    wizard.prepare({"base", 4, 0}, {"fireball"});
     assert(wizard.slotState({"base", 3, 0}).spellId == "fireball");
     other.addToRepertoire("fireball");
-    rejects([&] { other.prepare({"base", 3, 0}, "fireball"); });
+    rejects([&] { other.prepare({"base", 3, 0}, {"fireball"}); });
     resources.addToCollection(spellSlotsResource("other"), SpellSlotGrant{"special", "Special", {{3, 1}}, std::set<std::string>{"fireball"}});
-    rejects([&] { other.prepare({"special", 3, 0}, "fireball"); });
+    rejects([&] { other.prepare({"special", 3, 0}, {"fireball"}); });
     assert(other.slotState({"special", 3, 0}).state == PreparedSpellSlotState::Free);
 
     wizard.consume({"base", 3, 0});
@@ -151,7 +153,7 @@ int main()
     assert(restored.toView().groups.empty() && restored.toData().preparations.empty());
     rejects([&] { restored.load(saved); });
     resources.addToCollection(spellSlotsResource("restored"), SpellSlotGrant{"base", "Class", {{2, 1}, {3, 1}, {4, 1}}});
-    rejects([&] { restored.load(saved); });
+    restored.load(saved); // Historical preparation does not require current knowledge.
     restored.addToRepertoire("fireball");
     restored.load(saved);
     assert(restored.slotState({"base", 3, 0}).state == PreparedSpellSlotState::Consumed);
@@ -219,20 +221,20 @@ int main()
     resources.addToCollection(rules, SpellPreparationCostRule{"opposition", "Wizard", SpellSchool::Evocation, 2});
     const SpellSlotId first{"a", 3, 0}, second{"b", 3, 0};
     const std::vector<SpellSlotId> pair{second, first};
-    rejects([&] { linked.prepare(first, "fireball"); });
-    rejects([&] { linked.prepare(std::vector<SpellSlotId>{}, "fireball"); });
-    rejects([&] { linked.prepare(std::vector<SpellSlotId>{first, {" a ", 3, 0}}, "fireball"); });
-    rejects([&] { linked.prepare(std::vector<SpellSlotId>{first, {"a", 4, 0}}, "fireball"); });
-    rejects([&] { linked.prepare(std::vector<SpellSlotId>{first, {"blocked", 3, 0}}, "fireball"); });
-    rejects([&] { linked.prepare(std::vector<SpellSlotId>{first, second, {"a", 3, 1}}, "fireball"); });
+    rejects([&] { linked.prepare(first, {"fireball"}); });
+    rejects([&] { linked.prepare(std::vector<SpellSlotId>{}, {"fireball"}); });
+    rejects([&] { linked.prepare(std::vector<SpellSlotId>{first, {" a ", 3, 0}}, {"fireball"}); });
+    rejects([&] { linked.prepare(std::vector<SpellSlotId>{first, {"a", 4, 0}}, {"fireball"}); });
+    rejects([&] { linked.prepare(std::vector<SpellSlotId>{first, {"blocked", 3, 0}}, {"fireball"}); });
+    rejects([&] { linked.prepare(std::vector<SpellSlotId>{first, second, {"a", 3, 1}}, {"fireball"}); });
     assert(linked.toData().preparations.empty());
-    linked.prepare(pair, "fireball");
+    linked.prepare(pair, {"fireball"});
     assert(linked.toData().preparations.size() == 1);
     assert(linked.toData().preparations[0].additionalSlots == std::vector<SpellSlotId>{second});
     assert(linked.toView().groups[0].slots[0].preparationSlot == first);
     assert(linked.toView().groups[1].slots[0].preparationSlot == first);
     assert(!linked.toView().groups[0].slots[1].preparationSlot);
-    rejects([&] { linked.prepare(std::vector<SpellSlotId>{{"a", 3, 1}, second}, "fireball"); });
+    rejects([&] { linked.prepare(std::vector<SpellSlotId>{{"a", 3, 1}, second}, {"fireball"}); });
     assert(linked.slotState({"a", 3, 1}).state == PreparedSpellSlotState::Free);
     linked.consume(second);
     assert(linked.slotState(first).state == PreparedSpellSlotState::Consumed);
@@ -253,12 +255,12 @@ int main()
     assert(linked.slotState(first).state == PreparedSpellSlotState::Free);
     assert(linked.toData().preparations.empty());
     resources.addToCollection(exemptions, SpellPreparationCostExemption{"research", "Feat", "opposition"});
-    linked.prepare(first, "fireball");
+    linked.prepare(first, {"fireball"});
     resources.removeFromCollection(exemptions, "research");
     // Rule changes affect future preparation, not historical prepared snapshots.
     linked.consume(first);
     linked.clear(first);
-    rejects([&] { linked.prepare(first, "fireball"); });
+    rejects([&] { linked.prepare(first, {"fireball"}); });
     resources.removeFromCollection(rules, "opposition");
-    linked.prepare(first, "fireball");
+    linked.prepare(first, {"fireball"});
 }

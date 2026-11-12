@@ -71,6 +71,11 @@ namespace golarion
         }));
     }
 
+    Inventory::Inventory(ResourceManager &resourceManager, const ItemCatalog &catalog) : Inventory(resourceManager)
+    {
+        catalog_ = &catalog;
+    }
+
     Inventory::~Inventory()
     {
         equipment_.clear();
@@ -112,7 +117,8 @@ namespace golarion
         {
             throw std::invalid_argument("destination container is not registered: " + destinationContainerId);
         }
-        ItemInstance item(std::move(definition));
+        const auto &resolvedDefinition = catalog_ ? catalog_->get(definition.itemDefinitionId) : ItemDefinitionManager::instance().get(definition.itemDefinitionId);
+        ItemInstance item(std::move(definition), resolvedDefinition);
         const std::string itemId = item.id_;
         if (items_.contains(itemId))
         {
@@ -1122,7 +1128,7 @@ namespace golarion
             .id = id,
             .itemDefinitionId = definition.id,
             .quantity = quantity
-        });
+        }, definition);
         const std::string &containerId = itemContainerIds_.at(id);
         validateInsertion(containerId, replacement, replacement.weightGrams(), replacement.volumeMilliliters(), id);
 

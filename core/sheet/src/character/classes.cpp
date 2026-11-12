@@ -1,3 +1,4 @@
+#include <iterator>
 #include "golarion/character/classes.hpp"
 
 #include <limits>
@@ -51,6 +52,28 @@ namespace golarion
             favoredClasses_.levels_.erase(type);
             throw;
         }
+    }
+
+    void Classes::removeLevel(CharacterClassType type)
+    {
+        auto &instance = characterClass(type);
+        const int oldLevel = instance.level();
+        const auto bonus = favoredClasses_.selections_.find({type, oldLevel});
+        const auto previousBonus = bonus == favoredClasses_.selections_.end() ? std::nullopt : std::optional(bonus->second);
+        // Withdraw the lost level's rewards before removing their class-owned consumers.
+        if (previousBonus) favoredClasses_.clearBonus(type, oldLevel);
+        try { instance.setLevel(oldLevel - 1); }
+        catch (...)
+        {
+            if (previousBonus) favoredClasses_.selectBonus(type, oldLevel, *previousBonus);
+            throw;
+        }
+        if (oldLevel == 1)
+        {
+            classes_.erase(type);
+            favoredClasses_.levels_.erase(type);
+        }
+        else favoredClasses_.levels_.at(type) = oldLevel - 1;
     }
 
     void Classes::addArchetype(CharacterClassType type, const std::string &archetypeId)
@@ -121,13 +144,24 @@ namespace golarion
         return *found->second;
     }
 
-    void Classes::selectOption(CharacterClassType type, const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId)
+    void Classes::selectOption(CharacterClassType type, const ClassOptionDefinition &definition)
     {
-        characterClass(type).selectOption(acquisitionId, choiceId, optionId);
+        characterClass(type).selectOption(definition);
     }
 
-    void Classes::unselectOption(CharacterClassType type, const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId)
+    void Classes::unselectOption(CharacterClassType type, const ClassOptionDefinition &definition)
     {
-        characterClass(type).unselectOption(acquisitionId, choiceId, optionId);
+        characterClass(type).unselectOption(definition);
     }
+    std::vector<PendingChoice> Classes::pendingChoices() const
+    {
+        auto result = favoredClasses_.pendingChoices();
+        for (const auto &[type, instance] : classes_)
+        {
+            auto choices = instance->pendingChoices();
+            result.insert(result.end(), std::make_move_iterator(choices.begin()), std::make_move_iterator(choices.end()));
+        }
+        return result;
+    }
+
 }

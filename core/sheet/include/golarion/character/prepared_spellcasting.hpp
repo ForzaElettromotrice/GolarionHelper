@@ -1,4 +1,5 @@
 #pragma once
+#include "golarion/character/spell_operation_definition.hpp"
 
 #include "golarion/character/spellcasting.hpp"
 #include "golarion/character/spell_preparation_cost.hpp"
@@ -11,6 +12,7 @@
 
 namespace golarion
 {
+    class SpellCatalog;
     class PreparedSpellcasting final : public Spellcasting
     {
     public:
@@ -20,11 +22,11 @@ namespace golarion
         // Registered group/spell level overrides take precedence over this fallback.
         using SpellLevelResolver = std::function<std::optional<int>(CharacterClassType, const SpellSlotGrant &, std::string_view)>;
 
-        explicit PreparedSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel = {});
+        explicit PreparedSpellcasting(ResourceManager &resources, std::string_view castingId, CharacterClassType spellListClass, SpellLevelResolver resolveLevel = {}, const SpellCatalog *catalog = nullptr);
 
-        void prepare(const SpellSlotId &slot, std::string_view spellId, const std::vector<MetamagicApplication> &metamagic = {});
-        void prepare(const std::vector<SpellSlotId> &slots, std::string_view spellId, const std::vector<MetamagicApplication> &metamagic = {});
-        MetamagicEvaluation consume(const SpellSlotId &slot, std::optional<std::string_view> replacementSpellId = std::nullopt, const std::vector<MetamagicApplication> &metamagic = {});
+        void prepare(const SpellSlotId &slot, const SpellPreparationDefinition &definition);
+        void prepare(const std::vector<SpellSlotId> &slots, const SpellPreparationDefinition &definition);
+        MetamagicEvaluation consume(const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition = {});
         void clear(const SpellSlotId &slot);
         PreparedSpellSlot slotState(const SpellSlotId &slot) const;
         PreparedSpellcastingData toData() const;

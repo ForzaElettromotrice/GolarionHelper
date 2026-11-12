@@ -41,25 +41,25 @@ int main()
         resources.addToCollection(slots, SpellSlotGrant{"blocked", "Class", {{3, 1}}, std::set<std::string>{}});
         const SpellLevelOverride domain{"domain", "Domain", "special", "fireball", 3};
         resources.addToCollection(levels, domain);
-        rejects([&] { casting.prepare(special, "fireball"); });
-        casting.addToRepertoire("fireball");
-        rejects([&] { casting.prepare(base, "fireball"); });
-        casting.prepare(special, "fireball");
+        rejects([&] { casting.prepare(special, {"fireball"}); });
+        resources.addToCollection(repertoireGrantsResource("test"), SpellRepertoireGrant{"domain", "Domain", {"fireball"}});
+        rejects([&] { casting.prepare(base, {"fireball"}); });
+        casting.prepare(special, {"fireball"});
         casting.clear(special);
         resources.addToCollection(levels, SpellLevelOverride{"blocked", "Test", "blocked", "fireball", 3});
-        rejects([&] { casting.prepare({"blocked", 3, 0}, "fireball"); });
+        rejects([&] { casting.prepare({"blocked", 3, 0}, {"fireball"}); });
 
         // Normalization, compatible duplicate sources, and conflicting overrides.
         resources.addToCollection(levels, SpellLevelOverride{" duplicate ", "Domain", " special ", " fireball ", 3});
         resources.removeFromCollection(levels, "domain");
-        casting.prepare(special, "fireball");
+        casting.prepare(special, {"fireball"});
         casting.clear(special);
         resources.addToCollection(levels, SpellLevelOverride{"conflict", "Test", "special", "fireball", 2});
-        rejects([&] { casting.prepare(special, "fireball"); });
+        rejects([&] { casting.prepare(special, {"fireball"}); });
         assert(casting.toData().preparations.empty());
         resources.removeFromCollection(levels, "conflict");
         resources.removeFromCollection(levels, " duplicate ");
-        rejects([&] { casting.prepare(special, "fireball"); });
+        rejects([&] { casting.prepare(special, {"fireball"}); });
         resources.addToCollection(levels, domain);
 
         resources.addToCollection(checks, SpellPreparationCheck{"book", "Class", [&](const auto &context)
@@ -73,32 +73,32 @@ int main()
         {
             return abilityScore >= 10 + context.spellLevel;
         }});
-        rejects([&] { casting.prepare(special, "fireball"); });
+        rejects([&] { casting.prepare(special, {"fireball"}); });
         resources.addToCollection(exemptions, SpellPreparationCheckExemption{"mastery", "Feat", "book", always});
-        rejects([&] { casting.prepare(special, "fireball"); }); // Does not exempt ability.
+        rejects([&] { casting.prepare(special, {"fireball"}); }); // Does not exempt ability.
         abilityScore = 13;
-        casting.prepare(special, "fireball");
+        casting.prepare(special, {"fireball"});
         const auto saved = casting.toData();
         casting.clear(special);
         resources.removeFromCollection(exemptions, "mastery");
-        rejects([&] { casting.prepare(special, "fireball"); });
+        rejects([&] { casting.prepare(special, {"fireball"}); });
         casting.load(saved); // Restoring is not preparing again; book may be absent.
         assert(casting.slotState(special).state == PreparedSpellSlotState::Prepared);
         casting.clear(special);
         bookAvailable = true;
-        casting.prepare(special, "fireball");
+        casting.prepare(special, {"fireball"});
         casting.clear(special);
         resources.addToCollection(exemptions, SpellPreparationCheckExemption{"early", "Feat", "future", always});
         resources.addToCollection(checks, SpellPreparationCheck{"future", "Class", never});
-        casting.prepare(special, "fireball");
+        casting.prepare(special, {"fireball"});
         casting.clear(special);
         resources.addToCollection(exemptions, SpellPreparationCheckExemption{"second", "Feat", "future", always});
         resources.removeFromCollection(exemptions, "early");
-        casting.prepare(special, "fireball");
+        casting.prepare(special, {"fireball"});
         casting.clear(special);
         resources.removeFromCollection(exemptions, "second");
         resources.addToCollection(exemptions, SpellPreparationCheckExemption{"conditional", "Feat", "future", never});
-        rejects([&] { casting.prepare(special, "fireball"); });
+        rejects([&] { casting.prepare(special, {"fireball"}); });
         resources.removeFromCollection(checks, "future");
 
         // A failure in a later linked slot must not reserve the first one.
@@ -106,14 +106,14 @@ int main()
         resources.addToCollection(preparationCostRulesResource("test"), SpellPreparationCostRule{"opposition", "Test", SpellSchool::Evocation, 2});
         const std::vector<SpellSlotId> pair{base, special};
         resources.addToCollection(checks, SpellPreparationCheck{"restricted", "Test", [](const auto &context) { return context.group.id == "base"; }});
-        rejects([&] { casting.prepare(pair, "fireball"); });
+        rejects([&] { casting.prepare(pair, {"fireball"}); });
         assert(casting.toData().preparations.empty());
         resources.removeFromCollection(checks, "restricted");
         resources.addToCollection(checks, SpellPreparationCheck{"throws", "Test", [](const auto &) -> bool { throw std::runtime_error("check failed"); }});
-        rejects<std::runtime_error>([&] { casting.prepare(pair, "fireball"); });
+        rejects<std::runtime_error>([&] { casting.prepare(pair, {"fireball"}); });
         assert(casting.toData().preparations.empty());
         resources.removeFromCollection(checks, "throws");
-        casting.prepare(pair, "fireball");
+        casting.prepare(pair, {"fireball"});
 
         resources.addToCollection(consumption, SpellConsumptionExemption{"throws", "Test", [](const auto &) -> bool { throw std::runtime_error("consumption failed"); }});
         rejects<std::runtime_error>([&] { casting.consume(base); });
@@ -143,8 +143,8 @@ int main()
 
         PreparedSpellcasting other(resources, "otherRules", CharacterClassType::Cleric);
         resources.addToCollection(spellSlotsResource("otherRules"), SpellSlotGrant{"special", "Test", {{3, 1}}, std::set<std::string>{"fireball"}});
-        other.addToRepertoire("fireball");
-        rejects([&] { other.prepare(special, "fireball"); }); // Overrides do not leak.
+        resources.addToCollection(repertoireGrantsResource("otherRules"), SpellRepertoireGrant{"gift", "Test", {"fireball"}});
+        rejects([&] { other.prepare(special, {"fireball"}); }); // Overrides do not leak.
 
         rejects([&] { resources.addToCollection(levels, domain); });
         rejects([&] { resources.addToCollection(levels, SpellLevelOverride{"bad", "Test", "special", "fireball", 10}); });
@@ -178,10 +178,10 @@ int main()
         resources.addToCollection(slots, SpellSlotGrant{"base", "Class", {{3, 2}, {4, 1}}});
         resources.addToCollection(slots, SpellSlotGrant{"domain", "Domain", {{3, 1}}});
         casting.addToRepertoire("fireball");
-        casting.prepare(base, "fireball");
-        rejects([&] { casting.consume(base, "fireball"); }); // Explicit conversion needs a grant, even to the same spell.
-        rejects([&] { casting.consume(base, " "); });
-        rejects([&] { casting.consume(base, "unknown"); });
+        casting.prepare(base, {"fireball"});
+        rejects([&] { casting.consume(base, {"fireball"}); }); // Explicit conversion needs a grant, even to the same spell.
+        rejects([&] { casting.consume(base, {" "}); });
+        rejects([&] { casting.consume(base, {"unknown"}); });
         assert(casting.slotState(base).state == PreparedSpellSlotState::Prepared);
         int requiredLevel = 4;
         SpontaneousConversion conversion{"convert", "Test", [&](const SpellConversionContext &context) -> std::optional<int>
@@ -193,37 +193,37 @@ int main()
             return requiredLevel;
         }};
         resources.addToCollection(conversions, conversion);
-        rejects([&] { casting.consume(base, "fireball"); });
+        rejects([&] { casting.consume(base, {"fireball"}); });
         requiredLevel = -1;
-        rejects([&] { casting.consume(base, "fireball"); });
+        rejects([&] { casting.consume(base, {"fireball"}); });
         requiredLevel = 10;
-        rejects([&] { casting.consume(base, "fireball"); });
+        rejects([&] { casting.consume(base, {"fireball"}); });
         requiredLevel = 3;
         resources.addToCollection(consumption, SpellConsumptionExemption{"atWill", "Test", preserve});
         casting.consume(base); // Ordinary consumption still honors exemptions.
         assert(casting.slotState(base).state == PreparedSpellSlotState::Prepared);
-        casting.consume(base, " fireball "); // Sacrifice does not honor normal-use exemptions.
+        casting.consume(base, {" fireball "}); // Sacrifice does not honor normal-use exemptions.
         assert(casting.slotState(base).state == PreparedSpellSlotState::Consumed);
         assert(casting.toData().preparations[0].spellId == "fireball");
-        rejects([&] { casting.consume(base, "fireball"); });
+        rejects([&] { casting.consume(base, {"fireball"}); });
         casting.clear(base);
-        rejects([&] { casting.consume(base, "fireball"); });
+        rejects([&] { casting.consume(base, {"fireball"}); });
         resources.addToCollection(preparationCostRulesResource("test"), SpellPreparationCostRule{"opposition", "Test", SpellSchool::Evocation, 2});
         const SpellSlotId second{"base", 3, 1}, domainSlot{"domain", 3, 0};
-        casting.prepare(std::vector<SpellSlotId>{base, domainSlot}, "fireball");
-        rejects([&] { casting.consume(base, "fireball"); });
+        casting.prepare(std::vector<SpellSlotId>{base, domainSlot}, {"fireball"});
+        rejects([&] { casting.consume(base, {"fireball"}); });
         assert(casting.slotState(domainSlot).state == PreparedSpellSlotState::Prepared);
         casting.clear(base);
-        casting.prepare(std::vector<SpellSlotId>{base, second}, "fireball");
+        casting.prepare(std::vector<SpellSlotId>{base, second}, {"fireball"});
         resources.removeFromCollection(conversions, "convert");
-        rejects([&] { casting.consume(second, "fireball"); });
+        rejects([&] { casting.consume(second, {"fireball"}); });
         resources.addToCollection(conversions, SpontaneousConversion{"throws", "Test", [](const auto &) -> std::optional<int> { throw std::runtime_error("conversion failed"); }});
-        rejects<std::runtime_error>([&] { casting.consume(base, "fireball"); });
+        rejects<std::runtime_error>([&] { casting.consume(base, {"fireball"}); });
         assert(casting.slotState(second).state == PreparedSpellSlotState::Prepared);
         resources.removeFromCollection(conversions, "throws");
         resources.addToCollection(conversions, SpontaneousConversion{"denied", "Test", [](const auto &) -> std::optional<int> { return std::nullopt; }});
         resources.addToCollection(conversions, conversion);
-        casting.consume(second, "fireball");
+        casting.consume(second, {"fireball"});
         assert(casting.slotState(base).state == PreparedSpellSlotState::Consumed);
         assert(casting.slotState(second).state == PreparedSpellSlotState::Consumed);
         rejects([&] { resources.addToCollection(conversions, conversion); });
@@ -234,8 +234,8 @@ int main()
         PreparedSpellcasting other(resources, "isolatedConversion", CharacterClassType::Wizard);
         resources.addToCollection(spellSlotsResource("isolatedConversion"), SpellSlotGrant{"base", "Class", {{3, 1}}});
         other.addToRepertoire("fireball");
-        other.prepare(base, "fireball");
-        rejects([&] { other.consume(base, "fireball"); });
+        other.prepare(base, {"fireball"});
+        rejects([&] { other.consume(base, {"fireball"}); });
     }
 
     // Distinct spell definitions exercise replacement identity without expanding the catalog.

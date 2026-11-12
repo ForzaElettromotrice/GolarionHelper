@@ -1,5 +1,13 @@
 # Model Context
 
+Release scope and Data/View verification for the first sheet backend version: [backend-v1.md](backend-v1.md).
+
+- [`pending-choices.md`](pending-choices.md): typed completion reports, exact choice references and agreed advancement-blocking policy.
+
+- [`operation-definitions.md`](operation-definitions.md): typed public operation parameters, shared Definition structs and separation from saved Data.
+
+- [`enhancements.md`](enhancements.md): user-created groups of numeric contributions/modifiers, independent activation, sheet operations and format-36 persistence.
+
 - [`archetypes.md`](archetypes.md): archetype compatibility, structural feature edits, shared choice APIs and format-31 persistence.
 
 - [`classes.md`](classes.md): class definitions/runtime, sheet integration, level/choice progression, HP/skill-rank advancement, persistence and Views.
@@ -7,6 +15,7 @@
 
 - [`granted-spells.md`](granted-spells.md): single-spell grants, own/shared usages, item bindings, effect JSON and format-29 persistence.
 
+- [`repertoire.md`](repertoire.md): source-owned known-spell quotas, prepared/flexible manual additions, grants, pending choices and format-40 persistence.
 - [`spells.md`](spells.md): spell definitions/catalog, class-list selection, slot grants, all three casting modes, container/format-27 persistence, and research for single-spell grants.
 
 - [`metamagic.md`](metamagic.md): typed applications, preparation/casting grant endpoints, verified rule distinctions, and pending runtime integration.

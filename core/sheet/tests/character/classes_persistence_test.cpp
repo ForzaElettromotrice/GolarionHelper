@@ -1,3 +1,4 @@
+#include "../fixtures/advance_sheet.hpp"
 #include "../fixtures/class_definition.hpp"
 #include "golarion/character/character_sheet.hpp"
 #include "golarion/persistence/json.hpp"
@@ -42,12 +43,12 @@ int main()
     CharacterSheet sheet(catalog);
     assert(sheet.level() == 0);
     assert(sheet.toView().classes.classes.empty() && sheet.toView().feats.slots.empty());
-    sheet.addClassLevel(CharacterClassType::Fighter);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter);
     auto view = sheet.toView();
     assert(view.classes.level == 1 && view.classes.classes[0].level == 1);
     auto choice = view.classes.classes[0].features[0].acquisitions[1].choices[0];
     assert(choice.remainingSelections == 1 && !choice.options[0].selected);
-    sheet.selectClassOption(CharacterClassType::Fighter, "selection", "path", "first");
+    sheet.selectClassOption(CharacterClassType::Fighter, {"selection", "path", "first"});
     assert(sheet.toView().baseAttackBonus.total == 2);
     std::string bonusSlot;
     for (const auto &slot : view.feats.slots) if (!slot.id.starts_with("base.")) bonusSlot = slot.id;
@@ -55,8 +56,8 @@ int main()
     sheet.selectFeat(bonusSlot, "improvedInitiative");
     const auto spellId = view.grantedSpells[0].id;
     sheet.consumeGrantedSpell(spellId);
-    sheet.addClassLevel(CharacterClassType::Wizard);
-    sheet.addClassLevel(CharacterClassType::Fighter);
+    test::advanceSheetFixture(sheet, CharacterClassType::Wizard);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter);
     assert(sheet.level() == 3 && sheet.toView().feats.slots.size() == 3);
     assert(sheet.toView().baseAttackBonus.total == 5);
     sheet.save(path);
@@ -69,7 +70,7 @@ int main()
     rejects([&] { CharacterSheet::load(path); }); // Missing catalog must not discard classes.
 
     // Replacement suppresses the branch, but its saved choice survives.
-    sheet.addClassLevel(CharacterClassType::Fighter);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter);
     sheet.save(path);
     auto inactive = CharacterSheet::load(path, catalog);
     auto stage = inactive.toView().classes.classes[0].features[0].acquisitions[1];
@@ -112,7 +113,7 @@ int main()
     migrated.save(path);
     auto migratedAgain = CharacterSheet::load(path, catalog);
     assert(migratedAgain.level() == 0 && migratedAgain.toView().legacyFirstLevelFeatSlot);
-    migratedAgain.addClassLevel(CharacterClassType::Wizard);
+    test::advanceSheetFixture(migratedAgain, CharacterClassType::Wizard);
     assert(!migratedAgain.toView().legacyFirstLevelFeatSlot && migratedAgain.level() == 1);
     assert(migratedAgain.toView().feats.slots.size() == 1 && migratedAgain.toView().feats.feats.size() == 1);
     migratedAgain.save(path);

@@ -1,4 +1,5 @@
 #pragma once
+#include "golarion/character/pending_choice.hpp"
 
 #include "golarion/character/spellcasting.hpp"
 #include "golarion/data/spellcastings_data.hpp"
@@ -8,6 +9,7 @@
 
 namespace golarion
 {
+    class SpellCatalog;
     struct SpellcastingGrant
     {
         std::string id;
@@ -23,7 +25,7 @@ namespace golarion
         // Sources register pools here when they must survive even without active casting grants.
         static constexpr std::string_view UsagePoolsResource = "spellcastings.metamagicUsagePools";
 
-        explicit Spellcastings(ResourceManager &resources);
+        explicit Spellcastings(ResourceManager &resources, const SpellCatalog *catalog = nullptr);
         ~Spellcastings();
         Spellcastings(const Spellcastings &) = delete;
         Spellcastings &operator=(const Spellcastings &) = delete;
@@ -36,6 +38,8 @@ namespace golarion
         SpellcastingsView toView() const;
         void load(const SpellcastingsData &data);
 
+        std::vector<PendingChoice> pendingChoices() const;
+
     private:
         void grant(SpellcastingGrant grant);
         void revoke(std::string_view id);
@@ -46,6 +50,7 @@ namespace golarion
             SpellcastingGrant grant;
             std::unique_ptr<Spellcasting> casting;
         };
+        const SpellCatalog *catalog_;
         ResourceManager &resources_;
         std::map<std::string, Entry> entries_;
         MetamagicUsagePools sourcePools_;

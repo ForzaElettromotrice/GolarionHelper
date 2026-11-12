@@ -1,3 +1,4 @@
+#include "../fixtures/definition_roundtrip.hpp"
 #include "golarion/effect/effect_compiler.hpp"
 #include "golarion/effect/effect_json.hpp"
 #include "golarion/resource/resource_manager.hpp"
@@ -20,8 +21,9 @@ namespace
         resources.registerCollectionResource<Entry>(endpoint, [&](Entry) { ++count; }, [&](std::string_view id) { assert(id == "runtime"); --count; });
         auto value = nlohmann::json::parse(json);
         value["id"] = "local";
-        auto effect = effectDefinitionFromJson(value);
+        auto effect = roundTripEffect(value);
         assert(effectId(effect) == "local");
+        assertJsonContains(effectDefinitionToJson(effect), value);
         auto cleanup = compileEffect(effect, {"runtime", "Fonte"})(resources);
         assert(count == 1);
         cleanup();
@@ -29,7 +31,7 @@ namespace
         if (value.contains("expression"))
         {
             value["expression"] = " ";
-            rejects([&] { effectDefinitionFromJson(value); });
+            rejects([&] { roundTripEffect(value); });
         }
     }
 }
@@ -92,5 +94,5 @@ int main()
         R"({"id":"x","type":"sizeAdjustment","steps":1.5})",
         R"({"id":"x","type":"conditionEntry","conditionId":"fatigue","severity":1.5})",
         R"({"id":"x","type":"runAdjustment","adjustment":"unknown","description":"Test","expression":"1","stackingGroup":"test"})"})
-        rejects([&] { effectDefinitionFromJson(nlohmann::json::parse(json)); });
+        rejects([&] { roundTripEffect(nlohmann::json::parse(json)); });
 }

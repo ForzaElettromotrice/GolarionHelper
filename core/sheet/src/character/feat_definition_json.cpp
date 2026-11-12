@@ -115,6 +115,55 @@ namespace
 
 namespace golarion
 {
+    nlohmann::json featDefinitionToJson(const FeatDefinition &d)
+    {
+        const auto requirements = [](const auto &entries)
+        {
+            Json result = Json::array();
+            for (const auto &entry : entries)
+            {
+                Json value{{"description", entry.description}};
+                if (entry.expression) value["expression"] = *entry.expression;
+                if (entry.feat) value["feat"] = {{"id", entry.feat->id}, {"matchingChoices", entry.feat->matchingChoices}};
+                result.push_back(std::move(value));
+            }
+            return result;
+        };
+        const auto effects = [](const auto &entries)
+        {
+            Json result = Json::array();
+            for (const auto &entry : entries) result.push_back(effectDefinitionToJson(entry));
+            return result;
+        };
+        Json types = Json::array();
+        for (const auto type : d.types)
+        {
+            bool found = false;
+            for (const auto *name : {"general", "combat", "critical", "itemCreation", "metamagic", "teamwork", "style",
+                "achievement", "channeling", "grit", "panache", "performance", "racial", "story", "mythic", "monster", "stare", "heroPoint"})
+                if (featTypeFromName(name) == type) { types.push_back(name); found = true; break; }
+            if (!found) throw std::invalid_argument("invalid feat type");
+        }
+        std::string repeatability;
+        switch (d.repeatability)
+        {
+        case FeatRepeatability::Once: repeatability = "once"; break;
+        case FeatRepeatability::DifferentChoices: repeatability = "differentChoices"; break;
+        case FeatRepeatability::Unlimited: repeatability = "unlimited"; break;
+        default: throw std::invalid_argument("invalid feat repeatability");
+        }
+        Json choices = Json::array();
+        for (const auto &choice : d.choices)
+        {
+            Json options = Json::array();
+            for (const auto &option : choice.options)
+                options.push_back({{"id", option.id}, {"name", option.name}, {"requirements", requirements(option.requirements)}, {"effects", effects(option.effects)}});
+            choices.push_back({{"id", choice.id}, {"prompt", choice.prompt}, {"selectionCount", choice.selectionCount}, {"options", std::move(options)}});
+        }
+        return Json{{"id", d.id}, {"name", d.name}, {"description", d.description}, {"types", std::move(types)},
+            {"repeatability", repeatability}, {"requirements", requirements(d.requirements)}, {"effects", effects(d.effects)}, {"choices", std::move(choices)}};
+    }
+
     FeatDefinition featDefinitionFromJson(const nlohmann::json &json)
     {
         try

@@ -6,5 +6,6 @@
 
 namespace golarion
 {
+    nlohmann::json featDefinitionToJson(const FeatDefinition &definition);
     FeatDefinition featDefinitionFromJson(const nlohmann::json &json);
 }

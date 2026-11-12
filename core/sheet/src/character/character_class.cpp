@@ -340,7 +340,7 @@ namespace golarion
                     {
                         const auto selected = selections_.find({stage.id, choice.id});
                         const auto count = selected == selections_.end() ? 0 : selected->second.size();
-                        ClassChoiceView choiceView{choice.id, choice.prompt, choice.selectionCount, choice.selectionCount - count, {}};
+                        ClassChoiceView choiceView{choice.id, choice.prompt, choice.selectionCount, choice.selectionCount - count, {}, choice.blocksAdvancement};
                         for (const auto &option : choice.options)
                             choiceView.options.push_back({option.id, option.name, option.description, selected != selections_.end() && selected->second.contains(option.id)});
                         acquisition.choices.push_back(std::move(choiceView));
@@ -381,13 +381,15 @@ namespace golarion
         hitDieResults_[classLevel] = result;
     }
 
-    void CharacterClass::selectOption(const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId)
+    void CharacterClass::selectOption(const ClassOptionDefinition &definition)
     {
+        const auto &[acquisitionId, choiceId, optionId] = definition;
         changeOption(acquisitionId, choiceId, optionId, true);
     }
 
-    void CharacterClass::unselectOption(const std::string &acquisitionId, const std::string &choiceId, const std::string &optionId)
+    void CharacterClass::unselectOption(const ClassOptionDefinition &definition)
     {
+        const auto &[acquisitionId, choiceId, optionId] = definition;
         changeOption(acquisitionId, choiceId, optionId, false);
     }
 
@@ -446,4 +448,27 @@ namespace golarion
         appliedIds_ = std::move(desired);
         selections_ = std::move(selections);
     }
+    std::vector<PendingChoice> CharacterClass::pendingChoices() const
+    {
+        std::vector<PendingChoice> result;
+        for (int level = 1; level <= level_; ++level)
+            if (!hitDieResults_.contains(level))
+                result.push_back({ClassHitDieChoiceReference{definition_.type, level},
+                    "Inserisci il risultato del dado dei PF", 1, false});
+        const auto active = activeAcquisitions(level_, selections_);
+        for (const auto &id : acquisitionOrder_)
+        {
+            if (!active.contains(id)) continue;
+            for (const auto &choice : acquisitions_.at(id).definition->choices)
+            {
+                const auto found = selections_.find({id, choice.id});
+                const auto count = found == selections_.end() ? 0 : found->second.size();
+                if (count < choice.selectionCount)
+                    result.push_back({ClassOptionChoiceReference{definition_.type, id, choice.id},
+                        choice.prompt, choice.selectionCount - count, choice.blocksAdvancement});
+            }
+        }
+        return result;
+    }
+
 }

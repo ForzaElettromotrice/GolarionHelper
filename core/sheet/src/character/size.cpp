@@ -402,13 +402,7 @@ namespace golarion
             return;
         }
 
-        Modifier modifier(
-            value > 0 ? ModifierType::Bonus : ModifierType::Penalty,
-            std::string(SizeModifierSource),
-            std::move(description),
-            value > 0 ? std::optional(BonusType::Size) : std::nullopt,
-            std::to_string(magnitude(value))
-        );
+        Modifier modifier({.type = value > 0 ? ModifierType::Bonus : ModifierType::Penalty, .source = std::string(SizeModifierSource), .description = std::move(description), .bonusType = value > 0 ? std::optional(BonusType::Size) : std::nullopt, .expression = std::to_string(magnitude(value))});
         AppliedModifier appliedModifier{
             .resourceName = std::string(resourceName),
             .modifierId = modifier.id()

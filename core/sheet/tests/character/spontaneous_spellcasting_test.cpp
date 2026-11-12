@@ -31,22 +31,23 @@ int main()
         resources.addToCollection(slots, SpellSlotGrant{"allowed", "Test", {{3, 1}}, std::set<std::string>{"fireball"}});
         assert(casting.toData().consumedSlots.empty());
         assert(casting.slotState(third) == SpontaneousSpellSlotState::Free);
-        rejects([&] { casting.consume(third, "fireball"); });
-        casting.addToRepertoire("fireball");
-        rejects([&] { casting.consume({"base", 2, 0}, "fireball"); });
-        rejects([&] { casting.consume({"empty", 3, 0}, "fireball"); });
-        rejects([&] { casting.consume(third, " "); });
-        casting.addToRepertoire("unknown");
-        rejects([&] { casting.consume(third, "unknown"); });
-        const auto result = casting.consume({" base ", 3, 0}, " fireball ");
+        rejects([&] { casting.consume(third, {"fireball"}); });
+        resources.addToCollection(repertoireQuotasResource("sorcerer"), SpellRepertoireQuota{"known", "Class", {{3, 1}}});
+        casting.selectRepertoireSpell({"known", 3, "fireball"});
+        rejects([&] { casting.consume({"base", 2, 0}, {"fireball"}); });
+        rejects([&] { casting.consume({"empty", 3, 0}, {"fireball"}); });
+        rejects([&] { casting.consume(third, {" "}); });
+        rejects([&] { casting.addToRepertoire("unknown"); });
+        rejects([&] { casting.consume(third, {"unknown"}); });
+        const auto result = casting.consume({" base ", 3, 0}, {" fireball "});
         assert(result.spellId == "fireball" && result.effectiveSpellLevel == 3);
         assert(casting.slotState(third) == SpontaneousSpellSlotState::Consumed);
-        rejects([&] { casting.consume(third, "fireball"); });
-        casting.consume({"base", 3, 1}, "fireball");
-        casting.consume({"allowed", 3, 0}, "fireball");
+        rejects([&] { casting.consume(third, {"fireball"}); });
+        casting.consume({"base", 3, 1}, {"fireball"});
+        casting.consume({"allowed", 3, 0}, {"fireball"});
         casting.clear(third);
         casting.clear(third);
-        casting.consume(third, "fireball"); // Consuming never removes repertoire membership.
+        casting.consume(third, {"fireball"}); // Consuming never removes repertoire membership.
         const auto saved = casting.toData();
         const auto view = casting.toView();
         assert(saved.consumedSlots.size() == 3);
@@ -66,7 +67,7 @@ int main()
         assert(casting.toData().consumedSlots == saved.consumedSlots);
         for (const SpellSlotId invalid : {SpellSlotId{"missing", 3, 0}, {" ", 3, 0}, {"base", -1, 0}, {"base", 4, 0}, {"base", 3, 2}, {"base", 3, std::numeric_limits<std::size_t>::max()}})
         {
-            rejects([&] { casting.consume(invalid, "fireball"); });
+            rejects([&] { casting.consume(invalid, {"fireball"}); });
             rejects([&] { casting.clear(invalid); });
             rejects([&] { casting.slotState(invalid); });
             rejects([&] { casting.load({{invalid}}); });
@@ -85,14 +86,14 @@ int main()
         const MetamagicApplication application{MetamagicType::Empower, "rod", {}};
         resources.addToCollection(castingMetamagicGrantsResource("sorcerer"), rod);
         resources.addToCollection(exemptions, SpellConsumptionExemption{"throws", "Test", [](const auto &) -> bool { throw std::runtime_error("query failed"); }});
-        rejects<std::runtime_error>([&] { casting.consume(third, "fireball", {application}); });
+        rejects<std::runtime_error>([&] { casting.consume(third, {"fireball", {application}}); });
         assert(pool->remaining() == 2 && casting.slotState(third) == SpontaneousSpellSlotState::Free);
         resources.removeFromCollection(exemptions, "throws");
         resources.addToCollection(exemptions, SpellConsumptionExemption{"repeat", "Test", [](const auto &context) { return context.spell.id == "fireball"; }});
-        casting.consume(third, "fireball", {application});
-        casting.consume(third, "fireball", {application});
+        casting.consume(third, {"fireball", {application}});
+        casting.consume(third, {"fireball", {application}});
         assert(pool->remaining() == 0 && casting.slotState(third) == SpontaneousSpellSlotState::Free);
-        rejects([&] { casting.consume(third, "fireball", {application}); });
+        rejects([&] { casting.consume(third, {"fireball", {application}}); });
         resources.removeFromCollection(exemptions, "repeat");
         auto feat = rod;
         feat.id = "feat";
@@ -101,22 +102,22 @@ int main()
         feat.slotCost = MetamagicSlotCostPolicy::Standard;
         const MetamagicApplication featApplication{MetamagicType::Empower, "feat", {}};
         resources.addToCollection(preparationMetamagicGrantsResource("sorcerer"), feat);
-        rejects([&] { casting.consume(fifth, "fireball", {featApplication}); });
+        rejects([&] { casting.consume(fifth, {"fireball", {featApplication}}); });
         feat.castingScope = CastingMetamagicScope::SpontaneousConversionOnly;
         resources.addToCollection(castingMetamagicGrantsResource("sorcerer"), feat);
-        rejects([&] { casting.consume(fifth, "fireball", {featApplication}); });
+        rejects([&] { casting.consume(fifth, {"fireball", {featApplication}}); });
         resources.removeFromCollection(castingMetamagicGrantsResource("sorcerer"), "feat");
         feat.castingScope = CastingMetamagicScope::AnyCast;
         resources.addToCollection(castingMetamagicGrantsResource("sorcerer"), feat);
-        rejects([&] { casting.consume(third, "fireball", {featApplication}); });
-        rejects([&] { casting.consume(fifth, "fireball", {featApplication, featApplication}); });
-        assert(casting.consume(fifth, "fireball", {featApplication}).requiredSlotLevel == 5);
+        rejects([&] { casting.consume(third, {"fireball", {featApplication}}); });
+        rejects([&] { casting.consume(fifth, {"fireball", {featApplication, featApplication}}); });
+        assert(casting.consume(fifth, {"fireball", {featApplication}}).requiredSlotLevel == 5);
         assert(casting.toData().consumedSlots.size() == 2); // No stored spell/metamagic selection.
 
         SpontaneousSpellcasting other(resources, "other", CharacterClassType::Bard);
         resources.addToCollection(spellSlotsResource("other"), base);
-        other.addToRepertoire("fireball");
-        rejects([&] { other.consume(third, "fireball"); });
+        resources.addToCollection(repertoireGrantsResource("other"), SpellRepertoireGrant{"gift", "Test", {"fireball"}});
+        rejects([&] { other.consume(third, {"fireball"}); });
         other.load({{third}}); // Consumption Data needs groups, not a reconstructed repertoire.
         assert(other.slotState(third) == SpontaneousSpellSlotState::Consumed);
         assert(casting.slotState(third) == SpontaneousSpellSlotState::Free);
@@ -136,15 +137,15 @@ int main()
             return group.allowedSpellIds ? std::optional<int>{specialLevel} : std::nullopt;
         });
     resources.addToCollection(slots, SpellSlotGrant{"base", "Special", {{3, 1}}, std::set<std::string>{"fireball"}});
-    special.addToRepertoire("fireball");
-    special.consume(third, "fireball");
+    resources.addToCollection(repertoireGrantsResource("sorcerer"), SpellRepertoireGrant{"gift", "Test", {"fireball"}});
+    special.consume(third, {"fireball"});
     special.clear(third);
     for (const auto level : {-1, 4, 10})
     {
         specialLevel = level;
-        rejects([&] { special.consume(third, "fireball"); });
+        rejects([&] { special.consume(third, {"fireball"}); });
     }
     specialLevel = 99;
-    rejects<std::runtime_error>([&] { special.consume(third, "fireball"); });
+    rejects<std::runtime_error>([&] { special.consume(third, {"fireball"}); });
     assert(special.slotState(third) == SpontaneousSpellSlotState::Free);
 }

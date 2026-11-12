@@ -1,6 +1,6 @@
 #include "golarion/character/feats.hpp"
 
-#include "golarion/character/feat_definition_manager.hpp"
+#include "golarion/character/feat_catalog.hpp"
 #include "golarion/resource/expression_parser.hpp"
 #include "golarion/resource/resource_manager.hpp"
 #include "golarion/util/string_utils.hpp"
@@ -36,8 +36,8 @@ namespace
 
 namespace golarion
 {
-    Feats::Feats(ResourceManager &resourceManager)
-        : resourceManager_(resourceManager), prerequisites_(resourceManager)
+    Feats::Feats(ResourceManager &resourceManager, const FeatCatalog *catalog)
+        : catalog_(catalog), resourceManager_(resourceManager), prerequisites_(resourceManager)
     {
         resourceManager_.registerCollectionResource<FeatSlot>(FeatSlotsResource,
             [this](FeatSlot slot) { addSlot(std::move(slot)); },
@@ -52,6 +52,25 @@ namespace golarion
         for (const auto &id : ids)
             if (const auto found = slots_.find(id); found != slots_.end()) clear(found->second);
         resourceManager_.unregisterCollectionResource(FeatSlotsResource);
+    }
+
+    void Feats::addExtraSlot(std::string_view id)
+    {
+        const auto key = normalize(id);
+        if (key.starts_with(BasePrefix)) throw std::invalid_argument("base feat slot IDs are reserved");
+        if (slots_.contains(key)) throw std::invalid_argument("feat slot is already registered: " + key);
+        slots_.emplace(key, SlotState{.slot = {.id = key, .source = "Talento extra"}, .origin = FeatSlotOrigin::Extra, .choices = {}, .cleanups = {}});
+    }
+
+    void Feats::removeExtraSlot(std::string_view id)
+    {
+        const auto key = normalize(id);
+        const auto found = slots_.find(key);
+        if (found == slots_.end() || found->second.origin != FeatSlotOrigin::Extra)
+            throw std::invalid_argument("extra feat slot is not registered: " + key);
+        clear(found->second);
+        slots_.erase(key);
+        recheckPrerequisites();
     }
 
     void Feats::clear(SlotState &slot)
@@ -115,6 +134,7 @@ namespace golarion
         const auto found = slots_.find(key);
         if (found == slots_.end() || !found->second.available) throw std::invalid_argument("feat slot is not registered: " + key);
         auto &slot = found->second;
+        if (slot.origin == FeatSlotOrigin::Extra) throw std::invalid_argument("extra feat slots are user-owned");
         slot.available = false;
         // Never retain callbacks that can refer to a destroyed provider.
         slot.slot.exempts = {};
@@ -159,6 +179,7 @@ namespace golarion
 
     bool Feats::requirementSatisfied(const FeatRequirementDefinition &requirement, const SlotState &slot, const FeatPrerequisiteContext &context) const
     {
+        if (slot.origin == FeatSlotOrigin::Extra) return true;
         if (slot.slot.exempts && slot.slot.exempts(requirement, context)) return true;
         if (requirement.feat)
         {
@@ -252,7 +273,7 @@ namespace golarion
         auto &slot = found->second;
         if (!restoring && !slot.available) throw std::invalid_argument("feat slot is unavailable: " + key);
         if (slot.selected) throw std::invalid_argument("feat slot is occupied; remove its feat first");
-        const auto &definition = FeatDefinitionManager::instance().get(featId);
+        const auto &definition = catalog_ ? catalog_->get(featId) : FeatDefinitionManager::instance().get(featId);
         FeatChoices normalized;
         for (const auto &[id, options] : choices)
         {
@@ -392,7 +413,7 @@ namespace golarion
         FeatsView view;
         for (const auto &[id, slot] : slots_)
         {
-            FeatSlotView slotView{id, slot.slot.source, slot.selected ? std::optional(slot.selected->id) : std::nullopt, std::nullopt, {}, slot.available};
+            FeatSlotView slotView{id, slot.slot.source, slot.selected ? std::optional(slot.selected->id) : std::nullopt, std::nullopt, {}, slot.available, slot.origin};
             std::visit([&](const auto &filter)
             {
                 using T = std::decay_t<decltype(filter)>;
@@ -422,7 +443,10 @@ namespace golarion
     {
         FeatsData data;
         for (const auto &[id, slot] : slots_)
+        {
+            if (slot.origin == FeatSlotOrigin::Extra) data.extraSlotIds.push_back(id);
             if (slot.selected) data.selections.push_back({id, slot.selected->id, slot.choices});
+        }
         return data;
     }
 
@@ -434,8 +458,16 @@ namespace golarion
         restored.reserve(data.selections.size());
         std::vector<std::string> placeholders;
         placeholders.reserve(data.selections.size());
+        std::vector<std::string> extras;
+        extras.reserve(data.extraSlotIds.size());
         try
         {
+            for (const auto &id : data.extraSlotIds)
+            {
+                extras.push_back(normalize(id));
+                try { addExtraSlot(extras.back()); }
+                catch (...) { extras.pop_back(); throw; }
+            }
             for (const auto &selection : data.selections)
             {
                 const auto key = normalize(selection.slotId);
@@ -455,7 +487,17 @@ namespace golarion
         {
             for (auto it = restored.rbegin(); it != restored.rend(); ++it) clear(slots_.at(*it));
             for (const auto &id : placeholders) slots_.erase(id);
+            for (const auto &id : extras) slots_.erase(id);
             throw;
         }
     }
+    std::vector<PendingChoice> Feats::pendingChoices() const
+    {
+        std::vector<PendingChoice> result;
+        for (const auto &[id, slot] : slots_)
+            if (slot.available && !slot.selected)
+                result.push_back({FeatSlotChoiceReference{id}, "Seleziona un talento", 1, slot.origin != FeatSlotOrigin::Extra});
+        return result;
+    }
+
 }

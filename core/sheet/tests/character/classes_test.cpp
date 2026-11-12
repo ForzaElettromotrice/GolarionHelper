@@ -80,11 +80,11 @@ int main()
         Classes classes(resources, favored, catalog);
         assert(classes.level() == 0);
         rejects([&] { classes.addLevel(CharacterClassType::Fighter); });
-        rejects([&] { classes.selectOption(CharacterClassType::Wizard, "path.selection", "path", "first"); });
+        rejects([&] { classes.selectOption(CharacterClassType::Wizard, {"path.selection", "path", "first"}); });
         assert(classes.level() == 0);
         classes.addLevel(CharacterClassType::Wizard);
         assert(classes.level() == 1);
-        classes.selectOption(CharacterClassType::Wizard, "path.selection", "path", "first");
+        classes.selectOption(CharacterClassType::Wizard, {"path.selection", "path", "first"});
         classes.addLevel(CharacterClassType::Bard);
         assert(classes.level() == 2);
         assert(resources.contributionTotal("savingThrow.will.base") == 4);
@@ -97,7 +97,7 @@ int main()
         assert(resources.targetValue("class.bard.level") == 1);
         rejects([&] { classes.addLevel(CharacterClassType::Wizard); });
         assert(classes.level() == 3 && resources.contributionTotal("bonus") == 2);
-        classes.unselectOption(CharacterClassType::Wizard, "path.selection", "path", "first");
+        classes.unselectOption(CharacterClassType::Wizard, {"path.selection", "path", "first"});
         assert(resources.contributionTotal("bonus") == 0);
     }
     assert(resources.contributionTotal("baseAttackBonus") == 0);

@@ -5,6 +5,8 @@
 #include "golarion/view/spontaneous_spellcasting_view.hpp"
 #include "golarion/view/flexible_spellcasting_view.hpp"
 
+#include "golarion/view/spell_repertoire_view.hpp"
+
 #include <string>
 #include <variant>
 #include <vector>
@@ -20,6 +22,7 @@ namespace golarion
         SpellcastingMode mode;
         std::vector<std::string> repertoire;
         SpellcastingStateView state;
+        SpellRepertoireView repertoireDetails{};
     };
 
     struct SpellcastingsView

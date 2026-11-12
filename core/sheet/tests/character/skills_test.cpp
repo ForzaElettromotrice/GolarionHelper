@@ -53,7 +53,7 @@ int main()
     }));
     assert(resourceManager.modifierTotal("skill.acrobatics") == 0);
 
-    resourceManager.addModifier("skill.all", Modifier(ModifierType::Bonus, "Tratto", "Bonus a tutte le abilità", BonusType::Racial, "1"));
+    resourceManager.addModifier("skill.all", Modifier({.type = ModifierType::Bonus, .source = "Tratto", .description = "Bonus a tutte le abilità", .bonusType = BonusType::Racial, .expression = "1"}));
     resourceManager.addToCollection(ArmorCheckPenaltiesResource, ArmorCheckPenalty(ArmorCheckPenaltyDefinition{
         .id = "armor",
         .source = "Armatura",
@@ -77,7 +77,7 @@ int main()
         .targetResourceName = "skill.craft"
     }));
     skills.setSpecializationRanks(SkillType::Craft, "alchemy", 3);
-    resourceManager.addModifier("skill.craft", Modifier(ModifierType::Bonus, "Laboratorio", "Bonus ad Artigianato", BonusType::Competence, "2"));
+    resourceManager.addModifier("skill.craft", Modifier({.type = ModifierType::Bonus, .source = "Laboratorio", .description = "Bonus ad Artigianato", .bonusType = BonusType::Competence, .expression = "2"}));
     assert(resourceManager.modifierTotal("skill.craft.alchemy") == 3);
 
     resourceManager.addToCollection(SkillAbilityReplacementsResource, SkillAbilityReplacement(SkillAbilityReplacementDefinition{
@@ -92,7 +92,7 @@ int main()
     assert(resourceManager.modifierTotal("skill.perform.dance") == 1);
     assert(resourceManager.modifierTotal("skill.profession.sailor") == 1);
 
-    skills.addSpecialization(SkillType::Craft, "customClockwork", "Meccanismi Personalizzati");
+    skills.addSpecialization(SkillType::Craft, {"customClockwork", "Meccanismi Personalizzati"});
     assert(resourceManager.modifierTotal("skill.craft.customClockwork") == 3);
 
     const ResourceManagerView resourceView = resourceManager.toView();
@@ -264,11 +264,11 @@ int main()
     }));
     assert(throwsInvalidArgument([&]
     {
-        skills.addSpecialization(SkillType::Acrobatics, "tumbling", "Capriole");
+        skills.addSpecialization(SkillType::Acrobatics, {"tumbling", "Capriole"});
     }));
     assert(throwsInvalidArgument([&]
     {
-        skills.addSpecialization(SkillType::Craft, "alchemy", "Alchimia");
+        skills.addSpecialization(SkillType::Craft, {"alchemy", "Alchimia"});
     }));
     assert(throwsInvalidArgument([&]
     {

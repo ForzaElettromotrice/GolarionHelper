@@ -1,4 +1,5 @@
 #pragma once
+#include "golarion/character/pending_choice.hpp"
 
 #include "golarion/character/race_definition.hpp"
 #include "golarion/data/race_save_data.hpp"
@@ -36,6 +37,8 @@ namespace golarion
         RaceView toView() const;
         RaceSaveData toSaveData() const;
         void load(const RaceSaveData &data);
+
+        std::vector<PendingChoice> pendingChoices() const;
 
     private:
         struct CompiledEffect

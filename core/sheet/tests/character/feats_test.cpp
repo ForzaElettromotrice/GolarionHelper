@@ -1,3 +1,4 @@
+#include "../fixtures/advance_sheet.hpp"
 #include "golarion/character/character_sheet.hpp"
 #include "../fixtures/class_definition.hpp"
 #include "golarion/character/feat_definition_manager.hpp"
@@ -153,7 +154,7 @@ int main()
     const ClassDefinitionManager classCatalog({test::classDefinition(CharacterClassType::Fighter)});
     CharacterSheet sheet(classCatalog);
     assert(sheet.level() == 0 && sheet.toView().feats.slots.empty());
-    sheet.addClassLevel(CharacterClassType::Fighter);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter);
     assert(sheet.toView().feats.slots.size() == 1);
     const int initial = sheet.toView().initiative.abilityOptions[0].totalValue;
     sheet.selectFeat("base.feat.level1", "improvedInitiative");

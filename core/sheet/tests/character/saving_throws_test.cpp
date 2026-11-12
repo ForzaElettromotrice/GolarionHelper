@@ -45,7 +45,7 @@ int main()
 
     SavingThrows savingThrows(manager);
     manager.addContribution(baseResourceName(SavingThrowType::Reflex), Contribution("rogue.reflex", "1"));
-    manager.addModifier("savingThrow.all", Modifier(ModifierType::Bonus, "Mantello", "Bonus ai tiri salvezza", BonusType::Resistance, "1"));
+    manager.addModifier("savingThrow.all", Modifier({.type = ModifierType::Bonus, .source = "Mantello", .description = "Bonus ai tiri salvezza", .bonusType = BonusType::Resistance, .expression = "1"}));
 
     SavingThrowsView view = savingThrows.toView();
     assert(view.savingThrows.size() == 3);

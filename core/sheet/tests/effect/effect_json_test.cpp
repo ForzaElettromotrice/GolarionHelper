@@ -1,3 +1,4 @@
+#include "../fixtures/definition_roundtrip.hpp"
 #include "golarion/effect/effect_json.hpp"
 
 #include <nlohmann/json.hpp>
@@ -28,7 +29,7 @@ int main()
     using namespace golarion;
     using Json = nlohmann::json;
 
-    const ModifierEffectDefinition modifier = std::get<ModifierEffectDefinition>(effectDefinitionFromJson(Json{
+    const ModifierEffectDefinition modifier = std::get<ModifierEffectDefinition>(roundTripEffect(Json{
         {"id", "savingThrows"},
         {"type", "modifier"},
         {"resource", "savingThrow.all"},
@@ -41,7 +42,7 @@ int main()
     assert(modifier.resource == "savingThrow.all");
     assert(modifier.bonusType == BonusType::Resistance);
 
-    const ContributionEffectDefinition contribution = std::get<ContributionEffectDefinition>(effectDefinitionFromJson(Json{
+    const ContributionEffectDefinition contribution = std::get<ContributionEffectDefinition>(roundTripEffect(Json{
         {"id", "hitPoints"},
         {"type", "contribution"},
         {"resource", "hitPoints.max"},
@@ -49,14 +50,14 @@ int main()
     }));
     assert(contribution.expression == "@conMod * @level");
 
-    const SizeBaseEffectDefinition size = std::get<SizeBaseEffectDefinition>(effectDefinitionFromJson(Json{
+    const SizeBaseEffectDefinition size = std::get<SizeBaseEffectDefinition>(roundTripEffect(Json{
         {"id", "baseSize"},
         {"type", "sizeBase"},
         {"category", "small"}
     }));
     assert(size.category == SizeCategory::Small);
 
-    const MovementGrantEffectDefinition movement = std::get<MovementGrantEffectDefinition>(effectDefinitionFromJson(Json{
+    const MovementGrantEffectDefinition movement = std::get<MovementGrantEffectDefinition>(roundTripEffect(Json{
         {"id", "flight"},
         {"type", "movementGrant"},
         {"movementType", "fly"},
@@ -69,14 +70,14 @@ int main()
     assert(movement.type == MovementType::Fly);
     assert(movement.maneuverability == Maneuverability::Good);
 
-    const CarryingBodyTypeEffectDefinition bodyType = std::get<CarryingBodyTypeEffectDefinition>(effectDefinitionFromJson(Json{
+    const CarryingBodyTypeEffectDefinition bodyType = std::get<CarryingBodyTypeEffectDefinition>(roundTripEffect(Json{
         {"id", "bodyType"},
         {"type", "carryingBodyType"},
         {"bodyType", "quadruped"}
     }));
     assert(bodyType.type == CarryingBodyType::Quadruped);
 
-    const ReminderEffectDefinition reminder = std::get<ReminderEffectDefinition>(effectDefinitionFromJson(Json{
+    const ReminderEffectDefinition reminder = std::get<ReminderEffectDefinition>(roundTripEffect(Json{
         {"id", "remember"},
         {"type", "reminder"},
         {"message", "Ricorda questa regola."}
@@ -85,7 +86,7 @@ int main()
 
     assert(throwsInvalidArgument([]
     {
-        static_cast<void>(effectDefinitionFromJson(Json{
+        static_cast<void>(roundTripEffect(Json{
             {"id", "invalid"},
             {"type", "modifier"},
             {"resource", "savingThrow.all"},
@@ -96,7 +97,7 @@ int main()
     }));
     assert(throwsInvalidArgument([]
     {
-        static_cast<void>(effectDefinitionFromJson(Json{
+        static_cast<void>(roundTripEffect(Json{
             {"id", "invalid"},
             {"type", "movementGrant"},
             {"movementType", "land"},
@@ -108,16 +109,16 @@ int main()
     }));
     assert(throwsInvalidArgument([]
     {
-        static_cast<void>(effectDefinitionFromJson(Json{{"id", "invalid"}, {"type", "unknown"}}));
+        static_cast<void>(roundTripEffect(Json{{"id", "invalid"}, {"type", "unknown"}}));
     }));
 
     const auto parseSlot = [](const Json &filter)
     {
-        return std::get<FeatSlotGrantEffectDefinition>(effectDefinitionFromJson(Json{
+        return std::get<FeatSlotGrantEffectDefinition>(roundTripEffect(Json{
             {"id", "bonusFeat"}, {"type", "featSlotGrant"}, {"filter", filter}
         }));
     };
-    const auto unrestricted = std::get<FeatSlotGrantEffectDefinition>(effectDefinitionFromJson(Json{{"id", "bonusFeat"}, {"type", "featSlotGrant"}}));
+    const auto unrestricted = std::get<FeatSlotGrantEffectDefinition>(roundTripEffect(Json{{"id", "bonusFeat"}, {"type", "featSlotGrant"}}));
     assert(std::holds_alternative<AnyFeat>(unrestricted.filter));
     assert(std::holds_alternative<AnyFeat>(parseSlot({{"kind", "any"}}).filter));
     assert(std::get<FeatTypeFilter>(parseSlot({{"kind", "type"}, {"featType", " combat "}}).filter).type == FeatType::Combat);
@@ -136,33 +137,33 @@ int main()
 
     for (const auto &[name, mode] : {std::pair{"prepared", SpellcastingMode::Prepared}, {"spontaneous", SpellcastingMode::Spontaneous}, {"flexible", SpellcastingMode::Flexible}})
     {
-        const auto effect = std::get<SpellcastingGrantEffectDefinition>(effectDefinitionFromJson(Json{
+        const auto effect = std::get<SpellcastingGrantEffectDefinition>(roundTripEffect(Json{
             {"id", "casting"}, {"type", "spellcastingGrant"}, {"mode", name}, {"spellListClass", "wizard"}}));
         assert(effect.id == "casting" && effect.mode == mode && effect.spellListClass == CharacterClassType::Wizard);
     }
     for (const auto &[mode, list] : {std::pair{"unknown", "wizard"}, {"prepared", "unknown"}, {" ", "wizard"}})
-        assert(throwsInvalidArgument([&] { effectDefinitionFromJson(Json{
+        assert(throwsInvalidArgument([&] { roundTripEffect(Json{
             {"id", "casting"}, {"type", "spellcastingGrant"}, {"mode", mode}, {"spellListClass", list}}); }));
     for (const auto field : {"mode", "spellListClass"})
     {
         Json invalid{{"id", "casting"}, {"type", "spellcastingGrant"}, {"mode", "prepared"}, {"spellListClass", "wizard"}};
         invalid.erase(field);
         bool rejected = false;
-        try { effectDefinitionFromJson(invalid); } catch (const Json::exception &) { rejected = true; }
+        try { roundTripEffect(invalid); } catch (const Json::exception &) { rejected = true; }
         assert(rejected);
     }
     Json slotEffect{{"id", "slots"}, {"type", "spellSlotGrant"}, {"castingId", "caster"}, {"pool", "casting"},
         {"slots", Json::array({Json{{"level", 0}, {"capacity", 3}}, Json{{"level", 3}, {"capacity", 2}}})}};
-    auto parsedSlots = std::get<SpellSlotGrantEffectDefinition>(effectDefinitionFromJson(slotEffect));
+    auto parsedSlots = std::get<SpellSlotGrantEffectDefinition>(roundTripEffect(slotEffect));
     assert(parsedSlots.pool == SpellSlotPoolType::Casting && parsedSlots.castingId == "caster");
     assert(parsedSlots.dailyCapacityByLevel.at(0) == 3 && parsedSlots.dailyCapacityByLevel.at(3) == 2);
     assert(!parsedSlots.allowedSpellIds);
     slotEffect["pool"] = "preparation";
     slotEffect["allowedSpellIds"] = {" fireball "};
-    parsedSlots = std::get<SpellSlotGrantEffectDefinition>(effectDefinitionFromJson(slotEffect));
+    parsedSlots = std::get<SpellSlotGrantEffectDefinition>(roundTripEffect(slotEffect));
     assert(parsedSlots.pool == SpellSlotPoolType::Preparation && parsedSlots.allowedSpellIds->contains("fireball"));
     slotEffect["allowedSpellIds"] = Json::array();
-    assert(std::get<SpellSlotGrantEffectDefinition>(effectDefinitionFromJson(slotEffect)).allowedSpellIds->empty());
+    assert(std::get<SpellSlotGrantEffectDefinition>(roundTripEffect(slotEffect)).allowedSpellIds->empty());
     for (int error = 0; error < 13; ++error)
     {
         auto invalid = slotEffect;
@@ -182,26 +183,26 @@ int main()
         case 11: invalid["slots"] = Json::object(); break;
         case 12: invalid["slots"][0]["capacity"] = 4294967296ULL; break;
         }
-        assert(throwsInvalidArgument([&] { effectDefinitionFromJson(invalid); }));
+        assert(throwsInvalidArgument([&] { roundTripEffect(invalid); }));
     }
     Json budgetEffect{{"id", "intelligence"}, {"type", "modifier"}, {"resource", "intelligence.permanent"},
         {"description", "Bonus alla caratteristica"}, {"modifierType", "bonus"}, {"bonusType", "enhancement"}, {"expression", "4"}};
-    assert(std::get<ModifierEffectDefinition>(effectDefinitionFromJson(budgetEffect)).skillRankBudget == SkillRankBudgetPolicy::Included);
+    assert(std::get<ModifierEffectDefinition>(roundTripEffect(budgetEffect)).skillRankBudget == SkillRankBudgetPolicy::Included);
     budgetEffect["skillRankBudget"] = "excluded";
-    assert(std::get<ModifierEffectDefinition>(effectDefinitionFromJson(budgetEffect)).skillRankBudget == SkillRankBudgetPolicy::Excluded);
+    assert(std::get<ModifierEffectDefinition>(roundTripEffect(budgetEffect)).skillRankBudget == SkillRankBudgetPolicy::Excluded);
     budgetEffect["skillRankBudget"] = "included";
-    assert(std::get<ModifierEffectDefinition>(effectDefinitionFromJson(budgetEffect)).skillRankBudget == SkillRankBudgetPolicy::Included);
+    assert(std::get<ModifierEffectDefinition>(roundTripEffect(budgetEffect)).skillRankBudget == SkillRankBudgetPolicy::Included);
     budgetEffect["skillRankBudget"] = "unknown";
-    assert(throwsInvalidArgument([&] { effectDefinitionFromJson(budgetEffect); }));
+    assert(throwsInvalidArgument([&] { roundTripEffect(budgetEffect); }));
     Json handEffect{{"id", "grip"}, {"type", "handUsagePermission"}, {"strikeGrantId", " weapon "}, {"handUsage", "oneHanded"}};
-    auto hand = std::get<HandUsagePermissionEffectDefinition>(effectDefinitionFromJson(handEffect));
+    auto hand = std::get<HandUsagePermissionEffectDefinition>(roundTripEffect(handEffect));
     assert(hand.strikeGrantId == "weapon" && hand.handUsage == HandUsage::OneHanded);
     assert(hand.requirements.empty() && !hand.routineId && !hand.slotId);
     handEffect["handUsage"] = "twoHanded";
     handEffect["routineId"] = "routine";
     handEffect["slotId"] = "slot";
     handEffect["requirements"] = Json::array({{{"expression", "@level >= 3"}, {"failureReason", "Livello insufficiente"}}});
-    hand = std::get<HandUsagePermissionEffectDefinition>(effectDefinitionFromJson(handEffect));
+    hand = std::get<HandUsagePermissionEffectDefinition>(roundTripEffect(handEffect));
     assert(hand.handUsage == HandUsage::TwoHanded && hand.requirements.size() == 1);
     assert(hand.requirements[0].expression() == "@level >= 3" && hand.slotId == "slot");
     for (int error = 0; error < 9; ++error)
@@ -219,7 +220,30 @@ int main()
         case 7: invalid["requirements"][0]["failureReason"] = " "; break;
         case 8: invalid["requirements"] = nullptr; break;
         }
-        assert(throwsInvalidArgument([&] { effectDefinitionFromJson(invalid); }));
+        assert(throwsInvalidArgument([&] { roundTripEffect(invalid); }));
     }
     return 0;
+    for (const char *text : {
+        R"({"id":"x","type":"languageGrant","languageId":"draconic"})",
+        R"({"id":"x","type":"languageOptions","origin":"linguistics","languageIds":["draconic"]})",
+        R"({"id":"x","type":"skillRankGrant","skill":"skill.craft","specializationId":"alchemy","expression":"@level"})",
+        R"({"id":"x","type":"featSlotGrant","filter":{"kind":"type","featType":"combat"}})",
+        R"({"id":"x","type":"featSlotGrant","filter":{"kind":"ids","featIds":["improvedInitiative"]}})",
+        R"({"id":"x","type":"featPrerequisiteAlternative","target":"bab","expression":"@level","filter":{"kind":"any"}})",
+        R"({"id":"x","type":"spellGrant","spellId":"fireball","usage":{"type":"limited","capacity":2}})",
+        R"({"id":"x","type":"spellGrant","spellId":"fireball","usage":{"type":"atWill"}})",
+        R"({"id":"x","type":"spellGrant","spellId":"fireball","usage":{"type":"constant"}})",
+        R"({"id":"x","type":"favoredClassGrant","classes":["wizard"],"additionalChoices":1,"allClasses":false})",
+        R"({"id":"x","type":"favoredClassBonus","name":"Dono","description":"Scelta","classes":["wizard"],"replaces":["hitPoint"],"selectionsPerBenefit":6,"effects":[{"id":"grant","type":"languageGrant","languageId":"draconic"}]})",
+        R"({"id":"x","type":"energyResistanceAdjustment","expression":"2","stackingGroup":"test","selector":{"energy":"cold","grantId":"ice","anyTags":["racial"],"excludedGrantIds":["other"]}})",
+        R"({"id":"x","type":"movementAdjustment","adjustment":"speedLimit","description":"Limite","expression":"4","condition":"Condizione","selector":{"movementType":"fly","grantId":"wings","affectedByArmorOnly":true,"affectedByLoadOnly":true}})",
+        R"({"id":"x","type":"conditionEntry","conditionId":"fatigue","severity":2,"contributesToEscalation":false,"stackingGroup":"test","parameter":"Test"})",
+        R"({"id":"x","type":"temporaryHitPoints","expression":"3","durationRounds":3000000000})",
+        R"({"id":"x","type":"attackRoutine","name":"Routine","actionId":"attack","slots":[{"id":"main","name":"Attacco","selectionMode":"chooseOne","strikeUsage":"default","progressions":[{"kind":"fixed","countExpression":"1","attackBonusAdjustmentExpression":"-1"}],"selector":{"allowedModes":["melee"],"requiredTags":["weapon"],"forbiddenTags":["natural"],"allowedGrantIds":["blade"]},"damageAbilityRule":"halfPositiveFullPenalty","handUsage":"oneHanded","handRole":"offHand","assignmentRequired":false,"baseAttackBonusAdjustmentExpression":"-2"}]})"
+    })
+    {
+        const auto source = Json::parse(text);
+        assertJsonContains(effectDefinitionToJson(roundTripEffect(source)), source);
+    }
+
 }

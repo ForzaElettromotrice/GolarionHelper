@@ -163,8 +163,8 @@ int main()
     assert(carryingCapacity.toView().heavyLoadMaxGrams == 3200000);
 
     strength.setBaseValue(10);
-    resourceManager.addModifier(CarryingCapacityStrengthResource, Modifier(ModifierType::Bonus, "Cintura da soma", "Forza effettiva per il trasporto", BonusType::Enhancement, "8"));
-    resourceManager.addModifier(CarryingCapacityStrengthResource, Modifier(ModifierType::Bonus, "Potenziamento minore", "Forza effettiva per il trasporto", BonusType::Enhancement, "4"));
+    resourceManager.addModifier(CarryingCapacityStrengthResource, Modifier({.type = ModifierType::Bonus, .source = "Cintura da soma", .description = "Forza effettiva per il trasporto", .bonusType = BonusType::Enhancement, .expression = "8"}));
+    resourceManager.addModifier(CarryingCapacityStrengthResource, Modifier({.type = ModifierType::Bonus, .source = "Potenziamento minore", .description = "Forza effettiva per il trasporto", .bonusType = BonusType::Enhancement, .expression = "4"}));
     view = carryingCapacity.toView();
     assert(view.strength == 10);
     assert(view.strengthModifiers.total == 8);
@@ -216,7 +216,7 @@ int main()
     resourceManager.removeFromCollection(CarryingCapacitySizeResource, "size.current");
     assert(carryingCapacity.toView().size == SizeCategory::Medium);
 
-    resourceManager.addModifier(CarryingCapacityStrengthResource, Modifier(ModifierType::Penalty, "Debolezza", "Penalità alla Forza effettiva per il trasporto", std::nullopt, "30"));
+    resourceManager.addModifier(CarryingCapacityStrengthResource, Modifier({.type = ModifierType::Penalty, .source = "Debolezza", .description = "Penalità alla Forza effettiva per il trasporto", .bonusType = std::nullopt, .expression = "30"}));
     view = carryingCapacity.toView();
     assert(view.effectiveStrength == 0);
     assert(view.lightLoadMaxGrams == 0);

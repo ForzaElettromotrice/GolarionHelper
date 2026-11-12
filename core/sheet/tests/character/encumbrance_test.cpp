@@ -165,7 +165,7 @@ int main()
     assert(movementGrantView("burdenedLand").run.effectiveMultiplier == 3);
     assert(movementGrantView("steadyLand").run.effectiveMultiplier == 3);
 
-    resourceManager.addModifier(CarryingCapacityStrengthResource, Modifier(ModifierType::Bonus, "Forza da soma", "Forza effettiva per il trasporto", BonusType::Enhancement, "8"));
+    resourceManager.addModifier(CarryingCapacityStrengthResource, Modifier({.type = ModifierType::Bonus, .source = "Forza da soma", .description = "Forza effettiva per il trasporto", .bonusType = BonusType::Enhancement, .expression = "8"}));
     view = encumbrance.toView();
     assert(view.category == LoadCategory::Light);
     assert(view.lightLoadMaxGrams == 50000);

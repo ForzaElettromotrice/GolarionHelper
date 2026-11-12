@@ -223,4 +223,24 @@ namespace golarion
         }
         return view;
     }
+    std::vector<PendingChoice> FavoredClasses::pendingChoices() const
+    {
+        std::vector<PendingChoice> result;
+        const auto maximum = static_cast<std::size_t>(capacity());
+        if (selected_.size() < maximum)
+            result.push_back({FavoredClassChoiceReference{}, "Seleziona le classi preferite", maximum - selected_.size(), true});
+        for (const auto &[type, count] : levels_)
+        {
+            if (!favored(type)) continue;
+            for (int level = 1; level <= count; ++level)
+            {
+                const auto found = selections_.find({type, level});
+                if (found == selections_.end() || !available(type, found->second))
+                    result.push_back({FavoredClassBonusChoiceReference{type, level},
+                        "Seleziona il bonus di classe preferita", 1, false});
+            }
+        }
+        return result;
+    }
+
 }

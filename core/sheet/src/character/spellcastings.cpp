@@ -10,7 +10,7 @@
 
 namespace golarion
 {
-    Spellcastings::Spellcastings(ResourceManager &resources) : resources_(resources)
+    Spellcastings::Spellcastings(ResourceManager &resources, const SpellCatalog *catalog) : catalog_(catalog), resources_(resources)
     {
         resources_.registerCollectionResource<SpellcastingGrant>(Resource,
             [this](SpellcastingGrant entry) { grant(std::move(entry)); },
@@ -50,13 +50,13 @@ namespace golarion
         switch (entry.mode)
         {
         case SpellcastingMode::Prepared:
-            casting = std::make_unique<PreparedSpellcasting>(resources_, entry.id, entry.spellListClass);
+            casting = std::make_unique<PreparedSpellcasting>(resources_, entry.id, entry.spellListClass, PreparedSpellcasting::SpellLevelResolver{}, catalog_);
             break;
         case SpellcastingMode::Spontaneous:
-            casting = std::make_unique<SpontaneousSpellcasting>(resources_, entry.id, entry.spellListClass);
+            casting = std::make_unique<SpontaneousSpellcasting>(resources_, entry.id, entry.spellListClass, SpontaneousSpellcasting::SpellLevelResolver{}, catalog_);
             break;
         case SpellcastingMode::Flexible:
-            casting = std::make_unique<FlexibleSpellcasting>(resources_, entry.id, entry.spellListClass);
+            casting = std::make_unique<FlexibleSpellcasting>(resources_, entry.id, entry.spellListClass, FlexibleSpellcasting::SpellLevelResolver{}, catalog_);
             break;
         default:
             throw std::invalid_argument("invalid spellcasting mode");
@@ -85,13 +85,14 @@ namespace golarion
             if (!pool->isExternallyOwned()) data.metamagicUses->emplace(id, pool->remaining());
         for (const auto &[id, entry] : entries_)
         {
-            SpellcastingData saved{id, {entry.casting->repertoire_.begin(), entry.casting->repertoire_.end()}, {}};
+            SpellcastingData saved{id, entry.casting->repertoire_.knownIds(), {}};
             switch (entry.grant.mode)
             {
             case SpellcastingMode::Prepared: saved.state = static_cast<const PreparedSpellcasting &>(*entry.casting).toData(); break;
             case SpellcastingMode::Spontaneous: saved.state = static_cast<const SpontaneousSpellcasting &>(*entry.casting).toData(); break;
             case SpellcastingMode::Flexible: saved.state = static_cast<const FlexibleSpellcasting &>(*entry.casting).toData(); break;
             }
+            saved.repertoireData = entry.casting->repertoire_.toData();
             data.castings.push_back(std::move(saved));
         }
         return data;
@@ -103,13 +104,14 @@ namespace golarion
         for (const auto &[id, pool] : usagePools()) view.metamagicPools.push_back({id, pool->remaining()});
         for (const auto &[id, entry] : entries_)
         {
-            SpellcastingView casting{id, entry.grant.source, entry.grant.mode, {entry.casting->repertoire_.begin(), entry.casting->repertoire_.end()}, {}};
+            SpellcastingView casting{id, entry.grant.source, entry.grant.mode, entry.casting->repertoire_.knownIds(), {}};
             switch (entry.grant.mode)
             {
             case SpellcastingMode::Prepared: casting.state = static_cast<const PreparedSpellcasting &>(*entry.casting).toView(); break;
             case SpellcastingMode::Spontaneous: casting.state = static_cast<const SpontaneousSpellcasting &>(*entry.casting).toView(); break;
             case SpellcastingMode::Flexible: casting.state = static_cast<const FlexibleSpellcasting &>(*entry.casting).toView(); break;
             }
+            casting.repertoireDetails = entry.casting->repertoire_.toView();
             view.castings.push_back(std::move(casting));
         }
         return view;
@@ -138,11 +140,15 @@ namespace golarion
             const auto id = normalize(saved.id);
             if (!ids.insert(id).second) throw std::invalid_argument("duplicate spellcasting ID");
             auto &casting = get(id);
-            std::set<std::string> repertoire;
-            for (const auto &spellId : saved.repertoire)
-                if (!repertoire.insert(normalize(spellId)).second) throw std::invalid_argument("duplicate repertoire spell ID");
+            auto repertoire = saved.repertoireData.value_or(SpellRepertoireData{});
+            if (!saved.repertoireData)
+            {
+                if (dynamic_cast<SpontaneousSpellcasting *>(&casting)) repertoire.unassignedSpellIds = saved.repertoire;
+                else repertoire.manualSpellIds = saved.repertoire;
+            }
+            repertoire = casting.repertoire_.validatedData(std::move(repertoire));
             // Validate against the restored repertoire, then restore the live one until commit.
-            casting.repertoire_.swap(repertoire);
+            casting.repertoire_.swapData(repertoire);
             std::function<void()> commit;
             try
             {
@@ -158,13 +164,13 @@ namespace golarion
             }
             catch (...)
             {
-                casting.repertoire_.swap(repertoire);
+                casting.repertoire_.swapData(repertoire);
                 throw;
             }
-            casting.repertoire_.swap(repertoire);
+            casting.repertoire_.swapData(repertoire);
             commits.push_back([&casting, repertoire = std::move(repertoire), commit = std::move(commit)]() mutable
             {
-                casting.repertoire_.swap(repertoire);
+                casting.repertoire_.swapData(repertoire);
                 commit();
             });
         }
@@ -182,4 +188,27 @@ namespace golarion
                 collectMetamagicPool(pools, {poolId, 1, pool});
         return pools;
     }
+    std::vector<PendingChoice> Spellcastings::pendingChoices() const
+    {
+        std::vector<PendingChoice> result;
+        for (const auto &casting : toView().castings)
+        {
+            for (const auto &quota : casting.repertoireDetails.quotas)
+                for (const auto &[level, remaining] : quota.remainingByLevel)
+                    if (remaining > 0)
+                        result.push_back({RepertoireChoiceReference{casting.id, quota.grant.id, level}, "Scegli un incantesimo per il repertorio", static_cast<std::size_t>(remaining), true});
+            if (const auto *prepared = std::get_if<PreparedSpellcastingView>(&casting.state))
+                for (const auto &group : prepared->groups)
+                    for (const auto &slot : group.slots)
+                        if (slot.state == PreparedSpellSlotState::Free)
+                            result.push_back({PreparedSpellChoiceReference{casting.id, slot.slot}, "Prepara un incantesimo", 1, false});
+            if (const auto *flexible = std::get_if<FlexibleSpellcastingView>(&casting.state))
+                for (const auto &group : flexible->preparationGroups)
+                    for (const auto &preparation : group.preparations)
+                        if (!preparation.spellId)
+                            result.push_back({FlexiblePreparationChoiceReference{casting.id, preparation.preparationId}, "Seleziona un incantesimo da preparare", 1, false});
+        }
+        return result;
+    }
+
 }

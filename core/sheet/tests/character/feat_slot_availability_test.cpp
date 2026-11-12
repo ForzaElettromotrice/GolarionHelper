@@ -1,3 +1,4 @@
+#include "../fixtures/advance_sheet.hpp"
 #include "../fixtures/class_definition.hpp"
 #include "golarion/character/character_sheet.hpp"
 #include "golarion/character/feats.hpp"
@@ -81,13 +82,13 @@ int main()
     }}};
     const ClassDefinitionManager catalog({definition});
     CharacterSheet sheet(catalog);
-    sheet.addClassLevel(CharacterClassType::Fighter, 4);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter, 4);
     std::string slotId;
     const auto initial = sheet.toView();
     for (const auto &slot : initial.feats.slots) if (!slot.id.starts_with("base.")) slotId = slot.id;
     assert(!slotId.empty());
     sheet.selectFeat(slotId, "improvedInitiative");
-    sheet.addClassLevel(CharacterClassType::Fighter, 4);
+    test::advanceSheetFixture(sheet, CharacterClassType::Fighter, 4);
     assert(!sheet.toView().feats.feats[0].active);
     const auto path = std::filesystem::temp_directory_path() / "golarion_unavailable_feat_slot_test.json";
     sheet.save(path);

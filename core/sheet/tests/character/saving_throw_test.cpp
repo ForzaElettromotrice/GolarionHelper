@@ -21,10 +21,10 @@ int main()
     SavingThrow fortitude(SavingThrowType::Fortitude);
     fortitude.registerResources(manager, {"savingThrow.all"});
     manager.addContribution(baseResourceName(SavingThrowType::Fortitude), Contribution("fighter.fortitude", "2"));
-    manager.addModifier("savingThrow.fortitude", Modifier(ModifierType::Bonus, "Mantello", "Bonus alla Tempra", BonusType::Resistance, "2"));
+    manager.addModifier("savingThrow.fortitude", Modifier({.type = ModifierType::Bonus, .source = "Mantello", .description = "Bonus alla Tempra", .bonusType = BonusType::Resistance, .expression = "2"}));
     assert(fortitude.totalValue(manager) == 6);
 
-    manager.addModifier("savingThrow.fortitude", Modifier(ModifierType::Bonus, "Sostituzione", "Carisma contro la magia", BonusType::Circumstance, "-@conMod + @chaMod", "Contro la magia"));
+    manager.addModifier("savingThrow.fortitude", Modifier({.type = ModifierType::Bonus, .source = "Sostituzione", .description = "Carisma contro la magia", .bonusType = BonusType::Circumstance, .expression = "-@conMod + @chaMod", .condition = "Contro la magia"}));
     SavingThrowView view = fortitude.toView(manager);
     assert(view.type == SavingThrowType::Fortitude);
     assert(view.baseValue == 2);

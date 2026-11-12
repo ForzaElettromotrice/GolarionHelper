@@ -6,5 +6,6 @@
 
 namespace golarion
 {
+    nlohmann::json spellDefinitionToJson(const SpellDefinition &definition);
     SpellDefinition spellDefinitionFromJson(const nlohmann::json &json);
 }

@@ -33,8 +33,8 @@ int main()
     AbilityChecks abilityChecks(manager);
     AbilityScore strength(AbilityType::Strength);
     strength.registerResources(manager);
-    manager.addModifier("str", Modifier(ModifierType::Bonus, "Cintura", "Bonus alla Forza", BonusType::Enhancement, "4"));
-    manager.addModifier(AbilityCheckRootResource, Modifier(ModifierType::Penalty, "Infermo", "Penalità alle prove di caratteristica", std::nullopt, "2"));
+    manager.addModifier("str", Modifier({.type = ModifierType::Bonus, .source = "Cintura", .description = "Bonus alla Forza", .bonusType = BonusType::Enhancement, .expression = "4"}));
+    manager.addModifier(AbilityCheckRootResource, Modifier({.type = ModifierType::Penalty, .source = "Infermo", .description = "Penalità alle prove di caratteristica", .bonusType = std::nullopt, .expression = "2"}));
 
     assert(strength.baseValue() == 10);
     assert(strength.totalValue(manager) == 14);
@@ -177,9 +177,9 @@ int main()
 
     AbilityScore intelligence(AbilityType::Intelligence, 10);
     intelligence.registerResources(manager);
-    manager.addModifier("int", Modifier(ModifierType::Bonus, "Razza", "Bonus razziale", BonusType::Racial, "2"));
-    manager.addModifier(PermanentIntelligenceResource, Modifier(ModifierType::Bonus, "Permanente", "Potenziamento", BonusType::Enhancement, "4"));
-    Modifier temporary(ModifierType::Bonus, "Temporaneo", "Potenziamento", BonusType::Enhancement, "6");
+    manager.addModifier("int", Modifier({.type = ModifierType::Bonus, .source = "Razza", .description = "Bonus razziale", .bonusType = BonusType::Racial, .expression = "2"}));
+    manager.addModifier(PermanentIntelligenceResource, Modifier({.type = ModifierType::Bonus, .source = "Permanente", .description = "Potenziamento", .bonusType = BonusType::Enhancement, .expression = "4"}));
+    Modifier temporary({.type = ModifierType::Bonus, .source = "Temporaneo", .description = "Potenziamento", .bonusType = BonusType::Enhancement, .expression = "6"});
     const auto temporaryId = temporary.id();
     manager.addModifier(TemporaryIntelligenceResource, std::move(temporary));
     assert(manager.targetValue("int") == 18); // One enhancement bonus across both endpoints.
@@ -191,12 +191,12 @@ int main()
     assert(intelligenceView.permanentValue == 16 && intelligenceView.permanentModifier == 3);
     manager.removeModifier(TemporaryIntelligenceResource, temporaryId);
     assert(intelligence.totalValue(manager) == 16);
-    manager.addModifier(TemporaryIntelligenceResource, Modifier(ModifierType::Penalty, "Temporaneo", "Penalità", std::nullopt, "3"));
+    manager.addModifier(TemporaryIntelligenceResource, Modifier({.type = ModifierType::Penalty, .source = "Temporaneo", .description = "Penalità", .bonusType = std::nullopt, .expression = "3"}));
     assert(intelligence.totalValue(manager) == 13 && manager.targetValue("intPermanent") == 16);
     intelligence.setBaseValue(9);
     assert(manager.targetValue("intPermanent") == 15 && manager.targetValue(PermanentIntelligenceModifierTarget) == 2);
     assert(!strength.toView(manager).permanentValue);
-    Modifier headband(ModifierType::Bonus, "Fascia", "Potenziamento", BonusType::Enhancement, "8", std::nullopt, {}, SkillRankBudgetPolicy::Excluded);
+    Modifier headband({.type = ModifierType::Bonus, .source = "Fascia", .description = "Potenziamento", .bonusType = BonusType::Enhancement, .expression = "8", .condition = std::nullopt, .requirements = {}, .skillRankBudget = SkillRankBudgetPolicy::Excluded});
     const auto headbandId = headband.id();
     assert(headband.toView(manager).skillRankBudget == SkillRankBudgetPolicy::Excluded);
     manager.addModifier(PermanentIntelligenceResource, std::move(headband));
@@ -206,13 +206,13 @@ int main()
     assert(manager.targetValue(SkillRankIntelligenceModifierTarget) == 2);
     const auto budgetView = intelligence.toView(manager);
     assert(budgetView.skillRankBudgetValue == 15 && budgetView.skillRankBudgetModifier == 2);
-    manager.addModifier(PermanentIntelligenceResource, Modifier(ModifierType::Bonus, "Condizionale", "Bonus", BonusType::Enhancement, "100", "Condizione"));
+    manager.addModifier(PermanentIntelligenceResource, Modifier({.type = ModifierType::Bonus, .source = "Condizionale", .description = "Bonus", .bonusType = BonusType::Enhancement, .expression = "100", .condition = "Condizione"}));
     assert(manager.targetValue("intSkillRanks") == 15);
     manager.removeModifier(PermanentIntelligenceResource, headbandId);
     assert(manager.targetValue("intPermanent") == 15 && manager.targetValue("intSkillRanks") == 15);
     assert(throwsInvalidArgument([&]
     {
-        Modifier invalid(ModifierType::Bonus, "Fonte", "Bonus", BonusType::Enhancement, "2", std::nullopt, {}, static_cast<SkillRankBudgetPolicy>(999));
+        Modifier invalid({.type = ModifierType::Bonus, .source = "Fonte", .description = "Bonus", .bonusType = BonusType::Enhancement, .expression = "2", .condition = std::nullopt, .requirements = {}, .skillRankBudget = static_cast<SkillRankBudgetPolicy>(999)});
     }));
     return 0;
 }

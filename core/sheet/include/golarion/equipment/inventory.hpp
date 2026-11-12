@@ -3,6 +3,7 @@
 #include "golarion/equipment/container.hpp"
 #include "golarion/equipment/equipment.hpp"
 #include "golarion/equipment/item.hpp"
+#include "golarion/equipment/item_catalog.hpp"
 #include "golarion/equipment/money.hpp"
 #include "golarion/data/inventory_save_data.hpp"
 #include "golarion/view/inventory_view.hpp"
@@ -25,6 +26,7 @@ namespace golarion
     {
     public:
         explicit Inventory(ResourceManager &resourceManager);
+        Inventory(ResourceManager &resourceManager, const ItemCatalog &catalog);
         ~Inventory();
 
         Inventory(const Inventory &) = delete;
@@ -75,6 +77,7 @@ namespace golarion
         void load(const InventorySaveData &data);
 
         ResourceManager &resourceManager_;
+        const ItemCatalog *catalog_ = nullptr;
         Equipment equipment_;
         std::map<std::string, ItemInstance> items_;
         std::map<std::string, Container> containers_;

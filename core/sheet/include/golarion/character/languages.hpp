@@ -1,4 +1,5 @@
 #pragma once
+#include "golarion/character/pending_choice.hpp"
 
 #include "golarion/data/languages_data.hpp"
 #include "golarion/view/languages_view.hpp"
@@ -46,6 +47,8 @@ namespace golarion
         LanguagesView toView() const;
         LanguagesData toData() const;
         void load(const LanguagesData &data);
+
+        std::vector<PendingChoice> pendingChoices() const;
 
     private:
         int capacity(LanguageOrigin origin) const;

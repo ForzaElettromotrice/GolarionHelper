@@ -82,6 +82,7 @@ namespace golarion
     {
     public:
         explicit StrikeSelector(StrikeSelectorDefinition definition);
+        StrikeSelectorDefinition toDefinition() const { return {allowedModes_, requiredTags_, forbiddenTags_, allowedGrantIds_}; }
 
     private:
         friend class RoutineSlot;
@@ -212,6 +213,7 @@ namespace golarion
     {
     public:
         explicit RoutineAssignmentRequirement(RoutineAssignmentRequirementDefinition definition);
+        RoutineAssignmentRequirementDefinition toDefinition() const { return {slotId_, strikeGrantId_, requiredTag_, weaponWeightPurpose_, weaponWeight_}; }
 
     private:
         friend class AttackRoutines;

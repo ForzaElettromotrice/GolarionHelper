@@ -4,6 +4,8 @@
 
 namespace golarion
 {
+    nlohmann::json collectionEffectToJson(const CollectionEffectDefinition &definition);
+    nlohmann::json castingRuleEffectToJson(const CastingRuleEffectDefinition &definition);
     EffectApply compileCollectionEffect(CollectionEffectDefinition definition, EffectContext context);
     std::optional<CollectionEffectDefinition> collectionEffectFromJson(const nlohmann::json &json);
     EffectApply compileCastingRuleEffect(CastingRuleEffectDefinition definition, EffectContext context);
