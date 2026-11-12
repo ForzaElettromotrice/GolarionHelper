@@ -2,6 +2,8 @@
 
 Read this document when changing movement, size, carrying capacity, or encumbrance.
 
+- `movement.boundedBonuses` accepts source-owned `MovementBoundedBonus` values with selector, BonusType, requested expression and maximumPercent (at least 100). All bounded sources use the same ordinary-speed baseline, excluding one another. A read-only modifier composition caps each candidate so its individually adjusted speed does not exceed that baseline's percentage, then combines candidates with ordinary stacking and reapplies existing multipliers, armor/load reductions and absolute caps. No temporary registry mutation occurs. Same-type enhancement sources do not stack; distinct stackable bonuses remain additive according to their type. Views expose requested/capped units and source IDs. Exact-grant dependencies must be removed before the movement grant. The `movementBoundedBonus` effect supplies the JSON bridge. See [Velocità](https://www.golarion.altervista.org/wiki/Incantesimi/Velocit%C3%A0); no spell is automatically applied.
+
 - `CharacterSheet` owns `Movement` but creates no movement grants. A newly created sheet therefore has no movement mode until its future race, class, effect, or another concrete source registers one; the sheet exposes no user-facing movement mutation.
 - Movement uses integer units of 1.5 m and supports land, climb, swim, burrow, and fly modes. Fly grants carry maneuverability (clumsy, poor, average, good, or perfect) and its Pathfinder Fly-check modifier.
 - Every movement grant is an independent, atomic profile identified by a stable ID and source. Multiple grants of the same type remain separate alternatives rather than merging speed and properties field by field.

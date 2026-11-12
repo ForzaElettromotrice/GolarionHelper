@@ -20,6 +20,7 @@
 Read only the document for the subsystem being changed. Cross-cutting decisions remain in [`../architecture.md`](../architecture.md).
 
 - [`declarative-content.md`](declarative-content.md): shared effect definitions and the current declarative feat boundary.
+- [`effect-endpoints.md`](effect-endpoints.md): JSON endpoint coverage, typed callback schemas, runtime ID ownership and boundaries after the backend audit.
 - [`races.md`](races.md): race catalog, runtime selection, choices, persistence, and View.
 - [`special-defenses.md`](special-defenses.md): energy defenses, damage reduction, immunities, spell resistance, fast healing, and regeneration.
 - [`foundation.md`](foundation.md): repository state and core `CharacterSheet` ownership.
