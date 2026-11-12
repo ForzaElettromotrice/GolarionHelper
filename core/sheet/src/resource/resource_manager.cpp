@@ -34,6 +34,14 @@ namespace
 
 namespace golarion
 {
+    ModifierSetView ResourceManager::modifierSetViewWithAdditional(std::string_view resourceName, const std::vector<Modifier> &additional)
+    {
+        ModifierSet extra;
+        for (const auto &modifier : additional) extra.addModifier(modifier);
+        auto sets = inheritedModifierSets(resourceName);
+        sets.push_back(&extra);
+        return ModifierSet::toView(sets, *this);
+    }
     void ResourceManager::registerEnhanceableResource(std::string_view name)
     {
         registerEnhanceableResource(name, {});
@@ -184,6 +192,11 @@ namespace golarion
     int ResourceManager::modifierTotal(std::string_view resourceName)
     {
         return ModifierSet::calculateTotal(inheritedModifierSets(resourceName), *this);
+    }
+
+    int ResourceManager::modifierTotalForSkillRankBudget(std::string_view resourceName)
+    {
+        return ModifierSet::calculateTotal(inheritedModifierSets(resourceName), *this, true);
     }
 
     int ResourceManager::modifierTotal(const std::vector<std::string> &resourceNames)

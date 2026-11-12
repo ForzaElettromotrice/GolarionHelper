@@ -23,7 +23,7 @@ namespace golarion
     private:
         friend class ResourceManager;
 
-        static int calculateTotal(const std::vector<const ModifierSet *> &modifierSets, ResourceManager &resourceManager);
+        static int calculateTotal(const std::vector<const ModifierSet *> &modifierSets, ResourceManager &resourceManager, bool forSkillRankBudget = false);
         static ModifierSetView toView(const std::vector<const ModifierSet *> &modifierSets, ResourceManager &resourceManager);
         static ModifierSetView toView(const std::vector<const ModifierSet *> &modifierSets, ResourceManager &resourceManager, const std::vector<std::string> &activeConditions);
 

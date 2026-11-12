@@ -136,13 +136,14 @@ namespace golarion
         return calculateTotal(std::vector<const ModifierSet *>{this}, resourceManager);
     }
 
-    int ModifierSet::calculateTotal(const std::vector<const ModifierSet *> &modifierSets, ResourceManager &resourceManager)
+    int ModifierSet::calculateTotal(const std::vector<const ModifierSet *> &modifierSets, ResourceManager &resourceManager, bool forSkillRankBudget)
     {
         std::vector<ResolvedModifier> permanentModifiers;
         for (const ModifierSet *modifierSet : modifierSets)
         {
             for (const Modifier &modifier : modifierSet->modifiers_)
             {
+                if (forSkillRankBudget && modifier.skillRankBudget_ == SkillRankBudgetPolicy::Excluded) continue;
                 if (!modifier.condition().has_value() && modifier.requirementsSatisfied(resourceManager))
                 {
                     permanentModifiers.push_back(ResolvedModifier{

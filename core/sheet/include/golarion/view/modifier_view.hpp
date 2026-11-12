@@ -21,5 +21,6 @@ namespace golarion
         int resolvedValue;
         bool active;
         std::vector<RequirementView> requirements;
+        SkillRankBudgetPolicy skillRankBudget = SkillRankBudgetPolicy::Included;
     };
 }

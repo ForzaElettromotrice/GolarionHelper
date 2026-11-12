@@ -44,11 +44,13 @@ namespace golarion
         int targetValue(std::string_view name);
         int evaluateExpression(std::string_view expression);
         int modifierTotal(std::string_view resourceName);
+        int modifierTotalForSkillRankBudget(std::string_view resourceName);
         int modifierTotal(const std::vector<std::string> &resourceNames);
         int contributionTotal(std::string_view resourceName);
         bool enhanceableResourceIsOrInheritsFrom(std::string_view resourceName, std::string_view ancestorResourceName) const;
         ContributionSetView contributionSetView(std::string_view resourceName);
         ModifierSetView modifierSetView(std::string_view resourceName);
+        ModifierSetView modifierSetViewWithAdditional(std::string_view resourceName, const std::vector<Modifier> &additional);
         ModifierSetView modifierSetView(std::string_view resourceName, const std::vector<std::string> &activeConditions);
         ModifierSetView modifierSetView(const std::vector<std::string> &resourceNames);
         ModifierSetView modifierSetView(const std::vector<std::string> &resourceNames, const std::vector<std::string> &activeConditions);

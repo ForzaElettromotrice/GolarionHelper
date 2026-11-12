@@ -19,6 +19,8 @@ namespace golarion
         Penalty
     };
 
+    enum class SkillRankBudgetPolicy { Included, Excluded };
+
     enum class StackingRule
     {
         HighestOnly,
@@ -59,7 +61,7 @@ namespace golarion
     public:
         Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression);
         Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition);
-        Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition, std::vector<Requirement> requirements);
+        Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition, std::vector<Requirement> requirements, SkillRankBudgetPolicy skillRankBudget = SkillRankBudgetPolicy::Included);
         ModifierView toView(ResourceManager &resourceManager) const;
 
         const std::string &id() const;
@@ -86,5 +88,6 @@ namespace golarion
         std::string expression_;
         std::optional<std::string> condition_;
         std::vector<Requirement> requirements_;
+        SkillRankBudgetPolicy skillRankBudget_ = SkillRankBudgetPolicy::Included;
     };
 }

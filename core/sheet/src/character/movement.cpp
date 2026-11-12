@@ -259,6 +259,29 @@ namespace golarion
 
     Movement::Movement(ResourceManager &resourceManager) : resourceManager_(resourceManager)
     {
+        resourceManager_.registerCollectionResource<MovementBoundedBonus>(MovementBoundedBonusesResource,
+            [this](MovementBoundedBonus bonus)
+            {
+                bonus.id = normalize(bonus.id);
+                bonus.source = normalize(bonus.source);
+                bonus.description = normalize(bonus.description);
+                bonus.expression = normalize(bonus.expression);
+                displayName(bonus.bonusType);
+                if (bonus.selector.type) displayName(*bonus.selector.type);
+                if (bonus.selector.grantId) bonus.selector.grantId = normalize(*bonus.selector.grantId);
+                if (bonus.selector.grantId)
+                {
+                    const auto grant = std::ranges::find(grants_, *bonus.selector.grantId, &MovementGrant::id_);
+                    if (grant == grants_.end() || (bonus.selector.type && *bonus.selector.type != grant->type_))
+                        throw std::invalid_argument("bounded movement bonus requires a matching grant");
+                }
+                if (bonus.maximumPercent < 100) throw std::invalid_argument("bounded movement bonus cannot reduce speed");
+                const auto id = bonus.id;
+                if (!boundedBonuses_.emplace(id, std::move(bonus)).second) throw std::invalid_argument("duplicate bounded movement bonus");
+            }, [this](std::string_view id)
+            {
+                if (!boundedBonuses_.erase(normalize(id))) throw std::invalid_argument("unknown bounded movement bonus");
+            });
         resourceManager_.registerEnhanceableResource("speed.all");
         for (MovementType type : {MovementType::Land, MovementType::Climb, MovementType::Swim, MovementType::Burrow, MovementType::Fly})
         {
@@ -326,6 +349,8 @@ namespace golarion
             throw std::invalid_argument("movement grant is targeted by run adjustment: " + dependentRunAdjustment->first);
         }
 
+        for (const auto &[id, bonus] : boundedBonuses_)
+            if (bonus.selector.grantId == normalizedId) throw std::invalid_argument("movement grant is targeted by a bounded bonus");
         resourceManager_.unregisterEnhanceableResource(movementResourceName(grant->type_, grant->id_));
         grants_.erase(grant);
     }
@@ -420,11 +445,12 @@ namespace golarion
             }
 
             int effectiveUnits = checkedSpeed(std::max(0LL, static_cast<long long>(baseUnits) + modifiers.total));
-            const int modifiedBaseUnits = effectiveUnits;
+            int modifiedBaseUnits = effectiveUnits;
             std::optional<Maneuverability> maneuverability = grant.maneuverability_;
             bool usable = true;
             bool reducedByArmorOrLoad = false;
             std::vector<int> speedLimits;
+            std::vector<int> speedMultipliers;
             std::vector<MovementAdjustmentView> adjustmentViews;
 
             for (const MovementAdjustment &adjustment : adjustments_)
@@ -462,6 +488,7 @@ namespace golarion
                             throw std::invalid_argument("movement speed multiplier must not be negative");
                         }
                         effectiveUnits = checkedSpeed(static_cast<long long>(effectiveUnits) * *resolvedValue / 100);
+                        speedMultipliers.push_back(*resolvedValue);
                         break;
                     case MovementAdjustmentType::ReducedByArmorOrLoad:
                         reducedByArmorOrLoad = true;
@@ -492,6 +519,52 @@ namespace golarion
             for (const int speedLimit : speedLimits)
             {
                 effectiveUnits = std::min(effectiveUnits, speedLimit);
+            }
+
+            // Each bounded source is capped against the same ordinary-speed baseline.
+            // Evaluate ordinary stacking without mutating any registered modifiers.
+            const auto adjustedSpeed = [&](int total)
+            {
+                int speed = checkedSpeed(std::max(0LL, static_cast<long long>(baseUnits) + total));
+                for (int percent : speedMultipliers) speed = checkedSpeed(static_cast<long long>(speed) * percent / 100);
+                if (reducedByArmorOrLoad) speed = reducedSpeed(speed);
+                for (int limit : speedLimits) speed = std::min(speed, limit);
+                return speed;
+            };
+            const int normalSpeed = effectiveUnits;
+            std::vector<Modifier> boundedModifiers;
+            std::vector<MovementBoundedBonusView> boundedViews;
+            for (const auto &[id, bonus] : boundedBonuses_)
+            {
+                const auto &selector = bonus.selector;
+                if ((selector.type && *selector.type != grant.type_) || (selector.grantId && *selector.grantId != grant.id_) ||
+                    (selector.affectedByArmorOnly && !grant.affectedByArmor_) || (selector.affectedByLoadOnly && !grant.affectedByLoad_)) continue;
+                const int requested = resourceManager_.evaluateExpression(bonus.expression);
+                if (requested < 0) throw std::invalid_argument("bounded movement bonus must be nonnegative");
+                const auto modifier = [&](int value)
+                {
+                    return Modifier(ModifierType::Bonus, bonus.source, bonus.description, bonus.bonusType, std::to_string(value));
+                };
+                const long long ceiling = static_cast<long long>(normalSpeed) * bonus.maximumPercent / 100;
+                int low = 0, high = requested;
+                while (low < high)
+                {
+                    const int middle = low + static_cast<int>((static_cast<long long>(high) - low + 1) / 2);
+                    const auto candidate = resourceManager_.modifierSetViewWithAdditional(resourceName, {modifier(middle)});
+                    bool fits = false;
+                    try { fits = adjustedSpeed(candidate.total) <= ceiling; }
+                    catch (const std::invalid_argument &) { fits = false; }
+                    if (fits) low = middle;
+                    else high = middle - 1;
+                }
+                boundedModifiers.push_back(modifier(low));
+                boundedViews.push_back({id, bonus.source, requested, low, bonus.maximumPercent});
+            }
+            if (!boundedModifiers.empty())
+            {
+                modifiers = resourceManager_.modifierSetViewWithAdditional(resourceName, boundedModifiers);
+                modifiedBaseUnits = checkedSpeed(std::max(0LL, static_cast<long long>(baseUnits) + modifiers.total));
+                effectiveUnits = adjustedSpeed(modifiers.total);
             }
 
             RunView runView{
@@ -670,7 +743,8 @@ namespace golarion
                 .usable = usable,
                 .run = std::move(runView),
                 .modifiers = std::move(modifiers),
-                .adjustments = std::move(adjustmentViews)
+                .adjustments = std::move(adjustmentViews),
+                .boundedBonuses = std::move(boundedViews)
             });
         }
 

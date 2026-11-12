@@ -1,4 +1,5 @@
 #pragma once
+#include "golarion/resource/modifier.hpp"
 
 #include <map>
 #include <optional>
@@ -10,6 +11,7 @@ namespace golarion
 {
     inline constexpr std::string_view MovementGrantsResource = "movement.grants";
     inline constexpr std::string_view MovementAdjustmentsResource = "movement.adjustments";
+    inline constexpr std::string_view MovementBoundedBonusesResource = "movement.boundedBonuses";
     inline constexpr std::string_view RunAdjustmentsResource = "movement.runAdjustments";
     inline constexpr std::string_view HeavyArmorOrLoadRunPenaltyGroup = "heavyArmorOrLoad";
 
@@ -109,6 +111,17 @@ namespace golarion
         std::optional<std::string> condition;
     };
 
+    struct MovementBoundedBonus
+    {
+        std::string id;
+        std::string source;
+        std::string description;
+        MovementSelector selector;
+        BonusType bonusType;
+        std::string expression;
+        int maximumPercent = 200;
+    };
+
     class MovementAdjustment final
     {
     public:
@@ -174,6 +187,7 @@ namespace golarion
         bool runAdjustmentMatches(const RunAdjustment &adjustment, const MovementGrant &grant) const;
 
         ResourceManager &resourceManager_;
+        std::map<std::string, MovementBoundedBonus> boundedBonuses_;
         std::vector<MovementGrant> grants_;
         std::vector<MovementAdjustment> adjustments_;
         std::map<std::string, RunAdjustment> runAdjustments_;

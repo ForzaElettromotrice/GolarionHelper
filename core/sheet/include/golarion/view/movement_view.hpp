@@ -9,6 +9,14 @@
 
 namespace golarion
 {
+    struct MovementBoundedBonusView
+    {
+        std::string id;
+        std::string source;
+        int requestedUnits;
+        int cappedUnits;
+        int maximumPercent;
+    };
     struct MovementAdjustmentView
     {
         std::string id;
@@ -62,6 +70,7 @@ namespace golarion
         RunView run;
         ModifierSetView modifiers;
         std::vector<MovementAdjustmentView> adjustments;
+        std::vector<MovementBoundedBonusView> boundedBonuses;
     };
 
     struct MovementView

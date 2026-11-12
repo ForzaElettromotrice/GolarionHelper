@@ -147,9 +147,12 @@ namespace golarion
     {
     }
 
-    Modifier::Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition, std::vector<Requirement> requirements)
+    Modifier::Modifier(ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition, std::vector<Requirement> requirements, SkillRankBudgetPolicy skillRankBudget)
         : Modifier(generateUuid(), type, std::move(source), std::move(description), bonusType, std::move(expression), std::move(condition), std::move(requirements))
     {
+        if (skillRankBudget != SkillRankBudgetPolicy::Included && skillRankBudget != SkillRankBudgetPolicy::Excluded)
+            throw std::invalid_argument("unknown skill rank budget policy");
+        skillRankBudget_ = skillRankBudget;
     }
 
     Modifier::Modifier(std::string id, ModifierType type, std::string source, std::string description, std::optional<BonusType> bonusType, std::string expression, std::optional<std::string> condition, std::vector<Requirement> requirements)
@@ -198,7 +201,8 @@ namespace golarion
             .condition = condition_,
             .resolvedValue = resolveValue(resourceManager),
             .active = active,
-            .requirements = std::move(requirementViews)
+            .requirements = std::move(requirementViews),
+            .skillRankBudget = skillRankBudget_
         };
     }
 
