@@ -9,6 +9,10 @@ Release scope and Data/View verification for the first sheet backend version: [b
 - [`enhancements.md`](enhancements.md): user-created groups of numeric contributions/modifiers, independent activation, sheet operations and format-36 persistence.
 
 - [`archetypes.md`](archetypes.md): archetype compatibility, structural feature edits, shared choice APIs and format-31 persistence.
+- [`archetype-catalog.md`](archetype-catalog.md): 661 included class archetypes, 764 reviewed source entries, 103 pending entries and explicit automation boundaries.
+
+- [`class-catalog.md`](class-catalog.md): 44 playable Golarion class definitions, provenance, implemented progressions and marked manual boundaries.
+- [`class-options.md`](class-options.md): in-progress class-feature option population, reusable catalog/binding schema and manual eligibility boundaries. Read before editing option data or attaching new class choices.
 
 - [`classes.md`](classes.md): class definitions/runtime, sheet integration, level/choice progression, HP/skill-rank advancement, persistence and Views.
 - [`favored-classes.md`](favored-classes.md): eligibility grants, per-level bonus choices, cumulative benefits, declarative effects and format-33 persistence.
@@ -22,7 +26,7 @@ Release scope and Data/View verification for the first sheet backend version: [b
 
 - [`languages.md`](languages.md): granted/learned languages, learning quotas, reminders, persistence, and pending racial integration.
 
-- [`feats.md`](feats.md): per-character feat slots, selection, qualification, cleanup, and current runtime limitations.
+- [`feats.md`](feats.md): per-character feat slots, selection, qualification, cleanup, and current runtime limitations. See [feat-catalog.md](feat-catalog.md) for the 1648-definition Golarion dataset and automation boundaries.
 
 - [`feat-prerequisites.md`](feat-prerequisites.md): prerequisite value alternatives, source callbacks, and the boundary with slot eligibility and exemptions.
 

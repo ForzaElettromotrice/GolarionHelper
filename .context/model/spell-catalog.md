@@ -1,0 +1,46 @@
+# Spell catalog
+
+Read before editing the embedded spell dataset or claiming automated spell resolution.
+
+## Scope and sources
+
+Reviewed 2026-11-13 using only Golarion rule content. The [complete spell database](https://golarion.altervista.org/wiki/Incantesimi_di_Golarion) includes setting-specific entries absent from the smaller [PRD database](https://golarion.altervista.org/wiki/Database_Incantesimi). All ordinary Pathfinder spell levels are now covered where the source provides the required data. Retain every supported class level rather than truncating definitions or duplicating a spell for different lists.
+
+The embedded catalog contains **2158 definitions**: the original Fireball, 417 from the level-0/1 pass and 1740 from the remaining-level pass. Fireball now also exports a marked manual-resolution reminder; it still does not resolve damage automatically. The complete database contains 286 explicitly mythic variants and 27 legacy 3.5 entries, excluded from the agreed ordinary-Pathfinder scope. Do not make mythic variants ordinary learnable spells without modeling their access requirements.
+
+Three source entries remain pending rather than invented: **Creare Semipiano** omits its components; **Geomessaggio** and **Parvenza di Vita Superiore** link to missing pages (HTTP 404). They are recorded in `resources/spells/remaining.pending.json`. **Galleggiamento** is an alias of **Galleggiabilità/Buoyancy**, not a second definition. Nine Summon Nature's Ally versions share one page but remain separate definitions; URL-only deduplication would lose eight of them.
+
+`resources/spells/level-0-1.sources.json` and `remaining.sources.json` record individual Golarion URLs, aliases, review notes and inherited-field sources. These and the pending file are authoring audits, not runtime catalog inputs. Runtime data lives in `resources/spells.json`, `spells/level-0-1.json` and `spells/level-{2..9}.json`. The latter files group definitions by minimum class level, with Celare Pensieri retained in level-2 grouping despite its detail page assigning some level-1 lists contrary to the index. Each definition links its source in its Italian summary. Summaries are paraphrases, not substitutes for complete rules. English IDs follow Golarion's original-name column or its linked-reference labels when the column has a proven typo; English-only rules are not imported.
+
+CMake embeds all ten runtime catalog files and tracks them as configure dependencies. Explicit string-view length avoids the compiler's constexpr character-scan limit. Manager/API/save format stay unchanged. Closed enums additionally represent `VERBAL_OR_SOMATIC` (Scintilla), `VERBAL_OR_FOCUS` (Flauto Magico), descriptor `RUSE` and school `VARIABLE` (Sigillo del Serpente di Lissala). Alternative components reject contradictory simultaneous explicit components. Variable school does not automatically select one of the seven rune variants.
+
+## Automation boundary
+
+Eighty-one entries export supported mechanical effects (39 low-level and 42 additional): fixed skill/save/attack/AC/movement/ability bonuses and penalties, conditional modifiers, carrying capacity, temporary HP, resistance, immunities, damage reduction, routine progression and conditions. Other entries export marked reminders, not invented mechanics. Every manual remainder ends with `Ehi, appena hai tempo vedi di correggermi se necessario!`.
+
+- Casting exports effects; the game session still chooses recipients and applies groups. Saves, spell resistance, attack hits, eligibility, distances, duration, expiry and discharge remain player/session responsibilities.
+- `@level` is total character level, NOT caster level. No imported formula substitutes it for caster level. Scaling bonuses, damage/healing, target counts and class-dependent choices remain manual where the required source context is unavailable.
+- Instantaneous damage/healing are not represented as reversible maximum-HP contributions. Weapon-targeted spells do not become unrestricted global attack bonuses. Alternative effects are not all applied together.
+- Fixed single-target/personal spells export one target where the source is explicit. Unlimited/area or unmodeled variable counts use `-1`, with a reminder for actual count constraints; this is not permission to ignore the textual limit.
+- Touch of the Sea's +8 Swim bonus is conditional on not already having that native-speed bonus. Ironbeard's armor bonus remains manual: it stacks with worn armor, but a generic contribution would incorrectly also stack with Mage Armor. Vanish's stationary/moving stealth contexts are alternatives, not simultaneous bonuses. Heightened Awareness's Knowledge bonus requires training.
+- Repeated casts in separate groups are not globally deduplicated. The session/player must enforce same-spell overlap, especially for untyped modifiers, penalties and temporary-HP pools.
+- Intelligence enhancement spells target `intelligence.temporary`, preserving permanent-language and skill-rank budgets. Other temporary ability bonuses use the existing score endpoints. Haste's bounded movement bonus is evaluated on the recipient; its extra attack is installed only for the canonical weapon routines. Natural-weapon choice and custom routines remain manual. Slow halves movement and supplies the staggered action limit. Neither spell automatically removes the opposing group's effect.
+- Stoneskin's reduction is real, but the absorbed-damage budget and expiry are manual. Transformation grants supported static bonuses but leaves BAB replacement, proficiencies and casting prohibition manual. Prayer's ally/enemy branches and Focused Scrutiny's caster-versus-observed-target distinction remain manual rather than applying incompatible effects to every recipient.
+- Deity restrictions, prestige lists outside the current class enum, elemental schools and mysteries without model fields remain marked manual metadata. Existing domain/subdomain/bloodline maps retain supported entries.
+
+## Source and schema exceptions
+
+- Individual spell pages take precedence over database summary rows. Examples: Quintessenza and Richiedere Offerta have level discrepancies; Bloodrager is listed only by the index for Spinta Idraulica and Stomaco di Fuoco. Do not restore index-only assignments silently.
+- Resistere all'Energia lists Psychic twice at incompatible levels (2 and 3). That class entry is omitted and the conflict is exposed in a reminder; other classes remain available.
+- Armatura di Gorum lists Transmutation with the incompatible Creation subschool. Transmutation is retained, while the contradictory subschool is omitted and preserved in a marked reminder.
+- Santuario's domain attribution contradicts the domain page. The disputed attribution is omitted with a reminder. Golarion's domain Libertà and subdomain Liberazione occupy different enum namespaces.
+- A save clause that says only “see text” has no inventable Fortitude/Reflex/Will type. Such entries have no structured save record, but preserve the clause in a reminder. An empty save vector therefore means no structured save entries, not proof that every mode has no saving throw. Mixed/alternative save outcomes use `SEE_TEXT` with the original clause.
+- Missing spell resistance is `SEE_TEXT`, not guessed `NO`; personal spells may use the general rule that resistance is inapplicable. Heterogeneous duration clauses use `OTHER` and retain explanatory text. Concentration is inherently dismissible under Golarion's general spell rules.
+- Mixed resistance clauses such as “no e sì” use `SEE_TEXT`, retaining the full clause (27 additional cases, including Wind Walk and Teleport). Blood Biography's RI is only “no”; its following prose is not a metadata field. Explicit “functions as” inheritance follows linked Golarion pages and records each inherited field's URL. Variable or alternative material costs are not converted into a single fixed gold cost.
+- Unknown prestige lists, extra domains/subdomains/bloodlines outside the current enum, conditional descriptors and malformed source components (e.g. printed `5`) are marked, not guessed. All validated supported class assignments remain available.
+
+## Verification
+
+`spell_catalog_test` checks the complete embedded catalog, unique IDs, strict enum parsing, JSON round trips, stable manager lookup, reminder markers and absence of erroneous total-level formulas. Every effect payload is exported and applied to a recipient enhancement group, deactivated/reactivated and removed, checking restoration of saved state. Focused examples check metadata and real numeric behavior. Only sheet tests are in scope; no play tests or publication are requested.
+
+Final verification on 2026-11-13: the sheet-only build and all **97 sheet tests pass**, including the **2158-entry** catalog integration test. Every additional definition has a matching Golarion provenance entry; all IDs are unique. Numeric examples verify temporary Intelligence without permanent/budget increases and Haste/Slow recipient movement. Mixed RI clauses, inherited metadata and high-level casting metadata have focused regressions. The custom-spell fixture explicitly replaces inherited example effects rather than assuming Fireball has none. `git diff --check` passes. No play tests, commit or push performed.
