@@ -4,7 +4,8 @@
 
 namespace golarion::embedded
 {
-    inline constexpr std::string_view SpellDefinitionCatalogJson = R"golarion_json(
+    inline constexpr char SpellDefinitionCatalogText[] = R"golarion_json(
 @SPELL_DEFINITION_CATALOG_JSON@
 )golarion_json";
+    inline constexpr std::string_view SpellDefinitionCatalogJson{SpellDefinitionCatalogText, sizeof(SpellDefinitionCatalogText) - 1};
 }

@@ -1,0 +1,3094 @@
+[
+  {
+    "id": "permanentHallucination",
+    "name": "Allucinazione Permanente",
+    "school": "ILLUSION",
+    "descriptors": [
+      "MIND_AFFECTING"
+    ],
+    "subschool": "PHANTASM",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 Azione Standard",
+    "components": [
+      "SOMATIC"
+    ],
+    "rangeType": "LONG",
+    "rangeDescription": "lungo (120 metri + 12 m/livello)",
+    "target": "1 creatura",
+    "durationType": "PERMANENT",
+    "durationDescription": "permanente (I)",
+    "dismissible": true,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "DISBELIEF",
+        "description": "Volontà per non credere"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Mantiene indefinitamente una scena allucinatoria entro i limiti previsti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Allucinazione_Permanente",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Allucinazione Permanente: https://golarion.altervista.org/wiki/Incantesimi/Allucinazione_Permanente Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "animatePlants",
+    "name": "Animare Vegetali",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "DRUID": 7,
+      "SHAMAN": 7
+    },
+    "spellLevelByDomain": {
+      "domain": {
+        "PLANT": 7
+      }
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL"
+    ],
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "1 Vegetale Grande ogni 3 livelli dell’incantatore o tutti i Vegetali nel raggio di azione; vedi testo",
+    "durationType": "OTHER",
+    "durationDescription": "1 round/livello o 1 ora/livello; vedi testo",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Dà vita a vegetali che eseguono ordini e possono combattere. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Animare_Vegetali",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Animare Vegetali: https://golarion.altervista.org/wiki/Incantesimi/Animare_Vegetali Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 Vegetale Grande ogni 3 livelli dell’incantatore o tutti i Vegetali nel raggio di azione; vedi testo. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "siegeOfTrees",
+    "name": "Assedio di Alberi",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "DRUID": 7
+    },
+    "castingTimeCategory": "MINUTE",
+    "castingTimeDescription": "10 minuti",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "1 Vegetale Grande ogni tre livelli dell'incantatore",
+    "durationType": "HOUR",
+    "durationDescription": "1 ora/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Trasforma alberi sufficientemente grandi in macchine d'assedio arboree. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Assedio_di_Alberi",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Assedio di Alberi: https://golarion.altervista.org/wiki/Incantesimi/Assedio_di_Alberi Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 Vegetale Grande ogni tre livelli dell'incantatore. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "sunbeam",
+    "name": "Bagliore Solare",
+    "school": "EVOCATION",
+    "descriptors": [
+      "LIGHT"
+    ],
+    "spellLevelByClass": {
+      "DRUID": 7,
+      "SHAMAN": 7
+    },
+    "spellLevelByDomain": {
+      "domain": {
+        "SUN": 7
+      },
+      "subdomain": {
+        "STARS": 5
+      }
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "DIVINE_FOCUS"
+    ],
+    "rangeType": "OTHER",
+    "rangeDescription": "18 m",
+    "area": "linea che scaturisce dalla propria mano",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello o finché tutti i bagliori non si esauriscono",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "REFLEX",
+        "effect": "SEE_TEXT",
+        "description": "Riflessi nega e dimezza; vedi testo"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Emette raggi di luce solare che danneggiano e possono accecare le vittime. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bagliore_Solare",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Bagliore Solare: https://golarion.altervista.org/wiki/Incantesimi/Bagliore_Solare Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "rampart",
+    "name": "Bastione",
+    "school": "CONJURATION",
+    "descriptors": [
+      "EARTH"
+    ],
+    "subschool": "CREATION",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "DRUID": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "una manciata di terra",
+    "rangeType": "MEDIUM",
+    "rangeDescription": "medio (30 m + 3 m/livello)",
+    "effect": "muro di terra alto 3 m, in una linea fino a 3 m di lunghezza ogni 2 livelli, o un cerchio del raggio fino a 90 cm + 30 cm/livello",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Innalza un terrapieno che costituisce una barriera fisica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bastione",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Bastione: https://golarion.altervista.org/wiki/Incantesimi/Bastione Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Terra 7 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "elementalBombardment",
+    "name": "Bombardamento Elementale",
+    "school": "CONJURATION",
+    "descriptors": [],
+    "subschool": "SUMMONING",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "DRUID": 7
+    },
+    "castingTimeCategory": "ROUND",
+    "castingTimeDescription": "1 round",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "LONG",
+    "rangeDescription": "lungo (120 m + 12 m/livello)",
+    "effect": "convocazione di uno o più Elementali",
+    "durationType": "ROUND",
+    "durationDescription": "1 round ogni 2 livelli",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Richiama elementali e li scaglia contro il campo di battaglia come proiettili viventi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bombardamento_Elementale",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Bombardamento Elementale: https://golarion.altervista.org/wiki/Incantesimi/Bombardamento_Elementale Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "arcaneCannon",
+    "name": "Cannone Arcano",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "ROUND",
+    "castingTimeDescription": "1 round",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "FOCUS"
+    ],
+    "focusComponentDescription": "un'elaborata miniatura di Cannone forgiata con una goccia del proprio sangue del costo di 5.000 mo",
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "effect": "un Cannone animato magicamente",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Trasforma il focus in un cannone magico capace di sparare seguendo le istruzioni ricevute. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cannone_Arcano",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Cannone Arcano: https://golarion.altervista.org/wiki/Incantesimi/Cannone_Arcano Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "circleOfClarity",
+    "name": "Cerchio di Chiarezza",
+    "school": "ABJURATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "CLERIC": 7,
+      "WIZARD": 7,
+      "ORACLE": 7,
+      "PSYCHIC": 7,
+      "SHAMAN": 8,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "FOCUS"
+    ],
+    "focusComponentDescription": "una lente in cristallo del valore di 100 mo",
+    "rangeType": "MEDIUM",
+    "rangeDescription": "medio (30 m + 3 m/livello)",
+    "target": "emanazione del raggio di 6 m centrata su una creatura, un oggetto o un punto nello spazio",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello (I)",
+    "dismissible": true,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega (innocuo)"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Una zona di chiarezza contrasta occultamenti illusori e tentativi di nascondersi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cerchio_di_Chiarezza",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Cerchio di Chiarezza: https://golarion.altervista.org/wiki/Incantesimi/Cerchio_di_Chiarezza Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: emanazione del raggio di 6 m centrata su una creatura, un oggetto o un punto nello spazio. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "controlUndead",
+    "name": "Controllare Non Morti",
+    "school": "NECROMANCY",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "un frammento d'osso e un po' di carne cruda",
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "fino a 2 DV di creature Non Morte per livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+    "durationType": "MINUTE",
+    "durationDescription": "1 minuto/livello",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Sottomette i non morti interessati agli ordini del lanciatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Controllare_Non_Morti",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Controllare Non Morti: https://golarion.altervista.org/wiki/Incantesimi/Controllare_Non_Morti Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: fino a 2 DV di creature Non Morte per livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "controlWeather",
+    "name": "Controllare Tempo Atmosferico",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "CLERIC": 7,
+      "ORACLE": 7,
+      "DRUID": 7,
+      "WITCH": 7,
+      "SHAMAN": 7
+    },
+    "spellLevelByDomain": {
+      "domain": {
+        "WEATHER": 7
+      },
+      "subdomain": {
+        "CATASTROPHE": 7
+      }
+    },
+    "castingTimeCategory": "MINUTE",
+    "castingTimeDescription": "10 minuti; vedi testo",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "OTHER",
+    "rangeDescription": "3 km",
+    "area": "un cerchio del raggio di 3 km centrato su di sé; vedi testo",
+    "durationType": "HOUR",
+    "durationDescription": "4d12 ore; vedi testo",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Modifica gradualmente le condizioni meteorologiche di un'ampia zona. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Controllare_Tempo_Atmosferico",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Controllare Tempo Atmosferico: https://golarion.altervista.org/wiki/Incantesimi/Controllare_Tempo_Atmosferico Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 7, Aria 7, Legno 7 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "iceBody",
+    "name": "Corpo di Ghiaccio",
+    "school": "TRANSMUTATION",
+    "descriptors": [
+      "COLD"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "WITCH": 7,
+      "SHAMAN": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "PERSONAL",
+    "rangeDescription": "personale",
+    "target": "se stesso",
+    "durationType": "MINUTE",
+    "durationDescription": "1 minuto/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+    "description": "Trasforma il corpo in ghiaccio vivente e ne modifica difese e vulnerabilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Corpo_di_Ghiaccio",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Corpo di Ghiaccio: https://golarion.altervista.org/wiki/Incantesimi/Corpo_di_Ghiaccio Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "elementalBodyIV",
+    "name": "Corpo Elementale IV",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "subschool": "POLYMORPH",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "spellLevelByDomain": {
+      "domain": {
+        "AIR": 7,
+        "WATER": 7,
+        "FIRE": 7,
+        "EARTH": 7
+      }
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "l'elemento di cui si vuole assumere la forma",
+    "rangeType": "PERSONAL",
+    "rangeDescription": "personale",
+    "target": "se stessi",
+    "durationType": "MINUTE",
+    "durationDescription": "1 minuto/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+    "description": "Permette le forme elementali Enormi e i benefici più avanzati della serie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Corpo_Elementale_IV",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Corpo Elementale IV: https://golarion.altervista.org/wiki/Incantesimi/Corpo_Elementale_IV Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 7, Aria 7, Fuoco 7, Terra 7 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "cureSeriousWoundsMass",
+    "name": "Cura Ferite Gravi di Massa",
+    "school": "CONJURATION",
+    "descriptors": [],
+    "subschool": "HEALING",
+    "spellLevelByClass": {
+      "CLERIC": 7,
+      "ORACLE": 7,
+      "DRUID": 8,
+      "WITCH": 8,
+      "SHAMAN": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "1 creatura/livello; due delle quali non possono trovarsi a più di 9 m l’una dall’altra",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "HALF",
+        "description": "Volontà dimezza (innocuo) o Volontà dimezza; vedi testo;"
+      },
+      {
+        "savingThrowType": "WILL",
+        "effect": "HALF",
+        "description": "Volontà dimezza (innocuo) o Volontà dimezza; vedi testo;"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo); o si vedi testo",
+    "description": "Estende a più soggetti la guarigione della versione grave. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cura_Ferite_Gravi_di_Massa",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Cura Ferite Gravi di Massa: https://golarion.altervista.org/wiki/Incantesimi/Cura_Ferite_Gravi_di_Massa Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/livello; due delle quali non possono trovarsi a più di 9 m l’una dall’altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "tectonicCommunion",
+    "name": "Comunicazione Tettonica",
+    "school": "DIVINATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "DRUID": 7
+    },
+    "castingTimeCategory": "HOUR",
+    "castingTimeDescription": "1 ora",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "DIVINE_FOCUS"
+    ],
+    "rangeType": "PERSONAL",
+    "rangeDescription": "personale",
+    "target": "sé stessi",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+    "description": "Interroga il territorio su un'area molto vasta per ricavarne informazioni geografiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Comunicazione_Tettonica",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Comunicazione Tettonica: https://golarion.altervista.org/wiki/Incantesimi/Comunicazione_Tettonica Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "spellcastingContract",
+    "name": "Contratto Incantato",
+    "school": "EVOCATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "CLERIC": 7,
+      "ORACLE": 7
+    },
+    "castingTimeCategory": "MINUTE",
+    "castingTimeDescription": "10 minuti",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "FOCUS"
+    ],
+    "focusComponentDescription": "un contratto scritto",
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "creatura consenziente toccata",
+    "durationType": "PERMANENT",
+    "durationDescription": "permanente fino alla conclusione del contratto",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega (innocuo)"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Stipula un accordo che concede a un altro soggetto l'uso di incantesimi entro i limiti intermedi previsti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Contratto_Incantato",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Contratto Incantato: https://golarion.altervista.org/wiki/Incantesimi/Contratto_Incantato Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Chierico/Oracolo 7 (Asmodeus) Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "createVariantMummy",
+    "name": "Creare Mummia Variante",
+    "school": "NECROMANCY",
+    "descriptors": [
+      "EVIL"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "CLERIC": 7,
+      "ORACLE": 7
+    },
+    "castingTimeCategory": "HOUR",
+    "castingTimeDescription": "1 ora",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "gemme di onice per un valore di 50 mo per DV del Non Morto creato",
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 metri + 1,5 metri ogni 2 livelli)",
+    "target": "1 corpo immerso in una torbiera per almeno 24 ore",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Permette di creare mummie dotate delle varianti previste dal rito. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Creare_Mummia_Variante",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Creare Mummia Variante: https://golarion.altervista.org/wiki/Incantesimi/Creare_Mummia_Variante Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 corpo immerso in una torbiera per almeno 24 ore. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataHighReview2",
+        "type": "reminder",
+        "message": "Costo materiale variabile o alternativo: determinarlo dalla descrizione dei componenti, non da un importo fisso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "deflection",
+    "name": "Deflettere",
+    "school": "ABJURATION",
+    "descriptors": [
+      "FORCE"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "un pezzo di gomma immerso nella colla",
+    "rangeType": "PERSONAL",
+    "rangeDescription": "personale",
+    "target": "se stessi",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+    "description": "Devia alcuni attacchi mancati, rischiando di rivolgerli contro chi li ha effettuati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Deflettere",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Deflettere: https://golarion.altervista.org/wiki/Incantesimi/Deflettere Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "limitedWish",
+    "name": "Desiderio Limitato",
+    "school": "UNIVERSAL",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "spellLevelByDomain": {
+      "subdomain": {
+        "CONSTRUCT": 7
+      }
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "un diamante del valore di almeno 1.500 mo",
+    "materialComponentCostInGoldPieces": 1500,
+    "rangeType": "OTHER",
+    "rangeDescription": "vedi testo",
+    "target": "vedi testo",
+    "durationType": "HOUR",
+    "durationDescription": "1 ora/livello",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Produce un'alterazione limitata della realtà, riproducendo magie o risultati entro i limiti della fonte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Desiderio_Limitato",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Desiderio Limitato: https://golarion.altervista.org/wiki/Incantesimi/Desiderio_Limitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno; vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: vedi testo. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "destruction",
+    "name": "Distruzione",
+    "school": "NECROMANCY",
+    "descriptors": [
+      "DEATH"
+    ],
+    "spellLevelByClass": {
+      "CLERIC": 7,
+      "ORACLE": 7,
+      "WITCH": 8,
+      "SHAMAN": 8
+    },
+    "spellLevelByDomain": {
+      "domain": {
+        "DEATH": 7,
+        "REPOSE": 7
+      }
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "FOCUS"
+    ],
+    "focusComponentDescription": "un simbolo sacro o sacrilego del valore di almeno 500 mo",
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "1 creatura",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "FORTITUDE",
+        "effect": "PARTIAL",
+        "description": "Tempra parziale"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Tenta di uccidere la vittima e consumarne i resti, rendendone più difficile il ritorno in vita. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Distruzione",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Distruzione: https://golarion.altervista.org/wiki/Incantesimi/Distruzione Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "fingerOfDeath",
+    "name": "Dito della Morte",
+    "school": "NECROMANCY",
+    "descriptors": [
+      "DEATH"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "DRUID": 8,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "1 creatura",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "FORTITUDE",
+        "effect": "PARTIAL",
+        "description": "Tempra parziale"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Scatena energia mortale che infligge danni proporzionati al livello dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Dito_della_Morte",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Dito della Morte: https://golarion.altervista.org/wiki/Incantesimi/Dito_della_Morte Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "causticEruption",
+    "name": "Eruzione Caustica",
+    "school": "CONJURATION",
+    "descriptors": [
+      "ACID"
+    ],
+    "subschool": "CREATION",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "OTHER",
+    "rangeDescription": "9 m",
+    "area": "esplosione del raggio di 9 m",
+    "durationType": "OTHER",
+    "durationDescription": "istantaneo e 2 round; vedi testo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "REFLEX",
+        "effect": "HALF",
+        "description": "Riflessi dimezza (vedi testo)"
+      }
+    ],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Un'esplosione d'acido colpisce l'area e continua a corrodere le vittime. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Eruzione_Caustica",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Eruzione Caustica: https://golarion.altervista.org/wiki/Incantesimi/Eruzione_Caustica Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "summonNatureSAllyVII",
+    "name": "Evoca Alleato Naturale VII",
+    "school": "CONJURATION",
+    "descriptors": [],
+    "subschool": "SUMMONING",
+    "spellLevelByClass": {
+      "DRUID": 7,
+      "SHAMAN": 7
+    },
+    "castingTimeCategory": "ROUND",
+    "castingTimeDescription": "1 round",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "DIVINE_FOCUS"
+    ],
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "effect": "1 creatura evocata",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Richiama un alleato naturale dalla lista di settimo livello. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Alleato_Naturale",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Evoca Alleato Naturale VII: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Alleato_Naturale Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataHighReview1",
+        "type": "reminder",
+        "message": "Descrittore non presente nel vocabolario del modello: vedi testo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "instantSummons",
+    "name": "Evocazioni Istantanee",
+    "school": "CONJURATION",
+    "descriptors": [],
+    "subschool": "SUMMONING",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WITCH": 7,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "spellLevelByDomain": {
+      "domain": {
+        "ARTIFICE": 8,
+        "RUNE": 7
+      }
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "uno zaffiro di almeno 1.000 mo",
+    "materialComponentCostInGoldPieces": 1000,
+    "rangeType": "OTHER",
+    "rangeDescription": "vedi testo",
+    "effect": "1 oggetto pesante fino a 5 kg, la cui dimensione più lunga sia di 180 cm o meno",
+    "durationType": "PERMANENT",
+    "durationDescription": "permanente finché non viene scaricato",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Richiama nella mano un oggetto precedentemente predisposto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evocazioni_Istantanee",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Evocazioni Istantanee: https://golarion.altervista.org/wiki/Incantesimi/Evocazioni_Istantanee Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "formOfTheDragonII",
+    "name": "Forma di Drago II",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "subschool": "POLYMORPH",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "la scaglia del tipo di Drago di cui si vuole assumere la forma",
+    "rangeType": "PERSONAL",
+    "rangeDescription": "personale",
+    "target": "se stessi",
+    "durationType": "MINUTE",
+    "durationDescription": "1 minuto/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Permette di assumere le sembianze di un drago Grande. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Forma_di_Drago_II",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Forma di Drago II: https://golarion.altervista.org/wiki/Incantesimi/Forma_di_Drago_II Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi sotto Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "plantShapeIII",
+    "name": "Forma di Vegetale III",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "subschool": "POLYMORPH",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "un pezzo della creatura di cui si vuole assumere la forma",
+    "rangeType": "PERSONAL",
+    "rangeDescription": "personale",
+    "target": "se stessi",
+    "durationType": "MINUTE",
+    "durationDescription": "1 minuto/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+    "description": "Estende la trasformazione vegetale alle forme Enormi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Forma_di_Vegetale_III",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Forma di Vegetale III: https://golarion.altervista.org/wiki/Incantesimi/Forma_di_Vegetale_III Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "psychicCrushIII",
+    "name": "Frantumazione Parapsichica III",
+    "school": "NECROMANCY",
+    "descriptors": [
+      "MIND_AFFECTING"
+    ],
+    "spellLevelByClass": {
+      "PSYCHIC": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "SOMATIC"
+    ],
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "1 creatura",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "PARTIAL",
+        "description": "Volontà parziale e tempra parziale; vedi testo"
+      },
+      {
+        "savingThrowType": "FORTITUDE",
+        "effect": "PARTIAL",
+        "description": "Volontà parziale e tempra parziale; vedi testo"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Rende ancora più devastante la frantumazione della mente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Frantumazione_Parapsichica#Frantumazione_Parapsichica_III",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Frantumazione Parapsichica III: https://golarion.altervista.org/wiki/Incantesimi/Frantumazione_Parapsichica#Frantumazione_Parapsichica_III Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "egoWhipV",
+    "name": "Frusta dell'Ego V",
+    "school": "ENCHANTMENT",
+    "descriptors": [
+      "EMOTION",
+      "MIND_AFFECTING"
+    ],
+    "subschool": "COMPULSION",
+    "spellLevelByClass": {
+      "PSYCHIC": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "SOMATIC"
+    ],
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "1 creatura",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "SEE_TEXT",
+    "spellResistanceDescription": "Non indicata nella fonte; verificare manualmente.",
+    "description": "Scatena la più intensa forma di indebolimento dell'ego. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Frusta_dell%27Ego#Frusta_dell'Ego_V",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Frusta dell'Ego V: https://golarion.altervista.org/wiki/Incantesimi/Frusta_dell%27Ego#Frusta_dell'Ego_V Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "La fonte non indica il tiro salvezza; la lista strutturata vuota non implica che non sia consentito. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview2",
+        "type": "reminder",
+        "message": "La fonte non indica la resistenza agli incantesimi: verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "forcecage",
+    "name": "Gabbia di Forza",
+    "school": "EVOCATION",
+    "descriptors": [
+      "FORCE"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "polvere di rubino del valore di 500 mo",
+    "materialComponentCostInGoldPieces": 500,
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "area": "gabbia di sbarre (cubo con spigolo di 6 m) o cella senza finestre (cubo con spigolo di 3 m)",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello (I)",
+    "dismissible": true,
+    "savingThrows": [
+      {
+        "savingThrowType": "REFLEX",
+        "effect": "NEGATES",
+        "description": "Riflessi nega"
+      }
+    ],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Racchiude le vittime in una prigione di forza magica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Gabbia_di_Forza",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Gabbia di Forza: https://golarion.altervista.org/wiki/Incantesimi/Gabbia_di_Forza Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "inflictSeriousWoundsMass",
+    "name": "Infliggi Ferite Gravi di Massa",
+    "school": "NECROMANCY",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "CLERIC": 7,
+      "ORACLE": 7,
+      "WITCH": 8,
+      "SHAMAN": 7
+    },
+    "spellLevelByDomain": {
+      "subdomain": {
+        "BLOOD": 7
+      }
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "1 creatura/livello, due delle quali non possono trovarsi a più di 9 m l’una dall’altra",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "HALF",
+        "description": "Volontà dimezza"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Colpisce più destinatari con energia negativa di intensità elevata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Infliggi_Ferite_Gravi_di_Massa",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Infliggi Ferite Gravi di Massa: https://golarion.altervista.org/wiki/Incantesimi/Infliggi_Ferite_Gravi_di_Massa Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/livello, due delle quali non possono trovarsi a più di 9 m l’una dall’altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "reverseGravity",
+    "name": "Inversione della Gravità",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "DRUID": 8,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "spellLevelByDomain": {
+      "domain": {
+        "VOID": 7
+      }
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL_OR_DIVINE_FOCUS"
+    ],
+    "materialComponentDescription": "un magnete e limatura di ferro",
+    "rangeType": "MEDIUM",
+    "rangeDescription": "medio (30 m + 3 m/livello)",
+    "area": "fino a 1 cubo con spigolo di 3 m/livello (F)",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Inverte la direzione della caduta nell'area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Inversione_della_Gravit%C3%A0",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Inversione della Gravità: https://golarion.altervista.org/wiki/Incantesimi/Inversione_della_Gravit%C3%A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Terra 7 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview2",
+        "type": "reminder",
+        "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno; vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "recorporealIncarnation",
+    "name": "Incarnazione Ricorporea",
+    "school": "NECROMANCY",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "WITCH": 7
+    },
+    "castingTimeCategory": "MINUTE",
+    "castingTimeDescription": "10 minuti",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "FOCUS"
+    ],
+    "focusComponentDescription": "una gemma o un cristallo del valore di almeno 250 mo",
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "una creatura vivente e un cadavere",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo (ma vedi testo)",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega (innocuo)"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Ricava da un cadavere una nuova forma con determinate capacità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Incarnazione_Ricorporea",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Incarnazione Ricorporea: https://golarion.altervista.org/wiki/Incantesimi/Incarnazione_Ricorporea Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "graspingHand",
+    "name": "Mano Stringente",
+    "school": "EVOCATION",
+    "descriptors": [
+      "FORCE"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "spellLevelByDomain": {
+      "domain": {
+        "STRENGTH": 7
+      }
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "FOCUS"
+    ],
+    "focusComponentDescription": "un guanto morbido",
+    "rangeType": "MEDIUM",
+    "rangeDescription": "medio (30 m + 3 m/livello)",
+    "effect": "mano di 3 m",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Una mano di forza afferra gli avversari o li respinge. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Mano_Stringente",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Mano Stringente: https://golarion.altervista.org/wiki/Incantesimi/Mano_Stringente Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "firebrand",
+    "name": "Marchio di Fuoco",
+    "school": "TRANSMUTATION",
+    "descriptors": [
+      "FIRE"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "1 creatura ogni 4 livelli, due delle quali non possono trovarsi a più di 9 m l’una dall’altra",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega (innocuo)"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Concede agli alleati benefici offensivi e difensivi legati al fuoco. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Marchio_di_Fuoco",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Marchio di Fuoco: https://golarion.altervista.org/wiki/Incantesimi/Marchio_di_Fuoco Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Fuoco 7 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura ogni 4 livelli, due delle quali non possono trovarsi a più di 9 m l’una dall’altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "polymorphGreater",
+    "name": "Metamorfosi Superiore",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "subschool": "POLYMORPH",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "un pezzo della creatura di cui si assume la forma",
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "1 creatura vivente toccata",
+    "durationType": "MINUTE",
+    "durationDescription": "1 minuto/livello (I)",
+    "dismissible": true,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega (innocuo)"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Conferisce al soggetto consenziente una trasformazione più potente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Metamorfosi_Superiore",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Metamorfosi Superiore: https://golarion.altervista.org/wiki/Incantesimi/Metamorfosi_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "shadowConjurationGreater",
+    "name": "Ombra di una Evocazione Superiore",
+    "school": "ILLUSION",
+    "descriptors": [
+      "SHADOW"
+    ],
+    "subschool": "SHADOW",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "OTHER",
+    "rangeDescription": "vedi testo",
+    "effect": "vedi testo",
+    "durationType": "OTHER",
+    "durationDescription": "vedi testo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "DISBELIEF",
+        "description": "Volontà dubita (se si interagisce); variabile; vedi testo"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì; vedi testo",
+    "description": "Imita evocazioni più potenti con ombre maggiormente consistenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ombra_di_una_Evocazione_Superiore",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Ombra di una Evocazione Superiore: https://golarion.altervista.org/wiki/Incantesimi/Ombra_di_una_Evocazione_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "hungryDarkness",
+    "name": "Oscurità Famelica",
+    "school": "EVOCATION",
+    "descriptors": [
+      "FORCE",
+      "DARKNESS"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 Azione Standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "un dente di pipistrello",
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "area": "propagazione del raggio di 18 m",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (vedi testo)",
+    "description": "Avvolge l'area in tenebre che feriscono e debilitano. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Oscurit%C3%A0_Famelica",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Oscurità Famelica: https://golarion.altervista.org/wiki/Incantesimi/Oscurit%C3%A0_Famelica Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "delayedBlastFireball",
+    "name": "Palla di Fuoco Ritardata",
+    "school": "EVOCATION",
+    "descriptors": [
+      "FIRE"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "una pallina di guano di pipistrello e di zolfo",
+    "rangeType": "LONG",
+    "rangeDescription": "lungo (120 m + 12 m/livello)",
+    "area": "propagazione del raggio di 6 m",
+    "durationType": "ROUND",
+    "durationDescription": "fino a 5 round; vedi testo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "REFLEX",
+        "effect": "HALF",
+        "description": "Riflessi dimezza"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Produce un'esplosione di fuoco attivabile dopo un ritardo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Palla_di_Fuoco_Ritardata",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Palla di Fuoco Ritardata: https://golarion.altervista.org/wiki/Incantesimi/Palla_di_Fuoco_Ritardata Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Fuoco 7 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "phaseDoor",
+    "name": "Porta in Fase",
+    "school": "CONJURATION",
+    "descriptors": [],
+    "subschool": "CREATION",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WITCH": 7,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "spellLevelByDomain": {
+      "domain": {
+        "TRAVEL": 8
+      }
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL"
+    ],
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "effect": "apertura eterea di 1,5 m × 2,4 m, profonda 3 m + 1,5 m ogni 3 livelli",
+    "durationType": "OTHER",
+    "durationDescription": "1 utilizzo ogni 2 livelli",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Apre nella materia solida un passaggio nascosto attraverso legno o pietra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Porta_in_Fase",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Porta in Fase: https://golarion.altervista.org/wiki/Incantesimi/Porta_in_Fase Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "joltingPortent",
+    "name": "Presagio Sconvolgente",
+    "school": "EVOCATION",
+    "descriptors": [
+      "ELECTRICITY"
+    ],
+    "spellLevelByClass": {
+      "CLERIC": 7,
+      "ORACLE": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "DIVINE_FOCUS"
+    ],
+    "rangeType": "MEDIUM",
+    "rangeDescription": "medio (30 m + 3 m/livello)",
+    "target": "1 creatura",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello (I) vedi testo",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Un marchio di sventura può scaricare elettricità sul bersaglio quando attacca o usa incantesimi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Presagio_Sconvolgente",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Presagio Sconvolgente: https://golarion.altervista.org/wiki/Incantesimi/Presagio_Sconvolgente Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "familiarDouble",
+    "name": "Raddoppia Famiglio",
+    "school": "ILLUSION",
+    "descriptors": [
+      "SHADOW"
+    ],
+    "subschool": "SHADOW",
+    "spellLevelByClass": {
+      "WITCH": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "una propria replica in miniatura del valore di almeno 5 mo",
+    "materialComponentCostInGoldPieces": 5,
+    "rangeType": "MEDIUM",
+    "rangeDescription": "medio (30 m + 3 m/livello)",
+    "effect": "un duplicato d'ombra",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello (I)",
+    "dismissible": true,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "DISBELIEF",
+        "description": "Volontà dubita (se si interagisce)"
+      }
+    ],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Crea un duplicato illusorio dell'incantatore che accompagna il suo famiglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Raddoppia_Famiglio",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Raddoppia Famiglio: https://golarion.altervista.org/wiki/Incantesimi/Raddoppia_Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "mageSMagnificentMansion",
+    "name": "Reggia Meravigliosa",
+    "school": "CONJURATION",
+    "descriptors": [],
+    "subschool": "CREATION",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "FOCUS"
+    ],
+    "focusComponentDescription": "un portale in miniatura d’avorio, un blocchetto di marmo levigato e un minuscolo cucchiaio d’argento, ogni oggetto del valore di 5 mo",
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "effect": "dimora extradimensionale fino a 3 cubi con spigolo di 3 m/livello (F)",
+    "durationType": "HOUR",
+    "durationDescription": "2 ore/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Apre l'accesso a un'abitazione extradimensionale arredata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Reggia_Meravigliosa",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Reggia Meravigliosa: https://golarion.altervista.org/wiki/Incantesimi/Reggia_Meravigliosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "resurrection",
+    "name": "Resurrezione",
+    "school": "CONJURATION",
+    "descriptors": [],
+    "subschool": "HEALING",
+    "spellLevelByClass": {
+      "CLERIC": 7,
+      "ORACLE": 7,
+      "WITCH": 8,
+      "SHAMAN": 8
+    },
+    "spellLevelByDomain": {
+      "subdomain": {
+        "DIVINE": 7,
+        "RESURRECTION": 7
+      }
+    },
+    "castingTimeCategory": "MINUTE",
+    "castingTimeDescription": "1 minuto",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL",
+      "DIVINE_FOCUS"
+    ],
+    "materialComponentDescription": "un diamante di almeno 10.000 mo",
+    "materialComponentCostInGoldPieces": 10000,
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "1 creatura morta toccata",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Riporta in vita il defunto e ricostituisce il suo corpo secondo i limiti dell'incantesimo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Resurrezione",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Resurrezione: https://golarion.altervista.org/wiki/Incantesimi/Resurrezione Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno, vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "falseResurrection",
+    "name": "Resurrezione Falsa",
+    "school": "CONJURATION",
+    "descriptors": [
+      "CHAOTIC",
+      "EVIL",
+      "RUSE"
+    ],
+    "subschool": "CALLING",
+    "spellLevelByClass": {
+      "CLERIC": 7,
+      "WITCH": 8,
+      "ORACLE": 7,
+      "SHAMAN": 8
+    },
+    "castingTimeCategory": "MINUTE",
+    "castingTimeDescription": "1 minuto",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL",
+      "DIVINE_FOCUS"
+    ],
+    "materialComponentDescription": "diamante dal valore di 10.000 mo",
+    "materialComponentCostInGoldPieces": 10000,
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "creatura morta toccata",
+    "durationType": "DAY",
+    "durationDescription": "1 giorno/livello",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Simula una resurrezione mentre un demone d'ombra prende possesso dei resti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Resurrezione_Falsa",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Resurrezione Falsa: https://golarion.altervista.org/wiki/Incantesimi/Resurrezione_Falsa Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "refuge",
+    "name": "Rifugio",
+    "school": "CONJURATION",
+    "descriptors": [],
+    "subschool": "TELEPORTATION",
+    "spellLevelByClass": {
+      "ARCANIST": 9,
+      "CLERIC": 7,
+      "WITCH": 9,
+      "WIZARD": 9,
+      "ORACLE": 7,
+      "PSYCHIC": 8,
+      "SORCERER": 9
+    },
+    "spellLevelByDomain": {
+      "domain": {
+        "COMMUNITY": 7,
+        "LIBERATION": 7
+      }
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "oggetto preparato appositamente, la cui costruzione include l’uso di gemme per un valore di 1.500 mo",
+    "materialComponentCostInGoldPieces": 1500,
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "1 oggetto toccato",
+    "durationType": "PERMANENT",
+    "durationDescription": "permanente finché non viene scaricato",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Incanta un oggetto affinché possa trasportare chi lo utilizza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Rifugio",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Rifugio: https://golarion.altervista.org/wiki/Incantesimi/Rifugio Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Legno 9 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "regenerate",
+    "name": "Rigenerazione",
+    "school": "CONJURATION",
+    "descriptors": [],
+    "subschool": "HEALING",
+    "spellLevelByClass": {
+      "CLERIC": 7,
+      "ORACLE": 7,
+      "DRUID": 9,
+      "WITCH": 7,
+      "SHAMAN": 7
+    },
+    "spellLevelByDomain": {
+      "domain": {
+        "HEALING": 7
+      }
+    },
+    "castingTimeCategory": "ROUND",
+    "castingTimeDescription": "3 round completi",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "DIVINE_FOCUS"
+    ],
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "1 creatura vivente toccata",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "FORTITUDE",
+        "effect": "NEGATES",
+        "description": "Tempra nega (innocuo)"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Ricostituisce parti del corpo perdute e ripristina punti ferita. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Rigenerazione",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Rigenerazione: https://golarion.altervista.org/wiki/Incantesimi/Rigenerazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "fairyRingRetreat",
+    "name": "Riparo Fatato",
+    "school": "CONJURATION",
+    "descriptors": [],
+    "subschool": "CREATION",
+    "spellLevelByClass": {
+      "DRUID": 7,
+      "WITCH": 7,
+      "SHAMAN": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "DIVINE_FOCUS"
+    ],
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "effect": "prato extradimensionale, fino a tre cubi da 3 m/livello (F)",
+    "durationType": "HOUR",
+    "durationDescription": "2 ore/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Apre attraverso un cerchio di funghi l'accesso a un rifugio extradimensionale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Riparo_Fatato",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Riparo Fatato: https://golarion.altervista.org/wiki/Incantesimi/Riparo_Fatato Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "restorationGreater",
+    "name": "Ristorare Superiore",
+    "school": "CONJURATION",
+    "descriptors": [],
+    "subschool": "HEALING",
+    "spellLevelByClass": {
+      "CLERIC": 7,
+      "ORACLE": 7,
+      "SHAMAN": 7
+    },
+    "castingTimeCategory": "ROUND",
+    "castingTimeDescription": "3 round",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "polvere di diamante del valore di 5.000 mo",
+    "materialComponentCostInGoldPieces": 5000,
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "1 creatura toccata",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega (innocuo)"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Rimedia a gravi debilitazioni, livelli negativi e perdite di caratteristica previste dall'incantesimo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ristorare_Superiore",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Ristorare Superiore: https://golarion.altervista.org/wiki/Incantesimi/Ristorare_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "signiferSRally",
+    "name": "Richiamo del Signifer",
+    "school": "CONJURATION",
+    "descriptors": [
+      "EVIL"
+    ],
+    "subschool": "TELEPORTATION",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "CLERIC": 7,
+      "ORACLE": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 Azione Standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "1 pietra di sangue del valore di 100 mo per alleato teletrasportato",
+    "rangeType": "MEDIUM",
+    "rangeDescription": "medio (30 m + 3 m/livello)",
+    "target": "un alleato consenziente/5 livelli",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega (innocuo)"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Richiama mediante teletrasporto gli alleati designati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Richiamo_del_Signifer",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Richiamo del Signifer: https://golarion.altervista.org/wiki/Incantesimi/Richiamo_del_Signifer Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: un alleato consenziente/5 livelli. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataHighReview2",
+        "type": "reminder",
+        "message": "Costo materiale variabile o alternativo: determinarlo dalla descrizione dei componenti, non da un importo fisso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "telekineticSphere",
+    "name": "Sfera Telecinetica",
+    "school": "EVOCATION",
+    "descriptors": [
+      "FORCE"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 8,
+      "WIZARD": 8,
+      "PSYCHIC": 7,
+      "SORCERER": 8
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "una semisfera di cristallo trasparente, e 2 piccoli magneti",
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "effect": "sfera del diametro di 30 cm/livello centrata attorno a creature od oggetti",
+    "durationType": "MINUTE",
+    "durationDescription": "1 minuto/livello (I)",
+    "dismissible": true,
+    "savingThrows": [
+      {
+        "savingThrowType": "REFLEX",
+        "effect": "NEGATES",
+        "description": "Riflessi nega (oggetto)"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (oggetto)",
+    "description": "Racchiude i soggetti in una sfera di forza spostabile con la mente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sfera_Telecinetica",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Sfera Telecinetica: https://golarion.altervista.org/wiki/Incantesimi/Sfera_Telecinetica Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "blackMark",
+    "name": "Sigillo Nero",
+    "school": "NECROMANCY",
+    "descriptors": [
+      "CURSE",
+      "FEAR"
+    ],
+    "spellLevelByClass": {
+      "DRUID": 7,
+      "WITCH": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "un'ampolla di acqua di mare",
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "una creatura",
+    "durationType": "PERMANENT",
+    "durationDescription": "permanente",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Un marchio maledetto comporta anche timore in prossimità dell'acqua. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sigillo_Nero",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Sigillo Nero: https://golarion.altervista.org/wiki/Incantesimi/Sigillo_Nero Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "mageSSword",
+    "name": "Spada Magica",
+    "school": "EVOCATION",
+    "descriptors": [
+      "FORCE"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "FOCUS"
+    ],
+    "focusComponentDescription": "una spada in miniatura di platino che valga almeno 250 mo",
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "effect": "una spada",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Evoca una lama di forza che combatte a distanza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Spada_Magica",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Spada Magica: https://golarion.altervista.org/wiki/Incantesimi/Spada_Magica Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "expend",
+    "name": "Sprecare",
+    "school": "ABJURATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL"
+    ],
+    "materialComponentDescription": "clessidra in miniatura rotta",
+    "rangeType": "MEDIUM",
+    "rangeDescription": "medio (30 m + 3 m/livello)",
+    "area": "esplosione con raggio di 6 m",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Fa consumare inutilmente un impiego di una capacità magica limitata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sprecare",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Sprecare: https://golarion.altervista.org/wiki/Incantesimi/Sprecare Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "prismaticSpray",
+    "name": "Spruzzo Prismatico",
+    "school": "EVOCATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "OTHER",
+    "rangeDescription": "18 m",
+    "area": "esplosione a forma di cono",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Emette raggi multicolori dai diversi effetti offensivi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Spruzzo_Prismatico",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Spruzzo Prismatico: https://golarion.altervista.org/wiki/Incantesimi/Spruzzo_Prismatico Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "bestowCurseGreater",
+    "name": "Scagliare Maledizione Superiore",
+    "school": "NECROMANCY",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 8,
+      "WIZARD": 8,
+      "SORCERER": 8,
+      "CLERIC": 7,
+      "ORACLE": 7,
+      "WITCH": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 Azione Standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "1 creatura toccata",
+    "durationType": "PERMANENT",
+    "durationDescription": "permanente",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Impone una maledizione particolarmente grave scelta tra le alternative consentite. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scagliare_Maledizione_Superiore",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Scagliare Maledizione Superiore: https://golarion.altervista.org/wiki/Incantesimi/Scagliare_Maledizione_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "natureSRavagesGreater",
+    "name": "Segni della Natura Superiore",
+    "school": "NECROMANCY",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "CLERIC": 8,
+      "ORACLE": 8,
+      "WITCH": 7
+    },
+    "castingTimeCategory": "MINUTE",
+    "castingTimeDescription": "10 minuti/DV del bersaglio",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL_OR_DIVINE_FOCUS"
+    ],
+    "materialComponentDescription": "larve essiccate",
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "1 cadavere di una creatura il cui numero di DV totali non ecceda il Livello dell'Incantatore",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Fa progredire di anni il deterioramento naturale di un cadavere. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Segni_della_Natura_Superiore",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Segni della Natura Superiore: https://golarion.altervista.org/wiki/Incantesimi/Segni_della_Natura_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 cadavere di una creatura il cui numero di DV totali non ecceda il Livello dell'Incantatore. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "submergeShip",
+    "name": "Sommergere Nave",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "CLERIC": 7,
+      "ORACLE": 7
+    },
+    "castingTimeCategory": "MINUTE",
+    "castingTimeDescription": "1 minuto",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL_OR_DIVINE_FOCUS"
+    ],
+    "materialComponentDescription": "una biglia di vetro o un pezzo di sapone",
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "1 vascello a vela",
+    "durationType": "MINUTE",
+    "durationDescription": "10 minuti/livello",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega (innocuo)"
+      }
+    ],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Consente a una nave di navigare immersa senza perdere le proprie normali funzionalità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sommergere_Nave",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Sommergere Nave: https://golarion.altervista.org/wiki/Incantesimi/Sommergere_Nave Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "teleportObject",
+    "name": "Teletrasporto degli Oggetti",
+    "school": "CONJURATION",
+    "descriptors": [],
+    "subschool": "TELEPORTATION",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WITCH": 7,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL"
+    ],
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "1 oggetto toccato fino a 25 kg/livello e 81 cm3/livello",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "nessuno e Volontà nega (oggetto)"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (oggetto)",
+    "description": "Teletrasporta un oggetto toccato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Teletrasporto_degli_Oggetti",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Teletrasporto degli Oggetti: https://golarion.altervista.org/wiki/Incantesimi/Teletrasporto_degli_Oggetti Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 oggetto toccato fino a 25 kg/livello e 81 cm3/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "fireStorm",
+    "name": "Tempesta di Fuoco",
+    "school": "EVOCATION",
+    "descriptors": [
+      "FIRE"
+    ],
+    "spellLevelByClass": {
+      "CLERIC": 8,
+      "ORACLE": 8,
+      "DRUID": 7,
+      "SHAMAN": 8
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "MEDIUM",
+    "rangeDescription": "medio (30 m + 3 m/livello)",
+    "area": "2 cubi di 3 m/livello (F)",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "REFLEX",
+        "effect": "HALF",
+        "description": "Riflessi dimezza"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Un vasto incendio magico brucia le creature nell'area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Tempesta_di_Fuoco",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Tempesta di Fuoco: https://golarion.altervista.org/wiki/Incantesimi/Tempesta_di_Fuoco Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "towerOfIronWillIII",
+    "name": "Torre della Volontà di Ferro III",
+    "school": "ABJURATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "PSYCHIC": 7
+    },
+    "castingTimeCategory": "IMMEDIATE_ACTION",
+    "castingTimeDescription": "1 azione immediata",
+    "components": [
+      "VERBAL"
+    ],
+    "rangeType": "OTHER",
+    "rangeDescription": "3 m",
+    "area": "emanazione del raggio di 3 metri, centrata su se stessi",
+    "durationType": "ROUND",
+    "durationDescription": "3 round",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Mantiene per tre round la protezione mentale collettiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Torre_della_Volont%C3%A0_di_Ferro#Torre_della_Volontà_di_Ferro_III",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Torre della Volontà di Ferro III: https://golarion.altervista.org/wiki/Incantesimi/Torre_della_Volont%C3%A0_di_Ferro#Torre_della_Volontà_di_Ferro_III Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "changestaff",
+    "name": "Trasforma Bastone",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "DRUID": 7
+    },
+    "castingTimeCategory": "ROUND",
+    "castingTimeDescription": "1 round",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "FOCUS"
+    ],
+    "focusComponentDescription": "un bastone ferrato, che è stato intagliato e levigato per 28 giorni",
+    "rangeType": "TOUCH",
+    "rangeDescription": "contatto",
+    "target": "bastone personale toccato",
+    "durationType": "HOUR",
+    "durationDescription": "1 ora/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Trasforma un bastone in un treant al servizio dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trasforma_Bastone",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Trasforma Bastone: https://golarion.altervista.org/wiki/Incantesimi/Trasforma_Bastone Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: bastone personale toccato. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "transmuteMetalToWood",
+    "name": "Trasmutare Metallo in Legno",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "DRUID": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "DIVINE_FOCUS"
+    ],
+    "rangeType": "LONG",
+    "rangeDescription": "lungo (120 m + 12 m/livello)",
+    "area": "tutti gli oggetti di metallo entro un’esplosione del raggio di 12 m",
+    "durationType": "INSTANTANEOUS",
+    "durationDescription": "istantaneo",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (oggetto); vedi testo",
+    "description": "Trasforma oggetti metallici in legno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trasmutare_Metallo_in_Legno",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Trasmutare Metallo in Legno: https://golarion.altervista.org/wiki/Incantesimi/Trasmutare_Metallo_in_Legno Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Legno 8 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "lunarVeil",
+    "name": "Velo Lunare",
+    "school": "ILLUSION",
+    "descriptors": [
+      "SHADOW",
+      "DARKNESS"
+    ],
+    "subschool": "SHADOW",
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "CLERIC": 7,
+      "ORACLE": 7,
+      "WITCH": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "LONG",
+    "rangeDescription": "lungo (120 m + 12 m/livello)",
+    "area": "emanazione del raggio di 36 m",
+    "durationType": "MINUTE",
+    "durationDescription": "10 minuti/livello",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega, vedi testo"
+      }
+    ],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "no",
+    "description": "Oscura la luce e contrasta la trasformazione dei licantropi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Velo_Lunare",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Velo Lunare: https://golarion.altervista.org/wiki/Incantesimi/Velo_Lunare Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "scouringWinds",
+    "name": "Venti Erosivi",
+    "school": "EVOCATION",
+    "descriptors": [
+      "AIR",
+      "EARTH"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "DRUID": 7,
+      "WITCH": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "MEDIUM",
+    "rangeDescription": "medio (30 m + 3 m/livello)",
+    "effect": "tempesta di sabbia di 6 m di raggio, altezza 6 m",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (vedi testo)",
+    "description": "Venti abrasivi ostacolano la vista e feriscono le creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Venti_Erosivi",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Venti Erosivi: https://golarion.altervista.org/wiki/Incantesimi/Venti_Erosivi Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Legno 7 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "vision",
+    "name": "Visione",
+    "school": "DIVINATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "WITCH": 7,
+      "SHAMAN": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL",
+      "FOCUS"
+    ],
+    "materialComponentDescription": "incenso del valore di almeno 250 mo",
+    "focusComponentDescription": "4 listelli di avorio del valore di 50 mo ognuno",
+    "materialComponentCostInGoldPieces": 250,
+    "rangeType": "PERSONAL",
+    "rangeDescription": "personale",
+    "target": "se stessi",
+    "durationType": "OTHER",
+    "durationDescription": "vedi testo",
+    "dismissible": false,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+    "description": "Ottiene rapidamente conoscenze leggendarie su un soggetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Visione",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Visione: https://golarion.altervista.org/wiki/Incantesimi/Visione Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Metadati supplementari conservati solo come promemoria: mistero Ascesi 7 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "arcaneSightGreater",
+    "name": "Vista Arcana Superiore",
+    "school": "DIVINATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "WITCH": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "PERSONAL",
+    "rangeDescription": "personale",
+    "target": "se stessi",
+    "durationType": "MINUTE",
+    "durationDescription": "1 minuto/livello (I)",
+    "dismissible": true,
+    "savingThrows": [],
+    "spellResistanceType": "NO",
+    "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+    "description": "Rivela anche gli effetti magici attivi sui soggetti osservati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vista_Arcana_Superiore",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Vista Arcana Superiore: https://golarion.altervista.org/wiki/Incantesimi/Vista_Arcana_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  },
+  {
+    "id": "flyMass",
+    "name": "Volare di Massa",
+    "school": "TRANSMUTATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "PSYCHIC": 7,
+      "SORCERER": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "FOCUS"
+    ],
+    "focusComponentDescription": "una piuma d'ala",
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "1 creatura/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+    "durationType": "MINUTE",
+    "durationDescription": "10 minuti/livello",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega (innocuo)"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Conferisce a più creature la capacità di volare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Volare_di_Massa",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Volare di Massa: https://golarion.altervista.org/wiki/Incantesimi/Volare_di_Massa Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Aria 7 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "targetLimitReview",
+        "type": "reminder",
+        "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "vortex",
+    "name": "Vortice",
+    "school": "EVOCATION",
+    "descriptors": [
+      "WATER"
+    ],
+    "spellLevelByClass": {
+      "ARCANIST": 7,
+      "WIZARD": 7,
+      "SORCERER": 7,
+      "DRUID": 7,
+      "SHAMAN": 7
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC",
+      "MATERIAL_OR_DIVINE_FOCUS"
+    ],
+    "materialComponentDescription": "un mestolo",
+    "rangeType": "LONG",
+    "rangeDescription": "lungo (120 m + 12 m/livello)",
+    "effect": "un gorgo profondo 15 m, ampio 9 m al vertice e 1,5 m alla base",
+    "durationType": "ROUND",
+    "durationDescription": "1 round/livello (I)",
+    "dismissible": true,
+    "savingThrows": [
+      {
+        "savingThrowType": "REFLEX",
+        "effect": "NEGATES",
+        "description": "Riflessi nega; vedi testo"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì",
+    "description": "Genera un vortice d'acqua che trascina le creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vortice",
+    "effects": [
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Verificare e applicare manualmente le regole di Vortice: https://golarion.altervista.org/wiki/Incantesimi/Vortice Ehi, appena hai tempo vedi di correggermi se necessario!"
+      },
+      {
+        "id": "metadataReview1",
+        "type": "reminder",
+        "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 7 Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "-1"
+  },
+  {
+    "id": "mindBlank",
+    "name": "Vuoto Mentale",
+    "school": "ABJURATION",
+    "descriptors": [],
+    "spellLevelByClass": {
+      "ARCANIST": 8,
+      "WITCH": 8,
+      "WIZARD": 8,
+      "PSYCHIC": 7,
+      "SORCERER": 8
+    },
+    "spellLevelByDomain": {
+      "domain": {
+        "LIBERATION": 8,
+        "PROTECTION": 8
+      },
+      "subdomain": {
+        "THOUGHT": 8
+      }
+    },
+    "spellLevelByBloodline": {
+      "ABERRANT": 8
+    },
+    "castingTimeCategory": "STANDARD_ACTION",
+    "castingTimeDescription": "1 azione standard",
+    "components": [
+      "VERBAL",
+      "SOMATIC"
+    ],
+    "rangeType": "CLOSE",
+    "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+    "target": "1 creatura",
+    "durationType": "HOUR",
+    "durationDescription": "24 ore",
+    "dismissible": false,
+    "savingThrows": [
+      {
+        "savingThrowType": "WILL",
+        "effect": "NEGATES",
+        "description": "Volontà nega (innocuo)"
+      }
+    ],
+    "spellResistanceType": "YES",
+    "spellResistanceDescription": "sì (innocuo)",
+    "description": "Protegge dalla divinazione e rafforza la resistenza all'influenza mentale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vuoto_Mentale",
+    "effects": [
+      {
+        "id": "mentalSaves",
+        "type": "modifier",
+        "resource": "savingThrow.all",
+        "description": "Effetto dell'incantesimo",
+        "modifierType": "bonus",
+        "bonusType": "resistance",
+        "expression": "8",
+        "condition": "Contro incantesimi ed effetti di influenza mentale"
+      },
+      {
+        "id": "manualResolution",
+        "type": "reminder",
+        "message": "Gestire l'occultamento dalle divinazioni e i relativi effetti di desiderio o miracolo. Non conferisce immunità generale all'influenza mentale. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+      }
+    ],
+    "maxTargetsExpression": "1"
+  }
+]

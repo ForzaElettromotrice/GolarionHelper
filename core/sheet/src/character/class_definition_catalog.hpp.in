@@ -1,0 +1,11 @@
+#pragma once
+
+#include <string_view>
+
+namespace golarion::embedded
+{
+    inline constexpr char ClassDefinitionCatalogText[] = R"golarion_json(
+@CLASS_DEFINITION_CATALOG_JSON@
+)golarion_json";
+    inline constexpr std::string_view ClassDefinitionCatalogJson{ClassDefinitionCatalogText, sizeof(ClassDefinitionCatalogText) - 1};
+}

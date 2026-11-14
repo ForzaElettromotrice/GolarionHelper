@@ -1,0 +1,4217 @@
+[
+  {
+    "type": "unchainedBarbarian",
+    "name": "Barbaro Rivisitato",
+    "description": "Interpretazione rivisitata del barbaro e dei suoi poteri d'ira.",
+    "hitDie": 12,
+    "skillRanksPerLevel": 4,
+    "classSkills": [
+      "skill.acrobatics",
+      "skill.handleAnimal",
+      "skill.craft",
+      "skill.ride",
+      "skill.knowledge.nature",
+      "skill.intimidate",
+      "skill.swim",
+      "skill.perception",
+      "skill.climb",
+      "skill.survival"
+    ],
+    "progression": [
+      {
+        "level": 1,
+        "baseAttackBonus": 1,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 0,
+          "will": 0
+        }
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": 2,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 0,
+          "will": 0
+        }
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": 3,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 1,
+          "will": 1
+        }
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": 4,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 1,
+          "will": 1
+        }
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": 5,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 1,
+          "will": 1
+        }
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": 6,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 2,
+          "will": 2
+        }
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": 7,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 2,
+          "will": 2
+        }
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": 8,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 2,
+          "will": 2
+        }
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": 9,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 3,
+          "will": 3
+        }
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": 10,
+        "baseSavingThrows": {
+          "fortitude": 7,
+          "reflex": 3,
+          "will": 3
+        }
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": 11,
+        "baseSavingThrows": {
+          "fortitude": 7,
+          "reflex": 3,
+          "will": 3
+        }
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": 12,
+        "baseSavingThrows": {
+          "fortitude": 8,
+          "reflex": 4,
+          "will": 4
+        }
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": 13,
+        "baseSavingThrows": {
+          "fortitude": 8,
+          "reflex": 4,
+          "will": 4
+        }
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": 14,
+        "baseSavingThrows": {
+          "fortitude": 9,
+          "reflex": 4,
+          "will": 4
+        }
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": 15,
+        "baseSavingThrows": {
+          "fortitude": 9,
+          "reflex": 5,
+          "will": 5
+        }
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": 16,
+        "baseSavingThrows": {
+          "fortitude": 10,
+          "reflex": 5,
+          "will": 5
+        }
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": 17,
+        "baseSavingThrows": {
+          "fortitude": 10,
+          "reflex": 5,
+          "will": 5
+        }
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": 18,
+        "baseSavingThrows": {
+          "fortitude": 11,
+          "reflex": 6,
+          "will": 6
+        }
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": 19,
+        "baseSavingThrows": {
+          "fortitude": 11,
+          "reflex": 6,
+          "will": 6
+        }
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": 20,
+        "baseSavingThrows": {
+          "fortitude": 12,
+          "reflex": 6,
+          "will": 6
+        }
+      }
+    ],
+    "features": [
+      {
+        "id": "unchainedBarbarian.classSkills",
+        "name": "Abilità di classe",
+        "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+        "progression": []
+      },
+      {
+        "id": "unchainedBarbarian.feature.e795ba0dd9d9",
+        "name": "Ira",
+        "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_(Str)",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.feature.e795ba0dd9d9.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Barbaro Rivisitato: verificare e applicare Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.feature.3803054e7b9d",
+        "name": "Potere d'Ira",
+        "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.feature.3803054e7b9d.level2",
+            "level": 2,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 2 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedBarbarian.feature.3803054e7b9d.level4",
+            "level": 4,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 4 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedBarbarian.feature.3803054e7b9d.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 6 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedBarbarian.feature.3803054e7b9d.level8",
+            "level": 8,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 8 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedBarbarian.feature.3803054e7b9d.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 10 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedBarbarian.feature.3803054e7b9d.level12",
+            "level": 12,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 12 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedBarbarian.feature.3803054e7b9d.level14",
+            "level": 14,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 14 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedBarbarian.feature.3803054e7b9d.level16",
+            "level": 16,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 16 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedBarbarian.feature.3803054e7b9d.level18",
+            "level": 18,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 18 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedBarbarian.feature.3803054e7b9d.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 20 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.feature.28c251834485",
+        "name": "Schivare Prodigioso Migliorato",
+        "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Schivare_Prodigioso_Migliorato_(Str)",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.feature.28c251834485.level5",
+            "level": 5,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 5 di Barbaro Rivisitato: verificare e applicare Schivare Prodigioso Migliorato. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Schivare_Prodigioso_Migliorato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.feature.fd8e328b22fe",
+        "name": "Ira Superiore",
+        "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_Superiore_(Str)",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.feature.fd8e328b22fe.level11",
+            "level": 11,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 11 di Barbaro Rivisitato: verificare e applicare Ira Superiore. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_Superiore_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.feature.a74f6041b223",
+        "name": "Volontà Indomita",
+        "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Volontà_Indomita_(Str)",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.feature.a74f6041b223.level14",
+            "level": 14,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 14 di Barbaro Rivisitato: verificare e applicare Volontà Indomita. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Volontà_Indomita_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.feature.5bd81ba2a978",
+        "name": "Ira Infaticabile",
+        "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_Infaticabile_(Str)",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.feature.5bd81ba2a978.level17",
+            "level": 17,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 17 di Barbaro Rivisitato: verificare e applicare Ira Infaticabile. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_Infaticabile_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.feature.a64d5f0617d0",
+        "name": "Ira Possente",
+        "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_Possente_(Str)",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.feature.a64d5f0617d0.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 20 di Barbaro Rivisitato: verificare e applicare Ira Possente. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_Possente_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.eligibility",
+        "name": "Requisiti e condotta",
+        "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi non legale.. https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.eligibility.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi non legale.. https://golarion.altervista.org/wiki/Barbaro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.proficiencies",
+        "name": "Competenze della classe",
+        "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.proficiencies.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Barbaro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.supplementalRules",
+        "name": "Regole complementari",
+        "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.supplementalRules.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Barbaro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.feature.0e6e4c25d2e0",
+        "name": "Senso del Pericolo",
+        "description": "Migliora progressivamente le difese contro trappole. Favorisce anche la percezione dei nemici che tentano di sorprendere. Fonte: https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.trapSense.initial",
+            "level": 3,
+            "effects": [
+              {
+                "id": "reflex",
+                "type": "modifier",
+                "resource": "savingThrow.reflex",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "generic",
+                "expression": "@classLevel / 3",
+                "condition": "Per evitare trappole"
+              },
+              {
+                "id": "armorClass",
+                "type": "modifier",
+                "resource": "armorClass.reflexive",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "dodge",
+                "expression": "@classLevel / 3",
+                "condition": "Contro attacchi effettuati da trappole, finché mantiene il bonus di Destrezza alla CA"
+              },
+              {
+                "id": "perception",
+                "type": "modifier",
+                "resource": "skill.perception",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "generic",
+                "expression": "@classLevel / 3",
+                "condition": "Per evitare di essere colto di sorpresa da un nemico"
+              },
+              {
+                "id": "conditionalReview",
+                "type": "reminder",
+                "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.feature.e7a78d299884",
+        "name": "Movimento Veloce",
+        "description": "Aumenta la velocità sul terreno di 3 metri prima delle riduzioni da armatura e carico. Fonte: https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.fastMovement.initial",
+            "level": 1,
+            "effects": [
+              {
+                "id": "speed",
+                "type": "modifier",
+                "resource": "speed.land",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "generic",
+                "expression": "2",
+                "condition": "Senza armatura o con armatura leggera o media, senza carico pesante"
+              },
+              {
+                "id": "conditionalReview",
+                "type": "reminder",
+                "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.feature.060b33e558e8",
+        "name": "Schivare Prodigioso",
+        "description": "Conserva il bonus di Destrezza alla CA nelle circostanze previste. Fonte: https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.uncannyDodge.initial",
+            "level": 2,
+            "effects": [
+              {
+                "id": "dexterityRetention",
+                "type": "armorClassDexterityRetention",
+                "causes": [
+                  "flatFooted"
+                ]
+              },
+              {
+                "id": "manualResolution",
+                "type": "reminder",
+                "message": "Gestire l’acquisizione di Schivare Prodigioso Migliorato quando la capacità proviene già da un’altra classe; non protegge da fintare o immobilizzazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              },
+              {
+                "id": "sourceReview",
+                "type": "reminder",
+                "message": "La pagina del Barbaro Rivisitato presenta un testo incongruente sull’immobilizzazione e omette l’attaccante invisibile: automatizzata solo la conservazione della Destrezza da impreparato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unchainedBarbarian.feature.ff70c3d0d261",
+        "name": "Riduzione del Danno",
+        "description": "Riduce i danni delle armi e degli attacchi naturali in misura crescente. Fonte: https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedBarbarian.damageReduction.initial",
+            "level": 7,
+            "effects": [
+              {
+                "id": "damageReduction",
+                "type": "damageReduction",
+                "expression": "1 + (@classLevel - 7) / 3",
+                "bypass": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "unchainedSummoner",
+    "name": "Convocatore Rivisitato",
+    "description": "Interpretazione rivisitata del convocatore e del legame con l'eidolon.",
+    "hitDie": 8,
+    "skillRanksPerLevel": 2,
+    "classSkills": [
+      "skill.handleAnimal",
+      "skill.craft",
+      "skill.ride",
+      "skill.knowledge.arcana",
+      "skill.knowledge.dungeoneering",
+      "skill.knowledge.engineering",
+      "skill.knowledge.geography",
+      "skill.knowledge.history",
+      "skill.knowledge.local",
+      "skill.knowledge.nature",
+      "skill.knowledge.nobility",
+      "skill.knowledge.planes",
+      "skill.knowledge.religion",
+      "skill.linguistics",
+      "skill.profession",
+      "skill.spellcraft",
+      "skill.useMagicDevice",
+      "skill.fly"
+    ],
+    "progression": [
+      {
+        "level": 1,
+        "baseAttackBonus": 0,
+        "baseSavingThrows": {
+          "fortitude": 0,
+          "reflex": 0,
+          "will": 2
+        }
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": 1,
+        "baseSavingThrows": {
+          "fortitude": 0,
+          "reflex": 0,
+          "will": 3
+        }
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": 2,
+        "baseSavingThrows": {
+          "fortitude": 1,
+          "reflex": 1,
+          "will": 3
+        }
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": 3,
+        "baseSavingThrows": {
+          "fortitude": 1,
+          "reflex": 1,
+          "will": 4
+        }
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": 3,
+        "baseSavingThrows": {
+          "fortitude": 1,
+          "reflex": 1,
+          "will": 4
+        }
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": 4,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 2,
+          "will": 5
+        }
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": 5,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 2,
+          "will": 5
+        }
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": 6,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 2,
+          "will": 6
+        }
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": 6,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 3,
+          "will": 6
+        }
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": 7,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 3,
+          "will": 7
+        }
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": 8,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 3,
+          "will": 7
+        }
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": 9,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 4,
+          "will": 8
+        }
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": 9,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 4,
+          "will": 8
+        }
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": 10,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 4,
+          "will": 9
+        }
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": 11,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 5,
+          "will": 9
+        }
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": 12,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 5,
+          "will": 10
+        }
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": 12,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 5,
+          "will": 10
+        }
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": 13,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 6,
+          "will": 11
+        }
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": 14,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 6,
+          "will": 11
+        }
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": 15,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 6,
+          "will": 12
+        }
+      }
+    ],
+    "features": [
+      {
+        "id": "unchainedSummoner.classSkills",
+        "name": "Abilità di classe",
+        "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+        "progression": []
+      },
+      {
+        "id": "unchainedSummoner.spellcasting",
+        "name": "Incantesimi",
+        "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Convocatore_Rivisitato",
+        "progression": [
+          {
+            "id": "spellcasting",
+            "level": 1,
+            "effects": [
+              {
+                "id": "casting",
+                "type": "spellcastingGrant",
+                "mode": "spontaneous",
+                "spellListClass": "unchainedSummoner"
+              },
+              {
+                "id": "manualCasting",
+                "type": "reminder",
+                "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. La tabella giornaliera non contiene slot di livello 0: il backend richiede un gruppo tecnico o una futura API per il lancio gratuito; non viene inventato uno slot giornaliero. Le sostituzioni degli incantesimi conosciuti restano soggette alle finestre e ai limiti di livello descritti dalla classe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          },
+          {
+            "id": "castingSlots.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "castingSlots.level2",
+            "level": 2,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level1"
+            ]
+          },
+          {
+            "id": "castingSlots.level3",
+            "level": 3,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 3
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level2"
+            ]
+          },
+          {
+            "id": "castingSlots.level4",
+            "level": 4,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level3"
+            ]
+          },
+          {
+            "id": "castingSlots.level5",
+            "level": 5,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level4"
+            ]
+          },
+          {
+            "id": "castingSlots.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 3
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level5"
+            ]
+          },
+          {
+            "id": "castingSlots.level7",
+            "level": 7,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level6"
+            ]
+          },
+          {
+            "id": "castingSlots.level8",
+            "level": 8,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level7"
+            ]
+          },
+          {
+            "id": "castingSlots.level9",
+            "level": 9,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 3
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level8"
+            ]
+          },
+          {
+            "id": "castingSlots.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level9"
+            ]
+          },
+          {
+            "id": "castingSlots.level11",
+            "level": 11,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level10"
+            ]
+          },
+          {
+            "id": "castingSlots.level12",
+            "level": 12,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 3
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level11"
+            ]
+          },
+          {
+            "id": "castingSlots.level13",
+            "level": 13,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 5,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level12"
+            ]
+          },
+          {
+            "id": "castingSlots.level14",
+            "level": 14,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 5,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level13"
+            ]
+          },
+          {
+            "id": "castingSlots.level15",
+            "level": 15,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 5,
+                    "capacity": 3
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level14"
+            ]
+          },
+          {
+            "id": "castingSlots.level16",
+            "level": 16,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 5,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 6,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level15"
+            ]
+          },
+          {
+            "id": "castingSlots.level17",
+            "level": 17,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 5,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 6,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level16"
+            ]
+          },
+          {
+            "id": "castingSlots.level18",
+            "level": 18,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 5,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 6,
+                    "capacity": 3
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level17"
+            ]
+          },
+          {
+            "id": "castingSlots.level19",
+            "level": 19,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 5,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 6,
+                    "capacity": 4
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level18"
+            ]
+          },
+          {
+            "id": "castingSlots.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 5,
+                    "capacity": 5
+                  },
+                  {
+                    "level": 6,
+                    "capacity": 5
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level19"
+            ]
+          },
+          {
+            "id": "repertoire.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 0,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 1,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level2",
+            "level": 2,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 0,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 1,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level3",
+            "level": 3,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 0,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 1,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level4",
+            "level": 4,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 2,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level5",
+            "level": 5,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 2,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 2,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level7",
+            "level": 7,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 1,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level8",
+            "level": 8,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 3,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level9",
+            "level": 9,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 3,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 2,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level11",
+            "level": 11,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 1,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level12",
+            "level": 12,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 4,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level13",
+            "level": 13,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 3,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 5,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level14",
+            "level": 14,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 2,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 5,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level15",
+            "level": 15,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 5,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level16",
+            "level": 16,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 4,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 6,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level17",
+            "level": 17,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 3,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 6,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level18",
+            "level": 18,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 6,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level19",
+            "level": 19,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 5,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "repertoire.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "known",
+                "type": "spellRepertoireQuota",
+                "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+                "quotas": [
+                  {
+                    "level": 4,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 6,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.fbeff22814fe",
+        "name": "Eidolon",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Eidolon",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.fbeff22814fe.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Convocatore Rivisitato: verificare e applicare Eidolon. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Eidolon Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.b2d86457460e",
+        "name": "Evoca Mostri",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag)",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.b2d86457460e.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Convocatore Rivisitato: verificare e applicare Evoca Mostri I. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedSummoner.feature.b2d86457460e.level3",
+            "level": 3,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 3 di Convocatore Rivisitato: verificare e applicare Evoca Mostri II. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedSummoner.feature.b2d86457460e.level5",
+            "level": 5,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 5 di Convocatore Rivisitato: verificare e applicare Evoca Mostri III. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedSummoner.feature.b2d86457460e.level7",
+            "level": 7,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 7 di Convocatore Rivisitato: verificare e applicare Evoca Mostri IV. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedSummoner.feature.b2d86457460e.level9",
+            "level": 9,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 9 di Convocatore Rivisitato: verificare e applicare Evoca Mostri V. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedSummoner.feature.b2d86457460e.level11",
+            "level": 11,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 11 di Convocatore Rivisitato: verificare e applicare Evoca Mostri VI. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedSummoner.feature.b2d86457460e.level13",
+            "level": 13,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 13 di Convocatore Rivisitato: verificare e applicare Evoca Mostri VII. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedSummoner.feature.b2d86457460e.level15",
+            "level": 15,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 15 di Convocatore Rivisitato: verificare e applicare Evoca Mostri VIII. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedSummoner.feature.b2d86457460e.level17",
+            "level": 17,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 17 di Convocatore Rivisitato: verificare e applicare Evoca Mostri IX. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedSummoner.feature.b2d86457460e.level19",
+            "level": 19,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 19 di Convocatore Rivisitato: verificare e applicare Portale. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.f6f7245a061b",
+        "name": "Legame Vitale",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Legame_Vitale_(Sop)",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.f6f7245a061b.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Convocatore Rivisitato: verificare e applicare Legame Vitale. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Legame_Vitale_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.6f564326c1ef",
+        "name": "Trucchetti",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore#Trucchetti",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.6f564326c1ef.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Convocatore Rivisitato: verificare e applicare Trucchetti. https://golarion.altervista.org/wiki/Convocatore#Trucchetti Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.fdd056ec6ba5",
+        "name": "Sensi del Legame",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Sensi_del_Legame_(Sop)",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.fdd056ec6ba5.level2",
+            "level": 2,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 2 di Convocatore Rivisitato: verificare e applicare Sensi del Legame. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Sensi_del_Legame_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.e66aa0bd0f1d",
+        "name": "Scudo Alleato",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Scudo_Alleato_(Str)",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.e66aa0bd0f1d.level4",
+            "level": 4,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 4 di Convocatore Rivisitato: verificare e applicare Scudo Alleato. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Scudo_Alleato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.674a812d6761",
+        "name": "Richiamo del Creatore",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Richiamo_del_Creatore_(Sop)",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.674a812d6761.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 6 di Convocatore Rivisitato: verificare e applicare Richiamo del Creatore. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Richiamo_del_Creatore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.723be834233f",
+        "name": "Trasposizione",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Trasposizione_(Sop)",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.723be834233f.level8",
+            "level": 8,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 8 di Convocatore Rivisitato: verificare e applicare Trasposizione. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Trasposizione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.df845028d539",
+        "name": "Aspetto",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Aspetto_(Sop)",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.df845028d539.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 10 di Convocatore Rivisitato: verificare e applicare Aspetto. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Aspetto_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.d1fabe8adea3",
+        "name": "Scudo Alleato Superiore",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Scudo_Alleato_Superiore_(Sop)",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.d1fabe8adea3.level12",
+            "level": 12,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 12 di Convocatore Rivisitato: verificare e applicare Scudo Alleato Superiore. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Scudo_Alleato_Superiore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.a8784db3b13c",
+        "name": "Per la Vita",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Per_la_Vita_(Sop)",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.a8784db3b13c.level14",
+            "level": 14,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 14 di Convocatore Rivisitato: verificare e applicare Per la Vita. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Per_la_Vita_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.cc4314ef1d58",
+        "name": "Fondere forme",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Fondere_Forme_(Sop)",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.cc4314ef1d58.level16",
+            "level": 16,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 16 di Convocatore Rivisitato: verificare e applicare Fondere forme. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Fondere_Forme_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.508a1f2c29ac",
+        "name": "Aspetto Superiore",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Aspetto_Superiore_(Sop)",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.508a1f2c29ac.level18",
+            "level": 18,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 18 di Convocatore Rivisitato: verificare e applicare Aspetto Superiore. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Aspetto_Superiore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.feature.80b5747ee87e",
+        "name": "Doppio Eidolon",
+        "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Doppio_Eidolon_(Sop)",
+        "progression": [
+          {
+            "id": "unchainedSummoner.feature.80b5747ee87e.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 20 di Convocatore Rivisitato: verificare e applicare Doppio Eidolon. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Doppio_Eidolon_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.eligibility",
+        "name": "Requisiti e condotta",
+        "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Convocatore_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedSummoner.eligibility.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Convocatore_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.proficiencies",
+        "name": "Competenze della classe",
+        "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Convocatore_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedSummoner.proficiencies.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Convocatore_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedSummoner.supplementalRules",
+        "name": "Regole complementari",
+        "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Convocatore_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedSummoner.supplementalRules.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Convocatore_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "unchainedRogue",
+    "name": "Ladro Rivisitato",
+    "description": "Interpretazione rivisitata del ladro e delle sue specializzazioni.",
+    "hitDie": 8,
+    "skillRanksPerLevel": 8,
+    "classSkills": [
+      "skill.acrobatics",
+      "skill.craft",
+      "skill.escapeArtist",
+      "skill.disguise",
+      "skill.knowledge.dungeoneering",
+      "skill.knowledge.local",
+      "skill.diplomacy",
+      "skill.disableDevice",
+      "skill.stealth",
+      "skill.intimidate",
+      "skill.perform",
+      "skill.senseMotive",
+      "skill.linguistics",
+      "skill.swim",
+      "skill.perception",
+      "skill.profession",
+      "skill.bluff",
+      "skill.sleightOfHand",
+      "skill.climb",
+      "skill.useMagicDevice",
+      "skill.appraise"
+    ],
+    "progression": [
+      {
+        "level": 1,
+        "baseAttackBonus": 0,
+        "baseSavingThrows": {
+          "fortitude": 0,
+          "reflex": 2,
+          "will": 0
+        }
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": 1,
+        "baseSavingThrows": {
+          "fortitude": 0,
+          "reflex": 3,
+          "will": 0
+        }
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": 2,
+        "baseSavingThrows": {
+          "fortitude": 1,
+          "reflex": 3,
+          "will": 1
+        }
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": 3,
+        "baseSavingThrows": {
+          "fortitude": 1,
+          "reflex": 4,
+          "will": 1
+        }
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": 3,
+        "baseSavingThrows": {
+          "fortitude": 1,
+          "reflex": 4,
+          "will": 1
+        }
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": 4,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 5,
+          "will": 2
+        }
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": 5,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 5,
+          "will": 2
+        }
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": 6,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 6,
+          "will": 2
+        }
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": 6,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 6,
+          "will": 3
+        }
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": 7,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 7,
+          "will": 3
+        }
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": 8,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 7,
+          "will": 3
+        }
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": 9,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 8,
+          "will": 4
+        }
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": 9,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 8,
+          "will": 4
+        }
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": 10,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 9,
+          "will": 4
+        }
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": 11,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 9,
+          "will": 5
+        }
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": 12,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 10,
+          "will": 5
+        }
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": 12,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 10,
+          "will": 5
+        }
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": 13,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 11,
+          "will": 6
+        }
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": 14,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 11,
+          "will": 6
+        }
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": 15,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 12,
+          "will": 6
+        }
+      }
+    ],
+    "features": [
+      {
+        "id": "unchainedRogue.classSkills",
+        "name": "Abilità di classe",
+        "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+        "progression": []
+      },
+      {
+        "id": "unchainedRogue.feature.cde2f76bd890",
+        "name": "Addestramento Accurato",
+        "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Addestramento_Accurato_(Str)",
+        "progression": [
+          {
+            "id": "unchainedRogue.feature.cde2f76bd890.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Ladro Rivisitato: verificare e applicare Addestramento Accurato. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Addestramento_Accurato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.cde2f76bd890.level3",
+            "level": 3,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 3 di Ladro Rivisitato: verificare e applicare Addestramento Accurato. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Addestramento_Accurato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.cde2f76bd890.level11",
+            "level": 11,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 11 di Ladro Rivisitato: verificare e applicare Addestramento Accurato. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Addestramento_Accurato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.cde2f76bd890.level19",
+            "level": 19,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 19 di Ladro Rivisitato: verificare e applicare Addestramento Accurato. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Addestramento_Accurato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.feature.4817687bcf86",
+        "name": "Attacco Furtivo",
+        "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo",
+        "progression": [
+          {
+            "id": "unchainedRogue.feature.4817687bcf86.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +1d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.4817687bcf86.level3",
+            "level": 3,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 3 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +2d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "unchainedRogue.feature.4817687bcf86.level1"
+            ]
+          },
+          {
+            "id": "unchainedRogue.feature.4817687bcf86.level5",
+            "level": 5,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 5 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +3d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "unchainedRogue.feature.4817687bcf86.level3"
+            ]
+          },
+          {
+            "id": "unchainedRogue.feature.4817687bcf86.level7",
+            "level": 7,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 7 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +4d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "unchainedRogue.feature.4817687bcf86.level5"
+            ]
+          },
+          {
+            "id": "unchainedRogue.feature.4817687bcf86.level9",
+            "level": 9,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 9 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +5d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "unchainedRogue.feature.4817687bcf86.level7"
+            ]
+          },
+          {
+            "id": "unchainedRogue.feature.4817687bcf86.level11",
+            "level": 11,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 11 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +6d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "unchainedRogue.feature.4817687bcf86.level9"
+            ]
+          },
+          {
+            "id": "unchainedRogue.feature.4817687bcf86.level13",
+            "level": 13,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 13 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +7d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "unchainedRogue.feature.4817687bcf86.level11"
+            ]
+          },
+          {
+            "id": "unchainedRogue.feature.4817687bcf86.level15",
+            "level": 15,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 15 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +8d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "unchainedRogue.feature.4817687bcf86.level13"
+            ]
+          },
+          {
+            "id": "unchainedRogue.feature.4817687bcf86.level17",
+            "level": 17,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 17 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +9d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "unchainedRogue.feature.4817687bcf86.level15"
+            ]
+          },
+          {
+            "id": "unchainedRogue.feature.4817687bcf86.level19",
+            "level": 19,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 19 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +10d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "unchainedRogue.feature.4817687bcf86.level17"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.feature.bdfa2a5c3eef",
+        "name": "Dote da Ladro",
+        "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedRogue.feature.bdfa2a5c3eef.level2",
+            "level": 2,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 2 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.bdfa2a5c3eef.level4",
+            "level": 4,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 4 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.bdfa2a5c3eef.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 6 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.bdfa2a5c3eef.level8",
+            "level": 8,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 8 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.bdfa2a5c3eef.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 10 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.bdfa2a5c3eef.level12",
+            "level": 12,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 12 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.bdfa2a5c3eef.level14",
+            "level": 14,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 14 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.bdfa2a5c3eef.level16",
+            "level": 16,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 16 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.bdfa2a5c3eef.level18",
+            "level": 18,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 18 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.bdfa2a5c3eef.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 20 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.feature.c0c18fae5300",
+        "name": "Eludere",
+        "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Eludere_(Str)",
+        "progression": [
+          {
+            "id": "unchainedRogue.feature.c0c18fae5300.level2",
+            "level": 2,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 2 di Ladro Rivisitato: verificare e applicare Eludere. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Eludere_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.feature.f3a74644d160",
+        "name": "Ferita Debilitante",
+        "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Ferita_Debilitante_(Str)",
+        "progression": [
+          {
+            "id": "unchainedRogue.feature.f3a74644d160.level4",
+            "level": 4,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 4 di Ladro Rivisitato: verificare e applicare Ferita Debilitante. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Ferita_Debilitante_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.feature.d256a1b97ec4",
+        "name": "Vantaggio del Ladro",
+        "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Vantaggio_del_Ladro_(Str)",
+        "progression": [
+          {
+            "id": "unchainedRogue.feature.d256a1b97ec4.level5",
+            "level": 5,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 5 di Ladro Rivisitato: verificare e applicare Vantaggio del Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Vantaggio_del_Ladro_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.d256a1b97ec4.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 10 di Ladro Rivisitato: verificare e applicare Vantaggio del Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Vantaggio_del_Ladro_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.d256a1b97ec4.level15",
+            "level": 15,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 15 di Ladro Rivisitato: verificare e applicare Vantaggio del Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Vantaggio_del_Ladro_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedRogue.feature.d256a1b97ec4.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 20 di Ladro Rivisitato: verificare e applicare Vantaggio del Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Vantaggio_del_Ladro_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.feature.947751edfb55",
+        "name": "Schivare Prodigioso Migliorato",
+        "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Schivare_Prodigioso_Migliorato_(Str)",
+        "progression": [
+          {
+            "id": "unchainedRogue.feature.947751edfb55.level8",
+            "level": 8,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 8 di Ladro Rivisitato: verificare e applicare Schivare Prodigioso Migliorato. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Schivare_Prodigioso_Migliorato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.feature.5a6c46181a6c",
+        "name": "Doti Avanzate",
+        "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato_Avanzate",
+        "progression": [
+          {
+            "id": "unchainedRogue.feature.5a6c46181a6c.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 10 di Ladro Rivisitato: verificare e applicare Doti Avanzate. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato_Avanzate Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.feature.21f5cdebceee",
+        "name": "Colpo da Maestro",
+        "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Colpo_da_Maestro_(Str)",
+        "progression": [
+          {
+            "id": "unchainedRogue.feature.21f5cdebceee.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 20 di Ladro Rivisitato: verificare e applicare Colpo da Maestro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Colpo_da_Maestro_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.eligibility",
+        "name": "Requisiti e condotta",
+        "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Ladro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedRogue.eligibility.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.proficiencies",
+        "name": "Competenze della classe",
+        "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Ladro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedRogue.proficiencies.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.supplementalRules",
+        "name": "Regole complementari",
+        "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Ladro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedRogue.supplementalRules.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.feature.8f4dbb15b617",
+        "name": "Scoprire Trappole",
+        "description": "Migliora la ricerca delle trappole e le prove di Disattivare Congegni secondo il livello di classe. Fonte: https://golarion.altervista.org/wiki/Ladro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedRogue.trapfinding.initial",
+            "level": 1,
+            "effects": [
+              {
+                "id": "perception",
+                "type": "modifier",
+                "resource": "skill.perception",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "generic",
+                "expression": "1 + (@classLevel / 2 > 1) * (@classLevel / 2 - 1)",
+                "condition": "Per localizzare trappole"
+              },
+              {
+                "id": "disable",
+                "type": "modifier",
+                "resource": "skill.disableDevice",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "generic",
+                "expression": "1 + (@classLevel / 2 > 1) * (@classLevel / 2 - 1)"
+              },
+              {
+                "id": "manualResolution",
+                "type": "reminder",
+                "message": "Consente di usare Disattivare Congegni contro trappole magiche; questa autorizzazione non è verificata automaticamente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              },
+              {
+                "id": "conditionalReview",
+                "type": "reminder",
+                "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.feature.05107c446e3f",
+        "name": "Senso del Pericolo",
+        "description": "Migliora progressivamente le difese contro trappole. Favorisce anche la percezione dei nemici che tentano di sorprendere. Fonte: https://golarion.altervista.org/wiki/Ladro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedRogue.trapSense.initial",
+            "level": 3,
+            "effects": [
+              {
+                "id": "reflex",
+                "type": "modifier",
+                "resource": "savingThrow.reflex",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "generic",
+                "expression": "@classLevel / 3",
+                "condition": "Per evitare trappole"
+              },
+              {
+                "id": "armorClass",
+                "type": "modifier",
+                "resource": "armorClass.reflexive",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "dodge",
+                "expression": "@classLevel / 3",
+                "condition": "Contro attacchi effettuati da trappole, finché mantiene il bonus di Destrezza alla CA"
+              },
+              {
+                "id": "perception",
+                "type": "modifier",
+                "resource": "skill.perception",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "generic",
+                "expression": "@classLevel / 3",
+                "condition": "Per evitare di essere colto di sorpresa da un nemico"
+              },
+              {
+                "id": "conditionalReview",
+                "type": "reminder",
+                "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unchainedRogue.feature.84bcfa0018b3",
+        "name": "Schivare Prodigioso",
+        "description": "Conserva il bonus di Destrezza alla CA nelle circostanze previste. Fonte: https://golarion.altervista.org/wiki/Ladro_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedRogue.uncannyDodge.initial",
+            "level": 4,
+            "effects": [
+              {
+                "id": "dexterityRetention",
+                "type": "armorClassDexterityRetention",
+                "causes": [
+                  "flatFooted",
+                  "invisibleAttacker"
+                ]
+              },
+              {
+                "id": "manualResolution",
+                "type": "reminder",
+                "message": "Gestire l’acquisizione di Schivare Prodigioso Migliorato quando la capacità proviene già da un’altra classe; non protegge da fintare o immobilizzazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "unchainedMonk",
+    "name": "Monaco Rivisitato",
+    "description": "Interpretazione rivisitata del monaco e delle sue tecniche ki.",
+    "hitDie": 10,
+    "skillRanksPerLevel": 4,
+    "classSkills": [
+      "skill.acrobatics",
+      "skill.craft",
+      "skill.escapeArtist",
+      "skill.ride",
+      "skill.knowledge.history",
+      "skill.knowledge.religion",
+      "skill.stealth",
+      "skill.intimidate",
+      "skill.perform",
+      "skill.senseMotive",
+      "skill.swim",
+      "skill.perception",
+      "skill.profession",
+      "skill.climb"
+    ],
+    "progression": [
+      {
+        "level": 1,
+        "baseAttackBonus": 1,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 2,
+          "will": 0
+        }
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": 2,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 3,
+          "will": 0
+        }
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": 3,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 3,
+          "will": 1
+        }
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": 4,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 4,
+          "will": 1
+        }
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": 5,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 4,
+          "will": 1
+        }
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": 6,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 5,
+          "will": 2
+        }
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": 7,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 5,
+          "will": 2
+        }
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": 8,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 6,
+          "will": 2
+        }
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": 9,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 6,
+          "will": 3
+        }
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": 10,
+        "baseSavingThrows": {
+          "fortitude": 7,
+          "reflex": 7,
+          "will": 3
+        }
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": 11,
+        "baseSavingThrows": {
+          "fortitude": 7,
+          "reflex": 7,
+          "will": 3
+        }
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": 12,
+        "baseSavingThrows": {
+          "fortitude": 8,
+          "reflex": 8,
+          "will": 4
+        }
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": 13,
+        "baseSavingThrows": {
+          "fortitude": 8,
+          "reflex": 8,
+          "will": 4
+        }
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": 14,
+        "baseSavingThrows": {
+          "fortitude": 9,
+          "reflex": 9,
+          "will": 4
+        }
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": 15,
+        "baseSavingThrows": {
+          "fortitude": 9,
+          "reflex": 9,
+          "will": 5
+        }
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": 16,
+        "baseSavingThrows": {
+          "fortitude": 10,
+          "reflex": 10,
+          "will": 5
+        }
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": 17,
+        "baseSavingThrows": {
+          "fortitude": 10,
+          "reflex": 10,
+          "will": 5
+        }
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": 18,
+        "baseSavingThrows": {
+          "fortitude": 11,
+          "reflex": 11,
+          "will": 6
+        }
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": 19,
+        "baseSavingThrows": {
+          "fortitude": 11,
+          "reflex": 11,
+          "will": 6
+        }
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": 20,
+        "baseSavingThrows": {
+          "fortitude": 12,
+          "reflex": 12,
+          "will": 6
+        }
+      }
+    ],
+    "features": [
+      {
+        "id": "unchainedMonk.classSkills",
+        "name": "Abilità di classe",
+        "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+        "progression": []
+      },
+      {
+        "id": "unchainedMonk.feature.750d41bb95a4",
+        "name": "Colpo Senz'Armi",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Colpo_Senz'Armi",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.750d41bb95a4.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Monaco Rivisitato: verificare e applicare Colpo Senz'Armi. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Colpo_Senz'Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.e586ea91ff60",
+        "name": "Pugno Stordente",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Pugno_Stordente_(Str)",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.e586ea91ff60.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Monaco Rivisitato: verificare e applicare Pugno Stordente. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Pugno_Stordente_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.d79758da5d0e",
+        "name": "Raffica di Colpi",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Raffica_di_Colpi_(Str)",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.d79758da5d0e.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Monaco Rivisitato: verificare e applicare Raffica di Colpi. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Raffica_di_Colpi_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.d79758da5d0e.level11",
+            "level": 11,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 11 di Monaco Rivisitato: verificare e applicare Raffica di Colpi. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Raffica_di_Colpi_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.5f35be6d5e5d",
+        "name": "Talento Bonus",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Talento_Bonus",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.5f35be6d5e5d.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Monaco Rivisitato: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.5f35be6d5e5d.level2",
+            "level": 2,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 2 di Monaco Rivisitato: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.5f35be6d5e5d.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 6 di Monaco Rivisitato: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.5f35be6d5e5d.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 10 di Monaco Rivisitato: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.5f35be6d5e5d.level14",
+            "level": 14,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 14 di Monaco Rivisitato: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.5f35be6d5e5d.level18",
+            "level": 18,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 18 di Monaco Rivisitato: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.d2a3184e1ec7",
+        "name": "Eludere",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Eludere_(Str)",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.d2a3184e1ec7.level2",
+            "level": 2,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 2 di Monaco Rivisitato: verificare e applicare Eludere. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Eludere_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.752f3b7dfebe",
+        "name": "Colpo Ki (magia), Riserva Ki",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Riserva_Ki_(Sop)",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.752f3b7dfebe.level3",
+            "level": 3,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 3 di Monaco Rivisitato: verificare e applicare Colpo Ki (magia). https://golarion.altervista.org/wiki/Monaco_Rivisitato#Riserva_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.752f3b7dfebe.level7",
+            "level": 7,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 7 di Monaco Rivisitato: verificare e applicare Colpo Ki (ferro freddo/argento). https://golarion.altervista.org/wiki/Monaco_Rivisitato#Riserva_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.752f3b7dfebe.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 10 di Monaco Rivisitato: verificare e applicare Colpo Ki (legale). https://golarion.altervista.org/wiki/Monaco_Rivisitato#Riserva_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.752f3b7dfebe.level16",
+            "level": 16,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 16 di Monaco Rivisitato: verificare e applicare Colpo Ki (adamantio). https://golarion.altervista.org/wiki/Monaco_Rivisitato#Riserva_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.93ad2d85bedf",
+        "name": "Riserva Ki",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.93ad2d85bedf.level3",
+            "level": 3,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 3 di Monaco Rivisitato: verificare e applicare Riserva Ki. https://golarion.altervista.org/wiki/Monaco_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.b225b386e9a9",
+        "name": "Potere Ki",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Poteri_Ki_(Sop)",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.b225b386e9a9.level4",
+            "level": 4,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 4 di Monaco Rivisitato: verificare e applicare Potere Ki. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Poteri_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.b225b386e9a9.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 6 di Monaco Rivisitato: verificare e applicare Potere Ki. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Poteri_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.b225b386e9a9.level8",
+            "level": 8,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 8 di Monaco Rivisitato: verificare e applicare Potere Ki. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Poteri_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.b225b386e9a9.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 10 di Monaco Rivisitato: verificare e applicare Potere Ki. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Poteri_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.b225b386e9a9.level12",
+            "level": 12,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 12 di Monaco Rivisitato: verificare e applicare Potere Ki. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Poteri_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.b225b386e9a9.level14",
+            "level": 14,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 14 di Monaco Rivisitato: verificare e applicare Potere Ki. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Poteri_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.b225b386e9a9.level16",
+            "level": 16,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 16 di Monaco Rivisitato: verificare e applicare Potere Ki. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Poteri_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.b225b386e9a9.level18",
+            "level": 18,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 18 di Monaco Rivisitato: verificare e applicare Potere Ki. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Poteri_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.b225b386e9a9.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 20 di Monaco Rivisitato: verificare e applicare Potere Ki. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Poteri_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.c384b6bc0c89",
+        "name": "Colpo di Stile",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Colpo_di_Stile_(Str)",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.c384b6bc0c89.level5",
+            "level": 5,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 5 di Monaco Rivisitato: verificare e applicare Colpo di Stile. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Colpo_di_Stile_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.c384b6bc0c89.level9",
+            "level": 9,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 9 di Monaco Rivisitato: verificare e applicare Colpo di Stile. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Colpo_di_Stile_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.c384b6bc0c89.level13",
+            "level": 13,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 13 di Monaco Rivisitato: verificare e applicare Colpo di Stile. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Colpo_di_Stile_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.c384b6bc0c89.level15",
+            "level": 15,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 15 di Monaco Rivisitato: verificare e applicare Colpo di Stile (2/round). https://golarion.altervista.org/wiki/Monaco_Rivisitato#Colpo_di_Stile_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "unchainedMonk.feature.c384b6bc0c89.level17",
+            "level": 17,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 17 di Monaco Rivisitato: verificare e applicare Colpo di Stile. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Colpo_di_Stile_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.c068a2d7e265",
+        "name": "Eludere Migliorato",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Eludere_Migliorato_(Str)",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.c068a2d7e265.level9",
+            "level": 9,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 9 di Monaco Rivisitato: verificare e applicare Eludere Migliorato. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Eludere_Migliorato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.fda4f7fc39ed",
+        "name": "Lingua del Sole e della Luna",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Lingua_del_Sole_e_della_Luna_(Str)",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.fda4f7fc39ed.level13",
+            "level": 13,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 13 di Monaco Rivisitato: verificare e applicare Lingua del Sole e della Luna. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Lingua_del_Sole_e_della_Luna_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.86f8439ebca7",
+        "name": "Corpo Senza Tempo",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Corpo_Senza_Tempo_(Str)",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.86f8439ebca7.level17",
+            "level": 17,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 17 di Monaco Rivisitato: verificare e applicare Corpo Senza Tempo. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Corpo_Senza_Tempo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.68b23bed1de9",
+        "name": "Mente Impeccabile",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Mente_Impeccabile",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.68b23bed1de9.level19",
+            "level": 19,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 19 di Monaco Rivisitato: verificare e applicare Mente Impeccabile. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Mente_Impeccabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.ae97d3548e7b",
+        "name": "Perfezione Interiore",
+        "description": "Privilegio della classe Monaco Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato#Perfezione_Interiore",
+        "progression": [
+          {
+            "id": "unchainedMonk.feature.ae97d3548e7b.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 20 di Monaco Rivisitato: verificare e applicare Perfezione Interiore. https://golarion.altervista.org/wiki/Monaco_Rivisitato#Perfezione_Interiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.eligibility",
+        "name": "Requisiti e condotta",
+        "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi legale.. https://golarion.altervista.org/wiki/Monaco_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedMonk.eligibility.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi legale.. https://golarion.altervista.org/wiki/Monaco_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.proficiencies",
+        "name": "Competenze della classe",
+        "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Monaco_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedMonk.proficiencies.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Monaco_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.supplementalRules",
+        "name": "Regole complementari",
+        "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Monaco_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedMonk.supplementalRules.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Monaco_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.armorClassBonus",
+        "name": "Bonus alla CA",
+        "description": "Aggiunge il bonus di Saggezza e il beneficio progressivo del livello alla CA e alla DMC, anche da impreparato e contro contatto. Fonte: https://golarion.altervista.org/wiki/Monaco_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedMonk.armorClassBonus.initial",
+            "level": 1,
+            "effects": [
+              {
+                "id": "armorClass",
+                "type": "modifier",
+                "resource": "armorClass.all",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "generic",
+                "expression": "(@wisMod > 0) * @wisMod + @classLevel / 4",
+                "condition": "Senza armatura né scudo, con carico nullo o leggero, non immobilizzato né indifeso"
+              },
+              {
+                "id": "maneuverDefense",
+                "type": "modifier",
+                "resource": "combatManeuver.defense.all",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "generic",
+                "expression": "(@wisMod > 0) * @wisMod + @classLevel / 4",
+                "condition": "Senza armatura né scudo, con carico nullo o leggero, non immobilizzato né indifeso"
+              },
+              {
+                "id": "conditionalReview",
+                "type": "reminder",
+                "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.4d3941d247f2",
+        "name": "Movimento Veloce",
+        "description": "Concede un bonus di potenziamento crescente alla velocità sul terreno. Fonte: https://golarion.altervista.org/wiki/Monaco_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedMonk.fastMovement.initial",
+            "level": 3,
+            "effects": [
+              {
+                "id": "speed",
+                "type": "modifier",
+                "resource": "speed.land",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "enhancement",
+                "expression": "2 * (@classLevel / 3)",
+                "condition": "Senza armatura, con carico nullo o leggero"
+              },
+              {
+                "id": "conditionalReview",
+                "type": "reminder",
+                "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.064afa37befd",
+        "name": "Purezza del Corpo",
+        "description": "Conferisce immunità alle malattie, comprese quelle magiche e soprannaturali. Fonte: https://golarion.altervista.org/wiki/Monaco_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedMonk.purityOfBody.initial",
+            "level": 5,
+            "effects": [
+              {
+                "id": "disease",
+                "type": "immunity",
+                "targetId": "disease",
+                "name": "Malattie"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unchainedMonk.feature.4ed2411827a1",
+        "name": "Mente Lucida",
+        "description": "Rafforza i tiri salvezza contro ammaliamento. Fonte: https://golarion.altervista.org/wiki/Monaco_Rivisitato",
+        "progression": [
+          {
+            "id": "unchainedMonk.stillMind.initial",
+            "level": 4,
+            "effects": [
+              {
+                "id": "enchantment",
+                "type": "modifier",
+                "resource": "savingThrow.all",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "generic",
+                "expression": "2",
+                "condition": "Contro incantesimi ed effetti di ammaliamento"
+              },
+              {
+                "id": "conditionalReview",
+                "type": "reminder",
+                "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

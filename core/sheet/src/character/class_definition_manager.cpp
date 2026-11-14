@@ -1,4 +1,12 @@
 #include "golarion/character/class_definition_manager.hpp"
+#include "golarion/character/class_definition_catalog.hpp"
+#include "golarion/character/class_definition_json.hpp"
+#include "golarion/character/archetype_definition_catalog.hpp"
+#include "golarion/character/archetype_definition_json.hpp"
+#include "golarion/character/class_option_catalog.hpp"
+#include "golarion/character/class_option_catalog_json.hpp"
+
+#include <nlohmann/json.hpp>
 
 #include <stdexcept>
 #include <utility>
@@ -7,8 +15,18 @@ namespace golarion
 {
     const ClassDefinitionManager &ClassDefinitionManager::instance()
     {
-        // Catalog content is intentionally deferred; never synthesize partial classes.
-        static const ClassDefinitionManager manager({});
+        static const ClassDefinitionManager manager = []
+        {
+            const auto catalog = nlohmann::json::parse(embedded::ClassDefinitionCatalogJson);
+            if (!catalog.is_array()) throw std::invalid_argument("class catalog must be a JSON array");
+            auto definitions = classDefinitionsWithOptionsFromJson(catalog, nlohmann::json::parse(embedded::ClassOptionCatalogJson));
+            const auto archetypeCatalog = nlohmann::json::parse(embedded::ArchetypeDefinitionCatalogJson);
+            if (!archetypeCatalog.is_array()) throw std::invalid_argument("archetype catalog must be a JSON array");
+            std::vector<ArchetypeDefinition> archetypes;
+            archetypes.reserve(archetypeCatalog.size());
+            for (const auto &entry : archetypeCatalog) archetypes.push_back(archetypeDefinitionFromJson(entry));
+            return ClassDefinitionManager(std::move(definitions), std::move(archetypes));
+        }();
         return manager;
     }
 

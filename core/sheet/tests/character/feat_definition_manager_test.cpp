@@ -1,5 +1,6 @@
 #include "golarion/character/feat_definition_json.hpp"
 #include "golarion/character/feat_definition_manager.hpp"
+#include "golarion/effect/effect_json.hpp"
 
 #include <nlohmann/json.hpp>
 
@@ -83,6 +84,13 @@ int main()
     assert(parsed.types.size() == 2);
     assert(parsed.types[0] == FeatType::Combat);
     assert(parsed.types[1] == FeatType::Teamwork);
+    auto alignmentJson = fixture();
+    alignmentJson["types"] = {"alignment"};
+    const auto alignmentFeat = featDefinitionFromJson(alignmentJson);
+    assert(alignmentFeat.types == std::vector{FeatType::Alignment});
+    assert(featDefinitionFromJson(featDefinitionToJson(alignmentFeat)).types == alignmentFeat.types);
+    const auto alignmentSlot = effectDefinitionFromJson(Json::parse(R"({"id":"alignmentSlot","type":"featSlotGrant","filter":{"kind":"type","featType":"alignment"}})"));
+    assert(effectDefinitionToJson(alignmentSlot)["filter"]["featType"] == "alignment");
     assert(parsed.requirements[0].expression == "@bab >= 1");
     assert(!parsed.requirements[1].expression.has_value());
     const auto &option = parsed.choices.at(0).options.at(0);

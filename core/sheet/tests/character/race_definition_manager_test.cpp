@@ -57,9 +57,9 @@ int main()
     assert(&human == &manager.get("human"));
     assert(human.id == "human");
     assert(human.name == "Umano");
-    assert(human.qualities.size() == 5);
+    assert(human.qualities.size() == 6);
     assert(human.standardFeatures.size() == 2);
-    assert(human.alternateFeatures.size() == 1);
+    assert(human.alternateFeatures.size() == 21);
 
     assert(human.qualities[0].id == "human.type");
     assert(human.qualities[0].effects.size() == 2);
@@ -80,6 +80,10 @@ int main()
     assert(strengthBonus.resource == "str");
     assert(strengthBonus.bonusType == BonusType::Racial);
     assert(strengthBonus.expression == "2");
+    assert(std::get<LanguageGrantEffectDefinition>(human.qualities[4].effects[0]).languageId == "common");
+    const auto &skilled = std::get<ContributionEffectDefinition>(human.standardFeatures[0].effects[0]);
+    assert(skilled.resource == "skill.ranks.max" && skilled.expression == "@level");
+    assert(std::holds_alternative<AnyFeat>(std::get<FeatSlotGrantEffectDefinition>(human.standardFeatures[1].effects[0]).filter));
 
     const RacialElementDefinition &dualTalent = human.alternateFeatures[0];
     assert(dualTalent.id == "human.dualTalent");

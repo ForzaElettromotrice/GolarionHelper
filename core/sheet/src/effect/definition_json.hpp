@@ -665,6 +665,7 @@ namespace golarion::definition_json
             case FeatType::Monster: return "monster";
             case FeatType::Stare: return "stare";
             case FeatType::HeroPoint: return "heroPoint";
+            case FeatType::Alignment: return "alignment";
         }
         throw std::invalid_argument("unknown FeatType value");
     }

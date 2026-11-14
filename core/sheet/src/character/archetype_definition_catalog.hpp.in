@@ -1,0 +1,11 @@
+#pragma once
+
+#include <string_view>
+
+namespace golarion::embedded
+{
+    inline constexpr char ArchetypeDefinitionCatalogText[] = R"golarion_json(
+@ARCHETYPE_DEFINITION_CATALOG_JSON@
+)golarion_json";
+    inline constexpr std::string_view ArchetypeDefinitionCatalogJson{ArchetypeDefinitionCatalogText, sizeof(ArchetypeDefinitionCatalogText) - 1};
+}

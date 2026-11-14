@@ -1,0 +1,2919 @@
+{
+  "checkedOn": "2026-11-13",
+  "group": "hybrid",
+  "classes": [
+    {
+      "classType": "arcanist",
+      "url": "https://golarion.altervista.org/wiki/Arcanista",
+      "status": "reviewed",
+      "note": "Reviewed permanent, recurring and daily choices; automatic abilities are not independent selections."
+    },
+    {
+      "classType": "brawler",
+      "url": "https://golarion.altervista.org/wiki/Attaccabrighe",
+      "status": "reviewed",
+      "note": "Reviewed permanent, recurring and daily choices; automatic abilities are not independent selections."
+    },
+    {
+      "classType": "hunter",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore",
+      "status": "reviewed",
+      "note": "Reviewed permanent, recurring and daily choices; automatic abilities are not independent selections."
+    },
+    {
+      "classType": "swashbuckler",
+      "url": "https://golarion.altervista.org/wiki/Intrepido",
+      "status": "reviewed",
+      "note": "Reviewed permanent, recurring and daily choices; automatic abilities are not independent selections."
+    },
+    {
+      "classType": "investigator",
+      "url": "https://golarion.altervista.org/wiki/Investigatore",
+      "status": "reviewed",
+      "note": "Reviewed permanent, recurring and daily choices; automatic abilities are not independent selections."
+    },
+    {
+      "classType": "bloodrager",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe",
+      "status": "reviewed",
+      "note": "Reviewed permanent, recurring and daily choices; automatic abilities are not independent selections."
+    },
+    {
+      "classType": "slayer",
+      "url": "https://golarion.altervista.org/wiki/Predatore",
+      "status": "reviewed",
+      "note": "Reviewed permanent, recurring and daily choices; automatic abilities are not independent selections."
+    },
+    {
+      "classType": "warpriest",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero",
+      "status": "reviewed",
+      "note": "Reviewed permanent, recurring and daily choices; automatic abilities are not independent selections."
+    },
+    {
+      "classType": "skald",
+      "url": "https://golarion.altervista.org/wiki/Scaldo",
+      "status": "reviewed",
+      "note": "Reviewed permanent, recurring and daily choices; automatic abilities are not independent selections."
+    },
+    {
+      "classType": "shaman",
+      "url": "https://golarion.altervista.org/wiki/Sciamano",
+      "status": "reviewed",
+      "note": "Reviewed permanent, recurring and daily choices; automatic abilities are not independent selections."
+    }
+  ],
+  "families": [
+    {
+      "classType": "arcanist",
+      "id": "arcanist.exploits",
+      "name": "Exploit dell’arcanista",
+      "count": 24,
+      "note": "Non selezionare la stessa opzione più volte salvo eccezioni esplicite della fonte."
+    },
+    {
+      "classType": "arcanist",
+      "id": "arcanist.greaterExploits",
+      "name": "Exploit dell’arcanista e superiori",
+      "count": 40,
+      "note": "Non selezionare la stessa opzione più volte salvo eccezioni esplicite della fonte."
+    },
+    {
+      "classType": "brawler",
+      "id": "brawler.maneuverTraining",
+      "name": "Addestramento alle manovre",
+      "count": 10,
+      "note": "Scegliere una manovra nuova a ogni acquisizione; i bonus delle manovre precedenti aumentano, da applicare manualmente."
+    },
+    {
+      "classType": "hunter",
+      "id": "hunter.animalFocus",
+      "name": "Animale focalizzato",
+      "count": 12,
+      "note": "Scelta temporanea modificabile durante l’uso; gestire manualmente durata, destinatario e aspetti simultanei. Non blocca il livello."
+    },
+    {
+      "classType": "investigator",
+      "id": "investigator.talents",
+      "name": "Doti da investigatore",
+      "count": 31,
+      "note": "Non selezionare la stessa opzione più volte salvo eccezioni esplicite della fonte."
+    },
+    {
+      "classType": "bloodrager",
+      "id": "bloodrager.bloodlines",
+      "name": "Stirpi dell’iracondo",
+      "count": 10,
+      "note": "La stirpe scelta determina progressione, magie e talenti; la verifica delle scelte interne e la concessione dei benefici sono manuali."
+    },
+    {
+      "classType": "bloodrager",
+      "id": "bloodrager.dragonTypes",
+      "name": "Tipo di drago",
+      "count": 10,
+      "note": "Scelta permanente al 1° livello; energia, soffio o movimento associati e benefici restano manuali."
+    },
+    {
+      "classType": "bloodrager",
+      "id": "bloodrager.elements",
+      "name": "Elemento",
+      "count": 4,
+      "note": "Scelta permanente al 1° livello; energia, soffio o movimento associati e benefici restano manuali."
+    },
+    {
+      "classType": "slayer",
+      "id": "slayer.talents",
+      "name": "Doti da predatore",
+      "count": 7,
+      "note": "Non selezionare la stessa opzione più volte salvo eccezioni esplicite della fonte."
+    },
+    {
+      "classType": "slayer",
+      "id": "slayer.advancedTalents",
+      "name": "Doti da predatore e avanzate",
+      "count": 11,
+      "note": "Non selezionare la stessa opzione più volte salvo eccezioni esplicite della fonte."
+    },
+    {
+      "classType": "warpriest",
+      "id": "warpriest.blessings",
+      "name": "Benedizioni",
+      "count": 33,
+      "note": "Scegliere due benedizioni della propria divinità, rispettando allineamento e restrizioni. Poteri minori/maggiori e riserva di usi sono manuali."
+    },
+    {
+      "classType": "skald",
+      "id": "skald.versatilePerformances",
+      "name": "Esecuzione versatile",
+      "count": 5,
+      "note": "Solo specializzazioni Intrattenere associate alla classe. Sostituzioni di abilità e divieto di ripetizione sono manuali."
+    },
+    {
+      "classType": "skald",
+      "id": "barbarian.ragePowers",
+      "name": "Poteri d’ira condivisi",
+      "note": "Shared Golarion rage-power index; exclude powers requiring standard actions or rage rounds manually. Use skald level for prerequisites."
+    },
+    {
+      "classType": "shaman",
+      "id": "shaman.spirits",
+      "name": "Spiriti",
+      "count": 11,
+      "note": "La scelta principale è permanente; lo spirito errante viene scelto giornalmente ed è diverso dal principale. Benefici e progressione della creatura sono manuali."
+    },
+    {
+      "classType": "shaman",
+      "id": "shaman.hexes",
+      "name": "Fatture dello sciamano",
+      "count": 68,
+      "note": "Le fatture etichettate con uno spirito richiedono quello spirito. Verificare manualmente accesso, fatture già scelte e prerequisiti."
+    },
+    {
+      "classType": "shaman",
+      "id": "shaman.wanderingHexes",
+      "name": "Fatture erranti degli spiriti",
+      "count": 55,
+      "note": "Scegliere giornalmente una fattura dello spirito principale o errante; al 14° si sceglie una seconda fattura. Verificare manualmente l’appartenenza allo spirito e le incompatibilità."
+    }
+  ],
+  "entries": [
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.466e8cce5874",
+      "name": "Arco di Fiamme (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.003d48689940",
+      "name": "Arma Arcana (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.84733a2bd46b",
+      "name": "Armeggiare con gli Incantesimi (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.083bdc1baa22",
+      "name": "Artigianato Magico",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.8270d68d38d7",
+      "name": "Barriera Arcana (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.07b19158a69d",
+      "name": "Colpo di Forza (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.934bf06a5c9f",
+      "name": "Comprensione della Scuola",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.a062f48b3c36",
+      "name": "Conoscenza Metamagica",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.ca979d983490",
+      "name": "Consumare Oggetti Magici (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.1f8be5a4e61b",
+      "name": "Consumazione Veloce (Str)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.5503a195708e",
+      "name": "Controincantesimo (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.84ec4d022354",
+      "name": "Dardo Glaciale (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.dd7561c2be34",
+      "name": "Famiglio (Str)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.30c3221fc8d8",
+      "name": "Getto Acido (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.6ff060aebe3c",
+      "name": "Interruzione degli Incantesimi (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.fba5d9a5c186",
+      "name": "Lancio di Fulmini (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.02f55f7b879b",
+      "name": "Magia Possente (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.2e08e87c9582",
+      "name": "Metamix (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.897049d6be06",
+      "name": "Resistenza agli Incantesimi (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.f90f7428b994",
+      "name": "Scorrimento Dimensionale (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.ece7fff185e9",
+      "name": "Scudo di Energia (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.9763d6a488a4",
+      "name": "Studiare Rapidamente (Str)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.9625a6abf3b0",
+      "name": "Sviluppo di Stirpe",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.exploits",
+      "optionId": "option.a937bcadbab4",
+      "name": "Vedere Magia (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.b2127c299182",
+      "name": "Arco di Fiamme (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.9d06630324f5",
+      "name": "Arma Arcana (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.3edb54f76861",
+      "name": "Armeggiare con gli Incantesimi (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.a50d59c16c7e",
+      "name": "Artigianato Magico",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.7a7cdaebfa96",
+      "name": "Barriera Arcana (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.15f68271a311",
+      "name": "Colpo di Forza (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.bb3d9646681a",
+      "name": "Comprensione della Scuola",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.5b2fa564de37",
+      "name": "Conoscenza Metamagica",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.6c9ea7c2c894",
+      "name": "Consumare Oggetti Magici (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.42151e256330",
+      "name": "Consumazione Veloce (Str)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.8db7c9df672e",
+      "name": "Controincantesimo (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.b7389cd0afb1",
+      "name": "Dardo Glaciale (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.868ac9cd4b1a",
+      "name": "Famiglio (Str)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.c73fb3562513",
+      "name": "Getto Acido (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.f260e4b92c05",
+      "name": "Interruzione degli Incantesimi (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.b62365d2cb45",
+      "name": "Lancio di Fulmini (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.e8b94a8667f9",
+      "name": "Magia Possente (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.89a0cd22e401",
+      "name": "Metamix (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.56bad38f0de9",
+      "name": "Resistenza agli Incantesimi (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.342d7fe51d21",
+      "name": "Scorrimento Dimensionale (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.4d8255109f57",
+      "name": "Scudo di Energia (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.d2fa1008df1f",
+      "name": "Studiare Rapidamente (Str)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.bc193f527094",
+      "name": "Sviluppo di Stirpe",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.6f313a538b45",
+      "name": "Vedere Magia (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_dell.27Arcanista",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.49d0d220b3a6",
+      "name": "Acido Durevole (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.cfb03e025f3d",
+      "name": "Alterare Potenziamenti (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.a7402a985264",
+      "name": "Assimilare Incantesimi (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.da42db954a46",
+      "name": "Assorbimento di Energia (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.890308a6cc7f",
+      "name": "Conoscenza Metamagica Superiore",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.a23d43823a9f",
+      "name": "Conoscenza Sofferta (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.140bbfe403b6",
+      "name": "Controincantesimo Risucchiante (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.8d58b25ecde5",
+      "name": "Controincantesimo Superiore (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.9d35cde200d6",
+      "name": "Elettricità Danzante (sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.864e5c7420a8",
+      "name": "Fiamme Brucianti (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.fe406688016a",
+      "name": "Interruzione degli Incantesimi Maggiore (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.1c802a4aa46f",
+      "name": "Ladro di Incantesimi (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.13a10d99422f",
+      "name": "Resistenza agli Incantesimi Superiore (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.e81806294cb2",
+      "name": "Resistenza Risucchiante (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.7da41ac72225",
+      "name": "Ridirigere Incantesimo (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "arcanist",
+      "familyId": "arcanist.greaterExploits",
+      "optionId": "option.a2b924726fce",
+      "name": "Tomba Glaciale (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "status": "includedManual"
+    },
+    {
+      "classType": "brawler",
+      "familyId": "brawler.maneuverTraining",
+      "optionId": "option.f87db7cdaf54",
+      "name": "Disarmare",
+      "url": "https://golarion.altervista.org/wiki/Manovre_in_Combattimento#Disarmare",
+      "status": "includedManual"
+    },
+    {
+      "classType": "brawler",
+      "familyId": "brawler.maneuverTraining",
+      "optionId": "option.630ebf6129ee",
+      "name": "Lottare",
+      "url": "https://golarion.altervista.org/wiki/Manovre_in_Combattimento#Lottare",
+      "status": "includedManual"
+    },
+    {
+      "classType": "brawler",
+      "familyId": "brawler.maneuverTraining",
+      "optionId": "option.b87723f7dd46",
+      "name": "Oltrepassare",
+      "url": "https://golarion.altervista.org/wiki/Manovre_in_Combattimento#Oltrepassare",
+      "status": "includedManual"
+    },
+    {
+      "classType": "brawler",
+      "familyId": "brawler.maneuverTraining",
+      "optionId": "option.5c4afc545a46",
+      "name": "Riposizionare",
+      "url": "https://golarion.altervista.org/wiki/Manovre_in_Combattimento#Riposizionare",
+      "status": "includedManual"
+    },
+    {
+      "classType": "brawler",
+      "familyId": "brawler.maneuverTraining",
+      "optionId": "option.4be47320d6b9",
+      "name": "Rubare",
+      "url": "https://golarion.altervista.org/wiki/Manovre_in_Combattimento#Rubare",
+      "status": "includedManual"
+    },
+    {
+      "classType": "brawler",
+      "familyId": "brawler.maneuverTraining",
+      "optionId": "option.9740521b1126",
+      "name": "Sbilanciare",
+      "url": "https://golarion.altervista.org/wiki/Manovre_in_Combattimento#Sbilanciare",
+      "status": "includedManual"
+    },
+    {
+      "classType": "brawler",
+      "familyId": "brawler.maneuverTraining",
+      "optionId": "option.17757c80c276",
+      "name": "Spezzare",
+      "url": "https://golarion.altervista.org/wiki/Manovre_in_Combattimento#Spezzare",
+      "status": "includedManual"
+    },
+    {
+      "classType": "brawler",
+      "familyId": "brawler.maneuverTraining",
+      "optionId": "option.f43bb57254a6",
+      "name": "Spingere",
+      "url": "https://golarion.altervista.org/wiki/Manovre_in_Combattimento#Spingere",
+      "status": "includedManual"
+    },
+    {
+      "classType": "brawler",
+      "familyId": "brawler.maneuverTraining",
+      "optionId": "option.bafe056928b7",
+      "name": "Sporco Trucco",
+      "url": "https://golarion.altervista.org/wiki/Manovre_in_Combattimento#Sporco_Trucco",
+      "status": "includedManual"
+    },
+    {
+      "classType": "brawler",
+      "familyId": "brawler.maneuverTraining",
+      "optionId": "option.b403980812d0",
+      "name": "Trascinare",
+      "url": "https://golarion.altervista.org/wiki/Manovre_in_Combattimento#Trascinare",
+      "status": "includedManual"
+    },
+    {
+      "classType": "hunter",
+      "familyId": "hunter.animalFocus",
+      "optionId": "option.af328f0c93ba",
+      "name": "Cervo",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_.28Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "hunter",
+      "familyId": "hunter.animalFocus",
+      "optionId": "option.94f4ffc41865",
+      "name": "Falcone",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_.28Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "hunter",
+      "familyId": "hunter.animalFocus",
+      "optionId": "option.a14589b68a70",
+      "name": "Gufo",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_.28Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "hunter",
+      "familyId": "hunter.animalFocus",
+      "optionId": "option.e614ad7511ac",
+      "name": "Lupo",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_.28Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "hunter",
+      "familyId": "hunter.animalFocus",
+      "optionId": "option.3e445f90e3fb",
+      "name": "Orso",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_.28Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "hunter",
+      "familyId": "hunter.animalFocus",
+      "optionId": "option.302b6e5a41c7",
+      "name": "Pipistrello",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_.28Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "hunter",
+      "familyId": "hunter.animalFocus",
+      "optionId": "option.1e93235c24ca",
+      "name": "Rana",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_.28Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "hunter",
+      "familyId": "hunter.animalFocus",
+      "optionId": "option.1ec077207cda",
+      "name": "Scimmia",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_.28Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "hunter",
+      "familyId": "hunter.animalFocus",
+      "optionId": "option.66fe7a88212b",
+      "name": "Serpente",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_.28Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "hunter",
+      "familyId": "hunter.animalFocus",
+      "optionId": "option.fc40cea9e89d",
+      "name": "Tigre",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_.28Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "hunter",
+      "familyId": "hunter.animalFocus",
+      "optionId": "option.0f82aafef63b",
+      "name": "Topo",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_.28Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "hunter",
+      "familyId": "hunter.animalFocus",
+      "optionId": "option.145cc0bbc10e",
+      "name": "Toro",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_.28Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.4e5ace940c2e",
+      "name": "Aiuto Senza Sforzo (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.afba4f4843c2",
+      "name": "Allerta Ispirata (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.8335f4151c5c",
+      "name": "Colpo Accecante* (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.24793907cf87",
+      "name": "Colpo Assordante* (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.9ea455cbbb0d",
+      "name": "Colpo Confondente* (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.45fdc7bb1e4b",
+      "name": "Colpo Didattico",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.92bf7f61af58",
+      "name": "Colpo Riposizionante* (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.2cec8ab95357",
+      "name": "Colpo Rubante* (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.c92846e79e61",
+      "name": "Colpo Squinternante* (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.3b280bbff5d1",
+      "name": "Conoscenza degli Oggetti (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.680a137f11eb",
+      "name": "Dote dei congegni (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.7bf5492c94d5",
+      "name": "Doti da Ladro (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.c05cde735084",
+      "name": "Empatia (Str, Sop)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.d7a20775f525",
+      "name": "Fini Reconditi (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.7daed272a6f3",
+      "name": "Intelligenza Ispirata (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.d9d1184b5f5f",
+      "name": "Intimidazione Ispirata (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.2644722a43ff",
+      "name": "Intuizione della Cronaca",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.51c93dfcb3c5",
+      "name": "Ispirazione Ampliata (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.10e007e6c88d",
+      "name": "Ispirazione Combattiva (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.5cb7c0376180",
+      "name": "Ispirazione Combattiva Superiore (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.38c745bdb927",
+      "name": "Ispirazione del Sottobosco Criminale (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.d1c3dea6df8a",
+      "name": "Ispirazione Incredibile (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.1eaa068fcc00",
+      "name": "Ispirazione non Convenzionale (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.1bc164769207",
+      "name": "Ispirazione Tenace (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.885b25737d73",
+      "name": "Maestria Ispirante (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.d73ae0329bef",
+      "name": "Offensiva Debilitante* (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.c3b3f233d4e3",
+      "name": "Offensiva Fiaccante* (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.1766b32c7893",
+      "name": "Ricordo Eidetico (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.0f4d20d8f55c",
+      "name": "Scoperte dell'Alchimista (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.133015101789",
+      "name": "Seguire Tracce Percettivo (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "investigator",
+      "familyId": "investigator.talents",
+      "optionId": "option.305c73b55284",
+      "name": "Studiare Rapidamente (Str)",
+      "url": "https://golarion.altervista.org/wiki/Investigatore#Doti_da_Investigatore_.28Str_o_Sop.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.bloodlines",
+      "optionId": "option.9a431639fa8d",
+      "name": "Aberrante",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Aberrante",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.bloodlines",
+      "optionId": "option.2ea12aea5040",
+      "name": "Abissale",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Abissale",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.bloodlines",
+      "optionId": "option.ed77d8c8a3b5",
+      "name": "Arcana",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Arcana",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.bloodlines",
+      "optionId": "option.3c4622d0549f",
+      "name": "Celestiale",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Celestiale",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.bloodlines",
+      "optionId": "option.433b92249cab",
+      "name": "Draconica",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Draconica",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.bloodlines",
+      "optionId": "option.3d859fc5fe58",
+      "name": "Elementale",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Elementale",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.bloodlines",
+      "optionId": "option.4b8fd07b9029",
+      "name": "Eletta",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Eletta",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.bloodlines",
+      "optionId": "option.5a7450385bc9",
+      "name": "Fatata",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Fatata",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.bloodlines",
+      "optionId": "option.f4b8d6adce2d",
+      "name": "Infernale",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Infernale",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.bloodlines",
+      "optionId": "option.5ab89843dce0",
+      "name": "Non Morta",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Non_Morta",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.dragonTypes",
+      "optionId": "option.8162d64567fd",
+      "name": "Argento",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Draconica",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.dragonTypes",
+      "optionId": "option.35125b564acc",
+      "name": "Bianco",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Draconica",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.dragonTypes",
+      "optionId": "option.59bd558105d0",
+      "name": "Blu",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Draconica",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.dragonTypes",
+      "optionId": "option.907d9492cd99",
+      "name": "Bronzo",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Draconica",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.dragonTypes",
+      "optionId": "option.4e17282430b4",
+      "name": "Nero",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Draconica",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.dragonTypes",
+      "optionId": "option.4c89802fd953",
+      "name": "Oro",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Draconica",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.dragonTypes",
+      "optionId": "option.2c78746181a6",
+      "name": "Ottone",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Draconica",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.dragonTypes",
+      "optionId": "option.c17016a4ad43",
+      "name": "Rame",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Draconica",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.dragonTypes",
+      "optionId": "option.aa6c9a246810",
+      "name": "Rosso",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Draconica",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.dragonTypes",
+      "optionId": "option.969b6504114d",
+      "name": "Verde",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Draconica",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.elements",
+      "optionId": "option.20fd75dbb89c",
+      "name": "Acqua",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Elementale",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.elements",
+      "optionId": "option.ab2b3f5351f1",
+      "name": "Aria",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Elementale",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.elements",
+      "optionId": "option.6fb0a2df5e65",
+      "name": "Fuoco",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Elementale",
+      "status": "includedManual"
+    },
+    {
+      "classType": "bloodrager",
+      "familyId": "bloodrager.elements",
+      "optionId": "option.8fec29c01797",
+      "name": "Terra",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Stirpi#Elementale",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.talents",
+      "optionId": "option.aaabee310420",
+      "name": "Colpo Rallentante (Str)*",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.talents",
+      "optionId": "option.42aeb5af9ac3",
+      "name": "Dote da Ladro",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.talents",
+      "optionId": "option.c2b43d8def7c",
+      "name": "Gittata Letale (Str)",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.talents",
+      "optionId": "option.ec21220746f2",
+      "name": "Scoprire Trappole (Str)",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.talents",
+      "optionId": "option.d0e39e1855a9",
+      "name": "Stile di Combattimento del Ranger (Str)",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.talents",
+      "optionId": "option.079483e3db42",
+      "name": "Uso dei Veleni (Str)",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.talents",
+      "optionId": "option.ef67ff6f5dee",
+      "name": "Vanificare Scrutinio",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.advancedTalents",
+      "optionId": "option.a61adca49350",
+      "name": "Colpo Rallentante (Str)*",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.advancedTalents",
+      "optionId": "option.eddaac32a945",
+      "name": "Dote da Ladro",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.advancedTalents",
+      "optionId": "option.99261ce16fb3",
+      "name": "Gittata Letale (Str)",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.advancedTalents",
+      "optionId": "option.0fbb730ba047",
+      "name": "Scoprire Trappole (Str)",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.advancedTalents",
+      "optionId": "option.78da9a16127c",
+      "name": "Stile di Combattimento del Ranger (Str)",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.advancedTalents",
+      "optionId": "option.b0e29d75046d",
+      "name": "Uso dei Veleni (Str)",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.advancedTalents",
+      "optionId": "option.72616c10a7c1",
+      "name": "Vanificare Scrutinio",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.advancedTalents",
+      "optionId": "option.d1a97eb8ed21",
+      "name": "Andatura nel Bosco (Str)",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_Avanzate_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.advancedTalents",
+      "optionId": "option.d31671ba6c15",
+      "name": "Assassinare (Str)*",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_Avanzate_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.advancedTalents",
+      "optionId": "option.05da16e94190",
+      "name": "Doti Avanzate da Ladro e Trucchi Magistrali da Ninja",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_Avanzate_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "slayer",
+      "familyId": "slayer.advancedTalents",
+      "optionId": "option.717142e733bc",
+      "name": "Mimetismo del Predatore (Str)",
+      "url": "https://golarion.altervista.org/wiki/Predatore#Doti_Avanzate_da_Predatore",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.db0d9f269d62",
+      "name": "Benedizione dell'Acqua",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_dell.27Acqua",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.f167313f55d3",
+      "name": "Benedizione Animale",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_Animale",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.e2dedcc18654",
+      "name": "Benedizione dell'Aria",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_dell.27Aria",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.14029799b0db",
+      "name": "Benedizione dell'Artificio",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_dell.27Artificio",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.c8c646acd2d3",
+      "name": "Benedizione del Bene",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_del_Bene",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.9e57e4b533c3",
+      "name": "Benedizione del Caos",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_del_Caos",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.9768504a969a",
+      "name": "Benedizione dello Charme",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_dello_Charme",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.cc9f5ffc8af2",
+      "name": "Benedizione della Comunità",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Comunit.C3.A0",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.c1013a7c0916",
+      "name": "Benedizione della Conoscenza",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Conoscenza",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.ad3572292636",
+      "name": "Benedizione della Distruzione",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Distruzione",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.7dd54857ae4b",
+      "name": "Benedizione della Follia",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Follia",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.f5cc0b7f0af0",
+      "name": "Benedizione della Fortuna",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Fortuna",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.05757c1cb7d3",
+      "name": "Benedizione della Forza",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Forza",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.7852fac8cfa1",
+      "name": "Benedizione del Fuoco",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_del_Fuoco",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.4aa220df6b26",
+      "name": "Benedizione della Gloria",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Gloria",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.7287a51e1983",
+      "name": "Benedizione della Guarigione",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Guarigione",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.928579517387",
+      "name": "Benedizione della Guerra",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Guerra",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.009107b6e96e",
+      "name": "Benedizione dell'Inganno",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_dell.27Inganno",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.b78d51079dfd",
+      "name": "Benedizione della Legge",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Legge",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.2b360c9fb12d",
+      "name": "Benedizione della Libertà",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Libert.C3.A0",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.6b47628b002e",
+      "name": "Benedizione della Magia",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Magia",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.377f2a062ac5",
+      "name": "Benedizione del Male",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_del_Male",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.28479149e351",
+      "name": "Benedizione della Morte",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Morte",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.563ffc556036",
+      "name": "Benedizione della Nobiltà",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Nobilt.C3.A0",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.d01036d1abb4",
+      "name": "Benedizione dell'Oscurità",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_dell.27Oscurit.C3.A0",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.e795deffd93b",
+      "name": "Benedizione della Protezione",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Protezione",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.c49f853a04dc",
+      "name": "Benedizione del Riposo",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_del_Riposo",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.0c697af414a2",
+      "name": "Benedizione delle Rune",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_delle_Rune",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.97b738addbec",
+      "name": "Benedizione del Sole",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_del_Sole",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.151dd2d380c1",
+      "name": "Benedizione del Tempo Atmosferico",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_del_Tempo_Atmosferico",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.b67668780833",
+      "name": "Benedizione della Terra",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_della_Terra",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.dce8fb526f99",
+      "name": "Benedizione Vegetale",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_Vegetale",
+      "status": "includedManual"
+    },
+    {
+      "classType": "warpriest",
+      "familyId": "warpriest.blessings",
+      "optionId": "option.763dc7093b70",
+      "name": "Benedizione del Viaggio",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero/Benedizioni#Benedizione_del_Viaggio",
+      "status": "includedManual"
+    },
+    {
+      "classType": "skald",
+      "familyId": "skald.versatilePerformances",
+      "optionId": "option.3b1c93d0c63f",
+      "name": "Canto",
+      "url": "https://golarion.altervista.org/wiki/Scaldo#Esecuzione_Versatile_.28Str.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "skald",
+      "familyId": "skald.versatilePerformances",
+      "optionId": "option.b9f72e643363",
+      "name": "Oratoria",
+      "url": "https://golarion.altervista.org/wiki/Scaldo#Esecuzione_Versatile_.28Str.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "skald",
+      "familyId": "skald.versatilePerformances",
+      "optionId": "option.4f72892d67c4",
+      "name": "Strumenti a corda",
+      "url": "https://golarion.altervista.org/wiki/Scaldo#Esecuzione_Versatile_.28Str.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "skald",
+      "familyId": "skald.versatilePerformances",
+      "optionId": "option.ea83306d090f",
+      "name": "Strumenti a fiato",
+      "url": "https://golarion.altervista.org/wiki/Scaldo#Esecuzione_Versatile_.28Str.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "skald",
+      "familyId": "skald.versatilePerformances",
+      "optionId": "option.744c59023982",
+      "name": "Strumenti a percussione",
+      "url": "https://golarion.altervista.org/wiki/Scaldo#Esecuzione_Versatile_.28Str.29",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.spirits",
+      "optionId": "option.6b92b004e42c",
+      "name": "Battaglia",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Battaglia",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.spirits",
+      "optionId": "option.7cdd995a05ac",
+      "name": "Cieli",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Cieli",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.spirits",
+      "optionId": "option.c944c31ddbb8",
+      "name": "Fiamma",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fiamma",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.spirits",
+      "optionId": "option.243b8faf47ce",
+      "name": "Mammut",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Mammut",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.spirits",
+      "optionId": "option.d0d39c320886",
+      "name": "Natura",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Natura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.spirits",
+      "optionId": "option.99cf7beeb871",
+      "name": "Onde",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Onde",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.spirits",
+      "optionId": "option.dd71b7a0340a",
+      "name": "Ossa",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Ossa",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.spirits",
+      "optionId": "option.35dac83c4bf9",
+      "name": "Pietra",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Pietra",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.spirits",
+      "optionId": "option.a6cfbf051a46",
+      "name": "Sapere",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Sapere",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.spirits",
+      "optionId": "option.de4ca515f2b6",
+      "name": "Vento",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Vento",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.spirits",
+      "optionId": "option.d3b173135592",
+      "name": "Vita",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Vita",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.f7e6c06889dc",
+      "name": "Cambiaforma (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.d147ef649cb4",
+      "name": "Cantilena (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.b20bec30eb56",
+      "name": "Charme (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.5c90e8f3a33a",
+      "name": "Fattura da Fattucchiere",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.4cb49bee3ba1",
+      "name": "Feticcio (Str)",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.b15e48fda78d",
+      "name": "Fortuna (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.27928bc8408e",
+      "name": "Furia (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.8bc005fc9b25",
+      "name": "Guarigione (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.c5f3417d41f7",
+      "name": "Interdizione (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.bc8ba7ed4c36",
+      "name": "Linguaggi (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.b5e3cb3847b9",
+      "name": "Malocchio (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.c0c7a969f260",
+      "name": "Segreto (Str)",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.faa7e3f3225d",
+      "name": "Sfortuna (Sop)",
+      "url": "https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.6c4674ba5135",
+      "name": "Fattura Ostacolante (Sop): — Battaglia",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.ec3fda1bd117",
+      "name": "Interdizione da Battaglia (Sop): — Battaglia",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.b49f6e01851f",
+      "name": "Maestro della Battaglia (Str): — Battaglia",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.702300cc61e8",
+      "name": "Maledizione della Sofferenza (Sop): — Battaglia",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.ca66710fcc3c",
+      "name": "Occhi da Battaglia (Sop): — Battaglia",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.bbc4aa6097e4",
+      "name": "Attrazione dei Cieli (Sop): — Cieli",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_2",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.082266b2912c",
+      "name": "Balzo dei Cieli (Sop): — Cieli",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_2",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.86fb36ef47e7",
+      "name": "Stellardente (Sop): — Cieli",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_2",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.849f2c4654d8",
+      "name": "Stella Guida (Sop): — Cieli",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_2",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.f2c1be0b9b2a",
+      "name": "Vuoto Avvolgente (Sop): — Cieli",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_2",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.c64d407220f8",
+      "name": "Danza della Cenere (Str): — Fiamma",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_3",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.0952e0dc6f9d",
+      "name": "Interdizione di Fiamme (Sop): — Fiamma",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_3",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.37841b40fe89",
+      "name": "Maledizione della Fiamma (Sop): — Fiamma",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_3",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.e58393f5e356",
+      "name": "Nimbo di Fuoco (Sop): — Fiamma",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_3",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.8f904acdb95c",
+      "name": "Sguardo delle Fiamme (Sop): — Fiamma",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_3",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.438487ea89f7",
+      "name": "Fardello della Bestia (Sop) — Mammut",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_4",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.2b2787ee2768",
+      "name": "Pelle di Mammut (Sop) — Mammut",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_4",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.8ff0801072f6",
+      "name": "Pestone dello Spirito (Sop) — Mammut",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_4",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.92222c6440c9",
+      "name": "Oratore Primitivo (Str) — Mammut",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_4",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.62a5b752ec7f",
+      "name": "Piede Tonante (Str) — Mammut",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_4",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.597ee2e19065",
+      "name": "Affiatamento con gli Animali (Sop): — Natura",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_5",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.389a8f7da671",
+      "name": "Camminare nella Tempesta (Sop): — Natura",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_5",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.576a30366b0b",
+      "name": "Maledizione dell'Erosione (Sop): — Natura",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_5",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.8e34d518ad16",
+      "name": "Maledizione dell'Intralcio (Sop): — Natura",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_5",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.87928e92012c",
+      "name": "Parlare con gli Animali (Str): — Natura",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_5",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.d23087890597",
+      "name": "Gelo Fiaccante (Sop): — Onde",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_6",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.7436c586c213",
+      "name": "Magia Fluida (Sop): — Onde",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_6",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.6ca417f6b9cf",
+      "name": "Onde Percussive (Sop): — Onde",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_6",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.1f8cdda3da2a",
+      "name": "Sudario di Foschia (Sop): — Onde",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_6",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.a11c29abc94e",
+      "name": "Vista Acquatica (Sop): — Onde",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_6",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.02ee7f38d720",
+      "name": "Blocco delle Ossa (Sop): — Ossa",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_7",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.366022b87912",
+      "name": "Essere Letale (Sop): — Ossa",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_7",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.3f345f56a966",
+      "name": "Interdizione d'Ossa (Sop): — Ossa",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_7",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.960303ebdef1",
+      "name": "Occhiataccia (Sop): — Ossa",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_7",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.1309f5e41c49",
+      "name": "Tombavisione (Sop): — Ossa",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_7",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.4daf92366ab3",
+      "name": "Interdizione di Pietra (Sop): — Pietra",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_8",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.973563df3a7d",
+      "name": "Maledizione del Metallo (Sop): — Pietra",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_8",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.6d399c4416a9",
+      "name": "Magnetite (Sop): — Pietra",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_8",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.c4123642f032",
+      "name": "Stabilità della Pietra (Str): — Pietra",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_8",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.380642bbd62a",
+      "name": "Vista Cristallina (Str): — Pietra",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_8",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.f4296191f93f",
+      "name": "Benificio della Saggezza (Str): — Sapere",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_9",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.a1b52ec0ebf2",
+      "name": "Condividere Conoscenza (Sop): — Sapere",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_9",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.8ff1abec5658",
+      "name": "Illuminazione Arcana (Sop): — Sapere",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_9",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.37752b163937",
+      "name": "Maledizione della Confusione (Str): — Sapere",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_9",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.efb4a6314a3b",
+      "name": "Risucchio Celebrale (Sop): — Sapere",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_9",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.8a3be1acd23b",
+      "name": "Aura Scintillante (Sop): — Vento",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_10",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.2f7275c5fe08",
+      "name": "Barriera d'Aria (Sop): — Vento",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_10",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.444505d7ec26",
+      "name": "Incantesimi Vorticanti (Sop): — Vento",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_10",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.e64eb7b6cd07",
+      "name": "Interdizione di Vento (Sop): — Vento",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_10",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.6b76f9ba401d",
+      "name": "Visione Ventosa (Sop): — Vento",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_10",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.9ac4cc03f119",
+      "name": "Cure Potenziate (Sop): — Vita",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_11",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.ba29a415e56b",
+      "name": "Legame Vitale (Sop): — Vita",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_11",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.fe46ab99db8f",
+      "name": "Maledizione della Sofferenza (Sop): — Vita",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_11",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.0459b701c505",
+      "name": "Negare Soccorso (Sop): — Vita",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_11",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.hexes",
+      "optionId": "option.bff1a48e68a3",
+      "name": "Visione della Vita (Str): — Vita",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_11",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.dac5d81614a7",
+      "name": "Fattura Ostacolante (Sop): — Battaglia",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.469c248b7b96",
+      "name": "Interdizione da Battaglia (Sop): — Battaglia",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.00fffcd5e880",
+      "name": "Maestro della Battaglia (Str): — Battaglia",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.f16be63d210c",
+      "name": "Maledizione della Sofferenza (Sop): — Battaglia",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.6aac6f2f99a4",
+      "name": "Occhi da Battaglia (Sop): — Battaglia",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.895548f87628",
+      "name": "Attrazione dei Cieli (Sop): — Cieli",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_2",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.6f04648652c8",
+      "name": "Balzo dei Cieli (Sop): — Cieli",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_2",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.f011c2d221d7",
+      "name": "Stellardente (Sop): — Cieli",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_2",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.e5171261fc95",
+      "name": "Stella Guida (Sop): — Cieli",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_2",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.c5e697ab124b",
+      "name": "Vuoto Avvolgente (Sop): — Cieli",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_2",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.c097af691557",
+      "name": "Danza della Cenere (Str): — Fiamma",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_3",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.3ebf4b7dc3ae",
+      "name": "Interdizione di Fiamme (Sop): — Fiamma",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_3",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.30df403ab1f6",
+      "name": "Maledizione della Fiamma (Sop): — Fiamma",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_3",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.a846f4337c23",
+      "name": "Nimbo di Fuoco (Sop): — Fiamma",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_3",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.de5d5fddb4ad",
+      "name": "Sguardo delle Fiamme (Sop): — Fiamma",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_3",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.fec7bbb406ba",
+      "name": "Fardello della Bestia (Sop) — Mammut",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_4",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.53e691e914a2",
+      "name": "Pelle di Mammut (Sop) — Mammut",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_4",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.ac90459440e2",
+      "name": "Pestone dello Spirito (Sop) — Mammut",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_4",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.aaad266f2eb5",
+      "name": "Oratore Primitivo (Str) — Mammut",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_4",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.500eba66c725",
+      "name": "Piede Tonante (Str) — Mammut",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_4",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.4066c6d7d47d",
+      "name": "Affiatamento con gli Animali (Sop): — Natura",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_5",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.41d5746849a2",
+      "name": "Camminare nella Tempesta (Sop): — Natura",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_5",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.b991e98efb53",
+      "name": "Maledizione dell'Erosione (Sop): — Natura",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_5",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.05110445f676",
+      "name": "Maledizione dell'Intralcio (Sop): — Natura",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_5",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.2bea9072ea0d",
+      "name": "Parlare con gli Animali (Str): — Natura",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_5",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.daf9e7f4ac28",
+      "name": "Gelo Fiaccante (Sop): — Onde",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_6",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.f0147abfba0e",
+      "name": "Magia Fluida (Sop): — Onde",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_6",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.01567ae4a8db",
+      "name": "Onde Percussive (Sop): — Onde",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_6",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.9718a21fb52f",
+      "name": "Sudario di Foschia (Sop): — Onde",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_6",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.4a40a58e9608",
+      "name": "Vista Acquatica (Sop): — Onde",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_6",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.aaa63ce15da0",
+      "name": "Blocco delle Ossa (Sop): — Ossa",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_7",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.65409e9d6448",
+      "name": "Essere Letale (Sop): — Ossa",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_7",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.24206a9db2a3",
+      "name": "Interdizione d'Ossa (Sop): — Ossa",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_7",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.30e11f23b354",
+      "name": "Occhiataccia (Sop): — Ossa",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_7",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.442b3793a905",
+      "name": "Tombavisione (Sop): — Ossa",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_7",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.8400ee2efc25",
+      "name": "Interdizione di Pietra (Sop): — Pietra",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_8",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.6c7907ddd361",
+      "name": "Maledizione del Metallo (Sop): — Pietra",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_8",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.5d77c7c0d8a7",
+      "name": "Magnetite (Sop): — Pietra",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_8",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.9ee078b037e4",
+      "name": "Stabilità della Pietra (Str): — Pietra",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_8",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.8219aee5f077",
+      "name": "Vista Cristallina (Str): — Pietra",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_8",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.23fca3381e74",
+      "name": "Benificio della Saggezza (Str): — Sapere",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_9",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.15561dd7a387",
+      "name": "Condividere Conoscenza (Sop): — Sapere",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_9",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.62bdb167bddd",
+      "name": "Illuminazione Arcana (Sop): — Sapere",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_9",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.bd593398096c",
+      "name": "Maledizione della Confusione (Str): — Sapere",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_9",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.db3ab2567973",
+      "name": "Risucchio Celebrale (Sop): — Sapere",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_9",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.48febb0e07a3",
+      "name": "Aura Scintillante (Sop): — Vento",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_10",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.84d00d7cdb5c",
+      "name": "Barriera d'Aria (Sop): — Vento",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_10",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.54516432d6ab",
+      "name": "Incantesimi Vorticanti (Sop): — Vento",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_10",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.671b4eaaf03e",
+      "name": "Interdizione di Vento (Sop): — Vento",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_10",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.4e4cd397e37d",
+      "name": "Visione Ventosa (Sop): — Vento",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_10",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.b7f7f04c886e",
+      "name": "Cure Potenziate (Sop): — Vita",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_11",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.c13307ebadc4",
+      "name": "Legame Vitale (Sop): — Vita",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_11",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.a55139b814d5",
+      "name": "Maledizione della Sofferenza (Sop): — Vita",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_11",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.8b95fdddbe1e",
+      "name": "Negare Soccorso (Sop): — Vita",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_11",
+      "status": "includedManual"
+    },
+    {
+      "classType": "shaman",
+      "familyId": "shaman.wanderingHexes",
+      "optionId": "option.9d035fc668cd",
+      "name": "Visione della Vita (Str): — Vita",
+      "url": "https://golarion.altervista.org/wiki/Sciamano/Spiriti#Fatture_11",
+      "status": "includedManual"
+    }
+  ],
+  "pending": [
+    {
+      "classType": "arcanist",
+      "family": "Opzioni interne degli exploit",
+      "url": "https://golarion.altervista.org/wiki/Arcanista",
+      "reason": "Famiglio, scuola, stirpe, talenti e resistenze richiedono selezioni secondarie dipendenti dalla scelta; applicazione manuale indicata nelle opzioni.",
+      "manualMarker": "Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "classType": "hunter",
+      "family": "Compagno animale e comandi bonus",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore",
+      "reason": "Scelte e statistiche della creatura richiedono il relativo sottosistema; non modellati come benefici sulla scheda del cacciatore.",
+      "manualMarker": "Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "classType": "investigator",
+      "family": "Scelte delegate dalle doti",
+      "url": "https://golarion.altervista.org/wiki/Investigatore",
+      "reason": "Doti da ladro e scoperte dell’alchimista sono presenti come opzioni; selezione interna, limiti di elenco e benefici restano manuali.",
+      "manualMarker": "Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "classType": "bloodrager",
+      "family": "Talenti, incantesimi e scelte di potere della stirpe",
+      "url": "https://golarion.altervista.org/wiki/Iracondo_di_Stirpe",
+      "reason": "Filtri dipendenti dalla stirpe selezionata e scelte di potere sono manuali; non vengono concessi slot non filtrati. Tipo di drago ed elemento iniziali hanno invece una scelta annidata esplicita.",
+      "manualMarker": "Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "classType": "slayer",
+      "family": "Doti da ladro, trucchi e stili concessi",
+      "url": "https://golarion.altervista.org/wiki/Predatore",
+      "reason": "I contenitori delegati sono selezionabili; i sottoelenchi e le limitazioni di accesso restano manuali. Nessuna risorsa duplicata.",
+      "manualMarker": "Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "classType": "warpriest",
+      "family": "Canalizzazione e lancio spontaneo",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero",
+      "reason": "La scelta di energia dipende anche da allineamento/divinità e manca un owner di selezione dedicato; gestione manuale originale preservata.",
+      "manualMarker": "Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "classType": "skald",
+      "family": "Cadenza di Esecuzione Versatile",
+      "url": "https://golarion.altervista.org/wiki/Scaldo",
+      "reason": "Golarion è contraddittorio: la tabella concede la quarta selezione al 16° livello, la prosa dice al 2°, 7° e ogni cinque livelli (quindi 17°). È mantenuta la tabella e il suo owner originale level16, senza rinominare gli ID usati dagli archetipi.",
+      "manualMarker": "Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "classType": "shaman",
+      "family": "Magia dello spirito e scelte interne delle fatture",
+      "url": "https://golarion.altervista.org/wiki/Sciamano",
+      "reason": "Slot riservati, filtri dello spirito e scelte delegate non sono automatizzati; nessun ampliamento non filtrato della lista incantesimi.",
+      "manualMarker": "Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "delegated": [
+    {
+      "classType": "brawler",
+      "family": "Flessibilità marziale e talenti bonus",
+      "url": "https://golarion.altervista.org/wiki/Attaccabrighe",
+      "note": "Scelta di talenti, non una lista indipendente di privilegi; non si duplicano concessioni e risorse. La concessione concreta dei talenti bonus rimane manuale nella definizione originale."
+    },
+    {
+      "classType": "hunter",
+      "family": "Compagno preciso e talenti di squadra",
+      "url": "https://golarion.altervista.org/wiki/Cacciatore",
+      "note": "Sono scelte di talenti, non privilegi indipendenti; Compagno preciso resta manuale, talenti di squadra usano il sistema talenti già esistente."
+    },
+    {
+      "classType": "swashbuckler",
+      "family": "Talenti bonus",
+      "url": "https://golarion.altervista.org/wiki/Intrepido",
+      "note": "Talenti bonus richiedono il sottosistema talenti, non una seconda scelta di classe. La definizione originale li segnala manuali."
+    },
+    {
+      "classType": "swashbuckler",
+      "family": "Gesta",
+      "url": "https://golarion.altervista.org/wiki/Intrepido",
+      "note": "Le gesta sono capacità concesse automaticamente, non scelte permanenti; il momento del loro impiego è del giocatore."
+    },
+    {
+      "classType": "warpriest",
+      "family": "Arma focalizzata e talenti bonus",
+      "url": "https://golarion.altervista.org/wiki/Sacerdote_Guerriero",
+      "note": "La selezione di talenti appartiene a Feats; non introdurre una duplicazione delle selezioni. Le concessioni originali ancora manuali restano tali."
+    }
+  ]
+}

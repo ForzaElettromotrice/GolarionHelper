@@ -1,0 +1,3296 @@
+{
+  "checkedOn": "2026-11-13",
+  "sourcePolicy": "Golarion only",
+  "classes": [
+    {
+      "classType": "kineticist",
+      "url": "https://golarion.altervista.org/wiki/Cineta",
+      "families": [
+        "elements",
+        "expandedElements",
+        "simpleBlasts",
+        "infusions",
+        "utilityTalents",
+        "metakineticMaster"
+      ],
+      "pendingFamilies": [
+        {
+          "name": "Expanded-element bonus talent/blast",
+          "reason": "Depends on previously selected elements and known talents; conditional additional grants and automatic composite blast access remain manual in the selected element reminder."
+        },
+        {
+          "name": "Omnikinesis temporary talent",
+          "reason": "Per-use temporary choice, not an additional permanent learned-talent acquisition."
+        }
+      ],
+      "reviewNotes": [
+        "All new benefits are informational reminders. Existing class acquisitions retain ownership; no new resource pools, automatic target effects or spell-list grants are installed."
+      ]
+    },
+    {
+      "classType": "medium",
+      "url": "https://golarion.altervista.org/wiki/Medium",
+      "families": [
+        "dailySpirit"
+      ],
+      "pendingFamilies": [
+        {
+          "name": "Taboos",
+          "reason": "Optional daily terms depend on the chosen legend and may be created by the GM; free-form terms are not a closed class option set."
+        },
+        {
+          "name": "Spirit-selected feats/spells/skills and Trance of Three",
+          "reason": "Daily/per-use conditional selections require spirit context and ephemeral multi-spirit state; detailed source-linked reminders remain authoritative."
+        }
+      ],
+      "reviewNotes": [
+        "All new benefits are informational reminders. Existing class acquisitions retain ownership; no new resource pools, automatic target effects or spell-list grants are installed."
+      ]
+    },
+    {
+      "classType": "mesmerist",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista",
+      "families": [
+        "knownTricks",
+        "masterTricksAsAlternatives",
+        "boldStares"
+      ],
+      "pendingFamilies": [
+        {
+          "name": "Implanted tricks and therapeutic touch condition",
+          "reason": "Targeted daily/per-use actions are not additional permanent known-option choices. Therapeutic touch grants whole condition groups automatically."
+        }
+      ],
+      "reviewNotes": [
+        "All new benefits are informational reminders. Existing class acquisitions retain ownership; no new resource pools, automatic target effects or spell-list grants are installed."
+      ]
+    },
+    {
+      "classType": "occultist",
+      "url": "https://golarion.altervista.org/wiki/Occultista",
+      "families": [
+        "implementSchools",
+        "focusPowers",
+        "implementMastery"
+      ],
+      "pendingFamilies": [
+        {
+          "name": "Daily implement objects, invested mental focus and school spell selections",
+          "reason": "Resource-point allocation and school-local repertoire eligibility need separate mechanics. School choices do not automatically grant unrestricted spells or base focus powers."
+        }
+      ],
+      "reviewNotes": [
+        "All new benefits are informational reminders. Existing class acquisitions retain ownership; no new resource pools, automatic target effects or spell-list grants are installed."
+      ]
+    },
+    {
+      "classType": "psychic",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico",
+      "families": [
+        "discipline",
+        "phrenicAmplifications",
+        "majorAmplificationsAsAlternatives"
+      ],
+      "pendingFamilies": [
+        {
+          "name": "Discipline spell grants, reserve ability and amplification-specific secondary selections",
+          "reason": "Conditional casting effects/point budgets and secondary feat/spell contexts remain manual in source-linked reminders."
+        }
+      ],
+      "reviewNotes": [
+        "All new benefits are informational reminders. Existing class acquisitions retain ownership; no new resource pools, automatic target effects or spell-list grants are installed."
+      ]
+    },
+    {
+      "classType": "spiritualist",
+      "url": "https://golarion.altervista.org/wiki/Spiritista",
+      "families": [
+        "phantomEmotionalFocus"
+      ],
+      "pendingFamilies": [
+        {
+          "name": "Phantom statistics, skills, feats, ability increases and manifestations",
+          "reason": "Owned companion creature requires a separate creature/inventory context; its feats must not be granted directly to the player character. Manifestation forms are per-use modes rather than permanent selections."
+        }
+      ],
+      "reviewNotes": [
+        "All new benefits are informational reminders. Existing class acquisitions retain ownership; no new resource pools, automatic target effects or spell-list grants are installed."
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "familyId": "kineticist.elements",
+      "optionId": "option.a2c7f1c10048",
+      "name": "Acqua",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Acqua",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "kineticist.elements",
+      "optionId": "option.b848b48bac47",
+      "name": "Aria",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Aria",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "kineticist.elements",
+      "optionId": "option.f97669510ddf",
+      "name": "Etere",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Etere",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "kineticist.elements",
+      "optionId": "option.6ad4c0c9488a",
+      "name": "Fuoco",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Fuoco",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "kineticist.elements",
+      "optionId": "option.eaf921b3209e",
+      "name": "Legno",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Legno",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "kineticist.elements",
+      "optionId": "option.e1c1f5579a97",
+      "name": "Terra",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Terra",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "kineticist.simpleBlasts",
+      "optionId": "option.d734d4c867b2",
+      "name": "Ondata di Acqua",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Ondata_di_Acqua",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Ondata Semplice (Mag)",
+        "Livello": "-",
+        "Bruciare": "0 Tipo di Ondata: Fisica Danno: Contundente"
+      }
+    },
+    {
+      "familyId": "kineticist.simpleBlasts",
+      "optionId": "option.a7955f127244",
+      "name": "Ondata di Aria",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Ondata_di_Aria",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Ondata Semplice (Mag)",
+        "Livello": "-",
+        "Bruciare": "0 Tipo di Ondata: Fisica Danno: Contundente"
+      }
+    },
+    {
+      "familyId": "kineticist.simpleBlasts",
+      "optionId": "option.ea77dc591251",
+      "name": "Ondata di Freddo",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Ondata_di_Freddo",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Ondata Semplice (Mag)",
+        "Livello": "-",
+        "Bruciare": "0 Tipo di Ondata: Energia Danno: Freddo"
+      }
+    },
+    {
+      "familyId": "kineticist.simpleBlasts",
+      "optionId": "option.7e3adf678420",
+      "name": "Ondata di Fuoco",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Ondata_di_Fuoco",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Ondata Semplice (Mag)",
+        "Livello": "-",
+        "Bruciare": "0 Tipo di Ondata: Energia Danno: Fuoco"
+      }
+    },
+    {
+      "familyId": "kineticist.simpleBlasts",
+      "optionId": "option.b1c4eedfb5dd",
+      "name": "Ondata di Legno",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Ondata_di_Legno",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Ondata Semplice (Mag)",
+        "Livello": "-",
+        "Bruciare": "0 Tipo di Ondata: Fisica Danno: Contundente, perforante o tagliente."
+      }
+    },
+    {
+      "familyId": "kineticist.simpleBlasts",
+      "optionId": "option.f42b99eb9755",
+      "name": "Ondata di Terra",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Ondata_di_Terra",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Ondata Semplice (Mag)",
+        "Livello": "-",
+        "Bruciare": "0 Tipo di Ondata: Fisica Danno: Contundente, perforante o tagliente"
+      }
+    },
+    {
+      "familyId": "kineticist.simpleBlasts",
+      "optionId": "option.e9d7229df4f5",
+      "name": "Ondata Elettrica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Ondata_Elettrica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Ondata Semplice (Mag)",
+        "Livello": "-",
+        "Bruciare": "0 Tipo di Ondata: Energia Danno: Elettricità"
+      }
+    },
+    {
+      "familyId": "kineticist.simpleBlasts",
+      "optionId": "option.f51a427fa8ce",
+      "name": "Ondata Positiva",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Ondata_Positiva",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Ondata Semplice (Mag)",
+        "Livello": "-",
+        "Bruciare": "0 Tipo di Ondata: Energia Danno: Energia Positiva"
+      }
+    },
+    {
+      "familyId": "kineticist.simpleBlasts",
+      "optionId": "option.613887ab170a",
+      "name": "Ondata Telecinetica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Ondata_Telecinetica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Ondata Semplice (Mag)",
+        "Livello": "-",
+        "Bruciare": "0 Tipo di Ondata: Fisica Danno: Contundente, perforante o tagliente"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.f9ab609f4ce0",
+      "name": "Infusione Accecante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Accecante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "4",
+        "Bruciare": "3"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.ab3625139e71",
+      "name": "Infusione a Flusso",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_a_Flusso",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua, Aria o Fuoco",
+        "Tipo": "Infusione di Forma",
+        "Livello": "3",
+        "Bruciare": "2"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.29009052bed6",
+      "name": "Infusione a Frammentazione",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_a_Frammentazione",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua o Terra",
+        "Tipo": "Infusione di Forma",
+        "Livello": "7",
+        "Bruciare": "4"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.19399b1eff87",
+      "name": "Infusione a Frusta Cinetica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_a_Frusta_Cinetica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Infusione di Forma",
+        "Livello": "3",
+        "Bruciare": "2 Prerequisito: Infusione a Lama Cinetica"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.390279886749",
+      "name": "Infusione a Lama Cinetica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_a_Lama_Cinetica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Infusione di Forma",
+        "Livello": "1",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.b8dc52cf8eeb",
+      "name": "Infusione a Muro",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_a_Muro",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Infusione di Forma",
+        "Livello": "5",
+        "Bruciare": "3"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.610b264d7674",
+      "name": "Infusione a Pugno Cinetico",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_a_Pugno_Cinetico",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Infusione di Forma",
+        "Livello": "1",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.e8f0bfabea00",
+      "name": "Infusione a Raffica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_a_Raffica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Infusione di Forma",
+        "Livello": "3",
+        "Bruciare": "2 Prerequisito: Infusione Estendi Raggio"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.558478938460",
+      "name": "Infusione a Serpente",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_a_Serpente",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Infusione di Forma",
+        "Livello": "3",
+        "Bruciare": "2 Prerequisito: Infusione Estendi Raggio"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.0fd343b930ea",
+      "name": "Infusione a Spruzzo",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_a_Spruzzo",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Infusione di Forma",
+        "Livello": "4",
+        "Bruciare": "3"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.0d53f149e72b",
+      "name": "Infusione a Uncino di Forza",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_a_Uncino_di_Forza",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Infusione di Forma",
+        "Livello": "3",
+        "Bruciare": "2"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.138a43f07cde",
+      "name": "Infusione a Ventaglio di Fiamme",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_a_Ventaglio_di_Fiamme",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Infusione di Forma",
+        "Livello": "1",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.70a5f0293326",
+      "name": "Infusione Brillante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Brillante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "6",
+        "Bruciare": "4 Prerequisito: Infusione Accecante"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.9285ca19ef5d",
+      "name": "Infusione Bruciante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Bruciante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "1",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.f70fccdc118c",
+      "name": "Infusione Ciclonica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Ciclonica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Infusione di Forma",
+        "Livello": "4",
+        "Bruciare": "3"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.89210d34d583",
+      "name": "Infusione Concatenante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Concatenante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Infusione di Forma",
+        "Livello": "5",
+        "Bruciare": "3"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.00c50c198794",
+      "name": "Infusione Detonante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Detonante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Infusione di Forma",
+        "Livello": "7",
+        "Bruciare": "4 Prerequisito: Infusione Estendi Raggio"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.acbc61d21726",
+      "name": "Infusione di Metalli Rari",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_di_Metalli_Rari",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "3",
+        "Bruciare": "2"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.60a812d7f818",
+      "name": "Infusione di Terra Letale",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_di_Terra_Letale",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Infusione di Forma",
+        "Livello": "6",
+        "Bruciare": "4 Prerequisito: Infusione Estendi Raggio"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.e2f2ab90c36f",
+      "name": "Infusione Disfacente",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Disfacente",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "5",
+        "Bruciare": "3"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.e07ec0453b78",
+      "name": "Infusione Disintegrante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Disintegrante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "6",
+        "Bruciare": "4"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.aaca15928b40",
+      "name": "Infusione Eruttiva",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Eruttiva",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Infusione di Forma",
+        "Livello": "3",
+        "Bruciare": "2 Prerequisito: Infusione Estendi Raggio"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.bb02ef9f6b23",
+      "name": "Infusione Estendi Raggio",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Estendi_Raggio",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Infusione di Forma",
+        "Livello": "1",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.daf5efffc976",
+      "name": "Infusione Estinguente",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Estinguente",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "1",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.7580bb9f18cc",
+      "name": "Infusione Estremizza Raggio",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Estremizza_Raggio",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Infusione di Forma",
+        "Livello": "3",
+        "Bruciare": "2 Prerequisito: Infusione Estendi Raggio"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.392ac4d9b921",
+      "name": "Infusione di Fiamme Pure",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_di_Fiamme_Pure",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "7",
+        "Bruciare": "4"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.cf5fc48c0b40",
+      "name": "Infusione Impalante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Impalante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua o Terra",
+        "Tipo": "Infusione di Forma",
+        "Livello": "3",
+        "Bruciare": "2"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.1dff3c5036fe",
+      "name": "Infusione Intralciante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Intralciante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua o Terra",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "2",
+        "Bruciare": "2"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.fccd87af9f62",
+      "name": "Infusione Lottatrice",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Lottatrice",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "5",
+        "Bruciare": "3"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.97a918bfc1a9",
+      "name": "Infusione Magnetica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Magnetica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria o Terra",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "3",
+        "Bruciare": "2"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.33677a2f4c68",
+      "name": "Infusione Mobilizzante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Mobilizzante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Infusione di Forma",
+        "Livello": "3",
+        "Bruciare": "2"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.5af6784dac4e",
+      "name": "Infusione Multiscagliante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Multiscagliante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Infusione di Forma",
+        "Livello": "8",
+        "Bruciare": "4 Prerequisito: Infusione Estendi Raggio"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.26d8f2c56648",
+      "name": "Infusione Nubilosa",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Nubilosa",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua o Aria",
+        "Tipo": "Infusione di Forma",
+        "Livello": "7",
+        "Bruciare": "4 Prerequisito: Infusione Estendi Raggio"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.cc515925f04f",
+      "name": "Infusione Percussiva",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Percussiva",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere o Terra",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "2",
+        "Bruciare": "2"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.e719b220f714",
+      "name": "Infusione Raggelante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Raggelante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "5",
+        "Bruciare": "3"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.bc51d3564c54",
+      "name": "Infusione Risucchiante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Risucchiante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "1",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.484479cb6738",
+      "name": "Infusione Sbuffante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Sbuffante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "1",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.34a4f4dab522",
+      "name": "Infusione Scaglia Nemici",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Scaglia_Nemici",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Infusione di Forma",
+        "Livello": "3",
+        "Bruciare": "2"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.5cc243d8a321",
+      "name": "Infusione Spingente",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Spingente",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua, Aria, Etere o Terra",
+        "Tipo": "Infusione di Forma",
+        "Livello": "1",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.62567a6c443b",
+      "name": "Infusione Tonante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Tonante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "1",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.0e554dc08fda",
+      "name": "Infusione Tossica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Tossica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "4",
+        "Bruciare": "3"
+      }
+    },
+    {
+      "familyId": "kineticist.infusions",
+      "optionId": "option.33f01db9a9f3",
+      "name": "Infusione Tossica Superiore",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Infusione_Tossica_Superiore",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Infusione di Sostanza",
+        "Livello": "4",
+        "Bruciare": "3"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.f9ca46b610af",
+      "name": "Accuratezza Telecinetica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Accuratezza_Telecinetica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.38469d23e2bf",
+      "name": "Adattamento Aereo",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Adattamento_Aereo",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.e719ca6b46f3",
+      "name": "Adattamento al Caldo",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Adattamento_al_Caldo",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua o Fuoco",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.7760e695eb9a",
+      "name": "Adattamento al Freddo",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Adattamento_al_Freddo",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua o Fuoco",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.62c5f570f26f",
+      "name": "Aerocinesi Base",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Aerocinesi_Base",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.b9ab6af83525",
+      "name": "Ali di Aria",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Ali_di_Aria",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0 Prerequisito: Cuscino di Aria o Balzo dell'Aria"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.0fa42ca4a574",
+      "name": "Arrampicarsi sulla Terra",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Arrampicarsi_sulla_Terra",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "2",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.3b1f29a32f98",
+      "name": "Assedio della Foresta",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Assedio_della_Foresta",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "9",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.7ff9bfee1ad0",
+      "name": "Autotelecinesi",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Autotelecinesi",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.b0eabd20349d",
+      "name": "Autotelecinesi Superiore",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Autotelecinesi_Superiore",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "0 Prerequisito: Autotelecinesi"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.4f5c7778cfb1",
+      "name": "Balzo dell'Aria",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Balzo_dell.27Aria",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.45f3c0940578",
+      "name": "Barriera di Forza",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Barriera_di_Forza",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "0 Prerequisito: Interdizione di Forza"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.b6f25999e0ff",
+      "name": "Brachiazione",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Brachiazione",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.091152ad882a",
+      "name": "Calura",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Calura",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.00bd07c69d7b",
+      "name": "Camminare sulla Terra",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Camminare_sulla_Terra",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "1",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.541aab2369af",
+      "name": "Camuffamento Vegetale",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Camuffamento_Vegetale",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "4",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.c8195b7b541b",
+      "name": "Carico Telecinetico",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Carico_Telecinetico",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "2",
+        "Bruciare": "0 Prerequisito: Telecinesi Base"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.001d71ca7fe7",
+      "name": "Carne Dentata",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Carne_Dentata",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "1 Prerequisito: Carne di Pietra"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.96d03759acfd",
+      "name": "Carne Spinosa",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Carne_Spinosa",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.c14908be299a",
+      "name": "Cavalcare l'Ondata",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Cavalcare_l.27Ondata",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "6",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.f07f722bc182",
+      "name": "Celerità",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Celerit.C3.A0",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.a896c679b72e",
+      "name": "Cineta Abile",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Cineta_Abile",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "1",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.add41f777756",
+      "name": "Cineta Abile Superiore",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Cineta_Abile_Superiore",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "2",
+        "Bruciare": "- Prerequisito: Cineta Abile"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.5f937f09b8f9",
+      "name": "Colpo di Freddo",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Colpo_di_Freddo",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "1 Prerequisito: Adattamento al Freddo, Sudario di Acqua"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.21788a61a632",
+      "name": "Contattovisione",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Contattovisione",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "3",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.bda61e55d87b",
+      "name": "Contattovisione Reattiva",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Contattovisione_Reattiva",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "5",
+        "Bruciare": "0 Prerequisito: Contattovisione"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.d6389f0cb7c9",
+      "name": "Contattovisione Spia",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Contattovisione_Spia",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "4",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.5050aab438fb",
+      "name": "Copertura Cinetica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Copertura_Cinetica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua, Etere o Terra",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.01c7e015152d",
+      "name": "Crescita Selvaggia",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Crescita_Selvaggia",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.1a01d782b5e4",
+      "name": "Cuscino di Aria",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Cuscino_di_Aria",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.9ec30c3e5ddd",
+      "name": "Danzare sull'Acqua",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Danzare_sull.27Acqua",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.10c7476b220f",
+      "name": "Danzare sull'Acqua Superiore",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Danzare_sull.27Acqua_Superiore",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "5",
+        "Bruciare": "0 Prerequisito: Danzare sull'Acqua"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.9e8b1ff6c6f3",
+      "name": "Deformare Legno",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Deformare_Legno",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.ca66f5083d5c",
+      "name": "Deviare Incantesimi",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Deviare_Incantesimi",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "7",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.43e586473683",
+      "name": "Deviazione Telecinetica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Deviazione_Telecinetica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "8",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.e8e0e664a67d",
+      "name": "Difesa Espansa",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Difesa_Espansa",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "4",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.f37e9b222e85",
+      "name": "Eludere Aereo",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Eludere_Aereo",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "3",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.0e229d486015",
+      "name": "Focovisione",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Focovisione",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "3",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.563f610ca4fe",
+      "name": "Fogliame Pietoso",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Fogliame_Pietoso",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "2",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.7dc700bec79c",
+      "name": "Forma Cinetica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Forma_Cinetica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.e007f488cb3e",
+      "name": "Fitocinesi Base",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Fitocinesi_Base",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.ac8a1283a57f",
+      "name": "Furia del Fuoco",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Furia_del_Fuoco",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "1",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.da4cd1c71533",
+      "name": "Fuso alla Terra",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Fuso_alla_Terra",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "4",
+        "Bruciare": "- Prerequisito: Arrampicarsi sulla Terra"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.a00a6cfa3462",
+      "name": "Geocinesi Base",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Geocinesi_Base",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.d26bc464bdcb",
+      "name": "Globo Telecinetico",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Globo_Telecinetico",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "8",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.9b49418f3edb",
+      "name": "Guaritore Cinetico",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Guaritore_Cinetico",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere o Acqua",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "1; vedi testo"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.552c470c3587",
+      "name": "Idrocinesi Base",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Idrocinesi_Base",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.b4fc9788ca03",
+      "name": "Invisibilità Telecinetica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Invisibilit.C3.A0_Telecinetica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.5a46052ca34e",
+      "name": "Lingua Verde",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Lingua_Verde",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "6",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.545fb0ba2e52",
+      "name": "Manipolare il Vento",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Manipolare_il_Vento",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "6",
+        "Bruciare": "0 Prerequisito: Venti Avviluppanti"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.6969b6721d4d",
+      "name": "Manipolare l'Acqua",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Manipolare_l.27Acqua",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0 Prerequisito: Copertura Cinetica"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.c10d1ecb0a10",
+      "name": "Manovre Telecinetiche",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Manovre_Telecinetiche",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "4",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.75a546e2d9a2",
+      "name": "Marionetta di Etere",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Marionetta_di_Etere",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.dee7f86f33da",
+      "name": "Marionetta Vegetale",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Marionetta_Vegetale",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.12f26d3862f3",
+      "name": "Miraggio Splendente",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Miraggio_Splendente",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "1 Prerequisito: Sudario di Acqua"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.8fa34905c08d",
+      "name": "Onda di Marea",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Onda_di_Marea",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "9",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.3a6ecd7fb42c",
+      "name": "Padrone del Tempo Atmosferico",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Padrone_del_Tempo_Atmosferico",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "8",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.948daa5cedc0",
+      "name": "Padrone della Sismicità",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Padrone_della_Sismicit.C3.A0",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "9",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.a3bc1ebe3306",
+      "name": "Passo nel Bosco",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Passo_nel_Bosco",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.ae04565d7bb7",
+      "name": "Passo nel Bosco Superiore",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Passo_nel_Bosco_Superiore",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "0 Prerequisito: Passo nel Bosco"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.b02d183fe16d",
+      "name": "Percezione Acquatica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Percezione_Acquatica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "4",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.1789cdb701d0",
+      "name": "Percezione Acquatica Superiore",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Percezione_Acquatica_Superiore",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "5",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.deec7573b07e",
+      "name": "Percezione Tellurica",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Percezione_Tellurica",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "3",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.86f13c87f58b",
+      "name": "Percezione Tellurica Superiore",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Percezione_Tellurica_Superiore",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "5",
+        "Bruciare": "0 Prerequisito: Percezione Tellurica"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.c82dd17ddc84",
+      "name": "Percorso di Ghiaccio",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Percorso_di_Ghiaccio",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "6",
+        "Bruciare": "0 Prerequisito: Viandante dei Ghiacci"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.b9d7e98ea6e7",
+      "name": "Pirocinesi Base",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Pirocinesi_Base",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.fdf70c952f53",
+      "name": "Plasmare il Legno",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Plasmare_il_Legno",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.23c204de9ee0",
+      "name": "Presa Elementale",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Presa_Elementale",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.c0a0b47001dc",
+      "name": "Propulsione Fiammante",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Propulsione_Fiammante",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.78edd76ede9a",
+      "name": "Propulsione Fiammante Superiore",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Propulsione_Fiammante_Superiore",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0 Prerequisito: Propulsione Fiammante"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.7bf8541dd2c1",
+      "name": "Radici",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Radici",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.47e096e8844d",
+      "name": "Risorgere dalle Ceneri",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Risorgere_dalle_Ceneri",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "9",
+        "Bruciare": "2"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.c46c386b37d0",
+      "name": "Scia di Fiamme",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Scia_di_Fiamme",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.1af6aa7a4677",
+      "name": "Scintilla Vitale",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Scintilla_Vitale",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.44531b2ee8d0",
+      "name": "Scivoloso",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Scivoloso",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.331046b32f37",
+      "name": "Scorrere sulla Terra",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Scorrere_sulla_Terra",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "5",
+        "Bruciare": "0 Prerequisito: Arrampicarsi sulla Terra"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.386be8189662",
+      "name": "Scudo di Fiamme",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Scudo_di_Fiamme",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "1 Prerequisito: Carne Incandescente"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.40296bb26f39",
+      "name": "Scultore del Fuoco",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Scultore_del_Fuoco",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0 Prerequisito: Carne Incandescente"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.1abdeebab6ec",
+      "name": "Scultore del Ghiaccio",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Scultore_del_Ghiaccio",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "4",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.986e0a355ff8",
+      "name": "Scultore della Pietra",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Scultore_della_Pietra",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.f9a6b95549d2",
+      "name": "Soffocare",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Soffocare",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua, Aria o Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "6",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.f5c4b1a4d3bd",
+      "name": "Soldati di Legno",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Soldati_di_Legno",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "8",
+        "Bruciare": "1"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.d113624bfba4",
+      "name": "Spostamento Inverso",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Spostamento_Inverso",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "8",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.53da24da5e9b",
+      "name": "Spostare Terra",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Spostare_Terra",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "4",
+        "Bruciare": "0 Prerequisito: Copertura Cinetica"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.c609f6c6e88a",
+      "name": "Spostare Terra Superiore",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Spostare_Terra_Superiore",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "7",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.84fd62c8b337",
+      "name": "Sudario di Aria",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Sudario_di_Aria",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.80fc3d72e241",
+      "name": "Sudario di Aria Superiore",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Sudario_di_Aria_Superiore",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "5",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.d91cbeb37445",
+      "name": "Sussurri Elementali",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Sussurri_Elementali",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.6ee85fc16565",
+      "name": "Sussurri Elementali Superiori",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Sussurri_Elementali_Superiori",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Universale",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "3",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.42cf54260a9e",
+      "name": "Telecinesi Base",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Telecinesi_Base",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Etere",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.896b3ddf3dbb",
+      "name": "Tempesta di Fumo",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Tempesta_di_Fumo",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.d007fc833669",
+      "name": "Terra Durevole",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Terra_Durevole",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Terra",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "4",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.cd3c829b2ddf",
+      "name": "Trappola della Fiamma",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Trappola_della_Fiamma",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Fuoco",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "2",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.27fde87a03e5",
+      "name": "Vegevisione",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Vegevisione",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Legno",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "4",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.97cbbcb808d2",
+      "name": "Velo di Foschia",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Velo_di_Foschia",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "2",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.d74796ada99a",
+      "name": "Venti Avviluppanti",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Venti_Avviluppanti",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "3",
+        "Bruciare": "0 Prerequisito: Venti Avvolgenti"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.cf01b495d814",
+      "name": "Ventovisione",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Ventovisione",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "3",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.0901939ed542",
+      "name": "Ventovisione Superiore",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Ventovisione_Superiore",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "5",
+        "Bruciare": "0 Prerequisito: Ventovisione"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.fb3efe557e2c",
+      "name": "Viandante dei Ghiacci",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Viandante_dei_Ghiacci",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Acqua",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "1",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.81556b6629b3",
+      "name": "Volata dell'Aria",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Volata_dell.27Aria",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Sop)",
+        "Livello": "1",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.7b1d119d8403",
+      "name": "Voce del Vento",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Voce_del_Vento",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "1",
+        "Bruciare": "0"
+      }
+    },
+    {
+      "familyId": "kineticist.utilityTalents",
+      "optionId": "option.afeb3ac61c28",
+      "name": "Voce del Vento Superiore",
+      "url": "https://golarion.altervista.org/wiki/Cineta/Elementi#Voce_del_Vento_Superiore",
+      "status": "includedManual",
+      "metadata": {
+        "Elemento": "Aria",
+        "Tipo": "Utilità (Mag)",
+        "Livello": "2",
+        "Bruciare": "-"
+      }
+    },
+    {
+      "familyId": "kineticist.metakinesis",
+      "optionId": "option.af73624c5a30",
+      "name": "Potenziata",
+      "url": "https://golarion.altervista.org/wiki/Cineta#Metacinesi_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "kineticist.metakinesis",
+      "optionId": "option.d23f04f20ad6",
+      "name": "Massimizzata",
+      "url": "https://golarion.altervista.org/wiki/Cineta#Metacinesi_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "kineticist.metakinesis",
+      "optionId": "option.b450946e5607",
+      "name": "Rapida",
+      "url": "https://golarion.altervista.org/wiki/Cineta#Metacinesi_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "kineticist.metakinesis",
+      "optionId": "option.17381b96c111",
+      "name": "Raddoppiata",
+      "url": "https://golarion.altervista.org/wiki/Cineta#Metacinesi_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.41a34e32f0d9",
+      "name": "Arcimago",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Arcimago",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.1ea78418eb62",
+      "name": "Campione",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Campione",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.194cd9409016",
+      "name": "Gerofante",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Gerofante",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.b6081b15bb30",
+      "name": "Maresciallo",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Maresciallo",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.af3599a05232",
+      "name": "Mistificatore",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Mistificatore",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.333b93d08eb1",
+      "name": "Protettore",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Protettore",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.66bd71ab4f92",
+      "name": "Macellaio (Campione)",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Macellaio_.28Campione.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.674e7eb9c56e",
+      "name": "Ingannatore (Mistificatore)",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Ingannatore_.28Mistificatore.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.433c6b3699e7",
+      "name": "Eretico (Gerofante)",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Eretico_.28Gerofante.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.6249aceef0f1",
+      "name": "Lich (Arcimago)",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Lich_.28Arcimago.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.0377e527a500",
+      "name": "Falcidiatore (Protettore)",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Falcidiatore_.28Protettore.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.fccf95254666",
+      "name": "Guerrafondaio (Maresciallo)",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Guerrafondaio_.28Maresciallo.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "medium.spirits",
+      "optionId": "option.1cf4ea97be50",
+      "name": "Principe Doppiamente Dannato (Mistificatore)",
+      "url": "https://golarion.altervista.org/wiki/Medium/Spiriti#Principe_Doppiamente_Dannato_.28Mistificatore.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.19ca141336f7",
+      "name": "Alacrità Forzata",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.f3a25138da1f",
+      "name": "Apparire Debole",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.df796d1b3232",
+      "name": "Dissimulare",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.f3e9f7a66227",
+      "name": "Dono di Volontà",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.bf78e57debf7",
+      "name": "Elusività Sbalorditiva",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.b7a7a42bbbd5",
+      "name": "Falso Fiancheggiatore",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.535b914f584e",
+      "name": "Frammento d'Ombra",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.313318b3d5b3",
+      "name": "Fumo Spettrale",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.0bdb8f593162",
+      "name": "Impulso Psicosomatico",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.b83b3eee2752",
+      "name": "Levitazione Respingente",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.f325970552ec",
+      "name": "Mascherare Miseria",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.6b4750ca61e1",
+      "name": "Mimica Mesmerica",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.dd617902421e",
+      "name": "Reazione Congiunta",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.8a5ed45913e8",
+      "name": "Riflesso di Debolezza",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.dff9c922b6da",
+      "name": "Sembianze Terribili",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.a1eb6af8ef2f",
+      "name": "Specchio Mesmerico",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.tricks",
+      "optionId": "option.249c26dca770",
+      "name": "Vanificare Freccia",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_del_Mesmerista_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.masterTricks",
+      "optionId": "option.ec8a26ef6a89",
+      "name": "Anticipare Incantesimo",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_da_Maestro_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.masterTricks",
+      "optionId": "option.587e54a51427",
+      "name": "Corpo Libero",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_da_Maestro_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.masterTricks",
+      "optionId": "option.15eaed3b4eee",
+      "name": "Falsa Morte",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_da_Maestro_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.masterTricks",
+      "optionId": "option.94de721d4c7c",
+      "name": "Fuga Aviaria",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_da_Maestro_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.masterTricks",
+      "optionId": "option.39650ae92923",
+      "name": "Mascherare Miseria Superiore",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_da_Maestro_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.masterTricks",
+      "optionId": "option.7f96e861dfda",
+      "name": "Ripiego Mentale",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_da_Maestro_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.masterTricks",
+      "optionId": "option.c5d6c0fac495",
+      "name": "Sanzione Maledetta",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_da_Maestro_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.masterTricks",
+      "optionId": "option.095ba621eee1",
+      "name": "Scambio Spaziale",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_da_Maestro_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.masterTricks",
+      "optionId": "option.2f1bafa24a69",
+      "name": "Visione di Sangue",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Trucchi_da_Maestro_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.boldStares",
+      "optionId": "option.595ca461f99a",
+      "name": "Attrattività",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Occhiata_Audace_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.boldStares",
+      "optionId": "option.cb18196a4d49",
+      "name": "Disorientamento",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Occhiata_Audace_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.boldStares",
+      "optionId": "option.428b0bc94cd0",
+      "name": "Fiacchezza Magica",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Occhiata_Audace_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.boldStares",
+      "optionId": "option.949943c9f146",
+      "name": "Indolenza",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Occhiata_Audace_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.boldStares",
+      "optionId": "option.fb451ff61958",
+      "name": "Principio Parapsichico",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Occhiata_Audace_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.boldStares",
+      "optionId": "option.2ee715b2f03e",
+      "name": "Suscettibilità",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Occhiata_Audace_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "mesmerist.boldStares",
+      "optionId": "option.5fcb688b299d",
+      "name": "Timidezza",
+      "url": "https://golarion.altervista.org/wiki/Mesmerista#Occhiata_Audace_.28Sop.29",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.schools",
+      "optionId": "option.25c8a89fbbdb",
+      "name": "Abiurazione",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Catalizzatori_di_Abiurazione",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.44bb992bf057",
+      "name": "Egida (Abiurazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.75fb504b44ca",
+      "name": "Globo di Negazione (Abiurazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.7c9af5307a6d",
+      "name": "Interdizione Planare (Abiurazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.acceb8c5a33c",
+      "name": "Scudo di Energia (Abiurazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.d043b0625d84",
+      "name": "Sentinella Locale (Abiurazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.ca3253a2ac8e",
+      "name": "Smantellare (Abiurazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.schools",
+      "optionId": "option.fdb5fcb775cf",
+      "name": "Ammaliamento",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Catalizzatori_di_Ammaliamento",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.7ea2f756559c",
+      "name": "Alleanza Forzata (Ammaliamento)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_2",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.8d9c7f246479",
+      "name": "Assalto Ispirato (Ammaliamento)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_2",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.b67b79736259",
+      "name": "Discordia Mentale (Ammaliamento)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_2",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.c1c48c57ab7c",
+      "name": "Obbedire (Ammaliamento)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_2",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.1620bfd03718",
+      "name": "Sonno Mentale (Ammaliamento)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_2",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.5870da2599d8",
+      "name": "Trama Legante (Ammaliamento)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_2",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.schools",
+      "optionId": "option.20d4c114a2b1",
+      "name": "Divinazione",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Catalizzatori_di_Divinazione",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.d25745f8793d",
+      "name": "Connessione Potente (Divinazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_3",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.8bfad49b3c17",
+      "name": "Occhio Mentale (Divinazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_3",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.6893bb67d5d5",
+      "name": "Occhio Vigile (Divinazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_3",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.73d5e577b6fd",
+      "name": "Sguardo sul Futuro (Divinazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_3",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.95c08d987729",
+      "name": "Veggente degli Oggetti (Divinazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_3",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.0f5ebd37892f",
+      "name": "Visione Pericolosa (Divinazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_3",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.schools",
+      "optionId": "option.28864333f8b9",
+      "name": "Evocazione",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Catalizzatori_di_Evocazione",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.3ca667e6b53d",
+      "name": "Destriero Mentale (Evocazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_4",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.49d132c6292b",
+      "name": "Defilarsi (Evocazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_4",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.516b28f03c4d",
+      "name": "Epurare Corruzione (Evocazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_4",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.ec62f50d8557",
+      "name": "Evocare Catalizzatore (Evocazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_4",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.b2b839cb04a4",
+      "name": "Nebbia Parapsichica (Evocazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_4",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.e5b8c2814145",
+      "name": "Riparare Carni (Evocazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_4",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.schools",
+      "optionId": "option.2a62c6f105dd",
+      "name": "Illusione",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Catalizzatori_di_Illusione",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.49332b3ca4a1",
+      "name": "Bestia d'Ombra (Illusione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_5",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.6d486ecf1070",
+      "name": "Fascio di Colori (Illusione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_5",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.f11d612d9c06",
+      "name": "Immagine Coprente (Illusione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_5",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.738aeee9a470",
+      "name": "Inosservato (Illusione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_5",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.8c651bee74e3",
+      "name": "Mascherata (Illusione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_5",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.5e83ec041b39",
+      "name": "Miraggio (Illusione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_5",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.schools",
+      "optionId": "option.51385bb9213b",
+      "name": "Invocazione",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Catalizzatori_di_Invocazione",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.2c0966d0f68c",
+      "name": "Esplosione di Energia (Invocazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_6",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.a0da6f89bddb",
+      "name": "Interdizione di Energia (Invocazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_6",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.422e6f324846",
+      "name": "Matrice di Luce (Invocazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_6",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.4638407dc2f4",
+      "name": "Muro di Potere (Invocazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_6",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.b1e8dad10d32",
+      "name": "Padronanza delle Forme (Invocazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_6",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.7205d6a3e113",
+      "name": "Radianza (Invocazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_6",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.schools",
+      "optionId": "option.e0e428328baa",
+      "name": "Necromanzia",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Catalizzatori_di_Necromanzia",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.c0531f465c1a",
+      "name": "Burattino Lega Anima (Necromanzia)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_7",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.0dfdb2b17a8a",
+      "name": "Maledizione Parapsichica (Necromanzia)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_7",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.624aa52e3bf5",
+      "name": "Marcire Carni (Necromanzia)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_7",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.08515c0cfae8",
+      "name": "Onda di Dolore (Necromanzia)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_7",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.f5d5df0f7167",
+      "name": "Servitore Necromantico (Necromanzia)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_7",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.61b8bc5af8ca",
+      "name": "Sudario Spirituale (Necromanzia)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_7",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.schools",
+      "optionId": "option.6eb6c6083861",
+      "name": "Trasmutazione",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Catalizzatori_di_Trasmutazione",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.a893a9c59ca7",
+      "name": "Alterazione della Taglia (Trasmutazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_8",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.4024699fa809",
+      "name": "Maestria Telecinetica (Trasmutazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_8",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.0ae28369e792",
+      "name": "Mente Batte Gravità (Trasmutazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_8",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.505fc65ca314",
+      "name": "Rapidità (Trasmutazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_8",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.5cd5fc1ea111",
+      "name": "Tocco Filosofale (Trasmutazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_8",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "occultist.focusPowers",
+      "optionId": "option.31ad1f6370a1",
+      "name": "Velocità Improvvisa (Trasmutazione)",
+      "url": "https://golarion.altervista.org/wiki/Occultista/Catalizzatori_delle_Scuole#Poteri_di_Focus_8",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.disciplines",
+      "optionId": "option.3b7b86af9e92",
+      "name": "Abominio",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico/Discipline_Parapsichiche#Abominio",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.disciplines",
+      "optionId": "option.65c5e8345182",
+      "name": "Autoperfezionamento",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico/Discipline_Parapsichiche#Autoperfezionamento",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.disciplines",
+      "optionId": "option.2d0a645ba8e8",
+      "name": "Dolore",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico/Discipline_Parapsichiche#Dolore",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.disciplines",
+      "optionId": "option.c49e4cbad802",
+      "name": "Fede",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico/Discipline_Parapsichiche#Fede",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.disciplines",
+      "optionId": "option.964d052b8826",
+      "name": "Intesa",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico/Discipline_Parapsichiche#Intesa",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.disciplines",
+      "optionId": "option.7484883543f7",
+      "name": "Psichedelico",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico/Discipline_Parapsichiche#Psichedelico",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.disciplines",
+      "optionId": "option.857f488b1fc5",
+      "name": "Rivethun",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico/Discipline_Parapsichiche#Rivethun",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.disciplines",
+      "optionId": "option.6cdb912b471d",
+      "name": "Sapere",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico/Discipline_Parapsichiche#Sapere",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.disciplines",
+      "optionId": "option.b327af4fef99",
+      "name": "Sogno",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico/Discipline_Parapsichiche#Sogno",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.disciplines",
+      "optionId": "option.356d1ad24256",
+      "name": "Tranquillità",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico/Discipline_Parapsichiche#Tranquillit.C3.A0",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.amplifications",
+      "optionId": "option.1ab1b4f388bc",
+      "name": "Armatura Evocata",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Freniche",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.amplifications",
+      "optionId": "option.db67621287d1",
+      "name": "Blindamente",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Freniche",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.amplifications",
+      "optionId": "option.41417427277b",
+      "name": "Contromisure Complesse",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Freniche",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.amplifications",
+      "optionId": "option.af108b55f9c6",
+      "name": "Difesa in Atto",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Freniche",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.amplifications",
+      "optionId": "option.e33d8284e794",
+      "name": "Focalizzazione Intensificata",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Freniche",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.amplifications",
+      "optionId": "option.e9cca83fc487",
+      "name": "Forza Focalizzata",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Freniche",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.amplifications",
+      "optionId": "option.6ced145585ba",
+      "name": "Impulso di Incantesimi Ridotti",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Freniche",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.amplifications",
+      "optionId": "option.40f90d352b3c",
+      "name": "Lancio Implacabile",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Freniche",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.amplifications",
+      "optionId": "option.5178c024bf6b",
+      "name": "Mente Soverchiante",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Freniche",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.amplifications",
+      "optionId": "option.a5695a0feb97",
+      "name": "Pronostico Difensiva",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Freniche",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.amplifications",
+      "optionId": "option.3b4821822699",
+      "name": "Tocco Mentale",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Freniche",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.amplifications",
+      "optionId": "option.9154737c9b6b",
+      "name": "Volontà della Morte",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Freniche",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.greaterAmplifications",
+      "optionId": "option.f24d17ad3bf6",
+      "name": "Doppia Amplificazione",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Maggiori",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.greaterAmplifications",
+      "optionId": "option.8ec67de0c77a",
+      "name": "Imitare Metamagia",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Maggiori",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.greaterAmplifications",
+      "optionId": "option.81c20862c2ef",
+      "name": "Incantesimo Lacera Spazio",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Maggiori",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.greaterAmplifications",
+      "optionId": "option.fc4b5c507ffc",
+      "name": "Incantesimo Subordinato",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Maggiori",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.greaterAmplifications",
+      "optionId": "option.a1aedfd4190e",
+      "name": "Pulsazione Dissolvente",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Maggiori",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.greaterAmplifications",
+      "optionId": "option.3f77c5315eb9",
+      "name": "Shock Sinaptico",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Maggiori",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "psychic.greaterAmplifications",
+      "optionId": "option.e3b9cefdb6fb",
+      "name": "Scudo Deflettore",
+      "url": "https://golarion.altervista.org/wiki/Parapsichico#Amplificazioni_Maggiori",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "spiritualist.emotionalFoci",
+      "optionId": "option.38d42e882716",
+      "name": "Devozione",
+      "url": "https://golarion.altervista.org/wiki/Spiritista/Apparizione#Devozione",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "spiritualist.emotionalFoci",
+      "optionId": "option.67e545193453",
+      "name": "Disperazione",
+      "url": "https://golarion.altervista.org/wiki/Spiritista/Apparizione#Disperazione",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "spiritualist.emotionalFoci",
+      "optionId": "option.a96d8ab55b36",
+      "name": "Gelosia",
+      "url": "https://golarion.altervista.org/wiki/Spiritista/Apparizione#Gelosia",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "spiritualist.emotionalFoci",
+      "optionId": "option.1a08974b1df6",
+      "name": "Odio",
+      "url": "https://golarion.altervista.org/wiki/Spiritista/Apparizione#Odio",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "spiritualist.emotionalFoci",
+      "optionId": "option.b25048d7a5a4",
+      "name": "Paura",
+      "url": "https://golarion.altervista.org/wiki/Spiritista/Apparizione#Paura",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "spiritualist.emotionalFoci",
+      "optionId": "option.cbf8c74c2181",
+      "name": "Rabbia",
+      "url": "https://golarion.altervista.org/wiki/Spiritista/Apparizione#Rabbia",
+      "status": "includedManual",
+      "metadata": {}
+    },
+    {
+      "familyId": "spiritualist.emotionalFoci",
+      "optionId": "option.14c1262d0d49",
+      "name": "Zelo",
+      "url": "https://golarion.altervista.org/wiki/Spiritista/Apparizione#Zelo",
+      "status": "includedManual",
+      "metadata": {}
+    }
+  ]
+}

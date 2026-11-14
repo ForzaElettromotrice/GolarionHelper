@@ -58,7 +58,9 @@ int main()
     assert(&spell == &manager.get("fireball"));
 
     const auto parsed = spellDefinitionFromJson(fixture());
-    assert(parsed.effects.empty() && spell.effects.empty());
+    assert(parsed.effects.empty());
+    assert(spell.effects.size() == 1);
+    assert(std::get<ReminderEffectDefinition>(spell.effects.front()).message.ends_with("Ehi, appena hai tempo vedi di correggermi se necessario!"));
     auto effectJson = fixture();
     effectJson["effects"] = Json::array({
         {{"id", " note "}, {"type", "reminder"}, {"message", "Effetto di prova."}},
@@ -102,6 +104,38 @@ int main()
     assert(parsed.target && parsed.effect && parsed.area);
     assert(parsed.dismissible && parsed.savingThrows.size() == 2);
     assert(parsed.spellResistanceType == SpellResistanceType::SeeText);
+
+    auto alternative = fixture();
+    alternative["components"] = {"VERBAL_OR_SOMATIC"};
+    alternative.erase("materialComponentDescription");
+    alternative.erase("materialComponentCostInGoldPieces");
+    alternative.erase("focusComponentDescription");
+    const auto alternativeSpell = spellDefinitionFromJson(alternative);
+    assert(alternativeSpell.components == std::set{SpellComponentType::VerbalOrSomatic});
+    assert(spellDefinitionFromJson(spellDefinitionToJson(alternativeSpell)).components == alternativeSpell.components);
+    for (const auto *component : {"VERBAL", "SOMATIC"})
+    {
+        auto invalid = alternative;
+        invalid["components"].push_back(component);
+        rejects([&] { spellDefinitionFromJson(invalid); });
+    }
+
+    alternative["school"] = "VARIABLE";
+    alternative.erase("subschool");
+    alternative["components"] = {"VERBAL_OR_FOCUS"};
+    alternative["focusComponentDescription"] = "Uno strumento musicale";
+    alternative["descriptors"] = {"RUSE"};
+    const auto variableSpell = spellDefinitionFromJson(alternative);
+    assert(variableSpell.school == SpellSchool::Variable);
+    assert(variableSpell.descriptors.contains(SpellDescriptor::Ruse));
+    assert(variableSpell.components.contains(SpellComponentType::VerbalOrFocus));
+    assert(spellDefinitionFromJson(spellDefinitionToJson(variableSpell)).school == SpellSchool::Variable);
+    for (const auto *component : {"VERBAL", "FOCUS", "FOCUS_OR_DIVINE_FOCUS", "VERBAL_OR_SOMATIC"})
+    {
+        auto invalid = alternative;
+        invalid["components"].push_back(component);
+        rejects([&] { spellDefinitionFromJson(invalid); });
+    }
 
     auto minimal = fixture();
     for (const auto *field : {"subschool", "descriptors", "spellLevelByClass", "spellLevelByDomain", "spellLevelByBloodline",

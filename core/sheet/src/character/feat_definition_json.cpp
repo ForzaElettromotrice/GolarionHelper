@@ -140,7 +140,7 @@ namespace golarion
         {
             bool found = false;
             for (const auto *name : {"general", "combat", "critical", "itemCreation", "metamagic", "teamwork", "style",
-                "achievement", "channeling", "grit", "panache", "performance", "racial", "story", "mythic", "monster", "stare", "heroPoint"})
+                "achievement", "channeling", "grit", "panache", "performance", "racial", "story", "mythic", "monster", "stare", "heroPoint", "alignment"})
                 if (featTypeFromName(name) == type) { types.push_back(name); found = true; break; }
             if (!found) throw std::invalid_argument("invalid feat type");
         }

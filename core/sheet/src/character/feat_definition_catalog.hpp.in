@@ -4,7 +4,8 @@
 
 namespace golarion::embedded
 {
-    inline constexpr std::string_view FeatDefinitionCatalogJson = R"golarion_json(
+    inline constexpr char FeatDefinitionCatalogText[] = R"golarion_json(
 @FEAT_DEFINITION_CATALOG_JSON@
 )golarion_json";
+    inline constexpr std::string_view FeatDefinitionCatalogJson{FeatDefinitionCatalogText, sizeof(FeatDefinitionCatalogText) - 1};
 }

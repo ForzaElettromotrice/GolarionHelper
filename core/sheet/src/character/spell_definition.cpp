@@ -19,6 +19,7 @@ namespace
             case golarion::SpellSchool::Necromancy:
             case golarion::SpellSchool::Transmutation:
             case golarion::SpellSchool::Universal:
+            case golarion::SpellSchool::Variable:
                 return;
         }
         throw std::invalid_argument("unknown SpellSchool value");
@@ -76,6 +77,7 @@ namespace
             case golarion::SpellDescriptor::Shadow:
             case golarion::SpellDescriptor::Sonic:
             case golarion::SpellDescriptor::Water:
+            case golarion::SpellDescriptor::Ruse:
                 return;
         }
         throw std::invalid_argument("unknown SpellDescriptor value");
@@ -110,6 +112,8 @@ namespace
             case golarion::SpellComponentType::DivineFocus:
             case golarion::SpellComponentType::MaterialOrDivineFocus:
             case golarion::SpellComponentType::FocusOrDivineFocus:
+            case golarion::SpellComponentType::VerbalOrSomatic:
+            case golarion::SpellComponentType::VerbalOrFocus:
                 return;
         }
         throw std::invalid_argument("unknown SpellComponentType value");
@@ -457,6 +461,12 @@ namespace golarion
         const bool divineFocus = components.contains(SpellComponentType::DivineFocus);
         const bool materialOrDivine = components.contains(SpellComponentType::MaterialOrDivineFocus);
         const bool focusOrDivine = components.contains(SpellComponentType::FocusOrDivineFocus);
+        const bool verbalOrFocus = components.contains(SpellComponentType::VerbalOrFocus);
+        if (verbalOrFocus && (components.contains(SpellComponentType::Verbal) || focus || focusOrDivine || components.contains(SpellComponentType::VerbalOrSomatic)))
+            throw std::invalid_argument("verbal/focus alternative conflicts with explicit components");
+        if (components.contains(SpellComponentType::VerbalOrSomatic) &&
+            (components.contains(SpellComponentType::Verbal) || components.contains(SpellComponentType::Somatic)))
+            throw std::invalid_argument("verbal/somatic alternative conflicts with explicit components");
         if (materialOrDivine && (material || divineFocus))
             throw std::invalid_argument("material/divine focus conflicts with explicit components");
         if (focusOrDivine && (focus || divineFocus))
@@ -465,7 +475,7 @@ namespace golarion
             throw std::invalid_argument("material details require a material component");
         if (definition.materialComponentCostInGoldPieces && *definition.materialComponentCostInGoldPieces < 0)
             throw std::invalid_argument("material component cost must not be negative");
-        if (definition.focusComponentDescription && !focus && !focusOrDivine)
+        if (definition.focusComponentDescription && !focus && !focusOrDivine && !verbalOrFocus)
             throw std::invalid_argument("focus details require a focus component");
         if (definition.durationType == SpellDurationType::Concentration && !definition.dismissible)
             throw std::invalid_argument("concentration spells must be dismissible");

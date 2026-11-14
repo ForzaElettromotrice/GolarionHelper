@@ -30,6 +30,7 @@ int main()
     custom.maxTargetsExpression = "2";
     custom.spellLevelByDomain = {{DomainType::Healing, 1}, {SubdomainType::Healing, 2}};
     custom.spellLevelByBloodline = {{BloodlineType::Arcane, 3}};
+    custom.effects.clear();
     custom.effects.push_back(effectDefinitionFromJson(Json::parse(R"({"id":"note","type":"reminder","message":"Effetto da applicare manualmente"})")));
     auto encoded = spellDefinitionToJson(custom);
     assert(spellDefinitionToJson(spellDefinitionFromJson(encoded)) == encoded);

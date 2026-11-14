@@ -4,7 +4,8 @@
 
 namespace golarion::embedded
 {
-    inline constexpr std::string_view RaceDefinitionCatalogJson = R"golarion_json(
+    inline constexpr char RaceDefinitionCatalogText[] = R"golarion_json(
 @RACE_DEFINITION_CATALOG_JSON@
 )golarion_json";
+    inline constexpr std::string_view RaceDefinitionCatalogJson{RaceDefinitionCatalogText, sizeof(RaceDefinitionCatalogText) - 1};
 }

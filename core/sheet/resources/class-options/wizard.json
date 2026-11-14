@@ -1,0 +1,2665 @@
+{
+  "optionSets": [
+    {
+      "id": "wizard.arcaneSchools",
+      "name": "Scuole arcane",
+      "description": "Scuole ordinarie, focalizzate ed elementali della pagina Golarion.",
+      "options": [
+        {
+          "id": "school.a99a237a0010",
+          "name": "Scuola di Abiurazione",
+          "description": "Scuola selezionata: Scuola di Abiurazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Abiurazione Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Abiurazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Abiurazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.cbd59a70ba5e",
+          "name": "Scuola di Abiurazione — Controincantesimo",
+          "description": "Scuola selezionata: Scuola di Abiurazione — Controincantesimo. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Controincantesimo Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Abiurazione — Controincantesimo. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Controincantesimo Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.c2e43a514d0c",
+          "name": "Scuola di Abiurazione — Esilio",
+          "description": "Scuola selezionata: Scuola di Abiurazione — Esilio. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Esilio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Abiurazione — Esilio. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Esilio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.cd77612c7823",
+          "name": "Scuola di Ammaliamento",
+          "description": "Scuola selezionata: Scuola di Ammaliamento. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Ammaliamento Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Ammaliamento. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Ammaliamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.486c42c2c5e2",
+          "name": "Scuola di Ammaliamento — Controllo",
+          "description": "Scuola selezionata: Scuola di Ammaliamento — Controllo. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Controllo Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Ammaliamento — Controllo. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Controllo Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.a995cc6aedd6",
+          "name": "Scuola di Ammaliamento — Manipolazione",
+          "description": "Scuola selezionata: Scuola di Ammaliamento — Manipolazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Manipolazione Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Ammaliamento — Manipolazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Manipolazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.9118d5520326",
+          "name": "Scuola di Divinazione",
+          "description": "Scuola selezionata: Scuola di Divinazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Divinazione Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Divinazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Divinazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.9b522317af49",
+          "name": "Scuola di Divinazione — Preveggenza",
+          "description": "Scuola selezionata: Scuola di Divinazione — Preveggenza. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Preveggenza Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Divinazione — Preveggenza. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Preveggenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.ce01f7752a1c",
+          "name": "Scuola di Divinazione — Scrutamento",
+          "description": "Scuola selezionata: Scuola di Divinazione — Scrutamento. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scrutamento Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Divinazione — Scrutamento. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scrutamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.74577fc96234",
+          "name": "Scuola di Evocazione",
+          "description": "Scuola selezionata: Scuola di Evocazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Evocazione Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Evocazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Evocazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.ab008cf51010",
+          "name": "Scuola di Evocazione — Creazione",
+          "description": "Scuola selezionata: Scuola di Evocazione — Creazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Creazione Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Evocazione — Creazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Creazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.6496ad2fcb67",
+          "name": "Scuola di Evocazione — Teletrasporto",
+          "description": "Scuola selezionata: Scuola di Evocazione — Teletrasporto. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Teletrasporto Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Evocazione — Teletrasporto. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Teletrasporto Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.8d41db1db5c4",
+          "name": "Scuola di Illusione",
+          "description": "Scuola selezionata: Scuola di Illusione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Illusione Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Illusione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Illusione Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.cc2db20455cf",
+          "name": "Scuola di Illusione — Allucinazione",
+          "description": "Scuola selezionata: Scuola di Illusione — Allucinazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Allucinazione Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Illusione — Allucinazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Allucinazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.50925d492dfe",
+          "name": "Scuola di Illusione — Inganno",
+          "description": "Scuola selezionata: Scuola di Illusione — Inganno. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Inganno Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Illusione — Inganno. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Inganno Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.a1ea7d9995af",
+          "name": "Scuola di Illusione — Ombra",
+          "description": "Scuola selezionata: Scuola di Illusione — Ombra. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Ombra Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Illusione — Ombra. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Ombra Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.dd2a431e3ebf",
+          "name": "Scuola di Invocazione",
+          "description": "Scuola selezionata: Scuola di Invocazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Invocazione Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Invocazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Invocazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.0836c3cd9acc",
+          "name": "Scuola di Invocazione — Fusione",
+          "description": "Scuola selezionata: Scuola di Invocazione — Fusione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Fusione Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Invocazione — Fusione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Fusione Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.a403e0532cf0",
+          "name": "Scuola di Invocazione — Genesi",
+          "description": "Scuola selezionata: Scuola di Invocazione — Genesi. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Genesi Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Invocazione — Genesi. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Genesi Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.66d36848264d",
+          "name": "Scuola di Necromanzia",
+          "description": "Scuola selezionata: Scuola di Necromanzia. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Necromanzia Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Necromanzia. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Necromanzia Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.29c4e963405b",
+          "name": "Scuola di Necromanzia — Non Morti",
+          "description": "Scuola selezionata: Scuola di Necromanzia — Non Morti. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Non_Morti Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Necromanzia — Non Morti. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Non_Morti Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.b4bd3b01a428",
+          "name": "Scuola di Necromanzia — Vita",
+          "description": "Scuola selezionata: Scuola di Necromanzia — Vita. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Vita Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Necromanzia — Vita. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Vita Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.553cca586a29",
+                      "name": "Scuola di Trasmutazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.553cca586a29",
+          "name": "Scuola di Trasmutazione",
+          "description": "Scuola selezionata: Scuola di Trasmutazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Trasmutazione Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Trasmutazione. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_di_Trasmutazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.3cbf28350468",
+          "name": "Scuola di Trasmutazione — Metamorfosi",
+          "description": "Scuola selezionata: Scuola di Trasmutazione — Metamorfosi. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Metamorfosi Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Trasmutazione — Metamorfosi. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Metamorfosi Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.f0621332a88b",
+          "name": "Scuola di Trasmutazione — Potenziamento",
+          "description": "Scuola selezionata: Scuola di Trasmutazione — Potenziamento. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Potenziamento Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola di Trasmutazione — Potenziamento. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Potenziamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "opposedSchools",
+                  "prompt": "Scegli due scuole opposte",
+                  "selectionCount": 2,
+                  "blocksAdvancement": true,
+                  "options": [
+                    {
+                      "id": "school.a99a237a0010",
+                      "name": "Scuola di Abiurazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.cd77612c7823",
+                      "name": "Scuola di Ammaliamento",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.9118d5520326",
+                      "name": "Scuola di Divinazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.74577fc96234",
+                      "name": "Scuola di Evocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.8d41db1db5c4",
+                      "name": "Scuola di Illusione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.dd2a431e3ebf",
+                      "name": "Scuola di Invocazione",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    },
+                    {
+                      "id": "school.66d36848264d",
+                      "name": "Scuola di Necromanzia",
+                      "description": "Scuola opposta. Il costo aggiuntivo di preparazione e le penalità di creazione restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.d899b663facf",
+          "name": "Scuola Universale",
+          "description": "Scuola selezionata: Scuola Universale. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_Universale Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Scuola Universale. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Scuola_Universale Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.92febe18957e",
+          "name": "Acqua",
+          "description": "Scuola selezionata: Acqua. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Acqua Ehi, appena hai tempo vedi di correggermi se necessario! Verificare manualmente gli elementi opposti e il sistema elementale adottato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Acqua. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Acqua Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.980bd967f7be",
+          "name": "Aria",
+          "description": "Scuola selezionata: Aria. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Aria Ehi, appena hai tempo vedi di correggermi se necessario! Verificare manualmente gli elementi opposti e il sistema elementale adottato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Aria. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Aria Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.7085be04b7fc",
+          "name": "Fuoco",
+          "description": "Scuola selezionata: Fuoco. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Fuoco Ehi, appena hai tempo vedi di correggermi se necessario! Verificare manualmente gli elementi opposti e il sistema elementale adottato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Fuoco. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Fuoco Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.01d0e8b84573",
+          "name": "Legno",
+          "description": "Scuola selezionata: Legno. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Legno Ehi, appena hai tempo vedi di correggermi se necessario! Verificare manualmente gli elementi opposti e il sistema elementale adottato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Legno. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Legno Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.362d1f4117bd",
+          "name": "Metallo",
+          "description": "Scuola selezionata: Metallo. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Metallo Ehi, appena hai tempo vedi di correggermi se necessario! Verificare manualmente gli elementi opposti e il sistema elementale adottato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Metallo. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Metallo Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "school.ca464368f0ed",
+          "name": "Terra",
+          "description": "Scuola selezionata: Terra. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. Fonte: https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Terra Ehi, appena hai tempo vedi di correggermi se necessario! Verificare manualmente gli elementi opposti e il sistema elementale adottato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Scuola selezionata: Terra. Gestire manualmente poteri, progressione, limiti e incantesimi riservati; non vengono concessi slot senza restrizioni. https://golarion.altervista.org/wiki/Mago/Scuole_Arcane#Terra Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wizard.familiars",
+      "name": "Famigli ordinari",
+      "description": "Specie della tabella Famigli di Golarion; i famigli migliorati richiedono il loro distinto contesto.",
+      "options": [
+        {
+          "id": "familiar.a8083d7a672e",
+          "name": "Archaeopteryx",
+          "description": "Famiglio selezionato: Archaeopteryx. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Archaeopteryx. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.8d80415bd5b5",
+          "name": "Bradipo",
+          "description": "Famiglio selezionato: Bradipo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Bradipo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.0acfb82f0d51",
+          "name": "Caimano Nano",
+          "description": "Famiglio selezionato: Caimano Nano. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Caimano Nano. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.0a2420444fe9",
+          "name": "Capra",
+          "description": "Famiglio selezionato: Capra. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Capra. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.54121e681c13",
+          "name": "Compsognato",
+          "description": "Famiglio selezionato: Compsognato. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Compsognato. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.6334bdc0f3f5",
+          "name": "Corvo",
+          "description": "Famiglio selezionato: Corvo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Corvo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.768e1e4d6ffd",
+          "name": "Dodo",
+          "description": "Famiglio selezionato: Dodo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Dodo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.3e0084fbcef1",
+          "name": "Donnola",
+          "description": "Famiglio selezionato: Donnola. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Donnola. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.12050a459a60",
+          "name": "Falco",
+          "description": "Famiglio selezionato: Falco. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Falco. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.f153465c6685",
+          "name": "Foca",
+          "description": "Famiglio selezionato: Foca. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Foca. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.42d72943d9cf",
+          "name": "Gatto",
+          "description": "Famiglio selezionato: Gatto. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Gatto. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.6e3d52c2c1ac",
+          "name": "Granchio Reale",
+          "description": "Famiglio selezionato: Granchio Reale. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Granchio Reale. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.eadb0e5d1915",
+          "name": "Gufo",
+          "description": "Famiglio selezionato: Gufo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Gufo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.c5dc7338cc1a",
+          "name": "Isopoda Gigante",
+          "description": "Famiglio selezionato: Isopoda Gigante. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Isopoda Gigante. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.6323e9af9ce2",
+          "name": "Lontra",
+          "description": "Famiglio selezionato: Lontra. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Lontra. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.56c9045dcb3e",
+          "name": "Lucertola",
+          "description": "Famiglio selezionato: Lucertola. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Lucertola. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.559226cc2b78",
+          "name": "Maiale",
+          "description": "Famiglio selezionato: Maiale. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Maiale. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.d70fb046a3e7",
+          "name": "Millepiedi Domestico",
+          "description": "Famiglio selezionato: Millepiedi Domestico. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Millepiedi Domestico. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.780e1df6ee78",
+          "name": "Ornitorinco",
+          "description": "Famiglio selezionato: Ornitorinco. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Ornitorinco. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.9b5d8779f34a",
+          "name": "Panda Rosso",
+          "description": "Famiglio selezionato: Panda Rosso. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Panda Rosso. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.f61b003973d4",
+          "name": "Pinguino",
+          "description": "Famiglio selezionato: Pinguino. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Pinguino. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.951f5303de4c",
+          "name": "Pipistrello",
+          "description": "Famiglio selezionato: Pipistrello. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Pipistrello. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.0f6fbb5f9dc6",
+          "name": "Pipistrello, Volpe Volante",
+          "description": "Famiglio selezionato: Pipistrello, Volpe Volante. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Pipistrello, Volpe Volante. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.48a023e2c47a",
+          "name": "Pollo",
+          "description": "Famiglio selezionato: Pollo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Pollo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.50a54fcecf26",
+          "name": "Polpo dagli Anelli Blu",
+          "description": "Famiglio selezionato: Polpo dagli Anelli Blu. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Polpo dagli Anelli Blu. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.19f2f4a15a0a",
+          "name": "Procione",
+          "description": "Famiglio selezionato: Procione. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Procione. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.60dfd935c896",
+          "name": "Ragno Scarlatto",
+          "description": "Famiglio selezionato: Ragno Scarlatto. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Ragno Scarlatto. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.535c5bbaa355",
+          "name": "Ratto Asino",
+          "description": "Famiglio selezionato: Ratto Asino. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Ratto Asino. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.f353eeebd31a",
+          "name": "Riccio",
+          "description": "Famiglio selezionato: Riccio. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Riccio. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.c302cb2f525d",
+          "name": "Rospo",
+          "description": "Famiglio selezionato: Rospo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Rospo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.c00e947e55a9",
+          "name": "Scimmia",
+          "description": "Famiglio selezionato: Scimmia. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Scimmia. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.1f9484afa521",
+          "name": "Scoiattolo Volante",
+          "description": "Famiglio selezionato: Scoiattolo Volante. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Scoiattolo Volante. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.bbae2ba70bf8",
+          "name": "Scorpione Pungiglione Verde",
+          "description": "Famiglio selezionato: Scorpione Pungiglione Verde. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Scorpione Pungiglione Verde. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.71618c8a0a8f",
+          "name": "Topo",
+          "description": "Famiglio selezionato: Topo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Topo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.7504beb4da34",
+          "name": "Trilobita",
+          "description": "Famiglio selezionato: Trilobita. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Trilobita. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.f22b6c5c29b2",
+          "name": "Tuatara",
+          "description": "Famiglio selezionato: Tuatara. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Tuatara. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.6e16d682145e",
+          "name": "Tartaruga",
+          "description": "Famiglio selezionato: Tartaruga. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Tartaruga. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.2b9477a9f6b4",
+          "name": "Tartaruga Azzannatrice",
+          "description": "Famiglio selezionato: Tartaruga Azzannatrice. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Tartaruga Azzannatrice. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.6496aff7653c",
+          "name": "Torbillo",
+          "description": "Famiglio selezionato: Torbillo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Torbillo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.3e3466e98a1f",
+          "name": "Tordo",
+          "description": "Famiglio selezionato: Tordo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Tordo. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.0a7dab749441",
+          "name": "Vipera",
+          "description": "Famiglio selezionato: Vipera. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Vipera. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "familiar.1aea25de8fa3",
+          "name": "Volpe",
+          "description": "Famiglio selezionato: Volpe. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. Fonte: https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Famiglio selezionato: Volpe. Bonus al padrone, condizioni di distanza, statistiche e capacità della creatura sono manuali. https://golarion.altervista.org/wiki/Mago/Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wizard.arcaneBonds",
+      "name": "Legame arcano",
+      "description": "Scelta fra famiglio e oggetto legato.",
+      "options": [
+        {
+          "id": "familiar",
+          "name": "Famiglio",
+          "description": "Il legame arcano è un famiglio; selezionare la creatura dalla lista ordinaria e applicare manualmente le regole del legame. Fonte: https://golarion.altervista.org/wiki/Mago#Legame_Arcano_.28Str_o_Mag.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Il legame arcano è un famiglio; selezionare la creatura dalla lista ordinaria e applicare manualmente le regole del legame. https://golarion.altervista.org/wiki/Mago#Legame_Arcano_.28Str_o_Mag.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "species",
+                  "prompt": "Scegli il famiglio",
+                  "selectionCount": 1,
+                  "blocksAdvancement": true,
+                  "optionSet": "wizard.familiars"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bondedItem",
+          "name": "Oggetto legato",
+          "description": "Il legame arcano è un oggetto; individuare manualmente l’istanza e applicare capacità, restrizioni e sostituzione secondo la fonte. Fonte: https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Il legame arcano è un oggetto; individuare manualmente l’istanza e applicare capacità, restrizioni e sostituzione secondo la fonte. https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ],
+              "choices": [
+                {
+                  "id": "itemKind",
+                  "prompt": "Scegli il tipo di oggetto legato",
+                  "selectionCount": 1,
+                  "blocksAdvancement": true,
+                  "optionSet": "wizard.bondedItems"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wizard.bondedItems",
+      "name": "Oggetti legati",
+      "description": "Categorie ammesse per l’oggetto legato nella pagina Golarion.",
+      "options": [
+        {
+          "id": "amulet",
+          "name": "Amuleto",
+          "description": "Categoria dell’oggetto legato: Amuleto. Individuare manualmente l’istanza dell’inventario e applicare requisiti e capacità del legame. Fonte: https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Categoria dell’oggetto legato: Amuleto. Individuare manualmente l’istanza dell’inventario e applicare requisiti e capacità del legame. https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ring",
+          "name": "Anello",
+          "description": "Categoria dell’oggetto legato: Anello. Individuare manualmente l’istanza dell’inventario e applicare requisiti e capacità del legame. Fonte: https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Categoria dell’oggetto legato: Anello. Individuare manualmente l’istanza dell’inventario e applicare requisiti e capacità del legame. https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "staff",
+          "name": "Bastone",
+          "description": "Categoria dell’oggetto legato: Bastone. Individuare manualmente l’istanza dell’inventario e applicare requisiti e capacità del legame. Fonte: https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Categoria dell’oggetto legato: Bastone. Individuare manualmente l’istanza dell’inventario e applicare requisiti e capacità del legame. https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wand",
+          "name": "Bacchetta",
+          "description": "Categoria dell’oggetto legato: Bacchetta. Individuare manualmente l’istanza dell’inventario e applicare requisiti e capacità del legame. Fonte: https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Categoria dell’oggetto legato: Bacchetta. Individuare manualmente l’istanza dell’inventario e applicare requisiti e capacità del legame. https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "weapon",
+          "name": "Arma",
+          "description": "Categoria dell’oggetto legato: Arma. Individuare manualmente l’istanza dell’inventario e applicare requisiti e capacità del legame. Fonte: https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "progression": [
+            {
+              "id": "initial",
+              "level": 1,
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Categoria dell’oggetto legato: Arma. Individuare manualmente l’istanza dell’inventario e applicare requisiti e capacità del legame. https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "wizard.schoolChoices",
+      "classType": "wizard",
+      "featureId": "wizard.feature.5805de6bd2db",
+      "acquisitionIds": [
+        "wizard.feature.5805de6bd2db.level1"
+      ],
+      "choice": {
+        "id": "school",
+        "prompt": "Scegli la scuola arcana",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "wizard.arcaneSchools"
+      }
+    },
+    {
+      "id": "wizard.bondChoices",
+      "classType": "wizard",
+      "featureId": "wizard.feature.e0eb2aa5ac5e",
+      "acquisitionIds": [
+        "wizard.feature.e0eb2aa5ac5e.level1"
+      ],
+      "choice": {
+        "id": "bond",
+        "prompt": "Scegli il legame arcano",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "wizard.arcaneBonds"
+      }
+    }
+  ]
+}

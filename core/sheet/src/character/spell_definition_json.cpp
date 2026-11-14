@@ -28,7 +28,8 @@ namespace
             std::pair{std::string_view("ILLUSION"), SpellSchool::Illusion},
             std::pair{std::string_view("NECROMANCY"), SpellSchool::Necromancy},
             std::pair{std::string_view("TRANSMUTATION"), SpellSchool::Transmutation},
-            std::pair{std::string_view("UNIVERSAL"), SpellSchool::Universal}
+            std::pair{std::string_view("UNIVERSAL"), SpellSchool::Universal},
+            std::pair{std::string_view("VARIABLE"), SpellSchool::Variable}
         };
     };
 
@@ -79,7 +80,8 @@ namespace
             std::pair{std::string_view("POISON"), SpellDescriptor::Poison},
             std::pair{std::string_view("SHADOW"), SpellDescriptor::Shadow},
             std::pair{std::string_view("SONIC"), SpellDescriptor::Sonic},
-            std::pair{std::string_view("WATER"), SpellDescriptor::Water}
+            std::pair{std::string_view("WATER"), SpellDescriptor::Water},
+            std::pair{std::string_view("RUSE"), SpellDescriptor::Ruse}
         };
     };
 
@@ -107,7 +109,9 @@ namespace
             std::pair{std::string_view("FOCUS"), SpellComponentType::Focus},
             std::pair{std::string_view("DIVINE_FOCUS"), SpellComponentType::DivineFocus},
             std::pair{std::string_view("MATERIAL_OR_DIVINE_FOCUS"), SpellComponentType::MaterialOrDivineFocus},
-            std::pair{std::string_view("FOCUS_OR_DIVINE_FOCUS"), SpellComponentType::FocusOrDivineFocus}
+            std::pair{std::string_view("FOCUS_OR_DIVINE_FOCUS"), SpellComponentType::FocusOrDivineFocus},
+            std::pair{std::string_view("VERBAL_OR_SOMATIC"), SpellComponentType::VerbalOrSomatic},
+            std::pair{std::string_view("VERBAL_OR_FOCUS"), SpellComponentType::VerbalOrFocus}
         };
     };
 

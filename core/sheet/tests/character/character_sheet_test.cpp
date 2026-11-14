@@ -43,12 +43,17 @@ int main()
         raceView = raceSheet.toView();
         assert(raceView.race.race.has_value());
         assert(raceView.race.race->id == "human");
-        assert(raceView.race.activeElements.size() == 7);
+        assert(raceView.race.activeElements.size() == 8);
         const auto abilityScores = std::ranges::find(raceView.race.activeElements, "human.abilityScores", &RacialElementView::id);
         assert(abilityScores != raceView.race.activeElements.end());
         assert(abilityScores->missingChoices.size() == 1);
         assert(raceView.movement.grants.size() == 1);
-        assert(raceView.reminders.messages.size() == 4);
+        assert(raceView.reminders.messages.size() == 1);
+        assert(raceView.languages.spoken.size() == 1 && raceView.languages.spoken.front().id == "common");
+        assert(raceView.feats.slots.size() == 1 && raceView.feats.slots.front().available);
+        const auto racialFeatSlot = raceView.feats.slots.front().id;
+        raceSheet.selectFeat(racialFeatSlot, "improvedInitiative");
+        assert(raceSheet.toView().feats.feats.front().active);
 
         raceSheet.setRacialChoice("human.abilityScores", "ability", {"strength"});
         raceView = raceSheet.toView();
@@ -57,7 +62,8 @@ int main()
 
         raceSheet.selectAlternateRacialFeature("human.dualTalent");
         raceView = raceSheet.toView();
-        assert(raceView.race.activeElements.size() == 5);
+        assert(!raceView.feats.slots.front().available && !raceView.feats.feats.front().active);
+        assert(raceView.race.activeElements.size() == 6);
         assert(std::ranges::find(raceView.race.activeElements, "human.abilityScores", &RacialElementView::id) == raceView.race.activeElements.end());
         assert(raceView.abilities[0].totalValue == 10);
         raceSheet.setRacialChoice("human.dualTalent", "abilities", {"strength", "constitution"});
@@ -67,6 +73,7 @@ int main()
 
         raceSheet.removeAlternateRacialFeature("human.dualTalent");
         raceView = raceSheet.toView();
+        assert(raceView.feats.slots.front().available && raceView.feats.feats.front().active);
         assert(raceView.abilities[0].totalValue == 12);
         assert(raceView.abilities[2].totalValue == 10);
 
@@ -76,11 +83,13 @@ int main()
         CharacterSheet loadedRaceSheet = CharacterSheet::load(raceSavePath);
         CharacterSheetView loadedRaceView = loadedRaceSheet.toView();
         assert(loadedRaceView.race.race->id == "human");
-        assert(loadedRaceView.race.activeElements.size() == 5);
+        assert(loadedRaceView.race.activeElements.size() == 6);
         assert(loadedRaceView.abilities[0].totalValue == 12);
         assert(loadedRaceView.abilities[2].totalValue == 12);
         loadedRaceSheet.removeAlternateRacialFeature("human.dualTalent");
         loadedRaceView = loadedRaceSheet.toView();
+        assert(loadedRaceView.feats.slots.front().id == racialFeatSlot);
+        assert(loadedRaceView.feats.feats.front().active);
         assert(loadedRaceView.abilities[0].totalValue == 12);
         assert(loadedRaceView.abilities[2].totalValue == 10);
         std::filesystem::remove(raceSavePath);

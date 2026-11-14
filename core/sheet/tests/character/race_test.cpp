@@ -1,4 +1,9 @@
 #include "golarion/character/ability.hpp"
+#include "golarion/character/feats.hpp"
+#include "golarion/character/favored_classes.hpp"
+#include "golarion/character/special_defenses.hpp"
+#include "golarion/character/initiative.hpp"
+#include "golarion/character/languages.hpp"
 #include "golarion/character/armor_class.hpp"
 #include "golarion/character/carrying_capacity.hpp"
 #include "golarion/character/combat_maneuvers.hpp"
@@ -54,6 +59,8 @@ int main()
     using namespace golarion;
 
     ResourceManager resourceManager;
+    int level = 1;
+    resourceManager.registerTarget("level", [&] { return level; });
     AbilityChecks abilityChecks(resourceManager);
     std::array abilities{
         AbilityScore(AbilityType::Strength),
@@ -74,6 +81,11 @@ int main()
     Skills skills(resourceManager);
     SavingThrows savingThrows(resourceManager);
     ReminderManager reminderManager(resourceManager);
+    Feats feats(resourceManager);
+    FavoredClasses favoredClasses(resourceManager);
+    SpecialDefenses specialDefenses(resourceManager);
+    Initiative initiative(resourceManager);
+    Languages languages(resourceManager, [] { return 0; });
     Movement movement(resourceManager);
     CarryingCapacity carryingCapacity(resourceManager);
     SizeManager sizeManager(resourceManager);
@@ -102,7 +114,7 @@ int main()
     assert(view.race.has_value());
     assert(view.race->id == "human");
     assert(view.race->name == "Umano");
-    assert(view.activeElements.size() == 7);
+    assert(view.activeElements.size() == 8);
     const RacialElementView &abilityScores = elementView(view, "human.abilityScores");
     assert(abilityScores.choices.empty());
     assert(abilityScores.missingChoices.size() == 1);
@@ -115,7 +127,12 @@ int main()
     assert(movement.toView().grants.size() == 1);
     assert(movement.toView().grants[0].effectiveUnits == 6);
     assert(carryingCapacity.toView().bodyType == CarryingBodyType::Biped);
-    assert(reminderManager.toView().messages.size() == 4);
+    assert(reminderManager.toView().messages.size() == 1);
+    assert(resourceManager.contributionTotal(MaxSkillRanksResource) == 1);
+    assert(feats.toView().slots.size() == 1);
+    assert(languages.toView().spoken.front().id == "common");
+    level = 5;
+    assert(resourceManager.contributionTotal(MaxSkillRanksResource) == 5);
     assert(resourceManager.modifierTotal("str") == 0);
 
     assert(throws<std::invalid_argument>([&race]
@@ -142,7 +159,7 @@ int main()
         race.selectAlternateFeature("human.dualTalent");
     }));
     view = race.toView();
-    assert(view.activeElements.size() == 5);
+    assert(view.activeElements.size() == 6);
     assert(std::ranges::find(view.activeElements, "human.abilityScores", &RacialElementView::id) == view.activeElements.end());
     assert(std::ranges::find(view.activeElements, "human.skilled", &RacialElementView::id) == view.activeElements.end());
     assert(std::ranges::find(view.activeElements, "human.bonusFeat", &RacialElementView::id) == view.activeElements.end());
@@ -150,7 +167,9 @@ int main()
     assert(missingDualTalent.missingChoices.size() == 1);
     assert(missingDualTalent.missingChoices[0].selectionCount == 2);
     assert(resourceManager.modifierTotal("str") == 0);
-    assert(reminderManager.toView().messages.size() == 2);
+    assert(reminderManager.toView().messages.size() == 1);
+    assert(resourceManager.contributionTotal(MaxSkillRanksResource) == 0);
+    assert(feats.toView().slots.empty());
     assert(throws<std::invalid_argument>([&race]
     {
         race.setChoice("human.abilityScores", "ability", {"dexterity"});
@@ -174,7 +193,8 @@ int main()
     race.removeAlternateFeature("human.dualTalent");
     assert(resourceManager.modifierTotal("str") == 2);
     assert(resourceManager.modifierTotal("con") == 0);
-    assert(reminderManager.toView().messages.size() == 4);
+    assert(reminderManager.toView().messages.size() == 1);
+    assert(resourceManager.contributionTotal(MaxSkillRanksResource) == 5);
     assert(elementView(race.toView(), "human.abilityScores").missingChoices.empty());
     assert(throws<std::invalid_argument>([&race]
     {
@@ -340,6 +360,7 @@ int main()
             assert(resourceManager.modifierSetView(resource).modifiers.empty());
         }
         assert(movement.toView().grants.empty());
+        languages.refreshReminders();
         assert(reminderManager.toView().messages.empty());
         assert(!sizeManager.toView().base.has_value());
         race.load(coreSave);

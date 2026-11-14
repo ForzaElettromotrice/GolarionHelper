@@ -8,6 +8,12 @@
 namespace
 {
     using namespace golarion;
+    void selectHumanFeat(CharacterSheet &sheet)
+    {
+        sheet.addCustomFeatDefinition({.id = "gate.human", .name = "Talento umano di prova", .description = "Nessun effetto.", .types = {FeatType::General}});
+        for (const auto &slot : sheet.toView().feats.slots)
+            if (slot.origin == FeatSlotOrigin::Source && !slot.featId) sheet.selectFeat(slot.id, "gate.human");
+    }
     void blocked(CharacterSheet &sheet, CharacterClassType type)
     {
         const auto before = persistence::toJson(sheet.toSaveData());
@@ -45,6 +51,8 @@ int main()
     sheet.setFavoredClass(CharacterClassType::Fighter);
     blocked(sheet, CharacterClassType::Fighter); // Racial ability choice still missing.
     sheet.setRacialChoice("human.abilityScores", "ability", {"charisma"});
+    blocked(sheet, CharacterClassType::Fighter); // Human Bonus Feat must also be selected.
+    selectHumanFeat(sheet);
     sheet.addClassLevel(CharacterClassType::Fighter);
     assert(sheet.level() == 1);
     sheet.addExtraFeatSlot("extra");
@@ -60,7 +68,7 @@ int main()
     blocked(sheet, CharacterClassType::Rogue); // Source-owned feat slot is still empty.
     sheet.addCustomFeatDefinition({.id = "gate.feat", .name = "Talento di prova", .description = "Nessun effetto.", .types = {FeatType::General}});
     for (const auto &slot : sheet.toView().feats.slots)
-        if (slot.origin == FeatSlotOrigin::Source && !slot.id.starts_with("base.")) sheet.selectFeat(slot.id, "gate.feat");
+        if (slot.origin == FeatSlotOrigin::Source && !slot.id.starts_with("base.") && !slot.featId) sheet.selectFeat(slot.id, "gate.feat");
     sheet.addClassLevel(CharacterClassType::Rogue);
     assert(sheet.level() == 3);
     blocked(sheet, CharacterClassType::Fighter); // New level-three feat slot.
@@ -94,6 +102,7 @@ int main()
         caster.setAlignment(Alignment::Neutral);
         caster.setRace("human");
         caster.setRacialChoice("human.abilityScores", "ability", {"charisma"});
+        selectHumanFeat(caster);
         caster.setFavoredClass(CharacterClassType::Wizard);
         caster.addClassLevel(CharacterClassType::Wizard);
         caster.selectFeat("base.feat.level1", "improvedInitiative");

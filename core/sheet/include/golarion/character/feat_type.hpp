@@ -12,7 +12,7 @@ namespace golarion
     {
         General, Combat, Critical, ItemCreation, Metamagic, Teamwork, Style,
         Achievement, Channeling, Grit, Panache, Performance, Racial, Story,
-        Mythic, Monster, Stare, HeroPoint
+        Mythic, Monster, Stare, HeroPoint, Alignment
     };
 
     inline FeatType featTypeFromName(std::string_view name)
@@ -26,7 +26,8 @@ namespace golarion
             std::pair{"panache", FeatType::Panache}, std::pair{"performance", FeatType::Performance},
             std::pair{"racial", FeatType::Racial}, std::pair{"story", FeatType::Story},
             std::pair{"mythic", FeatType::Mythic}, std::pair{"monster", FeatType::Monster},
-            std::pair{"stare", FeatType::Stare}, std::pair{"heroPoint", FeatType::HeroPoint}
+            std::pair{"stare", FeatType::Stare}, std::pair{"heroPoint", FeatType::HeroPoint},
+            std::pair{"alignment", FeatType::Alignment}
         };
         for (const auto &[key, type] : names) if (name == key) return type;
         throw std::invalid_argument("unknown feat type: " + std::string(name));

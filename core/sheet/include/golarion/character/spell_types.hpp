@@ -18,7 +18,8 @@ namespace golarion
         Illusion,
         Necromancy,
         Transmutation,
-        Universal
+        Universal,
+        Variable
     };
 
     enum class SpellSubschool
@@ -65,7 +66,8 @@ namespace golarion
         Poison,
         Shadow,
         Sonic,
-        Water
+        Water,
+        Ruse
     };
 
     enum class SpellCastingTimeCategory
@@ -89,7 +91,9 @@ namespace golarion
         Focus,
         DivineFocus,
         MaterialOrDivineFocus,
-        FocusOrDivineFocus
+        FocusOrDivineFocus,
+        VerbalOrSomatic,
+        VerbalOrFocus
     };
 
     enum class SpellRangeType

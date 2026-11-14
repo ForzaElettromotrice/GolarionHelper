@@ -1,0 +1,2735 @@
+[
+  {
+    "type": "antipaladin",
+    "name": "Antipaladino",
+    "description": "Campione malvagio che impiega poteri divini corruttori.",
+    "hitDie": 10,
+    "skillRanksPerLevel": 2,
+    "classSkills": [
+      "skill.handleAnimal",
+      "skill.craft",
+      "skill.disguise",
+      "skill.ride",
+      "skill.knowledge.religion",
+      "skill.stealth",
+      "skill.intimidate",
+      "skill.senseMotive",
+      "skill.profession",
+      "skill.bluff",
+      "skill.spellcraft"
+    ],
+    "progression": [
+      {
+        "level": 1,
+        "baseAttackBonus": 1,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 0,
+          "will": 2
+        }
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": 2,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 0,
+          "will": 3
+        }
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": 3,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 1,
+          "will": 3
+        }
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": 4,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 1,
+          "will": 4
+        }
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": 5,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 1,
+          "will": 4
+        }
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": 6,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 2,
+          "will": 5
+        }
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": 7,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 2,
+          "will": 5
+        }
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": 8,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 2,
+          "will": 6
+        }
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": 9,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 3,
+          "will": 6
+        }
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": 10,
+        "baseSavingThrows": {
+          "fortitude": 7,
+          "reflex": 3,
+          "will": 7
+        }
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": 11,
+        "baseSavingThrows": {
+          "fortitude": 7,
+          "reflex": 3,
+          "will": 7
+        }
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": 12,
+        "baseSavingThrows": {
+          "fortitude": 8,
+          "reflex": 4,
+          "will": 8
+        }
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": 13,
+        "baseSavingThrows": {
+          "fortitude": 8,
+          "reflex": 4,
+          "will": 8
+        }
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": 14,
+        "baseSavingThrows": {
+          "fortitude": 9,
+          "reflex": 4,
+          "will": 9
+        }
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": 15,
+        "baseSavingThrows": {
+          "fortitude": 9,
+          "reflex": 5,
+          "will": 9
+        }
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": 16,
+        "baseSavingThrows": {
+          "fortitude": 10,
+          "reflex": 5,
+          "will": 10
+        }
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": 17,
+        "baseSavingThrows": {
+          "fortitude": 10,
+          "reflex": 5,
+          "will": 10
+        }
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": 18,
+        "baseSavingThrows": {
+          "fortitude": 11,
+          "reflex": 6,
+          "will": 11
+        }
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": 19,
+        "baseSavingThrows": {
+          "fortitude": 11,
+          "reflex": 6,
+          "will": 11
+        }
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": 20,
+        "baseSavingThrows": {
+          "fortitude": 12,
+          "reflex": 6,
+          "will": 12
+        }
+      }
+    ],
+    "features": [
+      {
+        "id": "antipaladin.classSkills",
+        "name": "Abilità di classe",
+        "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+        "progression": []
+      },
+      {
+        "id": "antipaladin.spellcasting",
+        "name": "Incantesimi",
+        "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Antipaladino",
+        "progression": [
+          {
+            "id": "spellcasting",
+            "level": 4,
+            "effects": [
+              {
+                "id": "casting",
+                "type": "spellcastingGrant",
+                "mode": "prepared",
+                "spellListClass": "antipaladin"
+              },
+              {
+                "id": "list",
+                "type": "spellRepertoireList",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting"
+              },
+              {
+                "id": "manualCasting",
+                "type": "reminder",
+                "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. Il lancio inizia al livello di classe 4. Le celle 0 della tabella permettono solo slot bonus di caratteristica, da gestire manualmente; non equivalgono alle celle prive di accesso. Il livello incantatore è pari al livello di classe meno 3, non al livello totale del personaggio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          },
+          {
+            "id": "castingSlots.level5",
+            "level": 5,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "castingSlots.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level5"
+            ]
+          },
+          {
+            "id": "castingSlots.level7",
+            "level": 7,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level6"
+            ]
+          },
+          {
+            "id": "castingSlots.level8",
+            "level": 8,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level7"
+            ]
+          },
+          {
+            "id": "castingSlots.level9",
+            "level": 9,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 2
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level8"
+            ]
+          },
+          {
+            "id": "castingSlots.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 2
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level9"
+            ]
+          },
+          {
+            "id": "castingSlots.level11",
+            "level": 11,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 2
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level10"
+            ]
+          },
+          {
+            "id": "castingSlots.level12",
+            "level": 12,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 2
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 2
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level11"
+            ]
+          },
+          {
+            "id": "castingSlots.level13",
+            "level": 13,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 2
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level12"
+            ]
+          },
+          {
+            "id": "castingSlots.level14",
+            "level": 14,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 2
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 1
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level13"
+            ]
+          },
+          {
+            "id": "castingSlots.level15",
+            "level": 15,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 2
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 2
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level14"
+            ]
+          },
+          {
+            "id": "castingSlots.level16",
+            "level": 16,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 2
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level15"
+            ]
+          },
+          {
+            "id": "castingSlots.level17",
+            "level": 17,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 2
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 1
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level16"
+            ]
+          },
+          {
+            "id": "castingSlots.level18",
+            "level": 18,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 2
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level17"
+            ]
+          },
+          {
+            "id": "castingSlots.level19",
+            "level": 19,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 2
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level18"
+            ]
+          },
+          {
+            "id": "castingSlots.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "slots",
+                "type": "spellSlotGrant",
+                "castingId": "class.effect.11:antipaladin12:spellcasting7:casting",
+                "pool": "casting",
+                "slots": [
+                  {
+                    "level": 1,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 2,
+                    "capacity": 4
+                  },
+                  {
+                    "level": 3,
+                    "capacity": 3
+                  },
+                  {
+                    "level": 4,
+                    "capacity": 3
+                  }
+                ]
+              }
+            ],
+            "replaces": [
+              "castingSlots.level19"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.806083402765",
+        "name": "Aura di Male",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Aura_di_Male_(Str)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.806083402765.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Antipaladino: verificare e applicare Aura di Male. https://golarion.altervista.org/wiki/Antipaladino#Aura_di_Male_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.b8fe01178cbf",
+        "name": "Individuazione del Bene",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Individuazione_del_Bene_(Mag)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.b8fe01178cbf.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Antipaladino: verificare e applicare Individuazione del Bene. https://golarion.altervista.org/wiki/Antipaladino#Individuazione_del_Bene_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.4e9aa3b7ba91",
+        "name": "Punire il Bene",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Punire_il_Bene_(Sop)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.4e9aa3b7ba91.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Antipaladino: verificare e applicare Punire il Bene 1/giorno. https://golarion.altervista.org/wiki/Antipaladino#Punire_il_Bene_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "antipaladin.feature.4e9aa3b7ba91.level4",
+            "level": 4,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 4 di Antipaladino: verificare e applicare Punire il Bene 2/giorno. https://golarion.altervista.org/wiki/Antipaladino#Punire_il_Bene_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "antipaladin.feature.4e9aa3b7ba91.level1"
+            ]
+          },
+          {
+            "id": "antipaladin.feature.4e9aa3b7ba91.level7",
+            "level": 7,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 7 di Antipaladino: verificare e applicare Punire il Bene 3/giorno. https://golarion.altervista.org/wiki/Antipaladino#Punire_il_Bene_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "antipaladin.feature.4e9aa3b7ba91.level4"
+            ]
+          },
+          {
+            "id": "antipaladin.feature.4e9aa3b7ba91.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 10 di Antipaladino: verificare e applicare Punire il Bene 4/giorno. https://golarion.altervista.org/wiki/Antipaladino#Punire_il_Bene_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "antipaladin.feature.4e9aa3b7ba91.level7"
+            ]
+          },
+          {
+            "id": "antipaladin.feature.4e9aa3b7ba91.level13",
+            "level": 13,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 13 di Antipaladino: verificare e applicare Punire il Bene 5/giorno. https://golarion.altervista.org/wiki/Antipaladino#Punire_il_Bene_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "antipaladin.feature.4e9aa3b7ba91.level10"
+            ]
+          },
+          {
+            "id": "antipaladin.feature.4e9aa3b7ba91.level16",
+            "level": 16,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 16 di Antipaladino: verificare e applicare Punire il Bene 6/giorno. https://golarion.altervista.org/wiki/Antipaladino#Punire_il_Bene_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "antipaladin.feature.4e9aa3b7ba91.level13"
+            ]
+          },
+          {
+            "id": "antipaladin.feature.4e9aa3b7ba91.level19",
+            "level": 19,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 19 di Antipaladino: verificare e applicare Punire il Bene 7/giorno. https://golarion.altervista.org/wiki/Antipaladino#Punire_il_Bene_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "antipaladin.feature.4e9aa3b7ba91.level16"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.7c30ee2b744a",
+        "name": "Tocco di Corruzione",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Tocco_di_Corruzione_(Sop)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.7c30ee2b744a.level2",
+            "level": 2,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 2 di Antipaladino: verificare e applicare Tocco di Corruzione. https://golarion.altervista.org/wiki/Antipaladino#Tocco_di_Corruzione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.688e84b89dea",
+        "name": "Aura di Codardia",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Aura_di_Codardia_(Sop)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.688e84b89dea.level3",
+            "level": 3,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 3 di Antipaladino: verificare e applicare Aura di Codardia. https://golarion.altervista.org/wiki/Antipaladino#Aura_di_Codardia_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.350386234c63",
+        "name": "Crudeltà",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Crudeltà_(Sop)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.350386234c63.level3",
+            "level": 3,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 3 di Antipaladino: verificare e applicare Crudeltà. https://golarion.altervista.org/wiki/Antipaladino#Crudeltà_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "antipaladin.feature.350386234c63.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 6 di Antipaladino: verificare e applicare Crudeltà. https://golarion.altervista.org/wiki/Antipaladino#Crudeltà_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "antipaladin.feature.350386234c63.level9",
+            "level": 9,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 9 di Antipaladino: verificare e applicare Crudeltà. https://golarion.altervista.org/wiki/Antipaladino#Crudeltà_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "antipaladin.feature.350386234c63.level12",
+            "level": 12,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 12 di Antipaladino: verificare e applicare Crudeltà. https://golarion.altervista.org/wiki/Antipaladino#Crudeltà_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "antipaladin.feature.350386234c63.level15",
+            "level": 15,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 15 di Antipaladino: verificare e applicare Crudeltà. https://golarion.altervista.org/wiki/Antipaladino#Crudeltà_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "antipaladin.feature.350386234c63.level18",
+            "level": 18,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 18 di Antipaladino: verificare e applicare Crudeltà. https://golarion.altervista.org/wiki/Antipaladino#Crudeltà_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.af025afaa92b",
+        "name": "Incanalare Energia Negativa",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Incanalare_Energia_Negativa_(Sop)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.af025afaa92b.level4",
+            "level": 4,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 4 di Antipaladino: verificare e applicare Incanalare Energia Negativa. https://golarion.altervista.org/wiki/Antipaladino#Incanalare_Energia_Negativa_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.f845606fc1fc",
+        "name": "Dono Immondo",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Dono_Immondo_(Mag)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.f845606fc1fc.level5",
+            "level": 5,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 5 di Antipaladino: verificare e applicare Dono Immondo. https://golarion.altervista.org/wiki/Antipaladino#Dono_Immondo_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.b01cce310c20",
+        "name": "Aura di Disperazione",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Aura_di_Disperazione_(Sop)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.b01cce310c20.level8",
+            "level": 8,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 8 di Antipaladino: verificare e applicare Aura di Disperazione. https://golarion.altervista.org/wiki/Antipaladino#Aura_di_Disperazione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.33ffd3803dfd",
+        "name": "Aura di Vendetta",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Aura_di_Vendetta_(Sop)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.33ffd3803dfd.level11",
+            "level": 11,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 11 di Antipaladino: verificare e applicare Aura di Vendetta. https://golarion.altervista.org/wiki/Antipaladino#Aura_di_Vendetta_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.105508ab4646",
+        "name": "Aura di Peccato",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Aura_di_Peccato_(Sop)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.105508ab4646.level14",
+            "level": 14,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 14 di Antipaladino: verificare e applicare Aura di Peccato. https://golarion.altervista.org/wiki/Antipaladino#Aura_di_Peccato_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.d3901690c9a6",
+        "name": "Aura di Depravazione",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Aura_di_Depravazione_(Sop)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.d3901690c9a6.level17",
+            "level": 17,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 17 di Antipaladino: verificare e applicare Aura di Depravazione. https://golarion.altervista.org/wiki/Antipaladino#Aura_di_Depravazione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.5c205ef7b784",
+        "name": "Campione Sacrilego",
+        "description": "Privilegio della classe Antipaladino. Regole e condizioni: https://golarion.altervista.org/wiki/Antipaladino#Campione_Sacrilego_(Sop)",
+        "progression": [
+          {
+            "id": "antipaladin.feature.5c205ef7b784.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 20 di Antipaladino: verificare e applicare Campione Sacrilego. https://golarion.altervista.org/wiki/Antipaladino#Campione_Sacrilego_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.eligibility",
+        "name": "Requisiti e condotta",
+        "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Caotico Malvagio. https://golarion.altervista.org/wiki/Antipaladino",
+        "progression": [
+          {
+            "id": "antipaladin.eligibility.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Caotico Malvagio. https://golarion.altervista.org/wiki/Antipaladino Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.proficiencies",
+        "name": "Competenze della classe",
+        "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Antipaladino",
+        "progression": [
+          {
+            "id": "antipaladin.proficiencies.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Antipaladino Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.supplementalRules",
+        "name": "Regole complementari",
+        "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Antipaladino",
+        "progression": [
+          {
+            "id": "antipaladin.supplementalRules.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Antipaladino Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.5dc9faf60c0a",
+        "name": "Resistenza Sacrilega",
+        "description": "Aggiunge il bonus di Carisma ai tiri salvezza. Fonte: https://golarion.altervista.org/wiki/Antipaladino",
+        "progression": [
+          {
+            "id": "antipaladin.divineGrace.initial",
+            "level": 2,
+            "effects": [
+              {
+                "id": "saves",
+                "type": "modifier",
+                "resource": "savingThrow.all",
+                "description": "Privilegio di classe",
+                "modifierType": "bonus",
+                "bonusType": "generic",
+                "expression": "(@chaMod > 0) * @chaMod"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "antipaladin.feature.eea7f442a0b1",
+        "name": "Portatore di Pestilenza",
+        "description": "Impedisce danni e penalità delle malattie senza impedire contagio e trasmissione. Fonte: https://golarion.altervista.org/wiki/Antipaladino",
+        "progression": [
+          {
+            "id": "antipaladin.plagueBringer.initial",
+            "level": 3,
+            "effects": [
+              {
+                "id": "disease",
+                "type": "immunity",
+                "targetId": "diseaseEffects",
+                "name": "Effetti delle malattie"
+              },
+              {
+                "id": "manualResolution",
+                "type": "reminder",
+                "message": "Può comunque contrarre malattie e contagiare altre creature: è immune agli effetti, non all’infezione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "ninja",
+    "name": "Ninja",
+    "description": "Infiltratore che combina furtività, inganni e disciplina ki.",
+    "hitDie": 8,
+    "skillRanksPerLevel": 8,
+    "classSkills": [
+      "skill.acrobatics",
+      "skill.craft",
+      "skill.escapeArtist",
+      "skill.disguise",
+      "skill.knowledge.local",
+      "skill.knowledge.nobility",
+      "skill.diplomacy",
+      "skill.disableDevice",
+      "skill.stealth",
+      "skill.intimidate",
+      "skill.perform",
+      "skill.senseMotive",
+      "skill.linguistics",
+      "skill.swim",
+      "skill.perception",
+      "skill.profession",
+      "skill.bluff",
+      "skill.sleightOfHand",
+      "skill.climb",
+      "skill.useMagicDevice",
+      "skill.appraise"
+    ],
+    "progression": [
+      {
+        "level": 1,
+        "baseAttackBonus": 0,
+        "baseSavingThrows": {
+          "fortitude": 0,
+          "reflex": 2,
+          "will": 0
+        }
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": 1,
+        "baseSavingThrows": {
+          "fortitude": 0,
+          "reflex": 3,
+          "will": 0
+        }
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": 2,
+        "baseSavingThrows": {
+          "fortitude": 1,
+          "reflex": 3,
+          "will": 1
+        }
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": 3,
+        "baseSavingThrows": {
+          "fortitude": 1,
+          "reflex": 4,
+          "will": 1
+        }
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": 3,
+        "baseSavingThrows": {
+          "fortitude": 1,
+          "reflex": 4,
+          "will": 1
+        }
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": 4,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 5,
+          "will": 2
+        }
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": 5,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 5,
+          "will": 2
+        }
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": 6,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 6,
+          "will": 2
+        }
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": 6,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 6,
+          "will": 3
+        }
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": 7,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 7,
+          "will": 3
+        }
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": 8,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 7,
+          "will": 3
+        }
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": 9,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 8,
+          "will": 4
+        }
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": 9,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 8,
+          "will": 4
+        }
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": 10,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 9,
+          "will": 4
+        }
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": 11,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 9,
+          "will": 5
+        }
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": 12,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 10,
+          "will": 5
+        }
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": 12,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 10,
+          "will": 5
+        }
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": 13,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 11,
+          "will": 6
+        }
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": 14,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 11,
+          "will": 6
+        }
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": 15,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 12,
+          "will": 6
+        }
+      }
+    ],
+    "features": [
+      {
+        "id": "ninja.classSkills",
+        "name": "Abilità di classe",
+        "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+        "progression": []
+      },
+      {
+        "id": "ninja.feature.0b4904cde2b5",
+        "name": "Attacco Furtivo",
+        "description": "Privilegio della classe Ninja. Regole e condizioni: https://golarion.altervista.org/wiki/Ninja#Attacco_Furtivo_(Str)",
+        "progression": [
+          {
+            "id": "ninja.feature.0b4904cde2b5.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Ninja: verificare e applicare Attacco Furtivo +1d6. https://golarion.altervista.org/wiki/Ninja#Attacco_Furtivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "ninja.feature.0b4904cde2b5.level3",
+            "level": 3,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 3 di Ninja: verificare e applicare Attacco Furtivo +2d6. https://golarion.altervista.org/wiki/Ninja#Attacco_Furtivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.0b4904cde2b5.level1"
+            ]
+          },
+          {
+            "id": "ninja.feature.0b4904cde2b5.level5",
+            "level": 5,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 5 di Ninja: verificare e applicare Attacco Furtivo +3d6. https://golarion.altervista.org/wiki/Ninja#Attacco_Furtivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.0b4904cde2b5.level3"
+            ]
+          },
+          {
+            "id": "ninja.feature.0b4904cde2b5.level7",
+            "level": 7,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 7 di Ninja: verificare e applicare Attacco Furtivo +4d6. https://golarion.altervista.org/wiki/Ninja#Attacco_Furtivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.0b4904cde2b5.level5"
+            ]
+          },
+          {
+            "id": "ninja.feature.0b4904cde2b5.level9",
+            "level": 9,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 9 di Ninja: verificare e applicare Attacco Furtivo +5d6. https://golarion.altervista.org/wiki/Ninja#Attacco_Furtivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.0b4904cde2b5.level7"
+            ]
+          },
+          {
+            "id": "ninja.feature.0b4904cde2b5.level11",
+            "level": 11,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 11 di Ninja: verificare e applicare Attacco Furtivo +6d6. https://golarion.altervista.org/wiki/Ninja#Attacco_Furtivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.0b4904cde2b5.level9"
+            ]
+          },
+          {
+            "id": "ninja.feature.0b4904cde2b5.level13",
+            "level": 13,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 13 di Ninja: verificare e applicare Attacco Furtivo +7d6. https://golarion.altervista.org/wiki/Ninja#Attacco_Furtivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.0b4904cde2b5.level11"
+            ]
+          },
+          {
+            "id": "ninja.feature.0b4904cde2b5.level15",
+            "level": 15,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 15 di Ninja: verificare e applicare Attacco Furtivo +8d6. https://golarion.altervista.org/wiki/Ninja#Attacco_Furtivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.0b4904cde2b5.level13"
+            ]
+          },
+          {
+            "id": "ninja.feature.0b4904cde2b5.level17",
+            "level": 17,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 17 di Ninja: verificare e applicare Attacco Furtivo +9d6. https://golarion.altervista.org/wiki/Ninja#Attacco_Furtivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.0b4904cde2b5.level15"
+            ]
+          },
+          {
+            "id": "ninja.feature.0b4904cde2b5.level19",
+            "level": 19,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 19 di Ninja: verificare e applicare Attacco Furtivo +10d6. https://golarion.altervista.org/wiki/Ninja#Attacco_Furtivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.0b4904cde2b5.level17"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ninja.feature.e2b1ec76eec5",
+        "name": "Uso dei Veleni",
+        "description": "Privilegio della classe Ninja. Regole e condizioni: https://golarion.altervista.org/wiki/Ninja#Uso_dei_Veleni_(Str)",
+        "progression": [
+          {
+            "id": "ninja.feature.e2b1ec76eec5.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Ninja: verificare e applicare Uso dei Veleni. https://golarion.altervista.org/wiki/Ninja#Uso_dei_Veleni_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "ninja.feature.dc27a209816f",
+        "name": "Trucchi Ninja",
+        "description": "Privilegio della classe Ninja. Regole e condizioni: https://golarion.altervista.org/wiki/Ninja#Trucchi_Ninja",
+        "progression": [
+          {
+            "id": "ninja.feature.dc27a209816f.level2",
+            "level": 2,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 2 di Ninja: verificare e applicare Trucchi Ninja. https://golarion.altervista.org/wiki/Ninja#Trucchi_Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "ninja.feature.dc27a209816f.level4",
+            "level": 4,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 4 di Ninja: verificare e applicare Trucchi Ninja. https://golarion.altervista.org/wiki/Ninja#Trucchi_Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "ninja.feature.dc27a209816f.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 6 di Ninja: verificare e applicare Trucchi Ninja. https://golarion.altervista.org/wiki/Ninja#Trucchi_Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "ninja.feature.dc27a209816f.level8",
+            "level": 8,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 8 di Ninja: verificare e applicare Trucchi Ninja. https://golarion.altervista.org/wiki/Ninja#Trucchi_Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "ninja.feature.dc27a209816f.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 10 di Ninja: verificare e applicare Trucchi Ninja. https://golarion.altervista.org/wiki/Ninja#Trucchi_Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "ninja.feature.dc27a209816f.level12",
+            "level": 12,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 12 di Ninja: verificare e applicare Trucchi Ninja. https://golarion.altervista.org/wiki/Ninja#Trucchi_Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "ninja.feature.dc27a209816f.level14",
+            "level": 14,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 14 di Ninja: verificare e applicare Trucchi Ninja. https://golarion.altervista.org/wiki/Ninja#Trucchi_Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "ninja.feature.dc27a209816f.level16",
+            "level": 16,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 16 di Ninja: verificare e applicare Trucchi Ninja. https://golarion.altervista.org/wiki/Ninja#Trucchi_Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "ninja.feature.dc27a209816f.level18",
+            "level": 18,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 18 di Ninja: verificare e applicare Trucchi Ninja. https://golarion.altervista.org/wiki/Ninja#Trucchi_Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "ninja.feature.dc27a209816f.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 20 di Ninja: verificare e applicare Trucchi Ninja. https://golarion.altervista.org/wiki/Ninja#Trucchi_Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "ninja.feature.321fe437dc6d",
+        "name": "Riserva Ki",
+        "description": "Privilegio della classe Ninja. Regole e condizioni: https://golarion.altervista.org/wiki/Ninja#Riserva_Ki_(Sop)",
+        "progression": [
+          {
+            "id": "ninja.feature.321fe437dc6d.level2",
+            "level": 2,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 2 di Ninja: verificare e applicare Riserva Ki. https://golarion.altervista.org/wiki/Ninja#Riserva_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "ninja.feature.337534c5e0ff",
+        "name": "Nessuna Traccia",
+        "description": "Privilegio della classe Ninja. Regole e condizioni: https://golarion.altervista.org/wiki/Ninja#Nessuna_Traccia_(Str)",
+        "progression": [
+          {
+            "id": "ninja.feature.337534c5e0ff.level3",
+            "level": 3,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 3 di Ninja: verificare e applicare Nessuna Traccia +1. https://golarion.altervista.org/wiki/Ninja#Nessuna_Traccia_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "ninja.feature.337534c5e0ff.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 6 di Ninja: verificare e applicare Nessuna Traccia +2. https://golarion.altervista.org/wiki/Ninja#Nessuna_Traccia_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.337534c5e0ff.level3"
+            ]
+          },
+          {
+            "id": "ninja.feature.337534c5e0ff.level9",
+            "level": 9,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 9 di Ninja: verificare e applicare Nessuna Traccia +3. https://golarion.altervista.org/wiki/Ninja#Nessuna_Traccia_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.337534c5e0ff.level6"
+            ]
+          },
+          {
+            "id": "ninja.feature.337534c5e0ff.level12",
+            "level": 12,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 12 di Ninja: verificare e applicare Nessuna Traccia +4. https://golarion.altervista.org/wiki/Ninja#Nessuna_Traccia_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.337534c5e0ff.level9"
+            ]
+          },
+          {
+            "id": "ninja.feature.337534c5e0ff.level15",
+            "level": 15,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 15 di Ninja: verificare e applicare Nessuna Traccia +5. https://golarion.altervista.org/wiki/Ninja#Nessuna_Traccia_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.337534c5e0ff.level12"
+            ]
+          },
+          {
+            "id": "ninja.feature.337534c5e0ff.level18",
+            "level": 18,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 18 di Ninja: verificare e applicare Nessuna Traccia +6. https://golarion.altervista.org/wiki/Ninja#Nessuna_Traccia_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "ninja.feature.337534c5e0ff.level15"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ninja.feature.91b283181f51",
+        "name": "Passi Lievi",
+        "description": "Privilegio della classe Ninja. Regole e condizioni: https://golarion.altervista.org/wiki/Ninja#Passi_Lievi_(Str)",
+        "progression": [
+          {
+            "id": "ninja.feature.91b283181f51.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 6 di Ninja: verificare e applicare Passi Lievi. https://golarion.altervista.org/wiki/Ninja#Passi_Lievi_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "ninja.feature.878aff9f91c9",
+        "name": "Schivare Prodigioso Migliorato",
+        "description": "Privilegio della classe Ninja. Regole e condizioni: https://golarion.altervista.org/wiki/Ninja#Schivare_Prodigioso_Migliorato_(Str)",
+        "progression": [
+          {
+            "id": "ninja.feature.878aff9f91c9.level8",
+            "level": 8,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 8 di Ninja: verificare e applicare Schivare Prodigioso Migliorato. https://golarion.altervista.org/wiki/Ninja#Schivare_Prodigioso_Migliorato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "ninja.feature.81a75d6ab872",
+        "name": "Trucchi Magistrali",
+        "description": "Privilegio della classe Ninja. Regole e condizioni: https://golarion.altervista.org/wiki/Ninja#Trucchi_Magistrali",
+        "progression": [
+          {
+            "id": "ninja.feature.81a75d6ab872.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 10 di Ninja: verificare e applicare Trucchi Magistrali. https://golarion.altervista.org/wiki/Ninja#Trucchi_Magistrali Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "ninja.feature.4b3e31d42be1",
+        "name": "Maestro nel Nascondersi",
+        "description": "Privilegio della classe Ninja. Regole e condizioni: https://golarion.altervista.org/wiki/Ninja#Maestro_nel_Nascondersi_(Sop)",
+        "progression": [
+          {
+            "id": "ninja.feature.4b3e31d42be1.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 20 di Ninja: verificare e applicare Maestro nel Nascondersi. https://golarion.altervista.org/wiki/Ninja#Maestro_nel_Nascondersi_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "ninja.eligibility",
+        "name": "Requisiti e condotta",
+        "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi. https://golarion.altervista.org/wiki/Ninja",
+        "progression": [
+          {
+            "id": "ninja.eligibility.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi. https://golarion.altervista.org/wiki/Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "ninja.proficiencies",
+        "name": "Competenze della classe",
+        "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Ninja",
+        "progression": [
+          {
+            "id": "ninja.proficiencies.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "ninja.supplementalRules",
+        "name": "Regole complementari",
+        "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Ninja",
+        "progression": [
+          {
+            "id": "ninja.supplementalRules.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Ninja Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "ninja.feature.5da66606161a",
+        "name": "Schivare Prodigioso",
+        "description": "Conserva il bonus di Destrezza alla CA nelle circostanze previste. Fonte: https://golarion.altervista.org/wiki/Ninja",
+        "progression": [
+          {
+            "id": "ninja.uncannyDodge.initial",
+            "level": 4,
+            "effects": [
+              {
+                "id": "dexterityRetention",
+                "type": "armorClassDexterityRetention",
+                "causes": [
+                  "flatFooted",
+                  "invisibleAttacker"
+                ]
+              },
+              {
+                "id": "manualResolution",
+                "type": "reminder",
+                "message": "Gestire l’acquisizione di Schivare Prodigioso Migliorato quando la capacità proviene già da un’altra classe; non protegge da fintare o immobilizzazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "samurai",
+    "name": "Samurai",
+    "description": "Guerriero d'ordine che affronta le sfide con fermezza.",
+    "hitDie": 10,
+    "skillRanksPerLevel": 4,
+    "classSkills": [
+      "skill.handleAnimal",
+      "skill.craft",
+      "skill.ride",
+      "skill.diplomacy",
+      "skill.intimidate",
+      "skill.senseMotive",
+      "skill.swim",
+      "skill.profession",
+      "skill.bluff",
+      "skill.climb"
+    ],
+    "progression": [
+      {
+        "level": 1,
+        "baseAttackBonus": 1,
+        "baseSavingThrows": {
+          "fortitude": 2,
+          "reflex": 0,
+          "will": 0
+        }
+      },
+      {
+        "level": 2,
+        "baseAttackBonus": 2,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 0,
+          "will": 0
+        }
+      },
+      {
+        "level": 3,
+        "baseAttackBonus": 3,
+        "baseSavingThrows": {
+          "fortitude": 3,
+          "reflex": 1,
+          "will": 1
+        }
+      },
+      {
+        "level": 4,
+        "baseAttackBonus": 4,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 1,
+          "will": 1
+        }
+      },
+      {
+        "level": 5,
+        "baseAttackBonus": 5,
+        "baseSavingThrows": {
+          "fortitude": 4,
+          "reflex": 1,
+          "will": 1
+        }
+      },
+      {
+        "level": 6,
+        "baseAttackBonus": 6,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 2,
+          "will": 2
+        }
+      },
+      {
+        "level": 7,
+        "baseAttackBonus": 7,
+        "baseSavingThrows": {
+          "fortitude": 5,
+          "reflex": 2,
+          "will": 2
+        }
+      },
+      {
+        "level": 8,
+        "baseAttackBonus": 8,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 2,
+          "will": 2
+        }
+      },
+      {
+        "level": 9,
+        "baseAttackBonus": 9,
+        "baseSavingThrows": {
+          "fortitude": 6,
+          "reflex": 3,
+          "will": 3
+        }
+      },
+      {
+        "level": 10,
+        "baseAttackBonus": 10,
+        "baseSavingThrows": {
+          "fortitude": 7,
+          "reflex": 3,
+          "will": 3
+        }
+      },
+      {
+        "level": 11,
+        "baseAttackBonus": 11,
+        "baseSavingThrows": {
+          "fortitude": 7,
+          "reflex": 3,
+          "will": 3
+        }
+      },
+      {
+        "level": 12,
+        "baseAttackBonus": 12,
+        "baseSavingThrows": {
+          "fortitude": 8,
+          "reflex": 4,
+          "will": 4
+        }
+      },
+      {
+        "level": 13,
+        "baseAttackBonus": 13,
+        "baseSavingThrows": {
+          "fortitude": 8,
+          "reflex": 4,
+          "will": 4
+        }
+      },
+      {
+        "level": 14,
+        "baseAttackBonus": 14,
+        "baseSavingThrows": {
+          "fortitude": 9,
+          "reflex": 4,
+          "will": 4
+        }
+      },
+      {
+        "level": 15,
+        "baseAttackBonus": 15,
+        "baseSavingThrows": {
+          "fortitude": 9,
+          "reflex": 5,
+          "will": 5
+        }
+      },
+      {
+        "level": 16,
+        "baseAttackBonus": 16,
+        "baseSavingThrows": {
+          "fortitude": 10,
+          "reflex": 5,
+          "will": 5
+        }
+      },
+      {
+        "level": 17,
+        "baseAttackBonus": 17,
+        "baseSavingThrows": {
+          "fortitude": 10,
+          "reflex": 5,
+          "will": 5
+        }
+      },
+      {
+        "level": 18,
+        "baseAttackBonus": 18,
+        "baseSavingThrows": {
+          "fortitude": 11,
+          "reflex": 6,
+          "will": 6
+        }
+      },
+      {
+        "level": 19,
+        "baseAttackBonus": 19,
+        "baseSavingThrows": {
+          "fortitude": 11,
+          "reflex": 6,
+          "will": 6
+        }
+      },
+      {
+        "level": 20,
+        "baseAttackBonus": 20,
+        "baseSavingThrows": {
+          "fortitude": 12,
+          "reflex": 6,
+          "will": 6
+        }
+      }
+    ],
+    "features": [
+      {
+        "id": "samurai.classSkills",
+        "name": "Abilità di classe",
+        "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+        "progression": []
+      },
+      {
+        "id": "samurai.feature.c10ed9af5c47",
+        "name": "Cavalcatura",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Cavalcatura_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.c10ed9af5c47.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Samurai: verificare e applicare Cavalcatura. https://golarion.altervista.org/wiki/Samurai#Cavalcatura_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.8770dd25874d",
+        "name": "Ordine",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Ordine_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.8770dd25874d.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Samurai: verificare e applicare Ordine. https://golarion.altervista.org/wiki/Samurai#Ordine_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "samurai.feature.8770dd25874d.level2",
+            "level": 2,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 2 di Samurai: verificare e applicare Capacità dell'Ordine. https://golarion.altervista.org/wiki/Samurai#Ordine_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "samurai.feature.8770dd25874d.level8",
+            "level": 8,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 8 di Samurai: verificare e applicare Capacità dell'Ordine. https://golarion.altervista.org/wiki/Samurai#Ordine_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "samurai.feature.8770dd25874d.level15",
+            "level": 15,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 15 di Samurai: verificare e applicare Capacità dell'Ordine. https://golarion.altervista.org/wiki/Samurai#Ordine_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.74baa7c20696",
+        "name": "Fermezza",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Fermezza_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.74baa7c20696.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Samurai: verificare e applicare Fermezza. https://golarion.altervista.org/wiki/Samurai#Fermezza_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.ea5d639cf433",
+        "name": "Sfida",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Sfida_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.ea5d639cf433.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 1 di Samurai: verificare e applicare Sfida 1/giorno. https://golarion.altervista.org/wiki/Samurai#Sfida_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          },
+          {
+            "id": "samurai.feature.ea5d639cf433.level4",
+            "level": 4,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 4 di Samurai: verificare e applicare Sfida 2/giorno. https://golarion.altervista.org/wiki/Samurai#Sfida_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "samurai.feature.ea5d639cf433.level1"
+            ]
+          },
+          {
+            "id": "samurai.feature.ea5d639cf433.level7",
+            "level": 7,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 7 di Samurai: verificare e applicare Sfida 3/giorno. https://golarion.altervista.org/wiki/Samurai#Sfida_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "samurai.feature.ea5d639cf433.level4"
+            ]
+          },
+          {
+            "id": "samurai.feature.ea5d639cf433.level10",
+            "level": 10,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 10 di Samurai: verificare e applicare Sfida 4/giorno. https://golarion.altervista.org/wiki/Samurai#Sfida_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "samurai.feature.ea5d639cf433.level7"
+            ]
+          },
+          {
+            "id": "samurai.feature.ea5d639cf433.level13",
+            "level": 13,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 13 di Samurai: verificare e applicare Sfida 5/giorno. https://golarion.altervista.org/wiki/Samurai#Sfida_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "samurai.feature.ea5d639cf433.level10"
+            ]
+          },
+          {
+            "id": "samurai.feature.ea5d639cf433.level16",
+            "level": 16,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 16 di Samurai: verificare e applicare Sfida 6/giorno. https://golarion.altervista.org/wiki/Samurai#Sfida_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "samurai.feature.ea5d639cf433.level13"
+            ]
+          },
+          {
+            "id": "samurai.feature.ea5d639cf433.level19",
+            "level": 19,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 19 di Samurai: verificare e applicare Sfida 7/giorno. https://golarion.altervista.org/wiki/Samurai#Sfida_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": [
+              "samurai.feature.ea5d639cf433.level16"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.bc25c1befaaa",
+        "name": "Esperto dell'Arma",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Esperto_dell'Arma_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.bc25c1befaaa.level3",
+            "level": 3,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 3 di Samurai: verificare e applicare Esperto dell'Arma. https://golarion.altervista.org/wiki/Samurai#Esperto_dell'Arma_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.f0885d9e6b1e",
+        "name": "Arciere in Sella",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Arciere_in_Sella_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.f0885d9e6b1e.level4",
+            "level": 4,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 4 di Samurai: verificare e applicare Arciere in Sella. https://golarion.altervista.org/wiki/Samurai#Arciere_in_Sella_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.24a8b4262775",
+        "name": "Stendardo",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Stendardo_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.24a8b4262775.level5",
+            "level": 5,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 5 di Samurai: verificare e applicare Stendardo. https://golarion.altervista.org/wiki/Samurai#Stendardo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.d9491c16838e",
+        "name": "Fermezza Superiore",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Fermezza_Superiore_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.d9491c16838e.level9",
+            "level": 9,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 9 di Samurai: verificare e applicare Fermezza Superiore. https://golarion.altervista.org/wiki/Samurai#Fermezza_Superiore_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.9fd02c045bad",
+        "name": "Resistenza Onorevole",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Resistenza_Onorevole_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.9fd02c045bad.level11",
+            "level": 11,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 11 di Samurai: verificare e applicare Resistenza Onorevole. https://golarion.altervista.org/wiki/Samurai#Resistenza_Onorevole_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.ee9030ead00e",
+        "name": "Sfida Impegnativa",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Sfida_Impegnativa_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.ee9030ead00e.level12",
+            "level": 12,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 12 di Samurai: verificare e applicare Sfida Impegnativa. https://golarion.altervista.org/wiki/Samurai#Sfida_Impegnativa_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.037e898a8129",
+        "name": "Stendardo Superiore",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Stendardo_Superiore_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.037e898a8129.level14",
+            "level": 14,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 14 di Samurai: verificare e applicare Stendardo Superiore. https://golarion.altervista.org/wiki/Samurai#Stendardo_Superiore_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.d636fc7216db",
+        "name": "Fermezza Pura",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Fermezza_Pura_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.d636fc7216db.level17",
+            "level": 17,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 17 di Samurai: verificare e applicare Fermezza Pura. https://golarion.altervista.org/wiki/Samurai#Fermezza_Pura_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.9bfdc3584b98",
+        "name": "Resistenza Finale",
+        "description": "Privilegio della classe Samurai. Regole e condizioni: https://golarion.altervista.org/wiki/Samurai#Resistenza_Finale_(Str)",
+        "progression": [
+          {
+            "id": "samurai.feature.9bfdc3584b98.level20",
+            "level": 20,
+            "effects": [
+              {
+                "id": "manual1",
+                "type": "reminder",
+                "message": "Livello 20 di Samurai: verificare e applicare Resistenza Finale. https://golarion.altervista.org/wiki/Samurai#Resistenza_Finale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.eligibility",
+        "name": "Requisiti e condotta",
+        "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Samurai",
+        "progression": [
+          {
+            "id": "samurai.eligibility.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Samurai Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.proficiencies",
+        "name": "Competenze della classe",
+        "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Samurai",
+        "progression": [
+          {
+            "id": "samurai.proficiencies.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Samurai Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.supplementalRules",
+        "name": "Regole complementari",
+        "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Samurai",
+        "progression": [
+          {
+            "id": "samurai.supplementalRules.level1",
+            "level": 1,
+            "effects": [
+              {
+                "id": "manual",
+                "type": "reminder",
+                "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Samurai Ehi, appena hai tempo vedi di correggermi se necessario!"
+              }
+            ],
+            "choices": [],
+            "replaces": []
+          }
+        ]
+      },
+      {
+        "id": "samurai.feature.aa749b1357df",
+        "name": "Talento Bonus",
+        "description": "Concede slot aggiuntivi per talenti della categoria prevista, mantenendo i prerequisiti ordinari. Fonte: https://golarion.altervista.org/wiki/Samurai",
+        "progression": [
+          {
+            "id": "samurai.bonusFeats.level6",
+            "level": 6,
+            "effects": [
+              {
+                "id": "slot",
+                "type": "featSlotGrant",
+                "filter": {
+                  "kind": "type",
+                  "featType": "combat"
+                }
+              }
+            ]
+          },
+          {
+            "id": "samurai.bonusFeats.level12",
+            "level": 12,
+            "effects": [
+              {
+                "id": "slot",
+                "type": "featSlotGrant",
+                "filter": {
+                  "kind": "type",
+                  "featType": "combat"
+                }
+              }
+            ]
+          },
+          {
+            "id": "samurai.bonusFeats.level18",
+            "level": 18,
+            "effects": [
+              {
+                "id": "slot",
+                "type": "featSlotGrant",
+                "filter": {
+                  "kind": "type",
+                  "featType": "combat"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
