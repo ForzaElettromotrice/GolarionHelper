@@ -11,6 +11,7 @@ find_package(OpenSSL 3.0 REQUIRED COMPONENTS Crypto)
 
 add_library(golarion_play STATIC
     src/admission.cpp
+    src/client_connection.cpp
     src/hosting.cpp
     src/identity_storage.cpp
     src/protocol.cpp
@@ -40,12 +41,21 @@ else()
 endif()
 
 add_executable(golarion_play_host tools/host.cpp)
+add_executable(golarion_play_client tools/client.cpp)
 target_link_libraries(golarion_play_host PRIVATE golarion_play)
+target_link_libraries(golarion_play_client PRIVATE golarion_play)
 if(MSVC)
     target_compile_options(golarion_play_host PRIVATE /utf-8)
+    target_compile_options(golarion_play_client PRIVATE /utf-8)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(play_client_test tests/client_test.cpp)
+    target_include_directories(play_client_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+    target_link_libraries(play_client_test PRIVATE golarion_play)
+    add_test(NAME play_client_test COMMAND play_client_test)
+    set_tests_properties(play_client_test PROPERTIES WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} TIMEOUT 40)
+
     add_executable(play_admission_test tests/admission_test.cpp)
     target_link_libraries(play_admission_test PRIVATE golarion_play)
     add_test(NAME play_admission_test COMMAND play_admission_test)

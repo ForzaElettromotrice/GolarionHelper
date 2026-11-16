@@ -6,6 +6,7 @@
 
 #include <cstdint>
 #include <filesystem>
+#include <future>
 #include <optional>
 #include <string>
 #include <string_view>
@@ -18,8 +19,16 @@ namespace golarion::play
         explicit Session(UserId hostId);
         ~Session();
 
+        static Session createHost(UserId hostId);
+        static Session createClient();
+
         std::uint16_t startHosting(std::string_view bindAddress, std::uint16_t port);
         void stopHosting();
+
+        std::future<ClientAdmission> joinSession(std::string ip, std::uint16_t port, SessionCode code);
+        std::future<ClientAdmission> resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token);
+        void disconnectFromHost();
+        ClientSnapshot getClientState() const;
 
         std::string getSessionCode() const;
 
@@ -34,8 +43,10 @@ namespace golarion::play
         bool closeConnection(ConnectionId connectionId);
 
     private:
+        Session();
+
         ResourceManager resourceManager_;
         ProtocolManager protocolManager_;
-        RoleManager roleManager_;
+        std::optional<RoleManager> roleManager_;
     };
 }

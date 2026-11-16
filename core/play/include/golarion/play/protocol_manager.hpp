@@ -1,15 +1,18 @@
 #pragma once
 
+#include "golarion/play/client_state.hpp"
 #include "golarion/play/protocol_error.hpp"
 #include "golarion/play/resource_manager.hpp"
 #include "golarion/play/role_manager.hpp"
 #include "golarion/play/session_code.hpp"
+#include "golarion/play/session_mode.hpp"
 
 #include <nlohmann/json.hpp>
 
 #include <cstdint>
 #include <filesystem>
 #include <functional>
+#include <future>
 #include <memory>
 #include <mutex>
 #include <optional>
@@ -35,7 +38,7 @@ namespace golarion::play
         using CommandCallback = std::function<nlohmann::json(const CommandContext &, const nlohmann::json &)>;
         using AddCommandSignature = void(std::string_view, Role, CommandCallback);
 
-        explicit ProtocolManager(ResourceManager &resources);
+        explicit ProtocolManager(ResourceManager &resources, SessionMode mode = SessionMode::Host);
         ~ProtocolManager();
         ProtocolManager(const ProtocolManager &) = delete;
         ProtocolManager &operator=(const ProtocolManager &) = delete;
@@ -47,6 +50,11 @@ namespace golarion::play
 
         std::uint16_t startHosting(std::string_view bindAddress, std::uint16_t port);
         void stopHosting();
+
+        std::future<ClientAdmission> joinSession(std::string ip, std::uint16_t port, SessionCode code);
+        std::future<ClientAdmission> resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token);
+        void disconnectFromHost();
+        ClientSnapshot getClientState() const;
 
         std::string getSessionCode() const;
         bool verifySessionCode(std::string_view candidate) const noexcept;
@@ -64,6 +72,7 @@ namespace golarion::play
 
     private:
         class Hosting;
+        class ClientConnection;
         struct MessageResult;
         struct AdmissionResult;
 
@@ -76,6 +85,9 @@ namespace golarion::play
         static nlohmann::json makeAdmissionResult(const AdmissionResult &result);
         static detail::ProtocolMessage makeCommandReply(const std::optional<std::string> &requestId, nlohmann::json result);
         static detail::ProtocolMessage makeRejection(const std::optional<std::string> &requestId, ProtocolErrorCode code);
+        void requireHostMode() const;
+        void requireClientMode() const;
+        std::future<ClientAdmission> startClient(std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token);
 
         struct Command
         {
@@ -84,7 +96,8 @@ namespace golarion::play
         };
 
         ResourceManager &resources_;
-        const SessionCode sessionCode_ = SessionCode::generate();
+        const SessionMode mode_;
+        const std::optional<SessionCode> sessionCode_;
         mutable std::recursive_mutex executionMutex_;
         std::unordered_map<std::string, Command> commands_;
         mutable std::mutex connectionsMutex_;
@@ -93,6 +106,9 @@ namespace golarion::play
         ConnectionId nextConnectionId_ = 1;
         std::mutex hostingMutex_;
         std::unique_ptr<Hosting> hosting_;
+        mutable std::mutex clientMutex_;
+        std::unique_ptr<ClientConnection> client_;
+        std::uint64_t nextClientRequestId_ = 1;
         mutable std::mutex identityMutex_;
         std::unique_ptr<detail::UserTokens> userTokens_;
         std::optional<std::filesystem::path> identityArchivePath_;

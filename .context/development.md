@@ -8,14 +8,14 @@ cmake --build build
 ctest --test-dir build --output-on-failure
 ```
 
-The root build includes `core/sheet/` and `core/play/` through `core/CMakeLists.txt`. Play builds `golarion_play`, the Session-based console host, and eleven native C++ tests. Game/network, the console client, their model/process tests, and the play module's Python test dependency have been removed. Sheet targets and root build/test commands are unchanged.
+The root build includes core/sheet and core/play through core/CMakeLists.txt. Play builds golarion_play, both Session-based console tools and twelve native C++ suites. Legacy Game/network and their old model/process tests remain removed. Python is used only for an optional local console-process check, not by the CMake targets. Sheet targets and root build/test commands are unchanged.
 
 ## Session Hosting API
 
 Session is the local backend entry point:
 
 ```cpp
-golarion::play::Session session("host");
+auto session = golarion::play::Session::createHost("host");
 session.saveIdentityState("identities.json"); // New archive; load it instead when reopening.
 session.startHosting("127.0.0.1", 42500);
 // Application work continues while ProtocolManager processes network events.
@@ -41,19 +41,26 @@ The host console accepts IP and port, plus an optional identity archive:
 ./build/play-cmake/golarion_play_host.exe 127.0.0.1 42500 ./my-session.json
 ```
 
-Append `Debug/` to the executable directory for a multi-configuration CMake generator. The command is `golarion_play_host <IPv4 address> <port> [identity archive]`. The tool creates `Session("host")` and creates/loads the archive before listening; default `session-identities.json` is relative to the working directory. Use a separate archive per Session. It prints the actual listening port followed by `Codice sessione: XXXXX` and waits for Ctrl+C. The code stays unchanged during stop/restart of that live Session; reconstructing it generates another code because code persistence/uniqueness remain deferred. Its main thread does not process network events. Stop joins the worker and releases sockets/bindings, preserving the live roles/tokens and ID counter.
+Append `Debug/` to the executable directory for a multi-configuration CMake generator. The command is `golarion_play_host <IPv4 address> <port> [identity archive]`. The tool creates `Session::createHost("host")` and creates/loads the archive before listening; default `session-identities.json` is relative to the working directory. Use a separate archive per Session. It prints the actual listening port followed by `Codice sessione: XXXXX` and waits for Ctrl+C. The code stays unchanged during stop/restart of that live Session; reconstructing it generates another code because code persistence/uniqueness remain deferred. Its main thread does not process network events. Stop joins the worker and releases sockets/bindings, preserving the live roles/tokens and ID counter.
 
-For LAN/VPN use, bind to the intended local IPv4 address or `0.0.0.0`; peers connect to a reachable address of that PC. There is no client executable yet: ProtocolManager client-side support is pending. Native tests use direct TCP peers for framing and admission. Tools do not configure firewall/router access.
+For LAN/VPN use, bind to the intended local IPv4 address or `0.0.0.0`; clients connect to a reachable host address. The client requires a nonzero port and the code printed by the host:
+
+```powershell
+./build/play-cmake/golarion_play_client.exe 127.0.0.1 42500 A7K2Q ./my-session-token.txt
+```
+
+Replace the example code with the current one. Use separate terminals for host/client. Linux uses the same arguments with executable names without `.exe`. The optional token file defaults to `client-token.txt` in the working directory. A missing file selects join and saves the original token; an existing valid file selects resume. Use one token file per participant/session and one writer per file. Invalid files/tokens are preserved and reported as errors. Ctrl+C disconnects; no command/user-list frontend exists yet. See `session-client.md`. Tools do not configure firewall/router access.
 
 ## Manual Windows Build
 
-CMake is absent from the current environment. GCC builds use the cached JSON header under `build/play/dependencies/include/`, OpenSSL Crypto, and standard thread/socket support. The existing local OpenSSL 3.0.15 installation is under `C:/Users/Daniele/miniconda3/Library`; adapt this path on another PC and ensure its `bin` directory is on PATH for the runtime DLL:
+CMake/CTest are not available on PATH in the current environment. GCC builds use the cached JSON header under `build/play/dependencies/include/`, OpenSSL Crypto, and standard thread/socket support. The existing local OpenSSL 3.0.15 installation is under `C:/Users/Daniele/miniconda3/Library`; adapt this path on another PC and ensure its `bin` directory is on PATH for the runtime DLL:
 
 ```powershell
 New-Item -ItemType Directory -Path build/play -Force | Out-Null
 $playCryptoRoot = "C:/Users/Daniele/miniconda3/Library"
 $playSourceFiles = @(
     "core/play/src/admission.cpp",
+    "core/play/src/client_connection.cpp",
     "core/play/src/resource_manager.cpp",
     "core/play/src/role_manager.cpp",
     "core/play/src/protocol.cpp",
@@ -72,7 +79,9 @@ $playCompilerOptions = @(
 )
 g++ @playCompilerOptions @playSourceFiles core/play/tools/host.cpp "$playCryptoRoot/lib/libcrypto.lib" -lws2_32 -o build/play/golarion_play_host.exe
 if ($LASTEXITCODE -ne 0) { throw "Compilazione host fallita" }
-foreach ($playTestName in @("session_code", "user_token", "user_tokens", "identity_persistence", "resource_manager", "role_manager", "protocol_manager", "session", "json_protocol", "hosting", "admission")) {
+g++ @playCompilerOptions @playSourceFiles core/play/tools/client.cpp "$playCryptoRoot/lib/libcrypto.lib" -lws2_32 -o build/play/golarion_play_client.exe
+if ($LASTEXITCODE -ne 0) { throw "Compilazione client fallita" }
+foreach ($playTestName in @("client", "session_code", "user_token", "user_tokens", "identity_persistence", "resource_manager", "role_manager", "protocol_manager", "session", "json_protocol", "hosting", "admission")) {
     g++ @playCompilerOptions @playSourceFiles "core/play/tests/${playTestName}_test.cpp" "$playCryptoRoot/lib/libcrypto.lib" -lws2_32 -o "build/play/play_${playTestName}_test.exe"
     if ($LASTEXITCODE -ne 0) { throw "Compilazione fallita: $playTestName" }
     & "./build/play/play_${playTestName}_test.exe"
@@ -81,9 +90,11 @@ foreach ($playTestName in @("session_code", "user_token", "user_tokens", "identi
 ./build/play/golarion_play_host.exe 127.0.0.1 42500
 ```
 
-Verification after common Any dispatch builds a fresh eleven-source library, host, and all eleven native suites under `build/play/any-commands/`; the tested host is refreshed under `build/play/`. Existing tests cover anonymous Any commands, all 25 threshold comparisons, rejection of Any assignment/restoration, protected built-in names/padded variants, optional/stale contexts, common join/resume results, pending deadlines, serialized callbacks/binding, nested dispatch, current roles, typed failures, invalid output, and lifecycle reentry. All role, token, archive, codec, connection, and hosting suites pass. The real console-process restart/resume smoke test checks padded admission names and `request.accepted` / `payload.result`, default/explicit archives, and `UNKNOWN_COMMAND` for unregistered requests. The tool has no concrete command provider yet. Socket tests require permissions because the sandbox blocks loopback with WSA error 10013. CMake and POSIX remain unverified locally.
+Verification on 2026-11-16 builds all twelve sources into `build/play/client-admission/libgolarion_play.a`, then both console tools and twelve native suites with GCC C++20 and warnings as errors. All suites pass, including existing host buffered-stop regressions and new client mode/admission/streaming/cancellation/timeout/network-error cases. A real-process check in `build/play/client-admission/client_process_smoke.py` verifies two participants, default/explicit token files, client and host restarts, replacement, rejected credentials and temporary-file cleanup. The verified host and client binaries are refreshed under `build/play/`. No new dependency is required.
 
-The later buffered-stop correction is verified in `build/play/stop-buffered/`: rebuild `hosting.cpp`, replace that object in a copy of the verified library, and rebuild the affected admission, hosting, ProtocolManager, identity-persistence executables and console host with the same strict compiler options. All four suites and the console restart/resume smoke check pass. Two new cases in the admission suite reproduce buffered work after stop and work waiting for the execution mutex; both fail against the previous library and pass against the corrected one. The tested host is refreshed under `build/play/`. No CMake target/dependency or public API changes are needed; the admission suite retains its existing 40-second CTest timeout.
+Extended validation and the TCP-grouping correction use `build/play/client-validation/`: rebuild the private client-connection object into a copy of the verified library and relink both tools/all twelve suites. All suites pass, including a parallel run with the expanded client suite completing in about 16.6 seconds against its existing 40-second limit. The permanent client tests add eight simultaneous participants through three host reconstructions, twenty cancellation/disconnect races, twenty malformed-wire forms, partial EOF, an exact maximum-size frame, and a slow-input deadline case. `extended_process_test.py` checks eight console clients and three host-process restarts plus credential-file failure cases. `coalesced_before_test.exe` reproduces the original grouping defect; the corrected native/process tests preserve the complete admission/token before handling subsequent unsupported data. Verified binaries are refreshed under build/play.
+
+Loopback execution needs local socket permissions in this environment because the sandbox otherwise denies connects with WSA error 10013. CMake configuration and POSIX execution remain unverified: Windows CMake/CTest are unavailable on PATH; WSL Ubuntu 24.04 exists but lacked an available compiler, CMake and OpenSSL development headers when inspected. No environment packages were installed. The Windows refused-connection test waits within the actual five-second connect deadline and verifies the socket error rather than mistaking normal asynchronous refusal latency for a client failure.
 
 Historical Windows/Linux/Tailscale results and the old Linux send-timeout issue are archived in `history/2026-11-10-game-network-prototype.md`. They describe removed code, not current launch instructions; verify them again when implementing the new client.
 

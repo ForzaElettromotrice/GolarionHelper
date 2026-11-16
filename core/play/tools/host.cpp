@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     {
         const std::string address = argv[1];
         const std::uint16_t port = tools::parsePort(argv[2], true);
-        Session session("host");
+        auto session = Session::createHost("host");
         const std::filesystem::path archive = argc == 4 ? argv[3] : "session-identities.json";
         if (std::filesystem::exists(archive)) session.loadIdentityState(archive);
         else session.saveIdentityState(archive);

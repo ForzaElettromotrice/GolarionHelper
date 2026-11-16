@@ -1,16 +1,26 @@
 #include "golarion/play/session.hpp"
 
 #include <utility>
+#include <stdexcept>
 
 namespace golarion::play
 {
-    Session::Session(UserId hostId) : protocolManager_(resourceManager_), roleManager_(resourceManager_, std::move(hostId))
+    Session::Session(UserId hostId) : protocolManager_(resourceManager_, SessionMode::Host), roleManager_(std::in_place, resourceManager_, std::move(hostId))
     {
     }
 
+    Session::Session() : protocolManager_(resourceManager_, SessionMode::Client) {}
+
+    Session Session::createHost(UserId hostId) { return Session(std::move(hostId)); }
+    Session Session::createClient() { return Session(); }
+
     Session::~Session()
     {
-        try { stopHosting(); }
+        try
+        {
+            if (roleManager_) stopHosting();
+            else disconnectFromHost();
+        }
         catch (...) { } // Stop networking before any subsystem is destroyed.
     }
 
@@ -24,6 +34,19 @@ namespace golarion::play
         protocolManager_.stopHosting();
     }
 
+    std::future<ClientAdmission> Session::joinSession(std::string ip, std::uint16_t port, SessionCode code)
+    {
+        return protocolManager_.joinSession(std::move(ip), port, std::move(code));
+    }
+
+    std::future<ClientAdmission> Session::resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token)
+    {
+        return protocolManager_.resumeSession(std::move(ip), port, std::move(code), std::move(token));
+    }
+
+    void Session::disconnectFromHost() { protocolManager_.disconnectFromHost(); }
+    ClientSnapshot Session::getClientState() const { return protocolManager_.getClientState(); }
+
     std::string Session::getSessionCode() const
     {
         return protocolManager_.getSessionCode();
@@ -31,7 +54,8 @@ namespace golarion::play
 
     void Session::registerUser(UserId userId)
     {
-        roleManager_.registerUser(std::move(userId));
+        if (!roleManager_) throw std::logic_error("user registration requires a host Session");
+        roleManager_->registerUser(std::move(userId));
     }
 
     std::string Session::issueUserToken(const UserId &userId)

@@ -1,6 +1,6 @@
 # JSON Command Dispatch
 
-Status: unified dispatch implemented and tested, 2026-11-12. Every request uses the command registry, including built-in join/resume with minimum Any. Other subsystems register commands through `protocol.add_command`. Session remains a facade; concrete role/sheet commands, user-list events, and client-side ProtocolManager are separate steps.
+Status: unified host dispatch implemented 2026-11-12; client admission added 2026-11-16. Every host request uses the command registry, including join/resume with Any. Other host subsystems register through protocol.add_command. Session remains a facade. Client join/resume already uses this flow; generic outgoing commands, concrete role/sheet RPCs and user-list events remain separate. See `session-client.md`.
 
 ## Existing Structure and Routing
 
@@ -60,4 +60,4 @@ Lock order during admission is execution, identity, connections, then roles. Arc
 
 The existing suites are extended rather than adding another transport fixture. ProtocolManager tests cover anonymous Any/local authenticated dispatch, duplicate built-in names including padded variants, missing role providers, unknown identities, forged/stale contexts, serialized mutable callbacks/registration, binding/close waiting for an executing callback, and lifecycle reentry. Admission TCP tests exercise anonymous Any commands, pending expiry, padded join/resume through common dispatch, buffered/large commands, authenticated actors, live promotions/demotions, JSON result shapes, nested registration/dispatch, simultaneous local/remote calls, replacement, sanitized failures, and invalid/oversized results. Invalid output is not retried; admitted peers stay open while pending peers close.
 
-The full eleven-suite run passed after unified Any dispatch. The subsequent stop correction passes the four affected suites (admission, hosting, ProtocolManager, identity persistence) and real console-host restart/resume smoke test on Windows GCC C++20 with strict warnings. The two new admission regressions fail against the previous library and pass against the correction. The console has no concrete game-command provider, so unknown requests receive `UNKNOWN_COMMAND`. CMake and POSIX execution remain unverified locally. Latest outputs are under `build/play/stop-buffered/`; see `development.md`.
+The current twelve-suite native run and separate host/client console-process checks pass on Windows GCC C++20 with strict warnings. Existing buffered-stop regressions remain included. Host game-command providers and generic client command sending are separate steps. CMake and POSIX remain unverified locally. Latest outputs are under build/play/client-validation; see `development.md`.

@@ -1,10 +1,10 @@
 # JSON Session Admission
 
-Status: implemented and tested, 2026-11-12. ProtocolManager accepts new users and resumes persisted identities over JSON v2/TCP. Admitted requests now use authenticated dispatch as documented in `session-commands.md`. Display names, client-side ProtocolManager, concrete role/sheet commands, and user-list events remain separate.
+Status: server admission implemented 2026-11-12; native client integration added 2026-11-16. Host ProtocolManager accepts new users/resumes persisted identities over JSON v2/TCP. The client now invokes the same registered Any commands; see `session-client.md`. Display names, generic outgoing client commands, concrete role/sheet commands and user-list events remain separate.
 
 ## Ownership and Entry Points
 
-Session remains a container/facade; this step adds no Session methods. Configure its identity archive with `saveIdentityState` or `loadIdentityState`, then call `startHosting(ip, port)`. See `session-tokens.md` for archive rules.
+Session remains a container/facade. Host factories require the host UserId; client factories create no authoritative roles/credentials. Host admission adds no new facade methods beyond the existing archive/hosting delegations. Configure the host archive with saveIdentityState/loadIdentityState before startHosting; see `session-tokens.md`.
 
 Private `ProtocolManager::Hosting` reads bytes and calls the existing generic codec. It forwards complete messages to private `ProtocolManager::handleMessage(connectionId, message)`. Every request uses the same context/lookup/role-check/dispatch path. During construction ProtocolManager registers `session.join` and `session.resume` with `add_command` and minimum `Role::Any`, before publishing `protocol.add_command`. Pending connections have an optional empty UserId and satisfy only Any. Any is an access threshold, never a participant role.
 
@@ -75,6 +75,6 @@ Every rejection uses `request.rejected` with English `code` and Italian `message
 
 ## Console and Verification
 
-`golarion_play_host <IPv4 address> <port> [identity archive]` creates or loads the archive before listening. The default is `session-identities.json` in the working directory; use separate paths for separate Sessions. Existing archives must be valid and contain the same immutable Host UserId (`host` for this tool). Invalid archives are not replaced. The tool still prints the endpoint and SessionCode and waits for Ctrl+C. It has no client implementation.
+`golarion_play_host <IPv4 address> <port> [identity archive]` creates/loads the archive before listening. Default is session-identities.json; archives must match the immutable Host UserId (host for this tool). Invalid files are not replaced. The host uses createHost, prints endpoint/code and waits for Ctrl+C. The new golarion_play_client tool uses createClient and the same admission schemas; see `session-client.md`.
 
-`play_admission_test` covers TCP join/resume, strict payloads, replacement, persistence failures/retry, reconstruction, Session delegation, streaming/deadlines, and concurrent roles/admissions. Shared-dispatch coverage includes padded admission names, anonymous Any callbacks, forged payload actors, minimum-role rejection, common result wrappers, pending expiry after successful Any calls, and invalid outputs for both anonymous/admitted peers. It also executes buffered commands and checks callback failures; see `session-commands.md`. All eleven native suites and the console-host restart/resume smoke test pass on Windows GCC C++20 with strict warnings. CMake and POSIX execution remain unverified locally.
+`play_admission_test` covers TCP join/resume, strict payloads, replacement, persistence failures/retry, reconstruction, Session delegation, streaming/deadlines, and concurrent roles/admissions. Shared-dispatch coverage includes padded admission names, anonymous Any callbacks, forged payload actors, minimum-role rejection, common result wrappers, pending expiry after successful Any calls, and invalid outputs for both anonymous/admitted peers. It also executes buffered commands and checks callback failures; see `session-commands.md`. All twelve native suites and the console-host restart/resume smoke test pass on Windows GCC C++20 with strict warnings. CMake and POSIX execution remain unverified locally.

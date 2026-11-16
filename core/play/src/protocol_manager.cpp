@@ -1,5 +1,6 @@
 #include "golarion/play/protocol_manager.hpp"
 #include "hosting.hpp"
+#include "client_connection.hpp"
 #include "identity_storage.hpp"
 #include "user_tokens.hpp"
 
@@ -10,6 +11,16 @@
 namespace
 {
     constexpr std::string_view AddCommandFeature = "protocol.add_command";
+
+    golarion::play::SessionMode validatedMode(golarion::play::SessionMode mode)
+    {
+        switch (mode)
+        {
+            case golarion::play::SessionMode::Host:
+            case golarion::play::SessionMode::Client: return mode;
+        }
+        throw std::invalid_argument("unknown Session mode");
+    }
 
     class DispatchScope final
     {
@@ -80,8 +91,9 @@ namespace
 
 namespace golarion::play
 {
-    ProtocolManager::ProtocolManager(ResourceManager &resources) : resources_(resources), userTokens_(std::make_unique<detail::UserTokens>())
+    ProtocolManager::ProtocolManager(ResourceManager &resources, SessionMode mode) : resources_(resources), mode_(validatedMode(mode)), sessionCode_(mode_ == SessionMode::Host ? std::make_optional(SessionCode::generate()) : std::nullopt), userTokens_(mode_ == SessionMode::Host ? std::make_unique<detail::UserTokens>() : nullptr)
     {
+        if (mode_ == SessionMode::Client) return;
         registerAdmissionCommands();
         resources_.registerFeature<AddCommandSignature>(AddCommandFeature, [this](std::string_view name, Role minimumRole, CommandCallback callback)
         {
@@ -91,14 +103,29 @@ namespace golarion::play
 
     ProtocolManager::~ProtocolManager()
     {
-        try { stopHosting(); }
+        try
+        {
+            if (mode_ == SessionMode::Host) stopHosting();
+            else disconnectFromHost();
+        }
         catch (...) { } // Destruction must not propagate background worker errors.
-        try { resources_.unregisterFeature(AddCommandFeature); }
+        try { if (mode_ == SessionMode::Host) resources_.unregisterFeature(AddCommandFeature); }
         catch (...) { } // Destruction must not throw if registration was already removed.
+    }
+
+    void ProtocolManager::requireHostMode() const
+    {
+        if (mode_ != SessionMode::Host) throw std::logic_error("operation requires a host Session");
+    }
+
+    void ProtocolManager::requireClientMode() const
+    {
+        if (mode_ != SessionMode::Client) throw std::logic_error("operation requires a client Session");
     }
 
     void ProtocolManager::add_command(std::string_view name, Role minimumRole, CommandCallback callback)
     {
+        requireHostMode();
         const std::lock_guard executionLock(executionMutex_);
         const std::string key = normalizedName(name);
         validateMinimumRole(minimumRole);
@@ -115,6 +142,7 @@ namespace golarion::play
 
     nlohmann::json ProtocolManager::dispatch(std::string_view name, const CommandContext &context, const nlohmann::json &payload) const
     {
+        requireHostMode();
         const std::lock_guard executionLock(executionMutex_);
         const std::string key = normalizedName(name);
         if (!payload.is_object())
@@ -151,16 +179,18 @@ namespace golarion::play
 
     std::string ProtocolManager::getSessionCode() const
     {
-        return std::string(sessionCode_.value());
+        requireHostMode();
+        return std::string(sessionCode_->value());
     }
 
     bool ProtocolManager::verifySessionCode(std::string_view candidate) const noexcept
     {
-        return sessionCode_.matches(candidate);
+        return sessionCode_ && sessionCode_->matches(candidate);
     }
 
     std::string ProtocolManager::issueUserToken(const UserId &userId)
     {
+        requireHostMode();
         const std::lock_guard lock(identityMutex_);
         static_cast<void>(resources_.invoke<RoleManager::GetRoleSignature>("roles.getRole", userId));
         if (!identityArchivePath_) throw std::logic_error("save or load an identity archive before issuing tokens");
@@ -174,12 +204,14 @@ namespace golarion::play
 
     std::optional<UserId> ProtocolManager::resolveUserToken(std::string_view token) const
     {
+        requireHostMode();
         const std::lock_guard lock(identityMutex_);
         return userTokens_->resolve(token);
     }
 
     void ProtocolManager::saveIdentityState(const std::filesystem::path &path)
     {
+        requireHostMode();
         if (path.empty()) throw std::invalid_argument("identity archive path must not be empty");
         std::optional<std::filesystem::path> destination(std::filesystem::absolute(path).lexically_normal());
         const std::lock_guard lock(identityMutex_);
@@ -194,6 +226,7 @@ namespace golarion::play
 
     void ProtocolManager::loadIdentityState(const std::filesystem::path &path)
     {
+        requireHostMode();
         requireOutsideDispatch(*this);
         if (path.empty()) throw std::invalid_argument("identity archive path must not be empty");
         std::optional<std::filesystem::path> source(std::filesystem::absolute(path).lexically_normal());
@@ -213,6 +246,7 @@ namespace golarion::play
 
     ConnectionId ProtocolManager::registerConnection()
     {
+        requireHostMode();
         const std::lock_guard lock(connectionsMutex_);
         if (nextConnectionId_ == 0)
         {
@@ -227,6 +261,7 @@ namespace golarion::play
 
     std::optional<ConnectionId> ProtocolManager::bindUser(ConnectionId connectionId, const UserId &userId)
     {
+        requireHostMode();
         validateUserId(userId);
         const std::lock_guard executionLock(executionMutex_);
         const std::lock_guard lock(connectionsMutex_);
@@ -264,6 +299,7 @@ namespace golarion::play
 
     std::optional<UserId> ProtocolManager::getUserId(ConnectionId connectionId) const
     {
+        requireHostMode();
         const std::lock_guard lock(connectionsMutex_);
         const auto connection = connections_.find(connectionId);
         if (connection == connections_.end() || !connection->second)
@@ -280,6 +316,7 @@ namespace golarion::play
 
     CommandContext ProtocolManager::makeContext(ConnectionId connectionId) const
     {
+        requireHostMode();
         const std::lock_guard lock(connectionsMutex_);
         const auto connection = connections_.find(connectionId);
         if (connection == connections_.end())
@@ -299,6 +336,7 @@ namespace golarion::play
 
     bool ProtocolManager::closeConnection(ConnectionId connectionId)
     {
+        requireHostMode();
         const std::lock_guard executionLock(executionMutex_);
         const std::lock_guard lock(connectionsMutex_);
         const auto connection = connections_.find(connectionId);
@@ -317,6 +355,7 @@ namespace golarion::play
 
     std::uint16_t ProtocolManager::startHosting(std::string_view bindAddress, std::uint16_t port)
     {
+        requireHostMode();
         requireOutsideDispatch(*this);
         const std::lock_guard lock(hostingMutex_);
         if (hosting_) throw std::logic_error("hosting is already active");
@@ -326,6 +365,7 @@ namespace golarion::play
 
     void ProtocolManager::stopHosting()
     {
+        requireHostMode();
         requireOutsideDispatch(*this);
         const std::lock_guard lock(hostingMutex_);
         if (!hosting_) return;
@@ -339,5 +379,48 @@ namespace golarion::play
             activeConnections_.clear();
         }
         if (failure) std::rethrow_exception(failure);
+    }
+
+    std::future<ClientAdmission> ProtocolManager::joinSession(std::string ip, std::uint16_t port, SessionCode code)
+    {
+        return startClient(std::move(ip), port, std::move(code), std::nullopt);
+    }
+
+    std::future<ClientAdmission> ProtocolManager::resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token)
+    {
+        return startClient(std::move(ip), port, std::move(code), std::move(token));
+    }
+
+    std::future<ClientAdmission> ProtocolManager::startClient(std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token)
+    {
+        requireClientMode();
+        const std::lock_guard lock(clientMutex_);
+        if (client_)
+        {
+            if (client_->snapshot().state != ClientConnectionState::Disconnected) throw std::logic_error("client connection is already active");
+            client_->stop();
+            client_.reset();
+        }
+        if (nextClientRequestId_ == 0) throw std::overflow_error("client request ID space is exhausted");
+        auto connection = std::make_unique<ClientConnection>(std::move(ip), port, std::move(code), std::move(token), "client-" + std::to_string(nextClientRequestId_));
+        auto result = connection->takeResult();
+        client_ = std::move(connection);
+        ++nextClientRequestId_;
+        return result;
+    }
+
+    void ProtocolManager::disconnectFromHost()
+    {
+        requireClientMode();
+        const std::lock_guard lock(clientMutex_);
+        if (client_) client_->stop();
+        client_.reset();
+    }
+
+    ClientSnapshot ProtocolManager::getClientState() const
+    {
+        requireClientMode();
+        const std::lock_guard lock(clientMutex_);
+        return client_ ? client_->snapshot() : ClientSnapshot{};
     }
 }

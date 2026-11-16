@@ -1,13 +1,13 @@
 # Session Communication Protocol
 
-Status: updated 2026-11-12. ProtocolManager owns connections, TCP hosting, persisted identities, JSON admission, and authenticated dispatch of registered commands. Session remains a facade. No display names are stored. Host-wide code uniqueness/persistence are deferred. Game/network and their old client/tests are removed. Client-side ProtocolManager, concrete role/sheet commands, and user-list events remain future work. See `session-admission.md` and `session-commands.md`.
+Status: updated 2026-11-16. ProtocolManager supports immutable Host/Client Session modes. Host code/archives/dispatch remain authoritative; clients implement asynchronous join/resume, cancellation, state and token-file console retention. Generic outgoing commands, concrete role/sheet commands, user-list events and display names remain future work; see `session-client.md`.
 
 ## Implemented Session Code
 
 - `SessionCode` is a small value type in `include/golarion/play/session_code.hpp` and `src/session_code.cpp`. Its constructor accepts exactly five ASCII letters/digits and stores uppercase `A-Z0-9`; malformed input throws `std::invalid_argument`. Spaces are not trimmed, and controls, punctuation, non-ASCII bytes, and wrong lengths are rejected.
 - `SessionCode::generate()` creates a candidate by sampling the 36-character alphabet with `std::random_device` and `std::uniform_int_distribution`. It does not check collisions or reserve a code. Random-source failures propagate instead of installing a fallback code. The user explicitly limited this step to generation/comparison; the shared host registry and persistence are separate future changes.
 - `value()` returns a view into the value object; `matches(candidate) noexcept` uses the same ASCII normalization and returns false for malformed or different input without changing the stored code.
-- ProtocolManager owns a const SessionCode generated once during construction, before feature registration. `getSessionCode()` returns a detached string and `verifySessionCode(candidate) noexcept` delegates to matches. Session exposes only a delegating getSessionCode for display. No code feature is registered in ResourceManager.
+- Only host ProtocolManager generates a const optional SessionCode during construction. Its getter returns a detached string and verifier accepts lowercase. Client mode generates no code: it uses the supplied remote SessionCode value. Session delegates the host display getter. No code feature is registered in ResourceManager.
 - The value stays unchanged across failed starts, active hosting, stop, and restart within that Session's lifetime. Identity restoration does not restore SessionCode, and a host-wide uniqueness guarantee is not implemented. SessionCode can parse an existing value, but wiring saved codes into Session construction belongs to separate code-persistence work.
 - The host console prints `Codice sessione: XXXXX` after the listening-address line. Both JSON join and resume verify this current code; it is not the personal user credential.
 - `play_session_code_test` covers fixed/generated candidates, uppercase normalization, case-insensitive matching, malformed/non-ASCII input, and value ownership. ProtocolManager tests cover its direct getter/verifier, while native hosting tests cover code stability through stop/restart and startup failure. No test assumes random candidates are unique.
@@ -24,7 +24,7 @@ The following methods and their connection maps/counter belong to ProtocolManage
 
 `bindUser` is a trusted internal association operation. Its caller must first verify identity and arrange role registration. It checks ID format and binding invariants without creating an identity or verifying tokens. JSON resume verifies the token before calling it; join stages a binding together with `roles.registerUserWithCommit` and persistence. ProtocolManager independently rejects unknown users when dispatching.
 
-Session owns only ResourceManager, ProtocolManager, and RoleManager, with the registry outliving providers. Logical connection methods use a mutex shared with the hosting worker. No registry/subsystem getters are added. `play_protocol_manager_test` directly covers pending/unique IDs, independent users/managers, idempotence, replacement, stale requests/disconnects, invalid identity switches, detached data, close/rebind, and fresh-context dispatch with live role checks. `play_session_test` checks delegated lifecycle behavior and independent Sessions. These suites and RoleManager pass with GCC C++20 and warnings treated as errors; CMake remains unavailable locally.
+Both Session modes own ResourceManager/ProtocolManager; only hosts construct the optional authoritative RoleManager. Host logical connection methods remain guarded and delegated, with no subsystem getters. Client lifecycle/state are separate private ProtocolManager responsibilities; see `session-client.md`. Existing host connection and Session isolation tests remain passing.
 
 ## Implemented Hosting Boundary
 
@@ -32,9 +32,9 @@ Session exposes `std::uint16_t startHosting(std::string_view bindAddress, std::u
 
 The listener accepts pending connections, assigns ConnectionIds, and forwards decoded messages to ProtocolManager's common command handler. Successful join/resume keeps the socket open. The five-second deadline applies only before admission; successful generic Any commands do not reset it or admit the peer. Multiple buffered requests are processed in order, with one bounded response outstanding per peer. Input buffering is capped at 65536 + 4 bytes and total TCP peers at 32 (and platform select capacity). Sockets remain nonblocking and select waits at most 50 ms. Exact admission schemas, rejections, persistence coordination, and replacement behavior are in `session-admission.md`.
 
-Every request executes through the same registry/dispatch, including join/resume registered with minimum Any. Pending peers can execute Any; requests requiring Spectator or higher receive `FORBIDDEN`, and unknown names receive `UNKNOWN_COMMAND`. Pending errors close the peer; ordinary admitted errors keep it open. Every success uses `request.accepted` with `payload.result`. See `session-commands.md`. No user snapshots or shutdown notices are sent. The console configures an archive but has no concrete game-command provider or client executable yet.
+Every host request uses the common registry/dispatch, including join/resume registered with Any. Pending peers can execute Any; higher minima receive FORBIDDEN and unknown names UNKNOWN_COMMAND. Pending errors close the socket; ordinary admitted errors keep it open. All successes use request.accepted with payload.result. Host game-command providers and user/shutdown events remain separate. The native client console now joins/resumes; see `session-client.md`.
 
-`play_hosting_test` verifies native Windows loopback peers, startup failures, fragmentation/invalid input, pending-only replies, shutdown/restart, concurrent state/lifecycle access, role retention, and destruction cleanup. The sandbox denies loopback connects with WSA error 10013; the test passes with local socket permissions. The POSIX branch remains unverified locally.
+`play_hosting_test` verifies native Windows loopback peers, startup failures, fragmentation/invalid input, pending replies, shutdown/restart, concurrent state/lifecycle access, role retention and destruction. The new client suite adds native outgoing connections and Session-mode checks. Loopback requires local socket permissions here; POSIX execution remains unverified.
 
 ## Implemented ProtocolManager Boundary
 
@@ -93,11 +93,11 @@ Do not send C++ object memory, opaque handles, or persistence structs as implici
 
 ProtocolManager issues eight random bytes encoded as 16 lowercase hexadecimal characters using OpenSSL Crypto. It persists stable UserIds, roles, and SHA-256 token hashes in a versioned JSON archive, without a SessionId or original credentials. The client needs only its original token. Session delegates registration, issuance, save, and load; lookup stays on ProtocolManager. Issuance requires a saved/loaded archive and saves before returning the token. Load requires stopped hosting and the same immutable Host UserId.
 
-See `session-tokens.md` for archives, `session-admission.md` for join/resume, and `session-commands.md` for authenticated dispatch. Role changes still require an explicit save. Client storage, concrete role/sheet commands, and host-wide SessionCode uniqueness/persistence remain deferred.
+See `session-tokens.md` for host archives, `session-admission.md` for server join/resume, `session-commands.md` for host dispatch and `session-client.md` for implemented client admission/token retention. Role changes still require an explicit host save. Generic client commands, role/sheet RPCs and host-wide SessionCode uniqueness/persistence remain deferred.
 
-## Pending Client Support
+## Implemented Client Admission
 
-ProtocolManager currently implements the host side, including admission. Add client-side connection/disconnection, JSON request transmission and response correlation, token retention, and reception of future host events/snapshots in a separate step. The client API and its integration with Session remain to be designed. There is no replacement console client yet.
+Client Sessions delegate asynchronous joinSession/resumeSession, disconnectFromHost and getClientState to ProtocolManager. ClientConnection reuses framed JSON and shared socket helpers, validates the correlated result and monitors closure. The console retains the original token in a per-participant/session file. Generic commands, events/snapshots and reconnect policy remain separate; see `session-client.md`.
 
 ## Proposed Persistent Session Message Set
 
@@ -130,7 +130,7 @@ The shared session code will identify the session and admit access at the given 
 
 After connection replacement, the old connection must no longer execute requests for that user. A late close/disconnect callback from the old socket must not mark the replacement connection offline. The public connected-user list contains one entry per identity, not one entry per historical socket. Replacing a connection does not rotate the permanent token.
 
-Permanent tokens require persistence on both sides: the client must retain its credential and the host must retain the per-session token-to-user mapping and role. Host-side persistence and the eight-byte token format are implemented in `session-tokens.md`; client storage and any later revocation operation remain future work. Tokens are opaque random credentials and do not encode a client-selected identity or role. Only the individual join reply will return its newly issued token; public user snapshots and role-change events must not.
+Both sides retain identity credentials: host archives store digest-to-UserId/role data, while the client console saves the original token in its dedicated file. See `session-tokens.md` and `session-client.md`. Revocation and general application credential-library integration remain future work. Tokens encode no client-selected identity/role and are returned only on join, never in public snapshots.
 
 ## Proposed Role Request and Outcome
 
@@ -155,6 +155,6 @@ The first version should send complete user lists rather than incremental patche
 ## Remaining Session Admission Decisions
 
 - Heartbeat timing and display-name rules. Current admission payloads, five-second pending deadline, and token format are implemented; any future revision is a separate step.
-- Client credential persistence and protected transport. Host identity persistence and JSON admission are implemented; client integration remains pending.
+- General application credential-library integration and protected transport remain separate. The client console already persists original tokens and completes JSON admission; see `session-client.md`.
 
 References: [TCP stream/message boundaries, RFC 9293 section 3.7](https://www.rfc-editor.org/rfc/rfc9293.html#section-3.7) and [JSON UTF-8 encoding, RFC 8259 section 8.1](https://www.rfc-editor.org/rfc/rfc8259.html#section-8.1).

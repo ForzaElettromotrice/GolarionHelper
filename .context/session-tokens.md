@@ -1,6 +1,6 @@
 # Session Tokens and Identity Persistence
 
-Status: token/identity persistence implemented 2026-11-10; JSON admission integration tested 2026-11-12. ProtocolManager owns the private registry and archive operations; Session only delegates. JSON join/resume uses these components as documented in `session-admission.md`. Client-side storage remains separate. There is no SessionId or display name.
+Status: server token/identity persistence implemented 2026-11-10; native client integration added 2026-11-16. Host ProtocolManager owns the registry/archive and Session delegates. Client join/resume uses these services remotely; its console retains the original token as documented in `session-client.md`. There is no SessionId or display name.
 
 ## Credentials
 
@@ -23,7 +23,7 @@ Status: token/identity persistence implemented 2026-11-10; JSON admission integr
 Create a new archive in an existing directory:
 
 ```cpp
-golarion::play::Session session("host");
+auto session = golarion::play::Session::createHost("host");
 session.registerUser("alice");
 session.saveIdentityState("identities.json");
 const std::string token = session.issueUserToken("alice");
@@ -32,7 +32,7 @@ const std::string token = session.issueUserToken("alice");
 Reopen the same archive with the same immutable Host UserId:
 
 ```cpp
-golarion::play::Session reopened("host");
+auto reopened = golarion::play::Session::createHost("host");
 reopened.loadIdentityState("identities.json");
 ```
 
@@ -70,6 +70,6 @@ ProtocolManager serializes tokens/files with its identity mutex and command exec
 
 `play_user_token_test` checks strict parsing, generation, owned values, and an independent SHA-256 vector. `play_user_tokens_test` checks deterministic collision/retry behavior, duplicate issuance, crypto failures, independent registries, and digest-only import/export. `play_identity_persistence_test` covers restoration, roles, corrupt archives, write failures/cleanup, existing-file protection, unknown token-user references, concurrent issuance with stable roles, hosting restrictions, and Session delegations. Separate writer/reader processes verify a real restart with only the original token retained by the simulated client.
 
-All eleven play suites and the console-host restart smoke check pass on Windows with GCC C++20, strict warnings, nlohmann-json 3.12.0, and OpenSSL 3.0.15. CMake configuration and the POSIX implementation remain unexecuted locally.
+All twelve play suites and the console-host restart smoke check pass on Windows with GCC C++20, strict warnings, nlohmann-json 3.12.0, and OpenSSL 3.0.15. CMake configuration and the POSIX implementation remain unexecuted locally.
 
-JSON admission and authenticated registered-command dispatch are implemented; see `session-admission.md` and `session-commands.md`. Next are client-side ProtocolManager/token retention and concrete role/sheet commands. Local token issuance alone still does not bind a socket or register a command.
+JSON admission and host-side authenticated dispatch are implemented. Native client join/resume, synchronized state, cancellation and console token-file retention are implemented in `session-client.md`. Next are generic outgoing client commands and concrete role/sheet RPCs. Local issuance alone still does not bind a socket or register a command.

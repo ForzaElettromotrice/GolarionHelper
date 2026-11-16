@@ -1,6 +1,6 @@
 # Riesame del flusso delle comunicazioni
 
-Riesame del 2026-11-12, aggiornato dopo il dispatch comune e la correzione dello stop. Entrambi i problemi riprodotti sono risolti. I diagrammi descrivono il codice attuale; le riproduzioni precedenti sono in [history/2026-11-12-admission-routing.md](history/2026-11-12-admission-routing.md) e [history/2026-11-12-buffered-stop.md](history/2026-11-12-buffered-stop.md).
+Riesame del 2026-11-12, con entrambi i difetti risolti. I diagrammi descrivono il lato host corrente; dal 2026-11-16 il peer remoto può usare il client nativo descritto in [session-client.md](session-client.md). Le riproduzioni precedenti sono in [history/2026-11-12-admission-routing.md](history/2026-11-12-admission-routing.md) e [history/2026-11-12-buffered-stop.md](history/2026-11-12-buffered-stop.md).
 
 ## Esito del riesame
 
@@ -11,7 +11,7 @@ Riesame del 2026-11-12, aggiornato dopo il dispatch comune e la correzione dello
 
 La correzione dei nomi usa [protocol_manager.cpp](../core/play/src/protocol_manager.cpp), `add_command`/`normalizedName`, e [admission.cpp](../core/play/src/admission.cpp), `registerAdmissionCommands`/`handleMessage`. La correzione dello stop è in [hosting.cpp](../core/play/src/hosting.cpp), senza nuove API pubbliche o manager.
 
-La verifica completa delle undici suite sul dispatch Any è in `build/play/any-commands/`. La successiva correzione dello stop passa le quattro suite interessate (admission, hosting, ProtocolManager e persistenza) e il test del processo host con riavvio/ripresa, in `build/play/stop-buffered/`. I vecchi probe del riesame restano separati e non sono test di accettazione delle correzioni. Esecuzione POSIX e configurazione CMake restano da verificare.
+Al 2026-11-16 passano le dodici suite native e la prova dei processi host/client, incluse le regressioni dello stop. Il build corrente è in build/play/client-validation; la verifica estesa del client è descritta in session-client.md. I vecchi probe del riesame restano storici; CMake ed esecuzione POSIX restano da verificare. Vedi [session-client.md](session-client.md) e [development.md](development.md).
 
 La correzione dello stop comprende tre parti:
 
@@ -41,7 +41,7 @@ flowchart TB
     PM -->|identity_storage| F[(Archivio identità)]
 ```
 
-- Session possiede i tre componenti e delega. La sua distruzione ferma il worker prima di distruggere i provider.
+- La Session host possiede ResourceManager, ProtocolManager e RoleManager; la Session client possiede i primi due. La distruzione ferma il rispettivo worker prima dei provider. Le modalità Host/Client sono immutabili e separate dal ruolo del partecipante.
 - ResourceManager è il registro delle funzioni interne condiviso per riferimento nella singola Session. Non riceve direttamente i messaggi TCP.
 - Il registro dei comandi remoti è `ProtocolManager::commands_`: contiene nome, ruolo minimo e callback, inclusi join/resume con Any, registrati prima di pubblicare `protocol.add_command`. Non coincide con il registro delle feature di ResourceManager.
 - RoleManager è l'autorità sui ruoli. ProtocolManager verifica sempre il livello minimo tramite RM, anche per Any. La gerarchia è Host, Master, Player, Spectator, Any; Any è solo una soglia, non assegnabile né persistibile. Un contesto anonimo valido ha ConnectionId ma nessun UserId; record chiusi/sostituiti non sono anonimi validi. Il sottosistema chiamato resta responsabile dei permessi specifici dell'operazione.
@@ -196,7 +196,7 @@ I JSON seguenti rappresentano singoli corpi di messaggio. Sul TCP ogni corpo è 
 ### Creare o riaprire e hostare
 
 ```cpp
-golarion::play::Session session("host");
+auto session = golarion::play::Session::createHost("host");
 const std::filesystem::path archive("session-identities.json");
 if (std::filesystem::exists(archive)) session.loadIdentityState(archive);
 else session.saveIdentityState(archive);
@@ -292,7 +292,7 @@ Lo stop attende il worker. Il salvataggio esplicito conserva anche eventuali suc
 ## Limiti già previsti e distinta copertura
 
 - Il tool host non registra ancora RPC concreti di RoleManager; le sue feature interne esistono, mentre `users.setRole` e lista utenti via rete sono passi successivi.
-- ProtocolManager lato client, archiviazione della credenziale sul client, eventi/broadcast e heartbeat non sono implementati.
+- Il client nativo completa join/resume e conserva il token nel tool console; invio generico, eventi/broadcast, heartbeat e riconnessione automatica restano passi successivi. Vedi [session-client.md](session-client.md).
 - Il codice non è persistito né verificato da un registro condiviso dell'host. Questi aspetti sono già stati rinviati dall'utente.
 - Le callback sono sincrone e serializzate; una callback lunga ritarda altri peer e l'arresto. L'archivio richiede un solo writer per file.
 - `requestId` correla richiesta e risposta; non impedisce una doppia esecuzione se il client ripete la richiesta. Non esiste rollback generico delle callback.
