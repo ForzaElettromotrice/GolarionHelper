@@ -1,63 +1,51 @@
 # JSON Command Dispatch
 
-Status: unified host dispatch implemented 2026-11-12; client admission added 2026-11-16. Every host request uses the command registry, including join/resume with Any. Other host subsystems register through protocol.add_command. Session remains a facade. Client join/resume already uses this flow; generic outgoing commands, concrete role/sheet RPCs and user-list events remain separate. See `session-client.md`.
+Status: shared host/client registration and dispatch, 2026-11-18. Every host request, including join/resume, uses the command registry/dispatcher; client notifications reuse the same mechanism in their own ProtocolManager. PermissionManager remains the host authority. See session-events.md.
 
-## Existing Structure and Routing
+## Requirements and Routing
 
-The generic JSON v2 codec is unchanged. Hosting decodes one message and calls ProtocolManager's `handleMessage`, which validates requestId then calls `handleCommand` for every name. ProtocolManager registers `session.join` and `session.resume` via `add_command` before exposing that feature to other subsystems. They use minimum `Role::Any`; there is no separate admission-name router. Duplicate checks and common outer-whitespace normalization protect both built-in names.
+add_command(name, CommandRequirements, callback) is available directly and through protocol.add_command. Requirements accept a single Permission or a PermissionSet built with |. All required flags must be present. A CommandRequirements default or PermissionSet{} requires an identified registered user even though it requires no flags. Permission::Any = 0 explicitly creates Public requirements and is reserved for command access, not assignment. Join/resume use that value. Public access cannot combine participant flags.
 
-`handleCommand` builds a fresh context with `makeContext(connectionId)` and calls `dispatch(message.type, context, message.payload)`. Dispatch looks up the registered name, queries current minimum-role permission through `roles.hasAtLeastRole` with `const std::optional<UserId> &`, then invokes the original stored callback. Live pending connections have no UserId and satisfy only Any; Any is not assignable to a participant. Supplied unknown identities are rejected rather than treated as anonymous. Client-supplied UserId/role fields cannot override the actor. Command callbacks retain their mutable state and may register commands or perform nested dispatch.
+Hosting decodes one JSON v3 frame and calls handleMessage, which validates requestId then calls handleCommand for every name. The handler builds a fresh context and invokes dispatch. Anonymous live peers execute only explicit Public commands. Identified actors, including public callers, are verified through permissions.hasPermissions; unknown identities reject. No identity or permission claim in payload replaces the connection's actor.
 
-When a context contains a ConnectionId, dispatch also verifies record existence and equality of its optional UserId. Cached contexts from closed/replaced connections, cached anonymous contexts after admission, and forged identity/connection combinations are rejected before callbacks. Local trusted calls may use a known UserId without a ConnectionId; a context with neither is rejected. Authentication-required callbacks can dereference `context.userId`; Any callbacks must handle its absence.
+Cached contexts from closed/replaced peers, cached anonymous contexts after admission, and forged identity/connection pairs reject before callbacks. A trusted local call may supply a registered UserId without a connection; an entirely empty context rejects. Public callbacks handle optional identity; authenticated callbacks can dereference it. PermissionManager mutation methods separately enforce target/domain restrictions.
 
-Wire helpers stay in the existing `src/admission.cpp`; no second dispatcher or codec is introduced. `handleCommand`, `makeCommandReply`, and shared `makeRejection` are private ProtocolManager methods. Only `protocol.add_command` is published through ResourceManager.
+ResourceManager exposes typed internal functions. PermissionManager::registerCommands explicitly registers permissions.get, permissions.setPermission and permissions.applyPreset through protocol.add_command. These adapters invoke permission features and the internal identity.updateUserPermissions coordinator; other registry features are not automatically network RPCs. See session-permission-commands.md for payloads/transactions.
 
-## Requests and Results
+On clients, add_command(name, callback) and AddClientCommandSignature register incoming host notifications without permission requirements. Common dispatch validates the currently admitted host connection generation, then invokes the callback; its JSON result is discarded. ClientConnection::processMessages routes correlated accepted/rejected replies to pending futures and messages without requestId to dispatch. sendEvent is host-only, exposed as protocol.sendEvent, and uses a bounded outbox. These operations do not create a second command/event registry.
 
-The envelope's `type` is the registered command name; `payload` must be an object. For example, after a provider registers `example.echo`:
+## Wire Results
 
-```json
-{"version":2,"type":"example.echo","requestId":"command-1","payload":{"value":7}}
-```
-
-Successful execution returns `request.accepted`, echoing the request ID:
+For an explicitly registered example.echo requiring Permission1 and Permission3:
 
 ```json
-{"version":2,"type":"request.accepted","requestId":"command-1","payload":{"result":7}}
+{"version":3,"type":"example.echo","requestId":"command-1","payload":{"value":7}}
 ```
 
-`result` may be an object, array, scalar, or null. Join returns `{userId, role, userToken}` there; resume returns `{userId, role}`. Both use this same success envelope. The wrapper keeps the codec's object-payload contract. The codec still enforces UTF-8, JSON-compatible values, nesting, and the 64 KiB envelope limit. Results that cannot be encoded produce `COMMAND_FAILED`; the callback is not retried and any effects it already performed are not automatically rolled back. Input framing errors remain `INVALID_REQUEST` and close the connection.
+Success returns the callback result unchanged inside the wrapper:
 
-## Typed Errors
+```json
+{"version":3,"type":"request.accepted","requestId":"command-1","payload":{"result":{"value":7}}}
+```
 
-Public `protocol_error.hpp` defines the closed `ProtocolErrorCode` enum and `ProtocolError`, which derives from `std::invalid_argument` and exposes `code()`. Existing C++ catches for manager validation failures remain compatible. Dispatch uses typed failures for invalid payload/context, stale identity, unknown command, insufficient role, and unavailable/failing role checks. Callback exceptions still propagate unchanged through direct C++ dispatch.
+Results may be objects, arrays, scalars or null. Error replies use request.rejected with exactly payload.code/message, preserving requestId when valid. The closed codes remain INVALID_REQUEST, INVALID_SESSION_CODE, INVALID_USER_TOKEN, NOT_ADMITTED, ALREADY_ADMITTED, ADMISSION_FAILED, UNKNOWN_COMMAND, FORBIDDEN and COMMAND_FAILED. Wire messages are sanitized Italian; raw callback failures are not exposed. Invalid/oversized output is converted to COMMAND_FAILED without retrying the callback. Ordinary admitted errors keep the connection open; pending errors, framing failures and stale peers close it.
 
-The wire handler maps failures without parsing exception text:
+## Asynchronous sendCommand
 
-| Failure | Wire code |
-| --- | --- |
-| Unknown registered name | `UNKNOWN_COMMAND` |
-| Insufficient current minimum role, or callback's typed permission failure | `FORBIDDEN` |
-| Callback `std::invalid_argument` or JSON access/type exception | `INVALID_REQUEST` |
-| Failed role service, other callback exception (including non-standard throws), or unencodable result | `COMMAND_FAILED` |
-| Unknown/closed/replaced connection, stale or inconsistent context | `NOT_ADMITTED` |
+Session::sendCommand(std::string, json) delegates and returns future<json>. Names are normalized and payloads must be objects. Invalid arguments, inactive client admission and queue limits reject synchronously; execution/transport/rejection errors complete the future exceptionally.
 
-`makeRejection` is shared with admission/framing and emits English codes with generic Italian messages. Internal exception details are not sent. Ordinary command failures keep an admitted connection open; errors on pending connections and stale contexts close the peer. Successful generic Any commands keep it pending without changing identity or the five-second deadline. `COMMANDS_UNAVAILABLE` is retired. A provider can raise `ProtocolError` for a documented outcome; it remains responsible for target-specific domain permissions and payload validation.
+- ClientConnection queues at most 64 outstanding requests, allocates unique client-N IDs through ProtocolManager, handles partial I/O and correlates accepted/rejected outcomes, including out-of-order replies. Each request has five seconds from submission; timeout or connection loss fails remaining promises without replay. See session-client.md.
+- Host LocalCommands lazily starts a FIFO worker, capped at 64 waiting requests. It gets the immutable host through permissions.getHostId and dispatches under the common execution mutex. It works before hosting and after stop, without a loopback socket or fabricated connection.
+- Same-manager callbacks cannot call sendCommand, avoiding host-actor escalation and worker deadlock. Nested direct dispatch with the original context and command registration remain supported.
 
-## Execution and Lifecycle
+## Synchronization and Stop
 
-One recursive execution mutex serializes command registration, local/remote dispatch, admission, binding/replacement, and closing. Nested dispatch/registration and connection operations inside callbacks remain supported. No connection or role mutex is held while invoking a command callback. A replacement/close waits for an already executing callback; after it completes, stale contexts cannot start another command.
+Remote callbacks run on Hosting, host async callbacks on LocalCommands, and direct dispatch on its caller. One recursive execution mutex serializes them with registration, binding and close, preserving mutable callback state. Permission lookup is fresh for every request; changes affect subsequent executions, not a callback already begun. Independent provider calls retain their own synchronization rules.
 
-Remote callbacks run on the hosting worker, while direct calls execute on their caller's thread under the same execution mutex. Slow callbacks delay other commands and stop waits for them; no asynchronous command executor or cancellation is added. Providers called independently outside dispatch retain their own threading contracts. ResourceManager feature registration/removal remains restricted to outside the hosting lifetime.
+Remote stop checks run before buffered peers, before/after select and at processInput entry. Immediately before handling a message the worker acquires the execution mutex and rechecks stop. Requests waiting for that mutex are discarded after stop; a request past the checkpoint may finish. Stop closes remaining buffers and peers rather than draining them. Final reply delivery is not guaranteed. Local commands remain usable independently of hosting.
 
-For network input, the final execution checkpoint is inside Hosting's `processInput`: acquire the existing execution mutex, check `stopRequested`, then call `handleMessage`. A request that waited for this mutex must pass the stop check afterward; decoding or buffering alone does not grant execution. A request past the checkpoint is already in progress and may finish, including its nested operations. Stop discards remaining input/output buffers and joins the worker rather than draining requests. The completed request's reply may not be delivered before its socket closes. Direct trusted local dispatch remains available independently of hosting.
-
-Lifecycle operations (`startHosting`, `stopHosting`, `loadIdentityState`) reject calls made from the same manager's command callbacks with `std::logic_error`, before acquiring lifecycle locks. A thread-local RAII dispatch stack also covers nested callbacks. This prevents self-join and lock cycles with a simultaneous external stop. Request lifecycle changes from application code after callback completion.
-
-Lock order during admission is execution, identity, connections, then roles. Archive load uses lifecycle, execution, identity, connections, then roles. Stop never holds the execution lock while joining the worker; it acquires it only for final binding cleanup. Normal archive save/token issuance retains identity-then-role ordering.
+Lifecycle/load calls reject callback reentry before locks. Session destruction shuts networking down and cancels/joins local work before permission providers are destroyed; an active local callback finishes. Providers must outlive both workers, even offline. Registry provider mutation is not concurrent with execution. No socket or permission mutex is held across arbitrary command callbacks.
 
 ## Verification
 
-The existing suites are extended rather than adding another transport fixture. ProtocolManager tests cover anonymous Any/local authenticated dispatch, duplicate built-in names including padded variants, missing role providers, unknown identities, forged/stale contexts, serialized mutable callbacks/registration, binding/close waiting for an executing callback, and lifecycle reentry. Admission TCP tests exercise anonymous Any commands, pending expiry, padded join/resume through common dispatch, buffered/large commands, authenticated actors, live promotions/demotions, JSON result shapes, nested registration/dispatch, simultaneous local/remote calls, replacement, sanitized failures, and invalid/oversized results. Invalid output is not retried; admitted peers stay open while pending peers close.
-
-The current twelve-suite native run and separate host/client console-process checks pass on Windows GCC C++20 with strict warnings. Existing buffered-stop regressions remain included. Host game-command providers and generic client command sending are separate steps. CMake and POSIX remain unverified locally. Latest outputs are under build/play/client-validation; see `development.md`.
+Sixteen play suites pass through the root CMake Debug build on Windows. Coverage includes requirement-mask pairs, explicit Any/authenticated zero, trusted/current actors, local/TCP permission commands, transactional rollback, targeted live events, mixed replies, queue bounds and buffered-stop regressions; see development.md and session-events.md.

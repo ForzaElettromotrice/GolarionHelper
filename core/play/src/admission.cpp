@@ -24,18 +24,6 @@ namespace
             && (!resume || (payload.contains("userToken") && payload.at("userToken").is_string()));
     }
 
-    std::string_view roleName(Role role)
-    {
-        switch (role)
-        {
-            case Role::Any: throw std::invalid_argument("Any is not an admitted participant role");
-            case Role::Spectator: return "spectator";
-            case Role::Player: return "player";
-            case Role::Master: return "master";
-            case Role::Host: return "host";
-        }
-        throw std::invalid_argument("unknown admission role");
-    }
 }
 
 namespace golarion::play
@@ -96,14 +84,14 @@ namespace golarion::play
 
     void ProtocolManager::registerAdmissionCommands()
     {
-        add_command("session.join", Role::Any, [this](const CommandContext &context, const Json &payload)
+        add_command("session.join", Permission::Any, [this](const CommandContext &context, const Json &payload)
         {
             const auto connectionId = requirePendingAdmission(context, payload, false);
             try { return makeAdmissionResult(admitNewUser(connectionId)); }
             catch (const ProtocolError &) { throw; }
             catch (...) { throw ProtocolError(ProtocolErrorCode::AdmissionFailed, "cannot create and persist the admitted identity"); }
         });
-        add_command("session.resume", Role::Any, [this](const CommandContext &context, const Json &payload)
+        add_command("session.resume", Permission::Any, [this](const CommandContext &context, const Json &payload)
         {
             const auto connectionId = requirePendingAdmission(context, payload, true);
             try
@@ -142,7 +130,8 @@ namespace golarion::play
         const auto connection = connections_.find(connectionId);
         if (connection == connections_.end() || connection->second) throw std::invalid_argument("admission requires a pending connection");
 
-        const auto users = resources_.invoke<RoleManager::ToSaveDataSignature>("roles.toSaveData");
+        const auto users = resources_.invoke<PermissionManager::ToSaveDataSignature>("permissions.toSaveData");
+        const auto hostId = resources_.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId");
         UserId userId;
         for (int attempt = 0; attempt < 32; ++attempt)
         {
@@ -154,16 +143,16 @@ namespace golarion::play
         }
         if (userId.empty()) throw std::runtime_error("cannot generate an unused user ID");
         auto candidate = std::make_unique<detail::UserTokens>(*userTokens_);
-        AdmissionResult result{userId, Role::Player, candidate->issue(userId)};
+        AdmissionResult result{userId, permissionsForPreset(PermissionPreset::Player), candidate->issue(userId)};
         const auto tokens = candidate->toSaveData();
         UserId boundUser = userId;
         activeConnections_.emplace(userId, connectionId);
         connection->second = std::move(boundUser);
         try
         {
-            resources_.invoke<RoleManager::RegisterUserWithCommitSignature>("roles.registerUserWithCommit", userId, [this, &tokens](const std::vector<UserRoleSaveData> &savedUsers)
+            resources_.invoke<PermissionManager::RegisterUserWithCommitSignature>("permissions.registerUserWithCommit", userId, [this, &tokens, &hostId](const std::vector<UserPermissionsSaveData> &savedUsers)
             {
-                detail::writeIdentityState(*identityArchivePath_, IdentitySaveData{savedUsers, tokens});
+                detail::writeIdentityState(*identityArchivePath_, IdentitySaveData{hostId, savedUsers, tokens});
             });
         }
         catch (...)
@@ -180,14 +169,14 @@ namespace golarion::play
     {
         const auto userId = resolveUserToken(token);
         if (!userId) return std::nullopt;
-        AdmissionResult result{*userId, resources_.invoke<RoleManager::GetRoleSignature>("roles.getRole", *userId), std::nullopt};
+        AdmissionResult result{*userId, resources_.invoke<PermissionManager::GetPermissionsSignature>("permissions.getPermissions", *userId), std::nullopt};
         bindUser(connectionId, *userId);
         return result;
     }
 
     Json ProtocolManager::makeAdmissionResult(const AdmissionResult &result)
     {
-        Json payload{{"userId", result.userId}, {"role", roleName(result.role)}};
+        Json payload{{"userId", result.userId}, {"permissions", result.permissions.toMask()}};
         if (result.userToken) payload["userToken"] = *result.userToken;
         return payload;
     }

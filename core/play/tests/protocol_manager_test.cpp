@@ -49,13 +49,13 @@ namespace
     {
         ResourceManager resources;
         ProtocolManager protocol(resources);
-        RoleManager roles(resources, "host");
-        roles.registerUser("player");
+        PermissionManager permissions(resources, "host");
+        permissions.registerUser("player");
         const auto connection = protocol.registerConnection();
         protocol.bindUser(connection, "player");
         const auto remote = protocol.makeContext(connection);
         const Json payload{{"value", 7}, {"details", {{"enabled", true}}}};
-        resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", " example.echo ", Role::Player, [](const CommandContext &context, const Json &input)
+        resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", " example.echo ", Permission::Permission2, [](const CommandContext &context, const Json &input)
         {
             return Json{{"sender", *context.userId}, {"connection", *context.connectionId}, {"payload", input}};
         });
@@ -65,14 +65,14 @@ namespace
         assert(result.at("payload") == payload);
         assert(payload.at("value") == 7);
 
-        protocol.add_command("counter", Role::Host, [value = 0](const CommandContext &context, const Json &) mutable
+        protocol.add_command("counter", Permission::ChangePermissions, [value = 0](const CommandContext &context, const Json &) mutable
         {
             assert(!context.connectionId);
             return Json{{"value", ++value}};
         });
         assert(protocol.dispatch("counter", CommandContext{"host"}, Json::object()).at("value") == 1);
         assert(protocol.dispatch("counter", CommandContext{"host"}, Json::object()).at("value") == 2);
-        protocol.add_command("Counter", Role::Host, [](const CommandContext &, const Json &) { return Json(nullptr); });
+        protocol.add_command("Counter", Permission::ChangePermissions, [](const CommandContext &, const Json &) { return Json(nullptr); });
         assert(protocol.dispatch("Counter", CommandContext{"host"}, Json::object()).is_null());
 
         resources.registerFeature<void()>("protocol.dispatch", [] {});
@@ -83,21 +83,21 @@ namespace
     {
         ResourceManager resources;
         ProtocolManager protocol(resources);
-        RoleManager roles(resources, "host");
+        PermissionManager permissions(resources, "host");
         int calls = 0;
         const auto callback = [&calls](const CommandContext &, const Json &) { return Json(++calls); };
         for (const std::string_view name : {"", " \t\r\n"})
         {
-            assert(rejects([&] { protocol.add_command(name, Role::Player, callback); }));
+            assert(rejects([&] { protocol.add_command(name, Permission::Permission2, callback); }));
             assert(rejects([&] { protocol.dispatch(name, CommandContext{"host"}, Json::object()); }));
         }
-        assert(rejects([&] { protocol.add_command("empty", Role::Player, {}); }));
-        for (const Role invalid : {static_cast<Role>(-2), static_cast<Role>(4), static_cast<Role>(99)})
+        assert(rejects([&] { protocol.add_command("empty", Permission::Permission2, {}); }));
+        for (const Permission invalid : {static_cast<Permission>(3), static_cast<Permission>(64), static_cast<Permission>(99)})
         {
             assert(rejects([&] { protocol.add_command("invalid", invalid, callback); }));
         }
-        protocol.add_command("value", Role::Player, callback);
-        assert(rejects([&] { protocol.add_command(" value ", Role::Spectator, [](const CommandContext &, const Json &) { return Json(99); }); }));
+        protocol.add_command("value", Permission::Permission2, callback);
+        assert(rejects([&] { protocol.add_command(" value ", Permission::Permission1, [](const CommandContext &, const Json &) { return Json(99); }); }));
         assert(rejects([&] { protocol.dispatch("missing", CommandContext{"host"}, Json::object()); }));
         assert(rejects([&] { protocol.dispatch("value", CommandContext{}, Json::object()); }));
         assert(rejects([&] { protocol.dispatch("value", CommandContext{"unknown", ConnectionId{1}}, Json::object()); }));
@@ -109,84 +109,81 @@ namespace
         assert(protocol.dispatch("value", CommandContext{"host"}, Json::object()) == 1);
     }
 
-    void roleMatrixAndPayloadCannotOverrideSender()
+    void permissionMatrixAndPayloadCannotOverrideSender()
     {
         ResourceManager resources;
         ProtocolManager protocol(resources);
-        RoleManager roles(resources, "host");
-        const std::array<UserId, 4> users{"spectator", "player", "master", "host"};
-        constexpr std::array<Role, 4> allRoles{Role::Spectator, Role::Player, Role::Master, Role::Host};
-        constexpr bool allowed[4][4] = {{true, false, false, false}, {true, true, false, false}, {true, true, true, false}, {true, true, true, true}};
-        for (std::size_t index = 0; index < 3; ++index)
-        {
-            roles.registerUser(users[index]);
-            roles.setRole("host", users[index], allRoles[index]);
-        }
-        std::array<ConnectionId, 4> connections;
-        for (std::size_t index = 0; index < users.size(); ++index)
-        {
-            connections[index] = protocol.registerConnection();
-            protocol.bindUser(connections[index], users[index]);
-        }
+        PermissionManager permissions(resources, "host");
+        permissions.registerUser("user");
+        const auto connection = protocol.registerConnection();
+        protocol.bindUser(connection, "user");
         int calls = 0;
-        for (std::size_t minimumIndex = 0; minimumIndex < allRoles.size(); ++minimumIndex)
+        for (unsigned required = 0; required < 64; ++required)
         {
-            const std::string name = "command." + std::to_string(minimumIndex);
-            protocol.add_command(name, allRoles[minimumIndex], [&calls](const CommandContext &context, const Json &)
+            protocol.add_command("mask." + std::to_string(required), PermissionSet::fromMask(required), [&calls](const CommandContext &context, const Json &)
             {
                 ++calls;
                 return Json(*context.userId);
             });
-            for (std::size_t userIndex = 0; userIndex < users.size(); ++userIndex)
+        }
+        for (unsigned owned = 0; owned < 64; ++owned)
+        {
+            permissions.restoreSaveData({{"host", PermissionSet::all()}, {"user", PermissionSet::fromMask(owned)}});
+            for (unsigned required = 0; required < 64; ++required)
             {
+                const auto context = protocol.makeContext(connection);
+                const auto name = "mask." + std::to_string(required);
                 const int before = calls;
-                const auto context = protocol.makeContext(connections[userIndex]);
-                const Json payload{{"userId", "host"}, {"role", "host"}};
-                if (allowed[userIndex][minimumIndex])
+                const Json spoofed{{"userId", "host"}, {"permissions", 63}};
+                if ((owned & required) == required)
                 {
-                    assert(protocol.dispatch(name, context, payload) == users[userIndex]);
+                    assert(protocol.dispatch(name, context, spoofed) == "user");
                     assert(calls == before + 1);
                 }
                 else
                 {
-                    assert(rejects([&] { protocol.dispatch(name, context, payload); }));
+                    assert(rejects([&] { protocol.dispatch(name, context, spoofed); }));
                     assert(calls == before);
                 }
             }
         }
     }
 
-    void currentRoleAndDomainPermissions()
+    void currentPermissionsAndDomainRestrictions()
     {
         ResourceManager resources;
         ProtocolManager protocol(resources);
-        RoleManager roles(resources, "host");
-        roles.registerUser("master");
-        roles.registerUser("other-master");
-        roles.registerUser("player");
-        roles.setRole("host", "master", Role::Master);
-        roles.setRole("host", "other-master", Role::Master);
+        PermissionManager permissions(resources, "host");
+        for (const UserId id : {"delegate", "other-delegate", "player"}) permissions.registerUser(id);
+        permissions.setPermission("host", "delegate", Permission::ChangePermissions, true);
+        permissions.setPermission("host", "other-delegate", Permission::ChangePermissions, true);
         int calls = 0;
-        resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "users.makeSpectator", Role::Master, [&resources, &calls](const CommandContext &context, const Json &payload)
+        resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test.setPermission", Permission::ChangePermissions, [&resources, &calls](const CommandContext &context, const Json &payload)
         {
             ++calls;
-            const UserId target = payload.at("targetUserId").get<UserId>();
-            resources.invoke<RoleManager::SetRoleSignature>("roles.setRole", *context.userId, target, Role::Spectator);
-            return Json{{"role", "spectator"}};
+            resources.invoke<PermissionManager::SetPermissionSignature>("permissions.setPermission", *context.userId, payload.at("target").get<UserId>(), static_cast<Permission>(payload.at("flag").get<std::uint64_t>()), payload.at("enabled").get<bool>());
+            return Json(true);
         });
         const auto connection = protocol.registerConnection();
-        protocol.bindUser(connection, "master");
-        const auto master = protocol.makeContext(connection);
-        assert(protocol.dispatch("users.makeSpectator", master, Json{{"targetUserId", "player"}}).at("role") == "spectator");
-        assert(roles.getRole("player") == Role::Spectator);
-        assert(rejects([&] { protocol.dispatch("users.makeSpectator", master, Json{{"targetUserId", "other-master"}}); }));
-        assert(roles.getRole("other-master") == Role::Master);
-        protocol.dispatch("users.makeSpectator", CommandContext{"host"}, Json{{"targetUserId", "master"}});
+        protocol.bindUser(connection, "delegate");
+        const auto context = protocol.makeContext(connection);
+        const auto change = [&](const UserId &target, Permission flag, bool enabled)
+        {
+            return protocol.dispatch("test.setPermission", context, {{"target", target}, {"flag", static_cast<std::uint64_t>(flag)}, {"enabled", enabled}});
+        };
+        assert(change("player", Permission::Permission2, false) == true);
+        assert(!permissions.hasPermission("player", Permission::Permission2));
+        assert(change("other-delegate", Permission::Permission5, true) == true);
+        assert(rejects([&] { change("delegate", Permission::Permission5, true); }));
+        assert(rejects([&] { change("host", Permission::Permission5, false); }));
+        assert(rejects([&] { change("player", Permission::ChangePermissions, true); }));
+        assert(rejects([&] { change("other-delegate", Permission::ChangePermissions, false); }));
+        permissions.setPermission("host", "delegate", Permission::ChangePermissions, false);
         const int before = calls;
-        assert(rejects([&] { protocol.dispatch("users.makeSpectator", master, Json{{"targetUserId", "other-master"}}); }));
+        assert(rejects([&] { change("player", Permission::Permission2, true); }));
         assert(calls == before);
-        roles.setRole("host", "master", Role::Master);
-        assert(protocol.dispatch("users.makeSpectator", master, Json{{"targetUserId", "player"}}).at("role") == "spectator");
+        permissions.setPermission("host", "delegate", Permission::ChangePermissions, true);
+        assert(change("player", Permission::Permission2, true) == true);
     }
 
     void dependencyLifecycleAndRegistrationCollision()
@@ -202,7 +199,7 @@ namespace
             ProtocolManager protocol(resources);
             assert(rejects([&] { ProtocolManager duplicate(resources); }));
             int calls = 0;
-            resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "value", Role::Spectator, [&calls, retained](const CommandContext &, const Json &)
+            resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "value", Permission::Permission1, [&calls, retained](const CommandContext &, const Json &)
             {
                 ++calls;
                 return Json(*retained);
@@ -211,7 +208,7 @@ namespace
             assert(rejects([&] { protocol.dispatch("value", CommandContext{"host"}, Json::object()); }));
             assert(calls == 0);
             {
-                RoleManager roles(resources, "host");
+                PermissionManager permissions(resources, "host");
                 assert(protocol.dispatch("value", CommandContext{"host"}, Json::object()) == 7);
             }
             assert(rejects([&] { protocol.dispatch("value", CommandContext{"host"}, Json::object()); }));
@@ -228,14 +225,14 @@ namespace
     {
         ResourceManager resources;
         ProtocolManager protocol(resources);
-        RoleManager roles(resources, "host");
-        protocol.add_command("outer", Role::Host, [&protocol, registered = false](const CommandContext &context, const Json &payload) mutable
+        PermissionManager permissions(resources, "host");
+        protocol.add_command("outer", Permission::ChangePermissions, [&protocol, registered = false](const CommandContext &context, const Json &payload) mutable
         {
             if (!registered)
             {
                 for (int index = 0; index < 32; ++index)
                 {
-                    protocol.add_command("nested." + std::to_string(index), Role::Player, [index](const CommandContext &, const Json &) { return Json(index); });
+                    protocol.add_command("nested." + std::to_string(index), Permission::Permission2, [index](const CommandContext &, const Json &) { return Json(index); });
                 }
                 registered = true;
             }
@@ -244,7 +241,7 @@ namespace
         assert(protocol.dispatch("outer", CommandContext{"host"}, Json::object()) == 31);
         assert(protocol.dispatch("outer", CommandContext{"host"}, Json::object()) == 31);
 
-        protocol.add_command("failure", Role::Host, [](const CommandContext &, const Json &) -> Json { throw std::runtime_error("callback failed"); });
+        protocol.add_command("failure", Permission::ChangePermissions, [](const CommandContext &, const Json &) -> Json { throw std::runtime_error("callback failed"); });
         bool propagated = false;
         try { protocol.dispatch("failure", CommandContext{"host"}, Json::object()); }
         catch (const std::runtime_error &error) { propagated = std::string(error.what()) == "callback failed"; }
@@ -258,10 +255,10 @@ namespace
         ResourceManager secondResources;
         ProtocolManager first(firstResources);
         ProtocolManager second(secondResources);
-        RoleManager firstRoles(firstResources, "host");
-        RoleManager secondRoles(secondResources, "host");
-        first.add_command("value", Role::Host, [](const CommandContext &, const Json &) { return Json(3); });
-        second.add_command("value", Role::Host, [](const CommandContext &, const Json &) { return Json(9); });
+        PermissionManager firstPermissions(firstResources, "host");
+        PermissionManager secondPermissions(secondResources, "host");
+        first.add_command("value", Permission::ChangePermissions, [](const CommandContext &, const Json &) { return Json(3); });
+        second.add_command("value", Permission::ChangePermissions, [](const CommandContext &, const Json &) { return Json(9); });
         assert(first.dispatch("value", CommandContext{"host"}, Json::object()) == 3);
         assert(second.dispatch("value", CommandContext{"host"}, Json::object()) == 9);
         assert(rejects([] { Session invalid(""); }));
@@ -389,10 +386,10 @@ namespace
     {
         ResourceManager resources;
         ProtocolManager protocol(resources);
-        RoleManager roles(resources, "host");
-        roles.registerUser("alice");
+        PermissionManager permissions(resources, "host");
+        permissions.registerUser("alice");
         int calls = 0;
-        protocol.add_command("echo", Role::Player, [&calls](const CommandContext &context, const nlohmann::json &)
+        protocol.add_command("echo", Permission::Permission2, [&calls](const CommandContext &context, const nlohmann::json &)
         {
             ++calls;
             return nlohmann::json{{"userId", *context.userId}, {"connectionId", *context.connectionId}};
@@ -408,7 +405,7 @@ namespace
         assert(rejects([&] { protocol.dispatch("echo", protocol.makeContext(first), nlohmann::json::object()); }));
         assert(calls == 1);
         assert(protocol.dispatch("echo", protocol.makeContext(replacement), nlohmann::json::object()).at("userId") == "alice");
-        roles.setRole("host", "alice", Role::Spectator);
+        permissions.applyPreset("host", "alice", PermissionPreset::Spectator);
         assert(rejects([&] { protocol.dispatch("echo", protocol.makeContext(replacement), nlohmann::json::object()); }));
         assert(calls == 2);
     }
@@ -424,15 +421,15 @@ namespace
     {
         ResourceManager resources;
         ProtocolManager protocol(resources);
-        RoleManager roles(resources, "host");
-        roles.registerUser("alice");
+        PermissionManager permissions(resources, "host");
+        permissions.registerUser("alice");
         int calls = 0;
-        protocol.add_command("public", Role::Any, [&](const CommandContext &context, const Json &)
+        protocol.add_command("public", Permission::Any, [&](const CommandContext &context, const Json &)
         {
             ++calls;
             return Json(context.userId.has_value());
         });
-        protocol.add_command("authenticated", Role::Spectator, [](const auto &, const auto &) { return Json(true); });
+        protocol.add_command("authenticated", Permission::Permission1, [](const auto &, const auto &) { return Json(true); });
         const auto pending = protocol.registerConnection();
         const auto anonymous = protocol.makeContext(pending);
         assert(!anonymous.userId && anonymous.connectionId == pending);
@@ -446,7 +443,7 @@ namespace
         assert(calls == 2);
         for (const std::string_view name : {"session.join", " session.join ", "session.resume", "\tsession.resume\n"})
         {
-            assert(rejects([&] { protocol.add_command(name, Role::Any, [](const auto &, const auto &) { return Json("override"); }); }));
+            assert(rejects([&] { protocol.add_command(name, Permission::Any, [](const auto &, const auto &) { return Json("override"); }); }));
         }
         assert(rejectsWithCode(ProtocolErrorCode::InvalidRequest, [&] { protocol.dispatch(" session.join ", anonymous, Json::object()); }));
         assert(rejectsWithCode(ProtocolErrorCode::InvalidRequest, [&] { protocol.dispatch("session.join", CommandContext{"host"}, Json::object()); }));
@@ -463,26 +460,38 @@ namespace
         assert(rejectsWithCode(ProtocolErrorCode::NotAdmitted, [&] { protocol.dispatch("public", staleAnonymous, Json::object()); }));
         assert(calls == 3);
 
-        ResourceManager missingRoles;
-        ProtocolManager incomplete(missingRoles);
-        incomplete.add_command("public", Role::Any, [](const auto &, const auto &) { return Json(true); });
+        constexpr CommandRequirements publicAccess(Permission::Any);
+        constexpr CommandRequirements authenticatedAccess(PermissionSet{});
+        static_assert(publicAccess.access == CommandAccess::Public && publicAccess.permissions == PermissionSet{});
+        static_assert(authenticatedAccess.access == CommandAccess::Authenticated && authenticatedAccess.permissions == PermissionSet{});
+        protocol.add_command("no-flags", PermissionSet{}, [](const auto &, const auto &) { return Json(true); });
+        const auto pendingWithoutPermissions = protocol.registerConnection();
+        assert(rejectsWithCode(ProtocolErrorCode::Forbidden, [&] { protocol.dispatch("no-flags", protocol.makeContext(pendingWithoutPermissions), Json::object()); }));
+        for (const auto flag : {Permission::Permission1, Permission::Permission2, Permission::Permission3}) permissions.setPermission("host", "alice", flag, false);
+        assert(protocol.dispatch("no-flags", protocol.makeContext(replacement), Json::object()) == true);
+        assert(rejects([&] { protocol.add_command("bad-access", CommandRequirements{static_cast<CommandAccess>(99)}, [](const auto &, const auto &) { return Json(true); }); }));
+        assert(rejects([&] { protocol.add_command("public-with-flags", CommandRequirements{CommandAccess::Public, Permission::Permission1}, [](const auto &, const auto &) { return Json(true); }); }));
+
+        ResourceManager missingPermissions;
+        ProtocolManager incomplete(missingPermissions);
+        incomplete.add_command("public", Permission::Any, [](const auto &, const auto &) { return Json(true); });
         const auto unknown = incomplete.registerConnection();
-        assert(rejectsWithCode(ProtocolErrorCode::CommandFailed, [&] { incomplete.dispatch("public", incomplete.makeContext(unknown), Json::object()); }));
+        assert(incomplete.dispatch("public", incomplete.makeContext(unknown), Json::object()) == true);
     }
 
     void typedFailuresAndLifecycleReentry()
     {
         ResourceManager resources;
         ProtocolManager protocol(resources);
-        RoleManager roles(resources, "host");
-        roles.registerUser("alice");
-        protocol.add_command("master-only", Role::Master, [](const auto &, const auto &) { return Json(nullptr); });
+        PermissionManager permissions(resources, "host");
+        permissions.registerUser("alice");
+        protocol.add_command("master-only", Permission::Permission4, [](const auto &, const auto &) { return Json(nullptr); });
         assert(rejectsWithCode(ProtocolErrorCode::UnknownCommand, [&] { protocol.dispatch("missing", CommandContext{"host"}, Json::object()); }));
         assert(rejectsWithCode(ProtocolErrorCode::Forbidden, [&] { protocol.dispatch("master-only", CommandContext{"alice"}, Json::object()); }));
         assert(rejectsWithCode(ProtocolErrorCode::InvalidRequest, [&] { protocol.dispatch("master-only", CommandContext{"host"}, Json::array()); }));
         assert(rejectsWithCode(ProtocolErrorCode::NotAdmitted, [&] { protocol.dispatch("master-only", CommandContext{"host", ConnectionId{1}}, Json::object()); }));
         assert(rejects([] { throw ProtocolError(static_cast<ProtocolErrorCode>(99), "invalid code"); }));
-        protocol.add_command("lifecycle", Role::Host, [&](const auto &, const auto &)
+        protocol.add_command("lifecycle", Permission::ChangePermissions, [&](const auto &, const auto &)
         {
             int rejected = 0;
             try { protocol.startHosting("127.0.0.1", 0); }
@@ -504,8 +513,8 @@ namespace
         {
             ResourceManager resources;
             ProtocolManager protocol(resources);
-            RoleManager roles(resources, "host");
-            roles.registerUser("alice");
+            PermissionManager permissions(resources, "host");
+            permissions.registerUser("alice");
             const auto first = protocol.registerConnection();
             protocol.bindUser(first, "alice");
             const auto context = protocol.makeContext(first);
@@ -514,7 +523,7 @@ namespace
             auto enteredFuture = entered.get_future();
             std::promise<void> release;
             auto released = release.get_future().share();
-            protocol.add_command("slow", Role::Player, [&](const auto &, const auto &)
+            protocol.add_command("slow", Permission::Permission2, [&](const auto &, const auto &)
             {
                 entered.set_value();
                 if (released.wait_for(3s) != std::future_status::ready) throw std::runtime_error("test callback was not released");
@@ -541,8 +550,8 @@ namespace
 
         ResourceManager resources;
         ProtocolManager protocol(resources);
-        RoleManager roles(resources, "host");
-        protocol.add_command("counter", Role::Host, [count = 0](const auto &, const auto &) mutable { return Json(++count); });
+        PermissionManager permissions(resources, "host");
+        protocol.add_command("counter", Permission::ChangePermissions, [count = 0](const auto &, const auto &) mutable { return Json(++count); });
         std::vector<std::future<void>> tasks;
         for (int index = 0; index < 4; ++index)
         {
@@ -551,7 +560,7 @@ namespace
                 for (int iteration = 0; iteration < 100; ++iteration)
                 {
                     const auto name = "dynamic." + std::to_string(index) + "." + std::to_string(iteration);
-                    resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", name, Role::Host, [](const auto &, const auto &) { return Json(true); });
+                    resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", name, Permission::ChangePermissions, [](const auto &, const auto &) { return Json(true); });
                     assert(protocol.dispatch(name, CommandContext{"host"}, Json::object()) == true);
                     static_cast<void>(protocol.dispatch("counter", CommandContext{"host"}, Json::object()));
                 }
@@ -585,8 +594,8 @@ int main()
     sessionCodeVerification();
     registrationAndDispatch();
     invalidRegistrationAndPayload();
-    roleMatrixAndPayloadCannotOverrideSender();
-    currentRoleAndDomainPermissions();
+    permissionMatrixAndPayloadCannotOverrideSender();
+    currentPermissionsAndDomainRestrictions();
     dependencyLifecycleAndRegistrationCollision();
     nestedDispatchAndCallbackExceptions();
     independentInstancesAndSessionConstruction();

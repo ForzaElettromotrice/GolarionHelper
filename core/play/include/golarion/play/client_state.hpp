@@ -1,6 +1,7 @@
 #pragma once
 
-#include "golarion/play/role_manager.hpp"
+#include "golarion/play/permission_set.hpp"
+#include "golarion/play/user_id.hpp"
 #include "golarion/play/user_token.hpp"
 
 #include <optional>
@@ -18,7 +19,7 @@ namespace golarion::play
     struct ClientAdmission
     {
         UserId userId;
-        Role role;
+        PermissionSet permissions;
         std::optional<UserToken> userToken = std::nullopt;
     };
 
@@ -26,6 +27,6 @@ namespace golarion::play
     {
         ClientConnectionState state = ClientConnectionState::Disconnected;
         std::optional<UserId> userId = std::nullopt;
-        std::optional<Role> role = std::nullopt;
+        std::optional<PermissionSet> permissions = std::nullopt;
     };
 }

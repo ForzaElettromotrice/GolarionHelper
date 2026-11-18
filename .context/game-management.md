@@ -1,6 +1,6 @@
 # Game Management and Application Communication
 
-Status: host/client Session modes, TCP hosting and asynchronous client admission, identity persistence and host-side authenticated dispatch implemented, 2026-11-16. Generic outgoing client commands, concrete role/sheet commands, user-list events and display names remain deferred. Legacy Game/network remains removed.
+Status: targeted live permission notifications added 2026-11-18 to PermissionManager, JSON v3 admission/sendCommand and transactional permission RPCs. Archives remain version 2. User presence events, sheet commands, display names and frontend remain deferred.
 
 ## Confirmed Requirements
 
@@ -9,65 +9,56 @@ Status: host/client Session modes, TCP hosting and asynchronous client admission
 - Participants connect from separate PCs over LAN or the Internet.
 - A participant's PC hosts the game. The game is reachable while the hosting application is open; its saved data survives closing the application.
 - Direct Internet access requiring network configuration, or a VPN, is acceptable for the initial version. A managed online relay or always-on dedicated server is not required.
-- Players may import character sheets created locally in the application and modify sheets assigned to them. Masters may modify all game sheets.
+- Participants may import sheets created locally in the application and interact with assigned/shared sheets according to explicit permissions and bindings. Master/Player/Spectator are configurable permission presets; their names alone must not authorize sheet operations. Concrete sheet permissions remain undefined behind the current placeholder flags.
 - Communication currently means inter-application networking for joining and interacting with a shared game. In-app chat, voice, and video are outside the current scope.
-- Implementation proceeds in small backend-only steps. Session modes, managers, host/client admission and both console tools are implemented; generic commands/events and the frontend remain separate.
+- Implementation proceeds in small backend-only steps. Session, managers, admission/sendCommand, both console tools, permission RPCs and targeted permission notifications are implemented. User presence events, sheet commands and frontend remain separate.
 - The implemented rules engine remains Pathfinder 1e. The user's general reference to DnD does not select another ruleset.
 
 ## Confirmed Structural Decisions for Later Steps
 
 - `Session` is the main play container, analogous to `CharacterSheet`. A user creates a session and can start/stop its server; subsystem behavior is delegated to its managers.
-- Session::createHost(hostId) requires the immutable host UserId; createClient() creates a remote client. The legacy UserId constructor remains a host. Both own ResourceManager/ProtocolManager, with optional RoleManager only on hosts. All networking methods delegate; see `session-client.md`.
-- Session is a container/facade: ProtocolManager directly implements logical registration, binding/replacement, lookup, context construction, and close. Session forwards these calls except `getUserId`, which remains only on ProtocolManager; no connection features are published through ResourceManager. Binding trusts an identity verified by its caller. ProtocolManager owns private credentials and admission handlers; no separate ConnectionManager is introduced. RoleManager owns roles; see `session-protocol.md`, `session-tokens.md`, and `session-admission.md`.
-- Host-only RoleManager publishes its seven roles.* features. Host ProtocolManager publishes protocol.add_command and authorizes common dispatch; client mode publishes no server command/role authority. Client state contains only its own admitted identity/role; see `session-roles.md`, `session-commands.md` and `session-client.md`.
+- Session::createHost(hostId) takes the immutable Host UserId; createClient has no authoritative user manager. Both own ResourceManager/ProtocolManager, and only hosts own PermissionManager. Methods delegate; see session-client.md.
+- Session is a facade: ProtocolManager implements logical binding/context/lifecycle, credentials and admission. No ConnectionManager is introduced. PermissionManager owns all users/masks and is consumed through ResourceManager. UserId is shared in user_id.hpp.
+- Host PermissionManager publishes twelve permissions.* features and registers three command adapters through protocol.add_command. ProtocolManager exposes identity.updateUserPermissions and protocol.sendEvent; clients register host-notification callbacks through their own protocol.add_command feature. ClientSnapshot refreshes on permissions.changed after effective committed changes. See session-events.md.
 - Session is the local hosting entry point: start/stop delegates to ProtocolManager's private Hosting implementation, without polling. Pending peers join/resume via JSON; admitted sockets execute registered commands and remain open after ordinary errors. Destruction stops hosting before provider teardown. Lifecycle operations belong outside command callbacks; see `session-admission.md` and `session-commands.md`.
 - A session has a generated five-character SessionCode candidate using `A-Z` and `0-9`; local verification accepts lowercase by normalization. ProtocolManager owns the value and Session delegates its display getter. It will accompany IP/port during admission. The user explicitly deferred the shared host registry and persistence: uniqueness among sessions of one host remains a requirement, not a current guarantee.
-- The hosting user has the unique, immutable `Host` role with master privileges. A new incoming user starts as `Player`. Only the host may promote a user to `Master` or change an existing master's role. Masters may change other players/spectators between `Player` and `Spectator`; they cannot modify another master or the host. Players and spectators cannot change roles.
-- `Role::Any` is an access threshold below Spectator, never assignable or persisted. Live pending connections have no UserId and satisfy only Any; unknown/stale connections cannot execute. ProtocolManager registers join/resume through `add_command` with Any before exposing the feature, using the same lookup/normalization/role check as every command. All successes use `request.accepted` with `payload.result`; join returns UserId/Player/token, resume returns UserId/current role.
-- Communication will use JSON over TCP. The host issues a permanent personal token at the first admission of a new client; it identifies that user within the same `Session`, including after session restarts, and preserves their current assigned role on resume. The proposed message contract and remaining protocol details are in [session-protocol.md](session-protocol.md).
-- Token issuance/recognition, identity archives and JSON join/resume use eight random bytes and OpenSSL Crypto, with host-side hashes only and no SessionId. Client console stores the original token in a dedicated per-participant/session file; later host role changes require an explicit save. No display names are stored; see `session-tokens.md` and `session-client.md`.
-- A valid resume replaces any previous live connection for that identity, preserving the permanent token and current role. There is one active connection and one connected-user entry per identity; stale messages/disconnects from the replaced connection cannot affect the replacement.
+- The implemented model stores immutable Host UserId separately from flags. Host owns all six permissions. New users receive Player flags. Presets have no hierarchy; host alone grants/revokes ChangePermissions, delegates change only other non-host users, and presets replace ordinary bits while preserving that flag.
+- Permission::Any = 0 explicitly selects public command access for registered join/resume; it is not assignable. A zero PermissionSet requirement instead needs an authenticated registered user. Unknown/stale contexts reject, and identity never comes from payload. All requests reuse the common dispatcher.
+- Communication uses framed JSON v3 over TCP. Original eight-byte credentials identify participants within their archive across reconnect/restart; host resolves their current permissions. Both peers must use the new wire version.
+- Token issuance/recognition uses OpenSSL Crypto with host-side hashes only and no SessionId. Version-2 archives store explicit hostId, users/masks and hashes. Role archives are rejected without conversion per user choice; no automatic deletion occurs. Permission commands save transactionally; trusted direct setters still require an explicit save.
+- Valid resume replaces a previous live connection while preserving identity/token and returning the current mask. One active binding exists per user; stale messages/disconnects cannot affect its replacement.
 - Store sheet IDs and names in the game registry; connect actual `CharacterSheet` content through the later application service.
-- A sheet may have several authorized players; masters retain access to all game sheets.
-- All masters can administer the permitted player/spectator role changes; master promotion/demotion is reserved to the immutable host. Previously discussed shared-sheet assignments remain future work.
-- Removing a player or changing that player to spectator revokes their control; their sheets remain in the game.
-- The current network slice manages pending and admitted TCP connections. Identity/role persistence and token-based resume are implemented; connected-user synchronization, role commands, and sheet bindings remain separate steps.
+- A sheet may have several authorized participants. Shared-sheet assignments and concrete read/write permission semantics remain future work; do not infer them from preset names.
+- Permission and sheet-control revocation must affect later operations without deleting the participant's sheets. Preset-to-sheet effects remain undefined until concrete sheet permissions are selected.
+- Networking handles admission, generic commands, permission queries/mutations, transactional identity saving, token resume and targeted permission events. User presence/list events and sheet bindings remain separate work.
 
 ## Implemented Session Hosting
 
 - `core/play/` is an independent C++20 module built as `golarion_play`, with nlohmann_json 3.12, OpenSSL Crypto 3.0+, standard threads, and native sockets. It has no sheet/frontend dependency and can be built standalone.
-- Both Session modes contain ResourceManager/ProtocolManager; only hosts initialize optional RoleManager. Host start/stop and client join/resume/disconnect/state operations delegate to ProtocolManager, which owns the relevant private worker and socket state.
+- Both Session modes own ResourceManager/ProtocolManager; only hosts initialize optional PermissionManager. All workers are stopped/joined before provider teardown.
 - golarion_play_host <IPv4 address> <port> [identity archive] uses createHost, loads/creates the archive and waits for Ctrl+C. golarion_play_client <IPv4 address> <port> <code> [token file] uses createClient and joins/resumes with its original token. Both workers progress networking automatically; see `development.md`.
-- Accepted sockets start pending; join/resume verifies code/token, creates a Player or replaces the previous connection, and keeps admitted sockets open. Generic Any commands can run while pending without admitting the peer or prolonging its five-second deadline. Pending errors close the socket; ordinary admitted errors keep it open. The codec retains its four-byte prefix/64 KiB cap. Every request executes a registered callback after common role checks and receives a correlated result/rejection. See `session-admission.md` and `session-commands.md`.
-- Connection/lifecycle state is synchronized. Stop joins the worker and releases sockets and bindings before provider teardown, preserving roles and the ID sequence. See `protocol-manager.md` for lifecycle details.
-- Native client admission and its console are implemented; generic outgoing commands, user events and reconnect policy remain separate. Legacy Game/network and their old tests/client were removed; the current client tool is documented in `session-client.md`.
-- Twelve native suites cover host/client admission, Session modes, codes/tokens, persistence, codec and managers. A real-process check verifies both console tools with two participants, retained tokens, replacement and host/client restarts. Windows GCC C++20 strict builds pass; CMake and POSIX execution remain unverified. See `development.md`.
+- Accepted sockets start pending; registered Any join/resume callbacks verify code/token, persist/register Player flags or restore current masks, and retain admitted peers. Successful generic public commands do not extend pending expiry. Ordinary admitted errors keep sockets open; framing/pending failures close them.
+- Connection/lifecycle state is synchronized. Stop joins the network worker and releases peers/bindings while retaining permissions, tokens and the ID counter. Local commands remain available; shutdown joins them before provider destruction.
+- Native admission and host/client sendCommand are implemented. The host queues local dispatch even offline; an admitted client sends correlated requests with bounded completion. User events and reconnect policy remain separate. Legacy Game/network and their old tests/client were removed; the current console still exposes admission/monitoring only, documented in `session-client.md`.
+- Sixteen native play suites pass through the root CMake build on Windows, including RPC transactions, targeted live events, mixed replies, queue limits, full host reconstruction and prior stop/identity regressions. Outputs are build/core/play; POSIX remains unverified.
 
 ## Proposed Game Model and Lifecycle
 
 Keep the persistent game and live connection state distinct:
 
-- `Session`: owns its registry and managers. Local user registration accepts stable IDs; network admission generates IDs, persists credentials/roles, and builds trusted context. Generic authenticated dispatch is implemented. Session name, sheet bindings, settings, other game state, and concrete role/sheet commands remain future work.
+- Session owns its registry/managers and asks PermissionManager to register commands during host setup. Admission and permission mutations persist through the existing identity transaction pattern. Name/settings, sheet commands/bindings and full game persistence remain deferred.
 - Hosting lifecycle: starting/stopping the server is implemented through Session delegations to ProtocolManager; persistent membership and session state must be designed separately from live connections.
-- `Participant`: stable identity, display name, role, and access credentials for a game. Display names and `CharacterIdentity.playerName` are descriptive text, not authorization.
+- Participant: stable identity, effective permission mask and credentials. Display names remain deferred and descriptive. Client state contains its own admitted identity and latest mask received through permissions.changed.
 - `Presence`: current connection and synchronization status. Disconnecting does not remove membership, sheet assignments, or control permissions.
 - `SheetBinding`: game-owned sheet ID, permitted controllers/readers, publication policy, and revision, wrapping the existing `CharacterSheet`.
 
 Proposed flow: create or reopen a game, start hosting, invite/admit participants, prepare/import/assign sheets, play, save, and close hosting. Joining an existing game restores its participant rather than creating a new member on every connection. Preparation may begin with the creator alone; enforce any minimum connected master/player requirement only when an explicit live-play lifecycle actually needs it.
 
-## Proposed Permissions
+## Permissions
 
-| Capability | Game master | Player | Spectator |
-| --- | --- | --- | --- |
-| View and modify game sheets | All game sheets | Assigned sheets only | No editing; published information only |
-| Import a personal sheet | Yes | Yes; initially controlled by its importer | No |
-| Control characters | Explicit assignments, including NPCs and delegated PCs | Explicit assignments; may include multiple sheets | No |
-| Receive game state | All information authorized for masters | Own/assigned sheets and shared information | Published information only |
-| Manage membership and roles | According to administrative policy | Own join/leave operations | Own join/leave operations |
+Current decisions and the integrated model are in session-permissions.md. Permission1 through Permission5 are placeholders; ChangePermissions is the protected delegation flag. Sheet-specific semantics require future concrete permissions plus ownership/assignment checks.
 
-Role and character control are separate: a master may also control a player character, and a player may control several characters. The hosting user has the distinct immutable `Host` role with master privileges. Several masters may operate concurrently against one authoritative game once roles are implemented.
-
-Confirmed administrative policy: only the host may assign `Master` or change a master's role; a master may only change other players/spectators to `Player` or `Spectator`. The host role cannot be changed or granted to another participant by the role-change operation. Every future command must check current membership and role, so demotion or removal takes effect on subsequent requests. Shared player control is confirmed; exact spectator publication fields remain open.
+The former role-based proposal is archived in history/2026-11-17-role-authorization.md; the removed manager API is in history/2026-11-17-role-manager.md. Neither is current authorization policy.
 
 ## Proposed Host Authority and Sheet Integration
 
@@ -95,7 +86,7 @@ These copy/import/export semantics are a recommendation rather than an already c
 | Connecting | Join by host address and port, directly on LAN/Internet or through a VPN; report connection failures. LAN discovery can follow basic manual connection. |
 | Admission and identity | Game access credentials or invitations, optional admission by a master, stable returning identity, and access revocation. Exact credential UX is still open. |
 | Compatibility | Negotiate protocol and sheet/rules/catalog compatibility before importing or applying incompatible operations. |
-| Membership and presence | Retrieve participants and roles, distinguish offline/connecting/synchronizing/online, and propagate joins, disconnects, removals, and role changes. |
+| Membership and presence | Retrieve participants and permissions, distinguish offline/connecting/synchronizing/online, and propagate joins, disconnects, removals and permission changes. |
 | Initial synchronization | Receive game metadata, permissions, visible sheet summaries, and authorized sheet state. |
 | Sheet transfer | Import a locally created sheet, receive the canonical game ID, and export an authorized updated copy. |
 | Sheet control | Assign/revoke control and visibility, and propagate permission changes. |
@@ -107,19 +98,19 @@ These copy/import/export semantics are a recommendation rather than an already c
 
 ## Proposed Message Contract
 
-The codec, Session hosting, admission, and authenticated registered-command dispatch are implemented; `session-protocol.md` separates current behavior from later messages. Concrete role commands and user-list synchronization remain pending. Sheet-related examples below remain proposals.
+Codec, hosting, permission admission, read/mutation commands and targeted permissions.changed are implemented. User presence and sheet-related messages below remain proposals.
 
 Keep network contracts independent from the C++ memory layout and from internal persistence structures. The existing `SaveData` supports importing complete source data; the current `View` structs still require explicit wire serialization and permission filtering before they become network snapshots.
 
 | Direction | Examples |
 | --- | --- |
-| Client to host | Implemented `session.join`/`session.resume`; planned `session.leave`/`users.setRole` and sheet operations. |
-| Host response | Implemented minimal `session.joined`, `session.resumed`, and correlated `request.accepted`/`request.rejected`; planned user snapshots and sheet events. |
-| Host event | `ParticipantPresenceChanged`, `ParticipantRoleChanged`, `SheetChanged`, `SheetPermissionsChanged`, `HostClosing`. |
+| Client to host | Implemented session.join/session.resume, generic commands and permission adapters; planned session.leave and sheet operations. |
+| Host response | Implemented correlated request.accepted/request.rejected, including admission; planned user snapshots. |
+| Host event | Implemented permissions.changed for its affected user only; planned presence, sheet, assignment and host-closing notifications. |
 
-Commands carry a protocol version, a unique request/command ID, and the relevant game/entity IDs. Sheet mutations also carry the expected sheet revision. Authenticate the sender through its accepted connection; a client-supplied participant ID never grants authority by itself. Events carry an authoritative sequence/revision so a reconnecting client can detect a gap and request a new snapshot.
+Commands carry a protocol version, request ID and operation-specific payload. Authenticate the sender through its accepted connection; a client-supplied participant ID never grants authority. Current permission events omit requestId, contain the full numeric mask and have no sequence/replay log; resume supplies the current mask. Sheet revision checks and event gap recovery are future contracts.
 
-For example, two masters editing revision 12 of one sheet do not silently replace one another: after the first accepted change produces revision 13, a conflicting second change receives the current revision and must be reviewed against refreshed state. Retrying the same accepted command ID returns the prior outcome instead of applying an effect twice.
+For future sheet editing, two masters editing revision 12 should not silently replace one another: after an accepted change produces revision 13, a conflicting change should receive current state for review. Idempotent retry by command ID is also future work, not current sendCommand behavior.
 
 Prefer complete authorized snapshots at join/reconnect and per-sheet refresh after a change for the first implementation. Incremental patches are an optimization, not a prerequisite. A client awaiting synchronization cannot present a local draft as accepted game state.
 
@@ -131,11 +122,11 @@ Initially use reliable ordered messages for commands and synchronization. Transp
 
 The sheet backend lives in core/sheet; core/play implements host/client Session modes, TCP hosting, native client admission and managers. A future native desktop frontend can use the C++ application API; the existing C API remains separate and its full frontend boundary is undecided.
 
-1. Add generic outgoing client commands, concrete role RPCs and user-list events in separate steps. Native join/resume, state and credential-file retention are implemented; preserve the provider, callback and stop constraints in session-client.md and session-commands.md.
+1. Choose user presence/list synchronization separately, reusing implemented notification dispatch/outbox and preserving RPC autosave, current actor checks, provider lifetime and buffered-stop constraints.
 2. Add the sheet ID/name registry, shared assignments, and authorization separately, then connect sheet contents through an application service.
 3. Add persistent game storage, import/export, recipient-specific state, command IDs, revisions, and identity-preserving reconnect in separately reviewable steps.
 4. Validate actual multi-PC LAN/Internet/VPN operation and introduce authenticated protected connections before treating Session hosting as complete Internet support.
 
-Useful acceptance scenarios: a player imports and controls their own sheet; another player cannot edit it; both masters can modify it; concurrent conflicting changes are explicit; a spectator receives only published state; reconnecting restores identity and control without duplicating an action; role revocation takes effect; and restarting the host restores the persistent game.
+Useful acceptance scenarios: a player imports and controls their own sheet; another player cannot edit it; both masters can modify it; concurrent conflicting changes are explicit; a spectator receives only published state; reconnecting restores identity and control without duplicating an action; permission revocation takes effect; and restarting the host restores the persistent game.
 
 Remaining details for later design: invitation/credential UX, precise spectator views, full game storage beyond the identity archive, any later transport-library adoption, and future UI toolkit. In-app human communication is outside this design.

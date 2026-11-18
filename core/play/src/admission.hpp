@@ -14,7 +14,7 @@ namespace golarion::play
     struct ProtocolManager::AdmissionResult
     {
         UserId userId;
-        Role role;
+        PermissionSet permissions;
         std::optional<std::string> userToken;
     };
 }
