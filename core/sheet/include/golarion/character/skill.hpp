@@ -161,6 +161,7 @@ namespace golarion
         std::optional<std::string> specialization_;
         std::string resourceName_;
         int ranks_;
+        bool customClassSkill_ = false;
         mutable std::map<std::string, SkillRankGrant> rankGrants_;
     };
 }

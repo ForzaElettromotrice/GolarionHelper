@@ -14,5 +14,6 @@ namespace golarion
         std::optional<std::string> specialization;
         int ranks;
         bool custom;
+        bool customClassSkill = false;
     };
 }

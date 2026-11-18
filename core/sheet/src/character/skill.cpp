@@ -241,6 +241,8 @@ namespace golarion
                 });
             }
         }
+        if (customClassSkill_)
+            applicableClassSkillGrants.push_back({"custom.classSkill." + resourceName_, "Personalizzazione", resourceName_});
         const bool classSkill = !applicableClassSkillGrants.empty();
         const int effective = effectiveRanks(resourceManager);
         const int classSkillBonus = classSkill && effective > 0 ? 3 : 0;
@@ -293,7 +295,8 @@ namespace golarion
             .abilityOptions = std::move(abilityOptions),
             .modifiers = std::move(modifierView),
             .effectiveRanks = effective,
-            .rankGrants = std::move(rankViews)
+            .rankGrants = std::move(rankViews),
+            .customClassSkill = customClassSkill_
         };
     }
 
@@ -304,7 +307,8 @@ namespace golarion
             .specializationId = specializationId_,
             .specialization = specialization_,
             .ranks = ranks_,
-            .custom = specializationId_.has_value()
+            .custom = specializationId_.has_value(),
+            .customClassSkill = customClassSkill_
         };
     }
 

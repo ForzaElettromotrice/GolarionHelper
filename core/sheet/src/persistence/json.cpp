@@ -576,7 +576,8 @@ namespace
             {"specializationId", std::move(specializationId)},
             {"specialization", std::move(specialization)},
             {"ranks", data.ranks},
-            {"custom", data.custom}
+            {"custom", data.custom},
+            {"customClassSkill", data.customClassSkill}
         };
     }
 
@@ -599,7 +600,8 @@ namespace
             .specializationId = std::move(specializationId),
             .specialization = std::move(specialization),
             .ranks = json.at("ranks").get<int>(),
-            .custom = json.at("custom").get<bool>()
+            .custom = json.at("custom").get<bool>(),
+            .customClassSkill = json.value("customClassSkill", false)
         };
     }
 

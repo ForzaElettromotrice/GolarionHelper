@@ -276,6 +276,25 @@ namespace golarion
         specialization(type, specializationId).setRanks(ranks);
     }
 
+    void Skills::addCustomClassSkill(SkillType type, std::optional<std::string> specializationId)
+    {
+        Skill &target = specializationId ? specialization(type, *specializationId) : skill(type);
+        const bool externallyGranted = std::ranges::any_of(classSkillGrants_, [&](const auto &entry)
+        {
+            return resourceManager_.enhanceableResourceIsOrInheritsFrom(target.resourceName_, entry.second.targetResourceName_);
+        });
+        if (target.customClassSkill_ || externallyGranted)
+            throw std::invalid_argument("skill is already a class skill");
+        target.customClassSkill_ = true;
+    }
+
+    void Skills::removeCustomClassSkill(SkillType type, std::optional<std::string> specializationId)
+    {
+        Skill &target = specializationId ? specialization(type, *specializationId) : skill(type);
+        if (!target.customClassSkill_) throw std::invalid_argument("skill has no custom class-skill grant");
+        target.customClassSkill_ = false;
+    }
+
     SkillsView Skills::toView()
     {
         const int resolvedArmorCheckPenalty = armorCheckPenalty();
@@ -454,11 +473,13 @@ namespace golarion
             if (requiresSpecialization(skillData.type))
             {
                 setSpecializationRanks(skillData.type, *skillData.specializationId, skillData.ranks);
+                specialization(skillData.type, *skillData.specializationId).customClassSkill_ = skillData.customClassSkill;
                 continue;
             }
 
             Skill &standardSkill = skill(skillData.type);
             standardSkill.setRanks(skillData.ranks);
+            standardSkill.customClassSkill_ = skillData.customClassSkill;
         }
     }
 

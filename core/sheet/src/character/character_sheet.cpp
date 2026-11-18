@@ -252,7 +252,7 @@ namespace golarion
 
     CharacterSheet::CharacterSheet(const CharacterSheetSaveData &data, const ClassDefinitionManager &classDefinitions) : CharacterSheet(classDefinitions)
     {
-        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24 && data.formatVersion != 25 && data.formatVersion != 26 && data.formatVersion != 27 && data.formatVersion != 28 && data.formatVersion != 29 && data.formatVersion != 30 && data.formatVersion != 31 && data.formatVersion != 32 && data.formatVersion != 33 && data.formatVersion != 34 && data.formatVersion != 35 && data.formatVersion != 36 && data.formatVersion != 37 && data.formatVersion != 38 && data.formatVersion != 39 && data.formatVersion != 40 && data.formatVersion != 41 && data.formatVersion != 42)
+        if (data.formatVersion != 8 && data.formatVersion != 10 && data.formatVersion != 11 && data.formatVersion != 12 && data.formatVersion != 13 && data.formatVersion != 14 && data.formatVersion != 15 && data.formatVersion != 16 && data.formatVersion != 17 && data.formatVersion != 18 && data.formatVersion != 19 && data.formatVersion != 20 && data.formatVersion != 21 && data.formatVersion != 22 && data.formatVersion != 23 && data.formatVersion != 24 && data.formatVersion != 25 && data.formatVersion != 26 && data.formatVersion != 27 && data.formatVersion != 28 && data.formatVersion != 29 && data.formatVersion != 30 && data.formatVersion != 31 && data.formatVersion != 32 && data.formatVersion != 33 && data.formatVersion != 34 && data.formatVersion != 35 && data.formatVersion != 36 && data.formatVersion != 37 && data.formatVersion != 38 && data.formatVersion != 39 && data.formatVersion != 40 && data.formatVersion != 41 && data.formatVersion != 42 && data.formatVersion != 43)
         {
             throw std::invalid_argument("unsupported character sheet format version: " + std::to_string(data.formatVersion));
         }
@@ -505,6 +505,18 @@ namespace golarion
         feats_.recheckPrerequisites();
     }
 
+    void CharacterSheet::addCustomClassSkill(SkillType type, std::optional<std::string> specializationId)
+    {
+        skills_.addCustomClassSkill(type, std::move(specializationId));
+        feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::removeCustomClassSkill(SkillType type, std::optional<std::string> specializationId)
+    {
+        skills_.removeCustomClassSkill(type, std::move(specializationId));
+        feats_.recheckPrerequisites();
+    }
+
     void CharacterSheet::createAttack(const AttackDefinition &definition)
     {
         attacks_.create(definition);
@@ -618,7 +630,7 @@ namespace golarion
         }
 
         return CharacterSheetSaveData{
-            .formatVersion = 42,
+            .formatVersion = 43,
             .identity = identity_.toSaveData(),
             .race = race_.toSaveData(),
             .abilities = std::move(abilityData),

@@ -712,6 +712,9 @@ if(BUILD_TESTING)
     add_test(NAME size_test COMMAND size_test)
 
     add_executable(skills_test tests/character/skills_test.cpp)
+    add_executable(custom_class_skill_test tests/character/custom_class_skill_test.cpp)
+    target_link_libraries(custom_class_skill_test PRIVATE golarion_model)
+    add_test(NAME custom_class_skill_test COMMAND custom_class_skill_test)
     target_link_libraries(skills_test PRIVATE golarion_model)
     add_test(NAME skills_test COMMAND skills_test)
 

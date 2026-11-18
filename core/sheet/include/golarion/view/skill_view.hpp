@@ -53,5 +53,6 @@ namespace golarion
         ModifierSetView modifiers;
         int effectiveRanks = 0;
         std::vector<SkillRankGrantView> rankGrants{};
+        bool customClassSkill = false;
     };
 }

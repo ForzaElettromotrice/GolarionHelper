@@ -27,6 +27,8 @@ namespace golarion
         Skills &operator=(Skills &&) = delete;
 
         void setRanks(SkillType type, int ranks);
+        void addCustomClassSkill(SkillType type, std::optional<std::string> specializationId = std::nullopt);
+        void removeCustomClassSkill(SkillType type, std::optional<std::string> specializationId = std::nullopt);
 
         void addSpecialization(SkillType type, const SkillSpecializationDefinition &definition);
         void setSpecializationRanks(SkillType type, const std::string &specializationId, int ranks);

@@ -119,6 +119,8 @@ namespace golarion
         void heal(int amount);
         void damage(int amount, DamageLethality lethality);
         void setSkillRanks(SkillType type, int ranks);
+        void addCustomClassSkill(SkillType type, std::optional<std::string> specializationId = std::nullopt);
+        void removeCustomClassSkill(SkillType type, std::optional<std::string> specializationId = std::nullopt);
         void addSkillSpecialization(SkillType type, const SkillSpecializationDefinition &definition);
         void removeSkillSpecialization(SkillType type, const std::string &specializationId);
         void setSkillSpecializationRanks(SkillType type, const std::string &specializationId, int ranks);
