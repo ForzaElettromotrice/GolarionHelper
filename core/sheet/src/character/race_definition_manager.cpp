@@ -39,6 +39,27 @@ namespace golarion
         return definition->second;
     }
 
+    std::vector<RaceSummaryView> RaceDefinitionManager::toView()
+    {
+        const std::scoped_lock lock(mutex_);
+        if (!loaded_) loadCatalog();
+        std::vector<RaceSummaryView> result;
+        result.reserve(definitions_.size());
+        for (const auto &[id, definition] : definitions_)
+            result.push_back({id, definition.name});
+        return result;
+    }
+
+    std::vector<AlternateRacialFeatureView> RaceDefinitionManager::alternateFeaturesView(std::string_view raceDefinitionId)
+    {
+        const auto &definition = get(raceDefinitionId);
+        std::vector<AlternateRacialFeatureView> result;
+        result.reserve(definition.alternateFeatures.size());
+        for (const auto &feature : definition.alternateFeatures)
+            result.push_back({feature.id, feature.name, feature.description, feature.replaces});
+        return result;
+    }
+
     void RaceDefinitionManager::loadCatalog()
     {
         try

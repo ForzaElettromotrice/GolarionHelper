@@ -109,6 +109,8 @@ int main()
         rejects([&] { first.selectOption({"first", "path", "b"}); });
         first.setLevel(4, 7);
         assert(first.toData().hitDieResults.at(4) == 7);
+        assert(first.toView().hitDie == ClassHitDie::D10);
+        assert(first.toView().hitDieResults.at(4) == 7);
         assert(resources.contributionTotal("hp.max") == 7);
         assert(resources.contributionTotal("bonus") == 40);
         assert(resources.contributionTotal("choice") == 0);

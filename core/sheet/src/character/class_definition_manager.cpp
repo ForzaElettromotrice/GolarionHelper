@@ -47,6 +47,15 @@ namespace golarion
         }
     }
 
+    std::vector<ArchetypeView> ClassDefinitionManager::archetypesView(CharacterClassType type) const
+    {
+        get(type);
+        std::vector<ArchetypeView> result;
+        for (const auto &[id, definition] : archetypes_)
+            if (definition.classType == type) result.push_back({id, definition.name, definition.description});
+        return result;
+    }
+
     const ArchetypeDefinition &ClassDefinitionManager::getArchetype(const std::string &id) const
     {
         const auto found = archetypes_.find(id);

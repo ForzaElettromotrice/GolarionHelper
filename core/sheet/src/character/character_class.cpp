@@ -319,6 +319,7 @@ namespace golarion
     {
         CharacterClassView view{definition_.type, definition_.name, level_, {}};
         view.hitDieResults = hitDieResults_;
+        view.hitDie = definition_.hitDie;
         const auto active = activeAcquisitions(level_, selections_);
         std::vector<const ClassFeatureDefinition *> features;
         for (const auto &feature : definition_.features) features.push_back(&feature);

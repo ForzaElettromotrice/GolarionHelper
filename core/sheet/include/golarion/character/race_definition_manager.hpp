@@ -1,11 +1,13 @@
 #pragma once
 
 #include "golarion/character/race_definition.hpp"
+#include "golarion/view/race_view.hpp"
 
 #include <map>
 #include <mutex>
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace golarion
 {
@@ -20,6 +22,8 @@ namespace golarion
         RaceDefinitionManager &operator=(RaceDefinitionManager &&) = delete;
 
         const RaceDefinition &get(std::string_view raceDefinitionId);
+        std::vector<RaceSummaryView> toView();
+        std::vector<AlternateRacialFeatureView> alternateFeaturesView(std::string_view raceDefinitionId);
 
     private:
         RaceDefinitionManager() = default;

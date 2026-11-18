@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 
 #include <cassert>
+#include <set>
 #include <stdexcept>
 #include <variant>
 #include <vector>
@@ -52,8 +53,42 @@ int main()
 
     RaceDefinitionManager &manager = RaceDefinitionManager::instance();
     assert(&manager == &RaceDefinitionManager::instance());
+    auto views = manager.toView();
+    assert(views.size() == 63);
+    std::set<std::string> ids;
+    std::string previousId;
+    for (const auto &view : views)
+    {
+        assert(ids.insert(view.id).second);
+        assert(previousId.empty() || previousId < view.id);
+        previousId = view.id;
+        const auto &definition = manager.get(view.id);
+        assert(view.name == definition.name);
+        const auto alternatives = manager.alternateFeaturesView(view.id);
+        assert(alternatives.size() == definition.alternateFeatures.size());
+        for (std::size_t index = 0; index < alternatives.size(); ++index)
+        {
+            const auto &alternative = alternatives[index];
+            const auto &feature = definition.alternateFeatures[index];
+            assert(alternative.id == feature.id && alternative.name == feature.name);
+            assert(alternative.description == feature.description && alternative.replaces == feature.replaces);
+        }
+    }
+    const auto originalName = views.front().name;
+    const auto originalId = views.front().id;
+    views.front().name = "Changed snapshot";
+    assert(manager.get(originalId).name == originalName);
+    assert(manager.toView().front().name == originalName);
 
     const RaceDefinition &human = manager.get(" human ");
+    auto alternatives = manager.alternateFeaturesView(" human ");
+    assert(alternatives.size() == 21);
+    const auto alternateId = alternatives.front().id;
+    const auto alternateName = alternatives.front().name;
+    alternatives.front().name = "Changed snapshot";
+    assert(manager.alternateFeaturesView("human").front().id == alternateId);
+    assert(manager.alternateFeaturesView("human").front().name == alternateName);
+    assert(throwsInvalidArgument([&manager] { manager.alternateFeaturesView("missing"); }));
     assert(&human == &manager.get("human"));
     assert(human.id == "human");
     assert(human.name == "Umano");

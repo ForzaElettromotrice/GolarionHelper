@@ -4,6 +4,8 @@ Read this document when changing archetype definitions, compatibility, class fea
 
 ## Definition and Catalog
 
+- `ClassDefinitionManager::archetypesView(type)` validates the owning class and returns detached ID/name/description Views for its registered archetypes, without sheet-specific compatibility filtering. Frontend sorting/selected-state marking is separate; runtime add/remove retains authority over conflicts.
+
 - `ArchetypeDefinition` identifies an owning `CharacterClassType`, ID and Italian name/description. `affectedFeatures` names original class feature IDs with closed Alter/Replace semantics. Structural edits are separate: removed whole feature IDs, removed acquisition IDs and added `ClassFeatureDefinition` values with ordinary progression/effects/nested choices. This schema does not change class base tables, hit dice or skill metadata.
 - `ClassDefinitionManager` accepts an optional immutable archetype catalog and exposes `getArchetype(id)`. Catalog insertion rejects duplicate IDs and missing owning classes. Typed catalogs remain supported; the default now loads 661 reviewed archetype definitions through the strict JSON codec. The 764-entry source inventory records 103 pending, nonselectable entries with individual reasons. Marked new benefits can remain manual even in included definitions. Read [archetype-catalog.md](archetype-catalog.md) before continuing dataset work.
 

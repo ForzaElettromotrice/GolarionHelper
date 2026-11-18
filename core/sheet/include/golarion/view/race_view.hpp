@@ -13,6 +13,14 @@ namespace golarion
         std::string name;
     };
 
+    struct AlternateRacialFeatureView
+    {
+        std::string id;
+        std::string name;
+        std::string description;
+        std::vector<std::string> replaces;
+    };
+
     struct RacialChoiceOptionView
     {
         std::string id;
@@ -24,6 +32,8 @@ namespace golarion
         std::string id;
         std::string prompt;
         std::vector<RacialChoiceOptionView> selectedOptions;
+        std::size_t selectionCount = 0;
+        std::vector<RacialChoiceOptionView> options;
     };
 
     struct MissingRacialChoiceView
@@ -42,6 +52,7 @@ namespace golarion
         std::string description;
         std::vector<RacialChoiceSelectionView> choices;
         std::vector<MissingRacialChoiceView> missingChoices;
+        bool removable = false;
     };
 
     struct RaceView

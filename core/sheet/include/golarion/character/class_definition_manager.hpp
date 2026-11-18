@@ -2,6 +2,7 @@
 
 #include "golarion/character/class_definition.hpp"
 #include "golarion/character/archetype_definition.hpp"
+#include "golarion/view/classes_view.hpp"
 
 #include <map>
 #include <vector>
@@ -21,6 +22,7 @@ namespace golarion
 
         const ClassDefinition &get(CharacterClassType type) const;
         const ArchetypeDefinition &getArchetype(const std::string &id) const;
+        std::vector<ArchetypeView> archetypesView(CharacterClassType type) const;
 
     private:
         std::map<CharacterClassType, ClassDefinition> definitions_;

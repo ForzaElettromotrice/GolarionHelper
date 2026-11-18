@@ -5,6 +5,7 @@
 #include <nlohmann/json.hpp>
 
 #include <cassert>
+#include <set>
 #include <stdexcept>
 #include <variant>
 
@@ -58,6 +59,52 @@ int main()
 {
     using namespace golarion;
     auto &manager = FeatDefinitionManager::instance();
+    assert(&manager == &FeatDefinitionManager::instance());
+    auto views = manager.toView();
+    assert(views.size() > 1600);
+    std::set<std::string> ids;
+    std::string previousId;
+    for (const auto &view : views)
+    {
+        assert(ids.insert(view.id).second);
+        assert(previousId.empty() || previousId < view.id);
+        previousId = view.id;
+        const auto &definition = manager.get(view.id);
+        assert(view.name == definition.name);
+        assert(view.description == definition.description);
+        assert(view.types == definition.types);
+        assert(view.repeatability == definition.repeatability);
+        assert(view.requirements.size() == definition.requirements.size());
+        for (std::size_t index = 0; index < view.requirements.size(); ++index)
+        {
+            assert(view.requirements[index].description == definition.requirements[index].description);
+            assert(view.requirements[index].manual == (!definition.requirements[index].expression && !definition.requirements[index].feat));
+        }
+        assert(view.choices.size() == definition.choices.size());
+        for (std::size_t index = 0; index < view.choices.size(); ++index)
+        {
+            const auto &choice = view.choices[index];
+            const auto &source = definition.choices[index];
+            assert(choice.id == source.id && choice.prompt == source.prompt);
+            assert(choice.selectionCount == source.selectionCount && choice.options.size() == source.options.size());
+            for (std::size_t optionIndex = 0; optionIndex < choice.options.size(); ++optionIndex)
+            {
+                const auto &option = choice.options[optionIndex];
+                const auto &sourceOption = source.options[optionIndex];
+                assert(option.id == sourceOption.id && option.name == sourceOption.name);
+                assert(option.requirements.size() == sourceOption.requirements.size());
+            }
+        }
+        std::vector<std::string> notes;
+        for (const auto &effect : definition.effects)
+            if (const auto *reminder = std::get_if<ReminderEffectDefinition>(&effect)) notes.push_back(reminder->message);
+        assert(view.notes == notes);
+    }
+    const auto originalName = views.front().name;
+    const auto originalId = views.front().id;
+    views.front().name = "Changed snapshot";
+    assert(manager.get(originalId).name == originalName);
+    assert(manager.toView().front().name == originalName);
     const auto &feat = manager.get(" improvedInitiative ");
     assert(&feat == &manager.get("improvedInitiative"));
     assert(feat.name == "Iniziativa Migliorata");

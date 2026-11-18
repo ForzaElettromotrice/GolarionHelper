@@ -12,6 +12,22 @@
 namespace
 {
     using Json = nlohmann::json;
+
+    std::vector<golarion::FeatRequirementView> requirementViews(const std::vector<golarion::FeatRequirementDefinition> &requirements)
+    {
+        std::vector<golarion::FeatRequirementView> result;
+        for (const auto &requirement : requirements)
+            result.push_back({requirement.description, !requirement.expression.has_value() && !requirement.feat.has_value()});
+        return result;
+    }
+
+    std::vector<std::string> reminderNotes(const std::vector<golarion::EffectDefinition> &effects)
+    {
+        std::vector<std::string> result;
+        for (const auto &effect : effects)
+            if (const auto *reminder = std::get_if<golarion::ReminderEffectDefinition>(&effect)) result.push_back(reminder->message);
+        return result;
+    }
 }
 
 namespace golarion
@@ -45,6 +61,28 @@ namespace golarion
             throw std::invalid_argument("feat definition is not registered: " + normalizedId);
         }
         return definition->second;
+    }
+
+    std::vector<FeatDefinitionView> FeatDefinitionManager::toView()
+    {
+        const std::scoped_lock lock(mutex_);
+        if (!loaded_) loadCatalog();
+        std::vector<FeatDefinitionView> result;
+        result.reserve(definitions_.size());
+        for (const auto &[id, definition] : definitions_)
+        {
+            std::vector<FeatCatalogChoiceView> choices;
+            for (const auto &choice : definition.choices)
+            {
+                std::vector<FeatCatalogOptionView> options;
+                for (const auto &option : choice.options)
+                    options.push_back({option.id, option.name, requirementViews(option.requirements), reminderNotes(option.effects)});
+                choices.push_back({choice.id, choice.prompt, choice.selectionCount, std::move(options)});
+            }
+            result.push_back({id, definition.name, definition.description, definition.types, requirementViews(definition.requirements),
+                std::move(choices), definition.repeatability, reminderNotes(definition.effects)});
+        }
+        return result;
     }
 
     void FeatDefinitionManager::loadCatalog()

@@ -83,6 +83,10 @@ int main()
             .replaces = {FavoredClassBaseBonus::HitPoint, FavoredClassBaseBonus::SkillRank}
         };
         resources.addToCollection(FavoredClasses::OptionsResource, combined);
+        const auto combinedView = classes.toView();
+        for (const auto &option : combinedView.favoredClasses.classes.front().options)
+            if (option.id == "fastLearner")
+                assert((option.benefitTypes == std::vector<FavoredClassBenefitType>{FavoredClassBenefitType::HitPoint, FavoredClassBenefitType::SkillRank}));
         assert(resources.contributionTotal("skill.ranks.max") == 14); // No implicit conversion of previous choices.
         rejects([&] { classes.selectFavoredClassBonus(CharacterClassType::Fighter, 3, "base.hitPoint"); });
         classes.selectFavoredClassBonus(CharacterClassType::Fighter, 1, "fastLearner");

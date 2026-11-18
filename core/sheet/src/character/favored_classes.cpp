@@ -218,7 +218,17 @@ namespace golarion
             }
             for (const auto &[id, option] : options_)
                 if (option.classes.empty() || option.classes.contains(type))
-                    entry.options.push_back({id, option.name, option.description, available(type, id), option.selectionsPerBenefit, counts[id], counts[id] / option.selectionsPerBenefit});
+                {
+                    std::set<FavoredClassBenefitType> types;
+                    for (const auto &effect : option.effects)
+                    {
+                        const auto *contribution = std::get_if<ContributionEffectDefinition>(&effect);
+                        types.insert(contribution && contribution->resource == "hp.max" ? FavoredClassBenefitType::HitPoint
+                            : contribution && contribution->resource == "skill.ranks.max" ? FavoredClassBenefitType::SkillRank : FavoredClassBenefitType::Other);
+                    }
+                    if (types.empty()) types.insert(FavoredClassBenefitType::Other);
+                    entry.options.push_back({id, option.name, option.description, available(type, id), option.selectionsPerBenefit, counts[id], counts[id] / option.selectionsPerBenefit, {types.begin(), types.end()}});
+                }
             view.classes.push_back(std::move(entry));
         }
         return view;

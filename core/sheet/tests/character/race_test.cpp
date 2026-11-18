@@ -149,6 +149,7 @@ int main()
     assert(elementView(view, "human.abilityScores").missingChoices.empty());
     assert(elementView(view, "human.abilityScores").choices.size() == 1);
     assert(elementView(view, "human.abilityScores").choices[0].selectedOptions[0].id == "strength");
+    assert(!elementView(view, "human.abilityScores").removable);
 
     race.setRace("human");
     assert(resourceManager.modifierTotal("str") == 2);
@@ -164,6 +165,8 @@ int main()
     assert(std::ranges::find(view.activeElements, "human.skilled", &RacialElementView::id) == view.activeElements.end());
     assert(std::ranges::find(view.activeElements, "human.bonusFeat", &RacialElementView::id) == view.activeElements.end());
     const RacialElementView &missingDualTalent = elementView(view, "human.dualTalent");
+    assert(missingDualTalent.removable);
+    assert(!elementView(view, "human.size").removable);
     assert(missingDualTalent.missingChoices.size() == 1);
     assert(missingDualTalent.missingChoices[0].selectionCount == 2);
     assert(resourceManager.modifierTotal("str") == 0);
@@ -187,6 +190,9 @@ int main()
     assert(dualTalent.missingChoices.empty());
     assert(dualTalent.choices.size() == 1);
     assert(dualTalent.choices[0].selectedOptions.size() == 2);
+    assert(dualTalent.choices[0].selectionCount == 2);
+    assert(dualTalent.choices[0].options.size() == 6);
+    assert(dualTalent.choices[0].options[0].id == "strength");
     assert(dualTalent.choices[0].selectedOptions[0].id == "strength");
     assert(dualTalent.choices[0].selectedOptions[1].id == "constitution");
 
@@ -196,6 +202,7 @@ int main()
     assert(reminderManager.toView().messages.size() == 1);
     assert(resourceManager.contributionTotal(MaxSkillRanksResource) == 5);
     assert(elementView(race.toView(), "human.abilityScores").missingChoices.empty());
+    assert(!elementView(race.toView(), "human.abilityScores").removable);
     assert(throws<std::invalid_argument>([&race]
     {
         race.removeAlternateFeature("human.dualTalent");

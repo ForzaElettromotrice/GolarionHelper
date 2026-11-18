@@ -4,6 +4,7 @@
 
 namespace golarion
 {
+    enum class FavoredClassBenefitType { HitPoint, SkillRank, Other };
     struct FavoredClassBonusOptionView
     {
         std::string id;
@@ -13,6 +14,7 @@ namespace golarion
         int selectionsPerBenefit;
         int selections;
         int benefits;
+        std::vector<FavoredClassBenefitType> benefitTypes{};
     };
 
     struct FavoredClassBonusSelectionView

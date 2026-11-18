@@ -78,7 +78,7 @@ namespace golarion
             case CombatManeuverType::BullRush:
                 return "Spingere";
             case CombatManeuverType::DirtyTrick:
-                return "Colpo sporco";
+                return "Sporco trucco";
             case CombatManeuverType::Disarm:
                 return "Disarmare";
             case CombatManeuverType::Drag:

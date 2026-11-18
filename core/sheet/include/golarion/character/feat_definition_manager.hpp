@@ -1,11 +1,13 @@
 #pragma once
 
 #include "golarion/character/feat_definition.hpp"
+#include "golarion/view/feat_definition_view.hpp"
 
 #include <map>
 #include <mutex>
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace golarion
 {
@@ -21,6 +23,7 @@ namespace golarion
 
         bool contains(std::string_view id);
         const FeatDefinition &get(std::string_view featDefinitionId);
+        std::vector<FeatDefinitionView> toView();
 
     private:
         FeatDefinitionManager() = default;

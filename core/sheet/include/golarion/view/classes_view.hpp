@@ -1,6 +1,7 @@
 #pragma once
 
 #include "golarion/character/character_class_type.hpp"
+#include "golarion/character/class_definition.hpp"
 #include "golarion/view/favored_classes_view.hpp"
 
 #include <cstddef>
@@ -62,6 +63,7 @@ namespace golarion
         std::vector<ClassFeatureView> features;
         std::vector<ArchetypeView> archetypes{};
         std::map<int, int> hitDieResults{};
+        ClassHitDie hitDie = ClassHitDie::D8;
     };
 
     struct ClassesView

@@ -2,6 +2,10 @@
 
 Read when changing feat slots, acquisition, qualification, or effect ownership.
 
+## Shared catalog browsing
+
+`FeatDefinitionManager::instance().toView()` returns a value snapshot (`std::vector<FeatDefinitionView>`) of the entire shared standard catalog, loading it once through the existing mutex-protected lazy path. Entries contain ID, name, description, enum types/repeatability, descriptive requirements with a manual-check flag, complete choice prompts/counts/options (including option requirements and reminder notes), and direct reminder notes. Entries remain in deterministic ID order. This browsing list is independent from acquired `FeatView`/`FeatsView` and does not evaluate eligibility or apply effects. It excludes sheet-local custom definitions. No helpers are added to CharacterSheet or FeatCatalog. The frontend can order/search this snapshot by localized names; acquisition remains a separate step. Benefits are presented through existing descriptions and reminder notes, not execution of effect definitions. Existing Golarion references embedded in those texts are retained.
+
 ## Custom definitions and user-owned extra slots
 
 - `CharacterSheet::addCustomFeatDefinition(FeatDefinition)` registers an immutable definition in its `FeatCatalog`. Lookup checks local definitions before the standard-only `FeatDefinitionManager`; IDs cannot collide with either catalog. Validation/normalization uses the same bidirectional JSON codec, preserving enum types, requirements, dependency choice bindings, repeatability, effects and choices. No update/removal API is introduced.

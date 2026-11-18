@@ -315,9 +315,11 @@ namespace golarion
                 }
 
                 std::vector<RacialChoiceOptionView> selectedOptions;
+                std::vector<RacialChoiceOptionView> options;
                 selectedOptions.reserve(selection->second.size());
                 for (const RacialChoiceOptionDefinition &option : choice.options)
                 {
+                    options.push_back({option.id, option.name});
                     if (std::ranges::find(selection->second, option.id) != selection->second.end())
                     {
                         selectedOptions.push_back(RacialChoiceOptionView{
@@ -329,7 +331,9 @@ namespace golarion
                 choiceViews.push_back(RacialChoiceSelectionView{
                     .id = choice.id,
                     .prompt = choice.prompt,
-                    .selectedOptions = std::move(selectedOptions)
+                    .selectedOptions = std::move(selectedOptions),
+                    .selectionCount = choice.selectionCount,
+                    .options = std::move(options)
                 });
             }
 
@@ -338,7 +342,8 @@ namespace golarion
                 .name = element->name,
                 .description = element->description,
                 .choices = std::move(choiceViews),
-                .missingChoices = std::move(missingChoiceViews)
+                .missingChoices = std::move(missingChoiceViews),
+                .removable = std::ranges::find(alternateFeatureIds_, element->id) != alternateFeatureIds_.end()
             });
         }
 
