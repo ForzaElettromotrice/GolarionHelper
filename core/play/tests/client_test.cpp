@@ -8,6 +8,7 @@
 #include <functional>
 #include <future>
 #include <iostream>
+#include <limits>
 #include <optional>
 #include <set>
 #include <stdexcept>
@@ -61,7 +62,7 @@ namespace
     {
         ResourceManager resources;
         ProtocolManager protocol{resources};
-        RoleManager roles{resources, "host"};
+        PermissionManager permissions{resources, "host"};
         ~Host() { try { protocol.stopHosting(); } catch (...) { } }
     };
 
@@ -84,21 +85,23 @@ namespace
     {
         ResourceManager resources;
         ProtocolManager host(resources);
-        RoleManager roles(resources, "host");
+        PermissionManager permissions(resources, "host");
         {
-            ProtocolManager client(resources, SessionMode::Client);
+            check(rejects<std::invalid_argument>([&] { ProtocolManager collision(resources, SessionMode::Client); }), "client replaced another command provider");
+            ResourceManager clientResources;
+            ProtocolManager client(clientResources, SessionMode::Client);
             check(!client.verifySessionCode("A7K2Q"), "client generated a host code");
-            check(rejects<std::logic_error>([&] { client.add_command("invalid", Role::Any, [](const auto &, const auto &) { return Json(true); }); }), "client registered a server command");
-            check(rejects<std::logic_error>([&] { client.dispatch("session.join", CommandContext{"host"}, Json::object()); }), "client dispatched a server command");
+            check(rejects<std::logic_error>([&] { client.add_command("invalid", Permission::Any, [](const auto &, const auto &) { return Json(true); }); }), "client registered a server command");
+            check(rejects<ProtocolError>([&] { client.dispatch("session.join", CommandContext{"host"}, Json::object()); }), "client dispatched a server command");
             check(rejects<std::logic_error>([&] { client.resolveUserToken("0123456789abcdef"); }), "client resolved server credentials");
         }
-        resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test", Role::Host, [](const auto &, const auto &) { return Json(true); });
+        resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test", Permission::ChangePermissions, [](const auto &, const auto &) { return Json(true); });
         check(host.dispatch("test", CommandContext{"host"}, Json::object()) == true, "client teardown removed another provider's registration");
         check(rejects<std::invalid_argument>([&] { ProtocolManager invalid(resources, static_cast<SessionMode>(99)); }), "unknown Session mode accepted");
         ResourceManager isolated;
         ProtocolManager client(isolated, SessionMode::Client);
-        isolated.registerFeature<void()>("protocol.add_command", [] {});
-        isolated.registerFeature<void()>("roles.getRole", [] {});
+        isolated.invoke<ProtocolManager::AddClientCommandSignature>("protocol.add_command", "example.changed", [](const auto &, const auto &) { return Json(nullptr); });
+        isolated.registerFeature<void()>("permissions.getPermissions", [] {});
     }
 
     void realHostJoinResumeAndRestart()
@@ -113,21 +116,21 @@ namespace
         auto joining = first.joinSession("127.0.0.1", port, code);
         check(joining.valid(), "join returned no future");
         const auto user = admitted(std::move(joining));
-        check(user.userToken && user.role == Role::Player, "join did not return a Player and original token");
+        check(user.userToken && user.permissions == permissionsForPreset(PermissionPreset::Player), "join did not return a Player and original token");
         check(host.protocol.resolveUserToken(user.userToken->value()) == user.userId, "server does not recognize client token");
         auto snapshot = first.getClientState();
-        check(snapshot.state == ClientConnectionState::Connected && snapshot.userId == user.userId && snapshot.role == Role::Player, "admitted snapshot is wrong");
+        check(snapshot.state == ClientConnectionState::Connected && snapshot.userId == user.userId && snapshot.permissions == permissionsForPreset(PermissionPreset::Player), "admitted snapshot is wrong");
         snapshot.userId = "forged";
         check(first.getClientState().userId == user.userId, "snapshot aliases client state");
         check(rejects<std::logic_error>([&] { first.joinSession("127.0.0.1", port, code); }), "duplicate join replaced an active connection");
         const auto other = admitted(second.joinSession("127.0.0.1", port, code));
         check(other.userId != user.userId && other.userToken->value() != user.userToken->value(), "two clients share an identity");
-        host.roles.setRole("host", user.userId, Role::Master);
+        host.permissions.applyPreset("host", user.userId, PermissionPreset::Master);
         auto replacement = Session::createClient();
         const auto resumed = admitted(replacement.resumeSession("127.0.0.1", port, code, *user.userToken));
-        check(resumed.userId == user.userId && resumed.role == Role::Master && !resumed.userToken, "resume changed identity, role or token policy");
+        check(resumed.userId == user.userId && resumed.permissions == permissionsForPreset(PermissionPreset::Master) && !resumed.userToken, "resume changed identity, permissions or token policy");
         eventually([&] { return first.getClientState().state == ClientConnectionState::Disconnected; });
-        check(!first.getClientState().userId && !first.getClientState().role, "replaced client retained active identity");
+        check(!first.getClientState().userId && !first.getClientState().permissions, "replaced client retained active identity");
         first.disconnectFromHost();
         second.disconnectFromHost();
         host.protocol.stopHosting();
@@ -136,7 +139,7 @@ namespace
         check(admitted(replacement.resumeSession("127.0.0.1", port, code, *user.userToken)).userId == user.userId, "client could not resume after host restart");
         replacement.disconnectFromHost();
         replacement.disconnectFromHost();
-        check(host.roles.toSaveData().size() == 3, "disconnect or resume changed registered participants");
+        check(host.permissions.toSaveData().size() == 3, "disconnect or resume changed registered participants");
     }
 
     void sessionFacadeAndIdentityArchive()
@@ -173,13 +176,13 @@ namespace
         const SessionCode code(host.protocol.getSessionCode());
         auto client = Session::createClient();
         checkRejected(client.joinSession("127.0.0.1", port, SessionCode(wrong)), ProtocolErrorCode::InvalidSessionCode);
-        check(client.getClientState().state == ClientConnectionState::Disconnected && host.roles.toSaveData().size() == 1, "failed join changed identities or state");
+        check(client.getClientState().state == ClientConnectionState::Disconnected && host.permissions.toSaveData().size() == 1, "failed join changed identities or state");
         const auto user = admitted(client.joinSession("127.0.0.1", port, code));
         auto unknown = UserToken("0000000000000000");
         if (host.protocol.resolveUserToken(unknown.value())) unknown = UserToken("1111111111111111");
         auto returning = Session::createClient();
         checkRejected(returning.resumeSession("127.0.0.1", port, code, unknown), ProtocolErrorCode::InvalidUserToken);
-        check(client.getClientState().state == ClientConnectionState::Connected && host.roles.toSaveData().size() == 2, "invalid resume replaced the original client or created another user");
+        check(client.getClientState().state == ClientConnectionState::Connected && host.permissions.toSaveData().size() == 2, "invalid resume replaced the original client or created another user");
         check(admitted(returning.resumeSession("127.0.0.1", port, code, *user.userToken)).userId == user.userId, "failed resume prevented retry");
         check(rejects<std::invalid_argument>([&] { SessionCode invalid("bad"); }), "invalid code accepted");
         returning.disconnectFromHost();
@@ -260,9 +263,9 @@ namespace
 
     Json accepted(const Json &request, bool withToken = true)
     {
-        Json result{{"userId", "alice"}, {"role", "player"}};
+        Json result{{"userId", "alice"}, {"permissions", 7}};
         if (withToken) result["userToken"] = "0123456789abcdef";
-        return Json{{"version", 2}, {"type", "request.accepted"}, {"requestId", request.at("requestId")}, {"payload", {{"result", std::move(result)}}}};
+        return Json{{"version", 3}, {"type", "request.accepted"}, {"requestId", request.at("requestId")}, {"payload", {{"result", std::move(result)}}}};
     }
 
     class ScriptedHost final
@@ -290,7 +293,7 @@ namespace
                 check(size > 0 && size <= 65536, "client sent an invalid frame size");
                 const auto document = readExact(peer, size);
                 const auto request = Json::parse(document.begin(), document.end());
-                check(request.at("version") == 2 && request.at("requestId").is_string(), "client sent an invalid envelope");
+                check(request.at("version") == 3 && request.at("requestId").is_string(), "client sent an invalid envelope");
                 script(peer, request);
                 while (!stop_)
                 {
@@ -323,7 +326,7 @@ namespace
             ScriptedHost server([&](const auto &socket, const Json &request)
             {
                 auto bytes = frame(accepted(request));
-                const auto extra = frame(Json{{"version", 2}, {"type", "unsupported.event"}, {"payload", Json::object()}});
+                const auto extra = frame(Json{{"version", 3}, {"type", "unsupported.event"}, {"payload", Json::object()}});
                 if (delivery == 1)
                 {
                     writeBytes(socket, bytes);
@@ -335,14 +338,19 @@ namespace
                     if (delivery == 0) bytes.insert(bytes.end(), extra.begin(), extra.end());
                     else bytes.push_back(extra.front());
                     writeBytes(socket, bytes);
+                    if (delivery == 2)
+                    {
+                        check(released.wait_for(3s) == std::future_status::ready, "partial following frame was not released");
+                        writeBytes(socket, {extra.begin() + 1, extra.end()});
+                    }
                 }
             });
             auto client = Session::createClient();
             const auto result = admitted(client.joinSession("127.0.0.1", server.port(), SessionCode("A7K2Q")));
             check(result.userId == "alice" && result.userToken && result.userToken->value() == "0123456789abcdef", "following data invalidated an already complete admission reply");
-            if (delivery == 1) release.set_value();
+            if (delivery != 0) release.set_value();
             eventually([&] { return client.getClientState().state == ClientConnectionState::Disconnected; });
-            check(!client.getClientState().userId && !client.getClientState().role, "unsolicited data retained an active client identity");
+            check(!client.getClientState().userId && !client.getClientState().permissions, "unsolicited data retained an active client identity");
             server.finish();
         }
     }
@@ -359,7 +367,7 @@ namespace
         });
         auto client = Session::createClient();
         const auto user = admitted(client.joinSession("127.0.0.1", server.port(), SessionCode("a7k2q")));
-        check(user.userId == "alice" && user.role == Role::Player && user.userToken->value() == "0123456789abcdef", "fragmented response was corrupted");
+        check(user.userId == "alice" && user.permissions == permissionsForPreset(PermissionPreset::Player) && user.userToken->value() == "0123456789abcdef", "fragmented response was corrupted");
         client.disconnectFromHost();
         server.finish();
 
@@ -368,9 +376,19 @@ namespace
             [](auto &reply) { reply.erase("requestId"); },
             [](auto &reply) { reply["type"] = "session.joined"; },
             [](auto &reply) { reply["version"] = 1; },
+            [](auto &reply) { reply["version"] = 2; },
             [](auto &reply) { reply["payload"]["extra"] = true; },
-            [](auto &reply) { reply["payload"]["result"]["role"] = "any"; },
-            [](auto &reply) { reply["payload"]["result"]["role"] = "administrator"; },
+            [](auto &reply) { reply["payload"]["result"]["permissions"] = "any"; },
+            [](auto &reply) { reply["payload"]["result"]["permissions"] = "administrator"; },
+            [](auto &reply) { reply["payload"]["result"]["permissions"] = "7"; },
+            [](auto &reply) { reply["payload"]["result"]["permissions"] = -1; },
+            [](auto &reply) { reply["payload"]["result"]["permissions"] = 7.0; },
+            [](auto &reply) { reply["payload"]["result"]["permissions"] = true; },
+            [](auto &reply) { reply["payload"]["result"]["permissions"] = nullptr; },
+            [](auto &reply) { reply["payload"]["result"]["permissions"] = Json::array(); },
+            [](auto &reply) { reply["payload"]["result"]["permissions"] = 64; },
+            [](auto &reply) { reply["payload"]["result"]["permissions"] = std::numeric_limits<std::uint64_t>::max(); },
+            [](auto &reply) { reply["payload"]["result"].erase("permissions"); },
             [](auto &reply) { reply["payload"]["result"]["userId"] = "bad id"; },
             [](auto &reply) { reply["payload"]["result"]["userId"] = ""; },
             [](auto &reply) { reply["payload"]["result"]["userToken"] = "ABCDEF0123456789"; },
@@ -396,7 +414,7 @@ namespace
             [](const auto &request) { return std::string("\xef\xbb\xbf") + accepted(request).dump(); },
             [](const auto &request) { return accepted(request).dump() + " false"; },
             [](const auto &request) { return replaced(accepted(request).dump(), "alice", std::string(1, static_cast<char>(0xff))); },
-            [](const auto &request) { return replaced(accepted(request).dump(), "\"version\":2", "\"version\":2,\"version\":2"); },
+            [](const auto &request) { return replaced(accepted(request).dump(), "\"version\":3", "\"version\":3,\"version\":3"); },
             [](const auto &request) { return replaced(accepted(request).dump(), "\"userId\":\"alice\"", "\"userId\":\"alice\",\"userId\":\"eve\""); },
             [](const auto &request) { return replaced(accepted(request).dump(), "alice", "a\\u0000b"); },
             [](const auto &request) { auto reply = accepted(request); reply["extra"] = true; return reply.dump(); },
@@ -406,10 +424,10 @@ namespace
             [](const auto &request) { auto reply = accepted(request); reply["payload"] = Json::array(); return reply.dump(); },
             [](const auto &request) { auto reply = accepted(request); reply["payload"]["result"] = Json::array(); return reply.dump(); },
             [](const auto &request) { auto reply = accepted(request); reply["payload"]["result"]["userId"] = 7; return reply.dump(); },
-            [](const auto &request) { auto reply = accepted(request); reply["payload"]["result"]["role"] = nullptr; return reply.dump(); },
+            [](const auto &request) { auto reply = accepted(request); reply["payload"]["result"]["permissions"] = nullptr; return reply.dump(); },
             [](const auto &request) { auto reply = accepted(request); reply["payload"]["result"]["userToken"] = false; return reply.dump(); },
-            [](const auto &request) { return Json{{"version", 2}, {"type", "request.rejected"}, {"requestId", request.at("requestId")}, {"payload", {{"code", "FORBIDDEN"}, {"message", 7}}}}.dump(); },
-            [](const auto &request) { return Json{{"version", 2}, {"type", "request.rejected"}, {"requestId", request.at("requestId")}, {"payload", {{"code", "FORBIDDEN"}, {"message", "Rifiutato."}, {"extra", true}}}}.dump(); },
+            [](const auto &request) { return Json{{"version", 3}, {"type", "request.rejected"}, {"requestId", request.at("requestId")}, {"payload", {{"code", "FORBIDDEN"}, {"message", 7}}}}.dump(); },
+            [](const auto &request) { return Json{{"version", 3}, {"type", "request.rejected"}, {"requestId", request.at("requestId")}, {"payload", {{"code", "FORBIDDEN"}, {"message", "Rifiutato."}, {"extra", true}}}}.dump(); },
             [](const auto &request)
             {
                 auto reply = accepted(request);
@@ -467,7 +485,7 @@ namespace
             writeBytes(socket, rawFrame(text));
         });
         const auto result = admitted(client.joinSession("127.0.0.1", maximum.port(), SessionCode("A7K2Q")));
-        check(result.userId.size() == expected.get() && result.userToken && result.role == Role::Player, "maximum legal frame was rejected or truncated");
+        check(result.userId.size() == expected.get() && result.userToken && result.permissions == permissionsForPreset(PermissionPreset::Player), "maximum legal frame was rejected or truncated");
         client.disconnectFromHost();
         maximum.finish();
     }
@@ -500,12 +518,12 @@ namespace
         {
             check(request.at("type") == "session.resume" && request.at("payload") == Json{{"sessionCode", "A7K2Q"}, {"userToken", "0123456789abcdef"}}, "client sent the wrong resume payload");
             auto reply = accepted(request, false);
-            reply["payload"]["result"]["role"] = "spectator";
+            reply["payload"]["result"]["permissions"] = 1;
             writeBytes(socket, frame(reply));
         });
         auto client = Session::createClient();
         const auto user = admitted(client.resumeSession("127.0.0.1", server.port(), SessionCode("A7K2Q"), UserToken("0123456789abcdef")));
-        check(!user.userToken && user.role == Role::Spectator, "resume issued another token or changed the role");
+        check(!user.userToken && user.permissions == permissionsForPreset(PermissionPreset::Spectator), "resume issued another token or changed the permissions");
         client.disconnectFromHost();
         server.finish();
         for (const auto &[name, code] : std::vector<std::pair<const char *, ProtocolErrorCode>>{
@@ -515,7 +533,7 @@ namespace
             {"UNKNOWN_COMMAND", ProtocolErrorCode::UnknownCommand}, {"FORBIDDEN", ProtocolErrorCode::Forbidden},
             {"COMMAND_FAILED", ProtocolErrorCode::CommandFailed}, {"UNKNOWN_ERROR", ProtocolErrorCode::InvalidRequest}})
         {
-            ScriptedHost rejecting([&](const auto &socket, const Json &request) { writeBytes(socket, frame(Json{{"version", 2}, {"type", "request.rejected"}, {"requestId", request.at("requestId")}, {"payload", {{"code", name}, {"message", "Richiesta rifiutata."}}}})); });
+            ScriptedHost rejecting([&](const auto &socket, const Json &request) { writeBytes(socket, frame(Json{{"version", 3}, {"type", "request.rejected"}, {"requestId", request.at("requestId")}, {"payload", {{"code", name}, {"message", "Richiesta rifiutata."}}}})); });
             checkRejected(client.joinSession("127.0.0.1", rejecting.port(), SessionCode("A7K2Q")), code);
             rejecting.finish();
         }
@@ -557,13 +575,13 @@ namespace
         {
             writeBytes(socket, frame(accepted(request)));
             check(sendExtra.wait_for(3s) == std::future_status::ready, "unsolicited message was not released");
-            writeBytes(socket, {'x'});
+            writeBytes(socket, {'x', 0, 0, 0}); // Complete invalid length; a partial event prefix is now allowed.
         });
         static_cast<void>(admitted(client.joinSession("127.0.0.1", unsolicited.port(), SessionCode("A7K2Q"))));
         check(client.getClientState().state == ClientConnectionState::Connected, "valid admission did not connect");
         extra.set_value();
         eventually([&] { return client.getClientState().state == ClientConnectionState::Disconnected; });
-        check(!client.getClientState().userId && !client.getClientState().role, "protocol failure retained active identity");
+        check(!client.getClientState().userId && !client.getClientState().permissions, "protocol failure retained active identity");
         unsolicited.finish();
     }
 
@@ -605,9 +623,9 @@ namespace
                     auto returning = client.resumeSession("127.0.0.1", port, code, *initial[index]->userToken);
                     check(returning.wait_for(6s) == std::future_status::ready, "parallel resume remained pending");
                     resumed[cycle][index] = returning.get();
-                    const auto expected = (index + cycle) % 2 == 0 ? Role::Master : Role::Spectator;
-                    check(resumed[cycle][index]->userId == initial[index]->userId && resumed[cycle][index]->role == expected && !resumed[cycle][index]->userToken, "reconstructed host lost identity, role or original-token policy");
-                    check(client.getClientState().role == expected, "parallel resume snapshot has a stale role");
+                    const auto expected = permissionsForPreset((index + cycle) % 2 == 0 ? PermissionPreset::Master : PermissionPreset::Spectator);
+                    check(resumed[cycle][index]->userId == initial[index]->userId && resumed[cycle][index]->permissions == expected && !resumed[cycle][index]->userToken, "reconstructed host lost identity, permissions or original-token policy");
+                    check(client.getClientState().permissions == expected, "parallel resume snapshot has a stale permissions");
                     ++returned[cycle];
                 }
                 check(finished.wait_for(8s) == std::future_status::ready, "parallel clients were not released");
@@ -618,14 +636,14 @@ namespace
         std::set<std::string> credentials;
         for (const auto &entry : initial)
         {
-            check(entry && entry->userToken && entry->role == Role::Player, "parallel initial admission is incomplete");
+            check(entry && entry->userToken && entry->permissions == permissionsForPreset(PermissionPreset::Player), "parallel initial admission is incomplete");
             identities.insert(entry->userId);
             credentials.insert(entry->userToken->value());
         }
         check(identities.size() == count && credentials.size() == count, "parallel clients share an identity or token");
         for (std::size_t cycle = 0; cycle < cycles; ++cycle)
         {
-            for (std::size_t index = 0; index < count; ++index) host->roles.setRole("host", initial[index]->userId, (index + cycle) % 2 == 0 ? Role::Master : Role::Spectator);
+            for (std::size_t index = 0; index < count; ++index) host->permissions.applyPreset("host", initial[index]->userId, (index + cycle) % 2 == 0 ? PermissionPreset::Master : PermissionPreset::Spectator);
             host->protocol.saveIdentityState(archive);
             host.reset();
             host.emplace();
@@ -634,7 +652,7 @@ namespace
             code = SessionCode(host->protocol.getSessionCode());
             permit[cycle].set_value();
             eventually([&] { return returned[cycle].load() == static_cast<int>(count); }, 6s);
-            check(host->roles.toSaveData().size() == count + 1, "parallel resume duplicated participants");
+            check(host->permissions.toSaveData().size() == count + 1, "parallel resume duplicated participants");
             for (const auto &entry : initial) check(host->protocol.resolveUserToken(entry->userToken->value()) == entry->userId, "repeated reconstruction lost a credential");
         }
         finish.set_value();
@@ -664,7 +682,7 @@ namespace
         const auto firstResult = first.get();
         const auto secondResult = second.get();
         check(firstResult.has_value() != secondResult.has_value() && rejected == 1, "concurrent starts did not preserve one active connection");
-        check(host.roles.toSaveData().size() == 2, "competing joins created two users");
+        check(host.permissions.toSaveData().size() == 2, "competing joins created two users");
         client.disconnectFromHost();
         for (int iteration = 0; iteration < 20; ++iteration)
         {
@@ -682,7 +700,7 @@ namespace
             }
             catch (const std::system_error &error) { check(error.code() == std::errc::operation_canceled, "cancellation reported an unrelated transport error"); }
             const auto state = client.getClientState();
-            check(state.state == ClientConnectionState::Disconnected && !state.userId && !state.role, "disconnect retained an old client state");
+            check(state.state == ClientConnectionState::Disconnected && !state.userId && !state.permissions, "disconnect retained an old client state");
             const auto next = admitted(client.joinSession("127.0.0.1", port, code));
             check(next.userId == client.getClientState().userId && next.userToken, "cancellation corrupted the next connection");
             client.disconnectFromHost();

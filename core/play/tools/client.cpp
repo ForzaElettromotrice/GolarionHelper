@@ -82,17 +82,16 @@ namespace
         std::ofstream file_;
     };
 
-    std::string_view roleLabel(Role role)
+    std::string permissionLabels(PermissionSet permissions)
     {
-        switch (role)
+        std::string result;
+        for (const auto &[permission, label] : {std::pair{Permission::Permission1, "Permesso1"}, {Permission::Permission2, "Permesso2"}, {Permission::Permission3, "Permesso3"}, {Permission::Permission4, "Permesso4"}, {Permission::Permission5, "Permesso5"}, {Permission::ChangePermissions, "CambiaPermessi"}})
         {
-            case Role::Host: return "host";
-            case Role::Master: return "master";
-            case Role::Player: return "giocatore";
-            case Role::Spectator: return "spettatore";
-            case Role::Any: break;
+            if (!permissions.hasAll(permission)) continue;
+            if (!result.empty()) result += ", ";
+            result += label;
         }
-        throw std::invalid_argument("invalid participant role");
+        return result.empty() ? "nessuno" : result;
     }
 
     std::string_view rejectionMessage(ProtocolErrorCode code)
@@ -136,7 +135,7 @@ int main(int argc, char *argv[])
         const auto admitted = joining.get();
         if (output) output->commit(*admitted.userToken);
         std::cout << "Collegato alla sessione. Utente: " << admitted.userId << std::endl;
-        std::cout << "Ruolo: " << roleLabel(admitted.role) << std::endl;
+        std::cout << "Permessi: " << permissionLabels(admitted.permissions) << std::endl;
         while (!tools::stopRequested && session.getClientState().state == ClientConnectionState::Connected) std::this_thread::sleep_for(100ms);
         session.disconnectFromHost();
         if (!tools::stopRequested)

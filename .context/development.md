@@ -1,105 +1,59 @@
 # Development
 
-## Build and Test
+## Required Project Build Entry Point
 
-```sh
-cmake -S . -B build
-cmake --build build
-ctest --test-dir build --output-on-failure
-```
+The user requested on 2026-11-17 that project compilation use the repository-root CMakeLists.txt with build as its binary directory. Root adds core, which adds sheet and play. With Ninja, generated play binaries therefore belong to build/core/play. No output-directory override or CMake source change is needed.
 
-The root build includes core/sheet and core/play through core/CMakeLists.txt. Play builds golarion_play, both Session-based console tools and twelve native C++ suites. Legacy Game/network and their old model/process tests remain removed. Python is used only for an optional local console-process check, not by the CMake targets. Sheet targets and root build/test commands are unchanged.
+Configure from the repository root using an available CMake 3.25+ and Ninja:
 
-## Session Hosting API
+    cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON
+    cmake --build build --parallel 4
+    ctest --test-dir build --output-on-failure --parallel 4
 
-Session is the local backend entry point:
+This root build includes the sheet and play modules and their tests. Debug keeps assertion-based suites active. Supply the compiler/package settings required by the local environment without changing the -S . -B build layout. A single-configuration generator keeps play outputs directly in build/core/play; multi-configuration generators may add a configuration directory.
 
-```cpp
-auto session = golarion::play::Session::createHost("host");
-session.saveIdentityState("identities.json"); // New archive; load it instead when reopening.
-session.startHosting("127.0.0.1", 42500);
-// Application work continues while ProtocolManager processes network events.
-session.stopHosting();
-```
+When only the two play tools need rebuilding, keep the same root configuration and select their targets:
 
-Port 0 requests an OS-assigned port, returned by startHosting. Startup errors propagate; stop/destruction join the worker before provider teardown. Configure an archive before admission; join otherwise receives `ADMISSION_FAILED`. The worker handles join/resume and registered commands without application polling. Local/remote execution and binding changes are serialized; lifecycle/load calls from callbacks are rejected to avoid self-join/lock cycles. Concrete role commands and the client remain separate. See `session-admission.md`, `session-commands.md`, and `session-tokens.md`.
+    cmake --build build --target golarion_play_host golarion_play_client --parallel 4
 
-## Standalone Play Backend
+After the play test targets have also been built, their subset can be run with:
 
-The module can be built without the sheet engine or frontend:
+    ctest --test-dir build/core/play --output-on-failure --parallel 4
 
-```sh
-cmake -S core/play -B build/play-cmake
-cmake --build build/play-cmake --config Debug
-ctest --test-dir build/play-cmake -C Debug --output-on-failure
-```
+Do not switch normal project work to -S core/play or build/play-cmake. The module remains independently compilable, but the agreed project workflow uses the root. Do not introduce manual compiler/linker commands.
 
-The host console accepts IP and port, plus an optional identity archive:
+## Dependencies and Local Tools
 
-```powershell
-./build/play-cmake/golarion_play_host.exe 127.0.0.1 42500
-./build/play-cmake/golarion_play_host.exe 127.0.0.1 42500 ./my-session.json
-```
+C++20 is required. Both modules use nlohmann_json 3.12+. Play also uses OpenSSL Crypto 3.0+, Threads and ws2_32 on Windows. The root configures the sheet module too, including its Python resource-generation dependency. Ensure runtime DLLs are reachable on Windows.
 
-Append `Debug/` to the executable directory for a multi-configuration CMake generator. The command is `golarion_play_host <IPv4 address> <port> [identity archive]`. The tool creates `Session::createHost("host")` and creates/loads the archive before listening; default `session-identities.json` is relative to the working directory. Use a separate archive per Session. It prints the actual listening port followed by `Codice sessione: XXXXX` and waits for Ctrl+C. The code stays unchanged during stop/restart of that live Session; reconstructing it generates another code because code persistence/uniqueness remain deferred. Its main thread does not process network events. Stop joins the worker and releases sockets/bindings, preserving the live roles/tokens and ID counter.
+The root build is now verified with GCC 10.3, Ninja, CMake 3.31.10, JSON 3.12.0 and existing OpenSSL 3.0.15. Local CMake/CTest are under ignored build/_tools/cmake/cmake/data/bin; JSON is installed as a real CMake package under build/_deps/json-install. The historical standalone setup is archived separately.
 
-For LAN/VPN use, bind to the intended local IPv4 address or `0.0.0.0`; clients connect to a reachable host address. The client requires a nonzero port and the code printed by the host:
+Verified Windows commands from the repository root:
 
-```powershell
-./build/play-cmake/golarion_play_client.exe 127.0.0.1 42500 A7K2Q ./my-session-token.txt
-```
+    $playCMake = "./build/_tools/cmake/cmake/data/bin/cmake.exe"
+    $playCTest = "./build/_tools/cmake/cmake/data/bin/ctest.exe"
+    $playJsonPrefix = (Resolve-Path "build/_deps/json-install").Path
+    & $playCMake -S . -B build -G Ninja -DCMAKE_CXX_COMPILER=C:/TDM-GCC-64/bin/g++.exe -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON "-DCMAKE_PREFIX_PATH=$playJsonPrefix" -DOPENSSL_ROOT_DIR=C:/Users/Daniele/miniconda3/Library -DOPENSSL_CRYPTO_LIBRARY=C:/Users/Daniele/miniconda3/Library/lib/libcrypto.lib
+    $playTargets = @("golarion_play_host", "golarion_play_client") + @(Select-String -Path "core/play/CMakeLists.txt" -Pattern 'add_executable\((play_[a-z_]+_test)' | ForEach-Object { $_.Matches[0].Groups[1].Value })
+    & $playCMake --build build --target @playTargets --parallel 4
+    $env:PATH = "C:/Users/Daniele/miniconda3/Library/bin;" + $env:PATH
+    & $playCTest --test-dir build/core/play --output-on-failure --parallel 4
 
-Replace the example code with the current one. Use separate terminals for host/client. Linux uses the same arguments with executable names without `.exe`. The optional token file defaults to `client-token.txt` in the working directory. A missing file selects join and saves the original token; an existing valid file selects resume. Use one token file per participant/session and one writer per file. Invalid files/tokens are preserved and reported as errors. Ctrl+C disconnects; no command/user-list frontend exists yet. See `session-client.md`. Tools do not configure firewall/router access.
+The focused run configures the root graph and builds both play tools plus all play tests; it does not claim a full sheet-test run. CMakeCache confirms CMAKE_HOME_DIRECTORY is the repository root and the build type is Debug. Adapt compiler/package paths on another PC without changing -S . -B build. Local TCP tests require socket permissions in this environment.
 
-## Manual Windows Build
+## Host and Client Tools
 
-CMake/CTest are not available on PATH in the current environment. GCC builds use the cached JSON header under `build/play/dependencies/include/`, OpenSSL Crypto, and standard thread/socket support. The existing local OpenSSL 3.0.15 installation is under `C:/Users/Daniele/miniconda3/Library`; adapt this path on another PC and ensure its `bin` directory is on PATH for the runtime DLL:
+Expected Windows executable locations after the root build:
 
-```powershell
-New-Item -ItemType Directory -Path build/play -Force | Out-Null
-$playCryptoRoot = "C:/Users/Daniele/miniconda3/Library"
-$playSourceFiles = @(
-    "core/play/src/admission.cpp",
-    "core/play/src/client_connection.cpp",
-    "core/play/src/resource_manager.cpp",
-    "core/play/src/role_manager.cpp",
-    "core/play/src/protocol.cpp",
-    "core/play/src/hosting.cpp",
-    "core/play/src/protocol_manager.cpp",
-    "core/play/src/session.cpp",
-    "core/play/src/session_code.cpp",
-    "core/play/src/user_token.cpp",
-    "core/play/src/user_tokens.cpp",
-    "core/play/src/identity_storage.cpp"
-)
-$playCompilerOptions = @(
-    "-std=c++20", "-Wall", "-Wextra", "-Wpedantic", "-Werror", "-pthread",
-    "-I", "core/play/include", "-I", "core/play/src", "-I", "build/play/dependencies/include",
-    "-I", "$playCryptoRoot/include"
-)
-g++ @playCompilerOptions @playSourceFiles core/play/tools/host.cpp "$playCryptoRoot/lib/libcrypto.lib" -lws2_32 -o build/play/golarion_play_host.exe
-if ($LASTEXITCODE -ne 0) { throw "Compilazione host fallita" }
-g++ @playCompilerOptions @playSourceFiles core/play/tools/client.cpp "$playCryptoRoot/lib/libcrypto.lib" -lws2_32 -o build/play/golarion_play_client.exe
-if ($LASTEXITCODE -ne 0) { throw "Compilazione client fallita" }
-foreach ($playTestName in @("client", "session_code", "user_token", "user_tokens", "identity_persistence", "resource_manager", "role_manager", "protocol_manager", "session", "json_protocol", "hosting", "admission")) {
-    g++ @playCompilerOptions @playSourceFiles "core/play/tests/${playTestName}_test.cpp" "$playCryptoRoot/lib/libcrypto.lib" -lws2_32 -o "build/play/play_${playTestName}_test.exe"
-    if ($LASTEXITCODE -ne 0) { throw "Compilazione fallita: $playTestName" }
-    & "./build/play/play_${playTestName}_test.exe"
-    if ($LASTEXITCODE -ne 0) { throw "Test fallito: $playTestName" }
-}
-./build/play/golarion_play_host.exe 127.0.0.1 42500
-```
+    ./build/core/play/golarion_play_host.exe 127.0.0.1 42500 ./session-identities.json
+    ./build/core/play/golarion_play_client.exe 127.0.0.1 42500 A7K2Q ./my-session-token.txt
 
-Verification on 2026-11-16 builds all twelve sources into `build/play/client-admission/libgolarion_play.a`, then both console tools and twelve native suites with GCC C++20 and warnings as errors. All suites pass, including existing host buffered-stop regressions and new client mode/admission/streaming/cancellation/timeout/network-error cases. A real-process check in `build/play/client-admission/client_process_smoke.py` verifies two participants, default/explicit token files, client and host restarts, replacement, rejected credentials and temporary-file cleanup. The verified host and client binaries are refreshed under `build/play/`. No new dependency is required.
+Run separate terminals and replace the code with the one printed by the host. Host syntax is IPv4/port/[identity archive]; port zero requests an OS-assigned port. Client syntax is IPv4/port/code/[token file]. Linux names omit .exe. For LAN/VPN bind the host appropriately and use its reachable address on clients.
 
-Extended validation and the TCP-grouping correction use `build/play/client-validation/`: rebuild the private client-connection object into a copy of the verified library and relink both tools/all twelve suites. All suites pass, including a parallel run with the expanded client suite completing in about 16.6 seconds against its existing 40-second limit. The permanent client tests add eight simultaneous participants through three host reconstructions, twenty cancellation/disconnect races, twenty malformed-wire forms, partial EOF, an exact maximum-size frame, and a slow-input deadline case. `extended_process_test.py` checks eight console clients and three host-process restarts plus credential-file failure cases. `coalesced_before_test.exe` reproduces the original grouping defect; the corrected native/process tests preserve the complete admission/token before handling subsequent unsupported data. Verified binaries are refreshed under build/play.
+The host creates/loads its archive before listening; default is session-identities.json in its working directory. Client default is client-token.txt: missing selects join, existing valid selects resume. One token file belongs to one participant/session. JSON protocol is v3; identity archives are v2 with hostId, numeric permission masks and token hashes. Legacy formats are rejected without conversion or automatic deletion. Use fresh client credentials after discarding an archive. The tools configure no firewall/router rules.
 
-Loopback execution needs local socket permissions in this environment because the sandbox otherwise denies connects with WSA error 10013. CMake configuration and POSIX execution remain unverified: Windows CMake/CTest are unavailable on PATH; WSL Ubuntu 24.04 exists but lacked an available compiler, CMake and OpenSSL development headers when inspected. No environment packages were installed. The Windows refused-connection test waits within the actual five-second connect deadline and verifies the socket error rather than mistaking normal asynchronous refusal latency for a client failure.
+## Verified Commands and Live Notifications (2026-11-18)
 
-Historical Windows/Linux/Tailscale results and the old Linux send-timeout issue are archived in `history/2026-11-10-game-network-prototype.md`. They describe removed code, not current launch instructions; verify them again when implementing the new client.
+The root CMake build compiles fourteen play library sources, both tools and sixteen native suites to build/core/play. All sixteen pass on Windows (19.56 seconds for the complete focused CTest run). permission_commands_test covers RPC access/schema/transactions; play_events_test covers targeted live masks, fragmented/mixed frames, no-op/failed-save suppression, fixed deadlines, 64-frame/256-KiB queue limits, stale contexts and stop/replacement races. Existing framing, queue, identity and buffered-stop regressions pass.
 
-## Dependencies
-
-The sheet and play modules require nlohmann-json 3.12 or newer. CMake resolves `nlohmann_json::nlohmann_json`; play publicly exposes JSON in its callback API. Play also requires OpenSSL 3.0+ Crypto (`OpenSSL::Crypto`) for random tokens and SHA-256, linked privately alongside `Threads::Threads` and, on Windows, `ws2_32`. The backend and all play tests are native C++; Python is not required by their CMake targets. Local verification used the existing OpenSSL 3.0.15 headers, import library, and runtime DLL without installing packages.
-
-Manual builds use the official nlohmann/json 3.12.0 single header cached at `build/play/dependencies/include/nlohmann/json.hpp` (ignored), previously downloaded from `https://raw.githubusercontent.com/nlohmann/json/v3.12.0/single_include/nlohmann/json.hpp`. Replace that include path with your installed package when appropriate.
+Permission read/mutation commands and targeted live notifications are complete for this step. ClientSnapshot refreshes on permissions.changed; permissions.get supplies current server data independently. Permanent tests live in core/play/tests; no frontend or mutation CLI prompt was added. Historical standalone/process checks are in history/2026-11-17-standalone-play-build.md. POSIX/physical two-PC verification of this step remains pending.

@@ -42,6 +42,7 @@ namespace golarion::play
             std::vector<std::uint8_t> output;
             std::size_t sent = 0;
             bool closeAfterReply = false;
+            bool preferEvent = true;
             Clock::time_point acceptedAt = Clock::now();
         };
 
@@ -108,7 +109,7 @@ namespace golarion::play
         {
             const std::lock_guard lock(owner.connectionsMutex_);
             const auto logical = owner.connections_.find(connection.id);
-            return logical != owner.connections_.end() && (logical->second || Clock::now() - connection.acceptedAt < std::chrono::seconds(5));
+            return logical != owner.connections_.end() && !owner.eventQueueOverflowed(connection.id) && (logical->second || Clock::now() - connection.acceptedAt < std::chrono::seconds(5));
         }
 
         void processInput(Connection &connection)
@@ -134,6 +135,7 @@ namespace golarion::play
                 result = owner.handleMessage(connection.id, *message);
             }
             connection.closeAfterReply = result.closeAfterReply;
+            connection.preferEvent = true;
             try { connection.output = detail::encodeMessage(result.reply); }
             catch (const std::invalid_argument &)
             {
@@ -141,6 +143,23 @@ namespace golarion::play
                 connection.output = detail::encodeMessage(owner.makeRejection(message->requestId, ProtocolErrorCode::CommandFailed));
                 connection.closeAfterReply = !owner.getUserId(connection.id).has_value();
             }
+        }
+
+        void prepareOutput(Connection &connection)
+        {
+            if (stopRequested || !connection.output.empty() || !currentAndWithinDeadline(connection)) return;
+            const auto prepareEvent = [&]
+            {
+                if (auto frame = owner.takeEvent(connection.id))
+                {
+                    connection.output = std::move(*frame);
+                    connection.preferEvent = false;
+                }
+            };
+            // Alternate buffered requests and notifications when both are available.
+            if (connection.preferEvent || connection.input.empty()) prepareEvent();
+            if (connection.output.empty() && !connection.input.empty()) processInput(connection);
+            if (connection.output.empty()) prepareEvent();
         }
 
         bool receive(Connection &connection)
@@ -182,8 +201,8 @@ namespace golarion::play
             for (auto &[handle, connection] : connections)
             {
                 if (stopRequested) return;
-                // Process one buffered frame per peer; keep one bounded reply outstanding.
-                if (connection.output.empty() && !connection.input.empty() && currentAndWithinDeadline(connection)) processInput(connection);
+                // Keep one bounded frame in flight; notifications use the shared outbox.
+                prepareOutput(connection);
                 FD_SET(handle, connection.output.empty() ? &readable : &writable);
                 maximum = std::max(maximum, handle);
             }
@@ -227,6 +246,11 @@ namespace golarion::play
             }
             catch (...) { if (!workerFailure) workerFailure = std::current_exception(); }
             connections.clear();
+            {
+                const std::lock_guard eventsLock(owner.eventsMutex_);
+                owner.acceptingEvents_ = false;
+                owner.events_.clear();
+            }
             listener = Socket{};
         }
     };

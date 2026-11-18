@@ -1,75 +1,45 @@
 # Session Tokens and Identity Persistence
 
-Status: server token/identity persistence implemented 2026-11-10; native client integration added 2026-11-16. Host ProtocolManager owns the registry/archive and Session delegates. Client join/resume uses these services remotely; its console retains the original token as documented in `session-client.md`. There is no SessionId or display name.
+Status: integrated PermissionManager and version-2 archives, 2026-11-17. ProtocolManager owns the credential registry/archive; Session delegates registration/issuance/save/load. No SessionId, display name, role registry or legacy-file importer remains.
 
-## Credentials
+## Credentials and API
 
-- `UserToken` is a value type containing eight random bytes, encoded as exactly 16 lowercase hexadecimal characters. Parsing is strict and case sensitive; unlike SessionCode, tokens are not normalized.
-- Generation uses OpenSSL Crypto `RAND_priv_bytes`; random-source failures propagate without a fallback. SHA-256 uses `EVP_Digest` over the raw eight bytes.
-- The private `detail::UserTokens` registry maps stable UserIds to SHA-256 digests. It stores no original credential. Lookup hashes the supplied token and compares digests with `CRYPTO_memcmp`; malformed or unknown tokens return no identity.
-- One credential is issued per registered user. Duplicate issuance is rejected without rotating the existing token. A generated digest collision is retried, with a limit of 32 attempts. Revocation/rotation is not implemented.
-- The client needs to retain only the original token. UserId and current role are resolved by the host. A token belongs to the Session archive that issued it, rather than to an IP address, socket, or global account.
+UserToken holds eight random bytes, encoded as exactly 16 lowercase hexadecimal characters. Parsing is strict and case sensitive. OpenSSL RAND_priv_bytes generates credentials; SHA-256 via EVP_Digest hashes the raw bytes. Private UserTokens stores only digests and uses CRYPTO_memcmp for comparisons. One token is issued per user; duplicate issuance rejects without rotation. Digest collisions have bounded retries. Revocation/rotation is not implemented.
 
-## Backend API
-
-| Operation | Behavior |
+| Operation | Contract |
 | --- | --- |
-| `Session::registerUser(UserId)` | Delegates to RoleManager; creates a Player with the existing validation rules. |
-| `ProtocolManager::issueUserToken(const UserId &)` | Requires a known user and a previously saved/loaded archive. Stages a new credential and writes users, roles, and digests before installing it and returning the original token. Session exposes a delegation. |
-| `ProtocolManager::resolveUserToken(std::string_view) const` | Returns the matching UserId or `nullopt`. Direct ProtocolManager method only; no Session getter or ResourceManager feature. |
-| `ProtocolManager::saveIdentityState(const std::filesystem::path &)` | Writes the current identity snapshot and configures that archive for future issuance. Session exposes a delegation. |
-| `ProtocolManager::loadIdentityState(const std::filesystem::path &)` | Restores validated identities, roles, and digests with hosting stopped. Session exposes a delegation. |
+| Session::registerUser(UserId) | Delegates to PermissionManager; registers Player flags without ChangePermissions. |
+| issueUserToken(UserId) | Requires a registered user and configured archive; persists the candidate credential before returning its original token. Session delegates. |
+| resolveUserToken(string_view) | ProtocolManager-only lookup returning optional UserId; malformed/unknown credentials return nullopt. |
+| saveIdentityState(path) | Saves detached users/permission masks and digests, configuring this archive for later issuance/admission. Session delegates. |
+| loadIdentityState(path) | Requires hosting stopped and no callback reentry; validates all data before replacing users/digests and clearing bindings. Session delegates. |
 
-Create a new archive in an existing directory:
+The first save needs an unused path in an existing directory. Load an existing archive before replacing it; later saves to the configured path are allowed. Use one writer per archive. Issuance/admission and the two permission-mutation commands automatically persist their transactions. Trusted direct registration/setters remain in-memory until explicit saveIdentityState or a coordinated commit. The command coordinator snapshots token digests before the permission lock; its storage callback never reenters managers. Hosting stop preserves memory; application restart requires loading the archive.
 
-```cpp
-auto session = golarion::play::Session::createHost("host");
-session.registerUser("alice");
-session.saveIdentityState("identities.json");
-const std::string token = session.issueUserToken("alice");
-```
+## Archive Format
 
-Reopen the same archive with the same immutable Host UserId:
-
-```cpp
-auto reopened = golarion::play::Session::createHost("host");
-reopened.loadIdentityState("identities.json");
-```
-
-The first save requires an unused path. An existing archive must be loaded before this ProtocolManager can overwrite it; subsequent saves to its configured path are allowed. Saving to another unused path switches the active archive after success. Parent directories are not created automatically. Use one writer per archive; cross-process locking is not implemented.
-
-Issuance automatically saves the current users and roles together with the new digest. Later registration or role changes require an explicit `saveIdentityState`; there is no general autosave hook. Stopping/restarting hosting preserves the in-memory token registry and roles. Closing the application requires loading the archive into the next Session.
-
-## SaveData and File Format
-
-`IdentitySaveData` contains `users` (`UserRoleSaveData`) and `tokens` (`UserTokenSaveData`). RoleManager remains the sole runtime role authority and publishes `roles.toSaveData` and `roles.restoreSaveData` for ProtocolManager's trusted local use. These are not network commands.
-
-The version-1 JSON archive has exactly these top-level fields:
+IdentitySaveData contains hostId, vector<UserPermissionsSaveData> and vector<UserTokenSaveData>. PermissionManager owns users/flags and provides trusted permissions.toSaveData/restoreSaveData/registerUserWithCommit features. They are internal registry functions, not network commands.
 
 ```json
 {
-  "version": 1,
-  "users": [{"userId": "host", "role": "host"}],
+  "version": 2,
+  "hostId": "host",
+  "users": [
+    {"userId": "host", "permissions": 63},
+    {"userId": "alice", "permissions": 18}
+  ],
   "tokens": []
 }
 ```
 
-Each token record has `userId` and `hash`, with a 64-character lowercase hexadecimal SHA-256 digest. Participant role names remain the closed vocabulary `host`, `master`, `player`, and `spectator`. Any is only a command-access threshold: `"any"` is rejected in archives and `Role::Any` in role restoration. The archive schema/version is unchanged. Snapshots are sorted by UserId. The archive excludes original tokens, SessionId, SessionCode, socket/binding state, display names, sheets, and other future game state.
+Top-level fields are exact. Each user has only userId/permissions; each token has only userId/hash, with a 64-character lowercase SHA-256 verifier. Original tokens are never written. Masks must be nonnegative integers with known bits; arbitrary combinations, including zero or ChangePermissions-only, are preserved. The explicit hostId must match the Session constructor, and that user's mask must remain 63. Another participant with mask 63 does not acquire Host identity or its exclusive rights.
 
-Loading validates the entire candidate before replacing live state: exact fields/types/version, strict JSON, known roles, valid unique IDs, exactly the existing immutable Host, unique token users/digests, and references to registered users. Duplicate JSON keys, a BOM, trailing data, nesting beyond 16, and files larger than 4 MiB are rejected. Failed validation preserves current roles, credentials, bindings, and archive selection.
+The reader rejects unsupported versions, old role fields, duplicate keys/users/tokens/verifiers, unknown token users, invalid IDs/hashes/masks, BOM, trailing data, oversized files and excessive nesting. Maximum archive size is 4 MiB and nesting is bounded at 16. The user requested discarding legacy archives rather than conversion: version 1 is rejected without deletion or silent overwrite. The one old local identity archive found before integration was removed at that explicit request. Do not add automatic startup deletion.
 
-Successful restoration clears old logical connections/bindings without resetting the connection-ID counter. It does not change the currently generated SessionCode. Host-wide code uniqueness and code persistence remain separately deferred.
+Load constructs/validates the candidate token registry, checks explicit Host identity and restores the validated permission snapshot before swapping credential state or clearing bindings. Failures preserve current users, credentials, connections and configured archive. Writes use an exclusive temporary file, flush and atomic replacement with platform-specific filesystem handling; errors do not commit candidate credentials or return an unusable original token.
 
-## Writes and Synchronization
+## Client Retention and Verification
 
-Private `identity_storage` writes to an exclusively created temporary file beside the destination, flushes/closes it, and atomically replaces the archive. Windows uses `CreateFileW`, `FlushFileBuffers`, and `MoveFileExW`; POSIX uses mode 0600, `fsync`, `rename`, and parent-directory synchronization. Temporary files are cleaned after failed writes. I/O and crypto errors propagate; a token is returned only after a successful save. The runtime candidate is installed only after that save succeeds.
+Clients store only the original token in a dedicated per-participant/session file; the server resolves identity and effective permissions. IP/socket changes do not change identity. The console selects join for a missing file and resume for an existing valid one. After discarding an archive, use a fresh client token file. See session-client.md.
 
-ProtocolManager serializes tokens/files with its identity mutex and command execution/binding changes with its recursive execution mutex. Load additionally excludes lifecycle changes and is forbidden during hosting or from command callbacks. RoleManager synchronizes its data. Registry registration/removal remains outside the hosting lifetime; independent provider access retains its own threading contract. Join saves staged roles/credentials together; see `session-admission.md` and `session-commands.md`.
-
-## Verification and Remaining Integration
-
-`play_user_token_test` checks strict parsing, generation, owned values, and an independent SHA-256 vector. `play_user_tokens_test` checks deterministic collision/retry behavior, duplicate issuance, crypto failures, independent registries, and digest-only import/export. `play_identity_persistence_test` covers restoration, roles, corrupt archives, write failures/cleanup, existing-file protection, unknown token-user references, concurrent issuance with stable roles, hosting restrictions, and Session delegations. Separate writer/reader processes verify a real restart with only the original token retained by the simulated client.
-
-All twelve play suites and the console-host restart smoke check pass on Windows with GCC C++20, strict warnings, nlohmann-json 3.12.0, and OpenSSL 3.0.15. CMake configuration and the POSIX implementation remain unexecuted locally.
-
-JSON admission and host-side authenticated dispatch are implemented. Native client join/resume, synchronized state, cancellation and console token-file retention are implemented in `session-client.md`. Next are generic outgoing client commands and concrete role/sheet RPCs. Local issuance alone still does not bind a socket or register a command.
+The identity suite covers corruption, unknown masks/versions/host mismatch, atomic write failure, arbitrary saved masks and restart. The permission command suite verifies automatic saving, unchanged memory/original archive after write failure, concurrent updates and original-token resume after full host reconstruction. All sixteen play suites pass through the root CMake build on Windows, including live events after committed changes; see development.md and session-events.md.

@@ -1,61 +1,50 @@
-# Client Sessions and Admission
+# Client Sessions and Commands
 
-Status: implemented 2026-11-16. The native client connects, joins/resumes, monitors disconnection and exposes synchronized state. Generic outgoing commands, host events/user snapshots, automatic reconnect and role updates after admission are separate steps.
+Status: targeted live permission notifications integrated 2026-11-18. Commands use sendCommand; client notification handlers reuse add_command/dispatch and refresh ClientSnapshot. User presence/list events and automatic reconnect remain separate work; see session-events.md.
 
-## Session Modes and Ownership
+## Modes and API
 
-- `Session::createHost(UserId)` constructs an immutable `SessionMode::Host`; the existing explicit `Session(UserId)` remains equivalent for compatibility.
-- `Session::createClient()` constructs `SessionMode::Client`. Named factories return values with guaranteed copy elision; Session and its managers remain noncopyable/nonmovable.
-- Every Session owns ResourceManager then ProtocolManager. Only host Sessions construct the optional RoleManager, generate a local SessionCode, allocate the server token registry and publish `protocol.add_command`/`roles.*`. A client has no invented local host or authoritative role data.
-- Session methods delegate. Only its host-only `registerUser` delegation checks that RoleManager exists. Networking, mode enforcement, threads and client state belong to ProtocolManager.
-- SessionMode is independent from participant Role. An admitted Master is still a client. Disconnect never changes mode. Host-only methods on clients and client-only methods on hosts throw `std::logic_error`; the existing noexcept `verifySessionCode` returns false in client mode.
-- Both destructors stop/join their relevant worker before subsystem teardown. A client ProtocolManager neither publishes nor removes another provider's ResourceManager features.
+Session::createHost(UserId) constructs ResourceManager, ProtocolManager and optional PermissionManager; Session(UserId) is equivalent. createClient constructs only ResourceManager/ProtocolManager, with no invented host, authoritative permissions, local code or token registry. SessionMode is immutable and separate from a participant's flags. Factories return values with guaranteed copy elision; Session/managers are noncopyable/nonmovable. Destruction joins all workers before provider teardown.
 
-## API
-
-The following methods exist on Session and ProtocolManager. Low-level ProtocolManager construction accepts `SessionMode`, defaulting to Host for existing callers.
-
-| Method | Contract |
+| Method on Session / ProtocolManager | Contract |
 | --- | --- |
-| `std::future<ClientAdmission> joinSession(std::string ip, std::uint16_t port, SessionCode code)` | Starts an owned worker, connects to numeric IPv4/nonzero port and submits `session.join`. Completes after a correlated, validated admission result. |
-| `std::future<ClientAdmission> resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token)` | Same transport flow with `session.resume`; supplies the existing credential and preserves server identity/current role. A rejection is an error, with no new-user fallback. |
-| `void disconnectFromHost()` | Requests cancellation, joins the worker and releases the socket. Idempotent for an inactive client. |
-| `ClientSnapshot getClientState() const` | Returns a detached, synchronized state/optional UserId/optional Role snapshot. Contains no credential. |
+| joinSession(ip, port, SessionCode) | Owns arguments, starts a worker, connects to numeric IPv4/nonzero port and submits session.join; returns future<ClientAdmission>. |
+| resumeSession(ip, port, SessionCode, UserToken) | Same transport with existing credential; returns current identity/mask without a new token or new-user fallback. |
+| disconnectFromHost() | Cancels and joins the worker; idempotent while disconnected. |
+| getClientState() const | Returns a synchronized detached ClientSnapshot, without credentials. |
+| sendCommand(name, json) | Client requires completed admission and queues a correlated command; returns future<json>. Host queues trusted local dispatch, including offline. |
+| add_command(name, callback) | Client registers an incoming host notification through the shared registry. Host uses the overload with requirements. |
+| sendEvent(userId, name, json) | Host queues a targeted notification without a response future. Client rejects wrong mode. |
 
-`ClientAdmission` contains UserId, Role and optional UserToken. Only join returns a newly issued token; resume returns no token. The caller retains its original credential independently of connection lifetime. `ClientSnapshot` clears identity/role on disconnect. Its role is the last admission result, not a live synchronized user list.
+ClientAdmission has UserId, PermissionSet permissions and optional UserToken. Only join returns the original credential. ClientSnapshot has state, optional UserId and optional PermissionSet; both optionals clear on disconnect. An optional containing mask zero is an admitted user with no permissions. Its mask starts from admission and refreshes on validated permissions.changed events; the server always authorizes from current state independently.
 
-`ClientConnectionState` is closed: Disconnected, Connecting, Admitting, Connected. Connected means admission succeeded. IP and typed code/token arguments are owned by value across asynchronous work. Invalid mode/address/port and overlapping active admissions throw synchronously; network/reply failures are delivered through the future. A failed/disconnected client can start another attempt after the previous worker is joined.
+Connection states remain Disconnected, Connecting, Admitting and Connected. Mode/address/port misuse and overlapping active admissions reject synchronously; network/reply failures complete futures exceptionally. A disconnected/failed client can start another attempt after its old worker joins. Wrong-mode methods throw logic_error; noexcept code verification returns false on clients.
 
-## Transport and Replies
+## Transport and Errors
 
-- Private nested `ProtocolManager::ClientConnection`, implemented in `src/client_connection.hpp/.cpp`, owns the socket, buffers, promise, snapshot mutex, stop flag and worker. ProtocolManager serializes client lifecycle with its client mutex; the worker never acquires that mutex. Snapshot reads use the connection's state mutex.
-- Both host and client reuse private `socket_support.hpp`: RAII socket/runtime ownership, numeric IPv4 validation, nonblocking configuration, platform errors and SIGPIPE suppression. The host's buffered-stop checkpoint remains intact.
-- Nonblocking connect recognizes pending-connect errors and checks `SO_ERROR` after select readiness. Connect has a five-second deadline. Sending and receiving admission share a separate five-second deadline. Select waits at most 50 ms between cancellation checks; no application polling is needed to progress networking.
-- Client requests use the existing JSON v2 codec/4-byte prefix/64 KiB limit. IDs `client-N` increase over attempts within one manager. Reply requestId must match exactly; no absent/mismatched/legacy response is accepted.
-- Success must be `request.accepted` with exactly `payload.result`: join requires UserId, participant role and token; resume requires UserId/role only. Strict enum parsing rejects Any/unknown roles and unknown error names. User IDs and credentials are validated, and duplicate keys/UTF-8/framing checks reuse the codec.
-- Known `request.rejected` codes become existing `ProtocolError` values. Malformed responses become InvalidRequest. Transport/cancellation/timeout failures use `std::system_error`; pending futures are completed during cleanup rather than left broken or waiting.
-- A complete admission reply is processed before any following bytes, independently of TCP grouping. Remaining input stays in ClientConnection's buffer for the next stage. In the current admission-only slice unsupported following data closes the connection, while the already completed admission result and original token remain available to the caller. The previous implementation incorrectly rejected the first reply when extra bytes arrived in the same read; the regression reproduces that failure against the initial library and passes with the correction.
-- After admission the worker monitors EOF/reset. This slice supports no further host events or outstanding commands; unsolicited data closes the client. No heartbeat timeout or automatic reconnection is introduced. A future already completed successfully remains a valid admission result if the socket subsequently closes.
+Private ClientConnection owns the socket, input/output buffers, pending promises, state mutex, stop flag and worker. ProtocolManager's client mutex serializes lifecycle/request IDs; the worker never acquires it. A weak active reference guarded by executionMutex_ supports dispatch and snapshot reads without taking a lifecycle lock that may be joining this worker. The connection is published before its thread starts. Only the worker touches the socket. Shared socket_support.hpp supplies RAII, numeric address validation, nonblocking platform errors and SIGPIPE handling.
+
+Connect recognizes pending errors and checks SO_ERROR, with a five-second deadline. Admission send/receive share another five-second deadline. Select waits at most 50 ms for cancellation. The JSON v3 codec validates frame size, UTF-8, duplicate keys, nesting and envelope schemas. IDs client-N increase across attempts/commands. Admission must match its ID exactly, use request.accepted/result or a known request.rejected code, and contain exact UserId/permissions fields plus token only for join.
+
+Permission masks must be nonnegative integers containing only known bits. Strings (including retired role names), booleans, floats, negative/unknown-bit values, missing masks and extra fields reject. Generic results can be any JSON value. Command replies match fully sent outstanding IDs; invalid/unknown/duplicate IDs and malformed schemas close the connection. Notifications omit requestId and pass to the shared client dispatcher. Unknown notifications, malformed payloads or failing handlers also close the connection and fail remaining promises. Well-formed rejections complete only their request. Out-of-order replies and fragmented/coalesced notifications are supported.
+
+At most 64 client commands are pending. Their five-second deadlines begin at submission, covering queued transmission and reply without renewal on partial progress. Timeout closes the connection and fails all pending requests. Disconnect/destruction cancels promises; EOF/reset reports a transport error. There is no replay or idle heartbeat timeout. A command may already have executed when its reply is lost.
+
+Complete admission/command replies are resolved before following frames, independently of TCP grouping. A malformed later frame cannot invalidate a previously completed result or original token. Input survives admission for the normal command stage.
 
 ## Console and Credential File
 
 ```powershell
-./build/play/golarion_play_host.exe 127.0.0.1 42500 ./session-identities.json
-./build/play/golarion_play_client.exe 127.0.0.1 42500 A7K2Q ./my-session-token.txt
+./build/core/play/golarion_play_host.exe 127.0.0.1 42500 ./session-identities.json
+./build/core/play/golarion_play_client.exe 127.0.0.1 42500 A7K2Q ./my-session-token.txt
 ```
 
-Run in separate terminals and replace the sample code with the host's printed code. For another PC, supply a reachable host address and bind the host accordingly. The client syntax is `golarion_play_client <IPv4 address> <port> <session code> [token file]`; default is `client-token.txt` in the working directory. See `development.md` for builds and Linux executable naming.
+Run separate terminals with the current printed code. Host syntax is IP/port/[archive]; client syntax is IP/port/code/[token file], default client-token.txt. For another PC supply a reachable address and configure the host bind address appropriately. Linux names omit .exe. Both sides must be rebuilt for JSON v3.
 
-The tool reuses `tools/console.hpp` for port parsing and stop handlers. A missing credential file selects join; an existing valid one selects resume. It stores only the original 16 lowercase hex characters plus newline, never prints the credential, and preserves existing files on rejection. Malformed/oversized files fail before connecting. A new-file temporary stream is prepared before admission, restricted to owner read/write where supported, then flushed/closed and renamed after successful join; failures clean the temporary path. No application-level acknowledgement or power-loss durability guarantee is added.
+A missing token file selects join; an existing valid file selects resume. The tool writes only the original 16 lowercase hex characters plus newline, never prints them, and reports effective flags as Italian Permesso1 through Permesso5/CambiaPermessi. No persistent preset label is inferred. Empty masks display nessuno. Invalid existing files fail before connecting and are preserved. Use one writer and one token file per participant/session. After discarding an archive, use a new token file.
 
-Use one writer and one dedicated token file per participant/session; there is no global registry keyed by IP or the nonpersistent SessionCode. The default generated token file/temporary names are ignored by Git. The library returns credentials but does not choose their storage path. An ordinary host disconnect/replacement exits the console with a failure status; Ctrl+C/SIGTERM requests orderly disconnect. User-facing messages are Italian and avoid internal exception details.
+New credential output uses an owned temporary file prepared before admission, owner-only permissions where supported, flush/close/rename after success and cleanup on failure. No application-level acknowledgement or power-loss durability guarantee is added. Ctrl+C/SIGTERM requests orderly disconnect; ordinary remote closure/replacement exits with failure. The console remains an admission/monitoring tool with no generic command prompt or frontend. See development.md for CMake builds.
 
-## Verification (2026-11-16)
+## Verification
 
-- `play_session_test` adds factory/mode isolation and delegated misuse checks.
-- `play_client_test` now has fourteen named scenarios. Existing mode/admission/replacement/retry/error coverage is extended with twenty malformed-wire cases plus a zero-length prefix, partial-prefix/body EOF, a valid exact 65536-byte JSON envelope, slow progress that must not reset the five-second deadline, and complete/fragmented following messages grouped with admission. Protocol and transport errors must leave no pending future or stale active identity.
-- A concurrent native case keeps eight clients alive and reconstructs the entire host three times from its archive, changing saved Master/Spectator roles and using each new current code. All 24 resumes preserve the original eight identities/tokens, expose the restored role and issue no new token. Another case races two starts, then performs twenty rounds of immediate cancellation with two simultaneous disconnect calls and verifies that the next connection succeeds.
-- All twelve native suites pass with Windows GCC C++20 and strict warnings. The expanded client suite also passes while the other regressions run concurrently: about 16.6 seconds, below its existing 40-second CTest limit. Outputs are in ignored `build/play/client-validation/`.
-- `extended_process_test.py` in that directory checks eight separate client console processes through three host-process restarts, abrupt client exits, connection replacement, restored roles, filenames containing spaces, LF/CRLF/no-newline token files, seven corrupt credential forms, credential preservation on save failure, and retention of a valid token when an unsolicited frame follows admission in the same send. The earlier two-participant smoke check remains under `build/play/client-admission/`.
-- `coalesced_before_test.exe` records the reproduced initial failure. The permanent native test and real-process case cover the correction. Source tests remain in `core/play/tests/client_test.cpp`; the Python/probe artifacts are optional local diagnostics and add no CMake dependency.
-- CMake still lists twelve library sources, twelve native suites and two console tools. Windows CMake/CTest are unavailable on PATH. Ubuntu 24.04 is present through WSL, but its compiler/CMake/OpenSSL development headers were unavailable when checked, so CMake/POSIX execution and physical two-PC networking remain unverified. No packages or system configuration were changed.
+The client suite retains fourteen admission/lifecycle/streaming scenarios, eight simultaneous clients through three host reconstructions, cancellation races, exact maximum frames and fixed deadlines. Existing sendCommand/permission-command coverage remains intact. All sixteen play suites pass through CMake/CTest from the root configuration on Windows; play_events_test adds idle fragmented notifications, mixed/out-of-order replies, live masks, strict schemas, stale generations and callback/disconnect safety. The separate permission_process_smoke.py is earlier permission-command verification. Diagnostics in build/play/client-validation describe retired JSON v2 and are historical. POSIX/physical two-PC verification of this step remains pending.

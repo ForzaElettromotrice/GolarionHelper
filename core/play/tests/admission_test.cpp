@@ -144,14 +144,14 @@ namespace
 
     Json request(std::string type, Json payload, std::string requestId = "request-1")
     {
-        return Json{{"version", 2}, {"type", std::move(type)}, {"requestId", std::move(requestId)}, {"payload", std::move(payload)}};
+        return Json{{"version", 3}, {"type", std::move(type)}, {"requestId", std::move(requestId)}, {"payload", std::move(payload)}};
     }
 
     Json exchangeMessage(const Socket &socket, const Json &message)
     {
         sendBytes(socket, frame(message));
         const auto reply = receiveMessage(socket);
-        check(reply.at("version") == 2 && reply.at("requestId") == message.at("requestId"), "reply correlation lost");
+        check(reply.at("version") == 3 && reply.at("requestId") == message.at("requestId"), "reply correlation lost");
         return reply;
     }
 
@@ -202,7 +202,7 @@ namespace
     {
         ResourceManager resources;
         ProtocolManager protocol{resources};
-        RoleManager roles{resources, "host"};
+        PermissionManager permissions{resources, "host"};
         ~Fixture() { try { protocol.stopHosting(); } catch (...) { } }
     };
 
@@ -210,7 +210,7 @@ namespace
     {
         const auto reply = exchangeMessage(socket, request("session.join", {{"sessionCode", code}}));
         const auto payload = acceptedResult(reply);
-        check(payload.size() == 3 && payload.at("role") == "player", "join did not create a Player");
+        check(payload.size() == 3 && payload.at("permissions") == 7, "join did not create a Player");
         check(payload.at("userId").get<std::string>() != payload.at("userToken").get<std::string>(), "public ID exposes the credential");
         static_cast<void>(UserToken(payload.at("userToken").get<std::string>()));
         return payload;
@@ -230,17 +230,17 @@ namespace
         Fixture fixture;
         const auto archive = directory.path / "identities.json";
         fixture.protocol.saveIdentityState(archive);
-        fixture.resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test.public", Role::Any, [](const CommandContext &context, const Json &) { return Json(context.userId.has_value()); });
+        fixture.resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test.public", Permission::Any, [](const CommandContext &context, const Json &) { return Json(context.userId.has_value()); });
         std::atomic<int> playerCalls{0};
-        fixture.protocol.add_command("test.player", Role::Player, [&](const auto &, const auto &) { return Json(++playerCalls); });
-        fixture.protocol.add_command("test.invalid.public", Role::Any, [](const auto &, const auto &) -> Json { throw std::invalid_argument("invalid public payload"); });
+        fixture.protocol.add_command("test.player", Permission::Permission2, [&](const auto &, const auto &) { return Json(++playerCalls); });
+        fixture.protocol.add_command("test.invalid.public", Permission::Any, [](const auto &, const auto &) -> Json { throw std::invalid_argument("invalid public payload"); });
         const auto port = fixture.protocol.startHosting("127.0.0.1", 0);
         const auto code = fixture.protocol.getSessionCode();
         const auto pending = connectClient(port);
         check(acceptedResult(exchangeMessage(pending, request(" test.public ", Json::object()))) == false, "anonymous Any command was not dispatched");
         const auto saved = Json::parse(readText(archive));
         check(saved.at("users").size() == 1 && saved.at("tokens").empty(), "Any command created an identity");
-        checkRejected(exchangeMessage(pending, request("test.player", {{"userId", "host"}, {"role", "host"}})), "FORBIDDEN");
+        checkRejected(exchangeMessage(pending, request("test.player", {{"userId", "host"}, {"permissions", 63}})), "FORBIDDEN");
         checkClosed(pending);
         check(playerCalls == 0, "anonymous user reached an authenticated callback");
         const auto invalid = connectClient(port);
@@ -248,16 +248,16 @@ namespace
         checkClosed(invalid);
         const auto client = connectClient(port);
         const auto joined = acceptedResult(exchangeMessage(client, request(" session.join ", {{"sessionCode", code}}, "padded-join")));
-        check(joined.at("role") == "player" && joined.size() == 3, "padded join did not use the registered command");
+        check(joined.at("permissions") == 7 && joined.size() == 3, "padded join did not use the registered command");
         check(acceptedResult(exchangeMessage(client, request("test.public", Json::object()))) == true, "newly admitted Any context has no identity");
-        check(acceptedResult(exchangeMessage(client, request("test.player", Json::object()))) == 1, "join did not enable the assigned Player role");
+        check(acceptedResult(exchangeMessage(client, request("test.player", Json::object()))) == 1, "join did not enable the assigned Player permissions");
         checkRejected(exchangeMessage(client, request(" session.resume ", {{"sessionCode", code}, {"userToken", joined.at("userToken")}})), "ALREADY_ADMITTED");
         const auto replacement = connectClient(port);
         const auto resumed = acceptedResult(exchangeMessage(replacement, request(" session.resume ", {{"sessionCode", code}, {"userToken", joined.at("userToken")}}, "padded-resume")));
         check(resumed.size() == 2 && resumed.at("userId") == joined.at("userId") && !resumed.contains("userToken"), "resume result did not preserve the common command contract");
         checkClosed(client);
         check(acceptedResult(exchangeMessage(replacement, request("test.public", Json::object()))) == true, "resumed Any context lost identity");
-        check(fixture.roles.toSaveData().size() == 2, "anonymous command handling duplicated participants");
+        check(fixture.permissions.toSaveData().size() == 2, "anonymous command handling duplicated participants");
         fixture.protocol.stopHosting();
     }
 
@@ -280,13 +280,13 @@ namespace
         const auto result = acceptedResult(reply);
         const auto userId = result.at("userId").get<std::string>();
         const auto token = result.at("userToken").get<std::string>();
-        check(fixture.protocol.resolveUserToken(token) == userId && fixture.roles.getRole(userId) == Role::Player, "join did not connect managers");
+        check(fixture.protocol.resolveUserToken(token) == userId && fixture.permissions.getPermissions(userId) == permissionsForPreset(PermissionPreset::Player), "join did not connect managers");
 
         const auto other = connectClient(port);
         const auto otherUser = join(other, code);
         check(otherUser.at("userId") != userId && otherUser.at("userToken") != token, "new clients share an identity");
         check(otherUser.at("userToken") != token, "another client received the original credential");
-        fixture.resources.invoke<RoleManager::SetRoleSignature>("roles.setRole", "host", userId, Role::Master);
+        fixture.resources.invoke<PermissionManager::ApplyPresetSignature>("permissions.applyPreset", "host", userId, PermissionPreset::Master);
         const auto wrongCode = connectClient(port);
         checkRejected(exchangeMessage(wrongCode, request("session.resume", {{"sessionCode", "!!!!!"}, {"userToken", token}})), "INVALID_SESSION_CODE");
         checkClosed(wrongCode);
@@ -296,13 +296,13 @@ namespace
         checkRejected(exchangeMessage(original, request("test.echo", Json::object())), "UNKNOWN_COMMAND");
         const auto replacement = connectClient(port);
         const auto resumed = resume(replacement, code, token);
-        check(resumed.at("userId") == userId && resumed.at("role") == "master", "resume reset the current role");
+        check(resumed.at("userId") == userId && resumed.at("permissions") == 31, "resume reset the current permissions");
         checkClosed(original);
-        checkRejected(exchangeMessage(replacement, request("users.setRole", {{"role", "host"}})), "UNKNOWN_COMMAND");
+        checkRejected(exchangeMessage(replacement, request("users.setRole", {{"permissions", 63}})), "UNKNOWN_COMMAND");
         checkRejected(exchangeMessage(replacement, request("session.join", {{"sessionCode", code}})), "ALREADY_ADMITTED");
         checkRejected(exchangeMessage(replacement, request("session.resume", {{"sessionCode", code}, {"userToken", otherUser.at("userToken")}})), "ALREADY_ADMITTED");
         checkRejected(exchangeMessage(other, request("test.echo", Json::object())), "UNKNOWN_COMMAND");
-        check(fixture.roles.toSaveData().size() == 3 && fixture.protocol.resolveUserToken(token) == userId, "resume duplicated or rotated identity");
+        check(fixture.permissions.toSaveData().size() == 3 && fixture.protocol.resolveUserToken(token) == userId, "resume duplicated or rotated identity");
         fixture.protocol.saveIdentityState(archive);
         const auto saved = readText(archive);
         check(saved.find(token) == std::string::npos && saved.find(otherUser.at("userToken").get<std::string>()) == std::string::npos, "archive contains an original credential");
@@ -325,7 +325,7 @@ namespace
             {request("session.join", Json::object()), "INVALID_REQUEST"},
             {request("session.join", {{"sessionCode", 1}}), "INVALID_REQUEST"},
             {request("session.join", {{"sessionCode", code}, {"userId", "host"}}), "INVALID_REQUEST"},
-            {request("session.join", {{"sessionCode", code}, {"role", "host"}}), "INVALID_REQUEST"},
+            {request("session.join", {{"sessionCode", code}, {"permissions", 63}}), "INVALID_REQUEST"},
             {request("session.join", {{"sessionCode", code}, {"displayName", "Alice"}}), "INVALID_REQUEST"},
             {request("session.join", {{"sessionCode", code}, {"userToken", "0000000000000000"}}), "INVALID_REQUEST"},
             {request("session.join", {{"sessionCode", "!!!!!"}}), "INVALID_SESSION_CODE"},
@@ -334,18 +334,18 @@ namespace
             {request("session.resume", {{"sessionCode", code}, {"userToken", "0000000000000000"}}), "INVALID_USER_TOKEN"},
             {request("session.resume", {{"sessionCode", code}, {"userToken", "ABCDEF0123456789"}}), "INVALID_USER_TOKEN"},
             {request("session.resume", {{"sessionCode", code}, {"userToken", "bad"}}), "INVALID_USER_TOKEN"},
-            {request("users.setRole", {{"userId", "host"}, {"role", "host"}}), "UNKNOWN_COMMAND"}
+            {request("users.setRole", {{"userId", "host"}, {"permissions", 63}}), "UNKNOWN_COMMAND"}
         };
         for (const auto &[message, expected] : requests)
         {
             const auto client = connectClient(port);
             checkRejected(exchangeMessage(client, message), expected);
             checkClosed(client);
-            check(fixture.roles.toSaveData().size() == 1 && readText(archive) == saved, "rejected admission changed identities");
+            check(fixture.permissions.toSaveData().size() == 1 && readText(archive) == saved, "rejected admission changed identities");
         }
         Fixture foreign;
         foreign.protocol.saveIdentityState(directory.path / "foreign.json");
-        foreign.roles.registerUser("foreign");
+        foreign.permissions.registerUser("foreign");
         const auto foreignToken = foreign.protocol.issueUserToken("foreign");
         const auto client = connectClient(port);
         checkRejected(exchangeMessage(client, request("session.resume", {{"sessionCode", code}, {"userToken", foreignToken}})), "INVALID_USER_TOKEN");
@@ -364,7 +364,7 @@ namespace
         const auto unconfigured = connectClient(port);
         checkRejected(exchangeMessage(unconfigured, request("session.join", {{"sessionCode", code}})), "ADMISSION_FAILED");
         checkClosed(unconfigured);
-        check(fixture.roles.toSaveData().size() == 1, "unconfigured admission registered a user");
+        check(fixture.permissions.toSaveData().size() == 1, "unconfigured admission registered a user");
         const auto archive = directory.path / "identities.json";
         fixture.protocol.saveIdentityState(archive);
         const auto original = connectClient(port);
@@ -376,7 +376,7 @@ namespace
         const auto failed = connectClient(port);
         checkRejected(exchangeMessage(failed, request("session.join", {{"sessionCode", code}})), "ADMISSION_FAILED");
         checkClosed(failed);
-        check(fixture.roles.toSaveData().size() == 2, "failed save left a half-registered Player");
+        check(fixture.permissions.toSaveData().size() == 2, "failed save left a half-registered Player");
         check(fixture.protocol.resolveUserToken(user.at("userToken").get<std::string>()) == user.at("userId").get<std::string>(), "failed admission invalidated an existing token");
         check(readText(backup) == saved, "failed admission damaged the prior archive");
         check(std::distance(fs::directory_iterator(directory.path), fs::directory_iterator{}) == 2, "temporary file leaked after failed admission");
@@ -384,7 +384,7 @@ namespace
         fs::rename(backup, archive);
         const auto retry = connectClient(port);
         static_cast<void>(join(retry, code));
-        check(fixture.roles.toSaveData().size() == 3, "retry did not register exactly one Player");
+        check(fixture.permissions.toSaveData().size() == 3, "retry did not register exactly one Player");
         fixture.protocol.stopHosting();
     }
 
@@ -401,7 +401,7 @@ namespace
             const auto user = join(client, first.protocol.getSessionCode());
             token = user.at("userToken").get<std::string>();
             userId = user.at("userId").get<std::string>();
-            first.roles.setRole("host", userId, Role::Master);
+            first.permissions.applyPreset("host", userId, PermissionPreset::Master);
             first.protocol.saveIdentityState(archive);
             first.protocol.stopHosting();
             checkClosed(client);
@@ -410,7 +410,7 @@ namespace
         restored.protocol.loadIdentityState(archive);
         const auto code = restored.protocol.getSessionCode();
         const auto client = connectClient(restored.protocol.startHosting("127.0.0.1", 0));
-        check(resume(client, code, token).at("role") == "master", "archive restore lost the assigned role");
+        check(resume(client, code, token).at("permissions") == 31, "archive restore lost the assigned permissions");
         restored.protocol.stopHosting();
         checkClosed(client);
         const auto replacement = connectClient(restored.protocol.startHosting("127.0.0.1", 0));
@@ -430,8 +430,8 @@ namespace
         Fixture fixture;
         fixture.protocol.saveIdentityState(directory.path / "identities.json");
         int calls = 0;
-        fixture.protocol.add_command("test.echo", Role::Player, [&](const CommandContext &, const Json &) { return Json(++calls); });
-        fixture.protocol.add_command("test.public", Role::Any, [](const CommandContext &context, const Json &) { return Json(context.userId.has_value()); });
+        fixture.protocol.add_command("test.echo", Permission::Permission2, [&](const CommandContext &, const Json &) { return Json(++calls); });
+        fixture.protocol.add_command("test.public", Permission::Any, [](const CommandContext &context, const Json &) { return Json(context.userId.has_value()); });
         const auto port = fixture.protocol.startHosting("127.0.0.1", 0);
         const auto client = connectClient(port);
         const auto pending = connectClient(port);
@@ -444,7 +444,7 @@ namespace
         }
         sendBytes(client, bytes);
         const auto joined = receiveMessage(client);
-        check(joined.at("requestId") == "join" && acceptedResult(joined).at("role") == "player", "coalesced join failed");
+        check(joined.at("requestId") == "join" && acceptedResult(joined).at("permissions") == 7, "coalesced join failed");
         int expected = 0;
         for (const auto id : {"first", "second"})
         {
@@ -459,7 +459,7 @@ namespace
         sendBytes(client, {0, 0, 0, 1, '{'});
         checkRejected(receiveMessage(client), "INVALID_REQUEST");
         checkClosed(client);
-        check(fixture.roles.toSaveData().size() == 2, "disconnect removed persistent membership");
+        check(fixture.permissions.toSaveData().size() == 2, "disconnect removed persistent membership");
         fixture.protocol.stopHosting();
         check(calls == 4, "commands were lost or executed twice");
     }
@@ -481,14 +481,14 @@ namespace
         std::atomic<int> completed{0};
         Fixture fixture;
         fixture.protocol.saveIdentityState(directory.path / "identities.json");
-        fixture.protocol.add_command("test.stage", Role::Player, [&](const auto &, const auto &)
+        fixture.protocol.add_command("test.stage", Permission::Permission2, [&](const auto &, const auto &)
         {
             stagingEntered.set_value();
             check(stagingReleased.wait_for(3s) == std::future_status::ready, "staging callback was not released");
             return Json(true);
         });
-        fixture.protocol.add_command("test.noop", Role::Player, [&](const auto &, const auto &) { return Json(++noops); });
-        fixture.protocol.add_command("test.tail", Role::Player, [&](const auto &, const auto &)
+        fixture.protocol.add_command("test.noop", Permission::Permission2, [&](const auto &, const auto &) { return Json(++noops); });
+        fixture.protocol.add_command("test.tail", Permission::Permission2, [&](const auto &, const auto &)
         {
             const int count = ++tails;
             if (count == 1)
@@ -509,7 +509,7 @@ namespace
         static_cast<void>(join(second, code));
         const auto userId = user.at("userId").get<std::string>();
         const auto token = user.at("userToken").get<std::string>();
-        fixture.roles.setRole("host", userId, Role::Master);
+        fixture.permissions.applyPreset("host", userId, PermissionPreset::Master);
 
         sendBytes(gate, frame(request("test.stage", Json::object())));
         check(stagingSeen.wait_for(2s) == std::future_status::ready, "staging callback did not start");
@@ -544,12 +544,12 @@ namespace
         checkClosed(gate);
         checkClosed(first);
         checkClosed(second);
-        check(fixture.roles.toSaveData().size() == 4 && fixture.roles.getRole(userId) == Role::Master, "stop changed persisted identities or roles");
+        check(fixture.permissions.toSaveData().size() == 4 && fixture.permissions.getPermissions(userId) == permissionsForPreset(PermissionPreset::Master), "stop changed persisted identities or permissions");
         check(fixture.protocol.resolveUserToken(token) == userId && fixture.protocol.getSessionCode() == code, "stop lost token recognition or session code");
 
         check(fixture.protocol.startHosting("127.0.0.1", port) == port, "stop retained the listener port");
         const auto returning = connectClient(port);
-        check(resume(returning, code, token).at("role") == "master", "restart lost the returning user's role");
+        check(resume(returning, code, token).at("permissions") == 31, "restart lost the returning user's permissions");
         check(acceptedResult(exchangeMessage(returning, request("test.tail", Json::object()))) == 2, "restart replayed discarded work or rejected new work");
         fixture.protocol.stopHosting();
         checkClosed(returning);
@@ -566,13 +566,13 @@ namespace
         std::atomic<int> remoteCalls{0};
         Fixture fixture;
         fixture.protocol.saveIdentityState(directory.path / "identities.json");
-        fixture.protocol.add_command("test.local", Role::Host, [&](const auto &, const auto &)
+        fixture.protocol.add_command("test.local", Permission::ChangePermissions, [&](const auto &, const auto &)
         {
             localEntered.set_value();
             check(localReleased.wait_for(3s) == std::future_status::ready, "local callback was not released");
             return Json(true);
         });
-        fixture.protocol.add_command("test.remote", Role::Any, [&](const auto &, const auto &) { return Json(++remoteCalls); });
+        fixture.protocol.add_command("test.remote", Permission::Any, [&](const auto &, const auto &) { return Json(++remoteCalls); });
         const auto client = connectClient(fixture.protocol.startHosting("127.0.0.1", 0));
         static_cast<void>(join(client, fixture.protocol.getSessionCode()));
         auto local = std::async(std::launch::async, [&] { return fixture.protocol.dispatch("test.local", CommandContext{"host"}, Json::object()); });
@@ -594,7 +594,7 @@ namespace
         stopping.get();
         check(remoteCalls == 0, "remote request ran after waiting for execution during stop");
         checkClosed(client);
-        check(fixture.roles.toSaveData().size() == 2, "stop removed admitted identities");
+        check(fixture.permissions.toSaveData().size() == 2, "stop removed admitted identities");
     }
 
     void authenticatedCommandsAndCurrentPermissions()
@@ -602,18 +602,18 @@ namespace
         TestDirectory directory;
         Fixture fixture;
         fixture.protocol.saveIdentityState(directory.path / "identities.json");
-        fixture.resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test.echo", Role::Player, [](const CommandContext &context, const Json &payload)
+        fixture.resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test.echo", Permission::Permission2, [](const CommandContext &context, const Json &payload)
         {
             return Json{{"actor", *context.userId}, {"connection", *context.connectionId}, {"payload", payload}};
         });
         std::atomic<int> privilegedCalls{0};
-        fixture.protocol.add_command("test.master", Role::Master, [&](const auto &, const auto &) { ++privilegedCalls; return Json("ok"); });
-        fixture.protocol.add_command("test.value", Role::Spectator, [](const auto &, const Json &payload) { return payload.at("value"); });
-        fixture.protocol.add_command("test.nested", Role::Player, [&, registered = false](const CommandContext &context, const Json &payload) mutable
+        fixture.protocol.add_command("test.master", Permission::Permission4, [&](const auto &, const auto &) { ++privilegedCalls; return Json("ok"); });
+        fixture.protocol.add_command("test.value", Permission::Permission1, [](const auto &, const Json &payload) { return payload.at("value"); });
+        fixture.protocol.add_command("test.nested", Permission::Permission2, [&, registered = false](const CommandContext &context, const Json &payload) mutable
         {
             if (!registered)
             {
-                fixture.resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test.inner", Role::Player, [count = 0](const auto &, const auto &) mutable { return Json(++count); });
+                fixture.resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test.inner", Permission::Permission2, [count = 0](const auto &, const auto &) mutable { return Json(++count); });
                 registered = true;
             }
             return fixture.protocol.dispatch("test.inner", context, payload);
@@ -624,14 +624,14 @@ namespace
         const auto user = join(client, code);
         const auto userId = user.at("userId").get<std::string>();
         const auto token = user.at("userToken").get<std::string>();
-        const Json spoofed{{"userId", "host"}, {"role", "host"}};
+        const Json spoofed{{"userId", "host"}, {"permissions", 63}};
         const auto echo = acceptedResult(exchangeMessage(client, request("test.echo", spoofed)));
         check(echo.at("actor") == userId && echo.at("connection").get<ConnectionId>() != 0 && echo.at("payload") == spoofed, "payload overrode the authenticated context");
         checkRejected(exchangeMessage(client, request("test.master", spoofed)), "FORBIDDEN");
         check(privilegedCalls == 0, "unauthorized callback ran");
-        fixture.roles.setRole("host", userId, Role::Master);
+        fixture.permissions.applyPreset("host", userId, PermissionPreset::Master);
         check(acceptedResult(exchangeMessage(client, request("test.master", Json::object()))) == "ok", "promotion did not apply to network dispatch");
-        fixture.roles.setRole("host", userId, Role::Spectator);
+        fixture.permissions.applyPreset("host", userId, PermissionPreset::Spectator);
         checkRejected(exchangeMessage(client, request("test.master", spoofed)), "FORBIDDEN");
         checkRejected(exchangeMessage(client, request("test.echo", spoofed)), "FORBIDDEN");
         check(privilegedCalls == 1, "demotion did not prevent callback execution");
@@ -640,16 +640,16 @@ namespace
             check(acceptedResult(exchangeMessage(client, request("test.value", {{"value", value}}))) == value, "JSON result changed type or value");
         }
         checkRejected(exchangeMessage(client, request("not.registered", Json::object())), "UNKNOWN_COMMAND");
-        fixture.roles.setRole("host", userId, Role::Player);
+        fixture.permissions.applyPreset("host", userId, PermissionPreset::Player);
         check(acceptedResult(exchangeMessage(client, request("test.nested", Json::object()))) == 1, "nested network dispatch failed");
         check(acceptedResult(exchangeMessage(client, request("test.nested", Json::object()))) == 2, "callback state was copied or reset");
 
-        fixture.protocol.add_command("test.counter", Role::Spectator, [count = 0](const auto &, const auto &) mutable { return Json(++count); });
+        fixture.protocol.add_command("test.counter", Permission::Permission1, [count = 0](const auto &, const auto &) mutable { return Json(++count); });
         auto local = std::async(std::launch::async, [&]
         {
             for (int index = 0; index < 50; ++index)
             {
-                fixture.protocol.add_command("runtime." + std::to_string(index), Role::Player, [](const auto &, const auto &) { return Json(true); });
+                fixture.protocol.add_command("runtime." + std::to_string(index), Permission::Permission2, [](const auto &, const auto &) { return Json(true); });
                 static_cast<void>(fixture.protocol.dispatch("test.counter", CommandContext{"host"}, Json::object()));
             }
         });
@@ -669,15 +669,15 @@ namespace
         TestDirectory directory;
         Fixture fixture;
         fixture.protocol.saveIdentityState(directory.path / "identities.json");
-        fixture.protocol.add_command("test.ok", Role::Player, [](const auto &, const auto &) { return Json(true); });
-        fixture.protocol.add_command("test.invalid", Role::Player, [](const auto &, const auto &) -> Json { throw std::invalid_argument("private validation detail"); });
-        fixture.protocol.add_command("test.payload", Role::Player, [](const auto &, const Json &payload) { return Json(payload.at("required").get<int>()); });
-        fixture.protocol.add_command("test.forbidden", Role::Player, [](const auto &, const auto &) -> Json { throw ProtocolError(ProtocolErrorCode::Forbidden, "private authorization detail"); });
-        fixture.protocol.add_command("test.failure", Role::Player, [](const auto &, const auto &) -> Json { throw std::runtime_error("private storage detail"); });
-        fixture.protocol.add_command("test.nonstandard", Role::Player, [](const auto &, const auto &) -> Json { throw 42; });
-        fixture.protocol.add_command("test.lifecycle", Role::Player, [&](const auto &, const auto &) { fixture.protocol.stopHosting(); return Json(true); });
+        fixture.protocol.add_command("test.ok", Permission::Permission2, [](const auto &, const auto &) { return Json(true); });
+        fixture.protocol.add_command("test.invalid", Permission::Permission2, [](const auto &, const auto &) -> Json { throw std::invalid_argument("private validation detail"); });
+        fixture.protocol.add_command("test.payload", Permission::Permission2, [](const auto &, const Json &payload) { return Json(payload.at("required").get<int>()); });
+        fixture.protocol.add_command("test.forbidden", Permission::Permission2, [](const auto &, const auto &) -> Json { throw ProtocolError(ProtocolErrorCode::Forbidden, "private authorization detail"); });
+        fixture.protocol.add_command("test.failure", Permission::Permission2, [](const auto &, const auto &) -> Json { throw std::runtime_error("private storage detail"); });
+        fixture.protocol.add_command("test.nonstandard", Permission::Permission2, [](const auto &, const auto &) -> Json { throw 42; });
+        fixture.protocol.add_command("test.lifecycle", Permission::Permission2, [&](const auto &, const auto &) { fixture.protocol.stopHosting(); return Json(true); });
         std::atomic<int> invalidResults{0};
-        fixture.protocol.add_command("test.result", Role::Any, [&](const auto &, const Json &payload) -> Json
+        fixture.protocol.add_command("test.result", Permission::Any, [&](const auto &, const Json &payload) -> Json
         {
             ++invalidResults;
             const auto kind = payload.at("kind").get<std::string>();
@@ -717,11 +717,11 @@ namespace
         fixture.protocol.stopHosting();
     }
 
-    void concurrentLocalRolesAndNetworkAdmissions()
+    void concurrentLocalPermissionsAndNetworkAdmissions()
     {
         TestDirectory directory;
         Fixture fixture;
-        fixture.roles.registerUser("local");
+        fixture.permissions.registerUser("local");
         const auto archive = directory.path / "identities.json";
         fixture.protocol.saveIdentityState(archive);
         const auto port = fixture.protocol.startHosting("127.0.0.1", 0);
@@ -730,12 +730,12 @@ namespace
         {
             for (int index = 0; index < 40; ++index)
             {
-                fixture.roles.registerUser("local-" + std::to_string(index));
-                fixture.roles.setRole("host", "local", index % 2 == 0 ? Role::Master : Role::Spectator);
-                check(fixture.roles.getRole("host") == Role::Host, "concurrent role mutation changed host");
-                static_cast<void>(fixture.roles.toSaveData());
+                fixture.permissions.registerUser("local-" + std::to_string(index));
+                fixture.permissions.applyPreset("host", "local", index % 2 == 0 ? PermissionPreset::Master : PermissionPreset::Spectator);
+                check(fixture.permissions.getPermissions("host") == PermissionSet::all(), "concurrent permissions mutation changed host");
+                static_cast<void>(fixture.permissions.toSaveData());
             }
-            fixture.roles.setRole("host", "local", Role::Master);
+            fixture.permissions.applyPreset("host", "local", PermissionPreset::Master);
         });
         std::vector<std::future<Json>> clients;
         for (int index = 0; index < 8; ++index)
@@ -749,13 +749,13 @@ namespace
         std::set<std::string> ids;
         for (auto &client : clients) ids.insert(client.get().at("userId").get<std::string>());
         local.get();
-        check(ids.size() == 8 && fixture.roles.toSaveData().size() == 50, "concurrent registration lost or duplicated users");
-        check(fixture.roles.getRole("local") == Role::Master, "network admission overwrote a local role change");
+        check(ids.size() == 8 && fixture.permissions.toSaveData().size() == 50, "concurrent registration lost or duplicated users");
+        check(fixture.permissions.getPermissions("local") == permissionsForPreset(PermissionPreset::Master), "network admission overwrote a local permission change");
         fixture.protocol.saveIdentityState(archive);
         fixture.protocol.stopHosting();
         Fixture restored;
         restored.protocol.loadIdentityState(archive);
-        check(restored.roles.toSaveData().size() == 50 && restored.roles.getRole("local") == Role::Master, "concurrent state was not persisted");
+        check(restored.permissions.toSaveData().size() == 50 && restored.permissions.getPermissions("local") == permissionsForPreset(PermissionPreset::Master), "concurrent state was not persisted");
     }
 }
 
@@ -778,7 +778,7 @@ int main()
         stopDiscardsRequestsWaitingForExecution();
         authenticatedCommandsAndCurrentPermissions();
         callbackFailuresAndInvalidResults();
-        concurrentLocalRolesAndNetworkAdmissions();
+        concurrentLocalPermissionsAndNetworkAdmissions();
         std::cout << "admission: PASS\n";
     }
     catch (const std::exception &error)

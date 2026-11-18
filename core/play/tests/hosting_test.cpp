@@ -154,7 +154,7 @@ namespace
 
     Json request(std::string requestId)
     {
-        return Json{{"version", 2}, {"type", "users.setRole"}, {"requestId", std::move(requestId)}, {"payload", {{"userId", "host"}, {"role", "host"}}}};
+        return Json{{"version", 3}, {"type", "test.permission"}, {"requestId", std::move(requestId)}, {"payload", {{"userId", "host"}, {"permissions", 63}}}};
     }
 
     void pendingConnectionsAndSessionShutdown()
@@ -177,7 +177,7 @@ namespace
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
         sendBytes(client, {bytes.begin() + 2, bytes.end()});
         const auto reply = receiveMessage(client);
-        check(reply.at("version") == 2 && reply.at("type") == "request.rejected", "unexpected pending reply");
+        check(reply.at("version") == 3 && reply.at("type") == "request.rejected", "unexpected pending reply");
         check(reply.at("requestId") == "request-1", "request correlation lost");
         check(reply.at("payload").at("code") == "UNKNOWN_COMMAND", "unexpected unknown pending command outcome");
         checkClosed(client);
@@ -229,13 +229,13 @@ namespace
     {
         ResourceManager resources;
         ProtocolManager protocol(resources);
-        RoleManager roles(resources, "host");
+        PermissionManager permissions(resources, "host");
         int calls = 0;
-        protocol.add_command("users.setRole", Role::Spectator, [&calls](const CommandContext &, const Json &) { return Json(++calls); });
+        protocol.add_command("test.permission", Permission::Permission1, [&calls](const CommandContext &, const Json &) { return Json(++calls); });
         const auto port = protocol.startHosting("127.0.0.1", 0);
         for (const auto &bytes : std::array<std::vector<std::uint8_t>, 5>{
             std::vector<std::uint8_t>{0, 0, 0, 1, '{'}, std::vector<std::uint8_t>{0, 1, 0, 1},
-            frame(request(std::string(129, 'x'))), frame(Json{{"version", 2}, {"type", "test"}, {"payload", Json::object()}}),
+            frame(request(std::string(129, 'x'))), frame(Json{{"version", 3}, {"type", "test"}, {"payload", Json::object()}}),
             frame(Json{{"version", 1}, {"type", "test"}, {"requestId", "old"}, {"payload", Json::object()}})})
         {
             const auto client = connectClient(port);
@@ -247,7 +247,7 @@ namespace
         }
         const auto client = connectClient(port);
         sendBytes(client, frame(request("valid")));
-        check(receiveMessage(client).at("payload").at("code") == "FORBIDDEN", "host did not enforce the minimum role after bad peers");
+        check(receiveMessage(client).at("payload").at("code") == "FORBIDDEN", "host did not enforce the required permissions after bad peers");
         protocol.stopHosting();
         check(calls == 0, "unauthenticated callback executed");
     }
@@ -256,9 +256,9 @@ namespace
     {
         ResourceManager resources;
         ProtocolManager protocol(resources);
-        RoleManager roles(resources, "host");
-        roles.registerUser("alice");
-        roles.setRole("host", "alice", Role::Master);
+        PermissionManager permissions(resources, "host");
+        permissions.registerUser("alice");
+        permissions.applyPreset("host", "alice", PermissionPreset::Master);
         const auto start = [&]
         {
             try { return protocol.startHosting("127.0.0.1", 0); }
@@ -297,7 +297,7 @@ namespace
         firstStop.get();
         secondStop.get();
         check(!protocol.getUserId(oldId), "stop retained user presence");
-        check(roles.getRole("alice") == Role::Master && roles.getRole("host") == Role::Host, "stop changed roles");
+        check(permissions.getPermissions("alice") == permissionsForPreset(PermissionPreset::Master) && permissions.getPermissions("host") == PermissionSet::all(), "stop changed permissions");
         protocol.startHosting("127.0.0.1", 0);
         check(protocol.registerConnection() != oldId, "restart reused a logical ID");
     }

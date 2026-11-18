@@ -14,10 +14,12 @@ add_library(golarion_play STATIC
     src/client_connection.cpp
     src/hosting.cpp
     src/identity_storage.cpp
+    src/local_commands.cpp
+    src/permission_commands.cpp
+    src/permission_manager.cpp
     src/protocol.cpp
     src/protocol_manager.cpp
     src/resource_manager.cpp
-    src/role_manager.cpp
     src/session.cpp
     src/session_code.cpp
     src/user_token.cpp
@@ -50,6 +52,33 @@ if(MSVC)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(play_events_test tests/events_test.cpp)
+    target_include_directories(play_events_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+    target_link_libraries(play_events_test PRIVATE golarion_play)
+    add_test(NAME play_events_test COMMAND play_events_test)
+    set_tests_properties(play_events_test PROPERTIES WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} TIMEOUT 40)
+
+    add_executable(play_permission_commands_test tests/permission_commands_test.cpp)
+    target_include_directories(play_permission_commands_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+    target_link_libraries(play_permission_commands_test PRIVATE golarion_play)
+    add_test(NAME play_permission_commands_test COMMAND play_permission_commands_test)
+    set_tests_properties(play_permission_commands_test PROPERTIES WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} TIMEOUT 30)
+
+    add_executable(play_permission_set_test tests/permission_set_test.cpp)
+    target_link_libraries(play_permission_set_test PRIVATE golarion_play)
+    add_test(NAME play_permission_set_test COMMAND play_permission_set_test)
+
+    add_executable(play_permission_manager_test tests/permission_manager_test.cpp)
+    target_link_libraries(play_permission_manager_test PRIVATE golarion_play)
+    add_test(NAME play_permission_manager_test COMMAND play_permission_manager_test)
+    set_tests_properties(play_permission_manager_test PROPERTIES TIMEOUT 15)
+
+    add_executable(play_send_command_test tests/send_command_test.cpp)
+    target_include_directories(play_send_command_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+    target_link_libraries(play_send_command_test PRIVATE golarion_play)
+    add_test(NAME play_send_command_test COMMAND play_send_command_test)
+    set_tests_properties(play_send_command_test PROPERTIES WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} TIMEOUT 30)
+
     add_executable(play_client_test tests/client_test.cpp)
     target_include_directories(play_client_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
     target_link_libraries(play_client_test PRIVATE golarion_play)
@@ -97,10 +126,6 @@ if(BUILD_TESTING)
     target_link_libraries(play_protocol_manager_test PRIVATE golarion_play)
     add_test(NAME play_protocol_manager_test COMMAND play_protocol_manager_test)
     set_tests_properties(play_protocol_manager_test PROPERTIES TIMEOUT 20)
-
-    add_executable(play_role_manager_test tests/role_manager_test.cpp)
-    target_link_libraries(play_role_manager_test PRIVATE golarion_play)
-    add_test(NAME play_role_manager_test COMMAND play_role_manager_test)
 
     add_executable(play_resource_manager_test tests/resource_manager_test.cpp)
     target_link_libraries(play_resource_manager_test PRIVATE golarion_play)

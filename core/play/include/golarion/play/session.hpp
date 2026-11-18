@@ -2,7 +2,7 @@
 
 #include "golarion/play/protocol_manager.hpp"
 #include "golarion/play/resource_manager.hpp"
-#include "golarion/play/role_manager.hpp"
+#include "golarion/play/permission_manager.hpp"
 
 #include <cstdint>
 #include <filesystem>
@@ -29,6 +29,10 @@ namespace golarion::play
         std::future<ClientAdmission> resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token);
         void disconnectFromHost();
         ClientSnapshot getClientState() const;
+        std::future<nlohmann::json> sendCommand(std::string name, nlohmann::json payload);
+        void add_command(std::string_view name, CommandRequirements requirements, ProtocolManager::CommandCallback callback);
+        void add_command(std::string_view name, ProtocolManager::CommandCallback callback);
+        bool sendEvent(const UserId &userId, std::string_view name, const nlohmann::json &payload);
 
         std::string getSessionCode() const;
 
@@ -47,6 +51,6 @@ namespace golarion::play
 
         ResourceManager resourceManager_;
         ProtocolManager protocolManager_;
-        std::optional<RoleManager> roleManager_;
+        std::optional<PermissionManager> permissionManager_;
     };
 }

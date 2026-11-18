@@ -1,80 +1,42 @@
-# JSON Session Admission
+# Session Admission
 
-Status: server admission implemented 2026-11-12; native client integration added 2026-11-16. Host ProtocolManager accepts new users/resumes persisted identities over JSON v2/TCP. The client now invokes the same registered Any commands; see `session-client.md`. Display names, generic outgoing client commands, concrete role/sheet commands and user-list events remain separate.
+Status: host/client numeric-permission admission integrated 2026-11-17. Session hosts own PermissionManager. ProtocolManager registers session.join and session.resume with add_command and Permission::Any = 0, using the common JSON v3 dispatch path. Any is command-only public access; anonymous participants are not given an assignable permission.
 
-## Ownership and Entry Points
+## Requests and Results
 
-Session remains a container/facade. Host factories require the host UserId; client factories create no authoritative roles/credentials. Host admission adds no new facade methods beyond the existing archive/hosting delegations. Configure the host archive with saveIdentityState/loadIdentityState before startHosting; see `session-tokens.md`.
-
-Private `ProtocolManager::Hosting` reads bytes and calls the existing generic codec. It forwards complete messages to private `ProtocolManager::handleMessage(connectionId, message)`. Every request uses the same context/lookup/role-check/dispatch path. During construction ProtocolManager registers `session.join` and `session.resume` with `add_command` and minimum `Role::Any`, before publishing `protocol.add_command`. Pending connections have an optional empty UserId and satisfy only Any. Any is an access threshold, never a participant role.
-
-The private implementation is split into `src/admission.hpp` and `src/admission.cpp`:
-
-| Function | Responsibility |
-| --- | --- |
-| `handleMessage` / `handleCommand` | Validate request ID, construct a fresh context, dispatch by registered name, and build shared success/rejection envelopes and closure policy. No admission-name routing branch. |
-| `registerAdmissionCommands` | Registers join/resume callbacks through `add_command` with minimum Any; ordinary duplicate checks prevent overriding either name. |
-| `requirePendingAdmission` | Requires a pending network connection, checks the exact payload schema and session code, and returns its ConnectionId. |
-| `admitNewUser` | Stages a new UserId, Player registration, token/hash, and connection binding; saves before committing runtime state. |
-| `resumeUser` | Resolves an existing token, reads the current role through ResourceManager, and replaces the old binding with `bindUser`. |
-| `makeAdmissionResult` | Creates a JSON callback result with UserId/current role; includes the original token only for join. Shared `makeCommandReply` wraps it as `request.accepted` / `payload.result`. |
-
-ProtocolManager still publishes only `protocol.add_command`. Join/resume are entries in its command registry, not separate ResourceManager features. Registration and dispatch apply the same case-sensitive outer-whitespace normalization to every command name; `session.join` and ` session.join ` select the same built-in callback. See `session-commands.md`.
-
-## Implemented Messages
-
-All messages retain the existing four-byte big-endian length prefix and JSON v2 envelope. Request IDs must be nonblank strings of at most 128 UTF-8 bytes with no ASCII control characters. Valid IDs are echoed; invalid envelopes/IDs receive a rejection without an ID.
-
-First admission:
+Join requests have exactly sessionCode:
 
 ```json
-{"version":2,"type":"session.join","requestId":"join-1","payload":{"sessionCode":"A7K2Q"}}
+{"version":3,"type":"session.join","requestId":"client-1","payload":{"sessionCode":"A7K2Q"}}
 ```
 
-Success is `request.accepted`, with exactly `userId`, `role` (`player`), and `userToken` inside `payload.result`. The public UserId is generated independently as `user-` plus a random hexadecimal nonce; it never exposes the issued credential. IDs are checked against current roles/bindings, with at most 32 candidate attempts, and final registration still rejects duplicates.
-
-Resume:
+The host generates an independent UserId and credential, registers the Player preset (mask 7), persists the identity and keeps the admitted connection open:
 
 ```json
-{"version":2,"type":"session.resume","requestId":"resume-1","payload":{"sessionCode":"A7K2Q","userToken":"0123456789abcdef"}}
+{"version":3,"type":"request.accepted","requestId":"client-1","payload":{"result":{"userId":"user-example","permissions":7,"userToken":"0123456789abcdef"}}}
 ```
 
-Success is `request.accepted`, with exactly `userId` and the current `role` inside `payload.result`. It does not re-register the user, issue a new token, or reset their role. Both operations require the current SessionCode; lowercase letters are accepted. Tokens retain their strict lowercase hexadecimal format. Unknown fields, including client-chosen UserId, role, or displayName, are rejected. The former `session.joined` and `session.resumed` response types are retired; JSON envelope version remains 2.
+Resume requests have exactly sessionCode/userToken. Success returns the same UserId and current permissions without issuing a token:
 
-Host-wide code uniqueness and code persistence remain deferred. Reconstructing a Session creates a new code; a returning client supplies that current code together with its original personal token.
+```json
+{"version":3,"type":"session.resume","requestId":"client-2","payload":{"sessionCode":"A7K2Q","userToken":"0123456789abcdef"}}
+{"version":3,"type":"request.accepted","requestId":"client-2","payload":{"result":{"userId":"user-example","permissions":18}}}
+```
 
-## Registration, Persistence, and Synchronization
+Permission masks are nonnegative JSON integers containing only the six known flag bits; zero is valid for an identified user. Role strings/fields, floats, booleans, negative values and unknown bits are not accepted as permissions. Preset names are not persisted or returned. A non-host may have mask 63 without becoming the immutable Host.
 
-RoleManager now exposes `registerUserWithCommit(userId, commit)` through `roles.registerUserWithCommit`, using `RegisterUserWithCommitSignature = void(UserId, RegistrationCommit)` and `RegistrationCommit = std::function<void(const std::vector<UserRoleSaveData> &)>`. The existing `roles.registerUser` remains unchanged.
+Both callbacks require a live pending connection: local calls without a connection fail, and an already admitted caller gets ALREADY_ADMITTED. The payload schema rejects extra fields such as caller-selected identity, permissions or displayName. SessionCode normalizes lowercase; tokens are strict 16-character lowercase hexadecimal. JSON v2 peers are rejected before admission/credential issuance. Host-wide code uniqueness/persistence and display names remain deferred.
 
-The new operation validates the ID, prepares a candidate role map with a Player, and invokes the callback with its sorted snapshot while holding the role mutex. Only a successful callback installs the candidate. An empty callback, invalid/duplicate ID, or callback exception preserves the previous roles. This is trusted local functionality; the callback must not reenter RoleManager or acquire ProtocolManager locks.
+## Transaction and Lifecycle
 
-During join, ProtocolManager holds identity and connection locks, prepares the token registry and binding, and invokes the new role feature. Its callback writes the combined candidate roles and token hashes using the existing atomic archive writer. A failed registration/write restores the pending binding and discards staged credentials without removing or overwriting unrelated local role changes. Successful role/token/binding commits use already prepared state. The token is returned only in the private success reply; an interrupted connection after successful persistence can still lose that reply, and no recovery/acknowledgement flow is added here.
+Join holds execution, identity and connection locks, stages a new digest/binding and calls permissions.registerUserWithCommit. Its callback writes version-2 IdentitySaveData with the explicit Host ID, candidate users/permission masks and digests. The host ID is obtained before entering the permission callback. Only successful storage installs the staged user/token registry; failures roll back the logical binding and return ADMISSION_FAILED. Public UserIds are generated independently from credentials, with bounded collision retries.
 
-All RoleManager data operations use an internal mutex. Finish ResourceManager feature registration before hosting and stop the worker before teardown. ProtocolManager now serializes command registration and local/remote dispatch with a recursive execution mutex; independent provider access outside that path retains its own thread-safety contract.
+Resume resolves the existing digest and obtains permissions.getPermissions, then replaces any previous binding for the UserId. Stale messages/late disconnects cannot remove the new association; Hosting closes the replaced socket. It does not issue a new token or reset custom/empty masks. Cross-application restoration requires the configured archive and current SessionCode.
 
-Join locks execution, identity, logical connections, then roles. Archive load additionally holds lifecycle before execution and remains forbidden during hosting or from command callbacks. The storage callback writes supplied data without reentering a manager. Normal issuance/save uses identity then roles. Later local role changes still need an explicit save.
+Pending peers have five seconds from acceptance; successful generic Any commands do not admit them or renew this deadline. Admitted idle peers have no heartbeat timeout. Limits remain 32 TCP peers, bounded input/output and nonblocking I/O. Disconnect and hosting stop remove presence while preserving users, permissions and credentials.
 
-## Connections and Rejections
+Malformed framing and pending command/admission errors close the socket. Ordinary command errors after admission keep it open. The nine typed rejection codes and sanitized Italian messages are in session-commands.md. Built-in admission names are protected from duplicate registration, including padded variants.
 
-Hosting keeps a successful connection open. The five-second deadline applies only while its logical record has no UserId; a generic Any command can execute before admission but does not create an identity or reset that deadline. Admitted idle connections have no heartbeat timeout yet. Resume invalidates the previous logical binding immediately, and the worker closes that socket. A late disconnect cannot remove the replacement binding. Ordinary disconnect/stop removes presence while preserving identities, tokens, and roles.
+## Verification
 
-The worker processes fragmented and coalesced frames, retains buffered following messages, and keeps at most one bounded response outstanding per peer. Input is capped at 65536 + 4 bytes. Socket I/O remains nonblocking, select waits at most 50 ms, and the existing limit is 32 total TCP peers, also constrained by platform select capacity.
-
-Every rejection uses `request.rejected` with English `code` and Italian `message`:
-
-| Code | Behavior |
-| --- | --- |
-| `INVALID_REQUEST` | Invalid frame/envelope/request ID closes after replying; invalid admission/callback payload closes a pending peer but keeps an admitted peer open. |
-| `INVALID_SESSION_CODE` | Wrong/malformed session code; close the pending connection. |
-| `INVALID_USER_TOKEN` | Malformed, unknown, or foreign token; close the pending connection without replacing an existing user. |
-| `NOT_ADMITTED` | Unknown/closed/replaced connection or inconsistent/stale context; close after replying when possible. A valid pending connection is a usable anonymous context. |
-| `ADMISSION_FAILED` | Archive not configured, storage/crypto failure, or provider failure; generic reply and close, keeping the worker alive. |
-| `ALREADY_ADMITTED` | An admitted connection attempts another join/resume; preserve its identity and keep it open. |
-| Command outcomes | Every name follows common lookup/permissions. Pending peers can execute Any; higher minima receive `FORBIDDEN`, unknown names receive `UNKNOWN_COMMAND`. Pending errors close the peer, while ordinary admitted errors keep it open. See `session-commands.md`. |
-
-## Console and Verification
-
-`golarion_play_host <IPv4 address> <port> [identity archive]` creates/loads the archive before listening. Default is session-identities.json; archives must match the immutable Host UserId (host for this tool). Invalid files are not replaced. The host uses createHost, prints endpoint/code and waits for Ctrl+C. The new golarion_play_client tool uses createClient and the same admission schemas; see `session-client.md`.
-
-`play_admission_test` covers TCP join/resume, strict payloads, replacement, persistence failures/retry, reconstruction, Session delegation, streaming/deadlines, and concurrent roles/admissions. Shared-dispatch coverage includes padded admission names, anonymous Any callbacks, forged payload actors, minimum-role rejection, common result wrappers, pending expiry after successful Any calls, and invalid outputs for both anonymous/admitted peers. It also executes buffered commands and checks callback failures; see `session-commands.md`. All twelve native suites and the console-host restart/resume smoke test pass on Windows GCC C++20 with strict warnings. CMake and POSIX execution remain unverified locally.
+Admission/hosting/client tests cover strict schemas, staged failures, masks, replacement, concurrency and buffered stop. All sixteen play suites pass through the root CMake build on Windows, including permission mutation autosave, token-preserving restart and targeted live notifications. Admission completes before following event frames are processed; see session-events.md and development.md.

@@ -1,56 +1,42 @@
-# Riesame del flusso delle comunicazioni
+# Flusso delle comunicazioni
 
-Riesame del 2026-11-12, con entrambi i difetti risolti. I diagrammi descrivono il lato host corrente; dal 2026-11-16 il peer remoto può usare il client nativo descritto in [session-client.md](session-client.md). Le riproduzioni precedenti sono in [history/2026-11-12-admission-routing.md](history/2026-11-12-admission-routing.md) e [history/2026-11-12-buffered-stop.md](history/2026-11-12-buffered-stop.md).
+Aggiornato al 2026-11-18: Session usa PermissionManager, JSON v3 e archivi v2 numerici. Host e client riusano registrazione e dispatch dei comandi; permissions.changed aggiorna soltanto il client interessato dopo una modifica effettiva salvata. Passano sedici suite CTest dalla configurazione CMake della root, con output in build/core/play. Le vecchie collisioni dei nomi e le richieste durante lo stop restano risolte; le riproduzioni storiche sono separate in history/.
 
-## Esito del riesame
-
-| Stato | Punto | Evidenza | Intervento |
-| --- | --- | --- | --- |
-| Risolto | Collisione fra comandi registrati e messaggi di ammissione | I test rifiutano registrazioni duplicate dei due nomi e delle varianti con spazi. Join/resume con spazi seguono le stesse callback e risposte degli altri comandi. | Entrambi registrati nel costruttore con `add_command(..., Role::Any, ...)`; rimossa la selezione separata dei nomi. |
-| Risolto | Richieste bufferizzate o in attesa del lock possono partire durante lo stop | Due nuove regressioni falliscono contro la libreria precedente e passano con la correzione: secondo peer bufferizzato e richiesta remota dietro una callback locale. | Controlli nel ciclo dei buffer, prima di select e nel percorso comune di input, con un ultimo controllo sotto il mutex di esecuzione. |
-
-La correzione dei nomi usa [protocol_manager.cpp](../core/play/src/protocol_manager.cpp), `add_command`/`normalizedName`, e [admission.cpp](../core/play/src/admission.cpp), `registerAdmissionCommands`/`handleMessage`. La correzione dello stop è in [hosting.cpp](../core/play/src/hosting.cpp), senza nuove API pubbliche o manager.
-
-Al 2026-11-16 passano le dodici suite native e la prova dei processi host/client, incluse le regressioni dello stop. Il build corrente è in build/play/client-validation; la verifica estesa del client è descritta in session-client.md. I vecchi probe del riesame restano storici; CMake ed esecuzione POSIX restano da verificare. Vedi [session-client.md](session-client.md) e [development.md](development.md).
-
-La correzione dello stop comprende tre parti:
-
-1. `poll` verifica lo stop prima di ogni peer con messaggi bufferizzati e prima di attendere select; il ciclo dei socket conserva il proprio controllo.
-2. `processInput`, usato sia per i buffer sia per i dati appena ricevuti, verifica lo stop all'ingresso e dopo aver ottenuto il mutex di esecuzione, prima di `handleMessage`. Una richiesta che supera quest'ultimo controllo è già in esecuzione e può terminare; le altre vengono scartate durante la chiusura.
-3. I test in [admission_test.cpp](../core/play/tests/admission_test.cpp) coordinano callback e stop, verificano il completamento della richiesta attiva, l'esclusione del lavoro in coda, la chiusura dei peer e il riavvio con identità/ruolo/token conservati. Coprono anche l'attesa dietro una callback locale.
-
-## Proprietà dello stato e collegamenti
+## Proprietà e collegamenti
 
 ```mermaid
 flowchart TB
-    App[Applicazione C++] -->|delega| S[Session]
-    S -->|possiede| PM[ProtocolManager]
-    S -->|possiede| RM[ResourceManager]
-    S -->|possiede| R[RoleManager]
-    PM -->|possiede| H[Hosting e thread TCP]
-    H <-->|frame JSON v2| Peer[Peer remoto]
-    H <-->|encode e decode| Codec[Codec JSON]
-    H -->|handleMessage| PM
-    R -->|pubblica roles.*| RM
-    PM -->|invoca roles.*| RM
-    RM -->|chiama funzione| R
-    RM -->|protocol.add_command| PM
-    PM -->|dispatch autorizzato| CB[Callback registrata]
+    App[Applicazione C++] --> S[Session host]
+    S --> PM[ProtocolManager]
+    S --> RM[ResourceManager]
+    S --> P[PermissionManager]
+    PM --> H[Hosting e thread TCP]
+    PM --> L[LocalCommands e thread locale]
+    CS[Session client] --> CP[ProtocolManager client]
+    CP --> C[ClientConnection e thread TCP]
+    C -->|richieste JSON con requestId| H
+    H -->|risposte correlate e notifiche| C
+    C -->|risposte| Future[Future della richiesta]
+    C -->|notifiche senza requestId: dispatch| CP
+    CP --> CCB[Callback del registro client]
+    CCB --> Snap[ClientSnapshot aggiornato]
+    H -->|handleMessage e dispatch| PM
+    L -->|dispatch come hostId| PM
+    P -->|pubblica permissions.*| RM
+    PM -->|verifica identità e bit richiesti| RM
+    RM --> P
+    RM -->|protocol.add_command, protocol.sendEvent, identity.updateUserPermissions| PM
+    PM --> Q[Coda eventi per ConnectionId]
+    Q -->|prepareOutput e send| H
+    PM --> CB[Callback registrata]
     CB -->|funzioni dei sottosistemi| RM
-    PM -->|possiede| T[UserTokens]
-    PM -->|identity_storage| F[(Archivio identità)]
+    PM --> T[UserTokens: hash delle credenziali]
+    PM --> F[(Archivio identità v2)]
 ```
 
-- La Session host possiede ResourceManager, ProtocolManager e RoleManager; la Session client possiede i primi due. La distruzione ferma il rispettivo worker prima dei provider. Le modalità Host/Client sono immutabili e separate dal ruolo del partecipante.
-- ResourceManager è il registro delle funzioni interne condiviso per riferimento nella singola Session. Non riceve direttamente i messaggi TCP.
-- Il registro dei comandi remoti è `ProtocolManager::commands_`: contiene nome, ruolo minimo e callback, inclusi join/resume con Any, registrati prima di pubblicare `protocol.add_command`. Non coincide con il registro delle feature di ResourceManager.
-- RoleManager è l'autorità sui ruoli. ProtocolManager verifica sempre il livello minimo tramite RM, anche per Any. La gerarchia è Host, Master, Player, Spectator, Any; Any è solo una soglia, non assegnabile né persistibile. Un contesto anonimo valido ha ConnectionId ma nessun UserId; record chiusi/sostituiti non sono anonimi validi. Il sottosistema chiamato resta responsabile dei permessi specifici dell'operazione.
-- Hosting possiede socket, buffer e thread. Il codec è un insieme di funzioni private senza stato di ruoli o identità.
-- UserTokens conserva hash; l'archivio conserva UserId, ruoli e hash. Socket, binding e codice di sessione non vengono salvati in quell'archivio.
+La Session client possiede ResourceManager/ProtocolManager, senza autorità locale sui permessi. La Session host possiede anche PermissionManager. Ogni ProtocolManager ha il proprio registro: sul server riceve richieste, sul client notifiche. Il registro delle feature RM resta distinto e una feature permissions.* non diventa automaticamente un RPC. CommandContext contiene solo identità e connessione, mai una maschera fidata dal payload. Sul client il mittente è il collegamento all'host ammesso, senza inventare un UserId dell'host. Il codec tratta struttura/framing; il dispatcher verifica la provenienza e, sull'host, i permessi correnti.
 
-`roles.getRole` è quindi una feature interna. Il client che invia quel nome non ottiene automaticamente un RPC: serve una registrazione esplicita tramite `protocol.add_command`.
-
-## Avvio dell'hosting
+## Avvio
 
 ```mermaid
 sequenceDiagram
@@ -58,243 +44,233 @@ sequenceDiagram
     participant S as Session
     participant PM as ProtocolManager
     participant H as Hosting
-    App->>S: costruzione con hostId
-    Note over S,PM: ResourceManager, PM e RoleManager pronti prima dell'hosting
+    App->>S: createHost(hostId)
+    Note over S,PM: ResourceManager, ProtocolManager e PermissionManager pronti
     App->>S: saveIdentityState oppure loadIdentityState
-    S->>PM: prepara archivio e identità
+    S->>PM: prepara archivio v2 e identità
     App->>S: startHosting(IP, porta)
     S->>PM: startHosting
-    PM->>H: crea listener e worker
-    H-->>PM: porta effettiva
-    PM-->>S: porta effettiva
-    S-->>App: porta effettiva
-    loop Finché l'hosting è attivo
+    PM->>H: crea listener e thread
+    H-->>App: porta effettiva tramite PM e Session
+    loop Hosting attivo
         H->>H: select, accept, lettura e scrittura
     end
 ```
 
-Il ruolo Host esiste già prima del listener e non richiede un collegamento TCP locale. Il codice è generato alla costruzione di ProtocolManager. La porta `0` richiede una porta assegnata dal sistema operativo. Il backend non richiede polling pubblico.
+L'host esiste prima del listener, ha tutti i sei bit ed è identificato separatamente da hostId. Il codice della sessione nasce nel ProtocolManager e resta stabile durante stop/riavvio di quell'oggetto. La porta zero richiede un'assegnazione al sistema operativo. Non serve polling applicativo.
 
 ## Primo ingresso
 
 ```mermaid
 sequenceDiagram
-    participant C as Peer
+    participant C as Client
     participant PM as ProtocolManager
     participant RM as ResourceManager
-    participant R as RoleManager
-    participant W as identity_storage
-    C->>PM: session.join tramite Hosting e codec
-    PM->>PM: makeContext anonimo e lookup session.join
-    PM->>RM: roles.hasAtLeastRole senza UserId, minimo Any
-    RM->>R: verifica soglia anonima
-    R-->>RM: autorizzato
-    RM-->>PM: autorizzato
-    PM->>PM: callback registrata di join
-    PM->>PM: verifica pending, schema e codice
-    PM->>PM: prepara UserId, token e binding
-    PM->>RM: roles.registerUserWithCommit
-    RM->>R: registra candidato Player
-    R->>W: callback di salvataggio definita dal PM
-    W->>W: scrive file temporaneo, flush e sostituzione
-    W-->>R: salvataggio riuscito
-    R-->>RM: conferma candidato
-    RM-->>PM: registrazione riuscita
-    PM->>PM: conferma token e binding preparati
-    PM-->>C: request.accepted, result con UserId, ruolo e token
+    participant P as PermissionManager
+    participant F as Archivio identità
+    C->>PM: session.join tramite TCP e codec
+    PM->>PM: makeContext della connessione in attesa
+    PM->>PM: lookup: requisito Permission::Any
+    Note over PM: Accesso pubblico esplicito, zero bit richiesti
+    PM->>PM: callback verifica codice e payload
+    PM->>RM: permissions.registerUserWithCommit
+    RM->>P: prepara utente con preset Player
+    P->>F: callback salva candidato, hostId e hash token
+    F-->>P: salvataggio riuscito
+    P-->>PM: conferma registrazione tramite RM
+    PM->>PM: conferma token e binding
+    PM-->>C: request.accepted con userId, permissions=7, token
 ```
 
-Nel diagramma l'ingresso/uscita tramite Hosting è riassunto nelle frecce del peer. RoleManager non conosce il file: invoca una callback che usa `identity_storage`, senza rientrare nei metodi dei manager. I binding preparati non sono osservabili da altri thread durante il commit perché il percorso mantiene i lock necessari. Un errore prima del commit scarta il candidato; restano le normali incertezze di durabilità in caso di errore I/O dopo una sostituzione del file.
+Se il salvataggio fallisce, il nuovo utente/token non viene installato e il binding viene annullato. Any non è assegnabile agli utenti. Una maschera richiesta ordinaria vuota ha invece accesso autenticato: non consente a una connessione anonima di eseguire il comando.
 
-Il token originale viene restituito soltanto al nuovo utente. Se la connessione cade dopo il salvataggio e prima che il client conservi la risposta, oggi non esiste un recupero di quella credenziale.
-
-## Dispatch comune dei comandi
+## Comando remoto o locale
 
 ```mermaid
 sequenceDiagram
-    participant C as Peer
-    participant H as Hosting
-    participant PM as PM
-    participant RM as RM
-    participant R as RoleManager
-    participant CB as Callback
-    C->>H: frame JSON del comando
-    H->>H: decodeMessage
-    H->>PM: handleMessage
-    PM->>PM: handleCommand, makeContext e dispatch
-    PM->>RM: roles.hasAtLeastRole
-    RM->>R: verifica UserId opzionale e soglia minima
-    R-->>RM: esito
-    RM-->>PM: esito
-    alt Permessi sufficienti
-        PM->>CB: contesto verificato e payload
-        CB-->>PM: risultato JSON
-        PM-->>H: request.accepted con payload.result
-    else Permessi insufficienti
-        PM-->>H: request.rejected con FORBIDDEN
-    end
-    H->>H: encodeMessage
-    H-->>C: frame di risposta con stesso requestId
-```
-
-PM significa ProtocolManager e RM ResourceManager. Il percorso è lo stesso per join, resume e tutti gli altri nomi, ed è serializzato con sostituzione e chiusura. La callback non mantiene i mutex di connessioni o ruoli; può registrare altri comandi o richiamare dispatch in modo annidato. Le chiamate locali e remote usano gli stessi controlli. Un contesto locale senza ConnectionId richiede un UserId noto. Un comando Any generico può essere eseguito da un peer ancora anonimo, senza ammetterlo né prolungare il limite di cinque secondi.
-
-Un risultato non serializzabile o troppo grande produce `COMMAND_FAILED`, senza ripetere la callback: la connessione resta aperta se ammessa, si chiude se ancora anonima. La risposta di errore non annulla eventuali effetti già prodotti dalla callback.
-
-## Resume e sostituzione della connessione
-
-```mermaid
-sequenceDiagram
-    participant N as Nuovo peer
+    participant C as Client o applicazione host
     participant PM as ProtocolManager
-    participant R as RoleManager via RM
-    participant O as Vecchio peer
-    N->>PM: session.resume con codice e token
-    PM->>PM: makeContext anonimo e lookup session.resume
-    PM->>R: hasAtLeastRole senza UserId, minimo Any
-    R-->>PM: autorizzato
-    PM->>PM: callback registrata di resume
-    PM->>PM: verifica codice e risolve hash del token
-    PM->>R: getRole di UserId esistente
-    R-->>PM: ruolo attuale
-    PM->>PM: bindUser sul nuovo ConnectionId
-    Note over PM,O: Il vecchio binding diventa subito invalido
-    PM-->>N: request.accepted, result con UserId e ruolo
-    PM-->>O: Hosting chiude il vecchio socket
+    participant RM as ResourceManager
+    participant P as PermissionManager
+    participant CB as Callback
+    C->>PM: sendCommand(nome, payload)
+    Note over C,PM: Client: richiesta TCP correlata; host: coda locale come hostId
+    PM->>PM: mutex esecuzione e contesto corrente
+    PM->>RM: permissions.hasPermissions(userId, bit richiesti)
+    RM->>P: verifica tutti i bit attuali
+    P-->>PM: autorizzato oppure negato tramite RM
+    alt Autorizzato
+        PM->>CB: callback(contesto, payload)
+        CB-->>PM: risultato JSON
+        PM-->>C: future completata, con risposta correlata per TCP
+    else Negato
+        PM-->>C: errore FORBIDDEN
+    end
 ```
 
-Il token e l'identità restano gli stessi. La chiusura fisica del vecchio socket segue l'invalidazione logica; non è prevista una notifica `session.replaced`. Un suo messaggio tardivo non può iniziare una callback dopo la sostituzione; può essere scartato chiudendo il socket, senza una risposta JSON garantita.
+La maschera viene letta per ogni esecuzione; una revoca interessa le richieste successive. Un callback già iniziato può terminare. Anche con tutti i bit, un utente diverso dall'host non può assegnare CambiaPermessi: PermissionManager verifica l'identità dell'attore e il bersaglio. I delegati non possono cambiare i propri permessi né quelli dell'host. I contesti chiusi/sostituiti e gli attori inventati non vengono trattati come anonimi.
 
-## Disconnessione e arresto
+## Riconnessione
+
+```mermaid
+sequenceDiagram
+    participant C as Nuovo client
+    participant PM as ProtocolManager
+    participant RM as ResourceManager
+    participant Old as Vecchia connessione
+    C->>PM: session.resume(codice, token originale)
+    PM->>PM: requisito Any e callback di ammissione
+    PM->>PM: verifica codice e risolve hash token
+    PM->>RM: permissions.getPermissions(userId)
+    RM-->>PM: maschera effettiva corrente
+    PM->>PM: sostituisce binding dello stesso userId
+    PM->>Old: chiude la connessione superata
+    PM-->>C: stesso userId e permessi correnti, senza nuovo token
+```
+
+Il vecchio client non può inviare comandi usando il binding sostituito; una sua chiusura tardiva non rimuove il nuovo binding. Il token è legato all'archivio della Session, non a IP o socket. Dopo un riavvio dell'applicazione si carica l'archivio v2 e si usa il codice corrente. I permessi possono essere una combinazione personalizzata o zero, senza conversione in preset.
+
+## Stop e distruzione
 
 ```mermaid
 sequenceDiagram
     participant App as Applicazione
-    participant S as Session
     participant PM as ProtocolManager
-    participant H as Hosting
-    App->>S: stopHosting
-    S->>PM: stopHosting
-    PM->>H: stopRequested = true
-    Note over H: La richiesta già in esecuzione può terminare
-    H->>H: verifica stop nei cicli e prima dell'esecuzione
-    Note over H: Le richieste ancora in attesa vengono scartate
-    H->>PM: closeConnection dei peer
-    H->>H: rilascia socket e listener, termina thread
-    H-->>PM: join completato
-    PM->>PM: svuota binding e connessioni residue
-    PM-->>S: arresto completato
-    S-->>App: ritorno
+    participant H as Thread Hosting
+    participant Peer as Client
+    App->>PM: stopHosting tramite Session
+    PM->>PM: disabilita e svuota la coda eventi
+    PM->>H: imposta stopRequested
+    H->>H: verifica stop nei buffer e dopo il mutex di esecuzione
+    Note over H: termina il callback già iniziato e scarta le altre richieste
+    H->>Peer: chiude socket e binding
+    H-->>PM: termina il thread
+    PM-->>App: join completato, eventuale errore del worker
+    Note over App,PM: permessi, credenziali, codice e contatore ID restano in memoria
 ```
 
-Uno stop conserva ruoli, token, archivio configurato, codice e contatore dei ConnectionId nella Session viva. Non svuota la coda eseguendo i messaggi: scarta i buffer durante la chiusura, quindi non garantisce l'invio dell'ultima risposta. Il dispatch locale fidato resta indipendente dall'hosting. Ricreando la Session, l'archivio ripristina identità/ruoli/token, ma il codice viene rigenerato e il contatore è quello della nuova istanza. Le operazioni di ciclo di vita e il caricamento dell'archivio non sono ammessi dall'interno di una callback dello stesso ProtocolManager.
+Stop non drena le richieste bufferizzate e non garantisce l'invio dell'ultima risposta/notifica. I comandi locali restano disponibili senza hosting. La distruzione di Session chiude anche la coda locale, annulla il lavoro in attesa e attende un callback attivo prima di distruggere PermissionManager. Le operazioni di lifecycle e sendCommand dalla stessa callback sono rifiutate. sendEvent è consentita perché accoda senza prendere il mutex del lifecycle o scrivere sul socket. I callback client possono leggere getClientState senza bloccare il thread che sta eseguendo disconnectFromHost.
 
-## Esempi delle operazioni principali
+## Esempi JSON correnti
 
-I JSON seguenti rappresentano singoli corpi di messaggio. Sul TCP ogni corpo è preceduto da quattro byte che indicano la lunghezza UTF-8, in ordine big-endian. Gli identificatori e il token sono esemplificativi. Il protocollo usa versione 2; il file dell'archivio ha una propria versione indipendente.
-
-### Creare o riaprire e hostare
-
-```cpp
-auto session = golarion::play::Session::createHost("host");
-const std::filesystem::path archive("session-identities.json");
-if (std::filesystem::exists(archive)) session.loadIdentityState(archive);
-else session.saveIdentityState(archive);
-const auto port = session.startHosting("0.0.0.0", 42500);
-const auto code = session.getSessionCode();
-// Keep the application alive while the backend worker runs.
-```
-
-Il tool console esegue questo percorso e stampa endpoint/codice. Accetta IP, porta e percorso opzionale dell'archivio. L'applicazione deve mantenere viva Session.
-
-### Entrare come nuovo Player
-
-Richiesta:
+Ingresso e risposta:
 
 ```json
-{"version":2,"type":"session.join","requestId":"j1","payload":{"sessionCode":"A7K2Q"}}
+{"version":3,"type":"session.join","requestId":"client-1","payload":{"sessionCode":"A7K2Q"}}
+{"version":3,"type":"request.accepted","requestId":"client-1","payload":{"result":{"userId":"user-example","permissions":7,"userToken":"0123456789abcdef"}}}
 ```
 
-Risposta:
+Comando già registrato e risultato, che può essere anche uno scalare o null:
 
 ```json
-{"version":2,"type":"request.accepted","requestId":"j1","payload":{"result":{"userId":"user-0011223344556677","role":"player","userToken":"a1b2c3d4e5f60718"}}}
+{"version":3,"type":"example.echo","requestId":"client-2","payload":{"value":12}}
+{"version":3,"type":"request.accepted","requestId":"client-2","payload":{"result":12}}
 ```
 
-Il client conserva il token. L'host conserva soltanto il suo hash e i dati dell'identità. Non si inviano nome visibile, ruolo scelto dal client o UserId scelto dal client.
-
-### Registrare e usare un comando
-
-Questo codice è illustrativo e appartiene a un sottosistema che riceve ResourceManager per riferimento. `demo.echo` non è un comando preinstallato nel tool host.
-
-```cpp
-resources.invoke<golarion::play::ProtocolManager::AddCommandSignature>("protocol.add_command", "demo.echo", golarion::play::Role::Player, [](const golarion::play::CommandContext &context, const nlohmann::json &payload)
-{
-    return nlohmann::json{{"actor", *context.userId}, {"echo", payload}};
-});
-```
-
-Richiesta dopo l'ammissione:
+Rifiuto di un comando senza i bit necessari:
 
 ```json
-{"version":2,"type":"demo.echo","requestId":"c1","payload":{"value":7}}
+{"version":3,"type":"request.rejected","requestId":"client-3","payload":{"code":"FORBIDDEN","message":"Non hai i permessi per eseguire questo comando."}}
 ```
 
-Risposta della callback illustrata:
+Archivio identità, con host distinto da un partecipante anche se entrambi avessero tutti i bit:
 
 ```json
-{"version":2,"type":"request.accepted","requestId":"c1","payload":{"result":{"actor":"user-0011223344556677","echo":{"value":7}}}}
+{"version":2,"hostId":"host","users":[{"userId":"host","permissions":63},{"userId":"user-example","permissions":18}],"tokens":[]}
 ```
 
-Un campo `userId` nel payload non sostituisce `context.userId`. I controlli specifici dell'operazione appartengono alla callback e al relativo dominio.
+I vecchi messaggi JSON v2 e gli archivi a ruoli v1 sono rifiutati, senza importazione o cancellazioni automatiche. In archivio si salvano hash dei token; l'esempio con tokens vuoto omette le credenziali. ClientSnapshot parte dai permessi dell'ammissione e si aggiorna con permissions.changed; permissions.get legge sempre lo stato server corrente. L'elenco partecipanti resta separato. Entrambi gli eseguibili devono supportare le notifiche: i precedenti client v3 accettavano soltanto risposte. Gli RPC sono descritti in session-permission-commands.md e le notifiche in session-events.md.
 
-### Permesso negato e comando non registrato
+## Modifica transazionale dei permessi
 
-Un Player che richiama un comando registrato con ruolo minimo Master riceve:
+```mermaid
+sequenceDiagram
+    participant App as Host locale o client delegato
+    participant PM as ProtocolManager
+    participant RM as ResourceManager
+    participant P as PermissionManager
+    participant F as Archivio identità
+    participant Target as Client interessato
+    App->>PM: sendCommand permissions.setPermission o applyPreset
+    PM->>RM: verifica ChangePermissions dell'attore corrente
+    PM->>RM: callback registrata da PermissionManager
+    RM->>PM: identity.updateUserPermissions
+    Note over PM,P: lock esecuzione, identità, poi permessi
+    PM->>P: variante WithCommit
+    P->>P: verifica bersaglio e prepara candidato
+    P->>F: callback salva utenti candidati e hash esistenti
+    alt Salvataggio riuscito
+        F-->>P: conferma
+        P->>P: installa candidato in memoria
+        P-->>PM: maschera risultante tramite coordinatore
+        opt Maschera effettivamente cambiata
+            PM->>RM: callback invoca protocol.sendEvent
+            RM->>PM: sendEvent(target, permissions.changed, payload)
+            PM->>PM: accoda sul ConnectionId corrente
+            PM-->>Target: thread Hosting trasmette la notifica
+            Target->>Target: processMessages, dispatch e updatePermissions
+        end
+        PM-->>App: risultato tramite risposta correlata o future locale
+    else Scrittura fallita
+        F-->>P: errore
+        P-->>App: COMMAND_FAILED, stato precedente conservato
+    end
+```
+
+I callback di commit non richiamano i manager. La stessa operazione funziona offline sull'host dopo aver configurato un archivio. Solo il bersaglio riceve la notifica; chi esegue il comando riceve il risultato ordinario. Non esiste un ordine globale di consegna fra due connessioni diverse: il diagramma indica la dipendenza dal commit. Un bersaglio offline riceve il valore corrente al resume. Gli errori di autorizzazione del dominio diventano FORBIDDEN, distinti dai payload errati INVALID_REQUEST. Le modifiche dirette ai manager restano operazioni fidate in memoria, senza salvataggio o evento automatico.
+
+## Ricezione di una notifica e convivenza con le risposte
+
+```mermaid
+sequenceDiagram
+    participant Sub as Sottosistema host
+    participant HP as ProtocolManager host
+    participant H as Thread Hosting
+    participant C as Thread ClientConnection
+    participant CP as ProtocolManager client
+    participant State as Stato client
+    Sub->>HP: sendEvent(userId, nome, payload), anche via RM
+    HP->>HP: risolve binding e accoda frame senza requestId
+    HP-->>Sub: true se accodato, false se non disponibile
+    H->>HP: prepareOutput richiama takeEvent
+    HP-->>H: frame della connessione corrente
+    H->>C: send TCP
+    C->>C: decodeMessage e processMessages
+    alt Risposta con requestId
+        C->>C: verifica ID pendente e completa il future
+    else Notifica senza requestId
+        C->>CP: dispatch(nome, contesto host corrente, payload)
+        CP->>CP: verifica connessione ammessa e lookup
+        CP->>State: callback permissions.changed aggiorna la maschera
+        Note over C,CP: risultato JSON ignorato, nessuna risposta
+    end
+```
 
 ```json
-{"version":2,"type":"request.rejected","requestId":"c2","payload":{"code":"FORBIDDEN","message":"Non hai i permessi per eseguire questo comando."}}
+{"version":3,"type":"permissions.changed","payload":{"userId":"user-example","permissions":23}}
 ```
 
-Un nome non registrato, per esempio `users.setRole` nel tool host corrente, riceve:
+Risposte e notifiche possono arrivare nello stesso blocco TCP o in frammenti. Gli eventi non consumano future e non rinnovano i timeout dei comandi. La coda ha un massimo di 64 notifiche e 256 KiB per connessione, oltre al frame in trasmissione; un overflow chiude il peer per consentire una risincronizzazione esplicita. Il binding sostituito non viene riusato per il nuovo socket. Nessuno storico delle notifiche viene salvato.
 
-```json
-{"version":2,"type":"request.rejected","requestId":"c3","payload":{"code":"UNKNOWN_COMMAND","message":"Comando non riconosciuto."}}
-```
+## Funzioni coinvolte e responsabilità
 
-In entrambi i casi il peer ammesso resta connesso. Prima dell'ammissione, un comando con soglia superiore ad Any riceve `FORBIDDEN`, mentre un nome sconosciuto riceve `UNKNOWN_COMMAND`; gli errori chiudono il peer anonimo. Un comando Any valido può invece rispondere senza attribuire un'identità.
+| Passaggio | Funzioni principali | Implementazione |
+| --- | --- | --- |
+| Facade applicativa | createHost/createClient, startHosting/stopHosting, joinSession/resumeSession, add_command, sendCommand/sendEvent | core/play/src/session.cpp: solo delega e costruzione dei manager. |
+| Registrazione | PermissionManager::registerCommands, ProtocolManager::registerAdmissionCommands/registerClientCommands, add_command/registerCommand | permission_commands.cpp, admission.cpp, protocol_manager.cpp: callback e requisiti, un registro per istanza. |
+| Avvio server | ProtocolManager::startHosting, Hosting::Impl constructor/run/poll | protocol_manager.cpp, hosting.cpp: listener e thread TCP. |
+| Collegamento client | ProtocolManager::startClient, ClientConnection::start/run/connect/sendRequest/receiveReply | protocol_manager.cpp, client_connection.cpp: connessione, ammissione e future. |
+| Ammissione sull'host | Hosting::acceptConnection/processInput, registerConnection, handleMessage/handleCommand, makeContext/dispatch, admitNewUser/resumeUser, bindUser | hosting.cpp, admission.cpp, protocol_manager.cpp: contesto, codice/token, persistenza e binding. |
+| Richiesta remota | ClientConnection::sendCommand/monitor, Hosting::receive/processInput, ProtocolManager::handleCommand/dispatch | client_connection.cpp, hosting.cpp, admission.cpp: richiesta correlata e verifica corrente dell'attore. |
+| Richiesta locale dell'host | ProtocolManager::sendCommand, LocalCommands::submit/run, dispatch | protocol_manager.cpp, local_commands.cpp: coda separata, esecuzione come hostId senza TCP. |
+| Mutazione persistente | changePermissions, identity.updateUserPermissions, ProtocolManager::updateUserPermissions, setPermissionWithCommit/applyPresetWithCommit, writeIdentityState | permission_commands.cpp, protocol_manager.cpp, permission_manager.cpp, identity_storage.cpp: commit prima dello stato confermato e della notifica. |
+| Risposta al comando | makeCommandReply/makeRejection, encodeMessage, Hosting::send, ClientConnection::processMessages | admission.cpp, protocol.cpp, hosting.cpp, client_connection.cpp: risultato/errore e completamento del future corretto. |
+| Notifica mirata | ProtocolManager::sendEvent/takeEvent, Hosting::prepareOutput/send, ClientConnection::processMessages, dispatch | protocol_manager.cpp, hosting.cpp, client_connection.cpp: stessa rete, percorso di ricezione distinto dalle risposte. |
+| Aggiornamento permessi client | callback di registerClientCommands, ClientConnection::updatePermissions, getClientState/snapshot | protocol_manager.cpp, client_connection.cpp: maschera dell'utente ammesso sotto mutex. |
+| Arresto e sostituzione | stopHosting, disconnectFromHost, closeConnection/bindUser, Hosting::stop, ClientConnection::stop | protocol_manager.cpp, hosting.cpp, client_connection.cpp: join, pulizia code e invalidazione della generazione precedente. |
 
-### Rientrare con la stessa identità
+## Esito della verifica strutturale
 
-Richiesta su una nuova connessione:
+I percorsi di comando, risposta e notifica condividono codec e trasporto; solo le richieste sull'host consultano PermissionManager. Il client non interpreta i propri bit come autorità. Le callback di modifica emettono dopo il commit, senza trattenere il mutex dei permessi. La coda di uscita evita di prendere hostingMutex dal callback; il riferimento attivo client evita di prendere clientMutex durante dispatch e lettura dello snapshot. I checkpoint dello stop restano davanti all'esecuzione delle richieste bufferizzate.
 
-```json
-{"version":2,"type":"session.resume","requestId":"r1","payload":{"sessionCode":"A7K2Q","userToken":"a1b2c3d4e5f60718"}}
-```
-
-Risposta, supponendo che nel frattempo il ruolo sia diventato Master:
-
-```json
-{"version":2,"type":"request.accepted","requestId":"r1","payload":{"result":{"userId":"user-0011223344556677","role":"master"}}}
-```
-
-Il token non viene emesso di nuovo. Dopo una ricostruzione di Session va fornito il nuovo codice corrente, insieme allo stesso token.
-
-### Salvare e fermare
-
-```cpp
-session.stopHosting();
-session.saveIdentityState(archive);
-```
-
-Lo stop attende il worker. Il salvataggio esplicito conserva anche eventuali successive modifiche dei ruoli: non esiste un autosave generale per ogni operazione.
-
-## Limiti già previsti e distinta copertura
-
-- Il tool host non registra ancora RPC concreti di RoleManager; le sue feature interne esistono, mentre `users.setRole` e lista utenti via rete sono passi successivi.
-- Il client nativo completa join/resume e conserva il token nel tool console; invio generico, eventi/broadcast, heartbeat e riconnessione automatica restano passi successivi. Vedi [session-client.md](session-client.md).
-- Il codice non è persistito né verificato da un registro condiviso dell'host. Questi aspetti sono già stati rinviati dall'utente.
-- Le callback sono sincrone e serializzate; una callback lunga ritarda altri peer e l'arresto. L'archivio richiede un solo writer per file.
-- `requestId` correla richiesta e risposta; non impedisce una doppia esecuzione se il client ripete la richiesta. Non esiste rollback generico delle callback.
-
-Per le API e i vincoli normativi leggere [session-commands.md](session-commands.md), [session-admission.md](session-admission.md), [session-tokens.md](session-tokens.md) e [protocol-manager.md](protocol-manager.md).
+Verifica eseguita con sedici suite CTest, incluse notifiche senza richieste pendenti, frame misti/frammentati, deadline, errori di persistenza, limiti della coda e stop concorrenti. Restano separati elenco/presenza utenti, riconnessione automatica, sincronizzazione delle schede, heartbeat e persistenza completa della partita. L'attuale recupero dei permessi usa resume con il token originale e la maschera completa corrente.

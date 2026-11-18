@@ -61,7 +61,7 @@ namespace
         auto client = Session::createClient();
         assert(host.getSessionCode().size() == 5);
         const auto state = client.getClientState();
-        assert(state.state == ClientConnectionState::Disconnected && !state.userId && !state.role);
+        assert(state.state == ClientConnectionState::Disconnected && !state.userId && !state.permissions);
         client.disconnectFromHost();
         client.disconnectFromHost();
         const auto rejectsMode = [](auto function)

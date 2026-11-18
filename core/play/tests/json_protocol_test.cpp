@@ -47,7 +47,7 @@ namespace
 
     Json envelope()
     {
-        return Json{{"version", 2}, {"type", "custom.command"}, {"requestId", "request-42"}, {"payload", Json::object()}};
+        return Json{{"version", 3}, {"type", "custom.command"}, {"requestId", "request-42"}, {"payload", Json::object()}};
     }
 
     void roundTripAndUtf8()
@@ -60,7 +60,7 @@ namespace
         const std::string text(bytes.begin() + 4, bytes.end());
         assert(text.find(unicode) != std::string::npos);
         const Json wire = Json::parse(text);
-        assert(wire.at("version") == 2);
+        assert(wire.at("version") == 3);
         assert(wire.at("type") == request.type);
         assert(wire.at("requestId") == *request.requestId);
         assert(wire.at("payload") == request.payload);
@@ -75,9 +75,9 @@ namespace
         expectMessage(*decodeMessage(bytes), event);
         assert(bytes.empty());
 
-        bytes = rawFrame(R"({"payload":{"targetUserId":"user-7","role":"spectator"},"requestId":"r1","type":"users.setRole","version":2})");
+        bytes = rawFrame(R"({"payload":{"targetUserId":"user-7","permissions":"spectator"},"requestId":"r1","type":"test.payload","version":3})");
         const auto independent = decodeMessage(bytes);
-        assert(independent && independent->type == "users.setRole");
+        assert(independent && independent->type == "test.payload");
         assert(independent->payload.at("targetUserId") == "user-7");
         assert(bytes.empty());
     }
@@ -130,7 +130,7 @@ namespace
             missing.erase(key);
             expectRejected(rawFrame(missing.dump()));
         }
-        for (const Json &version : std::array<Json, 10>{0, 1, 3, -1, 2.0, "2", true, nullptr, std::uint64_t{4294967298ULL}, std::numeric_limits<std::uint64_t>::max()})
+        for (const Json &version : std::array<Json, 10>{0, 1, 2, -1, 3.0, "3", true, nullptr, std::uint64_t{4294967298ULL}, std::numeric_limits<std::uint64_t>::max()})
         {
             Json invalid = valid;
             invalid["version"] = version;
@@ -170,13 +170,13 @@ namespace
     void invalidUtf8AndAmbiguousJson()
     {
         const std::string invalidUtf8(1, static_cast<char>(0xff));
-        expectRejected(rawFrame(std::string("{\"version\":2,\"type\":\"") + invalidUtf8 + "\",\"payload\":{}}"));
+        expectRejected(rawFrame(std::string("{\"version\":3,\"type\":\"") + invalidUtf8 + "\",\"payload\":{}}"));
         expectRejected(rawFrame(std::string("\xef\xbb\xbf") + envelope().dump()));
-        expectRejected(rawFrame(R"({"version":2,"type":"test","payload":{"text":"\uD800"}})"));
-        expectRejected(rawFrame(R"({"version":2,"type":"test","payload":{"number":1e400}})"));
-        expectRejected(rawFrame(R"({"version":1,"version":2,"type":"test","payload":{}})"));
-        expectRejected(rawFrame(R"({"version":2,"type":"test","payload":{"role":"player","role":"host"}})"));
-        auto siblings = rawFrame(R"({"version":2,"type":"test","payload":{"objects":[{"same":1},{"same":2}],"same":3}})");
+        expectRejected(rawFrame(R"({"version":3,"type":"test","payload":{"text":"\uD800"}})"));
+        expectRejected(rawFrame(R"({"version":3,"type":"test","payload":{"number":1e400}})"));
+        expectRejected(rawFrame(R"({"version":1,"version":3,"type":"test","payload":{}})"));
+        expectRejected(rawFrame(R"({"version":3,"type":"test","payload":{"permissions":"player","permissions":"host"}})"));
+        auto siblings = rawFrame(R"({"version":3,"type":"test","payload":{"objects":[{"same":1},{"same":2}],"same":3}})");
         assert(decodeMessage(siblings)->payload.at("same") == 3);
         assert(siblings.empty());
 
@@ -203,10 +203,10 @@ namespace
         assert(bytes.empty());
         const ProtocolMessage tooDeep{"deep", std::nullopt, Json{{"next", payload}}};
         assert(rejects([&] { encodeMessage(tooDeep); }));
-        Json document{{"version", 2}, {"type", "deep"}, {"payload", tooDeep.payload}};
+        Json document{{"version", 3}, {"type", "deep"}, {"payload", tooDeep.payload}};
         expectRejected(rawFrame(document.dump()));
         const std::string arrays = std::string(MaximumJsonNesting, '[') + "0" + std::string(MaximumJsonNesting, ']');
-        expectRejected(rawFrame("{\"version\":2,\"type\":\"deep\",\"payload\":{\"array\":" + arrays + "}}"));
+        expectRejected(rawFrame("{\"version\":3,\"type\":\"deep\",\"payload\":{\"array\":" + arrays + "}}"));
     }
 
     void frameLimitsAndLegacyRejection()

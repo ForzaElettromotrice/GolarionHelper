@@ -5,8 +5,9 @@
 
 namespace golarion::play
 {
-    Session::Session(UserId hostId) : protocolManager_(resourceManager_, SessionMode::Host), roleManager_(std::in_place, resourceManager_, std::move(hostId))
+    Session::Session(UserId hostId) : protocolManager_(resourceManager_, SessionMode::Host), permissionManager_(std::in_place, resourceManager_, std::move(hostId))
     {
+        permissionManager_->registerCommands();
     }
 
     Session::Session() : protocolManager_(resourceManager_, SessionMode::Client) {}
@@ -16,12 +17,7 @@ namespace golarion::play
 
     Session::~Session()
     {
-        try
-        {
-            if (roleManager_) stopHosting();
-            else disconnectFromHost();
-        }
-        catch (...) { } // Stop networking before any subsystem is destroyed.
+        protocolManager_.shutdown(); // Join all workers before permission providers are destroyed.
     }
 
     std::uint16_t Session::startHosting(std::string_view bindAddress, std::uint16_t port)
@@ -46,6 +42,10 @@ namespace golarion::play
 
     void Session::disconnectFromHost() { protocolManager_.disconnectFromHost(); }
     ClientSnapshot Session::getClientState() const { return protocolManager_.getClientState(); }
+    std::future<nlohmann::json> Session::sendCommand(std::string name, nlohmann::json payload) { return protocolManager_.sendCommand(std::move(name), std::move(payload)); }
+    void Session::add_command(std::string_view name, CommandRequirements requirements, ProtocolManager::CommandCallback callback) { protocolManager_.add_command(name, requirements, std::move(callback)); }
+    void Session::add_command(std::string_view name, ProtocolManager::CommandCallback callback) { protocolManager_.add_command(name, std::move(callback)); }
+    bool Session::sendEvent(const UserId &userId, std::string_view name, const nlohmann::json &payload) { return protocolManager_.sendEvent(userId, name, payload); }
 
     std::string Session::getSessionCode() const
     {
@@ -54,8 +54,8 @@ namespace golarion::play
 
     void Session::registerUser(UserId userId)
     {
-        if (!roleManager_) throw std::logic_error("user registration requires a host Session");
-        roleManager_->registerUser(std::move(userId));
+        if (!permissionManager_) throw std::logic_error("user registration requires a host Session");
+        permissionManager_->registerUser(std::move(userId));
     }
 
     std::string Session::issueUserToken(const UserId &userId)
