@@ -6,7 +6,15 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 ## Current State
 
-- Character-sheet backend is complete within the agreed scope; project/library version is `1.1.0`, adding generic enhancement groups and spell-effect export. Applying exported effects belongs to the game session's sheet manager. Free-text `notes` is exposed through `setNotes`, Data and View; save format is `42`, with empty notes for older saves. See the [Data/View audit and release scope](model/backend-v1.md). Complete datasets, frontend/full FFI and `core/play` completion remain separate.
+- Initial Inventario frontend layout is ready: silhouette/equipment slots on the left, expandable object/container hierarchy on the right, responsive stacking on narrow windows. This step is visual-only, with synthetic preview data; item commands/controller wiring are next. See [frontend](frontend.md).
+
+- Class frontend now has an Archetipi picker beside Privilegi ottenuti and removal controls for selected archetypes. The catalog helper is class-filtered, not compatibility-filtered; mutations remain request-only until controller integration. See [frontend](frontend.md).
+
+- Class frontend headers offer a favored-class star, an editable hit die per level and a corresponding favored-bonus selector below each eligible die, including combined-benefit symbols. All emit requests only and wait for a new authoritative View. See [frontend](frontend.md).
+
+- Permanent user class-skill grants now have dedicated add/remove sheet APIs, independent of Enhancements. `customClassSkill` is exposed in Data/View and saved in format 43; see [checks and health](model/checks-and-health.md). Frontend checkbox wiring remains deferred.
+
+- Character-sheet backend is complete within the agreed scope; project/library version is `1.1.0`, adding generic enhancement groups and spell-effect export. Applying exported effects belongs to the game session's sheet manager. Free-text `notes` is exposed through `setNotes`, Data and View; save format is `43`, with empty notes for older saves. See the [Data/View audit and release scope](model/backend-v1.md). Complete datasets, frontend/full FFI and `core/play` completion remain separate.
 
 - Pending-choice reporting is implemented across sheet subsystems. Class/racial choices declare whether they block advancement; feat selection remains atomic. Reports are derived and are not persisted. Blocking entries now prevent +1 class-level advancement. See [`model/pending-choices.md`](model/pending-choices.md).
 
@@ -16,12 +24,12 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 - Sheet-local custom item definitions now share the embedded item/effect JSON schema and the ordinary inventory runtime. Format 37 saves definitions before reconstructing instances, effects, choices and charges; see [`model/equipment.md`](model/equipment.md).
 
-- Cohesive public C++ parameters now use domain Definitions for modifiers, spell preparation/consumption, class choices, attack/specialization creation and enhancements. The Definition refactor preserves persistence; custom feat definitions and extra slots were added in format 39; the current format is 42; see [`model/operation-definitions.md`](model/operation-definitions.md).
+- Cohesive public C++ parameters now use domain Definitions for modifiers, spell preparation/consumption, class choices, attack/specialization creation and enhancements. The Definition refactor preserves persistence; custom feat definitions and extra slots were added in format 39; the current format is 43; see [`model/operation-definitions.md`](model/operation-definitions.md).
 
 - User-created `Enhancements` groups now support shared `EffectDefinition` entries with group-only activation, optional description/provenance, ordered application/reverse cleanup and format-42 persistence. Editing entries requires an inactive group; the old per-entry save schema is rejected without migration. Custom spell definitions are now supported separately; see [`model/enhancements.md`](model/enhancements.md).
 
 - `main` is the default development and GitHub branch. The game-host feature branch is `feat/game-host`; the previous `master` branch is retained separately.
-- The C++20 backend, persistence, Views, and a minimal opaque-handle C API are in place; frontend work remains deferred.
+- The C++20 backend, persistence, Views, and a minimal opaque-handle C API are in place. Qt Quick/QML frontend work has started with independent identity and ability-score panels and a sample-data preview; controller/session wiring remains deferred. See [frontend](frontend.md).
 - `core/` groups backend modules. The character-sheet engine lives in `core/sheet/`. Independent `core/play/` provides host/client Session modes, TCP hosting and asynchronous client admission, JSON dispatch, identity persistence and both console tools. Generic client commands, concrete role/sheet commands, user-list events, sheet bindings, full game persistence and frontend remain future work; see `game-management.md`. In-app chat/voice/video are outside scope.
 - `golarion::play::Session` is a container/facade with `createHost(hostId)` and `createClient()` factories. Both own ResourceManager/ProtocolManager; only hosts construct RoleManager and server credentials. The existing `Session(hostId)` remains a host constructor. Mode is immutable and separate from participant Role. Networking methods delegate; see `session-client.md` and `session-admission.md`.
 - The session ResourceManager lives in `core/play/` and implements typed function registration, invocation, and removal, with focused C++20 tests passing. Each Session has an independent registry. See `architecture.md` for the API and lifetime rules; the sheet-specific `golarion::ResourceManager` retains its existing responsibilities.
@@ -41,6 +49,18 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 ## Next Steps
 
+Review Classi, styled like Razza: class headers/levels, active features, archetypes/options and pending choices. Pending/completed choices open an option selector emitting individual add/remove requests; +/− Livello and Aggiungi classe now emit level requests, with advancement gating left to the backend. Archetype selection and removal are available through class-specific catalog requests. The preview opens Classi with synthetic multiclass data and acknowledges requests only. Razza has race/alternate-trait pickers, alternate removal and pending/completed choice editors; controller execution remains deferred for both. See [frontend](frontend.md).
+
+The generic/slot feat + now opens a minimal modal name picker matching the race picker, using the complete standard FeatDefinitionManager::toView() snapshot. Search and click-to-select are implemented as requests; detailed race/feat viewers are deferred. Acquisition, choices and local-custom merging remain separate. See [feats](model/feats.md) and [frontend](frontend.md).
+
+Review the new Lingue panel: granted/learned entries, origin-specific quotas and available-choice menu, with request-only learning/removal. Localized labels are supplied separately from the backend language IDs. See [frontend](frontend.md).
+
+Review the new Manovre frontend panel: ten maneuvers with BMC, DMC and shared info details, backed by synthetic CombatManeuversView fixtures. Controller wiring remains deferred; see [frontend](frontend.md).
+
+Review the Attacchi panel: + offers available routine definitions; selecting emits a creation request. Routines expand into slots and calculated attacks; the top-right info toggle adds inline details. Manual slots offer accepted candidates and emit assignment requests; automatic slots stay read-only. Preview requests are acknowledged without modifying the sheet. Controller wiring remains deferred. See [frontend](frontend.md).
+
+Frontend: identity, ability-score, skill, saving-throw, hit-point and defense panels are implemented with synthetic previews; controller/backend wiring remains deferred. Skills include specialization controls, pins, rank editing and details; saving throws are read-only with detail toggles. Review the defenses below HP next (immunities, RD, RE and vulnerabilities); damage/heal and temporary-pool commands currently emit requests only. Keep subsystem panels independent before aggregating screens or preparing the controller. See [frontend](frontend.md) for contracts and preview commands.
+
 Class-feature option source review now covers all 44 playable classes using only Golarion: 85 reusable sets, 2,617 templates and 91 bindings attach choices to 42 classes; ordinary Monk and Swashbuckler do not need independent non-feat permanent families here. Existing Data/View are reused. Benefits, eligibility and unsupported dependent/point-budget/creature families remain explicitly manual rather than fully automated; see [class options](model/class-options.md) for coverage and verification.
 
 Sheet advancement has explicit +1/-1 operations per class. `pendingChoices()` now collects typed completion reports with the agreed blocking policy; see [pending choices](model/pending-choices.md). `addClassLevel()` now rejects advancement while any blocking choice remains, before mutating the sheet; -1 and loading remain unaffected. No historical prerequisite snapshots are planned; replacement selections use current state.
@@ -57,10 +77,12 @@ Current focus: prepared, spontaneous, and flexible casting support consumption, 
 
 1. Add generic outgoing client commands, concrete role commands and connected-user snapshots/events in separate steps. Preserve the verified admission/stop behavior in `session-client.md` and `session-flows.md`. Host-wide code uniqueness/persistence and display names remain deferred.
 2. All 63 Golarion races are covered, including their listed alternatives and favored-class options. Review the marked manual remainders in [race catalog coverage](model/race-catalog.md) when the relevant datasets or endpoints become available; do not treat reminders as implemented mechanics.
-3. Generic enhancement groups and cast-result export are implemented: consumption returns target count, caster-frozen effects and optional metamagic, without refunding payment on export failure. Recipient application remains separate; see [spells.md](model/spells.md). Custom items, spells, feats and user-owned extra feat slots are implemented; await the user's next slice. Frontend editing remains deferred. Future sheet mutation APIs must maintain the feat recheck convention.
+3. Generic enhancement groups and cast-result export are implemented: consumption returns target count, caster-frozen effects and optional metamagic, without refunding payment on export failure. Recipient application remains separate; see [spells.md](model/spells.md). Custom items, spells, feats and user-owned extra feat slots are implemented. Frontend panels are being built separately with sample data; actual backend/controller wiring remains deferred. Future sheet mutation APIs must maintain the feat recheck convention.
 4. The ordinary Golarion feat catalog, 44 playable class definitions and supported finite class-feature option families are populated; revisit their marked manual portions separately. Prestige/NPC classes remain deferred. Archetype source review is complete for the discovered scope: 661 definitions are loaded and 103 source entries remain pending; revisit the explicit backend/source gaps in [coverage and next steps](model/archetype-catalog.md). Keep catalog browsing Views deferred. The race catalog browsing View remains a roadmap item; the requested race dataset coverage is now present.
 
 ## Context Structure
+
+- [`frontend.md`](frontend.md): Qt Quick/QML subsystem panels, identity editor, sample preview, verification and future controller boundary. Read before frontend changes.
 
 - [`model/README.md`](model/README.md): index of model subsystems. Start there, then read only the document relevant to the current change.
 - [`architecture.md`](architecture.md): cross-cutting architectural decisions and the session ResourceManager API/lifetime rules. Read before changing subsystem registration, ownership, persistence, Views, or the C boundary.
