@@ -39,11 +39,19 @@ Complete admission/command replies are resolved before following frames, indepen
 ./build/core/play/golarion_play_client.exe 127.0.0.1 42500 A7K2Q ./my-session-token.txt
 ```
 
-Run separate terminals with the current printed code. Host syntax is IP/port/[archive]; client syntax is IP/port/code/[token file], default client-token.txt. For another PC supply a reachable address and configure the host bind address appropriately. Linux names omit .exe. Both sides must be rebuilt for JSON v3.
+Run separate terminals with the current printed code. Host syntax is IP/port/[archive]/[name]; the optional name follows an explicit archive path. Client syntax is IP/port/code/[token file], default client-token.txt. For another PC supply a reachable address and configure the host bind address appropriately. Linux names omit .exe. Both sides must be rebuilt for JSON v3.
 
 A missing token file selects join; an existing valid file selects resume. The tool writes only the original 16 lowercase hex characters plus newline, never prints them, and reports effective flags as Italian Permesso1 through Permesso5/CambiaPermessi. No persistent preset label is inferred. Empty masks display nessuno. Invalid existing files fail before connecting and are preserved. Use one writer and one token file per participant/session. After discarding an archive, use a new token file.
 
 New credential output uses an owned temporary file prepared before admission, owner-only permissions where supported, flush/close/rename after success and cleanup on failure. No application-level acknowledgement or power-loss durability guarantee is added. Ctrl+C/SIGTERM requests orderly disconnect; ordinary remote closure/replacement exits with failure. The console remains an admission/monitoring tool with no generic command prompt or frontend. See development.md for CMake builds.
+
+## Desktop Campaigns
+
+The Qt controller uses the asynchronous Session client API and polls its futures and connection snapshot on the Qt event loop. A saved entry resumes with its original token, even when the user supplies a new address or code for that same stored campaign. Reusing an exact saved address and code via + Unisciti also resumes. Resume rejections stay visible and do not fall back to join. Only one connection is active per app process.
+
+Each admitted campaign is saved atomically in an individual JSON file under the application's per-user local data directory (`campaigns/`). Token values stay in C++ and files use owner read/write permissions. Disconnection preserves these records; a malformed entry stays on disk. Admission and the host archive remain authoritative for membership.
+
+Desktop hosts and named console hosts use `Session::registerSessionInfo` to register the authenticated, read-only `session.info` command. It accepts an empty object and returns `{"name":"..."}`. The desktop client requests it after admission. An unnamed or older host can omit the command; the client uses the known name or `Sessione <IPv4>:<port>` in that case. Join/resume envelopes and the host identity archive format remain on JSON v3 and format 2, respectively.
 
 ## Verification
 

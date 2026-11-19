@@ -96,7 +96,10 @@ namespace
 
 namespace golarion::play
 {
-    ProtocolManager::ProtocolManager(ResourceManager &resources, SessionMode mode) : resources_(resources), mode_(validatedMode(mode)), sessionCode_(mode_ == SessionMode::Host ? std::make_optional(SessionCode::generate()) : std::nullopt), userTokens_(mode_ == SessionMode::Host ? std::make_unique<detail::UserTokens>() : nullptr)
+    ProtocolManager::ProtocolManager(ResourceManager &resources, SessionMode mode, std::optional<SessionCode> hostCode)
+        : resources_(resources), mode_(validatedMode(mode)),
+          sessionCode_(mode_ == SessionMode::Host ? (hostCode ? hostCode : std::make_optional(SessionCode::generate())) : std::nullopt),
+          userTokens_(mode_ == SessionMode::Host ? std::make_unique<detail::UserTokens>() : nullptr)
     {
         if (mode_ == SessionMode::Client)
         {

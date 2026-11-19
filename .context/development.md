@@ -45,10 +45,10 @@ The focused run configures the root graph and builds both play tools plus all pl
 
 Expected Windows executable locations after the root build:
 
-    ./build/core/play/golarion_play_host.exe 127.0.0.1 42500 ./session-identities.json
+    ./build/core/play/golarion_play_host.exe 127.0.0.1 42500 ./session-identities.json "La Città Sommersa"
     ./build/core/play/golarion_play_client.exe 127.0.0.1 42500 A7K2Q ./my-session-token.txt
 
-Run separate terminals and replace the code with the one printed by the host. Host syntax is IPv4/port/[identity archive]; port zero requests an OS-assigned port. Client syntax is IPv4/port/code/[token file]. Linux names omit .exe. For LAN/VPN bind the host appropriately and use its reachable address on clients.
+Run separate terminals and replace the code with the one printed by the host. Host syntax is IPv4/port/[identity archive]/[session name]. The optional name follows an explicit archive path and appears in the desktop client. Port zero requests an OS-assigned port. Client syntax is IPv4/port/code/[token file]. Linux names omit .exe. For LAN/VPN bind the host appropriately and use its reachable address on clients.
 
 The host creates/loads its archive before listening; default is session-identities.json in its working directory. Client default is client-token.txt: missing selects join, existing valid selects resume. One token file belongs to one participant/session. JSON protocol is v3; identity archives are v2 with hostId, numeric permission masks and token hashes. Legacy formats are rejected without conversion or automatic deletion. Use fresh client credentials after discarding an archive. The tools configure no firewall/router rules.
 

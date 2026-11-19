@@ -4,7 +4,7 @@ Status: JSON v3 admission/commands and targeted permissions.changed notification
 
 ## Session Code and Connections
 
-SessionCode has exactly five ASCII A-Z/0-9 symbols, accepts lowercase by normalization and is generated once for a host ProtocolManager. It remains stable across that live Session's hosting restarts. Host-wide uniqueness/collision registry and persistence are deferred; a reconstructed Session generates another candidate. Clients need reachable IPv4, port and current code; resume additionally needs the original token.
+SessionCode has exactly five ASCII A-Z/0-9 symbols and accepts lowercase by normalization. A host ProtocolManager uses the code supplied by Session when available and otherwise generates a code for that object. The desktop app stores a code in each hosted campaign manifest and supplies it on reconstruction. Clients need a reachable IPv4, port and the campaign code. Resume additionally needs the original token. A host-wide uniqueness registry remains deferred.
 
 ProtocolManager owns logical ConnectionIds, pending records and active UserId bindings. registerConnection allocates nonzero monotonically increasing IDs. bindUser associates an identity verified by its caller and replaces any previous binding. makeContext checks existence/both directions; closed/replaced peers are not anonymous peers. closeConnection removes only the matching active association. getUserId remains ProtocolManager-only; Session delegates the other logical methods. No connection features are published through ResourceManager.
 

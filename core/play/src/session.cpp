@@ -5,7 +5,7 @@
 
 namespace golarion::play
 {
-    Session::Session(UserId hostId) : protocolManager_(resourceManager_, SessionMode::Host), permissionManager_(std::in_place, resourceManager_, std::move(hostId))
+    Session::Session(UserId hostId, std::optional<SessionCode> hostCode) : protocolManager_(resourceManager_, SessionMode::Host, hostCode), permissionManager_(std::in_place, resourceManager_, std::move(hostId))
     {
         permissionManager_->registerCommands();
     }
@@ -28,6 +28,16 @@ namespace golarion::play
     void Session::stopHosting()
     {
         protocolManager_.stopHosting();
+    }
+
+    void Session::registerSessionInfo(std::string name)
+    {
+        add_command("session.info", CommandRequirements{},
+            [name = std::move(name)](const CommandContext &, const nlohmann::json &payload)
+            {
+                if (!payload.empty()) throw ProtocolError(ProtocolErrorCode::InvalidRequest, "session.info requires an empty payload");
+                return nlohmann::json{{"name", name}};
+            });
     }
 
     std::future<ClientAdmission> Session::joinSession(std::string ip, std::uint16_t port, SessionCode code)

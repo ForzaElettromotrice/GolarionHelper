@@ -16,7 +16,7 @@ namespace golarion::play
     class Session final
     {
     public:
-        explicit Session(UserId hostId);
+        explicit Session(UserId hostId, std::optional<SessionCode> hostCode = std::nullopt);
         ~Session();
 
         static Session createHost(UserId hostId);
@@ -24,6 +24,7 @@ namespace golarion::play
 
         std::uint16_t startHosting(std::string_view bindAddress, std::uint16_t port);
         void stopHosting();
+        void registerSessionInfo(std::string name);
 
         std::future<ClientAdmission> joinSession(std::string ip, std::uint16_t port, SessionCode code);
         std::future<ClientAdmission> resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token);
