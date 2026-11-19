@@ -611,7 +611,8 @@ namespace golarion
                     for (const auto &[poolId, pool] : item.usagePools_)
                         pools.push_back({poolId, pool->capacity(), pool->remaining()});
                     return pools;
-                }()
+                }(),
+                .canStack = canStack(item)
             });
         }
 
@@ -1101,6 +1102,13 @@ namespace golarion
         return total;
     }
 
+    bool Inventory::canStack(const ItemInstance &item) const
+    {
+        const auto &definition = item.itemDefinition_.get();
+        return !equipment_.isEquipped(item.id_) && !definition.container && definition.effects.empty()
+            && definition.choices.empty() && definition.usagePools.empty();
+    }
+
     void Inventory::setItemQuantity(std::string_view itemId, int quantity)
     {
         if (quantity < 1)
@@ -1119,9 +1127,9 @@ namespace golarion
         {
             return;
         }
-        if (quantity != 1 && (definition.container.has_value() || equipment_.isEquipped(id)))
+        if (quantity != 1 && !canStack(item->second))
         {
-            throw std::invalid_argument("equipped items and container items must have quantity 1: " + id);
+            throw std::invalid_argument("non-stackable item must have quantity 1: " + id);
         }
 
         const ItemInstance replacement(ItemInstanceDefinition{

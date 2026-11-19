@@ -74,6 +74,7 @@ namespace golarion
         std::int64_t effectiveVolumeMilliliters(std::string_view itemId, std::optional<std::string_view> excludedItemId) const;
         std::int64_t effectiveVolumeMilliliters(std::string_view itemId, std::vector<std::string> &activeItemIds, std::optional<std::string_view> excludedItemId) const;
         void replaceRegisteredWeight(std::int64_t previousWeightGrams, std::int64_t newWeightGrams);
+        bool canStack(const ItemInstance &item) const;
         void load(const InventorySaveData &data);
 
         ResourceManager &resourceManager_;

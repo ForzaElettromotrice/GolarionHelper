@@ -71,6 +71,7 @@ int main()
     const auto equippedCloak = std::ranges::find(inventoryView.items, "cloak.home", &InventoryItemView::id);
     assert(equippedCloak != inventoryView.items.end());
     assert(equippedCloak->equipped);
+    assert(!equippedCloak->canStack);
     assert(equippedCloak->containerId == MainContainerId);
     const auto shoulderSlot = std::ranges::find(inventoryView.equipmentSlots, EquipmentSlot::Shoulders, &EquipmentSlotView::slot);
     assert(shoulderSlot != inventoryView.equipmentSlots.end());
