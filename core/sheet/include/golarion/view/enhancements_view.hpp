@@ -19,6 +19,7 @@ namespace golarion
         bool active;
         std::optional<std::string> description;
         std::optional<EnhancementOrigin> origin;
+        bool effectsEditable = false;
     };
 
     struct EnhancementsView

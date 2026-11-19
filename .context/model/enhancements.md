@@ -5,7 +5,7 @@ Read when changing user-created or received effects, group lifecycle, sheet APIs
 ## Definitions and ownership
 
 - `EnhancementGroupDefinition` contains ID, display name, ordered `EffectDefinition` entries, one `active` flag (default true), optional description and optional provenance.
-- `EnhancementOrigin` uses the closed `EnhancementOriginType` enum (Custom, Spell, Item, Ability), optional definition ID and source-sheet ID. Provenance is informational and grants no permissions.
+- `EnhancementOrigin` uses the closed `EnhancementOriginType` enum (Custom, Spell, Item, Ability), optional definition ID and source-sheet ID. Explicit Custom and absent provenance are treated as custom; other origins identify source-generated groups.
 - Individual effects no longer have an active flag or a separate EnhancementDefinition/Data wrapper. There is no per-entry activation API.
 - Runtime registration uses the shared `compileEffect` pipeline and its cleanup callbacks. Group/entry IDs are namespaced with length prefixes. `enhancementEffectId(groupId, effectId)` gives the runtime ID for explicit references between effects. Display names never identify registrations.
 - No extra destination/type allowlist is introduced. Shared schema/compiler and endpoint validation still apply; a source-dependent effect without its required runtime provider/context fails rather than bypassing validation.
@@ -13,7 +13,7 @@ Read when changing user-created or received effects, group lifecycle, sheet APIs
 ## Lifecycle
 
 - `CharacterSheet` exposes add/removeEnhancementGroup, add/removeEnhancement and `setEnhancementGroupActive(groupId, active)`. Each successful mutation rechecks feat prerequisites.
-- Add/remove individual effects is allowed only while the group is inactive. Activation applies the entire ordered sequence; deactivation and destruction clean up in reverse order. Repeated group activation/deactivation is idempotent.
+- Add/remove individual effects is allowed only for inactive custom groups. Initial creation and reconstruction can still populate effects for source-generated groups. The View exposes the derived effectsEditable flag. Activation applies the entire ordered sequence; deactivation and destruction clean up in reverse order. Repeated group activation/deactivation is idempotent.
 - A failed activation rolls back completed registrations and leaves the group inactive. Failed creation does not publish the group. Definitions are structurally validated while inactive; unavailable resources and live numeric evaluation are deferred to activation.
 - Numeric contributions/modifiers retain evaluation, negative-magnitude and circular-expression checks at activation. They retain ordinary live-expression and stacking behavior.
 - Keep dependent effects inside the same group and declare providers before consumers. External providers must outlive consumers, as for other source effects. There is no dependency graph across independent sources and no automatic ordering inferred from arbitrary resource strings.

@@ -64,6 +64,7 @@ namespace golarion
         bool possessionEffectsActive;
         std::string description;
         std::vector<ItemUsagePoolView> usagePools{};
+        bool canStack = false;
     };
 
     struct InventoryContainerView

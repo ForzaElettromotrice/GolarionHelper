@@ -70,6 +70,27 @@ int main()
         assert(resources.modifierTotal("str") == 4);
     }
     assert(resources.modifierTotal("str") == 0);
+    {
+        Enhancements enhancements(resources);
+        for (const auto origin : {EnhancementOriginType::Spell, EnhancementOriginType::Item, EnhancementOriginType::Ability})
+        {
+            enhancements.addGroup({"received", "Ricevuto", {bonus("original", "2")}, false, std::nullopt, EnhancementOrigin{origin}});
+            assert(!enhancements.toView().groups[0].effectsEditable);
+            rejects([&] { enhancements.add("received", bonus("extra", "1")); });
+            rejects([&] { enhancements.remove("received", "original"); });
+            assert(enhancements.toData().groups[0].enhancements.size() == 1);
+            enhancements.setGroupActive("received", true);
+            assert(resources.modifierTotal("str") == 2);
+            enhancements.removeGroup("received");
+            assert(resources.modifierTotal("str") == 0);
+        }
+        enhancements.addGroup({"custom", "Personalizzato", {}, false, std::nullopt, EnhancementOrigin{EnhancementOriginType::Custom}});
+        assert(enhancements.toView().groups[0].effectsEditable);
+        enhancements.add("custom", bonus("extra", "1"));
+        enhancements.remove("custom", "extra");
+        enhancements.setGroupActive("custom", true);
+        assert(!enhancements.toView().groups[0].effectsEditable);
+    }
     // Dependent effects are applied in declaration order, not ID order.
     Spellcastings castings(resources);
     const auto castingId = enhancementEffectId("castingGroup", "zProvider");

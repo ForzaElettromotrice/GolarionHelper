@@ -62,6 +62,7 @@ int main()
     inventory.setItemQuantity("rope.main", 3);
     assert(encumbrance.toView().totalWeightGrams == 15000);
     assert(inventory.toView().items.front().quantity == 3);
+    assert(inventory.toView().items.front().canStack);
     assert(throwsInvalidArgument([&] { inventory.setItemQuantity("rope.main", 0); }));
     assert(throwsInvalidArgument([&] { inventory.setItemQuantity("missing", 1); }));
     inventory.setItemQuantity("rope.main", 1);
@@ -205,6 +206,7 @@ int main()
     assert(inventoryView.equipmentSlots.size() == 14);
     const auto bagView = std::ranges::find(inventoryView.items, "bag.1", &InventoryItemView::id);
     assert(bagView != inventoryView.items.end());
+    assert(!bagView->canStack);
     assert(bagView->ownedContainerId == "item.bag.1");
     assert(bagView->effectiveWeightGrams == 7500);
     const auto hiddenBackpackView = std::ranges::find(inventoryView.items, "backpack.hidden", &InventoryItemView::id);
