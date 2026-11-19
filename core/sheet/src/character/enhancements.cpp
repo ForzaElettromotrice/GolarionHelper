@@ -46,7 +46,7 @@ namespace golarion
             if (data_.origin->definitionId) data_.origin->definitionId = normalize(*data_.origin->definitionId);
             if (data_.origin->sourceSheetId) data_.origin->sourceSheetId = normalize(*data_.origin->sourceSheetId);
         }
-        for (auto &effect : definition.enhancements) add(std::move(effect));
+        for (auto &effect : definition.enhancements) appendEffect(std::move(effect));
         setActive(definition.active);
     }
 
@@ -80,9 +80,26 @@ namespace golarion
         catch (...) { deactivate(); throw; }
     }
 
+    bool EnhancementGroup::effectsEditable() const
+    {
+        return !data_.active && (!data_.origin || data_.origin->type == EnhancementOriginType::Custom);
+    }
+
+    void EnhancementGroup::requireEditableEffects() const
+    {
+        if (effectsEditable()) return;
+        if (data_.active) throw std::invalid_argument("cannot edit an active enhancement group");
+        throw std::invalid_argument("cannot edit a source-generated enhancement group");
+    }
+
     void EnhancementGroup::add(EffectDefinition definition)
     {
-        if (data_.active) throw std::invalid_argument("cannot edit an active enhancement group");
+        requireEditableEffects();
+        appendEffect(std::move(definition));
+    }
+
+    void EnhancementGroup::appendEffect(EffectDefinition definition)
+    {
         // Reuse the shared structural schema; resource references are checked on activation.
         definition = effectDefinitionFromJson(effectDefinitionToJson(definition));
         const auto id = effectId(definition);
@@ -94,7 +111,7 @@ namespace golarion
 
     void EnhancementGroup::remove(std::string_view id)
     {
-        if (data_.active) throw std::invalid_argument("cannot edit an active enhancement group");
+        requireEditableEffects();
         const auto normalized = normalize(id);
         const auto found = std::ranges::find_if(data_.enhancements, [&](const auto &effect) { return effectId(effect) == normalized; });
         if (found == data_.enhancements.end()) throw std::invalid_argument("unknown enhancement ID");
@@ -105,7 +122,7 @@ namespace golarion
 
     EnhancementGroupView EnhancementGroup::toView() const
     {
-        EnhancementGroupView view{data_.id, data_.name, {}, data_.active, data_.description, data_.origin};
+        EnhancementGroupView view{data_.id, data_.name, {}, data_.active, data_.description, data_.origin, effectsEditable()};
         for (const auto &effect : data_.enhancements)
             view.enhancements.push_back({effect, data_.active ? numericValue(effect, resources_) : std::nullopt});
         return view;

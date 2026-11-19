@@ -20,6 +20,9 @@ namespace golarion
         EnhancementGroupView toView() const;
 
     private:
+        bool effectsEditable() const;
+        void requireEditableEffects() const;
+        void appendEffect(EffectDefinition definition);
         void deactivate();
         ResourceManager &resources_;
         EnhancementGroupData data_;
