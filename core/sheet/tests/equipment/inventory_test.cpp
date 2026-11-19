@@ -59,6 +59,12 @@ int main()
     encumbranceView = encumbrance.toView();
     assert(encumbranceView.totalWeightGrams == 5000);
     assert(encumbranceView.weights.size() == 1);
+    inventory.setItemQuantity("rope.main", 3);
+    assert(encumbrance.toView().totalWeightGrams == 15000);
+    assert(inventory.toView().items.front().quantity == 3);
+    assert(throwsInvalidArgument([&] { inventory.setItemQuantity("rope.main", 0); }));
+    assert(throwsInvalidArgument([&] { inventory.setItemQuantity("missing", 1); }));
+    inventory.setItemQuantity("rope.main", 1);
     inventory.moveItem("rope.main");
     assert(encumbrance.toView().totalWeightGrams == 5000);
     assert(throwsInvalidArgument([&inventory]
@@ -93,6 +99,7 @@ int main()
     });
     encumbranceView = encumbrance.toView();
     assert(encumbranceView.totalWeightGrams == 6000);
+    assert(throwsInvalidArgument([&] { inventory.setItemQuantity("backpack.1", 2); }));
     inventory.addItem(ItemInstanceDefinition{
         .id = "rope.backpack",
         .itemDefinitionId = "hempRope15m",
@@ -332,6 +339,12 @@ int main()
     assert(rollbackResourceManager.modifierTotal("savingThrow.all") == 0);
     assert(rollbackInventory.toView().items.empty());
     assert(rollbackEncumbrance.toView().totalWeightGrams == 0);
+    rollbackInventory.addContainer({.id = "limited", .name = "Deposito",
+        .maximumContentsWeightGrams = 5000, .contributesToCarriedWeight = true});
+    rollbackInventory.addItem({.id = "rope", .itemDefinitionId = "hempRope15m"}, "limited");
+    assert(throwsInvalidArgument([&] { rollbackInventory.setItemQuantity("rope", 2); }));
+    assert(rollbackInventory.toView().items.front().quantity == 1);
+    assert(rollbackEncumbrance.toView().totalWeightGrams == 5000);
 
     return 0;
 }

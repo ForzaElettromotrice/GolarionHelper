@@ -40,6 +40,7 @@ namespace golarion
         void unequip(std::string_view itemId, std::optional<std::string> containerId = std::nullopt);
         void moveItem(std::string_view itemId, std::optional<std::string> containerId = std::nullopt);
         void removeItem(std::string_view itemId);
+        void setItemQuantity(std::string_view itemId, int quantity);
         void refillUsagePool(std::string_view itemId, std::string_view poolId);
         void restoreUsagePool(std::string_view itemId, std::string_view poolId, int amount);
         void addMoney(CoinDenomination denomination, int quantity, std::string_view containerId);
@@ -72,7 +73,6 @@ namespace golarion
         std::int64_t effectiveVolumeMilliliters(std::string_view itemId) const;
         std::int64_t effectiveVolumeMilliliters(std::string_view itemId, std::optional<std::string_view> excludedItemId) const;
         std::int64_t effectiveVolumeMilliliters(std::string_view itemId, std::vector<std::string> &activeItemIds, std::optional<std::string_view> excludedItemId) const;
-        void replaceCoinQuantity(std::string_view itemId, int quantity);
         void replaceRegisteredWeight(std::int64_t previousWeightGrams, std::int64_t newWeightGrams);
         void load(const InventorySaveData &data);
 

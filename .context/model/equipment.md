@@ -2,6 +2,8 @@
 
 Read this document when changing item definitions, inventory, containers, money, or equipped state.
 
+`setItemQuantity(itemId, quantity)` sets an absolute positive quantity on an existing inventory instance and is exposed by CharacterSheet. It preserves identity/location, validates container and ancestor constraints, refreshes carried weight, and rolls back quantity on failure. Container items, equipped items and instances with effects, choices or usage pools remain single-unit. Money operations reuse this path; save format is unchanged.
+
 ## Custom definitions
 
 - `CharacterSheet::addCustomItemDefinition(ItemDefinition)` registers an immutable definition in a sheet-owned `ItemCatalog`. The usual `addItem(ItemInstanceDefinition, containerId)` creates instances of either custom or embedded definitions, with no separate custom-item runtime.
