@@ -1,6 +1,18 @@
-# Desktop Sheet Frontend
+# Desktop Frontend
 
-Read before adding panels or wiring the future controller. The selected stack is Qt 6 / Qt Quick / QML, initially targeting Windows and Linux. Phone layouts and packaging are deferred.
+Read before working on the application window, adding panels or wiring controllers. The selected stack is Qt 6 / Qt Quick / QML, initially targeting Windows and Linux. Phone layouts and packaging are deferred.
+
+## Desktop application
+
+`frontend/app/` defines the `Golarion.App` QML module and the `golarion_helper` executable. The main window uses Qt Quick Controls Basic with a light, neutral palette. The home page stacks two large tiles on the left and scrolls when the window is short. Schede is a disabled placeholder. The toolbar's right-hand field starts at Daniele and is directly editable. Its value is shared across pages for the current application run.
+
+Sessioni opens a scrollable Campagne list. + Aggiungi offers Crea campagna and Unisciti con IP e codice. The creation form saves a name locally and adds a Da avviare row. Opening a hosted campaign shows its copyable invitation code next to the top-right Avvia hosting control and a numeric port field (default 42500) in the page. At narrow widths the actions use a second toolbar row. Avvio in corso disables repeat starts and navigation while the controller starts the host in a background task. A successful start replaces Avvia hosting with Ferma hosting and shows the copyable endpoint. Tailscale appears first when available and other endpoints are in a dropdown. A failed start leaves the campaign open for retry. Stopping returns to Campagne. See [desktop hosting](game-management.md#desktop-hosted-campaigns) for storage and lifecycle.
+
+The join form accepts numeric IPv4 with an optional port (default 42500) and the five-character session code. Desktop hosts reuse the same saved code across starts. A joined row opens the form with its last address and code so they can be updated when needed. Errors remain beside the form with the entered values available for retry. Successful admission opens the session page with its title and Disconnetti in the right-hand corner. Disconnect or loss of connection returns to Campagne. See [client sessions](session-client.md#desktop-campaigns) for title lookup, persistence and credential behavior.
+
+Configure the [root build](development.md#required-project-build-entry-point) with `GOLARION_BUILD_FRONTEND=ON` and a Qt 6.5+ kit matching the compiler, then run `cmake --build build --target golarion_helper`. With Ninja and Qt's default output directories, the executable is under `build/frontend/` on Windows and `build/frontend/app/` on Linux. On Windows, make the chosen Qt kit's `bin` directory and the OpenSSL Crypto runtime available on PATH. The standalone frontend build also provides this target, with the executable at `build/ui-preview/golarion_helper.exe` on Windows.
+
+Verified on Windows with Qt 6.8.3 and MSVC. `golarion_session_controller_test` exercises offline creation and reopening, pending navigation guards, port conflicts, a second window opening the same archive, title publication, and identity-preserving resume after stopping and reopening the host. The join and disconnect tests remain in the same suite. The QML interaction smoke test checks the starting state, endpoint selection, and which values the copy controls submit.
 
 ## Composition and ownership
 
@@ -224,5 +236,3 @@ Qt Quick Test covers initial/empty snapshots, keyboard and button interaction, n
 Verified on 2026-11-14 with Qt 6.12 on Arch: standalone and root-integrated frontend targets build; both CTest runs pass. QML lint reports no warnings. Offscreen preview startup produces no runtime errors, and wide/narrow renders were inspected. Long appearance text expands without overlapping actions. No backend or `core/play` tests were run for this UI-only change; their sources are unchanged.
 
 The shared `sheet_panels_test` target checks the ability table's six rows and three columns, enum ordering, supplied values, missing records, compact width, hover editing, Enter/exit confirmation, Escape, invalid values, external base conflicts and detail toggling/layout without submitting edits. Identity interaction tests remain unchanged.
-
-Next, review the skill table and agree its interactions with the user. Do not preemptively add other panels, a controller, backend mutations, networking or persistence. No commit/push is implied by frontend implementation requests.

@@ -1,6 +1,6 @@
 # Game Management and Application Communication
 
-Status: targeted live permission notifications added 2026-11-18 to PermissionManager, JSON v3 admission/sendCommand and transactional permission RPCs. Archives remain version 2. User presence events, sheet commands, display names and frontend remain deferred.
+Status: targeted live permission notifications are integrated with JSON v3 admission/sendCommand and transactional permission RPCs. Archives remain version 2. The desktop app creates local campaigns, starts and stops their hosts, and joins or resumes saved campaigns. User presence events, sheet commands and participant display names remain deferred.
 
 ## Confirmed Requirements
 
@@ -11,7 +11,7 @@ Status: targeted live permission notifications added 2026-11-18 to PermissionMan
 - Direct Internet access requiring network configuration, or a VPN, is acceptable for the initial version. A managed online relay or always-on dedicated server is not required.
 - Participants may import sheets created locally in the application and interact with assigned/shared sheets according to explicit permissions and bindings. Master/Player/Spectator are configurable permission presets; their names alone must not authorize sheet operations. Concrete sheet permissions remain undefined behind the current placeholder flags.
 - Communication currently means inter-application networking for joining and interacting with a shared game. In-app chat, voice, and video are outside the current scope.
-- Implementation proceeds in small backend-only steps. Session, managers, admission/sendCommand, both console tools, permission RPCs and targeted permission notifications are implemented. User presence events, sheet commands and frontend remain separate.
+- Implementation proceeds in small steps. Session, managers, admission/sendCommand, both console tools, permission RPCs and targeted permission notifications are implemented. The desktop app exposes the host and admission lifecycles. User presence events and sheet commands are separate steps.
 - The implemented rules engine remains Pathfinder 1e. The user's general reference to DnD does not select another ruleset.
 
 ## Confirmed Structural Decisions for Later Steps
@@ -21,7 +21,7 @@ Status: targeted live permission notifications added 2026-11-18 to PermissionMan
 - Session is a facade: ProtocolManager implements logical binding/context/lifecycle, credentials and admission. No ConnectionManager is introduced. PermissionManager owns all users/masks and is consumed through ResourceManager. UserId is shared in user_id.hpp.
 - Host PermissionManager publishes twelve permissions.* features and registers three command adapters through protocol.add_command. ProtocolManager exposes identity.updateUserPermissions and protocol.sendEvent; clients register host-notification callbacks through their own protocol.add_command feature. ClientSnapshot refreshes on permissions.changed after effective committed changes. See session-events.md.
 - Session is the local hosting entry point: start/stop delegates to ProtocolManager's private Hosting implementation, without polling. Pending peers join/resume via JSON; admitted sockets execute registered commands and remain open after ordinary errors. Destruction stops hosting before provider teardown. Lifecycle operations belong outside command callbacks; see `session-admission.md` and `session-commands.md`.
-- A session has a generated five-character SessionCode candidate using `A-Z` and `0-9`; local verification accepts lowercase by normalization. ProtocolManager owns the value and Session delegates its display getter. It will accompany IP/port during admission. The user explicitly deferred the shared host registry and persistence: uniqueness among sessions of one host remains a requirement, not a current guarantee.
+- A session uses a five-character SessionCode with `A-Z` and `0-9`. Verification accepts lowercase by normalization. Desktop hosts supply the campaign's saved code to Session and ProtocolManager. Host-wide uniqueness remains deferred.
 - The implemented model stores immutable Host UserId separately from flags. Host owns all six permissions. New users receive Player flags. Presets have no hierarchy; host alone grants/revokes ChangePermissions, delegates change only other non-host users, and presets replace ordinary bits while preserving that flag.
 - Permission::Any = 0 explicitly selects public command access for registered join/resume; it is not assignable. A zero PermissionSet requirement instead needs an authenticated registered user. Unknown/stale contexts reject, and identity never comes from payload. All requests reuse the common dispatcher.
 - Communication uses framed JSON v3 over TCP. Original eight-byte credentials identify participants within their archive across reconnect/restart; host resolves their current permissions. Both peers must use the new wire version.
@@ -36,18 +36,24 @@ Status: targeted live permission notifications added 2026-11-18 to PermissionMan
 
 - `core/play/` is an independent C++20 module built as `golarion_play`, with nlohmann_json 3.12, OpenSSL Crypto 3.0+, standard threads, and native sockets. It has no sheet/frontend dependency and can be built standalone.
 - Both Session modes own ResourceManager/ProtocolManager; only hosts initialize optional PermissionManager. All workers are stopped/joined before provider teardown.
-- golarion_play_host <IPv4 address> <port> [identity archive] uses createHost, loads/creates the archive and waits for Ctrl+C. golarion_play_client <IPv4 address> <port> <code> [token file] uses createClient and joins/resumes with its original token. Both workers progress networking automatically; see `development.md`.
+- golarion_play_host uses createHost, loads/creates the archive and waits for Ctrl+C. It can expose an optional session name to admitted clients. golarion_play_client uses createClient and joins/resumes with its original token. Both workers progress networking automatically. See [development](development.md#host-and-client-tools) for syntax.
 - Accepted sockets start pending; registered Any join/resume callbacks verify code/token, persist/register Player flags or restore current masks, and retain admitted peers. Successful generic public commands do not extend pending expiry. Ordinary admitted errors keep sockets open; framing/pending failures close them.
 - Connection/lifecycle state is synchronized. Stop joins the network worker and releases peers/bindings while retaining permissions, tokens and the ID counter. Local commands remain available; shutdown joins them before provider destruction.
 - Native admission and host/client sendCommand are implemented. The host queues local dispatch even offline; an admitted client sends correlated requests with bounded completion. User events and reconnect policy remain separate. Legacy Game/network and their old tests/client were removed; the current console still exposes admission/monitoring only, documented in `session-client.md`.
 - Sixteen native play suites pass through the root CMake build on Windows, including RPC transactions, targeted live events, mixed replies, queue limits, full host reconstruction and prior stop/identity regressions. Outputs are build/core/play; POSIX remains unverified.
 
+## Desktop Hosted Campaigns
+
+The desktop controller saves each owned campaign under its stable UUID in the local `campaigns/` directory, with a name and a generated invitation code in `campaign.json`. Avvia hosting loads the code and loads or initializes `identities.json` in the same directory using the UUID as the host UserId. A lock prevents multiple app instances from running the same campaign archive concurrently.
+
+The Qt controller runs archive locking, session preparation, opening the IPv4 listener and collecting invitation addresses in a background task. It publishes the completed result on the GUI thread. The host uses the requested port and reports the actual bound port. The campaign name is published through `Session::registerSessionInfo`. Opening the campaign displays the exact saved code. For an older manifest missing a code, opening the page saves one atomically under the hosting lock before showing it. Participants keep their original credential and update the code once in that case.
+
 ## Proposed Game Model and Lifecycle
 
 Keep the persistent game and live connection state distinct:
 
-- Session owns its registry/managers and asks PermissionManager to register commands during host setup. Admission and permission mutations persist through the existing identity transaction pattern. Name/settings, sheet commands/bindings and full game persistence remain deferred.
-- Hosting lifecycle: starting/stopping the server is implemented through Session delegations to ProtocolManager; persistent membership and session state must be designed separately from live connections.
+- Session owns its registry/managers and asks PermissionManager to register commands during host setup. Admission and permission mutations persist through the existing identity transaction pattern. Campaign names and identities have desktop storage. Other settings, sheet commands/bindings and full game persistence remain deferred.
+- Starting and stopping a saved campaign reuses Session delegations to ProtocolManager. Persistent membership follows the identity archive independently of live connections.
 - Participant: stable identity, effective permission mask and credentials. Display names remain deferred and descriptive. Client state contains its own admitted identity and latest mask received through permissions.changed.
 - `Presence`: current connection and synchronization status. Disconnecting does not remove membership, sheet assignments, or control permissions.
 - `SheetBinding`: game-owned sheet ID, permitted controllers/readers, publication policy, and revision, wrapping the existing `CharacterSheet`.

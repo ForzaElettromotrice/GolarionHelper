@@ -44,7 +44,7 @@ namespace golarion::play
         using AddClientCommandSignature = void(std::string_view, CommandCallback);
         using SendEventSignature = bool(const UserId &, std::string_view, const nlohmann::json &);
 
-        explicit ProtocolManager(ResourceManager &resources, SessionMode mode = SessionMode::Host);
+        explicit ProtocolManager(ResourceManager &resources, SessionMode mode = SessionMode::Host, std::optional<SessionCode> hostCode = std::nullopt);
         ~ProtocolManager();
         ProtocolManager(const ProtocolManager &) = delete;
         ProtocolManager &operator=(const ProtocolManager &) = delete;

@@ -10,7 +10,7 @@ include(CTest)
 
 add_subdirectory(core)
 
-option(GOLARION_BUILD_FRONTEND "Build the Qt Quick sheet panel preview" OFF)
+option(GOLARION_BUILD_FRONTEND "Build the Qt Quick desktop application and sheet panel preview" OFF)
 if(GOLARION_BUILD_FRONTEND)
     add_subdirectory(frontend)
 endif()
