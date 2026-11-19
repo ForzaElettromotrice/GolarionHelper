@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
+import QtCore
 import QtQuick.Controls
 import QtQuick.Layouts
 import Golarion.App
@@ -91,7 +92,6 @@ ApplicationWindow {
                     id: displayNameField
                     Layout.preferredWidth: 180
                     visible: !window.inSession
-                    text: "Daniele"
                     placeholderText: qsTr("Nome")
                     Accessible.name: qsTr("Nome visualizzato")
                     horizontalAlignment: TextInput.AlignRight
@@ -174,7 +174,13 @@ ApplicationWindow {
 
         CampaignsPage {
             controller: window.sessionController
+            localName: displayNameField.text
         }
+    }
+
+    Settings {
+        category: "Profile"
+        property alias displayName: displayNameField.text
     }
 
     Connections {
@@ -234,7 +240,6 @@ ApplicationWindow {
                     Layout.fillWidth: joinedPage.availableWidth < 540
                     Layout.alignment: Qt.AlignTop
                     participants: window.sessionController.participants
-                    localName: displayNameField.text
                 }
             }
         }

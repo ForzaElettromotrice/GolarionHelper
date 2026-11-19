@@ -3,6 +3,7 @@
 #include "golarion/play/user_id.hpp"
 
 #include <cstdint>
+#include <string>
 #include <vector>
 
 namespace golarion::play
@@ -12,6 +13,7 @@ namespace golarion::play
     {
         UserId userId;
         bool isHost = false;
+        std::string displayName;
 
         bool operator==(const ParticipantInfo &) const = default;
     };

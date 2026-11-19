@@ -27,9 +27,10 @@ namespace golarion::play
         std::uint16_t startHosting(std::string_view bindAddress, std::uint16_t port);
         void stopHosting();
         void registerSessionInfo(std::string name);
+        void setHostDisplayName(std::string displayName);
 
-        std::future<ClientAdmission> joinSession(std::string ip, std::uint16_t port, SessionCode code);
-        std::future<ClientAdmission> resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token);
+        std::future<ClientAdmission> joinSession(std::string ip, std::uint16_t port, SessionCode code, std::string displayName = "Giocatore");
+        std::future<ClientAdmission> resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token, std::optional<std::string> displayName = std::nullopt);
         void disconnectFromHost();
         ClientSnapshot getClientState() const;
         SessionView toView() const;

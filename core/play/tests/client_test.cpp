@@ -265,7 +265,7 @@ namespace
     {
         Json result{{"userId", "alice"}, {"permissions", 7}};
         if (withToken) result["userToken"] = "0123456789abcdef";
-        return Json{{"version", 3}, {"type", "request.accepted"}, {"requestId", request.at("requestId")}, {"payload", {{"result", std::move(result)}}}};
+        return Json{{"version", 4}, {"type", "request.accepted"}, {"requestId", request.at("requestId")}, {"payload", {{"result", std::move(result)}}}};
     }
 
     class ScriptedHost final
@@ -293,7 +293,7 @@ namespace
                 check(size > 0 && size <= 65536, "client sent an invalid frame size");
                 const auto document = readExact(peer, size);
                 const auto request = Json::parse(document.begin(), document.end());
-                check(request.at("version") == 3 && request.at("requestId").is_string(), "client sent an invalid envelope");
+                check(request.at("version") == 4 && request.at("requestId").is_string(), "client sent an invalid envelope");
                 script(peer, request);
                 while (!stop_)
                 {
@@ -326,7 +326,7 @@ namespace
             ScriptedHost server([&](const auto &socket, const Json &request)
             {
                 auto bytes = frame(accepted(request));
-                const auto extra = frame(Json{{"version", 3}, {"type", "unsupported.event"}, {"payload", Json::object()}});
+                const auto extra = frame(Json{{"version", 4}, {"type", "unsupported.event"}, {"payload", Json::object()}});
                 if (delivery == 1)
                 {
                     writeBytes(socket, bytes);
@@ -359,7 +359,7 @@ namespace
     {
         ScriptedHost server([](const auto &socket, const Json &request)
         {
-            check(request.at("type") == "session.join" && request.at("payload") == Json{{"sessionCode", "A7K2Q"}}, "client sent the wrong join payload");
+            check(request.at("type") == "session.join" && request.at("payload") == Json{{"sessionCode", "A7K2Q"}, {"displayName", "Giocatore"}}, "client sent the wrong join payload");
             const auto bytes = frame(accepted(request));
             writeBytes(socket, {bytes.begin(), bytes.begin() + 2});
             std::this_thread::sleep_for(10ms);
@@ -377,6 +377,7 @@ namespace
             [](auto &reply) { reply["type"] = "session.joined"; },
             [](auto &reply) { reply["version"] = 1; },
             [](auto &reply) { reply["version"] = 2; },
+            [](auto &reply) { reply["version"] = 3; },
             [](auto &reply) { reply["payload"]["extra"] = true; },
             [](auto &reply) { reply["payload"]["result"]["permissions"] = "any"; },
             [](auto &reply) { reply["payload"]["result"]["permissions"] = "administrator"; },
@@ -414,7 +415,7 @@ namespace
             [](const auto &request) { return std::string("\xef\xbb\xbf") + accepted(request).dump(); },
             [](const auto &request) { return accepted(request).dump() + " false"; },
             [](const auto &request) { return replaced(accepted(request).dump(), "alice", std::string(1, static_cast<char>(0xff))); },
-            [](const auto &request) { return replaced(accepted(request).dump(), "\"version\":3", "\"version\":3,\"version\":3"); },
+            [](const auto &request) { return replaced(accepted(request).dump(), "\"version\":4", "\"version\":4,\"version\":4"); },
             [](const auto &request) { return replaced(accepted(request).dump(), "\"userId\":\"alice\"", "\"userId\":\"alice\",\"userId\":\"eve\""); },
             [](const auto &request) { return replaced(accepted(request).dump(), "alice", "a\\u0000b"); },
             [](const auto &request) { auto reply = accepted(request); reply["extra"] = true; return reply.dump(); },
@@ -426,8 +427,8 @@ namespace
             [](const auto &request) { auto reply = accepted(request); reply["payload"]["result"]["userId"] = 7; return reply.dump(); },
             [](const auto &request) { auto reply = accepted(request); reply["payload"]["result"]["permissions"] = nullptr; return reply.dump(); },
             [](const auto &request) { auto reply = accepted(request); reply["payload"]["result"]["userToken"] = false; return reply.dump(); },
-            [](const auto &request) { return Json{{"version", 3}, {"type", "request.rejected"}, {"requestId", request.at("requestId")}, {"payload", {{"code", "FORBIDDEN"}, {"message", 7}}}}.dump(); },
-            [](const auto &request) { return Json{{"version", 3}, {"type", "request.rejected"}, {"requestId", request.at("requestId")}, {"payload", {{"code", "FORBIDDEN"}, {"message", "Rifiutato."}, {"extra", true}}}}.dump(); },
+            [](const auto &request) { return Json{{"version", 4}, {"type", "request.rejected"}, {"requestId", request.at("requestId")}, {"payload", {{"code", "FORBIDDEN"}, {"message", 7}}}}.dump(); },
+            [](const auto &request) { return Json{{"version", 4}, {"type", "request.rejected"}, {"requestId", request.at("requestId")}, {"payload", {{"code", "FORBIDDEN"}, {"message", "Rifiutato."}, {"extra", true}}}}.dump(); },
             [](const auto &request)
             {
                 auto reply = accepted(request);
@@ -533,7 +534,7 @@ namespace
             {"UNKNOWN_COMMAND", ProtocolErrorCode::UnknownCommand}, {"FORBIDDEN", ProtocolErrorCode::Forbidden},
             {"COMMAND_FAILED", ProtocolErrorCode::CommandFailed}, {"UNKNOWN_ERROR", ProtocolErrorCode::InvalidRequest}})
         {
-            ScriptedHost rejecting([&](const auto &socket, const Json &request) { writeBytes(socket, frame(Json{{"version", 3}, {"type", "request.rejected"}, {"requestId", request.at("requestId")}, {"payload", {{"code", name}, {"message", "Richiesta rifiutata."}}}})); });
+            ScriptedHost rejecting([&](const auto &socket, const Json &request) { writeBytes(socket, frame(Json{{"version", 4}, {"type", "request.rejected"}, {"requestId", request.at("requestId")}, {"payload", {{"code", name}, {"message", "Richiesta rifiutata."}}}})); });
             checkRejected(client.joinSession("127.0.0.1", rejecting.port(), SessionCode("A7K2Q")), code);
             rejecting.finish();
         }

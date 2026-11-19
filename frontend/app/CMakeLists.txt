@@ -24,10 +24,11 @@ if(BUILD_TESTING)
     qt_add_executable(golarion_session_controller_test
         tests/session_controller_test.cpp session_controller.cpp session_controller.hpp
     )
-    target_link_libraries(golarion_session_controller_test PRIVATE Qt6::Gui Qt6::Qml Qt6::Test Qt6::Network golarion_play)
+    target_link_libraries(golarion_session_controller_test PRIVATE Qt6::Quick Qt6::QuickControls2 Qt6::Test Qt6::Network golarion_play)
     if(MSVC)
         target_compile_options(golarion_session_controller_test PRIVATE /utf-8)
     endif()
     add_test(NAME golarion_session_controller_test COMMAND golarion_session_controller_test)
-    set_tests_properties(golarion_session_controller_test PROPERTIES TIMEOUT 30)
+    set_tests_properties(golarion_session_controller_test PROPERTIES TIMEOUT 30
+        ENVIRONMENT "QT_QPA_PLATFORM=offscreen;QT_QUICK_BACKEND=software")
 endif()

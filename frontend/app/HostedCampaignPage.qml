@@ -15,7 +15,7 @@ ScrollView {
 
     function startHosting(): void {
         if (portValid && !hosting && !controller.busy)
-            controller.startHosting(Number(portField.text))
+            controller.startHosting(Number(portField.text), page.localName)
     }
 
     padding: 20
@@ -100,7 +100,6 @@ ScrollView {
             Layout.fillWidth: page.availableWidth < 540
             Layout.alignment: Qt.AlignTop
             participants: page.controller.participants
-            localName: page.localName
         }
     }
 }

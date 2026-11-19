@@ -50,7 +50,7 @@ Expected Windows executable locations after the root build:
 
 Run separate terminals and replace the code with the one printed by the host. Host syntax is IPv4/port/[identity archive]/[session name]. The optional name follows an explicit archive path and appears in the desktop client. Port zero requests an OS-assigned port. Client syntax is IPv4/port/code/[token file]. Linux names omit .exe. For LAN/VPN bind the host appropriately and use its reachable address on clients.
 
-The host creates/loads its archive before listening; default is session-identities.json in its working directory. Client default is client-token.txt: missing selects join, existing valid selects resume. One token file belongs to one participant/session. JSON protocol is v3; identity archives are v2 with hostId, numeric permission masks and token hashes. Legacy formats are rejected without conversion or automatic deletion. Use fresh client credentials after discarding an archive. The tools configure no firewall/router rules.
+The host creates or loads its identity archive before listening, defaulting to session-identities.json. The client joins if client-token.txt is missing and resumes if it holds a valid token. Both peers use JSON v4. Identity archives v3 include display names with IDs, masks and token hashes. Loading v2 retains identities and tokens and upgrades on the next successful save.
 
 ## Verified Commands, Notifications and Presence (2026-11-19)
 
@@ -62,4 +62,4 @@ The final presence verification used a clean root CMake build and three repeat r
 
 ## Session Snapshot Verification
 
-The root GCC 10.3 build and Qt/MSVC build compile. The controller suite passes. In the root CTest run, 16 of 17 suites pass and `play_participants_test` exits while rethrowing the expected rejected-RPC exception through a future (Windows exception code `0x20474343`). The same participant suite passes when compiled with MSVC against the Qt build's play library, including the active and stopped session view checks.
+Display-name verification used root CMake configurations on Windows. GCC 10.3 passed all 17 play suites in build/core/play. MSVC with Qt 6.8.3 built the desktop application and passed all 17 play suites plus the Qt session controller suite. Tests cover v2 archive upgrade with the original token, v3 reload, accented and duplicate names, a rename published during socket replacement, and rollback on a failed archive write.

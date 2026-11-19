@@ -1,8 +1,10 @@
 #include "session_controller.hpp"
+#include "golarion/play/display_name.hpp"
 
 #include <QClipboard>
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QGuiApplication>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -11,6 +13,7 @@
 #include <QUuid>
 
 #include <chrono>
+#include <algorithm>
 #include <filesystem>
 #include <stdexcept>
 #include <system_error>
@@ -50,15 +53,24 @@ namespace
         return SessionCode(data.value(QStringLiteral("code")).toString().toStdString());
     }
 
+    QString hostedLockPath(const QDir &directory)
+    {
+        // Keep the lock beside the campaign so the whole directory can be moved on Windows.
+        return directory.absolutePath() + QStringLiteral(".hosting.lock");
+    }
+
     SessionCode openCampaignCode(const QDir &directory)
     {
         const auto manifest = directory.filePath(QStringLiteral("campaign.json"));
         auto data = readCampaignData(manifest);
         if (data.contains(QStringLiteral("code"))) return campaignCode(data);
 
-        QLockFile lock(directory.filePath(QStringLiteral("hosting.lock")));
+        QLockFile lock(hostedLockPath(directory));
         lock.setStaleLockTime(0);
         if (!lock.tryLock()) throw std::runtime_error("cannot lock the campaign");
+        QLockFile legacyLock(directory.filePath(QStringLiteral("hosting.lock")));
+        legacyLock.setStaleLockTime(0);
+        if (!legacyLock.tryLock()) throw std::runtime_error("cannot lock the campaign archive");
         data = readCampaignData(manifest);
         if (data.contains(QStringLiteral("code"))) return campaignCode(data);
         if (data.value(QStringLiteral("name")).toString().trimmed().isEmpty())
@@ -118,7 +130,9 @@ namespace
     }
 }
 
-SessionController::SessionController(QString campaignDirectory) : campaignDirectory_(std::move(campaignDirectory))
+SessionController::SessionController(QString campaignDirectory, std::function<bool(const QString &)> moveToTrash)
+    : campaignDirectory_(std::move(campaignDirectory)),
+      moveToTrash_(moveToTrash ? std::move(moveToTrash) : [](const QString &path) { return QFile::moveToTrash(path); })
 {
     loadCampaigns();
     pollTimer_.setInterval(50);
@@ -132,6 +146,7 @@ QVariantList SessionController::campaigns() const
     {
         const auto view = campaign.toView();
         result.append(QVariantMap{
+            {QStringLiteral("id"), QString::fromStdString(campaign.toData().id)},
             {QStringLiteral("name"), QString::fromStdString(view.name)},
             {QStringLiteral("address"), QString::fromStdString(view.address)},
             {QStringLiteral("code"), normalizedCode(view.code)}
@@ -140,11 +155,19 @@ QVariantList SessionController::campaigns() const
     return result;
 }
 
-QStringList SessionController::hostedCampaigns() const
+QVariantList SessionController::hostedCampaigns() const
 {
-    QStringList names;
-    for (const auto &campaign : hostedCampaigns_) names.append(QString::fromStdString(campaign.toView().name));
-    return names;
+    QVariantList result;
+    for (const auto &campaign : hostedCampaigns_)
+    {
+        const auto data = campaign.toData();
+        result.append(QVariantMap{
+            {QStringLiteral("id"), QString::fromStdString(data.id)},
+            {QStringLiteral("name"), QString::fromStdString(data.name)},
+            {QStringLiteral("code"), data.code ? normalizedCode(*data.code) : QString{}}
+        });
+    }
+    return result;
 }
 
 bool SessionController::busy() const { return pending_.has_value() || hostingReply_.valid(); }
@@ -205,6 +228,106 @@ bool SessionController::createHostedCampaign(const QString &name)
     return true;
 }
 
+bool SessionController::trashHostedCampaign(const QString &id, const QString &confirmationName, const QString &code)
+{
+    clearError();
+    if (busy() || !activeName_.isEmpty() || hosting_)
+    {
+        setErrorMessage(tr("Chiudi la campagna e ferma l’hosting prima di spostarla nel Cestino."));
+        return false;
+    }
+
+    const auto selectedId = id.toStdString();
+    const auto campaign = std::find_if(hostedCampaigns_.cbegin(), hostedCampaigns_.cend(), [&](const HostedCampaign &entry)
+    {
+        return entry.toData().id == selectedId;
+    });
+    if (campaign == hostedCampaigns_.cend() || id.isEmpty() || QUuid(id).toString(QUuid::WithoutBraces) != id)
+    {
+        setErrorMessage(tr("La campagna selezionata non è più disponibile."));
+        return false;
+    }
+    const auto selected = campaign->toData();
+    if (QString::fromStdString(selected.name) != confirmationName || (selected.code ? normalizedCode(*selected.code) : QString{}) != code)
+    {
+        setErrorMessage(tr("La conferma non corrisponde alla campagna selezionata."));
+        return false;
+    }
+
+    const auto root = QDir(campaignDirectory_).canonicalPath();
+    const auto path = QDir(root).absoluteFilePath(id);
+    const QFileInfo folder(path);
+    if (campaignDirectory_.isEmpty() || root.isEmpty() || !folder.isDir() || folder.isSymLink() || folder.canonicalFilePath() != path)
+    {
+        setErrorMessage(tr("Impossibile accedere alla cartella della campagna."));
+        return false;
+    }
+
+    const QDir directory(path);
+    QLockFile lock(hostedLockPath(directory));
+    QLockFile legacyLock(directory.filePath(QStringLiteral("hosting.lock")));
+    lock.setStaleLockTime(0);
+    legacyLock.setStaleLockTime(0);
+    if (!lock.tryLock() || !legacyLock.tryLock())
+    {
+        setErrorMessage(tr("La campagna è in uso o non è accessibile. Chiudila nelle altre finestre e riprova."));
+        return false;
+    }
+    const auto manifest = readCampaignData(directory.filePath(QStringLiteral("campaign.json")));
+    if (manifest.value(QStringLiteral("name")).toString().trimmed() != confirmationName
+        || manifest.value(QStringLiteral("code")).toString().toUpper() != code)
+    {
+        setErrorMessage(tr("La campagna salvata è cambiata. Riapri l’app prima di riprovare."));
+        return false;
+    }
+    // The sibling lock still excludes hosting when the old in-directory lock is released.
+    legacyLock.unlock();
+    if (!moveToTrash_(path))
+    {
+        setErrorMessage(tr("Impossibile spostare la campagna nel Cestino."));
+        return false;
+    }
+    hostedCampaigns_.removeAt(campaign - hostedCampaigns_.cbegin());
+    emit hostedCampaignsChanged();
+    return true;
+}
+
+bool SessionController::forgetJoinedCampaign(const QString &id)
+{
+    clearError();
+    if (busy() || !activeName_.isEmpty())
+    {
+        setErrorMessage(tr("Disconnettiti e chiudi la campagna prima di rimuoverla dalla lista."));
+        return false;
+    }
+
+    const auto selectedId = id.toStdString();
+    const auto campaign = std::find_if(campaigns_.cbegin(), campaigns_.cend(), [&](const JoinedCampaign &entry)
+    {
+        return entry.toData().id == selectedId;
+    });
+    if (campaign == campaigns_.cend())
+    {
+        setErrorMessage(tr("La campagna selezionata non è più disponibile."));
+        return false;
+    }
+    if (!campaignDirectory_.isEmpty())
+    {
+        const auto path = QDir(campaignDirectory_).absoluteFilePath(id + QStringLiteral(".json"));
+        const QFileInfo file(path);
+        if (file.isSymLink() || (file.exists() && (!file.isFile()
+            || readCampaignData(path).value(QStringLiteral("token")).toString() != QString::fromStdString(campaign->toData().token.value())
+            || !QFile::remove(path))))
+        {
+            setErrorMessage(tr("Impossibile rimuovere la campagna salvata su questo PC."));
+            return false;
+        }
+    }
+    campaigns_.removeAt(campaign - campaigns_.cbegin());
+    emit campaignsChanged();
+    return true;
+}
+
 void SessionController::openHostedCampaign(int campaignIndex)
 {
     if (busy() || !activeName_.isEmpty() || campaignIndex < 0 || campaignIndex >= hostedCampaigns_.size()) return;
@@ -225,6 +348,7 @@ void SessionController::openHostedCampaign(int campaignIndex)
     const auto view = hostedCampaigns_.at(campaignIndex).toView();
     activeName_ = QString::fromStdString(view.name);
     openInviteCode_ = normalizedCode(*view.code);
+    emit hostedCampaignsChanged();
     emit activeNameChanged();
     emit sessionOpened();
 }
@@ -239,7 +363,17 @@ void SessionController::closeHostedCampaign()
     emit sessionClosed();
 }
 
-void SessionController::startHosting(int port)
+std::optional<std::string> SessionController::validatedDisplayName(const QString &displayName)
+{
+    try { return normalizeDisplayName(displayName.toStdString()); }
+    catch (const std::invalid_argument &)
+    {
+        setErrorMessage(tr("Inserisci un nome visualizzato da 1 a 48 caratteri, su una sola riga."));
+        return std::nullopt;
+    }
+}
+
+void SessionController::startHosting(int port, const QString &displayName)
 {
     if (!openHostedCampaign_ || hosting_ || busy()) return;
     clearError();
@@ -249,10 +383,12 @@ void SessionController::startHosting(int port)
         return;
     }
 
+    const auto name = validatedDisplayName(displayName);
+    if (!name) return;
     try
     {
         hostingReply_ = std::async(std::launch::async, &SessionController::launchHosting,
-            campaignDirectory_, hostedCampaigns_.at(*openHostedCampaign_).toData(), port);
+            campaignDirectory_, hostedCampaigns_.at(*openHostedCampaign_).toData(), port, *name);
     }
     catch (const std::exception &)
     {
@@ -263,17 +399,24 @@ void SessionController::startHosting(int port)
     emit busyChanged();
 }
 
-SessionController::Hosting SessionController::launchHosting(const QString &campaignDirectory, const HostedCampaignData &campaign, int port)
+SessionController::Hosting SessionController::launchHosting(const QString &campaignDirectory, const HostedCampaignData &campaign, int port, const std::string &displayName)
 {
     const QDir directory(QDir(campaignDirectory).filePath(QString::fromStdString(campaign.id)));
     Hosting result;
-    result.lock = std::make_unique<QLockFile>(directory.filePath(QStringLiteral("hosting.lock")));
+    result.lock = std::make_unique<QLockFile>(hostedLockPath(directory));
     result.lock->setStaleLockTime(0);
     if (!result.lock->tryLock())
     {
         result.error = result.lock->error() == QLockFile::LockFailedError
             ? tr("Questa campagna è già in hosting su questo PC.")
             : tr("Impossibile accedere alla cartella della campagna.");
+        return result;
+    }
+    result.legacyLock = std::make_unique<QLockFile>(directory.filePath(QStringLiteral("hosting.lock")));
+    result.legacyLock->setStaleLockTime(0);
+    if (!result.legacyLock->tryLock())
+    {
+        result.error = tr("Questa campagna è già in uso o non è accessibile.");
         return result;
     }
 
@@ -283,8 +426,10 @@ SessionController::Hosting SessionController::launchHosting(const QString &campa
         const auto code = campaignCode(readCampaignData(manifest));
         result.session = std::make_unique<Session>(campaign.id, code);
         const auto archive = std::filesystem::u8path(directory.filePath(QStringLiteral("identities.json")).toStdString());
-        if (std::filesystem::exists(archive)) result.session->loadIdentityState(archive);
-        else result.session->saveIdentityState(archive);
+        const bool existingArchive = std::filesystem::exists(archive);
+        if (existingArchive) result.session->loadIdentityState(archive);
+        result.session->setHostDisplayName(displayName);
+        if (!existingArchive) result.session->saveIdentityState(archive);
         result.session->registerSessionInfo(campaign.name);
     }
     catch (const std::exception &)
@@ -306,6 +451,7 @@ SessionController::Hosting SessionController::launchHosting(const QString &campa
     if (!result.error.isEmpty())
     {
         result.session.reset();
+        result.legacyLock.reset();
         result.lock.reset();
         return result;
     }
@@ -353,7 +499,7 @@ void SessionController::stopHosting()
     closeHostedCampaign();
 }
 
-void SessionController::enter(const QString &address, const QString &codeText, int campaignIndex)
+void SessionController::enter(const QString &address, const QString &codeText, int campaignIndex, const QString &displayName)
 {
     if (busy() || !activeName_.isEmpty()) return;
     clearError();
@@ -389,11 +535,13 @@ void SessionController::enter(const QString &address, const QString &codeText, i
         }
     }
 
+    const auto name = validatedDisplayName(displayName);
+    if (!name) return;
     try
     {
         admissionReply_ = campaignIndex == -1
-            ? session_.joinSession(ip.toStdString(), port, *code)
-            : session_.resumeSession(ip.toStdString(), port, *code, campaigns_.at(campaignIndex).toData().token);
+            ? session_.joinSession(ip.toStdString(), port, *code, *name)
+            : session_.resumeSession(ip.toStdString(), port, *code, campaigns_.at(campaignIndex).toData().token, *name);
     }
     catch (const std::invalid_argument &)
     {
@@ -541,6 +689,7 @@ void SessionController::updateParticipants(const ParticipantsSnapshot &snapshot,
     {
         rows.append(QVariantMap{
             {QStringLiteral("userId"), QString::fromStdString(participant.userId)},
+            {QStringLiteral("displayName"), QString::fromStdString(participant.displayName)},
             {QStringLiteral("isHost"), participant.isHost},
             {QStringLiteral("isSelf"), hosting_ ? participant.isHost : localUser == participant.userId}
         });

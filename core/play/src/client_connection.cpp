@@ -114,6 +114,7 @@ namespace golarion::play
         const sockaddr_in address;
         const SessionCode code;
         const std::optional<UserToken> token;
+        const std::optional<std::string> displayName;
         const std::string requestId;
         detail::Socket socket;
         std::vector<std::uint8_t> input;
@@ -125,7 +126,8 @@ namespace golarion::play
         std::deque<Outgoing> outgoing;
         std::thread worker;
 
-        Impl(ProtocolManager &manager, ConnectionId connection, std::string ip, std::uint16_t port, SessionCode sessionCode, std::optional<UserToken> userToken, std::string id) : owner(manager), connectionId(connection), address(detail::ipv4Address(ip, port)), code(std::move(sessionCode)), token(std::move(userToken)), requestId(std::move(id))
+        Impl(ProtocolManager &manager, ConnectionId connection, std::string ip, std::uint16_t port, SessionCode sessionCode, std::optional<UserToken> userToken, std::optional<std::string> name, std::string id)
+            : owner(manager), connectionId(connection), address(detail::ipv4Address(ip, port)), code(std::move(sessionCode)), token(std::move(userToken)), displayName(std::move(name)), requestId(std::move(id))
         {
             if (port == 0) throw std::invalid_argument("client port must be nonzero");
         }
@@ -254,6 +256,7 @@ namespace golarion::play
         {
             Json payload{{"sessionCode", std::string(code.value())}};
             if (token) payload["userToken"] = token->value();
+            if (displayName) payload["displayName"] = *displayName;
             const auto bytes = detail::encodeMessage({token ? "session.resume" : "session.join", requestId, std::move(payload)});
             std::size_t sent = 0;
             while (sent < bytes.size())
@@ -449,7 +452,8 @@ namespace golarion::play
         }
     };
 
-    ProtocolManager::ClientConnection::ClientConnection(ProtocolManager &owner, ConnectionId connectionId, std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token, std::string requestId) : impl_(std::make_unique<Impl>(owner, connectionId, std::move(ip), port, std::move(code), std::move(token), std::move(requestId))) {}
+    ProtocolManager::ClientConnection::ClientConnection(ProtocolManager &owner, ConnectionId connectionId, std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token, std::optional<std::string> displayName, std::string requestId)
+        : impl_(std::make_unique<Impl>(owner, connectionId, std::move(ip), port, std::move(code), std::move(token), std::move(displayName), std::move(requestId))) {}
     ProtocolManager::ClientConnection::~ClientConnection() = default;
     std::future<ClientAdmission> ProtocolManager::ClientConnection::takeResult() { return impl_->admission.get_future(); }
     void ProtocolManager::ClientConnection::start() { impl_->worker = std::thread([this] { impl_->run(); }); }

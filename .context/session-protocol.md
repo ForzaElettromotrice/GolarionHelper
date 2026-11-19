@@ -1,6 +1,6 @@
 # Session Protocol
 
-Status: connected-participant query/events added 2026-11-19 to JSON v3 admission, commands and targeted permission notifications. The presence snapshot includes only connected users plus the local host, with no extra permission requirement after admission. Sheet commands, participant display names and full game persistence remain separate.
+JSON v4 carries display names in admission requests and participant snapshots. The list includes connected users plus the local host and is available to all admitted participants.
 
 ## Session Code and Connections
 
@@ -15,10 +15,10 @@ Hosting owns sockets, bounded buffers and its worker; ClientConnection owns clie
 The private codec in src/protocol.hpp/.cpp uses a four-byte unsigned big-endian JSON byte length, capped at 65536, then strict UTF-8 JSON with nesting capped at 64. Complete frames are consumed in order; incomplete frames leave the buffer unchanged. Invalid frames reject without consumption. Duplicate keys, BOM, trailing data, unknown envelope fields, invalid types/strings/version and unsupported JSON values reject.
 
 ```json
-{"version":3,"type":"example.command","requestId":"client-2","payload":{"value":7}}
+{"version":4,"type":"example.command","requestId":"client-2","payload":{"value":7}}
 ```
 
-The closed envelope fields are version/type/payload and optional requestId at codec level. The host requires a valid nonblank requestId on commands. Notifications from the admitted host omit requestId and use the client's command registry. Payload is always an object. Accepted replies contain exactly payload.result, which may be any JSON value; rejected replies contain code/message. Version 3 rejects retired role-based JSON v2. Both current binaries must support notifications; earlier reply-only v3 clients cannot receive the new event messages.
+The closed envelope fields are version/type/payload and optional requestId at codec level. The host requires a valid nonblank requestId on commands. Notifications from the admitted host omit requestId and use the client's command registry. Payload is always an object. Accepted replies contain payload.result and rejected replies contain code/message. Both peers must use JSON v4.
 
 ## Permissions and Dispatch
 
@@ -28,13 +28,13 @@ All names, including built-in join/resume, follow the same fresh-context lookup/
 
 ## Admission and Persistence
 
-session.join takes only sessionCode and returns UserId/permissions=7/original userToken. session.resume takes code/token and returns UserId/current permissions, without a new token. Code/payload/pending checks run inside their registered Any callbacks. Successful connections stay open; resume replaces the previous live connection. See session-admission.md for transactions and errors.
+session.join takes sessionCode and displayName and returns UserId, mask 7 and the original userToken. session.resume takes code, token and an optional displayName and returns the existing UserId and current permissions. When a name changes, storage commits before binding replacement and presence publication. See session-admission.md.
 
 Permissions are numeric unsigned masks with known bits only. PermissionSet::fromMask/toMask handles validated conversion; floats, strings, booleans, negative values and unknown bits reject at JSON boundaries. Mask zero is valid for a registered user and does not imply public access. Presets are not roles or persistent labels; the immutable host has an explicit separate identity.
 
-Version-2 archives persist hostId, users/masks and token hashes. Legacy role files reject without conversion. Credentials remain eight random bytes/16 lowercase hex characters, hashed only on the host. Permission-mutation commands save automatically through the identity coordinator, then notify only the affected user after effective changes. Direct setters still need explicit persistence and do not emit events. Client snapshots refresh on validated permissions.changed; permissions.get reads current server state. Identity archives still have no SessionId; campaign SessionData stores the invitation code separately. See session-events.md for queues, routing and reconnection.
+Version-3 archives persist hostId, user IDs, masks, display names and token hashes. Version 2 is accepted with unset names and upgraded on the next successful write. Role-based v1 files are rejected. Credentials remain eight random bytes/16 lowercase hex characters, hashed on the host. Permission mutations save automatically and notify the affected user. See session-tokens.md and session-events.md.
 
-session.getParticipants returns revision/participants through the ordinary command result. session.participantsChanged uses the same payload without requestId and updates the client cache. Admission schemas are unchanged; Hosting sends the normal admission response before the initial presence snapshot. Revisions are runtime-only and reset on host reconstruction; a new client connection clears its previous cache. Both binaries must support the built-in presence event. See session-participants.md.
+session.getParticipants returns revision/participants through the ordinary command result. session.participantsChanged uses the same payload without requestId and updates the client cache. Each participant entry contains userId, displayName and isHost. Hosting sends the admission response before the initial presence snapshot. Revisions are runtime-only and reset on host reconstruction. See session-participants.md.
 
 ## Client and Verification
 

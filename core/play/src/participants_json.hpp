@@ -1,6 +1,7 @@
 #pragma once
 
 #include "golarion/play/participants.hpp"
+#include "golarion/play/display_name.hpp"
 
 #include <nlohmann/json.hpp>
 
@@ -16,7 +17,7 @@ namespace golarion::play::detail
     {
         auto participants = nlohmann::json::array();
         for (const auto &participant : snapshot.participants)
-            participants.push_back({{"userId", participant.userId}, {"isHost", participant.isHost}});
+            participants.push_back({{"userId", participant.userId}, {"isHost", participant.isHost}, {"displayName", participant.displayName}});
         return {{"revision", snapshot.revision}, {"participants", std::move(participants)}};
     }
 
@@ -33,12 +34,15 @@ namespace golarion::play::detail
         std::size_t hosts = 0;
         for (const auto &entry : entries)
         {
-            if (!entry.is_object() || entry.size() != 2 || !entry.contains("userId") || !entry.contains("isHost") || !entry.at("userId").is_string() || !entry.at("isHost").is_boolean()) throw std::invalid_argument("invalid participant fields");
+            if (!entry.is_object() || entry.size() != 3 || !entry.contains("userId") || !entry.contains("isHost") || !entry.contains("displayName")
+                || !entry.at("userId").is_string() || !entry.at("isHost").is_boolean() || !entry.at("displayName").is_string())
+                throw std::invalid_argument("invalid participant fields");
             auto id = entry.at("userId").get<UserId>();
             if (id.empty() || std::any_of(id.begin(), id.end(), [](unsigned char value) { return value <= 32 || value == 127; }) || !ids.insert(id).second) throw std::invalid_argument("invalid or duplicate participant ID");
             const bool isHost = entry.at("isHost").get<bool>();
             hosts += isHost ? 1 : 0;
-            result.participants.push_back({std::move(id), isHost});
+            auto displayName = normalizeDisplayName(entry.at("displayName").get_ref<const std::string &>());
+            result.participants.push_back({std::move(id), isHost, std::move(displayName)});
         }
         if (hosts != 1) throw std::invalid_argument("participant list must have exactly one host");
         return result;

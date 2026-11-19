@@ -11,6 +11,7 @@ ScrollView {
     enum Form { NoForm, Joining, Creating }
 
     required property SessionController controller
+    required property string localName
     property int form: CampaignsPage.NoForm
     property int campaignIndex: -1
 
@@ -28,7 +29,7 @@ ScrollView {
 
     function submitJoinForm(): void {
         if (enterButton.enabled)
-            controller.enter(addressField.text, codeField.text, campaignIndex)
+            controller.enter(addressField.text, codeField.text, campaignIndex, localName)
     }
 
     function openCreateForm(): void {
@@ -46,6 +47,115 @@ ScrollView {
     function closeForm(): void {
         form = CampaignsPage.NoForm
         controller.clearError()
+    }
+
+    function confirmRemoval(campaign: var, hosted: bool): void {
+        controller.clearError()
+        removalDialog.hosted = hosted
+        removalDialog.targetId = campaign.id
+        removalDialog.campaignName = campaign.name
+        removalDialog.code = campaign.code
+        removalDialog.address = campaign.address ?? ""
+        confirmationField.clear()
+        removalDialog.open()
+    }
+
+    Dialog {
+        id: removalDialog
+        objectName: "campaignRemovalDialog"
+
+        property bool hosted: false
+        property string targetId: ""
+        property string campaignName: ""
+        property string code: ""
+        property string address: ""
+
+        parent: Overlay.overlay
+        anchors.centerIn: parent
+        width: parent ? Math.min(440, parent.width - 24) : 440
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape
+        title: hosted ? qsTr("Elimina campagna") : qsTr("Rimuovi dalla lista")
+        onOpened: cancelRemoval.forceActiveFocus()
+
+        contentItem: ColumnLayout {
+            spacing: 10
+
+            Label {
+                Layout.fillWidth: true
+                text: removalDialog.campaignName
+                textFormat: Text.PlainText
+                wrapMode: Text.Wrap
+                font.weight: Font.DemiBold
+            }
+
+            Label {
+                Layout.fillWidth: true
+                visible: removalDialog.hosted ? removalDialog.code.length > 0 : removalDialog.address.length > 0
+                text: removalDialog.hosted
+                      ? qsTr("Codice d’invito %1").arg(removalDialog.code)
+                      : removalDialog.address
+                textFormat: Text.PlainText
+                wrapMode: Text.Wrap
+            }
+
+            Label {
+                Layout.fillWidth: true
+                text: removalDialog.hosted
+                      ? qsTr("La cartella della campagna, con identità, permessi e credenziali dei partecipanti, verrà spostata nel Cestino di sistema.")
+                      : qsTr("Verrà rimossa la credenziale salvata su questo PC. Se rientri con IP e codice, l’host ti riconoscerà come nuovo partecipante.")
+                wrapMode: Text.WordWrap
+            }
+
+            TextField {
+                id: confirmationField
+                objectName: "campaignNameConfirmation"
+                Layout.fillWidth: true
+                visible: removalDialog.hosted
+                placeholderText: qsTr("Digita il nome della campagna")
+                Accessible.name: placeholderText
+            }
+
+            Label {
+                Layout.fillWidth: true
+                visible: text.length > 0
+                text: page.controller.errorMessage
+                textFormat: Text.PlainText
+                wrapMode: Text.WordWrap
+                color: "#a12d32"
+            }
+        }
+
+        footer: Frame {
+            contentItem: RowLayout {
+                Button {
+                    id: cancelRemoval
+                    objectName: "cancelCampaignRemoval"
+                    text: qsTr("Annulla")
+                    onClicked: removalDialog.reject()
+                }
+
+                Item { Layout.fillWidth: true }
+
+                Button {
+                    objectName: "confirmCampaignRemoval"
+                    text: removalDialog.hosted ? qsTr("Sposta nel Cestino") : qsTr("Rimuovi")
+                    palette.buttonText: "#a12d32"
+                    enabled: !page.controller.busy && (!removalDialog.hosted
+                             || confirmationField.text === removalDialog.campaignName)
+                    onClicked: {
+                        const removed = removalDialog.hosted
+                            ? page.controller.trashHostedCampaign(removalDialog.targetId, confirmationField.text, removalDialog.code)
+                            : page.controller.forgetJoinedCampaign(removalDialog.targetId)
+                        if (removed) {
+                            page.closeForm()
+                            removalDialog.accept()
+                        }
+                    }
+                }
+            }
+        }
     }
 
     Connections {
@@ -209,12 +319,16 @@ ScrollView {
                 id: hostedRow
 
                 required property int index
-                required property string modelData
+                required property var modelData
 
                 enabled: !page.controller.busy
-                text: hostedRow.modelData
+                text: hostedRow.modelData.name
                 status: qsTr("Da avviare")
-                onClicked: page.controller.openHostedCampaign(hostedRow.index)
+                removalText: qsTr("Elimina")
+                removalLabel: qsTr("Elimina campagna %1").arg(text)
+                removalButtonName: "trashHostedCampaignButton"
+                onOpenRequested: page.controller.openHostedCampaign(hostedRow.index)
+                onRemovalRequested: page.confirmRemoval(hostedRow.modelData, true)
             }
         }
 
@@ -229,30 +343,55 @@ ScrollView {
 
                 enabled: !page.controller.busy
                 text: joinedRow.modelData.name
-                onClicked: page.openJoinForm(joinedRow.index, joinedRow.modelData.address, joinedRow.modelData.code)
+                removalText: qsTr("Rimuovi")
+                removalLabel: qsTr("Rimuovi %1 dalla lista").arg(text)
+                removalButtonName: "forgetJoinedCampaignButton"
+                onOpenRequested: page.openJoinForm(joinedRow.index, joinedRow.modelData.address, joinedRow.modelData.code)
+                onRemovalRequested: page.confirmRemoval(joinedRow.modelData, false)
             }
         }
     }
 
-    component CampaignRow: ItemDelegate {
+    component CampaignRow: RowLayout {
         id: item
 
+        required property string text
         property string status
+        required property string removalText
+        required property string removalLabel
+        required property string removalButtonName
+        signal openRequested()
+        signal removalRequested()
+
         Layout.fillWidth: true
 
-        contentItem: RowLayout {
-            Label {
-                Layout.fillWidth: true
-                text: item.text
-                textFormat: Text.PlainText
-                elide: Text.ElideRight
-            }
+        ItemDelegate {
+            Layout.fillWidth: true
+            Layout.minimumWidth: 0
+            text: item.text
+            onClicked: item.openRequested()
 
-            Label {
-                visible: item.status.length > 0
-                text: item.status
-                color: "#626d79"
+            contentItem: RowLayout {
+                Label {
+                    Layout.fillWidth: true
+                    text: item.text
+                    textFormat: Text.PlainText
+                    elide: Text.ElideRight
+                }
+
+                Label {
+                    visible: item.status.length > 0
+                    text: item.status
+                    color: "#626d79"
+                }
             }
+        }
+
+        Button {
+            objectName: item.removalButtonName
+            text: item.removalText
+            Accessible.name: item.removalLabel
+            onClicked: item.removalRequested()
         }
     }
 }

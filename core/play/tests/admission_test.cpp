@@ -153,14 +153,14 @@ namespace
 
     Json request(std::string type, Json payload, std::string requestId = "request-1")
     {
-        return Json{{"version", 3}, {"type", std::move(type)}, {"requestId", std::move(requestId)}, {"payload", std::move(payload)}};
+        return Json{{"version", 4}, {"type", std::move(type)}, {"requestId", std::move(requestId)}, {"payload", std::move(payload)}};
     }
 
     Json exchangeMessage(const Socket &socket, const Json &message)
     {
         sendBytes(socket, frame(message));
         const auto reply = receiveMessage(socket);
-        check(reply.at("version") == 3 && reply.at("requestId") == message.at("requestId"), "reply correlation lost");
+        check(reply.at("version") == 4 && reply.at("requestId") == message.at("requestId"), "reply correlation lost");
         return reply;
     }
 
@@ -227,7 +227,7 @@ namespace
 
     Json join(const Socket &socket, const std::string &code)
     {
-        const auto reply = exchangeMessage(socket, request("session.join", {{"sessionCode", code}}));
+        const auto reply = exchangeMessage(socket, request("session.join", {{"sessionCode", code}, {"displayName", "Giocatore"}}));
         const auto payload = acceptedResult(reply);
         check(payload.size() == 3 && payload.at("permissions") == 7, "join did not create a Player");
         check(payload.at("userId").get<std::string>() != payload.at("userToken").get<std::string>(), "public ID exposes the credential");
@@ -266,7 +266,7 @@ namespace
         checkRejected(exchangeMessage(invalid, request("test.invalid.public", Json::object())), "INVALID_REQUEST");
         checkClosed(invalid);
         const auto client = connectClient(port);
-        const auto joined = acceptedResult(exchangeMessage(client, request(" session.join ", {{"sessionCode", code}}, "padded-join")));
+        const auto joined = acceptedResult(exchangeMessage(client, request(" session.join ", {{"sessionCode", code}, {"displayName", "Giocatore"}}, "padded-join")));
         check(joined.at("permissions") == 7 && joined.size() == 3, "padded join did not use the registered command");
         check(acceptedResult(exchangeMessage(client, request("test.public", Json::object()))) == true, "newly admitted Any context has no identity");
         check(acceptedResult(exchangeMessage(client, request("test.player", Json::object()))) == 1, "join did not enable the assigned Player permissions");
@@ -290,7 +290,7 @@ namespace
         auto code = fixture.protocol.getSessionCode();
         std::transform(code.begin(), code.end(), code.begin(), [](unsigned char value) { return value >= 'A' && value <= 'Z' ? value + ('a' - 'A') : value; });
         const auto original = connectClient(port);
-        const auto joinBytes = frame(request("session.join", {{"sessionCode", code}}, "fragmented"));
+        const auto joinBytes = frame(request("session.join", {{"sessionCode", code}, {"displayName", "Giocatore"}}, "fragmented"));
         sendBytes(original, {joinBytes.begin(), joinBytes.begin() + 2});
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
         sendBytes(original, {joinBytes.begin() + 2, joinBytes.end()});
@@ -318,14 +318,18 @@ namespace
         check(resumed.at("userId") == userId && resumed.at("permissions") == 31, "resume reset the current permissions");
         checkClosed(original);
         checkRejected(exchangeMessage(replacement, request("users.setRole", {{"permissions", 63}})), "UNKNOWN_COMMAND");
-        checkRejected(exchangeMessage(replacement, request("session.join", {{"sessionCode", code}})), "ALREADY_ADMITTED");
+        checkRejected(exchangeMessage(replacement, request("session.join", {{"sessionCode", code}, {"displayName", "Giocatore"}})), "ALREADY_ADMITTED");
         checkRejected(exchangeMessage(replacement, request("session.resume", {{"sessionCode", code}, {"userToken", otherUser.at("userToken")}})), "ALREADY_ADMITTED");
         checkRejected(exchangeMessage(other, request("test.echo", Json::object())), "UNKNOWN_COMMAND");
         check(fixture.permissions.toSaveData().size() == 3 && fixture.protocol.resolveUserToken(token) == userId, "resume duplicated or rotated identity");
         fixture.protocol.saveIdentityState(archive);
         const auto saved = readText(archive);
         check(saved.find(token) == std::string::npos && saved.find(otherUser.at("userToken").get<std::string>()) == std::string::npos, "archive contains an original credential");
-        check(Json::parse(saved).at("users").at(0).size() == 2, "display name persisted");
+        const auto users = Json::parse(saved).at("users");
+        check(std::any_of(users.begin(), users.end(), [&](const auto &entry)
+        {
+            return entry.at("userId") == userId && entry.at("displayName") == "Giocatore";
+        }), "admission did not persist the display name");
         fixture.protocol.stopHosting();
         checkClosed(replacement);
         checkClosed(other);
@@ -342,17 +346,20 @@ namespace
         const auto code = fixture.protocol.getSessionCode();
         const std::vector<std::pair<Json, const char *>> requests{
             {request("session.join", Json::object()), "INVALID_REQUEST"},
+            {request("session.join", {{"sessionCode", code}}), "INVALID_REQUEST"},
             {request("session.join", {{"sessionCode", 1}}), "INVALID_REQUEST"},
             {request("session.join", {{"sessionCode", code}, {"userId", "host"}}), "INVALID_REQUEST"},
             {request("session.join", {{"sessionCode", code}, {"permissions", 63}}), "INVALID_REQUEST"},
-            {request("session.join", {{"sessionCode", code}, {"displayName", "Alice"}}), "INVALID_REQUEST"},
+            {request("session.join", {{"sessionCode", code}, {"displayName", "  "}}), "INVALID_REQUEST"},
+            {request("session.join", {{"sessionCode", code}, {"displayName", "Alice\nBob"}}), "INVALID_REQUEST"},
             {request("session.join", {{"sessionCode", code}, {"userToken", "0000000000000000"}}), "INVALID_REQUEST"},
-            {request("session.join", {{"sessionCode", "!!!!!"}}), "INVALID_SESSION_CODE"},
+            {request("session.join", {{"sessionCode", "!!!!!"}, {"displayName", "Giocatore"}}), "INVALID_SESSION_CODE"},
             {request("session.resume", {{"sessionCode", code}}), "INVALID_REQUEST"},
             {request("session.resume", {{"sessionCode", code}, {"userToken", 1}}), "INVALID_REQUEST"},
             {request("session.resume", {{"sessionCode", code}, {"userToken", "0000000000000000"}}), "INVALID_USER_TOKEN"},
             {request("session.resume", {{"sessionCode", code}, {"userToken", "ABCDEF0123456789"}}), "INVALID_USER_TOKEN"},
             {request("session.resume", {{"sessionCode", code}, {"userToken", "bad"}}), "INVALID_USER_TOKEN"},
+            {request("session.resume", {{"sessionCode", code}, {"userToken", "bad"}, {"displayName", "Alice"}}), "INVALID_USER_TOKEN"},
             {request("users.setRole", {{"userId", "host"}, {"permissions", 63}}), "UNKNOWN_COMMAND"}
         };
         for (const auto &[message, expected] : requests)
@@ -381,7 +388,7 @@ namespace
         const auto port = fixture.protocol.startHosting("127.0.0.1", 0);
         const auto code = fixture.protocol.getSessionCode();
         const auto unconfigured = connectClient(port);
-        checkRejected(exchangeMessage(unconfigured, request("session.join", {{"sessionCode", code}})), "ADMISSION_FAILED");
+        checkRejected(exchangeMessage(unconfigured, request("session.join", {{"sessionCode", code}, {"displayName", "Giocatore"}})), "ADMISSION_FAILED");
         checkClosed(unconfigured);
         check(fixture.permissions.toSaveData().size() == 1, "unconfigured admission registered a user");
         const auto archive = directory.path / "identities.json";
@@ -393,7 +400,7 @@ namespace
         fs::rename(archive, backup);
         fs::create_directory(archive);
         const auto failed = connectClient(port);
-        checkRejected(exchangeMessage(failed, request("session.join", {{"sessionCode", code}})), "ADMISSION_FAILED");
+        checkRejected(exchangeMessage(failed, request("session.join", {{"sessionCode", code}, {"displayName", "Giocatore"}})), "ADMISSION_FAILED");
         checkClosed(failed);
         check(fixture.permissions.toSaveData().size() == 2, "failed save left a half-registered Player");
         check(fixture.protocol.resolveUserToken(user.at("userToken").get<std::string>()) == user.at("userId").get<std::string>(), "failed admission invalidated an existing token");
@@ -455,7 +462,7 @@ namespace
         const auto client = connectClient(port);
         const auto pending = connectClient(port);
         check(acceptedResult(exchangeMessage(pending, request("test.public", Json::object()))) == false, "public command admitted the pending peer");
-        auto bytes = frame(request("session.join", {{"sessionCode", fixture.protocol.getSessionCode()}}, "join"));
+        auto bytes = frame(request("session.join", {{"sessionCode", fixture.protocol.getSessionCode()}, {"displayName", "Giocatore"}}, "join"));
         for (const auto id : {"first", "second"})
         {
             const auto command = frame(request("test.echo", {{"userId", "host"}}, id));

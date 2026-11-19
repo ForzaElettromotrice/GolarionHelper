@@ -21,12 +21,18 @@ namespace golarion::play
         requireHostMode();
         const std::lock_guard executionLock(executionMutex_);
         const auto hostId = resources_.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId");
-        ParticipantsSnapshot result{participantsRevision_, {{hostId, true}}};
+        const auto displayNameFor = [this](const UserId &userId, const char *fallback)
+        {
+            auto name = resources_.invoke<PermissionManager::GetDisplayNameSignature>("permissions.getDisplayName", userId);
+            return name.empty() ? std::string(fallback) : name;
+        };
+        ParticipantsSnapshot result{participantsRevision_, {{hostId, true, displayNameFor(hostId, "Host")}}};
         const std::lock_guard connectionsLock(connectionsMutex_);
         for (const auto &[userId, connectionId] : activeConnections_)
         {
             const auto connection = connections_.find(connectionId);
-            if (userId != hostId && connection != connections_.end() && connection->second == userId) result.participants.push_back({userId, false});
+            if (userId != hostId && connection != connections_.end() && connection->second == userId)
+                result.participants.push_back({userId, false, displayNameFor(userId, "Giocatore")});
         }
         std::sort(result.participants.begin() + 1, result.participants.end(), [](const auto &left, const auto &right) { return left.userId < right.userId; });
         return result;

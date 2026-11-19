@@ -1,6 +1,6 @@
 # Session Tokens and Identity Persistence
 
-Status: integrated PermissionManager and version-2 archives, 2026-11-17. ProtocolManager owns the credential registry/archive; Session delegates registration/issuance/save/load. No SessionId, display name, role registry or legacy-file importer remains.
+ProtocolManager owns the credential registry and archive. Archive v3 adds a display name to each stored identity alongside its permission mask. Session delegates identity operations to ProtocolManager and PermissionManager.
 
 ## Credentials and API
 
@@ -22,17 +22,17 @@ IdentitySaveData contains hostId, vector<UserPermissionsSaveData> and vector<Use
 
 ```json
 {
-  "version": 2,
+  "version": 3,
   "hostId": "host",
   "users": [
-    {"userId": "host", "permissions": 63},
-    {"userId": "alice", "permissions": 18}
+    {"userId": "host", "permissions": 63, "displayName": "Marta"},
+    {"userId": "alice", "permissions": 18, "displayName": "Alice"}
   ],
   "tokens": []
 }
 ```
 
-Top-level fields are exact. Each user has only userId/permissions; each token has only userId/hash, with a 64-character lowercase SHA-256 verifier. Original tokens are never written. Masks must be nonnegative integers with known bits; arbitrary combinations, including zero or ChangePermissions-only, are preserved. The explicit hostId must match the Session constructor, and that user's mask must remain 63. Another participant with mask 63 does not acquire Host identity or its exclusive rights.
+Top-level fields are exact. User entries have userId, permissions and displayName. Token entries store userId and a 64-character lowercase SHA-256 verifier. The reader accepts v2 with unset names and preserves each UserId, mask and hash. The next successful write upgrades to v3. A missing legacy name remains unset until supplied and appears as Host or Giocatore in presence. Masks must be nonnegative integers with known bits. The hostId must match the Session constructor and its mask must remain 63.
 
 The reader rejects unsupported versions, old role fields, duplicate keys/users/tokens/verifiers, unknown token users, invalid IDs/hashes/masks, BOM, trailing data, oversized files and excessive nesting. Maximum archive size is 4 MiB and nesting is bounded at 16. The user requested discarding legacy archives rather than conversion: version 1 is rejected without deletion or silent overwrite. The one old local identity archive found before integration was removed at that explicit request. Do not add automatic startup deletion.
 

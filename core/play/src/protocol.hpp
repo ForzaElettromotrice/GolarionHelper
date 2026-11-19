@@ -12,7 +12,7 @@ namespace golarion::play::detail
 {
     inline constexpr std::size_t MaximumFrameBytes = 65536;
     inline constexpr std::size_t MaximumJsonNesting = 64;
-    inline constexpr std::uint32_t JsonProtocolVersion = 3;
+    inline constexpr std::uint32_t JsonProtocolVersion = 4;
 
     struct ProtocolMessage
     {

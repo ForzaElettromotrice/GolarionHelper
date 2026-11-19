@@ -1,4 +1,5 @@
 #include "admission.hpp"
+#include "golarion/play/display_name.hpp"
 #include "identity_storage.hpp"
 #include "user_tokens.hpp"
 
@@ -19,8 +20,10 @@ namespace
 
     bool validAdmissionPayload(const Json &payload, bool resume)
     {
-        return payload.is_object() && payload.size() == (resume ? 2u : 1u)
+        const bool hasName = payload.contains("displayName");
+        return payload.is_object() && payload.size() == 1u + resume + hasName
             && payload.contains("sessionCode") && payload.at("sessionCode").is_string()
+            && (hasName ? payload.at("displayName").is_string() : resume)
             && (!resume || (payload.contains("userToken") && payload.at("userToken").is_string()));
     }
 
@@ -87,16 +90,19 @@ namespace golarion::play
         add_command("session.join", Permission::Any, [this](const CommandContext &context, const Json &payload)
         {
             const auto connectionId = requirePendingAdmission(context, payload, false);
-            try { return makeAdmissionResult(admitNewUser(connectionId)); }
+            auto name = normalizeDisplayName(payload.at("displayName").get_ref<const std::string &>());
+            try { return makeAdmissionResult(admitNewUser(connectionId, std::move(name))); }
             catch (const ProtocolError &) { throw; }
             catch (...) { throw ProtocolError(ProtocolErrorCode::AdmissionFailed, "cannot create and persist the admitted identity"); }
         });
         add_command("session.resume", Permission::Any, [this](const CommandContext &context, const Json &payload)
         {
             const auto connectionId = requirePendingAdmission(context, payload, true);
+            std::optional<std::string> name;
+            if (payload.contains("displayName")) name = normalizeDisplayName(payload.at("displayName").get_ref<const std::string &>());
             try
             {
-                const auto result = resumeUser(connectionId, payload.at("userToken").get_ref<const std::string &>());
+                const auto result = resumeUser(connectionId, payload.at("userToken").get_ref<const std::string &>(), std::move(name));
                 if (!result) throw ProtocolError(ProtocolErrorCode::InvalidUserToken, "user token is malformed or unknown");
                 return makeAdmissionResult(*result);
             }
@@ -122,7 +128,7 @@ namespace golarion::play
         return {"request.accepted", requestId, Json{{"result", std::move(result)}}};
     }
 
-    ProtocolManager::AdmissionResult ProtocolManager::admitNewUser(ConnectionId connectionId)
+    ProtocolManager::AdmissionResult ProtocolManager::admitNewUser(ConnectionId connectionId, std::string displayName)
     {
         const std::lock_guard executionLock(executionMutex_);
         std::unique_lock identityLock(identityMutex_);
@@ -154,7 +160,7 @@ namespace golarion::play
             resources_.invoke<PermissionManager::RegisterUserWithCommitSignature>("permissions.registerUserWithCommit", userId, [this, &tokens, &hostId](const std::vector<UserPermissionsSaveData> &savedUsers)
             {
                 detail::writeIdentityState(*identityArchivePath_, IdentitySaveData{hostId, savedUsers, tokens});
-            });
+            }, std::move(displayName));
         }
         catch (...)
         {
@@ -169,12 +175,12 @@ namespace golarion::play
         return result;
     }
 
-    std::optional<ProtocolManager::AdmissionResult> ProtocolManager::resumeUser(ConnectionId connectionId, std::string_view token)
+    std::optional<ProtocolManager::AdmissionResult> ProtocolManager::resumeUser(ConnectionId connectionId, std::string_view token, std::optional<std::string> displayName)
     {
         const auto userId = resolveUserToken(token);
         if (!userId) return std::nullopt;
         AdmissionResult result{*userId, resources_.invoke<PermissionManager::GetPermissionsSignature>("permissions.getPermissions", *userId), std::nullopt};
-        bindUser(connectionId, *userId);
+        bindUser(connectionId, *userId, std::move(displayName));
         return result;
     }
 

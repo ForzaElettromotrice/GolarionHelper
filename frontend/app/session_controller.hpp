@@ -12,6 +12,7 @@
 #include <QtQml/qqmlregistration.h>
 
 #include <future>
+#include <functional>
 #include <memory>
 #include <optional>
 
@@ -21,7 +22,7 @@ class SessionController : public QObject
     QML_ELEMENT
     QML_UNCREATABLE("Provided by the application")
     Q_PROPERTY(QVariantList campaigns READ campaigns NOTIFY campaignsChanged FINAL)
-    Q_PROPERTY(QStringList hostedCampaigns READ hostedCampaigns NOTIFY hostedCampaignsChanged FINAL)
+    Q_PROPERTY(QVariantList hostedCampaigns READ hostedCampaigns NOTIFY hostedCampaignsChanged FINAL)
     Q_PROPERTY(bool busy READ busy NOTIFY busyChanged FINAL)
     Q_PROPERTY(QString activeName READ activeName NOTIFY activeNameChanged FINAL)
     Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorMessageChanged FINAL)
@@ -32,10 +33,10 @@ class SessionController : public QObject
     Q_PROPERTY(QVariantList participants READ participants NOTIFY participantsChanged FINAL)
 
 public:
-    explicit SessionController(QString campaignDirectory);
+    explicit SessionController(QString campaignDirectory, std::function<bool(const QString &)> moveToTrash = {});
 
     QVariantList campaigns() const;
-    QStringList hostedCampaigns() const;
+    QVariantList hostedCampaigns() const;
     bool busy() const;
     QString activeName() const;
     QString errorMessage() const;
@@ -45,13 +46,15 @@ public:
     QString inviteCode() const;
     QVariantList participants() const;
 
-    Q_INVOKABLE void enter(const QString &address, const QString &code, int campaignIndex);
+    Q_INVOKABLE void enter(const QString &address, const QString &code, int campaignIndex, const QString &displayName);
     Q_INVOKABLE void disconnectSession();
     Q_INVOKABLE void clearError();
     Q_INVOKABLE bool createHostedCampaign(const QString &name);
+    Q_INVOKABLE bool trashHostedCampaign(const QString &id, const QString &confirmationName, const QString &code);
+    Q_INVOKABLE bool forgetJoinedCampaign(const QString &id);
     Q_INVOKABLE void openHostedCampaign(int campaignIndex);
     Q_INVOKABLE void closeHostedCampaign();
-    Q_INVOKABLE void startHosting(int port);
+    Q_INVOKABLE void startHosting(int port, const QString &displayName);
     Q_INVOKABLE void stopHosting();
     Q_INVOKABLE void copyInvitationText(const QString &text);
 
@@ -79,13 +82,15 @@ private:
     {
         // Shut down the session before releasing the archive lock.
         std::unique_ptr<QLockFile> lock;
+        std::unique_ptr<QLockFile> legacyLock;
         std::unique_ptr<golarion::play::Session> session;
         QStringList endpoints;
         QString error;
         int port = 0;
     };
 
-    static Hosting launchHosting(const QString &campaignDirectory, const golarion::play::HostedCampaignData &campaign, int port);
+    static Hosting launchHosting(const QString &campaignDirectory, const golarion::play::HostedCampaignData &campaign, int port, const std::string &displayName);
+    std::optional<std::string> validatedDisplayName(const QString &displayName);
     void pollHosting();
     void loadCampaigns();
     bool saveCampaign(const golarion::play::JoinedCampaignData &data) const;
@@ -97,6 +102,7 @@ private:
     void setParticipants(QVariantList participants);
 
     const QString campaignDirectory_;
+    const std::function<bool(const QString &)> moveToTrash_;
     QList<golarion::play::JoinedCampaign> campaigns_;
     QList<golarion::play::HostedCampaign> hostedCampaigns_;
     QString activeName_;

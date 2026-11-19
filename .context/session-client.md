@@ -26,7 +26,7 @@ Connection states remain Disconnected, Connecting, Admitting and Connected. Mode
 
 Private ClientConnection owns the socket, input/output buffers, pending promises, state mutex, stop flag and worker. ProtocolManager's client mutex serializes lifecycle/request IDs; the worker never acquires it. A weak active reference guarded by executionMutex_ supports dispatch and snapshot reads without taking a lifecycle lock that may be joining this worker. The connection is published before its thread starts. Only the worker touches the socket. Shared socket_support.hpp supplies RAII, numeric address validation, nonblocking platform errors and SIGPIPE handling.
 
-Connect recognizes pending errors and checks SO_ERROR, with a five-second deadline. Admission send/receive share another five-second deadline. Select waits at most 50 ms for cancellation. The JSON v3 codec validates frame size, UTF-8, duplicate keys, nesting and envelope schemas. IDs client-N increase across attempts/commands. Admission must match its ID exactly, use request.accepted/result or a known request.rejected code, and contain exact UserId/permissions fields plus token only for join.
+Connect recognizes pending errors and checks SO_ERROR, with a five-second deadline. Admission send/receive share another five-second deadline. Select waits at most 50 ms for cancellation. The JSON v4 codec validates frame size, UTF-8, duplicate keys, nesting and envelope schemas. IDs client-N increase across attempts/commands. Admission must match its ID exactly, use request.accepted/result or a known request.rejected code, and contain exact UserId/permissions fields plus token only for join.
 
 Permission masks must be nonnegative integers containing only known bits. Strings (including retired role names), booleans, floats, negative/unknown-bit values, missing masks and extra fields reject. Generic results can be any JSON value. Command replies match fully sent outstanding IDs; invalid/unknown/duplicate IDs and malformed schemas close the connection. Notifications omit requestId and pass to the shared client dispatcher. Unknown notifications, malformed payloads or failing handlers also close the connection and fail remaining promises. Well-formed rejections complete only their request. Out-of-order replies and fragmented/coalesced notifications are supported.
 
@@ -41,7 +41,7 @@ Complete admission/command replies are resolved before following frames, indepen
 ./build/core/play/golarion_play_client.exe 127.0.0.1 42500 A7K2Q ./my-session-token.txt
 ```
 
-Run separate terminals with the current printed code. Host syntax is IP/port/[archive]/[name]; the optional name follows an explicit archive path. Client syntax is IP/port/code/[token file], default client-token.txt. For another PC supply a reachable address and configure the host bind address appropriately. Linux names omit .exe. Both sides must be rebuilt for JSON v3.
+Run separate terminals with the current printed code. Host syntax is IP/port/[archive]/[name]; the optional name follows an explicit archive path. Client syntax is IP/port/code/[token file], default client-token.txt. For another PC supply a reachable address and configure the host bind address appropriately. Linux names omit .exe. Both sides must be rebuilt for JSON v4.
 
 A missing token file selects join; an existing valid file selects resume. The tool writes only the original 16 lowercase hex characters plus newline, never prints them, and reports effective flags as Italian Permesso1 through Permesso5/CambiaPermessi. No persistent preset label is inferred. Empty masks display nessuno. Invalid existing files fail before connecting and are preserved. Use one writer and one token file per participant/session. After discarding an archive, use a new token file.
 
@@ -53,7 +53,7 @@ The Qt controller uses the asynchronous Session client API and polls its futures
 
 Each admitted campaign is saved atomically in an individual JSON file under the application's per-user local data directory (`campaigns/`). Token values stay in C++ and files use owner read/write permissions. Disconnection preserves these records; a malformed entry stays on disk. Admission and the host archive remain authoritative for membership.
 
-Desktop hosts and named console hosts use `Session::registerSessionInfo` to register the authenticated, read-only `session.info` command. It accepts an empty object and returns `{"name":"..."}`. The desktop client requests it after admission. An unnamed or older host can omit the command; the client uses the known name or `Sessione <IPv4>:<port>` in that case. Join/resume envelopes and the host identity archive format remain on JSON v3 and format 2, respectively.
+Desktop hosts and named console hosts use `Session::registerSessionInfo` for the campaign name. The desktop client requests it after admission. If the command is absent, the client uses the known campaign name or `Sessione <IPv4>:<port>`. Participant names are separate, supplied from the locally stored home field during v4 join/resume and published in participant snapshots. Host identities are saved in archive v3.
 
 ## Verification
 

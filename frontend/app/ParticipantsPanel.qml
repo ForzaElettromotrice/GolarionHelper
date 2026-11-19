@@ -8,7 +8,6 @@ Frame {
     id: panel
 
     required property var participants
-    required property string localName
 
     padding: 12
     contentItem: ColumnLayout {
@@ -34,13 +33,19 @@ Frame {
                 Layout.fillWidth: true
 
                 Label {
+                    id: participantName
                     Layout.fillWidth: true
                     Layout.minimumWidth: 0
-                    text: row.modelData.isSelf && panel.localName.trim().length > 0 ? panel.localName.trim() : row.modelData.userId
+                    text: row.modelData.displayName
                     textFormat: Text.PlainText
                     elide: Text.ElideRight
-                    ToolTip.visible: truncated && nameHover.hovered
-                    ToolTip.text: text
+                    ToolTip {
+                        visible: participantName.truncated && nameHover.hovered
+                        contentItem: Label {
+                            text: participantName.text
+                            textFormat: Text.PlainText
+                        }
+                    }
 
                     HoverHandler { id: nameHover }
                 }

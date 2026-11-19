@@ -22,10 +22,10 @@ Client callbacks keep the existing JSON return type. Their result is discarded f
 
 ## Framing and Routing
 
-The codec is unchanged JSON v3: a four-byte big-endian size followed by strict UTF-8 JSON, maximum 65536 JSON bytes. It already permits omitted requestId. Both binaries must support the emitted built-in notifications; client builds lacking session.participantsChanged cannot receive the new extension.
+The codec is unchanged JSON v4: a four-byte big-endian size followed by strict UTF-8 JSON, maximum 65536 JSON bytes. It already permits omitted requestId. Both binaries must support the emitted built-in notifications; client builds lacking session.participantsChanged cannot receive the new extension.
 
 ```json
-{"version":3,"type":"permissions.changed","payload":{"userId":"user-example","permissions":23}}
+{"version":4,"type":"permissions.changed","payload":{"userId":"user-example","permissions":23}}
 ```
 
 ClientConnection::processMessages decodes complete frames in stream order, including leftovers from admission. With requestId, a message must be a valid accepted/rejected reply matching a fully sent pending command. Without requestId, it goes through ProtocolManager::dispatch and the client registry. A reply envelope without its ID, an unknown notification, invalid payload or throwing handler closes the connection and fails remaining promises; completed results/credentials remain completed.

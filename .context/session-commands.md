@@ -6,7 +6,7 @@ Status: shared host/client registration and dispatch, 2026-11-18. Every host req
 
 add_command(name, CommandRequirements, callback) is available directly and through protocol.add_command. Requirements accept a single Permission or a PermissionSet built with |. All required flags must be present. A CommandRequirements default or PermissionSet{} requires an identified registered user even though it requires no flags. Permission::Any = 0 explicitly creates Public requirements and is reserved for command access, not assignment. Join/resume use that value. Public access cannot combine participant flags.
 
-Hosting decodes one JSON v3 frame and calls handleMessage, which validates requestId then calls handleCommand for every name. The handler builds a fresh context and invokes dispatch. Anonymous live peers execute only explicit Public commands. Identified actors, including public callers, are verified through permissions.hasPermissions; unknown identities reject. No identity or permission claim in payload replaces the connection's actor.
+Hosting decodes one JSON v4 frame and calls handleMessage, which validates requestId then calls handleCommand for every name. The handler builds a fresh context and invokes dispatch. Anonymous live peers execute only explicit Public commands. Identified actors, including public callers, are verified through permissions.hasPermissions; unknown identities reject. No identity or permission claim in payload replaces the connection's actor.
 
 Cached contexts from closed/replaced peers, cached anonymous contexts after admission, and forged identity/connection pairs reject before callbacks. A trusted local call may supply a registered UserId without a connection; an entirely empty context rejects. Public callbacks handle optional identity; authenticated callbacks can dereference it. PermissionManager mutation methods separately enforce target/domain restrictions.
 
@@ -19,13 +19,13 @@ On clients, add_command(name, callback) and AddClientCommandSignature register i
 For an explicitly registered example.echo requiring Permission1 and Permission3:
 
 ```json
-{"version":3,"type":"example.echo","requestId":"command-1","payload":{"value":7}}
+{"version":4,"type":"example.echo","requestId":"command-1","payload":{"value":7}}
 ```
 
 Success returns the callback result unchanged inside the wrapper:
 
 ```json
-{"version":3,"type":"request.accepted","requestId":"command-1","payload":{"result":{"value":7}}}
+{"version":4,"type":"request.accepted","requestId":"command-1","payload":{"result":{"value":7}}}
 ```
 
 Results may be objects, arrays, scalars or null. Error replies use request.rejected with exactly payload.code/message, preserving requestId when valid. The closed codes remain INVALID_REQUEST, INVALID_SESSION_CODE, INVALID_USER_TOKEN, NOT_ADMITTED, ALREADY_ADMITTED, ADMISSION_FAILED, UNKNOWN_COMMAND, FORBIDDEN and COMMAND_FAILED. Wire messages are sanitized Italian; raw callback failures are not exposed. Invalid/oversized output is converted to COMMAND_FAILED without retrying the callback. Ordinary admitted errors keep the connection open; pending errors, framing failures and stale peers close it.

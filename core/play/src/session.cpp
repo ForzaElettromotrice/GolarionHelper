@@ -40,14 +40,19 @@ namespace golarion::play
             });
     }
 
-    std::future<ClientAdmission> Session::joinSession(std::string ip, std::uint16_t port, SessionCode code)
+    void Session::setHostDisplayName(std::string displayName)
     {
-        return protocolManager_.joinSession(std::move(ip), port, std::move(code));
+        protocolManager_.setHostDisplayName(std::move(displayName));
     }
 
-    std::future<ClientAdmission> Session::resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token)
+    std::future<ClientAdmission> Session::joinSession(std::string ip, std::uint16_t port, SessionCode code, std::string displayName)
     {
-        return protocolManager_.resumeSession(std::move(ip), port, std::move(code), std::move(token));
+        return protocolManager_.joinSession(std::move(ip), port, std::move(code), std::move(displayName));
+    }
+
+    std::future<ClientAdmission> Session::resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token, std::optional<std::string> displayName)
+    {
+        return protocolManager_.resumeSession(std::move(ip), port, std::move(code), std::move(token), std::move(displayName));
     }
 
     void Session::disconnectFromHost() { protocolManager_.disconnectFromHost(); }

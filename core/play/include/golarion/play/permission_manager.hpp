@@ -17,6 +17,7 @@ namespace golarion::play
     {
         UserId userId;
         PermissionSet permissions;
+        std::string displayName = {};
     };
 
     class PermissionManager final
@@ -32,7 +33,9 @@ namespace golarion::play
         using ToSaveDataSignature = std::vector<UserPermissionsSaveData>();
         using RestoreSaveDataSignature = void(const std::vector<UserPermissionsSaveData> &);
         using RegistrationCommit = std::function<void(const std::vector<UserPermissionsSaveData> &)>;
-        using RegisterUserWithCommitSignature = void(UserId, RegistrationCommit);
+        using RegisterUserWithCommitSignature = void(UserId, RegistrationCommit, std::string);
+        using GetDisplayNameSignature = std::string(const UserId &);
+        using SetDisplayNameWithCommitSignature = bool(const UserId &, std::string, RegistrationCommit);
         using PermissionsCommit = RegistrationCommit;
         using SetPermissionWithCommitSignature = PermissionSet(const UserId &, const UserId &, Permission, bool, PermissionsCommit);
         using ApplyPresetWithCommitSignature = PermissionSet(const UserId &, const UserId &, PermissionPreset, PermissionsCommit);
@@ -45,7 +48,7 @@ namespace golarion::play
         PermissionManager &operator=(PermissionManager &&) = delete;
 
         void registerUser(UserId userId);
-        void registerUserWithCommit(UserId userId, const RegistrationCommit &commit);
+        void registerUserWithCommit(UserId userId, const RegistrationCommit &commit, std::string displayName = {});
         void registerCommands();
         UserId getHostId() const;
         PermissionSet getPermissions(const UserId &userId) const;
@@ -59,6 +62,16 @@ namespace golarion::play
         void restoreSaveData(const std::vector<UserPermissionsSaveData> &data);
 
     private:
+        struct UserState
+        {
+            PermissionSet permissions;
+            std::string displayName;
+        };
+        using Users = std::unordered_map<UserId, UserState>;
+
+        static std::vector<UserPermissionsSaveData> saveUsers(const Users &users);
+        std::string getDisplayName(const UserId &userId) const;
+        bool setDisplayNameWithCommit(const UserId &userId, std::string displayName, const RegistrationCommit &commit);
         PermissionSet getPermissionsUnlocked(const UserId &userId) const;
         void requireCanModifyUnlocked(const UserId &actorId, const UserId &targetId) const;
         PermissionSet changedPermissionUnlocked(const UserId &actorId, const UserId &targetId, Permission permission, bool enabled) const;
@@ -69,7 +82,7 @@ namespace golarion::play
         ResourceManager &resources_;
         const UserId hostId_;
         mutable std::mutex mutex_;
-        std::unordered_map<UserId, PermissionSet> users_;
+        Users users_;
         std::size_t registeredFeatureCount_ = 0;
     };
 }

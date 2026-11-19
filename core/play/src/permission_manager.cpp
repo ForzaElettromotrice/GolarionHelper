@@ -1,4 +1,5 @@
 #include "golarion/play/permission_manager.hpp"
+#include "golarion/play/display_name.hpp"
 
 #include <algorithm>
 #include <array>
@@ -8,10 +9,11 @@
 
 namespace
 {
-    constexpr std::array<std::string_view, 12> FeatureNames{
+    constexpr std::array<std::string_view, 14> FeatureNames{
         "permissions.registerUser", "permissions.getHostId", "permissions.getPermissions", "permissions.hasPermission", "permissions.hasPermissions",
         "permissions.setPermission", "permissions.applyPreset", "permissions.toSaveData", "permissions.restoreSaveData", "permissions.registerUserWithCommit",
-        "permissions.setPermissionWithCommit", "permissions.applyPresetWithCommit"
+        "permissions.setPermissionWithCommit", "permissions.applyPresetWithCommit",
+        "permissions.getDisplayName", "permissions.setDisplayNameWithCommit"
     };
 
     void validateUserId(const golarion::play::UserId &userId)
@@ -22,22 +24,22 @@ namespace
         }
     }
 
-    std::vector<golarion::play::UserPermissionsSaveData> savedPermissions(const std::unordered_map<golarion::play::UserId, golarion::play::PermissionSet> &users)
-    {
-        std::vector<golarion::play::UserPermissionsSaveData> result;
-        result.reserve(users.size());
-        for (const auto &[userId, permissions] : users) result.push_back({userId, permissions});
-        std::sort(result.begin(), result.end(), [](const auto &left, const auto &right) { return left.userId < right.userId; });
-        return result;
-    }
 }
 
 namespace golarion::play
 {
+    std::vector<UserPermissionsSaveData> PermissionManager::saveUsers(const Users &users)
+    {
+        std::vector<UserPermissionsSaveData> result;
+        result.reserve(users.size());
+        for (const auto &[userId, state] : users) result.push_back({userId, state.permissions, state.displayName});
+        std::sort(result.begin(), result.end(), [](const auto &left, const auto &right) { return left.userId < right.userId; });
+        return result;
+    }
     PermissionManager::PermissionManager(ResourceManager &resources, UserId hostId) : resources_(resources), hostId_(std::move(hostId))
     {
         validateUserId(hostId_);
-        users_.emplace(hostId_, PermissionSet::all());
+        users_.emplace(hostId_, UserState{PermissionSet::all(), {}});
         try
         {
             resources_.registerFeature<RegisterUserSignature>(FeatureNames[0], [this](UserId userId) { registerUser(std::move(userId)); });
@@ -58,11 +60,15 @@ namespace golarion::play
             ++registeredFeatureCount_;
             resources_.registerFeature<RestoreSaveDataSignature>(FeatureNames[8], [this](const std::vector<UserPermissionsSaveData> &data) { restoreSaveData(data); });
             ++registeredFeatureCount_;
-            resources_.registerFeature<RegisterUserWithCommitSignature>(FeatureNames[9], [this](UserId userId, RegistrationCommit commit) { registerUserWithCommit(std::move(userId), commit); });
+            resources_.registerFeature<RegisterUserWithCommitSignature>(FeatureNames[9], [this](UserId userId, RegistrationCommit commit, std::string name) { registerUserWithCommit(std::move(userId), commit, std::move(name)); });
             ++registeredFeatureCount_;
             resources_.registerFeature<SetPermissionWithCommitSignature>(FeatureNames[10], [this](const UserId &actorId, const UserId &targetId, Permission permission, bool enabled, PermissionsCommit commit) { return setPermissionWithCommit(actorId, targetId, permission, enabled, commit); });
             ++registeredFeatureCount_;
             resources_.registerFeature<ApplyPresetWithCommitSignature>(FeatureNames[11], [this](const UserId &actorId, const UserId &targetId, PermissionPreset preset, PermissionsCommit commit) { return applyPresetWithCommit(actorId, targetId, preset, commit); });
+            ++registeredFeatureCount_;
+            resources_.registerFeature<GetDisplayNameSignature>(FeatureNames[12], [this](const UserId &userId) { return getDisplayName(userId); });
+            ++registeredFeatureCount_;
+            resources_.registerFeature<SetDisplayNameWithCommitSignature>(FeatureNames[13], [this](const UserId &userId, std::string name, RegistrationCommit commit) { return setDisplayNameWithCommit(userId, std::move(name), commit); });
             ++registeredFeatureCount_;
         }
         catch (...)
@@ -78,19 +84,42 @@ namespace golarion::play
     {
         validateUserId(userId);
         const std::lock_guard lock(mutex_);
-        if (!users_.emplace(std::move(userId), permissionsForPreset(PermissionPreset::Player)).second) throw std::invalid_argument("user is already registered");
+        if (!users_.emplace(std::move(userId), UserState{permissionsForPreset(PermissionPreset::Player), {}}).second) throw std::invalid_argument("user is already registered");
     }
 
-    void PermissionManager::registerUserWithCommit(UserId userId, const RegistrationCommit &commit)
+    void PermissionManager::registerUserWithCommit(UserId userId, const RegistrationCommit &commit, std::string displayName)
     {
         validateUserId(userId);
         if (!commit) throw std::invalid_argument("registration commit callback must not be empty");
+        if (!displayName.empty()) displayName = normalizeDisplayName(displayName);
         const std::lock_guard lock(mutex_);
         auto candidate = users_;
-        if (!candidate.emplace(std::move(userId), permissionsForPreset(PermissionPreset::Player)).second) throw std::invalid_argument("user is already registered");
+        if (!candidate.emplace(std::move(userId), UserState{permissionsForPreset(PermissionPreset::Player), std::move(displayName)}).second) throw std::invalid_argument("user is already registered");
         // Commit callbacks receive staged data and must not reenter managers or acquire their locks.
-        commit(savedPermissions(candidate));
+        commit(saveUsers(candidate));
         users_.swap(candidate);
+    }
+
+    std::string PermissionManager::getDisplayName(const UserId &userId) const
+    {
+        const std::lock_guard lock(mutex_);
+        const auto user = users_.find(userId);
+        return user == users_.end() ? std::string{} : user->second.displayName;
+    }
+
+    bool PermissionManager::setDisplayNameWithCommit(const UserId &userId, std::string displayName, const RegistrationCommit &commit)
+    {
+        displayName = normalizeDisplayName(displayName);
+        if (!commit) throw std::invalid_argument("display name commit callback must not be empty");
+        const std::lock_guard lock(mutex_);
+        auto &name = users_.at(userId).displayName;
+        if (name == displayName) return false;
+        auto candidate = saveUsers(users_);
+        const auto entry = std::find_if(candidate.begin(), candidate.end(), [&](const auto &user) { return user.userId == userId; });
+        entry->displayName = displayName;
+        commit(candidate);
+        name.swap(displayName);
+        return true;
     }
 
     UserId PermissionManager::getHostId() const { return hostId_; }
@@ -99,7 +128,7 @@ namespace golarion::play
     {
         const auto user = users_.find(userId);
         if (user == users_.end()) throw std::invalid_argument("user is not registered: " + userId);
-        return user->second;
+        return user->second.permissions;
     }
 
     PermissionSet PermissionManager::getPermissions(const UserId &userId) const
@@ -130,7 +159,7 @@ namespace golarion::play
     void PermissionManager::setPermission(const UserId &actorId, const UserId &targetId, Permission permission, bool enabled)
     {
         const std::lock_guard lock(mutex_);
-        users_.at(targetId) = changedPermissionUnlocked(actorId, targetId, permission, enabled);
+        users_.at(targetId).permissions = changedPermissionUnlocked(actorId, targetId, permission, enabled);
     }
 
     PermissionSet PermissionManager::changedPermissionUnlocked(const UserId &actorId, const UserId &targetId, Permission permission, bool enabled) const
@@ -138,7 +167,7 @@ namespace golarion::play
         const PermissionSet selected(permission);
         requireCanModifyUnlocked(actorId, targetId);
         if (permission == Permission::ChangePermissions && actorId != hostId_) throw PermissionDenied("only the host can grant or revoke ChangePermissions");
-        auto target = users_.at(targetId);
+        auto target = users_.at(targetId).permissions;
         if (enabled) target.add(selected);
         else target.remove(selected);
         return target;
@@ -147,14 +176,14 @@ namespace golarion::play
     void PermissionManager::applyPreset(const UserId &actorId, const UserId &targetId, PermissionPreset preset)
     {
         const std::lock_guard lock(mutex_);
-        users_.at(targetId) = presetPermissionsUnlocked(actorId, targetId, preset);
+        users_.at(targetId).permissions = presetPermissionsUnlocked(actorId, targetId, preset);
     }
 
     PermissionSet PermissionManager::presetPermissionsUnlocked(const UserId &actorId, const UserId &targetId, PermissionPreset preset) const
     {
         auto replacement = permissionsForPreset(preset);
         requireCanModifyUnlocked(actorId, targetId);
-        const auto target = users_.at(targetId);
+        const auto target = users_.at(targetId).permissions;
         if (target.hasAll(Permission::ChangePermissions)) replacement.add(Permission::ChangePermissions);
         return replacement;
     }
@@ -162,8 +191,8 @@ namespace golarion::play
     PermissionSet PermissionManager::commitPermissionsUnlocked(const UserId &targetId, PermissionSet replacement, const PermissionsCommit &commit)
     {
         auto candidate = users_;
-        candidate.at(targetId) = replacement;
-        commit(savedPermissions(candidate));
+        candidate.at(targetId).permissions = replacement;
+        commit(saveUsers(candidate));
         users_.swap(candidate);
         return replacement;
     }
@@ -185,19 +214,20 @@ namespace golarion::play
     std::vector<UserPermissionsSaveData> PermissionManager::toSaveData() const
     {
         const std::lock_guard lock(mutex_);
-        return savedPermissions(users_);
+        return saveUsers(users_);
     }
 
     void PermissionManager::restoreSaveData(const std::vector<UserPermissionsSaveData> &data)
     {
-        std::unordered_map<UserId, PermissionSet> restored;
+        Users restored;
         for (const auto &entry : data)
         {
             validateUserId(entry.userId);
-            if (!restored.emplace(entry.userId, entry.permissions).second) throw std::invalid_argument("duplicate user ID in permission data");
+            auto name = entry.displayName.empty() ? std::string{} : normalizeDisplayName(entry.displayName);
+            if (!restored.emplace(entry.userId, UserState{entry.permissions, std::move(name)}).second) throw std::invalid_argument("duplicate user ID in permission data");
         }
         const auto host = restored.find(hostId_);
-        if (host == restored.end() || host->second != PermissionSet::all()) throw std::invalid_argument("permission data must preserve this host and all its permissions");
+        if (host == restored.end() || host->second.permissions != PermissionSet::all()) throw std::invalid_argument("permission data must preserve this host and all its permissions");
         const std::lock_guard lock(mutex_);
         users_.swap(restored);
     }

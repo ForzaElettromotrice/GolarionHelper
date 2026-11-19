@@ -154,7 +154,7 @@ namespace
 
     Json request(std::string requestId)
     {
-        return Json{{"version", 3}, {"type", "test.permission"}, {"requestId", std::move(requestId)}, {"payload", {{"userId", "host"}, {"permissions", 63}}}};
+        return Json{{"version", 4}, {"type", "test.permission"}, {"requestId", std::move(requestId)}, {"payload", {{"userId", "host"}, {"permissions", 63}}}};
     }
 
     void pendingConnectionsAndSessionShutdown()
@@ -177,7 +177,7 @@ namespace
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
         sendBytes(client, {bytes.begin() + 2, bytes.end()});
         const auto reply = receiveMessage(client);
-        check(reply.at("version") == 3 && reply.at("type") == "request.rejected", "unexpected pending reply");
+        check(reply.at("version") == 4 && reply.at("type") == "request.rejected", "unexpected pending reply");
         check(reply.at("requestId") == "request-1", "request correlation lost");
         check(reply.at("payload").at("code") == "UNKNOWN_COMMAND", "unexpected unknown pending command outcome");
         checkClosed(client);
@@ -235,7 +235,7 @@ namespace
         const auto port = protocol.startHosting("127.0.0.1", 0);
         for (const auto &bytes : std::array<std::vector<std::uint8_t>, 5>{
             std::vector<std::uint8_t>{0, 0, 0, 1, '{'}, std::vector<std::uint8_t>{0, 1, 0, 1},
-            frame(request(std::string(129, 'x'))), frame(Json{{"version", 3}, {"type", "test"}, {"payload", Json::object()}}),
+            frame(request(std::string(129, 'x'))), frame(Json{{"version", 4}, {"type", "test"}, {"payload", Json::object()}}),
             frame(Json{{"version", 1}, {"type", "test"}, {"requestId", "old"}, {"payload", Json::object()}})})
         {
             const auto client = connectClient(port);

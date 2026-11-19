@@ -1,6 +1,6 @@
 # Game Management and Application Communication
 
-Status: revisioned connected-participant query/events now accompany permission notifications, JSON v3 admission/sendCommand and transactional permission RPCs. Archives remain version 2. The desktop app creates local campaigns, starts and stops their hosts, and joins or resumes saved campaigns. Participant-list frontend presentation, sheet commands and participant display names remain deferred.
+The desktop app creates local campaigns, hosts and joins them with identity-preserving resume. Connected-participant snapshots carry names using JSON v4. The host reads archive v2 and saves archive v3 with per-user display names. Sheet commands remain future work.
 
 ## Confirmed Requirements
 
@@ -19,12 +19,12 @@ Status: revisioned connected-participant query/events now accompany permission n
 - `Session` is the main play container, analogous to `CharacterSheet`. A user creates a session and can start/stop its server; subsystem behavior is delegated to its managers.
 - Session::createHost(hostId) takes the immutable Host UserId; createClient has no authoritative user manager. Both own ResourceManager/ProtocolManager, and only hosts own PermissionManager. Methods delegate; see session-client.md.
 - Session is a facade: ProtocolManager implements logical binding/context/lifecycle, credentials and admission. No ConnectionManager is introduced. PermissionManager owns all users/masks and is consumed through ResourceManager. UserId is shared in user_id.hpp.
-- Host PermissionManager publishes twelve permissions.* features and registers three command adapters through protocol.add_command. ProtocolManager exposes identity.updateUserPermissions and protocol.sendEvent; clients register host-notification callbacks through their own protocol.add_command feature. ClientSnapshot refreshes on permissions.changed after effective committed changes. See session-events.md.
+- Host PermissionManager publishes fourteen permissions.* features and registers three command adapters through protocol.add_command. ProtocolManager exposes identity.updateUserPermissions and protocol.sendEvent; clients register host-notification callbacks through their own protocol.add_command feature. ClientSnapshot refreshes on permissions.changed after effective committed changes. See session-events.md.
 - Session is the local hosting entry point: start/stop delegates to ProtocolManager's private Hosting implementation, without polling. Pending peers join/resume via JSON; admitted sockets execute registered commands and remain open after ordinary errors. Destruction stops hosting before provider teardown. Lifecycle operations belong outside command callbacks; see `session-admission.md` and `session-commands.md`.
 - A session uses a five-character SessionCode with `A-Z` and `0-9`. Verification accepts lowercase by normalization. Desktop hosts supply the campaign's saved code to Session and ProtocolManager. Host-wide uniqueness remains deferred.
 - The implemented model stores immutable Host UserId separately from flags. Host owns all six permissions. New users receive Player flags. Presets have no hierarchy; host alone grants/revokes ChangePermissions, delegates change only other non-host users, and presets replace ordinary bits while preserving that flag.
 - Permission::Any = 0 explicitly selects public command access for registered join/resume; it is not assignable. A zero PermissionSet requirement instead needs an authenticated registered user. Unknown/stale contexts reject, and identity never comes from payload. All requests reuse the common dispatcher.
-- Communication uses framed JSON v3 over TCP. Original eight-byte credentials identify participants within their archive across reconnect/restart; host resolves their current permissions. Both peers must use the new wire version.
+- Communication uses framed JSON v4 over TCP. Original eight-byte credentials identify participants within their archive across reconnect/restart; host resolves their current permissions. Both peers must use the new wire version.
 - Token issuance/recognition uses OpenSSL Crypto with host-side hashes only and no SessionId. Version-2 archives store explicit hostId, users/masks and hashes. Role archives are rejected without conversion per user choice; no automatic deletion occurs. Permission commands save transactionally; trusted direct setters still require an explicit save.
 - Valid resume replaces a previous live connection while preserving identity/token and returning the current mask. One active binding exists per user; stale messages/disconnects cannot affect its replacement.
 - Store sheet IDs and names in the game registry; connect actual `CharacterSheet` content through the later application service.
@@ -44,11 +44,13 @@ Status: revisioned connected-participant query/events now accompany permission n
 
 ## Desktop Hosted Campaigns
 
-The desktop controller saves each owned campaign under its stable UUID in the local `campaigns/` directory, with a name and a generated invitation code in `campaign.json`. Avvia hosting loads the code and loads or initializes `identities.json` in the same directory using the UUID as the host UserId. A lock prevents multiple app instances from running the same campaign archive concurrently.
+The desktop controller saves each owned campaign under its stable UUID in the local `campaigns/` directory, with a name and a generated invitation code in `campaign.json`. Avvia hosting loads the code and loads or initializes `identities.json` in the same directory using the UUID as the host UserId. A sibling lock serializes hosting and moving the full campaign directory to the system trash. Hosting also takes the original in-directory lock for compatibility.
 
 The Qt controller runs archive locking, session preparation, opening the IPv4 listener and collecting invitation addresses in a background task. It publishes the completed result on the GUI thread. The host uses the requested port and reports the actual bound port. The campaign name is published through `Session::registerSessionInfo`. Opening the campaign displays the exact saved code. For an older manifest missing a code, opening the page saves one atomically under the hosting lock before showing it. Participants keep their original credential and update the code once in that case.
 
 `core/play` supplies typed hosted and joined campaign views and data. The joined view supplies name, address and code. Its data also contains the stored credential. `Session::toView()` composes live host or client state. Host-only `Session::toData()` combines the code with the identity snapshot from the protocol manager. Identity saves use the same identity projection under the archive lock. Qt adapts the views to QML and writes campaign data using the existing JSON keys.
+
+The controller verifies the hosted campaign's confirmed ID, name and code, checks the on-disk manifest and acquires the campaign locks before moving it. Removing a joined record verifies the stored token against the selected local entry before deleting its file. On failure the controller retains the list entry. The hosted action uses the platform trash operation from [QFile](https://doc.qt.io/qt-6/qfile.html#moveToTrash).
 
 ## Proposed Game Model and Lifecycle
 

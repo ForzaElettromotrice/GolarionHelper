@@ -5,6 +5,7 @@
 #include "identity_storage.hpp"
 #include "identity_transaction.hpp"
 #include "permission_json.hpp"
+#include "golarion/play/display_name.hpp"
 #include "participants_json.hpp"
 #include "protocol.hpp"
 #include "user_tokens.hpp"
@@ -408,6 +409,30 @@ namespace golarion::play
         };
     }
 
+    bool ProtocolManager::commitDisplayNameLocked(const UserId &userId, std::string displayName)
+    {
+        const auto hostId = resources_.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId");
+        return resources_.invoke<PermissionManager::SetDisplayNameWithCommitSignature>("permissions.setDisplayNameWithCommit", userId, std::move(displayName),
+            [this, &hostId](const std::vector<UserPermissionsSaveData> &users)
+            {
+                if (!identityArchivePath_) return;
+                detail::writeIdentityState(*identityArchivePath_, IdentitySaveData{hostId, users, userTokens_->toSaveData()});
+            });
+    }
+
+    void ProtocolManager::setHostDisplayName(std::string displayName)
+    {
+        requireHostMode();
+        const std::lock_guard executionLock(executionMutex_);
+        const auto hostId = resources_.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId");
+        bool changed;
+        {
+            const std::lock_guard identityLock(identityMutex_);
+            changed = commitDisplayNameLocked(hostId, std::move(displayName));
+        }
+        if (changed) publishParticipantsChanged();
+    }
+
     IdentitySaveData ProtocolManager::toIdentityData() const
     {
         requireHostMode();
@@ -472,9 +497,16 @@ namespace golarion::play
 
     std::optional<ConnectionId> ProtocolManager::bindUser(ConnectionId connectionId, const UserId &userId)
     {
+        return bindUser(connectionId, userId, std::nullopt);
+    }
+
+    std::optional<ConnectionId> ProtocolManager::bindUser(ConnectionId connectionId, const UserId &userId, std::optional<std::string> displayName)
+    {
         requireHostMode();
         validateUserId(userId);
         const std::lock_guard executionLock(executionMutex_);
+        std::unique_lock identityLock(identityMutex_, std::defer_lock);
+        if (displayName) identityLock.lock();
         std::unique_lock lock(connectionsMutex_);
         const auto connection = connections_.find(connectionId);
         if (connection == connections_.end())
@@ -494,11 +526,19 @@ namespace golarion::play
         std::optional<ConnectionId> replaced;
         // Complete allocations before changing either side of an existing binding.
         UserId boundUser = userId;
-        if (current == activeConnections_.end())
+        const bool newBinding = current == activeConnections_.end();
+        if (newBinding) activeConnections_.emplace(boundUser, connectionId);
+        bool nameChanged = false;
+        try
         {
-            activeConnections_.emplace(boundUser, connectionId);
+            if (displayName) nameChanged = commitDisplayNameLocked(userId, std::move(*displayName));
         }
-        else
+        catch (...)
+        {
+            if (newBinding) activeConnections_.erase(boundUser);
+            throw;
+        }
+        if (!newBinding)
         {
             replaced = current->second;
             current->second = connectionId;
@@ -511,8 +551,9 @@ namespace golarion::play
             events_.erase(*replaced);
         }
         lock.unlock();
-        if (replaced) sendParticipantsSnapshot(userId);
-        else publishParticipantsChanged();
+        if (identityLock.owns_lock()) identityLock.unlock();
+        if (newBinding || nameChanged) publishParticipantsChanged();
+        else sendParticipantsSnapshot(userId);
         return replaced;
     }
 
@@ -629,20 +670,21 @@ namespace golarion::play
         if (failure) std::rethrow_exception(failure);
     }
 
-    std::future<ClientAdmission> ProtocolManager::joinSession(std::string ip, std::uint16_t port, SessionCode code)
+    std::future<ClientAdmission> ProtocolManager::joinSession(std::string ip, std::uint16_t port, SessionCode code, std::string displayName)
     {
-        return startClient(std::move(ip), port, std::move(code), std::nullopt);
+        return startClient(std::move(ip), port, std::move(code), std::nullopt, std::move(displayName));
     }
 
-    std::future<ClientAdmission> ProtocolManager::resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token)
+    std::future<ClientAdmission> ProtocolManager::resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token, std::optional<std::string> displayName)
     {
-        return startClient(std::move(ip), port, std::move(code), std::move(token));
+        return startClient(std::move(ip), port, std::move(code), std::move(token), std::move(displayName));
     }
 
-    std::future<ClientAdmission> ProtocolManager::startClient(std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token)
+    std::future<ClientAdmission> ProtocolManager::startClient(std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token, std::optional<std::string> displayName)
     {
         requireClientMode();
         requireOutsideDispatch(*this);
+        if (displayName) *displayName = normalizeDisplayName(*displayName);
         const std::lock_guard lock(clientMutex_);
         if (client_)
         {
@@ -652,7 +694,7 @@ namespace golarion::play
         }
         if (nextClientRequestId_ == 0) throw std::overflow_error("client request ID space is exhausted");
         const std::lock_guard executionLock(executionMutex_);
-        auto connection = std::make_shared<ClientConnection>(*this, nextClientRequestId_, std::move(ip), port, std::move(code), std::move(token), "client-" + std::to_string(nextClientRequestId_));
+        auto connection = std::make_shared<ClientConnection>(*this, nextClientRequestId_, std::move(ip), port, std::move(code), std::move(token), std::move(displayName), "client-" + std::to_string(nextClientRequestId_));
         auto result = connection->takeResult();
         client_ = std::move(connection);
         activeClient_ = client_;

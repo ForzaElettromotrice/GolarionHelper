@@ -13,6 +13,8 @@ int main(int argc, char *argv[])
     QQuickStyle::setStyle(QStringLiteral("Basic"));
 
     const auto dataDirectory = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    // Capture the existing campaign location before setting the profile's settings scope.
+    application.setOrganizationName(QStringLiteral("GolarionHelper"));
     SessionController sessionController(dataDirectory.isEmpty() ? QString{} : QDir(dataDirectory).filePath(QStringLiteral("campaigns")));
     QQmlApplicationEngine engine;
     engine.setInitialProperties({{QStringLiteral("sessionController"), QVariant::fromValue(&sessionController)}});

@@ -1,6 +1,6 @@
 # Flusso delle comunicazioni
 
-Aggiornato al 2026-11-18: Session usa PermissionManager, JSON v3 e archivi v2 numerici. Host e client riusano registrazione e dispatch dei comandi; permissions.changed aggiorna soltanto il client interessato dopo una modifica effettiva salvata. Passano diciassette suite CTest dalla configurazione CMake della root, con output in build/core/play. Le vecchie collisioni dei nomi e le richieste durante lo stop restano risolte; le riproduzioni storiche sono separate in history/.
+Aggiornato al 2026-11-18: Session usa PermissionManager, JSON v4 e archivi v2 numerici. Host e client riusano registrazione e dispatch dei comandi; permissions.changed aggiorna soltanto il client interessato dopo una modifica effettiva salvata. Passano diciassette suite CTest dalla configurazione CMake della root, con output in build/core/play. Le vecchie collisioni dei nomi e le richieste durante lo stop restano risolte; le riproduzioni storiche sono separate in history/.
 
 ## Proprietà e collegamenti
 
@@ -156,30 +156,30 @@ Stop non drena le richieste bufferizzate e non garantisce l'invio dell'ultima ri
 Ingresso e risposta:
 
 ```json
-{"version":3,"type":"session.join","requestId":"client-1","payload":{"sessionCode":"A7K2Q"}}
-{"version":3,"type":"request.accepted","requestId":"client-1","payload":{"result":{"userId":"user-example","permissions":7,"userToken":"0123456789abcdef"}}}
+{"version":4,"type":"session.join","requestId":"client-1","payload":{"sessionCode":"A7K2Q","displayName":"Giulia"}}
+{"version":4,"type":"request.accepted","requestId":"client-1","payload":{"result":{"userId":"user-example","permissions":7,"userToken":"0123456789abcdef"}}}
 ```
 
 Comando già registrato e risultato, che può essere anche uno scalare o null:
 
 ```json
-{"version":3,"type":"example.echo","requestId":"client-2","payload":{"value":12}}
-{"version":3,"type":"request.accepted","requestId":"client-2","payload":{"result":12}}
+{"version":4,"type":"example.echo","requestId":"client-2","payload":{"value":12}}
+{"version":4,"type":"request.accepted","requestId":"client-2","payload":{"result":12}}
 ```
 
 Rifiuto di un comando senza i bit necessari:
 
 ```json
-{"version":3,"type":"request.rejected","requestId":"client-3","payload":{"code":"FORBIDDEN","message":"Non hai i permessi per eseguire questo comando."}}
+{"version":4,"type":"request.rejected","requestId":"client-3","payload":{"code":"FORBIDDEN","message":"Non hai i permessi per eseguire questo comando."}}
 ```
 
 Archivio identità, con host distinto da un partecipante anche se entrambi avessero tutti i bit:
 
 ```json
-{"version":2,"hostId":"host","users":[{"userId":"host","permissions":63},{"userId":"user-example","permissions":18}],"tokens":[]}
+{"version":3,"hostId":"host","users":[{"userId":"host","permissions":63,"displayName":"Marta"},{"userId":"user-example","permissions":18,"displayName":"Giulia"}],"tokens":[]}
 ```
 
-I vecchi messaggi JSON v2 e gli archivi a ruoli v1 sono rifiutati. In archivio si salvano hash dei token; l'esempio omette le credenziali. ClientSnapshot aggiorna i propri permessi con permissions.changed e l'elenco dei connessi con session.participantsChanged. session.getParticipants legge lo stesso elenco sull'host. Entrambi gli eseguibili devono supportare gli eventi emessi: una build precedente priva del nuovo nome non può riceverlo. Gli RPC sono descritti in session-permission-commands.md e la presenza in session-participants.md.
+Host e client usano il protocollo v4. L'archivio v2 resta leggibile e viene aggiornato al prossimo salvataggio. L'esempio omette gli hash delle credenziali. ClientSnapshot aggiorna i propri permessi con permissions.changed e l'elenco dei connessi con session.participantsChanged. session.getParticipants legge lo stesso elenco sull'host. [Presenza e nomi](session-participants.md)
 
 ## Modifica transazionale dei permessi
 
@@ -247,7 +247,7 @@ sequenceDiagram
 ```
 
 ```json
-{"version":3,"type":"permissions.changed","payload":{"userId":"user-example","permissions":23}}
+{"version":4,"type":"permissions.changed","payload":{"userId":"user-example","permissions":23}}
 ```
 
 Risposte e notifiche possono arrivare nello stesso blocco TCP o in frammenti. Gli eventi non consumano future e non rinnovano i timeout dei comandi. La coda ha un massimo di 64 notifiche e 256 KiB per connessione, oltre al frame in trasmissione; un overflow chiude il peer per consentire una risincronizzazione esplicita. Il binding sostituito non viene riusato per il nuovo socket. Nessuno storico delle notifiche viene salvato.
@@ -302,4 +302,4 @@ sequenceDiagram
     PM-->>C: elenco completo aggiornato dei connessi
 ```
 
-Il comando session.getParticipants, registrato con accesso autenticato e zero bit richiesti, restituisce lo stesso payload dell'evento. Lo snapshot deriva da activeConnections_/connections_ e permissions.getHostId, senza un secondo registro. ParticipantInfo espone soltanto UserId/isHost; il contatore revision non è persistente. Il client scarta revisioni più vecchie, rifiuta conflitti e svuota la cache quando si scollega. Una chiusura tardiva del socket sostituito non modifica l'elenco. Dettagli e schema sono in session-participants.md.
+Il comando session.getParticipants restituisce lo stesso payload dell'evento agli utenti ammessi. Lo snapshot combina binding attivi e identità persistenti. ParticipantInfo espone UserId, isHost e displayName. Una modifica del nome confermata su disco incrementa la revisione e aggiorna i client. Una chiusura tardiva del socket sostituito non modifica l'elenco. [Schema dei partecipanti](session-participants.md)

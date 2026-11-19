@@ -78,7 +78,7 @@ namespace
     std::uint64_t savedMask(const fs::path &path, const UserId &userId)
     {
         const auto document = Json::parse(readText(path));
-        check(document.at("version") == 2 && document.at("hostId") == "host", "permission command damaged archive metadata");
+        check(document.at("version") == 3 && document.at("hostId") == "host", "permission command damaged archive metadata");
         for (const auto &user : document.at("users")) if (user.at("userId") == userId) return user.at("permissions").get<std::uint64_t>();
         throw std::runtime_error("permission command lost an archived user");
     }

@@ -12,7 +12,7 @@ namespace golarion::play
     class ProtocolManager::ClientConnection final
     {
     public:
-        ClientConnection(ProtocolManager &owner, ConnectionId connectionId, std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token, std::string requestId);
+        ClientConnection(ProtocolManager &owner, ConnectionId connectionId, std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token, std::optional<std::string> displayName, std::string requestId);
         ~ClientConnection();
         ClientConnection(const ClientConnection &) = delete;
         ClientConnection &operator=(const ClientConnection &) = delete;

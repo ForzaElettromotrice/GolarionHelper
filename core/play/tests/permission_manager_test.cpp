@@ -14,10 +14,10 @@ namespace
     using namespace golarion::play;
 
     constexpr std::array<Permission, 6> Flags{Permission::Permission1, Permission::Permission2, Permission::Permission3, Permission::Permission4, Permission::Permission5, Permission::ChangePermissions};
-    constexpr std::array<std::string_view, 12> Features{
+    constexpr std::array<std::string_view, 14> Features{
         "permissions.registerUser", "permissions.getHostId", "permissions.getPermissions", "permissions.hasPermission", "permissions.hasPermissions",
         "permissions.setPermission", "permissions.applyPreset", "permissions.toSaveData", "permissions.restoreSaveData", "permissions.registerUserWithCommit",
-        "permissions.setPermissionWithCommit", "permissions.applyPresetWithCommit"
+        "permissions.setPermissionWithCommit", "permissions.applyPresetWithCommit", "permissions.getDisplayName", "permissions.setDisplayNameWithCommit"
     };
 
     void check(bool value, const char *message) { if (!value) throw std::runtime_error(message); }
@@ -214,7 +214,7 @@ namespace
             resources.invoke<PermissionManager::ApplyPresetSignature>("permissions.applyPreset", "host", "alice", PermissionPreset::Spectator);
             check(resources.invoke<PermissionManager::GetPermissionsSignature>("permissions.getPermissions", "alice") == PermissionSet(Permission::Permission1), "preset feature is wrong");
             auto saved = resources.invoke<PermissionManager::ToSaveDataSignature>("permissions.toSaveData");
-            resources.invoke<PermissionManager::RegisterUserWithCommitSignature>("permissions.registerUserWithCommit", "bob", [](const auto &) {});
+            resources.invoke<PermissionManager::RegisterUserWithCommitSignature>("permissions.registerUserWithCommit", "bob", [](const auto &) {}, "Bob");
             resources.invoke<PermissionManager::RestoreSaveDataSignature>("permissions.restoreSaveData", saved);
             check(rejects([&] { permissions.getPermissions("bob"); }), "restore feature did not replace state");
             check(rejects([&] { PermissionManager duplicate(resources, "another-host"); }), "duplicate provider accepted");
@@ -298,7 +298,7 @@ namespace
                 {
                     check(std::is_sorted(candidate.begin(), candidate.end(), [](const auto &left, const auto &right) { return left.userId < right.userId; }), "concurrent candidate is not sorted");
                     ++commits;
-                });
+                }, userId);
                 for (int iteration = 0; iteration < 50; ++iteration)
                 {
                     permissions.setPermission("host", userId, Permission::Permission5, true);

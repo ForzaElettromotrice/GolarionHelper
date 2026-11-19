@@ -1,6 +1,6 @@
 # ProtocolManager
 
-Status: connected-participant query/events added 2026-11-19 to shared command dispatch and targeted permission events. Session owns PermissionManager only on hosts; JSON v3 and archive v2 use numeric masks. See session-participants.md, session-events.md and session-permission-commands.md.
+Status: connected-participant query/events added 2026-11-19 to shared command dispatch and targeted permission events. Session owns PermissionManager only on hosts; JSON v4 and archive v3 use numeric masks. See session-participants.md, session-events.md and session-permission-commands.md.
 
 ## API and ResourceManager
 

@@ -7,6 +7,7 @@
 #include <atomic>
 #include <chrono>
 #include <filesystem>
+#include <fstream>
 #include <functional>
 #include <future>
 #include <iostream>
@@ -127,8 +128,9 @@ namespace
     }
     Json snapshotJson(std::uint64_t revision, bool withBob = false)
     {
-        auto entries = Json::array({{{"userId", "host"}, {"isHost", true}}, {{"userId", "alice"}, {"isHost", false}}});
-        if (withBob) entries.push_back({{"userId", "bob"}, {"isHost", false}});
+        auto entries = Json::array({{{"userId", "host"}, {"isHost", true}, {"displayName", "Marta"}},
+            {{"userId", "alice"}, {"isHost", false}, {"displayName", "Alice"}}});
+        if (withBob) entries.push_back({{"userId", "bob"}, {"isHost", false}, {"displayName", "Bob"}});
         return {{"revision", revision}, {"participants", std::move(entries)}};
     }
 
@@ -136,7 +138,7 @@ namespace
     {
         const auto valid = snapshotJson(0);
         const auto parsed = detail::parseParticipants(valid);
-        check(parsed.revision == 0 && parsed.participants == std::vector<ParticipantInfo>{{"host", true}, {"alice", false}}, "participant codec changed its data");
+        check(parsed.revision == 0 && parsed.participants == std::vector<ParticipantInfo>{{"host", true, "Marta"}, {"alice", false, "Alice"}}, "participant codec changed its data");
         check(detail::participantsToJson(parsed) == valid, "participant serialization lost fields");
         auto maximum = valid;
         maximum["revision"] = std::numeric_limits<std::uint64_t>::max();
@@ -154,7 +156,7 @@ namespace
             payload["participants"] = value;
             invalid.push_back(std::move(payload));
         }
-        for (int variant = 0; variant < 9; ++variant)
+        for (int variant = 0; variant < 12; ++variant)
         {
             auto payload = valid;
             auto &entry = payload["participants"][1];
@@ -167,6 +169,9 @@ namespace
             if (variant == 6) payload["participants"][0]["isHost"] = false;
             if (variant == 7) payload["extra"] = true;
             if (variant == 8) payload.erase("revision");
+            if (variant == 9) entry.erase("displayName");
+            if (variant == 10) entry["displayName"] = " ";
+            if (variant == 11) entry["displayName"] = std::string(49, 'a');
             invalid.push_back(std::move(payload));
         }
         for (const auto &payload : invalid) check(rejects<std::invalid_argument>([&] { detail::parseParticipants(payload); }), "invalid participant snapshot accepted");
@@ -177,9 +182,10 @@ namespace
         Directory directory;
         const auto archive = directory.path / "identities.json";
         auto host = Session::createHost("host");
+        host.setHostDisplayName("Marta");
         host.registerUser("remembered-offline");
         const auto initial = query(host);
-        check(initial == ParticipantsSnapshot{0, {{"host", true}}}, "offline membership was advertised as connected");
+        check(initial == ParticipantsSnapshot{1, {{"host", true, "Marta"}}}, "offline membership was advertised as connected");
         host.saveIdentityState(archive);
         const auto port = host.startHosting("127.0.0.1", 0);
         const SessionCode code(host.getSessionCode());
@@ -193,12 +199,13 @@ namespace
         check(query(host) == initial, "pending connection changed participant presence");
         auto first = Session::createClient();
         auto observer = Session::createClient();
-        const auto a = completed(first.joinSession("127.0.0.1", port, code));
+        const auto a = completed(first.joinSession("127.0.0.1", port, code, "  Giulia  "));
         eventually([&] { return first.getClientState().participants && first.getClientState().participants->participants.size() == 2; });
-        check(first.getClientState().participants->revision == 1, "first admission did not advance presence");
-        const auto b = completed(observer.joinSession("127.0.0.1", port, code));
+        check(first.getClientState().participants->revision == 2, "first admission did not advance presence");
+        const auto b = completed(observer.joinSession("127.0.0.1", port, code, "Giulia"));
         const auto both = query(host);
-        check(both.revision == 2 && both.participants.size() == 3 && both.participants.front() == ParticipantInfo{"host", true}, "host list was not derived from current bindings");
+        check(both.revision == 3 && both.participants.size() == 3 && both.participants.front() == ParticipantInfo{"host", true, "Marta"}
+            && both.participants[1].displayName == "Giulia" && both.participants[2].displayName == "Giulia", "host list lost display names");
         eventually([&] { return first.getClientState().participants == both && observer.getClientState().participants == both; });
         const auto hostView = host.toView();
         check(hostView.host && hostView.host->listeningPort == port && hostView.host->code.matches(code.value()), "host view omitted the running listener");
@@ -216,6 +223,11 @@ namespace
         try { completed(failed.joinSession("127.0.0.1", port, code)); }
         catch (const ProtocolError &error) { failedAdmission = error.code() == ProtocolErrorCode::AdmissionFailed; }
         check(failedAdmission && query(host) == both, "failed admission announced a participant");
+        failedAdmission = false;
+        try { completed(failed.resumeSession("127.0.0.1", port, code, *a.userToken, "Rename failed")); }
+        catch (const ProtocolError &error) { failedAdmission = error.code() == ProtocolErrorCode::AdmissionFailed; }
+        check(failedAdmission && query(host) == both && first.getClientState().state == ClientConnectionState::Connected,
+            "failed rename changed the live name or replaced the existing connection");
         std::filesystem::remove(archive);
         std::filesystem::rename(backup, archive);
 
@@ -225,16 +237,22 @@ namespace
         check(query(observer) == both, "zero-permission user cannot read participant presence");
 
         auto replacement = Session::createClient();
-        completed(replacement.resumeSession("127.0.0.1", port, code, *a.userToken));
-        eventually([&] { return replacement.getClientState().participants == both && first.getClientState().state == ClientConnectionState::Disconnected; });
-        check(!first.getClientState().participants && query(host) == both, "socket replacement duplicated or disconnected a participant");
+        const auto resumed = completed(replacement.resumeSession("127.0.0.1", port, code, *a.userToken, "Giulia R."));
+        auto renamed = both;
+        ++renamed.revision;
+        for (auto &entry : renamed.participants)
+            if (entry.userId == a.userId) entry.displayName = "Giulia R.";
+        eventually([&] { return replacement.getClientState().participants == renamed && observer.getClientState().participants == renamed
+            && first.getClientState().state == ClientConnectionState::Disconnected; });
+        check(!first.getClientState().participants && query(host) == renamed && resumed.userId == a.userId
+            && resumed.permissions == a.permissions && !resumed.userToken, "rename on resume changed identity or duplicated presence");
         replacement.disconnectFromHost();
         eventually([&] { return observer.getClientState().participants && observer.getClientState().participants->participants.size() == 2; });
         const auto departed = query(host);
-        check(departed.revision == 3 && departed.participants == std::vector<ParticipantInfo>{{"host", true}, {b.userId, false}}, "disconnect removed the wrong participant");
+        check(departed.revision == 5 && departed.participants == std::vector<ParticipantInfo>{{"host", true, "Marta"}, {b.userId, false, "Giulia"}}, "disconnect removed the wrong participant");
         completed(first.resumeSession("127.0.0.1", port, code, *a.userToken));
-        eventually([&] { return observer.getClientState().participants && observer.getClientState().participants->revision == 4; });
-        check(query(host).participants == both.participants, "resume created a different visible identity");
+        eventually([&] { return observer.getClientState().participants && observer.getClientState().participants->revision == 6; });
+        check(query(host).participants == renamed.participants, "resume without a name did not retain the stored name");
         host.stopHosting();
         eventually([&] { return first.getClientState().state == ClientConnectionState::Disconnected && observer.getClientState().state == ClientConnectionState::Disconnected; });
         check(!first.getClientState().participants && !observer.getClientState().participants && query(host).participants == initial.participants, "stop retained remote participant presence");
@@ -255,7 +273,7 @@ namespace
         SessionCode code(host->getSessionCode());
         auto peer = connectPeer(port);
         std::vector<std::uint8_t> input;
-        writeBytes(peer, detail::encodeMessage({"session.join", "raw-join", {{"sessionCode", code.value()}}}));
+        writeBytes(peer, detail::encodeMessage({"session.join", "raw-join", {{"sessionCode", code.value()}, {"displayName", "Giulia"}}}));
         const auto reply = readMessage(peer, input);
         check(reply.type == "request.accepted" && reply.requestId == "raw-join", "initial snapshot overtook the admission result");
         const auto user = reply.payload.at("result").at("userId").get<UserId>();
@@ -270,14 +288,35 @@ namespace
         const auto previousRevision = client.getClientState().participants->revision;
         host.reset();
         eventually([&] { return client.getClientState().state == ClientConnectionState::Disconnected; });
+        {
+            std::ifstream inputArchive(archive);
+            auto v2 = Json::parse(inputArchive);
+            inputArchive.close();
+            check(v2.at("version") == 3, "unexpected archive version");
+            v2["version"] = 2;
+            for (auto &entry : v2["users"]) entry.erase("displayName");
+            std::ofstream(archive) << v2;
+        }
         host.emplace("host");
         host->loadIdentityState(archive);
-        check(query(*host).participants == std::vector<ParticipantInfo>{{"host", true}}, "restoring identities restored stale connections");
+        check(query(*host).participants == std::vector<ParticipantInfo>{{"host", true, "Host"}}, "restoring v2 identities restored stale connections");
         port = host->startHosting("127.0.0.1", 0);
         code = SessionCode(host->getSessionCode());
-        const auto resumed = completed(client.resumeSession("127.0.0.1", port, code, token));
+        const auto resumed = completed(client.resumeSession("127.0.0.1", port, code, token, "No\xc3\xab" "mie"));
         eventually([&] { return client.getClientState().participants.has_value(); });
         check(resumed.userId == user && client.getClientState().participants->revision < previousRevision && client.getClientState().participants == query(*host), "client did not reset revisions across host reconstruction");
+        const auto migrated = Json::parse(std::ifstream(archive));
+        check(migrated.at("version") == 3, "successful resume did not upgrade v2");
+        check(client.getClientState().participants->participants.back().displayName == "No\xc3\xab" "mie", "resume lost the UTF-8 name");
+        host->stopHosting();
+        client.disconnectFromHost();
+        host.reset();
+        host.emplace("host");
+        host->loadIdentityState(archive);
+        port = host->startHosting("127.0.0.1", 0);
+        completed(client.resumeSession("127.0.0.1", port, SessionCode(host->getSessionCode()), token));
+        eventually([&] { return client.getClientState().participants.has_value(); });
+        check(client.getClientState().participants->participants.back().displayName == "No\xc3\xab" "mie", "v3 reload lost the saved name");
     }
 
     class ScriptedHost final

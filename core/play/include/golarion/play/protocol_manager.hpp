@@ -61,8 +61,8 @@ namespace golarion::play
         std::uint16_t startHosting(std::string_view bindAddress, std::uint16_t port);
         void stopHosting();
 
-        std::future<ClientAdmission> joinSession(std::string ip, std::uint16_t port, SessionCode code);
-        std::future<ClientAdmission> resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token);
+        std::future<ClientAdmission> joinSession(std::string ip, std::uint16_t port, SessionCode code, std::string displayName = "Giocatore");
+        std::future<ClientAdmission> resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token, std::optional<std::string> displayName = std::nullopt);
         void disconnectFromHost();
         ClientSnapshot getClientState() const;
 
@@ -92,6 +92,9 @@ namespace golarion::play
         HostingSnapshot getHostingSnapshot() const;
         IdentitySaveData toIdentityData() const;
         IdentitySaveData identityDataLocked() const;
+        void setHostDisplayName(std::string displayName);
+        bool commitDisplayNameLocked(const UserId &userId, std::string displayName);
+        std::optional<ConnectionId> bindUser(ConnectionId connectionId, const UserId &userId, std::optional<std::string> displayName);
         class Hosting;
         class ClientConnection;
         class LocalCommands;
@@ -111,8 +114,8 @@ namespace golarion::play
         std::optional<std::vector<std::uint8_t>> takeEvent(ConnectionId connectionId);
         bool eventQueueOverflowed(ConnectionId connectionId) const;
         ConnectionId requirePendingAdmission(const CommandContext &context, const nlohmann::json &payload, bool resume) const;
-        AdmissionResult admitNewUser(ConnectionId connectionId);
-        std::optional<AdmissionResult> resumeUser(ConnectionId connectionId, std::string_view token);
+        AdmissionResult admitNewUser(ConnectionId connectionId, std::string displayName);
+        std::optional<AdmissionResult> resumeUser(ConnectionId connectionId, std::string_view token, std::optional<std::string> displayName);
         static nlohmann::json makeAdmissionResult(const AdmissionResult &result);
         static detail::ProtocolMessage makeCommandReply(const std::optional<std::string> &requestId, nlohmann::json result);
         static detail::ProtocolMessage makeRejection(const std::optional<std::string> &requestId, ProtocolErrorCode code);
@@ -120,7 +123,7 @@ namespace golarion::play
         void requireClientMode() const;
         void shutdown() noexcept;
         PermissionSet updateUserPermissions(const std::function<PermissionSet(const PermissionManager::PermissionsCommit &)> &mutation);
-        std::future<ClientAdmission> startClient(std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token);
+        std::future<ClientAdmission> startClient(std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token, std::optional<std::string> displayName);
 
         struct Command
         {
