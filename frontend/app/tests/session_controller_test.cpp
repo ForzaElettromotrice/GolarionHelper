@@ -63,6 +63,11 @@ void SessionControllerTest::restoresMembershipAfterRestart()
 
         controller.enter(hostAddress, code.toLower(), -1);
         QTRY_COMPARE_WITH_TIMEOUT(controller.activeName(), QString::fromUtf8(name), 5000);
+        QTRY_COMPARE_WITH_TIMEOUT(controller.participants().size(), 2, 5000);
+        const auto participants = controller.participants();
+        QVERIFY(participants.front().toMap().value(QStringLiteral("isHost")).toBool());
+        QVERIFY(!participants.front().toMap().value(QStringLiteral("isSelf")).toBool());
+        QVERIFY(participants.back().toMap().value(QStringLiteral("isSelf")).toBool());
         QVERIFY2(controller.errorMessage().isEmpty(), qPrintable(controller.errorMessage()));
         QCOMPARE(controller.campaigns().size(), 1);
         QVERIFY(!controller.campaigns().front().toMap().contains(QStringLiteral("token")));
@@ -70,6 +75,7 @@ void SessionControllerTest::restoresMembershipAfterRestart()
 
         controller.disconnectSession();
         QVERIFY(controller.activeName().isEmpty());
+        QVERIFY(controller.participants().isEmpty());
         QCOMPARE(controller.campaigns().size(), 1);
     }
 
@@ -86,6 +92,7 @@ void SessionControllerTest::restoresMembershipAfterRestart()
 
     reopenedHost.stopHosting();
     QTRY_VERIFY_WITH_TIMEOUT(reopened.activeName().isEmpty(), 5000);
+    QVERIFY(reopened.participants().isEmpty());
     QVERIFY(!reopened.errorMessage().isEmpty());
     QCOMPARE(reopened.campaigns().size(), 1);
     const std::lock_guard lock(observedMutex);
@@ -212,6 +219,10 @@ void SessionControllerTest::hostsAndRestoresPlayer()
         controller.startHosting(0);
         QTRY_VERIFY_WITH_TIMEOUT(!controller.busy(), 5000);
         QVERIFY2(controller.hostingPort() > 0, qPrintable(controller.errorMessage()));
+        QCOMPARE(controller.participants().size(), 1);
+        const auto localParticipant = controller.participants().front().toMap();
+        QVERIFY(localParticipant.value(QStringLiteral("isHost")).toBool());
+        QVERIFY(localParticipant.value(QStringLiteral("isSelf")).toBool());
         QVERIFY(!controller.inviteEndpoints().isEmpty());
         QVERIFY(controller.inviteEndpoints().front().endsWith(QStringLiteral(":%1").arg(controller.hostingPort())));
         QCOMPARE(controller.inviteCode(), firstCode);
@@ -228,6 +239,11 @@ void SessionControllerTest::hostsAndRestoresPlayer()
         QCOMPARE(join.wait_for(5s), std::future_status::ready);
         joined = join.get();
         QVERIFY(joined->userToken);
+        QTRY_COMPARE_WITH_TIMEOUT(controller.participants().size(), 2, 5000);
+        const auto playerRow = controller.participants().back().toMap();
+        QCOMPARE(playerRow.value(QStringLiteral("userId")).toString(), QString::fromStdString(joined->userId));
+        QVERIFY(!playerRow.value(QStringLiteral("isHost")).toBool());
+        QVERIFY(!playerRow.value(QStringLiteral("isSelf")).toBool());
 
         auto info = player.sendCommand("session.info", nlohmann::json::object());
         QCOMPARE(info.wait_for(5s), std::future_status::ready);
@@ -236,6 +252,7 @@ void SessionControllerTest::hostsAndRestoresPlayer()
         controller.stopHosting();
         QTRY_VERIFY_WITH_TIMEOUT(player.getClientState().state == ClientConnectionState::Disconnected, 5000);
         QCOMPARE(controller.hostingPort(), 0);
+        QVERIFY(controller.participants().isEmpty());
         QVERIFY(controller.inviteCode().isEmpty());
         QVERIFY(!controller.hostedCampaignOpen());
         QCOMPARE(controller.hostedCampaigns(), QStringList{name});
@@ -254,6 +271,9 @@ void SessionControllerTest::hostsAndRestoresPlayer()
     const auto restored = resume.get();
     QCOMPARE(restored.userId, joined->userId);
     QVERIFY(!restored.userToken);
+    QTRY_COMPARE_WITH_TIMEOUT(reopened.participants().size(), 2, 5000);
+    player.disconnectFromHost();
+    QTRY_COMPARE_WITH_TIMEOUT(reopened.participants().size(), 1, 5000);
 }
 
 QTEST_GUILESS_MAIN(SessionControllerTest)

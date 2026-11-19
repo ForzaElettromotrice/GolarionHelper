@@ -1,6 +1,6 @@
 # Live Notifications
 
-Status: implemented 2026-11-18. The first built-in notification is permissions.changed, delivered only to its affected user after a successful permission-command transaction. User presence/list synchronization and frontend integration remain separate work.
+Status: permissions.changed implemented 2026-11-18; session.participantsChanged added 2026-11-19. Permission changes notify only the affected user; connected-participant snapshots notify admitted users without extra permission bits. See session-participants.md for the derived projection and revisions. Frontend presentation remains separate.
 
 ## Shared Registration and Dispatch
 
@@ -22,7 +22,7 @@ Client callbacks keep the existing JSON return type. Their result is discarded f
 
 ## Framing and Routing
 
-The codec is unchanged JSON v3: a four-byte big-endian size followed by strict UTF-8 JSON, maximum 65536 JSON bytes. It already permits omitted requestId. Both binaries must support notifications; older client builds that only accepted replies cannot receive these extensions.
+The codec is unchanged JSON v3: a four-byte big-endian size followed by strict UTF-8 JSON, maximum 65536 JSON bytes. It already permits omitted requestId. Both binaries must support the emitted built-in notifications; client builds lacking session.participantsChanged cannot receive the new extension.
 
 ```json
 {"version":3,"type":"permissions.changed","payload":{"userId":"user-example","permissions":23}}
@@ -56,4 +56,4 @@ An offline target is updated persistently and receives its current mask through 
 
 play_events_test exercises registration/RM ownership, targeted delivery, common/nested dispatch, strict masks, zero snapshots, idle fragmented events, mixed/out-of-order replies, fixed deadlines, committed changes/no-ops/failed writes, offline resume, stale contexts, frame/byte queue limits, replacement, stop/restart and callback/lifecycle synchronization. Existing client tests now distinguish incomplete event prefixes from complete invalid frames. Build and CTest use the root CMakeLists.txt with output in build/core/play.
 
-All sixteen play suites pass on Windows through the root Debug/Ninja build (19.56 seconds for the complete focused CTest run). POSIX and physical two-PC testing of this step remain unverified. See development.md and session-flows.md for commands and interaction diagrams.
+All seventeen play suites pass on Windows through the root Debug/Ninja build. POSIX and physical two-PC testing of this step remain unverified. See development.md and session-flows.md for commands and interaction diagrams.

@@ -52,6 +52,38 @@ namespace golarion::play
 
     void Session::disconnectFromHost() { protocolManager_.disconnectFromHost(); }
     ClientSnapshot Session::getClientState() const { return protocolManager_.getClientState(); }
+
+    SessionView Session::toView() const
+    {
+        if (!permissionManager_)
+        {
+            return {
+                .mode = SessionMode::Client,
+                .host = std::nullopt,
+                .client = protocolManager_.getClientState()
+            };
+        }
+
+        auto hosting = protocolManager_.getHostingSnapshot();
+        return {
+            .mode = SessionMode::Host,
+            .host = HostSessionView{
+                .code = protocolManager_.hostCode(),
+                .listeningPort = hosting.listeningPort,
+                .participants = std::move(hosting.participants)
+            },
+            .client = std::nullopt
+        };
+    }
+
+    SessionData Session::toData() const
+    {
+        return {
+            .code = protocolManager_.hostCode(),
+            .identities = protocolManager_.toIdentityData()
+        };
+    }
+
     std::future<nlohmann::json> Session::sendCommand(std::string name, nlohmann::json payload) { return protocolManager_.sendCommand(std::move(name), std::move(payload)); }
     void Session::add_command(std::string_view name, CommandRequirements requirements, ProtocolManager::CommandCallback callback) { protocolManager_.add_command(name, requirements, std::move(callback)); }
     void Session::add_command(std::string_view name, ProtocolManager::CommandCallback callback) { protocolManager_.add_command(name, std::move(callback)); }

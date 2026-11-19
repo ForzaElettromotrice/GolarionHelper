@@ -135,11 +135,20 @@ namespace
 
     Json receiveMessage(const Socket &socket)
     {
-        std::uint32_t size = 0;
-        for (const auto byte : receiveExact(socket, 4)) size = (size << 8) | byte;
-        check(size > 0 && size <= 65536, "invalid reply size");
-        const auto bytes = receiveExact(socket, size);
-        return Json::parse(bytes.begin(), bytes.end());
+        while (true)
+        {
+            std::uint32_t size = 0;
+            for (const auto byte : receiveExact(socket, 4)) size = (size << 8) | byte;
+            check(size > 0 && size <= 65536, "invalid reply size");
+            const auto bytes = receiveExact(socket, size);
+            auto reply = Json::parse(bytes.begin(), bytes.end());
+            if (reply.at("type") == "session.participantsChanged")
+            {
+                check(!reply.contains("requestId") && reply.at("payload").contains("participants"), "invalid participant notification");
+                continue; // Correlated-response tests allow the separately tested live snapshots.
+            }
+            return reply;
+        }
     }
 
     Json request(std::string type, Json payload, std::string requestId = "request-1")
@@ -157,9 +166,19 @@ namespace
 
     void checkClosed(const Socket &socket)
     {
-        char byte;
-        const int count = static_cast<int>(::recv(socket.get(), &byte, 1, 0));
-        check(count == 0 || (count < 0 && disconnected(socketError())), "connection was not closed");
+        while (true)
+        {
+            std::uint8_t byte;
+            const int count = static_cast<int>(::recv(socket.get(), reinterpret_cast<char *>(&byte), 1, 0));
+            if (count == 0 || (count < 0 && disconnected(socketError()))) return;
+            check(count == 1, "connection was not closed");
+            std::uint32_t size = byte;
+            for (const auto next : receiveExact(socket, 3)) size = (size << 8) | next;
+            check(size > 0 && size <= 65536, "invalid trailing notification size");
+            const auto bytes = receiveExact(socket, size);
+            const auto message = Json::parse(bytes.begin(), bytes.end());
+            check(message.at("type") == "session.participantsChanged" && !message.contains("requestId"), "unexpected data before close");
+        }
     }
 
     void checkRejected(const Json &reply, const char *code)

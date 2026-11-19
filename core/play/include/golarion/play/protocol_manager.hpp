@@ -27,6 +27,7 @@
 namespace golarion::play
 {
     namespace detail { class UserTokens; struct ProtocolMessage; }
+    struct IdentitySaveData;
 
     using ConnectionId = std::uint64_t;
 
@@ -81,6 +82,16 @@ namespace golarion::play
 
     private:
         friend class Session;
+        struct HostingSnapshot
+        {
+            std::optional<std::uint16_t> listeningPort;
+            ParticipantsSnapshot participants;
+        };
+
+        const SessionCode &hostCode() const;
+        HostingSnapshot getHostingSnapshot() const;
+        IdentitySaveData toIdentityData() const;
+        IdentitySaveData identityDataLocked() const;
         class Hosting;
         class ClientConnection;
         class LocalCommands;
@@ -90,6 +101,11 @@ namespace golarion::play
         MessageResult handleMessage(ConnectionId connectionId, const detail::ProtocolMessage &message);
         MessageResult handleCommand(ConnectionId connectionId, const detail::ProtocolMessage &message);
         void registerAdmissionCommands();
+        void registerParticipantCommands();
+        ParticipantsSnapshot getParticipants() const;
+        void sendParticipantsSnapshot(const UserId &userId) noexcept;
+        void publishParticipantsChanged() noexcept;
+        void failParticipantsDelivery(std::optional<std::string_view> userId = std::nullopt) noexcept;
         void registerClientCommands();
         void registerCommand(std::string_view name, CommandRequirements requirements, CommandCallback callback);
         std::optional<std::vector<std::uint8_t>> takeEvent(ConnectionId connectionId);
@@ -128,10 +144,11 @@ namespace golarion::play
         std::unordered_map<ConnectionId, std::optional<UserId>> connections_;
         std::unordered_map<UserId, ConnectionId> activeConnections_;
         ConnectionId nextConnectionId_ = 1;
+        std::uint64_t participantsRevision_ = 0; // Protected by executionMutex_; no separate participant registry.
         mutable std::mutex eventsMutex_;
         std::unordered_map<ConnectionId, EventQueue> events_;
         bool acceptingEvents_ = false;
-        std::mutex hostingMutex_;
+        mutable std::mutex hostingMutex_;
         std::unique_ptr<Hosting> hosting_;
         std::mutex localCommandsMutex_;
         std::unique_ptr<LocalCommands> localCommands_;

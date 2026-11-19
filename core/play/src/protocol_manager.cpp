@@ -5,6 +5,7 @@
 #include "identity_storage.hpp"
 #include "identity_transaction.hpp"
 #include "permission_json.hpp"
+#include "participants_json.hpp"
 #include "protocol.hpp"
 #include "user_tokens.hpp"
 
@@ -108,6 +109,7 @@ namespace golarion::play
             return;
         }
         registerAdmissionCommands();
+        registerParticipantCommands();
         resources_.registerFeature<AddCommandSignature>(AddCommandFeature, [this](std::string_view name, CommandRequirements requirements, CommandCallback callback)
         {
             add_command(name, requirements, std::move(callback));
@@ -259,6 +261,13 @@ namespace golarion::play
 
     void ProtocolManager::registerClientCommands()
     {
+        add_command("session.participantsChanged", [this](const CommandContext &, const nlohmann::json &payload)
+        {
+            try { activeClient_.lock()->updateParticipants(detail::parseParticipants(payload)); }
+            catch (const nlohmann::json::exception &) { throw ProtocolError(ProtocolErrorCode::InvalidRequest, "invalid participant notification"); }
+            catch (const std::invalid_argument &) { throw ProtocolError(ProtocolErrorCode::InvalidRequest, "invalid participant notification"); }
+            return nlohmann::json(nullptr);
+        });
         add_command("permissions.changed", [this](const CommandContext &, const nlohmann::json &payload)
         {
             try
@@ -324,8 +333,13 @@ namespace golarion::play
 
     std::string ProtocolManager::getSessionCode() const
     {
+        return std::string(hostCode().value());
+    }
+
+    const SessionCode &ProtocolManager::hostCode() const
+    {
         requireHostMode();
-        return std::string(sessionCode_->value());
+        return *sessionCode_;
     }
 
     bool ProtocolManager::verifySessionCode(std::string_view candidate) const noexcept
@@ -376,6 +390,31 @@ namespace golarion::play
         return result;
     }
 
+    ProtocolManager::HostingSnapshot ProtocolManager::getHostingSnapshot() const
+    {
+        requireHostMode();
+        requireOutsideDispatch(*this);
+        const std::lock_guard lock(hostingMutex_);
+        const auto port = hosting_ ? std::make_optional(hosting_->port()) : std::nullopt;
+        return {port, getParticipants()};
+    }
+
+    IdentitySaveData ProtocolManager::identityDataLocked() const
+    {
+        return {
+            resources_.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId"),
+            resources_.invoke<PermissionManager::ToSaveDataSignature>("permissions.toSaveData"),
+            userTokens_->toSaveData()
+        };
+    }
+
+    IdentitySaveData ProtocolManager::toIdentityData() const
+    {
+        requireHostMode();
+        const std::lock_guard lock(identityMutex_);
+        return identityDataLocked();
+    }
+
     void ProtocolManager::saveIdentityState(const std::filesystem::path &path)
     {
         requireHostMode();
@@ -386,8 +425,7 @@ namespace golarion::play
         {
             throw std::logic_error("load an existing identity archive before replacing it");
         }
-        const IdentitySaveData data{resources_.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId"), resources_.invoke<PermissionManager::ToSaveDataSignature>("permissions.toSaveData"), userTokens_->toSaveData()};
-        detail::writeIdentityState(*destination, data);
+        detail::writeIdentityState(*destination, identityDataLocked());
         identityArchivePath_.swap(destination);
     }
 
@@ -404,12 +442,17 @@ namespace golarion::play
         const auto data = detail::readIdentityState(*source);
         if (data.hostId != resources_.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId")) throw std::invalid_argument("saved host does not match this Session's host");
         auto candidate = std::make_unique<detail::UserTokens>(detail::UserTokens::fromSaveData(data.tokens));
-        const std::lock_guard connectionsLock(connectionsMutex_);
-        resources_.invoke<PermissionManager::RestoreSaveDataSignature>("permissions.restoreSaveData", data.users);
-        userTokens_.swap(candidate);
-        identityArchivePath_.swap(source);
-        connections_.clear();
-        activeConnections_.clear();
+        bool changed;
+        {
+            const std::lock_guard connectionsLock(connectionsMutex_);
+            resources_.invoke<PermissionManager::RestoreSaveDataSignature>("permissions.restoreSaveData", data.users);
+            userTokens_.swap(candidate);
+            identityArchivePath_.swap(source);
+            changed = !activeConnections_.empty();
+            connections_.clear();
+            activeConnections_.clear();
+        }
+        if (changed) publishParticipantsChanged();
     }
 
     ConnectionId ProtocolManager::registerConnection()
@@ -432,7 +475,7 @@ namespace golarion::play
         requireHostMode();
         validateUserId(userId);
         const std::lock_guard executionLock(executionMutex_);
-        const std::lock_guard lock(connectionsMutex_);
+        std::unique_lock lock(connectionsMutex_);
         const auto connection = connections_.find(connectionId);
         if (connection == connections_.end())
         {
@@ -467,6 +510,9 @@ namespace golarion::play
             const std::lock_guard eventsLock(eventsMutex_);
             events_.erase(*replaced);
         }
+        lock.unlock();
+        if (replaced) sendParticipantsSnapshot(userId);
+        else publishParticipantsChanged();
         return replaced;
     }
 
@@ -511,20 +557,26 @@ namespace golarion::play
     {
         requireHostMode();
         const std::lock_guard executionLock(executionMutex_);
-        const std::lock_guard lock(connectionsMutex_);
+        std::unique_lock lock(connectionsMutex_);
         const auto connection = connections_.find(connectionId);
         if (connection == connections_.end()) return false;
+        bool wasActive = false;
         if (connection->second)
         {
             const auto active = activeConnections_.find(*connection->second);
             if (active != activeConnections_.end() && active->second == connectionId)
             {
                 activeConnections_.erase(active);
+                wasActive = true;
             }
         }
         connections_.erase(connection);
-        const std::lock_guard eventsLock(eventsMutex_);
-        events_.erase(connectionId);
+        {
+            const std::lock_guard eventsLock(eventsMutex_);
+            events_.erase(connectionId);
+        }
+        lock.unlock();
+        if (wasActive) publishParticipantsChanged();
         return true;
     }
 
@@ -565,9 +617,14 @@ namespace golarion::play
         hosting_.reset();
         {
             const std::lock_guard executionLock(executionMutex_);
-            const std::lock_guard connectionsLock(connectionsMutex_);
-            connections_.clear();
-            activeConnections_.clear();
+            bool changed;
+            {
+                const std::lock_guard connectionsLock(connectionsMutex_);
+                changed = !activeConnections_.empty();
+                connections_.clear();
+                activeConnections_.clear();
+            }
+            if (changed) publishParticipantsChanged();
         }
         if (failure) std::rethrow_exception(failure);
     }

@@ -1,6 +1,6 @@
 # Flusso delle comunicazioni
 
-Aggiornato al 2026-11-18: Session usa PermissionManager, JSON v3 e archivi v2 numerici. Host e client riusano registrazione e dispatch dei comandi; permissions.changed aggiorna soltanto il client interessato dopo una modifica effettiva salvata. Passano sedici suite CTest dalla configurazione CMake della root, con output in build/core/play. Le vecchie collisioni dei nomi e le richieste durante lo stop restano risolte; le riproduzioni storiche sono separate in history/.
+Aggiornato al 2026-11-18: Session usa PermissionManager, JSON v3 e archivi v2 numerici. Host e client riusano registrazione e dispatch dei comandi; permissions.changed aggiorna soltanto il client interessato dopo una modifica effettiva salvata. Passano diciassette suite CTest dalla configurazione CMake della root, con output in build/core/play. Le vecchie collisioni dei nomi e le richieste durante lo stop restano risolte; le riproduzioni storiche sono separate in history/.
 
 ## Proprietà e collegamenti
 
@@ -179,7 +179,7 @@ Archivio identità, con host distinto da un partecipante anche se entrambi avess
 {"version":2,"hostId":"host","users":[{"userId":"host","permissions":63},{"userId":"user-example","permissions":18}],"tokens":[]}
 ```
 
-I vecchi messaggi JSON v2 e gli archivi a ruoli v1 sono rifiutati, senza importazione o cancellazioni automatiche. In archivio si salvano hash dei token; l'esempio con tokens vuoto omette le credenziali. ClientSnapshot parte dai permessi dell'ammissione e si aggiorna con permissions.changed; permissions.get legge sempre lo stato server corrente. L'elenco partecipanti resta separato. Entrambi gli eseguibili devono supportare le notifiche: i precedenti client v3 accettavano soltanto risposte. Gli RPC sono descritti in session-permission-commands.md e le notifiche in session-events.md.
+I vecchi messaggi JSON v2 e gli archivi a ruoli v1 sono rifiutati. In archivio si salvano hash dei token; l'esempio omette le credenziali. ClientSnapshot aggiorna i propri permessi con permissions.changed e l'elenco dei connessi con session.participantsChanged. session.getParticipants legge lo stesso elenco sull'host. Entrambi gli eseguibili devono supportare gli eventi emessi: una build precedente priva del nuovo nome non può riceverlo. Gli RPC sono descritti in session-permission-commands.md e la presenza in session-participants.md.
 
 ## Modifica transazionale dei permessi
 
@@ -273,4 +273,33 @@ Risposte e notifiche possono arrivare nello stesso blocco TCP o in frammenti. Gl
 
 I percorsi di comando, risposta e notifica condividono codec e trasporto; solo le richieste sull'host consultano PermissionManager. Il client non interpreta i propri bit come autorità. Le callback di modifica emettono dopo il commit, senza trattenere il mutex dei permessi. La coda di uscita evita di prendere hostingMutex dal callback; il riferimento attivo client evita di prendere clientMutex durante dispatch e lettura dello snapshot. I checkpoint dello stop restano davanti all'esecuzione delle richieste bufferizzate.
 
-Verifica eseguita con sedici suite CTest, incluse notifiche senza richieste pendenti, frame misti/frammentati, deadline, errori di persistenza, limiti della coda e stop concorrenti. Restano separati elenco/presenza utenti, riconnessione automatica, sincronizzazione delle schede, heartbeat e persistenza completa della partita. L'attuale recupero dei permessi usa resume con il token originale e la maschera completa corrente.
+Verifica eseguita con diciassette suite CTest, incluse presenza dei connessi, notifiche senza richieste pendenti, frame misti/frammentati, deadline, persistenza, limiti della coda e stop concorrenti. Restano separati riconnessione automatica, schede, heartbeat e persistenza completa della partita. Il resume usa il token originale e restituisce permessi correnti, seguito dallo snapshot dei partecipanti.
+
+## Elenco dei partecipanti connessi
+
+```mermaid
+sequenceDiagram
+    participant C as Nuovo client
+    participant PM as ProtocolManager host
+    participant P as Binding delle connessioni
+    participant H as Hosting
+    participant Other as Client già ammessi
+    C->>PM: session.join oppure session.resume
+    PM->>P: conferma identità e binding dopo il commit
+    alt Nuova identità connessa
+        PM->>PM: publishParticipantsChanged, revisione incrementata
+        PM->>Other: sendEvent session.participantsChanged
+    else Sostituzione di un socket già attivo
+        PM->>PM: revisione invariata, rimuove vecchia coda
+    end
+    PM->>H: risposta di ammissione e snapshot in coda
+    H-->>C: request.accepted con identità, permessi e token se nuovo
+    H-->>C: session.participantsChanged senza requestId
+    C->>C: dispatch, parser e updateParticipants
+    Note over C: cache vuota fino al primo snapshot completo
+    Other->>PM: disconnessione rilevata tramite closeConnection
+    PM->>PM: rimuove solo il binding corrente, incrementa revisione
+    PM-->>C: elenco completo aggiornato dei connessi
+```
+
+Il comando session.getParticipants, registrato con accesso autenticato e zero bit richiesti, restituisce lo stesso payload dell'evento. Lo snapshot deriva da activeConnections_/connections_ e permissions.getHostId, senza un secondo registro. ParticipantInfo espone soltanto UserId/isHost; il contatore revision non è persistente. Il client scarta revisioni più vecchie, rifiuta conflitti e svuota la cache quando si scollega. Una chiusura tardiva del socket sostituito non modifica l'elenco. Dettagli e schema sono in session-participants.md.

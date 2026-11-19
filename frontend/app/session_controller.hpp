@@ -1,6 +1,7 @@
 #pragma once
 
 #include "golarion/play/session.hpp"
+#include "golarion/play/campaign.hpp"
 
 #include <QLockFile>
 #include <QObject>
@@ -28,6 +29,7 @@ class SessionController : public QObject
     Q_PROPERTY(int hostingPort READ hostingPort NOTIFY hostingChanged FINAL)
     Q_PROPERTY(QStringList inviteEndpoints READ inviteEndpoints NOTIFY hostingChanged FINAL)
     Q_PROPERTY(QString inviteCode READ inviteCode NOTIFY activeNameChanged FINAL)
+    Q_PROPERTY(QVariantList participants READ participants NOTIFY participantsChanged FINAL)
 
 public:
     explicit SessionController(QString campaignDirectory);
@@ -41,6 +43,7 @@ public:
     int hostingPort() const;
     QStringList inviteEndpoints() const;
     QString inviteCode() const;
+    QVariantList participants() const;
 
     Q_INVOKABLE void enter(const QString &address, const QString &code, int campaignIndex);
     Q_INVOKABLE void disconnectSession();
@@ -58,32 +61,18 @@ signals:
     void busyChanged();
     void activeNameChanged();
     void hostingChanged();
+    void participantsChanged();
     void errorMessageChanged();
     void sessionOpened();
     void sessionClosed();
 
 private:
-    struct Campaign
-    {
-        QString id;
-        QString address;
-        QString code;
-        QString name;
-        golarion::play::UserToken token;
-    };
-
     struct Admission
     {
         QString address;
-        QString code;
+        golarion::play::SessionCode code;
         int campaignIndex;
         std::optional<golarion::play::UserToken> newToken;
-    };
-
-    struct HostedCampaign
-    {
-        QString id;
-        QString name;
     };
 
     struct Hosting
@@ -96,20 +85,23 @@ private:
         int port = 0;
     };
 
-    static Hosting launchHosting(const QString &campaignDirectory, const HostedCampaign &campaign, int port);
+    static Hosting launchHosting(const QString &campaignDirectory, const golarion::play::HostedCampaignData &campaign, int port);
     void pollHosting();
     void loadCampaigns();
-    bool saveCampaign(const Campaign &campaign) const;
+    bool saveCampaign(const golarion::play::JoinedCampaignData &data) const;
     void pollSession();
     void finishAdmission(const QString &name);
     void failAdmission(const QString &message);
     void setErrorMessage(const QString &message);
+    void updateParticipants(const golarion::play::ParticipantsSnapshot &snapshot, const std::optional<golarion::play::UserId> &localUser);
+    void setParticipants(QVariantList participants);
 
     const QString campaignDirectory_;
-    QList<Campaign> campaigns_;
-    QList<HostedCampaign> hostedCampaigns_;
+    QList<golarion::play::JoinedCampaign> campaigns_;
+    QList<golarion::play::HostedCampaign> hostedCampaigns_;
     QString activeName_;
     QString errorMessage_;
+    QVariantList participants_;
     std::optional<Admission> pending_;
     std::future<golarion::play::ClientAdmission> admissionReply_;
     std::future<nlohmann::json> infoReply_;

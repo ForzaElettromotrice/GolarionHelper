@@ -1,6 +1,6 @@
 # ProtocolManager
 
-Status: shared host/client command dispatch and targeted live permission notifications implemented, 2026-11-18. Session owns PermissionManager only on hosts; JSON v3 and archive v2 use numeric masks. See session-events.md and session-permission-commands.md.
+Status: connected-participant query/events added 2026-11-19 to shared command dispatch and targeted permission events. Session owns PermissionManager only on hosts; JSON v3 and archive v2 use numeric masks. See session-participants.md, session-events.md and session-permission-commands.md.
 
 ## API and ResourceManager
 
@@ -11,6 +11,8 @@ Status: shared host/client command dispatch and targeted live permission notific
 - Callbacks receive the trusted context and payload and return any JSON result. Their mutable state persists. Nested dispatch/registration remain supported. Target-specific mutations are checked by PermissionManager or the relevant subsystem, including host-only ChangePermissions management and protection of self/host targets.
 
 The client overload add_command(name, callback) shares registerCommand/commands_/dispatch with the host API. Client dispatch validates its admitted connection generation without inventing a participant sender or invoking a local PermissionManager. Results are discarded for notifications. Session delegates both registration overloads and sendEvent. See session-events.md for the mode-specific signatures and routing.
+
+Host registerParticipantCommands adds session.getParticipants with authenticated zero-bit access and an exact empty payload. Private getParticipants derives a revisioned projection from current bindings plus the local host. publishParticipantsChanged/sendParticipantsSnapshot reuse sendEvent; admitNewUser, bindUser and closeConnection call them after successful state changes and outside connection/identity locks. Client registerClientCommands adds session.participantsChanged, with a strict parser and ClientConnection::updateParticipants. No second participant registry or additional ResourceManager service is introduced; see session-participants.md.
 
 ```cpp
 resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "example.echo", Permission::Permission1 | Permission::Permission3, [](const CommandContext &context, const nlohmann::json &payload)
@@ -43,4 +45,4 @@ Hosting, ClientConnection and LocalCommands remain private implementations. Sock
 
 ## Verification
 
-The repository-root Debug/Ninja CMake build passes sixteen play suites on Windows, including live notifications, fragmented/mixed frames, queue frame/byte limits, deadlines, RPC rollback/restart and prior stop regressions. Output is build/core/play. Earlier console-process diagnostics are historical. POSIX remains unverified; see development.md.
+The repository-root Debug/Ninja CMake build passes seventeen play suites on Windows, including live notifications, fragmented/mixed frames, queue frame/byte limits, deadlines, RPC rollback/restart and prior stop regressions. Output is build/core/play. Earlier console-process diagnostics are historical. POSIX remains unverified; see development.md.

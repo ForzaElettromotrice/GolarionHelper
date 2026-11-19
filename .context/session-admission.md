@@ -39,4 +39,4 @@ Malformed framing and pending command/admission errors close the socket. Ordinar
 
 ## Verification
 
-Admission/hosting/client tests cover strict schemas, staged failures, masks, replacement, concurrency and buffered stop. All sixteen play suites pass through the root CMake build on Windows, including permission mutation autosave, token-preserving restart and targeted live notifications. Admission completes before following event frames are processed; see session-events.md and development.md.
+Admission/hosting/client tests cover strict schemas, staged failures, masks, replacement, concurrency and buffered stop. All seventeen play suites pass through the root CMake build on Windows, including permission mutation autosave, token-preserving restart and targeted live notifications. Admission completes before following event frames are processed; see session-events.md and development.md.

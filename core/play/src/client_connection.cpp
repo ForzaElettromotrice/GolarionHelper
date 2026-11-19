@@ -161,6 +161,24 @@ namespace golarion::play
             state.permissions = permissions;
         }
 
+        void updateParticipants(ParticipantsSnapshot participants)
+        {
+            const std::lock_guard lock(stateMutex);
+            if (state.participants)
+            {
+                if (participants.revision < state.participants->revision) return;
+                if (participants.revision == state.participants->revision)
+                {
+                    if (participants != *state.participants) invalidReply();
+                    return;
+                }
+                const auto host = [](const auto &snapshot) { return std::find_if(snapshot.participants.begin(), snapshot.participants.end(), [](const auto &participant) { return participant.isHost; })->userId; };
+                if (host(participants) != host(*state.participants)) invalidReply();
+            }
+            if (!state.userId || std::none_of(participants.participants.begin(), participants.participants.end(), [this](const auto &participant) { return participant.userId == *state.userId; })) invalidReply();
+            state.participants = std::move(participants);
+        }
+
         std::future<Json> sendCommand(std::string name, Json payload, std::string id)
         {
             auto bytes = detail::encodeMessage({std::move(name), id, std::move(payload)});
@@ -438,6 +456,7 @@ namespace golarion::play
     ClientSnapshot ProtocolManager::ClientConnection::snapshot() const { return impl_->snapshot(); }
     bool ProtocolManager::ClientConnection::acceptsContext(const CommandContext &context) const { return impl_->acceptsContext(context); }
     void ProtocolManager::ClientConnection::updatePermissions(PermissionSet permissions) { impl_->updatePermissions(permissions); }
+    void ProtocolManager::ClientConnection::updateParticipants(ParticipantsSnapshot participants) { impl_->updateParticipants(std::move(participants)); }
     std::future<nlohmann::json> ProtocolManager::ClientConnection::sendCommand(std::string name, nlohmann::json payload, std::string requestId) { return impl_->sendCommand(std::move(name), std::move(payload), std::move(requestId)); }
     void ProtocolManager::ClientConnection::stop() { impl_->stop(); }
 }

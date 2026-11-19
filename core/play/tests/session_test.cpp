@@ -1,4 +1,5 @@
 #include "golarion/play/session.hpp"
+#include "golarion/play/campaign.hpp"
 
 #include <cassert>
 #include <stdexcept>
@@ -60,6 +61,16 @@ namespace
         auto host = Session::createHost("host");
         auto client = Session::createClient();
         assert(host.getSessionCode().size() == 5);
+        const auto hostView = host.toView();
+        assert(hostView.mode == SessionMode::Host && hostView.host && !hostView.client);
+        assert(hostView.host->code.matches(host.getSessionCode()) && !hostView.host->listeningPort);
+        const auto hostData = host.toData();
+        assert(hostData.code.matches(host.getSessionCode()) && hostData.identities.hostId == "host");
+        host.registerUser("alice");
+        assert(host.toData().identities.users.size() == hostData.identities.users.size() + 1);
+        const auto clientView = client.toView();
+        assert(clientView.mode == SessionMode::Client && !clientView.host && clientView.client);
+        assert(clientView.client->state == ClientConnectionState::Disconnected);
         const auto state = client.getClientState();
         assert(state.state == ClientConnectionState::Disconnected && !state.userId && !state.permissions);
         client.disconnectFromHost();
@@ -73,6 +84,7 @@ namespace
         assert(rejectsMode([&] { client.startHosting("127.0.0.1", 0); }));
         assert(rejectsMode([&] { client.stopHosting(); }));
         assert(rejectsMode([&] { client.getSessionCode(); }));
+        assert(rejectsMode([&] { client.toData(); }));
         assert(rejectsMode([&] { client.registerUser("alice"); }));
         assert(rejectsMode([&] { client.issueUserToken("alice"); }));
         assert(rejectsMode([&] { client.saveIdentityState("unused-client-identities.json"); }));
@@ -86,6 +98,23 @@ namespace
         assert(rejectsMode([&] { host.joinSession("127.0.0.1", 1, SessionCode("A7K2Q")); }));
         assert(rejectsMode([&] { host.resumeSession("127.0.0.1", 1, SessionCode("A7K2Q"), UserToken("0123456789abcdef")); }));
     }
+
+    void campaignSnapshots()
+    {
+        const SessionCode initialCode("A7K2Q");
+        const UserToken token("0123456789abcdef");
+        const HostedCampaign hosted(HostedCampaignData{"hosted", "Campagna", initialCode});
+        assert(hosted.toView().name == "Campagna" && hosted.toView().code->matches(initialCode.value()));
+        assert(hosted.toData().code->matches(initialCode.value()));
+
+        JoinedCampaign joined(JoinedCampaignData{"joined", "127.0.0.1:42500", initialCode, "Campagna", token});
+        const auto original = joined.toView();
+        joined.updateConnection("127.0.0.1:42501", SessionCode("B8L3R"), "");
+        assert(original.address == "127.0.0.1:42500" && original.code.matches(initialCode.value()));
+        const auto data = joined.toData();
+        assert(data.id == "joined" && data.name == "Campagna" && data.token.value() == token.value());
+        assert(joined.toView().address == data.address && data.code.matches("B8L3R"));
+    }
 }
 
 int main()
@@ -93,4 +122,5 @@ int main()
     connectionLifecycleDelegation();
     independentSessions();
     explicitHostAndClientSessions();
+    campaignSnapshots();
 }

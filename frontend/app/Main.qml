@@ -88,6 +88,7 @@ ApplicationWindow {
                 spacing: 8
 
                 TextField {
+                    id: displayNameField
                     Layout.preferredWidth: 180
                     visible: !window.inSession
                     text: "Daniele"
@@ -194,22 +195,47 @@ ApplicationWindow {
 
         HostedCampaignPage {
             controller: window.sessionController
+            localName: displayNameField.text
         }
     }
 
     Component {
         id: activeSessionPage
 
-        Page {
-            padding: 20
-            background: null
+        ScrollView {
+            id: joinedPage
 
-            Label {
-                width: parent.width
-                visible: text.length > 0
-                text: window.sessionController.errorMessage
-                wrapMode: Text.WordWrap
-                textFormat: Text.PlainText
+            padding: 20
+            contentWidth: availableWidth
+
+            GridLayout {
+                width: joinedPage.availableWidth
+                columns: width < 540 ? 1 : 2
+                columnSpacing: 24
+                rowSpacing: 16
+
+                Item {
+                    Layout.fillWidth: true
+                    implicitHeight: clientError.implicitHeight
+                    visible: joinedPage.availableWidth >= 540 || clientError.visible
+
+                    Label {
+                        id: clientError
+                        width: parent.width
+                        visible: text.length > 0
+                        text: window.sessionController.errorMessage
+                        wrapMode: Text.WordWrap
+                        textFormat: Text.PlainText
+                    }
+                }
+
+                ParticipantsPanel {
+                    Layout.preferredWidth: 260
+                    Layout.fillWidth: joinedPage.availableWidth < 540
+                    Layout.alignment: Qt.AlignTop
+                    participants: window.sessionController.participants
+                    localName: displayNameField.text
+                }
             }
         }
     }

@@ -15,6 +15,7 @@ add_library(golarion_play STATIC
     src/hosting.cpp
     src/identity_storage.cpp
     src/local_commands.cpp
+    src/participants.cpp
     src/permission_commands.cpp
     src/permission_manager.cpp
     src/protocol.cpp
@@ -55,6 +56,12 @@ if(MSVC)
 endif()
 
 if(BUILD_TESTING)
+    add_executable(play_participants_test tests/participants_test.cpp)
+    target_include_directories(play_participants_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+    target_link_libraries(play_participants_test PRIVATE golarion_play)
+    add_test(NAME play_participants_test COMMAND play_participants_test)
+    set_tests_properties(play_participants_test PROPERTIES WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} TIMEOUT 40)
+
     add_executable(play_events_test tests/events_test.cpp)
     target_include_directories(play_events_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
     target_link_libraries(play_events_test PRIVATE golarion_play)

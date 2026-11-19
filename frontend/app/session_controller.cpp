@@ -130,10 +130,11 @@ QVariantList SessionController::campaigns() const
     QVariantList result;
     for (const auto &campaign : campaigns_)
     {
+        const auto view = campaign.toView();
         result.append(QVariantMap{
-            {QStringLiteral("name"), campaign.name},
-            {QStringLiteral("address"), campaign.address},
-            {QStringLiteral("code"), campaign.code}
+            {QStringLiteral("name"), QString::fromStdString(view.name)},
+            {QStringLiteral("address"), QString::fromStdString(view.address)},
+            {QStringLiteral("code"), normalizedCode(view.code)}
         });
     }
     return result;
@@ -142,7 +143,7 @@ QVariantList SessionController::campaigns() const
 QStringList SessionController::hostedCampaigns() const
 {
     QStringList names;
-    for (const auto &campaign : hostedCampaigns_) names.append(campaign.name);
+    for (const auto &campaign : hostedCampaigns_) names.append(QString::fromStdString(campaign.toView().name));
     return names;
 }
 
@@ -153,6 +154,7 @@ bool SessionController::hostedCampaignOpen() const { return openHostedCampaign_.
 int SessionController::hostingPort() const { return hosting_ ? hosting_->port : 0; }
 QString SessionController::inviteCode() const { return openInviteCode_; }
 QStringList SessionController::inviteEndpoints() const { return hosting_ ? hosting_->endpoints : QStringList{}; }
+QVariantList SessionController::participants() const { return participants_; }
 void SessionController::clearError() { setErrorMessage({}); }
 
 void SessionController::copyInvitationText(const QString &text)
@@ -172,30 +174,33 @@ bool SessionController::createHostedCampaign(const QString &name)
         setErrorMessage(tr("Inserisci il nome della campagna."));
         return false;
     }
-    const HostedCampaign campaign{QUuid::createUuid().toString(QUuid::WithoutBraces), title};
+    const auto id = QUuid::createUuid().toString(QUuid::WithoutBraces);
     const QDir directory(campaignDirectory_);
-    if (campaignDirectory_.isEmpty() || !QDir().mkpath(campaignDirectory_) || !directory.mkdir(campaign.id))
+    if (campaignDirectory_.isEmpty() || !QDir().mkpath(campaignDirectory_) || !directory.mkdir(id))
     {
         setErrorMessage(tr("Impossibile creare la cartella della campagna."));
         return false;
     }
-    const auto manifest = directory.filePath(campaign.id + QStringLiteral("/campaign.json"));
+    const auto manifest = directory.filePath(id + QStringLiteral("/campaign.json"));
+    std::optional<HostedCampaign> campaign;
     bool saved = false;
     try
     {
+        campaign.emplace(HostedCampaignData{id.toStdString(), title.toStdString(), SessionCode::generate()});
+        const auto data = campaign->toData();
         saved = writeCampaignData(manifest, {
-            {QStringLiteral("name"), campaign.name},
-            {QStringLiteral("code"), normalizedCode(SessionCode::generate())}
+            {QStringLiteral("name"), QString::fromStdString(data.name)},
+            {QStringLiteral("code"), normalizedCode(*data.code)}
         });
     }
     catch (const std::exception &) {}
     if (!saved)
     {
-        directory.rmdir(campaign.id);
+        directory.rmdir(id);
         setErrorMessage(tr("Impossibile salvare la campagna su questo PC."));
         return false;
     }
-    hostedCampaigns_.append(campaign);
+    hostedCampaigns_.append(std::move(*campaign));
     emit hostedCampaignsChanged();
     return true;
 }
@@ -204,11 +209,11 @@ void SessionController::openHostedCampaign(int campaignIndex)
 {
     if (busy() || !activeName_.isEmpty() || campaignIndex < 0 || campaignIndex >= hostedCampaigns_.size()) return;
     clearError();
-    const auto &campaign = hostedCampaigns_.at(campaignIndex);
+    auto data = hostedCampaigns_.at(campaignIndex).toData();
     try
     {
-        const QDir directory(QDir(campaignDirectory_).filePath(campaign.id));
-        openInviteCode_ = normalizedCode(openCampaignCode(directory));
+        const QDir directory(QDir(campaignDirectory_).filePath(QString::fromStdString(data.id)));
+        data.code = openCampaignCode(directory);
     }
     catch (const std::exception &)
     {
@@ -216,7 +221,10 @@ void SessionController::openHostedCampaign(int campaignIndex)
         return;
     }
     openHostedCampaign_ = campaignIndex;
-    activeName_ = campaign.name;
+    hostedCampaigns_[campaignIndex] = HostedCampaign(std::move(data));
+    const auto view = hostedCampaigns_.at(campaignIndex).toView();
+    activeName_ = QString::fromStdString(view.name);
+    openInviteCode_ = normalizedCode(*view.code);
     emit activeNameChanged();
     emit sessionOpened();
 }
@@ -244,7 +252,7 @@ void SessionController::startHosting(int port)
     try
     {
         hostingReply_ = std::async(std::launch::async, &SessionController::launchHosting,
-            campaignDirectory_, hostedCampaigns_.at(*openHostedCampaign_), port);
+            campaignDirectory_, hostedCampaigns_.at(*openHostedCampaign_).toData(), port);
     }
     catch (const std::exception &)
     {
@@ -255,9 +263,9 @@ void SessionController::startHosting(int port)
     emit busyChanged();
 }
 
-SessionController::Hosting SessionController::launchHosting(const QString &campaignDirectory, const HostedCampaign &campaign, int port)
+SessionController::Hosting SessionController::launchHosting(const QString &campaignDirectory, const HostedCampaignData &campaign, int port)
 {
-    const QDir directory(QDir(campaignDirectory).filePath(campaign.id));
+    const QDir directory(QDir(campaignDirectory).filePath(QString::fromStdString(campaign.id)));
     Hosting result;
     result.lock = std::make_unique<QLockFile>(directory.filePath(QStringLiteral("hosting.lock")));
     result.lock->setStaleLockTime(0);
@@ -273,11 +281,11 @@ SessionController::Hosting SessionController::launchHosting(const QString &campa
     {
         const auto manifest = directory.filePath(QStringLiteral("campaign.json"));
         const auto code = campaignCode(readCampaignData(manifest));
-        result.session = std::make_unique<Session>(campaign.id.toStdString(), code);
+        result.session = std::make_unique<Session>(campaign.id, code);
         const auto archive = std::filesystem::u8path(directory.filePath(QStringLiteral("identities.json")).toStdString());
         if (std::filesystem::exists(archive)) result.session->loadIdentityState(archive);
         else result.session->saveIdentityState(archive);
-        result.session->registerSessionInfo(campaign.name.toStdString());
+        result.session->registerSessionInfo(campaign.name);
     }
     catch (const std::exception &)
     {
@@ -285,7 +293,11 @@ SessionController::Hosting SessionController::launchHosting(const QString &campa
     }
     if (result.error.isEmpty())
     {
-        try { result.port = result.session->startHosting("0.0.0.0", static_cast<std::uint16_t>(port)); }
+        try
+        {
+            result.session->startHosting("0.0.0.0", static_cast<std::uint16_t>(port));
+            result.port = *result.session->toView().host->listeningPort;
+        }
         catch (const std::exception &)
         {
             result.error = tr("Impossibile avviare l’host su questa porta. Prova a sceglierne un’altra.");
@@ -312,6 +324,8 @@ void SessionController::pollHosting()
         if (result.error.isEmpty())
         {
             hosting_.emplace(std::move(result));
+            updateParticipants(hosting_->session->toView().host->participants, std::nullopt);
+            pollTimer_.start();
             emit hostingChanged();
         }
         else
@@ -329,10 +343,12 @@ void SessionController::pollHosting()
 void SessionController::stopHosting()
 {
     if (!hosting_) return;
+    pollTimer_.stop();
     clearError();
     try { hosting_->session->stopHosting(); }
     catch (const std::exception &) { setErrorMessage(tr("Si è verificato un errore durante l’arresto dell’host.")); }
     hosting_.reset();
+    setParticipants({});
     emit hostingChanged();
     closeHostedCampaign();
 }
@@ -362,13 +378,12 @@ void SessionController::enter(const QString &address, const QString &codeText, i
     if (campaignIndex < -1 || campaignIndex >= campaigns_.size()) return;
 
     const auto endpoint = QStringLiteral("%1:%2").arg(ip).arg(port);
-    const auto canonicalCode = normalizedCode(*code);
     if (campaignIndex == -1)
     {
         for (int index = 0; index < campaigns_.size(); ++index)
         {
-            const auto &campaign = campaigns_.at(index);
-            if (campaign.address != endpoint || campaign.code != canonicalCode) continue;
+            const auto view = campaigns_.at(index).toView();
+            if (view.address != endpoint.toStdString() || !view.code.matches(code->value())) continue;
             campaignIndex = index;
             break;
         }
@@ -378,7 +393,7 @@ void SessionController::enter(const QString &address, const QString &codeText, i
     {
         admissionReply_ = campaignIndex == -1
             ? session_.joinSession(ip.toStdString(), port, *code)
-            : session_.resumeSession(ip.toStdString(), port, *code, campaigns_.at(campaignIndex).token);
+            : session_.resumeSession(ip.toStdString(), port, *code, campaigns_.at(campaignIndex).toData().token);
     }
     catch (const std::invalid_argument &)
     {
@@ -395,7 +410,7 @@ void SessionController::enter(const QString &address, const QString &codeText, i
         setErrorMessage(tr("Impossibile avviare la connessione."));
         return;
     }
-    pending_ = Admission{endpoint, canonicalCode, campaignIndex, std::nullopt};
+    pending_ = Admission{endpoint, *code, campaignIndex, std::nullopt};
     pollTimer_.start();
     emit busyChanged();
 }
@@ -405,6 +420,7 @@ void SessionController::disconnectSession()
     if (activeName_.isEmpty() || openHostedCampaign_) return;
     pollTimer_.stop();
     session_.disconnectFromHost();
+    setParticipants({});
     activeName_.clear();
     emit activeNameChanged();
     emit sessionClosed();
@@ -418,12 +434,22 @@ void SessionController::pollSession()
         pollHosting();
         return;
     }
+    if (hosting_)
+    {
+        updateParticipants(hosting_->session->toView().host->participants, std::nullopt);
+        return;
+    }
     if (!pending_)
     {
-        if (session_.getClientState().state == ClientConnectionState::Disconnected)
+        const auto client = *session_.toView().client;
+        if (client.state == ClientConnectionState::Disconnected)
         {
             setErrorMessage(tr("La connessione con l’host è stata interrotta."));
             disconnectSession();
+        }
+        else if (client.participants)
+        {
+            updateParticipants(*client.participants, client.userId);
         }
         return;
     }
@@ -466,24 +492,25 @@ void SessionController::finishAdmission(const QString &name)
             return;
         }
         index = static_cast<int>(campaigns_.size());
-        campaigns_.append(Campaign{QUuid::createUuid().toString(QUuid::WithoutBraces), admission.address,
-            admission.code, tr("Sessione %1").arg(admission.address), *admission.newToken});
+        campaigns_.append(JoinedCampaign(JoinedCampaignData{
+            QUuid::createUuid().toString(QUuid::WithoutBraces).toStdString(), admission.address.toStdString(),
+            admission.code, tr("Sessione %1").arg(admission.address).toStdString(), *admission.newToken
+        }));
     }
     auto &campaign = campaigns_[index];
-    campaign.address = admission.address;
-    campaign.code = admission.code;
-    if (!name.isEmpty()) campaign.name = name;
-    const bool saved = saveCampaign(campaign);
-    const bool connected = session_.getClientState().state == ClientConnectionState::Connected;
+    campaign.updateConnection(admission.address.toStdString(), admission.code, name.toStdString());
+    const bool saved = saveCampaign(campaign.toData());
+    const auto client = *session_.toView().client;
 
-    if (!connected)
+    if (client.state != ClientConnectionState::Connected)
     {
         emit campaignsChanged();
         failAdmission(tr("La connessione con l’host è stata interrotta."));
         return;
     }
-    activeName_ = campaign.name;
+    activeName_ = QString::fromStdString(campaign.toView().name);
     pending_.reset();
+    if (client.participants) updateParticipants(*client.participants, client.userId);
     if (!saved) setErrorMessage(tr("Impossibile salvare la campagna su questo PC."));
     emit campaignsChanged();
     emit activeNameChanged();
@@ -507,6 +534,27 @@ void SessionController::setErrorMessage(const QString &message)
     emit errorMessageChanged();
 }
 
+void SessionController::updateParticipants(const ParticipantsSnapshot &snapshot, const std::optional<UserId> &localUser)
+{
+    QVariantList rows;
+    for (const auto &participant : snapshot.participants)
+    {
+        rows.append(QVariantMap{
+            {QStringLiteral("userId"), QString::fromStdString(participant.userId)},
+            {QStringLiteral("isHost"), participant.isHost},
+            {QStringLiteral("isSelf"), hosting_ ? participant.isHost : localUser == participant.userId}
+        });
+    }
+    setParticipants(std::move(rows));
+}
+
+void SessionController::setParticipants(QVariantList participants)
+{
+    if (participants_ == participants) return;
+    participants_ = std::move(participants);
+    emit participantsChanged();
+}
+
 void SessionController::loadCampaigns()
 {
     if (campaignDirectory_.isEmpty()) return;
@@ -521,7 +569,9 @@ void SessionController::loadCampaigns()
         {
             const SessionCode code(data.value(QStringLiteral("code")).toString().toStdString());
             const UserToken token(data.value(QStringLiteral("token")).toString().toStdString());
-            campaigns_.append(Campaign{entry.completeBaseName(), address, normalizedCode(code), name, token});
+            campaigns_.append(JoinedCampaign(JoinedCampaignData{
+                entry.completeBaseName().toStdString(), address.toStdString(), code, name.toStdString(), token
+            }));
         }
         catch (const std::invalid_argument &) {} // Keep unreadable entries on disk.
     }
@@ -532,18 +582,24 @@ void SessionController::loadCampaigns()
         if (QUuid(id).toString(QUuid::WithoutBraces) != id) continue;
         const auto data = readCampaignData(QDir(entry.filePath()).filePath(QStringLiteral("campaign.json")));
         const auto name = data.value(QStringLiteral("name")).toString().trimmed();
-        if (!name.isEmpty()) hostedCampaigns_.append(HostedCampaign{id, name});
+        if (name.isEmpty()) continue;
+        try
+        {
+            const auto code = data.contains(QStringLiteral("code")) ? std::make_optional(campaignCode(data)) : std::nullopt;
+            hostedCampaigns_.append(HostedCampaign(HostedCampaignData{id.toStdString(), name.toStdString(), code}));
+        }
+        catch (const std::invalid_argument &) {} // Keep unreadable entries on disk.
     }
 }
 
-bool SessionController::saveCampaign(const Campaign &campaign) const
+bool SessionController::saveCampaign(const JoinedCampaignData &campaign) const
 {
     if (campaignDirectory_.isEmpty() || !QDir().mkpath(campaignDirectory_)) return false;
     const QJsonObject data{
-        {QStringLiteral("address"), campaign.address},
-        {QStringLiteral("code"), campaign.code},
-        {QStringLiteral("name"), campaign.name},
+        {QStringLiteral("address"), QString::fromStdString(campaign.address)},
+        {QStringLiteral("code"), normalizedCode(campaign.code)},
+        {QStringLiteral("name"), QString::fromStdString(campaign.name)},
         {QStringLiteral("token"), QString::fromStdString(campaign.token.value())}
     };
-    return writeCampaignData(QDir(campaignDirectory_).filePath(campaign.id + QStringLiteral(".json")), data);
+    return writeCampaignData(QDir(campaignDirectory_).filePath(QString::fromStdString(campaign.id) + QStringLiteral(".json")), data);
 }

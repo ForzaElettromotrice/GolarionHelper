@@ -260,6 +260,7 @@ namespace
         std::vector<std::uint8_t> input;
         writeBytes(raw, detail::encodeMessage({"session.resume", "raw-1", {{"sessionCode", code.value()}, {"userToken", rawToken}}}));
         check(readMessage(raw, input).type == "request.accepted", "raw client was not admitted");
+        check(readMessage(raw, input).type == "session.participantsChanged", "raw client missed the initial participant snapshot");
         completed(host.sendCommand("permissions.setPermission", change("raw-user", Permission::Permission5, true)));
         const auto event = readMessage(raw, input);
         check(event.type == "permissions.changed" && !event.requestId && event.payload == Json{{"userId", "raw-user"}, {"permissions", 23}}, "wrong permission event envelope");
@@ -392,10 +393,12 @@ namespace
         std::atomic<int> calls{0};
         client.add_command("example.changed", [&](const auto &, const auto &) { ++calls; return Json(nullptr); });
         const auto user = completed(client.joinSession("127.0.0.1", port, code));
+        eventually([&] { return client.getClientState().participants.has_value(); });
         auto flood = client.sendCommand("flood", Json::object());
         check(rejects<std::exception>([&] { completed(std::move(flood)); }), "overflow did not disconnect the slow peer");
         check(queued == 64 && calls == 0, "event queue was unbounded or leaked discarded frames");
         completed(client.resumeSession("127.0.0.1", port, code, *user.userToken));
+        eventually([&] { return client.getClientState().participants.has_value(); });
         queued = 0;
         auto byteFlood = client.sendCommand("flood-bytes", Json::object());
         check(rejects<std::exception>([&] { completed(std::move(byteFlood)); }), "byte overflow did not disconnect the slow peer");

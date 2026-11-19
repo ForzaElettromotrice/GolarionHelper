@@ -1,6 +1,7 @@
 #pragma once
 
 #include "golarion/play/permission_set.hpp"
+#include "golarion/play/participants.hpp"
 #include "golarion/play/user_id.hpp"
 #include "golarion/play/user_token.hpp"
 
@@ -28,5 +29,6 @@ namespace golarion::play
         ClientConnectionState state = ClientConnectionState::Disconnected;
         std::optional<UserId> userId = std::nullopt;
         std::optional<PermissionSet> permissions = std::nullopt;
+        std::optional<ParticipantsSnapshot> participants = std::nullopt;
     };
 }

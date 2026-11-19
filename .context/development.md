@@ -52,8 +52,14 @@ Run separate terminals and replace the code with the one printed by the host. Ho
 
 The host creates/loads its archive before listening; default is session-identities.json in its working directory. Client default is client-token.txt: missing selects join, existing valid selects resume. One token file belongs to one participant/session. JSON protocol is v3; identity archives are v2 with hostId, numeric permission masks and token hashes. Legacy formats are rejected without conversion or automatic deletion. Use fresh client credentials after discarding an archive. The tools configure no firewall/router rules.
 
-## Verified Commands and Live Notifications (2026-11-18)
+## Verified Commands, Notifications and Presence (2026-11-19)
 
-The root CMake build compiles fourteen play library sources, both tools and sixteen native suites to build/core/play. All sixteen pass on Windows (19.56 seconds for the complete focused CTest run). permission_commands_test covers RPC access/schema/transactions; play_events_test covers targeted live masks, fragmented/mixed frames, no-op/failed-save suppression, fixed deadlines, 64-frame/256-KiB queue limits, stale contexts and stop/replacement races. Existing framing, queue, identity and buffered-stop regressions pass.
+The root CMake build compiles fifteen play library sources, both tools and seventeen native suites to build/core/play. All seventeen pass on Windows. permission_commands_test covers RPC access/schema/transactions; play_events_test covers targeted live masks, fragmented/mixed frames, no-op/failed-save suppression, fixed deadlines, 64-frame/256-KiB queue limits, stale contexts and stop/replacement races. play_participants_test additionally covers connected-only projections, initial snapshots, replacement, failed admission, zero-permission access, revisions, host reconstruction, frame limits and concurrent presence changes. Existing framing, queue, identity and buffered-stop regressions pass.
 
 Permission read/mutation commands and targeted live notifications are complete for this step. ClientSnapshot refreshes on permissions.changed; permissions.get supplies current server data independently. Permanent tests live in core/play/tests; no frontend or mutation CLI prompt was added. Historical standalone/process checks are in history/2026-11-17-standalone-play-build.md. POSIX/physical two-PC verification of this step remains pending.
+
+The final presence verification used a clean root CMake build and three repeat runs of play_participants_test before the complete suite. An earlier incremental-executable failure and its diagnostic evidence are recorded separately in history/2026-11-19-presence-build-verification.md. Connected-participant contracts and Views are documented in session-participants.md.
+
+## Session Snapshot Verification
+
+The root GCC 10.3 build and Qt/MSVC build compile. The controller suite passes. In the root CTest run, 16 of 17 suites pass and `play_participants_test` exits while rethrowing the expected rejected-RPC exception through a future (Windows exception code `0x20474343`). The same participant suite passes when compiled with MSVC against the Qt build's play library, including the active and stopped session view checks.

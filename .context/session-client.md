@@ -1,6 +1,6 @@
 # Client Sessions and Commands
 
-Status: targeted live permission notifications integrated 2026-11-18. Commands use sendCommand; client notification handlers reuse add_command/dispatch and refresh ClientSnapshot. User presence/list events and automatic reconnect remain separate work; see session-events.md.
+Status: connected-participant snapshots/query/events integrated 2026-11-19 alongside targeted permission events. Commands use sendCommand and notification handlers reuse add_command/dispatch. Automatic reconnect remains separate; see session-participants.md and session-events.md.
 
 ## Modes and API
 
@@ -17,6 +17,8 @@ Session::createHost(UserId) constructs ResourceManager, ProtocolManager and opti
 | sendEvent(userId, name, json) | Host queues a targeted notification without a response future. Client rejects wrong mode. |
 
 ClientAdmission has UserId, PermissionSet permissions and optional UserToken. Only join returns the original credential. ClientSnapshot has state, optional UserId and optional PermissionSet; both optionals clear on disconnect. An optional containing mask zero is an admitted user with no permissions. Its mask starts from admission and refreshes on validated permissions.changed events; the server always authorizes from current state independently.
+
+ClientSnapshot also contains optional ParticipantsSnapshot participants, filled by session.participantsChanged after the ordinary admission reply. It contains only connected users plus the local host, with UserId/isHost fields and a revision. getClientState and SessionView.client return detached copies; disconnect clears the cache. HostSessionView derives its participants directly from bindings. Queries use sendCommand("session.getParticipants", {}) with no required permission bits after admission. Offline identities, token data and other users' permission masks are not part of this list. See session-participants.md for strict validation and revision rules.
 
 Connection states remain Disconnected, Connecting, Admitting and Connected. Mode/address/port misuse and overlapping active admissions reject synchronously; network/reply failures complete futures exceptionally. A disconnected/failed client can start another attempt after its old worker joins. Wrong-mode methods throw logic_error; noexcept code verification returns false on clients.
 
@@ -55,4 +57,4 @@ Desktop hosts and named console hosts use `Session::registerSessionInfo` to regi
 
 ## Verification
 
-The client suite retains fourteen admission/lifecycle/streaming scenarios, eight simultaneous clients through three host reconstructions, cancellation races, exact maximum frames and fixed deadlines. Existing sendCommand/permission-command coverage remains intact. All sixteen play suites pass through CMake/CTest from the root configuration on Windows; play_events_test adds idle fragmented notifications, mixed/out-of-order replies, live masks, strict schemas, stale generations and callback/disconnect safety. The separate permission_process_smoke.py is earlier permission-command verification. Diagnostics in build/play/client-validation describe retired JSON v2 and are historical. POSIX/physical two-PC verification of this step remains pending.
+The client suite retains fourteen admission/lifecycle/streaming scenarios, eight simultaneous clients through three host reconstructions, cancellation races, exact maximum frames and fixed deadlines. Existing sendCommand/permission-command coverage remains intact. All seventeen play suites pass through CMake/CTest from the root configuration on Windows; play_events_test adds idle fragmented notifications, mixed/out-of-order replies, live masks, strict schemas, stale generations and callback/disconnect safety. The separate permission_process_smoke.py is earlier permission-command verification. Diagnostics in build/play/client-validation describe retired JSON v2 and are historical. POSIX/physical two-PC verification of this step remains pending.

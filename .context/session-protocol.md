@@ -1,6 +1,6 @@
 # Session Protocol
 
-Status: JSON v3 admission/commands and targeted permissions.changed notifications implemented, 2026-11-18. Permission RPCs save transactionally and refresh the affected client. User presence events, sheet commands, display names, full game persistence and frontend remain separate work.
+Status: connected-participant query/events added 2026-11-19 to JSON v3 admission, commands and targeted permission notifications. The presence snapshot includes only connected users plus the local host, with no extra permission requirement after admission. Sheet commands, participant display names and full game persistence remain separate.
 
 ## Session Code and Connections
 
@@ -32,10 +32,12 @@ session.join takes only sessionCode and returns UserId/permissions=7/original us
 
 Permissions are numeric unsigned masks with known bits only. PermissionSet::fromMask/toMask handles validated conversion; floats, strings, booleans, negative values and unknown bits reject at JSON boundaries. Mask zero is valid for a registered user and does not imply public access. Presets are not roles or persistent labels; the immutable host has an explicit separate identity.
 
-Version-2 archives persist hostId, users/masks and token hashes. Legacy role files reject without conversion. Credentials remain eight random bytes/16 lowercase hex characters, hashed only on the host. Permission-mutation commands save automatically through the identity coordinator, then notify only the affected user after effective changes. Direct setters still need explicit persistence and do not emit events. Client snapshots refresh on validated permissions.changed; permissions.get reads current server state. No SessionId or persisted SessionCode is added. See session-events.md for queues, routing and reconnection.
+Version-2 archives persist hostId, users/masks and token hashes. Legacy role files reject without conversion. Credentials remain eight random bytes/16 lowercase hex characters, hashed only on the host. Permission-mutation commands save automatically through the identity coordinator, then notify only the affected user after effective changes. Direct setters still need explicit persistence and do not emit events. Client snapshots refresh on validated permissions.changed; permissions.get reads current server state. Identity archives still have no SessionId; campaign SessionData stores the invitation code separately. See session-events.md for queues, routing and reconnection.
+
+session.getParticipants returns revision/participants through the ordinary command result. session.participantsChanged uses the same payload without requestId and updates the client cache. Admission schemas are unchanged; Hosting sends the normal admission response before the initial presence snapshot. Revisions are runtime-only and reset on host reconstruction; a new client connection clears its previous cache. Both binaries must support the built-in presence event. See session-participants.md.
 
 ## Client and Verification
 
 Client join/resume and generic sendCommand return futures. IDs increase across admissions and commands; the worker handles partial/coalesced I/O and exact correlation, including out-of-order command replies. At most 64 commands are outstanding with five-second deadlines. Disconnect/timeout completes remaining promises without replay. Complete results survive invalid following data. Session owns no socket logic.
 
-Sixteen native play suites pass through the root Debug/Ninja CMake configuration on Windows, including strict framing/masks, targeted live notifications, mixed replies, queue bounds, permission RPC rollback/restart and prior stop regressions. Historical separate-process checks remain documented. POSIX remains unverified; see development.md.
+Seventeen native play suites pass through the root Debug/Ninja CMake configuration on Windows, including strict framing/masks, targeted live notifications, mixed replies, queue bounds, permission RPC rollback/restart and prior stop regressions. Historical separate-process checks remain documented. POSIX remains unverified; see development.md.

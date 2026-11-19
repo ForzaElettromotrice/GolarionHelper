@@ -11,7 +11,7 @@ qt_add_qml_module(golarion_helper
     URI Golarion.App
     VERSION 1.0
     RESOURCE_PREFIX /qt/qml
-    QML_FILES Main.qml CampaignsPage.qml HostedCampaignPage.qml
+    QML_FILES Main.qml CampaignsPage.qml HostedCampaignPage.qml ParticipantsPanel.qml
     SOURCES session_controller.hpp session_controller.cpp
 )
 target_link_libraries(golarion_helper PRIVATE Qt6::Quick Qt6::QuickControls2 Qt6::Network golarion_play)

@@ -10,9 +10,13 @@ Sessioni opens a scrollable Campagne list. + Aggiungi offers Crea campagna and U
 
 The join form accepts numeric IPv4 with an optional port (default 42500) and the five-character session code. Desktop hosts reuse the same saved code across starts. A joined row opens the form with its last address and code so they can be updated when needed. Errors remain beside the form with the entered values available for retry. Successful admission opens the session page with its title and Disconnetti in the right-hand corner. Disconnect or loss of connection returns to Campagne. See [client sessions](session-client.md#desktop-campaigns) for title lookup, persistence and credential behavior.
 
+The Partecipanti panel appears on the right of active host and client session pages and stacks below the session details in narrow windows. It labels the host with Host and the local participant with Tu. The local row uses the name from the home page when present. Other rows display the participant IDs supplied by the backend. The controller refreshes presence from `Session::toView()` during its existing polling cycle, publishes changes to QML and clears the list when the session ends. The controller test covers the initial host row, admission, reconnect and departure.
+
 Configure the [root build](development.md#required-project-build-entry-point) with `GOLARION_BUILD_FRONTEND=ON` and a Qt 6.5+ kit matching the compiler, then run `cmake --build build --target golarion_helper`. With Ninja and Qt's default output directories, the executable is under `build/frontend/` on Windows and `build/frontend/app/` on Linux. On Windows, make the chosen Qt kit's `bin` directory and the OpenSSL Crypto runtime available on PATH. The standalone frontend build also provides this target, with the executable at `build/ui-preview/golarion_helper.exe` on Windows.
 
 Verified on Windows with Qt 6.8.3 and MSVC. `golarion_session_controller_test` exercises offline creation and reopening, pending navigation guards, port conflicts, a second window opening the same archive, title publication, and identity-preserving resume after stopping and reopening the host. The join and disconnect tests remain in the same suite. The QML interaction smoke test checks the starting state, endpoint selection, and which values the copy controls submit.
+
+The Qt controller adapts `HostedCampaign::toView()`, `JoinedCampaign::toView()`, and the live `Session::toView()` snapshots to the existing QML properties. It serializes campaign `toData()` snapshots at the JSON boundary. The layouts continue to consume the same property types.
 
 ## Composition and ownership
 

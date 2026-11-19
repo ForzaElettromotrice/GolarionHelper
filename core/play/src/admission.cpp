@@ -124,9 +124,10 @@ namespace golarion::play
 
     ProtocolManager::AdmissionResult ProtocolManager::admitNewUser(ConnectionId connectionId)
     {
-        const std::lock_guard identityLock(identityMutex_);
+        const std::lock_guard executionLock(executionMutex_);
+        std::unique_lock identityLock(identityMutex_);
         if (!identityArchivePath_) throw std::logic_error("save or load an identity archive before admitting users");
-        const std::lock_guard connectionsLock(connectionsMutex_);
+        std::unique_lock connectionsLock(connectionsMutex_);
         const auto connection = connections_.find(connectionId);
         if (connection == connections_.end() || connection->second) throw std::invalid_argument("admission requires a pending connection");
 
@@ -162,6 +163,9 @@ namespace golarion::play
             throw;
         }
         userTokens_.swap(candidate);
+        connectionsLock.unlock();
+        identityLock.unlock();
+        publishParticipantsChanged();
         return result;
     }
 

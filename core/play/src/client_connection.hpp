@@ -22,6 +22,7 @@ namespace golarion::play
         ClientSnapshot snapshot() const;
         bool acceptsContext(const CommandContext &context) const;
         void updatePermissions(PermissionSet permissions);
+        void updateParticipants(ParticipantsSnapshot participants);
         std::future<nlohmann::json> sendCommand(std::string name, nlohmann::json payload, std::string requestId);
         void stop();
 

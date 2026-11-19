@@ -1,6 +1,6 @@
 # Game Management and Application Communication
 
-Status: targeted live permission notifications are integrated with JSON v3 admission/sendCommand and transactional permission RPCs. Archives remain version 2. The desktop app creates local campaigns, starts and stops their hosts, and joins or resumes saved campaigns. User presence events, sheet commands and participant display names remain deferred.
+Status: revisioned connected-participant query/events now accompany permission notifications, JSON v3 admission/sendCommand and transactional permission RPCs. Archives remain version 2. The desktop app creates local campaigns, starts and stops their hosts, and joins or resumes saved campaigns. Participant-list frontend presentation, sheet commands and participant display names remain deferred.
 
 ## Confirmed Requirements
 
@@ -11,7 +11,7 @@ Status: targeted live permission notifications are integrated with JSON v3 admis
 - Direct Internet access requiring network configuration, or a VPN, is acceptable for the initial version. A managed online relay or always-on dedicated server is not required.
 - Participants may import sheets created locally in the application and interact with assigned/shared sheets according to explicit permissions and bindings. Master/Player/Spectator are configurable permission presets; their names alone must not authorize sheet operations. Concrete sheet permissions remain undefined behind the current placeholder flags.
 - Communication currently means inter-application networking for joining and interacting with a shared game. In-app chat, voice, and video are outside the current scope.
-- Implementation proceeds in small steps. Session, managers, admission/sendCommand, both console tools, permission RPCs and targeted permission notifications are implemented. The desktop app exposes the host and admission lifecycles. User presence events and sheet commands are separate steps.
+- Implementation proceeds in small steps. Session, managers, admission/sendCommand, both console tools, permission RPCs, targeted permission notifications and connected-user query/events are implemented. The desktop app exposes the host and admission lifecycles. Participant-list presentation and sheet commands are separate steps.
 - The implemented rules engine remains Pathfinder 1e. The user's general reference to DnD does not select another ruleset.
 
 ## Confirmed Structural Decisions for Later Steps
@@ -30,7 +30,7 @@ Status: targeted live permission notifications are integrated with JSON v3 admis
 - Store sheet IDs and names in the game registry; connect actual `CharacterSheet` content through the later application service.
 - A sheet may have several authorized participants. Shared-sheet assignments and concrete read/write permission semantics remain future work; do not infer them from preset names.
 - Permission and sheet-control revocation must affect later operations without deleting the participant's sheets. Preset-to-sheet effects remain undefined until concrete sheet permissions are selected.
-- Networking handles admission, generic commands, permission queries/mutations, transactional identity saving, token resume and targeted permission events. User presence/list events and sheet bindings remain separate work.
+- Networking handles admission, generic commands, permission queries/mutations, transactional identity saving, token resume, targeted permission events and connected-only presence snapshots. The local host is included; all admitted users receive the list without extra permission bits. Sheet bindings remain separate work; see session-participants.md.
 
 ## Implemented Session Hosting
 
@@ -40,13 +40,15 @@ Status: targeted live permission notifications are integrated with JSON v3 admis
 - Accepted sockets start pending; registered Any join/resume callbacks verify code/token, persist/register Player flags or restore current masks, and retain admitted peers. Successful generic public commands do not extend pending expiry. Ordinary admitted errors keep sockets open; framing/pending failures close them.
 - Connection/lifecycle state is synchronized. Stop joins the network worker and releases peers/bindings while retaining permissions, tokens and the ID counter. Local commands remain available; shutdown joins them before provider destruction.
 - Native admission and host/client sendCommand are implemented. The host queues local dispatch even offline; an admitted client sends correlated requests with bounded completion. User events and reconnect policy remain separate. Legacy Game/network and their old tests/client were removed; the current console still exposes admission/monitoring only, documented in `session-client.md`.
-- Sixteen native play suites pass through the root CMake build on Windows, including RPC transactions, targeted live events, mixed replies, queue limits, full host reconstruction and prior stop/identity regressions. Outputs are build/core/play; POSIX remains unverified.
+- Seventeen native play suites pass through the root CMake build on Windows, including RPC transactions, targeted live events, mixed replies, queue limits, full host reconstruction and prior stop/identity regressions. Outputs are build/core/play; POSIX remains unverified.
 
 ## Desktop Hosted Campaigns
 
 The desktop controller saves each owned campaign under its stable UUID in the local `campaigns/` directory, with a name and a generated invitation code in `campaign.json`. Avvia hosting loads the code and loads or initializes `identities.json` in the same directory using the UUID as the host UserId. A lock prevents multiple app instances from running the same campaign archive concurrently.
 
 The Qt controller runs archive locking, session preparation, opening the IPv4 listener and collecting invitation addresses in a background task. It publishes the completed result on the GUI thread. The host uses the requested port and reports the actual bound port. The campaign name is published through `Session::registerSessionInfo`. Opening the campaign displays the exact saved code. For an older manifest missing a code, opening the page saves one atomically under the hosting lock before showing it. Participants keep their original credential and update the code once in that case.
+
+`core/play` supplies typed hosted and joined campaign views and data. The joined view supplies name, address and code. Its data also contains the stored credential. `Session::toView()` composes live host or client state. Host-only `Session::toData()` combines the code with the identity snapshot from the protocol manager. Identity saves use the same identity projection under the archive lock. Qt adapts the views to QML and writes campaign data using the existing JSON keys.
 
 ## Proposed Game Model and Lifecycle
 
@@ -92,7 +94,7 @@ These copy/import/export semantics are a recommendation rather than an already c
 | Connecting | Join by host address and port, directly on LAN/Internet or through a VPN; report connection failures. LAN discovery can follow basic manual connection. |
 | Admission and identity | Game access credentials or invitations, optional admission by a master, stable returning identity, and access revocation. Exact credential UX is still open. |
 | Compatibility | Negotiate protocol and sheet/rules/catalog compatibility before importing or applying incompatible operations. |
-| Membership and presence | Retrieve participants and permissions, distinguish offline/connecting/synchronizing/online, and propagate joins, disconnects, removals and permission changes. |
+| Membership and presence | Connected-only listing and presence events are implemented; persisted identities and restricted permission queries remain separate. Richer connection states and removal commands remain future work. |
 | Initial synchronization | Receive game metadata, permissions, visible sheet summaries, and authorized sheet state. |
 | Sheet transfer | Import a locally created sheet, receive the canonical game ID, and export an authorized updated copy. |
 | Sheet control | Assign/revoke control and visibility, and propagate permission changes. |
@@ -104,7 +106,7 @@ These copy/import/export semantics are a recommendation rather than an already c
 
 ## Proposed Message Contract
 
-Codec, hosting, permission admission, read/mutation commands and targeted permissions.changed are implemented. User presence and sheet-related messages below remain proposals.
+Codec, hosting, admission, permission commands, targeted permissions.changed and session.getParticipants/session.participantsChanged are implemented. Sheet-related messages below remain proposals.
 
 Keep network contracts independent from the C++ memory layout and from internal persistence structures. The existing `SaveData` supports importing complete source data; the current `View` structs still require explicit wire serialization and permission filtering before they become network snapshots.
 
@@ -112,7 +114,7 @@ Keep network contracts independent from the C++ memory layout and from internal 
 | --- | --- |
 | Client to host | Implemented session.join/session.resume, generic commands and permission adapters; planned session.leave and sheet operations. |
 | Host response | Implemented correlated request.accepted/request.rejected, including admission; planned user snapshots. |
-| Host event | Implemented permissions.changed for its affected user only; planned presence, sheet, assignment and host-closing notifications. |
+| Host event | Implemented permissions.changed for its affected user and session.participantsChanged for all admitted users; planned sheet, assignment and host-closing notifications. |
 
 Commands carry a protocol version, request ID and operation-specific payload. Authenticate the sender through its accepted connection; a client-supplied participant ID never grants authority. Current permission events omit requestId, contain the full numeric mask and have no sequence/replay log; resume supplies the current mask. Sheet revision checks and event gap recovery are future contracts.
 
@@ -128,7 +130,7 @@ Initially use reliable ordered messages for commands and synchronization. Transp
 
 The sheet backend lives in core/sheet; core/play implements host/client Session modes, TCP hosting, native client admission and managers. A future native desktop frontend can use the C++ application API; the existing C API remains separate and its full frontend boundary is undecided.
 
-1. Choose user presence/list synchronization separately, reusing implemented notification dispatch/outbox and preserving RPC autosave, current actor checks, provider lifetime and buffered-stop constraints.
+1. Review implemented connected-participant snapshots and choose a separate heartbeat/reconnection step, preserving RPC autosave, current actor checks, provider lifetime, revisions and buffered-stop constraints.
 2. Add the sheet ID/name registry, shared assignments, and authorization separately, then connect sheet contents through an application service.
 3. Add persistent game storage, import/export, recipient-specific state, command IDs, revisions, and identity-preserving reconnect in separately reviewable steps.
 4. Validate actual multi-PC LAN/Internet/VPN operation and introduce authenticated protected connections before treating Session hosting as complete Internet support.
