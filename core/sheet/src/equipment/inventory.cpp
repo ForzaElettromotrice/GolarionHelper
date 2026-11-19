@@ -1101,27 +1101,27 @@ namespace golarion
         return total;
     }
 
-    void Inventory::replaceCoinQuantity(std::string_view itemId, int quantity)
+    void Inventory::setItemQuantity(std::string_view itemId, int quantity)
     {
         if (quantity < 1)
         {
-            throw std::invalid_argument("coin quantity must be at least 1");
+            throw std::invalid_argument("item quantity must be at least 1");
         }
 
         const std::string id = normalize(itemId);
         auto item = items_.find(id);
         if (item == items_.end())
         {
-            throw std::invalid_argument("coin item instance is not registered: " + id);
+            throw std::invalid_argument("item instance is not registered: " + id);
         }
         const ItemDefinition &definition = item->second.itemDefinition_.get();
-        if (!definition.coinDenomination.has_value())
-        {
-            throw std::invalid_argument("item instance is not a coin: " + id);
-        }
         if (item->second.quantity_ == quantity)
         {
             return;
+        }
+        if (quantity != 1 && (definition.container.has_value() || equipment_.isEquipped(id)))
+        {
+            throw std::invalid_argument("equipped items and container items must have quantity 1: " + id);
         }
 
         const ItemInstance replacement(ItemInstanceDefinition{
@@ -1135,10 +1135,9 @@ namespace golarion
         const std::int64_t previousWeightGrams = totalWeightGrams();
         const int previousQuantity = item->second.quantity_;
         item->second.quantity_ = quantity;
-        const std::int64_t newWeightGrams = totalWeightGrams();
         try
         {
-            replaceRegisteredWeight(previousWeightGrams, newWeightGrams);
+            replaceRegisteredWeight(previousWeightGrams, totalWeightGrams());
         }
         catch (...)
         {

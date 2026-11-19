@@ -79,7 +79,7 @@ namespace golarion
             {
                 throw std::invalid_argument("coin quantity is out of range");
             }
-            inventory_.replaceCoinQuantity(itemId, item.quantity_ + quantity);
+            inventory_.setItemQuantity(itemId, item.quantity_ + quantity);
             return;
         }
 
@@ -158,7 +158,7 @@ namespace golarion
                 }
                 else
                 {
-                    inventory_.replaceCoinQuantity(change.itemId, change.newQuantity);
+                    inventory_.setItemQuantity(change.itemId, change.newQuantity);
                 }
                 ++appliedChanges;
             }
@@ -181,7 +181,7 @@ namespace golarion
                     }
                     else
                     {
-                        inventory_.replaceCoinQuantity(change.itemId, change.previousQuantity);
+                        inventory_.setItemQuantity(change.itemId, change.previousQuantity);
                     }
                 }
                 catch (...)

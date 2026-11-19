@@ -139,6 +139,7 @@ namespace golarion
         void unequipItem(std::string_view itemId, std::optional<std::string> containerId = std::nullopt);
         void moveItem(std::string_view itemId, std::optional<std::string> containerId = std::nullopt);
         void removeItem(std::string_view itemId);
+        void setItemQuantity(std::string_view itemId, int quantity);
         void removeMoney(CoinDenomination denomination, int quantity, std::string_view containerId);
         CharacterSheetView toView();
         CharacterSheetView toView(const StrikeCalculationContext &strikeContext);

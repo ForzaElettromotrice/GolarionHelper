@@ -64,6 +64,7 @@ int main()
     assert(encumbrance.toView().totalWeightGrams == 5000);
     assert(resourceManager.modifierTotal("savingThrow.all") == 0);
     inventory.equip("cloak.home");
+    assert(throwsInvalidArgument([&] { inventory.setItemQuantity("cloak.home", 2); }));
     assert(encumbrance.toView().totalWeightGrams == 5500);
     assert(resourceManager.modifierTotal("savingThrow.all") == 1);
     InventoryView inventoryView = inventory.toView();

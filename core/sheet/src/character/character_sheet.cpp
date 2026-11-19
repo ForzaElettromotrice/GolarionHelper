@@ -126,6 +126,12 @@ namespace golarion
         feats_.recheckPrerequisites();
     }
 
+    void CharacterSheet::setItemQuantity(std::string_view itemId, int quantity)
+    {
+        inventory_->setItemQuantity(itemId, quantity);
+        feats_.recheckPrerequisites();
+    }
+
     void CharacterSheet::removeItem(std::string_view itemId)
     {
         inventory_->removeItem(itemId);
