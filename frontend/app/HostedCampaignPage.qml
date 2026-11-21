@@ -12,6 +12,7 @@ ScrollView {
     required property string localName
     readonly property bool hosting: controller.hostingPort > 0
     readonly property bool portValid: portField.acceptableInput
+    signal permissionsRequested(string userId, string displayName)
 
     function startHosting(): void {
         if (portValid && !hosting && !controller.busy)
@@ -100,6 +101,7 @@ ScrollView {
             Layout.fillWidth: page.availableWidth < 540
             Layout.alignment: Qt.AlignTop
             participants: page.controller.participants
+            onPermissionsRequested: (userId, displayName) => page.permissionsRequested(userId, displayName)
         }
     }
 }

@@ -84,10 +84,34 @@ ScrollView {
 
             Label {
                 Layout.fillWidth: true
+                visible: !removalDialog.hosted
                 text: removalDialog.campaignName
                 textFormat: Text.PlainText
                 wrapMode: Text.Wrap
                 font.weight: Font.DemiBold
+            }
+
+            Button {
+                objectName: "copyHostedCampaignName"
+                Layout.fillWidth: true
+                visible: removalDialog.hosted
+                Accessible.name: qsTr("Copia il nome della campagna %1").arg(removalDialog.campaignName)
+
+                contentItem: RowLayout {
+                    Label {
+                        Layout.fillWidth: true
+                        text: removalDialog.campaignName
+                        textFormat: Text.PlainText
+                        wrapMode: Text.Wrap
+                        font.weight: Font.DemiBold
+                    }
+                    Label { text: qsTr("Copia") }
+                }
+
+                onClicked: {
+                    if (page.controller.copyHostedCampaignName(removalDialog.targetId))
+                        confirmationField.forceActiveFocus()
+                }
             }
 
             Label {
@@ -113,7 +137,7 @@ ScrollView {
                 objectName: "campaignNameConfirmation"
                 Layout.fillWidth: true
                 visible: removalDialog.hosted
-                placeholderText: qsTr("Digita il nome della campagna")
+                placeholderText: qsTr("Digita o incolla il nome della campagna")
                 Accessible.name: placeholderText
             }
 

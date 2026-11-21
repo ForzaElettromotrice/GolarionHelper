@@ -183,6 +183,12 @@ ApplicationWindow {
         property alias displayName: displayNameField.text
     }
 
+    ParticipantPermissionsDialog {
+        id: permissionsDialog
+        controller: window.sessionController
+        canEditDelegation: window.hosting
+    }
+
     Connections {
         target: window.sessionController
 
@@ -192,6 +198,7 @@ ApplicationWindow {
         }
 
         function onSessionClosed() {
+            permissionsDialog.close()
             navigation.pop(navigation.get(navigation.depth - 2), StackView.Immediate)
         }
     }
@@ -202,6 +209,7 @@ ApplicationWindow {
         HostedCampaignPage {
             controller: window.sessionController
             localName: displayNameField.text
+            onPermissionsRequested: (userId, displayName) => permissionsDialog.openFor(userId, displayName)
         }
     }
 
@@ -240,6 +248,7 @@ ApplicationWindow {
                     Layout.fillWidth: joinedPage.availableWidth < 540
                     Layout.alignment: Qt.AlignTop
                     participants: window.sessionController.participants
+                    onPermissionsRequested: (userId, displayName) => permissionsDialog.openFor(userId, displayName)
                 }
             }
         }

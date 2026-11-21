@@ -14,10 +14,11 @@ namespace
     using namespace golarion::play;
 
     constexpr std::array<Permission, 6> Flags{Permission::Permission1, Permission::Permission2, Permission::Permission3, Permission::Permission4, Permission::Permission5, Permission::ChangePermissions};
-    constexpr std::array<std::string_view, 14> Features{
+    constexpr std::array<std::string_view, 15> Features{
         "permissions.registerUser", "permissions.getHostId", "permissions.getPermissions", "permissions.hasPermission", "permissions.hasPermissions",
         "permissions.setPermission", "permissions.applyPreset", "permissions.toSaveData", "permissions.restoreSaveData", "permissions.registerUserWithCommit",
-        "permissions.setPermissionWithCommit", "permissions.applyPresetWithCommit", "permissions.getDisplayName", "permissions.setDisplayNameWithCommit"
+        "permissions.setPermissionWithCommit", "permissions.applyPresetWithCommit", "permissions.getDisplayName", "permissions.setDisplayNameWithCommit",
+        "permissions.updatePermissionsWithCommit"
     };
 
     void check(bool value, const char *message) { if (!value) throw std::runtime_error(message); }

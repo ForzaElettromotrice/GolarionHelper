@@ -4,7 +4,7 @@ Status: integrated 2026-11-17; targeted live refresh added 2026-11-18. Host Sess
 
 ## Model and Policy
 
-- `Permission` is a closed `enum class` with explicit `std::uint64_t` values: Any = 0 is a command-only requirement, Permission1 through Permission5 occupy bits 0 through 4, and ChangePermissions occupies bit 5. Italian UI labels are Permesso1 through Permesso5 and CambiaPermessi. Placeholder flags have no sheet-operation semantics yet.
+- `Permission` is a closed `enum class` with explicit `std::uint64_t` values: Any = 0 is a command-only requirement, Permission1 through Permission5 occupy bits 0 through 4, and ChangePermissions occupies bit 5. The desktop editor uses the provisional Permission1 through Permission5 labels and displays ChangePermissions as Gestire i permessi. Placeholder flags have no sheet-operation semantics yet.
 - `PermissionSet` in `golarion/play/permission_set.hpp` is a value wrapper holding one private 64-bit mask. Its default value is empty. Construction accepts a single assignable typed flag or an initializer list; Any, invalid enum values and combined enum values are rejected. Combine known flags with `|`. fromMask(uint64_t) validates that only known bits are set; toMask() is used by the actual JSON/storage consumers. Numeric zero is a valid empty set, not an assigned Any flag.
 - `hasAll(required)` tests `(owned & required) == required`; `hasAny(candidates)` tests a nonzero intersection. `add` and `remove` accept sets, with a validated implicit conversion from a single Permission. `all()` contains the six known flags. Sets support value equality and are trivially copyable.
 - Empty requirements match every registered user; an unknown UserId still rejects. CommandRequirements(Permission::Any) explicitly selects Public access, used for join/resume. A default requirement or PermissionSet{} selects Authenticated access with no flags. Both masks are zero but have distinct access modes. Public access cannot combine participant flags, and unknown access enum values reject registration. See `session-commands.md`.
@@ -22,7 +22,7 @@ New registered users receive Player permissions, with no administrative flag. Us
 
 ## API and ResourceManager Features
 
-PermissionManager receives ResourceManager by reference and Host UserId. It cannot be copied/moved because feature callbacks refer to its address. Host Session calls registerCommands() after construction to register three adapters via protocol.add_command. Fourteen internal methods are exposed through ResourceManager with signature aliases on PermissionManager.
+PermissionManager receives ResourceManager by reference and Host UserId. It cannot be copied/moved because feature callbacks refer to its address. Host Session calls registerCommands() after construction to register adapters via protocol.add_command. Internal methods are exposed through ResourceManager with signature aliases on PermissionManager.
 
 | Feature / method | Signature alias |
 | --- | --- |
@@ -40,6 +40,7 @@ PermissionManager receives ResourceManager by reference and Host UserId. It cann
 | `permissions.applyPresetWithCommit` / `applyPresetWithCommit` | `ApplyPresetWithCommitSignature = PermissionSet(const UserId &, const UserId &, PermissionPreset, PermissionsCommit)` |
 | `permissions.getDisplayName` | `GetDisplayNameSignature = std::string(const UserId &)` |
 | `permissions.setDisplayNameWithCommit` | `SetDisplayNameWithCommitSignature = bool(const UserId &, std::string, RegistrationCommit)` |
+| `permissions.updatePermissionsWithCommit` | `UpdatePermissionsWithCommitSignature = PermissionSet(const UserId &, const UserId &, PermissionSet, PermissionSet, PermissionsCommit)`; actor, target, grants, revocations, commit |
 
 ```cpp
 ResourceManager resources;
@@ -50,7 +51,7 @@ const auto required = Permission::Permission1 | Permission::Permission5;
 const bool allowed = resources.invoke<PermissionManager::HasPermissionsSignature>("permissions.hasPermissions", "alice", required);
 ```
 
-Invalid IDs, duplicate users and unknown enum values throw std::invalid_argument. Denied mutations throw PermissionDenied, derived from std::invalid_argument; adapters map it to FORBIDDEN. Returned data is detached. State operations use the manager mutex; Host ID is immutable. ResourceManager outlives the manager and fixed registration/removal is not concurrent with invocation. PermissionManager owns fourteen permissions.* features, rolls its registrations back on collision and unregisters them on destruction.
+Invalid IDs, duplicate users and unknown enum values throw std::invalid_argument. Denied mutations throw PermissionDenied, derived from std::invalid_argument; adapters map it to FORBIDDEN. Returned data is detached. State operations use the manager mutex; Host ID is immutable. ResourceManager outlives the manager and fixed registration/removal is not concurrent with invocation. PermissionManager owns its feature registrations, rolls them back on collision and unregisters them on destruction.
 
 ## Snapshots and Staged Registration
 
@@ -64,11 +65,11 @@ Archive v3 stores hostId, per-user masks and names, and token hashes. Loading v2
 
 The 2026-11-18 migration audit found no remaining RoleManager types, includes, build targets or roles.* services in active code. Test identifiers and diagnostics now use permission terminology. Retired role references remain only in historical documentation, migration explanations and negative tests that reject legacy commands/archives.
 
-`play_permission_set_test` checks constexpr/value semantics, composition/removal, empty requirements, all 4096 pairs of the 64 flag combinations against independent set membership, rejected flag values and exact presets. `play_permission_manager_test` checks registration, detached state, the 4608-case delegate mutation matrix, host-only administrative changes, protected host/self targets, preset replacement with preserved delegation, immediate revocation, valid/invalid snapshots, staged-commit rollback, all fourteen feature collisions/lifetime cleanup, independent registries and concurrent calls/duplicate registration.
+`play_permission_set_test` checks constexpr/value semantics, composition/removal, empty requirements, all 4096 pairs of the 64 flag combinations against independent set membership, rejected flag values and exact presets. `play_permission_manager_test` checks registration, detached state, the 4608-case delegate mutation matrix, host-only administrative changes, protected host/self targets, preset replacement with preserved delegation, immediate revocation, valid/invalid snapshots, staged-commit rollback, feature collisions/lifetime cleanup, independent registries and concurrent calls/duplicate registration.
 
 
-Targeted permission synchronization is implemented through permissions.changed and the shared client registry/dispatch. The three permission commands are explicitly registered; other internal features are not automatically exposed. ClientSnapshot refreshes on validated notifications; permissions.get and authorization read current server state. Connected-only presence synchronization is implemented separately in ProtocolManager, reusing permissions.getHostId without adding PermissionManager functions. Preserve trusted identities, transaction boundaries and buffered-stop checkpoints. Full game persistence, concrete sheet permission meanings and participant frontend controls remain deferred.
+Targeted permission synchronization is implemented through permissions.changed and the shared client registry/dispatch. ClientSnapshot refreshes on validated notifications; permissions.get and authorization read current server state. The desktop dialog uses the atomic update command and refreshes row availability when delegation changes. Full game persistence and concrete sheet permission meanings remain deferred.
 
-The selected command slice is implemented: permissions.get, permissions.setPermission and permissions.applyPreset. The mutations use staged-commit variants so write failure preserves memory and the original archive. ProtocolManager coordinates identity.updateUserPermissions with execution-then-identity-then-permission locking; the commit callback does not reenter managers. Actor comes from CommandContext. Direct setters remain in-memory domain operations; use command adapters for automatic persistence. Details are in session-permission-commands.md.
+The permission commands are explicitly registered. The mutations use staged-commit variants so write failure preserves memory and the original archive. ProtocolManager coordinates identity.updateUserPermissions with execution-then-identity-then-permission locking; the commit callback does not reenter managers. Actor comes from CommandContext. Direct setters remain in-memory domain operations; use command adapters for automatic persistence. Details are in session-permission-commands.md.
 
 The repository-root CMakeLists.txt was configured with -S . -B build, Debug and Ninja. Fifteen library sources, both tools and seventeen native play suites compile under build/core/play; all seventeen suites pass through CTest on Windows. This includes RPC/transaction coverage, live notifications and existing streaming, identity and buffered-stop regressions. See development.md for exact commands; earlier standalone verification is historical.

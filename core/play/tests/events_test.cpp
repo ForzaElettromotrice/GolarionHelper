@@ -261,10 +261,11 @@ namespace
         writeBytes(raw, detail::encodeMessage({"session.resume", "raw-1", {{"sessionCode", code.value()}, {"userToken", rawToken}}}));
         check(readMessage(raw, input).type == "request.accepted", "raw client was not admitted");
         check(readMessage(raw, input).type == "session.participantsChanged", "raw client missed the initial participant snapshot");
-        completed(host.sendCommand("permissions.setPermission", change("raw-user", Permission::Permission5, true)));
+        const Json batch{{"targetUserId", "raw-user"}, {"grant", 24}, {"revoke", 6}};
+        completed(host.sendCommand("permissions.update", batch));
         const auto event = readMessage(raw, input);
-        check(event.type == "permissions.changed" && !event.requestId && event.payload == Json{{"userId", "raw-user"}, {"permissions", 23}}, "wrong permission event envelope");
-        completed(host.sendCommand("permissions.setPermission", change("raw-user", Permission::Permission5, true)));
+        check(event.type == "permissions.changed" && !event.requestId && event.payload == Json{{"userId", "raw-user"}, {"permissions", 25}}, "wrong permission event envelope");
+        completed(host.sendCommand("permissions.update", batch));
         check(input.empty() && !ready(raw, false, Clock::now() + 100ms), "no-op emitted a permission event");
 
         const auto backup = directory.path / "backup.json";

@@ -112,5 +112,19 @@ namespace golarion::play
                 });
             });
         });
+        resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "permissions.update", Permission::ChangePermissions, [&resources](const CommandContext &context, const Json &payload)
+        {
+            requireFields(payload, {"targetUserId", "grant", "revoke"});
+            const auto target = targetId(payload);
+            return resultFor(target, [&]
+            {
+                const auto grant = detail::parsePermissions(payload.at("grant"));
+                const auto revoke = detail::parsePermissions(payload.at("revoke"));
+                return changePermissions(resources, target, [&](const PermissionsCommit &commit)
+                {
+                    return resources.invoke<UpdatePermissionsWithCommitSignature>("permissions.updatePermissionsWithCommit", *context.userId, target, grant, revoke, commit);
+                });
+            });
+        });
     }
 }

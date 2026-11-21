@@ -39,6 +39,7 @@ namespace golarion::play
         using PermissionsCommit = RegistrationCommit;
         using SetPermissionWithCommitSignature = PermissionSet(const UserId &, const UserId &, Permission, bool, PermissionsCommit);
         using ApplyPresetWithCommitSignature = PermissionSet(const UserId &, const UserId &, PermissionPreset, PermissionsCommit);
+        using UpdatePermissionsWithCommitSignature = PermissionSet(const UserId &, const UserId &, PermissionSet, PermissionSet, PermissionsCommit);
 
         PermissionManager(ResourceManager &resources, UserId hostId);
         ~PermissionManager();
@@ -77,6 +78,7 @@ namespace golarion::play
         PermissionSet changedPermissionUnlocked(const UserId &actorId, const UserId &targetId, Permission permission, bool enabled) const;
         PermissionSet presetPermissionsUnlocked(const UserId &actorId, const UserId &targetId, PermissionPreset preset) const;
         PermissionSet commitPermissionsUnlocked(const UserId &targetId, PermissionSet replacement, const PermissionsCommit &commit);
+        PermissionSet updatePermissionsWithCommit(const UserId &actorId, const UserId &targetId, PermissionSet grant, PermissionSet revoke, const PermissionsCommit &commit);
         void unregisterFeatures() noexcept;
 
         ResourceManager &resources_;

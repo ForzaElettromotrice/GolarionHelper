@@ -6,7 +6,7 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 ## Current State
 
-- The Qt Quick desktop Sessioni page creates campaigns, hosts them, and resumes saved memberships. It can move hosted campaigns to the system trash after a typed confirmation, or remove a joined campaign's local credential after confirmation. Live sessions display participant names with Host and Tu labels. See [frontend](frontend.md#desktop-application).
+- The Qt Quick desktop Sessioni page creates campaigns, hosts them, and resumes saved memberships. It can move hosted campaigns to the system trash after a typed confirmation, or remove a joined campaign's local credential after confirmation. Live sessions display participant names with Host and Tu labels and offer a permission dialog on editable participant rows. See [frontend](frontend.md#desktop-application).
 
 - `Session` composes typed `toView()` and `toData()` snapshots from subsystem projections. The Qt controller consumes session and campaign views for presentation and campaign data for persistence. See [game management](game-management.md#desktop-hosted-campaigns).
 
@@ -37,7 +37,7 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 - `core/` groups backend modules. The sheet engine lives in core/sheet. Core/play provides Host/Client Session modes, PermissionManager authorization, TCP hosting, asynchronous admission/sendCommand, JSON v4 and transactional identity archives. Targeted permission events and connected-participant snapshots now reuse the shared command registry/dispatch. session.getParticipants and session.participantsChanged expose only connected users plus the local host; no extra permission bits are required after admission. Sheet RPCs and full game persistence remain future work.
 - `golarion::play::Session` is a facade with createHost(hostId)/createClient factories. Both own ResourceManager/ProtocolManager; only hosts construct PermissionManager and credentials/code. The legacy UserId constructor still creates a host. Mode is immutable and independent of participant permissions. See session-client.md and session-permissions.md.
 - The session ResourceManager lives in `core/play/` and implements typed function registration, invocation, and removal, with focused C++20 tests passing. Each Session has an independent registry. See `architecture.md` for the API and lifetime rules; the sheet-specific `golarion::ResourceManager` retains its existing responsibilities.
-- PermissionManager is the host user/permission authority, with fourteen permissions.* features and explicit registration of permissions.get/setPermission/applyPreset via protocol.add_command. PermissionSet is a validated uint64 mask. Immutable host identity, protected ChangePermissions, delegated edits and replacement presets remain enforced; see session-permissions.md and session-permission-commands.md.
+- PermissionManager is the host user/permission authority. PermissionSet is a validated uint64 mask. Permission RPCs support reads, single edits, presets and atomic updates, while enforcing immutable host identity and protected delegation. See session-permissions.md and session-permission-commands.md.
 - ProtocolManager reuses one registry/dispatch per instance for host commands and client notifications. Host join/resume use command-only Permission::Any = 0; authenticated zero-mask access remains distinct. Clients register callbacks without permission requirements and accept notifications only from their current admitted host connection. sendEvent uses a bounded queue and does not create a response future; see session-events.md.
 - Desktop campaigns persist a five-character invitation code at creation and reuse it across hosting starts. The toolbar displays it when the campaign opens, which also assigns a permanent code to an older campaign missing one. See [session protocol](session-protocol.md#session-code-and-connections).
 - Both networking modes reuse JSON v4 framing and native socket helpers. sendCommand runs remotely for clients and on the host local queue, including offline. The repository-root Debug/Ninja CMake build produces tools/tests in build/core/play; all seventeen play suites pass on Windows, including live events, mixed replies, queue bounds and automatic-save rollback. See development.md.
@@ -54,7 +54,7 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 ## Next Steps
 
-Review desktop campaign creation, hosting, admission and the live participant panel. Sheet panel review is deferred for this phase. See [frontend](frontend.md).
+Review desktop campaign creation, hosting, admission and the live participant panel. The permission editor uses provisional labels until concrete permission meanings are decided. Sheet panel review is deferred for this phase. See [frontend](frontend.md).
 
 Class-feature option source review now covers all 44 playable classes using only Golarion: 85 reusable sets, 2,617 templates and 91 bindings attach choices to 42 classes; ordinary Monk and Swashbuckler do not need independent non-feat permanent families here. Existing Data/View are reused. Benefits, eligibility and unsupported dependent/point-budget/creature families remain explicitly manual rather than fully automated; see [class options](model/class-options.md) for coverage and verification.
 
@@ -80,7 +80,7 @@ Current focus: prepared, spontaneous, and flexible casting support consumption, 
 - [`frontend.md`](frontend.md): Qt Quick/QML application window, Sessioni navigation, subsystem panels, sample preview and controller boundaries. Read before frontend changes.
 - [`session-events.md`](session-events.md): shared command registration/dispatch for client notifications, sendEvent, targeted permission refresh, queue limits and lifecycle synchronization. Read before extending live messages or notification handlers.
 - [`session-participants.md`](session-participants.md): connected-only participant projection, query/events, revisions, initial synchronization, replacement, detached Views and tests. Read before changing presence or participant lists.
-- [`session-permission-commands.md`](session-permission-commands.md): the three permission RPCs, payload/access rules, transactional autosave, identity-service coordination and tests. Read before modifying permission commands or persistence boundaries.
+- [`session-permission-commands.md`](session-permission-commands.md): permission RPCs, payload/access rules, transactional autosave, identity-service coordination and tests. Read before modifying permission commands or persistence boundaries.
 
 - [`model/README.md`](model/README.md): index of model subsystems. Start there, then read only the document relevant to the current change.
 - [`architecture.md`](architecture.md): cross-cutting architectural decisions and the session ResourceManager API/lifetime rules. Read before changing subsystem registration, ownership, persistence, Views, or the C boundary.

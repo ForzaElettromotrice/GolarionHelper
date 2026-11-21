@@ -50,6 +50,7 @@ public:
     Q_INVOKABLE void disconnectSession();
     Q_INVOKABLE void clearError();
     Q_INVOKABLE bool createHostedCampaign(const QString &name);
+    Q_INVOKABLE bool copyHostedCampaignName(const QString &id);
     Q_INVOKABLE bool trashHostedCampaign(const QString &id, const QString &confirmationName, const QString &code);
     Q_INVOKABLE bool forgetJoinedCampaign(const QString &id);
     Q_INVOKABLE void openHostedCampaign(int campaignIndex);
@@ -57,6 +58,9 @@ public:
     Q_INVOKABLE void startHosting(int port, const QString &displayName);
     Q_INVOKABLE void stopHosting();
     Q_INVOKABLE void copyInvitationText(const QString &text);
+    Q_INVOKABLE void readParticipantPermissions(const QString &userId);
+    Q_INVOKABLE void updateParticipantPermissions(const QString &userId, int grant, int revoke);
+    Q_INVOKABLE void cancelParticipantPermissionRead();
 
 signals:
     void campaignsChanged();
@@ -68,6 +72,9 @@ signals:
     void errorMessageChanged();
     void sessionOpened();
     void sessionClosed();
+    void participantPermissionsLoaded(int mask);
+    void participantPermissionsSaved();
+    void participantPermissionsFailed(const QString &message);
 
 private:
     struct Admission
@@ -98,8 +105,10 @@ private:
     void finishAdmission(const QString &name);
     void failAdmission(const QString &message);
     void setErrorMessage(const QString &message);
-    void updateParticipants(const golarion::play::ParticipantsSnapshot &snapshot, const std::optional<golarion::play::UserId> &localUser);
+    void updateParticipants(const golarion::play::ParticipantsSnapshot &snapshot, const std::optional<golarion::play::UserId> &localUser, bool canManagePermissions);
     void setParticipants(QVariantList participants);
+    void requestParticipantPermissions(nlohmann::json payload, bool saving);
+    void pollParticipantPermissions();
 
     const QString campaignDirectory_;
     const std::function<bool(const QString &)> moveToTrash_;
@@ -111,6 +120,8 @@ private:
     std::optional<Admission> pending_;
     std::future<golarion::play::ClientAdmission> admissionReply_;
     std::future<nlohmann::json> infoReply_;
+    std::future<nlohmann::json> permissionsReply_;
+    bool savingPermissions_ = false;
     golarion::play::Session session_ = golarion::play::Session::createClient();
     QTimer pollTimer_;
     std::optional<int> openHostedCampaign_;

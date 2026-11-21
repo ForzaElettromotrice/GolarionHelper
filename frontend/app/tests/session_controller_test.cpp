@@ -1,9 +1,12 @@
 #include "../session_controller.hpp"
 
+#include <QClipboard>
 #include <QDir>
 #include <QFile>
+#include <QGuiApplication>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QQmlApplicationEngine>
 #include <QQuickItem>
 #include <QQuickStyle>
 #include <QQuickView>
@@ -24,15 +27,23 @@ class SessionControllerTest : public QObject
     Q_OBJECT
 
 private slots:
+    void initTestCase();
     void restoresMembershipAfterRestart();
     void listsMultipleCampaigns();
     void reopensSavedCampaignOffline();
     void removesOnlySelectedHostedCampaign();
     void forgetsOnlySelectedMembership();
     void requiresExplicitConfirmationInCampaignList();
+    void editsParticipantPermissionsOnSave();
     void hostsAndRestoresPlayer_data();
     void hostsAndRestoresPlayer();
 };
+
+void SessionControllerTest::initTestCase()
+{
+    QQuickStyle::setStyle(QStringLiteral("Basic"));
+    qmlRegisterUncreatableType<SessionController>("Golarion.App", 1, 0, "SessionController", "Provided by the test");
+}
 
 void SessionControllerTest::restoresMembershipAfterRestart()
 {
@@ -284,8 +295,6 @@ void SessionControllerTest::requiresExplicitConfirmationInCampaignList()
         return QDir().rename(path, trash.filePath(QFileInfo(path).fileName()));
     });
     QVERIFY(controller.createHostedCampaign(QStringLiteral("La campagna")));
-    QQuickStyle::setStyle(QStringLiteral("Basic"));
-    qmlRegisterUncreatableType<SessionController>("Golarion.App", 1, 0, "SessionController", "Provided by the test");
     const auto page = QFINDTESTDATA("../CampaignsPage.qml");
     QVERIFY(!page.isEmpty());
     QQuickView view;
@@ -335,8 +344,15 @@ void SessionControllerTest::requiresExplicitConfirmationInCampaignList()
 
     click(hostedButton);
     QTRY_VERIFY(dialog->property("opened").toBool());
-    name->setProperty("text", QStringLiteral("La campagna"));
-    QVERIFY(confirm->isEnabled());
+    auto *copyName = findItem(QStringLiteral("copyHostedCampaignName"));
+    QVERIFY(copyName && copyName->isVisible());
+    QGuiApplication::clipboard()->setText(QStringLiteral("Testo precedente"));
+    click(copyName);
+    QCOMPARE(QGuiApplication::clipboard()->text(), QStringLiteral("La campagna"));
+    QVERIFY(name->hasActiveFocus());
+    QVERIFY(name->property("text").toString().isEmpty() && !confirm->isEnabled());
+    QTest::keyClick(&view, Qt::Key_V, Qt::ControlModifier);
+    QTRY_VERIFY(confirm->isEnabled());
     click(confirm);
     QTRY_VERIFY(controller.hostedCampaigns().isEmpty() && !dialog->property("visible").toBool());
 
@@ -344,6 +360,7 @@ void SessionControllerTest::requiresExplicitConfirmationInCampaignList()
     QVERIFY(joinedButton);
     click(joinedButton);
     QTRY_VERIFY(dialog->property("opened").toBool() && cancel->hasActiveFocus());
+    QVERIFY(!copyName->isVisible());
     QVERIFY(!name->isVisible() && confirm->isEnabled());
     QTest::keyClick(&view, Qt::Key_Escape);
     QTRY_VERIFY(!dialog->property("visible").toBool());
@@ -353,6 +370,115 @@ void SessionControllerTest::requiresExplicitConfirmationInCampaignList()
     click(confirm);
     QTRY_VERIFY(controller.campaigns().isEmpty());
     QVERIFY(!membership.exists());
+}
+
+void SessionControllerTest::editsParticipantPermissionsOnSave()
+{
+    QTemporaryDir data;
+    QVERIFY(data.isValid());
+    SessionController host(data.filePath(QStringLiteral("host")));
+    SessionController delegate(data.filePath(QStringLiteral("delegate")));
+    SessionController player(data.filePath(QStringLiteral("player")));
+    const auto main = QFINDTESTDATA("../Main.qml");
+    QVERIFY(!main.isEmpty());
+    QQmlApplicationEngine engine;
+    engine.setInitialProperties({{QStringLiteral("sessionController"), QVariant::fromValue(&host)}});
+    engine.load(QUrl::fromLocalFile(main));
+    QVERIFY(!engine.rootObjects().isEmpty());
+    auto *window = qobject_cast<QQuickWindow *>(engine.rootObjects().front());
+    QVERIFY(window && QTest::qWaitForWindowExposed(window));
+    auto *dialog = window->findChild<QObject *>(QStringLiteral("participantPermissionsDialog"));
+    QVERIFY(dialog);
+
+    QVERIFY(host.createHostedCampaign(QStringLiteral("Campagna")));
+    host.openHostedCampaign(0);
+    host.startHosting(0, QStringLiteral("Daniele"));
+    QTRY_VERIFY(host.hostingPort() > 0);
+    const auto address = QStringLiteral("127.0.0.1:%1").arg(host.hostingPort());
+    delegate.enter(address, host.inviteCode(), -1, QStringLiteral("Marta"));
+    player.enter(address, host.inviteCode(), -1, QStringLiteral("Giulia"));
+    QTRY_COMPARE(host.participants().size(), 3);
+    QTRY_COMPARE(delegate.participants().size(), 3);
+
+    const auto allowedRows = [&]
+    {
+        QStringList names;
+        for (const auto &row : delegate.participants())
+        {
+            const auto participant = row.toMap();
+            if (participant.value(QStringLiteral("canEditPermissions")).toBool())
+                names.append(participant.value(QStringLiteral("displayName")).toString());
+        }
+        return names;
+    };
+    QVERIFY(allowedRows().isEmpty());
+    const auto findItem = [&](const QString &text, const QString &objectName = {}) -> QQuickItem *
+    {
+        auto items = window->contentItem()->childItems();
+        while (!items.isEmpty())
+        {
+            auto *item = items.takeLast();
+            if (item->isVisible() && item->property("text").toString() == text &&
+                (objectName.isEmpty() || item->objectName() == objectName)) return item;
+            items.append(item->childItems());
+        }
+        return nullptr;
+    };
+    const auto click = [&](QQuickItem *item)
+    {
+        QVERIFY(item);
+        // An RPC reply can make controls visible before the next QML layout pass.
+        QList<QQuickItem *> ancestors;
+        for (auto *parent = item->parentItem(); parent; parent = parent->parentItem()) ancestors.prepend(parent);
+        for (auto *parent : ancestors) parent->ensurePolished();
+        QVERIFY(item->width() > 0 && item->height() > 0);
+        const auto center = QPointF(item->width() / 2, item->height() / 2);
+        QTest::mouseClick(window, Qt::LeftButton, Qt::NoModifier, item->mapToScene(center).toPoint());
+    };
+    const auto open = [&](int expectedMask)
+    {
+        click(findItem(QStringLiteral("Marta"), QStringLiteral("participantRow")));
+        QTRY_VERIFY(dialog->property("opened").toBool());
+        QTRY_COMPARE(dialog->property("loadedMask").toInt(), expectedMask);
+    };
+    QVERIFY(findItem(QStringLiteral("Daniele"), QStringLiteral("participantRow")));
+    QVERIFY(!findItem(QStringLiteral("Daniele"), QStringLiteral("participantRow"))->isEnabled());
+    open(7);
+    QVERIFY(findItem(QStringLiteral("Salva")));
+    QVERIFY(!findItem(QStringLiteral("Salva"))->isEnabled());
+    click(findItem(QStringLiteral("Gestire i permessi")));
+    QTRY_COMPARE(dialog->property("draftMask").toInt(), 39);
+    click(findItem(QStringLiteral("Annulla")));
+    QTRY_VERIFY(!dialog->property("visible").toBool());
+    QVERIFY(allowedRows().isEmpty());
+
+    open(7);
+    click(findItem(QStringLiteral("Permission1")));
+    click(findItem(QStringLiteral("Gestire i permessi")));
+    QTRY_COMPARE(dialog->property("draftMask").toInt(), 38);
+    click(findItem(QStringLiteral("Salva")));
+    QTRY_VERIFY(!dialog->property("visible").toBool());
+    QTRY_COMPARE(allowedRows(), QStringList{QStringLiteral("Giulia")});
+    open(38);
+
+    const auto campaignId = host.hostedCampaigns().front().toMap().value(QStringLiteral("id")).toString();
+    const auto archive = data.filePath(QStringLiteral("host/%1/identities.json").arg(campaignId));
+    const auto backup = archive + QStringLiteral(".backup");
+    QVERIFY(QFile::rename(archive, backup));
+    QVERIFY(QDir().mkdir(archive));
+    click(findItem(QStringLiteral("Permission4")));
+    click(findItem(QStringLiteral("Salva")));
+    QTRY_VERIFY(!dialog->property("requestError").toString().isEmpty());
+    QVERIFY(dialog->property("visible").toBool());
+    QCOMPARE(dialog->property("draftMask").toInt(), 46);
+    QVERIFY(QDir().rmdir(archive));
+    QVERIFY(QFile::rename(backup, archive));
+    click(findItem(QStringLiteral("Salva")));
+    QTRY_VERIFY(!dialog->property("visible").toBool());
+
+    open(46);
+    host.stopHosting();
+    QTRY_VERIFY(!dialog->property("visible").toBool());
 }
 
 void SessionControllerTest::hostsAndRestoresPlayer_data()

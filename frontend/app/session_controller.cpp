@@ -228,6 +228,19 @@ bool SessionController::createHostedCampaign(const QString &name)
     return true;
 }
 
+bool SessionController::copyHostedCampaignName(const QString &id)
+{
+    const auto selectedId = id.toStdString();
+    const auto campaign = std::find_if(hostedCampaigns_.cbegin(), hostedCampaigns_.cend(), [&](const HostedCampaign &entry)
+    {
+        return entry.toData().id == selectedId;
+    });
+    if (campaign == hostedCampaigns_.cend()) return false;
+
+    QGuiApplication::clipboard()->setText(QString::fromStdString(campaign->toView().name));
+    return true;
+}
+
 bool SessionController::trashHostedCampaign(const QString &id, const QString &confirmationName, const QString &code)
 {
     clearError();
@@ -470,7 +483,7 @@ void SessionController::pollHosting()
         if (result.error.isEmpty())
         {
             hosting_.emplace(std::move(result));
-            updateParticipants(hosting_->session->toView().host->participants, std::nullopt);
+            updateParticipants(hosting_->session->toView().host->participants, std::nullopt, true);
             pollTimer_.start();
             emit hostingChanged();
         }
@@ -490,6 +503,7 @@ void SessionController::stopHosting()
 {
     if (!hosting_) return;
     pollTimer_.stop();
+    permissionsReply_ = {};
     clearError();
     try { hosting_->session->stopHosting(); }
     catch (const std::exception &) { setErrorMessage(tr("Si è verificato un errore durante l’arresto dell’host.")); }
@@ -567,6 +581,7 @@ void SessionController::disconnectSession()
 {
     if (activeName_.isEmpty() || openHostedCampaign_) return;
     pollTimer_.stop();
+    permissionsReply_ = {};
     session_.disconnectFromHost();
     setParticipants({});
     activeName_.clear();
@@ -584,7 +599,8 @@ void SessionController::pollSession()
     }
     if (hosting_)
     {
-        updateParticipants(hosting_->session->toView().host->participants, std::nullopt);
+        updateParticipants(hosting_->session->toView().host->participants, std::nullopt, true);
+        pollParticipantPermissions();
         return;
     }
     if (!pending_)
@@ -595,9 +611,11 @@ void SessionController::pollSession()
             setErrorMessage(tr("La connessione con l’host è stata interrotta."));
             disconnectSession();
         }
-        else if (client.participants)
+        else
         {
-            updateParticipants(*client.participants, client.userId);
+            if (client.participants)
+                updateParticipants(*client.participants, client.userId, client.permissions.value_or(PermissionSet{}).hasAll(Permission::ChangePermissions));
+            pollParticipantPermissions();
         }
         return;
     }
@@ -658,7 +676,8 @@ void SessionController::finishAdmission(const QString &name)
     }
     activeName_ = QString::fromStdString(campaign.toView().name);
     pending_.reset();
-    if (client.participants) updateParticipants(*client.participants, client.userId);
+    if (client.participants)
+        updateParticipants(*client.participants, client.userId, client.permissions.value_or(PermissionSet{}).hasAll(Permission::ChangePermissions));
     if (!saved) setErrorMessage(tr("Impossibile salvare la campagna su questo PC."));
     emit campaignsChanged();
     emit activeNameChanged();
@@ -682,16 +701,18 @@ void SessionController::setErrorMessage(const QString &message)
     emit errorMessageChanged();
 }
 
-void SessionController::updateParticipants(const ParticipantsSnapshot &snapshot, const std::optional<UserId> &localUser)
+void SessionController::updateParticipants(const ParticipantsSnapshot &snapshot, const std::optional<UserId> &localUser, bool canManagePermissions)
 {
     QVariantList rows;
     for (const auto &participant : snapshot.participants)
     {
+        const bool isSelf = hosting_ ? participant.isHost : localUser == participant.userId;
         rows.append(QVariantMap{
             {QStringLiteral("userId"), QString::fromStdString(participant.userId)},
             {QStringLiteral("displayName"), QString::fromStdString(participant.displayName)},
             {QStringLiteral("isHost"), participant.isHost},
-            {QStringLiteral("isSelf"), hosting_ ? participant.isHost : localUser == participant.userId}
+            {QStringLiteral("isSelf"), isSelf},
+            {QStringLiteral("canEditPermissions"), canManagePermissions && !isSelf && !participant.isHost}
         });
     }
     setParticipants(std::move(rows));
@@ -702,6 +723,73 @@ void SessionController::setParticipants(QVariantList participants)
     if (participants_ == participants) return;
     participants_ = std::move(participants);
     emit participantsChanged();
+}
+
+void SessionController::readParticipantPermissions(const QString &userId)
+{
+    requestParticipantPermissions({{"targetUserId", userId.toStdString()}}, false);
+}
+
+void SessionController::updateParticipantPermissions(const QString &userId, int grant, int revoke)
+{
+    requestParticipantPermissions({{"targetUserId", userId.toStdString()}, {"grant", grant}, {"revoke", revoke}}, true);
+}
+
+void SessionController::cancelParticipantPermissionRead()
+{
+    if (!savingPermissions_) permissionsReply_ = {};
+}
+
+void SessionController::requestParticipantPermissions(nlohmann::json payload, bool saving)
+{
+    if (permissionsReply_.valid()) return;
+    if (!hosting_ && (activeName_.isEmpty() || openHostedCampaign_))
+    {
+        emit participantPermissionsFailed(tr("La sessione non è attiva."));
+        return;
+    }
+    try
+    {
+        auto &session = hosting_ ? *hosting_->session : session_;
+        permissionsReply_ = session.sendCommand(saving ? "permissions.update" : "permissions.get", std::move(payload));
+        savingPermissions_ = saving;
+    }
+    catch (const std::exception &)
+    {
+        emit participantPermissionsFailed(tr("Impossibile inviare la richiesta all’host."));
+    }
+}
+
+void SessionController::pollParticipantPermissions()
+{
+    using namespace std::chrono_literals;
+    if (!permissionsReply_.valid() || permissionsReply_.wait_for(0ms) != std::future_status::ready) return;
+    const bool saving = std::exchange(savingPermissions_, false);
+    try
+    {
+        const auto response = permissionsReply_.get();
+        const auto &value = response.at("permissions");
+        if (!value.is_number_integer()) throw std::invalid_argument("invalid permission response");
+        const auto mask = PermissionSet::fromMask(value.get<std::uint64_t>()).toMask();
+        if (saving) emit participantPermissionsSaved();
+        else emit participantPermissionsLoaded(static_cast<int>(mask));
+        return;
+    }
+    catch (const ProtocolError &error)
+    {
+        if (error.code() == ProtocolErrorCode::Forbidden)
+        {
+            emit participantPermissionsFailed(tr("Non hai accesso alla gestione dei permessi di questa persona."));
+            return;
+        }
+        if (saving && error.code() == ProtocolErrorCode::UnknownCommand)
+        {
+            emit participantPermissionsFailed(tr("L’app dell’host deve essere aggiornata per salvare i permessi."));
+            return;
+        }
+    }
+    catch (const std::exception &) {}
+    emit participantPermissionsFailed(saving ? tr("Impossibile salvare i permessi.") : tr("Impossibile leggere i permessi."));
 }
 
 void SessionController::loadCampaigns()

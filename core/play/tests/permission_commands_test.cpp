@@ -160,6 +160,17 @@ namespace
         rejected(host.sendCommand("permissions.get", {{"targetUserId", ""}}), ProtocolErrorCode::InvalidRequest);
         rejected(host.sendCommand("permissions.get", {{"targetUserId", 1}}), ProtocolErrorCode::InvalidRequest);
         rejected(host.sendCommand("permissions.get", {{"targetUserId", "missing"}}), ProtocolErrorCode::InvalidRequest);
+        for (const auto &payload : std::vector<Json>{
+            {{"targetUserId", "alice"}, {"grant", 3}, {"revoke", 2}},
+            {{"targetUserId", "alice"}, {"grant", 64}, {"revoke", 0}},
+            {{"targetUserId", "alice"}, {"grant", 1}, {"revoke", -1}},
+            {{"targetUserId", "alice"}, {"grant", 1}, {"revoke", false}},
+            {{"targetUserId", "alice"}, {"grant", 1}},
+            {{"targetUserId", "alice"}, {"grant", 1}, {"revoke", 0}, {"actorId", "host"}}
+        })
+        {
+            rejected(host.sendCommand("permissions.update", payload), ProtocolErrorCode::InvalidRequest);
+        }
         check(readText(archive) == original && savedMask(archive, "alice") == 7, "invalid command changed persistent state");
     }
 
@@ -230,6 +241,21 @@ namespace
         rejected(target.sendCommand("permissions.setPermission", setPayload(c.userId, Permission::ChangePermissions, true)), ProtocolErrorCode::Forbidden);
         completed(delegate.sendCommand("permissions.applyPreset", {{"targetUserId", b.userId}, {"preset", "spectator"}}));
         check(savedMask(archive, b.userId) == 33, "preset erased the target's delegation");
+        const auto update = [](Session &client, const UserId &id, int grant, int revoke)
+        {
+            return client.sendCommand("permissions.update", {{"targetUserId", id}, {"grant", grant}, {"revoke", revoke}});
+        };
+        auto delegateUpdate = update(delegate, b.userId, 6, 1);
+        auto hostUpdate = update(*host, b.userId, 16, 0);
+        completed(std::move(delegateUpdate));
+        completed(std::move(hostUpdate));
+        check(savedMask(archive, b.userId) == 54, "batch update lost concurrent flags or the target's delegation");
+        rejected(update(delegate, b.userId, 1, 32), ProtocolErrorCode::Forbidden);
+        rejected(update(delegate, a.userId, 16, 1), ProtocolErrorCode::Forbidden);
+        rejected(update(delegate, "host", 0, 1), ProtocolErrorCode::Forbidden);
+        rejected(update(player, b.userId, 1, 16), ProtocolErrorCode::Forbidden);
+        check(savedMask(archive, b.userId) == 54, "rejected batch wrote part of the change");
+        check(mask(completed(update(*host, b.userId, 1, 22)), b.userId) == 33, "batch returned the wrong effective mask");
 
         const auto backup = directory.path / "before-failed-write.json";
         const auto original = readText(archive);
@@ -237,6 +263,7 @@ namespace
         check(fs::create_directory(archive), "cannot block archive replacement");
         rejected(delegate.sendCommand("permissions.setPermission", setPayload(b.userId, Permission::Permission5, true)), ProtocolErrorCode::CommandFailed);
         rejected(host->sendCommand("permissions.applyPreset", {{"targetUserId", b.userId}, {"preset", "master"}}), ProtocolErrorCode::CommandFailed);
+        rejected(update(*host, b.userId, 18, 33), ProtocolErrorCode::CommandFailed);
         check(mask(completed(read(delegate, b.userId)), b.userId) == 33 && readText(backup) == original, "failed storage changed memory or the original archive");
         check(fs::is_empty(archive), "failed write left an unexpected file in the blocked archive directory");
         fs::remove(archive);
