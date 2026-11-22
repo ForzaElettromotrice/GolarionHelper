@@ -221,7 +221,7 @@ namespace golarion
         catch (...) { resourceManager.unregisterEnhanceableResource(resourceName_); throw; }
     }
 
-    SkillView Skill::toView(ResourceManager &resourceManager, const std::map<std::string, SkillAbilityReplacement> &abilityReplacements, const std::map<std::string, SkillClassSkillGrant> &classSkillGrants, int armorCheckPenalty) const
+    SkillView Skill::toView(ResourceManager &resourceManager, const std::map<std::string, SkillAbilityReplacement> &abilityReplacements, const std::map<std::string, SkillClassSkillGrant> &classSkillGrants, int armorCheckPenalty, bool customCategoryClassSkill) const
     {
         if (armorCheckPenalty < 0)
         {
@@ -243,6 +243,11 @@ namespace golarion
         }
         if (customClassSkill_)
             applicableClassSkillGrants.push_back({"custom.classSkill." + resourceName_, "Personalizzazione", resourceName_});
+        if (customCategoryClassSkill)
+        {
+            const std::string categoryResource(golarion::resourceName(type_));
+            applicableClassSkillGrants.push_back({"custom.classSkill." + categoryResource, "Personalizzazione", categoryResource});
+        }
         const bool classSkill = !applicableClassSkillGrants.empty();
         const int effective = effectiveRanks(resourceManager);
         const int classSkillBonus = classSkill && effective > 0 ? 3 : 0;

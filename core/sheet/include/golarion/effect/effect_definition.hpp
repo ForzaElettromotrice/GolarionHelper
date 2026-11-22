@@ -81,6 +81,7 @@ namespace golarion
     {
         std::string id;
         FeatSlotFilter filter = AnyFeat{};
+        int minimumCharacterLevel = 0;
     };
 
     struct LanguageOptionsEffectDefinition

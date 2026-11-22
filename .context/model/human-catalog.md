@@ -2,6 +2,8 @@
 
 Read when extending human race data or interpreting its automated versus manual benefits. Dataset review: 2026-11-13. The 21 alternate traits and 40 favored-class options for 36 classes listed on [Golarion's human page](https://golarion.altervista.org/wiki/Umano) are included; additional English-only traits and racial subtypes are not imported. English IDs follow its linked [Human reference](https://www.d20pfsrd.com/races/core-races/human).
 
+The standard `human.bonusFeat` trait opens its feat slot at character level 1. At level 0 it does not require a selection; once available it uses normal live prerequisites and blocks further advancement if unfilled.
+
 ## Favored-class bonuses
 
 The permanent quality `human.favoredClassOptions` registers 40 source-owned options, each restricted to its corresponding class enum. It does not grant favored-class eligibility: the player must select that class and acquire its levels. Base HP/rank alternatives remain available. No implicit Unchained aliases are added.

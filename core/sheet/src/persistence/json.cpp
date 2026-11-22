@@ -260,7 +260,9 @@ namespace
 
     constexpr std::array LanguageOriginNames{
         std::pair{golarion::LanguageOrigin::Intelligence, std::string_view("intelligence")},
-        std::pair{golarion::LanguageOrigin::Linguistics, std::string_view("linguistics")}
+        std::pair{golarion::LanguageOrigin::Linguistics, std::string_view("linguistics")},
+        std::pair{golarion::LanguageOrigin::Extra, std::string_view("extra")},
+        std::pair{golarion::LanguageOrigin::CustomLinguistics, std::string_view("customLinguistics")}
     };
 
     Json languagesToJson(const golarion::LanguagesData &data, int formatVersion)
@@ -612,7 +614,10 @@ namespace
         {
             skills.push_back(skillToJson(skill));
         }
-        return Json{{"skills", std::move(skills)}};
+        Json categories = Json::array();
+        for (const auto type : data.customClassSkillCategories)
+            categories.push_back(enumName(type, SkillTypeNames));
+        return Json{{"skills", std::move(skills)}, {"customClassSkillCategories", std::move(categories)}};
     }
 
     golarion::SkillsSaveData skillsFromJson(const Json &json)
@@ -623,7 +628,11 @@ namespace
         {
             skills.push_back(skillFromJson(skill));
         }
-        return golarion::SkillsSaveData{.skills = std::move(skills)};
+        const auto entries = json.value("customClassSkillCategories", Json::array());
+        if (!entries.is_array()) throw std::invalid_argument("custom class-skill categories must be an array");
+        std::vector<golarion::SkillType> categories;
+        for (const auto &entry : entries) categories.push_back(enumValue(entry, SkillTypeNames));
+        return golarion::SkillsSaveData{.skills = std::move(skills), .customClassSkillCategories = std::move(categories)};
     }
 
     Json attacksToJson(const golarion::AttacksData &data)
@@ -760,7 +769,8 @@ namespace
         }
         return Json{
             {"containers", std::move(containers)},
-            {"items", std::move(items)}
+            {"items", std::move(items)},
+            {"itemOrder", data.itemOrder}
         };
     }
 
@@ -850,7 +860,8 @@ namespace
         }
         return golarion::InventorySaveData{
             .containers = std::move(containers),
-            .items = std::move(items)
+            .items = std::move(items),
+            .itemOrder = json.value("itemOrder", std::map<std::string, std::vector<std::string>>{})
         };
     }
 

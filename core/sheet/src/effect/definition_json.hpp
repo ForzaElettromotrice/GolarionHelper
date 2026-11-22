@@ -596,6 +596,8 @@ namespace golarion::definition_json
         {
             case LanguageOrigin::Intelligence: return "intelligence";
             case LanguageOrigin::Linguistics: return "linguistics";
+            case LanguageOrigin::Extra:
+            case LanguageOrigin::CustomLinguistics: break;
         }
         throw std::invalid_argument("unknown LanguageOrigin value");
     }

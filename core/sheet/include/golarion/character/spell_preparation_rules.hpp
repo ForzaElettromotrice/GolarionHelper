@@ -105,6 +105,7 @@ namespace golarion
         void validatePreparation(const SpellPreparationContext &context) const;
         bool preservesPreparation(const SpellConsumptionContext &context) const;
         bool allowsConversion(const SpellConversionContext &context, const std::function<bool(int)> &acceptsLevel = {}) const;
+        bool hasConversions() const { return !conversions_.empty(); }
 
     private:
         ResourceManager &resources_;

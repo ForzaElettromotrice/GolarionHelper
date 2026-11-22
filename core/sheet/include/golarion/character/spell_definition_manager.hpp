@@ -6,12 +6,19 @@
 #include <mutex>
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace golarion
 {
     class SpellDefinitionManager final
     {
     public:
+        struct CatalogEntry
+        {
+            std::string id;
+            std::string name;
+            std::map<CharacterClassType, int> levels;
+        };
         static SpellDefinitionManager &instance();
 
         SpellDefinitionManager(const SpellDefinitionManager &) = delete;
@@ -21,6 +28,7 @@ namespace golarion
 
         bool contains(std::string_view id);
         const SpellDefinition &get(std::string_view spellDefinitionId);
+        std::vector<CatalogEntry> catalogEntries();
 
     private:
         SpellDefinitionManager() = default;

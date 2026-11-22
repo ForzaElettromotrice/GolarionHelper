@@ -1,6 +1,7 @@
 #pragma once
 
 #include "golarion/equipment/equipment_slot.hpp"
+#include "golarion/equipment/coin.hpp"
 #include "golarion/view/money_view.hpp"
 
 #include <cstddef>
@@ -65,6 +66,7 @@ namespace golarion
         std::string description;
         std::vector<ItemUsagePoolView> usagePools{};
         bool canStack = false;
+        std::optional<CoinDenomination> coinDenomination;
     };
 
     struct InventoryContainerView

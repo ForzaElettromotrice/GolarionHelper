@@ -296,7 +296,15 @@ namespace golarion
                 }
                 else throw std::invalid_argument("unknown feat slot filter kind: " + kind);
             }
-            return FeatSlotGrantEffectDefinition{.id = id, .filter = std::move(filter)};
+            int minimumCharacterLevel = 0;
+            if (json.contains("minimumCharacterLevel"))
+            {
+                const auto &value = json.at("minimumCharacterLevel");
+                if (!value.is_number_integer() || value < 0 || value > std::numeric_limits<int>::max())
+                    throw std::invalid_argument("feat slot minimum character level must be a nonnegative integer");
+                minimumCharacterLevel = value.get<int>();
+            }
+            return FeatSlotGrantEffectDefinition{.id = id, .filter = std::move(filter), .minimumCharacterLevel = minimumCharacterLevel};
         }
 
         if (type == "spellRepertoireList")

@@ -85,6 +85,8 @@ int main()
         rejects([&] { casting.consume(sixth, {enhanced, {silence}, "paid"}); });
         assert(spellPool->remaining() == 1 && casting.toData().consumedSlots.empty());
         mixPool->reset(1);
+        casting.validateConsumption(sixth, {enhanced, {silence}, "paid"});
+        assert(mixPool->remaining() == 1 && spellPool->remaining() == 1 && casting.toData().consumedSlots.empty());
         resources.addToCollection(exemptions, SpellConsumptionExemption{"throws", "Test", [](const auto &) -> bool { throw std::runtime_error("query failed"); }});
         rejects<std::runtime_error>([&] { casting.consume(sixth, {enhanced, {silence}, "paid"}); });
         assert(mixPool->remaining() == 1 && spellPool->remaining() == 1);

@@ -49,7 +49,16 @@ namespace golarion
         preparations_.swap(updated);
     }
 
-    PreparedSpellcasting::Preparation PreparedSpellcasting::checkedPreparation(const std::vector<SpellSlotId> &slots, const std::string &id, PreparationValidation mode, const std::vector<MetamagicApplication> &applications) const
+    int PreparedSpellcasting::preparationSlotCount(const SpellSlotId &slot, const SpellPreparationDefinition &definition) const
+    {
+        const auto id = normalize(definition.spellId);
+        const auto preparation = checkedPreparation({slot}, id, PreparationValidation::Preparing, definition.metamagic, false);
+        if (slotState(slot).state != PreparedSpellSlotState::Free) throw std::invalid_argument("spell slot is not free");
+        MetamagicRegistry::pay(preparation.evaluation.usageCosts, false);
+        return preparationCosts_.calculate(spellDefinition(id).school, slot.spellLevel).requiredSlots;
+    }
+
+    PreparedSpellcasting::Preparation PreparedSpellcasting::checkedPreparation(const std::vector<SpellSlotId> &slots, const std::string &id, PreparationValidation mode, const std::vector<MetamagicApplication> &applications, bool requireFullPayment) const
     {
         if (slots.empty()) throw std::invalid_argument("preparation requires slots");
         std::vector<SpellSlotId> keys;
@@ -72,7 +81,7 @@ namespace golarion
         if (std::adjacent_find(keys.begin(), keys.end()) != keys.end()) throw std::invalid_argument("duplicate preparation slot");
         const auto &definition = spellDefinition(id);
         const auto cost = preparationCosts_.calculate(definition.school, keys.front().spellLevel);
-        if (keys.size() != static_cast<std::size_t>(cost.requiredSlots)) throw std::invalid_argument("incorrect number of preparation slots");
+        if (requireFullPayment && keys.size() != static_cast<std::size_t>(cost.requiredSlots)) throw std::invalid_argument("incorrect number of preparation slots");
         return {{PreparedSpellSlotState::Prepared, id, evaluation->applications}, std::move(keys), std::move(*evaluation)};
     }
 
@@ -97,6 +106,16 @@ namespace golarion
     }
 
     SpellCastResult PreparedSpellcasting::consume(const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition)
+    {
+        return consumeImpl(slot, definition, true);
+    }
+
+    void PreparedSpellcasting::validateConsumption(const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition)
+    {
+        consumeImpl(slot, definition, false);
+    }
+
+    SpellCastResult PreparedSpellcasting::consumeImpl(const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition, bool commit)
     {
         const auto &[replacementSpellId, applications] = definition;
         const auto key = checkedSlot(slot);
@@ -127,7 +146,8 @@ namespace golarion
                         throw std::invalid_argument("metamagic exceeds available slot level");
                     preserve = preparationRules_.preservesPreparation({spellListClass(), prepared, preparation.slots});
                 }
-                MetamagicRegistry::pay(evaluation.usageCosts);
+                MetamagicRegistry::pay(evaluation.usageCosts, commit);
+                if (!commit) return {};
                 evaluation.usageCosts.clear();
                 if (!preserve) preparation.state.state = PreparedSpellSlotState::Consumed;
                 return exportCast(std::move(evaluation));

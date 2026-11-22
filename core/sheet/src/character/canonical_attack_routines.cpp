@@ -61,7 +61,7 @@ namespace golarion
             .slots = {
                 RoutineSlot(RoutineSlotDefinition{
                     .id = std::string(StandardAttackSlotId),
-                    .name = "Strike",
+                    .name = "Attacco",
                     .selector = StrikeSelector(StrikeSelectorDefinition{}),
                     .selectionMode = RoutineSlotSelectionMode::ChooseOne,
                     .strikeUsage = StrikeUsage::Default,

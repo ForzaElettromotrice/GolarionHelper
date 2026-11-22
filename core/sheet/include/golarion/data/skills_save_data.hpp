@@ -9,5 +9,6 @@ namespace golarion
     struct SkillsSaveData
     {
         std::vector<SkillSaveData> skills;
+        std::vector<SkillType> customClassSkillCategories;
     };
 }

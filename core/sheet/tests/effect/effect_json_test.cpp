@@ -120,6 +120,13 @@ int main()
     };
     const auto unrestricted = std::get<FeatSlotGrantEffectDefinition>(roundTripEffect(Json{{"id", "bonusFeat"}, {"type", "featSlotGrant"}}));
     assert(std::holds_alternative<AnyFeat>(unrestricted.filter));
+    assert(unrestricted.minimumCharacterLevel == 0);
+    assert(std::get<FeatSlotGrantEffectDefinition>(roundTripEffect(
+        Json{{"id", "bonusFeat"}, {"type", "featSlotGrant"}, {"minimumCharacterLevel", 1}})).minimumCharacterLevel == 1);
+    assert(throwsInvalidArgument([]
+    {
+        static_cast<void>(roundTripEffect(Json{{"id", "bonusFeat"}, {"type", "featSlotGrant"}, {"minimumCharacterLevel", -1}}));
+    }));
     assert(std::holds_alternative<AnyFeat>(parseSlot({{"kind", "any"}}).filter));
     assert(std::get<FeatTypeFilter>(parseSlot({{"kind", "type"}, {"featType", " combat "}}).filter).type == FeatType::Combat);
     const auto filtered = parseSlot({{"kind", "ids"}, {"featIds", {" improvedInitiative ", "other"}}});

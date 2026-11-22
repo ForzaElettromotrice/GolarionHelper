@@ -148,7 +148,7 @@ namespace golarion
         void registerResources(ResourceManager &resourceManager) const;
         void registerResources(ResourceManager &resourceManager, std::vector<std::string> parentResources) const;
 
-        SkillView toView(ResourceManager &resourceManager, const std::map<std::string, SkillAbilityReplacement> &abilityReplacements = {}, const std::map<std::string, SkillClassSkillGrant> &classSkillGrants = {}, int armorCheckPenalty = 0) const;
+        SkillView toView(ResourceManager &resourceManager, const std::map<std::string, SkillAbilityReplacement> &abilityReplacements = {}, const std::map<std::string, SkillClassSkillGrant> &classSkillGrants = {}, int armorCheckPenalty = 0, bool customCategoryClassSkill = false) const;
         SkillSaveData toSaveData() const;
         int totalValue(ResourceManager &resourceManager, int armorCheckPenalty = 0) const;
         bool usable(ResourceManager &resourceManager) const;

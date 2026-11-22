@@ -15,6 +15,17 @@
 
 namespace golarion
 {
+    std::vector<std::pair<std::string, std::string>> ItemDefinitionManager::catalogEntries()
+    {
+        const std::scoped_lock lock(mutex_);
+        if (!loaded_) loadCatalog();
+        std::vector<std::pair<std::string, std::string>> entries;
+        entries.reserve(definitions_.size());
+        for (const auto &[id, definition] : definitions_)
+            entries.emplace_back(id, definition.name);
+        return entries;
+    }
+
     bool ItemDefinitionManager::contains(std::string_view id)
     {
         const auto key = normalize(id);

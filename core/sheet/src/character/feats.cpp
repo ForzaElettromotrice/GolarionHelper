@@ -108,6 +108,7 @@ namespace golarion
     {
         slot.id = normalize(slot.id);
         slot.source = normalize(slot.source);
+        if (slot.minimumCharacterLevel < 0) throw std::invalid_argument("feat slot minimum character level must not be negative");
         if (slot.id.starts_with(BasePrefix))
             throw std::invalid_argument("base feat slot IDs are reserved");
         std::visit([](auto &filter)
@@ -143,19 +144,20 @@ namespace golarion
         recheckPrerequisites();
     }
 
-    void Feats::setLevel(int level)
+    void Feats::setLevel(int level, bool retainLegacyFirstLevelSlot)
     {
         if (level < 0) throw std::invalid_argument("feat progression level must not be negative");
+        const int baseSlotLevel = retainLegacyFirstLevelSlot && level == 0 ? 1 : level;
         // Build new empty slots before changing any active selection.
         auto additions = std::map<std::string, SlotState>{};
-        for (long long n = 1; n <= level; n += 2)
+        for (long long n = 1; n <= baseSlotLevel; n += 2)
         {
             const auto id = std::string(BasePrefix) + std::to_string(n);
             if (!slots_.contains(id)) additions.emplace(id, SlotState{.slot = {.id = id, .source = "Avanzamento del personaggio"}, .choices = {}, .cleanups = {}});
         }
-        for (long long n = 1; n <= level_; n += 2)
+        for (long long n = 1; n <= baseSlotLevel_; n += 2)
         {
-            if (n > level)
+            if (n > baseSlotLevel)
             {
                 const auto id = std::string(BasePrefix) + std::to_string(n);
                 auto &slot = slots_.at(id);
@@ -165,7 +167,7 @@ namespace golarion
             }
         }
         slots_.merge(additions);
-        for (long long n = 1; n <= level; n += 2)
+        for (long long n = 1; n <= baseSlotLevel; n += 2)
         {
             auto &slot = slots_.at(std::string(BasePrefix) + std::to_string(n));
             slot.available = true;
@@ -174,7 +176,13 @@ namespace golarion
             slot.slot.exempts = {};
         }
         level_ = level;
+        baseSlotLevel_ = baseSlotLevel;
         recheckPrerequisites();
+    }
+
+    bool Feats::isAvailable(const SlotState &slot) const
+    {
+        return slot.available && level_ >= slot.slot.minimumCharacterLevel;
     }
 
     bool Feats::requirementSatisfied(const FeatRequirementDefinition &requirement, const SlotState &slot, const FeatPrerequisiteContext &context) const
@@ -235,7 +243,7 @@ namespace golarion
         const auto found = slots_.find(normalize(slotId));
         if (found == slots_.end()) throw std::invalid_argument("feat slot is not registered");
         const auto &slot = found->second;
-        if (!slot.available || !accepts(slot.slot.filter, definition)) return false;
+        if (!isAvailable(slot) || !accepts(slot.slot.filter, definition)) return false;
         const FeatPrerequisiteContext context{definition, slot.slot.id, slot.slot.source, choices};
         for (const auto &requirement : definition.requirements)
             if (!requirementSatisfied(requirement, slot, context)) return false;
@@ -271,7 +279,7 @@ namespace golarion
         const auto found = slots_.find(key);
         if (found == slots_.end()) throw std::invalid_argument("feat slot is not registered: " + key);
         auto &slot = found->second;
-        if (!restoring && !slot.available) throw std::invalid_argument("feat slot is unavailable: " + key);
+        if (!restoring && !isAvailable(slot)) throw std::invalid_argument("feat slot is unavailable: " + key);
         if (slot.selected) throw std::invalid_argument("feat slot is occupied; remove its feat first");
         const auto &definition = catalog_ ? catalog_->get(featId) : FeatDefinitionManager::instance().get(featId);
         FeatChoices normalized;
@@ -413,7 +421,8 @@ namespace golarion
         FeatsView view;
         for (const auto &[id, slot] : slots_)
         {
-            FeatSlotView slotView{id, slot.slot.source, slot.selected ? std::optional(slot.selected->id) : std::nullopt, std::nullopt, {}, slot.available, slot.origin};
+            if (!isAvailable(slot) && !slot.selected) continue;
+            FeatSlotView slotView{id, slot.slot.source, slot.selected ? std::optional(slot.selected->id) : std::nullopt, std::nullopt, {}, isAvailable(slot), slot.origin};
             std::visit([&](const auto &filter)
             {
                 using T = std::decay_t<decltype(filter)>;
@@ -495,7 +504,7 @@ namespace golarion
     {
         std::vector<PendingChoice> result;
         for (const auto &[id, slot] : slots_)
-            if (slot.available && !slot.selected)
+            if (isAvailable(slot) && !slot.selected)
                 result.push_back({FeatSlotChoiceReference{id}, "Seleziona un talento", 1, slot.origin != FeatSlotOrigin::Extra});
         return result;
     }

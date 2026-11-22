@@ -4,6 +4,7 @@
 #include "golarion/data/attacks_data.hpp"
 
 #include <map>
+#include <optional>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -41,6 +42,8 @@ namespace golarion
 
         void create(const AttackDefinition &definition);
         void remove(std::string_view attackId);
+        void rename(std::string_view attackId, std::string_view name);
+        void reorder(std::string_view attackId, std::optional<std::string_view> beforeAttackId = std::nullopt);
         void assignStrike(std::string_view attackId, std::string_view slotId, std::string_view strikeGrantId);
         void unassignStrike(std::string_view attackId, std::string_view slotId);
         AttacksView toView();

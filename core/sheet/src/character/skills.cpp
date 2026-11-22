@@ -278,18 +278,26 @@ namespace golarion
 
     void Skills::addCustomClassSkill(SkillType type, std::optional<std::string> specializationId)
     {
-        Skill &target = specializationId ? specialization(type, *specializationId) : skill(type);
-        const bool externallyGranted = std::ranges::any_of(classSkillGrants_, [&](const auto &entry)
+        if (!specializationId && requiresSpecialization(type))
         {
-            return resourceManager_.enhanceableResourceIsOrInheritsFrom(target.resourceName_, entry.second.targetResourceName_);
-        });
-        if (target.customClassSkill_ || externallyGranted)
+            if (hasClassSkillGrant(resourceName(type)) || !customClassSkillCategories_.insert(type).second)
+                throw std::invalid_argument("skill category is already a class skill");
+            return;
+        }
+        Skill &target = specializationId ? specialization(type, *specializationId) : skill(type);
+        if (target.customClassSkill_ || hasClassSkillGrant(target.resourceName_) || customClassSkillCategories_.contains(type))
             throw std::invalid_argument("skill is already a class skill");
         target.customClassSkill_ = true;
     }
 
     void Skills::removeCustomClassSkill(SkillType type, std::optional<std::string> specializationId)
     {
+        if (!specializationId && requiresSpecialization(type))
+        {
+            if (customClassSkillCategories_.erase(type) == 0)
+                throw std::invalid_argument("skill category has no custom class-skill grant");
+            return;
+        }
         Skill &target = specializationId ? specialization(type, *specializationId) : skill(type);
         if (!target.customClassSkill_) throw std::invalid_argument("skill has no custom class-skill grant");
         target.customClassSkill_ = false;
@@ -330,7 +338,8 @@ namespace golarion
         {
             for (const auto &[specializationId, specializedSkill] : specializedSkills)
             {
-                SkillView view = specializedSkill.toView(resourceManager_, abilityReplacements_, classSkillGrants_, resolvedArmorCheckPenalty);
+                SkillView view = specializedSkill.toView(resourceManager_, abilityReplacements_, classSkillGrants_, resolvedArmorCheckPenalty,
+                    customClassSkillCategories_.contains(type));
                 view.custom = !isCanonicalSpecialization(type, specializationId);
                 skillViews.push_back(std::move(view));
             }
@@ -349,6 +358,12 @@ namespace golarion
         long long spentRanks = 0;
         for (const auto &skill : skillViews) spentRanks += skill.ranks;
         if (spentRanks > std::numeric_limits<int>::max()) throw std::overflow_error("spent skill ranks exceed integer range");
+        std::vector<SkillsView::CategoryClassSkillView> categories;
+        for (const SkillType type : SpecializedSkillTypes)
+        {
+            const bool custom = customClassSkillCategories_.contains(type);
+            categories.push_back({type, custom || hasClassSkillGrant(resourceName(type)), custom});
+        }
         return SkillsView{
             .armorCheckPenalty = ArmorCheckPenaltyView{
                 .total = resolvedArmorCheckPenalty,
@@ -357,7 +372,8 @@ namespace golarion
             .skills = std::move(skillViews),
             .maxRanks = maxRanks,
             .spentRanks = static_cast<int>(spentRanks),
-            .remainingRanks = maxRanks - static_cast<int>(spentRanks)
+            .remainingRanks = maxRanks - static_cast<int>(spentRanks),
+            .categoryClassSkills = std::move(categories)
         };
     }
 
@@ -396,11 +412,16 @@ namespace golarion
             return left.specializationId < right.specializationId;
         });
 
-        return SkillsSaveData{.skills = std::move(skillData)};
+        return SkillsSaveData{.skills = std::move(skillData),
+            .customClassSkillCategories = {customClassSkillCategories_.begin(), customClassSkillCategories_.end()}};
     }
 
     void Skills::load(const SkillsSaveData &data)
     {
+        std::set<SkillType> categories;
+        for (const auto type : data.customClassSkillCategories)
+            if (!requiresSpecialization(type) || !categories.insert(type).second)
+                throw std::invalid_argument("invalid custom class-skill category in save data");
         using SkillIdentity = std::pair<SkillType, std::string>;
         std::set<SkillIdentity> identities;
         for (const SkillSaveData &skillData : data.skills)
@@ -481,6 +502,7 @@ namespace golarion
             standardSkill.setRanks(skillData.ranks);
             standardSkill.customClassSkill_ = skillData.customClassSkill;
         }
+        customClassSkillCategories_ = std::move(categories);
     }
 
     std::string Skills::removableSpecializationResourceName(SkillType type, const std::string &specializationId) const
@@ -581,6 +603,14 @@ namespace golarion
         {
             throw std::invalid_argument("skill ability replacement is not registered: " + id);
         }
+    }
+
+    bool Skills::hasClassSkillGrant(std::string_view resource) const
+    {
+        return std::ranges::any_of(classSkillGrants_, [&](const auto &entry)
+        {
+            return resourceManager_.enhanceableResourceIsOrInheritsFrom(resource, entry.second.targetResourceName_);
+        });
     }
 
     void Skills::addClassSkillGrant(SkillClassSkillGrant grant)

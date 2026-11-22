@@ -258,6 +258,26 @@ namespace golarion
         moveItemInternal(itemId, std::move(containerId), EquipmentTransition::None);
     }
 
+    void Inventory::reorderItem(std::string_view itemId, std::optional<std::string_view> beforeItemId)
+    {
+        const std::string id = normalize(itemId);
+        const auto location = itemContainerIds_.find(id);
+        if (location == itemContainerIds_.end())
+            throw std::invalid_argument("item instance is not registered: " + id);
+
+        auto &order = containers_.at(location->second).itemIds_;
+        const auto source = std::ranges::find(order, id);
+        if (source == order.end())
+            throw std::logic_error("item is missing from its container: " + id);
+        const auto destination = beforeItemId ? std::ranges::find(order, normalize(*beforeItemId)) : order.end();
+        if (beforeItemId && destination == order.end())
+            throw std::invalid_argument("reorder target is not in the same container");
+        if (source < destination)
+            std::rotate(source, source + 1, destination);
+        else if (source > destination)
+            std::rotate(destination, source, source + 1);
+    }
+
     void Inventory::moveItemInternal(std::string_view itemId, std::optional<std::string> containerId, EquipmentTransition equipmentTransition)
     {
         const std::string id = normalize(itemId);
@@ -612,7 +632,8 @@ namespace golarion
                         pools.push_back({poolId, pool->capacity(), pool->remaining()});
                     return pools;
                 }(),
-                .canStack = canStack(item)
+                .canStack = canStack(item),
+                .coinDenomination = item.itemDefinition_.get().coinDenomination
             });
         }
 
@@ -747,9 +768,14 @@ namespace golarion
             });
         }
 
+        std::map<std::string, std::vector<std::string>> itemOrder;
+        for (const auto &[id, container] : containers_)
+            if (!container.itemIds_.empty()) itemOrder.emplace(id, container.itemIds_);
+
         return InventorySaveData{
             .containers = std::move(containerData),
-            .items = std::move(itemData)
+            .items = std::move(itemData),
+            .itemOrder = std::move(itemOrder)
         };
     }
 
@@ -843,6 +869,13 @@ namespace golarion
             {
                 equip(item.id);
             }
+        }
+        for (const auto &[id, order] : data.itemOrder)
+        {
+            const auto container = containers_.find(id);
+            if (container == containers_.end() || !std::ranges::is_permutation(container->second.itemIds_, order))
+                throw std::invalid_argument("invalid saved inventory item order for container: " + id);
+            container->second.itemIds_ = order;
         }
     }
 

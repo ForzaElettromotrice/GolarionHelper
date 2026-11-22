@@ -54,6 +54,7 @@ namespace golarion
     {
     public:
         explicit CharacterSheet(const ClassDefinitionManager &classDefinitions = ClassDefinitionManager::instance());
+        CharacterSheet(const CharacterSheetSaveData &data, const ClassDefinitionManager &classDefinitions);
         static CharacterSheet load(const std::filesystem::path &path, const ClassDefinitionManager &classDefinitions = ClassDefinitionManager::instance());
         void addClassLevel(CharacterClassType type, std::optional<int> hitDieResult = std::nullopt);
         void removeClassLevel(CharacterClassType type);
@@ -70,6 +71,9 @@ namespace golarion
         void addEnhancement(std::string_view groupId, EffectDefinition data);
         void removeEnhancement(std::string_view groupId, std::string_view id);
         void setEnhancementGroupActive(std::string_view groupId, bool active);
+        std::vector<std::string> modifierResourceNames() const;
+        std::vector<std::string> contributionResourceNames() const;
+        std::vector<std::string> expressionTargetNames() const;
         void selectClassOption(CharacterClassType type, const ClassOptionDefinition &definition);
         void unselectClassOption(CharacterClassType type, const ClassOptionDefinition &definition);
 
@@ -107,6 +111,10 @@ namespace golarion
         SpellCastResult consumeFlexibleSpell(std::string_view castingId, const SpellSlotId &slot, const FlexibleSpellConsumptionDefinition &definition);
         void clearSpellSlot(std::string_view castingId, const SpellSlotId &slot);
         void clearFlexiblePreparation(std::string_view castingId, const SpellSlotId &preparation);
+        void resetSpellSlots(std::string_view castingId);
+        int spellPreparationSlotCount(std::string_view castingId, const SpellSlotId &slot, const SpellPreparationDefinition &definition);
+        bool hasSpellConversions(std::string_view castingId);
+        void validateSpellConsumption(std::string_view castingId, const SpellSlotId &slot, const std::variant<PreparedSpellConsumptionDefinition, SpontaneousSpellConsumptionDefinition, FlexibleSpellConsumptionDefinition> &definition);
         SpellCastResult consumeGrantedSpell(std::string_view id);
         void refillGrantedSpell(std::string_view id);
         void restoreGrantedSpell(std::string_view id, int amount);
@@ -117,6 +125,8 @@ namespace golarion
         void setRacialChoice(std::string_view elementId, std::string_view choiceId, std::vector<std::string> optionIds);
         void setAbilityBaseValue(AbilityType type, int baseValue);
         void heal(int amount);
+        void addTemporaryHitPoints(std::string source, int amount);
+        void removeTemporaryHitPoints(std::string_view source);
         void damage(int amount, DamageLethality lethality);
         void setSkillRanks(SkillType type, int ranks);
         void addCustomClassSkill(SkillType type, std::optional<std::string> specializationId = std::nullopt);
@@ -126,6 +136,8 @@ namespace golarion
         void setSkillSpecializationRanks(SkillType type, const std::string &specializationId, int ranks);
         void createAttack(const AttackDefinition &definition);
         void removeAttack(std::string_view attackId);
+        void renameAttack(std::string_view attackId, std::string_view name);
+        void reorderAttack(std::string_view attackId, std::optional<std::string_view> beforeAttackId = std::nullopt);
         void assignStrikeToAttack(std::string_view attackId, std::string_view slotId, std::string_view strikeGrantId);
         void unassignStrikeFromAttack(std::string_view attackId, std::string_view slotId);
         void addCondition(ConditionEntry entry);
@@ -138,6 +150,7 @@ namespace golarion
         void equipItem(std::string_view itemId);
         void unequipItem(std::string_view itemId, std::optional<std::string> containerId = std::nullopt);
         void moveItem(std::string_view itemId, std::optional<std::string> containerId = std::nullopt);
+        void reorderItem(std::string_view itemId, std::optional<std::string_view> beforeItemId = std::nullopt);
         void removeItem(std::string_view itemId);
         void setItemQuantity(std::string_view itemId, int quantity);
         void removeMoney(CoinDenomination denomination, int quantity, std::string_view containerId);
@@ -151,7 +164,6 @@ namespace golarion
     private:
         static constexpr std::size_t AbilityCount = 6;
 
-        CharacterSheet(const CharacterSheetSaveData &data, const ClassDefinitionManager &classDefinitions);
         AbilityScore &ability(AbilityType type);
 
         ResourceManager resourceManager_;

@@ -129,7 +129,7 @@ int main()
     assert(carryingCapacity.toView().bodyType == CarryingBodyType::Biped);
     assert(reminderManager.toView().messages.size() == 1);
     assert(resourceManager.contributionTotal(MaxSkillRanksResource) == 1);
-    assert(feats.toView().slots.size() == 1);
+    assert(feats.toView().slots.empty()); // Human bonus feat is not available at level zero.
     assert(languages.toView().spoken.front().id == "common");
     level = 5;
     assert(resourceManager.contributionTotal(MaxSkillRanksResource) == 5);

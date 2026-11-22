@@ -27,6 +27,8 @@ Valid active feats retain their effects and mutable state across checks. Feat-ow
 
 `FeatSlotGrantEffectDefinition` is parsed as `featSlotGrant`. Its optional `filter` is `{ "kind": "any" }` (also the default), `{ "kind": "type", "featType": "combat" }`, or `{ "kind": "ids", "featIds": ["improvedInitiative"] }`. Empty ID lists, duplicate normalized IDs, blank types/IDs, and ambiguous filters are rejected. Compilation registers `FeatSlot` with the owning effect's stable instance ID/source and returns cleanup that withdraws that exact slot, including the selected feat's effects. The filter types live in `feat_slot_filter.hpp` to avoid coupling effect definitions to the runtime.
 
+An optional nonnegative `minimumCharacterLevel` defaults to zero. Before that level the grant is registered but cannot be selected or block advancement; an empty gated slot is omitted from the View. A previously selected feat stays recorded but inactive below the threshold and is rechecked when the slot becomes available again. The human bonus feat requires actual character level 1, independently of legacy progression slots.
+
 This enables race/item/class/feat-owned slots and favored-class slot rewards. Selected feats survive source withdrawal as unavailable acquisitions. Nested cleanup does not start a recursive prerequisite check, and the next pass reads fresh slot IDs.
 
 - `CharacterSheet` owns `Feats`, which owns `FeatPrerequisiteRegistry` and registers the typed `feat.slots` collection. Source-owned slots carry a stable ID, source, and one explicit filter: any feat, one `FeatType` enum value, or a nonempty list of canonical IDs. An optional source callback exempts individual requirements; an exemption never overrides slot eligibility.

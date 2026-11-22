@@ -124,7 +124,7 @@ namespace golarion
         remaining_ = remaining;
     }
 
-    void MetamagicRegistry::pay(const std::vector<MetamagicUsageCost> &costs)
+    void MetamagicRegistry::pay(const std::vector<MetamagicUsageCost> &costs, bool spend)
     {
         std::map<std::shared_ptr<MetamagicUsagePool>, int> totals;
         std::map<std::shared_ptr<UsagePool>, int> linkedTotals;
@@ -139,6 +139,7 @@ namespace golarion
             if (cost.uses > cost.pool->remaining() - total) throw std::invalid_argument("insufficient metamagic uses");
             total += cost.uses;
         }
+        if (!spend) return;
         // No allocation, callbacks or other throwing work after validation.
         for (const auto &[pool, total] : totals) pool->remaining_ -= total;
         for (const auto &[pool, total] : linkedTotals) pool->consume(total);

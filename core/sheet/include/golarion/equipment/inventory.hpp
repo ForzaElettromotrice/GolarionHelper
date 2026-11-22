@@ -39,6 +39,7 @@ namespace golarion
         void equip(std::string_view itemId);
         void unequip(std::string_view itemId, std::optional<std::string> containerId = std::nullopt);
         void moveItem(std::string_view itemId, std::optional<std::string> containerId = std::nullopt);
+        void reorderItem(std::string_view itemId, std::optional<std::string_view> beforeItemId = std::nullopt);
         void removeItem(std::string_view itemId);
         void setItemQuantity(std::string_view itemId, int quantity);
         void refillUsagePool(std::string_view itemId, std::string_view poolId);

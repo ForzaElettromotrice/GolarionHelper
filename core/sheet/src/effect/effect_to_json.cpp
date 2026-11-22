@@ -57,7 +57,12 @@ namespace golarion
                 put(j, "handUsage", entry.handUsage); put(j, "routineId", entry.routineId); put(j, "slotId", entry.slotId);
                 j["requirements"] = requirements(entry.requirements);
             }
-            else if constexpr (std::is_same_v<T, FeatSlotGrantEffectDefinition>) { j["type"] = "featSlotGrant"; j["filter"] = featFilter(entry.filter); }
+            else if constexpr (std::is_same_v<T, FeatSlotGrantEffectDefinition>)
+            {
+                j["type"] = "featSlotGrant";
+                j["filter"] = featFilter(entry.filter);
+                if (entry.minimumCharacterLevel != 0) j["minimumCharacterLevel"] = entry.minimumCharacterLevel;
+            }
             else if constexpr (std::is_same_v<T, FeatPrerequisiteAlternativeEffectDefinition>)
             { j["type"] = "featPrerequisiteAlternative"; j["target"] = entry.target; j["filter"] = featFilter(entry.filter); }
             else if constexpr (std::is_same_v<T, SpellGrantEffectDefinition>)

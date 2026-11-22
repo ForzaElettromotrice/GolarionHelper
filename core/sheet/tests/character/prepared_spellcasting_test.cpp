@@ -53,6 +53,8 @@ int main()
     rejects([&] { casting.prepare(slot, {"outside"}); });
     assert(casting.slotState(slot).spellId == "fireball");
     casting.prepare({"base", 2, 1}, {"fireball"});
+    casting.validateConsumption(slot, {});
+    assert(casting.slotState(slot).state == PreparedSpellSlotState::Prepared);
     casting.consume(slot);
     assert(casting.slotState(slot).state == PreparedSpellSlotState::Consumed);
     assert(casting.slotState(slot).spellId == "fireball");
@@ -228,6 +230,7 @@ int main()
     rejects([&] { linked.prepare(std::vector<SpellSlotId>{first, {"blocked", 3, 0}}, {"fireball"}); });
     rejects([&] { linked.prepare(std::vector<SpellSlotId>{first, second, {"a", 3, 1}}, {"fireball"}); });
     assert(linked.toData().preparations.empty());
+    assert(linked.preparationSlotCount(first, {"fireball"}) == 2);
     linked.prepare(pair, {"fireball"});
     assert(linked.toData().preparations.size() == 1);
     assert(linked.toData().preparations[0].additionalSlots == std::vector<SpellSlotId>{second});

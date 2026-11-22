@@ -129,7 +129,7 @@ namespace golarion
         // Resolve a grant snapshot in exactly one phase; does not spend source resources.
         MetamagicGrant resolve(MetamagicPhase phase, const MetamagicApplication &application) const;
         MetamagicEvaluation evaluate(MetamagicPhase phase, const SpellDefinition &spell, int baseSpellLevel, const std::vector<MetamagicApplication> &applications, bool conversion = false, const MetamagicEvaluation *prepared = nullptr) const;
-        static void pay(const std::vector<MetamagicUsageCost> &costs);
+        static void pay(const std::vector<MetamagicUsageCost> &costs, bool spend = true);
         std::vector<MetamagicGrantView> toView() const;
         MetamagicUsagePools usagePools() const;
 

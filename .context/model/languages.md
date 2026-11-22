@@ -1,5 +1,7 @@
 # Languages
 
+Player-owned manual languages have two persistent origins: `Extra` does not consume a quota, and `CustomLinguistics` consumes one Linguistics choice without requiring its custom name in a catalog. Both can be removed without touching source grants. Ordinary learned choices still validate against their source list.
+
 Read when changing known languages, learned choices, language reminders, or their persistence.
 
 - `CharacterSheet` owns `Languages`. The typed `languages.spoken` collection accepts `LanguageGrant {id, source, languageId}`. These grants cost no learning choices and are removed by grant ID. Multiple sources may grant the same language; the View deduplicates it, and one source's removal leaves other grants intact.

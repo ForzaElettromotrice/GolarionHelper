@@ -2,7 +2,9 @@
 
 Read this document when changing item definitions, inventory, containers, money, or equipped state.
 
-InventoryItemView.canStack exposes the same single-unit restrictions used by the quantity setter. It describes stackability, not available capacity in the containing inventory hierarchy.
+`reorderItem(itemId, beforeItemId)` reorders items within their current container; omission puts the item last. Dropping before itself is a no-op, while a missing or cross-container target is rejected. The order is exposed in InventoryContainerView.itemIds and saved as optional inventory.itemOrder, restored after objects and equipment. Saves without it retain the previous reconstruction order. Reordering does not apply effects or change weight, containment or equipment.
+
+InventoryItemView.canStack exposes the same single-unit restrictions used by the quantity setter. It describes stackability, not available capacity in the containing inventory hierarchy. The optional coin denomination identifies coin stacks, including those using a custom definition.
 
 `setItemQuantity(itemId, quantity)` sets an absolute positive quantity on an existing inventory instance and is exposed by CharacterSheet. It preserves identity/location, validates container and ancestor constraints, refreshes carried weight, and rolls back quantity on failure. Container items, equipped items and instances with effects, choices or usage pools remain single-unit. Money operations reuse this path; save format is unchanged.
 

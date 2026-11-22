@@ -85,6 +85,8 @@ int main()
         rod.isApplicable = [](const auto &spell, const auto &) { return spell.id == "fireball"; };
         const MetamagicApplication application{MetamagicType::Empower, "rod", {}};
         resources.addToCollection(castingMetamagicGrantsResource("sorcerer"), rod);
+        casting.validateConsumption(third, {"fireball", {application}});
+        assert(pool->remaining() == 2 && casting.slotState(third) == SpontaneousSpellSlotState::Free);
         resources.addToCollection(exemptions, SpellConsumptionExemption{"throws", "Test", [](const auto &) -> bool { throw std::runtime_error("query failed"); }});
         rejects<std::runtime_error>([&] { casting.consume(third, {"fireball", {application}}); });
         assert(pool->remaining() == 2 && casting.slotState(third) == SpontaneousSpellSlotState::Free);

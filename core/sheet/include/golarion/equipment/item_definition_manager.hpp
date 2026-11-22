@@ -6,6 +6,8 @@
 #include <mutex>
 #include <string>
 #include <string_view>
+#include <utility>
+#include <vector>
 
 namespace golarion
 {
@@ -21,6 +23,7 @@ namespace golarion
 
         bool contains(std::string_view itemDefinitionId);
         const ItemDefinition &get(std::string_view itemDefinitionId);
+        std::vector<std::pair<std::string, std::string>> catalogEntries();
 
     private:
         ItemDefinitionManager() = default;

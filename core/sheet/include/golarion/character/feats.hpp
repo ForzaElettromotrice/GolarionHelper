@@ -24,6 +24,7 @@ namespace golarion
         FeatSlotFilter filter = AnyFeat{};
         // An empty callback grants no exemption. It never overrides slot eligibility.
         std::function<bool(const FeatRequirementDefinition &, const FeatPrerequisiteContext &)> exempts{};
+        int minimumCharacterLevel = 0;
     };
 
     class Feats final
@@ -38,7 +39,7 @@ namespace golarion
 
         void addExtraSlot(std::string_view id);
         void removeExtraSlot(std::string_view id);
-        void setLevel(int level);
+        void setLevel(int level, bool retainLegacyFirstLevelSlot = false);
         void selectFeat(std::string_view slotId, std::string_view featId, FeatChoices choices = {});
         void removeFeat(std::string_view slotId);
         void recheckPrerequisites();
@@ -55,7 +56,7 @@ namespace golarion
         {
             FeatSlot slot;
             FeatSlotOrigin origin = FeatSlotOrigin::Source;
-            bool available = true;
+            bool available = true; // The source is present; level eligibility is checked separately.
             const FeatDefinition *selected = nullptr;
             bool active = false;
             FeatChoices choices;
@@ -64,6 +65,7 @@ namespace golarion
         void addSlot(FeatSlot slot);
         void removeSlot(std::string_view id);
         void addNormalizedSlot(FeatSlot slot);
+        bool isAvailable(const SlotState &slot) const;
         bool requirementSatisfied(const FeatRequirementDefinition &requirement, const SlotState &slot, const FeatPrerequisiteContext &context) const;
         void clear(SlotState &slot);
         void deactivate(SlotState &slot);
@@ -75,6 +77,7 @@ namespace golarion
         FeatPrerequisiteRegistry prerequisites_;
         std::map<std::string, SlotState> slots_;
         int level_ = 0;
+        int baseSlotLevel_ = 0;
         bool rechecking_ = false;
         bool destroying_ = false;
         int effectMutationDepth_ = 0;

@@ -43,13 +43,16 @@ namespace golarion
         void clearPreparation(const SpellSlotId &preparationId);
         // A paid mixing permission must be selected explicitly. Otherwise only free permissions are considered.
         SpellCastResult consume(const SpellSlotId &slotId, const FlexibleSpellConsumptionDefinition &definition);
+        void validateConsumption(const SpellSlotId &slotId, const FlexibleSpellConsumptionDefinition &definition);
         void clearSlot(const SpellSlotId &slotId);
         FlexibleSpellcastingData toData() const;
         void load(const FlexibleSpellcastingData &data);
         FlexibleSpellcastingView toView() const;
+        void validatePreparation(const SpellSlotId &preparationId, const SpellPreparationDefinition &definition) const;
         MetamagicUsagePools usagePools() const override;
 
     private:
+        SpellCastResult consumeImpl(const SpellSlotId &slotId, const FlexibleSpellConsumptionDefinition &definition, bool commit);
         friend class Spellcastings;
         std::function<void()> stageLoad(const FlexibleSpellcastingData &data);
         SpellSlotId checkedSlot(const SpellSlotId &id, const std::map<std::string, SpellSlotGrant> &groups) const;

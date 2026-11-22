@@ -209,6 +209,21 @@ namespace golarion
         attacks_.erase(existingAttack);
     }
 
+    void Attacks::rename(std::string_view attackId, std::string_view name)
+    {
+        attack(attackId).name_ = normalize(name);
+    }
+
+    void Attacks::reorder(std::string_view attackId, std::optional<std::string_view> beforeAttackId)
+    {
+        const auto source = std::ranges::find(attacks_, normalize(attackId), &Attack::id_);
+        if (source == attacks_.end()) throw std::invalid_argument("attack is not registered");
+        const auto destination = beforeAttackId ? std::ranges::find(attacks_, normalize(*beforeAttackId), &Attack::id_) : attacks_.end();
+        if (beforeAttackId && destination == attacks_.end()) throw std::invalid_argument("reorder target is not registered");
+        if (source < destination) std::rotate(source, source + 1, destination);
+        else if (source > destination) std::rotate(destination, source, source + 1);
+    }
+
     void Attacks::assignStrike(std::string_view attackId, std::string_view slotId, std::string_view strikeGrantId)
     {
         Attack &targetAttack = attack(attackId);

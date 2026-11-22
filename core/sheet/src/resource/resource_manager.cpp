@@ -293,6 +293,33 @@ namespace golarion
         return ModifierSet::toView(inheritedModifierSets(resourceNames), *this, normalizedConditions);
     }
 
+    std::vector<std::string> ResourceManager::modifierResourceNames() const
+    {
+        std::vector<std::string> names;
+        names.reserve(enhanceableResources_.size());
+        for (const auto &entry : enhanceableResources_) names.push_back(entry.first);
+        std::ranges::sort(names);
+        return names;
+    }
+
+    std::vector<std::string> ResourceManager::contributionResourceNames() const
+    {
+        std::vector<std::string> names;
+        names.reserve(accumulatedResources_.size());
+        for (const auto &entry : accumulatedResources_) names.push_back(entry.first);
+        std::ranges::sort(names);
+        return names;
+    }
+
+    std::vector<std::string> ResourceManager::expressionTargetNames() const
+    {
+        std::vector<std::string> names;
+        names.reserve(targets_.size());
+        for (const auto &entry : targets_) names.push_back(entry.first);
+        std::ranges::sort(names);
+        return names;
+    }
+
     ResourceManagerView ResourceManager::toView()
     {
         std::vector<ResourceManagerView::TargetView> targetViews;

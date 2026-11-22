@@ -155,6 +155,8 @@ namespace golarion
         const int dexterityModifier = abilityModifier(resourceManager_, AbilityType::Dexterity);
         const bool dexterityBonusSuppressed = !dexteritySuppressions_.empty();
         const int appliedDexterityModifier = dexterityBonusSuppressed ? std::min(dexterityModifier, 0) : dexterityModifier;
+        const auto baseBonus = static_cast<long long>(baseAttackBonus) + strengthModifier;
+        const auto baseDefense = 10LL + baseBonus + appliedDexterityModifier;
         std::vector<CombatManeuverDefenseDexteritySuppressionView> dexteritySuppressionViews;
         dexteritySuppressionViews.reserve(dexteritySuppressions_.size());
         for (const auto &[id, suppression] : dexteritySuppressions_)
@@ -209,7 +211,7 @@ namespace golarion
                     .appliedDexterityModifier = appliedDexterityModifier,
                     .dexterityBonusSuppressed = dexterityBonusSuppressed,
                     .dexteritySuppressions = dexteritySuppressionViews,
-                    .totalValue = checkedCombatManeuverValue(10LL + baseAttackBonus + strengthModifier + appliedDexterityModifier + defenseModifiers.total),
+                    .totalValue = checkedCombatManeuverValue(baseDefense + defenseModifiers.total),
                     .modifiers = std::move(defenseModifiers)
                 }
             });
@@ -217,7 +219,9 @@ namespace golarion
 
         return CombatManeuversView{
             .baseAttackBonus = baseAttackBonus,
-            .maneuvers = std::move(maneuverViews)
+            .maneuvers = std::move(maneuverViews),
+            .baseCombatManeuverBonus = checkedCombatManeuverValue(baseBonus),
+            .baseCombatManeuverDefense = checkedCombatManeuverValue(baseDefense)
         };
     }
 

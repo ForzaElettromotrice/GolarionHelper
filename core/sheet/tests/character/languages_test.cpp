@@ -170,6 +170,17 @@ int main()
     assert(restored.toView().languages.remainingLinguistics == 0);
     restored.removeLanguage("orc");
     assert(restored.toView().languages.remainingLinguistics == 1);
+    restored.addLanguage("Segni delle isole", LanguageOrigin::CustomLinguistics);
+    restored.addLanguage("Naviganti", LanguageOrigin::Extra);
+    assert(restored.toView().languages.remainingLinguistics == 0);
+    assert(restored.toView().languages.remainingIntelligence == 1);
+    rejects([&] { restored.addLanguage("Lingua in eccesso", LanguageOrigin::CustomLinguistics); });
+    restored.save(path);
+    auto manualLanguages = CharacterSheet::load(path);
+    assert(manualLanguages.toSaveData().languages.learned.size() == 3);
+    manualLanguages.removeLanguage("Segni delle isole");
+    manualLanguages.removeLanguage("Naviganti");
+    assert(manualLanguages.toView().languages.remainingLinguistics == 1);
 
     auto json = nlohmann::json::parse(persistence::toJson(savedSheet));
     assert(json["formatVersion"] == 43);

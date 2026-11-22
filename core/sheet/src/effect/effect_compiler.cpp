@@ -246,7 +246,8 @@ namespace golarion
             {
                 return [effect = std::move(effect), context](ResourceManager &resourceManager)
                 {
-                    resourceManager.addToCollection(FeatSlotsResource, FeatSlot{.id = context.instanceId, .source = context.source, .filter = effect.filter});
+                    resourceManager.addToCollection(FeatSlotsResource, FeatSlot{.id = context.instanceId, .source = context.source,
+                        .filter = effect.filter, .minimumCharacterLevel = effect.minimumCharacterLevel});
                     return EffectCleanup([&resourceManager, instanceId = context.instanceId]
                     {
                         resourceManager.removeFromCollection(FeatSlotsResource, instanceId);

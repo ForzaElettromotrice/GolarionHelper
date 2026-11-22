@@ -7,6 +7,7 @@
 #include "golarion/view/skills_view.hpp"
 
 #include <map>
+#include <set>
 #include <string>
 
 namespace golarion
@@ -49,6 +50,7 @@ namespace golarion
         void removeAbilityReplacement(std::string_view replacementId);
         void addClassSkillGrant(SkillClassSkillGrant grant);
         void removeClassSkillGrant(std::string_view grantId);
+        bool hasClassSkillGrant(std::string_view resource) const;
         int armorCheckPenalty();
         void addArmorCheckPenalty(ArmorCheckPenalty penalty);
         void removeArmorCheckPenalty(std::string_view penaltyId);
@@ -58,6 +60,7 @@ namespace golarion
         std::map<SkillType, std::map<std::string, Skill>> specializations_;
         std::map<std::string, SkillAbilityReplacement> abilityReplacements_;
         std::map<std::string, SkillClassSkillGrant> classSkillGrants_;
+        std::set<SkillType> customClassSkillCategories_;
         std::map<std::string, ArmorCheckPenalty> armorCheckPenalties_;
     };
 }

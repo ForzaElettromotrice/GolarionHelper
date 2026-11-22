@@ -27,20 +27,24 @@ namespace golarion
         void prepare(const SpellSlotId &slot, const SpellPreparationDefinition &definition);
         void prepare(const std::vector<SpellSlotId> &slots, const SpellPreparationDefinition &definition);
         SpellCastResult consume(const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition = {});
+        void validateConsumption(const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition);
         void clear(const SpellSlotId &slot);
         PreparedSpellSlot slotState(const SpellSlotId &slot) const;
         PreparedSpellcastingData toData() const;
         void load(const PreparedSpellcastingData &data);
         PreparedSpellcastingView toView() const;
+        int preparationSlotCount(const SpellSlotId &slot, const SpellPreparationDefinition &definition) const;
+        bool hasConversions() const { return preparationRules_.hasConversions(); }
 
     private:
+        SpellCastResult consumeImpl(const SpellSlotId &slot, const PreparedSpellConsumptionDefinition &definition, bool commit);
         friend class Spellcastings;
         std::function<void()> stageLoad(const PreparedSpellcastingData &data);
         SpellSlotId checkedSlot(const SpellSlotId &slot) const;
         enum class PreparationValidation { Preparing, Restoring };
         struct Preparation;
         int preparationLevel(const SpellSlotId &slot, const std::string &spellId) const;
-        Preparation checkedPreparation(const std::vector<SpellSlotId> &slots, const std::string &spellId, PreparationValidation mode, const std::vector<MetamagicApplication> &metamagic) const;
+        Preparation checkedPreparation(const std::vector<SpellSlotId> &slots, const std::string &spellId, PreparationValidation mode, const std::vector<MetamagicApplication> &metamagic, bool requireFullPayment = true) const;
         void onSlotGroupRemoved(std::string_view id) noexcept override;
 
         SpellLevelResolver resolveLevel_;

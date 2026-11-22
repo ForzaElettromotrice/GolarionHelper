@@ -441,6 +441,28 @@ int main()
         loadedAttacks.load(saved);
     }));
 
+    Attacks reordered(routines, strikes);
+    reordered.load(saved);
+    reordered.create({"other", "Altra routine", "mixedFullAttack"});
+    assert(throwsInvalidArgument([&] { reordered.reorder("missing"); }));
+    assert(throwsInvalidArgument([&] { reordered.reorder("mixed", "missing"); }));
+    assert(reordered.toView().attacks.front().id == "mixed");
+    reordered.reorder("mixed");
+    assert(reordered.toView().attacks.front().id == "other");
+    reordered.reorder("mixed", "other");
+    reordered.reorder("mixed", "mixed");
+    assert(reordered.toView().attacks.front().id == "mixed");
+    reordered.reorder("mixed");
+    assert(throwsInvalidArgument([&] { reordered.rename("mixed", "  "); }));
+    reordered.rename("mixed", " Colpo preciso ");
+    Attacks reloadedOrder(routines, strikes);
+    reloadedOrder.load(reordered.toData());
+    const auto reloadedView = reloadedOrder.toView();
+    assert(reloadedView.attacks[0].id == "other");
+    assert(reloadedView.attacks[1].id == "mixed");
+    assert(reloadedView.attacks[1].name == "Colpo preciso");
+    assert(reloadedView.attacks[1].slots[0].assignedGrantId == "longsword");
+
     resourceManager.removeFromCollection(AttackRoutinesResource, "mixedFullAttack");
     const AttacksView missingRoutineView = loadedAttacks.toView();
     assert(!missingRoutineView.attacks[0].complete);

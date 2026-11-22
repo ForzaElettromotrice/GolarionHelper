@@ -80,6 +80,21 @@ namespace golarion
         feats_.recheckPrerequisites();
     }
 
+    std::vector<std::string> CharacterSheet::modifierResourceNames() const
+    {
+        return resourceManager_.modifierResourceNames();
+    }
+
+    std::vector<std::string> CharacterSheet::contributionResourceNames() const
+    {
+        return resourceManager_.contributionResourceNames();
+    }
+
+    std::vector<std::string> CharacterSheet::expressionTargetNames() const
+    {
+        return resourceManager_.expressionTargetNames();
+    }
+
     void CharacterSheet::setEnhancementGroupActive(std::string_view groupId, bool active)
     {
         enhancements_.setGroupActive(groupId, active);
@@ -124,6 +139,11 @@ namespace golarion
     {
         inventory_->moveItem(itemId, std::move(containerId));
         feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::reorderItem(std::string_view itemId, std::optional<std::string_view> beforeItemId)
+    {
+        inventory_->reorderItem(itemId, beforeItemId);
     }
 
     void CharacterSheet::setItemQuantity(std::string_view itemId, int quantity)
@@ -203,6 +223,46 @@ namespace golarion
     {
         castingAs<FlexibleSpellcasting>(spellcastings_, castingId).clearPreparation(preparation);
         feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::resetSpellSlots(std::string_view castingId)
+    {
+        auto &casting = spellcastings_.get(castingId);
+        if (auto *prepared = dynamic_cast<PreparedSpellcasting *>(&casting)) prepared->load({});
+        else if (auto *spontaneous = dynamic_cast<SpontaneousSpellcasting *>(&casting)) spontaneous->load({});
+        else if (auto *flexible = dynamic_cast<FlexibleSpellcasting *>(&casting)) flexible->load({});
+        else throw std::invalid_argument("unknown spellcasting mode");
+        feats_.recheckPrerequisites();
+    }
+
+    int CharacterSheet::spellPreparationSlotCount(std::string_view castingId, const SpellSlotId &slot, const SpellPreparationDefinition &definition)
+    {
+        auto &casting = spellcastings_.get(castingId);
+        if (const auto *prepared = dynamic_cast<PreparedSpellcasting *>(&casting)) return prepared->preparationSlotCount(slot, definition);
+        if (const auto *flexible = dynamic_cast<FlexibleSpellcasting *>(&casting))
+        {
+            flexible->validatePreparation(slot, definition);
+            return 1;
+        }
+        throw std::invalid_argument("casting does not support preparation");
+    }
+
+    bool CharacterSheet::hasSpellConversions(std::string_view castingId)
+    {
+        return castingAs<PreparedSpellcasting>(spellcastings_, castingId).hasConversions();
+    }
+
+    void CharacterSheet::validateSpellConsumption(std::string_view castingId, const SpellSlotId &slot, const std::variant<PreparedSpellConsumptionDefinition, SpontaneousSpellConsumptionDefinition, FlexibleSpellConsumptionDefinition> &definition)
+    {
+        std::visit([&](const auto &value) {
+            using T = std::decay_t<decltype(value)>;
+            if constexpr (std::is_same_v<T, PreparedSpellConsumptionDefinition>)
+                castingAs<PreparedSpellcasting>(spellcastings_, castingId).validateConsumption(slot, value);
+            else if constexpr (std::is_same_v<T, SpontaneousSpellConsumptionDefinition>)
+                castingAs<SpontaneousSpellcasting>(spellcastings_, castingId).validateConsumption(slot, value);
+            else
+                castingAs<FlexibleSpellcasting>(spellcastings_, castingId).validateConsumption(slot, value);
+        }, definition);
     }
 
     CharacterSheet::CharacterSheet(const ClassDefinitionManager &classDefinitions)
@@ -290,7 +350,7 @@ namespace golarion
         if (data.formatVersion >= 30) classes_.load(data.classes);
         legacyFirstLevelFeatSlot_ = data.formatVersion >= 30 ? data.legacyFirstLevelFeatSlot : std::ranges::any_of(data.feats.selections, [](const auto &selection) { return selection.slotId == "base.feat.level1"; });
         if (legacyFirstLevelFeatSlot_ && level() != 0) throw std::invalid_argument("legacy feat slot cannot coexist with class levels");
-        feats_.setLevel(legacyFirstLevelFeatSlot_ ? 1 : level());
+        feats_.setLevel(level(), legacyFirstLevelFeatSlot_);
         race_.load(data.race);
         skills_.load(data.skills);
         attacks_.load(data.attacks);
@@ -474,10 +534,20 @@ namespace golarion
         if (type == AbilityType::Intelligence) languages_.refreshReminders();
     }
 
+    void CharacterSheet::addTemporaryHitPoints(std::string source, int amount)
+    {
+        hitPoints_.addTemporary(std::move(source), amount, std::nullopt);
+    }
+
     void CharacterSheet::heal(int amount)
     {
         hitPoints_.heal(amount);
         feats_.recheckPrerequisites();
+    }
+
+    void CharacterSheet::removeTemporaryHitPoints(std::string_view source)
+    {
+        hitPoints_.removeTemporary(source);
     }
 
     void CharacterSheet::damage(int amount, DamageLethality lethality)
@@ -531,6 +601,16 @@ namespace golarion
     void CharacterSheet::removeAttack(std::string_view attackId)
     {
         attacks_.remove(attackId);
+    }
+
+    void CharacterSheet::renameAttack(std::string_view attackId, std::string_view name)
+    {
+        attacks_.rename(attackId, name);
+    }
+
+    void CharacterSheet::reorderAttack(std::string_view attackId, std::optional<std::string_view> beforeAttackId)
+    {
+        attacks_.reorder(attackId, beforeAttackId);
     }
 
     void CharacterSheet::assignStrikeToAttack(std::string_view attackId, std::string_view slotId, std::string_view strikeGrantId)

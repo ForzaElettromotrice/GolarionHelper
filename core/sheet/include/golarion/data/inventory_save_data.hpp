@@ -55,5 +55,6 @@ namespace golarion
     {
         std::vector<InventoryContainerSaveData> containers;
         std::vector<InventoryItemSaveData> items;
+        std::map<std::string, std::vector<std::string>> itemOrder{};
     };
 }

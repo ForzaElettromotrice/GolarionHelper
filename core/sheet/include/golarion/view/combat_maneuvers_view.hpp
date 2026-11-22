@@ -52,5 +52,7 @@ namespace golarion
     {
         int baseAttackBonus;
         std::vector<CombatManeuverView> maneuvers;
+        int baseCombatManeuverBonus = 0;
+        int baseCombatManeuverDefense = 10;
     };
 }

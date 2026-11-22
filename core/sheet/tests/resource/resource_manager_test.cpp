@@ -79,6 +79,9 @@ int main()
     });
 
     const ResourceManagerView managerView = manager.toView();
+    assert(manager.modifierResourceNames() == std::vector<std::string>{"str"});
+    assert((manager.expressionTargetNames() == std::vector<std::string>{"dex", "str"}));
+    assert(manager.contributionResourceNames().empty());
     assert(managerView.targets.size() == 2);
     assert(managerView.targets[0].name == "dex");
     assert(managerView.targets[0].value == 12);
@@ -90,6 +93,10 @@ int main()
     assert(managerView.enhanceableResources[0].modifiers.total == 0);
     assert(managerView.collections.size() == 1);
     assert(managerView.collections[0] == "test.collection");
+
+    manager.registerEnhanceableResource("alpha");
+    assert((manager.modifierResourceNames() == std::vector<std::string>{"alpha", "str"}));
+    manager.unregisterEnhanceableResource("alpha");
 
     assert(throwsInvalidArgument([&]
     {
@@ -132,6 +139,8 @@ int main()
     }));
 
     manager.registerAccumulatedResource(" hp.max ");
+    assert(manager.contributionResourceNames() == std::vector<std::string>{"hp.max"});
+    assert(manager.modifierResourceNames() == std::vector<std::string>{"str"});
     manager.addContribution("hp.max", Contribution("class.hitDice", "24"));
     manager.addContribution("hp.max", Contribution("constitution", "-3"));
     assert(manager.contributionTotal(" hp.max ") == 21);
@@ -148,6 +157,7 @@ int main()
     }));
 
     manager.unregisterAccumulatedResource("hp.max");
+    assert(manager.contributionResourceNames().empty());
     assert(throwsInvalidArgument([&]
     {
         manager.contributionTotal("hp.max");
@@ -222,6 +232,7 @@ int main()
     {
         return circularManager.evaluateExpression("@first");
     });
+    assert((circularManager.expressionTargetNames() == std::vector<std::string>{"first", "second"}));
 
     try
     {

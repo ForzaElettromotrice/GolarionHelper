@@ -55,6 +55,9 @@ namespace golarion
         ModifierSetView modifierSetView(const std::vector<std::string> &resourceNames);
         ModifierSetView modifierSetView(const std::vector<std::string> &resourceNames, const std::vector<std::string> &activeConditions);
         ResourceManagerView toView();
+        std::vector<std::string> modifierResourceNames() const;
+        std::vector<std::string> contributionResourceNames() const;
+        std::vector<std::string> expressionTargetNames() const;
 
         void addModifier(std::string_view resourceName, Modifier modifier);
         void removeModifier(std::string_view resourceName, std::string_view modifierId);

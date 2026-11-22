@@ -44,6 +44,16 @@ namespace golarion
 
     SpellCastResult SpontaneousSpellcasting::consume(const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition)
     {
+        return consumeImpl(slot, definition, true);
+    }
+
+    void SpontaneousSpellcasting::validateConsumption(const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition)
+    {
+        consumeImpl(slot, definition, false);
+    }
+
+    SpellCastResult SpontaneousSpellcasting::consumeImpl(const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition, bool commit)
+    {
         const auto &[spellId, applications] = definition;
         const auto key = checkedSlot(slot);
         if (consumedSlots_.contains(key)) throw std::invalid_argument("spell slot is already consumed");
@@ -67,7 +77,8 @@ namespace golarion
             if (exemption.applies(context)) { preserve = true; break; }
         auto updated = consumedSlots_;
         if (!preserve) updated.insert(key);
-        MetamagicRegistry::pay(evaluation.usageCosts);
+        MetamagicRegistry::pay(evaluation.usageCosts, commit);
+        if (!commit) return {};
         evaluation.usageCosts.clear();
         consumedSlots_.swap(updated);
         return exportCast(std::move(evaluation));

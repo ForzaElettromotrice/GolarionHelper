@@ -45,11 +45,14 @@ namespace golarion
 
     std::size_t Languages::used(LanguageOrigin origin) const
     {
-        return std::count_if(learned_.begin(), learned_.end(), [origin](const auto &entry) { return entry.second == origin; });
+        return std::count_if(learned_.begin(), learned_.end(), [origin](const auto &entry) {
+            return entry.second == origin || (origin == LanguageOrigin::Linguistics && entry.second == LanguageOrigin::CustomLinguistics);
+        });
     }
 
     bool Languages::allowed(std::string_view id, LanguageOrigin origin) const
     {
+        if (origin == LanguageOrigin::Extra || origin == LanguageOrigin::CustomLinguistics) return true;
         const bool listed = std::any_of(options_.begin(), options_.end(), [&](const auto &entry)
         {
             return entry.second.origin == origin && entry.second.languageIds.contains(std::string(id));
@@ -81,10 +84,14 @@ namespace golarion
     void Languages::add(std::string_view languageId, LanguageOrigin origin)
     {
         const auto id = normalize(languageId);
-        const auto available = capacity(origin);
         if (learned_.contains(id) || std::any_of(grants_.begin(), grants_.end(), [&](const auto &entry) { return entry.second.languageId == id; }))
             throw std::invalid_argument("language is already known: " + id);
-        if (used(origin) >= static_cast<std::size_t>(available)) throw std::invalid_argument("no language choices remain for this origin");
+        if (origin != LanguageOrigin::Extra)
+        {
+            const auto quotaOrigin = origin == LanguageOrigin::CustomLinguistics ? LanguageOrigin::Linguistics : origin;
+            if (used(quotaOrigin) >= static_cast<std::size_t>(capacity(quotaOrigin)))
+                throw std::invalid_argument("no language choices remain for this origin");
+        }
         if (!allowed(id, origin)) throw std::invalid_argument("language is not allowed for this origin: " + id);
         learned_.emplace(id, origin);
         refreshReminders();
@@ -169,7 +176,8 @@ namespace golarion
         std::map<std::string, LanguageOrigin> learned;
         for (const auto &entry : data.learned)
         {
-            if (entry.origin != LanguageOrigin::Intelligence && entry.origin != LanguageOrigin::Linguistics)
+            if (entry.origin != LanguageOrigin::Intelligence && entry.origin != LanguageOrigin::Linguistics
+                && entry.origin != LanguageOrigin::Extra && entry.origin != LanguageOrigin::CustomLinguistics)
                 throw std::invalid_argument("unknown language origin");
             if (!learned.emplace(normalize(entry.languageId), entry.origin).second)
                 throw std::invalid_argument("duplicate learned language");

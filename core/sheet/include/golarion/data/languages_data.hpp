@@ -5,7 +5,7 @@
 
 namespace golarion
 {
-    enum class LanguageOrigin { Intelligence, Linguistics };
+    enum class LanguageOrigin { Intelligence, Linguistics, Extra, CustomLinguistics };
 
     struct LearnedLanguageData
     {

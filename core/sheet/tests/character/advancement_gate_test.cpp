@@ -1,6 +1,7 @@
 #include "golarion/character/character_sheet.hpp"
 #include "golarion/persistence/json.hpp"
 #include "../fixtures/class_definition.hpp"
+#include <algorithm>
 #include <cassert>
 #include <filesystem>
 #include <stdexcept>
@@ -12,7 +13,8 @@ namespace
     {
         sheet.addCustomFeatDefinition({.id = "gate.human", .name = "Talento umano di prova", .description = "Nessun effetto.", .types = {FeatType::General}});
         for (const auto &slot : sheet.toView().feats.slots)
-            if (slot.origin == FeatSlotOrigin::Source && !slot.featId) sheet.selectFeat(slot.id, "gate.human");
+            if (slot.origin == FeatSlotOrigin::Source && !slot.id.starts_with("base.") && !slot.featId)
+                sheet.selectFeat(slot.id, "gate.human");
     }
     void blocked(CharacterSheet &sheet, CharacterClassType type)
     {
@@ -51,8 +53,8 @@ int main()
     sheet.setFavoredClass(CharacterClassType::Fighter);
     blocked(sheet, CharacterClassType::Fighter); // Racial ability choice still missing.
     sheet.setRacialChoice("human.abilityScores", "ability", {"charisma"});
-    blocked(sheet, CharacterClassType::Fighter); // Human Bonus Feat must also be selected.
-    selectHumanFeat(sheet);
+    assert(sheet.toView().feats.slots.empty());
+    sheet.setAbilityBaseValue(AbilityType::Strength, 13);
     sheet.addClassLevel(CharacterClassType::Fighter);
     assert(sheet.level() == 1);
     sheet.addExtraFeatSlot("extra");
@@ -60,6 +62,12 @@ int main()
     sheet.selectFeat("base.feat.level1", "improvedInitiative");
     blocked(sheet, CharacterClassType::Fighter);
     sheet.selectClassOption(CharacterClassType::Fighter, {"first", "required", "a"});
+    blocked(sheet, CharacterClassType::Fighter); // The human feat is now a required choice.
+    std::string racialSlotId;
+    for (const auto &slot : sheet.toView().feats.slots)
+        if (slot.id != "base.feat.level1") racialSlotId = slot.id;
+    assert(!racialSlotId.empty());
+    sheet.selectFeat(racialSlotId, "powerAttack"); // The first class level already grants BAB +1.
     // Missing HP, ranks, favored bonus, optional class choice and extra feat do not block.
     sheet.addClassLevel(CharacterClassType::Fighter);
     assert(sheet.level() == 2);
@@ -83,6 +91,10 @@ int main()
     restored.removeClassLevel(CharacterClassType::Fighter);
     restored.removeClassLevel(CharacterClassType::Fighter);
     assert(restored.level() == 0);
+    const auto downgraded = restored.toView().feats;
+    const auto racialSlot = std::ranges::find(downgraded.slots, racialSlotId, &FeatSlotView::id);
+    assert(racialSlot != downgraded.slots.end() && !racialSlot->available && racialSlot->featId == "powerAttack");
+    assert(std::ranges::none_of(downgraded.feats, [](const auto &feat) { return feat.active; }));
     std::filesystem::remove(path);
 
     // Known-spell quotas block every casting mode, including free prepared additions.
@@ -102,9 +114,9 @@ int main()
         caster.setAlignment(Alignment::Neutral);
         caster.setRace("human");
         caster.setRacialChoice("human.abilityScores", "ability", {"charisma"});
-        selectHumanFeat(caster);
         caster.setFavoredClass(CharacterClassType::Wizard);
         caster.addClassLevel(CharacterClassType::Wizard);
+        selectHumanFeat(caster);
         caster.selectFeat("base.feat.level1", "improvedInitiative");
         if (mode != SpellcastingMode::Spontaneous)
             caster.addSpellToRepertoire(castingId, "fireball"); // Manual knowledge does not fill the quota.

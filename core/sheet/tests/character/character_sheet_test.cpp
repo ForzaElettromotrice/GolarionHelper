@@ -34,7 +34,8 @@ int main()
     using namespace golarion;
 
     {
-        CharacterSheet raceSheet;
+        const ClassDefinitionManager raceClassCatalog({test::levelOnlyClassDefinition()});
+        CharacterSheet raceSheet(raceClassCatalog);
         CharacterSheetView raceView = raceSheet.toView();
         assert(!raceView.race.race.has_value());
         assert(raceView.race.activeElements.empty());
@@ -50,19 +51,26 @@ int main()
         assert(raceView.movement.grants.size() == 1);
         assert(raceView.reminders.messages.size() == 1);
         assert(raceView.languages.spoken.size() == 1 && raceView.languages.spoken.front().id == "common");
-        assert(raceView.feats.slots.size() == 1 && raceView.feats.slots.front().available);
-        const auto racialFeatSlot = raceView.feats.slots.front().id;
-        raceSheet.selectFeat(racialFeatSlot, "improvedInitiative");
-        assert(raceSheet.toView().feats.feats.front().active);
+        assert(raceView.feats.slots.empty());
 
         raceSheet.setRacialChoice("human.abilityScores", "ability", {"strength"});
         raceView = raceSheet.toView();
         assert(raceView.abilities[0].totalValue == 12);
         assert(std::ranges::find(raceView.race.activeElements, "human.abilityScores", &RacialElementView::id)->missingChoices.empty());
+        raceSheet.setAlignment(Alignment::Neutral);
+        raceSheet.setFavoredClass(CharacterClassType::Fighter);
+        raceSheet.addClassLevel(CharacterClassType::Fighter);
+        raceView = raceSheet.toView();
+        assert(raceView.feats.slots.size() == 2);
+        const auto sourceSlot = std::ranges::find_if(raceView.feats.slots, [](const auto &slot) { return slot.id != "base.feat.level1"; });
+        assert(sourceSlot != raceView.feats.slots.end() && sourceSlot->available);
+        const auto racialFeatSlot = sourceSlot->id;
+        raceSheet.selectFeat(racialFeatSlot, "improvedInitiative");
+        assert(raceSheet.toView().feats.feats.front().active);
 
         raceSheet.selectAlternateRacialFeature("human.dualTalent");
         raceView = raceSheet.toView();
-        assert(!raceView.feats.slots.front().available && !raceView.feats.feats.front().active);
+        assert(!std::ranges::find(raceView.feats.slots, racialFeatSlot, &FeatSlotView::id)->available && !raceView.feats.feats.front().active);
         assert(raceView.race.activeElements.size() == 6);
         assert(std::ranges::find(raceView.race.activeElements, "human.abilityScores", &RacialElementView::id) == raceView.race.activeElements.end());
         assert(raceView.abilities[0].totalValue == 10);
@@ -73,14 +81,14 @@ int main()
 
         raceSheet.removeAlternateRacialFeature("human.dualTalent");
         raceView = raceSheet.toView();
-        assert(raceView.feats.slots.front().available && raceView.feats.feats.front().active);
+        assert(std::ranges::find(raceView.feats.slots, racialFeatSlot, &FeatSlotView::id)->available && raceView.feats.feats.front().active);
         assert(raceView.abilities[0].totalValue == 12);
         assert(raceView.abilities[2].totalValue == 10);
 
         raceSheet.selectAlternateRacialFeature("human.dualTalent");
         const std::filesystem::path raceSavePath = "race_character_sheet_test_save.json";
         raceSheet.save(raceSavePath);
-        CharacterSheet loadedRaceSheet = CharacterSheet::load(raceSavePath);
+        CharacterSheet loadedRaceSheet = CharacterSheet::load(raceSavePath, raceClassCatalog);
         CharacterSheetView loadedRaceView = loadedRaceSheet.toView();
         assert(loadedRaceView.race.race->id == "human");
         assert(loadedRaceView.race.activeElements.size() == 6);
@@ -88,7 +96,7 @@ int main()
         assert(loadedRaceView.abilities[2].totalValue == 12);
         loadedRaceSheet.removeAlternateRacialFeature("human.dualTalent");
         loadedRaceView = loadedRaceSheet.toView();
-        assert(loadedRaceView.feats.slots.front().id == racialFeatSlot);
+        assert(std::ranges::find(loadedRaceView.feats.slots, racialFeatSlot, &FeatSlotView::id)->available);
         assert(loadedRaceView.feats.feats.front().active);
         assert(loadedRaceView.abilities[0].totalValue == 12);
         assert(loadedRaceView.abilities[2].totalValue == 10);
@@ -487,6 +495,22 @@ int main()
     const InventorySaveData restoredInventory = inventoryLoadedSheet.toSaveData().inventory;
     assert(restoredInventory.containers.size() == 1);
     assert(restoredInventory.items.size() == 4);
+    inventoryLoadedSheet.reorderItem("belt.saved", "backpack.saved");
+    inventoryLoadedSheet.reorderItem("backpack.saved");
+    inventoryLoadedSheet.reorderItem("cloak.saved", "cloak.saved");
+    bool crossContainerRejected = false;
+    try { inventoryLoadedSheet.reorderItem("belt.saved", "rope.saved"); }
+    catch (const std::invalid_argument &) { crossContainerRejected = true; }
+    assert(crossContainerRejected);
+    const std::vector<std::string> wornOrder{"belt.saved", "cloak.saved", "backpack.saved"};
+    const auto reordered = inventoryLoadedSheet.toView();
+    const auto worn = std::ranges::find(reordered.inventory.containers, "worn", &InventoryContainerView::id);
+    assert(worn != reordered.inventory.containers.end() && worn->itemIds == wornOrder);
+    assert(reordered.encumbrance.totalWeightGrams == inventoryLoadedView.encumbrance.totalWeightGrams);
+    persistence::saveToFile(inventoryLoadedSheet.toSaveData(), inventorySavePath);
+    const auto reloaded = CharacterSheet::load(inventorySavePath, classCatalog).toView();
+    const auto reloadedWorn = std::ranges::find(reloaded.inventory.containers, "worn", &InventoryContainerView::id);
+    assert(reloadedWorn != reloaded.inventory.containers.end() && reloadedWorn->itemIds == wornOrder);
     const auto restoredBelt = std::ranges::find(restoredInventory.items, "belt.saved", &InventoryItemSaveData::id);
     assert(restoredBelt != restoredInventory.items.end());
     assert(restoredBelt->choices.size() == 1);

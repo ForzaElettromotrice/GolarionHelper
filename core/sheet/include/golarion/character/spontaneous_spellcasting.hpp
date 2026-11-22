@@ -19,6 +19,7 @@ namespace golarion
         ~SpontaneousSpellcasting() override;
 
         SpellCastResult consume(const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition);
+        void validateConsumption(const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition);
         void clear(const SpellSlotId &slot);
         SpontaneousSpellSlotState slotState(const SpellSlotId &slot) const;
         SpontaneousSpellcastingData toData() const;
@@ -26,6 +27,7 @@ namespace golarion
         SpontaneousSpellcastingView toView() const;
 
     private:
+        SpellCastResult consumeImpl(const SpellSlotId &slot, const SpontaneousSpellConsumptionDefinition &definition, bool commit);
         friend class Spellcastings;
         std::function<void()> stageLoad(const SpontaneousSpellcastingData &data);
         SpellSlotId checkedSlot(const SpellSlotId &slot) const;

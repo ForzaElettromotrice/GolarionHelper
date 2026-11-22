@@ -29,5 +29,12 @@ namespace golarion
         int maxRanks = 0;
         int spentRanks = 0;
         int remainingRanks = 0;
+        struct CategoryClassSkillView
+        {
+            SkillType type;
+            bool classSkill;
+            bool customClassSkill;
+        };
+        std::vector<CategoryClassSkillView> categoryClassSkills;
     };
 }

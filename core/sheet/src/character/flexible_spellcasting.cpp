@@ -114,6 +114,14 @@ namespace golarion
         return evaluation;
     }
 
+    void FlexibleSpellcasting::validatePreparation(const SpellSlotId &preparationId, const SpellPreparationDefinition &definition) const
+    {
+        const auto key = checkedSlot(preparationId, preparationGroups_);
+        if (preparations_.contains(key)) throw std::invalid_argument("preparation slot is not free");
+        const auto evaluation = checkedPreparation(key, normalize(definition.spellId), definition.metamagic);
+        MetamagicRegistry::pay(evaluation.usageCosts, false);
+    }
+
     void FlexibleSpellcasting::prepare(const SpellSlotId &preparationId, const SpellPreparationDefinition &definition)
     {
         const auto &[spellId, applications] = definition;
@@ -133,6 +141,16 @@ namespace golarion
     }
 
     SpellCastResult FlexibleSpellcasting::consume(const SpellSlotId &slotId, const FlexibleSpellConsumptionDefinition &definition)
+    {
+        return consumeImpl(slotId, definition, true);
+    }
+
+    void FlexibleSpellcasting::validateConsumption(const SpellSlotId &slotId, const FlexibleSpellConsumptionDefinition &definition)
+    {
+        consumeImpl(slotId, definition, false);
+    }
+
+    SpellCastResult FlexibleSpellcasting::consumeImpl(const SpellSlotId &slotId, const FlexibleSpellConsumptionDefinition &definition, bool commit)
     {
         const auto &[preparationId, applications, mixingPermissionId] = definition;
         const auto slot = checkedSlot(slotId, slotPools());
@@ -170,7 +188,8 @@ namespace golarion
             if (exemption.applies(context)) { preserve = true; break; }
         auto updated = consumedSlots_;
         if (!preserve) updated.insert(slot);
-        MetamagicRegistry::pay(evaluation.usageCosts);
+        MetamagicRegistry::pay(evaluation.usageCosts, commit);
+        if (!commit) return {};
         evaluation.usageCosts.clear();
         consumedSlots_.swap(updated);
         return exportCast(std::move(evaluation));
