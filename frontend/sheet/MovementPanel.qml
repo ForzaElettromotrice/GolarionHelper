@@ -6,6 +6,7 @@ import "ModifierText.js" as ModifierText
 Item {
     id: root
     required property var movement
+    property bool showHeading: true
     enum MovementType { Land, Climb, Swim, Burrow, Fly }
     enum Maneuverability { Clumsy, Poor, Average, Good, Perfect }
     implicitWidth: 420
@@ -47,7 +48,7 @@ Item {
         id: content
         width: Math.min(root.width, root.implicitWidth)
         spacing: 6
-        Label { text: qsTr("Movimento"); font.bold: true; font.pixelSize: 16; color: "#181818" }
+        Label { visible: root.showHeading; text: qsTr("Movimento"); font.bold: true; font.pixelSize: 16; color: "#181818" }
         Label { visible: !root.grants.length; text: qsTr("Nessuna modalità di movimento disponibile."); width: parent.width; wrapMode: Text.Wrap; color: "#666666" }
         Repeater {
             model: root.grants
@@ -55,6 +56,7 @@ Item {
                 id: section
                 required property var modelData
                 readonly property bool supportsRunning: modelData.run?.supported === true
+                readonly property real distanceWidth: Math.min(80, Math.floor(width * 0.24))
                 objectName: "movement_" + modelData.id
                 width: content.width
                 spacing: 4
@@ -63,7 +65,7 @@ Item {
                     height: Math.max(54, names.implicitHeight + 12, speed.implicitHeight + 12, section.supportsRunning ? runLabels.implicitHeight + 12 : 0)
                     spacing: 6
                     Rectangle {
-                        width: section.width - 206
+                        width: Math.max(0, section.width - 46 - 2 * section.distanceWidth)
                         height: parent.height
                         color: "#181818"
                         Column {
@@ -72,14 +74,14 @@ Item {
                             width: parent.width - 20
                             anchors.verticalCenter: parent.verticalCenter
                             spacing: 3
-                            Label { text: root.nameFor(section.modelData.type); color: "white"; font.bold: true; font.pixelSize: 16 }
+                            Label { width: parent.width; wrapMode: Text.Wrap; text: root.nameFor(section.modelData.type); color: "white"; font.bold: true; font.pixelSize: 16 }
                             Label { text: section.modelData.source; textFormat: Text.PlainText; width: parent.width; wrapMode: Text.Wrap; color: "#dddddd"; font.pixelSize: 11 }
                         }
                     }
                     Label {
                         id: speed
                         objectName: "movementSpeed"
-                        width: 80
+                        width: section.distanceWidth
                         height: parent.height
                         text: section.modelData.usable ? root.distance(section.modelData.effectiveUnits) : "—"
                         font.pixelSize: 20
@@ -90,7 +92,7 @@ Item {
                         background: Rectangle { color: "white"; border.color: "#777777" }
                     }
                     Rectangle {
-                        width: 80
+                        width: section.distanceWidth
                         height: parent.height
                         color: "#f2f5f7"
                         border.color: "#c6cfd5"

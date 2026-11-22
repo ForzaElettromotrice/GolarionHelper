@@ -65,6 +65,68 @@ TestCase {
     }
     SignalSpy { id: assignSpy; signalName: "assignRequested" }
     SignalSpy { id: removeSpy; signalName: "removeRequested" }
+    SignalSpy { id: reorderSpy; signalName: "reorderRequested" }
+    SignalSpy { id: renameSpy; signalName: "renameRequested" }
+    function test_renameRoutineOnEnter() {
+        const panel = createTemporaryObject(component, testCase, {attacks: {attacks: [
+            {id: "first", name: "Prima", actionId: "blocked"}
+        ]}, actions: {categories: [{actions: [{id: "blocked", usable: false}]}]}});
+        renameSpy.target = panel;
+        renameSpy.clear();
+        waitForRendering(panel);
+        const button = findChild(panel, "rename_first");
+        const header = findChild(panel, "routine_first");
+        const popup = findChild(panel, "routineRenamePopup");
+        const input = findChild(popup, "routineRenameInput");
+        mouseMove(testCase, 450, 450);
+        verify(!button.visible);
+        mouseMove(header, 15, 10);
+        tryVerify(() => button.visible);
+        compare(button.x, header.contentItem.x + Math.ceil(header.contentItem.contentWidth) + 4);
+        mouseClick(button);
+        tryVerify(() => popup.opened && input.activeFocus);
+        compare(input.text, "Prima");
+        input.text = "  ";
+        keyClick(Qt.Key_Return);
+        compare(renameSpy.count, 0);
+        verify(popup.opened);
+        keyClick(Qt.Key_Escape);
+        tryVerify(() => !popup.opened);
+        compare(renameSpy.count, 0);
+        mouseMove(header, 15, 10);
+        tryVerify(() => button.visible);
+        mouseClick(button);
+        tryVerify(() => popup.opened && input.activeFocus);
+        input.text = " Colpo preciso ";
+        keyClick(Qt.Key_Return);
+        tryVerify(() => !popup.opened);
+        compare(renameSpy.count, 1);
+        compare(Array.from(renameSpy.signalArguments[0]), ["first", "Colpo preciso"]);
+        compare(findChild(panel, "routine_first").text, "Prima");
+    }
+    function test_dragReordersBetweenRoutines() {
+        const snapshot = {attacks: [{id: "first", name: "Prima"}, {id: "second", name: "Seconda"}, {id: "third", name: "Terza"}]};
+        const panel = createTemporaryObject(component, testCase, {attacks: snapshot});
+        reorderSpy.target = panel;
+        reorderSpy.clear();
+        waitForRendering(panel);
+        const first = findChild(panel, "routine_first");
+        const second = findChild(panel, "routine_second");
+        const third = findChild(panel, "routine_third");
+        compare(panel.reorderPlacement("first", "second", false), null);
+        compare(panel.reorderPlacement("first", "second", true).beforeAttackId, "third");
+        mousePress(first, 20, 10);
+        mouseMove(first, 45, 10);
+        mouseMove(third, 45, third.height - 5);
+        tryVerify(() => findChild(panel, "routineInsertion_third").visible);
+        mouseRelease(third, 45, third.height - 5);
+        compare(reorderSpy.count, 1);
+        compare(reorderSpy.signalArguments[0][0], "first");
+        compare(reorderSpy.signalArguments[0][1], null);
+        verify(!first.checked);
+        compare(findChild(panel, "routine_second"), second);
+        compare(snapshot.attacks.map(attack => attack.id), ["first", "second", "third"]);
+    }
     function test_removalLock() {
         const snapshot = {attacks: [{id: "first", name: "Routine", actionId: "blocked"}]};
         const panel = createTemporaryObject(component, testCase, {attacks: snapshot, width: 260,

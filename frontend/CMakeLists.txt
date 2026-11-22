@@ -8,12 +8,20 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     include(CTest)
 endif()
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick QuickControls2 Network)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick QuickControls2 Network Concurrent)
 qt_standard_project_setup(REQUIRES 6.5)
 set(QT_QML_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/qml")
 
-add_subdirectory(app)
+if(NOT TARGET golarion_model)
+    function(add_frontend_sheet_backend)
+        set(BUILD_TESTING OFF)
+        add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../core/sheet" "${CMAKE_CURRENT_BINARY_DIR}/sheet-backend" EXCLUDE_FROM_ALL)
+    endfunction()
+    add_frontend_sheet_backend()
+endif()
+
 add_subdirectory(sheet)
+add_subdirectory(app)
 add_subdirectory(preview)
 
 if(BUILD_TESTING)

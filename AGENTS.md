@@ -6,6 +6,7 @@
 - Keep each change narrowly scoped to the piece explicitly requested by the user.
 - Avoid broad refactors, unrelated cleanup, or multiple features in the same change.
 - Ask before expanding the scope beyond the requested step.
+- Do not change the backend, including its APIs and data, unless the user explicitly asks for a backend change. If a frontend task requires one, explain what is missing and ask before editing the backend.
 - Work directly on the current branch unless the user explicitly requests another branch.
 - Use `.context/README.md` as the project-context entry point.
 - After meaningful changes, update only the relevant `.context/` documents and keep the index's current state and next steps aligned.

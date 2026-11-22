@@ -7,6 +7,7 @@ Item {
     id: root
     enum ManeuverType { BullRush, DirtyTrick, Disarm, Drag, Grapple, Overrun, Reposition, Steal, Sunder, Trip }
     required property var combatManeuvers
+    property bool prominentHeading: false
     implicitWidth: 410
     implicitHeight: table.height
     function nameFor(type) {
@@ -17,6 +18,17 @@ Item {
     function signed(value) { return value == null ? "—" : (value >= 0 ? "+" : "") + value; }
     function bonusText(entry) {
         return [...new Set((entry?.bonus?.abilityOptions ?? []).map(option => signed(option.totalValue)))].join(" / ") || "—";
+    }
+    function situationalBonuses(entry) {
+        const groups = new Map();
+        const totals = [entry?.bonus?.modifiers?.conditionalTotals ?? [], entry?.defense?.modifiers?.conditionalTotals ?? []];
+        for (let index = 0; index < totals.length; ++index) {
+            for (const {condition, value} of totals[index]) {
+                if (!groups.has(condition)) groups.set(condition, [0, 0]);
+                groups.get(condition)[index] = value;
+            }
+        }
+        return Array.from(groups, ([condition, values]) => ({condition: condition, values: values, labels: [qsTr("BMC"), qsTr("DMC")]}));
     }
     function detailRows(entry) {
         if (!entry) return [{kind: InfoDetails.Note, text: qsTr("Dati non disponibili.")}];
@@ -49,8 +61,20 @@ Item {
     }
     Column {
         id: table
-        width: Math.min(root.width, root.implicitWidth)
+        width: root.prominentHeading ? root.width : Math.min(root.width, root.implicitWidth)
         spacing: 4
+        Label {
+            visible: root.prominentHeading
+            width: parent.width
+            height: 42
+            text: qsTr("Manovre")
+            leftPadding: 12
+            font.pixelSize: 20
+            font.bold: true
+            color: "white"
+            verticalAlignment: Text.AlignVCenter
+            background: Rectangle { color: "#181818" }
+        }
         Row {
             height: 30
             Label { width: table.width - 168; height: parent.height; text: qsTr("Manovra"); verticalAlignment: Text.AlignVCenter }
@@ -108,6 +132,11 @@ Item {
                         height: parent.height
                         Accessible.name: qsTr("Dettaglio di ") + root.nameFor(section.index)
                     }
+                }
+                SituationalBonusCards {
+                    objectName: "maneuverSituational_" + section.index
+                    width: section.width - info.width
+                    entries: root.situationalBonuses(section.entry)
                 }
                 InfoDetails {
                     objectName: "maneuverDetails_" + section.index

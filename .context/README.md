@@ -8,13 +8,30 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 - The Qt Quick desktop Sessioni page creates campaigns, hosts them, and resumes saved memberships. It can move hosted campaigns to the system trash after a typed confirmation, or remove a joined campaign's local credential after confirmation. Live sessions display participant names with Host and Tu labels and offer a permission dialog on editable participant rows. See [frontend](frontend.md#desktop-application).
 
+- The desktop sheet Home tab shows live abilities, armor class, HP and defenses, initiative, saves, movement, active conditions and skills in a responsive layout. The local controller supports HP, ability and skill editing. See [frontend](frontend.md).
+- The desktop sheet Combattimento tab shows live routines, combat maneuvers, and actions, including situational bonuses. The local controller supports routine configuration and strike assignment. See [frontend](frontend.md).
+
+- Schede lists local character files and offers creation and import. The desktop controller opens each file in the embeddable sheet page and automatically saves accepted edits; the file list is stored in desktop settings, not in the model. See [frontend](frontend.md).
+
+- Azioni displays actions outside attack routines, their effective costs and any inhibition reasons in the preview. See [frontend](frontend.md).
+
+- The desktop sheet Inventario tab shows live equipment, items, coins and encumbrance. The local controller handles inventory edits while keeping the approved preview layout. See [frontend](frontend.md).
+- Razza and Classi have separate live desktop tabs. Classi supports level changes, class feature choices, archetypes, hit dice and favored-class bonuses. Incantesimi will have its own tab. See [frontend](frontend.md).
+
+- Scelte aperte has a sheet preview panel organized by advancement impact, with subsystem navigation. See [frontend](frontend.md).
+
+- Promemoria displays sheet reminder messages; the preview demonstrates updates when bleeding entries change. See [frontend](frontend.md).
+- Capacità has a live desktop tab with languages on the left, reminders in the center and feats on the right. Incantesimi has a separate live desktop tab with class casting above granted spells. See [frontend](frontend.md).
+
+- Condizioni lists all sheet conditions in a preview grid, with click-to-toggle for manual entries and read-only automatic states. See [frontend](frontend.md).
+
+- Note has a plain-text editor in the live sheet and preview. Enter submits and Shift+Enter adds a line break. See [frontend](frontend.md).
+
 - `Session` composes typed `toView()` and `toData()` snapshots from subsystem projections. The Qt controller consumes session and campaign views for presentation and campaign data for persistence. See [game management](game-management.md#desktop-hosted-campaigns).
 
-- Initial Inventario frontend layout is ready: silhouette/equipment slots on the left, expandable object/container hierarchy on the right, responsive stacking on narrow windows. This step is visual-only, with synthetic preview data; item commands/controller wiring are next. See [frontend](frontend.md).
-
-- Class frontend now has an Archetipi picker beside Privilegi ottenuti and removal controls for selected archetypes. The catalog helper is class-filtered, not compatibility-filtered; mutations remain request-only until controller integration. See [frontend](frontend.md).
-
-- Class frontend headers offer a favored-class star, an editable hit die per level and a corresponding favored-bonus selector below each eligible die, including combined-benefit symbols. All emit requests only and wait for a new authoritative View. See [frontend](frontend.md).
+- The Incantesimi panel groups repertoire and slots by level, lists known metamagic, and supports all three casting modes in the synthetic preview. Flexible preparations and casting slots are independent and both support a metamagic picker. Live eligibility and dispatch remain deferred. See [frontend](frontend.md).
+- Incantesimi concessi has a separate panel for limited, at-will, constant and item-charge grants. Item info can restore or refill charges, and the preview shares the reserve between inventory and casting. See [frontend](frontend.md).
+- Potenziamenti and Condizioni have separate live desktop tabs. Potenziamenti supports custom groups and numeric effects; Condizioni supports manual entries and individual bleeding instances. See [frontend](frontend.md) and [enhancement groups](model/enhancements.md).
 
 - Permanent user class-skill grants now have dedicated add/remove sheet APIs, independent of Enhancements. `customClassSkill` is exposed in Data/View and saved in format 43; see [checks and health](model/checks-and-health.md). Frontend checkbox wiring remains deferred.
 

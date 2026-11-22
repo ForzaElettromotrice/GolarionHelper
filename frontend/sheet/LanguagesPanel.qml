@@ -4,8 +4,9 @@ import QtQuick.Controls
 
 Item {
     id: root
-    enum Origin { Intelligence, Linguistics }
+    enum Origin { Intelligence, Linguistics, Extra, CustomLinguistics }
     required property var languages
+    property bool prominentHeading: false
     property var languageNames: ({})
     property var extraLanguageIds: []
     signal addRequested(string languageId, int origin)
@@ -62,24 +63,35 @@ Item {
     }
     Column {
         id: content
-        width: Math.min(root.width, root.implicitWidth)
+        width: root.prominentHeading ? root.width : Math.min(root.width, root.implicitWidth)
         spacing: 8
         Row {
             width: parent.width
-            height: 32
+            height: root.prominentHeading ? 42 : 32
             Label {
+                objectName: "sectionHeading"
                 width: parent.width - 32
-                height: 32
+                height: parent.height
                 text: qsTr("Lingue")
-                font.pixelSize: 16
+                font.pixelSize: root.prominentHeading ? 20 : 16
                 font.bold: true
+                leftPadding: root.prominentHeading ? 12 : 0
+                color: root.prominentHeading ? "white" : "#181818"
                 verticalAlignment: Text.AlignVCenter
+                background: Rectangle {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.rightMargin: -32
+                    color: "#181818"
+                    visible: root.prominentHeading
+                }
             }
             ToolButton {
                 id: extraButton
                 objectName: "addExtraLanguage"
                 readonly property alias choicesPopup: extraMenu
-                width: 32; height: 32
+                width: 32; height: parent.height
+                palette.buttonText: root.prominentHeading ? "white" : "#181818"
                 text: "+"
                 font.pixelSize: 24
                 Accessible.name: qsTr("Aggiungi una lingua extra senza consumare posti")
@@ -152,6 +164,7 @@ Item {
                     Rectangle {
                         id: languageRow
                         required property var modelData
+                        readonly property bool removable: modelData.removable ?? (modelData.learnedFrom != null)
                         objectName: "language_" + modelData.id
                         width: group.width
                         implicitHeight: labels.height + 16
@@ -161,7 +174,7 @@ Item {
                         Column {
                             id: labels
                             x: 10; y: 8
-                            width: parent.width - (languageRow.modelData.learnedFrom != null ? 44 : 20)
+                            width: parent.width - (languageRow.removable ? 44 : 20)
                             spacing: 3
                             Label {
                                 width: parent.width
@@ -185,7 +198,7 @@ Item {
                         ToolButton {
                             id: removeButton
                             objectName: "removeLanguage_" + languageRow.modelData.id
-                            visible: languageRow.modelData.learnedFrom != null
+                            visible: languageRow.removable
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
                             width: 32; height: 32

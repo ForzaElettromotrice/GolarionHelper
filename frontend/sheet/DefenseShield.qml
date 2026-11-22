@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
+import "ShieldShape.js" as ShieldShape
 
 Item {
     id: root
@@ -8,12 +9,15 @@ Item {
     required property string value
     property string subtitle: ""
     property bool inlineValue: false
+    property bool heraldicShape: false
     property color fillColor: "#edf1ee"
     property color accentColor: "#425649"
     onFillColorChanged: shieldCanvas.requestPaint()
     onAccentColorChanged: shieldCanvas.requestPaint()
+    onHeraldicShapeChanged: shieldCanvas.requestPaint()
     implicitWidth: 100
-    implicitHeight: Math.max(inlineValue ? 70 : 90, labels.implicitHeight + 34)
+    implicitHeight: Math.max(inlineValue ? 70 : 90, labels.implicitHeight + 34,
+                             heraldicShape ? width * ShieldShape.heightToWidthRatio : 0)
     Canvas {
         id: shieldCanvas
         anchors.fill: parent
@@ -22,24 +26,30 @@ Item {
         onPaint: {
             const ctx = getContext("2d");
             ctx.clearRect(0, 0, width, height);
-            ctx.beginPath();
-            ctx.moveTo(2, 2);
-            ctx.lineTo(width - 2, 2);
-            ctx.lineTo(width - 2, height - 30);
-            ctx.quadraticCurveTo(width - 2, height - 15, width / 2, height - 2);
-            ctx.quadraticCurveTo(2, height - 15, 2, height - 30);
-            ctx.closePath();
+            if (root.heraldicShape) {
+                ShieldShape.trace(ctx, width, height);
+            } else {
+                ctx.beginPath();
+                ctx.moveTo(2, 2);
+                ctx.lineTo(width - 2, 2);
+                ctx.lineTo(width - 2, height - 30);
+                ctx.quadraticCurveTo(width - 2, height - 15, width / 2, height - 2);
+                ctx.quadraticCurveTo(2, height - 15, 2, height - 30);
+                ctx.closePath();
+            }
             ctx.fillStyle = root.fillColor;
             ctx.fill();
             ctx.strokeStyle = root.accentColor;
+            ctx.lineJoin = "round";
             ctx.lineWidth = 1.5;
             ctx.stroke();
         }
     }
     Column {
         id: labels
-        x: 8; y: 10
-        width: parent.width - 16
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: root.heraldicShape ? Math.round((root.height - implicitHeight) / 2 - 5) : 10
+        width: Math.max(0, parent.width - 16)
         spacing: 4
         Label {
             width: parent.width

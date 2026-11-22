@@ -45,8 +45,29 @@ TestCase {
         const info = findChild(panel, "armorClassInfo");
         const position = info.mapToItem(row, 0, 0);
         verify(position.y > findChild(row, "score").mapToItem(row, 0, findChild(row, "score").height).y);
-        verify(position.y + info.height < row.height);
+        verify(position.y >= row.height);
         compare(position.x + info.width / 2, row.width / 2);
+        panel.width = 600;
+        waitForRendering(panel);
+        compare(row.mapToItem(panel, row.width / 2, 0).x, panel.width / 2);
+        verify(row.height >= row.width * 1.2);
+    }
+    function test_situationalBonusesMatchCenterShield() {
+        const data = sample();
+        data.abilityOptions[0].values[0].modifiers.conditionalTotals = [
+            {condition: "Contro i giganti", value: 4}, {condition: "Nullo", value: 0}];
+        data.abilityOptions[0].values[1].modifiers.conditionalTotals = [{condition: "Solo a contatto", value: 2}];
+        const panel = createTemporaryObject(component, testCase, {armorClass: data, width: 260});
+        const shield = findChild(panel, "armorClass0");
+        const cards = findChild(panel, "situationalBonuses");
+        verify(cards.visible);
+        compare(cards.displayedEntries.length, 1);
+        compare(findChild(cards, "situationalBonusValue").text, "+4");
+        compare(cards.width, shield.width);
+        const position = cards.mapToItem(shield, 0, 0);
+        fuzzyCompare(position.x, 0, 0.01);
+        verify(position.y >= shield.height);
+        compare(findChild(shield, "score").text, "19");
     }
     function test_alternativesAndMissing() {
         const data = sample();

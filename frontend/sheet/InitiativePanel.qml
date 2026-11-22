@@ -33,12 +33,12 @@ Item {
         Row {
             width: parent.width
             height: Math.max(48, score.implicitHeight + 16)
-            spacing: 6
             Label {
-                width: content.width - 114
+                width: content.width - 108
                 height: parent.height
                 text: qsTr("Iniziativa")
-                padding: 10
+                leftPadding: 14
+                rightPadding: 12
                 font.pixelSize: 16
                 font.bold: true
                 color: "white"
@@ -48,16 +48,23 @@ Item {
             Label {
                 id: score
                 objectName: "initiativeScore"
-                width: 74
+                width: 80
                 height: parent.height
+                leftPadding: 6
                 text: root.options.length ? [...new Set(root.options.map(option => option.totalValue))].map(value => root.signed(value)).join(" / ") : "—"
-                font.pixelSize: 22
+                font.pixelSize: 20
                 color: "#181818"
                 wrapMode: Text.Wrap
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 Accessible.name: qsTr("Punteggio di iniziativa")
-                background: Rectangle { color: "white"; border.color: "#777777" }
+                background: Rectangle {
+                    x: 6
+                    width: parent.width - 6
+                    height: parent.height
+                    color: "white"
+                    border.color: "#777777"
+                }
             }
             InfoButton {
                 id: info
@@ -68,7 +75,7 @@ Item {
         }
         InfoDetails {
             objectName: "initiativeDetails"
-            width: content.width - info.width - 6
+            width: content.width - info.width
             visible: info.checked
             rows: root.detailRows
         }

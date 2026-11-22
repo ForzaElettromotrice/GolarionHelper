@@ -9,6 +9,26 @@ TestCase {
     visible: true
     when: windowShown
     Component { id: component; DefensesPanel {} }
+    function test_wrapsWhenWidthRunsOut() {
+        const panel = createTemporaryObject(component, testCase, {width: 750, defenses: {}});
+        for (const presentation of [DefensesPanel.Tags, DefensesPanel.Shields]) {
+            const snapshot = count => ({
+                immunities: Array.from({length: count}, () => ({name: "Sonno", grants: []})),
+                damageReductions: Array.from({length: count}, () => ({effectiveValue: 5, bypass: {anyOf: []}}))
+            });
+            panel.width = 750;
+            panel.presentation = presentation;
+            panel.defenses = snapshot(1);
+            waitForRendering(panel);
+            tryVerify(() => panel.implicitHeight > 0);
+            const oneRow = panel.implicitHeight;
+            panel.defenses = snapshot(6);
+            waitForRendering(panel);
+            compare(panel.implicitHeight, oneRow);
+            panel.width = 400;
+            tryVerify(() => panel.implicitHeight > oneRow);
+        }
+    }
     function test_emptyAndUpdates() {
         const panel = createTemporaryObject(component, testCase, {defenses: {}});
         waitForRendering(panel);
@@ -54,6 +74,8 @@ TestCase {
         compare(panel.badges.length, 2);
         compare(panel.badges[0].kind, DefensesPanel.Immunity);
         compare(panel.badges[1].kind, DefensesPanel.Vulnerability);
+        compare(panel.badges[1].entry.energy, DefensesPanel.Cold);
+        verify(!panel.badges[1].shield);
         panel.presentation = DefensesPanel.Shields;
         compare(panel.badges.length, 1);
         compare(panel.badges[0].kind, DefensesPanel.Reduction);

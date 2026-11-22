@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
 import "ModifierText.js" as ModifierText
+import "ShieldShape.js" as ShieldShape
 
 Item {
     id: root
@@ -25,6 +26,17 @@ Item {
         })).filter(entry => entry.value !== undefined);
     }
     function signed(value) { return value === undefined ? "—" : (value >= 0 ? "+" : "") + value; }
+    function situationalBonuses() {
+        const options = optionsFor(ArmorClassPanel.Normal).map(entry =>
+            new Map((entry.value.modifiers?.conditionalTotals ?? []).map(total => [total.condition, total.value])));
+        const conditions = new Set();
+        for (const option of options)
+            for (const condition of option.keys()) conditions.add(condition);
+        return Array.from(conditions, condition => ({
+            condition: condition,
+            values: [...new Set(options.map(option => option.get(condition) ?? 0))]
+        }));
+    }
     function detailRows(type) {
         const options = optionsFor(type);
         if (!options.length) return [{kind: InfoDetails.Note, text: qsTr("Dati non disponibili.")}];
@@ -50,11 +62,13 @@ Item {
 
     Column {
         id: table
-        width: Math.min(root.width, root.implicitWidth)
+        readonly property real primaryShieldWidth: width * 0.36
+        width: Math.min(root.width, 360)
+        anchors.horizontalCenter: parent.horizontalCenter
         spacing: 4
         Item {
             width: parent.width
-            height: valuesRow.height
+            height: valuesRow.height + info.height
         Row {
             id: valuesRow
             width: parent.width
@@ -66,38 +80,23 @@ Item {
                     required property int modelData
                     readonly property bool primary: modelData === ArmorClassPanel.Normal
                     objectName: "armorClass" + modelData
-                    width: primary ? table.width * 0.36 : (table.width * 0.64 - 16) / 2
-                    height: Math.max(144, labels.implicitHeight + 44)
+                    width: primary ? table.primaryShieldWidth : (table.width - table.primaryShieldWidth - 2 * valuesRow.spacing) / 2
+                    height: Math.max(124, table.primaryShieldWidth * ShieldShape.heightToWidthRatio, labels.implicitHeight + 44)
                     Canvas {
                         width: parent.width
-                        height: cell.primary ? parent.height : Math.max(108, labels.implicitHeight + 40)
+                        height: cell.primary ? parent.height : Math.max(94, width * ShieldShape.heightToWidthRatio, labels.implicitHeight + 40)
                         anchors.verticalCenter: parent.verticalCenter
                         onWidthChanged: requestPaint()
                         onHeightChanged: requestPaint()
                         onPaint: {
                             const ctx = getContext("2d");
                             ctx.clearRect(0, 0, width, height);
-                            function shield(inset) {
-                                ctx.beginPath();
-                                ctx.moveTo(inset, 10 + inset);
-                                ctx.quadraticCurveTo(width / 2, inset - 6, width - inset, 10 + inset);
-                                ctx.lineTo(width - inset, height * 0.58);
-                                ctx.quadraticCurveTo(width - inset, height * 0.8, width / 2, height - inset);
-                                ctx.quadraticCurveTo(inset, height * 0.8, inset, height * 0.58);
-                                ctx.closePath();
-                            }
-                            shield(3);
-                            const gradient = ctx.createLinearGradient(0, 0, width, height);
-                            gradient.addColorStop(0, "#f3f6f8");
-                            gradient.addColorStop(1, "#c8d1d9");
-                            ctx.fillStyle = gradient;
+                            ShieldShape.trace(ctx, width, height);
+                            ctx.fillStyle = cell.primary ? "#181818" : "#ffffff";
                             ctx.fill();
-                            ctx.strokeStyle = "#596b7b";
-                            ctx.lineWidth = 1.5;
-                            ctx.stroke();
-                            shield(9);
-                            ctx.strokeStyle = "#96a5b2";
-                            ctx.lineWidth = 1;
+                            ctx.strokeStyle = cell.primary ? "#181818" : "#777777";
+                            ctx.lineJoin = "round";
+                            ctx.lineWidth = cell.primary ? 2.5 : 1.5;
                             ctx.stroke();
                         }
                     }
@@ -111,7 +110,7 @@ Item {
                         Label {
                             width: parent.width
                             text: cell.primary ? qsTr("CA") : root.nameFor(cell.modelData)
-                            color: "#526473"
+                            color: cell.primary ? "#ffffff" : "#555555"
                             font.pixelSize: cell.primary ? 17 : 12
                             font.bold: cell.primary
                             wrapMode: Text.Wrap
@@ -124,7 +123,7 @@ Item {
                                 const values = root.optionsFor(cell.modelData).map(entry => entry.value.totalValue);
                                 return values.length ? [...new Set(values)].join(" / ") : "—";
                             }
-                            color: "#263b4c"
+                            color: cell.primary ? "#ffffff" : "#181818"
                             font.pixelSize: cell.primary ? 34 : 23
                             font.bold: cell.primary
                             wrapMode: Text.Wrap
@@ -140,10 +139,14 @@ Item {
             objectName: "armorClassInfo"
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 18
             height: 24
             Accessible.name: qsTr("Dettagli della Classe Armatura")
         }
+        }
+        SituationalBonusCards {
+            x: (table.width - width) / 2
+            width: table.primaryShieldWidth
+            entries: root.situationalBonuses()
         }
         InfoDetails {
             objectName: "armorClassDetails"

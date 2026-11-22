@@ -8,7 +8,6 @@ Item {
     required property var defenses
     enum Presentation { All, Shields, Tags }
     property int presentation: DefensesPanel.All
-    property int maximumItemsPerRow: 3
     enum DisplayKind { Immunity, Reduction, Resistance, Vulnerability }
     enum DamageType { Bludgeoning, Piercing, Slashing, Acid, Cold, Electricity, Fire, Sonic, Force, PositiveEnergy, NegativeEnergy, Untyped }
     enum BypassTrait { BludgeoningBypass, PiercingBypass, SlashingBypass, Magic, Epic, Adamantine, Silver, ColdIron, Good, Evil, Lawful, Chaotic }
@@ -27,7 +26,7 @@ Item {
         case DefensesPanel.Force: return {fill: "#f5e0ef", accent: "#8b426f"};
         case DefensesPanel.PositiveEnergy: return {fill: "#fff3df", accent: "#946016"};
         case DefensesPanel.NegativeEnergy: return {fill: "#e1e2ec", accent: "#484c70"};
-        default: return {fill: "#edf1ee", accent: "#425649"};
+        default: return {fill: "#d9d9d9", accent: "#181818"};
         }
     }
     function energyName(type) {
@@ -50,35 +49,39 @@ Item {
         {kind: DefensesPanel.Immunity, joinedList: true, title: qsTr("Immunità"), entries: (defenses?.immunities ?? []).map(entry => qualified(entry.name, contexts(entry.grants)))},
         {kind: DefensesPanel.Reduction, values: Array.from(defenses?.damageReductions ?? []).sort((left, right) => right.effectiveValue - left.effectiveValue), title: qsTr("Riduzione del danno · RD"), entries: Array.from(defenses?.damageReductions ?? []).sort((left, right) => right.effectiveValue - left.effectiveValue).map(entry => qualified(entry.effectiveValue + "/" + bypassText(entry.bypass), entry.applicability))},
         {kind: DefensesPanel.Resistance, values: defenses?.energyResistances ?? [], title: qsTr("Resistenze energetiche · RE"), entries: (defenses?.energyResistances ?? []).map(entry => energyName(entry.energy) + " " + entry.effectiveValue)},
-        {kind: DefensesPanel.Vulnerability, joinedList: true, title: qsTr("Vulnerabilità"), entries: (defenses?.energyVulnerabilities ?? []).map(entry => qualified(energyName(entry.energy), contexts(entry.grants)))}
+        {kind: DefensesPanel.Vulnerability, values: defenses?.energyVulnerabilities ?? [], joinedList: true, title: qsTr("Vulnerabilità"), entries: (defenses?.energyVulnerabilities ?? []).map(entry => qualified(energyName(entry.energy), contexts(entry.grants)))}
     ].filter(section => section.entries.length > 0)
 
     readonly property var badges: sections.reduce((result, section) => result.concat(section.entries.map((text, index) => ({
-        kind: section.kind, text: text, entry: section.values?.[index]
+        kind: section.kind, text: text, entry: section.values?.[index],
+        shield: section.kind === DefensesPanel.Reduction || section.kind === DefensesPanel.Resistance
     }))), []).filter(badge => presentation === DefensesPanel.All ||
-        (presentation === DefensesPanel.Shields ? badge.entry !== undefined : badge.entry === undefined))
+        (presentation === DefensesPanel.Shields ? badge.shield : !badge.shield))
     Flow {
         id: content
-        width: Math.min(root.width, root.maximumItemsPerRow * root.badgeWidth + Math.max(0, root.maximumItemsPerRow - 1) * spacing)
-        spacing: 6
+        width: root.width
+        spacing: 4
         Repeater {
             model: root.badges
             Item {
                 id: badge
                 required property var modelData
-                readonly property bool shield: modelData.entry !== undefined
+                readonly property bool shield: modelData.shield
                 readonly property bool reduction: modelData.kind === DefensesPanel.Reduction
-                width: Math.min(root.badgeWidth, content.width)
+                readonly property var energyColors: root.energyPalette(modelData.entry?.energy)
+                width: Math.min(shield ? Math.round(root.badgeWidth * 0.76) : root.badgeWidth, content.width)
                 height: shield ? defenseShield.implicitHeight : Math.max(38, tag.implicitHeight)
                 DefenseShield {
                     id: defenseShield
                     visible: badge.shield
                     width: parent.width
+                    anchors.horizontalCenter: parent.horizontalCenter
                     title: badge.reduction ? qsTr("RD") : qsTr("RE")
                     value: String(badge.modelData.entry?.effectiveValue ?? "")
                     inlineValue: true
-                    fillColor: badge.reduction ? "#edf1ee" : root.energyPalette(badge.modelData.entry?.energy).fill
-                    accentColor: badge.reduction ? "#425649" : root.energyPalette(badge.modelData.entry?.energy).accent
+                    heraldicShape: true
+                    fillColor: badge.energyColors.fill
+                    accentColor: badge.energyColors.accent
                     subtitle: {
                         if (!badge.reduction) return root.energyName(badge.modelData.entry?.energy);
                         const text = root.qualified(root.bypassText(badge.modelData.entry?.bypass), badge.modelData.entry?.applicability);
@@ -98,13 +101,15 @@ Item {
                     font.pixelSize: 14
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    color: badge.modelData.kind === DefensesPanel.Vulnerability ? "#805026" : "#344d60"
+                    color: badge.energyColors.accent
                     Accessible.name: (badge.modelData.kind === DefensesPanel.Vulnerability ? qsTr("Vulnerabilità: ") : qsTr("Immunità: ")) + badge.modelData.text
                     background: Rectangle {
                         radius: 5
-                        color: badge.modelData.kind === DefensesPanel.Vulnerability ? "#fbefde" : "#eaf0f5"
+                        color: badge.energyColors.fill
                     }
                     Canvas {
+                        readonly property color ink: tag.color
+                        onInkChanged: requestPaint()
                         x: 8
                         width: 16
                         height: 16
@@ -112,7 +117,7 @@ Item {
                         onPaint: {
                             const ctx = getContext("2d");
                             ctx.clearRect(0, 0, width, height);
-                            ctx.strokeStyle = tag.color;
+                            ctx.strokeStyle = ink;
                             ctx.lineWidth = 1.2;
                             ctx.lineJoin = "round";
                             ctx.lineCap = "round";

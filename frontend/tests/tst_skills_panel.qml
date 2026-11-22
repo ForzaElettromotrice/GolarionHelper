@@ -15,12 +15,45 @@ TestCase {
     SignalSpy { id: requested; signalName: "specializationAddRequested" }
     SignalSpy { id: rankRequested; signalName: "ranksChangeRequested" }
     SignalSpy { id: removalRequested; signalName: "specializationRemoveRequested" }
+    SignalSpy { id: classSkillRequested; signalName: "classSkillChangeRequested" }
     function sample() {
         return [
-            { name: "Volare", resourceName: "skill.fly", ranks: 0, classSkill: false, usable: true, abilityOptions: [{totalValue: -2}] },
+            { type: 34, name: "Volare", resourceName: "skill.fly", ranks: 0, classSkill: false, usable: true, abilityOptions: [{totalValue: -2}] },
             { name: "Acrobazia", resourceName: "skill.acrobatics", ranks: 2, effectiveRanks: 6, classSkill: true, usable: true, abilityOptions: [{totalValue: 7}] },
             { type: SkillsPanel.Craft, specializationId: "glass", name: "Vetro", resourceName: "skill.craft.glass", ranks: 1, classSkill: false, usable: true, abilityOptions: [{totalValue: 3}] }
         ];
+    }
+    function test_customClassSkillWaitsForSnapshot() {
+        classSkillRequested.target = panel;
+        classSkillRequested.clear();
+        const checkbox = findChild(findChild(panel, "skill.fly"), "classSkill");
+        mouseClick(checkbox);
+        compare(classSkillRequested.count, 1);
+        compare(classSkillRequested.signalArguments[0][1], true);
+        verify(!checkbox.checked);
+        panel.skills = sample().map(entry => entry.resourceName === "skill.fly"
+            ? Object.assign({}, entry, {classSkill: true, customClassSkill: true}) : entry);
+        const updated = findChild(findChild(panel, "skill.fly"), "classSkill");
+        verify(updated.checked);
+        mouseClick(updated);
+        compare(classSkillRequested.count, 2);
+        compare(classSkillRequested.signalArguments[1][1], false);
+        verify(updated.checked);
+    }
+    function test_categoryClassSkillUsesAuthoritativeOwnership() {
+        classSkillRequested.target = panel;
+        classSkillRequested.clear();
+        const categoryName = "specializationCategory" + SkillsPanel.Craft;
+        const row = findChild(panel, categoryName);
+        verify(row !== null);
+        const checkbox = findChild(row, "classSkill");
+        mouseClick(checkbox);
+        compare(classSkillRequested.count, 1);
+        compare(Array.from(classSkillRequested.signalArguments[0]), [SkillsPanel.Craft, true]);
+        panel.skillCategories = [{type: SkillsPanel.Craft, classSkill: true, customClassSkill: false}];
+        const granted = findChild(findChild(panel, categoryName), "classSkill");
+        verify(granted.checked);
+        verify(!granted.checkable);
     }
     function init() {
         panel = createTemporaryObject(component, testCase, { skills: sample() });
@@ -45,6 +78,26 @@ TestCase {
         mouseClick(checkbox);
         verify(checkbox.checked);
         compare(findChild(findChild(panel, "skill.fly"), "score").text, "-2");
+    }
+    function test_situationalBonusesAreVisibleWithoutOpeningDetails() {
+        const snapshot = sample();
+        snapshot[1].abilityOptions[0].modifiers = {conditionalTotals: [
+            {condition: "Per saltare", value: 2}, {condition: "Su superfici scivolose", value: -2},
+            {condition: "In condizioni normali", value: 0}
+        ]};
+        snapshot[1].abilityOptions.push({totalValue: 5, modifiers: {conditionalTotals: [{condition: "Per saltare", value: 1}]}});
+        panel.skills = snapshot;
+        const row = findChild(panel, "skill.acrobatics");
+        const list = findChild(row, "situationalBonuses");
+        const cards = Array.from(list.children).filter(child => child.objectName === "situationalBonus");
+        compare(cards.length, 2);
+        compare(findChild(cards[0], "situationalBonusValue").text, "+2 / +1");
+        compare(findChild(cards[1], "situationalBonusValue").text, "-2 / —");
+        verify(list.visible);
+        const score = findChild(row, "score");
+        compare(list.x + list.width, score.background.mapToItem(row, score.background.width, 0).x);
+        verify(!findChild(row, "skillDetails").visible);
+        compare(findChild(row, "score").text, "+7 / +5");
     }
     function test_updatesAndAlternativeScores() {
         const next = sample();

@@ -12,6 +12,7 @@ Item {
     enum BonusType { Generic, Alchemical, Armor, NaturalArmor, Circumstance, Insight, Competence, Deflection, Luck, Inherent, Morale, Enhancement, Profane, Racial, Resistance, Sacred, Dodge, Shield, Size }
 
     required property var abilities
+    property bool readOnly: false
     signal baseValueChangeRequested(int abilityType, int baseValue)
     implicitWidth: 340
     implicitHeight: table.height
@@ -67,23 +68,6 @@ Item {
         id: table
         width: Math.min(root.width, root.implicitWidth)
         spacing: 4
-        Row {
-            width: parent.width
-            spacing: 6
-            Repeater {
-                model: [qsTr("Caratteristica"), qsTr("Punteggio"), qsTr("Modificatore")]
-                Label {
-                    required property string modelData
-                    width: (table.width - 46) / 3
-                    height: 28
-                    text: modelData
-                    color: "#222222"
-                    font.pixelSize: 12
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
-            }
-        }
         Repeater {
             model: 6
             Column {
@@ -149,7 +133,7 @@ Item {
                         }
                         Label {
                             objectName: "totalValue"
-                            visible: !scoreHover.hovered && !baseInput.activeFocus
+                            visible: root.readOnly || (!scoreHover.hovered && !baseInput.activeFocus)
                             anchors.fill: parent
                             text: row.ability ? String(row.ability.totalValue) : "—"
                             color: "#181818"
@@ -163,7 +147,7 @@ Item {
                             id: baseInput
                             objectName: "baseInput"
                             anchors.fill: parent
-                            visible: scoreHover.hovered || activeFocus
+                            visible: !root.readOnly && (scoreHover.hovered || activeFocus)
                             enabled: row.ability !== null && row.ability.baseValue > 0
                             selectByMouse: true
                             color: "#181818"

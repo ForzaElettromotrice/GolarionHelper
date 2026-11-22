@@ -6,6 +6,7 @@
 
 #include "golarion/character/feat_definition_manager.hpp"
 #include "golarion/character/class_definition_manager.hpp"
+#include "golarion/character/character_sheet.hpp"
 #include "golarion/character/race_definition_manager.hpp"
 
 Q_IMPORT_QML_PLUGIN(GolarionSheetPlugin)
@@ -79,7 +80,57 @@ int main(int argc, char *argv[])
             archetypes.push_back(QVariantMap{{"id", QString::fromStdString(archetype.id)}, {"name", QString::fromStdString(archetype.name)}, {"description", QString::fromStdString(archetype.description)}});
         archetypeCatalog.insert(QString::number(value), archetypes);
     }
-    engine.setInitialProperties({{"featCatalog", featCatalog}, {"raceCatalog", raceCatalog}, {"raceAlternateCatalog", raceAlternateCatalog}, {"classCatalog", classCatalog}, {"archetypeCatalog", archetypeCatalog}});
+    QVariantList conditionCatalog;
+    golarion::CharacterSheet sampleSheet;
+    QStringList expressionTargetCatalog;
+    for (const auto &name : sampleSheet.expressionTargetNames())
+        expressionTargetCatalog.push_back(QString::fromStdString(name));
+    sampleSheet.addCondition(golarion::ConditionEntry({"preview.staggered", "staggered", "Anteprima"}));
+    const auto sheetView = sampleSheet.toView();
+    for (const auto &condition : sheetView.conditions.conditions)
+    {
+        QVariantList stages;
+        for (const auto &stage : condition.stages)
+        {
+            QStringList effects;
+            QVariantList derivedConditions;
+            for (const auto &effect : stage.effects)
+                effects.push_back(QString::fromStdString(effect.description));
+            for (const auto &derived : stage.derivedConditions)
+                derivedConditions.push_back(QVariantMap{{"id", QString::fromStdString(derived.conditionId)}, {"severity", derived.severity}});
+            stages.push_back(QVariantMap{{"name", QString::fromStdString(stage.name)}, {"severity", stage.severity},
+                {"effects", effects}, {"derivedConditions", derivedConditions}});
+        }
+        QVariantMap entry{{"id", QString::fromStdString(condition.id)}, {"name", QString::fromStdString(condition.name)}, {"stages", stages}};
+        if (condition.entryParameterName)
+            entry.insert("entryParameterName", QString::fromStdString(*condition.entryParameterName));
+        conditionCatalog.push_back(entry);
+    }
+    QVariantList actionCategories;
+    for (const auto &category : sheetView.actions.categories)
+    {
+        QVariantList actions;
+        for (const auto &action : category.actions)
+        {
+            QVariantList inhibitions;
+            for (const auto &inhibition : action.inhibitions)
+                inhibitions.push_back(QVariantMap{{"reason", QString::fromStdString(inhibition.reason)}, {"source", QString::fromStdString(inhibition.source)}});
+            QVariantList notes;
+            for (const auto &note : action.notes)
+                notes.push_back(QVariantMap{{"text", QString::fromStdString(note.text)}, {"source", QString::fromStdString(note.source)}});
+            actions.push_back(QVariantMap{{"id", QString::fromStdString(action.id)}, {"name", QString::fromStdString(action.name)},
+                {"description", QString::fromStdString(action.description)}, {"source", QString::fromStdString(action.source)},
+                {"effectiveCost", static_cast<int>(action.effectiveCost)}, {"usable", action.usable}, {"inhibitions", inhibitions}, {"notes", notes}});
+        }
+        actionCategories.push_back(QVariantMap{{"id", QString::fromStdString(category.id)}, {"name", QString::fromStdString(category.name)}, {"actions", actions}});
+    }
+    QVariantList actionRoutines;
+    for (const auto &routine : sheetView.attackRoutines.routines)
+        actionRoutines.push_back(QVariantMap{{"actionId", QString::fromStdString(routine.actionId)}});
+    engine.setInitialProperties({{"featCatalog", featCatalog}, {"raceCatalog", raceCatalog}, {"raceAlternateCatalog", raceAlternateCatalog},
+        {"classCatalog", classCatalog}, {"archetypeCatalog", archetypeCatalog}, {"conditionCatalog", conditionCatalog},
+        {"expressionTargetCatalog", expressionTargetCatalog},
+        {"actionsSnapshot", QVariantMap{{"categories", actionCategories}}}, {"actionRoutinesSnapshot", QVariantMap{{"routines", actionRoutines}}}});
     engine.loadFromModule("Golarion.Preview", "Main");
     if (engine.rootObjects().isEmpty()) return 1;
     return application.exec();

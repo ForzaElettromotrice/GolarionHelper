@@ -70,4 +70,25 @@ TestCase {
         panel.savingThrows = [];
         compare(findChild(findChild(panel, "savingThrow0"), "score").text, "—");
     }
+    function test_situationalBonusesStaySeparateFromCurrentScore() {
+        const snapshot = sample();
+        snapshot[1].modifiers.conditionalTotals = [
+            {condition: "Contro il veleno", value: 2},
+            {condition: "Contro le malattie", value: -1},
+            {condition: "Contro la paura", value: 0}
+        ];
+        snapshot[2].modifiers.conditionalTotals = [{condition: "Contro le trappole", value: 0}];
+        panel.savingThrows = snapshot;
+        const fortitude = findChild(panel, "savingThrow0");
+        const reflex = findChild(panel, "savingThrow1");
+        const list = findChild(fortitude, "situationalBonuses");
+        const cards = Array.from(list.children).filter(child => child.objectName === "situationalBonus");
+        compare(cards.length, 2);
+        compare(findChild(cards[0], "situationalBonusValue").text, "+2");
+        compare(findChild(cards[1], "situationalBonusValue").text, "-1");
+        compare(cards[0].Accessible.name, "Contro il veleno: +2");
+        verify(cards[0].visible && cards[1].visible);
+        verify(!findChild(reflex, "situationalBonuses").visible);
+        compare(findChild(fortitude, "score").text, "+4");
+    }
 }

@@ -7,13 +7,24 @@ import QtQuick.Layouts
 Item {
     id: root
     required property var hitPoints
+    property bool readOnly: false
+    property real maximumDetailsWidth: 320
     property Component headerExtension
     property Component belowHeader
     property bool editing: false
     readonly property int hitPointRowHeight: 54
-    readonly property real detailsWidth: Math.min(320, Math.max(0, width - 32))
+    readonly property real detailsWidth: Math.min(maximumDetailsWidth, Math.max(0, width - 32))
     readonly property real hitPointFraction: hitPoints?.max > 0 ? Math.max(0, Math.min(1, hitPoints.current / hitPoints.max)) : 0
-    readonly property real temporaryWidth: hitPoints?.temporary?.total > 0 ? 54 : 0
+    readonly property real healthBarWidth: Math.max(0, detailsWidth - Math.ceil(hitPointCaption.implicitWidth) - 6)
+    readonly property real temporaryWidth: {
+        const total = hitPoints?.temporary?.total ?? 0;
+        if (total <= 0) return 0;
+        const maximum = Math.floor(healthBarWidth * 0.45);
+        const minimum = Math.min(64, maximum);
+        const maxHitPoints = hitPoints?.max ?? 0;
+        const proportional = maxHitPoints > 0 ? Math.round(healthBarWidth * total / (maxHitPoints + total)) : maximum;
+        return Math.max(minimum, Math.min(maximum, proportional));
+    }
     function cancelEdit() { editing = false; amount.clear(); amount.focus = false; }
     function finishFocusChange() {
         Qt.callLater(() => {
@@ -137,7 +148,7 @@ Item {
                 background: Rectangle { color: "#181818" }
             }
             Item {
-                Layout.preferredWidth: root.detailsWidth - Math.ceil(hitPointCaption.implicitWidth) - 6 - root.temporaryWidth
+                Layout.preferredWidth: root.healthBarWidth - root.temporaryWidth
                 Layout.minimumWidth: Layout.preferredWidth
                 Layout.maximumWidth: Layout.preferredWidth
                 Layout.preferredHeight: root.hitPointRowHeight
@@ -166,7 +177,7 @@ Item {
                 }
                 Accessible.name: qsTr("PF attuali / massimi")
                 TapHandler {
-                    enabled: root.hitPoints != null
+                    enabled: root.hitPoints != null && !root.readOnly
                     acceptedButtons: Qt.LeftButton | Qt.RightButton
                     onTapped: (eventPoint, button) => {
                         root.editing = true;
@@ -236,6 +247,7 @@ Item {
             ToolButton {
                 id: addTemporary
                 objectName: "addTemporary"
+                visible: !root.readOnly
                 width: 26
                 height: 26
                 text: "+"
@@ -344,6 +356,7 @@ Item {
                         ToolButton {
                             id: removePool
                             objectName: "removeTemporary"
+                            visible: !root.readOnly
                             Layout.preferredWidth: 28
                             Layout.preferredHeight: 28
                             text: "×"

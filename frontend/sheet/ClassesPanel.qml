@@ -166,9 +166,10 @@ Item {
     }
     Dialog {
         id: classPicker
+        property bool choosingFavored: false
         parent: Overlay.overlay
         modal: true
-        title: qsTr("Aggiungi classe")
+        title: choosingFavored ? qsTr("Classi preferite") : qsTr("Aggiungi classe")
         width: Math.min(480, (parent?.width ?? root.width) - 24)
         x: ((parent?.width ?? root.width) - width) / 2
         y: Math.max(12, ((parent?.height ?? 600) - height) / 2)
@@ -181,7 +182,9 @@ Item {
                 id: classList
                 width: parent.width
                 height: Math.min(320, Math.max(48, count * 44), (classPicker.parent?.height ?? 600) * 0.45)
-                model: root.availableClasses()
+                model: classPicker.choosingFavored ? (root.catalog ?? [])
+                    .filter(entry => entry.name.toLocaleLowerCase().includes(classSearch.text.trim().toLocaleLowerCase()))
+                    .sort((a, b) => a.name.localeCompare(b.name, "it")) : root.availableClasses()
                 clip: true
                 ScrollBar.vertical: ScrollBar {}
                 delegate: ItemDelegate {
@@ -190,8 +193,18 @@ Item {
                     objectName: "newClass_" + modelData.type
                     width: classList.width
                     height: 44
-                    contentItem: Label { text: candidate.modelData.name; textFormat: Text.PlainText; verticalAlignment: Text.AlignVCenter }
-                    onClicked: { root.addLevelRequested(modelData.type); classPicker.close(); }
+                    contentItem: Label {
+                        text: (classPicker.choosingFavored ? (root.isFavored(candidate.modelData.type) ? "★ " : "☆ ") : "") + candidate.modelData.name
+                        textFormat: Text.PlainText
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    onClicked: {
+                        if (classPicker.choosingFavored)
+                            root.favoredClassRequested(modelData.type, !root.isFavored(modelData.type));
+                        else
+                            root.addLevelRequested(modelData.type);
+                        classPicker.close();
+                    }
                 }
             }
             Label { visible: !classList.count; text: qsTr("Nessuna classe disponibile."); color: "#687c88" }
@@ -297,7 +310,20 @@ Item {
             wrapMode: Text.Wrap
             color: "#777777"
         }
-        Button { objectName: "addClass"; text: qsTr("+ Aggiungi classe"); onClicked: classPicker.open() }
+        Flow {
+            width: parent.width
+            spacing: 8
+            Button {
+                objectName: "addClass"
+                text: qsTr("+ Aggiungi classe")
+                onClicked: { classPicker.choosingFavored = false; classPicker.open(); }
+            }
+            Button {
+                objectName: "chooseFavoredClass"
+                text: qsTr("☆ Classi preferite")
+                onClicked: { classPicker.choosingFavored = true; classPicker.open(); }
+            }
+        }
         Repeater {
             model: root.classes?.classes ?? []
             Column {

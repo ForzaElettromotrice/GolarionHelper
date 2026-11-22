@@ -12,6 +12,7 @@ TestCase {
 
     Component { id: panelComponent; IdentityPanel { width: 720 } }
     SignalSpy { id: requested; signalName: "identityChangeRequested" }
+    SignalSpy { id: fieldRequested; signalName: "identityFieldChangeRequested" }
     property var panel
 
     function sample() {
@@ -37,6 +38,42 @@ TestCase {
         verify(!panel.dirty);
         verify(!findChild(panel, "applyButton").enabled);
         compare(requested.count, 0);
+    }
+    function test_clickOutsideAndEscapeClearFocusWithoutSaving() {
+        panel.commitOnEnter = true;
+        fieldRequested.target = panel;
+        fieldRequested.clear();
+        const name = findChild(panel, "nameInput");
+        const player = findChild(panel, "playerNameInput");
+        mouseClick(name);
+        verify(name.activeFocus);
+        keyClick(Qt.Key_X);
+        mouseClick(testCase, 780, 950);
+        verify(!name.activeFocus);
+        compare(fieldRequested.count, 0);
+        mouseClick(name);
+        mouseClick(player);
+        verify(!name.activeFocus);
+        verify(player.activeFocus);
+        keyClick(Qt.Key_Escape);
+        verify(!player.activeFocus);
+        const appearance = findChild(panel, "appearanceInput");
+        mouseClick(appearance);
+        verify(appearance.activeFocus);
+        keyClick(Qt.Key_Escape);
+        verify(!appearance.activeFocus);
+        compare(fieldRequested.count, 0);
+    }
+
+    function test_hiddenDeityIsPreserved() {
+        const identity = sample();
+        identity.deity = "Desna";
+        panel.identity = identity;
+        verify(findChild(panel, "deityInput") === null);
+        panel.edit("name", "Elena");
+        panel.applyChanges();
+        compare(requested.count, 1);
+        compare(requested.signalArguments[0][0].deity, "Desna");
     }
 
     function test_editRequestsWithoutMutatingInput() {

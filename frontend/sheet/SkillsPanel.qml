@@ -7,12 +7,15 @@ import QtQuick.Layouts
 Item {
     id: root
     required property var skills
+    property var skillCategories: []
+    property bool readOnly: false
     property var spentRanks: null
     property var maxRanks: null
     enum SpecializationType { Craft = 2, Perform = 21, Profession = 26 }
     signal specializationAddRequested(int skillType, string name)
     signal ranksChangeRequested(string resourceName, int ranks)
     signal specializationRemoveRequested(int skillType, string specializationId)
+    signal classSkillChangeRequested(int skillType, bool isClassSkill)
     property var expandedTypes: []
     property var pinnedResources: []
     onSkillsChanged: {
@@ -41,9 +44,10 @@ Item {
                 name: categoryName(skill.type) ? categoryName(skill.type) + " (" + skill.name + ")" : skill.name
             }));
         for (const type of [SkillsPanel.Craft, SkillsPanel.Perform, SkillsPanel.Profession]) {
-            const category = Array.from(skills ?? []).find(skill => skill.type === type && !skill.specializationId);
+            const category = skillCategories.find(entry => entry.type === type)
+                ?? Array.from(skills ?? []).find(skill => skill.type === type && !skill.specializationId);
             rows.push({ type: type, name: categoryName(type), resourceName: "specializationCategory" + type,
-                category: true, classSkill: category?.classSkill ?? false });
+                category: true, classSkill: category?.classSkill ?? false, customClassSkill: category?.customClassSkill ?? false });
         }
         return rows.sort((a, b) => a.name.localeCompare(b.name, "it") || a.resourceName.localeCompare(b.resourceName));
     }
@@ -52,6 +56,17 @@ Item {
         if (!skill.usable) return "—";
         const values = Array.from(skill.abilityOptions ?? []).map(option => option.totalValue);
         return values.length ? [...new Set(values)].map(value => value >= 0 ? "+" + value : String(value)).join(" / ") : "—";
+    }
+    function situationalBonuses(skill) {
+        const byOption = (skill.abilityOptions ?? []).map(option =>
+            new Map((option.modifiers?.conditionalTotals ?? []).map(entry => [entry.condition, entry.value])));
+        const conditions = new Set();
+        for (const totals of byOption)
+            for (const condition of totals.keys()) conditions.add(condition);
+        return Array.from(conditions, condition => ({
+            condition: condition,
+            values: [...new Set(byOption.map(totals => totals.get(condition) ?? 0))]
+        }));
     }
 
     Column {
@@ -80,7 +95,7 @@ Item {
                 visible: !!modelData.category || !root.categoryName(modelData.type) || root.expandedTypes.includes(modelData.type) || root.pinnedResources.includes(modelData.resourceName)
                 width: table.width
                 readonly property real mainHeight: Math.max(40, skillName.implicitHeight + 16, score.implicitHeight + 16)
-                height: mainHeight + (details.visible ? details.height : 0)
+                height: mainHeight + (situational.visible ? situational.height + 4 : 0) + (details.visible ? details.height : 0)
                 color: modelData.category ? "#e3e3e3" : (index % 2 ? "#f2f2f2" : "#fafafa")
                 Rectangle {
                     width: parent.width
@@ -92,7 +107,7 @@ Item {
                     objectName: "removeSpecialization"
                     width: 22
                     height: row.mainHeight
-                    visible: !!row.modelData.specializationId && row.modelData.custom === true
+                    visible: !root.readOnly && !!row.modelData.specializationId && row.modelData.custom === true
                     enabled: visible
                     text: "×"
                     Accessible.name: qsTr("Rimuovi ") + row.modelData.name
@@ -101,15 +116,50 @@ Item {
                     onClicked: root.specializationRemoveRequested(row.modelData.type, row.modelData.specializationId)
                 }
                 ToolButton {
+                    id: pin
                     objectName: "pinSpecialization"
                     padding: 0
-                    font.pixelSize: 14
                     x: 22
                     width: 22
                     height: row.mainHeight
                     visible: !!row.modelData.specializationId
-                    text: "📌"
                     checked: root.pinnedResources.includes(row.modelData.resourceName)
+                    background: Rectangle {
+                        radius: 3
+                        color: pin.hovered || pin.visualFocus ? "#e4e4e4" : "transparent"
+                    }
+                    contentItem: Item {
+                        Canvas {
+                            anchors.centerIn: parent
+                            width: 16
+                            height: 16
+                            readonly property bool pinned: pin.checked
+                            onPinnedChanged: requestPaint()
+                            onPaint: {
+                                const ctx = getContext("2d");
+                                ctx.clearRect(0, 0, width, height);
+                                ctx.strokeStyle = pinned ? "#181818" : "#666666";
+                                ctx.fillStyle = "#181818";
+                                ctx.lineWidth = 1.3;
+                                ctx.lineJoin = "round";
+                                ctx.lineCap = "round";
+                                ctx.beginPath();
+                                ctx.moveTo(5, 2.5);
+                                ctx.lineTo(11, 2.5);
+                                ctx.lineTo(10, 6);
+                                ctx.lineTo(12.5, 9.5);
+                                ctx.lineTo(3.5, 9.5);
+                                ctx.lineTo(6, 6);
+                                ctx.closePath();
+                                if (pinned) ctx.fill();
+                                ctx.stroke();
+                                ctx.beginPath();
+                                ctx.moveTo(8, 9.5);
+                                ctx.lineTo(8, 14);
+                                ctx.stroke();
+                            }
+                        }
+                    }
                     Accessible.name: (checked ? qsTr("Non mantenere visibile ") : qsTr("Mantieni visibile ")) + row.modelData.name
                     ToolTip.visible: hovered
                     ToolTip.text: Accessible.name
@@ -120,13 +170,18 @@ Item {
                     }
                 }
                 CheckBox {
+                    id: classSkill
                     objectName: "classSkill"
                     width: 44
                     height: row.mainHeight
                     visible: !!row.modelData.category || !root.categoryName(row.modelData.type)
                     checked: row.modelData.classSkill ?? false
-                    checkable: false
-                    focusPolicy: Qt.NoFocus
+                    checkable: !root.readOnly && (!checked || row.modelData.customClassSkill === true)
+                    nextCheckState: () => classSkill.checkState
+                    focusPolicy: checkable ? Qt.StrongFocus : Qt.NoFocus
+                    onClicked: {
+                        if (checkable) root.classSkillChangeRequested(row.modelData.type, !checked);
+                    }
                     Accessible.name: row.modelData.name + qsTr(" — abilità di classe")
                 }
                 RowLayout {
@@ -147,6 +202,7 @@ Item {
                     TextField {
                         ContextMenu.menu: null
                         objectName: "specializationInput"
+                        visible: !root.readOnly
                         Layout.fillWidth: true
                         Layout.minimumWidth: 0
                         placeholderText: qsTr("Nuova specializzazione")
@@ -224,7 +280,7 @@ Item {
                         Label {
                             objectName: "effectiveRanks"
                             anchors.fill: parent
-                            visible: !ranksHover.hovered && !ranksInput.activeFocus
+                            visible: root.readOnly || (!ranksHover.hovered && !ranksInput.activeFocus)
                             text: row.modelData.category ? "" : String(row.modelData.effectiveRanks ?? row.modelData.ranks)
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
@@ -238,7 +294,7 @@ Item {
                             objectName: "ranks"
                             anchors.verticalCenter: parent.verticalCenter
                             width: parent.width
-                            visible: ranksHover.hovered || activeFocus
+                            visible: !root.readOnly && (ranksHover.hovered || activeFocus)
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                             color: "#181818"
@@ -263,10 +319,17 @@ Item {
                         Accessible.name: qsTr("Dettaglio di ") + row.modelData.name
                     }
                 }
+                SituationalBonusCards {
+                    id: situational
+                    x: skillName.parent.x + skillName.x + skillName.leftPadding
+                    y: row.mainHeight + 2
+                    width: Math.max(0, score.parent.x + score.x + score.background.x + score.background.width - x)
+                    entries: row.modelData.category ? [] : root.situationalBonuses(row.modelData)
+                }
                 SkillDetails {
                     id: details
                     objectName: "skillDetails"
-                    y: row.mainHeight
+                    y: row.mainHeight + (situational.visible ? situational.height + 4 : 0)
                     width: row.width
                     visible: !row.modelData.category && infoButton.checked
                     skill: row.modelData

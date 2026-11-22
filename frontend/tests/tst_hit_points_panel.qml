@@ -126,10 +126,16 @@ TestCase {
         compare(temporary.mapToItem(panel, temporary.width, 0).x, findChild(panel, "hitPointDetailsFrame").width);
         panel.hitPoints = {max: 40, current: 30, temporary: {total: 20}};
         compare(panel.hitPointFraction, 0.75);
-        compare(panel.temporaryWidth, 54);
+        compare(panel.temporaryWidth, Math.round(panel.healthBarWidth / 3));
+        tryCompare(temporary, "width", panel.temporaryWidth);
+        compare(temporary.mapToItem(panel, temporary.width, 0).x, findChild(panel, "hitPointDetailsFrame").width);
+        panel.hitPoints = {max: 40, current: 30, temporary: {total: 400}};
+        compare(panel.temporaryWidth, Math.floor(panel.healthBarWidth * 0.45));
         panel.hitPoints = {max: 40, current: -4, temporary: {total: 1}};
         compare(panel.hitPointFraction, 0);
-        compare(panel.temporaryWidth, 54);
+        compare(panel.temporaryWidth, 64);
+        panel.hitPoints = {max: 0, current: 0, temporary: {total: 1010}};
+        compare(panel.temporaryWidth, Math.floor(panel.healthBarWidth * 0.45));
         panel.hitPoints = {max: 0, current: 0, temporary: {total: 0}};
         compare(panel.hitPointFraction, 0);
         compare(panel.temporaryWidth, 0);

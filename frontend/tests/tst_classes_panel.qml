@@ -131,6 +131,23 @@ TestCase {
         compare(findChild(panel, "favoredClass_6").text, "☆");
         compare(findChild(panel, "hitDie_6_3").result, 5);
     }
+    function test_chooseFavoredClassBeforeFirstLevel() {
+        const panel = createTemporaryObject(component, testCase, {
+            classes: {level: 0, classes: [], favoredClasses: {selectedClasses: []}},
+            catalog: [{type: 6, name: "Mago"}], width: 800
+        });
+        favoredSpy.target = panel; favoredSpy.clear();
+        levelUpSpy.target = panel; levelUpSpy.clear();
+        waitForRendering(panel);
+        mouseClick(findChild(panel, "chooseFavoredClass"));
+        tryCompare(panel.classPopup, "opened", true);
+        waitForRendering(panel.classPopup.contentItem);
+        mouseClick(findChild(panel.classPopup.contentItem, "newClass_6"));
+        compare(favoredSpy.count, 1);
+        compare(Array.from(favoredSpy.signalArguments[0]), [6, true]);
+        compare(levelUpSpy.count, 0);
+    }
+
     function test_levelControlsAndNewClass() {
         const snapshot = fixture();
         const original = JSON.stringify(snapshot);

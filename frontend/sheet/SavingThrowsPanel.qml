@@ -48,11 +48,6 @@ Item {
         id: table
         width: Math.min(root.width, root.implicitWidth)
         spacing: 4
-        Row {
-            height: 30
-            Label { width: table.width - 108; height: parent.height; text: qsTr("Tiro salvezza"); verticalAlignment: Text.AlignVCenter }
-            Label { width: 80; height: parent.height; text: qsTr("Punteggio"); horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
-        }
         Repeater {
             model: 3
             Column {
@@ -111,6 +106,10 @@ Item {
                             Accessible.name: qsTr("Dettaglio di ") + root.nameFor(section.index)
                         }
                     }
+                }
+                SituationalBonusCards {
+                    width: section.width - info.width
+                    entries: section.entry?.modifiers?.conditionalTotals ?? []
                 }
                 InfoDetails {
                     objectName: "savingThrowDetails"

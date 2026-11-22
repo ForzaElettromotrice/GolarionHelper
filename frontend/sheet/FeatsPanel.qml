@@ -7,6 +7,7 @@ Item {
     enum SlotOrigin { Source, Extra }
     enum FeatType { General, Combat, Critical, ItemCreation, Metamagic, Teamwork, Style, Achievement, Channeling, Grit, Panache, Performance, Racial, Story, Mythic, Monster, Stare, HeroPoint, Alignment }
     required property var feats
+    property bool prominentHeading: false
     signal selectRequested(string slotId)
     signal extraRequested()
     signal removeRequested(string slotId)
@@ -43,19 +44,32 @@ Item {
     }
     Column {
         id: content
-        width: Math.min(root.width, root.implicitWidth)
+        width: root.prominentHeading ? root.width : Math.min(root.width, root.implicitWidth)
         spacing: 6
         Row {
             width: parent.width
             Label {
-                width: parent.width - 32; height: 32
+                objectName: "sectionHeading"
+                width: parent.width - 32
+                height: root.prominentHeading ? 42 : 32
                 text: qsTr("Talenti")
-                font.pixelSize: 16; font.bold: true
+                font.pixelSize: root.prominentHeading ? 20 : 16
+                font.bold: true
+                leftPadding: root.prominentHeading ? 12 : 0
+                color: root.prominentHeading ? "white" : "#181818"
                 verticalAlignment: Text.AlignVCenter
+                background: Rectangle {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.rightMargin: -32
+                    color: "#181818"
+                    visible: root.prominentHeading
+                }
             }
             ToolButton {
                 objectName: "addExtraFeat"
-                width: 32; height: 32
+                width: 32; height: root.prominentHeading ? 42 : 32
+                palette.buttonText: root.prominentHeading ? "white" : "#181818"
                 text: "+"; font.pixelSize: 24
                 Accessible.name: qsTr("Aggiungi talento extra senza slot né prerequisiti")
                 ToolTip.visible: hovered

@@ -19,12 +19,16 @@ Frame {
     property bool readOnly: false
     property bool busy: false
     property string errorMessage: ""
+    property bool commitOnEnter: false
+    property bool showTitle: true
     signal identityChangeRequested(var proposedIdentity)
+    signal identityFieldChangeRequested(string field, var value)
 
     property var draft: ({})
     property string baselineDraft: ""
     property bool initialized: false
     property bool externalChangePending: false
+    property Item focusedEditor: null
     readonly property bool dirty: initialized && JSON.stringify(draft) !== baselineDraft
     readonly property bool editable: !readOnly && !busy
     readonly property string validationMessage: {
@@ -116,10 +120,49 @@ Frame {
     function applyChanges() {
         if (canApply) identityChangeRequested(proposal());
     }
+    function commitField(field) {
+        if (!commitOnEnter || !editable) return false;
+        if ((field === "age" && !validInteger(draft.age, true))
+                || (field === "heightCentimeters" && !validInteger(draft.heightCentimeters, false))
+                || (field === "weightKilograms" && !validWeight(draft.weightKilograms))) return false;
+        const key = field === "weightKilograms" ? "weightGrams" : field;
+        const value = proposal()[key];
+        const baseline = makeDraft(identity);
+        if (makeDraft(proposal())[field] !== baseline[field]) identityFieldChangeRequested(key, value);
+        return true;
+    }
+    function trackFocus(editor) {
+        if (editor.activeFocus) focusedEditor = editor;
+        else if (focusedEditor === editor) focusedEditor = null;
+    }
+
+    MouseArea {
+        parent: root.Window.window ? root.Window.window.contentItem : null
+        anchors.fill: parent
+        z: 100000
+        enabled: root.visible && root.focusedEditor !== null && !alignmentInput.popup.visible
+        acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+        onPressed: mouse => {
+            const editor = root.focusedEditor;
+            mouse.accepted = false;
+            if (editor && !editor.contains(editor.mapFromItem(parent, mouse.x, mouse.y))) editor.focus = false;
+        }
+    }
 
     onIdentityChanged: {
         if (!initialized) return;
         const incoming = makeDraft(identity);
+        if (commitOnEnter) {
+            const previous = JSON.parse(baselineDraft);
+            const normalized = makeDraft(proposal());
+            const next = Object.assign({}, draft);
+            for (const field of Object.keys(incoming))
+                if (draft[field] === previous[field] || incoming[field] === normalized[field])
+                    next[field] = incoming[field];
+            draft = next;
+            baselineDraft = JSON.stringify(incoming);
+            return;
+        }
         if (!dirty || JSON.stringify(incoming) === JSON.stringify(makeDraft(proposal()))) {
             resetDraft();
         } else if (JSON.stringify(incoming) !== baselineDraft) {
@@ -134,6 +177,7 @@ Frame {
     component Field: ColumnLayout {
         id: field
         required property string caption
+        property string fieldKey: objectName
         property alias text: editor.text
         property alias inputMethodHints: editor.inputMethodHints
         signal edited(string value)
@@ -149,6 +193,9 @@ Frame {
             selectByMouse: true
             Accessible.name: field.caption
             onTextEdited: field.edited(text)
+            onActiveFocusChanged: root.trackFocus(editor)
+            Keys.onEscapePressed: focus = false
+            onAccepted: if (root.commitField(field.fieldKey)) focus = false
         }
     }
 
@@ -157,12 +204,7 @@ Frame {
         width: root.availableWidth
         spacing: 16
 
-        Label { text: qsTr("Identità"); font.pixelSize: 24; font.bold: true }
-        Label {
-            text: qsTr("I campi possono restare vuoti. L'allineamento non scelto bloccherà l'avanzamento di livello.")
-            Layout.fillWidth: true
-            wrapMode: Text.WordWrap
-        }
+        Label { visible: root.showTitle; text: qsTr("Identità"); font.pixelSize: 24; font.bold: true }
 
         GridLayout {
             columns: root.availableWidth >= 560 ? 2 : 1
@@ -197,23 +239,39 @@ Frame {
                         { label: qsTr("Caotico Malvagio"), value: IdentityPanel.ChaoticEvil }
                     ]
                     currentIndex: indexOfValue(root.draft.alignment ?? IdentityPanel.Unspecified)
-                    onActivated: root.edit("alignment", currentValue)
+                    onActiveFocusChanged: root.trackFocus(alignmentInput)
+                    Keys.onEscapePressed: event => {
+                        if (popup.visible) event.accepted = false;
+                        else focus = false;
+                    }
+                    onActivated: {
+                        root.edit("alignment", currentValue);
+                        root.commitField("alignment");
+                    }
+                    Connections {
+                        target: alignmentInput.popup
+                        function onClosed() { alignmentInput.focus = false; }
+                    }
                 }
             }
-            Field { objectName: "deity"; caption: qsTr("Divinità"); text: root.draft.deity ?? ""; onEdited: value => root.edit("deity", value) }
             Field { objectName: "homeland"; caption: qsTr("Provenienza"); text: root.draft.homeland ?? ""; onEdited: value => root.edit("homeland", value) }
             Field { objectName: "gender"; caption: qsTr("Genere"); text: root.draft.gender ?? ""; onEdited: value => root.edit("gender", value) }
         }
 
         Label { text: qsTr("Aspetto e dati fisici"); font.bold: true }
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 8
+            Field { objectName: "age"; caption: qsTr("Età (anni)"); Layout.preferredWidth: 70; Layout.maximumWidth: 90; text: root.draft.age ?? ""; inputMethodHints: Qt.ImhDigitsOnly; onEdited: value => root.edit("age", value) }
+            Field { objectName: "height"; fieldKey: "heightCentimeters"; caption: qsTr("Altezza (cm)"); Layout.preferredWidth: 90; Layout.maximumWidth: 100; text: root.draft.heightCentimeters ?? ""; inputMethodHints: Qt.ImhDigitsOnly; onEdited: value => root.edit("heightCentimeters", value) }
+            Field { objectName: "weight"; fieldKey: "weightKilograms"; caption: qsTr("Peso (kg)"); Layout.preferredWidth: 85; Layout.maximumWidth: 100; text: root.draft.weightKilograms ?? ""; inputMethodHints: Qt.ImhFormattedNumbersOnly; onEdited: value => root.edit("weightKilograms", value) }
+            Item { Layout.fillWidth: true }
+        }
         GridLayout {
             columns: root.availableWidth >= 560 ? 2 : 1
             columnSpacing: 20
             rowSpacing: 12
             Layout.fillWidth: true
-            Field { objectName: "age"; caption: qsTr("Età (anni)"); text: root.draft.age ?? ""; inputMethodHints: Qt.ImhDigitsOnly; onEdited: value => root.edit("age", value) }
-            Field { objectName: "height"; caption: qsTr("Altezza (cm)"); text: root.draft.heightCentimeters ?? ""; inputMethodHints: Qt.ImhDigitsOnly; onEdited: value => root.edit("heightCentimeters", value) }
-            Field { objectName: "weight"; caption: qsTr("Peso (kg)"); text: root.draft.weightKilograms ?? ""; inputMethodHints: Qt.ImhFormattedNumbersOnly; onEdited: value => root.edit("weightKilograms", value) }
             Field { objectName: "hair"; caption: qsTr("Capelli"); text: root.draft.hair ?? ""; onEdited: value => root.edit("hair", value) }
             Field { objectName: "eyes"; caption: qsTr("Occhi"); text: root.draft.eyes ?? ""; onEdited: value => root.edit("eyes", value) }
         }
@@ -222,8 +280,10 @@ Frame {
             spacing: 4
             Label { text: qsTr("Descrizione dell'aspetto") }
             TextArea {
+                id: appearanceInput
                 ContextMenu.menu: null
                 objectName: "appearanceInput"
+                background: InfoFrame {}
                 Layout.fillWidth: true
                 implicitHeight: Math.max(100, contentHeight + topPadding + bottomPadding)
                 text: root.draft.appearance ?? ""
@@ -231,9 +291,21 @@ Frame {
                 selectByMouse: true
                 wrapMode: TextEdit.Wrap
                 Accessible.name: qsTr("Descrizione dell'aspetto")
+                onActiveFocusChanged: root.trackFocus(appearanceInput)
+                Keys.onEscapePressed: focus = false
                 onTextChanged: {
                     if (activeFocus && text !== root.draft.appearance) root.edit("appearance", text);
                 }
+                function handleEnter(event) {
+                    if (!root.commitOnEnter || (event.modifiers & Qt.ShiftModifier)) {
+                        event.accepted = false;
+                        return;
+                    }
+                    if (root.commitField("appearance")) focus = false;
+                    event.accepted = true;
+                }
+                Keys.onReturnPressed: event => handleEnter(event)
+                Keys.onEnterPressed: event => handleEnter(event)
             }
         }
         Label {
@@ -246,6 +318,7 @@ Frame {
         }
         RowLayout {
             Layout.fillWidth: true
+            visible: !root.commitOnEnter
             Button {
                 objectName: "resetButton"
                 text: root.externalChangePending ? qsTr("Ricarica dati") : qsTr("Annulla modifiche")

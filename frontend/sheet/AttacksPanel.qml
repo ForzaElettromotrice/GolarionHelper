@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 
 Item {
     id: root
@@ -8,6 +9,17 @@ Item {
     property var attackRoutines: ({routines: []})
     property var actions: ({categories: []})
     property var baseAttackBonus: null
+    property bool prominentHeading: false
+    property var expandedRoutineIds: []
+    onAttacksChanged: {
+        const present = new Set((attacks?.attacks ?? []).map(attack => attack.id));
+        expandedRoutineIds = expandedRoutineIds.filter(id => present.has(id));
+    }
+    function setRoutineExpanded(id, expanded) {
+        const wasExpanded = expandedRoutineIds.includes(id);
+        if (expanded === wasExpanded) return;
+        expandedRoutineIds = expanded ? [...expandedRoutineIds, id] : expandedRoutineIds.filter(entry => entry !== id);
+    }
     enum SelectionMode { ChooseOne, AllMatching }
     function signed(value) { return value >= 0 ? "+" + value : String(value); }
     function attackBonus(attack) {
@@ -22,6 +34,56 @@ Item {
         return (attack.strike?.attackAbilityOptions ?? []).some(option =>
             option.criticalConfirmationBonus !== undefined && option.criticalConfirmationBonus !== null
             && option.criticalConfirmationBonus !== option.attackBonus);
+    }
+    function situationalBonuses(set) {
+        return (set?.conditionalTotals ?? []).filter(entry => entry.value !== 0);
+    }
+    component SituationalLines: Column {
+        id: lines
+        required property var entries
+        visible: entries.length > 0
+        spacing: 2
+        Repeater {
+            model: lines.entries
+            RowLayout {
+                id: line
+                required property var modelData
+                required property int index
+                x: 10
+                width: Math.min(implicitWidth, Math.max(0, lines.width - 10))
+                spacing: 6
+                Item {
+                    id: connector
+                    Layout.preferredWidth: 10
+                    Layout.minimumHeight: 12
+                    Layout.fillHeight: true
+                    Rectangle {
+                        objectName: "attackSituationalSpine"
+                        x: 2
+                        y: line.index === 0 ? 0 : -lines.spacing
+                        width: 1
+                        height: (line.index === lines.entries.length - 1 ? Math.floor(connector.height / 2) + 1 : connector.height) - y
+                        color: "#888888"
+                    }
+                    Rectangle { x: 2; y: Math.floor(connector.height / 2); width: 8; height: 1; color: "#888888" }
+                }
+                Label {
+                    Layout.fillWidth: true
+                    text: modelData.condition
+                    textFormat: Text.PlainText
+                    wrapMode: Text.Wrap
+                    font.pixelSize: 11
+                    color: "#555555"
+                }
+                Label {
+                    objectName: "attackSituationalValue"
+                    text: (modelData.value > 0 ? "+" : "") + modelData.value
+                    font.pixelSize: 12
+                    font.bold: true
+                    color: "#181818"
+                }
+            }
+        }
     }
     function damageSummary(damage) {
         if (!damage) return "—";
@@ -60,28 +122,76 @@ Item {
     signal addRequested(string routineId)
     signal assignRequested(string attackId, string slotId, string strikeGrantId)
     signal removeRequested(string attackId)
-    implicitWidth: 360
+    signal renameRequested(string attackId, string name)
+    signal reorderRequested(string attackId, var beforeAttackId)
+    function reorderPlacement(movingId, targetId, after) {
+        const ids = (attacks?.attacks ?? []).map(attack => attack.id);
+        const sourceIndex = ids.indexOf(movingId);
+        if (movingId === targetId || sourceIndex < 0 || !ids.includes(targetId)) return null;
+        const remaining = ids.filter(id => id !== movingId);
+        const before = after ? remaining[remaining.indexOf(targetId) + 1] ?? null : targetId;
+        return before === (ids[sourceIndex + 1] ?? null) ? null : {beforeAttackId: before};
+    }
+    implicitWidth: prominentHeading ? 440 : 360
     implicitHeight: content.height
+    Popup {
+        id: renamePopup
+        objectName: "routineRenamePopup"
+        anchors.centerIn: Overlay.overlay
+        width: Math.min(340, root.width)
+        padding: 12
+        focus: true
+        property string attackId: ""
+        property string originalName: ""
+        function edit(id, name) {
+            attackId = id;
+            originalName = name;
+            renameInput.text = name;
+            open();
+        }
+        onOpened: {
+            renameInput.forceActiveFocus();
+            renameInput.selectAll();
+        }
+        contentItem: TextField {
+            id: renameInput
+            objectName: "routineRenameInput"
+            ContextMenu.menu: null
+            placeholderText: qsTr("Nome della routine")
+            Accessible.name: placeholderText
+            onAccepted: {
+                const name = text.trim();
+                if (!name) return;
+                renamePopup.close();
+                if (name !== renamePopup.originalName) root.renameRequested(renamePopup.attackId, name);
+            }
+        }
+    }
     Column {
         id: content
-        width: Math.min(root.width, root.implicitWidth)
+        width: root.prominentHeading ? root.width : Math.min(root.width, root.implicitWidth)
         spacing: 6
         Row {
             width: parent.width
             Label {
                 width: parent.width - 66
-                height: 32
-                text: qsTr("Routine di attacco")
-                font.pixelSize: 16
+                height: root.prominentHeading ? 42 : 32
+                text: root.prominentHeading ? qsTr("Routine") : qsTr("Routine di attacco")
+                leftPadding: root.prominentHeading ? 12 : 0
+                font.pixelSize: root.prominentHeading ? 20 : 16
                 font.bold: true
-                color: "#181818"
+                color: root.prominentHeading ? "white" : "#181818"
                 verticalAlignment: Text.AlignVCenter
+                background: Rectangle { width: content.width; color: "#181818"; visible: root.prominentHeading }
             }
             ToolButton {
                 id: removalLock
                 objectName: "routineRemovalLock"
                 width: 32
-                height: 32
+                height: root.prominentHeading ? 42 : 32
+                readonly property color ink: root.prominentHeading
+                    ? (checked ? "#ffffff" : "#cccccc")
+                    : (checked ? "#1769aa" : "#555555")
                 padding: 0
                 checkable: true
                 Accessible.name: checked ? qsTr("Blocca rimozione routine") : qsTr("Sblocca rimozione routine")
@@ -91,20 +201,20 @@ Item {
                 contentItem: Item {
                     Rectangle {
                         x: removalLock.checked ? 13 : 10
-                        y: 5.5
+                        y: (parent.height - 32) / 2 + 5.5
                         width: 10; height: 13
                         radius: 5
                         color: "transparent"
                         border.width: 2
-                        border.color: removalLock.checked ? "#1769aa" : "#555555"
+                        border.color: removalLock.ink
                         rotation: removalLock.checked ? 35 : 0
                     }
                     Rectangle {
-                        x: 7; y: 14.5
+                        x: 7; y: (parent.height - 32) / 2 + 14.5
                         width: 16; height: 12
                         radius: 2
-                        color: removalLock.checked ? "#1769aa" : "#555555"
-                        Rectangle { anchors.centerIn: parent; width: 2; height: 5; radius: 1; color: "white" }
+                        color: removalLock.ink
+                        Rectangle { anchors.centerIn: parent; width: 2; height: 5; radius: 1; color: root.prominentHeading ? "#181818" : "white" }
                     }
                 }
             }
@@ -113,7 +223,8 @@ Item {
                 readonly property alias routinesPopup: routinesMenu
                 objectName: "addRoutine"
                 width: 32
-                height: 32
+                height: root.prominentHeading ? 42 : 32
+                palette.buttonText: root.prominentHeading ? "white" : "#181818"
                 text: "+"
                 font.pixelSize: 24
                 Accessible.name: qsTr("Aggiungi routine di attacco")
@@ -183,22 +294,72 @@ Item {
                 width: content.width
                 spacing: 4
                 Row {
+                    id: routineHeader
                     width: parent.width
                     spacing: removalLock.checked ? 4 : 0
+                    DragHandler {
+                        id: routineDrag
+                        target: null
+                        enabled: (root.attacks?.attacks?.length ?? 0) > 1
+                        onActiveChanged: {
+                            if (active) routineDragMarker.Drag.active = true;
+                            else if (routineDragMarker.Drag.active) routineDragMarker.Drag.drop();
+                        }
+                        onCanceled: routineDragMarker.Drag.cancel()
+                    }
+                    Item {
+                        id: routineDragMarker
+                        readonly property string routineId: routine.modelData.id
+                        x: routineDrag.centroid.position.x
+                        y: routineDrag.centroid.position.y
+                        Drag.keys: ["attack-routine"]
+                        Drag.supportedActions: Qt.MoveAction
+                        Drag.proposedAction: Qt.MoveAction
+                    }
+                    Rectangle {
+                        parent: Overlay.overlay
+                        visible: routineDrag.active
+                        z: 1
+                        readonly property point pointer: visible && parent
+                            ? routineHeader.mapToItem(parent, routineDrag.centroid.position.x, routineDrag.centroid.position.y)
+                            : Qt.point(0, 0)
+                        x: pointer.x + 12
+                        y: pointer.y + 10
+                        width: Math.min(240, dragName.implicitWidth + 18)
+                        height: dragName.implicitHeight + 12
+                        radius: 5
+                        color: "#fafbfc"
+                        border.color: "#52768e"
+                        Label {
+                            id: dragName
+                            anchors.fill: parent
+                            anchors.margins: 6
+                            text: routine.modelData.name
+                            textFormat: Text.PlainText
+                            wrapMode: Text.Wrap
+                        }
+                    }
+                Item {
+                    width: parent.width - (removalLock.checked ? 32 : 0)
+                    height: header.height
+                    HoverHandler { id: routineTitleHover }
                 Button {
                     id: header
                     objectName: "routine_" + routine.modelData.id
-                    width: parent.width - (removalLock.checked ? 32 : 0)
+                    width: parent.width
                     padding: 12
-                    rightPadding: routine.modelData.complete === false ? 80 : 52
+                    rightPadding: routine.modelData.complete === false ? 108 : 80
                     topPadding: 16
                     bottomPadding: 16
                     text: routine.modelData.name
                     checkable: true
+                    checked: !routine.blocked && root.expandedRoutineIds.includes(routine.modelData.id)
                     enabled: !routine.blocked
-                    onEnabledChanged: if (!enabled) checked = false
+                    onToggled: root.setRoutineExpanded(routine.modelData.id, checked)
+                    onEnabledChanged: if (!enabled) root.setRoutineExpanded(routine.modelData.id, false)
                     Accessible.description: routine.blocked ? routine.blockReason : (routine.modelData.complete === false ? qsTr("Routine incompleta") : "")
                     contentItem: Label {
+                        id: routineTitle
                         text: header.text
                         textFormat: Text.PlainText
                         wrapMode: Text.Wrap
@@ -251,6 +412,48 @@ Item {
                     }
                 }
                 ToolButton {
+                    id: renameButton
+                    objectName: "rename_" + routine.modelData.id
+                    visible: routineTitleHover.hovered
+                    x: routineTitle.x + Math.ceil(Math.min(routineTitle.contentWidth, routineTitle.width)) + 4
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: 24
+                    height: 24
+                    padding: 0
+                    Accessible.name: qsTr("Rinomina routine %1").arg(routine.modelData.name)
+                    ToolTip.visible: hovered
+                    ToolTip.text: Accessible.name
+                    background: Item {}
+                    contentItem: Item {
+                        Canvas {
+                            anchors.centerIn: parent
+                            width: 16
+                            height: 16
+                            readonly property color ink: renameButton.hovered || renameButton.visualFocus ? "#181818" : "#555555"
+                            onInkChanged: requestPaint()
+                            onPaint: {
+                                const ctx = getContext("2d");
+                                ctx.clearRect(0, 0, width, height);
+                                ctx.strokeStyle = ink;
+                                ctx.lineWidth = 1.4;
+                                ctx.lineJoin = "round";
+                                ctx.beginPath();
+                                ctx.moveTo(3, 10);
+                                ctx.lineTo(11, 2);
+                                ctx.lineTo(14, 5);
+                                ctx.lineTo(6, 13);
+                                ctx.lineTo(2, 14);
+                                ctx.closePath();
+                                ctx.moveTo(9, 4);
+                                ctx.lineTo(12, 7);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    onClicked: renamePopup.edit(routine.modelData.id, routine.modelData.name)
+                }
+                }
+                ToolButton {
                     id: removeButton
                     objectName: "remove_" + routine.modelData.id
                     visible: removalLock.checked
@@ -268,6 +471,33 @@ Item {
                     }
                     onClicked: root.removeRequested(routine.modelData.id)
                 }
+                }
+                DropArea {
+                    id: routineDrop
+                    parent: root
+                    x: content.x + routine.x
+                    y: content.y + routine.y - 2
+                    width: routine.width
+                    height: routine.height + 4
+                    keys: ["attack-routine"]
+                    readonly property bool insertAfter: drag.y > height / 2
+                    readonly property var placement: containsDrag
+                        ? root.reorderPlacement(drag.source?.routineId, routine.modelData.id, insertAfter) : null
+                    onDropped: drop => {
+                        const movingId = drop.source?.routineId;
+                        const target = root.reorderPlacement(movingId, routine.modelData.id, drop.y > height / 2);
+                        if (!target) return;
+                        drop.acceptProposedAction();
+                        root.reorderRequested(movingId, target.beforeAttackId);
+                    }
+                    Rectangle {
+                        objectName: "routineInsertion_" + routine.modelData.id
+                        width: parent.width
+                        height: 2
+                        y: routineDrop.insertAfter ? parent.height - 1 : -1
+                        visible: !!routineDrop.placement
+                        color: "#1769aa"
+                    }
                 }
                 Label {
                     objectName: "blockedReason_" + routine.modelData.id
@@ -457,30 +687,41 @@ Item {
                                 radius: 4
                                 Column {
                                     id: attackContent
+                                    readonly property var strike: attackRow.modelData.strike
+                                    readonly property var confirmationSituational: root.situationalBonuses(strike?.criticalConfirmationModifiers)
                                     x: 10; y: 10
                                     width: parent.width - 20
                                     spacing: 5
-                                    Row {
+                                    Column {
                                         width: parent.width
-                                        spacing: 8
-                                        Label {
-                                            width: parent.width - bonusLabel.width - 8
-                                            text: (attackRow.index + 1) + ". " + attackRow.modelData.strikeName
-                                            textFormat: Text.PlainText
-                                            wrapMode: Text.Wrap
-                                            font.pixelSize: 14
-                                            color: "#253947"
+                                        spacing: 1
+                                        Row {
+                                            width: parent.width
+                                            spacing: 8
+                                            Label {
+                                                width: parent.width - bonusLabel.width - 8
+                                                text: (attackRow.index + 1) + ". " + attackRow.modelData.strikeName
+                                                textFormat: Text.PlainText
+                                                wrapMode: Text.Wrap
+                                                font.pixelSize: 14
+                                                color: "#253947"
+                                            }
+                                            Label {
+                                                id: bonusLabel
+                                                objectName: "attackBonus_" + routine.modelData.id + "_" + attackRow.index
+                                                width: Math.min(implicitWidth, parent.width / 2)
+                                                text: root.attackBonus(attackRow.modelData)
+                                                wrapMode: Text.Wrap
+                                                font.pixelSize: 20
+                                                font.bold: true
+                                                color: "#253947"
+                                                Accessible.name: qsTr("Tiro per colpire: ") + text
+                                            }
                                         }
-                                        Label {
-                                            id: bonusLabel
-                                            objectName: "attackBonus_" + routine.modelData.id + "_" + attackRow.index
-                                            width: Math.min(implicitWidth, parent.width / 2)
-                                            text: root.attackBonus(attackRow.modelData)
-                                            wrapMode: Text.Wrap
-                                            font.pixelSize: 20
-                                            font.bold: true
-                                            color: "#253947"
-                                            Accessible.name: qsTr("Tiro per colpire: ") + text
+                                        SituationalLines {
+                                            objectName: "attackRollSituational"
+                                            width: parent.width
+                                            entries: root.situationalBonuses(attackContent.strike?.attackModifiers)
                                         }
                                     }
                                     Label {
@@ -491,6 +732,11 @@ Item {
                                         font.pixelSize: 13
                                         color: "#555555"
                                     }
+                                    SituationalLines {
+                                        objectName: "attackDamageSituational"
+                                        width: parent.width
+                                        entries: root.situationalBonuses(attackContent.strike?.damageModifiers)
+                                    }
                                     Label {
                                         width: parent.width
                                         text: qsTr("Critico: ") + root.criticalSummary(attackRow.modelData)
@@ -500,12 +746,17 @@ Item {
                                     }
                                     Label {
                                         objectName: "confirmation_" + routine.modelData.id + "_" + attackRow.index
-                                        visible: root.hasDifferentConfirmation(attackRow.modelData)
+                                        visible: root.hasDifferentConfirmation(attackRow.modelData) || attackContent.confirmationSituational.length > 0
                                         width: parent.width
                                         text: qsTr("Conferma critico: ") + root.confirmationBonus(attackRow.modelData)
                                         wrapMode: Text.Wrap
                                         font.pixelSize: 13
                                         color: "#555555"
+                                    }
+                                    SituationalLines {
+                                        objectName: "attackConfirmationSituational"
+                                        width: parent.width
+                                        entries: attackContent.confirmationSituational
                                     }
                                     Label {
                                         objectName: "criticalDamage_" + routine.modelData.id + "_" + attackRow.index
