@@ -2,7 +2,9 @@
 
 ## Development Workflow
 
+- Use newer Qt APIs when helpful. If a feature requires a newer Qt release, raise the frontend minimum in CMake and update the frontend documentation in the same change.
 - Work in small, reviewable steps.
+- Keep the repository organized by component and purpose. Reuse existing directories, keep generated build and packaging artifacts out of version control, and avoid unrelated reorganizations.
 - Keep each change narrowly scoped to the piece explicitly requested by the user.
 - Avoid broad refactors, unrelated cleanup, or multiple features in the same change.
 - Ask before expanding the scope beyond the requested step.
@@ -10,6 +12,11 @@
 - Work directly on the current branch unless the user explicitly requests another branch.
 - Use `.context/README.md` as the project-context entry point.
 - After meaningful changes, update only the relevant `.context/` documents and keep the index's current state and next steps aligned.
+
+## External dependencies and packaging
+
+- Resolve a dependency only for targets that need it. Prefer a compatible installed version; if missing, use a pinned, checksum-verified download from upstream under the build directory. Respect `GOLARION_ALLOW_DOWNLOADS=OFF`: reuse a local copy or explain what is missing. Do not install packages globally during a build.
+- When adding a runtime dependency, update distribution in the same change: bundle the required runtime files on Windows and declare the corresponding system packages on Arch. Keep build-only and installer tools out of the shipped app. Verify the staged or packaged app and document any platform not tested.
 
 ## Language
 
