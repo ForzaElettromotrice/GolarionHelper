@@ -22,6 +22,8 @@ set(sheet_controller_sources
 )
 
 qt_add_executable(golarion_helper WIN32 main.cpp)
+# A generator expression prevents multi-config generators from appending Debug/Release.
+set_target_properties(golarion_helper PROPERTIES RUNTIME_OUTPUT_DIRECTORY "$<1:${CMAKE_CURRENT_BINARY_DIR}>")
 qt_add_qml_module(golarion_helper
     URI Golarion.App
     VERSION 1.0

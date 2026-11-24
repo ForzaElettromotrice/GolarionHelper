@@ -20,6 +20,8 @@ Do not switch normal project work to -S core/play or build/play-cmake. Select pl
 
 ## Dependencies and Local Tools
 
+The desktop executable is always under `<build>/frontend/app/` (with `.exe` on Windows), including with multi-configuration generators. Use separate build trees to retain both Debug and Release executables.
+
 On native Arch x86-64 the desktop `installer` target runs makepkg on the Runtime install component, including the desktop entry and asset credits. It writes `build/packages/golarion-helper-<version>-1-x86_64.pkg.tar.zst` without installing it. The recipient uses pacman; the Qt dependency minimum tracks the minor version used to build the binary.
 
 Native Windows desktop builds expose `installer` (use Release): it depends on the app and `prepare_nsis`, then runs CPack's NSIS generator on the Runtime install component. Output: `build/packages/GolarionHelper-<version>-Setup.exe`. NSIS discovery prefers a system installation, then a cached kit, otherwise downloads pinned 3.13 under `build/_deps/nsis/` if allowed. Plain installation never prepares NSIS: on Windows it stages the executable, Qt/QML runtime and compiler runtime; on Linux it installs the executable for use with system Qt.
