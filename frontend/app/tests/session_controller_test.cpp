@@ -1,4 +1,5 @@
-#include "../session_controller.hpp"
+#include "../controllers/session_controller.hpp"
+#include "../controllers/sheet_controller.hpp"
 
 #include <QClipboard>
 #include <QDir>
@@ -11,6 +12,7 @@
 #include <QQuickStyle>
 #include <QQuickView>
 #include <QtQml/qqml.h>
+#include <QtQml/QQmlExtensionPlugin>
 #include <QTcpServer>
 #include <QTemporaryDir>
 #include <QTest>
@@ -21,6 +23,8 @@
 #include <vector>
 
 using namespace golarion::play;
+
+Q_IMPORT_QML_PLUGIN(GolarionSheetPlugin)
 
 class SessionControllerTest : public QObject
 {
@@ -43,6 +47,7 @@ void SessionControllerTest::initTestCase()
 {
     QQuickStyle::setStyle(QStringLiteral("Basic"));
     qmlRegisterUncreatableType<SessionController>("Golarion.App", 1, 0, "SessionController", "Provided by the test");
+    qmlRegisterUncreatableType<SheetController>("Golarion.App", 1, 0, "SheetController", "Provided by the test");
 }
 
 void SessionControllerTest::restoresMembershipAfterRestart()
@@ -295,13 +300,11 @@ void SessionControllerTest::requiresExplicitConfirmationInCampaignList()
         return QDir().rename(path, trash.filePath(QFileInfo(path).fileName()));
     });
     QVERIFY(controller.createHostedCampaign(QStringLiteral("La campagna")));
-    const auto page = QFINDTESTDATA("../CampaignsPage.qml");
-    QVERIFY(!page.isEmpty());
     QQuickView view;
     view.setInitialProperties({{QStringLiteral("controller"), QVariant::fromValue(&controller)}, {QStringLiteral("localName"), QStringLiteral("Marta")}});
     view.setResizeMode(QQuickView::SizeRootObjectToView);
     view.resize(560, 440);
-    view.setSource(QUrl::fromLocalFile(page));
+    view.setSource(QUrl(QStringLiteral("qrc:/qt/qml/Golarion/App/CampaignsPage.qml")));
     QVERIFY(view.rootObject());
     view.show();
     QVERIFY(QTest::qWaitForWindowExposed(&view));
@@ -379,11 +382,11 @@ void SessionControllerTest::editsParticipantPermissionsOnSave()
     SessionController host(data.filePath(QStringLiteral("host")));
     SessionController delegate(data.filePath(QStringLiteral("delegate")));
     SessionController player(data.filePath(QStringLiteral("player")));
-    const auto main = QFINDTESTDATA("../Main.qml");
-    QVERIFY(!main.isEmpty());
+    SheetController sheet;
     QQmlApplicationEngine engine;
-    engine.setInitialProperties({{QStringLiteral("sessionController"), QVariant::fromValue(&host)}});
-    engine.load(QUrl::fromLocalFile(main));
+    engine.setInitialProperties({{QStringLiteral("sessionController"), QVariant::fromValue(&host)},
+        {QStringLiteral("sheetController"), QVariant::fromValue(&sheet)}});
+    engine.loadFromModule("Golarion.App", "Main");
     QVERIFY(!engine.rootObjects().isEmpty());
     auto *window = qobject_cast<QQuickWindow *>(engine.rootObjects().front());
     QVERIFY(window && QTest::qWaitForWindowExposed(window));

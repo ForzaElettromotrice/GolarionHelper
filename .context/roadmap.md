@@ -1,5 +1,9 @@
 # Roadmap
 
+## Before a public release
+
+The private friends-only deployment accepts storing resume tokens directly in the host archive. Archive v4 implements this choice; older archives cannot be resumed. Anyone who obtains a plaintext token can resume as its owner with that participant's permissions. Before distributing the app publicly or exposing hosting to untrusted networks, review host and client credential storage (including logs and backups), token entropy, rotation and revocation, transport confidentiality, and admission controls.
+
 ## Pending Work
 
 The ordinary Golarion race, spell and feat catalogs and 44 playable class definitions have now been populated within the documented source/automation boundaries. The separate class-archetype catalog now loads 661 definitions from 764 reviewed source entries; 103 entries remain pending for documented runtime gaps or source issues. Revisit them only after the corresponding narrow backend/source step, using `model/archetype-catalog.md`. Remaining marked manual content and missing spell-source entries are tracked in their model coverage documents. The items below are deferred work, not authorization to start them next.
@@ -12,7 +16,6 @@ The ordinary Golarion race, spell and feat catalogs and 44 playable class defini
 - Carrying-only Strength modifiers and rational multipliers already cover independent load changes. Do not treat carrying-specific effective size as a blocker without a concrete source that cannot use these endpoints. Body-changing transformations may eventually need a replacement stage above the race-owned body base.
 - Conditional hand-usage permissions are now available through `attackRoutine.handUsagePermissions`, separate from WeaponWeight and optionally scoped to a routine/slot. The `handUsagePermission` declarative effect is implemented; add concrete providers for exceptional weapon uses; associated penalties/damage exceptions remain separate contributions. This does not yet implement every crossbow, lance, proficiency or double-weapon rule. Routine hand usage currently does not synthesize extra physical `usageChannels`; coordinate that with the future anatomy/held-object model before relying on it to suppress natural attacks from every occupied limb.
 - Review the modifier fields and C++ representation together.
-- Design richer C API operations only when the corresponding model behavior exists.
 - Add an explicit resurrection protocol before any effect can remove the persistent hit-point-owned Morto entry or restore a dead character; ordinary healing intentionally does neither.
 - Selective Dexterity retention is implemented with explicit suppression causes and the `armorClass.dexterityRetentions` endpoint/effect; FlatFooted and InvisibleAttacker can be retained, while Pinned, Feint and Other remain effective. Selected Schivare Prodigioso class providers are now included; source-specific manual boundaries remain in `model/class-catalog.md`. Attacks-of-opportunity allowances/exceptions need turn/action resolution; the existing ActionManager does not track turns.
 - Add turn-state tracking before enforcing the remaining one-action-per-turn rules of `Barcollante`, `Inabile`, and `Nauseato`; the current deterministic prohibitions are already represented through `ActionInhibition`. Add semantic metadata for purely mental actions before restricting `Paralizzato`, and for attacks of opportunity and two-handed routine use before completing `Impreparato` and `In Lotta`.
@@ -25,5 +28,4 @@ The ordinary Golarion race, spell and feat catalogs and 44 playable class defini
 ## After the Character Sheet
 
 - Decide whether conditional ability substitutions need explicit model support. A possible implementation is a signed, non-stacking delta modifier such as `-@wisMod + @chaMod`, shared by skills and saving throws. This is optional: the application may instead leave situational substitutions for the player to remember and apply at the table.
-- Design the complete C API only after the C++ character-sheet model has stabilized.
 - Select and build the native desktop C++ frontend. Resolve its application API boundary as part of the new game-management design; the toolkit and implementation schedule remain open.

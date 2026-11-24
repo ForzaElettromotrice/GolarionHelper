@@ -13,16 +13,17 @@
 #include <QJsonDocument>
 #include <QSaveFile>
 #include <QSettings>
-#include <QStandardPaths>
 #include <QtConcurrentRun>
 #include <QUuid>
 #include <algorithm>
 #include <array>
 #include <limits>
+#include <utility>
 #include <nlohmann/json.hpp>
 
 namespace
 {
+    constexpr auto sheetLibraryKey = "sheets/localPaths";
     QVariant optionalText(const std::optional<std::string> &value)
     {
         return value ? QVariant{QString::fromStdString(*value)} : QVariant{};
@@ -673,7 +674,7 @@ namespace
     }
 }
 
-SheetController::SheetController(QObject *parent) : QObject(parent)
+SheetController::SheetController(QObject *parent, QString sheetDirectory) : QObject(parent), sheetDirectory_(std::move(sheetDirectory))
 {
     connect(&catalogWatcher_, &QFutureWatcherBase::finished, this, &SheetController::finishCatalogLoad);
 }
@@ -714,7 +715,7 @@ void SheetController::openLocalSheet()
 QVariantList SheetController::savedSheets() const
 {
     QVariantList rows;
-    for (const auto &path : QSettings().value("sheets/paths").toStringList())
+    for (const auto &path : QSettings().value(sheetLibraryKey).toStringList())
     {
         const QFileInfo file(path);
         rows.push_back(QVariantMap{{"name", file.completeBaseName()}, {"path", path},
@@ -723,34 +724,84 @@ QVariantList SheetController::savedSheets() const
     return rows;
 }
 
-QUrl SheetController::defaultSheetFile() const
+static QString unusedSheetPath(const QString &folder, const QString &name)
 {
-    auto folder = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-    if (!QDir(folder).exists() || folder.isEmpty()) folder = QDir::homePath();
+    if (folder.isEmpty() || !QDir().mkpath(folder)) return {};
     const QDir directory(folder);
-    const auto name = tr("Nuova scheda");
     auto path = directory.filePath(name + ".json");
     for (int index = 2; QFileInfo::exists(path); ++index)
         path = directory.filePath(QStringLiteral("%1 %2.json").arg(name).arg(index));
-    return QUrl::fromLocalFile(path);
+    return path;
 }
 
 void SheetController::openSavedSheet(const QUrl &file)
 {
-    if (file.isLocalFile()) requestSheet(QFileInfo(file.toLocalFile()).absoluteFilePath(), false);
+    if (opening_ || !file.isLocalFile()) return;
+    const QFileInfo source(file.toLocalFile());
+    if (source.isSymLink() || source.dir() != QDir(sheetDirectory_))
+        return;
+    importSource_.clear();
+    requestSheet(source.absoluteFilePath(), false);
 }
 
-void SheetController::createSavedSheet(const QUrl &file)
+void SheetController::createSavedSheet(const QString &name)
 {
-    if (file.isLocalFile()) requestSheet(QFileInfo(file.toLocalFile()).absoluteFilePath(), true);
+    if (opening_) return;
+    const auto base = name.trimmed();
+    const auto path = base.isEmpty() || base.contains('/') || base.contains('\\') || base.contains(':')
+        ? QString{} : unusedSheetPath(sheetDirectory_, base);
+    if (path.isEmpty())
+    {
+        errorMessage_ = tr("Impossibile creare la scheda. Verifica il nome e la cartella locale.");
+        Q_EMIT sheetChanged();
+        return;
+    }
+    importSource_.clear();
+    requestSheet(path, true);
+}
+
+void SheetController::importSavedSheet(const QUrl &file)
+{
+    if (opening_ || !file.isLocalFile()) return;
+    const QFileInfo source(file.toLocalFile());
+    const auto path = unusedSheetPath(sheetDirectory_, source.completeBaseName().isEmpty() ? tr("Scheda") : source.completeBaseName());
+    if (path.isEmpty())
+    {
+        errorMessage_ = tr("La cartella locale delle schede non è disponibile.");
+        Q_EMIT sheetChanged();
+        return;
+    }
+    importSource_ = source.absoluteFilePath();
+    requestSheet(path, false);
+}
+
+void SheetController::exportSavedSheet(const QUrl &file, const QUrl &destination)
+{
+    QFile source(file.toLocalFile());
+    const QFileInfo target(destination.toLocalFile());
+    QSaveFile copy(target.absoluteFilePath());
+    if (file.isLocalFile() && destination.isLocalFile() && target.dir().canonicalPath() != QDir(sheetDirectory_).canonicalPath()
+        && !target.isSymLink() && (!target.exists() || target != QFileInfo(source))
+        && source.open(QIODevice::ReadOnly) && copy.open(QIODevice::WriteOnly))
+    {
+        const auto data = source.readAll();
+        if (source.error() == QFileDevice::NoError && copy.write(data) == data.size() && copy.commit())
+        {
+            errorMessage_.clear();
+            Q_EMIT sheetChanged();
+            return;
+        }
+    }
+    errorMessage_ = tr("Impossibile esportare la scheda. Scegli un file esterno alla raccolta locale.");
+    Q_EMIT sheetChanged();
 }
 
 void SheetController::forgetSavedSheet(const QUrl &file)
 {
     QSettings settings;
-    auto paths = settings.value("sheets/paths").toStringList();
+    auto paths = settings.value(sheetLibraryKey).toStringList();
     paths.removeAll(file.toLocalFile());
-    settings.setValue("sheets/paths", paths);
+    settings.setValue(sheetLibraryKey, paths);
     refreshSavedSheets();
 }
 
@@ -798,22 +849,26 @@ void SheetController::finishCatalogLoad()
 
 void SheetController::createLocalSheet()
 {
+    const auto importSource = std::exchange(importSource_, QString{});
     try
     {
+        QByteArray importedData;
         std::unique_ptr<golarion::CharacterSheet> candidate;
         if (pendingPath_.isEmpty() || createPendingFile_)
             candidate = std::make_unique<golarion::CharacterSheet>(*classCatalog_);
         else
         {
-            QFile file(pendingPath_);
+            QFile file(importSource.isEmpty() ? pendingPath_ : importSource);
             if (!file.open(QIODevice::ReadOnly)) throw std::runtime_error("Cannot open sheet file");
             const auto data = file.readAll();
+            if (file.error() != QFileDevice::NoError) throw std::runtime_error("Cannot read sheet file");
+            if (!importSource.isEmpty()) importedData = data;
             candidate = std::make_unique<golarion::CharacterSheet>(
                 golarion::persistence::fromJson(std::string_view(data.constData(), data.size())), *classCatalog_);
         }
-        if (createPendingFile_)
+        if (createPendingFile_ || !importSource.isEmpty())
         {
-            const auto data = golarion::persistence::toJson(candidate->toSaveData());
+            const auto data = createPendingFile_ ? QByteArray::fromStdString(golarion::persistence::toJson(candidate->toSaveData())) : importedData;
             QFile file(pendingPath_);
             if (!file.open(QIODevice::WriteOnly | QIODevice::NewOnly))
                 throw std::runtime_error("Cannot create sheet file");
@@ -831,11 +886,11 @@ void SheetController::createLocalSheet()
         if (!currentPath_.isEmpty())
         {
             QSettings settings;
-            auto paths = settings.value("sheets/paths").toStringList();
+            auto paths = settings.value(sheetLibraryKey).toStringList();
             if (!paths.contains(currentPath_))
             {
                 paths.append(currentPath_);
-                settings.setValue("sheets/paths", paths);
+                settings.setValue(sheetLibraryKey, paths);
             }
             Q_EMIT savedSheetsChanged();
         }

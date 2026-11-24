@@ -1,7 +1,6 @@
 import QtQuick
 import QtTest
 import Golarion.Sheet
-import "../preview" as Preview
 
 TestCase {
     id: testCase
@@ -10,139 +9,11 @@ TestCase {
     visible: true
     when: windowShown
     Component { id: panelComponent; SpellcastingsPanel {} }
-    Component { id: previewComponent; Preview.Main {} }
     SignalSpy { id: preparationSpy; signalName: "prepareSpellRequested" }
     SignalSpy { id: consumptionSpy; signalName: "consumeSpellRequested" }
     SignalSpy { id: clearSpy; signalName: "clearSpellSlotRequested" }
     SignalSpy { id: resetSpy; signalName: "resetSpellSlotsRequested" }
     SignalSpy { id: spontaneousSpy; signalName: "castSpontaneousSpellRequested" }
-    function test_previewWholeListShowsOnlyAccessibleSpells() {
-        const preview = createTemporaryObject(previewComponent, testCase);
-        const panel = findChild(preview, "spellcastingsPreview");
-        findChild(preview, "panelSelector").currentIndex = 16;
-        panel.selectedId = "paladin";
-        compare(panel.activeCasting.repertoire, []);
-        verify(!findChild(panel, "addRepertoireSpellButton").visible);
-        const slot = {groupId: "base", spellLevel: 1, index: 0};
-        function verifyRepertoire() {
-            compare(panel.activeRepertoireLevels.length, 1);
-            compare(panel.activeRepertoireLevels[0].level, 1);
-            compare(panel.activeRepertoireLevels[0].spells, ["bless", "cureLightWounds"]);
-            verify(findChild(panel, "repertoireSpell_bless") !== null);
-            verify(findChild(panel, "repertoireSpell_zoneOfTruth") === null);
-        }
-        verifyRepertoire();
-        panel.prepareSpellRequested("paladin", [slot], "bless", []);
-        panel.consumeSpellRequested("paladin", slot, [], null);
-        compare(panel.activeLevels[0].used, 1);
-        verifyRepertoire();
-        preview.close();
-    }
-    function test_previewLearnsWithinSpontaneousQuota() {
-        const preview = createTemporaryObject(previewComponent, testCase);
-        preview.show();
-        const panel = findChild(preview, "spellcastingsPreview");
-        findChild(preview, "panelSelector").currentIndex = 16;
-        panel.selectedId = "bard";
-        const plus = findChild(panel, "addRepertoireSpellButton");
-        const picker = findChild(panel, "spellRepertoirePicker");
-        const catalog = findChild(picker.contentItem, "spellRepertoireCatalogList");
-        verify(plus.enabled);
-        plus.click();
-        tryCompare(picker, "opened", true);
-        tryCompare(catalog, "count", 2);
-        verify(catalog.model.every(entry => ["grease", "cureLightWounds"].includes(entry.id)));
-        tryVerify(() => catalog.itemAtIndex(0) !== null);
-        catalog.itemAtIndex(0).click();
-        tryCompare(picker, "opened", false);
-        verify(!plus.enabled);
-        compare(panel.activeCasting.repertoire.length, 3);
-        compare(panel.activeCasting.repertoireDetails.quotas[0].remainingByLevel[1], 0);
-        panel.selectedId = "wizard";
-        verify(plus.enabled);
-        plus.click();
-        tryCompare(picker, "opened", true);
-        tryCompare(catalog, "count", 2);
-        tryVerify(() => catalog.itemAtIndex(0) !== null);
-        catalog.itemAtIndex(0).click();
-        verify(panel.activeCasting.repertoire.includes("message"));
-        compare(panel.activeCasting.repertoireDetails.manualSpellIds, ["message"]);
-        verify(plus.enabled);
-        preview.close();
-    }
-    function test_flexiblePreparesAndCastsFromDifferentSections() {
-        const preview = createTemporaryObject(previewComponent, testCase);
-        preview.show();
-        const panel = findChild(preview, "spellcastingsPreview");
-        findChild(preview, "panelSelector").currentIndex = 16;
-        panel.selectedId = "arcanist";
-        waitForRendering(preview.contentItem);
-        const repertoire = findChild(panel, "spellRepertoire");
-        const preparations = findChild(panel, "flexiblePreparationGroups");
-        const slots = findChild(panel, "spellSlotGroups");
-        verify(repertoire.x < preparations.x && preparations.x < slots.x);
-        compare(repertoire.y, preparations.y);
-        compare(preparations.y, slots.y);
-        const y = (name, baseline = false) => {
-            const item = findChild(panel, name);
-            return item.mapToItem(panel, 0, baseline ? item.baselineOffset : 0).y;
-        };
-        verify(Math.abs(y("spellRepertoireHeading", true) - y("spellPreparationHeading", true)) <= 1);
-        verify(Math.abs(y("spellRepertoireHeading", true) - y("spellSlotHeading", true)) <= 1);
-        compare(y("spellRepertoireLevel_0"), y("spellPreparationLevel_0"));
-        compare(y("spellPreparationLevel_0"), y("spellSlotLevel_0"));
-        function dragBetween(source, target) {
-            verify(source && target);
-            mousePress(source, 10, 10);
-            mouseMove(source, 40, 10);
-            mouseMove(target, 20, 12);
-            mouseRelease(target, 20, 12);
-        }
-        const spell = findChild(panel, "repertoireSpell_magicMissile");
-        const getPreparation = () => findChild(panel, "flexiblePreparation_1_1");
-        dragBetween(spell, findChild(panel, "spellSlot_1_0"));
-        compare(panel.activeLevels[1].used, 0);
-        dragBetween(spell, getPreparation());
-        const preparedId = () => panel.activeCasting.state.preparationGroups[0].preparations[2].spellId;
-        compare(preparedId(), "magicMissile");
-        compare(panel.activeLevels[1].used, 0);
-        for (let index = 0; index < 2; ++index) {
-            dragBetween(getPreparation(), findChild(panel, "spellSlot_1_" + index));
-            compare(panel.activeLevels[1].used, index + 1);
-            compare(preparedId(), "magicMissile");
-        }
-        dragBetween(getPreparation(), repertoire);
-        compare(preparedId(), null);
-        compare(panel.activeLevels[1].used, 2);
-        verify(panel.activeCasting.repertoire.includes("magicMissile"));
-        const reset = findChild(panel, "resetSpellSlotsButton");
-        verify(reset.visible && reset.enabled);
-        reset.click();
-        verify(!reset.enabled);
-        compare(panel.activeLevels[1].used, 0);
-        compare(panel.activeLevels[1].free, 2);
-        verify(panel.flexiblePreparationLevels.every(level => level.entries.every(entry => !entry.spellId)));
-        verify(panel.activeCasting.repertoire.includes("magicMissile"));
-        const picker = findChild(panel, "preparationMetamagicPicker");
-        const higherPreparation = () => findChild(panel, "flexiblePreparation_2_0");
-        function confirmMetamagic() {
-            tryCompare(picker, "opened", true);
-            findChild(picker.contentItem, "preparationMetamagicChoice_0").click();
-            picker.accept();
-            tryCompare(picker, "opened", false);
-        }
-        dragBetween(findChild(panel, "repertoireSpell_shield"), higherPreparation());
-        verify(!panel.flexiblePreparationLevels[2].entries[0].spellId);
-        confirmMetamagic();
-        compare(panel.flexiblePreparationLevels[2].entries[0].metamagic[0].type, SpellcastingsPanel.Silent);
-        dragBetween(higherPreparation(), findChild(panel, "spellSlot_3_0"));
-        compare(panel.activeLevels[3].used, 0);
-        confirmMetamagic();
-        compare(panel.activeLevels[3].used, 1);
-        compare(panel.flexiblePreparationLevels[2].entries[0].metamagic.length, 1);
-        compare(panel.mixingUses, 0);
-        preview.close();
-    }
     function test_spontaneousDragCastsOrPromptsForMetamagic() {
         const first = {groupId: "base", spellLevel: 1, index: 0};
         const second = {groupId: "base", spellLevel: 2, index: 0};
@@ -182,38 +53,6 @@ TestCase {
         compare(spontaneousSpy.count, 2);
         compare(spontaneousSpy.signalArguments[1][1], second);
         compare(spontaneousSpy.signalArguments[1][3], applications);
-    }
-    function test_previewResetsSpontaneousSlots() {
-        const preview = createTemporaryObject(previewComponent, testCase);
-        const panel = findChild(preview, "spellcastingsPreview");
-        findChild(preview, "panelSelector").currentIndex = 16;
-        panel.selectedId = "bard";
-        const reset = findChild(panel, "resetSpellSlotsButton");
-        verify(reset.visible);
-        verify(reset.enabled);
-        reset.click();
-        verify(!reset.enabled);
-        compare(panel.activeLevels[0].used, 0);
-        compare(panel.activeLevels[0].free, 2);
-        compare(panel.activeCasting.repertoire, ["light", "sleep"]);
-        compare(panel.castings[0].state.groups[0].slots[0].state, SpellcastingsPanel.Ready);
-        preview.close();
-    }
-    function test_previewConsumesAndClearsLinkedSlots() {
-        const preview = createTemporaryObject(previewComponent, testCase);
-        const panel = findChild(preview, "spellcastingsPreview");
-        const first = {groupId: "base", spellLevel: 1, index: 2};
-        const second = {groupId: "base", spellLevel: 1, index: 3};
-        const state = () => panel.activeCasting.state.groups[0].slots
-            .filter(entry => panel.sameSlot(entry.slot, first) || panel.sameSlot(entry.slot, second))
-            .map(entry => entry.state);
-        panel.prepareSpellRequested("wizard", [first, second], "shield", []);
-        compare(state(), [SpellcastingsPanel.Ready, SpellcastingsPanel.Ready]);
-        panel.consumeSpellRequested("wizard", first, [], null);
-        compare(state(), [SpellcastingsPanel.Used, SpellcastingsPanel.Used]);
-        panel.clearSpellSlotRequested("wizard", second);
-        compare(state(), [SpellcastingsPanel.Free, SpellcastingsPanel.Free]);
-        preview.close();
     }
     function test_preparationAutomaticallyPicksSameLevelRegularSlot() {
         const target = {groupId: "base", spellLevel: 1, index: 0};

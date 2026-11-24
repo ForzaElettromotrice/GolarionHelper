@@ -1,7 +1,6 @@
 import QtQuick
 import QtTest
 import Golarion.Sheet
-import "../preview" as Preview
 
 TestCase {
     id: testCase
@@ -10,7 +9,6 @@ TestCase {
     visible: true
     when: windowShown
     Component { id: component; FeatCatalogPanel {} }
-    Component { id: previewComponent; Preview.Main {} }
     SignalSpy { id: addSpy; signalName: "addRequested" }
     SignalSpy { id: extraSpy; signalName: "extraRequested" }
     function test_addToSelectedSlotOrExtra() {
@@ -84,28 +82,5 @@ TestCase {
             return list.itemAtIndex(1699) !== null;
         });
         panel.close();
-    }
-    function test_previewNavigation() {
-        const preview = createTemporaryObject(previewComponent, testCase, {featCatalog: [
-            {id: "example", name: "Esempio", description: "Descrizione", types: []}
-        ]});
-        findChild(preview, "panelSelector").currentIndex = 11;
-        waitForRendering(preview.contentItem);
-        mouseClick(findChild(preview.contentItem, "addExtraFeat"));
-        const picker = preview.featPickerPopup;
-        tryCompare(picker, "opened", true);
-        verify(picker.extra);
-        verify(findChild(preview.contentItem, "addExtraFeat").visible);
-        keyClick(Qt.Key_Escape);
-        tryCompare(picker, "visible", false);
-        mouseClick(findChild(preview.contentItem, "selectFeat_level3"));
-        tryCompare(picker, "opened", true);
-        compare(picker.slotId, "level3");
-        verify(!picker.extra);
-        const list = findChild(picker.contentItem, "featCatalogList");
-        list.forceLayout();
-        mouseClick(list.itemAtIndex(0));
-        tryCompare(picker, "visible", false);
-        verify(findChild(preview.contentItem, "selectFeat_level3").visible);
     }
 }

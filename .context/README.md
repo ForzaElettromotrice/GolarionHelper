@@ -6,36 +6,38 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 ## Current State
 
+- Configure only from the repository root. The default target is the desktop application; sheet, play (including sheet), and UI-only builds are selectable with `GOLARION_TARGET`. Tests are opt-in. See [development](development.md) for the Windows/Arch installer target, build-local dependencies and offline builds.
+
 - The Qt Quick desktop Sessioni page creates campaigns, hosts them, and resumes saved memberships. It can move hosted campaigns to the system trash after a typed confirmation, or remove a joined campaign's local credential after confirmation. Live sessions display participant names with Host and Tu labels and offer a permission dialog on editable participant rows. See [frontend](frontend.md#desktop-application).
 
 - The desktop sheet Home tab shows live abilities, armor class, HP and defenses, initiative, saves, movement, active conditions and skills in a responsive layout. The local controller supports HP, ability and skill editing. See [frontend](frontend.md).
 - The desktop sheet Combattimento tab shows live routines, combat maneuvers, and actions, including situational bonuses. The local controller supports routine configuration and strike assignment. See [frontend](frontend.md).
 
-- Schede lists local character files and offers creation and import. The desktop controller opens each file in the embeddable sheet page and automatically saves accepted edits; the file list is stored in desktop settings, not in the model. See [frontend](frontend.md).
+- Schede creates and imports files into the app-local sheet library, autosaves there and exports independent JSON copies for sharing. See [frontend](frontend.md).
 
-- Azioni displays actions outside attack routines, their effective costs and any inhibition reasons in the preview. See [frontend](frontend.md).
+- Azioni displays actions outside attack routines, their effective costs and any inhibition reasons in the desktop sheet. See [frontend](frontend.md).
 
-- The desktop sheet Inventario tab shows live equipment, items, coins and encumbrance. The local controller handles inventory edits while keeping the approved preview layout. See [frontend](frontend.md).
+- The desktop sheet Inventario tab shows live equipment, items, coins and encumbrance. The local controller handles inventory edits. See [frontend](frontend.md).
 - Razza and Classi have separate live desktop tabs. Classi supports level changes, class feature choices, archetypes, hit dice and favored-class bonuses. Incantesimi will have its own tab. See [frontend](frontend.md).
 
-- Scelte aperte has a sheet preview panel organized by advancement impact, with subsystem navigation. See [frontend](frontend.md).
+- Scelte aperte has a sheet panel organized by advancement impact, with subsystem navigation. See [frontend](frontend.md).
 
-- Promemoria displays sheet reminder messages; the preview demonstrates updates when bleeding entries change. See [frontend](frontend.md).
+- Promemoria displays sheet reminder messages. See [frontend](frontend.md).
 - Capacità has a live desktop tab with languages on the left, reminders in the center and feats on the right. Incantesimi has a separate live desktop tab with class casting above granted spells. See [frontend](frontend.md).
 
-- Condizioni lists all sheet conditions in a preview grid, with click-to-toggle for manual entries and read-only automatic states. See [frontend](frontend.md).
+- Condizioni lists all sheet conditions in a grid, with click-to-toggle for manual entries and read-only automatic states. See [frontend](frontend.md).
 
-- Note has a plain-text editor in the live sheet and preview. Enter submits and Shift+Enter adds a line break. See [frontend](frontend.md).
+- Note has a plain-text editor in the live sheet. Enter submits and Shift+Enter adds a line break. See [frontend](frontend.md).
 
 - `Session` composes typed `toView()` and `toData()` snapshots from subsystem projections. The Qt controller consumes session and campaign views for presentation and campaign data for persistence. See [game management](game-management.md#desktop-hosted-campaigns).
 
-- The Incantesimi panel groups repertoire and slots by level, lists known metamagic, and supports all three casting modes in the synthetic preview. Flexible preparations and casting slots are independent and both support a metamagic picker. Live eligibility and dispatch remain deferred. See [frontend](frontend.md).
-- Incantesimi concessi has a separate panel for limited, at-will, constant and item-charge grants. Item info can restore or refill charges, and the preview shares the reserve between inventory and casting. See [frontend](frontend.md).
+- The Incantesimi panel groups repertoire and slots by level, lists known metamagic, and supports all three casting modes. Flexible preparations and casting slots are independent and both support a metamagic picker. See [frontend](frontend.md).
+- Incantesimi concessi has a separate panel for limited, at-will, constant and item-charge grants. Item info can restore or refill charges. See [frontend](frontend.md).
 - Potenziamenti and Condizioni have separate live desktop tabs. Potenziamenti supports custom groups and numeric effects; Condizioni supports manual entries and individual bleeding instances. See [frontend](frontend.md) and [enhancement groups](model/enhancements.md).
 
 - Permanent user class-skill grants now have dedicated add/remove sheet APIs, independent of Enhancements. `customClassSkill` is exposed in Data/View and saved in format 43; see [checks and health](model/checks-and-health.md). Frontend checkbox wiring remains deferred.
 
-- Character-sheet backend is complete within the agreed scope; project/library version is `1.3.0`, exposing inventory stackability alongside the public quantity setter without changing the save format. Previous additions include generic enhancement groups and spell-effect export. Applying exported effects belongs to the game session's sheet manager. Free-text `notes` is exposed through `setNotes`, Data and View; save format is `43`, with empty notes for older saves. See the [Data/View audit and release scope](model/backend-v1.md). Complete datasets, frontend/full FFI and `core/play` completion remain separate.
+- Character-sheet backend is complete within the agreed scope; project version is `1.3.0`, exposing inventory stackability alongside the public quantity setter without changing the save format. Previous additions include generic enhancement groups and spell-effect export. Applying exported effects belongs to the game session's sheet manager. Free-text `notes` is exposed through `setNotes`, Data and View; save format is `43`, with empty notes for older saves. See the [Data/View audit and release scope](model/backend-v1.md).
 
 - Pending-choice reporting is implemented across sheet subsystems. Class/racial choices declare whether they block advancement; feat selection remains atomic. Reports are derived and are not persisted. Blocking entries now prevent +1 class-level advancement. See [`model/pending-choices.md`](model/pending-choices.md).
 
@@ -50,14 +52,14 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 - User-created `Enhancements` groups now support shared `EffectDefinition` entries with group-only activation, optional description/provenance, ordered application/reverse cleanup and format-42 persistence. Editing entries requires an inactive group; the old per-entry save schema is rejected without migration. Custom spell definitions are now supported separately; see [`model/enhancements.md`](model/enhancements.md).
 
 - `main` is the default development and GitHub branch. The game-host feature branch is `feat/game-host`; the previous `master` branch is retained separately.
-- The C++20 backend, persistence, Views, and a minimal opaque-handle C API are in place. Qt Quick/QML subsystem panels and a sample-data preview are implemented; sheet controller wiring remains deferred. See [frontend](frontend.md).
+- The Qt desktop controller uses `golarion_model` directly; this C++20 target includes sheet rules and JSON persistence. The unused C ABI and its smoke test have been removed. See [interoperability](model/interop.md).
 - `core/` groups backend modules. The sheet engine lives in core/sheet. Core/play provides Host/Client Session modes, PermissionManager authorization, TCP hosting, asynchronous admission/sendCommand, JSON v4 and transactional identity archives. Targeted permission events and connected-participant snapshots now reuse the shared command registry/dispatch. session.getParticipants and session.participantsChanged expose only connected users plus the local host; no extra permission bits are required after admission. Sheet RPCs and full game persistence remain future work.
 - `golarion::play::Session` is a facade with createHost(hostId)/createClient factories. Both own ResourceManager/ProtocolManager; only hosts construct PermissionManager and credentials/code. The legacy UserId constructor still creates a host. Mode is immutable and independent of participant permissions. See session-client.md and session-permissions.md.
 - The session ResourceManager lives in `core/play/` and implements typed function registration, invocation, and removal, with focused C++20 tests passing. Each Session has an independent registry. See `architecture.md` for the API and lifetime rules; the sheet-specific `golarion::ResourceManager` retains its existing responsibilities.
 - PermissionManager is the host user/permission authority. PermissionSet is a validated uint64 mask. Permission RPCs support reads, single edits, presets and atomic updates, while enforcing immutable host identity and protected delegation. See session-permissions.md and session-permission-commands.md.
 - ProtocolManager reuses one registry/dispatch per instance for host commands and client notifications. Host join/resume use command-only Permission::Any = 0; authenticated zero-mask access remains distinct. Clients register callbacks without permission requirements and accept notifications only from their current admitted host connection. sendEvent uses a bounded queue and does not create a response future; see session-events.md.
 - Desktop campaigns persist a five-character invitation code at creation and reuse it across hosting starts. The toolbar displays it when the campaign opens, which also assigns a permanent code to an older campaign missing one. See [session protocol](session-protocol.md#session-code-and-connections).
-- Both networking modes reuse JSON v4 framing and native socket helpers. sendCommand runs remotely for clients and on the host local queue, including offline. The repository-root Debug/Ninja CMake build produces tools/tests in build/core/play; all seventeen play suites pass on Windows, including live events, mixed replies, queue bounds and automatic-save rollback. See development.md.
+- Both networking modes reuse JSON v4 framing and native socket helpers. sendCommand runs remotely for clients and on the host local queue, including offline. The desktop app uses `golarion_play` directly; the diagnostic CLI targets have been removed. See [development](development.md) for build and test commands.
 - Declarative `EffectDefinition` values and `compileEffect` are shared by source subsystems. The six-point backend audit now has typed JSON bridges for structural/casting endpoints and feat prerequisite alternatives, recursive class-level binding, selective CA retention, bounded movement bonuses and sheet inventory/casting operations. See [`model/effect-endpoints.md`](model/effect-endpoints.md) for coverage and boundaries.
 - `CharacterSheet` owns `Classes`, with enum-based level advancement and a computed total (initially 0). Class definitions/runtime support level-gated choices, replacements and base contributions; format 33 persists class identity, levels, player-entered hit dice, archetype IDs, favored-class selections and feature choices before reconstructing dependent state. Class Views are exposed by the sheet. A separate [archetype catalog](model/archetype-catalog.md) now loads 661 reviewed definitions; 103 of 764 reviewed source entries remain pending and nonselectable. `ClassDefinitionManager` loads 44 playable Golarion classes through strict JSON parsing, including full base tables and 25 casting progressions. Many privilege choices remain marked manual; see [class catalog coverage](model/class-catalog.md). See [`model/classes.md`](model/classes.md).
 - `RaceDefinitionManager` embeds all 63 races listed by Golarion, with 278 alternate entries and 485 class-filtered favored options. `Race` applies effects, manages replacements/choices, persists configuration and exposes `RaceView`. Unsupported portions retain marked reminders; catalog presence does not imply full automation. Read [race catalog coverage](model/race-catalog.md) for sources and group-specific boundaries.
@@ -79,7 +81,7 @@ Sheet advancement has explicit +1/-1 operations per class. `pendingChoices()` no
 
 Continue in small, separate changes:
 
-Current play state: connected-participant snapshots show persisted display names. Join and resume use protocol v4. Identity archives load v2 and save v3 with IDs, names, masks and token hashes. See [admission](session-admission.md) and [verification](development.md#session-snapshot-verification). Automatic reconnect and heartbeat remain separate steps.
+Current play state: connected-participant snapshots show persisted display names. Join and resume use protocol v4. Identity archives require v4 with IDs, names, masks and tokens. See [admission](session-admission.md) and [verification](development.md#session-snapshot-verification). Automatic reconnect and heartbeat remain separate steps.
 
 Sheet focus: class and archetype selection/removal, compatibility, runtime effects, persistence and Views are in place. Archetype features reuse ordinary class choice APIs; removing an archetype resets its choices and those of restored original features while preserving unrelated state. Player-entered hit dice and the class-driven skill-rank budget endpoint are implemented with persistence and Views. Favored-class choices, source-owned eligibility/bonus endpoints, cumulative rewards and their effect parser are implemented; see [`model/favored-classes.md`](model/favored-classes.md). Feat selections now survive unavailable source slots and save/load. The experimental evaluation/projection infrastructure remains removed. Feat checks now preserve valid active effects, propagate losses and reactivate eligible acquisitions through successive live passes without recursive checks. Feat-owned slots and cumulative favored-class slot rewards are supported, retaining selections when a source disappears; see [`model/feats.md`](model/feats.md). Intelligence now separates permanent and temporary modifier endpoints while stacking both together for total scores; skill-rank budgets use `intSkillRanksMod`, additionally filtering source modifiers marked excluded before stacking. Language entitlement continues to use `intPermanentMod`; source-owned skill rank grants now use the maximum of invested/granted ranks, with fixed or computed quantities, and do not spend the player's budget. Headband-style Intelligence exclusions and separate rank grants are now supported; concrete catalog JSON/content remains separate; item Intelligence bonuses apply permanently immediately by user decision, without a 24-hour timer; see [`model/classes.md`](model/classes.md) and [`model/archetypes.md`](model/archetypes.md).
 
@@ -94,13 +96,13 @@ Current focus: prepared, spontaneous, and flexible casting support consumption, 
 
 ## Context Structure
 
-- [`frontend.md`](frontend.md): Qt Quick/QML application window, Sessioni navigation, subsystem panels, sample preview and controller boundaries. Read before frontend changes.
+- [`frontend.md`](frontend.md): Qt Quick/QML application window, Sessioni navigation, subsystem panels and controller boundaries. Read before frontend changes.
 - [`session-events.md`](session-events.md): shared command registration/dispatch for client notifications, sendEvent, targeted permission refresh, queue limits and lifecycle synchronization. Read before extending live messages or notification handlers.
 - [`session-participants.md`](session-participants.md): connected-only participant projection, query/events, revisions, initial synchronization, replacement, detached Views and tests. Read before changing presence or participant lists.
 - [`session-permission-commands.md`](session-permission-commands.md): permission RPCs, payload/access rules, transactional autosave, identity-service coordination and tests. Read before modifying permission commands or persistence boundaries.
 
 - [`model/README.md`](model/README.md): index of model subsystems. Start there, then read only the document relevant to the current change.
-- [`architecture.md`](architecture.md): cross-cutting architectural decisions and the session ResourceManager API/lifetime rules. Read before changing subsystem registration, ownership, persistence, Views, or the C boundary.
+- [`architecture.md`](architecture.md): cross-cutting architectural decisions and the session ResourceManager API/lifetime rules. Read before changing subsystem registration, ownership, persistence, or Views.
 - [`game-management.md`](game-management.md): implemented Session hosting, confirmed multiplayer requirements/structural decisions, and the larger proposed game lifecycle, permissions, sheet import, and recovery. Read before changing `core/play/` or planning further game management and networking.
 - [`session-permissions.md`](session-permissions.md): integrated PermissionSet/PermissionManager, numeric masks, presets, delegation, registry features, snapshots, command access and tests. Read before permission work.
 - [`history/2026-11-17-role-manager.md`](history/2026-11-17-role-manager.md): retired RoleManager API, retained only for historical reference; current code uses permissions.
@@ -108,11 +110,11 @@ Current focus: prepared, spontaneous, and flexible casting support consumption, 
 - [`session-protocol.md`](session-protocol.md): implemented session codes, connections/hosting, JSON codec/admission/command routing, and future messages. Read before changing encoding or the overall protocol.
 - [`session-commands.md`](session-commands.md): common dispatch, public Any versus authenticated masks, result/error envelopes, trusted contexts, local/client sendCommand, synchronization and stop tests.
 - [`session-flows.md`](session-flows.md): current ownership/interaction diagrams and JSON v4 examples of startup, join, command execution, resume and stop.
-- [`session-client.md`](session-client.md): host/client factories, asynchronous join/resume, client snapshots/lifecycle, credential-file console behavior and tests. Read before changing client networking or Session modes.
+- [`session-client.md`](session-client.md): host/client factories, asynchronous join/resume, client snapshots/lifecycle, desktop credentials and tests. Read before changing client networking or Session modes.
 - [`session-admission.md`](session-admission.md): implemented join/resume schemas, private handlers, staged registration through ResourceManager, connection lifecycle, errors, synchronization, and TCP tests. Read before changing admission or integrating a client.
-- [`session-tokens.md`](session-tokens.md): eight-byte credentials, token hashes, version-3 host/user/permission archive, transactions, save/load and restart tests.
+- [`session-tokens.md`](session-tokens.md): eight-byte credentials, tokens, version-4 host/user/permission archive, transactions, save/load and restart tests.
 - [`development.md`](development.md): local build and test commands and required packages.
-- [`roadmap.md`](roadmap.md): pending model work and deferred post-character-sheet work. Read when selecting or planning the next implementation step.
+- [`roadmap.md`](roadmap.md): pending work and the credential/transport review required before a public release. Read when planning implementation or distribution.
 
 - [`history/2026-11-10-game-network-prototype.md`](history/2026-11-10-game-network-prototype.md): superseded prototype behavior, removed message schemas, and prior network observations. Read only for historical context; its APIs and launch details are not current instructions.
 - [`history/2026-11-12-admission-routing.md`](history/2026-11-12-admission-routing.md): archived admission-name collision and separate response types before common Any dispatch. Read only to understand the resolved review finding.

@@ -1,0 +1,7 @@
+# CPack runs in a separate process; point it at the same portable or system tool.
+if(CPACK_GENERATOR STREQUAL "NSIS")
+    set(NSIS_TOOLS_DIR [==[@nsis_tools_dir@]==])
+    set(GOLARION_ALLOW_DOWNLOADS @GOLARION_ALLOW_DOWNLOADS@)
+    include([==[@nsis_script@]==])
+    golarion_find_nsis(CPACK_NSIS_EXECUTABLE)
+endif()

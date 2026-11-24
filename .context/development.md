@@ -12,19 +12,23 @@ Configure from the repository root using an available CMake 3.25+ and Ninja:
 
 This root build includes the sheet and play modules and their tests. Debug keeps assertion-based suites active. Supply the compiler/package settings required by the local environment without changing the -S . -B build layout. A single-configuration generator keeps play outputs directly in build/core/play; multi-configuration generators may add a configuration directory.
 
-When only the two play tools need rebuilding, keep the same root configuration and select their targets:
-
-    cmake --build build --target golarion_play_host golarion_play_client --parallel 4
-
-After the play test targets have also been built, their subset can be run with:
+To rebuild just the play library, keep the root configuration and build the `golarion_play` target.
 
     ctest --test-dir build/core/play --output-on-failure --parallel 4
 
-Do not switch normal project work to -S core/play or build/play-cmake. The module remains independently compilable, but the agreed project workflow uses the root. Do not introduce manual compiler/linker commands.
+Do not switch normal project work to -S core/play or build/play-cmake. Select play without Qt using -DGOLARION_TARGET=golarion_play from the root. Do not introduce manual compiler/linker commands.
 
 ## Dependencies and Local Tools
 
-C++20 is required. Both modules use nlohmann_json 3.12+. Play also uses OpenSSL Crypto 3.0+, Threads and ws2_32 on Windows. The root configures the sheet module too, including its Python resource-generation dependency. Ensure runtime DLLs are reachable on Windows.
+On native Arch x86-64 the desktop `installer` target runs makepkg on the Runtime install component, including the desktop entry and asset credits. It writes `build/packages/golarion-helper-<version>-1-x86_64.pkg.tar.zst` without installing it. The recipient uses pacman; the Qt dependency minimum tracks the minor version used to build the binary.
+
+Native Windows desktop builds expose `installer` (use Release): it depends on the app and `prepare_nsis`, then runs CPack's NSIS generator on the Runtime install component. Output: `build/packages/GolarionHelper-<version>-Setup.exe`. NSIS discovery prefers a system installation, then a cached kit, otherwise downloads pinned 3.13 under `build/_deps/nsis/` if allowed. Plain installation never prepares NSIS: on Windows it stages the executable, Qt/QML runtime and compiler runtime; on Linux it installs the executable for use with system Qt.
+
+Only the frontend discovers Qt (minimum 6.9). If missing and downloads are enabled, CMake fetches the SHA-256-pinned public Qt 6.9.3 kit on native Linux x86-64 or Windows MSVC 2022 x64. It stages extraction before publishing the kit under `build/_deps/qt/6.9.3/<kit>/`; subsequent offline builds can reuse it. Archive revisions, destinations and hashes are in `cmake/Qt693Archives.cmake`.
+
+For targets using JSON, the root first searches for an installed nlohmann_json 3.12+ CMake package. If unavailable, it fetches the SHA-256-pinned 3.12.0 release into the build tree. Configure with `-DGOLARION_ALLOW_DOWNLOADS=OFF` to require a local package or a previously populated source tree. The UI-only target skips JSON; Qt is still an SDK dependency.
+
+C++20 is required. Both modules use nlohmann_json 3.12+. Play uses Threads, plus ws2_32 and bcrypt on Windows. The root configures the sheet module too, including its Python resource-generation dependency.
 
 The root build is now verified with GCC 10.3, Ninja, CMake 3.31.10, JSON 3.12.0 and existing OpenSSL 3.0.15. Local CMake/CTest are under ignored build/_tools/cmake/cmake/data/bin; JSON is installed as a real CMake package under build/_deps/json-install. The historical standalone setup is archived separately.
 
@@ -33,28 +37,18 @@ Verified Windows commands from the repository root:
     $playCMake = "./build/_tools/cmake/cmake/data/bin/cmake.exe"
     $playCTest = "./build/_tools/cmake/cmake/data/bin/ctest.exe"
     $playJsonPrefix = (Resolve-Path "build/_deps/json-install").Path
-    & $playCMake -S . -B build -G Ninja -DCMAKE_CXX_COMPILER=C:/TDM-GCC-64/bin/g++.exe -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON "-DCMAKE_PREFIX_PATH=$playJsonPrefix" -DOPENSSL_ROOT_DIR=C:/Users/Daniele/miniconda3/Library -DOPENSSL_CRYPTO_LIBRARY=C:/Users/Daniele/miniconda3/Library/lib/libcrypto.lib
-    $playTargets = @("golarion_play_host", "golarion_play_client") + @(Select-String -Path "core/play/CMakeLists.txt" -Pattern 'add_executable\((play_[a-z_]+_test)' | ForEach-Object { $_.Matches[0].Groups[1].Value })
+    & $playCMake -S . -B build -DGOLARION_TARGET=golarion_play -G Ninja -DCMAKE_CXX_COMPILER=C:/TDM-GCC-64/bin/g++.exe -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON "-DCMAKE_PREFIX_PATH=$playJsonPrefix"
+    $playTargets = @("golarion_play") + @(Select-String -Path "core/play/CMakeLists.txt" -Pattern 'add_executable\((play_[a-z_]+_test)' | ForEach-Object { $_.Matches[0].Groups[1].Value })
     & $playCMake --build build --target @playTargets --parallel 4
-    $env:PATH = "C:/Users/Daniele/miniconda3/Library/bin;" + $env:PATH
     & $playCTest --test-dir build/core/play --output-on-failure --parallel 4
 
-The focused run configures the root graph and builds both play tools plus all play tests; it does not claim a full sheet-test run. CMakeCache confirms CMAKE_HOME_DIRECTORY is the repository root and the build type is Debug. Adapt compiler/package paths on another PC without changing -S . -B build. Local TCP tests require socket permissions in this environment.
+The focused commands configure the root graph and build the play library and its tests. Adapt compiler/package paths on another PC without changing -S . -B build. Local TCP tests require socket permissions in this environment.
 
-## Host and Client Tools
-
-Expected Windows executable locations after the root build:
-
-    ./build/core/play/golarion_play_host.exe 127.0.0.1 42500 ./session-identities.json "La Città Sommersa"
-    ./build/core/play/golarion_play_client.exe 127.0.0.1 42500 A7K2Q ./my-session-token.txt
-
-Run separate terminals and replace the code with the one printed by the host. Host syntax is IPv4/port/[identity archive]/[session name]. The optional name follows an explicit archive path and appears in the desktop client. Port zero requests an OS-assigned port. Client syntax is IPv4/port/code/[token file]. Linux names omit .exe. For LAN/VPN bind the host appropriately and use its reachable address on clients.
-
-The host creates or loads its identity archive before listening, defaulting to session-identities.json. The client joins if client-token.txt is missing and resumes if it holds a valid token. Both peers use JSON v4. Identity archives v3 include display names with IDs, masks and token hashes. Loading v2 retains identities and tokens and upgrades on the next successful save.
+For manual host/client checks, use the desktop app. The former diagnostic CLI sources and targets have been removed; see [historical notes](history/2026-11-23-play-cli-removal.md).
 
 ## Verified Commands, Notifications and Presence (2026-11-19)
 
-The root CMake build compiles fifteen play library sources, both tools and seventeen native suites to build/core/play. All seventeen pass on Windows. permission_commands_test covers RPC access/schema/transactions; play_events_test covers targeted live masks, fragmented/mixed frames, no-op/failed-save suppression, fixed deadlines, 64-frame/256-KiB queue limits, stale contexts and stop/replacement races. play_participants_test additionally covers connected-only projections, initial snapshots, replacement, failed admission, zero-permission access, revisions, host reconstruction, frame limits and concurrent presence changes. Existing framing, queue, identity and buffered-stop regressions pass.
+The verification run on Windows passed seventeen native play suites from build/core/play. permission_commands_test covers RPC access/schema/transactions; play_events_test covers targeted live masks, fragmented/mixed frames, no-op/failed-save suppression, fixed deadlines, 64-frame/256-KiB queue limits, stale contexts and stop/replacement races. play_participants_test additionally covers connected-only projections, initial snapshots, replacement, failed admission, zero-permission access, revisions, host reconstruction, frame limits and concurrent presence changes. Existing framing, queue, identity and buffered-stop regressions passed.
 
 Permission read/mutation commands and targeted live notifications are complete for this step. ClientSnapshot refreshes on permissions.changed; permissions.get supplies current server data independently. Permanent tests live in core/play/tests; no frontend or mutation CLI prompt was added. Historical standalone/process checks are in history/2026-11-17-standalone-play-build.md. POSIX/physical two-PC verification of this step remains pending.
 

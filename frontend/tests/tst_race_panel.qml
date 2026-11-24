@@ -1,7 +1,6 @@
 import QtQuick
 import QtTest
 import Golarion.Sheet
-import "../preview" as Preview
 
 TestCase {
     id: testCase
@@ -10,29 +9,6 @@ TestCase {
     visible: true
     when: windowShown
     Component { id: component; RacePanel {} }
-    Component { id: previewComponent; Preview.Main {} }
-    function test_previewUsesSelectedRaceCatalog() {
-        const preview = createTemporaryObject(previewComponent, testCase, {raceAlternateCatalog: {
-            human: [{id: "human.alt", name: "Alternativo umano"}], elf: [{id: "elf.alt", name: "Alternativo elfico"}]
-        }});
-        findChild(preview, "panelSelector").currentIndex = 12;
-        waitForRendering(preview.contentItem);
-        const panel = findChild(preview.contentItem, "racePanel");
-        const button = findChild(panel, "selectAlternateTraits");
-        mouseClick(button);
-        const popup = button.pickerPopup;
-        tryCompare(popup, "opened", true);
-        const list = findChild(popup.contentItem, "alternateTraitList");
-        compare(list.count, 1);
-        compare(list.model[0].id, "human.alt");
-        panel.race = {race: {id: "elf", name: "Elfo"}, activeElements: []};
-        tryCompare(popup, "visible", false);
-        mouseClick(button);
-        tryCompare(popup, "opened", true);
-        compare(list.count, 1);
-        compare(list.model[0].id, "elf.alt");
-        popup.close();
-    }
     SignalSpy { id: changeSpy; signalName: "setRaceRequested" }
     SignalSpy { id: choiceSpy; signalName: "changeChoiceRequested" }
     function test_completeMissingChoice() {

@@ -1,5 +1,5 @@
-#include "session_controller.hpp"
-#include "sheet_controller.hpp"
+#include "controllers/session_controller.hpp"
+#include "controllers/sheet_controller.hpp"
 
 #include <QDir>
 #include <QGuiApplication>
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     // Capture the existing campaign location before setting the profile's settings scope.
     application.setOrganizationName(QStringLiteral("GolarionHelper"));
     SessionController sessionController(dataDirectory.isEmpty() ? QString{} : QDir(dataDirectory).filePath(QStringLiteral("campaigns")));
-    SheetController sheetController;
+    SheetController sheetController(nullptr, dataDirectory.isEmpty() ? QString{} : QDir(dataDirectory).filePath(QStringLiteral("sheets")));
     QQmlApplicationEngine engine;
     engine.setInitialProperties({
         {QStringLiteral("sessionController"), QVariant::fromValue(&sessionController)},

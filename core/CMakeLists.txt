@@ -1,2 +1,5 @@
 add_subdirectory(sheet)
-add_subdirectory(play)
+if(GOLARION_TARGET STREQUAL "golarion_helper" OR GOLARION_TARGET STREQUAL "golarion_play")
+    add_subdirectory(play)
+    add_dependencies(golarion_play golarion_model)
+endif()

@@ -4,6 +4,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts
+import QtCore
 import Golarion.App
 
 ScrollView {
@@ -15,20 +16,37 @@ ScrollView {
     ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
     StackView.onActivated: controller.refreshSavedSheets()
 
-    FileDialog {
+    Dialog {
         id: createDialog
-        title: qsTr("Salva la nuova scheda")
+        title: qsTr("Nuova scheda")
+        modal: true
+        anchors.centerIn: parent
+        standardButtons: Dialog.Ok | Dialog.Cancel
+        onOpened: { sheetName.forceActiveFocus(); sheetName.selectAll() }
+        onAccepted: page.controller.createSavedSheet(sheetName.text)
+        TextField {
+            id: sheetName
+            placeholderText: qsTr("Nome della scheda")
+            onAccepted: if (text.trim()) createDialog.accept()
+        }
+    }
+
+    FileDialog {
+        id: exportDialog
+        property url source
+        title: qsTr("Esporta scheda")
+        currentFolder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         fileMode: FileDialog.SaveFile
         defaultSuffix: "json"
         nameFilters: [qsTr("Schede JSON (*.json)")]
-        onAccepted: page.controller.createSavedSheet(selectedFile)
+        onAccepted: page.controller.exportSavedSheet(source, selectedFile)
     }
 
     FileDialog {
         id: importDialog
         title: qsTr("Importa scheda")
         nameFilters: [qsTr("Schede JSON (*.json)"), qsTr("Tutti i file (*)")]
-        onAccepted: page.controller.openSavedSheet(selectedFile)
+        onAccepted: page.controller.importSavedSheet(selectedFile)
     }
 
     ColumnLayout {
@@ -46,7 +64,7 @@ ScrollView {
             Button {
                 text: qsTr("Nuova scheda")
                 onClicked: {
-                    createDialog.selectedFile = page.controller.defaultSheetFile()
+                    sheetName.text = qsTr("Nuova scheda")
                     createDialog.open()
                 }
             }
@@ -99,6 +117,17 @@ ScrollView {
                             elide: Text.ElideMiddle
                             color: "#56616b"
                         }
+                    }
+                }
+                Button {
+                    text: qsTr("Esporta")
+                    enabled: entry.modelData.available
+                    onClicked: {
+                        exportDialog.source = entry.modelData.url
+                        const documents = StandardPaths.writableLocation(StandardPaths.DocumentsLocation).toString()
+                        if (documents)
+                            exportDialog.selectedFile = documents.replace(/\/$/, "") + "/" + encodeURIComponent(entry.modelData.name + ".json")
+                        exportDialog.open()
                     }
                 }
                 Button {

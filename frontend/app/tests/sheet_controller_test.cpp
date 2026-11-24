@@ -1,4 +1,4 @@
-#include "../sheet_controller.hpp"
+#include "../controllers/sheet_controller.hpp"
 #include "golarion/character/ability.hpp"
 #include "golarion/character/character_class_type.hpp"
 #include "golarion/character/pending_choice.hpp"
@@ -23,21 +23,24 @@ private Q_SLOTS:
         QSettings::setDefaultFormat(QSettings::IniFormat);
         QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, directory.path());
         QCoreApplication::setOrganizationName("GolarionSheetTest");
-        const auto url = QUrl::fromLocalFile(directory.filePath(QStringLiteral("Scheda di prova.json")));
+        const auto library = directory.filePath("local/sheets");
+        const auto url = QUrl::fromLocalFile(QDir(library).filePath(QStringLiteral("Scheda di prova.json")));
 
-        SheetController creator;
+        SheetController creator(nullptr, library);
+        QSettings().setValue("sheets/paths", QStringList{directory.filePath("previous.json")});
+        QVERIFY(creator.savedSheets().isEmpty());
         QSignalSpy opened(&creator, &SheetController::sheetOpened);
-        creator.createSavedSheet(url);
+        creator.createSavedSheet("Scheda di prova");
         QTRY_COMPARE_WITH_TIMEOUT(opened.count(), 1, 15000);
         QVERIFY(QFile::exists(url.toLocalFile()));
         creator.setNotes(QStringLiteral("Note salvate"));
         QVERIFY2(creator.errorMessage().isEmpty(), qPrintable(creator.errorMessage()));
 
-        creator.createSavedSheet(url);
+        creator.createSavedSheet("../outside");
         QCOMPARE(opened.count(), 1);
         QVERIFY(!creator.errorMessage().isEmpty());
 
-        SheetController reader;
+        SheetController reader(nullptr, library);
         QCOMPARE(reader.savedSheets().size(), 1);
         QSignalSpy reopened(&reader, &SheetController::sheetOpened);
         reader.openSavedSheet(url);
@@ -45,17 +48,43 @@ private Q_SLOTS:
         QCOMPARE(reader.notes(), QStringLiteral("Note salvate"));
         QCOMPARE(reader.savedSheets().size(), 1);
 
-        const auto moved = directory.filePath(QStringLiteral("Importata.json"));
-        QVERIFY(QFile::rename(url.toLocalFile(), moved));
-        QVERIFY(!reader.savedSheets().first().toMap().value("available").toBool());
-        const auto imported = QUrl::fromLocalFile(moved);
-        reader.openSavedSheet(imported);
+        const auto external = QUrl::fromLocalFile(directory.filePath("Scheda di prova.json"));
+        reader.exportSavedSheet(url, external);
+        QVERIFY2(reader.errorMessage().isEmpty(), qPrintable(reader.errorMessage()));
+        QFile original(external.toLocalFile());
+        QVERIFY(original.open(QIODevice::ReadOnly));
+        const auto before = original.readAll();
+        original.close();
+        reader.openSavedSheet(external);
+        QCOMPARE(reopened.count(), 1);
+        QCOMPARE(reader.savedSheets().size(), 1);
+        reader.importSavedSheet(external);
         QCOMPARE(reopened.count(), 2);
         QCOMPARE(reader.savedSheets().size(), 2);
+        const auto imported = reader.savedSheets().last().toMap().value("url").toUrl();
+        QCOMPARE(imported.toLocalFile(), QDir(library).filePath("Scheda di prova 2.json"));
+        QCOMPARE(reader.notes(), QStringLiteral("Note salvate"));
+        reader.setNotes("Solo nella copia");
+        QVERIFY(original.open(QIODevice::ReadOnly));
+        QCOMPARE(original.readAll(), before);
+        original.close();
+        reader.openSavedSheet(imported);
+        QCOMPARE(reader.notes(), QStringLiteral("Solo nella copia"));
+        reader.exportSavedSheet(imported, url);
+        QVERIFY(!reader.errorMessage().isEmpty());
+        reader.importSavedSheet(QUrl::fromLocalFile(directory.filePath("absent.json")));
+        QVERIFY(!reader.errorMessage().isEmpty());
+        QFile invalid(directory.filePath("invalid.json"));
+        QVERIFY(invalid.open(QIODevice::WriteOnly));
+        invalid.write("{}");
+        invalid.close();
+        reader.importSavedSheet(QUrl::fromLocalFile(invalid.fileName()));
+        QVERIFY(!reader.errorMessage().isEmpty());
+        QCOMPARE(QDir(library).entryList({"*.json"}, QDir::Files).size(), 2);
         reader.forgetSavedSheet(url);
         reader.forgetSavedSheet(imported);
         QVERIFY(reader.savedSheets().isEmpty());
-        QVERIFY(QFile::exists(moved));
+        QVERIFY(QFile::exists(imported.toLocalFile()));
     }
 
     void listsAllEnhancementBonusTypesWithoutAnOpenSheet()

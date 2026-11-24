@@ -1,23 +1,27 @@
 # Sheet UI components
 
-Reusable Qt Quick/QML subsystem panels for the Windows/Linux desktop application, with a separate in-memory preview and panel selector. The preview links the sheet backend only to read shared feat, race, class and archetype catalogs; character snapshots remain synthetic. Panels do not create a controller, save sheets or contact a game session. Current panel contracts and interactions are documented in [the frontend context](../.context/frontend.md).
+Reusable Qt Quick/QML subsystem panels for the Windows/Linux desktop application. Panels do not create a controller, save sheets or contact a game session. Current panel contracts and interactions are documented in [the frontend context](../.context/frontend.md).
 
-## Build and preview
+## Desktop build and panel tests
 
 All info expansions (abilities, skills and saving throws) render through `InfoDetails.qml`. Hosts provide typed rows using its `LineType` enum: Heading, Group, Entry, Total, Note or Spacer. The component alone owns typography, padding, indentation and HTML escaping; `summaryText` is a plain-text representation for testing. `ModifierText.rows` prepares grouped active modifier data without styling or calculations. SkillDetails is only a SkillView-to-rows adapter, not a separate renderer. Change info styles in InfoDetails to update all three panels.
 
-Requires CMake 3.25+, a C++20 compiler and Qt 6.5+ with Quick, Quick Controls 2 and (for tests) Quick Test. Qt is dynamically linked; the project's own QML module is a static library/plugin.
+Requires CMake 3.25+, a C++20 compiler and Qt 6.9+ with Quick, Quick Controls 2 and (for tests) Quick Test. Qt is dynamically linked; the project's own QML module is a static library/plugin.
 
 ```sh
-cmake -S frontend -B build/ui-preview -DCMAKE_BUILD_TYPE=Debug
-cmake --build build/ui-preview --parallel
-ctest --test-dir build/ui-preview --output-on-failure
-./build/ui-preview/preview/golarion_sheet_preview
+cmake -S . -B build -DGOLARION_TARGET=golarion_helper -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Debug
+cmake --build build --parallel
+ctest --test-dir build --output-on-failure
+./build/frontend/app/golarion_helper
 ```
 
-With a multi-configuration Windows generator, pass `--config Debug` to build and `-C Debug` to CTest; the executable is normally under `build/ui-preview/preview/Debug/`. Point `CMAKE_PREFIX_PATH` at the matching Qt kit if it is not discovered automatically.
+With a multi-configuration Windows generator, pass `--config Debug` to build and `-C Debug` to CTest. Point `CMAKE_PREFIX_PATH` at the matching Qt kit if it is not discovered automatically.
 
-The main project also exposes `GOLARION_BUILD_FRONTEND`, disabled by default. Enable it in a separate build directory if building the whole project. Backend-only builds do not require Qt. Do not reuse a standalone frontend build directory as the main project's frontend subdirectory.
+Qt is not required for a backend-only build.
+
+When running a development build or its tests on Windows, add the selected kit's `bin` directory to the current terminal's `PATH` so Windows can load its Qt DLLs.
+
+If Qt is missing on native Linux x86-64 or Windows MSVC 2022 x64, CMake downloads pinned Qt 6.9.3 desktop archives from the public Qt repository, checks their SHA-256 hashes and extracts the kit into the build tree under `_deps/qt/6.9.3/`. No account, installer, Python or administrator privileges are needed. A compiler and Qt's platform dependencies must already be available. For offline builds, use an installed or previously extracted kit and set `GOLARION_ALLOW_DOWNLOADS=OFF`. For other platforms, or an incomplete system Qt installation, point `CMAKE_PREFIX_PATH` to a complete compatible SDK in a fresh build.
 
 ## IdentityPanel contract
 
@@ -31,7 +35,7 @@ The main project also exposes `GOLARION_BUILD_FRONTEND`, disabled by default. En
 - Drafts survive rejection. A conflicting incoming snapshot preserves the draft and blocks Apply until the user reloads. A confirmed snapshot matching the proposal resets the draft. Cancel always reloads the latest input.
 - Empty alignment is allowed in this editor; the backend still decides advancement eligibility. No race/class/level fields or general sheet notes are duplicated here.
 
-`preview/Main.qml` is the only place that accepts proposals into sample state. All UI text is Italian; identifiers and implementation text are English. The future controller and local/session adapters remain separate work.
+The desktop controller applies changes and publishes updated sheet state.
 
 ## AbilityScoresPanel layout
 
@@ -47,18 +51,18 @@ Info panels use two compact sections, Gradi and Punteggio, with signed value/sou
 
 ## SavingThrowsPanel contract
 
-Supply immutable `savingThrows` records matching SavingThrowView: closed `SavingThrowType` enum, `baseValue`, `baseContributions`, `abilityOptions` and `modifiers`. Rows always appear as Tempra, Riflessi, Volontà, with supplied scores (distinct alternatives separated by `/`) and a borderless info toggle. No rank/class-skill controls or editing. Details show base contributions, ability modifiers, grouped active bonuses/penalties and authoritative totals; text is escaped before styling. ContributionView currently provides an ID rather than a source label, so the detail shows that ID without guessing its meaning. Modifier formatting is shared with skill details. Controller wiring remains deferred; the preview uses synthetic snapshots.
+Supply immutable `savingThrows` records matching SavingThrowView: closed `SavingThrowType` enum, `baseValue`, `baseContributions`, `abilityOptions` and `modifiers`. Rows always appear as Tempra, Riflessi, Volontà, with supplied scores (distinct alternatives separated by `/`) and a borderless info toggle. No rank/class-skill controls or editing. Details show base contributions, ability modifiers, grouped active bonuses/penalties and authoritative totals; text is escaped before styling. ContributionView currently provides an ID rather than a source label, so the detail shows that ID without guessing its meaning. Modifier formatting is shared with skill details.
 
-Each concrete row has an info button expanding `SkillDetails` beneath it. Details use SkillView's `rankGrants`, `effectiveRanks`, `classSkillBonus`, `appliedArmorCheckPenalty` and each `abilityOptions` entry (ability enum/modifier, source, already-calculated total and modifier set). Active bonuses are grouped by type; no stacking rules or totals are recalculated. Trained-only unusability is explained. Category headers have no generic calculation detail. The footer displays host-supplied `spentRanks / maxRanks` (total entitlement, not remaining ranks), with dashes when unavailable. The preview supplies illustrative data and a synthetic budget.
+Each concrete row has an info button expanding `SkillDetails` beneath it. Details use SkillView's `rankGrants`, `effectiveRanks`, `classSkillBonus`, `appliedArmorCheckPenalty` and each `abilityOptions` entry (ability enum/modifier, source, already-calculated total and modifier set). Active bonuses are grouped by type; no stacking rules or totals are recalculated. Trained-only unusability is explained. Category headers have no generic calculation detail. The footer displays host-supplied `spentRanks / maxRanks` (total entitlement, not remaining ranks), with dashes when unavailable.
 
-Supply immutable SkillView-like `skills`: `type`, `specializationId`, `resourceName`, Italian `name`, `classSkill`, `ranks`, `usable` and `abilityOptions[].totalValue`. Specialized `name` is the specialization name alone, as supplied by SkillView; the panel prefixes its category. The panel sorts a copy by Italian name and resource ID. Columns are class-skill checkbox (indicator only), name, score and assigned ranks. Unusable skills show a dash; distinct alternative scores are separated by `/`, without choosing an ability or recalculating rules. Rank editing is deferred. The preview uses synthetic values.
+Supply immutable SkillView-like `skills`: `type`, `specializationId`, `resourceName`, Italian `name`, `classSkill`, `ranks`, `usable` and `abilityOptions[].totalValue`. Specialized `name` is the specialization name alone, as supplied by SkillView; the panel prefixes its category. The panel sorts a copy by Italian name and resource ID. Columns are class-skill checkbox (indicator only), name, score and assigned ranks. Unusable skills show a dash; distinct alternative scores are separated by `/`, without choosing an ability or recalculating rules. Rank editing is deferred.
 
 Three category rows always provide a text field beside Craft/Perform/Profession (Italian labels). Enter on a nonblank trimmed name emits `specializationAddRequested(skillType, name)` without mutating input. The closed QML `SpecializationType` enum must be explicitly mapped by the future adapter to backend SkillType. The controller owns ID generation, duplicate handling and backend validation. The demo alone accepts requests into synthetic state. Canonical specializations, including Alchemy, already exist at backend initialization; effects do not auto-create missing custom specializations.
 
-Category buttons expand/collapse their specialization rows independently, initially collapsed. All supplied specializations are shown alphabetically when open. Expansion survives snapshot replacement; submitting a specialization opens its category. The input remains available while collapsed. The preview includes canonical specialization names copied from the backend, with synthetic scores.
+Category buttons expand/collapse their specialization rows independently, initially collapsed. All supplied specializations are shown alphabetically when open. Expansion survives snapshot replacement; submitting a specialization opens its category. The input remains available while collapsed.
 
 Each specialization has a pin toggle: pinned rows remain visible when their category is collapsed. `pinnedResources` is view-local state keyed by resourceName, retained across snapshots and pruned when rows disappear; persistence is deferred. Only records with `custom: true` show the remove ×, which emits `specializationRemoveRequested(skillType, specializationId)` without mutating input. The demo accepts custom removals; the future controller must call the existing backend removal API and report rejections (e.g. active grants). Canonical specializations cannot be removed.
 
 The class-skill checkbox appears on each category header, not on its specialization rows. Its state comes from the category record (`type`, no `specializationId`, `classSkill`) supplied by the host, not from whether an individual specialization is a class skill. The current backend SkillView list has only concrete specializations: the future adapter must supply these category records. Checkbox interaction and backend custom grants to whole categories remain separate work.
 
-Specialization labels have a 20px left indent. Concrete rank cells display authoritative `effectiveRanks` normally and an editable player-assigned `ranks` value on hover. Enter or focus loss after a click emits `ranksChangeRequested(resourceName, ranks)` for nonnegative C++ int values; Escape or invalid input restores the snapshot. The panel neither sums granted ranks nor recalculates scores. The preview includes a synthetic granted-rank example; real totals and dispatch belong to the future controller/backend. No generic category score is currently exposed by SkillsView.
+Specialization labels have a 20px left indent. Concrete rank cells display authoritative `effectiveRanks` normally and an editable player-assigned `ranks` value on hover. Enter or focus loss after a click emits `ranksChangeRequested(resourceName, ranks)` for nonnegative C++ int values; Escape or invalid input restores the snapshot. The panel neither sums granted ranks nor recalculates scores. No generic category score is currently exposed by SkillsView.

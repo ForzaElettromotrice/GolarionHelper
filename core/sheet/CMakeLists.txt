@@ -11,6 +11,7 @@ add_library(golarion_model STATIC
     src/effect/casting_rule_effect.cpp
     src/effect/casting_rule_effect_json.cpp
     src/character/character_class.cpp
+    src/character/character_class_type.cpp
     src/character/character_class_archetypes.cpp
     src/character/classes.cpp
     src/character/favored_classes.cpp
@@ -119,9 +120,9 @@ add_library(golarion_model STATIC
     src/resource/resource_manager.cpp
     src/resource/usage_pool.cpp
     src/util/string_utils.cpp
+    src/persistence/json.cpp
+    src/persistence/spellcastings_json.cpp
 )
-
-find_package(nlohmann_json 3.12 REQUIRED)
 
 set(CLASS_CATALOG_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/resources/classes/core.json"
@@ -312,27 +313,6 @@ configure_file(
     @ONLY
 )
 
-add_library(golarion_persistence STATIC
-    src/character/character_class_type.cpp
-    src/persistence/json.cpp
-    src/persistence/spellcastings_json.cpp
-)
-
-set_target_properties(golarion_persistence PROPERTIES POSITION_INDEPENDENT_CODE ON)
-
-target_link_libraries(golarion_persistence
-    PRIVATE
-        # Definition persistence reuses domain parsers/validation; CMake repeats
-        # the mutually dependent static archives when linking consumers.
-        golarion_model
-        nlohmann_json::nlohmann_json
-)
-
-target_include_directories(golarion_persistence
-    PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-
 set_target_properties(golarion_model PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 target_include_directories(golarion_model
@@ -342,29 +322,12 @@ target_include_directories(golarion_model
         "${CMAKE_CURRENT_BINARY_DIR}/generated"
 )
 
-target_link_libraries(golarion_model PRIVATE golarion_persistence nlohmann_json::nlohmann_json)
-
-add_library(golarion SHARED
-    src/ffi/golarion.cpp
-)
-
-set_target_properties(golarion PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR})
-
-target_compile_definitions(golarion PRIVATE GH_BUILDING_LIBRARY)
-target_link_libraries(golarion PRIVATE golarion_model)
-target_include_directories(golarion
-    PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
+target_link_libraries(golarion_model PRIVATE nlohmann_json::nlohmann_json)
 
 if(MSVC)
     target_compile_options(golarion_model PRIVATE /W4 /permissive-)
-    target_compile_options(golarion_persistence PRIVATE /W4 /permissive-)
-    target_compile_options(golarion PRIVATE /W4 /permissive-)
 else()
     target_compile_options(golarion_model PRIVATE -Wall -Wextra -Wpedantic)
-    target_compile_options(golarion_persistence PRIVATE -Wall -Wextra -Wpedantic)
-    target_compile_options(golarion PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
 if(BUILD_TESTING)
@@ -372,14 +335,14 @@ if(BUILD_TESTING)
     add_executable(spell_cast_result_test tests/character/spell_cast_result_test.cpp)
     add_executable(human_catalog_test tests/character/human_catalog_test.cpp)
     add_executable(race_catalog_test tests/character/race_catalog_test.cpp)
-    target_link_libraries(race_catalog_test PRIVATE golarion_model golarion_persistence)
+    target_link_libraries(race_catalog_test PRIVATE golarion_model)
     target_include_directories(race_catalog_test PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/generated")
     add_test(NAME race_catalog_test COMMAND race_catalog_test)
-    target_link_libraries(human_catalog_test PRIVATE golarion_model golarion_persistence)
+    target_link_libraries(human_catalog_test PRIVATE golarion_model)
     add_test(NAME human_catalog_test COMMAND human_catalog_test)
     target_link_libraries(spell_cast_result_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
     add_test(NAME spell_cast_result_test COMMAND spell_cast_result_test)
-    target_link_libraries(sheet_notes_test PRIVATE golarion_model golarion_persistence)
+    target_link_libraries(sheet_notes_test PRIVATE golarion_model)
     add_test(NAME sheet_notes_test COMMAND sheet_notes_test)
 
     add_executable(advancement_gate_test tests/character/advancement_gate_test.cpp)
@@ -438,7 +401,7 @@ if(BUILD_TESTING)
     add_test(NAME metamagic_state_view_test COMMAND metamagic_state_view_test)
 
     add_executable(spell_repertoire_test tests/character/spell_repertoire_test.cpp)
-    target_link_libraries(spell_repertoire_test PRIVATE golarion_model golarion_persistence)
+    target_link_libraries(spell_repertoire_test PRIVATE golarion_model)
     add_test(NAME spell_repertoire_test COMMAND spell_repertoire_test)
 
     add_executable(spellcastings_test tests/character/spellcastings_test.cpp)
@@ -483,7 +446,7 @@ if(BUILD_TESTING)
 
     add_executable(spell_catalog_test tests/character/spell_catalog_test.cpp)
     target_include_directories(spell_catalog_test PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/generated")
-    target_link_libraries(spell_catalog_test PRIVATE golarion_model golarion_persistence nlohmann_json::nlohmann_json)
+    target_link_libraries(spell_catalog_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
     add_test(NAME spell_catalog_test COMMAND spell_catalog_test)
 
     add_executable(languages_test tests/character/languages_test.cpp)
@@ -508,7 +471,7 @@ if(BUILD_TESTING)
 
     add_executable(feat_catalog_test tests/character/feat_catalog_test.cpp)
     target_include_directories(feat_catalog_test PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/generated")
-    target_link_libraries(feat_catalog_test PRIVATE golarion_model golarion_persistence nlohmann_json::nlohmann_json)
+    target_link_libraries(feat_catalog_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
     add_test(NAME feat_catalog_test COMMAND feat_catalog_test)
 
     add_executable(action_test tests/character/action_test.cpp)
@@ -592,20 +555,20 @@ if(BUILD_TESTING)
     add_test(NAME class_definition_test COMMAND class_definition_test)
 
     add_executable(class_definition_json_test tests/character/class_definition_json_test.cpp)
-    target_link_libraries(class_definition_json_test PRIVATE golarion_model golarion_persistence nlohmann_json::nlohmann_json)
+    target_link_libraries(class_definition_json_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
     add_test(NAME class_definition_json_test COMMAND class_definition_json_test)
 
     add_executable(archetype_definition_json_test tests/character/archetype_definition_json_test.cpp)
-    target_link_libraries(archetype_definition_json_test PRIVATE golarion_model golarion_persistence nlohmann_json::nlohmann_json)
+    target_link_libraries(archetype_definition_json_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
     add_test(NAME archetype_definition_json_test COMMAND archetype_definition_json_test)
 
     add_executable(class_option_catalog_json_test tests/character/class_option_catalog_json_test.cpp)
-    target_link_libraries(class_option_catalog_json_test PRIVATE golarion_model golarion_persistence nlohmann_json::nlohmann_json)
+    target_link_libraries(class_option_catalog_json_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
     add_test(NAME class_option_catalog_json_test COMMAND class_option_catalog_json_test)
 
     add_executable(class_catalog_test tests/character/class_catalog_test.cpp)
     target_include_directories(class_catalog_test PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/generated")
-    target_link_libraries(class_catalog_test PRIVATE golarion_model golarion_persistence nlohmann_json::nlohmann_json)
+    target_link_libraries(class_catalog_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
     add_test(NAME class_catalog_test COMMAND class_catalog_test)
 
     add_executable(feat_definition_test tests/character/feat_definition_test.cpp)
@@ -746,10 +709,6 @@ if(BUILD_TESTING)
     target_link_libraries(inventory_test PRIVATE golarion_model)
     add_test(NAME inventory_test COMMAND inventory_test)
 
-    add_executable(golarion_smoke_test tests/ffi/golarion_smoke_test.cpp)
-    target_link_libraries(golarion_smoke_test PRIVATE golarion)
-    add_test(NAME golarion_smoke_test COMMAND golarion_smoke_test)
-
     add_executable(modifier_test tests/resource/modifier_test.cpp)
     target_link_libraries(modifier_test PRIVATE golarion_model)
     add_test(NAME modifier_test COMMAND modifier_test)
@@ -775,6 +734,6 @@ if(BUILD_TESTING)
     add_test(NAME modifier_set_test COMMAND modifier_set_test)
 
     add_executable(json_test tests/persistence/json_test.cpp)
-    target_link_libraries(json_test PRIVATE golarion_persistence)
+    target_link_libraries(json_test PRIVATE golarion_model)
     add_test(NAME json_test COMMAND json_test)
 endif()

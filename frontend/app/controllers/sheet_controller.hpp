@@ -36,7 +36,7 @@ public:
     enum SpellCommand { Prepare, PrepareFlexible, ConsumePrepared, ConsumeSpontaneous, ConsumeFlexible,
         ClearSlot, ClearPreparation, ResetSlots, AddToRepertoire, SelectRepertoire, ConsumeGranted };
     Q_ENUM(SpellCommand)
-    explicit SheetController(QObject *parent = nullptr);
+    explicit SheetController(QObject *parent = nullptr, QString sheetDirectory = {});
     ~SheetController() override;
 
     QVariantMap identity() const;
@@ -55,9 +55,10 @@ public:
     void preloadClassCatalog();
     Q_INVOKABLE void openLocalSheet();
     QVariantList savedSheets() const;
-    Q_INVOKABLE QUrl defaultSheetFile() const;
     Q_INVOKABLE void openSavedSheet(const QUrl &file);
-    Q_INVOKABLE void createSavedSheet(const QUrl &file);
+    Q_INVOKABLE void createSavedSheet(const QString &name);
+    Q_INVOKABLE void importSavedSheet(const QUrl &file);
+    Q_INVOKABLE void exportSavedSheet(const QUrl &file, const QUrl &destination);
     Q_INVOKABLE void forgetSavedSheet(const QUrl &file);
     Q_INVOKABLE void refreshSavedSheets();
     Q_INVOKABLE void setNotes(const QString &notes);
@@ -146,6 +147,8 @@ private:
     bool catalogLoading_ = false;
     bool opening_ = false;
     bool createPendingFile_ = false;
+    QString sheetDirectory_;
+    QString importSource_;
     QString pendingPath_;
     QString currentPath_;
     std::unique_ptr<golarion::CharacterSheet> sheet_;

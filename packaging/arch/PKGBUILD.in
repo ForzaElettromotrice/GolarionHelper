@@ -1,0 +1,18 @@
+# Package the already built Runtime component; do not rebuild or install dependencies.
+pkgname=golarion-helper
+pkgver=@PROJECT_VERSION@
+pkgrel=1
+pkgdesc='Desktop character sheet and tabletop application for Pathfinder'
+arch=('x86_64')
+depends=('glibc' 'gcc-libs' 'qt6-base>=@Qt6_VERSION_MAJOR@.@Qt6_VERSION_MINOR@' 'qt6-declarative>=@Qt6_VERSION_MAJOR@.@Qt6_VERSION_MINOR@' 'qt6-svg')
+options=('!debug')
+PKGEXT='.pkg.tar.zst'
+
+package() {
+    local config=()
+    if [[ -n $GOLARION_BUILD_CONFIG ]]; then
+        config=(--config "$GOLARION_BUILD_CONFIG")
+    fi
+    DESTDIR="$pkgdir" "$GOLARION_CMAKE" --install "$GOLARION_BUILD_DIR" \
+        --prefix /usr --component Runtime "${config[@]}"
+}
