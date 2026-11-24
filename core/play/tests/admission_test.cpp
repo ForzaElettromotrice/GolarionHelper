@@ -324,7 +324,7 @@ namespace
         check(fixture.permissions.toSaveData().size() == 3 && fixture.protocol.resolveUserToken(token) == userId, "resume duplicated or rotated identity");
         fixture.protocol.saveIdentityState(archive);
         const auto saved = readText(archive);
-        check(saved.find(token) == std::string::npos && saved.find(otherUser.at("userToken").get<std::string>()) == std::string::npos, "archive contains an original credential");
+        check(saved.find(token) != std::string::npos && saved.find(otherUser.at("userToken").get<std::string>()) != std::string::npos, "archive missing issued credentials");
         const auto users = Json::parse(saved).at("users");
         check(std::any_of(users.begin(), users.end(), [&](const auto &entry)
         {

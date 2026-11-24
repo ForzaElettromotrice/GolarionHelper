@@ -1,6 +1,6 @@
 # Game Management and Application Communication
 
-The desktop app creates local campaigns, hosts and joins them with identity-preserving resume. Connected-participant snapshots carry names using JSON v4. The host reads archive v2 and saves archive v3 with per-user display names. Sheet commands remain future work.
+The desktop app creates local campaigns, hosts and joins them with identity-preserving resume. Connected-participant snapshots carry names using JSON v4. The host reads and writes archive v4 with per-user display names. Sheet commands remain future work.
 
 ## Confirmed Requirements
 
@@ -11,7 +11,7 @@ The desktop app creates local campaigns, hosts and joins them with identity-pres
 - Direct Internet access requiring network configuration, or a VPN, is acceptable for the initial version. A managed online relay or always-on dedicated server is not required.
 - Participants may import sheets created locally in the application and interact with assigned/shared sheets according to explicit permissions and bindings. Master/Player/Spectator are configurable permission presets; their names alone must not authorize sheet operations. Concrete sheet permissions remain undefined behind the current placeholder flags.
 - Communication currently means inter-application networking for joining and interacting with a shared game. In-app chat, voice, and video are outside the current scope.
-- Implementation proceeds in small steps. Session, managers, admission/sendCommand, both console tools, permission RPCs, targeted permission notifications and connected-user query/events are implemented. The desktop app exposes the host and admission lifecycles. Participant-list presentation and sheet commands are separate steps.
+- Implementation proceeds in small steps. Session, managers, admission/sendCommand, permission RPCs, targeted permission notifications and connected-user query/events are implemented. The desktop app exposes the host and admission lifecycles. Sheet commands are a separate step.
 - The implemented rules engine remains Pathfinder 1e. The user's general reference to DnD does not select another ruleset.
 
 ## Confirmed Structural Decisions for Later Steps
@@ -25,7 +25,7 @@ The desktop app creates local campaigns, hosts and joins them with identity-pres
 - The implemented model stores immutable Host UserId separately from flags. Host owns all six permissions. New users receive Player flags. Presets have no hierarchy; host alone grants/revokes ChangePermissions, delegates change only other non-host users, and presets replace ordinary bits while preserving that flag.
 - Permission::Any = 0 explicitly selects public command access for registered join/resume; it is not assignable. A zero PermissionSet requirement instead needs an authenticated registered user. Unknown/stale contexts reject, and identity never comes from payload. All requests reuse the common dispatcher.
 - Communication uses framed JSON v4 over TCP. Original eight-byte credentials identify participants within their archive across reconnect/restart; host resolves their current permissions. Both peers must use the new wire version.
-- Token issuance/recognition uses OpenSSL Crypto with host-side hashes only and no SessionId. Version-2 archives store explicit hostId, users/masks and hashes. Role archives are rejected without conversion per user choice; no automatic deletion occurs. Permission commands save transactionally; trusted direct setters still require an explicit save.
+- Token issuance uses OS randomness. Archive v4 stores original resume tokens; older archives are rejected without deletion.
 - Valid resume replaces a previous live connection while preserving identity/token and returning the current mask. One active binding exists per user; stale messages/disconnects cannot affect its replacement.
 - Store sheet IDs and names in the game registry; connect actual `CharacterSheet` content through the later application service.
 - A sheet may have several authorized participants. Shared-sheet assignments and concrete read/write permission semantics remain future work; do not infer them from preset names.
@@ -34,12 +34,11 @@ The desktop app creates local campaigns, hosts and joins them with identity-pres
 
 ## Implemented Session Hosting
 
-- `core/play/` is an independent C++20 module built as `golarion_play`, with nlohmann_json 3.12, OpenSSL Crypto 3.0+, standard threads, and native sockets. It has no sheet/frontend dependency and can be built standalone.
+- `core/play/` is an independent C++20 module built as `golarion_play`, with nlohmann_json 3.12, standard threads, and native sockets. It has no sheet/frontend dependency and can be built standalone.
 - Both Session modes own ResourceManager/ProtocolManager; only hosts initialize optional PermissionManager. All workers are stopped/joined before provider teardown.
-- golarion_play_host uses createHost, loads/creates the archive and waits for Ctrl+C. It can expose an optional session name to admitted clients. golarion_play_client uses createClient and joins/resumes with its original token. Both workers progress networking automatically. See [development](development.md#host-and-client-tools) for syntax.
 - Accepted sockets start pending; registered Any join/resume callbacks verify code/token, persist/register Player flags or restore current masks, and retain admitted peers. Successful generic public commands do not extend pending expiry. Ordinary admitted errors keep sockets open; framing/pending failures close them.
 - Connection/lifecycle state is synchronized. Stop joins the network worker and releases peers/bindings while retaining permissions, tokens and the ID counter. Local commands remain available; shutdown joins them before provider destruction.
-- Native admission and host/client sendCommand are implemented. The host queues local dispatch even offline; an admitted client sends correlated requests with bounded completion. User events and reconnect policy remain separate. Legacy Game/network and their old tests/client were removed; the current console still exposes admission/monitoring only, documented in `session-client.md`.
+- Native admission and host/client sendCommand are implemented. The host queues local dispatch even offline; an admitted client sends correlated requests with bounded completion. User events and reconnect policy remain separate.
 - Seventeen native play suites pass through the root CMake build on Windows, including RPC transactions, targeted live events, mixed replies, queue limits, full host reconstruction and prior stop/identity regressions. Outputs are build/core/play; POSIX remains unverified.
 
 ## Desktop Hosted Campaigns
@@ -76,7 +75,7 @@ The hosting application runs the authoritative game service. All participants, i
 
 Serialize domain mutations through the game's command queue. This permits simultaneous masters without requiring concurrent mutation of `CharacterSheet`. Reuse existing sheet mutation APIs and their feat-prerequisite rechecks. Keep game membership and networking outside sheet rules and the sheet-specific `golarion::ResourceManager`.
 
-Use stable game, participant, and sheet IDs in the protocol. C API handles and C++ addresses are process-local and never represent network identities. FFI is the existing local library boundary; network messages are a separate application boundary.
+Use stable game, participant, and sheet IDs in the protocol. C++ addresses are process-local and never represent network identities. The desktop app uses the C++ API locally; network messages are a separate application boundary.
 
 Proposed import semantics:
 
@@ -130,7 +129,7 @@ Initially use reliable ordered messages for commands and synchronization. Transp
 
 ## Possible Implementation Slices
 
-The sheet backend lives in core/sheet; core/play implements host/client Session modes, TCP hosting, native client admission and managers. A future native desktop frontend can use the C++ application API; the existing C API remains separate and its full frontend boundary is undecided.
+The sheet backend lives in core/sheet; core/play implements host/client Session modes, TCP hosting, native client admission and managers. The Qt desktop frontend uses the C++ APIs directly.
 
 1. Review implemented connected-participant snapshots and choose a separate heartbeat/reconnection step, preserving RPC autosave, current actor checks, provider lifetime, revisions and buffered-stop constraints.
 2. Add the sheet ID/name registry, shared assignments, and authorization separately, then connect sheet contents through an application service.

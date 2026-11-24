@@ -1,8 +1,6 @@
 #include "golarion/play/user_token.hpp"
 
-#include <iomanip>
 #include <iostream>
-#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -16,13 +14,10 @@ namespace
         if (!condition) throw std::runtime_error(message);
     }
 
-    void knownValueAndDigest()
+    void knownValue()
     {
         const UserToken token("0001020304050607");
         check(token.value() == "0001020304050607", "token value changed");
-        std::ostringstream hash;
-        for (const auto byte : token.digest()) hash << std::hex << std::setfill('0') << std::setw(2) << static_cast<unsigned int>(byte);
-        check(hash.str() == "8a851ff82ee7048ad09ec3847f1ddf44944104d2cbd17ef4e3db22c6785a0d45", "SHA-256 does not hash the original eight bytes");
         std::string text = "0123456789abcdef";
         const UserToken copied(text);
         text.assign(16, '0');
@@ -56,7 +51,7 @@ namespace
             {
                 check((character >= '0' && character <= '9') || (character >= 'a' && character <= 'f'), "generated token is not canonical hexadecimal");
             }
-            check(UserToken(value).digest() == token.digest(), "generated token cannot be reconstructed");
+            check(UserToken(value).value() == value, "generated token cannot be reconstructed");
         }
     }
 }
@@ -65,7 +60,7 @@ int main()
 {
     try
     {
-        knownValueAndDigest();
+        knownValue();
         rejectsMalformedValues();
         generatedValues();
         std::cout << "user token: PASS\n";

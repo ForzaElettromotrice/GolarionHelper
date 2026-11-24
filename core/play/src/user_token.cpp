@@ -1,8 +1,12 @@
 #include "golarion/play/user_token.hpp"
 #include "token_encoding.hpp"
 
-#include <openssl/evp.h>
-#include <openssl/rand.h>
+#if defined(_WIN32)
+#include <windows.h>
+#include <bcrypt.h>
+#else
+#include <unistd.h>
+#endif
 
 #include <stdexcept>
 
@@ -18,7 +22,12 @@ namespace golarion::play
     UserToken UserToken::generate()
     {
         std::array<unsigned char, 8> bytes{};
-        if (RAND_priv_bytes(bytes.data(), static_cast<int>(bytes.size())) != 1) throw std::runtime_error("cannot generate user token");
+#if defined(_WIN32)
+        if (BCryptGenRandom(nullptr, bytes.data(), static_cast<ULONG>(bytes.size()), BCRYPT_USE_SYSTEM_PREFERRED_RNG) != 0)
+#else
+        if (::getentropy(bytes.data(), bytes.size()) != 0)
+#endif
+            throw std::runtime_error("cannot generate user token");
         return UserToken(detail::encodeHex(bytes));
     }
 
@@ -27,14 +36,4 @@ namespace golarion::play
         return detail::encodeHex(bytes_);
     }
 
-    UserToken::Digest UserToken::digest() const
-    {
-        Digest result{};
-        unsigned int size = 0;
-        if (EVP_Digest(bytes_.data(), bytes_.size(), result.data(), &size, EVP_sha256(), nullptr) != 1 || size != result.size())
-        {
-            throw std::runtime_error("cannot hash user token");
-        }
-        return result;
-    }
 }

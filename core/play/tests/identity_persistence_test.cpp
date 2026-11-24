@@ -97,13 +97,13 @@ namespace
             fixture.permissions.applyPreset("host", "alice", PermissionPreset::Master);
             fixture.protocol.saveIdentityState(archive);
             const auto document = Json::parse(readText(archive));
-            check(document.size() == 4 && document.at("version") == 3 && document.at("hostId") == "host", "unexpected identity archive schema");
+            check(document.size() == 4 && document.at("version") == 4 && document.at("hostId") == "host", "unexpected identity archive schema");
             check(!document.contains("sessionId") && !document.contains("sessionCode"), "archive contains an extra Session identifier/code");
             check(document.at("tokens").size() == 2, "credentials missing from archive");
             for (const auto &entry : document.at("tokens"))
             {
-                check(entry.size() == 2 && entry.contains("userId") && entry.contains("hash"), "raw token or extra fields persisted");
-                check(entry.at("hash").get<std::string>().size() == 64, "saved verifier is not SHA-256");
+                check(entry.size() == 2 && entry.contains("userId") && entry.contains("token"), "unexpected token fields");
+                check(entry.at("token") == (entry.at("userId") == "alice" ? aliceToken : bobToken), "saved token does not match issued token");
             }
             const auto saved = readText(archive);
             Fixture newSession;
@@ -150,7 +150,9 @@ namespace
         std::vector<Json> invalid;
         const auto add = [&](auto mutate) { auto data = valid; mutate(data); invalid.push_back(std::move(data)); };
         add([](Json &data) { data["version"] = 1; });
-        add([](Json &data) { data["version"] = 4; });
+        add([](Json &data) { data["version"] = 2; });
+        add([](Json &data) { data["version"] = 3; });
+        add([](Json &data) { data["version"] = 5; });
         add([](Json &data) { data["version"] = true; });
         add([](Json &data) { data["version"] = 1.0; });
         add([](Json &data) { data["version"] = "1"; });

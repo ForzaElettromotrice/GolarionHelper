@@ -21,8 +21,8 @@ namespace golarion::play::detail
         static UserTokens fromSaveData(const std::vector<UserTokenSaveData> &data);
 
     private:
-        bool containsHash(const UserToken::Digest &hash) const;
+        bool containsToken(std::string_view token) const;
 
-        std::unordered_map<UserId, UserToken::Digest> tokens_;
+        std::unordered_map<UserId, std::string> tokens_;
     };
 }

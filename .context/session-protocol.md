@@ -32,7 +32,7 @@ session.join takes sessionCode and displayName and returns UserId, mask 7 and th
 
 Permissions are numeric unsigned masks with known bits only. PermissionSet::fromMask/toMask handles validated conversion; floats, strings, booleans, negative values and unknown bits reject at JSON boundaries. Mask zero is valid for a registered user and does not imply public access. Presets are not roles or persistent labels; the immutable host has an explicit separate identity.
 
-Version-3 archives persist hostId, user IDs, masks, display names and token hashes. Version 2 is accepted with unset names and upgraded on the next successful write. Role-based v1 files are rejected. Credentials remain eight random bytes/16 lowercase hex characters, hashed on the host. Permission mutations save automatically and notify the affected user. See session-tokens.md and session-events.md.
+Version-4 archives persist hostId, user IDs, masks, display names and tokens. Earlier versions are rejected. Credentials remain eight random bytes/16 lowercase hex characters, stored directly on the host. Permission mutations save automatically and notify the affected user. See session-tokens.md and session-events.md.
 
 session.getParticipants returns revision/participants through the ordinary command result. session.participantsChanged uses the same payload without requestId and updates the client cache. Each participant entry contains userId, displayName and isHost. Hosting sends the admission response before the initial presence snapshot. Revisions are runtime-only and reset on host reconstruction. See session-participants.md.
 

@@ -1,6 +1,6 @@
 # ProtocolManager
 
-Status: connected-participant query/events added 2026-11-19 to shared command dispatch and targeted permission events. Session owns PermissionManager only on hosts; JSON v4 and archive v3 use numeric masks. See session-participants.md, session-events.md and session-permission-commands.md.
+Status: connected-participant query/events added 2026-11-19 to shared command dispatch and targeted permission events. Session owns PermissionManager only on hosts; JSON v4 and archive v4 use numeric masks. See session-participants.md, session-events.md and session-permission-commands.md.
 
 ## API and ResourceManager
 
@@ -39,9 +39,9 @@ Session is a facade with immutable Host/Client mode. Both own ResourceManager th
 
 SessionCode remains five uppercase alphanumeric symbols, with lowercase accepted. It is stable during a live Session's hosting restarts; host-wide uniqueness and code persistence remain deferred. Clients supply the remote code. Wrong-mode methods throw logic_error; noexcept verifySessionCode returns false on clients.
 
-Token issuance, recognition, save/load and archive ownership remain in ProtocolManager. IdentitySaveData now includes hostId and UserPermissionsSaveData plus token hashes. Trusted load checks the explicit hostId and immutable host mask before replacing state. No legacy importer exists. See session-tokens.md.
+Token issuance, recognition, save/load and archive ownership remain in ProtocolManager. IdentitySaveData now includes hostId and UserPermissionsSaveData plus tokens. Trusted load checks the explicit hostId and immutable host mask before replacing state. No legacy importer exists. See session-tokens.md.
 
-Hosting, ClientConnection and LocalCommands remain private implementations. Socket/runtime helpers are shared; the JSON codec is unaware of permissions. Standard C++20, nlohmann_json 3.12, Threads and OpenSSL Crypto 3.0 are used, plus ws2_32 on Windows. The module remains independent of sheet/frontend.
+Hosting, ClientConnection and LocalCommands remain private implementations. Socket/runtime helpers are shared; the JSON codec is unaware of permissions. Standard C++20, nlohmann_json 3.12, and Threads are used, plus ws2_32 and bcrypt on Windows. The module remains independent of sheet/frontend.
 
 ## Verification
 

@@ -34,18 +34,6 @@ At most 64 client commands are pending. Their five-second deadlines begin at sub
 
 Complete admission/command replies are resolved before following frames, independently of TCP grouping. A malformed later frame cannot invalidate a previously completed result or original token. Input survives admission for the normal command stage.
 
-## Console and Credential File
-
-```powershell
-./build/core/play/golarion_play_host.exe 127.0.0.1 42500 ./session-identities.json
-./build/core/play/golarion_play_client.exe 127.0.0.1 42500 A7K2Q ./my-session-token.txt
-```
-
-Run separate terminals with the current printed code. Host syntax is IP/port/[archive]/[name]; the optional name follows an explicit archive path. Client syntax is IP/port/code/[token file], default client-token.txt. For another PC supply a reachable address and configure the host bind address appropriately. Linux names omit .exe. Both sides must be rebuilt for JSON v4.
-
-A missing token file selects join; an existing valid file selects resume. The tool writes only the original 16 lowercase hex characters plus newline, never prints them, and reports effective flags as Italian Permesso1 through Permesso5/CambiaPermessi. No persistent preset label is inferred. Empty masks display nessuno. Invalid existing files fail before connecting and are preserved. Use one writer and one token file per participant/session. After discarding an archive, use a new token file.
-
-New credential output uses an owned temporary file prepared before admission, owner-only permissions where supported, flush/close/rename after success and cleanup on failure. No application-level acknowledgement or power-loss durability guarantee is added. Ctrl+C/SIGTERM requests orderly disconnect; ordinary remote closure/replacement exits with failure. The console remains an admission/monitoring tool with no generic command prompt or frontend. See development.md for CMake builds.
 
 ## Desktop Campaigns
 
@@ -53,7 +41,7 @@ The Qt controller uses the asynchronous Session client API and polls its futures
 
 Each admitted campaign is saved atomically in an individual JSON file under the application's per-user local data directory (`campaigns/`). Token values stay in C++ and files use owner read/write permissions. Disconnection preserves these records; a malformed entry stays on disk. Admission and the host archive remain authoritative for membership.
 
-Desktop hosts and named console hosts use `Session::registerSessionInfo` for the campaign name. The desktop client requests it after admission. If the command is absent, the client uses the known campaign name or `Sessione <IPv4>:<port>`. Participant names are separate, supplied from the locally stored home field during v4 join/resume and published in participant snapshots. Host identities are saved in archive v3.
+Desktop hosts use `Session::registerSessionInfo` for the campaign name. The desktop client requests it after admission. If the command is absent, the client uses the known campaign name or `Sessione <IPv4>:<port>`. Participant names are separate, supplied from the locally stored home field during v4 join/resume and published in participant snapshots. Host identities are saved in archive v4.
 
 ## Verification
 

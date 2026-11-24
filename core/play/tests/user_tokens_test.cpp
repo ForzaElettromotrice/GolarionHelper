@@ -58,12 +58,12 @@ namespace
         const auto data = registry.toSaveData();
         check(data.size() == 2 && data[0].userId == "alice" && data[1].userId == "bob", "credential data is not deterministic");
         auto restored = UserTokens::fromSaveData(data);
-        check(restored.resolve("0123456789abcdef") == "alice" && restored.resolve("ffffffffffffffff") == "bob", "hash-only data did not restore credentials");
+        check(restored.resolve("0123456789abcdef") == "alice" && restored.resolve("ffffffffffffffff") == "bob", "saved data did not restore credentials");
         auto duplicate = data;
         duplicate.push_back(data.front());
         check(rejects<std::invalid_argument>([&] { UserTokens::fromSaveData(duplicate); }), "duplicate saved user accepted");
         duplicate = data;
-        duplicate.back().tokenHash = duplicate.front().tokenHash;
+        duplicate.back().token = duplicate.front().token;
         check(rejects<std::invalid_argument>([&] { UserTokens::fromSaveData(duplicate); }), "shared saved token accepted");
     }
 }

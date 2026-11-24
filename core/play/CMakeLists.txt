@@ -1,13 +1,10 @@
 cmake_minimum_required(VERSION 3.25)
 
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
-    project(GolarionPlay LANGUAGES CXX)
-    include(CTest)
+    message(FATAL_ERROR "Configure from the repository root with -DGOLARION_TARGET=golarion_play")
 endif()
 
-find_package(nlohmann_json 3.12 REQUIRED)
 find_package(Threads REQUIRED)
-find_package(OpenSSL 3.0 REQUIRED COMPONENTS Crypto)
 
 add_library(golarion_play STATIC
     src/admission.cpp
@@ -31,28 +28,16 @@ target_compile_features(golarion_play PUBLIC cxx_std_20)
 set_target_properties(golarion_play PROPERTIES CXX_EXTENSIONS OFF)
 target_include_directories(golarion_play PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(golarion_play PUBLIC nlohmann_json::nlohmann_json)
-target_link_libraries(golarion_play PRIVATE Threads::Threads OpenSSL::Crypto)
+target_link_libraries(golarion_play PRIVATE Threads::Threads)
 
 if(WIN32)
-    target_link_libraries(golarion_play PRIVATE ws2_32)
+    target_link_libraries(golarion_play PRIVATE ws2_32 bcrypt)
 endif()
 
 if(MSVC)
     target_compile_options(golarion_play PRIVATE /W4 /permissive- /utf-8)
 else()
     target_compile_options(golarion_play PRIVATE -Wall -Wextra -Wpedantic)
-endif()
-
-add_executable(golarion_play_host tools/host.cpp)
-add_executable(golarion_play_client tools/client.cpp)
-target_link_libraries(golarion_play_host PRIVATE golarion_play)
-target_link_libraries(golarion_play_client PRIVATE golarion_play)
-if(WIN32)
-    target_link_libraries(golarion_play_host PRIVATE shell32)
-endif()
-if(MSVC)
-    target_compile_options(golarion_play_host PRIVATE /utf-8)
-    target_compile_options(golarion_play_client PRIVATE /utf-8)
 endif()
 
 if(BUILD_TESTING)

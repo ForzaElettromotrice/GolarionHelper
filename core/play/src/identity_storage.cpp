@@ -5,7 +5,6 @@
 #include "identity_storage.hpp"
 #include "permission_json.hpp"
 #include "golarion/play/display_name.hpp"
-#include "token_encoding.hpp"
 
 #include <nlohmann/json.hpp>
 
@@ -214,29 +213,26 @@ namespace golarion::play::detail
         const auto root = parseDocument(document);
         requireFields(root, {"version", "hostId", "users", "tokens"});
         const auto &version = root.at("version");
-        if (!version.is_number_integer() || (version != 2 && version != 3)) throw std::invalid_argument("unsupported identity archive version");
+        if (!version.is_number_integer() || version != 4) throw std::invalid_argument("unsupported identity archive version");
         if (!root.at("users").is_array() || !root.at("tokens").is_array()) throw std::invalid_argument("identity archive collections must be arrays");
         IdentitySaveData result;
         result.hostId = textField(root, "hostId");
         std::unordered_set<UserId> users;
         for (const auto &entry : root.at("users"))
         {
-            if (version == 2) requireFields(entry, {"userId", "permissions"});
-            else requireFields(entry, {"userId", "permissions", "displayName"});
+            requireFields(entry, {"userId", "permissions", "displayName"});
             auto userId = textField(entry, "userId");
             if (!users.insert(userId).second) throw std::invalid_argument("duplicate identity archive user");
-            auto name = version == 3 ? textField(entry, "displayName") : std::string{};
+            auto name = textField(entry, "displayName");
             if (!name.empty()) name = normalizeDisplayName(name);
             result.users.push_back({std::move(userId), parsePermissions(entry.at("permissions")), std::move(name)});
         }
         for (const auto &entry : root.at("tokens"))
         {
-            requireFields(entry, {"userId", "hash"});
+            requireFields(entry, {"userId", "token"});
             auto userId = textField(entry, "userId");
             if (!users.contains(userId)) throw std::invalid_argument("token references an unknown user");
-            const auto hash = decodeHex<32>(textField(entry, "hash"));
-            if (!hash) throw std::invalid_argument("invalid token hash in identity archive");
-            result.tokens.push_back({std::move(userId), *hash});
+            result.tokens.push_back({std::move(userId), textField(entry, "token")});
         }
         return result;
     }
@@ -254,9 +250,9 @@ namespace golarion::play::detail
         for (const auto &entry : data.tokens)
         {
             if (!knownUsers.contains(entry.userId)) throw std::invalid_argument("token references an unknown user");
-            tokens.push_back(Json{{"userId", entry.userId}, {"hash", encodeHex(entry.tokenHash)}});
+            tokens.push_back(Json{{"userId", entry.userId}, {"token", entry.token}});
         }
-        const auto document = Json{{"version", 3}, {"hostId", data.hostId}, {"users", std::move(users)}, {"tokens", std::move(tokens)}}.dump(2);
+        const auto document = Json{{"version", 4}, {"hostId", data.hostId}, {"users", std::move(users)}, {"tokens", std::move(tokens)}}.dump(2);
         if (document.size() > MaximumArchiveBytes) throw std::invalid_argument("identity archive size exceeded");
         replaceFile(path, document);
     }

@@ -10,7 +10,7 @@ namespace golarion::play
     struct UserTokenSaveData
     {
         UserId userId;
-        UserToken::Digest tokenHash;
+        std::string token;
     };
 
     struct IdentitySaveData

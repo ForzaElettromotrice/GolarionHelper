@@ -1,6 +1,6 @@
 # Session Permissions
 
-Status: integrated 2026-11-17; targeted live refresh added 2026-11-18. Host Session owns PermissionManager; ProtocolManager checks current masks through ResourceManager, and JSON v4/client DTOs/version-3 archives use numeric masks. RoleManager is removed. Permission-command adapters notify only the affected user after effective committed changes. Connected-user snapshots/events now use authenticated zero-bit access without exposing other users' masks; see session-participants.md, session-permission-commands.md and session-events.md.
+Status: integrated 2026-11-17; targeted live refresh added 2026-11-18. Host Session owns PermissionManager; ProtocolManager checks current masks through ResourceManager, and JSON v4/client DTOs/version-4 archives use numeric masks. RoleManager is removed. Permission-command adapters notify only the affected user after effective committed changes. Connected-user snapshots/events now use authenticated zero-bit access without exposing other users' masks; see session-participants.md, session-permission-commands.md and session-events.md.
 
 ## Model and Policy
 
@@ -59,7 +59,7 @@ Invalid IDs, duplicate users and unknown enum values throw std::invalid_argument
 
 `registerUserWithCommit` stages Player permissions and invokes a nonempty callback with the sorted candidate under the manager lock. Only callback success installs the candidate; failure or duplicate registration preserves current state. Admission uses this callback to write the archive. Commit callbacks must not reenter managers or acquire their locks. Snapshot restoration and staged commit are trusted local features, not network commands.
 
-Archive v3 stores hostId, per-user masks and names, and token hashes. Loading v2 retains IDs, masks and credentials and initializes unset names. Role-based archive v1 remains unsupported. See `session-tokens.md`.
+Archive v4 stores hostId, per-user masks and names, and tokens. Older archive versions are unsupported. See `session-tokens.md`.
 
 ## Verification and Next Steps
 

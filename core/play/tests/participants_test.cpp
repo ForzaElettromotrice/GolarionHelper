@@ -288,25 +288,14 @@ namespace
         const auto previousRevision = client.getClientState().participants->revision;
         host.reset();
         eventually([&] { return client.getClientState().state == ClientConnectionState::Disconnected; });
-        {
-            std::ifstream inputArchive(archive);
-            auto v2 = Json::parse(inputArchive);
-            inputArchive.close();
-            check(v2.at("version") == 3, "unexpected archive version");
-            v2["version"] = 2;
-            for (auto &entry : v2["users"]) entry.erase("displayName");
-            std::ofstream(archive) << v2;
-        }
         host.emplace("host");
         host->loadIdentityState(archive);
-        check(query(*host).participants == std::vector<ParticipantInfo>{{"host", true, "Host"}}, "restoring v2 identities restored stale connections");
+        check(query(*host).participants == std::vector<ParticipantInfo>{{"host", true, "Host"}}, "restoring identities restored stale connections");
         port = host->startHosting("127.0.0.1", 0);
         code = SessionCode(host->getSessionCode());
         const auto resumed = completed(client.resumeSession("127.0.0.1", port, code, token, "No\xc3\xab" "mie"));
         eventually([&] { return client.getClientState().participants.has_value(); });
         check(resumed.userId == user && client.getClientState().participants->revision < previousRevision && client.getClientState().participants == query(*host), "client did not reset revisions across host reconstruction");
-        const auto migrated = Json::parse(std::ifstream(archive));
-        check(migrated.at("version") == 3, "successful resume did not upgrade v2");
         check(client.getClientState().participants->participants.back().displayName == "No\xc3\xab" "mie", "resume lost the UTF-8 name");
         host->stopHosting();
         client.disconnectFromHost();
@@ -316,7 +305,7 @@ namespace
         port = host->startHosting("127.0.0.1", 0);
         completed(client.resumeSession("127.0.0.1", port, SessionCode(host->getSessionCode()), token));
         eventually([&] { return client.getClientState().participants.has_value(); });
-        check(client.getClientState().participants->participants.back().displayName == "No\xc3\xab" "mie", "v3 reload lost the saved name");
+        check(client.getClientState().participants->participants.back().displayName == "No\xc3\xab" "mie", "v4 reload lost the saved name");
     }
 
     class ScriptedHost final
