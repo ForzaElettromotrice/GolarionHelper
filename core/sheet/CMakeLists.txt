@@ -120,197 +120,107 @@ add_library(golarion_model STATIC
     src/resource/resource_manager.cpp
     src/resource/usage_pool.cpp
     src/util/string_utils.cpp
+    src/catalog/catalog_reader.cpp
     src/persistence/json.cpp
     src/persistence/spellcastings_json.cpp
 )
 
-set(CLASS_CATALOG_FILES
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/classes/core.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/classes/advanced.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/classes/alternative.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/classes/hybrid.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/classes/occult.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/classes/unchained.json"
-)
-set(CLASS_DEFINITION_CATALOG_JSON "[")
-set(CLASS_CATALOG_SEPARATOR "")
-foreach(CLASS_CATALOG_FILE IN LISTS CLASS_CATALOG_FILES)
-    file(READ "${CLASS_CATALOG_FILE}" CLASS_CATALOG_PART)
-    string(JSON CLASS_CATALOG_LENGTH LENGTH "${CLASS_CATALOG_PART}")
-    if(CLASS_CATALOG_LENGTH GREATER 0)
-        math(EXPR CLASS_CATALOG_LAST "${CLASS_CATALOG_LENGTH} - 1")
-        foreach(CLASS_CATALOG_INDEX RANGE 0 ${CLASS_CATALOG_LAST})
-            string(JSON CLASS_CATALOG_ENTRY GET "${CLASS_CATALOG_PART}" ${CLASS_CATALOG_INDEX})
-            string(APPEND CLASS_DEFINITION_CATALOG_JSON "${CLASS_CATALOG_SEPARATOR}${CLASS_CATALOG_ENTRY}")
-            set(CLASS_CATALOG_SEPARATOR ",")
-        endforeach()
-    endif()
-endforeach()
-string(APPEND CLASS_DEFINITION_CATALOG_JSON "]")
-set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${CLASS_CATALOG_FILES})
-configure_file(
-    src/character/class_definition_catalog.hpp.in
-    "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/character/class_definition_catalog.hpp"
-    @ONLY
+include(GNUInstallDirs)
+set(catalog_build_directory "${PROJECT_BINARY_DIR}/catalogs")
+if(GOLARION_TARGET STREQUAL "golarion_helper")
+    set(catalog_build_directory "${PROJECT_BINARY_DIR}/frontend/app/catalogs")
+endif()
+if(WIN32)
+    set(catalog_install_directory "${CMAKE_INSTALL_BINDIR}/catalogs")
+else()
+    set(catalog_install_directory "${CMAKE_INSTALL_DATADIR}/golarion-helper/catalogs")
+endif()
+target_compile_definitions(golarion_model PRIVATE GOLARION_BUILD_CATALOG_DIRECTORY="${catalog_build_directory}")
+
+function(configure_catalog directory header accessor entries)
+    set(catalog_paths "")
+    foreach(file IN LISTS ARGN)
+        string(APPEND catalog_paths "        \"${file}\",\n")
+        configure_file("resources/${file}" "${catalog_build_directory}/${file}" COPYONLY)
+        if(GOLARION_TARGET STREQUAL "golarion_helper")
+            get_filename_component(folder "${file}" DIRECTORY)
+            install(FILES "resources/${file}" DESTINATION "${catalog_install_directory}/${folder}" COMPONENT Runtime)
+        endif()
+    endforeach()
+    file(CONFIGURE OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/${directory}/${header}.hpp"
+        CONTENT [=[
+#pragma once
+
+#include "golarion/catalog/catalog_reader.hpp"
+
+namespace golarion::catalog
+{
+    inline nlohmann::json @accessor@()
+    {
+        return readCatalog({
+@catalog_paths@        }, CatalogEntries::@entries@);
+    }
+}
+]=] @ONLY)
+endfunction()
+
+configure_catalog(character class_definition_catalog loadClassDefinitionCatalog Array
+    classes/core.json
+    classes/advanced.json
+    classes/alternative.json
+    classes/hybrid.json
+    classes/occult.json
+    classes/unchained.json
 )
 
-set(CLASS_OPTION_CATALOG_FILES
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/class-options/advanced.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/class-options/alternative.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/class-options/barbarian.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/class-options/core-remaining.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/class-options/divine.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/class-options/hybrid.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/class-options/occult.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/class-options/unchained.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/class-options/wizard.json"
-)
-set(CLASS_OPTION_CATALOG_JSON "[")
-set(CLASS_OPTION_CATALOG_SEPARATOR "")
-foreach(CLASS_OPTION_CATALOG_FILE IN LISTS CLASS_OPTION_CATALOG_FILES)
-    file(READ "${CLASS_OPTION_CATALOG_FILE}" CLASS_OPTION_CATALOG_PART)
-    string(JSON CLASS_OPTION_CATALOG_TYPE TYPE "${CLASS_OPTION_CATALOG_PART}")
-    if(NOT CLASS_OPTION_CATALOG_TYPE STREQUAL "OBJECT")
-        message(FATAL_ERROR "Class option catalog must be a JSON object: ${CLASS_OPTION_CATALOG_FILE}")
-    endif()
-    string(APPEND CLASS_OPTION_CATALOG_JSON "${CLASS_OPTION_CATALOG_SEPARATOR}${CLASS_OPTION_CATALOG_PART}")
-    set(CLASS_OPTION_CATALOG_SEPARATOR ",")
-endforeach()
-string(APPEND CLASS_OPTION_CATALOG_JSON "]")
-set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${CLASS_OPTION_CATALOG_FILES})
-configure_file(
-    src/character/class_option_catalog.hpp.in
-    "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/character/class_option_catalog.hpp"
-    @ONLY
+configure_catalog(character class_option_catalog loadClassOptionCatalog Objects
+    class-options/advanced.json
+    class-options/alternative.json
+    class-options/barbarian.json
+    class-options/core-remaining.json
+    class-options/divine.json
+    class-options/hybrid.json
+    class-options/occult.json
+    class-options/unchained.json
+    class-options/wizard.json
 )
 
-set(ARCHETYPE_CATALOG_FILES
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/archetypes/core-early.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/archetypes/core-advanced.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/archetypes/other.json"
-)
-set(ARCHETYPE_DEFINITION_CATALOG_JSON "[")
-set(ARCHETYPE_CATALOG_SEPARATOR "")
-foreach(ARCHETYPE_CATALOG_FILE IN LISTS ARCHETYPE_CATALOG_FILES)
-    file(READ "${ARCHETYPE_CATALOG_FILE}" ARCHETYPE_CATALOG_PART)
-    string(STRIP "${ARCHETYPE_CATALOG_PART}" ARCHETYPE_CATALOG_PART)
-    string(JSON ARCHETYPE_CATALOG_TYPE TYPE "${ARCHETYPE_CATALOG_PART}")
-    if(NOT ARCHETYPE_CATALOG_TYPE STREQUAL "ARRAY")
-        message(FATAL_ERROR "Archetype catalog must be a JSON array: ${ARCHETYPE_CATALOG_FILE}")
-    endif()
-    string(LENGTH "${ARCHETYPE_CATALOG_PART}" ARCHETYPE_CATALOG_LENGTH)
-    math(EXPR ARCHETYPE_CATALOG_CONTENT_LENGTH "${ARCHETYPE_CATALOG_LENGTH} - 2")
-    string(SUBSTRING "${ARCHETYPE_CATALOG_PART}" 1 ${ARCHETYPE_CATALOG_CONTENT_LENGTH} ARCHETYPE_CATALOG_CONTENT)
-    string(STRIP "${ARCHETYPE_CATALOG_CONTENT}" ARCHETYPE_CATALOG_CONTENT)
-    if(NOT ARCHETYPE_CATALOG_CONTENT STREQUAL "")
-        string(APPEND ARCHETYPE_DEFINITION_CATALOG_JSON "${ARCHETYPE_CATALOG_SEPARATOR}${ARCHETYPE_CATALOG_CONTENT}")
-        set(ARCHETYPE_CATALOG_SEPARATOR ",")
-    endif()
-endforeach()
-string(APPEND ARCHETYPE_DEFINITION_CATALOG_JSON "]")
-set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${ARCHETYPE_CATALOG_FILES})
-configure_file(
-    src/character/archetype_definition_catalog.hpp.in
-    "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/character/archetype_definition_catalog.hpp"
-    @ONLY
+configure_catalog(character archetype_definition_catalog loadArchetypeDefinitionCatalog Array
+    archetypes/core-early.json
+    archetypes/core-advanced.json
+    archetypes/other.json
 )
 
-set(SPELL_CATALOG_FILES
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/spells.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/spells/level-0-1.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/spells/level-2.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/spells/level-3.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/spells/level-4.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/spells/level-5.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/spells/level-6.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/spells/level-7.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/spells/level-8.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/spells/level-9.json"
-)
-set(SPELL_DEFINITION_CATALOG_JSON "[")
-set(SPELL_CATALOG_SEPARATOR "")
-foreach(SPELL_CATALOG_FILE IN LISTS SPELL_CATALOG_FILES)
-    file(READ "${SPELL_CATALOG_FILE}" SPELL_CATALOG_PART)
-    string(JSON SPELL_CATALOG_LENGTH LENGTH "${SPELL_CATALOG_PART}")
-    if(SPELL_CATALOG_LENGTH GREATER 0)
-        math(EXPR SPELL_CATALOG_LAST "${SPELL_CATALOG_LENGTH} - 1")
-        foreach(SPELL_CATALOG_INDEX RANGE 0 ${SPELL_CATALOG_LAST})
-            string(JSON SPELL_CATALOG_ENTRY GET "${SPELL_CATALOG_PART}" ${SPELL_CATALOG_INDEX})
-            string(APPEND SPELL_DEFINITION_CATALOG_JSON "${SPELL_CATALOG_SEPARATOR}${SPELL_CATALOG_ENTRY}")
-            set(SPELL_CATALOG_SEPARATOR ",")
-        endforeach()
-    endif()
-endforeach()
-string(APPEND SPELL_DEFINITION_CATALOG_JSON "]")
-set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${SPELL_CATALOG_FILES})
-configure_file(
-    src/character/spell_definition_catalog.hpp.in
-    "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/character/spell_definition_catalog.hpp"
-    @ONLY
+configure_catalog(character spell_definition_catalog loadSpellDefinitionCatalog Array
+    spells.json
+    spells/level-0-1.json
+    spells/level-2.json
+    spells/level-3.json
+    spells/level-4.json
+    spells/level-5.json
+    spells/level-6.json
+    spells/level-7.json
+    spells/level-8.json
+    spells/level-9.json
 )
 
-file(READ "${CMAKE_CURRENT_SOURCE_DIR}/resources/items.json" ITEM_DEFINITION_CATALOG_JSON)
-configure_file(
-    src/equipment/item_definition_catalog.hpp.in
-    "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/equipment/item_definition_catalog.hpp"
-    @ONLY
+configure_catalog(character race_definition_catalog loadRaceDefinitionCatalog Array
+    races.json
+    races/core.json
+    races/other.json
+    races/rare.json
+    races/uncommon.json
 )
 
-set(RACE_CATALOG_FILES
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/races.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/races/core.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/races/other.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/races/rare.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/races/uncommon.json"
-)
-set(RACE_DEFINITION_CATALOG_JSON "[")
-set(RACE_CATALOG_SEPARATOR "")
-foreach(RACE_CATALOG_FILE IN LISTS RACE_CATALOG_FILES)
-    file(READ "${RACE_CATALOG_FILE}" RACE_CATALOG_PART)
-    string(JSON RACE_CATALOG_LENGTH LENGTH "${RACE_CATALOG_PART}")
-    if(RACE_CATALOG_LENGTH GREATER 0)
-        math(EXPR RACE_CATALOG_LAST "${RACE_CATALOG_LENGTH} - 1")
-        foreach(RACE_CATALOG_INDEX RANGE 0 ${RACE_CATALOG_LAST})
-            string(JSON RACE_CATALOG_ENTRY GET "${RACE_CATALOG_PART}" ${RACE_CATALOG_INDEX})
-            string(APPEND RACE_DEFINITION_CATALOG_JSON "${RACE_CATALOG_SEPARATOR}${RACE_CATALOG_ENTRY}")
-            set(RACE_CATALOG_SEPARATOR ",")
-        endforeach()
-    endif()
-endforeach()
-string(APPEND RACE_DEFINITION_CATALOG_JSON "]")
-set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${RACE_CATALOG_FILES})
-configure_file(
-    src/character/race_definition_catalog.hpp.in
-    "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/character/race_definition_catalog.hpp"
-    @ONLY
+configure_catalog(character feat_definition_catalog loadFeatDefinitionCatalog Array
+    feats.json
+    feats/general.json
+    feats/combat.json
+    feats/other.json
 )
 
-set(FEAT_CATALOG_FILES
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/feats.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/feats/general.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/feats/combat.json"
-    "${CMAKE_CURRENT_SOURCE_DIR}/resources/feats/other.json"
-)
-set(FEAT_DEFINITION_CATALOG_JSON "[")
-set(FEAT_CATALOG_SEPARATOR "")
-foreach(FEAT_CATALOG_FILE IN LISTS FEAT_CATALOG_FILES)
-    file(READ "${FEAT_CATALOG_FILE}" FEAT_CATALOG_PART)
-    string(JSON FEAT_CATALOG_LENGTH LENGTH "${FEAT_CATALOG_PART}")
-    if(FEAT_CATALOG_LENGTH GREATER 0)
-        math(EXPR FEAT_CATALOG_LAST "${FEAT_CATALOG_LENGTH} - 1")
-        foreach(FEAT_CATALOG_INDEX RANGE 0 ${FEAT_CATALOG_LAST})
-            string(JSON FEAT_CATALOG_ENTRY GET "${FEAT_CATALOG_PART}" ${FEAT_CATALOG_INDEX})
-            string(APPEND FEAT_DEFINITION_CATALOG_JSON "${FEAT_CATALOG_SEPARATOR}${FEAT_CATALOG_ENTRY}")
-            set(FEAT_CATALOG_SEPARATOR ",")
-        endforeach()
-    endif()
-endforeach()
-string(APPEND FEAT_DEFINITION_CATALOG_JSON "]")
-set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${FEAT_CATALOG_FILES})
-configure_file(
-    src/character/feat_definition_catalog.hpp.in
-    "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/character/feat_definition_catalog.hpp"
-    @ONLY
+configure_catalog(equipment item_definition_catalog loadItemDefinitionCatalog Array
+    items.json
 )
 
 set_target_properties(golarion_model PROPERTIES POSITION_INDEPENDENT_CODE ON)
@@ -335,7 +245,7 @@ if(BUILD_TESTING)
     add_executable(spell_cast_result_test tests/character/spell_cast_result_test.cpp)
     add_executable(human_catalog_test tests/character/human_catalog_test.cpp)
     add_executable(race_catalog_test tests/character/race_catalog_test.cpp)
-    target_link_libraries(race_catalog_test PRIVATE golarion_model)
+    target_link_libraries(race_catalog_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
     target_include_directories(race_catalog_test PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/generated")
     add_test(NAME race_catalog_test COMMAND race_catalog_test)
     target_link_libraries(human_catalog_test PRIVATE golarion_model)

@@ -170,7 +170,7 @@ namespace
 int main()
 {
     using namespace golarion;
-    const auto catalog = nlohmann::json::parse(embedded::RaceDefinitionCatalogJson);
+    const auto catalog = catalog::loadRaceDefinitionCatalog();
     const auto path = std::filesystem::temp_directory_path() / "golarion-race-catalog-test.json";
     std::set<std::string> ids;
     for (const auto &entry : catalog)

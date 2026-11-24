@@ -17,10 +17,10 @@ namespace golarion
     {
         static const ClassDefinitionManager manager = []
         {
-            const auto catalog = nlohmann::json::parse(embedded::ClassDefinitionCatalogJson);
+            const auto catalog = catalog::loadClassDefinitionCatalog();
             if (!catalog.is_array()) throw std::invalid_argument("class catalog must be a JSON array");
-            auto definitions = classDefinitionsWithOptionsFromJson(catalog, nlohmann::json::parse(embedded::ClassOptionCatalogJson));
-            const auto archetypeCatalog = nlohmann::json::parse(embedded::ArchetypeDefinitionCatalogJson);
+            auto definitions = classDefinitionsWithOptionsFromJson(catalog, catalog::loadClassOptionCatalog());
+            const auto archetypeCatalog = catalog::loadArchetypeDefinitionCatalog();
             if (!archetypeCatalog.is_array()) throw std::invalid_argument("archetype catalog must be a JSON array");
             std::vector<ArchetypeDefinition> archetypes;
             archetypes.reserve(archetypeCatalog.size());

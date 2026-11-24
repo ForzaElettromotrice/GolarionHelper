@@ -60,9 +60,11 @@ TestCase {
         verify(divider.visible);
         findChild(sheet, "sheetTabs").currentIndex = 1;
         const summary = findChild(sheet, "sheetHomeSummary");
+        tryVerify(() => findChild(sheet, "sheetHomeSkills")?.visible === true);
         const skills = findChild(sheet, "sheetHomeSkills");
-        tryVerify(() => skills.x > summary.x);
-        compare(skills.y, summary.y);
+        const skillsPosition = () => skills.mapToItem(summary.parent, 0, 0);
+        tryVerify(() => skillsPosition().x > summary.x);
+        compare(skillsPosition().y, summary.y);
         const abilities = findChild(sheet, "sheetHomeAbilities");
         const checks = findChild(sheet, "sheetHomeChecks");
         const armor = findChild(sheet, "sheetHomeArmorClass");
@@ -79,9 +81,9 @@ TestCase {
         compare(checks.y, abilities.y);
         sheet.width = 950;
         tryVerify(() => checks.y > abilities.y);
-        verify(skills.x > summary.x);
+        verify(skillsPosition().x > summary.x);
         sheet.width = 420;
-        tryVerify(() => skills.y > summary.y);
+        tryVerify(() => skillsPosition().y > summary.y);
     }
 
     function test_keyboardSaveAndNewline() {

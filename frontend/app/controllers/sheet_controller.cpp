@@ -1,5 +1,6 @@
 #include "sheet_controller.hpp"
 
+#include "golarion/catalog/catalog_reader.hpp"
 #include "golarion/character/character_sheet.hpp"
 #include "golarion/character/feat_definition_manager.hpp"
 #include "golarion/character/race_definition_manager.hpp"
@@ -20,10 +21,24 @@
 #include <limits>
 #include <utility>
 #include <nlohmann/json.hpp>
+#include <utility>
 
 namespace
 {
     constexpr auto sheetLibraryKey = "sheets/localPaths";
+
+    QString catalogReadMessage(const golarion::catalog::CatalogReadError &error)
+    {
+        return SheetController::tr("Impossibile leggere un catalogo ufficiale. %1").arg(QString::fromUtf8(error.what()));
+    }
+
+    bool replaceIfChanged(auto &current, auto &&next)
+    {
+        if (current == next) return false;
+        current = std::forward<decltype(next)>(next);
+        return true;
+    }
+
     QVariant optionalText(const std::optional<std::string> &value)
     {
         return value ? QVariant{QString::fromStdString(*value)} : QVariant{};
@@ -295,6 +310,26 @@ namespace
     }
 
     int enumValue(auto value) { return static_cast<int>(value); }
+
+    QVariantMap featCatalogEntry(const auto &feat)
+    {
+        auto entry = describedEntry(feat);
+        entry.insert("types", snapshotList(feat.types, enumValue<golarion::FeatType>));
+        entry.insert("choices", snapshotList(feat.choices, [](const auto &choice) {
+            return QVariantMap{{"id", QString::fromStdString(choice.id)}, {"prompt", QString::fromStdString(choice.prompt)},
+                {"selectionCount", static_cast<qulonglong>(choice.selectionCount)}, {"options", snapshotList(choice.options, [](const auto &option) {
+                    return namedEntry(option);
+                })}};
+        }));
+        return entry;
+    }
+
+    const QVariantList &standardFeatCatalog()
+    {
+        static const auto catalog = snapshotList(golarion::FeatDefinitionManager::instance().toView(), featCatalogEntry<golarion::FeatDefinitionView>);
+        return catalog;
+    }
+
     enum class EnhancementInputKind { Contribution, Bonus, Penalty };
 
     bool automaticCondition(std::string_view id)
@@ -677,11 +712,13 @@ namespace
 SheetController::SheetController(QObject *parent, QString sheetDirectory) : QObject(parent), sheetDirectory_(std::move(sheetDirectory))
 {
     connect(&catalogWatcher_, &QFutureWatcherBase::finished, this, &SheetController::finishCatalogLoad);
+    connect(&browsingCatalogWatcher_, &QFutureWatcherBase::finished, this, &SheetController::finishBrowsingCatalogLoad);
 }
 
 SheetController::~SheetController()
 {
     catalogWatcher_.waitForFinished();
+    browsingCatalogWatcher_.waitForFinished();
 }
 
 QVariantMap SheetController::identity() const { return identity_; }
@@ -691,15 +728,32 @@ QString SheetController::notes() const { return notes_; }
 QString SheetController::errorMessage() const { return errorMessage_; }
 bool SheetController::opening() const { return opening_; }
 
-void SheetController::preloadClassCatalog()
+void SheetController::preloadCatalogs()
 {
-    if (classCatalog_ || catalogLoading_) return;
-    catalogLoading_ = true;
-    catalogWatcher_.setFuture(QtConcurrent::run([]() -> const golarion::ClassDefinitionManager *
+    if (!classCatalog_ && !catalogLoading_)
     {
-        try { return &golarion::ClassDefinitionManager::instance(); }
-        catch (...) { return nullptr; }
-    }));
+        catalogLoading_ = true;
+        catalogWatcher_.setFuture(QtConcurrent::run([]() -> ClassCatalogResult
+        {
+            try { return {&golarion::ClassDefinitionManager::instance(), {}}; }
+            catch (const golarion::catalog::CatalogReadError &error) { return {nullptr, catalogReadMessage(error)}; }
+            catch (...) { return {nullptr, tr("Impossibile caricare il catalogo delle classi. Riprova.")}; }
+        }));
+    }
+    if (!browsingCatalogReady_ && !browsingCatalogLoading_)
+    {
+        browsingCatalogLoading_ = true;
+        browsingCatalogWatcher_.setFuture(QtConcurrent::run([]() -> QString {
+            try
+            {
+                prepareStandardSpellCatalog();
+                (void)standardFeatCatalog();
+                return {};
+            }
+            catch (const golarion::catalog::CatalogReadError &error) { return catalogReadMessage(error); }
+            catch (...) { return tr("Impossibile caricare i cataloghi di talenti e incantesimi. Riprova."); }
+        }));
+    }
 }
 
 void SheetController::openLocalSheet()
@@ -752,8 +806,7 @@ void SheetController::createSavedSheet(const QString &name)
         ? QString{} : unusedSheetPath(sheetDirectory_, base);
     if (path.isEmpty())
     {
-        errorMessage_ = tr("Impossibile creare la scheda. Verifica il nome e la cartella locale.");
-        Q_EMIT sheetChanged();
+        setErrorMessage(tr("Impossibile creare la scheda. Verifica il nome e la cartella locale."));
         return;
     }
     importSource_.clear();
@@ -767,8 +820,7 @@ void SheetController::importSavedSheet(const QUrl &file)
     const auto path = unusedSheetPath(sheetDirectory_, source.completeBaseName().isEmpty() ? tr("Scheda") : source.completeBaseName());
     if (path.isEmpty())
     {
-        errorMessage_ = tr("La cartella locale delle schede non è disponibile.");
-        Q_EMIT sheetChanged();
+        setErrorMessage(tr("La cartella locale delle schede non è disponibile."));
         return;
     }
     importSource_ = source.absoluteFilePath();
@@ -787,13 +839,11 @@ void SheetController::exportSavedSheet(const QUrl &file, const QUrl &destination
         const auto data = source.readAll();
         if (source.error() == QFileDevice::NoError && copy.write(data) == data.size() && copy.commit())
         {
-            errorMessage_.clear();
-            Q_EMIT sheetChanged();
+            setErrorMessage({});
             return;
         }
     }
-    errorMessage_ = tr("Impossibile esportare la scheda. Scegli un file esterno alla raccolta locale.");
-    Q_EMIT sheetChanged();
+    setErrorMessage(tr("Impossibile esportare la scheda. Scegli un file esterno alla raccolta locale."));
 }
 
 void SheetController::forgetSavedSheet(const QUrl &file)
@@ -807,8 +857,7 @@ void SheetController::forgetSavedSheet(const QUrl &file)
 
 void SheetController::refreshSavedSheets()
 {
-    errorMessage_.clear();
-    Q_EMIT sheetChanged();
+    setErrorMessage({});
     Q_EMIT savedSheetsChanged();
 }
 
@@ -817,34 +866,41 @@ void SheetController::requestSheet(const QString &path, bool create)
     if (opening_) return;
     pendingPath_ = path;
     createPendingFile_ = create;
-    if (!errorMessage_.isEmpty())
-    {
-        errorMessage_.clear();
-        Q_EMIT sheetChanged();
-    }
-    if (classCatalog_)
+    setErrorMessage({});
+    if (classCatalog_ && browsingCatalogReady_)
     {
         createLocalSheet();
         return;
     }
     opening_ = true;
     Q_EMIT openingChanged();
-    preloadClassCatalog();
+    preloadCatalogs();
 }
 
 void SheetController::finishCatalogLoad()
 {
-    classCatalog_ = catalogWatcher_.result();
+    auto [catalog, error] = catalogWatcher_.result();
+    classCatalog_ = catalog;
+    classCatalogError_ = std::move(error);
     catalogLoading_ = false;
-    if (!opening_) return;
+    finishOpeningWhenCatalogsReady();
+}
+
+void SheetController::finishBrowsingCatalogLoad()
+{
+    browsingCatalogError_ = browsingCatalogWatcher_.result();
+    browsingCatalogReady_ = browsingCatalogError_.isEmpty();
+    browsingCatalogLoading_ = false;
+    finishOpeningWhenCatalogsReady();
+}
+
+void SheetController::finishOpeningWhenCatalogsReady()
+{
+    if (!opening_ || catalogLoading_ || browsingCatalogLoading_) return;
     opening_ = false;
     Q_EMIT openingChanged();
-    if (classCatalog_) createLocalSheet();
-    else
-    {
-        errorMessage_ = tr("Impossibile caricare il catalogo delle classi. Riprova.");
-        Q_EMIT sheetChanged();
-    }
+    if (classCatalog_ && browsingCatalogReady_) createLocalSheet();
+    else setErrorMessage(classCatalog_ ? browsingCatalogError_ : classCatalogError_);
 }
 
 void SheetController::createLocalSheet()
@@ -881,7 +937,6 @@ void SheetController::createLocalSheet()
         sheet_ = std::move(candidate);
         currentPath_ = pendingPath_;
         lastSpellCast_.clear();
-        errorMessage_.clear();
         publish(false);
         if (!currentPath_.isEmpty())
         {
@@ -896,18 +951,26 @@ void SheetController::createLocalSheet()
         }
         Q_EMIT sheetOpened();
     }
+    catch (const golarion::catalog::CatalogReadError &error)
+    {
+        setErrorMessage(catalogReadMessage(error));
+    }
     catch (const std::exception &)
     {
-        errorMessage_ = createPendingFile_ || pendingPath_.isEmpty()
+        setErrorMessage(createPendingFile_ || pendingPath_.isEmpty()
             ? tr("Impossibile creare la scheda. Scegli un percorso libero e scrivibile.")
-            : tr("Impossibile aprire la scheda. Verifica che il file esista e sia valido.");
-        Q_EMIT sheetChanged();
+            : tr("Impossibile aprire la scheda. Verifica che il file esista e sia valido."));
     }
 }
 
-void SheetController::saveCurrentSheet()
+void SheetController::setErrorMessage(QString message)
 {
-    if (currentPath_.isEmpty()) return;
+    if (replaceIfChanged(errorMessage_, std::move(message))) Q_EMIT errorMessageChanged();
+}
+
+QString SheetController::saveCurrentSheet()
+{
+    if (currentPath_.isEmpty()) return {};
     try
     {
         const auto data = golarion::persistence::toJson(sheet_->toSaveData());
@@ -917,8 +980,9 @@ void SheetController::saveCurrentSheet()
     }
     catch (const std::exception &)
     {
-        errorMessage_ = tr("Impossibile salvare le modifiche della scheda.");
+        return tr("Impossibile salvare le modifiche della scheda.");
     }
+    return {};
 }
 
 void SheetController::setNotes(const QString &notes)
@@ -926,9 +990,8 @@ void SheetController::setNotes(const QString &notes)
     if (!sheet_ || notes == notes_) return;
     sheet_->setNotes(notes.toStdString());
     notes_ = notes;
-    errorMessage_.clear();
-    saveCurrentSheet();
-    Q_EMIT sheetChanged();
+    setErrorMessage(saveCurrentSheet());
+    Q_EMIT notesChanged();
 }
 
 template<typename Change>
@@ -938,13 +1001,11 @@ void SheetController::applySheetChange(Change change, const QString &failureMess
     try
     {
         change();
-        errorMessage_.clear();
         publish();
     }
     catch (const std::exception &)
     {
-        errorMessage_ = failureMessage;
-        Q_EMIT sheetChanged();
+        setErrorMessage(failureMessage);
     }
 }
 
@@ -1048,13 +1109,11 @@ void SheetController::setIdentityField(const QString &field, const QVariant &val
             sheet_->setAlignment(alignment ? std::optional{static_cast<golarion::Alignment>(alignment - 1)} : std::nullopt);
         }
         else throw std::invalid_argument("unknown identity field");
-        errorMessage_.clear();
         publish();
     }
     catch (const std::exception &)
     {
-        errorMessage_ = tr("Impossibile aggiornare il campo dell’identità.");
-        Q_EMIT sheetChanged();
+        setErrorMessage(tr("Impossibile aggiornare il campo dell’identità."));
     }
 }
 
@@ -1145,10 +1204,14 @@ QVariantList SheetController::itemCatalog()
             return QVariantMap{{"id", QString::fromStdString(entry.first)}, {"name", QString::fromStdString(entry.second)}};
         });
     }
+    catch (const golarion::catalog::CatalogReadError &error)
+    {
+        setErrorMessage(catalogReadMessage(error));
+        return {};
+    }
     catch (const std::exception &)
     {
-        errorMessage_ = tr("Impossibile caricare il catalogo degli oggetti.");
-        Q_EMIT sheetChanged();
+        setErrorMessage(tr("Impossibile caricare il catalogo degli oggetti."));
         return {};
     }
 }
@@ -1327,10 +1390,14 @@ QVariantList SheetController::raceCatalog()
     {
         return snapshotList(golarion::RaceDefinitionManager::instance().toView(), namedEntry<golarion::RaceSummaryView>);
     }
+    catch (const golarion::catalog::CatalogReadError &error)
+    {
+        setErrorMessage(catalogReadMessage(error));
+        return {};
+    }
     catch (const std::exception &)
     {
-        errorMessage_ = tr("Impossibile caricare il catalogo delle razze.");
-        Q_EMIT sheetChanged();
+        setErrorMessage(tr("Impossibile caricare il catalogo delle razze."));
         return {};
     }
 }
@@ -1385,8 +1452,7 @@ void SheetController::addClassLevel(int type)
     if (!blockers.isEmpty())
     {
         blockers.removeDuplicates();
-        errorMessage_ = tr("Prima di avanzare, completa queste scelte: %1.").arg(blockers.join(QStringLiteral("; ")));
-        Q_EMIT sheetChanged();
+        setErrorMessage(tr("Prima di avanzare, completa queste scelte: %1.").arg(blockers.join(QStringLiteral("; "))));
         return;
     }
     applySheetChange([&] { sheet_->addClassLevel(classTypeFromInt(type)); }, tr("Impossibile aggiungere un livello."));
@@ -1440,40 +1506,39 @@ void SheetController::setClassOption(int type, const QString &acquisitionId, con
 
 QVariantList SheetController::featCatalog(const QString &slotId)
 {
-    if (!sheet_) return {};
-    try
+    if (!sheet_ || !browsingCatalogReady_) return {};
+    QVariantMap slot;
+    if (!slotId.isEmpty())
     {
-        const auto view = sheet_->toView();
-        const auto slot = std::ranges::find(view.feats.slots, slotId.toStdString(), &golarion::FeatSlotView::id);
-        if (!slotId.isEmpty() && (slot == view.feats.slots.end() || !slot->available)) return {};
-        QVariantList catalog;
-        const auto append = [&](const auto &entries) {
-            for (const auto &feat : entries)
-            {
-                if (slot != view.feats.slots.end()
-                    && ((slot->allowedType && std::ranges::find(feat.types, *slot->allowedType) == feat.types.end())
-                        || (!slot->allowedFeatIds.empty() && std::ranges::find(slot->allowedFeatIds, feat.id) == slot->allowedFeatIds.end())))
-                    continue;
-                auto entry = describedEntry(feat);
-                entry.insert("choices", snapshotList(feat.choices, [](const auto &choice) {
-                    return QVariantMap{{"id", QString::fromStdString(choice.id)}, {"prompt", QString::fromStdString(choice.prompt)},
-                        {"selectionCount", static_cast<qulonglong>(choice.selectionCount)}, {"options", snapshotList(choice.options, [](const auto &option) {
-                            return namedEntry(option);
-                        })}};
-                }));
-                catalog.push_back(entry);
-            }
-        };
-        append(golarion::FeatDefinitionManager::instance().toView());
-        append(view.customFeatDefinitions);
+        const auto slots = talents_.value("feats").toMap().value("slots").toList();
+        const auto found = std::ranges::find_if(slots, [&](const QVariant &entry) {
+            return entry.toMap().value("id").toString() == slotId;
+        });
+        if (found == slots.end()) return {};
+        slot = found->toMap();
+        if (!slot.value("available").toBool()) return {};
+    }
+    const auto allowedType = slot.value("allowedType");
+    const auto allowedIds = slot.value("allowedFeatIds").toList();
+    if (allowedType.isNull() && allowedIds.isEmpty())
+    {
+        auto catalog = standardFeatCatalog();
+        catalog.append(customFeatCatalog_);
         return catalog;
     }
-    catch (const std::exception &)
-    {
-        errorMessage_ = tr("Impossibile caricare il catalogo dei talenti.");
-        Q_EMIT sheetChanged();
-        return {};
-    }
+    QVariantList catalog;
+    const auto append = [&](const QVariantList &entries) {
+        for (const auto &entry : entries)
+        {
+            const auto feat = entry.toMap();
+            if ((!allowedType.isNull() && !feat.value("types").toList().contains(allowedType))
+                || (!allowedIds.isEmpty() && !allowedIds.contains(feat.value("id")))) continue;
+            catalog.push_back(entry);
+        }
+    };
+    append(standardFeatCatalog());
+    append(customFeatCatalog_);
+    return catalog;
 }
 
 void SheetController::selectFeat(const QString &slotId, const QString &featId, const QVariantMap &choices)
@@ -1607,23 +1672,49 @@ void SheetController::removeConditions(const QStringList &ids)
     }, failure);
 }
 
-void SheetController::publish(bool save)
+void SheetController::publish(bool save, QString error)
 {
-    if (save) saveCurrentSheet();
+    if (save)
+    {
+        auto saveError = saveCurrentSheet();
+        if (!saveError.isEmpty()) error = std::move(saveError);
+    }
     const auto view = sheet_->toView();
-    identity_ = identitySnapshot(view.identity);
-    home_ = homeSnapshot(view);
-    combat_ = combatSnapshot(view);
-    inventory_ = inventorySnapshot(view);
-    race_ = raceSnapshot(view.race);
-    classes_ = classesSnapshot(view.classes);
-    talents_ = talentsSnapshot(view, sheet_->pendingChoices());
-    publishSpells(view);
-    enhancements_ = enhancementsSnapshot(view.enhancements);
-    enhancements_.insert("modifierResources", snapshotList(sheet_->modifierResourceNames(), QString::fromStdString));
-    enhancements_.insert("contributionResources", snapshotList(sheet_->contributionResourceNames(), QString::fromStdString));
-    enhancements_.insert("expressionTargets", snapshotList(sheet_->expressionTargetNames(), QString::fromStdString));
-    conditions_ = conditionsSnapshot(view.conditions);
-    notes_ = QString::fromStdString(view.notes);
-    Q_EMIT sheetChanged();
+    auto enhancements = enhancementsSnapshot(view.enhancements);
+    enhancements.insert("modifierResources", snapshotList(sheet_->modifierResourceNames(), QString::fromStdString));
+    enhancements.insert("contributionResources", snapshotList(sheet_->contributionResourceNames(), QString::fromStdString));
+    enhancements.insert("expressionTargets", snapshotList(sheet_->expressionTargetNames(), QString::fromStdString));
+
+    struct SectionUpdate
+    {
+        QVariantMap &current;
+        QVariantMap next;
+        void (SheetController::*notify)();
+        bool changed = false;
+    };
+    SectionUpdate sections[] = {
+        {identity_, identitySnapshot(view.identity), &SheetController::identityChanged},
+        {home_, homeSnapshot(view), &SheetController::homeChanged},
+        {combat_, combatSnapshot(view), &SheetController::combatChanged},
+        {inventory_, inventorySnapshot(view), &SheetController::inventoryChanged},
+        {race_, raceSnapshot(view.race), &SheetController::raceChanged},
+        {classes_, classesSnapshot(view.classes), &SheetController::classesChanged},
+        {talents_, talentsSnapshot(view, sheet_->pendingChoices()), &SheetController::talentsChanged},
+        {spells_, spellSnapshot(view), &SheetController::spellsChanged},
+        {enhancements_, std::move(enhancements), &SheetController::enhancementsChanged},
+        {conditions_, conditionsSnapshot(view.conditions), &SheetController::conditionsChanged}
+    };
+    const auto notes = QString::fromStdString(view.notes);
+    customFeatCatalog_ = snapshotList(view.customFeatDefinitions, featCatalogEntry<golarion::FeatDefinition>);
+
+    // Install every changed snapshot before QML can react to the first notification.
+    for (auto &section : sections)
+        section.changed = replaceIfChanged(section.current, std::move(section.next));
+    const bool notesUpdated = replaceIfChanged(notes_, notes);
+    const bool errorUpdated = replaceIfChanged(errorMessage_, std::move(error));
+
+    for (const auto &section : sections)
+        if (section.changed) Q_EMIT (this->*section.notify)();
+    if (notesUpdated) Q_EMIT notesChanged();
+    if (errorUpdated) Q_EMIT errorMessageChanged();
 }

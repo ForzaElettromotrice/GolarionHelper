@@ -9,6 +9,7 @@
 #include <QtQml/qqmlregistration.h>
 #include <memory>
 #include <functional>
+#include <utility>
 
 namespace golarion { class CharacterSheet; class ClassDefinitionManager; struct CharacterSheetView; }
 
@@ -17,18 +18,18 @@ class SheetController : public QObject
     Q_OBJECT
     QML_ELEMENT
     QML_UNCREATABLE("Provided by the application")
-    Q_PROPERTY(QVariantMap identity READ identity NOTIFY sheetChanged FINAL)
-    Q_PROPERTY(QVariantMap home READ home NOTIFY sheetChanged FINAL)
-    Q_PROPERTY(QVariantMap combat READ combat NOTIFY sheetChanged FINAL)
-    Q_PROPERTY(QVariantMap inventory READ inventory NOTIFY sheetChanged FINAL)
-    Q_PROPERTY(QVariantMap race READ race NOTIFY sheetChanged FINAL)
-    Q_PROPERTY(QVariantMap classes READ classes NOTIFY sheetChanged FINAL)
-    Q_PROPERTY(QVariantMap talents READ talents NOTIFY sheetChanged FINAL)
-    Q_PROPERTY(QVariantMap spells READ spells NOTIFY sheetChanged FINAL)
-    Q_PROPERTY(QVariantMap enhancements READ enhancements NOTIFY sheetChanged FINAL)
-    Q_PROPERTY(QVariantMap conditions READ conditions NOTIFY sheetChanged FINAL)
-    Q_PROPERTY(QString notes READ notes NOTIFY sheetChanged FINAL)
-    Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY sheetChanged FINAL)
+    Q_PROPERTY(QVariantMap identity READ identity NOTIFY identityChanged FINAL)
+    Q_PROPERTY(QVariantMap home READ home NOTIFY homeChanged FINAL)
+    Q_PROPERTY(QVariantMap combat READ combat NOTIFY combatChanged FINAL)
+    Q_PROPERTY(QVariantMap inventory READ inventory NOTIFY inventoryChanged FINAL)
+    Q_PROPERTY(QVariantMap race READ race NOTIFY raceChanged FINAL)
+    Q_PROPERTY(QVariantMap classes READ classes NOTIFY classesChanged FINAL)
+    Q_PROPERTY(QVariantMap talents READ talents NOTIFY talentsChanged FINAL)
+    Q_PROPERTY(QVariantMap spells READ spells NOTIFY spellsChanged FINAL)
+    Q_PROPERTY(QVariantMap enhancements READ enhancements NOTIFY enhancementsChanged FINAL)
+    Q_PROPERTY(QVariantMap conditions READ conditions NOTIFY conditionsChanged FINAL)
+    Q_PROPERTY(QString notes READ notes NOTIFY notesChanged FINAL)
+    Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorMessageChanged FINAL)
     Q_PROPERTY(bool opening READ opening NOTIFY openingChanged FINAL)
     Q_PROPERTY(QVariantList savedSheets READ savedSheets NOTIFY savedSheetsChanged FINAL)
 
@@ -52,7 +53,7 @@ public:
     QString notes() const;
     QString errorMessage() const;
     bool opening() const;
-    void preloadClassCatalog();
+    void preloadCatalogs();
     Q_INVOKABLE void openLocalSheet();
     QVariantList savedSheets() const;
     Q_INVOKABLE void openSavedSheet(const QUrl &file);
@@ -126,7 +127,18 @@ public:
     Q_INVOKABLE void removeConditions(const QStringList &ids);
 
 Q_SIGNALS:
-    void sheetChanged();
+    void identityChanged();
+    void homeChanged();
+    void combatChanged();
+    void inventoryChanged();
+    void raceChanged();
+    void classesChanged();
+    void talentsChanged();
+    void spellsChanged();
+    void enhancementsChanged();
+    void conditionsChanged();
+    void notesChanged();
+    void errorMessageChanged();
     void openingChanged();
     void sheetOpened();
     void savedSheetsChanged();
@@ -137,14 +149,24 @@ private:
     template<typename Change>
     void applySheetTransaction(Change change, const QString &failureMessage);
     void finishCatalogLoad();
+    void finishBrowsingCatalogLoad();
+    void finishOpeningWhenCatalogsReady();
+    static void prepareStandardSpellCatalog();
     void createLocalSheet();
     void requestSheet(const QString &path, bool create);
-    void saveCurrentSheet();
-    void publish(bool save = true);
-    void publishSpells(const golarion::CharacterSheetView &view);
-    QFutureWatcher<const golarion::ClassDefinitionManager *> catalogWatcher_;
+    void setErrorMessage(QString message);
+    QString saveCurrentSheet();
+    void publish(bool save = true, QString error = {});
+    QVariantMap spellSnapshot(const golarion::CharacterSheetView &view) const;
+    using ClassCatalogResult = std::pair<const golarion::ClassDefinitionManager *, QString>;
+    QFutureWatcher<ClassCatalogResult> catalogWatcher_;
+    QFutureWatcher<QString> browsingCatalogWatcher_;
     const golarion::ClassDefinitionManager *classCatalog_ = nullptr;
     bool catalogLoading_ = false;
+    bool browsingCatalogLoading_ = false;
+    bool browsingCatalogReady_ = false;
+    QString classCatalogError_;
+    QString browsingCatalogError_;
     bool opening_ = false;
     bool createPendingFile_ = false;
     QString sheetDirectory_;
@@ -159,6 +181,7 @@ private:
     QVariantMap race_;
     QVariantMap classes_;
     QVariantMap talents_;
+    QVariantList customFeatCatalog_;
     QVariantMap spells_;
     QVariantMap lastSpellCast_;
     QVariantMap enhancements_;

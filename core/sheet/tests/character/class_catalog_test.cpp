@@ -278,7 +278,7 @@ namespace
 
     void checkArchetypes()
     {
-        const auto catalog = Json::parse(embedded::ArchetypeDefinitionCatalogJson);
+        const auto catalog = catalog::loadArchetypeDefinitionCatalog();
         assert(!catalog.empty());
         std::set<std::string> ids;
         std::map<CharacterClassType, std::set<std::string>> baselineActive;
@@ -391,9 +391,10 @@ namespace
 
     ArchetypeDefinition catalogArchetype(CharacterClassType type, std::string_view name)
     {
-        static const auto catalog = Json::parse(embedded::ArchetypeDefinitionCatalogJson);
+        static const auto catalog = catalog::loadArchetypeDefinitionCatalog();
         for (const auto &entry : catalog)
-            if (entry.at("classType") == characterClassId(type) && entry.at("name") == name)
+            if (entry.at("classType").get_ref<const std::string &>() == characterClassId(type)
+                && entry.at("name").get_ref<const std::string &>() == name)
                 return ClassDefinitionManager::instance().getArchetype(entry.at("id").get<std::string>());
         throw std::invalid_argument("missing catalog archetype example: " + std::string(name));
     }
@@ -560,10 +561,10 @@ namespace
 
 int main()
 {
-    const auto catalog = Json::parse(golarion::embedded::ClassDefinitionCatalogJson);
+    const auto catalog = golarion::catalog::loadClassDefinitionCatalog();
     assert(catalog.size() == 44);
     std::set<CharacterClassType> types;
-    const auto definitions = classDefinitionsWithOptionsFromJson(catalog, Json::parse(golarion::embedded::ClassOptionCatalogJson));
+    const auto definitions = classDefinitionsWithOptionsFromJson(catalog, golarion::catalog::loadClassOptionCatalog());
     for (const auto &definition : definitions)
     {
         std::cerr << "Class catalog: " << characterClassId(definition.type) << '\n';

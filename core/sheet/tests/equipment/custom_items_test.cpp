@@ -37,7 +37,7 @@ int main()
 {
     using namespace golarion;
     // All embedded definitions pass through the same bidirectional schema.
-    for (const auto &source : Json::parse(embedded::ItemDefinitionCatalogJson))
+    for (const auto &source : catalog::loadItemDefinitionCatalog())
     {
         auto definition = itemDefinitionFromJson(source);
         const auto encoded = itemDefinitionToJson(definition);

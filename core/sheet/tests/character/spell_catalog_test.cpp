@@ -213,7 +213,7 @@ namespace
 
 int main()
 {
-    const auto catalog = Json::parse(golarion::embedded::SpellDefinitionCatalogJson);
+    const auto catalog = golarion::catalog::loadSpellDefinitionCatalog();
     assert(catalog.is_array() && catalog.size() == 2158);
     std::set<std::string> ids;
     for (const auto &entry : catalog)

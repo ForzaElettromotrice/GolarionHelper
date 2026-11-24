@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQml.Models
 
 Item {
     id: root
@@ -52,6 +53,45 @@ Item {
         return rows.sort((a, b) => a.name.localeCompare(b.name, "it") || a.resourceName.localeCompare(b.resourceName));
     }
 
+    QtObject {
+        id: rowState
+        readonly property var signatures: new Map()
+    }
+    ListModel {
+        id: skillRows
+        dynamicRoles: true
+    }
+
+    onSortedSkillsChanged: if (skillRows && rowState) syncRows()
+    Component.onCompleted: syncRows()
+
+    function syncRows() {
+        const nextRows = sortedSkills;
+        const nextKeys = new Set(nextRows.map(skill => skill.resourceName));
+        for (let index = skillRows.count - 1; index >= 0; --index) {
+            const key = skillRows.get(index).resourceName;
+            if (!nextKeys.has(key)) {
+                skillRows.remove(index);
+                rowState.signatures.delete(key);
+            }
+        }
+
+        for (let index = 0; index < nextRows.length; ++index) {
+            const skill = nextRows[index];
+            const key = skill.resourceName;
+            const signature = JSON.stringify(skill);
+            let previous = index;
+            while (previous < skillRows.count && skillRows.get(previous).resourceName !== key) ++previous;
+            if (previous === skillRows.count) {
+                skillRows.insert(index, {resourceName: key, skillData: skill});
+            } else {
+                if (previous !== index) skillRows.move(previous, index, 1);
+                if (rowState.signatures.get(key) !== signature) skillRows.setProperty(index, "skillData", skill);
+            }
+            rowState.signatures.set(key, signature);
+        }
+    }
+
     function scoreText(skill) {
         if (!skill.usable) return "—";
         const values = Array.from(skill.abilityOptions ?? []).map(option => option.totalValue);
@@ -86,11 +126,12 @@ Item {
             }
         }
         Repeater {
-            model: root.sortedSkills
+            model: skillRows
             Rectangle {
                 id: row
-                required property var modelData
+                required property var skillData
                 required property int index
+                readonly property var modelData: skillData
                 objectName: modelData.resourceName
                 visible: !!modelData.category || !root.categoryName(modelData.type) || root.expandedTypes.includes(modelData.type) || root.pinnedResources.includes(modelData.resourceName)
                 width: table.width
@@ -178,7 +219,7 @@ Item {
                     checked: row.modelData.classSkill ?? false
                     checkable: !root.readOnly && (!checked || row.modelData.customClassSkill === true)
                     nextCheckState: () => classSkill.checkState
-                    focusPolicy: checkable ? Qt.StrongFocus : Qt.NoFocus
+                    focusPolicy: checkable || activeFocus ? Qt.StrongFocus : Qt.NoFocus
                     onClicked: {
                         if (checkable) root.classSkillChangeRequested(row.modelData.type, !checked);
                     }
@@ -262,14 +303,16 @@ Item {
                         objectName: "ranksCell"
                         width: 50
                         height: parent.height
-                        function resetDraft() { ranksInput.text = String(row.modelData.ranks); }
+                        readonly property var savedRanks: row.modelData.ranks
+                        onSavedRanksChanged: if (ranksInput && !ranksInput.activeFocus) resetDraft()
+                        function resetDraft() { ranksInput.text = String(savedRanks ?? ""); }
                         function submit() {
                             const value = Number(ranksInput.text);
                             const valid = /^\d+$/.test(ranksInput.text) && Number.isInteger(value) && value >= 0 && value <= 2147483647;
                             const changed = valid && value !== row.modelData.ranks;
                             const resource = row.modelData.resourceName;
-                            resetDraft();
                             if (changed) root.ranksChangeRequested(resource, value);
+                            resetDraft();
                         }
                         HoverHandler {
                             id: ranksHover
@@ -303,6 +346,7 @@ Item {
                             selectByMouse: true
                             inputMethodHints: Qt.ImhDigitsOnly
                             Accessible.name: row.modelData.name + qsTr(" — gradi assegnati")
+                            Component.onCompleted: ranksCell.resetDraft()
                             onAccepted: { ranksCell.submit(); focus = false; }
                             onEditingFinished: ranksCell.submit()
                             Keys.onEscapePressed: { ranksCell.resetDraft(); focus = false; }

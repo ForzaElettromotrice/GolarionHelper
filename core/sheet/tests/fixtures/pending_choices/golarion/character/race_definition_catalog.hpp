@@ -1,5 +1,6 @@
 #pragma once
 #include <string_view>
+#include <nlohmann/json.hpp>
 
 namespace golarion::embedded
 {
@@ -13,4 +14,12 @@ namespace golarion::embedded
             {"id":"replacement","name":"Alternativa","description":"Sostituzione","replaces":["feature"]}
         ]}
     ])";
+}
+
+namespace golarion::catalog
+{
+    inline nlohmann::json loadRaceDefinitionCatalog()
+    {
+        return nlohmann::json::parse(embedded::RaceDefinitionCatalogJson);
+    }
 }

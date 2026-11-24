@@ -1,5 +1,6 @@
 #include "controllers/session_controller.hpp"
 #include "controllers/sheet_controller.hpp"
+#include "golarion/catalog/catalog_reader.hpp"
 
 #include <QDir>
 #include <QGuiApplication>
@@ -17,6 +18,16 @@ int main(int argc, char *argv[])
     QGuiApplication::setDesktopFileName(QStringLiteral("org.golarionhelper.GolarionHelper"));
     QQuickStyle::setStyle(QStringLiteral("Basic"));
 
+    const QDir executableDirectory(QCoreApplication::applicationDirPath());
+    auto catalogPath = executableDirectory.filePath(QStringLiteral("catalogs"));
+#ifdef Q_OS_WIN
+    golarion::catalog::setDirectory(catalogPath.toStdWString());
+#else
+    if (!QDir(catalogPath).exists())
+        catalogPath = executableDirectory.filePath(QStringLiteral(GOLARION_INSTALLED_CATALOGS));
+    golarion::catalog::setDirectory(catalogPath.toStdString());
+#endif
+
     const auto dataDirectory = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
     // Capture the existing campaign location before setting the profile's settings scope.
     application.setOrganizationName(QStringLiteral("GolarionHelper"));
@@ -30,7 +41,7 @@ int main(int argc, char *argv[])
     engine.loadFromModule("Golarion.App", "Main");
     if (engine.rootObjects().isEmpty())
         return 1;
-    sheetController.preloadClassCatalog();
+    sheetController.preloadCatalogs();
 
     return application.exec();
 }

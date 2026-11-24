@@ -20,6 +20,8 @@ Do not switch normal project work to -S core/play or build/play-cmake. Select pl
 
 ## Dependencies and Local Tools
 
+Official catalogs are runtime JSON data. CMake copies the files listed by `core/sheet/CMakeLists.txt` to the build catalog directory and installs those same files with the Runtime component. The generated headers contain only file lists. The desktop resolves the directory relative to its executable: `catalogs/` beside the executable on Windows and in development builds, and `share/golarion-helper/catalogs/` under the installation prefix on Linux. Core tests default to the configured build catalog directory. Catalog loading and indexing use the existing C++ JSON library without Qt or Python.
+
 The desktop executable is always under `<build>/frontend/app/` (with `.exe` on Windows), including with multi-configuration generators. Use separate build trees to retain both Debug and Release executables.
 
 On native Arch x86-64 the desktop `installer` target runs makepkg on the Runtime install component, including the desktop entry and asset credits. It writes `build/packages/golarion-helper-<version>-1-x86_64.pkg.tar.zst` without installing it. The recipient uses pacman; the Qt dependency minimum tracks the minor version used to build the binary.

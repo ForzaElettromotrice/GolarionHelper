@@ -124,7 +124,7 @@ int main()
     assert(!find(sheet.pendingChoices(), ClassOptionChoiceReference{CharacterClassType::Fighter, "nested", "child"}));
     assert(snapshot == restored.pendingChoices());
 
-    auto raceJson = nlohmann::json::parse(embedded::RaceDefinitionCatalogJson).front();
+    auto raceJson = catalog::loadRaceDefinitionCatalog().front();
     assert(raceDefinitionFromJson(raceJson).standardFeatures.front().choices.front().blocksAdvancement);
     raceJson["standardFeatures"][0]["choices"][0]["blocksAdvancement"] = "yes";
     rejects([&] { raceDefinitionFromJson(raceJson); });

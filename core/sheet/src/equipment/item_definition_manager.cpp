@@ -61,7 +61,7 @@ namespace golarion
     {
         try
         {
-            const nlohmann::json catalog = nlohmann::json::parse(embedded::ItemDefinitionCatalogJson);
+            const nlohmann::json catalog = catalog::loadItemDefinitionCatalog();
             if (!catalog.is_array())
             {
                 throw std::invalid_argument("item definition catalog must be a JSON array");
@@ -88,7 +88,7 @@ namespace golarion
         }
         catch (const nlohmann::json::exception &exception)
         {
-            throw std::invalid_argument("invalid embedded item definition catalog: " + std::string(exception.what()));
+            throw std::invalid_argument("invalid item definition catalog: " + std::string(exception.what()));
         }
     }
 }

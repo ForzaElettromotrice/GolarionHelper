@@ -157,7 +157,7 @@ namespace
 
 int main()
 {
-    const auto catalog = Json::parse(golarion::embedded::FeatDefinitionCatalogJson);
+    const auto catalog = golarion::catalog::loadFeatDefinitionCatalog();
     assert(catalog.is_array() && catalog.size() == 1648);
     std::set<std::string> ids;
     for (const auto &entry : catalog) assert(ids.insert(entry.at("id").get<std::string>()).second);

@@ -6,6 +6,8 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 ## Current State
 
+- Official sheet catalogs are shipped as runtime JSON files. Desktop tabs retain their panels after first visit, Home loads Abilità asynchronously, and the controller publishes changes per section. See [frontend](frontend.md#desktop-application) and [development](development.md#dependencies-and-local-tools).
+
 - Configure only from the repository root. The default target is the desktop application; sheet, play (including sheet), and UI-only builds are selectable with `GOLARION_TARGET`. Tests are opt-in. See [development](development.md) for the Windows/Arch installer target, build-local dependencies and offline builds.
 
 - The Qt Quick desktop Sessioni page creates campaigns, hosts them, and resumes saved memberships. It can move hosted campaigns to the system trash after a typed confirmation, or remove a joined campaign's local credential after confirmation. Live sessions display participant names with Host and Tu labels and offer a permission dialog on editable participant rows. See [frontend](frontend.md#desktop-application).

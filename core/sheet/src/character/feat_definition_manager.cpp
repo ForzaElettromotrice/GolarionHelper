@@ -89,7 +89,7 @@ namespace golarion
     {
         try
         {
-            const Json catalog = Json::parse(embedded::FeatDefinitionCatalogJson);
+            const Json catalog = catalog::loadFeatDefinitionCatalog();
             if (!catalog.is_array())
             {
                 throw std::invalid_argument("feat definition catalog must be a JSON array");
@@ -111,7 +111,7 @@ namespace golarion
         }
         catch (const nlohmann::json::exception &exception)
         {
-            throw std::invalid_argument("invalid embedded feat definition catalog: " + std::string(exception.what()));
+            throw std::invalid_argument("invalid feat definition catalog: " + std::string(exception.what()));
         }
     }
 }

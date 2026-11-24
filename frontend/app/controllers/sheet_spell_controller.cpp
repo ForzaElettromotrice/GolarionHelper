@@ -186,7 +186,12 @@ namespace
     }
 }
 
-void SheetController::publishSpells(const golarion::CharacterSheetView &view)
+void SheetController::prepareStandardSpellCatalog()
+{
+    (void)standardCatalog();
+}
+
+QVariantMap SheetController::spellSnapshot(const golarion::CharacterSheetView &view) const
 {
     SpellCatalogSnapshot catalog;
     if (!view.spellcastings.castings.empty() || !view.grantedSpells.empty())
@@ -195,7 +200,7 @@ void SheetController::publishSpells(const golarion::CharacterSheetView &view)
         for (const auto &definition : view.customSpellDefinitions)
             catalog.add(definition.id, definition.name, definition.spellLevelByClass);
     }
-    spells_ = {{"castings", list(view.spellcastings.castings, castingView)}, {"catalog", catalog.entries},
+    return {{"castings", list(view.spellcastings.castings, castingView)}, {"catalog", catalog.entries},
         {"names", catalog.names}, {"levels", catalog.levelsView()}, {"lastCast", lastSpellCast_},
         {"granted", list(view.grantedSpells, [](const auto &grant) {
             return QVariantMap{{"id", text(grant.id)}, {"source", text(grant.source)}, {"spellId", text(grant.spellId)},
@@ -206,7 +211,7 @@ void SheetController::publishSpells(const golarion::CharacterSheetView &view)
 void SheetController::spellCommand(SpellCommand command, const QString &castingId, const QVariantMap &input)
 {
     if (!sheet_) return;
-    errorMessage_.clear();
+    QString error;
     lastSpellCast_.clear();
     try
     {
@@ -247,10 +252,10 @@ void SheetController::spellCommand(SpellCommand command, const QString &castingI
     }
     catch (const std::exception &)
     {
-        errorMessage_ = tr("Impossibile eseguire l’operazione. Controlla gli slot, il repertorio e gli utilizzi disponibili.");
+        error = tr("Impossibile eseguire l’operazione. Controlla gli slot, il repertorio e gli utilizzi disponibili.");
     }
     // An export error can occur after spending a slot or charges.
-    publish();
+    publish(true, std::move(error));
 }
 
 int SheetController::spellPreparationCount(const QString &castingId, const QVariantMap &slot, const QString &spellId, const QVariantList &metamagic)

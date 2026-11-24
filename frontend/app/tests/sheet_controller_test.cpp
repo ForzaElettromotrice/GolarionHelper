@@ -474,14 +474,14 @@ private Q_SLOTS:
     void createsAndReopensLocalSheet()
     {
         SheetController controller;
-        QSignalSpy changes(&controller, &SheetController::sheetChanged);
+        QSignalSpy changes(&controller, &SheetController::identityChanged);
         QSignalSpy opened(&controller, &SheetController::sheetOpened);
         QSignalSpy openingChanges(&controller, &SheetController::openingChanged);
         QVERIFY(controller.identity().isEmpty());
         controller.setNotes(QStringLiteral("Not opened"));
         QCOMPARE(changes.count(), 0);
 
-        controller.preloadClassCatalog();
+        controller.preloadCatalogs();
         controller.openLocalSheet();
         controller.openLocalSheet();
         QVERIFY(controller.opening());
@@ -516,7 +516,7 @@ private Q_SLOTS:
         const auto notes = QStringLiteral("Prima riga\nSeconda riga");
         controller.setNotes(notes);
         QCOMPARE(controller.notes(), notes);
-        QCOMPARE(changes.count(), 3);
+        QCOMPARE(changes.count(), 1);
         controller.setIdentityField(QStringLiteral("name"), QStringLiteral("Arianna"));
         controller.setIdentityField(QStringLiteral("age"), 28);
         QCOMPARE(controller.identity().value(QStringLiteral("name")).toString(), QStringLiteral("Arianna"));
@@ -526,7 +526,7 @@ private Q_SLOTS:
         controller.openLocalSheet();
         QCOMPARE(opened.count(), 2);
         QCOMPARE(controller.notes(), notes);
-        QCOMPARE(changes.count(), 6);
+        QCOMPARE(changes.count(), 4);
 
         const auto hp = [&] { return controller.home().value(QStringLiteral("hitPoints")).toMap(); };
         controller.removeTemporaryHitPoints(QStringLiteral("Prova"));

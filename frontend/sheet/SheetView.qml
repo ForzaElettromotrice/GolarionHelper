@@ -72,6 +72,14 @@ Item {
     signal attackRoutineReorderRequested(string attackId, var beforeAttackId)
     signal attackStrikeAssignRequested(string attackId, string slotId, string strikeGrantId)
 
+    component CachedTab: Loader {
+        property bool selected: false
+        active: false
+        visible: selected
+        onSelectedChanged: if (selected && !active) active = true
+        Component.onCompleted: if (selected && !active) active = true
+    }
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 10
@@ -167,267 +175,297 @@ Item {
                         onNotesChangeRequested: notes => root.notesChangeRequested(notes)
                     }
                 }
-                GridLayout {
-                    id: homeLayout
-                    objectName: "sheetHomeLayout"
-                    visible: tabs.currentIndex === 1
+                CachedTab {
                     width: contentScroll.availableWidth
-                    columns: width >= 880 ? 2 : 1
-                    columnSpacing: 24
-                    rowSpacing: 16
-                    GridLayout {
-                        id: homeSummary
-                        objectName: "sheetHomeSummary"
-                        columns: homeLayout.width >= 1040 ? 2 : 1
-                        columnSpacing: 16
+                    selected: tabs.currentIndex === 1
+                    sourceComponent: GridLayout {
+                        id: homeLayout
+                        objectName: "sheetHomeLayout"
+                        columns: width >= 880 ? 2 : 1
+                        columnSpacing: 24
                         rowSpacing: 16
-                        Layout.fillWidth: true
-                        Layout.preferredWidth: columns === 2 ? 600 : 360
-                        Layout.alignment: Qt.AlignTop
-                        Column {
-                            id: homeAbilities
-                            objectName: "sheetHomeAbilities"
+                        GridLayout {
+                            id: homeSummary
+                            objectName: "sheetHomeSummary"
+                            columns: homeLayout.width >= 1040 ? 2 : 1
+                            columnSpacing: 16
+                            rowSpacing: 16
                             Layout.fillWidth: true
-                            Layout.preferredWidth: 340
+                            Layout.preferredWidth: columns === 2 ? 600 : 360
                             Layout.alignment: Qt.AlignTop
-                            spacing: 12
-                            AbilityScoresPanel {
-                                width: parent.width
-                                abilities: root.home.abilities ?? []
-                                readOnly: !root.statisticsEditingEnabled
-                                onBaseValueChangeRequested: (type, value) => root.abilityBaseChangeRequested(type, value)
-                            }
-                        }
-                        Column {
-                            id: homeChecks
-                            objectName: "sheetHomeChecks"
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: 260
-                            Layout.alignment: Qt.AlignTop
-                            readonly property bool sideBySide: homeSummary.columns === 2
-                            readonly property real freeHeight: Math.max(0, homeAbilities.height - homeInitiative.height - homeSavingThrows.height)
-                            topPadding: sideBySide ? (freeHeight - spacing) / 2 : 0
-                            bottomPadding: topPadding
-                            spacing: sideBySide ? freeHeight * 0.30 : 44
-                            InitiativePanel { id: homeInitiative; width: parent.width; initiative: root.home.initiative }
-                            SavingThrowsPanel { id: homeSavingThrows; width: parent.width; savingThrows: root.home.savingThrows ?? [] }
-                        }
-                        ArmorClassPanel {
-                            objectName: "sheetHomeArmorClass"
-                            Layout.columnSpan: homeSummary.columns
-                            Layout.fillWidth: true
-                            armorClass: root.home.armorClass
-                        }
-                        HitPointsPanel {
-                            objectName: "sheetHomeHitPoints"
-                            Layout.columnSpan: homeSummary.columns
-                            maximumDetailsWidth: width
-                            onTemporaryAddRequested: (source, amount) => root.temporaryAddRequested(source, amount)
-                            onTemporaryRemoveRequested: source => root.temporaryRemoveRequested(source)
-                            onDamageRequested: (amount, lethality) => root.damageRequested(amount, lethality === HitPointsPanel.NonLethal)
-                            onHealRequested: amount => root.healRequested(amount)
-                            Layout.fillWidth: true
-                            hitPoints: root.home.hitPoints
-                            readOnly: !root.hitPointEditingEnabled
-                            belowHeader: Component {
-                                Column {
-                                    spacing: 8
-                                    DefensesPanel { width: parent.width; defenses: root.home.defenses; presentation: DefensesPanel.Tags }
-                                    DefensesPanel { width: parent.width; defenses: root.home.defenses; presentation: DefensesPanel.Shields }
+                            Column {
+                                id: homeAbilities
+                                objectName: "sheetHomeAbilities"
+                                Layout.fillWidth: true
+                                Layout.preferredWidth: 340
+                                Layout.alignment: Qt.AlignTop
+                                spacing: 12
+                                AbilityScoresPanel {
+                                    width: parent.width
+                                    abilities: root.home.abilities ?? []
+                                    readOnly: !root.statisticsEditingEnabled
+                                    onBaseValueChangeRequested: (type, value) => root.abilityBaseChangeRequested(type, value)
                                 }
                             }
-                        }
-                        MovementPanel {
-                            Layout.columnSpan: homeSummary.columns
-                            Layout.fillWidth: true
-                            movement: root.home.movement
-                            showHeading: false
-                            visible: grants.length > 0
-                        }
-                        Column {
-                            id: activeConditions
-                            objectName: "sheetHomeActiveConditions"
-                            Layout.columnSpan: homeSummary.columns
-                            Layout.fillWidth: true
-                            readonly property var entries: root.home.activeConditions ?? []
-                            property string selectedId: ""
-                            visible: entries.length > 0
-                            spacing: 6
-
-                            Flow {
-                                width: parent.width
-                                spacing: 8
-                                Repeater {
-                                    model: activeConditions.entries
+                            Column {
+                                id: homeChecks
+                                objectName: "sheetHomeChecks"
+                                Layout.fillWidth: true
+                                Layout.preferredWidth: 260
+                                Layout.alignment: Qt.AlignTop
+                                readonly property bool sideBySide: homeSummary.columns === 2
+                                readonly property real freeHeight: Math.max(0, homeAbilities.height - homeInitiative.height - homeSavingThrows.height)
+                                topPadding: sideBySide ? (freeHeight - spacing) / 2 : 0
+                                bottomPadding: topPadding
+                                spacing: sideBySide ? freeHeight * 0.30 : 44
+                                InitiativePanel { id: homeInitiative; width: parent.width; initiative: root.home.initiative }
+                                SavingThrowsPanel { id: homeSavingThrows; width: parent.width; savingThrows: root.home.savingThrows ?? [] }
+                            }
+                            ArmorClassPanel {
+                                objectName: "sheetHomeArmorClass"
+                                Layout.columnSpan: homeSummary.columns
+                                Layout.fillWidth: true
+                                armorClass: root.home.armorClass
+                            }
+                            HitPointsPanel {
+                                objectName: "sheetHomeHitPoints"
+                                Layout.columnSpan: homeSummary.columns
+                                maximumDetailsWidth: width
+                                onTemporaryAddRequested: (source, amount) => root.temporaryAddRequested(source, amount)
+                                onTemporaryRemoveRequested: source => root.temporaryRemoveRequested(source)
+                                onDamageRequested: (amount, lethality) => root.damageRequested(amount, lethality === HitPointsPanel.NonLethal)
+                                onHealRequested: amount => root.healRequested(amount)
+                                Layout.fillWidth: true
+                                hitPoints: root.home.hitPoints
+                                readOnly: !root.hitPointEditingEnabled
+                                belowHeader: Component {
                                     Column {
-                                        required property var modelData
-                                        width: Math.min(activeConditions.width, Math.max(condition.checked ? 320 : 148,
-                                            Math.ceil(conditionTextMetrics.advanceWidth) + condition.leftPadding + condition.rightPadding
-                                            + condition.spacing + condition.conditionIconSize))
-                                        spacing: 4
-                                        ToolButton {
-                                            id: condition
-                                            readonly property int conditionIconSize: (modelData.iconId ?? modelData.id) === "dazed" ? 27 : 24
-                                            objectName: "homeCondition_" + modelData.id
-                                            text: modelData.name
-                                            checked: activeConditions.selectedId === modelData.id
-                                            width: parent.width
-                                            implicitHeight: 42
-                                            leftPadding: 14
-                                            rightPadding: 12
-                                            spacing: 8
-                                            font.pixelSize: 15
-                                            font.bold: true
-                                            icon.source: ConditionIcons.source(modelData.iconId ?? modelData.id)
-                                            icon.width: conditionIconSize
-                                            icon.height: conditionIconSize
-                                            icon.color: checked ? "#ffffff" : "#181818"
-                                            palette.buttonText: icon.color
-                                            TextMetrics { id: conditionTextMetrics; font: condition.font; text: condition.text }
-                                            onClicked: activeConditions.selectedId = checked ? "" : modelData.id
-                                            background: Rectangle {
-                                                radius: 5
-                                                color: condition.checked ? "#181818" : condition.hovered ? "#e5e5e5" : "#f8f8f8"
-                                                border.color: condition.checked ? "#181818" : "#999999"
+                                        spacing: 8
+                                        DefensesPanel { width: parent.width; defenses: root.home.defenses; presentation: DefensesPanel.Tags }
+                                        DefensesPanel { width: parent.width; defenses: root.home.defenses; presentation: DefensesPanel.Shields }
+                                    }
+                                }
+                            }
+                            MovementPanel {
+                                Layout.columnSpan: homeSummary.columns
+                                Layout.fillWidth: true
+                                movement: root.home.movement
+                                showHeading: false
+                                visible: grants.length > 0
+                            }
+                            Column {
+                                id: activeConditions
+                                objectName: "sheetHomeActiveConditions"
+                                Layout.columnSpan: homeSummary.columns
+                                Layout.fillWidth: true
+                                readonly property var entries: root.home.activeConditions ?? []
+                                property string selectedId: ""
+                                visible: entries.length > 0
+                                spacing: 6
+
+                                Flow {
+                                    width: parent.width
+                                    spacing: 8
+                                    Repeater {
+                                        model: activeConditions.entries
+                                        Column {
+                                            required property var modelData
+                                            width: Math.min(activeConditions.width, Math.max(condition.checked ? 320 : 148,
+                                                Math.ceil(conditionTextMetrics.advanceWidth) + condition.leftPadding + condition.rightPadding
+                                                + condition.spacing + condition.conditionIconSize))
+                                            spacing: 4
+                                            ToolButton {
+                                                id: condition
+                                                readonly property int conditionIconSize: (modelData.iconId ?? modelData.id) === "dazed" ? 27 : 24
+                                                objectName: "homeCondition_" + modelData.id
+                                                text: modelData.name
+                                                checked: activeConditions.selectedId === modelData.id
+                                                width: parent.width
+                                                implicitHeight: 42
+                                                leftPadding: 14
+                                                rightPadding: 12
+                                                spacing: 8
+                                                font.pixelSize: 15
+                                                font.bold: true
+                                                icon.source: ConditionIcons.source(modelData.iconId ?? modelData.id)
+                                                icon.width: conditionIconSize
+                                                icon.height: conditionIconSize
+                                                icon.color: checked ? "#ffffff" : "#181818"
+                                                palette.buttonText: icon.color
+                                                TextMetrics { id: conditionTextMetrics; font: condition.font; text: condition.text }
+                                                onClicked: activeConditions.selectedId = checked ? "" : modelData.id
+                                                background: Rectangle {
+                                                    radius: 5
+                                                    color: condition.checked ? "#181818" : condition.hovered ? "#e5e5e5" : "#f8f8f8"
+                                                    border.color: condition.checked ? "#181818" : "#999999"
+                                                }
                                             }
-                                        }
-                                        InfoDetails {
-                                            objectName: "sheetHomeConditionDetails_" + modelData.id
-                                            width: parent.width
-                                            visible: condition.checked
-                                            rows: [{kind: InfoDetails.Heading, text: modelData.name},
-                                                ...(modelData.effects ?? []).map(effect => ({kind: InfoDetails.Entry, text: effect}))]
+                                            InfoDetails {
+                                                objectName: "sheetHomeConditionDetails_" + modelData.id
+                                                width: parent.width
+                                                visible: condition.checked
+                                                rows: [{kind: InfoDetails.Heading, text: modelData.name},
+                                                    ...(modelData.effects ?? []).map(effect => ({kind: InfoDetails.Entry, text: effect}))]
+                                            }
                                         }
                                     }
                                 }
                             }
+                            Label {
+                                Layout.columnSpan: homeSummary.columns
+                                Layout.fillWidth: true
+                                visible: root.identityErrorMessage.length > 0
+                                text: root.identityErrorMessage
+                                color: "#a32626"
+                                wrapMode: Text.Wrap
+                            }
                         }
-                        Label {
-                            Layout.columnSpan: homeSummary.columns
+                        Item {
                             Layout.fillWidth: true
-                            visible: root.identityErrorMessage.length > 0
-                            text: root.identityErrorMessage
-                            color: "#a32626"
-                            wrapMode: Text.Wrap
+                            Layout.preferredWidth: 520
+                            Layout.alignment: Qt.AlignTop
+                            implicitHeight: homeSkillsLoader.status === Loader.Ready ? homeSkillsLoader.height : skillsLoading.implicitHeight
+
+                            Timer {
+                                interval: 0
+                                running: homeLayout.visible && !homeSkillsLoader.active
+                                onTriggered: homeSkillsLoader.active = true
+                            }
+                            Label {
+                                id: skillsLoading
+                                objectName: "sheetHomeSkillsLoading"
+                                width: parent.width
+                                visible: homeSkillsLoader.status !== Loader.Ready
+                                text: qsTr("Caricamento abilità…")
+                                color: "#555555"
+                                wrapMode: Text.Wrap
+                            }
+                            Loader {
+                                id: homeSkillsLoader
+                                objectName: "sheetHomeSkillsLoader"
+                                width: parent.width
+                                active: false
+                                asynchronous: true
+                                visible: status === Loader.Ready
+                                sourceComponent: SkillsPanel {
+                                    objectName: "sheetHomeSkills"
+                                    skills: root.home.skills ?? []
+                                    skillCategories: root.home.skillCategories ?? []
+                                    spentRanks: root.home.spentRanks
+                                    maxRanks: root.home.maxRanks
+                                    readOnly: !root.statisticsEditingEnabled
+                                    onRanksChangeRequested: (resourceName, ranks) => root.skillRanksChangeRequested(resourceName, ranks)
+                                    onSpecializationAddRequested: (type, name) => root.skillSpecializationAddRequested(type, name)
+                                    onSpecializationRemoveRequested: (type, id) => root.skillSpecializationRemoveRequested(type, id)
+                                    onClassSkillChangeRequested: (type, enabled) => root.classSkillChangeRequested(type, enabled)
+                                }
+                            }
                         }
                     }
-                    SkillsPanel {
-                        objectName: "sheetHomeSkills"
-                        Layout.fillWidth: true
-                        Layout.preferredWidth: 520
-                        Layout.alignment: Qt.AlignTop
-                        skills: root.home.skills ?? []
-                        skillCategories: root.home.skillCategories ?? []
-                        spentRanks: root.home.spentRanks
-                        maxRanks: root.home.maxRanks
-                        readOnly: !root.statisticsEditingEnabled
-                        onRanksChangeRequested: (resourceName, ranks) => root.skillRanksChangeRequested(resourceName, ranks)
-                        onSpecializationAddRequested: (type, name) => root.skillSpecializationAddRequested(type, name)
-                        onSpecializationRemoveRequested: (type, id) => root.skillSpecializationRemoveRequested(type, id)
-                        onClassSkillChangeRequested: (type, enabled) => root.classSkillChangeRequested(type, enabled)
-                    }
                 }
-                Label {
-                    width: parent.width
-                    visible: root.combat !== null && tabs.currentIndex === 2 && root.identityErrorMessage.length > 0
-                    text: root.identityErrorMessage
-                    color: "#a32626"
-                    wrapMode: Text.Wrap
-                }
-                GridLayout {
-                    id: combatLayout
-                    objectName: "sheetCombatLayout"
-                    visible: root.combat !== null && tabs.currentIndex === 2
+                CachedTab {
                     width: contentScroll.availableWidth
-                    columns: width >= 1040 ? 3 : width >= 820 ? 2 : 1
-                    columnSpacing: 24
-                    rowSpacing: 16
-                    readonly property real equalColumnWidth: (width - 2 * columnSpacing) / 3
-                    AttacksPanel {
-                        objectName: "sheetCombatAttacks"
-                        prominentHeading: true
-                        Layout.row: 0
-                        Layout.column: 0
-                        Layout.rowSpan: combatLayout.columns === 2 ? 2 : 1
-                        Layout.fillWidth: true
-                        Layout.preferredWidth: combatLayout.columns === 3 ? combatLayout.equalColumnWidth : implicitWidth
-                        Layout.alignment: Qt.AlignTop
-                        attacks: root.combat?.attacks ?? null
-                        attackRoutines: root.combat?.attackRoutines ?? null
-                        actions: root.combat?.actions ?? null
-                        baseAttackBonus: root.combat?.baseAttackBonus ?? null
-                        onAddRequested: routineId => root.attackRoutineAddRequested(routineId)
-                        onRemoveRequested: attackId => root.attackRoutineRemoveRequested(attackId)
-                        onRenameRequested: (attackId, name) => root.attackRoutineRenameRequested(attackId, name)
-                        onReorderRequested: (attackId, beforeAttackId) => root.attackRoutineReorderRequested(attackId, beforeAttackId)
-                        onAssignRequested: (attackId, slotId, strikeGrantId) => root.attackStrikeAssignRequested(attackId, slotId, strikeGrantId)
-                    }
-                    CombatManeuversPanel {
-                        objectName: "sheetCombatManeuvers"
-                        prominentHeading: true
-                        Layout.row: combatLayout.columns === 1 ? 1 : 0
-                        Layout.column: combatLayout.columns === 1 ? 0 : 1
-                        Layout.fillWidth: true
-                        Layout.preferredWidth: combatLayout.columns === 3 ? combatLayout.equalColumnWidth : 340
-                        Layout.alignment: Qt.AlignTop
-                        combatManeuvers: root.combat?.combatManeuvers ?? null
-                    }
-                    ActionsPanel {
-                        objectName: "sheetCombatActions"
-                        prominentHeading: true
-                        Layout.row: 3 - combatLayout.columns
-                        Layout.column: combatLayout.columns - 1
-                        Layout.fillWidth: true
-                        Layout.preferredWidth: combatLayout.columns === 3 ? combatLayout.equalColumnWidth : 270
-                        Layout.alignment: Qt.AlignTop
-                        actions: root.combat?.listedActions ?? root.combat?.actions ?? null
-                        attackRoutines: root.combat?.listedActionRoutines ?? root.combat?.attackRoutines ?? null
+                    selected: root.combat !== null && tabs.currentIndex === 2
+                    sourceComponent: root.combat !== null ? combatPage : null
+                    Component {
+                        id: combatPage
+                        Column {
+                            Label {
+                                width: parent.width
+                                visible: root.identityErrorMessage.length > 0
+                                text: root.identityErrorMessage
+                                color: "#a32626"
+                                wrapMode: Text.Wrap
+                            }
+                            GridLayout {
+                                id: combatLayout
+                                objectName: "sheetCombatLayout"
+                                width: parent.width
+                                columns: width >= 1040 ? 3 : width >= 820 ? 2 : 1
+                                columnSpacing: 24
+                                rowSpacing: 16
+                                readonly property real equalColumnWidth: (width - 2 * columnSpacing) / 3
+                                AttacksPanel {
+                                    objectName: "sheetCombatAttacks"
+                                    prominentHeading: true
+                                    Layout.row: 0
+                                    Layout.column: 0
+                                    Layout.rowSpan: combatLayout.columns === 2 ? 2 : 1
+                                    Layout.fillWidth: true
+                                    Layout.preferredWidth: combatLayout.columns === 3 ? combatLayout.equalColumnWidth : implicitWidth
+                                    Layout.alignment: Qt.AlignTop
+                                    attacks: root.combat?.attacks ?? null
+                                    attackRoutines: root.combat?.attackRoutines ?? null
+                                    actions: root.combat?.actions ?? null
+                                    baseAttackBonus: root.combat?.baseAttackBonus ?? null
+                                    onAddRequested: routineId => root.attackRoutineAddRequested(routineId)
+                                    onRemoveRequested: attackId => root.attackRoutineRemoveRequested(attackId)
+                                    onRenameRequested: (attackId, name) => root.attackRoutineRenameRequested(attackId, name)
+                                    onReorderRequested: (attackId, beforeAttackId) => root.attackRoutineReorderRequested(attackId, beforeAttackId)
+                                    onAssignRequested: (attackId, slotId, strikeGrantId) => root.attackStrikeAssignRequested(attackId, slotId, strikeGrantId)
+                                }
+                                CombatManeuversPanel {
+                                    objectName: "sheetCombatManeuvers"
+                                    prominentHeading: true
+                                    Layout.row: combatLayout.columns === 1 ? 1 : 0
+                                    Layout.column: combatLayout.columns === 1 ? 0 : 1
+                                    Layout.fillWidth: true
+                                    Layout.preferredWidth: combatLayout.columns === 3 ? combatLayout.equalColumnWidth : 340
+                                    Layout.alignment: Qt.AlignTop
+                                    combatManeuvers: root.combat?.combatManeuvers ?? null
+                                }
+                                ActionsPanel {
+                                    objectName: "sheetCombatActions"
+                                    prominentHeading: true
+                                    Layout.row: 3 - combatLayout.columns
+                                    Layout.column: combatLayout.columns - 1
+                                    Layout.fillWidth: true
+                                    Layout.preferredWidth: combatLayout.columns === 3 ? combatLayout.equalColumnWidth : 270
+                                    Layout.alignment: Qt.AlignTop
+                                    actions: root.combat?.listedActions ?? root.combat?.actions ?? null
+                                    attackRoutines: root.combat?.listedActionRoutines ?? root.combat?.attackRoutines ?? null
+                                }
+                            }
+                        }
                     }
                 }
-                Loader {
+                CachedTab {
                     objectName: "sheetInventoryTab"
                     width: contentScroll.availableWidth
-                    active: root.inventoryTabPage !== null && tabs.currentIndex === root.inventoryTabIndex
-                    visible: active
+                    selected: root.inventoryTabPage !== null && tabs.currentIndex === root.inventoryTabIndex
                     sourceComponent: root.inventoryTabPage
                 }
-                Loader {
+                CachedTab {
                     objectName: "sheetRaceTab"
                     width: contentScroll.availableWidth
-                    active: root.raceTabPage !== null && tabs.currentIndex === root.raceTabIndex
-                    visible: active
+                    selected: root.raceTabPage !== null && tabs.currentIndex === root.raceTabIndex
                     sourceComponent: root.raceTabPage
                 }
-                Loader {
+                CachedTab {
                     objectName: "sheetClassesTab"
                     width: contentScroll.availableWidth
-                    active: root.classesTabPage !== null && tabs.currentIndex === root.classesTabIndex
-                    visible: active
+                    selected: root.classesTabPage !== null && tabs.currentIndex === root.classesTabIndex
                     sourceComponent: root.classesTabPage
                 }
-                Loader {
+                CachedTab {
                     width: contentScroll.availableWidth
-                    active: root.featsTabPage !== null && tabs.currentIndex === root.featsTabIndex
-                    visible: active
+                    selected: root.featsTabPage !== null && tabs.currentIndex === root.featsTabIndex
                     sourceComponent: root.featsTabPage
                 }
-                Loader {
+                CachedTab {
                     id: spellsTabLoader
                     width: contentScroll.availableWidth
-                    active: root.spellsTabPage !== null && tabs.currentIndex === root.spellsTabIndex
-                    visible: active
+                    selected: root.spellsTabPage !== null && tabs.currentIndex === root.spellsTabIndex
                     sourceComponent: root.spellsTabPage
                 }
-                Loader {
+                CachedTab {
                     width: contentScroll.availableWidth
-                    active: root.enhancementsTabPage !== null && tabs.currentIndex === root.enhancementsTabIndex
-                    visible: active
+                    selected: root.enhancementsTabPage !== null && tabs.currentIndex === root.enhancementsTabIndex
                     sourceComponent: root.enhancementsTabPage
                 }
-                Loader {
+                CachedTab {
                     width: contentScroll.availableWidth
-                    active: root.conditionsTabPage !== null && tabs.currentIndex === root.conditionsTabIndex
-                    visible: active
+                    selected: root.conditionsTabPage !== null && tabs.currentIndex === root.conditionsTabIndex
                     sourceComponent: root.conditionsTabPage
                 }
             }
