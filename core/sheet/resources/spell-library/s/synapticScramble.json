@@ -1,0 +1,43 @@
+{
+  "id": "synapticScramble",
+  "name": "Disturbo Sinaptico",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "MESMERIST": 3,
+    "PSYCHIC": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Disorganizza la mente del soggetto, ostacolandone la comunicazione e rendendone imprevedibili le azioni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Disturbo_Sinaptico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Disturbo Sinaptico: https://golarion.altervista.org/wiki/Incantesimi/Disturbo_Sinaptico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

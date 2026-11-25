@@ -1,0 +1,319 @@
+{
+  "id": "deepOneHybrid",
+  "name": "Ibrido Abitatore del Profondo",
+  "qualities": [
+    {
+      "id": "deepOneHybrid.type",
+      "name": "Tipo",
+      "description": "Umanoide (umano, abitatore del profondo).",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide (umano, abitatore del profondo). Le interazioni basate sul tipo richiedono verifica manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "deepOneHybrid.size",
+      "name": "Taglia",
+      "description": "Media.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "deepOneHybrid.baseSpeed",
+      "name": "Velocità",
+      "description": "6 m sul terreno.",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "deepOneHybrid.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Modificatori razziali.",
+      "effects": [
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "deepOneHybrid.languages",
+      "name": "Linguaggi",
+      "description": "Lingue concesse e apprendimento.",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "aklo",
+          "type": "languageGrant",
+          "languageId": "aklo"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "abyssal",
+            "aquan",
+            "elven",
+            "giant",
+            "gnome",
+            "goblin",
+            "halfling",
+            "dwarven",
+            "orc",
+            "undercommon"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "pathfinderSignLanguage",
+            "polyglot",
+            "reptoid",
+            "rougarou",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varisianSignLanguage",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "yaddithian"
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "deepOneHybrid.naturalArmor",
+      "name": "Armatura Naturale",
+      "description": "Armatura Naturale",
+      "effects": [
+        {
+          "id": "armor",
+          "type": "modifier",
+          "resource": "armorClass.solid",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "naturalArmor",
+          "expression": "1"
+        }
+      ]
+    },
+    {
+      "id": "deepOneHybrid.swim",
+      "name": "Movimento: nuoto",
+      "description": "Movimento: nuoto",
+      "effects": [
+        {
+          "id": "swim",
+          "type": "movementGrant",
+          "movementType": "swim",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": false
+        }
+      ]
+    },
+    {
+      "id": "deepOneHybrid.takeToTheWater",
+      "name": "Affinità con l'Acqua",
+      "description": "Affinità con l'Acqua",
+      "effects": [
+        {
+          "id": "swim",
+          "type": "modifier",
+          "resource": "skill.swim",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "8"
+        },
+        {
+          "id": "initiative",
+          "type": "modifier",
+          "resource": "initiative",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2",
+          "condition": "Mentre nuota"
+        },
+        {
+          "id": "reflex",
+          "type": "modifier",
+          "resource": "savingThrow.reflex",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2",
+          "condition": "Mentre nuota"
+        },
+        {
+          "id": "breath",
+          "type": "reminder",
+          "message": "Trattiene il respiro dieci volte più a lungo di un umano; applicare manualmente le facoltà del movimento di nuotare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "deepOneHybrid.senses",
+      "name": "Sensi",
+      "description": "Sensi",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Visione crepuscolare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "deepOneHybrid.finalChange",
+      "name": "Cambiamento Finale",
+      "description": "Cambiamento Finale",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Dopo 1d12 mesi dall'età venerabile (60 anni), morte e trasformazione come Reincarnazione in abitatore del profondo: +6 Forza, −2 Destrezza, +6 Costituzione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "deepOneHybrid.seaLonging",
+      "name": "Richiamo del Mare",
+      "description": "Richiamo del Mare",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Ogni 24 ore trascorse oltre 12 km dal mare: Volontà CD 20 o risucchio di 1 Saggezza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": []
+}

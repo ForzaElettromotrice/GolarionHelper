@@ -1,0 +1,30 @@
+{
+  "id": "teamPickpocketing",
+  "name": "Borseggiare in Gruppo",
+  "description": "La distrazione creata dall'alleato facilita il borseggio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Borseggiare_in_Gruppo",
+  "types": [
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Raggirare 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Rapidità di Mano 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Borseggiare in Gruppo: https://golarion.altervista.org/wiki/Talenti/Borseggiare_in_Gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Raggirare 1 grado; Prerequisito da verificare manualmente: Rapidità di Mano 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

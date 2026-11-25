@@ -1,0 +1,38 @@
+{
+  "id": "pathOfGlory",
+  "name": "Sentiero di Gloria",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "BARD": 2,
+    "SKALD": 2,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto (vedi testo)",
+  "area": "4 quadretti di 1,5 m/livello (vedi testo)",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Traccia un percorso sacro che cura gradualmente chi vi sosta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sentiero_di_Gloria",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sentiero di Gloria: https://golarion.altervista.org/wiki/Incantesimi/Sentiero_di_Gloria Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

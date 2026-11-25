@@ -1,0 +1,49 @@
+{
+  "id": "misdirectionAttack",
+  "name": "Attacco di Depistaggio",
+  "description": "Consente una risposta offensiva dopo aver annullato un attacco con l'inganno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Attacco_di_Depistaggio",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Ingannevole",
+      "feat": {
+        "id": "deceitful"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Reindirizzamento di Depistaggio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Tattiche di Depistaggio",
+      "feat": {
+        "id": "misdirectionTactics"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Raggirare 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Attacco di Depistaggio: https://golarion.altervista.org/wiki/Talenti/Attacco_di_Depistaggio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Maestria in Combattimento; Prerequisito da verificare manualmente: Reindirizzamento di Depistaggio; Prerequisito da verificare manualmente: Raggirare 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

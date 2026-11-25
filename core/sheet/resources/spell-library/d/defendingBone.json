@@ -1,0 +1,49 @@
+{
+  "id": "defendingBone",
+  "name": "Osso Difendente",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "WITCH": 2,
+    "INQUISITOR": 2,
+    "MAGUS": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS",
+    "DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "un osso o femore di una creatura Media",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello o finché scaricato",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Un osso fluttuante intercetta parte degli attacchi fisici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Osso_Difendente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Osso Difendente: https://golarion.altervista.org/wiki/Incantesimi/Osso_Difendente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Arcanista/Mago/Stregone 2, Chierico/Oracolo/Sacerdote Guerriero 2, Fattucchiere 2, Inquisitore 2, Magus 2 (Pharasma) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

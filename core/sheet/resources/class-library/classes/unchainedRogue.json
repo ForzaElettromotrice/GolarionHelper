@@ -1,0 +1,964 @@
+{
+  "type": "unchainedRogue",
+  "name": "Ladro Rivisitato",
+  "description": "Interpretazione rivisitata del ladro e delle sue specializzazioni.",
+  "hitDie": 8,
+  "skillRanksPerLevel": 8,
+  "classSkills": [
+    "skill.acrobatics",
+    "skill.craft",
+    "skill.escapeArtist",
+    "skill.disguise",
+    "skill.knowledge.dungeoneering",
+    "skill.knowledge.local",
+    "skill.diplomacy",
+    "skill.disableDevice",
+    "skill.stealth",
+    "skill.intimidate",
+    "skill.perform",
+    "skill.senseMotive",
+    "skill.linguistics",
+    "skill.swim",
+    "skill.perception",
+    "skill.profession",
+    "skill.bluff",
+    "skill.sleightOfHand",
+    "skill.climb",
+    "skill.useMagicDevice",
+    "skill.appraise"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 2,
+        "will": 0
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 3,
+        "will": 0
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 3,
+        "will": 1
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 6,
+        "will": 2
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 6,
+        "will": 3
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 9,
+        "will": 4
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 9,
+        "will": 5
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 12,
+        "will": 6
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "unchainedRogue.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "unchainedRogue.feature.cde2f76bd890",
+      "name": "Addestramento Accurato",
+      "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Addestramento_Accurato_(Str)",
+      "progression": [
+        {
+          "id": "unchainedRogue.feature.cde2f76bd890.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Ladro Rivisitato: verificare e applicare Addestramento Accurato. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Addestramento_Accurato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.cde2f76bd890.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Ladro Rivisitato: verificare e applicare Addestramento Accurato. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Addestramento_Accurato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.cde2f76bd890.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Ladro Rivisitato: verificare e applicare Addestramento Accurato. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Addestramento_Accurato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.cde2f76bd890.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Ladro Rivisitato: verificare e applicare Addestramento Accurato. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Addestramento_Accurato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.feature.4817687bcf86",
+      "name": "Attacco Furtivo",
+      "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo",
+      "progression": [
+        {
+          "id": "unchainedRogue.feature.4817687bcf86.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +1d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.4817687bcf86.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +2d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "unchainedRogue.feature.4817687bcf86.level1"
+          ]
+        },
+        {
+          "id": "unchainedRogue.feature.4817687bcf86.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +3d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "unchainedRogue.feature.4817687bcf86.level3"
+          ]
+        },
+        {
+          "id": "unchainedRogue.feature.4817687bcf86.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +4d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "unchainedRogue.feature.4817687bcf86.level5"
+          ]
+        },
+        {
+          "id": "unchainedRogue.feature.4817687bcf86.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +5d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "unchainedRogue.feature.4817687bcf86.level7"
+          ]
+        },
+        {
+          "id": "unchainedRogue.feature.4817687bcf86.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +6d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "unchainedRogue.feature.4817687bcf86.level9"
+          ]
+        },
+        {
+          "id": "unchainedRogue.feature.4817687bcf86.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +7d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "unchainedRogue.feature.4817687bcf86.level11"
+          ]
+        },
+        {
+          "id": "unchainedRogue.feature.4817687bcf86.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +8d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "unchainedRogue.feature.4817687bcf86.level13"
+          ]
+        },
+        {
+          "id": "unchainedRogue.feature.4817687bcf86.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +9d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "unchainedRogue.feature.4817687bcf86.level15"
+          ]
+        },
+        {
+          "id": "unchainedRogue.feature.4817687bcf86.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Ladro Rivisitato: verificare e applicare Attacco Furtivo +10d6. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "unchainedRogue.feature.4817687bcf86.level17"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.feature.bdfa2a5c3eef",
+      "name": "Dote da Ladro",
+      "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedRogue.feature.bdfa2a5c3eef.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.bdfa2a5c3eef.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.bdfa2a5c3eef.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.bdfa2a5c3eef.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.bdfa2a5c3eef.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.bdfa2a5c3eef.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.bdfa2a5c3eef.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.bdfa2a5c3eef.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.bdfa2a5c3eef.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.bdfa2a5c3eef.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Ladro Rivisitato: verificare e applicare Dote da Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.feature.c0c18fae5300",
+      "name": "Eludere",
+      "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Eludere_(Str)",
+      "progression": [
+        {
+          "id": "unchainedRogue.feature.c0c18fae5300.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Ladro Rivisitato: verificare e applicare Eludere. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Eludere_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.feature.f3a74644d160",
+      "name": "Ferita Debilitante",
+      "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Ferita_Debilitante_(Str)",
+      "progression": [
+        {
+          "id": "unchainedRogue.feature.f3a74644d160.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Ladro Rivisitato: verificare e applicare Ferita Debilitante. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Ferita_Debilitante_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.feature.d256a1b97ec4",
+      "name": "Vantaggio del Ladro",
+      "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Vantaggio_del_Ladro_(Str)",
+      "progression": [
+        {
+          "id": "unchainedRogue.feature.d256a1b97ec4.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Ladro Rivisitato: verificare e applicare Vantaggio del Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Vantaggio_del_Ladro_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.d256a1b97ec4.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Ladro Rivisitato: verificare e applicare Vantaggio del Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Vantaggio_del_Ladro_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.d256a1b97ec4.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Ladro Rivisitato: verificare e applicare Vantaggio del Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Vantaggio_del_Ladro_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedRogue.feature.d256a1b97ec4.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Ladro Rivisitato: verificare e applicare Vantaggio del Ladro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Vantaggio_del_Ladro_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.feature.947751edfb55",
+      "name": "Schivare Prodigioso Migliorato",
+      "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Schivare_Prodigioso_Migliorato_(Str)",
+      "progression": [
+        {
+          "id": "unchainedRogue.feature.947751edfb55.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Ladro Rivisitato: verificare e applicare Schivare Prodigioso Migliorato. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Schivare_Prodigioso_Migliorato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.feature.5a6c46181a6c",
+      "name": "Doti Avanzate",
+      "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato_Avanzate",
+      "progression": [
+        {
+          "id": "unchainedRogue.feature.5a6c46181a6c.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Ladro Rivisitato: verificare e applicare Doti Avanzate. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Doti_da_Ladro_Rivisitato_Avanzate Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.feature.21f5cdebceee",
+      "name": "Colpo da Maestro",
+      "description": "Privilegio della classe Ladro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Ladro_Rivisitato#Colpo_da_Maestro_(Str)",
+      "progression": [
+        {
+          "id": "unchainedRogue.feature.21f5cdebceee.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Ladro Rivisitato: verificare e applicare Colpo da Maestro. https://golarion.altervista.org/wiki/Ladro_Rivisitato#Colpo_da_Maestro_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Ladro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedRogue.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Ladro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedRogue.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Ladro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedRogue.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Ladro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.feature.8f4dbb15b617",
+      "name": "Scoprire Trappole",
+      "description": "Migliora la ricerca delle trappole e le prove di Disattivare Congegni secondo il livello di classe. Fonte: https://golarion.altervista.org/wiki/Ladro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedRogue.trapfinding.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "perception",
+              "type": "modifier",
+              "resource": "skill.perception",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1 + (@classLevel / 2 > 1) * (@classLevel / 2 - 1)",
+              "condition": "Per localizzare trappole"
+            },
+            {
+              "id": "disable",
+              "type": "modifier",
+              "resource": "skill.disableDevice",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1 + (@classLevel / 2 > 1) * (@classLevel / 2 - 1)"
+            },
+            {
+              "id": "manualResolution",
+              "type": "reminder",
+              "message": "Consente di usare Disattivare Congegni contro trappole magiche; questa autorizzazione non è verificata automaticamente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            },
+            {
+              "id": "conditionalReview",
+              "type": "reminder",
+              "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.feature.05107c446e3f",
+      "name": "Senso del Pericolo",
+      "description": "Migliora progressivamente le difese contro trappole. Favorisce anche la percezione dei nemici che tentano di sorprendere. Fonte: https://golarion.altervista.org/wiki/Ladro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedRogue.trapSense.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "reflex",
+              "type": "modifier",
+              "resource": "savingThrow.reflex",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "@classLevel / 3",
+              "condition": "Per evitare trappole"
+            },
+            {
+              "id": "armorClass",
+              "type": "modifier",
+              "resource": "armorClass.reflexive",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "dodge",
+              "expression": "@classLevel / 3",
+              "condition": "Contro attacchi effettuati da trappole, finché mantiene il bonus di Destrezza alla CA"
+            },
+            {
+              "id": "perception",
+              "type": "modifier",
+              "resource": "skill.perception",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "@classLevel / 3",
+              "condition": "Per evitare di essere colto di sorpresa da un nemico"
+            },
+            {
+              "id": "conditionalReview",
+              "type": "reminder",
+              "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.feature.84bcfa0018b3",
+      "name": "Schivare Prodigioso",
+      "description": "Conserva il bonus di Destrezza alla CA nelle circostanze previste. Fonte: https://golarion.altervista.org/wiki/Ladro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedRogue.uncannyDodge.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "dexterityRetention",
+              "type": "armorClassDexterityRetention",
+              "causes": [
+                "flatFooted",
+                "invisibleAttacker"
+              ]
+            },
+            {
+              "id": "manualResolution",
+              "type": "reminder",
+              "message": "Gestire l’acquisizione di Schivare Prodigioso Migliorato quando la capacità proviene già da un’altra classe; non protegge da fintare o immobilizzazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "unchainedRogue.rogueTalentBinding",
+      "classType": "unchainedRogue",
+      "featureId": "unchainedRogue.feature.bdfa2a5c3eef",
+      "acquisitionIds": [
+        "unchainedRogue.feature.bdfa2a5c3eef.level2",
+        "unchainedRogue.feature.bdfa2a5c3eef.level4",
+        "unchainedRogue.feature.bdfa2a5c3eef.level6",
+        "unchainedRogue.feature.bdfa2a5c3eef.level8"
+      ],
+      "choice": {
+        "id": "rogueTalent",
+        "prompt": "Scegli: Doti da ladro rivisitato",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "unchainedRogue.talents"
+      }
+    },
+    {
+      "id": "unchainedRogue.advancedRogueTalentBinding",
+      "classType": "unchainedRogue",
+      "featureId": "unchainedRogue.feature.bdfa2a5c3eef",
+      "acquisitionIds": [
+        "unchainedRogue.feature.bdfa2a5c3eef.level10",
+        "unchainedRogue.feature.bdfa2a5c3eef.level12",
+        "unchainedRogue.feature.bdfa2a5c3eef.level14",
+        "unchainedRogue.feature.bdfa2a5c3eef.level16",
+        "unchainedRogue.feature.bdfa2a5c3eef.level18",
+        "unchainedRogue.feature.bdfa2a5c3eef.level20"
+      ],
+      "choice": {
+        "id": "advancedRogueTalent",
+        "prompt": "Scegli: Doti da ladro rivisitato e avanzate",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "unchainedRogue.advancedTalents"
+      }
+    },
+    {
+      "id": "unchainedRogue.skillUnlockBinding",
+      "classType": "unchainedRogue",
+      "featureId": "unchainedRogue.feature.d256a1b97ec4",
+      "acquisitionIds": [
+        "unchainedRogue.feature.d256a1b97ec4.level5",
+        "unchainedRogue.feature.d256a1b97ec4.level10",
+        "unchainedRogue.feature.d256a1b97ec4.level15",
+        "unchainedRogue.feature.d256a1b97ec4.level20"
+      ],
+      "choice": {
+        "id": "skillUnlock",
+        "prompt": "Scegli: Vantaggio del ladro",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "unchainedRogue.skillUnlocks"
+      }
+    }
+  ]
+}

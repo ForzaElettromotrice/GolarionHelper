@@ -1,0 +1,37 @@
+{
+  "id": "greaterEldritchHeritage",
+  "name": "Retaggio Stregonesco Superiore",
+  "description": "Permette di acquisire un potere avanzato della stirpe stregonesca. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Retaggio_Stregonesco_Superiore",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 17",
+      "expression": "@cha >= 17"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Retaggio Stregonesco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Retaggio Stregonesco Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: personaggio di 17° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Retaggio Stregonesco Superiore: https://golarion.altervista.org/wiki/Talenti/Retaggio_Stregonesco_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Retaggio Stregonesco; Prerequisito da verificare manualmente: Retaggio Stregonesco Migliorato; Prerequisito da verificare manualmente: personaggio di 17° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

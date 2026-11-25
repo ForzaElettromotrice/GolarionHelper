@@ -1,0 +1,33 @@
+{
+  "id": "acrobaticSpellcaster",
+  "name": "Incantatore Acrobatico",
+  "description": "Il movimento acrobatico permette di lanciare magie senza determinate reazioni nemiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Incantatore_Acrobatico",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Abilità Focalizzata (Acrobazia) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Incantare in Combattimento",
+      "feat": {
+        "id": "combatCasting"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Incantatore Acrobatico: https://golarion.altervista.org/wiki/Talenti/Incantatore_Acrobatico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Abilità Focalizzata (Acrobazia) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

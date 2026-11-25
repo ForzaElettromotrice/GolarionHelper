@@ -1,0 +1,33 @@
+{
+  "id": "holyShield",
+  "name": "Scudo Sacro",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "PALADIN": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Estende a un alleato la protezione offerta dallo scudo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scudo_Sacro",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Scudo Sacro: https://golarion.altervista.org/wiki/Incantesimi/Scudo_Sacro Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

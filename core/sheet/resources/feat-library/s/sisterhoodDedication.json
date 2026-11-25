@@ -1,0 +1,56 @@
+{
+  "id": "sisterhoodDedication",
+  "name": "Dedizione della Sorellanza",
+  "description": "Amplia i benefici e le concessioni dello stile condiviso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Dedizione_della_Sorellanza",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "BAB +6",
+      "expression": "@bab >= 6"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Spada Lunga) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bastione della Sorellanza",
+      "feat": {
+        "id": "sisterhoodRampart"
+      }
+    },
+    {
+      "description": "Muro di Scudi",
+      "feat": {
+        "id": "shieldWall"
+      }
+    },
+    {
+      "description": "Scudo Focalizzato",
+      "feat": {
+        "id": "shieldFocus"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Stile della Sorellanza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Dedizione della Sorellanza: https://golarion.altervista.org/wiki/Talenti/Dedizione_della_Sorellanza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Spada Lunga); Prerequisito da verificare manualmente: Stile della Sorellanza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

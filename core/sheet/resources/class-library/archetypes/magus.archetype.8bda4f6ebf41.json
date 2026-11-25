@@ -1,0 +1,122 @@
+{
+  "id": "magus.archetype.8bda4f6ebf41",
+  "classType": "magus",
+  "name": "Crea Fatture",
+  "description": "Archetipo di Magus. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Magus/Archetipi#Crea_Fatture Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "magus.feature.c4608b3292de",
+      "type": "replace"
+    },
+    {
+      "featureId": "magus.spellcasting",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "magus.feature.c4608b3292de"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "magus.archetype.8bda4f6ebf41.instructions",
+      "name": "Crea Fatture",
+      "description": "Archetipo di Magus. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Magus/Archetipi#Crea_Fatture Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "magus.archetype.8bda4f6ebf41.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Magus. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Magus/Archetipi#Crea_Fatture Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.8bda4f6ebf41.feature.b9ddd73666",
+      "name": "Magus della Fattura (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Crea_Fatture",
+      "progression": [
+        {
+          "id": "magus.archetype.8bda4f6ebf41.feature.b9ddd73666.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Crea Fatture — Magus della Fattura (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Crea_Fatture Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.8bda4f6ebf41.feature.97fb0ce896",
+      "name": "Segreto della Fattura",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Crea_Fatture",
+      "progression": [
+        {
+          "id": "magus.archetype.8bda4f6ebf41.feature.97fb0ce896.initial",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Crea Fatture — Segreto della Fattura: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Crea_Fatture Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.8bda4f6ebf41.feature.2b9b803a5f",
+      "name": "Incantesimi",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Crea_Fatture",
+      "progression": [
+        {
+          "id": "magus.archetype.8bda4f6ebf41.feature.2b9b803a5f.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Crea Fatture — Incantesimi: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Crea_Fatture Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.8bda4f6ebf41.feature.2d5d70259e",
+      "name": "Segreti del Magus",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Crea_Fatture",
+      "progression": [
+        {
+          "id": "magus.archetype.8bda4f6ebf41.feature.2d5d70259e.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Crea Fatture — Segreti del Magus: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Crea_Fatture Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

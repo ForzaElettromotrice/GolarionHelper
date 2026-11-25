@@ -1,0 +1,39 @@
+{
+  "id": "arcaneArmorMastery",
+  "name": "Maestria Arcana nelle Armature",
+  "description": "Accresce la capacità di lanciare magie arcane indossando armature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestria_Arcana_nelle_Armature",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Addestramento Arcano nelle Armature",
+      "feat": {
+        "id": "arcaneArmorTraining"
+      }
+    },
+    {
+      "description": "Competenza nelle Armature Medie",
+      "feat": {
+        "id": "armorProficiencyMedium"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: incantatore di 7° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestria Arcana nelle Armature: https://golarion.altervista.org/wiki/Talenti/Maestria_Arcana_nelle_Armature. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: incantatore di 7° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

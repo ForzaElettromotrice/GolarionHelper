@@ -1,0 +1,35 @@
+{
+  "id": "burstOfAdrenaline",
+  "name": "Esplosione di Adrenalina",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "MESMERIST": 1,
+    "PSYCHIC": 1,
+    "SPIRITUALIST": 1
+  },
+  "castingTimeCategory": "IMMEDIATE_ACTION",
+  "castingTimeDescription": "1 azione immediata",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Potenzia una singola prova fisica, lasciando poi affaticato l'incantatore per un round. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Esplosione_di_Adrenalina",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Esplosione di Adrenalina: https://golarion.altervista.org/wiki/Incantesimi/Esplosione_di_Adrenalina Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

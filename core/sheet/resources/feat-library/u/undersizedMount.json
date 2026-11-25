@@ -1,0 +1,27 @@
+{
+  "id": "undersizedMount",
+  "name": "Cavalcatura Ridotta",
+  "description": "Permette di cavalcare creature della propria taglia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Cavalcatura_Ridotta",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Cavalcare 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Cavalcatura Ridotta: https://golarion.altervista.org/wiki/Talenti/Cavalcatura_Ridotta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Cavalcare 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

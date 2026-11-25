@@ -1,0 +1,52 @@
+{
+  "id": "resurrection",
+  "name": "Resurrezione",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "CLERIC": 7,
+    "ORACLE": 7,
+    "WITCH": 8,
+    "SHAMAN": 8
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "DIVINE": 7,
+      "RESURRECTION": 7
+    }
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un diamante di almeno 10.000 mo",
+  "materialComponentCostInGoldPieces": 10000,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura morta toccata",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Riporta in vita il defunto e ricostituisce il suo corpo secondo i limiti dell'incantesimo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Resurrezione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Resurrezione: https://golarion.altervista.org/wiki/Incantesimi/Resurrezione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno, vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "agentOfFear",
+  "name": "Agente della Paura",
+  "description": "Permette di sottoporre nuovamente una creatura alle apparizioni terrificanti interessate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Agente_della_Paura",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Persuasivo",
+      "feat": {
+        "id": "persuasive"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Apparizione Spaventosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Agente della Paura: https://golarion.altervista.org/wiki/Talenti/Agente_della_Paura. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di classe Apparizione Spaventosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

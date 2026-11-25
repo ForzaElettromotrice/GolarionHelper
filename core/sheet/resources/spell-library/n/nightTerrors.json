@@ -1,0 +1,53 @@
+{
+  "id": "nightTerrors",
+  "name": "Terrori Notturni",
+  "school": "ILLUSION",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING",
+    "EVIL"
+  ],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "BARD": 6,
+    "WITCH": 6,
+    "WIZARD": 6,
+    "MESMERIST": 6,
+    "PSYCHIC": 6,
+    "SKALD": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una goccia d'inchiostro nero",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura intelligente toccata",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega o vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Incubi inquietanti impediscono un riposo sereno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Terrori_Notturni",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Terrori Notturni: https://golarion.altervista.org/wiki/Terrori_Notturni Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

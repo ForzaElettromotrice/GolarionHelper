@@ -1,0 +1,39 @@
+{
+  "id": "bladeOfLight",
+  "name": "Lama di Luce",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "INQUISITOR": 4,
+    "PALADIN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "un'arma da mischia",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "La lama illuminata diventa particolarmente efficace contro i non morti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lama_di_Luce",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Lama di Luce: https://golarion.altervista.org/wiki/Incantesimi/Lama_di_Luce Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

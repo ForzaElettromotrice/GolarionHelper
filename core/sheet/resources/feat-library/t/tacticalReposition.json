@@ -1,0 +1,37 @@
+{
+  "id": "tacticalReposition",
+  "name": "Riposizionamento Tattico",
+  "description": "Sposta il nemico verso una trappola rendendolo più vulnerabile. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Riposizionamento_Tattico",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Riposizionare Migliorato",
+      "feat": {
+        "id": "improvedReposition"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Riposizionamento Tattico: https://golarion.altervista.org/wiki/Talenti/Riposizionamento_Tattico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

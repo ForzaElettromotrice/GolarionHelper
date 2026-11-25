@@ -1,0 +1,47 @@
+{
+  "id": "breakGuard",
+  "name": "Rompere la Guardia",
+  "description": "Un tentativo di disarmo apre un attacco con l'arma secondaria. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Rompere_la_Guardia",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Combattere con Due Armi",
+      "feat": {
+        "id": "twoWeaponFighting"
+      }
+    },
+    {
+      "description": "Disarmare Migliorato",
+      "feat": {
+        "id": "improvedDisarm"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Rompere la Guardia: https://golarion.altervista.org/wiki/Talenti/Rompere_la_Guardia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

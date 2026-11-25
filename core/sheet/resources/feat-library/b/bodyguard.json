@@ -1,0 +1,25 @@
+{
+  "id": "bodyguard",
+  "name": "Guardia del Corpo",
+  "description": "Impiega una reazione per aiutare un alleato a difendersi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Guardia_del_Corpo",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Riflessi in Combattimento",
+      "feat": {
+        "id": "combatReflexes"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Guardia del Corpo: https://golarion.altervista.org/wiki/Talenti/Guardia_del_Corpo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

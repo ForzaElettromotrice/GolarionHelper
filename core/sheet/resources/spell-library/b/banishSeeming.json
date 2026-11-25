@@ -1,0 +1,37 @@
+{
+  "id": "banishSeeming",
+  "name": "Bandire Sembianze",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "WITCH": 5,
+    "INQUISITOR": 3,
+    "PSYCHIC": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un chiodo di ferro freddo",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura o 1 oggetto",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo e 1 round/livello; vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Rimuove un'apparenza illusoria o interviene sulla forma assunta da un mutaforma. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bandire_Sembianze",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bandire Sembianze: https://golarion.altervista.org/wiki/Incantesimi/Bandire_Sembianze Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

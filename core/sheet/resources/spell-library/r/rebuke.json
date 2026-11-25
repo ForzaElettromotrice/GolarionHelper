@@ -1,0 +1,42 @@
+{
+  "id": "rebuke",
+  "name": "Intimorire",
+  "school": "EVOCATION",
+  "descriptors": [
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "INQUISITOR": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "6 m",
+  "area": "esplosione del raggio di 6 m centrata su di sé",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un rimprovero soprannaturale ferisce i nemici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Intimorire",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Intimorire: https://golarion.altervista.org/wiki/Incantesimi/Intimorire Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

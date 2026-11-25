@@ -1,0 +1,48 @@
+{
+  "id": "frightfulAspect",
+  "name": "Aspetto Terrificante",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "CLERIC": 8,
+    "DRUID": 8,
+    "WITCH": 8,
+    "WIZARD": 8,
+    "ORACLE": 8,
+    "PSYCHIC": 8,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "la pelle di un rospo",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "Personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Trasforma il lanciatore in una figura Grande e terrificante, circondata da un'aura di paura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aspetto_Terrificante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Aspetto Terrificante: https://golarion.altervista.org/wiki/Incantesimi/Aspetto_Terrificante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: mistero Ascesi 8 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

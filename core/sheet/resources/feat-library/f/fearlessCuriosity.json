@@ -1,0 +1,31 @@
+{
+  "id": "fearlessCuriosity",
+  "name": "Curiosità Intrepida",
+  "description": "Rafforza la resistenza alle influenze emotive e favorisce l'approccio coraggioso previsto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Curiosit%C3%A0_Intrepida",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Umano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Curiosità Intrepida: https://golarion.altervista.org/wiki/Talenti/Curiosit%C3%A0_Intrepida. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Umano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

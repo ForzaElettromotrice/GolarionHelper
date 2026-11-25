@@ -1,0 +1,31 @@
+{
+  "id": "disposableWeapon",
+  "name": "Arma Usa e Getta",
+  "description": "Permette di danneggiare un'arma fragile per favorire la conferma di un critico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Arma_Usa_e_Getta",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: competenza nell'arma Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Arma Usa e Getta: https://golarion.altervista.org/wiki/Talenti/Arma_Usa_e_Getta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: competenza nell'arma Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

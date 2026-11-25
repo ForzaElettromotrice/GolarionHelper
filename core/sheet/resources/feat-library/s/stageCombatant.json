@@ -1,0 +1,31 @@
+{
+  "id": "stageCombatant",
+  "name": "Combattente da Palcoscenico",
+  "description": "Agevola il combattimento simulato e i colpi non letali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Combattente_da_Palcoscenico",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +5",
+      "expression": "@bab >= 5"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Combattente da Palcoscenico: https://golarion.altervista.org/wiki/Talenti/Combattente_da_Palcoscenico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

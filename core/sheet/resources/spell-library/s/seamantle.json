@@ -1,0 +1,49 @@
+{
+  "id": "seamantle",
+  "name": "Manto del Mare",
+  "school": "CONJURATION",
+  "descriptors": [
+    "WATER"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WIZARD": 8,
+    "SORCERER": 8,
+    "DRUID": 8
+  },
+  "spellLevelByBloodline": {
+    "AQUATIC": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una tazza di acqua",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Un involucro acquatico difende l'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Manto_del_Mare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Manto del Mare: https://golarion.altervista.org/wiki/Incantesimi/Manto_del_Mare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 8 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

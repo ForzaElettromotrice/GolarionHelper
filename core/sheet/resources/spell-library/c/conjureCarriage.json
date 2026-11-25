@@ -1,0 +1,44 @@
+{
+  "id": "conjureCarriage",
+  "name": "Evoca Carrozza",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "MAGUS": 3,
+    "SKALD": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una zucca",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/ogni 2 livelli)",
+  "effect": "una carrozza semi-reale con cocchiere e cavalli",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Fa apparire una carrozza utilizzabile per il trasporto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Carrozza",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Carrozza: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Carrozza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -2,7 +2,7 @@
 
 ## Scope
 
-Reviewed 2026-11-13 against the 15 `Razze Insolite` pages linked by [Golarion's race index](https://golarion.altervista.org/wiki/Razze). Data is in `core/sheet/resources/races/rare.json`. Includes standard profiles, language grants/options, every alternate-trait entry and every favored-class option on those pages. Descriptions paraphrase rules; English references supply terminology only. English-only additions are intentionally absent.
+Reviewed 2026-11-13 against the 15 `Razze Insolite` pages linked by [Golarion's race index](https://golarion.altervista.org/wiki/Razze). Data is in `core/sheet/resources/race-library/races/<id>.json`. Includes standard profiles, language grants/options, every alternate-trait entry and every favored-class option on those pages. Descriptions paraphrase rules; English references supply terminology only. English-only additions are intentionally absent.
 
 Every manual remainder carries exactly `Ehi, appena hai tempo vedi di correggermi se necessario!`, including partially automated traits and benefits. Presence in the catalog is not full mechanical automation.
 

@@ -1,0 +1,51 @@
+{
+  "id": "hideousLaughter",
+  "name": "Risata Incontenibile",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 1,
+    "WIZARD": 2,
+    "MEDIUM": 2,
+    "MESMERIST": 1,
+    "PSYCHIC": 2,
+    "SKALD": 1,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "minuscole crostate alla frutta e una piuma",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura; vedi testo",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una risata irrefrenabile impedisce al soggetto di agire normalmente per la durata prevista. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Risata_Incontenibile",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Risata Incontenibile: https://golarion.altervista.org/wiki/Incantesimi/Risata_Incontenibile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

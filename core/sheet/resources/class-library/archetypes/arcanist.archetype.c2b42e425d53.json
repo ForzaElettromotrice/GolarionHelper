@@ -1,0 +1,105 @@
+{
+  "id": "arcanist.archetype.c2b42e425d53",
+  "classType": "arcanist",
+  "name": "Trasmutatore Pelo Fulvo",
+  "description": "Archetipo di Arcanista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Arcanista/Archetipi#Trasmutatore_Pelo_Fulvo Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "arcanist.feature.0d249cde3d59",
+      "type": "replace"
+    },
+    {
+      "featureId": "arcanist.feature.758c942bcdea",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "arcanist.feature.0d249cde3d59"
+  ],
+  "removedAcquisitionIds": [
+    "arcanist.feature.758c942bcdea.level3",
+    "arcanist.feature.758c942bcdea.level9"
+  ],
+  "addedFeatures": [
+    {
+      "id": "arcanist.archetype.c2b42e425d53.instructions",
+      "name": "Trasmutatore Pelo Fulvo",
+      "description": "Archetipo di Arcanista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Arcanista/Archetipi#Trasmutatore_Pelo_Fulvo Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "arcanist.archetype.c2b42e425d53.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Arcanista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Arcanista/Archetipi#Trasmutatore_Pelo_Fulvo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "arcanist.archetype.c2b42e425d53.feature.1",
+      "name": "Cambiamento Possente (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Arcanista/Archetipi#Trasmutatore_Pelo_Fulvo",
+      "progression": [
+        {
+          "id": "arcanist.archetype.c2b42e425d53.feature.1.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Trasmutatore Pelo Fulvo — Cambiamento Possente (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Arcanista/Archetipi#Trasmutatore_Pelo_Fulvo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "arcanist.archetype.c2b42e425d53.feature.2",
+      "name": "Condividere Trasmutazione (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Arcanista/Archetipi#Trasmutatore_Pelo_Fulvo",
+      "progression": [
+        {
+          "id": "arcanist.archetype.c2b42e425d53.feature.2.initial",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Trasmutatore Pelo Fulvo — Condividere Trasmutazione (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Arcanista/Archetipi#Trasmutatore_Pelo_Fulvo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "arcanist.archetype.c2b42e425d53.feature.3",
+      "name": "Supremazia nella Trasmutazione (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Arcanista/Archetipi#Trasmutatore_Pelo_Fulvo",
+      "progression": [
+        {
+          "id": "arcanist.archetype.c2b42e425d53.feature.3.initial",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Trasmutatore Pelo Fulvo — Supremazia nella Trasmutazione (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Arcanista/Archetipi#Trasmutatore_Pelo_Fulvo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

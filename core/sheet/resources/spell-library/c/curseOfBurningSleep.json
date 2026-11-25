@@ -1,0 +1,49 @@
+{
+  "id": "curseOfBurningSleep",
+  "name": "Maledizione del Sonno Ardente",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "FIRE",
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "PSYCHIC": 4,
+    "SHAMAN": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una piuma e una goccia di olio",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente finché non viene attivato (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Predispone un incendio che si attiva durante il sonno della vittima. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Maledizione_del_Sonno_Ardente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledizione del Sonno Ardente: https://golarion.altervista.org/wiki/Incantesimi/Maledizione_del_Sonno_Ardente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

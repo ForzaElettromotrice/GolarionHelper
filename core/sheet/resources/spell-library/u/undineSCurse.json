@@ -1,0 +1,45 @@
+{
+  "id": "undineSCurse",
+  "name": "Maledizione dell'Ondine",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL",
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "WITCH": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Costringe la vittima a controllare volontariamente il respiro. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Maledizione_dell%27Ondine",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledizione dell'Ondine: https://golarion.altervista.org/wiki/Incantesimi/Maledizione_dell%27Ondine Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

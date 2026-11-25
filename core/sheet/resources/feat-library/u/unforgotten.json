@@ -1,0 +1,27 @@
+{
+  "id": "unforgotten",
+  "name": "Indimenticato",
+  "description": "Il legame con una persona perduta sostiene la resistenza personale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Indimenticato",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Bisogna avere un parente prossimo, un consorte o un'altra persona cara che non ha più fatto ritorno da un viaggio, è stata catturata o è svanita in altro modo lasciando poche tracce, oppure possedere il background Disastro Maggiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Indimenticato: https://golarion.altervista.org/wiki/Talenti/Indimenticato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Bisogna avere un parente prossimo, un consorte o un'altra persona cara che non ha più fatto ritorno da un viaggio, è stata catturata o è svanita in altro modo lasciando poche tracce, oppure possedere il background Disastro Maggiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

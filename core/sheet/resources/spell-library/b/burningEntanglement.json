@@ -1,0 +1,44 @@
+{
+  "id": "burningEntanglement",
+  "name": "Intralcio Bruciante",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "RANGER": 3,
+    "SHAMAN": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "area": "propagazione del raggio di 12 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "SEE_TEXT",
+      "description": "Riflessi parziale o nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "La vegetazione intralciante avvampa in fiamme. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Intralcio_Bruciante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Intralcio Bruciante: https://golarion.altervista.org/wiki/Incantesimi/Intralcio_Bruciante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

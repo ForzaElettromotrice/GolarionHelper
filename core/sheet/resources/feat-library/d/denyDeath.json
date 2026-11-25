@@ -1,0 +1,33 @@
+{
+  "id": "denyDeath",
+  "name": "Rifiutare la Morte",
+  "description": "Sfrutta il ki per ritardare o evitare la morte secondo le soglie consentite. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Rifiutare_la_Morte",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Riserva Ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Resistenza Fisica",
+      "feat": {
+        "id": "endurance"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Rifiutare la Morte: https://golarion.altervista.org/wiki/Talenti/Rifiutare_la_Morte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Riserva Ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,39 @@
+{
+  "id": "pungentStench",
+  "name": "Fetore Pungente",
+  "description": "Il fetore può causare anche nausea. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Fetore_Pungente",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Fetore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Fetore Migliorato",
+      "feat": {
+        "id": "improvedStench"
+      }
+    },
+    {
+      "description": "Tempra Possente",
+      "feat": {
+        "id": "greatFortitude"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Fetore Pungente: https://golarion.altervista.org/wiki/Talenti/Fetore_Pungente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Fetore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,36 @@
+{
+  "id": "planarWanderer",
+  "name": "Viandante Planare",
+  "description": "Migliora la precisione con cui si raggiunge la destinazione di uno spostamento planare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Viandante_Planare",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Cartografo Arcano",
+      "feat": {
+        "id": "cartogramancer"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (geografia e piani) 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di lanciare Spostamento Planare e Teletrasporto Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Viandante Planare: https://golarion.altervista.org/wiki/Talenti/Viandante_Planare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (geografia e piani) 10 gradi; Prerequisito da verificare manualmente: capacità di lanciare Spostamento Planare e Teletrasporto Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

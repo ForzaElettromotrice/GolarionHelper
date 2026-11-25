@@ -1,0 +1,41 @@
+{
+  "id": "cleanse",
+  "name": "Purificare",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 5,
+    "ORACLE": 5,
+    "WARPRIEST": 5,
+    "INQUISITOR": 6
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "DIVINE": 5
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Ripristina punti ferita e rimuove diverse condizioni e afflizioni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Purificare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Purificare: https://golarion.altervista.org/wiki/Incantesimi/Purificare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

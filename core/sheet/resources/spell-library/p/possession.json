@@ -1,0 +1,48 @@
+{
+  "id": "possession",
+  "name": "Possessione",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "SUMMONER": 5,
+    "WITCH": 5,
+    "MEDIUM": 3,
+    "WIZARD": 5,
+    "MESMERIST": 5,
+    "OCCULTIST": 4,
+    "PSYCHIC": 5,
+    "SPIRITUALIST": 4,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Trasferisce l'anima dell'incantatore nel corpo di una creatura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Possessione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Possessione: https://golarion.altervista.org/wiki/Incantesimi/Possessione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

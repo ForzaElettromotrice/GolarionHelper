@@ -1,0 +1,48 @@
+{
+  "id": "contingentScroll",
+  "name": "Pergamena Condizionata",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 4,
+    "WIZARD": 4,
+    "PSYCHIC": 4,
+    "SKALD": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "FOCUS"
+  ],
+  "materialComponentDescription": "la Pergamena da attivare",
+  "focusComponentDescription": "una penna di platino del valore di 100 mo",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuto/livello (I) o finché non viene scaricato",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo), vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Lega il potere di una pergamena a una condizione di attivazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pergamena_Condizionata",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pergamena Condizionata: https://golarion.altervista.org/wiki/Incantesimi/Pergamena_Condizionata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

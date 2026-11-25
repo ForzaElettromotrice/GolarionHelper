@@ -1,0 +1,25 @@
+{
+  "id": "improvedLightningReflexes",
+  "name": "Riflessi Fulminei Migliorati",
+  "description": "Permette di ripetere occasionalmente un tiro salvezza sui Riflessi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Riflessi_Fulminei_Migliorati",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Riflessi Fulminei",
+      "feat": {
+        "id": "lightningReflexes"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Riflessi Fulminei Migliorati: https://golarion.altervista.org/wiki/Talenti/Riflessi_Fulminei_Migliorati. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

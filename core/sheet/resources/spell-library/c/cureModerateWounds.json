@@ -1,0 +1,61 @@
+{
+  "id": "cureModerateWounds",
+  "name": "Cura Ferite Moderate",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "ADEPT": 2,
+    "ALCHEMIST": 2,
+    "BARD": 2,
+    "HUNTER": 3,
+    "CLERIC": 2,
+    "DRUID": 3,
+    "WITCH": 2,
+    "INQUISITOR": 2,
+    "INVESTIGATOR": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "PALADIN": 3,
+    "RANGER": 3,
+    "WARPRIEST": 2,
+    "SKALD": 2,
+    "SHAMAN": 2,
+    "SPIRITUALIST": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "HEALING": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "HALF",
+      "description": "Volontà dimezza (innocuo); vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo); vedi testo",
+  "description": "Ripristina punti ferita con due dadi curativi e un contributo limitato del livello dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cura_Ferite_Moderate",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cura Ferite Moderate: https://golarion.altervista.org/wiki/Incantesimi/Cura_Ferite_Moderate Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

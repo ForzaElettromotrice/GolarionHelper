@@ -1,0 +1,45 @@
+{
+  "id": "illusoryWall",
+  "name": "Muro Illusorio",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "FIGMENT",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "MESMERIST": 4,
+    "OCCULTIST": 4,
+    "PSYCHIC": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "immagine di 30 cm x 3 m x 3 m",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita (se si interagisce)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Simula una superficie solida che rimane attraversabile. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Muro_Illusorio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Muro Illusorio: https://golarion.altervista.org/wiki/Incantesimi/Muro_Illusorio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

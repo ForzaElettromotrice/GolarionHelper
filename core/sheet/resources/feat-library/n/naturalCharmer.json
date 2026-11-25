@@ -1,0 +1,31 @@
+{
+  "id": "naturalCharmer",
+  "name": "Seduttore Naturale",
+  "description": "Facilita le interazioni ammalianti con gli umanoidi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Seduttore_Naturale",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 17",
+      "expression": "@cha >= 17"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Dhampir Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Seduttore Naturale: https://golarion.altervista.org/wiki/Talenti/Seduttore_Naturale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Dhampir Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

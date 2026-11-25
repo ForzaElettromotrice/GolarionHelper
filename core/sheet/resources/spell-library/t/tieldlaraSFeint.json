@@ -1,0 +1,41 @@
+{
+  "id": "tieldlaraSFeint",
+  "name": "Finta di Tieldlara",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "subschool": "CHARM",
+  "spellLevelByClass": {
+    "BARD": 2,
+    "SKALD": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "6 m",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Distrae una creatura inducendole pensieri erotici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Finta_di_Tieldlara",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Finta di Tieldlara: https://golarion.altervista.org/wiki/Incantesimi/Finta_di_Tieldlara Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

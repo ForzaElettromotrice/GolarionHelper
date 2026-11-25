@@ -1,0 +1,53 @@
+{
+  "id": "improvedSnapShot",
+  "name": "Tiro Scattante Migliorato",
+  "description": "Estende la zona minacciata dall'arma a distanza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tiro_Scattante_Migliorato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Tiro Rapido",
+      "feat": {
+        "id": "rapidShot"
+      }
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    },
+    {
+      "description": "Tiro Scattante",
+      "feat": {
+        "id": "snapShot"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +9",
+      "expression": "@bab >= 9"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tiro Scattante Migliorato: https://golarion.altervista.org/wiki/Talenti/Tiro_Scattante_Migliorato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

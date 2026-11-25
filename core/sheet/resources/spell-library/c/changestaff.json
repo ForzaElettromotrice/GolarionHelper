@@ -1,0 +1,40 @@
+{
+  "id": "changestaff",
+  "name": "Trasforma Bastone",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "DRUID": 7
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un bastone ferrato, che è stato intagliato e levigato per 28 giorni",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "bastone personale toccato",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasforma un bastone in un treant al servizio dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trasforma_Bastone",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Trasforma Bastone: https://golarion.altervista.org/wiki/Incantesimi/Trasforma_Bastone Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: bastone personale toccato. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

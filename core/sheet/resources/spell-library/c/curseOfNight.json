@@ -1,0 +1,49 @@
+{
+  "id": "curseOfNight",
+  "name": "Maledizione della Notte",
+  "school": "EVOCATION",
+  "descriptors": [
+    "CURSE",
+    "DARKNESS"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "CLERIC": 8,
+    "DRUID": 8,
+    "WITCH": 8,
+    "WIZARD": 8,
+    "ORACLE": 8,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "giaietti per un valore totale di 10.000 mo",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "area": "emanazione del raggio di 1,5 chilometri dal punto toccato",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Condanna una regione a una notte perpetua. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Maledizione_della_Notte",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledizione della Notte: https://golarion.altervista.org/wiki/Maledizione_della_Notte Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno (vedi testo della maledizione) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

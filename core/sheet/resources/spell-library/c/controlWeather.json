@@ -1,0 +1,53 @@
+{
+  "id": "controlWeather",
+  "name": "Controllare Tempo Atmosferico",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "WIZARD": 7,
+    "SORCERER": 7,
+    "CLERIC": 7,
+    "ORACLE": 7,
+    "DRUID": 7,
+    "WITCH": 7,
+    "SHAMAN": 7
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "WEATHER": 7
+    },
+    "subdomain": {
+      "CATASTROPHE": 7
+    }
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti; vedi testo",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "3 km",
+  "area": "un cerchio del raggio di 3 km centrato su di sé; vedi testo",
+  "durationType": "HOUR",
+  "durationDescription": "4d12 ore; vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Modifica gradualmente le condizioni meteorologiche di un'ampia zona. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Controllare_Tempo_Atmosferico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Controllare Tempo Atmosferico: https://golarion.altervista.org/wiki/Incantesimi/Controllare_Tempo_Atmosferico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 7, Aria 7, Legno 7 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

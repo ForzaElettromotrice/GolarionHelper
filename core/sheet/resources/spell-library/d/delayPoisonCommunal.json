@@ -1,0 +1,58 @@
+{
+  "id": "delayPoisonCommunal",
+  "name": "Ritarda Veleno Collettivo",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "INVESTIGATOR": 3,
+    "BARD": 3,
+    "SKALD": 3,
+    "HUNTER": 3,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "INQUISITOR": 3,
+    "PALADIN": 3,
+    "RANGER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creature toccate",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Ritarda l'azione dei veleni su più soggetti dividendo la durata disponibile. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ritarda_Veleno_Collettivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ritarda Veleno Collettivo: https://golarion.altervista.org/wiki/Incantesimi/Ritarda_Veleno_Collettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: creature toccate. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "locatePortal",
+  "name": "Localizzare Portale",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 5,
+    "CLERIC": 5,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 5,
+    "WIZARD": 5,
+    "OCCULTIST": 5,
+    "ORACLE": 5,
+    "PSYCHIC": 5,
+    "WARPRIEST": 5,
+    "SKALD": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "una piccola sfera di magnetite",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "area": "un cerchio centrato su di sé con raggio di 120 + 12 m/livello",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Rivela la posizione di un passaggio magico vicino. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Localizzare_Portale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Localizzare Portale: https://golarion.altervista.org/wiki/Localizzare_Portale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

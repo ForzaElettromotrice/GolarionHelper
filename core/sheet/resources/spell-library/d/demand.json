@@ -1,0 +1,55 @@
+{
+  "id": "demand",
+  "name": "Esigere",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WITCH": 8,
+    "WIZARD": 8,
+    "MESMERIST": 6,
+    "PSYCHIC": 8,
+    "SORCERER": 8
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "CHARM": 8,
+      "NOBILITY": 8
+    }
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "sottile filo di rame",
+  "rangeType": "OTHER",
+  "rangeDescription": "vedi testo",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "volontà parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Trasmette un messaggio a distanza accompagnandolo con una suggestione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Esigere",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Esigere: https://golarion.altervista.org/wiki/Incantesimi/Esigere Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

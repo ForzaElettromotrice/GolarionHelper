@@ -1,0 +1,222 @@
+{
+  "id": "caligni",
+  "name": "Caligni",
+  "qualities": [
+    {
+      "id": "caligni.type",
+      "name": "Tipo",
+      "description": "Umanoide (oscuro).",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide (oscuro). Le interazioni basate sul tipo richiedono verifica manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "caligni.size",
+      "name": "Taglia",
+      "description": "Media.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "caligni.baseSpeed",
+      "name": "Velocità",
+      "description": "9 m sul terreno.",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "caligni.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Modificatori razziali.",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "int",
+          "type": "modifier",
+          "resource": "int",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "caligni.languages",
+      "name": "Linguaggi",
+      "description": "Lingue concesse e apprendimento.",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "darkFolk",
+          "type": "languageGrant",
+          "languageId": "darkFolk"
+        },
+        {
+          "id": "intelligence",
+          "type": "reminder",
+          "message": "La pagina non specifica lingue aggiuntive per Intelligenza: concordare eventuali opzioni con il GM. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "pathfinderSignLanguage",
+            "polyglot",
+            "reptoid",
+            "rougarou",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varisianSignLanguage",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "yaddithian"
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "caligni.senses",
+      "name": "Sensi",
+      "description": "Sensi",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Vede in qualsiasi oscurità, anche magica. Luce intensa: abbagliato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "caligni.deathThroes",
+      "name": "Spasmo Mortale",
+      "description": "Spasmo Mortale",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Alla morte: lampo entro 1,5 m; Tempra CD 10 + metà DV + mod. Costituzione oppure abbagliamento 1d4 round. Resti ridotti a un terzo, comunque validi per riportarlo in vita. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": []
+}

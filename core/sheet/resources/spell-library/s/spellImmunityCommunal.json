@@ -1,0 +1,50 @@
+{
+  "id": "spellImmunityCommunal",
+  "name": "Immunità agli Incantesimi Collettivo",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 5,
+    "INQUISITOR": 5,
+    "OCCULTIST": 5,
+    "ORACLE": 5,
+    "PSYCHIC": 5,
+    "WARPRIEST": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creature toccate",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Ripartisce fra più soggetti la protezione da incantesimi specifici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Immunit%C3%A0_agli_Incantesimi_Collettivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Immunità agli Incantesimi Collettivo: https://golarion.altervista.org/wiki/Incantesimi/Immunit%C3%A0_agli_Incantesimi_Collettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: creature toccate. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

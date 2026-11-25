@@ -1,0 +1,30 @@
+{
+  "id": "bloodSalvage",
+  "name": "Recuperare Sangue",
+  "description": "Permette di nutrirsi del sangue di creature già morte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Recuperare_Sangue",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Succhiasangue Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Dhampir Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Recuperare Sangue: https://golarion.altervista.org/wiki/Talenti/Recuperare_Sangue. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Succhiasangue; Prerequisito da verificare manualmente: Dhampir Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

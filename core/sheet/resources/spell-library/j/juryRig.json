@@ -1,0 +1,56 @@
+{
+  "id": "juryRig",
+  "name": "Riparazione di Fortuna",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "BARD": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "WITCH": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "OCCULTIST": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di resina di albero",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto Rotto di 1 kg/livello",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Consente a un oggetto rotto di tornare temporaneamente utilizzabile. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Riparazione_di_Fortuna",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Riparazione di Fortuna: https://golarion.altervista.org/wiki/Incantesimi/Riparazione_di_Fortuna Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 oggetto Rotto di 1 kg/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

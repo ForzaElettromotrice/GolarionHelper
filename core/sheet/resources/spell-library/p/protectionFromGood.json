@@ -1,0 +1,84 @@
+{
+  "id": "protectionFromGood",
+  "name": "Protezione dal Bene",
+  "school": "ABJURATION",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ADEPT": 1,
+    "ANTIPALADIN": 1,
+    "ARCANIST": 1,
+    "CLERIC": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "INQUISITOR": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 1,
+    "MEDIUM": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SHAMAN": 1,
+    "SPIRITUALIST": 1,
+    "SORCERER": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "EVIL": 1
+    },
+    "subdomain": {
+      "PURITY": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no; vedi testo",
+  "description": "Protegge dagli attacchi di creature buone con +2 deviazione alla CA e +2 resistenza ai tiri salvezza, oltre alle protezioni mentali e dal contatto descritte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Protezione_dal_Bene",
+  "effects": [
+    {
+      "id": "armorClass",
+      "type": "modifier",
+      "resource": "armorClass.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "deflection",
+      "expression": "2",
+      "condition": "Contro attacchi di creature buone"
+    },
+    {
+      "id": "savingThrows",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "resistance",
+      "expression": "2",
+      "condition": "Contro attacchi di creature buone"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Gestire manualmente nuovo tiro salvezza con +2 morale, soppressione del controllo, protezione da nuovi controlli e barriera contro creature evocate: rispettare allineamenti, eccezioni e cessazione della barriera indicati dalla fonte. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

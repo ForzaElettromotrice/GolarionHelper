@@ -1,0 +1,46 @@
+{
+  "id": "conjureDeadfall",
+  "name": "Evoca Trappola a Caduta Mortale",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "MAGUS": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una manciata di puntine di Mithral",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "1 blocco chiodato in caduta",
+  "area": "vedi testo",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega, vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Fa precipitare un blocco metallico irto di punte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Trappola_a_Caduta_Mortale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Trappola a Caduta Mortale: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Trappola_a_Caduta_Mortale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

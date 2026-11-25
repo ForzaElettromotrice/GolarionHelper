@@ -1,0 +1,44 @@
+{
+  "id": "steadySaddle",
+  "name": "Sella Stabile",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "HUNTER": 1,
+    "DRUID": 1,
+    "PALADIN": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una sella toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo, oggetto)",
+  "description": "Stabilizza la sella e attenua le difficoltà di tirare o concentrarsi durante il movimento della cavalcatura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sella_Stabile",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sella Stabile: https://golarion.altervista.org/wiki/Incantesimi/Sella_Stabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

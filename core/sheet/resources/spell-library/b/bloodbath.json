@@ -1,0 +1,57 @@
+{
+  "id": "bloodbath",
+  "name": "Bagno di Sangue",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "ARCANIST": 2,
+    "CLERIC": 1,
+    "WITCH": 2,
+    "INQUISITOR": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 2,
+    "ORACLE": 1,
+    "PSYCHIC": 2,
+    "WARPRIEST": 1,
+    "SPIRITUALIST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un pugnale cerimoniale",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/livello)",
+  "target": "fino a una creatura vivente/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Il lanciatore accetta di sanguinare per provocare sanguinamento anche nei nemici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Bagno_di_Sangue",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bagno di Sangue: https://golarion.altervista.org/wiki/Bagno_di_Sangue Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: fino a una creatura vivente/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

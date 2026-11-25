@@ -1,0 +1,54 @@
+{
+  "id": "frozenNote",
+  "name": "Nota Congelata",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING",
+    "SONIC"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 5,
+    "SKALD": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "Non indicato nella fonte; verificare manualmente.",
+  "target": "tutte le creature nell’area",
+  "area": "emanazione del raggio di 3 m centrata su di sé",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione (fino a 1 round/livello); vedi testo",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una nota prolungata immobilizza gli ascoltatori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Nota_Congelata",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Nota Congelata: https://golarion.altervista.org/wiki/Incantesimi/Nota_Congelata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte non indica il raggio di azione: verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: tutte le creature nell’area. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

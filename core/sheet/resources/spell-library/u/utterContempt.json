@@ -1,0 +1,50 @@
+{
+  "id": "utterContempt",
+  "name": "Disprezzo Totale",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 3,
+    "ARCANIST": 6,
+    "BARD": 4,
+    "WIZARD": 6,
+    "MESMERIST": 4,
+    "PSYCHIC": 5,
+    "SKALD": 4,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "sputo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Peggiora drasticamente l'atteggiamento del soggetto verso la creatura indicata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Disprezzo_Totale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Disprezzo Totale: https://golarion.altervista.org/wiki/Incantesimi/Disprezzo_Totale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

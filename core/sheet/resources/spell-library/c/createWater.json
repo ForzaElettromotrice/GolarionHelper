@@ -1,0 +1,45 @@
+{
+  "id": "createWater",
+  "name": "Creare Acqua",
+  "school": "CONJURATION",
+  "descriptors": [
+    "WATER"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ADEPT": 0,
+    "HUNTER": 0,
+    "CLERIC": 0,
+    "DRUID": 0,
+    "INQUISITOR": 0,
+    "OCCULTIST": 0,
+    "ORACLE": 0,
+    "PALADIN": 1,
+    "WARPRIEST": 0,
+    "SHAMAN": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "fino a 7,4 litri d'acqua/livello",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Produce acqua potabile in quantità proporzionale al livello dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Creare_Acqua",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Creare Acqua: https://golarion.altervista.org/wiki/Incantesimi/Creare_Acqua Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

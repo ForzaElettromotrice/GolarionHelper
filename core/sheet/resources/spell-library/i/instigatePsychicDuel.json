@@ -1,0 +1,46 @@
+{
+  "id": "instigatePsychicDuel",
+  "name": "Istigare Duello Parapsichico",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SPIRITUALIST": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Trascina due contendenti in uno scontro parapsichico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Istigare_Duello_Parapsichico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Istigare Duello Parapsichico: https://golarion.altervista.org/wiki/Incantesimi/Istigare_Duello_Parapsichico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

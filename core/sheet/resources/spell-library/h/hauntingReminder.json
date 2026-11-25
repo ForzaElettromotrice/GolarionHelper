@@ -1,0 +1,50 @@
+{
+  "id": "hauntingReminder",
+  "name": "Promemoria Tormentante",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING",
+    "FEAR"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "BARD": 2,
+    "SKALD": 2,
+    "INQUISITOR": 2,
+    "MESMERIST": 2,
+    "PSYCHIC": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/2 livelli)",
+  "target": "una creatura",
+  "durationType": "OTHER",
+  "durationDescription": "12 giorni + 2 ore/livello o quando attivsto, fino a 1 giorno/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Prolunga il timore di rappresaglie in una creatura che è stata intimidita. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Promemoria_Tormentante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Promemoria Tormentante: https://golarion.altervista.org/wiki/Incantesimi/Promemoria_Tormentante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

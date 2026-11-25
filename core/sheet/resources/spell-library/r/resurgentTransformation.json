@@ -1,0 +1,38 @@
+{
+  "id": "resurgentTransformation",
+  "name": "Trasformazione Curativa",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "ALCHEMIST": 5,
+    "INVESTIGATOR": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di ferro meteoritico del valore di 100 mo",
+  "materialComponentCostInGoldPieces": 100,
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "OTHER",
+  "durationDescription": "1 ora/livello o finché non viene attivato, poi 1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Attiva una trasformazione rinvigorente quando l'incantatore è vicino alla morte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trasformazione_Curativa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Trasformazione Curativa: https://golarion.altervista.org/wiki/Incantesimi/Trasformazione_Curativa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

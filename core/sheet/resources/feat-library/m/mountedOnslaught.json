@@ -1,0 +1,39 @@
+{
+  "id": "mountedOnslaught",
+  "name": "Assalto in Sella",
+  "description": "Permette di oltrepassare più creature durante un assalto in sella. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Assalto_in_Sella",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Combattere in Sella",
+      "feat": {
+        "id": "mountedCombat"
+      }
+    },
+    {
+      "description": "Travolgere",
+      "feat": {
+        "id": "trample"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Cavalcare 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Assalto in Sella: https://golarion.altervista.org/wiki/Talenti/Assalto_in_Sella. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Cavalcare 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

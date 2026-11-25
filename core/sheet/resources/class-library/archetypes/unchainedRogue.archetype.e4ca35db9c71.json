@@ -1,0 +1,83 @@
+{
+  "id": "unchainedRogue.archetype.e4ca35db9c71",
+  "classType": "unchainedRogue",
+  "name": "Ribelle",
+  "description": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Ribelle Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "unchainedRogue.feature.8f4dbb15b617",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedRogue.feature.05107c446e3f",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "unchainedRogue.feature.05107c446e3f",
+    "unchainedRogue.feature.8f4dbb15b617"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "unchainedRogue.archetype.e4ca35db9c71.instructions",
+      "name": "Ribelle",
+      "description": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Ribelle Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.e4ca35db9c71.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Ribelle Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.archetype.e4ca35db9c71.feature.1",
+      "name": "Lama della Spavalderia (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Ribelle",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.e4ca35db9c71.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ribelle — Lama della Spavalderia (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Ribelle Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.archetype.e4ca35db9c71.feature.2",
+      "name": "Sorriso del Ribelle (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Ribelle",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.e4ca35db9c71.feature.2.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ribelle — Sorriso del Ribelle (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Ribelle Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

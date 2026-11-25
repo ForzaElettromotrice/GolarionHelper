@@ -1,0 +1,46 @@
+{
+  "id": "scintillatingPattern",
+  "name": "Trama Scintillante",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PATTERN",
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WIZARD": 8,
+    "PSYCHIC": 8,
+    "SORCERER": 8
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "MADNESS": 8
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un prisma di cristallo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "luci colorate in una propagazione del raggio di 6 m",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione + 2 round",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Colori cangianti confondono, stordiscono o rendono incoscienti gli osservatori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trama_Scintillante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Trama Scintillante: https://golarion.altervista.org/wiki/Incantesimi/Trama_Scintillante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,59 @@
+{
+  "id": "tonguesCommunal",
+  "name": "Linguaggi Collettivo",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "ARCANIST": 4,
+    "BARD": 3,
+    "CLERIC": 5,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "WITCH": 4,
+    "INVESTIGATOR": 4,
+    "WIZARD": 4,
+    "MESMERIST": 3,
+    "ORACLE": 5,
+    "PSYCHIC": 4,
+    "WARPRIEST": 5,
+    "SKALD": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un modellino in argilla di uno ziggurat",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creature toccate",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Distribuisce la comprensione linguistica fra più destinatari. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Linguaggi_Collettivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Linguaggi Collettivo: https://golarion.altervista.org/wiki/Incantesimi/Linguaggi_Collettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: creature toccate. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

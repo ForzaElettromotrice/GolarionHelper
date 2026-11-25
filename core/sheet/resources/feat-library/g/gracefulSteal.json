@@ -1,0 +1,43 @@
+{
+  "id": "gracefulSteal",
+  "name": "Furto Aggraziato",
+  "description": "Estende la destrezza nel rubare a oggetti nascosti o riposti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Furto_Aggraziato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Rapidità di Mano 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Manovre Agili",
+      "feat": {
+        "id": "agileManeuvers"
+      }
+    },
+    {
+      "description": "Rubare Migliorato",
+      "feat": {
+        "id": "improvedSteal"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Furto Aggraziato: https://golarion.altervista.org/wiki/Talenti/Furto_Aggraziato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Rapidità di Mano 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

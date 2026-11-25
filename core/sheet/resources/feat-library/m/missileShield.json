@@ -1,0 +1,29 @@
+{
+  "id": "missileShield",
+  "name": "Scudo Contro Proiettili",
+  "description": "Permette di intercettare un proiettile con lo scudo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Scudo_Contro_Proiettili",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Scudo Focalizzato",
+      "feat": {
+        "id": "shieldFocus"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Scudo Contro Proiettili: https://golarion.altervista.org/wiki/Talenti/Scudo_Contro_Proiettili. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

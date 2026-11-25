@@ -1,0 +1,61 @@
+{
+  "id": "vocalAlteration",
+  "name": "Alterazione Vocale",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "BARD": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "MEDIUM": 1,
+    "MESMERIST": 1,
+    "OCCULTIST": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura umanoide",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Modifica voce o accento e concede +10 a Camuffare per ingannare chi ascolta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Alterazione_Vocale",
+  "effects": [
+    {
+      "id": "voice",
+      "type": "modifier",
+      "resource": "skill.disguise",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "10",
+      "condition": "Travestimento vocale per ingannare un ascoltatore"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Non modifica l'aspetto fisico; scegliere una voce e un accento compatibili con la descrizione. Gestire manualmente durata e risoluzione del lancio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

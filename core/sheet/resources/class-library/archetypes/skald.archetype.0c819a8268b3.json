@@ -1,0 +1,88 @@
+{
+  "id": "skald.archetype.0c819a8268b3",
+  "classType": "skald",
+  "name": "Istigatore",
+  "description": "Archetipo di Scaldo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Scaldo/Archetipi#Istigatore Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "skald.feature.8cc0b8ce2bc6",
+      "type": "replace"
+    },
+    {
+      "featureId": "skald.feature.e873c3c4c7a7",
+      "type": "replace"
+    },
+    {
+      "featureId": "skald.feature.1bae13f86297",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "skald.feature.1bae13f86297",
+    "skald.feature.8cc0b8ce2bc6",
+    "skald.feature.e873c3c4c7a7"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "skald.archetype.0c819a8268b3.instructions",
+      "name": "Istigatore",
+      "description": "Archetipo di Scaldo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Scaldo/Archetipi#Istigatore Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "skald.archetype.0c819a8268b3.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Scaldo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Scaldo/Archetipi#Istigatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "skald.archetype.0c819a8268b3.feature.1",
+      "name": "Canto Furioso (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Scaldo/Archetipi#Istigatore",
+      "progression": [
+        {
+          "id": "skald.archetype.0c819a8268b3.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Istigatore — Canto Furioso (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Scaldo/Archetipi#Istigatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "skald.archetype.0c819a8268b3.feature.2",
+      "name": "Cuore Rivoluzionario (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Scaldo/Archetipi#Istigatore",
+      "progression": [
+        {
+          "id": "skald.archetype.0c819a8268b3.feature.2.initial",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Istigatore — Cuore Rivoluzionario (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Scaldo/Archetipi#Istigatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

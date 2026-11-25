@@ -1,0 +1,29 @@
+{
+  "id": "blackPowderSpectacle",
+  "name": "Spettacolo di Polvere Nera",
+  "description": "Consuma munizioni per realizzare uno spettacolo esplosivo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Spettacolo_di_Polvere_Nera",
+  "types": [
+    "combat",
+    "performance",
+    "grit"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Pistolero Amatoriale o privilegio di Classe Grinta, BAB +4. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Spettacolo di Polvere Nera: https://golarion.altervista.org/wiki/Talenti/Spettacolo_di_Polvere_Nera. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Pistolero Amatoriale o privilegio di Classe Grinta, BAB +4. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

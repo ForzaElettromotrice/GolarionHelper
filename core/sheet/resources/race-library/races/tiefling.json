@@ -1,0 +1,837 @@
+{
+  "id": "tiefling",
+  "name": "Tiefling",
+  "qualities": [
+    {
+      "id": "tiefling.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Esterno nativo. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "tiefling.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "tiefling.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "tiefling.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "int",
+          "type": "modifier",
+          "resource": "int",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "tiefling.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "abyssal",
+            "draconic",
+            "elven",
+            "gnome",
+            "goblin",
+            "halfling",
+            "infernal",
+            "dwarven",
+            "orc"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "id": "fiendishLanguage",
+          "prompt": "Scegli la seconda lingua iniziale.",
+          "selectionCount": 1,
+          "options": [
+            {
+              "id": "abyssal",
+              "name": "Abissale",
+              "effects": [
+                {
+                  "id": "language",
+                  "type": "languageGrant",
+                  "languageId": "abyssal"
+                }
+              ]
+            },
+            {
+              "id": "infernal",
+              "name": "Infernale",
+              "effects": [
+                {
+                  "id": "language",
+                  "type": "languageGrant",
+                  "languageId": "infernal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tiefling.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "alchemistBombs",
+          "type": "favoredClassBonus",
+          "name": "Alchimista — +1 danno delle bombe",
+          "classes": [
+            "alchemist"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 danno delle bombe. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 danno delle bombe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "clericSpellResistance",
+          "type": "favoredClassBonus",
+          "name": "Chierico — +1 prove LI contro RI degli esterni",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 prove LI contro RI degli esterni. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 prove LI contro RI degli esterni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "summonerEidolon",
+          "type": "favoredClassBonus",
+          "name": "Convocatore — +1 PF oppure grado abilità all'eidolon, scelto per beneficio",
+          "classes": [
+            "summoner"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 PF oppure grado abilità all'eidolon, scelto per beneficio. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 PF oppure grado abilità all'eidolon, scelto per beneficio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "druidWildEmpathy",
+          "type": "favoredClassBonus",
+          "name": "Druido — +1 Empatia Selvatica per migliorare atteggiamento di un animale crudele",
+          "classes": [
+            "druid"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 Empatia Selvatica per migliorare atteggiamento di un animale crudele. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 Empatia Selvatica per migliorare atteggiamento di un animale crudele. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "witchFamiliarResistance",
+          "type": "favoredClassBonus",
+          "name": "Fattucchiere — +1 resistenza a elettricità/freddo/fuoco scelta per il famiglio; massimo5 per tipo, conservata dal sostituto",
+          "classes": [
+            "witch"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 resistenza a elettricità/freddo/fuoco scelta per il famiglio; massimo5 per tipo, conservata dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 resistenza a elettricità/freddo/fuoco scelta per il famiglio; massimo5 per tipo, conservata dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "wizardSchool",
+          "type": "favoredClassBonus",
+          "name": "Mago — +1 uso/giorno di potere di scuola del1° livello normalmente usabile3 + Intelligenza",
+          "classes": [
+            "wizard"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 uso/giorno di potere di scuola del1° livello normalmente usabile3 + Intelligenza. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 uso/giorno di potere di scuola del1° livello normalmente usabile3 + Intelligenza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "magusArcanePool",
+          "type": "favoredClassBonus",
+          "name": "Magus — +1 punto della Riserva Arcana",
+          "classes": [
+            "magus"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 punto della Riserva Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 punto della Riserva Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "paladinLayOnHands",
+          "type": "favoredClassBonus",
+          "name": "Paladino — +1 PF curato da Imposizione delle Mani solo su se stesso",
+          "classes": [
+            "paladin"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 PF curato da Imposizione delle Mani solo su se stesso. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 PF curato da Imposizione delle Mani solo su se stesso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererCorruptingTouch",
+          "type": "favoredClassBonus",
+          "name": "Stregone — +1 uso/giorno di Tocco di Corruzione della stirpe infernale; richiede il potere",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 uso/giorno di Tocco di Corruzione della stirpe infernale; richiede il potere. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 uso/giorno di Tocco di Corruzione della stirpe infernale; richiede il potere. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererClaws",
+          "type": "favoredClassBonus",
+          "name": "Stregone — +1 round/giorno degli Artigli della stirpe abissale; richiede il potere",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 round/giorno degli Artigli della stirpe abissale; richiede il potere. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 round/giorno degli Artigli della stirpe abissale; richiede il potere. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "inquisitorSkills",
+          "type": "favoredClassBonus",
+          "name": "Inquisitore — Intimidire e identificare",
+          "classes": [
+            "inquisitor"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 Intimidire e Conoscenze per identificare creature.",
+          "effects": [
+            {
+              "id": "intimidate",
+              "type": "modifier",
+              "resource": "skill.intimidate",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "knowledge",
+              "type": "modifier",
+              "resource": "skill.knowledge",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Identificare creature"
+            }
+          ]
+        },
+        {
+          "id": "rogueOutsiderDamage",
+          "type": "favoredClassBonus",
+          "name": "Ladro — Furtivo contro esterni",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 danno furtivo contro esterni.",
+          "effects": [
+            {
+              "id": "damage",
+              "type": "modifier",
+              "resource": "damage.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Danni da Attacco Furtivo contro esterni"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "tiefling.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "tiefling.fiendishResistance",
+      "name": "Resistenze Immonde",
+      "description": "Resistenze Immonde",
+      "effects": [
+        {
+          "id": "electricity",
+          "type": "energyResistance",
+          "energy": "electricity",
+          "expression": "5"
+        },
+        {
+          "id": "cold",
+          "type": "energyResistance",
+          "energy": "cold",
+          "expression": "5"
+        },
+        {
+          "id": "fire",
+          "type": "energyResistance",
+          "energy": "fire",
+          "expression": "5"
+        }
+      ]
+    },
+    {
+      "id": "tiefling.spellLikeAbility",
+      "name": "Capacità Magiche",
+      "description": "Capacità Magiche",
+      "effects": [
+        {
+          "id": "spell",
+          "type": "reminder",
+          "message": "Oscurità1/giorno, LI pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "tiefling.fiendishSorcery",
+      "name": "Stregoneria Immonda",
+      "description": "Stregoneria Immonda",
+      "effects": [
+        {
+          "id": "sorcery",
+          "type": "reminder",
+          "message": "Stregoni di stirpe abissale/infernale: Carisma effettivo+2 per le capacità di classe, senza aumentare il punteggio generale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "tiefling.skilled",
+      "name": "Abile",
+      "description": "Abile",
+      "effects": [
+        {
+          "id": "stealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "bluff",
+          "type": "modifier",
+          "resource": "skill.bluff",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "tiefling.vestigialWings",
+      "name": "Ali Vestigiali",
+      "description": "Volare+4; non concede una velocità di volo.",
+      "effects": [
+        {
+          "id": "fly",
+          "type": "modifier",
+          "resource": "skill.fly",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        }
+      ],
+      "replaces": [
+        "tiefling.skilled"
+      ]
+    },
+    {
+      "id": "tiefling.beguilingLiar",
+      "name": "Bugiardo Accattivante",
+      "description": "Bugiardo Accattivante",
+      "effects": [
+        {
+          "id": "bluff",
+          "type": "modifier",
+          "resource": "skill.bluff",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Convincere della verità di una menzogna"
+        }
+      ],
+      "replaces": [
+        "tiefling.skilled"
+      ]
+    },
+    {
+      "id": "tiefling.prehensileTail",
+      "name": "Coda Prensile",
+      "description": "Coda per tenere oggetti e recuperare piccoli oggetti addosso come azione veloce; non può impugnare armi. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Coda per tenere oggetti e recuperare piccoli oggetti addosso come azione veloce; non può impugnare armi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "tiefling.fiendishSorcery"
+      ]
+    },
+    {
+      "id": "tiefling.mawOrClaw",
+      "name": "Fauci o Artigli",
+      "description": "Fauci o Artigli",
+      "effects": [],
+      "replaces": [
+        "tiefling.spellLikeAbility"
+      ],
+      "choices": [
+        {
+          "id": "naturalWeapons",
+          "prompt": "Scegli gli attacchi naturali.",
+          "selectionCount": 1,
+          "options": [
+            {
+              "id": "bite",
+              "name": "Morso",
+              "effects": [
+                {
+                  "id": "bite",
+                  "type": "strikeGrant",
+                  "name": "Morso",
+                  "mode": "melee",
+                  "tags": [
+                    "natural"
+                  ],
+                  "naturalAttackClassification": "primary",
+                  "usageChannels": [
+                    "mouth"
+                  ],
+                  "ability": "str",
+                  "damageAbilityRule": "full",
+                  "reach": {
+                    "maximumUnits": 1
+                  },
+                  "damageComponents": [
+                    {
+                      "id": "base",
+                      "role": "base",
+                      "dice": {
+                        "diceCount": 1,
+                        "dieSize": 6
+                      },
+                      "types": [
+                        "bludgeoning",
+                        "piercing",
+                        "slashing"
+                      ],
+                      "typeMode": "all",
+                      "criticalRule": "multiplied"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "claws",
+              "name": "Due artigli",
+              "effects": [
+                {
+                  "id": "leftClaw",
+                  "type": "strikeGrant",
+                  "name": "Artiglio sinistro",
+                  "mode": "melee",
+                  "tags": [
+                    "natural"
+                  ],
+                  "naturalAttackClassification": "primary",
+                  "usageChannels": [
+                    "hand"
+                  ],
+                  "ability": "str",
+                  "damageAbilityRule": "full",
+                  "reach": {
+                    "maximumUnits": 1
+                  },
+                  "damageComponents": [
+                    {
+                      "id": "base",
+                      "role": "base",
+                      "dice": {
+                        "diceCount": 1,
+                        "dieSize": 4
+                      },
+                      "types": [
+                        "slashing"
+                      ],
+                      "typeMode": "all",
+                      "criticalRule": "multiplied"
+                    }
+                  ]
+                },
+                {
+                  "id": "rightClaw",
+                  "type": "strikeGrant",
+                  "name": "Artiglio destro",
+                  "mode": "melee",
+                  "tags": [
+                    "natural"
+                  ],
+                  "naturalAttackClassification": "primary",
+                  "usageChannels": [
+                    "hand"
+                  ],
+                  "ability": "str",
+                  "damageAbilityRule": "full",
+                  "reach": {
+                    "maximumUnits": 1
+                  },
+                  "damageComponents": [
+                    {
+                      "id": "base",
+                      "role": "base",
+                      "dice": {
+                        "diceCount": 1,
+                        "dieSize": 4
+                      },
+                      "types": [
+                        "slashing"
+                      ],
+                      "typeMode": "all",
+                      "criticalRule": "multiplied"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tiefling.fiendishSprinter",
+      "name": "Immondo Scattante",
+      "description": "Immondo Scattante",
+      "effects": [
+        {
+          "id": "speed",
+          "type": "modifier",
+          "resource": "speed.land",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Carica o Ritirata"
+        }
+      ],
+      "replaces": [
+        "tiefling.skilled"
+      ]
+    },
+    {
+      "id": "tiefling.scaledSkin",
+      "name": "Pelle Squamosa",
+      "description": "Pelle Squamosa",
+      "effects": [
+        {
+          "id": "armor",
+          "type": "modifier",
+          "resource": "armorClass.solid",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "naturalArmor",
+          "expression": "1"
+        }
+      ],
+      "replaces": [
+        "tiefling.fiendishResistance"
+      ],
+      "choices": [
+        {
+          "id": "energy",
+          "prompt": "Scegli la resistenza.",
+          "selectionCount": 1,
+          "options": [
+            {
+              "id": "electricity",
+              "name": "Elettricità",
+              "effects": [
+                {
+                  "id": "electricity",
+                  "type": "energyResistance",
+                  "energy": "electricity",
+                  "expression": "5"
+                }
+              ]
+            },
+            {
+              "id": "cold",
+              "name": "Freddo",
+              "effects": [
+                {
+                  "id": "cold",
+                  "type": "energyResistance",
+                  "energy": "cold",
+                  "expression": "5"
+                }
+              ]
+            },
+            {
+              "id": "fire",
+              "name": "Fuoco",
+              "effects": [
+                {
+                  "id": "fire",
+                  "type": "energyResistance",
+                  "energy": "fire",
+                  "expression": "5"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tiefling.soulSeer",
+      "name": "Veggente dell'Anima",
+      "description": "Visione della Morte come capacità magica. La pagina italiana non specifica gli utilizzi: concordarli con il GM, senza importarli dal riferimento inglese. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Visione della Morte come capacità magica. La pagina italiana non specifica gli utilizzi: concordarli con il GM, senza importarli dal riferimento inglese. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "tiefling.spellLikeAbility",
+        "tiefling.fiendishSorcery"
+      ]
+    }
+  ]
+}

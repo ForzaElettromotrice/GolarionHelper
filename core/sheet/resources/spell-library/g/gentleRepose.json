@@ -1,0 +1,56 @@
+{
+  "id": "gentleRepose",
+  "name": "Riposo Inviolato",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "CLERIC": 2,
+    "WITCH": 2,
+    "WIZARD": 3,
+    "MEDIUM": 2,
+    "OCCULTIST": 3,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "SHAMAN": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 3
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "REPOSE": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un pizzico di sale e una moneta di rame per ogni occhio di cui il cadavere è dotato",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 cadavere toccato",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Conserva i resti di una creatura impedendone il normale deterioramento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Riposo_Inviolato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Riposo Inviolato: https://golarion.altervista.org/wiki/Incantesimi/Riposo_Inviolato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

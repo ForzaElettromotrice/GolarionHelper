@@ -1,0 +1,108 @@
+{
+  "id": "druid.archetype.6db2b7b28940",
+  "classType": "druid",
+  "name": "Involuzionista",
+  "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Involuzionista Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Legame con la Natura. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "druid.feature.5cb4f58f9490",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.eb66996dc90e",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.40f9a719229c",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "druid.feature.5cb4f58f9490",
+    "druid.feature.eb66996dc90e",
+    "druid.feature.40f9a719229c"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "druid.archetype.6db2b7b28940.instructions",
+      "name": "Involuzionista",
+      "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Involuzionista Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "druid.archetype.6db2b7b28940.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Involuzionista Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Legame con la Natura. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.6db2b7b28940.feature.1",
+      "name": "Compagno Involuto (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Involuzionista",
+      "progression": [
+        {
+          "id": "druid.archetype.6db2b7b28940.feature.1.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Involuzionista — Compagno Involuto (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Involuzionista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.6db2b7b28940.feature.2",
+      "name": "Inselvatichire (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Involuzionista",
+      "progression": [
+        {
+          "id": "druid.archetype.6db2b7b28940.feature.2.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Involuzionista — Inselvatichire (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Involuzionista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.6db2b7b28940.feature.3",
+      "name": "Involuzione (Mag)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Involuzionista",
+      "progression": [
+        {
+          "id": "druid.archetype.6db2b7b28940.feature.3.initial",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Involuzionista — Involuzione (Mag): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Involuzionista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

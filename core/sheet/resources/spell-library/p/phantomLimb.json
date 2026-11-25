@@ -1,0 +1,34 @@
+{
+  "id": "phantomLimb",
+  "name": "Arto Fantomatico",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "PSYCHIC": 6,
+    "SPIRITUALIST": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore, vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Sostituisce una parte del corpo mancante con un arto psichico temporaneo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Arto_Fantomatico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Arto Fantomatico: https://golarion.altervista.org/wiki/Incantesimi/Arto_Fantomatico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

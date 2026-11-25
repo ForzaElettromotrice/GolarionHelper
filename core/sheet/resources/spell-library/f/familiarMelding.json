@@ -1,0 +1,48 @@
+{
+  "id": "familiarMelding",
+  "name": "Fondersi con il Famiglio",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "WITCH": 4,
+    "SHAMAN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "il famiglio",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello o finché non si torna nel proprio corpo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Trasferisce la coscienza dell'incantatore nel suo famiglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fondersi_con_il_Famiglio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fondersi con il Famiglio: https://golarion.altervista.org/wiki/Incantesimi/Fondersi_con_il_Famiglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: il famiglio. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

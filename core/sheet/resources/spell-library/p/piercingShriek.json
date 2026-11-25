@@ -1,0 +1,43 @@
+{
+  "id": "piercingShriek",
+  "name": "Grido Penetrante",
+  "school": "EVOCATION",
+  "descriptors": [
+    "PAIN",
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "BARD": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un grido doloroso rende instabile il bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Grido_Penetrante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Grido Penetrante: https://golarion.altervista.org/wiki/Incantesimi/Grido_Penetrante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

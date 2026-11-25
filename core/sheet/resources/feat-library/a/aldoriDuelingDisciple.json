@@ -1,0 +1,36 @@
+{
+  "id": "aldoriDuelingDisciple",
+  "name": "Discepolo del Duello Aldori",
+  "description": "Rafforza la fermezza e la capacità intimidatoria, soprattutto nei duelli. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Discepolo_del_Duello_Aldori",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Arma Accurata",
+      "feat": {
+        "id": "weaponFinesse"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Discepolo del Duello Aldori: https://golarion.altervista.org/wiki/Talenti/Discepolo_del_Duello_Aldori. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Spada da Duello Aldori); Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

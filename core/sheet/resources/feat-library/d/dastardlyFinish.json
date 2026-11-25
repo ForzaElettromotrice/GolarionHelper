@@ -1,0 +1,27 @@
+{
+  "id": "dastardlyFinish",
+  "name": "Vile Uccisione",
+  "description": "Permette un colpo di grazia contro alcune vittime già debilitate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Vile_Uccisione",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Furtivo +5d6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Vile Uccisione: https://golarion.altervista.org/wiki/Talenti/Vile_Uccisione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Furtivo +5d6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

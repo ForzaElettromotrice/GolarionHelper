@@ -1,0 +1,34 @@
+{
+  "id": "mobility",
+  "name": "Mobilità",
+  "description": "Protegge dagli attacchi di opportunità provocati dal movimento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mobilit%C3%A0",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Schivare",
+      "feat": {
+        "id": "dodge"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "armorClass",
+      "type": "modifier",
+      "resource": "armorClass.reflexive",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "dodge",
+      "expression": "4",
+      "condition": "Contro attacchi di opportunità provocati dal movimento, finché mantiene il bonus di Destrezza alla CA"
+    }
+  ],
+  "choices": []
+}

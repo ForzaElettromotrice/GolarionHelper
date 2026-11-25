@@ -1,0 +1,42 @@
+{
+  "id": "ageResistanceLesser",
+  "name": "Resistenza all'Invecchiamento Inferiore",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 4,
+    "HUNTER": 4,
+    "DRUID": 4,
+    "WITCH": 4,
+    "INVESTIGATOR": 3,
+    "WIZARD": 4,
+    "OCCULTIST": 3,
+    "PSYCHIC": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Sopprime le penalità fisiche associate alla mezza età. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Resistenza_all%27Invecchiamento_Inferiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Resistenza all'Invecchiamento Inferiore: https://golarion.altervista.org/wiki/Incantesimi/Resistenza_all%27Invecchiamento_Inferiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

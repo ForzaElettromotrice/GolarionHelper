@@ -1,0 +1,42 @@
+{
+  "id": "rangedDisable",
+  "name": "Disattivare a Distanza",
+  "description": "Permette di tentare la disattivazione di meccanismi attraverso un attacco a distanza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Disattivare_a_Distanza",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Tiro Lontano",
+      "feat": {
+        "id": "farShot"
+      }
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Disattivare Congegni 9 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Disattivare a Distanza: https://golarion.altervista.org/wiki/Talenti/Disattivare_a_Distanza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata; Prerequisito da verificare manualmente: Disattivare Congegni 9 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,45 @@
+{
+  "id": "songOfDiscord",
+  "name": "Canto di Discordia",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING",
+    "SONIC"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 5,
+    "PSYCHIC": 5,
+    "SKALD": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "creature in una propagazione del raggio di 6 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una melodia induce le creature colpite a rivolgere gli attacchi le une contro le altre. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Canto_di_Discordia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Canto di Discordia: https://golarion.altervista.org/wiki/Incantesimi/Canto_di_Discordia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

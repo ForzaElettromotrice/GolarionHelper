@@ -1,0 +1,44 @@
+{
+  "id": "magicFangGreater",
+  "name": "Zanna Magica Superiore",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "DRUID": 3,
+    "RANGER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura vivente",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Potenzia uno o più attacchi naturali secondo la modalità scelta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Zanna_Magica_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Zanna Magica Superiore: https://golarion.altervista.org/wiki/Incantesimi/Zanna_Magica_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

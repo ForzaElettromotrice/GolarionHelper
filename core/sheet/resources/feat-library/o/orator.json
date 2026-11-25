@@ -1,0 +1,27 @@
+{
+  "id": "orator",
+  "name": "Oratore",
+  "description": "Sostituisce alcune prove sociali con Linguistica nelle situazioni in cui conta la padronanza del discorso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Oratore",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Abilità Focalizzata (Linguistica) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Oratore: https://golarion.altervista.org/wiki/Talenti/Oratore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Abilità Focalizzata (Linguistica) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

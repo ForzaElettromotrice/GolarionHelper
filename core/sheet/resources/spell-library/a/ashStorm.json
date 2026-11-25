@@ -1,0 +1,43 @@
+{
+  "id": "ashStorm",
+  "name": "Tempesta di Cenere",
+  "school": "CONJURATION",
+  "descriptors": [
+    "FIRE"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "HUNTER": 3,
+    "DRUID": 3,
+    "WITCH": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un pizzico di cenere",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "area": "cilindro (raggio di 12 m, altezza 6 m)",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una nube di cenere rende difficile vedere e muoversi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Tempesta_di_Cenere",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Tempesta di Cenere: https://golarion.altervista.org/wiki/Incantesimi/Tempesta_di_Cenere Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

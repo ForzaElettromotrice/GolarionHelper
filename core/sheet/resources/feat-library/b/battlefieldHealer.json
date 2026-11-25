@@ -1,0 +1,27 @@
+{
+  "id": "battlefieldHealer",
+  "name": "Guaritore da Campo",
+  "description": "Facilita le cure sotto attacco e premia l'esperienza sul campo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Guaritore_da_Campo",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Bisogna essere riusciti a lanciare un incantesimo di Evocazione (Guarigione) su un alleato dopo esser stati colpiti da un Attacco di Opportunità o possedere il background Battaglia, Cappellano o Sanato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Guaritore da Campo: https://golarion.altervista.org/wiki/Talenti/Guaritore_da_Campo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Bisogna essere riusciti a lanciare un incantesimo di Evocazione (Guarigione) su un alleato dopo esser stati colpiti da un Attacco di Opportunità o possedere il background Battaglia, Cappellano o Sanato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

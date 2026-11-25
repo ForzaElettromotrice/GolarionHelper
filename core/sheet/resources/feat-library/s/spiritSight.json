@@ -1,0 +1,37 @@
+{
+  "id": "spiritSight",
+  "name": "Vista Spirituale",
+  "description": "Favorisce l'individuazione visiva di presenze spirituali invisibili. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Vista_Spirituale",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Saggezza 15",
+      "expression": "@wis >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Faro Spirituale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Volontà di Ferro",
+      "feat": {
+        "id": "ironWill"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Vista Spirituale: https://golarion.altervista.org/wiki/Talenti/Vista_Spirituale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Faro Spirituale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

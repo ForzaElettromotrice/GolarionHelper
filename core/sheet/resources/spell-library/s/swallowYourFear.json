@@ -1,0 +1,53 @@
+{
+  "id": "swallowYourFear",
+  "name": "Ingoia la tua Paura",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 1,
+    "SKALD": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura più una creatura addizionale ogni 4 livelli, che non devono essere lontani più di 9 m l'uno dall'altra",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti, vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Trasforma parte della paura in vigore combattivo, con benefici fisici e una penalità difensiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ingoia_la_tua_Paura",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ingoia la tua Paura: https://golarion.altervista.org/wiki/Incantesimi/Ingoia_la_tua_Paura Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Bardo/Scaldo 1, Chierico/Oracolo/Sacerdote Guerriero 1 (Gorum) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura più una creatura addizionale ogni 4 livelli, che non devono essere lontani più di 9 m l'uno dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

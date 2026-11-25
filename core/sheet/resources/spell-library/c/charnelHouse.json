@@ -1,0 +1,54 @@
+{
+  "id": "charnelHouse",
+  "name": "Carnaio",
+  "school": "ILLUSION",
+  "descriptors": [
+    "EVIL",
+    "SHADOW"
+  ],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "ANTIPALADIN": 3,
+    "CLERIC": 5,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "MESMERIST": 5,
+    "ORACLE": 5,
+    "PSYCHIC": 5,
+    "WARPRIEST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una creatura vivente Minuscola o più grande",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/2 livelli)",
+  "area": "cubo con spigolo di 6 m (F)",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Ricopre l'area con resti semireali che producono le conseguenze terrificanti indicate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Carnaio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Carnaio: https://golarion.altervista.org/wiki/Carnaio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "extremeFlexibility",
+  "name": "Flessibilità Estrema",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ARCANIST": 2,
+    "WITCH": 2,
+    "INVESTIGATOR": 2,
+    "BLOODRAGER": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "PSYCHIC": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Rende il corpo più elastico per difendersi e sfuggire alle prese. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Flessibilit%C3%A0_Estrema",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Flessibilità Estrema: https://golarion.altervista.org/wiki/Incantesimi/Flessibilit%C3%A0_Estrema Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

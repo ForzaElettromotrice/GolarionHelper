@@ -1,0 +1,45 @@
+{
+  "id": "crimeOfOpportunity",
+  "name": "Crimine di Opportunità",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "MESMERIST": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una borsetta",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/ ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Induce una creatura a cogliere un'occasione per commettere un crimine. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Crimine_di_Opportunit%C3%A0",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Crimine di Opportunità: https://golarion.altervista.org/wiki/Incantesimi/Crimine_di_Opportunit%C3%A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

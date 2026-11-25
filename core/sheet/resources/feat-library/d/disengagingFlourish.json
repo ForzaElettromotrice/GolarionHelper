@@ -1,0 +1,43 @@
+{
+  "id": "disengagingFlourish",
+  "name": "Mulinello Disimpegnante",
+  "description": "Rende più sicuro il punto di partenza di un disimpegno basato sulla finta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mulinello_Disimpegnante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Fintare Disimpegnante",
+      "feat": {
+        "id": "disengagingFeint"
+      }
+    },
+    {
+      "description": "Fintare Migliorato",
+      "feat": {
+        "id": "improvedFeint"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mulinello Disimpegnante: https://golarion.altervista.org/wiki/Talenti/Mulinello_Disimpegnante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

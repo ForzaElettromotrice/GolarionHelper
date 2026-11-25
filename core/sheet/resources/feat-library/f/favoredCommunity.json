@@ -1,0 +1,30 @@
+{
+  "id": "favoredCommunity",
+  "name": "Comunità Prescelta",
+  "description": "Conferisce benefici alle attività appropriate all'interno della comunità scelta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Comunit%C3%A0_Prescelta",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (locali) 2 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: devi aver vissuto nell'insediamento per almeno 1 anno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Comunità Prescelta: https://golarion.altervista.org/wiki/Talenti/Comunit%C3%A0_Prescelta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (locali) 2 gradi; Prerequisito da verificare manualmente: devi aver vissuto nell'insediamento per almeno 1 anno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

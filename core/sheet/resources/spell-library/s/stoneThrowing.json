@@ -1,0 +1,51 @@
+{
+  "id": "stoneThrowing",
+  "name": "Scagliare Pietre",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "HUNTER": 1,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "DRUID": 2,
+    "BLOODRAGER": 1,
+    "MAGUS": 2,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "pietra in polvere",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Concede capacità per afferrare e scagliare rocce o altri oggetti abbastanza duri. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scagliare_Pietre",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Scagliare Pietre: https://golarion.altervista.org/wiki/Incantesimi/Scagliare_Pietre Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

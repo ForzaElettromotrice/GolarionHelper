@@ -1,0 +1,49 @@
+{
+  "id": "pugwampiSGrace",
+  "name": "Grazia del Pugwampi",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "BARD": 2,
+    "SKALD": 2,
+    "WITCH": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pelo di Pugwampi",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura (vedi sotto)",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Impone sfortuna facendo prevalere il peggiore di due risultati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Grazia_del_Pugwampi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Grazia del Pugwampi: https://golarion.altervista.org/wiki/Incantesimi/Grazia_del_Pugwampi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

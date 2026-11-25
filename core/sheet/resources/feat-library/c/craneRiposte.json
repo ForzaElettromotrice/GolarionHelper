@@ -1,0 +1,27 @@
+{
+  "id": "craneRiposte",
+  "name": "Risposta della Gru",
+  "description": "Una deviazione riuscita permette un contrattacco. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Risposta_della_Gru",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Ala della Gru, Colpo Senz'Armi Migliorato, Schivare, Stile della Gru, Bonus di Attacco Base +8 o Monaco di 7° livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Risposta della Gru: https://golarion.altervista.org/wiki/Talenti/Risposta_della_Gru. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Ala della Gru, Colpo Senz'Armi Migliorato, Schivare, Stile della Gru, Bonus di Attacco Base +8 o Monaco di 7° livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

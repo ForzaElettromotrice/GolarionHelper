@@ -1,0 +1,47 @@
+{
+  "id": "preserveGrace",
+  "name": "Preservare Grazia",
+  "school": "DIVINATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "INQUISITOR": 1,
+    "PALADIN": 1
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "uno specchio portatile d'argento dal valore di 50 mo",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura di Allineamento buono",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Offre al soggetto avvertimenti morali analoghi a quelli di un filatterio della fedeltà. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Preservare_Grazia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Preservare Grazia: https://golarion.altervista.org/wiki/Incantesimi/Preservare_Grazia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

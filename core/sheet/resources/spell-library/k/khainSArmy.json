@@ -1,0 +1,49 @@
+{
+  "id": "khainSArmy",
+  "name": "Esercito di Khain",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "SORCERER": 5,
+    "CLERIC": 5,
+    "ORACLE": 5,
+    "WARPRIEST": 5,
+    "WITCH": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una manciata di denti di Ghoul",
+  "rangeType": "OTHER",
+  "rangeDescription": "1,5 metri",
+  "effect": "1d4+1 Ghoul e 1 Ghast",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "HALF",
+      "description": "Tempra dimezza (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama servitori ghoul e ghast che esplodono quando distrutti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Esercito_di_Khain",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Esercito di Khain: https://golarion.altervista.org/wiki/Incantesimi/Esercito_di_Khain Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "mindscapeDoor",
+  "name": "Porta del Paesaggio Mentale",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "MEDIUM": 3,
+    "MESMERIST": 3,
+    "PSYCHIC": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "1 portale illusorio",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Apre un varco utilizzabile per entrare in un paesaggio mentale o uscirne. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Porta_del_Paesaggio_Mentale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Porta del Paesaggio Mentale: https://golarion.altervista.org/wiki/Incantesimi/Porta_del_Paesaggio_Mentale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

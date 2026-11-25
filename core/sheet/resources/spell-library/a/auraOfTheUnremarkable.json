@@ -1,0 +1,56 @@
+{
+  "id": "auraOfTheUnremarkable",
+  "name": "Aura di Scarsa Importanza",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 3,
+    "WIZARD": 4,
+    "MEDIUM": 2,
+    "MESMERIST": 3,
+    "PSYCHIC": 3,
+    "SKALD": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una piuma bianca",
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "target": "creature non alleate entro un'emanazione di 9 m",
+  "durationType": "OTHER",
+  "durationDescription": "1 minuto/livello (I) e istantaneo",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Induce gli osservatori a considerare ordinarie e innocue anche azioni insolite compiute nell'area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aura_di_Scarsa_Importanza",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Aura di Scarsa Importanza: https://golarion.altervista.org/wiki/Incantesimi/Aura_di_Scarsa_Importanza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: creature non alleate entro un'emanazione di 9 m. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

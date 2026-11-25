@@ -1,0 +1,37 @@
+{
+  "id": "deceptiveExchange",
+  "name": "Scambio Ingannevole",
+  "description": "Una finta riuscita permette di passare un oggetto all'avversario. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Scambio_Ingannevole",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Fintare Migliorato",
+      "feat": {
+        "id": "improvedFeint"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Scambio Ingannevole: https://golarion.altervista.org/wiki/Talenti/Scambio_Ingannevole. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,69 @@
+{
+  "id": "shatter",
+  "name": "Frantumare",
+  "school": "EVOCATION",
+  "descriptors": [
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "CLERIC": 2,
+    "BLOODRAGER": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DESTRUCTION": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un frammento di mica",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "area": "o Bersaglio: propagazione del raggio di 1,5 m; oppure 1 oggetto solido o 1 creatura cristallina",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto), oppure Tempra dimezza; vedi testo"
+    },
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "HALF",
+      "description": "Volontà nega (oggetto), oppure Tempra dimezza; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Vibrazioni intense infrangono oggetti e danneggiano esseri cristallini. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Frantumare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Frantumare: https://golarion.altervista.org/wiki/Incantesimi/Frantumare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Terra 2, Metallo 2 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

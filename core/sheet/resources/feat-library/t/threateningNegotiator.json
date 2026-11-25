@@ -1,0 +1,39 @@
+{
+  "id": "threateningNegotiator",
+  "name": "Negoziatore Minaccioso",
+  "description": "Prolunga la collaborazione ottenuta tramite Intimidire. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Negoziatore_Minaccioso",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Abilità Focalizzata (Intimidire) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Negoziatore Snervante",
+      "feat": {
+        "id": "nerveRackingNegotiator"
+      }
+    },
+    {
+      "description": "Persuasivo",
+      "feat": {
+        "id": "persuasive"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Negoziatore Minaccioso: https://golarion.altervista.org/wiki/Talenti/Negoziatore_Minaccioso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Abilità Focalizzata (Intimidire) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

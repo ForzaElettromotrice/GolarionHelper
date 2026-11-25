@@ -1,0 +1,33 @@
+{
+  "id": "windStance",
+  "name": "Posizione Velata",
+  "description": "Il movimento conferisce una protezione parziale dagli attacchi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Posizione_Velata",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Schivare",
+      "feat": {
+        "id": "dodge"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Posizione Velata: https://golarion.altervista.org/wiki/Talenti/Posizione_Velata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

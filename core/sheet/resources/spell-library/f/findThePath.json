@@ -1,0 +1,63 @@
+{
+  "id": "findThePath",
+  "name": "Scopri il Percorso",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 6,
+    "HUNTER": 6,
+    "CLERIC": 6,
+    "DRUID": 6,
+    "WITCH": 6,
+    "OCCULTIST": 6,
+    "ORACLE": 6,
+    "PSYCHIC": 6,
+    "WARPRIEST": 6,
+    "SKALD": 6,
+    "SHAMAN": 6,
+    "SPIRITUALIST": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "KNOWLEDGE": 6,
+      "TRAVEL": 6
+    }
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "3 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una serie di oggetti di divinazione",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale o contatto",
+  "target": "se stessi o 1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "nessuno o Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "no o sì (innocuo)",
+  "description": "Indica il percorso per raggiungere il luogo cercato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scopri_il_Percorso",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Scopri il Percorso: https://golarion.altervista.org/wiki/Incantesimi/Scopri_il_Percorso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi o 1 creatura toccata. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

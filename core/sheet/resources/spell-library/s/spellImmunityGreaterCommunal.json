@@ -1,0 +1,47 @@
+{
+  "id": "spellImmunityGreaterCommunal",
+  "name": "Immunità agli Incantesimi Superiore Collettivo",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 9,
+    "ORACLE": 9,
+    "PSYCHIC": 9
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creature toccate",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Distribuisce fra più soggetti la protezione superiore dagli incantesimi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Immunit%C3%A0_agli_Incantesimi_Superiore_Collettivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Immunità agli Incantesimi Superiore Collettivo: https://golarion.altervista.org/wiki/Incantesimi/Immunit%C3%A0_agli_Incantesimi_Superiore_Collettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: creature toccate. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

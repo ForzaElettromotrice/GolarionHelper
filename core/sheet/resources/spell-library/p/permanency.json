@@ -1,0 +1,43 @@
+{
+  "id": "permanency",
+  "name": "Permanenza",
+  "school": "UNIVERSAL",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "PSYCHIC": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "2 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "vedi tabelle di seguito",
+  "rangeType": "OTHER",
+  "rangeDescription": "vedi testo",
+  "target": "vedi testo",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente; vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Rende permanenti determinati effetti magici, alle condizioni previste. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Permanenza",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Permanenza: https://golarion.altervista.org/wiki/Incantesimi/Permanenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: vedi testo. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

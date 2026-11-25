@@ -1,0 +1,44 @@
+{
+  "id": "recoilFire",
+  "name": "Colpo di Rinculo",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "WITCH": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "schegge di zoccolo di mulo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 Arma da Fuoco",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Provoca nel colpo di un'arma da fuoco un rinculo anomalo che ne ostacola l'utilizzatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Colpo_di_Rinculo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Colpo di Rinculo: https://golarion.altervista.org/wiki/Incantesimi/Colpo_di_Rinculo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

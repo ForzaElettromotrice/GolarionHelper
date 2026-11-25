@@ -1,0 +1,53 @@
+{
+  "id": "wallOfBlindnessDeafness",
+  "name": "Muro di Cecità/Sordità",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 4,
+    "CLERIC": 5,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "ORACLE": 5,
+    "PSYCHIC": 4,
+    "WARPRIEST": 5,
+    "SKALD": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "muro traslucido lungo 6 m/livello o anello traslucido con un raggio fino a 1,5 m ogni 2 livelli; entrambe le forme dell'altezza di 6 m",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione + 1 round/livello",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Chi attraversa la barriera rischia di perdere vista o udito. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Cecit%C3%A0/Sordit%C3%A0",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Muro di Cecità/Sordità: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Cecit%C3%A0/Sordit%C3%A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: muro traslucido lungo 6 m/livello o anello traslucido con un raggio fino a 1,5 m ogni 2 livelli; entrambe le forme dell'altezza di 6 m. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,64 @@
+{
+  "id": "coneOfCold",
+  "name": "Cono di Freddo",
+  "school": "EVOCATION",
+  "descriptors": [
+    "COLD"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WITCH": 6,
+    "WIZARD": 5,
+    "MAGUS": 5,
+    "OCCULTIST": 5,
+    "SHAMAN": 6,
+    "SORCERER": 5
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "WATER": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un piccolo cono di cristallo o di vetro",
+  "rangeType": "OTHER",
+  "rangeDescription": "18 m",
+  "area": "esplosione a forma di cono",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un cono di gelo infligge danni da freddo proporzionati al livello dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cono_di_Freddo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cono di Freddo: https://golarion.altervista.org/wiki/Incantesimi/Cono_di_Freddo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 5 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Stirpe non presente nel vocabolario del modello: Boreale 5. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "stepUpAndStrike",
+  "name": "Inseguire e Colpire",
+  "description": "Permette di inseguire brevemente e colpire chi tenta di allontanarsi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Inseguire_e_Colpire",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Ancora un Passo",
+      "feat": {
+        "id": "followingStep"
+      }
+    },
+    {
+      "description": "Inseguire",
+      "feat": {
+        "id": "stepUp"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Inseguire e Colpire: https://golarion.altervista.org/wiki/Talenti/Inseguire_e_Colpire. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

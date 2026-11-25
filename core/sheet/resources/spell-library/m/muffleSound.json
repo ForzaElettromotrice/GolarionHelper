@@ -1,0 +1,60 @@
+{
+  "id": "muffleSound",
+  "name": "Suono Attenuato",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "BARD": 2,
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "ORACLE": 2,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2,
+    "SKALD": 2
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 alleato/livello",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Attutisce i rumori degli alleati ma ostacola le capacità udibili. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Suono_Attenuato",
+  "effects": [
+    {
+      "id": "stealth",
+      "type": "modifier",
+      "resource": "skill.stealth",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "4"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare il 20% di fallimento a incantesimi verbali e capacità con componenti udibili; nessuna protezione contro effetti sonori o linguistici. Verificare il numero di destinatari sulla fonte. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 alleato/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "enterImage",
+  "name": "Penetrare Immagine",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 2,
+    "CLERIC": 3,
+    "WIZARD": 3,
+    "MEDIUM": 3,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 3,
+    "PSYCHIC": 3,
+    "WARPRIEST": 3,
+    "SKALD": 2,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una goccia di pittura e una pallina di argilla",
+  "rangeType": "OTHER",
+  "rangeDescription": "15 m/livello",
+  "effect": "trasferire la coscienza in qualsiasi oggetto che somigli all’incantatore",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasferisce la percezione e la coscienza nelle proprie raffigurazioni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Penetrare_Immagine",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Penetrare Immagine: https://golarion.altervista.org/wiki/Incantesimi/Penetrare_Immagine Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

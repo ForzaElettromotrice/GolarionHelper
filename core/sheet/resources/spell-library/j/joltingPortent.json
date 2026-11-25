@@ -1,0 +1,37 @@
+{
+  "id": "joltingPortent",
+  "name": "Presagio Sconvolgente",
+  "school": "EVOCATION",
+  "descriptors": [
+    "ELECTRICITY"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 7,
+    "ORACLE": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I) vedi testo",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un marchio di sventura può scaricare elettricità sul bersaglio quando attacca o usa incantesimi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Presagio_Sconvolgente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Presagio Sconvolgente: https://golarion.altervista.org/wiki/Incantesimi/Presagio_Sconvolgente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

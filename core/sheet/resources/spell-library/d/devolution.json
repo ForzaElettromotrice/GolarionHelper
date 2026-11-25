@@ -1,0 +1,46 @@
+{
+  "id": "devolution",
+  "name": "De-evolvere",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "WIZARD": 3,
+    "PSYCHIC": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una squama di camaleonte",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 Eidolon",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Sottrae temporaneamente a un eidolon alcune delle sue evoluzioni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/De-evolvere",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di De-evolvere: https://golarion.altervista.org/wiki/Incantesimi/De-evolvere Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

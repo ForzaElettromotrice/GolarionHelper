@@ -1,0 +1,42 @@
+{
+  "id": "spellstaff",
+  "name": "Bastone dell'Incantesimo",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 6,
+    "DRUID": 6
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "il bastone utilizzato per immagazzinare l’incantesimo",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 bastone ferrato di legno toccato",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente finché non viene scaricato (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Immagazzina una magia in un bastone di legno affinché possa essere utilizzata successivamente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bastone_dell%27Incantesimo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bastone dell'Incantesimo: https://golarion.altervista.org/wiki/Incantesimi/Bastone_dell%27Incantesimo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "shillelagh",
+  "name": "Randello Incantato",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "DRUID": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 randello o 1 bastone ferrato di quercia non magico toccato",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Potenzia un randello o un bastone ferrato di legno, rendendolo magico e aumentandone i danni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Randello_Incantato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Randello Incantato: https://golarion.altervista.org/wiki/Incantesimi/Randello_Incantato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

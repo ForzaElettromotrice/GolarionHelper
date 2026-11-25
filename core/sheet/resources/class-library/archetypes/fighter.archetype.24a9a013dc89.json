@@ -1,0 +1,221 @@
+{
+  "id": "fighter.archetype.24a9a013dc89",
+  "classType": "fighter",
+  "name": "Dragone",
+  "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe, Addestramento nelle Armi, Padronanza dell'Arma. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "fighter.proficiencies",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.feature.0bfec277b39e",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.feature.2f2d05fd0837",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.feature.d85ccd994169",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.feature.42853dd168a3",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "fighter.proficiencies",
+    "fighter.feature.0bfec277b39e",
+    "fighter.feature.2f2d05fd0837"
+  ],
+  "removedAcquisitionIds": [
+    "fighter.bonusFeats.level1",
+    "fighter.feature.42853dd168a3.level7",
+    "fighter.feature.42853dd168a3.level11",
+    "fighter.feature.42853dd168a3.level15"
+  ],
+  "addedFeatures": [
+    {
+      "id": "fighter.archetype.24a9a013dc89.instructions",
+      "name": "Dragone",
+      "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "fighter.archetype.24a9a013dc89.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe, Addestramento nelle Armi, Padronanza dell'Arma. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.24a9a013dc89.feature.1",
+      "name": "Competenza nelle Armi e nelle Armature",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone",
+      "progression": [
+        {
+          "id": "fighter.archetype.24a9a013dc89.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Dragone — Competenza nelle Armi e nelle Armature: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.24a9a013dc89.feature.2",
+      "name": "Cavallerizzo Esperto (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone",
+      "progression": [
+        {
+          "id": "fighter.archetype.24a9a013dc89.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Dragone — Cavallerizzo Esperto (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.24a9a013dc89.feature.3",
+      "name": "Addestramento nelle Lance (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone",
+      "progression": [
+        {
+          "id": "fighter.archetype.24a9a013dc89.feature.3.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Dragone — Addestramento nelle Lance (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.24a9a013dc89.feature.4",
+      "name": "Lancia Rotante (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone",
+      "progression": [
+        {
+          "id": "fighter.archetype.24a9a013dc89.feature.4.initial",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Dragone — Lancia Rotante (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.24a9a013dc89.feature.5",
+      "name": "Stendardo (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone",
+      "progression": [
+        {
+          "id": "fighter.archetype.24a9a013dc89.feature.5.initial",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Dragone — Stendardo (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.24a9a013dc89.feature.6",
+      "name": "Lancia Perforante (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone",
+      "progression": [
+        {
+          "id": "fighter.archetype.24a9a013dc89.feature.6.initial",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Dragone — Lancia Perforante (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.24a9a013dc89.feature.7",
+      "name": "Lancia Saltellante (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone",
+      "progression": [
+        {
+          "id": "fighter.archetype.24a9a013dc89.feature.7.initial",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Dragone — Lancia Saltellante (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.24a9a013dc89.feature.8",
+      "name": "Padronanza nelle Armi",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone",
+      "progression": [
+        {
+          "id": "fighter.archetype.24a9a013dc89.feature.8.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Dragone — Padronanza nelle Armi: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Dragone Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

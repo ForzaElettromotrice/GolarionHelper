@@ -1,0 +1,37 @@
+{
+  "id": "residualTracking",
+  "name": "Traccia Residua",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "OCCULTIST": 2,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo di stucco",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 impronta toccata",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Ricava dall'impronta lasciata da una creatura informazioni sul suo aspetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Traccia_Residua",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Traccia Residua: https://golarion.altervista.org/wiki/Incantesimi/Traccia_Residua Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

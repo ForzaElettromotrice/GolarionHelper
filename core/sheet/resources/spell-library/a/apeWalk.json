@@ -1,0 +1,51 @@
+{
+  "id": "apeWalk",
+  "name": "Passo del Gorilla",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "HUNTER": 2,
+    "DRUID": 3,
+    "RANGER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una zampa di gorilla o di scimmia",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Concede una velocità di scalare di 9 metri e il relativo bonus alle prove. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Passo_del_Gorilla",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Passo del Gorilla: https://golarion.altervista.org/wiki/Incantesimi/Passo_del_Gorilla Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Assassino della Mantide Rossa 3 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "catAndMouse",
+  "name": "Gatto e Topo",
+  "description": "Rinuncia alla risposta immediata dopo una parata per ottenere un vantaggio tattico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Gatto_e_Topo",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Intuizione 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Raggirare 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Gesta Parata e Risposta di Opportunità Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Gatto e Topo: https://golarion.altervista.org/wiki/Talenti/Gatto_e_Topo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intuizione 5 gradi; Prerequisito da verificare manualmente: Raggirare 5 gradi; Prerequisito da verificare manualmente: Gesta Parata e Risposta di Opportunità Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

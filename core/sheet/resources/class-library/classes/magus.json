@@ -1,0 +1,3771 @@
+{
+  "type": "magus",
+  "name": "Magus",
+  "description": "Combattente che integra armi e incantesimi arcani.",
+  "hitDie": 8,
+  "skillRanksPerLevel": 2,
+  "classSkills": [
+    "skill.craft",
+    "skill.ride",
+    "skill.knowledge.arcana",
+    "skill.knowledge.dungeoneering",
+    "skill.knowledge.planes",
+    "skill.intimidate",
+    "skill.swim",
+    "skill.profession",
+    "skill.spellcraft",
+    "skill.climb",
+    "skill.useMagicDevice",
+    "skill.fly"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 0,
+        "will": 2
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 0,
+        "will": 3
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 1,
+        "will": 3
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 2,
+        "will": 6
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 3,
+        "will": 6
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 4,
+        "will": 9
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 5,
+        "will": 9
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 12,
+        "reflex": 6,
+        "will": 12
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "magus.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "magus.spellcasting",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Magus",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 1,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "prepared",
+              "spellListClass": "magus"
+            },
+            {
+              "id": "initialKnown",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. La quota iniziale comprende i 3 incantesimi di primo livello. Aggiungere manualmente i trucchetti iniziali consentiti, gli ulteriori incantesimi per il bonus di Intelligenza iniziale e 2 nuovi incantesimi per livello successivo; le quote fra livelli alternativi non sono rappresentabili direttamente. Libro o famiglio e relativi vincoli rimangono manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level1"
+          ]
+        },
+        {
+          "id": "castingSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level2"
+          ]
+        },
+        {
+          "id": "castingSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level3"
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level4"
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.ce2b2aa7ce03",
+      "name": "Incantesimi in Combattimento",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Incantesimi_in_Combattimento_(Str)",
+      "progression": [
+        {
+          "id": "magus.feature.ce2b2aa7ce03.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Magus: verificare e applicare Incantesimi in Combattimento. https://golarion.altervista.org/wiki/Magus#Incantesimi_in_Combattimento_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.47552ac0288b",
+      "name": "Riserva Arcana",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Riserva_Arcana_(Sop)",
+      "progression": [
+        {
+          "id": "magus.feature.47552ac0288b.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Magus: verificare e applicare Riserva Arcana. https://golarion.altervista.org/wiki/Magus#Riserva_Arcana_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.62a02f5f24ed",
+      "name": "Trucchetti",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Trucchetti",
+      "progression": [
+        {
+          "id": "magus.feature.62a02f5f24ed.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Magus: verificare e applicare Trucchetti. https://golarion.altervista.org/wiki/Magus#Trucchetti Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.2d867f9191d1",
+      "name": "Colpo Incantato",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Colpo_Incantato_(Sop)",
+      "progression": [
+        {
+          "id": "magus.feature.2d867f9191d1.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Magus: verificare e applicare Colpo Incantato. https://golarion.altervista.org/wiki/Magus#Colpo_Incantato_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.ca723f71a553",
+      "name": "Segreto del Magus",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Segreto_del_Magus",
+      "progression": [
+        {
+          "id": "magus.feature.ca723f71a553.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Magus: verificare e applicare Segreto del Magus. https://golarion.altervista.org/wiki/Magus#Segreto_del_Magus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "magus.feature.ca723f71a553.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Magus: verificare e applicare Segreto del Magus. https://golarion.altervista.org/wiki/Magus#Segreto_del_Magus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "magus.feature.ca723f71a553.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Magus: verificare e applicare Segreto del Magus. https://golarion.altervista.org/wiki/Magus#Segreto_del_Magus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "magus.feature.ca723f71a553.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Magus: verificare e applicare Segreto del Magus. https://golarion.altervista.org/wiki/Magus#Segreto_del_Magus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "magus.feature.ca723f71a553.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Magus: verificare e applicare Segreto del Magus. https://golarion.altervista.org/wiki/Magus#Segreto_del_Magus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "magus.feature.ca723f71a553.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Magus: verificare e applicare Segreto del Magus. https://golarion.altervista.org/wiki/Magus#Segreto_del_Magus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.c4608b3292de",
+      "name": "Ricordare Incantesimi",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Ricordare_Incantesimi_(Sop)",
+      "progression": [
+        {
+          "id": "magus.feature.c4608b3292de.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Magus: verificare e applicare Ricordare Incantesimi. https://golarion.altervista.org/wiki/Magus#Ricordare_Incantesimi_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.22b48b4dc0d9",
+      "name": "Armature Medie",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Armature_Medie_(Str)",
+      "progression": [
+        {
+          "id": "magus.feature.22b48b4dc0d9.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Magus: verificare e applicare Armature Medie. https://golarion.altervista.org/wiki/Magus#Armature_Medie_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.9dd2cf659f49",
+      "name": "Riserva di Conoscenza",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Riserva_di_Conoscenza_(Sop)",
+      "progression": [
+        {
+          "id": "magus.feature.9dd2cf659f49.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Magus: verificare e applicare Riserva di Conoscenza. https://golarion.altervista.org/wiki/Magus#Riserva_di_Conoscenza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.6c9fc2cfe057",
+      "name": "Incantesimi in Combattimento Migliorati",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Incantesimi_in_Combattimento_Migliorati_(Str)",
+      "progression": [
+        {
+          "id": "magus.feature.6c9fc2cfe057.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Magus: verificare e applicare Incantesimi in Combattimento Migliorati. https://golarion.altervista.org/wiki/Magus#Incantesimi_in_Combattimento_Migliorati_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.50ff02b2c001",
+      "name": "Addestramento da Guerriero",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Addestramento_da_Guerriero_(Str)",
+      "progression": [
+        {
+          "id": "magus.feature.50ff02b2c001.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Magus: verificare e applicare Addestramento da Guerriero. https://golarion.altervista.org/wiki/Magus#Addestramento_da_Guerriero_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.4387e73e2930",
+      "name": "Ricordare Incantesimi Migliorato",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Ricordare_Incantesimi_Migliorato_(Sop)",
+      "progression": [
+        {
+          "id": "magus.feature.4387e73e2930.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Magus: verificare e applicare Ricordare Incantesimi Migliorato. https://golarion.altervista.org/wiki/Magus#Ricordare_Incantesimi_Migliorato_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.781c3bb3a45e",
+      "name": "Armature Pesanti",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Armature_Pesanti_(Str)",
+      "progression": [
+        {
+          "id": "magus.feature.781c3bb3a45e.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Magus: verificare e applicare Armature Pesanti. https://golarion.altervista.org/wiki/Magus#Armature_Pesanti_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.838af611bb31",
+      "name": "Incantesimi in Combattimento Superiori",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Incantesimi_in_Combattimento_Superiori_(Str)",
+      "progression": [
+        {
+          "id": "magus.feature.838af611bb31.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Magus: verificare e applicare Incantesimi in Combattimento Superiori. https://golarion.altervista.org/wiki/Magus#Incantesimi_in_Combattimento_Superiori_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.ff62f81fddb8",
+      "name": "Contrattacco",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Contrattacco_(Str)",
+      "progression": [
+        {
+          "id": "magus.feature.ff62f81fddb8.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Magus: verificare e applicare Contrattacco. https://golarion.altervista.org/wiki/Magus#Contrattacco_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.e682b09abbc9",
+      "name": "Accesso agli Incantesimi Superiore",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Accesso_agli_Incantesimi_Superiore_(Sop)",
+      "progression": [
+        {
+          "id": "magus.feature.e682b09abbc9.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Magus: verificare e applicare Accesso agli Incantesimi Superiore. https://golarion.altervista.org/wiki/Magus#Accesso_agli_Incantesimi_Superiore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.0f14d0510092",
+      "name": "Vero Magus",
+      "description": "Privilegio della classe Magus. Regole e condizioni: https://golarion.altervista.org/wiki/Magus#Vero_Magus_(Sop)",
+      "progression": [
+        {
+          "id": "magus.feature.0f14d0510092.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Magus: verificare e applicare Vero Magus. https://golarion.altervista.org/wiki/Magus#Vero_Magus_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Magus",
+      "progression": [
+        {
+          "id": "magus.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Magus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Magus",
+      "progression": [
+        {
+          "id": "magus.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Magus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Magus",
+      "progression": [
+        {
+          "id": "magus.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Magus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.feature.e09b75689a27",
+      "name": "Talenti Bonus",
+      "description": "Concede slot aggiuntivi per talenti della categoria prevista, mantenendo i prerequisiti ordinari. Fonte: https://golarion.altervista.org/wiki/Magus",
+      "progression": [
+        {
+          "id": "magus.bonusFeats.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "ids",
+                "featIds": [
+                  "accursedCritical",
+                  "acrobaticSpellcaster",
+                  "adderStrike",
+                  "agileMaiden",
+                  "agileManeuvers",
+                  "aldoriArtistry",
+                  "aldoriDuelingDisciple",
+                  "aldoriDuelingMastery",
+                  "aldoriStyle",
+                  "aldoriStyleAegis",
+                  "aldoriStyleConquest",
+                  "allConsumingSwing",
+                  "amateurGunslinger",
+                  "amateurSwashbuckler",
+                  "anticipateDodge",
+                  "arcSlinger",
+                  "arcaneArmorMastery",
+                  "arcaneArmorTraining",
+                  "arcaneStrike",
+                  "archonDiversion",
+                  "archonJustice",
+                  "archonStyle",
+                  "armorProficiencyHeavy",
+                  "armorProficiencyLight",
+                  "armorProficiencyMedium",
+                  "armoredRider",
+                  "ascendantSpell",
+                  "aweInspiringSmash",
+                  "awesomeBlow",
+                  "awesomeThrow",
+                  "balorWhip",
+                  "banishingCritical",
+                  "barroomBrawler",
+                  "bashingFinish",
+                  "battleCry",
+                  "bearsBalance",
+                  "befuddlingStrike",
+                  "beliersBite",
+                  "betrayalSense",
+                  "bindingThrow",
+                  "blackPowderSpectacle",
+                  "blazingAura",
+                  "bleedingCritical",
+                  "bleedingStare",
+                  "blightedCritical",
+                  "blightedCriticalMastery",
+                  "blindFight",
+                  "blindingCritical",
+                  "blindingFlash",
+                  "blisteringFeint",
+                  "bloodBeak",
+                  "bloodFeast",
+                  "bloodSpurt",
+                  "bloodedArcaneStrike",
+                  "bloodyAssault",
+                  "bludgeoner",
+                  "blunderingDefense",
+                  "boarFerocity",
+                  "boarShred",
+                  "boarStyle",
+                  "bodyShield",
+                  "bodyguard",
+                  "bonebreaker",
+                  "bouncingSpell",
+                  "boundingHammer",
+                  "breakGuard",
+                  "brewPotion",
+                  "brokenWingGambit",
+                  "brutalCoupDeGrace",
+                  "bruteAssault",
+                  "bruteStomp",
+                  "bruteStyle",
+                  "bullRushStrike",
+                  "bullyingBlow",
+                  "burningSpell",
+                  "butAScratch",
+                  "cannonMaster",
+                  "cannyTumble",
+                  "catAndMouse",
+                  "catchOffGuard",
+                  "cautiousFighter",
+                  "cavalryFormation",
+                  "channelSmite",
+                  "channelingForce",
+                  "chargeThrough",
+                  "chargingHurler",
+                  "chokehold",
+                  "circuitousShot",
+                  "clamberingEscape",
+                  "clawPounce",
+                  "cleave",
+                  "cleaveThrough",
+                  "cleavingFinish",
+                  "closeQuartersThrower",
+                  "clovenHelm",
+                  "clusteredShots",
+                  "coaxingSpell",
+                  "cockatriceStrike",
+                  "combatExpertise",
+                  "combatPatrol",
+                  "combatReflexes",
+                  "combatStamina",
+                  "combatStyleMaster",
+                  "compoundedPain",
+                  "concussiveSpell",
+                  "consecrateSpell",
+                  "consumeEssence",
+                  "contagiousSpell",
+                  "coordinatedCapture",
+                  "coordinatedCharge",
+                  "coordinatedDefense",
+                  "coordinatedDistraction",
+                  "coordinatedManeuvers",
+                  "coordinatedShot",
+                  "cornugonShield",
+                  "cornugonSmash",
+                  "cornugonStun",
+                  "cornugonTrip",
+                  "counterReflexes",
+                  "counterpunch",
+                  "coveringDefense",
+                  "coveringFire",
+                  "craftConstruct",
+                  "craftMagicArmsAndArmor",
+                  "craftRod",
+                  "craftStaff",
+                  "craftWand",
+                  "craftWondrousItem",
+                  "craneRiposte",
+                  "craneStyle",
+                  "craneWing",
+                  "createReliquaryArmsAndShields",
+                  "createSanguineElixir",
+                  "cripplingCritical",
+                  "criticalFocus",
+                  "criticalMastery",
+                  "criticalVersatility",
+                  "crossbowMastery",
+                  "crusadersFist",
+                  "crushingBlow",
+                  "cunningIntuition",
+                  "dartingRetrieval",
+                  "dartingViper",
+                  "dastardlyFinish",
+                  "dazingAssault",
+                  "dazingFist",
+                  "dazingSpell",
+                  "dazzlingDisplay",
+                  "deadhandInitiate",
+                  "deadhandMaster",
+                  "deadhandStyle",
+                  "deadlyAim",
+                  "deadlyFinish",
+                  "deadlyStroke",
+                  "deafeningCritical",
+                  "deathFromAbove",
+                  "deathOrGlory",
+                  "deathlessInitiate",
+                  "deathlessMaster",
+                  "deathlessZealot",
+                  "defensiveCombatTraining",
+                  "defensiveWeaponTraining",
+                  "deflectArrows",
+                  "demonGrafter",
+                  "demonHunter",
+                  "demonicNemesis",
+                  "demoralizingLash",
+                  "demoralizingStare",
+                  "dentedHelm",
+                  "dervishDance",
+                  "desperateBattler",
+                  "desperateSwing",
+                  "destroyersBlessing",
+                  "devastatingStrike",
+                  "disarmingStrike",
+                  "disengagingFeint",
+                  "disengagingFlourish",
+                  "disengagingShot",
+                  "dishearteningDisplay",
+                  "disorientingBlow",
+                  "disruptingFist",
+                  "disruptingShot",
+                  "disruptive",
+                  "disruptiveSpell",
+                  "distanceThrower",
+                  "distractingCharge",
+                  "divaAdvance",
+                  "divaStrike",
+                  "divaStyle",
+                  "djinniSpin",
+                  "djinniSpirit",
+                  "djinniStyle",
+                  "dodge",
+                  "domainStrike",
+                  "dornDergarMaster",
+                  "doubleSlice",
+                  "dragDown",
+                  "dragonFerocity",
+                  "dragonRoar",
+                  "dragonStyle",
+                  "drainingStrike",
+                  "dreadfulCarnage",
+                  "duelingCapeDeed",
+                  "duelistOfTheRoaringFalls",
+                  "duelistOfTheShroudedLake",
+                  "earthChildBinder",
+                  "earthChildStyle",
+                  "earthChildTopple",
+                  "echoingSpell",
+                  "ectoplasmicSpell",
+                  "efreetiStance",
+                  "efreetiStyle",
+                  "efreetiTouch",
+                  "eldritchClaws",
+                  "elementalFist",
+                  "elementalSpell",
+                  "elephantStomp",
+                  "elvenAccuracy",
+                  "elvenBattleTraining",
+                  "empowerSpell",
+                  "enfiladingFire",
+                  "enforcer",
+                  "engulfHorror",
+                  "engulfRevulsion",
+                  "enhancedKiThrow",
+                  "enlargeSpell",
+                  "enrageOpponent",
+                  "entreatingCritical",
+                  "equipmentTrick",
+                  "excoriatingStare",
+                  "exhaustingCritical",
+                  "exoticWeaponProficiency",
+                  "exsanguinate",
+                  "extendSpell",
+                  "extraStamina",
+                  "extremePrejudice",
+                  "faeriesStrike",
+                  "fallingWaterGambit",
+                  "falseOpening",
+                  "farShot",
+                  "fatiguingStare",
+                  "fearsomeSpell",
+                  "feintPartner",
+                  "feintingFlurry",
+                  "fellingEscape",
+                  "fellingSmash",
+                  "fencingGrace",
+                  "feralCombatTraining",
+                  "ferociousTenacity",
+                  "finalEmbrace",
+                  "finalEmbraceHorror",
+                  "finalEmbraceMaster",
+                  "fireHand",
+                  "flagbearer",
+                  "flameWarrior",
+                  "flankingFoil",
+                  "flaringSpell",
+                  "fleetingSpell",
+                  "fleshwarper",
+                  "focusedDiscipline",
+                  "focusedShot",
+                  "focusedSpell",
+                  "focusingBlow",
+                  "followingStep",
+                  "forgeRing",
+                  "fortifiedArmorTraining",
+                  "foxInsight",
+                  "foxStyle",
+                  "foxTrickery",
+                  "frostWarrior",
+                  "furiousFocus",
+                  "furiousSpell",
+                  "furysFall",
+                  "furysSnare",
+                  "gangUp",
+                  "garensDiscipline",
+                  "giantKiller",
+                  "giantKillerStance",
+                  "giantsCrush",
+                  "giantsSmash",
+                  "giantsWallop",
+                  "gloomStrike",
+                  "gnomeWeaponFocus",
+                  "goblinCleaver",
+                  "goblinGunslinger",
+                  "gorgonsFist",
+                  "goryFinish",
+                  "grabbingDrag",
+                  "grabbingMaster",
+                  "grabbingStyle",
+                  "gracefulSteal",
+                  "graspingStrike",
+                  "greatCleave",
+                  "greatHatred",
+                  "greaterAwesomeBlow",
+                  "greaterBalorWhip",
+                  "greaterBlightedCritical",
+                  "greaterBlindFight",
+                  "greaterBullRush",
+                  "greaterDirtyTrick",
+                  "greaterDisarm",
+                  "greaterDrag",
+                  "greaterFeint",
+                  "greaterGrapple",
+                  "greaterMesmerizingFeint",
+                  "greaterOverrun",
+                  "greaterPenetratingStrike",
+                  "greaterRendingFury",
+                  "greaterReposition",
+                  "greaterShieldFocus",
+                  "greaterShieldSpecialization",
+                  "greaterSnapShot",
+                  "greaterSteal",
+                  "greaterSunder",
+                  "greaterTrip",
+                  "greaterTwoWeaponFighting",
+                  "greaterVitalStrike",
+                  "greaterWeaponFocus",
+                  "greaterWeaponOfTheChosen",
+                  "greaterWeaponSpecialization",
+                  "greaterWhipMastery",
+                  "groundGrabber",
+                  "grudgeFighter",
+                  "gruesomeSlaughter",
+                  "hamatulaGrasp",
+                  "hamatulaStrike",
+                  "hamatulatsu",
+                  "hammerTheGap",
+                  "hardHeaded",
+                  "harderTheyFall",
+                  "hauntedGnome",
+                  "hauntedGnomeAssault",
+                  "hauntedGnomeShroud",
+                  "heightenSpell",
+                  "hellcatPounce",
+                  "hellcatStealth",
+                  "hexStrike",
+                  "holdTheBlade",
+                  "holyWaterAssault",
+                  "hordeCharge",
+                  "hornOfTheCriosphinx",
+                  "horrificGorging",
+                  "horseMaster",
+                  "impactCriticalShot",
+                  "impalingCritical",
+                  "improvedAwesomeBlow",
+                  "improvedAwesomeThrow",
+                  "improvedBackToBack",
+                  "improvedBalorWhip",
+                  "improvedBlindFight",
+                  "improvedBravery",
+                  "improvedBullRush",
+                  "improvedChargingHurler",
+                  "improvedCleavingFinish",
+                  "improvedCritical",
+                  "improvedDevastatingStrike",
+                  "improvedDirtyTrick",
+                  "improvedDisarm",
+                  "improvedDrag",
+                  "improvedFeint",
+                  "improvedFeintPartner",
+                  "improvedFeintingFlurry",
+                  "improvedGrapple",
+                  "improvedImpalingCritical",
+                  "improvedInitiative",
+                  "improvedKiThrow",
+                  "improvedLowBlow",
+                  "improvedMountedArchery",
+                  "improvedOverrun",
+                  "improvedPositionOfStrength",
+                  "improvedPreciseShot",
+                  "improvedRendingFury",
+                  "improvedReposition",
+                  "improvedSabotagingSunder",
+                  "improvedSecondChance",
+                  "improvedShieldBash",
+                  "improvedSidestep",
+                  "improvedSnapShot",
+                  "improvedSteal",
+                  "improvedSunder",
+                  "improvedSurpriseFollowThrough",
+                  "improvedSwapPlaces",
+                  "improvedTrip",
+                  "improvedTwoWeaponFeint",
+                  "improvedTwoWeaponFighting",
+                  "improvedUnarmedStrike",
+                  "improvedUnderhandedTeamwork",
+                  "improvedVitalStrike",
+                  "improvedWeaponOfTheChosen",
+                  "improvedWhipMastery",
+                  "improvisedWeaponMastery",
+                  "inHarmsWay",
+                  "inciteParanoia",
+                  "innerFlame",
+                  "inscribeMagicalTattoo",
+                  "inspiringBravery",
+                  "intensePain",
+                  "intensifiedSpell",
+                  "interceptCharge",
+                  "interweaveCompositeBlast",
+                  "intimidatingGaze",
+                  "intimidatingProwess",
+                  "intuitiveSpell",
+                  "jabbingDancer",
+                  "jabbingMaster",
+                  "jabbingStyle",
+                  "jaguarPounce",
+                  "janniRush",
+                  "janniStyle",
+                  "janniTempest",
+                  "jawbreaker",
+                  "kiThrow",
+                  "kickUp",
+                  "killingFlourish",
+                  "kirinPath",
+                  "kirinStrike",
+                  "kirinStyle",
+                  "koboldAmbusher",
+                  "koboldSniper",
+                  "kytonCut",
+                  "kytonShield",
+                  "kytonStyle",
+                  "landingRoll",
+                  "latchingHorror",
+                  "lightningDraw",
+                  "lightningStance",
+                  "lingeringSpell",
+                  "logicalSpell",
+                  "lookout",
+                  "lowProfile",
+                  "luckyStrike",
+                  "lunge",
+                  "maddeningObliteration",
+                  "maddeningStrike",
+                  "maddeningStyle",
+                  "mantisStyle",
+                  "mantisTorment",
+                  "mantisWisdom",
+                  "manyshot",
+                  "maridColdsnap",
+                  "maridSpirit",
+                  "maridStyle",
+                  "martialDominance",
+                  "martialMastery",
+                  "martialVersatility",
+                  "martialWeaponProficiency",
+                  "masterCombatPerformer",
+                  "masterSiegeEngineer",
+                  "masterfulFlourish",
+                  "maximizeSpell",
+                  "measureFoe",
+                  "medusasWrath",
+                  "mercifulSpell",
+                  "mercilessBeating",
+                  "mercilessButchery",
+                  "mesmerizingFeint",
+                  "misdirectionAttack",
+                  "misdirectionRedirection",
+                  "misdirectionTactics",
+                  "missileShield",
+                  "mobility",
+                  "monasticLegacy",
+                  "monkeyLunge",
+                  "monkeyMoves",
+                  "monkeyShine",
+                  "monkeyStyle",
+                  "moonlightStalker",
+                  "moonlightStalkerFeint",
+                  "moonlightStalkerMaster",
+                  "mountainSplittingStrike",
+                  "mountedArchery",
+                  "mountedBlade",
+                  "mountedCombat",
+                  "mountedOnslaught",
+                  "mountedShield",
+                  "mountedSkirmisher",
+                  "multiattack",
+                  "multiweaponFighting",
+                  "musketeersDaring",
+                  "musketeersDodge",
+                  "musketeersReposition",
+                  "musketeersSidestep",
+                  "myBladeIsYours",
+                  "neckbreaker",
+                  "netAdept",
+                  "netAndTrident",
+                  "netManeuvering",
+                  "netTrickery",
+                  "nightmareFist",
+                  "nightmareStriker",
+                  "nightmareWeaver",
+                  "nimbleStriker",
+                  "notoriousVigilante",
+                  "openingVolley",
+                  "orcHewer",
+                  "orcWeaponExpertise",
+                  "ostentatiousRager",
+                  "ostentatiousWeakness",
+                  "osyluthGuile",
+                  "outflank",
+                  "owlDive",
+                  "owlStyle",
+                  "owlSwoop",
+                  "packAttack",
+                  "packFlanking",
+                  "pairedOpportunists",
+                  "pantherClaw",
+                  "pantherParry",
+                  "pantherStyle",
+                  "paralyzingStrike",
+                  "partingShot",
+                  "passingTrick",
+                  "patientStrike",
+                  "penetratingStrike",
+                  "perfectStrike",
+                  "perfectStyle",
+                  "performanceWeaponMastery",
+                  "performingCombatant",
+                  "perniciousStab",
+                  "persistentSpell",
+                  "piercingGrapple",
+                  "piercingSpell",
+                  "pinDown",
+                  "pinningKnockout",
+                  "pinningRend",
+                  "pinpointPoisoner",
+                  "pinpointTargeting",
+                  "piranhaStrike",
+                  "pointBlankMaster",
+                  "pointBlankShot",
+                  "positionOfStrength",
+                  "powerAttack",
+                  "preciseShot",
+                  "preciseStrike",
+                  "proneShooter",
+                  "proneSlinger",
+                  "protectiveLine",
+                  "psychicCombatant",
+                  "pummelingBully",
+                  "pummelingCharge",
+                  "pummelingStyle",
+                  "punchThrough",
+                  "punishingKick",
+                  "pushTheLimits",
+                  "pushingAssault",
+                  "quarterstaffMaster",
+                  "quickBullRush",
+                  "quickDirtyTrick",
+                  "quickDrag",
+                  "quickDraw",
+                  "quickReposition",
+                  "quickSteal",
+                  "quickStow",
+                  "quickStudy",
+                  "quickenSpell",
+                  "quietDeath",
+                  "quiveringPalmAdept",
+                  "quiveringPalmVersatility",
+                  "rangedFeint",
+                  "rapidGrappler",
+                  "rapidReload",
+                  "rapidShot",
+                  "rayShield",
+                  "reachSpell",
+                  "readyForAnything",
+                  "reapTheInfirm",
+                  "reboundingLeap",
+                  "rebuffingReduction",
+                  "redistributedMight",
+                  "rendingClaws",
+                  "rendingFury",
+                  "repositioningStrike",
+                  "revelationStrike",
+                  "reverseFeint",
+                  "rhinoCharge",
+                  "rideByAttack",
+                  "rimeSpell",
+                  "riskyStriker",
+                  "rivingStrike",
+                  "sabotagingSunder",
+                  "sapAdept",
+                  "sapMaster",
+                  "savageSurge",
+                  "savingShield",
+                  "scarringSpell",
+                  "schoolStrike",
+                  "scorchingWeapons",
+                  "scorpionStyle",
+                  "scribeScroll",
+                  "seaHunter",
+                  "secondChance",
+                  "seethingHatred",
+                  "seizeAdvantage",
+                  "seizeTheMoment",
+                  "selectiveSpell",
+                  "serpentLash",
+                  "serrensMasterstroke",
+                  "shadowGrasp",
+                  "shadowStrike",
+                  "shadowsOfFear",
+                  "shaitanEarthblast",
+                  "shaitanSkin",
+                  "shaitanStyle",
+                  "sharpclaw",
+                  "shatterControl",
+                  "shatterDefenses",
+                  "shatterMentalMask",
+                  "shatterspell",
+                  "shieldFocus",
+                  "shieldMaster",
+                  "shieldOfSwings",
+                  "shieldProficiency",
+                  "shieldSlam",
+                  "shieldSpecialization",
+                  "shieldWall",
+                  "shotOnTheRun",
+                  "shrewdTactician",
+                  "sickeningCritical",
+                  "sickeningSpell",
+                  "sidestep",
+                  "siegeCommander",
+                  "siegeEngineer",
+                  "siegeGunner",
+                  "silentKill",
+                  "silentSpell",
+                  "simpleWeaponProficiency",
+                  "sisterhoodDedication",
+                  "sisterhoodRampart",
+                  "sisterhoodStyle",
+                  "slashingGrace",
+                  "slayersFeint",
+                  "sleeperHold",
+                  "slidingAxeThrow",
+                  "slidingDash",
+                  "slingFlail",
+                  "smash",
+                  "snakeFang",
+                  "snakeSidewind",
+                  "snakeStyle",
+                  "snapShot",
+                  "snappingTurtleClutch",
+                  "snappingTurtleShell",
+                  "snappingTurtleStyle",
+                  "snatchArrows",
+                  "socialBravery",
+                  "sorcerousStrike",
+                  "spectacularExit",
+                  "spellbreaker",
+                  "spinningThrow",
+                  "spiritedCharge",
+                  "springAttack",
+                  "stabbingShot",
+                  "stageCombatant",
+                  "staggeringCritical",
+                  "staggeringFist",
+                  "stanceOfTheXorn",
+                  "standStill",
+                  "starryGrace",
+                  "startlingGetaway",
+                  "stepUp",
+                  "stepUpAndStrike",
+                  "stillSpell",
+                  "stormWarrior",
+                  "strangler",
+                  "streetCarnage",
+                  "streetStyle",
+                  "streetSweep",
+                  "strikeBack",
+                  "structuralStrike",
+                  "studiedSpell",
+                  "stunningAssault",
+                  "stunningCritical",
+                  "stunningFist",
+                  "stunningFistAdept",
+                  "stylizedSpell",
+                  "sunderingStrike",
+                  "suppressRegeneration",
+                  "surpriseFollowThrough",
+                  "surpriseStrike",
+                  "swapPlaces",
+                  "swiftAid",
+                  "swipeAndStash",
+                  "swordAndPistol",
+                  "sympatheticRage",
+                  "tacticalReposition",
+                  "tailTerror",
+                  "taldanDuelist",
+                  "tandemTrip",
+                  "tangleFeet",
+                  "targetOfOpportunity",
+                  "taskmaster",
+                  "teamUp",
+                  "teleportTactician",
+                  "tenaciousSpell",
+                  "tenebrousSpell",
+                  "terrorizingDisplay",
+                  "thanatopicSpell",
+                  "threnodicSpell",
+                  "thrillingVengeance",
+                  "throwAnything",
+                  "thunderAndFang",
+                  "thunderingSpell",
+                  "tigerClaws",
+                  "tigerPounce",
+                  "tigerStyle",
+                  "tiringCritical",
+                  "topplingSpell",
+                  "touchOfSerenity",
+                  "towerShieldProficiency",
+                  "trample",
+                  "traumaticSpell",
+                  "treeHanger",
+                  "tribalHunter",
+                  "trickRiding",
+                  "trippingStaff",
+                  "trippingStrike",
+                  "trippingTwirl",
+                  "twinFangLunge",
+                  "twinFangStrike",
+                  "twinFangStyle",
+                  "twinThunders",
+                  "twinThundersFlurry",
+                  "twinThundersMaster",
+                  "twinnedFeint",
+                  "twoHandedThrower",
+                  "twoWeaponDefense",
+                  "twoWeaponFeint",
+                  "twoWeaponFighting",
+                  "twoWeaponGrace",
+                  "twoWeaponRend",
+                  "umbralSpell",
+                  "unblinkingFlameFeint",
+                  "unblinkingFlameFist",
+                  "unbreakable",
+                  "uncannyDefense",
+                  "underAndOver",
+                  "underfoot",
+                  "underhandedTeamwork",
+                  "undersizedMount",
+                  "unfoldingWindRush",
+                  "unfoldingWindStrike",
+                  "unseat",
+                  "untwistingIronSkin",
+                  "untwistingIronStrength",
+                  "unyieldingFerocity",
+                  "vastHatred",
+                  "viciousStomp",
+                  "vitalStrike",
+                  "vulpinePounce",
+                  "waveStrike",
+                  "weaponFinesse",
+                  "weaponFocus",
+                  "weaponOfTheChosen",
+                  "weaponSpecialization",
+                  "weaponVersatility",
+                  "whipMastery",
+                  "whirlwindAttack",
+                  "widenSpell",
+                  "windStance",
+                  "wingsOfTheAndrosphinx",
+                  "wintersStrike",
+                  "woundedPawGambit",
+                  "yaiMimicSpell"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "magus.bonusFeats.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "ids",
+                "featIds": [
+                  "accursedCritical",
+                  "acrobaticSpellcaster",
+                  "adderStrike",
+                  "agileMaiden",
+                  "agileManeuvers",
+                  "aldoriArtistry",
+                  "aldoriDuelingDisciple",
+                  "aldoriDuelingMastery",
+                  "aldoriStyle",
+                  "aldoriStyleAegis",
+                  "aldoriStyleConquest",
+                  "allConsumingSwing",
+                  "amateurGunslinger",
+                  "amateurSwashbuckler",
+                  "anticipateDodge",
+                  "arcSlinger",
+                  "arcaneArmorMastery",
+                  "arcaneArmorTraining",
+                  "arcaneStrike",
+                  "archonDiversion",
+                  "archonJustice",
+                  "archonStyle",
+                  "armorProficiencyHeavy",
+                  "armorProficiencyLight",
+                  "armorProficiencyMedium",
+                  "armoredRider",
+                  "ascendantSpell",
+                  "aweInspiringSmash",
+                  "awesomeBlow",
+                  "awesomeThrow",
+                  "balorWhip",
+                  "banishingCritical",
+                  "barroomBrawler",
+                  "bashingFinish",
+                  "battleCry",
+                  "bearsBalance",
+                  "befuddlingStrike",
+                  "beliersBite",
+                  "betrayalSense",
+                  "bindingThrow",
+                  "blackPowderSpectacle",
+                  "blazingAura",
+                  "bleedingCritical",
+                  "bleedingStare",
+                  "blightedCritical",
+                  "blightedCriticalMastery",
+                  "blindFight",
+                  "blindingCritical",
+                  "blindingFlash",
+                  "blisteringFeint",
+                  "bloodBeak",
+                  "bloodFeast",
+                  "bloodSpurt",
+                  "bloodedArcaneStrike",
+                  "bloodyAssault",
+                  "bludgeoner",
+                  "blunderingDefense",
+                  "boarFerocity",
+                  "boarShred",
+                  "boarStyle",
+                  "bodyShield",
+                  "bodyguard",
+                  "bonebreaker",
+                  "bouncingSpell",
+                  "boundingHammer",
+                  "breakGuard",
+                  "brewPotion",
+                  "brokenWingGambit",
+                  "brutalCoupDeGrace",
+                  "bruteAssault",
+                  "bruteStomp",
+                  "bruteStyle",
+                  "bullRushStrike",
+                  "bullyingBlow",
+                  "burningSpell",
+                  "butAScratch",
+                  "cannonMaster",
+                  "cannyTumble",
+                  "catAndMouse",
+                  "catchOffGuard",
+                  "cautiousFighter",
+                  "cavalryFormation",
+                  "channelSmite",
+                  "channelingForce",
+                  "chargeThrough",
+                  "chargingHurler",
+                  "chokehold",
+                  "circuitousShot",
+                  "clamberingEscape",
+                  "clawPounce",
+                  "cleave",
+                  "cleaveThrough",
+                  "cleavingFinish",
+                  "closeQuartersThrower",
+                  "clovenHelm",
+                  "clusteredShots",
+                  "coaxingSpell",
+                  "cockatriceStrike",
+                  "combatExpertise",
+                  "combatPatrol",
+                  "combatReflexes",
+                  "combatStamina",
+                  "combatStyleMaster",
+                  "compoundedPain",
+                  "concussiveSpell",
+                  "consecrateSpell",
+                  "consumeEssence",
+                  "contagiousSpell",
+                  "coordinatedCapture",
+                  "coordinatedCharge",
+                  "coordinatedDefense",
+                  "coordinatedDistraction",
+                  "coordinatedManeuvers",
+                  "coordinatedShot",
+                  "cornugonShield",
+                  "cornugonSmash",
+                  "cornugonStun",
+                  "cornugonTrip",
+                  "counterReflexes",
+                  "counterpunch",
+                  "coveringDefense",
+                  "coveringFire",
+                  "craftConstruct",
+                  "craftMagicArmsAndArmor",
+                  "craftRod",
+                  "craftStaff",
+                  "craftWand",
+                  "craftWondrousItem",
+                  "craneRiposte",
+                  "craneStyle",
+                  "craneWing",
+                  "createReliquaryArmsAndShields",
+                  "createSanguineElixir",
+                  "cripplingCritical",
+                  "criticalFocus",
+                  "criticalMastery",
+                  "criticalVersatility",
+                  "crossbowMastery",
+                  "crusadersFist",
+                  "crushingBlow",
+                  "cunningIntuition",
+                  "dartingRetrieval",
+                  "dartingViper",
+                  "dastardlyFinish",
+                  "dazingAssault",
+                  "dazingFist",
+                  "dazingSpell",
+                  "dazzlingDisplay",
+                  "deadhandInitiate",
+                  "deadhandMaster",
+                  "deadhandStyle",
+                  "deadlyAim",
+                  "deadlyFinish",
+                  "deadlyStroke",
+                  "deafeningCritical",
+                  "deathFromAbove",
+                  "deathOrGlory",
+                  "deathlessInitiate",
+                  "deathlessMaster",
+                  "deathlessZealot",
+                  "defensiveCombatTraining",
+                  "defensiveWeaponTraining",
+                  "deflectArrows",
+                  "demonGrafter",
+                  "demonHunter",
+                  "demonicNemesis",
+                  "demoralizingLash",
+                  "demoralizingStare",
+                  "dentedHelm",
+                  "dervishDance",
+                  "desperateBattler",
+                  "desperateSwing",
+                  "destroyersBlessing",
+                  "devastatingStrike",
+                  "disarmingStrike",
+                  "disengagingFeint",
+                  "disengagingFlourish",
+                  "disengagingShot",
+                  "dishearteningDisplay",
+                  "disorientingBlow",
+                  "disruptingFist",
+                  "disruptingShot",
+                  "disruptive",
+                  "disruptiveSpell",
+                  "distanceThrower",
+                  "distractingCharge",
+                  "divaAdvance",
+                  "divaStrike",
+                  "divaStyle",
+                  "djinniSpin",
+                  "djinniSpirit",
+                  "djinniStyle",
+                  "dodge",
+                  "domainStrike",
+                  "dornDergarMaster",
+                  "doubleSlice",
+                  "dragDown",
+                  "dragonFerocity",
+                  "dragonRoar",
+                  "dragonStyle",
+                  "drainingStrike",
+                  "dreadfulCarnage",
+                  "duelingCapeDeed",
+                  "duelistOfTheRoaringFalls",
+                  "duelistOfTheShroudedLake",
+                  "earthChildBinder",
+                  "earthChildStyle",
+                  "earthChildTopple",
+                  "echoingSpell",
+                  "ectoplasmicSpell",
+                  "efreetiStance",
+                  "efreetiStyle",
+                  "efreetiTouch",
+                  "eldritchClaws",
+                  "elementalFist",
+                  "elementalSpell",
+                  "elephantStomp",
+                  "elvenAccuracy",
+                  "elvenBattleTraining",
+                  "empowerSpell",
+                  "enfiladingFire",
+                  "enforcer",
+                  "engulfHorror",
+                  "engulfRevulsion",
+                  "enhancedKiThrow",
+                  "enlargeSpell",
+                  "enrageOpponent",
+                  "entreatingCritical",
+                  "equipmentTrick",
+                  "excoriatingStare",
+                  "exhaustingCritical",
+                  "exoticWeaponProficiency",
+                  "exsanguinate",
+                  "extendSpell",
+                  "extraStamina",
+                  "extremePrejudice",
+                  "faeriesStrike",
+                  "fallingWaterGambit",
+                  "falseOpening",
+                  "farShot",
+                  "fatiguingStare",
+                  "fearsomeSpell",
+                  "feintPartner",
+                  "feintingFlurry",
+                  "fellingEscape",
+                  "fellingSmash",
+                  "fencingGrace",
+                  "feralCombatTraining",
+                  "ferociousTenacity",
+                  "finalEmbrace",
+                  "finalEmbraceHorror",
+                  "finalEmbraceMaster",
+                  "fireHand",
+                  "flagbearer",
+                  "flameWarrior",
+                  "flankingFoil",
+                  "flaringSpell",
+                  "fleetingSpell",
+                  "fleshwarper",
+                  "focusedDiscipline",
+                  "focusedShot",
+                  "focusedSpell",
+                  "focusingBlow",
+                  "followingStep",
+                  "forgeRing",
+                  "fortifiedArmorTraining",
+                  "foxInsight",
+                  "foxStyle",
+                  "foxTrickery",
+                  "frostWarrior",
+                  "furiousFocus",
+                  "furiousSpell",
+                  "furysFall",
+                  "furysSnare",
+                  "gangUp",
+                  "garensDiscipline",
+                  "giantKiller",
+                  "giantKillerStance",
+                  "giantsCrush",
+                  "giantsSmash",
+                  "giantsWallop",
+                  "gloomStrike",
+                  "gnomeWeaponFocus",
+                  "goblinCleaver",
+                  "goblinGunslinger",
+                  "gorgonsFist",
+                  "goryFinish",
+                  "grabbingDrag",
+                  "grabbingMaster",
+                  "grabbingStyle",
+                  "gracefulSteal",
+                  "graspingStrike",
+                  "greatCleave",
+                  "greatHatred",
+                  "greaterAwesomeBlow",
+                  "greaterBalorWhip",
+                  "greaterBlightedCritical",
+                  "greaterBlindFight",
+                  "greaterBullRush",
+                  "greaterDirtyTrick",
+                  "greaterDisarm",
+                  "greaterDrag",
+                  "greaterFeint",
+                  "greaterGrapple",
+                  "greaterMesmerizingFeint",
+                  "greaterOverrun",
+                  "greaterPenetratingStrike",
+                  "greaterRendingFury",
+                  "greaterReposition",
+                  "greaterShieldFocus",
+                  "greaterShieldSpecialization",
+                  "greaterSnapShot",
+                  "greaterSteal",
+                  "greaterSunder",
+                  "greaterTrip",
+                  "greaterTwoWeaponFighting",
+                  "greaterVitalStrike",
+                  "greaterWeaponFocus",
+                  "greaterWeaponOfTheChosen",
+                  "greaterWeaponSpecialization",
+                  "greaterWhipMastery",
+                  "groundGrabber",
+                  "grudgeFighter",
+                  "gruesomeSlaughter",
+                  "hamatulaGrasp",
+                  "hamatulaStrike",
+                  "hamatulatsu",
+                  "hammerTheGap",
+                  "hardHeaded",
+                  "harderTheyFall",
+                  "hauntedGnome",
+                  "hauntedGnomeAssault",
+                  "hauntedGnomeShroud",
+                  "heightenSpell",
+                  "hellcatPounce",
+                  "hellcatStealth",
+                  "hexStrike",
+                  "holdTheBlade",
+                  "holyWaterAssault",
+                  "hordeCharge",
+                  "hornOfTheCriosphinx",
+                  "horrificGorging",
+                  "horseMaster",
+                  "impactCriticalShot",
+                  "impalingCritical",
+                  "improvedAwesomeBlow",
+                  "improvedAwesomeThrow",
+                  "improvedBackToBack",
+                  "improvedBalorWhip",
+                  "improvedBlindFight",
+                  "improvedBravery",
+                  "improvedBullRush",
+                  "improvedChargingHurler",
+                  "improvedCleavingFinish",
+                  "improvedCritical",
+                  "improvedDevastatingStrike",
+                  "improvedDirtyTrick",
+                  "improvedDisarm",
+                  "improvedDrag",
+                  "improvedFeint",
+                  "improvedFeintPartner",
+                  "improvedFeintingFlurry",
+                  "improvedGrapple",
+                  "improvedImpalingCritical",
+                  "improvedInitiative",
+                  "improvedKiThrow",
+                  "improvedLowBlow",
+                  "improvedMountedArchery",
+                  "improvedOverrun",
+                  "improvedPositionOfStrength",
+                  "improvedPreciseShot",
+                  "improvedRendingFury",
+                  "improvedReposition",
+                  "improvedSabotagingSunder",
+                  "improvedSecondChance",
+                  "improvedShieldBash",
+                  "improvedSidestep",
+                  "improvedSnapShot",
+                  "improvedSteal",
+                  "improvedSunder",
+                  "improvedSurpriseFollowThrough",
+                  "improvedSwapPlaces",
+                  "improvedTrip",
+                  "improvedTwoWeaponFeint",
+                  "improvedTwoWeaponFighting",
+                  "improvedUnarmedStrike",
+                  "improvedUnderhandedTeamwork",
+                  "improvedVitalStrike",
+                  "improvedWeaponOfTheChosen",
+                  "improvedWhipMastery",
+                  "improvisedWeaponMastery",
+                  "inHarmsWay",
+                  "inciteParanoia",
+                  "innerFlame",
+                  "inscribeMagicalTattoo",
+                  "inspiringBravery",
+                  "intensePain",
+                  "intensifiedSpell",
+                  "interceptCharge",
+                  "interweaveCompositeBlast",
+                  "intimidatingGaze",
+                  "intimidatingProwess",
+                  "intuitiveSpell",
+                  "jabbingDancer",
+                  "jabbingMaster",
+                  "jabbingStyle",
+                  "jaguarPounce",
+                  "janniRush",
+                  "janniStyle",
+                  "janniTempest",
+                  "jawbreaker",
+                  "kiThrow",
+                  "kickUp",
+                  "killingFlourish",
+                  "kirinPath",
+                  "kirinStrike",
+                  "kirinStyle",
+                  "koboldAmbusher",
+                  "koboldSniper",
+                  "kytonCut",
+                  "kytonShield",
+                  "kytonStyle",
+                  "landingRoll",
+                  "latchingHorror",
+                  "lightningDraw",
+                  "lightningStance",
+                  "lingeringSpell",
+                  "logicalSpell",
+                  "lookout",
+                  "lowProfile",
+                  "luckyStrike",
+                  "lunge",
+                  "maddeningObliteration",
+                  "maddeningStrike",
+                  "maddeningStyle",
+                  "mantisStyle",
+                  "mantisTorment",
+                  "mantisWisdom",
+                  "manyshot",
+                  "maridColdsnap",
+                  "maridSpirit",
+                  "maridStyle",
+                  "martialDominance",
+                  "martialMastery",
+                  "martialVersatility",
+                  "martialWeaponProficiency",
+                  "masterCombatPerformer",
+                  "masterSiegeEngineer",
+                  "masterfulFlourish",
+                  "maximizeSpell",
+                  "measureFoe",
+                  "medusasWrath",
+                  "mercifulSpell",
+                  "mercilessBeating",
+                  "mercilessButchery",
+                  "mesmerizingFeint",
+                  "misdirectionAttack",
+                  "misdirectionRedirection",
+                  "misdirectionTactics",
+                  "missileShield",
+                  "mobility",
+                  "monasticLegacy",
+                  "monkeyLunge",
+                  "monkeyMoves",
+                  "monkeyShine",
+                  "monkeyStyle",
+                  "moonlightStalker",
+                  "moonlightStalkerFeint",
+                  "moonlightStalkerMaster",
+                  "mountainSplittingStrike",
+                  "mountedArchery",
+                  "mountedBlade",
+                  "mountedCombat",
+                  "mountedOnslaught",
+                  "mountedShield",
+                  "mountedSkirmisher",
+                  "multiattack",
+                  "multiweaponFighting",
+                  "musketeersDaring",
+                  "musketeersDodge",
+                  "musketeersReposition",
+                  "musketeersSidestep",
+                  "myBladeIsYours",
+                  "neckbreaker",
+                  "netAdept",
+                  "netAndTrident",
+                  "netManeuvering",
+                  "netTrickery",
+                  "nightmareFist",
+                  "nightmareStriker",
+                  "nightmareWeaver",
+                  "nimbleStriker",
+                  "notoriousVigilante",
+                  "openingVolley",
+                  "orcHewer",
+                  "orcWeaponExpertise",
+                  "ostentatiousRager",
+                  "ostentatiousWeakness",
+                  "osyluthGuile",
+                  "outflank",
+                  "owlDive",
+                  "owlStyle",
+                  "owlSwoop",
+                  "packAttack",
+                  "packFlanking",
+                  "pairedOpportunists",
+                  "pantherClaw",
+                  "pantherParry",
+                  "pantherStyle",
+                  "paralyzingStrike",
+                  "partingShot",
+                  "passingTrick",
+                  "patientStrike",
+                  "penetratingStrike",
+                  "perfectStrike",
+                  "perfectStyle",
+                  "performanceWeaponMastery",
+                  "performingCombatant",
+                  "perniciousStab",
+                  "persistentSpell",
+                  "piercingGrapple",
+                  "piercingSpell",
+                  "pinDown",
+                  "pinningKnockout",
+                  "pinningRend",
+                  "pinpointPoisoner",
+                  "pinpointTargeting",
+                  "piranhaStrike",
+                  "pointBlankMaster",
+                  "pointBlankShot",
+                  "positionOfStrength",
+                  "powerAttack",
+                  "preciseShot",
+                  "preciseStrike",
+                  "proneShooter",
+                  "proneSlinger",
+                  "protectiveLine",
+                  "psychicCombatant",
+                  "pummelingBully",
+                  "pummelingCharge",
+                  "pummelingStyle",
+                  "punchThrough",
+                  "punishingKick",
+                  "pushTheLimits",
+                  "pushingAssault",
+                  "quarterstaffMaster",
+                  "quickBullRush",
+                  "quickDirtyTrick",
+                  "quickDrag",
+                  "quickDraw",
+                  "quickReposition",
+                  "quickSteal",
+                  "quickStow",
+                  "quickStudy",
+                  "quickenSpell",
+                  "quietDeath",
+                  "quiveringPalmAdept",
+                  "quiveringPalmVersatility",
+                  "rangedFeint",
+                  "rapidGrappler",
+                  "rapidReload",
+                  "rapidShot",
+                  "rayShield",
+                  "reachSpell",
+                  "readyForAnything",
+                  "reapTheInfirm",
+                  "reboundingLeap",
+                  "rebuffingReduction",
+                  "redistributedMight",
+                  "rendingClaws",
+                  "rendingFury",
+                  "repositioningStrike",
+                  "revelationStrike",
+                  "reverseFeint",
+                  "rhinoCharge",
+                  "rideByAttack",
+                  "rimeSpell",
+                  "riskyStriker",
+                  "rivingStrike",
+                  "sabotagingSunder",
+                  "sapAdept",
+                  "sapMaster",
+                  "savageSurge",
+                  "savingShield",
+                  "scarringSpell",
+                  "schoolStrike",
+                  "scorchingWeapons",
+                  "scorpionStyle",
+                  "scribeScroll",
+                  "seaHunter",
+                  "secondChance",
+                  "seethingHatred",
+                  "seizeAdvantage",
+                  "seizeTheMoment",
+                  "selectiveSpell",
+                  "serpentLash",
+                  "serrensMasterstroke",
+                  "shadowGrasp",
+                  "shadowStrike",
+                  "shadowsOfFear",
+                  "shaitanEarthblast",
+                  "shaitanSkin",
+                  "shaitanStyle",
+                  "sharpclaw",
+                  "shatterControl",
+                  "shatterDefenses",
+                  "shatterMentalMask",
+                  "shatterspell",
+                  "shieldFocus",
+                  "shieldMaster",
+                  "shieldOfSwings",
+                  "shieldProficiency",
+                  "shieldSlam",
+                  "shieldSpecialization",
+                  "shieldWall",
+                  "shotOnTheRun",
+                  "shrewdTactician",
+                  "sickeningCritical",
+                  "sickeningSpell",
+                  "sidestep",
+                  "siegeCommander",
+                  "siegeEngineer",
+                  "siegeGunner",
+                  "silentKill",
+                  "silentSpell",
+                  "simpleWeaponProficiency",
+                  "sisterhoodDedication",
+                  "sisterhoodRampart",
+                  "sisterhoodStyle",
+                  "slashingGrace",
+                  "slayersFeint",
+                  "sleeperHold",
+                  "slidingAxeThrow",
+                  "slidingDash",
+                  "slingFlail",
+                  "smash",
+                  "snakeFang",
+                  "snakeSidewind",
+                  "snakeStyle",
+                  "snapShot",
+                  "snappingTurtleClutch",
+                  "snappingTurtleShell",
+                  "snappingTurtleStyle",
+                  "snatchArrows",
+                  "socialBravery",
+                  "sorcerousStrike",
+                  "spectacularExit",
+                  "spellbreaker",
+                  "spinningThrow",
+                  "spiritedCharge",
+                  "springAttack",
+                  "stabbingShot",
+                  "stageCombatant",
+                  "staggeringCritical",
+                  "staggeringFist",
+                  "stanceOfTheXorn",
+                  "standStill",
+                  "starryGrace",
+                  "startlingGetaway",
+                  "stepUp",
+                  "stepUpAndStrike",
+                  "stillSpell",
+                  "stormWarrior",
+                  "strangler",
+                  "streetCarnage",
+                  "streetStyle",
+                  "streetSweep",
+                  "strikeBack",
+                  "structuralStrike",
+                  "studiedSpell",
+                  "stunningAssault",
+                  "stunningCritical",
+                  "stunningFist",
+                  "stunningFistAdept",
+                  "stylizedSpell",
+                  "sunderingStrike",
+                  "suppressRegeneration",
+                  "surpriseFollowThrough",
+                  "surpriseStrike",
+                  "swapPlaces",
+                  "swiftAid",
+                  "swipeAndStash",
+                  "swordAndPistol",
+                  "sympatheticRage",
+                  "tacticalReposition",
+                  "tailTerror",
+                  "taldanDuelist",
+                  "tandemTrip",
+                  "tangleFeet",
+                  "targetOfOpportunity",
+                  "taskmaster",
+                  "teamUp",
+                  "teleportTactician",
+                  "tenaciousSpell",
+                  "tenebrousSpell",
+                  "terrorizingDisplay",
+                  "thanatopicSpell",
+                  "threnodicSpell",
+                  "thrillingVengeance",
+                  "throwAnything",
+                  "thunderAndFang",
+                  "thunderingSpell",
+                  "tigerClaws",
+                  "tigerPounce",
+                  "tigerStyle",
+                  "tiringCritical",
+                  "topplingSpell",
+                  "touchOfSerenity",
+                  "towerShieldProficiency",
+                  "trample",
+                  "traumaticSpell",
+                  "treeHanger",
+                  "tribalHunter",
+                  "trickRiding",
+                  "trippingStaff",
+                  "trippingStrike",
+                  "trippingTwirl",
+                  "twinFangLunge",
+                  "twinFangStrike",
+                  "twinFangStyle",
+                  "twinThunders",
+                  "twinThundersFlurry",
+                  "twinThundersMaster",
+                  "twinnedFeint",
+                  "twoHandedThrower",
+                  "twoWeaponDefense",
+                  "twoWeaponFeint",
+                  "twoWeaponFighting",
+                  "twoWeaponGrace",
+                  "twoWeaponRend",
+                  "umbralSpell",
+                  "unblinkingFlameFeint",
+                  "unblinkingFlameFist",
+                  "unbreakable",
+                  "uncannyDefense",
+                  "underAndOver",
+                  "underfoot",
+                  "underhandedTeamwork",
+                  "undersizedMount",
+                  "unfoldingWindRush",
+                  "unfoldingWindStrike",
+                  "unseat",
+                  "untwistingIronSkin",
+                  "untwistingIronStrength",
+                  "unyieldingFerocity",
+                  "vastHatred",
+                  "viciousStomp",
+                  "vitalStrike",
+                  "vulpinePounce",
+                  "waveStrike",
+                  "weaponFinesse",
+                  "weaponFocus",
+                  "weaponOfTheChosen",
+                  "weaponSpecialization",
+                  "weaponVersatility",
+                  "whipMastery",
+                  "whirlwindAttack",
+                  "widenSpell",
+                  "windStance",
+                  "wingsOfTheAndrosphinx",
+                  "wintersStrike",
+                  "woundedPawGambit",
+                  "yaiMimicSpell"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "magus.bonusFeats.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "ids",
+                "featIds": [
+                  "accursedCritical",
+                  "acrobaticSpellcaster",
+                  "adderStrike",
+                  "agileMaiden",
+                  "agileManeuvers",
+                  "aldoriArtistry",
+                  "aldoriDuelingDisciple",
+                  "aldoriDuelingMastery",
+                  "aldoriStyle",
+                  "aldoriStyleAegis",
+                  "aldoriStyleConquest",
+                  "allConsumingSwing",
+                  "amateurGunslinger",
+                  "amateurSwashbuckler",
+                  "anticipateDodge",
+                  "arcSlinger",
+                  "arcaneArmorMastery",
+                  "arcaneArmorTraining",
+                  "arcaneStrike",
+                  "archonDiversion",
+                  "archonJustice",
+                  "archonStyle",
+                  "armorProficiencyHeavy",
+                  "armorProficiencyLight",
+                  "armorProficiencyMedium",
+                  "armoredRider",
+                  "ascendantSpell",
+                  "aweInspiringSmash",
+                  "awesomeBlow",
+                  "awesomeThrow",
+                  "balorWhip",
+                  "banishingCritical",
+                  "barroomBrawler",
+                  "bashingFinish",
+                  "battleCry",
+                  "bearsBalance",
+                  "befuddlingStrike",
+                  "beliersBite",
+                  "betrayalSense",
+                  "bindingThrow",
+                  "blackPowderSpectacle",
+                  "blazingAura",
+                  "bleedingCritical",
+                  "bleedingStare",
+                  "blightedCritical",
+                  "blightedCriticalMastery",
+                  "blindFight",
+                  "blindingCritical",
+                  "blindingFlash",
+                  "blisteringFeint",
+                  "bloodBeak",
+                  "bloodFeast",
+                  "bloodSpurt",
+                  "bloodedArcaneStrike",
+                  "bloodyAssault",
+                  "bludgeoner",
+                  "blunderingDefense",
+                  "boarFerocity",
+                  "boarShred",
+                  "boarStyle",
+                  "bodyShield",
+                  "bodyguard",
+                  "bonebreaker",
+                  "bouncingSpell",
+                  "boundingHammer",
+                  "breakGuard",
+                  "brewPotion",
+                  "brokenWingGambit",
+                  "brutalCoupDeGrace",
+                  "bruteAssault",
+                  "bruteStomp",
+                  "bruteStyle",
+                  "bullRushStrike",
+                  "bullyingBlow",
+                  "burningSpell",
+                  "butAScratch",
+                  "cannonMaster",
+                  "cannyTumble",
+                  "catAndMouse",
+                  "catchOffGuard",
+                  "cautiousFighter",
+                  "cavalryFormation",
+                  "channelSmite",
+                  "channelingForce",
+                  "chargeThrough",
+                  "chargingHurler",
+                  "chokehold",
+                  "circuitousShot",
+                  "clamberingEscape",
+                  "clawPounce",
+                  "cleave",
+                  "cleaveThrough",
+                  "cleavingFinish",
+                  "closeQuartersThrower",
+                  "clovenHelm",
+                  "clusteredShots",
+                  "coaxingSpell",
+                  "cockatriceStrike",
+                  "combatExpertise",
+                  "combatPatrol",
+                  "combatReflexes",
+                  "combatStamina",
+                  "combatStyleMaster",
+                  "compoundedPain",
+                  "concussiveSpell",
+                  "consecrateSpell",
+                  "consumeEssence",
+                  "contagiousSpell",
+                  "coordinatedCapture",
+                  "coordinatedCharge",
+                  "coordinatedDefense",
+                  "coordinatedDistraction",
+                  "coordinatedManeuvers",
+                  "coordinatedShot",
+                  "cornugonShield",
+                  "cornugonSmash",
+                  "cornugonStun",
+                  "cornugonTrip",
+                  "counterReflexes",
+                  "counterpunch",
+                  "coveringDefense",
+                  "coveringFire",
+                  "craftConstruct",
+                  "craftMagicArmsAndArmor",
+                  "craftRod",
+                  "craftStaff",
+                  "craftWand",
+                  "craftWondrousItem",
+                  "craneRiposte",
+                  "craneStyle",
+                  "craneWing",
+                  "createReliquaryArmsAndShields",
+                  "createSanguineElixir",
+                  "cripplingCritical",
+                  "criticalFocus",
+                  "criticalMastery",
+                  "criticalVersatility",
+                  "crossbowMastery",
+                  "crusadersFist",
+                  "crushingBlow",
+                  "cunningIntuition",
+                  "dartingRetrieval",
+                  "dartingViper",
+                  "dastardlyFinish",
+                  "dazingAssault",
+                  "dazingFist",
+                  "dazingSpell",
+                  "dazzlingDisplay",
+                  "deadhandInitiate",
+                  "deadhandMaster",
+                  "deadhandStyle",
+                  "deadlyAim",
+                  "deadlyFinish",
+                  "deadlyStroke",
+                  "deafeningCritical",
+                  "deathFromAbove",
+                  "deathOrGlory",
+                  "deathlessInitiate",
+                  "deathlessMaster",
+                  "deathlessZealot",
+                  "defensiveCombatTraining",
+                  "defensiveWeaponTraining",
+                  "deflectArrows",
+                  "demonGrafter",
+                  "demonHunter",
+                  "demonicNemesis",
+                  "demoralizingLash",
+                  "demoralizingStare",
+                  "dentedHelm",
+                  "dervishDance",
+                  "desperateBattler",
+                  "desperateSwing",
+                  "destroyersBlessing",
+                  "devastatingStrike",
+                  "disarmingStrike",
+                  "disengagingFeint",
+                  "disengagingFlourish",
+                  "disengagingShot",
+                  "dishearteningDisplay",
+                  "disorientingBlow",
+                  "disruptingFist",
+                  "disruptingShot",
+                  "disruptive",
+                  "disruptiveSpell",
+                  "distanceThrower",
+                  "distractingCharge",
+                  "divaAdvance",
+                  "divaStrike",
+                  "divaStyle",
+                  "djinniSpin",
+                  "djinniSpirit",
+                  "djinniStyle",
+                  "dodge",
+                  "domainStrike",
+                  "dornDergarMaster",
+                  "doubleSlice",
+                  "dragDown",
+                  "dragonFerocity",
+                  "dragonRoar",
+                  "dragonStyle",
+                  "drainingStrike",
+                  "dreadfulCarnage",
+                  "duelingCapeDeed",
+                  "duelistOfTheRoaringFalls",
+                  "duelistOfTheShroudedLake",
+                  "earthChildBinder",
+                  "earthChildStyle",
+                  "earthChildTopple",
+                  "echoingSpell",
+                  "ectoplasmicSpell",
+                  "efreetiStance",
+                  "efreetiStyle",
+                  "efreetiTouch",
+                  "eldritchClaws",
+                  "elementalFist",
+                  "elementalSpell",
+                  "elephantStomp",
+                  "elvenAccuracy",
+                  "elvenBattleTraining",
+                  "empowerSpell",
+                  "enfiladingFire",
+                  "enforcer",
+                  "engulfHorror",
+                  "engulfRevulsion",
+                  "enhancedKiThrow",
+                  "enlargeSpell",
+                  "enrageOpponent",
+                  "entreatingCritical",
+                  "equipmentTrick",
+                  "excoriatingStare",
+                  "exhaustingCritical",
+                  "exoticWeaponProficiency",
+                  "exsanguinate",
+                  "extendSpell",
+                  "extraStamina",
+                  "extremePrejudice",
+                  "faeriesStrike",
+                  "fallingWaterGambit",
+                  "falseOpening",
+                  "farShot",
+                  "fatiguingStare",
+                  "fearsomeSpell",
+                  "feintPartner",
+                  "feintingFlurry",
+                  "fellingEscape",
+                  "fellingSmash",
+                  "fencingGrace",
+                  "feralCombatTraining",
+                  "ferociousTenacity",
+                  "finalEmbrace",
+                  "finalEmbraceHorror",
+                  "finalEmbraceMaster",
+                  "fireHand",
+                  "flagbearer",
+                  "flameWarrior",
+                  "flankingFoil",
+                  "flaringSpell",
+                  "fleetingSpell",
+                  "fleshwarper",
+                  "focusedDiscipline",
+                  "focusedShot",
+                  "focusedSpell",
+                  "focusingBlow",
+                  "followingStep",
+                  "forgeRing",
+                  "fortifiedArmorTraining",
+                  "foxInsight",
+                  "foxStyle",
+                  "foxTrickery",
+                  "frostWarrior",
+                  "furiousFocus",
+                  "furiousSpell",
+                  "furysFall",
+                  "furysSnare",
+                  "gangUp",
+                  "garensDiscipline",
+                  "giantKiller",
+                  "giantKillerStance",
+                  "giantsCrush",
+                  "giantsSmash",
+                  "giantsWallop",
+                  "gloomStrike",
+                  "gnomeWeaponFocus",
+                  "goblinCleaver",
+                  "goblinGunslinger",
+                  "gorgonsFist",
+                  "goryFinish",
+                  "grabbingDrag",
+                  "grabbingMaster",
+                  "grabbingStyle",
+                  "gracefulSteal",
+                  "graspingStrike",
+                  "greatCleave",
+                  "greatHatred",
+                  "greaterAwesomeBlow",
+                  "greaterBalorWhip",
+                  "greaterBlightedCritical",
+                  "greaterBlindFight",
+                  "greaterBullRush",
+                  "greaterDirtyTrick",
+                  "greaterDisarm",
+                  "greaterDrag",
+                  "greaterFeint",
+                  "greaterGrapple",
+                  "greaterMesmerizingFeint",
+                  "greaterOverrun",
+                  "greaterPenetratingStrike",
+                  "greaterRendingFury",
+                  "greaterReposition",
+                  "greaterShieldFocus",
+                  "greaterShieldSpecialization",
+                  "greaterSnapShot",
+                  "greaterSteal",
+                  "greaterSunder",
+                  "greaterTrip",
+                  "greaterTwoWeaponFighting",
+                  "greaterVitalStrike",
+                  "greaterWeaponFocus",
+                  "greaterWeaponOfTheChosen",
+                  "greaterWeaponSpecialization",
+                  "greaterWhipMastery",
+                  "groundGrabber",
+                  "grudgeFighter",
+                  "gruesomeSlaughter",
+                  "hamatulaGrasp",
+                  "hamatulaStrike",
+                  "hamatulatsu",
+                  "hammerTheGap",
+                  "hardHeaded",
+                  "harderTheyFall",
+                  "hauntedGnome",
+                  "hauntedGnomeAssault",
+                  "hauntedGnomeShroud",
+                  "heightenSpell",
+                  "hellcatPounce",
+                  "hellcatStealth",
+                  "hexStrike",
+                  "holdTheBlade",
+                  "holyWaterAssault",
+                  "hordeCharge",
+                  "hornOfTheCriosphinx",
+                  "horrificGorging",
+                  "horseMaster",
+                  "impactCriticalShot",
+                  "impalingCritical",
+                  "improvedAwesomeBlow",
+                  "improvedAwesomeThrow",
+                  "improvedBackToBack",
+                  "improvedBalorWhip",
+                  "improvedBlindFight",
+                  "improvedBravery",
+                  "improvedBullRush",
+                  "improvedChargingHurler",
+                  "improvedCleavingFinish",
+                  "improvedCritical",
+                  "improvedDevastatingStrike",
+                  "improvedDirtyTrick",
+                  "improvedDisarm",
+                  "improvedDrag",
+                  "improvedFeint",
+                  "improvedFeintPartner",
+                  "improvedFeintingFlurry",
+                  "improvedGrapple",
+                  "improvedImpalingCritical",
+                  "improvedInitiative",
+                  "improvedKiThrow",
+                  "improvedLowBlow",
+                  "improvedMountedArchery",
+                  "improvedOverrun",
+                  "improvedPositionOfStrength",
+                  "improvedPreciseShot",
+                  "improvedRendingFury",
+                  "improvedReposition",
+                  "improvedSabotagingSunder",
+                  "improvedSecondChance",
+                  "improvedShieldBash",
+                  "improvedSidestep",
+                  "improvedSnapShot",
+                  "improvedSteal",
+                  "improvedSunder",
+                  "improvedSurpriseFollowThrough",
+                  "improvedSwapPlaces",
+                  "improvedTrip",
+                  "improvedTwoWeaponFeint",
+                  "improvedTwoWeaponFighting",
+                  "improvedUnarmedStrike",
+                  "improvedUnderhandedTeamwork",
+                  "improvedVitalStrike",
+                  "improvedWeaponOfTheChosen",
+                  "improvedWhipMastery",
+                  "improvisedWeaponMastery",
+                  "inHarmsWay",
+                  "inciteParanoia",
+                  "innerFlame",
+                  "inscribeMagicalTattoo",
+                  "inspiringBravery",
+                  "intensePain",
+                  "intensifiedSpell",
+                  "interceptCharge",
+                  "interweaveCompositeBlast",
+                  "intimidatingGaze",
+                  "intimidatingProwess",
+                  "intuitiveSpell",
+                  "jabbingDancer",
+                  "jabbingMaster",
+                  "jabbingStyle",
+                  "jaguarPounce",
+                  "janniRush",
+                  "janniStyle",
+                  "janniTempest",
+                  "jawbreaker",
+                  "kiThrow",
+                  "kickUp",
+                  "killingFlourish",
+                  "kirinPath",
+                  "kirinStrike",
+                  "kirinStyle",
+                  "koboldAmbusher",
+                  "koboldSniper",
+                  "kytonCut",
+                  "kytonShield",
+                  "kytonStyle",
+                  "landingRoll",
+                  "latchingHorror",
+                  "lightningDraw",
+                  "lightningStance",
+                  "lingeringSpell",
+                  "logicalSpell",
+                  "lookout",
+                  "lowProfile",
+                  "luckyStrike",
+                  "lunge",
+                  "maddeningObliteration",
+                  "maddeningStrike",
+                  "maddeningStyle",
+                  "mantisStyle",
+                  "mantisTorment",
+                  "mantisWisdom",
+                  "manyshot",
+                  "maridColdsnap",
+                  "maridSpirit",
+                  "maridStyle",
+                  "martialDominance",
+                  "martialMastery",
+                  "martialVersatility",
+                  "martialWeaponProficiency",
+                  "masterCombatPerformer",
+                  "masterSiegeEngineer",
+                  "masterfulFlourish",
+                  "maximizeSpell",
+                  "measureFoe",
+                  "medusasWrath",
+                  "mercifulSpell",
+                  "mercilessBeating",
+                  "mercilessButchery",
+                  "mesmerizingFeint",
+                  "misdirectionAttack",
+                  "misdirectionRedirection",
+                  "misdirectionTactics",
+                  "missileShield",
+                  "mobility",
+                  "monasticLegacy",
+                  "monkeyLunge",
+                  "monkeyMoves",
+                  "monkeyShine",
+                  "monkeyStyle",
+                  "moonlightStalker",
+                  "moonlightStalkerFeint",
+                  "moonlightStalkerMaster",
+                  "mountainSplittingStrike",
+                  "mountedArchery",
+                  "mountedBlade",
+                  "mountedCombat",
+                  "mountedOnslaught",
+                  "mountedShield",
+                  "mountedSkirmisher",
+                  "multiattack",
+                  "multiweaponFighting",
+                  "musketeersDaring",
+                  "musketeersDodge",
+                  "musketeersReposition",
+                  "musketeersSidestep",
+                  "myBladeIsYours",
+                  "neckbreaker",
+                  "netAdept",
+                  "netAndTrident",
+                  "netManeuvering",
+                  "netTrickery",
+                  "nightmareFist",
+                  "nightmareStriker",
+                  "nightmareWeaver",
+                  "nimbleStriker",
+                  "notoriousVigilante",
+                  "openingVolley",
+                  "orcHewer",
+                  "orcWeaponExpertise",
+                  "ostentatiousRager",
+                  "ostentatiousWeakness",
+                  "osyluthGuile",
+                  "outflank",
+                  "owlDive",
+                  "owlStyle",
+                  "owlSwoop",
+                  "packAttack",
+                  "packFlanking",
+                  "pairedOpportunists",
+                  "pantherClaw",
+                  "pantherParry",
+                  "pantherStyle",
+                  "paralyzingStrike",
+                  "partingShot",
+                  "passingTrick",
+                  "patientStrike",
+                  "penetratingStrike",
+                  "perfectStrike",
+                  "perfectStyle",
+                  "performanceWeaponMastery",
+                  "performingCombatant",
+                  "perniciousStab",
+                  "persistentSpell",
+                  "piercingGrapple",
+                  "piercingSpell",
+                  "pinDown",
+                  "pinningKnockout",
+                  "pinningRend",
+                  "pinpointPoisoner",
+                  "pinpointTargeting",
+                  "piranhaStrike",
+                  "pointBlankMaster",
+                  "pointBlankShot",
+                  "positionOfStrength",
+                  "powerAttack",
+                  "preciseShot",
+                  "preciseStrike",
+                  "proneShooter",
+                  "proneSlinger",
+                  "protectiveLine",
+                  "psychicCombatant",
+                  "pummelingBully",
+                  "pummelingCharge",
+                  "pummelingStyle",
+                  "punchThrough",
+                  "punishingKick",
+                  "pushTheLimits",
+                  "pushingAssault",
+                  "quarterstaffMaster",
+                  "quickBullRush",
+                  "quickDirtyTrick",
+                  "quickDrag",
+                  "quickDraw",
+                  "quickReposition",
+                  "quickSteal",
+                  "quickStow",
+                  "quickStudy",
+                  "quickenSpell",
+                  "quietDeath",
+                  "quiveringPalmAdept",
+                  "quiveringPalmVersatility",
+                  "rangedFeint",
+                  "rapidGrappler",
+                  "rapidReload",
+                  "rapidShot",
+                  "rayShield",
+                  "reachSpell",
+                  "readyForAnything",
+                  "reapTheInfirm",
+                  "reboundingLeap",
+                  "rebuffingReduction",
+                  "redistributedMight",
+                  "rendingClaws",
+                  "rendingFury",
+                  "repositioningStrike",
+                  "revelationStrike",
+                  "reverseFeint",
+                  "rhinoCharge",
+                  "rideByAttack",
+                  "rimeSpell",
+                  "riskyStriker",
+                  "rivingStrike",
+                  "sabotagingSunder",
+                  "sapAdept",
+                  "sapMaster",
+                  "savageSurge",
+                  "savingShield",
+                  "scarringSpell",
+                  "schoolStrike",
+                  "scorchingWeapons",
+                  "scorpionStyle",
+                  "scribeScroll",
+                  "seaHunter",
+                  "secondChance",
+                  "seethingHatred",
+                  "seizeAdvantage",
+                  "seizeTheMoment",
+                  "selectiveSpell",
+                  "serpentLash",
+                  "serrensMasterstroke",
+                  "shadowGrasp",
+                  "shadowStrike",
+                  "shadowsOfFear",
+                  "shaitanEarthblast",
+                  "shaitanSkin",
+                  "shaitanStyle",
+                  "sharpclaw",
+                  "shatterControl",
+                  "shatterDefenses",
+                  "shatterMentalMask",
+                  "shatterspell",
+                  "shieldFocus",
+                  "shieldMaster",
+                  "shieldOfSwings",
+                  "shieldProficiency",
+                  "shieldSlam",
+                  "shieldSpecialization",
+                  "shieldWall",
+                  "shotOnTheRun",
+                  "shrewdTactician",
+                  "sickeningCritical",
+                  "sickeningSpell",
+                  "sidestep",
+                  "siegeCommander",
+                  "siegeEngineer",
+                  "siegeGunner",
+                  "silentKill",
+                  "silentSpell",
+                  "simpleWeaponProficiency",
+                  "sisterhoodDedication",
+                  "sisterhoodRampart",
+                  "sisterhoodStyle",
+                  "slashingGrace",
+                  "slayersFeint",
+                  "sleeperHold",
+                  "slidingAxeThrow",
+                  "slidingDash",
+                  "slingFlail",
+                  "smash",
+                  "snakeFang",
+                  "snakeSidewind",
+                  "snakeStyle",
+                  "snapShot",
+                  "snappingTurtleClutch",
+                  "snappingTurtleShell",
+                  "snappingTurtleStyle",
+                  "snatchArrows",
+                  "socialBravery",
+                  "sorcerousStrike",
+                  "spectacularExit",
+                  "spellbreaker",
+                  "spinningThrow",
+                  "spiritedCharge",
+                  "springAttack",
+                  "stabbingShot",
+                  "stageCombatant",
+                  "staggeringCritical",
+                  "staggeringFist",
+                  "stanceOfTheXorn",
+                  "standStill",
+                  "starryGrace",
+                  "startlingGetaway",
+                  "stepUp",
+                  "stepUpAndStrike",
+                  "stillSpell",
+                  "stormWarrior",
+                  "strangler",
+                  "streetCarnage",
+                  "streetStyle",
+                  "streetSweep",
+                  "strikeBack",
+                  "structuralStrike",
+                  "studiedSpell",
+                  "stunningAssault",
+                  "stunningCritical",
+                  "stunningFist",
+                  "stunningFistAdept",
+                  "stylizedSpell",
+                  "sunderingStrike",
+                  "suppressRegeneration",
+                  "surpriseFollowThrough",
+                  "surpriseStrike",
+                  "swapPlaces",
+                  "swiftAid",
+                  "swipeAndStash",
+                  "swordAndPistol",
+                  "sympatheticRage",
+                  "tacticalReposition",
+                  "tailTerror",
+                  "taldanDuelist",
+                  "tandemTrip",
+                  "tangleFeet",
+                  "targetOfOpportunity",
+                  "taskmaster",
+                  "teamUp",
+                  "teleportTactician",
+                  "tenaciousSpell",
+                  "tenebrousSpell",
+                  "terrorizingDisplay",
+                  "thanatopicSpell",
+                  "threnodicSpell",
+                  "thrillingVengeance",
+                  "throwAnything",
+                  "thunderAndFang",
+                  "thunderingSpell",
+                  "tigerClaws",
+                  "tigerPounce",
+                  "tigerStyle",
+                  "tiringCritical",
+                  "topplingSpell",
+                  "touchOfSerenity",
+                  "towerShieldProficiency",
+                  "trample",
+                  "traumaticSpell",
+                  "treeHanger",
+                  "tribalHunter",
+                  "trickRiding",
+                  "trippingStaff",
+                  "trippingStrike",
+                  "trippingTwirl",
+                  "twinFangLunge",
+                  "twinFangStrike",
+                  "twinFangStyle",
+                  "twinThunders",
+                  "twinThundersFlurry",
+                  "twinThundersMaster",
+                  "twinnedFeint",
+                  "twoHandedThrower",
+                  "twoWeaponDefense",
+                  "twoWeaponFeint",
+                  "twoWeaponFighting",
+                  "twoWeaponGrace",
+                  "twoWeaponRend",
+                  "umbralSpell",
+                  "unblinkingFlameFeint",
+                  "unblinkingFlameFist",
+                  "unbreakable",
+                  "uncannyDefense",
+                  "underAndOver",
+                  "underfoot",
+                  "underhandedTeamwork",
+                  "undersizedMount",
+                  "unfoldingWindRush",
+                  "unfoldingWindStrike",
+                  "unseat",
+                  "untwistingIronSkin",
+                  "untwistingIronStrength",
+                  "unyieldingFerocity",
+                  "vastHatred",
+                  "viciousStomp",
+                  "vitalStrike",
+                  "vulpinePounce",
+                  "waveStrike",
+                  "weaponFinesse",
+                  "weaponFocus",
+                  "weaponOfTheChosen",
+                  "weaponSpecialization",
+                  "weaponVersatility",
+                  "whipMastery",
+                  "whirlwindAttack",
+                  "widenSpell",
+                  "windStance",
+                  "wingsOfTheAndrosphinx",
+                  "wintersStrike",
+                  "woundedPawGambit",
+                  "yaiMimicSpell"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "magus.arcana.3",
+      "classType": "magus",
+      "featureId": "magus.feature.ca723f71a553",
+      "acquisitionIds": [
+        "magus.feature.ca723f71a553.level3",
+        "magus.feature.ca723f71a553.level6",
+        "magus.feature.ca723f71a553.level9",
+        "magus.feature.ca723f71a553.level12",
+        "magus.feature.ca723f71a553.level15",
+        "magus.feature.ca723f71a553.level18"
+      ],
+      "choice": {
+        "id": "arcana",
+        "prompt": "Scegli un segreto del magus",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "magus.arcana"
+      }
+    }
+  ]
+}

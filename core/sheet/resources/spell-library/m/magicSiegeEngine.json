@@ -1,0 +1,49 @@
+{
+  "id": "magicSiegeEngine",
+  "name": "Macchina d'Assedio Magica",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 2,
+    "ARCANIST": 2,
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "WIZARD": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "PALADIN": 2,
+    "WARPRIEST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "area": "1 Macchina d'Assedio toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Potenzia precisione e danni di una macchina d'assedio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Macchina_d%27Assedio_Magica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Macchina d'Assedio Magica: https://golarion.altervista.org/wiki/Incantesimi/Macchina_d%27Assedio_Magica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,113 @@
+{
+  "id": "bard.archetype.293c326e8753",
+  "classType": "bard",
+  "name": "Celebrità",
+  "description": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Celebrit.C3.A0 Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Affascinare. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "bard.feature.e91104f280e1",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.8b1162bb0751",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.34d6c8faf104",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.a7be72734c8f",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "bard.feature.e91104f280e1",
+    "bard.feature.8b1162bb0751",
+    "bard.feature.34d6c8faf104",
+    "bard.feature.a7be72734c8f"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "bard.archetype.293c326e8753.instructions",
+      "name": "Celebrità",
+      "description": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Celebrit.C3.A0 Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "bard.archetype.293c326e8753.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Celebrit.C3.A0 Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Affascinare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.293c326e8753.feature.1",
+      "name": "Famoso",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Celebrit.C3.A0",
+      "progression": [
+        {
+          "id": "bard.archetype.293c326e8753.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Celebrità — Famoso: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Celebrit.C3.A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.293c326e8753.feature.2",
+      "name": "Esibizione Bardica",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Celebrit.C3.A0",
+      "progression": [
+        {
+          "id": "bard.archetype.293c326e8753.feature.2.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Celebrità — Esibizione Bardica: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Celebrit.C3.A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.293c326e8753.feature.3",
+      "name": "Stella Splendente (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Celebrit.C3.A0",
+      "progression": [
+        {
+          "id": "bard.archetype.293c326e8753.feature.3.initial",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Celebrità — Stella Splendente (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Celebrit.C3.A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

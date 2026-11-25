@@ -1,0 +1,41 @@
+{
+  "id": "borrowSkill",
+  "name": "Abilità in Prestito",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 1,
+    "MEDIUM": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "ROUND",
+  "durationDescription": "fino a 1 round/livello (vedi descrizione)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Permette di affrontare una prova utilizzando i gradi posseduti da un'altra creatura, entro i limiti dell'incantesimo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Abilit%C3%A0_in_Prestito",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Abilità in Prestito: https://golarion.altervista.org/wiki/Incantesimi/Abilit%C3%A0_in_Prestito Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

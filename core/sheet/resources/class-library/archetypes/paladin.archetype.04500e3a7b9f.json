@@ -1,0 +1,48 @@
+{
+  "id": "paladin.archetype.04500e3a7b9f",
+  "classType": "paladin",
+  "name": "Giuramento Contro i Dragoni",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_i_Dragoni Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.feature.19f84fbac558",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.57f13dada9e2",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.99f3e1a8c78d",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "paladin.feature.19f84fbac558",
+    "paladin.feature.57f13dada9e2",
+    "paladin.feature.99f3e1a8c78d"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.04500e3a7b9f.instructions",
+      "name": "Giuramento Contro i Dragoni",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_i_Dragoni Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.04500e3a7b9f.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_i_Dragoni Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

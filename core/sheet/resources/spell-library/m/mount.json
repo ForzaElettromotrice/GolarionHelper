@@ -1,0 +1,44 @@
+{
+  "id": "mount",
+  "name": "Cavalcatura",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "WITCH": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "OCCULTIST": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un ciuffo di pelo di cavallo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "una cavalcatura",
+  "durationType": "HOUR",
+  "durationDescription": "2 ore/livello(I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama una cavalcatura temporanea utilizzabile per gli spostamenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cavalcatura",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cavalcatura: https://golarion.altervista.org/wiki/Incantesimi/Cavalcatura Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

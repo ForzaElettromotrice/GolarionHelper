@@ -1,0 +1,41 @@
+{
+  "id": "holyWhisper",
+  "name": "Sussurro Sacro",
+  "school": "EVOCATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "PALADIN": 3
+  },
+  "castingTimeCategory": "IMMEDIATE_ACTION",
+  "castingTimeDescription": "1 azione immediata",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "area": "esplosione a forma di cono",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un sussurro sacro indebolisce i malvagi e sostiene i buoni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sussurro_Sacro",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sussurro Sacro: https://golarion.altervista.org/wiki/Incantesimi/Sussurro_Sacro Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

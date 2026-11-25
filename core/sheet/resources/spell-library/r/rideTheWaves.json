@@ -1,0 +1,51 @@
+{
+  "id": "rideTheWaves",
+  "name": "Cavalcare le Onde",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "WATER"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "HUNTER": 4,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "DRUID": 4,
+    "WITCH": 4,
+    "BLOODRAGER": 4,
+    "SHAMAN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Adatta il soggetto al movimento subacqueo, consentendogli di nuotare e respirare sott'acqua. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cavalcare_le_Onde",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cavalcare le Onde: https://golarion.altervista.org/wiki/Incantesimi/Cavalcare_le_Onde Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

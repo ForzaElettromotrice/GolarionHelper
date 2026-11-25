@@ -1,0 +1,34 @@
+{
+  "id": "greaterMercy",
+  "name": "Indulgenza Superiore",
+  "description": "Rende più curativa Imposizione delle Mani quando il bersaglio non necessita delle indulgenze disponibili. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Indulgenza_Superiore",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Imposizione delle Mani Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Indulgenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Indulgenza Superiore: https://golarion.altervista.org/wiki/Talenti/Indulgenza_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di classe Imposizione delle Mani; Prerequisito da verificare manualmente: privilegio di classe Indulgenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

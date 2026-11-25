@@ -1,0 +1,27 @@
+{
+  "id": "counterpunch",
+  "name": "Pugno di Risposta",
+  "description": "Consente risposte senz'armi agli attacchi in mischia mancati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Pugno_di_Risposta",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Destrezza 18, Arma Focalizzata (colpo senz'armi), Colpo Senz'Armi Migliorato, Riflessi in Combattimento; Attaccabrighe di 12° livello o Bonus di Attacco Base +16. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Pugno di Risposta: https://golarion.altervista.org/wiki/Talenti/Pugno_di_Risposta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Destrezza 18, Arma Focalizzata (colpo senz'armi), Colpo Senz'Armi Migliorato, Riflessi in Combattimento; Attaccabrighe di 12° livello o Bonus di Attacco Base +16. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,59 @@
+{
+  "id": "aspectOfTheNightingale",
+  "name": "Aspetto dell'Usignolo",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "BARD": 1,
+    "SKALD": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "DRUID": 1,
+    "INQUISITOR": 1,
+    "PALADIN": 1,
+    "RANGER": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Concede +2 competenza a Diplomazia e al canto; aiuta a resistere agli effetti di charme. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aspetto_dell%27Usignolo",
+  "effects": [
+    {
+      "id": "diplomacy",
+      "type": "modifier",
+      "resource": "skill.diplomacy",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "competence",
+      "expression": "2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare +2 competenza alla specifica abilità Intrattenere (cantare). Una volta al minuto si può tirare due volte un TS contro charme e scegliere il migliore; gestione manuale. Gestire manualmente durata e risoluzione del lancio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Bardo/Scaldo 1, Cacciatore 1, Chierico/Oracolo/Sacerdote Guerriero 1, Druido 1, Inquisitore 1, Paladino 1, Ranger 1, Sciamano 1 (Shelyn) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

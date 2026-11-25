@@ -1,0 +1,57 @@
+{
+  "id": "howlingAgony",
+  "name": "Agonia Ululante",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "PAIN",
+    "DEATH"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WITCH": 3,
+    "INQUISITOR": 2,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "MESMERIST": 2,
+    "PSYCHIC": 2,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un ago e un bulbo oculare rinsecchito",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura vivente/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Infligge un dolore che ostacola le azioni della vittima e la costringe a urlare per alleviarlo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Agonia_Ululante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Agonia Ululante: https://golarion.altervista.org/wiki/Incantesimi/Agonia_Ululante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura vivente/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

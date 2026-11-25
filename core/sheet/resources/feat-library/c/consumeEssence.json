@@ -1,0 +1,28 @@
+{
+  "id": "consumeEssence",
+  "name": "Consumare Essenza",
+  "description": "Sottrae energia vitale alle creature inghiottite. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Consumare_Essenza",
+  "types": [
+    "combat",
+    "monster"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Bonus di Attacco Base +6; allineamento malvagio; capacità universale Inghiottire; occorre appartenere al tipo Bestia Magica, Esterno o Non Morto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Consumare Essenza: https://golarion.altervista.org/wiki/Talenti/Consumare_Essenza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Bonus di Attacco Base +6; allineamento malvagio; capacità universale Inghiottire; occorre appartenere al tipo Bestia Magica, Esterno o Non Morto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

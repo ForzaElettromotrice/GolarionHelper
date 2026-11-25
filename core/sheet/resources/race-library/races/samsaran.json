@@ -1,0 +1,595 @@
+{
+  "id": "samsaran",
+  "name": "Samsaran",
+  "qualities": [
+    {
+      "id": "samsaran.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Umanoide (samsaran). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "samsaran.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "samsaran.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "samsaran.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "int",
+          "type": "modifier",
+          "resource": "int",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "samsaran.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "samsaran",
+          "type": "languageGrant",
+          "languageId": "samsaran"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "dtang",
+            "erutaki",
+            "hallit",
+            "honLa",
+            "hwan",
+            "iobarian",
+            "kelish",
+            "minatan",
+            "minkaian",
+            "osiriani",
+            "polyglot",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "tien",
+            "varisian",
+            "varki",
+            "vudrani",
+            "common",
+            "abyssal",
+            "aquan",
+            "auran",
+            "celestial",
+            "draconic",
+            "giant",
+            "ignan",
+            "infernal",
+            "nagaji",
+            "tengu",
+            "terran"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "samsaran.lowLightVision",
+      "name": "Visione Crepuscolare",
+      "description": "Distanza visiva doppia rispetto a un umano con luce scarsa.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Distanza visiva doppia rispetto a un umano con luce scarsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "samsaran.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita indicata.",
+      "effects": [
+        {
+          "id": "rogueTalent",
+          "type": "favoredClassBonus",
+          "classes": [
+            "rogue"
+          ],
+          "name": "Ladro — Dote",
+          "description": "Ladro — Dote — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scegliere una nuova Dote da Ladro. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "wizardSpell",
+          "type": "favoredClassBonus",
+          "classes": [
+            "wizard"
+          ],
+          "name": "Mago — Incantesimo",
+          "description": "Mago — Incantesimo — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un incantesimo da mago al libro, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkDeath",
+          "type": "favoredClassBonus",
+          "classes": [
+            "monk"
+          ],
+          "name": "Monaco — Morte",
+          "description": "Monaco — Morte",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "savingThrowall",
+              "type": "modifier",
+              "resource": "savingThrow.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Resistere ad attacchi mortali"
+            }
+          ]
+        },
+        {
+          "id": "oracleSpell",
+          "type": "favoredClassBonus",
+          "classes": [
+            "oracle"
+          ],
+          "name": "Oracolo — Incantesimo",
+          "description": "Oracolo — Incantesimo — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un incantesimo conosciuto da oracolo, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "samsaran.samsaranMagic",
+      "name": "Magia dei Samsaran",
+      "description": "Con Carisma almeno 11: Comprensione dei Linguaggi, Stabilizzare e Visione della Morte ciascuno 1/giorno, LI pari al livello.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Con Carisma almeno 11: Comprensione dei Linguaggi, Stabilizzare e Visione della Morte ciascuno 1/giorno, LI pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "samsaran.shardsOfThePast",
+      "name": "Frammenti del Passato",
+      "description": "Due Conoscenze ricevono +2 e diventano abilità di classe.",
+      "effects": [],
+      "choices": [
+        {
+          "id": "knowledge",
+          "prompt": "Scegli due Conoscenze",
+          "selectionCount": 2,
+          "options": [
+            {
+              "id": "arcana",
+              "name": "Arcane",
+              "effects": [
+                {
+                  "id": "skillknowledgearcana",
+                  "type": "modifier",
+                  "resource": "skill.knowledge.arcana",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                },
+                {
+                  "id": "skillknowledgearcanaClass",
+                  "type": "classSkillGrant",
+                  "resource": "skill.knowledge.arcana"
+                }
+              ]
+            },
+            {
+              "id": "dungeoneering",
+              "name": "Dungeon",
+              "effects": [
+                {
+                  "id": "skillknowledgedungeoneering",
+                  "type": "modifier",
+                  "resource": "skill.knowledge.dungeoneering",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                },
+                {
+                  "id": "skillknowledgedungeoneeringClass",
+                  "type": "classSkillGrant",
+                  "resource": "skill.knowledge.dungeoneering"
+                }
+              ]
+            },
+            {
+              "id": "engineering",
+              "name": "Ingegneria",
+              "effects": [
+                {
+                  "id": "skillknowledgeengineering",
+                  "type": "modifier",
+                  "resource": "skill.knowledge.engineering",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                },
+                {
+                  "id": "skillknowledgeengineeringClass",
+                  "type": "classSkillGrant",
+                  "resource": "skill.knowledge.engineering"
+                }
+              ]
+            },
+            {
+              "id": "geography",
+              "name": "Geografia",
+              "effects": [
+                {
+                  "id": "skillknowledgegeography",
+                  "type": "modifier",
+                  "resource": "skill.knowledge.geography",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                },
+                {
+                  "id": "skillknowledgegeographyClass",
+                  "type": "classSkillGrant",
+                  "resource": "skill.knowledge.geography"
+                }
+              ]
+            },
+            {
+              "id": "history",
+              "name": "Storia",
+              "effects": [
+                {
+                  "id": "skillknowledgehistory",
+                  "type": "modifier",
+                  "resource": "skill.knowledge.history",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                },
+                {
+                  "id": "skillknowledgehistoryClass",
+                  "type": "classSkillGrant",
+                  "resource": "skill.knowledge.history"
+                }
+              ]
+            },
+            {
+              "id": "local",
+              "name": "Locali",
+              "effects": [
+                {
+                  "id": "skillknowledgelocal",
+                  "type": "modifier",
+                  "resource": "skill.knowledge.local",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                },
+                {
+                  "id": "skillknowledgelocalClass",
+                  "type": "classSkillGrant",
+                  "resource": "skill.knowledge.local"
+                }
+              ]
+            },
+            {
+              "id": "nature",
+              "name": "Natura",
+              "effects": [
+                {
+                  "id": "skillknowledgenature",
+                  "type": "modifier",
+                  "resource": "skill.knowledge.nature",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                },
+                {
+                  "id": "skillknowledgenatureClass",
+                  "type": "classSkillGrant",
+                  "resource": "skill.knowledge.nature"
+                }
+              ]
+            },
+            {
+              "id": "nobility",
+              "name": "Nobiltà",
+              "effects": [
+                {
+                  "id": "skillknowledgenobility",
+                  "type": "modifier",
+                  "resource": "skill.knowledge.nobility",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                },
+                {
+                  "id": "skillknowledgenobilityClass",
+                  "type": "classSkillGrant",
+                  "resource": "skill.knowledge.nobility"
+                }
+              ]
+            },
+            {
+              "id": "planes",
+              "name": "Piani",
+              "effects": [
+                {
+                  "id": "skillknowledgeplanes",
+                  "type": "modifier",
+                  "resource": "skill.knowledge.planes",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                },
+                {
+                  "id": "skillknowledgeplanesClass",
+                  "type": "classSkillGrant",
+                  "resource": "skill.knowledge.planes"
+                }
+              ]
+            },
+            {
+              "id": "religion",
+              "name": "Religioni",
+              "effects": [
+                {
+                  "id": "skillknowledgereligion",
+                  "type": "modifier",
+                  "resource": "skill.knowledge.religion",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                },
+                {
+                  "id": "skillknowledgereligionClass",
+                  "type": "classSkillGrant",
+                  "resource": "skill.knowledge.religion"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "samsaran.lifebound",
+      "name": "Legame Vitale",
+      "description": "Legame Vitale",
+      "effects": [
+        {
+          "id": "savingThrowall",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Effetti di morte o energia negativa, oppure Tempra per rimuovere livelli negativi"
+        },
+        {
+          "id": "abilityCheckcon",
+          "type": "modifier",
+          "resource": "abilityCheck.con",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Stabilizzarsi con PF negativi"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "samsaran.mysticPastLife",
+      "name": "Vita Passata Mistica",
+      "description": "Vita Passata Mistica",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Al 1° livello scegliere 1 + bonus della caratteristica chiave incantesimi dalla lista di un'altra classe dello stesso tipo arcano/divino, aggiungendoli alla propria lista. Quantità fissata al 1° livello; scelte e liste manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "samsaran.shardsOfThePast"
+      ]
+    }
+  ]
+}

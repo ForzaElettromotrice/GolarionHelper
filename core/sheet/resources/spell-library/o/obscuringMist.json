@@ -1,0 +1,61 @@
+{
+  "id": "obscuringMist",
+  "name": "Foschia Occultante",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ADEPT": 1,
+    "ARCANIST": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "DRUID": 1,
+    "WITCH": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "MESMERIST": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SHAMAN": 1,
+    "SPIRITUALIST": 1,
+    "SORCERER": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "AIR": 1,
+      "DARKNESS": 1,
+      "WATER": 1,
+      "WEATHER": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "6 m",
+  "effect": "nube centrata su di sé che si propaga per 6 m ed è alta 6 m",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Genera una nube di nebbia che ostacola la vista attorno all'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Foschia_Occultante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Foschia Occultante: https://golarion.altervista.org/wiki/Incantesimi/Foschia_Occultante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 1 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

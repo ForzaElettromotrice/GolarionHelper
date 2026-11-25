@@ -1,0 +1,40 @@
+{
+  "id": "garensDiscipline",
+  "name": "Disciplina di Garen",
+  "description": "Migliora una difesa scelta quando si combatte con prudenza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Disciplina_di_Garen",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +4",
+      "expression": "@bab >= 4"
+    },
+    {
+      "description": "Allerta",
+      "feat": {
+        "id": "alertness"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Disciplina di Garen: https://golarion.altervista.org/wiki/Talenti/Disciplina_di_Garen. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Spada da Duello Aldori); Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

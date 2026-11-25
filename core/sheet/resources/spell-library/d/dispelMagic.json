@@ -1,0 +1,68 @@
+{
+  "id": "dispelMagic",
+  "name": "Dissolvi Magie",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 3,
+    "ARCANIST": 3,
+    "BARD": 3,
+    "HUNTER": 4,
+    "CLERIC": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "DRUID": 4,
+    "WITCH": 3,
+    "INQUISITOR": 3,
+    "WIZARD": 3,
+    "MAGUS": 3,
+    "MEDIUM": 3,
+    "MESMERIST": 3,
+    "OCCULTIST": 3,
+    "ORACLE": 3,
+    "PALADIN": 3,
+    "PSYCHIC": 3,
+    "WARPRIEST": 3,
+    "SKALD": 3,
+    "SHAMAN": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "MAGIC": 3
+    }
+  },
+  "spellLevelByBloodline": {
+    "ARCANE": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 incantatore, 1 creatura o 1 oggetto",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Tenta di interrompere incantesimi o effetti magici attraverso una prova di dissoluzione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Dissolvi_Magie",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Dissolvi Magie: https://golarion.altervista.org/wiki/Incantesimi/Dissolvi_Magie Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: mistero Piagamagica 3 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

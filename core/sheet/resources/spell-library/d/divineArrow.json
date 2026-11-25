@@ -1,0 +1,35 @@
+{
+  "id": "divineArrow",
+  "name": "Freccia Divina",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "PALADIN": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 proiettile",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Carica un proiettile di energia sacra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Freccia_Divina",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Freccia Divina: https://golarion.altervista.org/wiki/Incantesimi/Freccia_Divina Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

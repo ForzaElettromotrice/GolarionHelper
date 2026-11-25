@@ -1,0 +1,24 @@
+{
+  "id": "coordinatedCapture",
+  "name": "Cattura Coordinata",
+  "description": "L'accerchiamento ostacola l'evasione acrobatica e il lancio prudente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Cattura_Coordinata",
+  "types": [
+    "combat",
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Cattura Coordinata: https://golarion.altervista.org/wiki/Talenti/Cattura_Coordinata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

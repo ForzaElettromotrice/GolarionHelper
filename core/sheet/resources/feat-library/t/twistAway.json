@@ -1,0 +1,27 @@
+{
+  "id": "twistAway",
+  "name": "Ruotare Via",
+  "description": "Consente di affidarsi ai Riflessi per resistere a un effetto normalmente legato alla Tempra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ruotare_Via",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Eludere Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ruotare Via: https://golarion.altervista.org/wiki/Talenti/Ruotare_Via. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Eludere Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

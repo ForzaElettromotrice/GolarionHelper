@@ -1,0 +1,241 @@
+{
+  "id": "ogre",
+  "name": "Ogre",
+  "qualities": [
+    {
+      "id": "ogre.type",
+      "name": "Tipo",
+      "description": "Umanoide (gigante).",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide (gigante). Le interazioni basate sul tipo richiedono verifica manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "ogre.size",
+      "name": "Taglia",
+      "description": "Grande.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "large"
+        }
+      ]
+    },
+    {
+      "id": "ogre.baseSpeed",
+      "name": "Velocità",
+      "description": "9 m sul terreno.",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "ogre.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Modificatori razziali.",
+      "effects": [
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        },
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "int",
+          "type": "modifier",
+          "resource": "int",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "ogre.languages",
+      "name": "Linguaggi",
+      "description": "Lingue concesse e apprendimento.",
+      "effects": [
+        {
+          "id": "giant",
+          "type": "languageGrant",
+          "languageId": "giant"
+        },
+        {
+          "id": "intelligence",
+          "type": "reminder",
+          "message": "La pagina non specifica lingue aggiuntive per Intelligenza: concordare eventuali opzioni con il GM. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "pathfinderSignLanguage",
+            "polyglot",
+            "reptoid",
+            "rougarou",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varisianSignLanguage",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "yaddithian"
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "ogre.naturalArmor",
+      "name": "Armatura Naturale",
+      "description": "Armatura Naturale",
+      "effects": [
+        {
+          "id": "armor",
+          "type": "modifier",
+          "resource": "armorClass.solid",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "naturalArmor",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "ogre.senses",
+      "name": "Sensi",
+      "description": "Sensi",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Scurovisione 18 m e visione crepuscolare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "ogre.reach",
+      "name": "Portata",
+      "description": "Portata",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Portata 3 m: impostarla sugli attacchi creati; non esiste una portata razziale globale per tutti gli attacchi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": []
+}

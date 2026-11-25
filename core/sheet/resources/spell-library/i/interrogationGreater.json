@@ -1,0 +1,43 @@
+{
+  "id": "interrogationGreater",
+  "name": "Interrogazione Superiore",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL",
+    "PAIN"
+  ],
+  "spellLevelByClass": {
+    "INQUISITOR": 4,
+    "PSYCHIC": 4
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura vivente toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Intensifica dolore e numero di domande dell'interrogatorio magico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Interrogazione_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Interrogazione Superiore: https://golarion.altervista.org/wiki/Incantesimi/Interrogazione_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

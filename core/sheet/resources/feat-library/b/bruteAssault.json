@@ -1,0 +1,72 @@
+{
+  "id": "bruteAssault",
+  "name": "Assalto del Bruto",
+  "description": "Ostacola il movimento degli avversari abbattuti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Assalto_del_Bruto",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 23",
+      "expression": "@str >= 23"
+    },
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Calcio del Bruto",
+      "feat": {
+        "id": "bruteStomp"
+      }
+    },
+    {
+      "description": "Stile del Bruto",
+      "feat": {
+        "id": "bruteStyle"
+      }
+    },
+    {
+      "description": "Riflessi in Combattimento",
+      "feat": {
+        "id": "combatReflexes"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Oltrepassare Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Sbilanciare Migliorato",
+      "feat": {
+        "id": "improvedTrip"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Mossa Infame",
+      "feat": {
+        "id": "viciousStomp"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +10",
+      "expression": "@bab >= 10"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Assalto del Bruto: https://golarion.altervista.org/wiki/Talenti/Assalto_del_Bruto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Oltrepassare Migliorato; Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

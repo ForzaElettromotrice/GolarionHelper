@@ -1,0 +1,48 @@
+{
+  "id": "blackTentacles",
+  "name": "Tentacoli Neri",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 4,
+    "WITCH": 4,
+    "BLOODRAGER": 4,
+    "WIZARD": 4,
+    "MAGUS": 4,
+    "PSYCHIC": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "spellLevelByBloodline": {
+    "ABERRANT": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "tentacolo di calamaro o polpo",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "propagazione del raggio di 6 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Tentacoli magici afferrano le creature nell'area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Tentacoli_Neri",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Tentacoli Neri: https://golarion.altervista.org/wiki/Incantesimi/Tentacoli_Neri Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

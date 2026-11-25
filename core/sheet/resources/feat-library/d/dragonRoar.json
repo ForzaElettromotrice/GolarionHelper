@@ -1,0 +1,46 @@
+{
+  "id": "dragonRoar",
+  "name": "Ruggito del Drago",
+  "description": "Converte la disciplina stordente in un ruggito offensivo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ruggito_del_Drago",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 15",
+      "expression": "@str >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Ferocia del Drago Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Pugno Stordente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Stile del Drago",
+      "feat": {
+        "id": "dragonStyle"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Acrobazia 8 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ruggito del Drago: https://golarion.altervista.org/wiki/Talenti/Ruggito_del_Drago. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Ferocia del Drago; Prerequisito da verificare manualmente: Pugno Stordente; Prerequisito da verificare manualmente: Acrobazia 8 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,42 @@
+{
+  "id": "runeOfDurability",
+  "name": "Runa della Durevolezza",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "limatura di ferro",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "effect": "arma toccata",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una runa rende un'arma più resistente ai danni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Runa_della_Durevolezza",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Runa della Durevolezza: https://golarion.altervista.org/wiki/Incantesimi/Runa_della_Durevolezza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Assassino della Mantide Rossa 3 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

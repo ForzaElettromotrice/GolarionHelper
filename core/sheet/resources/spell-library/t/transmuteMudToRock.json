@@ -1,0 +1,52 @@
+{
+  "id": "transmuteMudToRock",
+  "name": "Trasmutare Fango in Roccia",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "EARTH"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "HUNTER": 5,
+    "DRUID": 5,
+    "WIZARD": 5,
+    "OCCULTIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "sabbia, calce e acqua",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "fino a 2 cubi con spigolo di 3 m/livello (F)",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Solidifica una massa di fango trasformandola in roccia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trasmutare_Fango_in_Roccia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Trasmutare Fango in Roccia: https://golarion.altervista.org/wiki/Incantesimi/Trasmutare_Fango_in_Roccia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Terra 5 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

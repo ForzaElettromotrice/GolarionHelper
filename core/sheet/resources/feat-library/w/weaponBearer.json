@@ -1,0 +1,30 @@
+{
+  "id": "weaponBearer",
+  "name": "Porta-armi",
+  "description": "Permette di reclutare un aiutante dedicato al trasporto e alla gestione delle armi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Porta-armi",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Personaggio di 4° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: competente con tutte le armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Porta-armi: https://golarion.altervista.org/wiki/Talenti/Porta-armi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Personaggio di 4° livello; Prerequisito da verificare manualmente: competente con tutte le armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

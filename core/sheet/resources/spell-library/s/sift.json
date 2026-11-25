@@ -1,0 +1,38 @@
+{
+  "id": "sift",
+  "name": "Setacciare",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 0,
+    "INQUISITOR": 0,
+    "MEDIUM": 0,
+    "OCCULTIST": 0,
+    "PSYCHIC": 0,
+    "SKALD": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "area": "1 cubo con spigolo di 3 m",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di cercare dettagli in una zona distante come se la si esaminasse da vicino. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Setacciare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Setacciare: https://golarion.altervista.org/wiki/Incantesimi/Setacciare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

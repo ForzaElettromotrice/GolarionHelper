@@ -1,0 +1,52 @@
+{
+  "id": "shieldCompanion",
+  "name": "Scudo su Compagno",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "HUNTER": 2,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "WIZARD": 3,
+    "PALADIN": 2,
+    "RANGER": 2,
+    "SHAMAN": 2,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "la propria creatura compagno",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Condivide danni e protezione con la creatura compagna. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scudo_su_Compagno",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Scudo su Compagno: https://golarion.altervista.org/wiki/Incantesimi/Scudo_su_Compagno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: la propria creatura compagno. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

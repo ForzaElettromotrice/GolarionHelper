@@ -1,0 +1,41 @@
+{
+  "id": "twistedInnards",
+  "name": "Torcibudella",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "INVESTIGATOR": 2,
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "WITCH": 3,
+    "MAGUS": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un bozzolo legato con una cordicella",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Altera la posizione degli organi per ridurre l'efficacia di critici e attacchi furtivi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Torcibudella",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Torcibudella: https://golarion.altervista.org/wiki/Incantesimi/Torcibudella Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "burrowingTeeth",
+  "name": "Denti da Scavo",
+  "description": "Conferisce una velocità di scavo e i limiti di materiale previsti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Denti_da_Scavo",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Artiglitaglienti",
+      "feat": {
+        "id": "sharpclaw"
+      }
+    },
+    {
+      "description": "Ratto dei Tunnel",
+      "feat": {
+        "id": "tunnelRat"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Rattoide Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Denti da Scavo: https://golarion.altervista.org/wiki/Talenti/Denti_da_Scavo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Rattoide Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

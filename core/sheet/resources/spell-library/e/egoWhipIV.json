@@ -1,0 +1,46 @@
+{
+  "id": "egoWhipIV",
+  "name": "Frusta dell'Ego IV",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "PSYCHIC": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "Non indicata nella fonte; verificare manualmente.",
+  "description": "Imprime una pesante penalità mentale e prolungato barcollamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Frusta_dell%27Ego#Frusta_dell'Ego_IV",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Frusta dell'Ego IV: https://golarion.altervista.org/wiki/Incantesimi/Frusta_dell%27Ego#Frusta_dell'Ego_IV Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte non indica il tiro salvezza; la lista strutturata vuota non implica che non sia consentito. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "La fonte non indica la resistenza agli incantesimi: verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

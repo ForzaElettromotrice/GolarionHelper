@@ -1,0 +1,30 @@
+{
+  "id": "criticalVersatility",
+  "name": "Versatilità Critica",
+  "description": "Permette di adottare diversi effetti critici di cui si soddisfano i requisiti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Versatilit%C3%A0_Critica",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Guerriero di 11° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Umano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Versatilità Critica: https://golarion.altervista.org/wiki/Talenti/Versatilit%C3%A0_Critica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Guerriero di 11° livello; Prerequisito da verificare manualmente: Umano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

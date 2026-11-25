@@ -1,0 +1,23 @@
+{
+  "id": "stepUp",
+  "name": "Inseguire",
+  "description": "Permette di seguire subito un avversario che si allontana di un passo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Inseguire",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Inseguire: https://golarion.altervista.org/wiki/Talenti/Inseguire. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

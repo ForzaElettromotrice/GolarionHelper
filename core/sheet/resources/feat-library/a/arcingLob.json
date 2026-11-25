@@ -1,0 +1,41 @@
+{
+  "id": "arcingLob",
+  "name": "Lancio Parabolico",
+  "description": "Modifica l'estensione dello spargimento contro bersagli grandi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Lancio_Parabolico",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Des 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Lanciare Oggetti",
+      "feat": {
+        "id": "throwAnything"
+      }
+    },
+    {
+      "description": "Tiro Preciso",
+      "feat": {
+        "id": "preciseShot"
+      }
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Lancio Parabolico: https://golarion.altervista.org/wiki/Talenti/Lancio_Parabolico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

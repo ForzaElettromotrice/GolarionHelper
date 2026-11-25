@@ -1,0 +1,61 @@
+{
+  "id": "wizard.arcaneBonds",
+  "name": "Legame arcano",
+  "description": "Scelta fra famiglio e oggetto legato.",
+  "options": [
+    {
+      "id": "familiar",
+      "name": "Famiglio",
+      "description": "Il legame arcano è un famiglio; selezionare la creatura dalla lista ordinaria e applicare manualmente le regole del legame. Fonte: https://golarion.altervista.org/wiki/Mago#Legame_Arcano_.28Str_o_Mag.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Il legame arcano è un famiglio; selezionare la creatura dalla lista ordinaria e applicare manualmente le regole del legame. https://golarion.altervista.org/wiki/Mago#Legame_Arcano_.28Str_o_Mag.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [
+            {
+              "id": "species",
+              "prompt": "Scegli il famiglio",
+              "selectionCount": 1,
+              "blocksAdvancement": true,
+              "optionSet": "wizard.familiars"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bondedItem",
+      "name": "Oggetto legato",
+      "description": "Il legame arcano è un oggetto; individuare manualmente l’istanza e applicare capacità, restrizioni e sostituzione secondo la fonte. Fonte: https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Il legame arcano è un oggetto; individuare manualmente l’istanza e applicare capacità, restrizioni e sostituzione secondo la fonte. https://golarion.altervista.org/wiki/Mago/Oggetto_Legato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [
+            {
+              "id": "itemKind",
+              "prompt": "Scegli il tipo di oggetto legato",
+              "selectionCount": 1,
+              "blocksAdvancement": true,
+              "optionSet": "wizard.bondedItems"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

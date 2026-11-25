@@ -1,0 +1,52 @@
+{
+  "id": "absorbingInhalation",
+  "name": "Inalazione Assorbente",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "AIR"
+  ],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "INVESTIGATOR": 4,
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "HUNTER": 4,
+    "DRUID": 4,
+    "BLOODRAGER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "un effetto simile a una nube, fino a 3 metri cubi/livello",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello; vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Rende i polmoni capaci di assorbire quantità innaturali di materia gassosa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Inalazione_Assorbente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Inalazione Assorbente: https://golarion.altervista.org/wiki/Incantesimi/Inalazione_Assorbente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: un effetto simile a una nube, fino a 3 metri cubi/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

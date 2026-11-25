@@ -1,0 +1,41 @@
+{
+  "id": "veilOfPositiveEnergy",
+  "name": "Velo di Energia Positiva",
+  "school": "ABJURATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "PALADIN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale o 1,5 m; vedi testo",
+  "target": "se stessi o tutte le creature nel raggio di 1,5 m; vedi testo",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Concede bonus sacri contro i non morti e può essere scaricato per danneggiarli nelle vicinanze. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Velo_di_Energia_Positiva",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Velo di Energia Positiva: https://golarion.altervista.org/wiki/Incantesimi/Velo_di_Energia_Positiva Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi o tutte le creature nel raggio di 1,5 m; vedi testo. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

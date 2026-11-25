@@ -1,0 +1,27 @@
+{
+  "id": "tagTeamInterrogation",
+  "name": "Interrogatorio di Squadra",
+  "description": "Facilita un interrogatorio svolto insieme a un alleato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Interrogatorio_di_Squadra",
+  "types": [
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Persuasivo o Prodezza Intimidatrice, Diplomazia 1 grado, Intimidire 1 grado. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Interrogatorio di Squadra: https://golarion.altervista.org/wiki/Talenti/Interrogatorio_di_Squadra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Persuasivo o Prodezza Intimidatrice, Diplomazia 1 grado, Intimidire 1 grado. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

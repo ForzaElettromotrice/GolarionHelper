@@ -1,0 +1,259 @@
+{
+  "id": "trox",
+  "name": "Trox",
+  "qualities": [
+    {
+      "id": "trox.type",
+      "name": "Tipo",
+      "description": "Umanoide mostruoso.",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide mostruoso. Le interazioni basate sul tipo richiedono verifica manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "trox.size",
+      "name": "Taglia",
+      "description": "Grande.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "large"
+        }
+      ]
+    },
+    {
+      "id": "trox.baseSpeed",
+      "name": "Velocità",
+      "description": "9 m sul terreno.",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "trox.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Modificatori razziali.",
+      "effects": [
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "6"
+        },
+        {
+          "id": "int",
+          "type": "modifier",
+          "resource": "int",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "trox.languages",
+      "name": "Linguaggi",
+      "description": "Lingue concesse e apprendimento.",
+      "effects": [
+        {
+          "id": "terran",
+          "type": "languageGrant",
+          "languageId": "terran"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "common",
+            "giant",
+            "dwarven",
+            "orc",
+            "undercommon"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "pathfinderSignLanguage",
+            "polyglot",
+            "reptoid",
+            "rougarou",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varisianSignLanguage",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "yaddithian"
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "trox.burrow",
+      "name": "Movimento: scavare",
+      "description": "Movimento: scavare",
+      "effects": [
+        {
+          "id": "burrow",
+          "type": "movementGrant",
+          "movementType": "burrow",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": false
+        }
+      ]
+    },
+    {
+      "id": "trox.senses",
+      "name": "Sensi",
+      "description": "Sensi",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Scurovisione 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "trox.grabbingAppendages",
+      "name": "Appendici Afferranti",
+      "description": "Appendici Afferranti",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Lottare Migliorato bonus; le appendici mantengono la lotta mentre le braccia principali attaccano. Talento e gestione degli arti da configurare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "trox.frenzy",
+      "name": "Frenesia",
+      "description": "Frenesia",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "1/giorno, dopo aver subito danni: per 1 minuto +2 razziale a Forza e Costituzione, −2 CA. Attivazione, durata e applicazione tramite potenziamento manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": []
+}

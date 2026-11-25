@@ -1,0 +1,50 @@
+{
+  "id": "acidArrow",
+  "name": "Freccia Acida",
+  "school": "CONJURATION",
+  "descriptors": [
+    "ACID"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "BLOODRAGER": 2,
+    "MAGUS": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "FOCUS"
+  ],
+  "materialComponentDescription": "foglia di rabarbaro in polvere e lo stomaco di una vipera",
+  "focusComponentDescription": "un dardo",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "target": "1 creatura o 1 oggetto",
+  "effect": "una freccia d’acido",
+  "durationType": "ROUND",
+  "durationDescription": "1 round + 1 round ogni 3 livelli",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una freccia d'acido continua a corrodere dopo il colpo iniziale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Freccia_Acida",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Freccia Acida: https://golarion.altervista.org/wiki/Incantesimi/Freccia_Acida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Terra 2 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "summonGreaterDemon",
+  "name": "Evoca Demoni Superiore",
+  "school": "CONJURATION",
+  "descriptors": [
+    "CHAOTIC",
+    "EVIL"
+  ],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WIZARD": 9,
+    "SORCERER": 9,
+    "CLERIC": 9,
+    "ORACLE": 9,
+    "WITCH": 9
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "una borsa minuscola e una piccola candela",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "una creatura evocata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama demoni più potenti, secondo le opzioni previste. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Demoni_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Demoni Superiore: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Demoni_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

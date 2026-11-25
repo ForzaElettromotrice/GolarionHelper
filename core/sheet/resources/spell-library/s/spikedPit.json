@@ -1,0 +1,56 @@
+{
+  "id": "spikedPit",
+  "name": "Fossa con Spuntoni",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "WIZARD": 3,
+    "SORCERER": 3
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "CAVES": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "pala in miniatura del costo di 10 mo",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "buco di 3 m per 3 m, profondo 3 m ogni 2 livelli",
+  "durationType": "ROUND",
+  "durationDescription": "1 round + 1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una fossa magica è rivestita di punte pericolose. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fossa_con_Spuntoni",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fossa con Spuntoni: https://golarion.altervista.org/wiki/Incantesimi/Fossa_con_Spuntoni Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Terra 3 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,1624 @@
+{
+  "id": "halfOrc",
+  "name": "Mezzorco",
+  "qualities": [
+    {
+      "id": "halfOrc.type",
+      "name": "Tipo",
+      "description": "Umanoide con i sottotipi orco e umano.",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "creatureType",
+          "type": "reminder",
+          "message": "Il personaggio è un Umanoide con i sottotipi orco e umano. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "halfOrc.orcBlood",
+      "name": "Sangue Orchesco",
+      "description": "Conta come orco e come umano per gli effetti legati alla razza.",
+      "effects": [
+        {
+          "id": "orcBlood",
+          "type": "reminder",
+          "message": "Conta come orco e come umano per gli effetti legati alla razza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "halfOrc.size",
+      "name": "Taglia Media",
+      "description": "Creatura di taglia Media.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "halfOrc.baseSpeed",
+      "name": "Velocità Normale",
+      "description": "Velocità terrestre di 9 metri.",
+      "effects": [
+        {
+          "id": "landSpeed",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "halfOrc.abilityScores",
+      "name": "Caratteristiche",
+      "description": "+2 a una caratteristica scelta alla creazione.",
+      "choices": [
+        {
+          "id": "ability",
+          "prompt": "Scegli una caratteristica",
+          "selectionCount": 1,
+          "options": [
+            {
+              "id": "strength",
+              "name": "Forza",
+              "effects": [
+                {
+                  "id": "abilityBonus",
+                  "type": "modifier",
+                  "resource": "str",
+                  "description": "Bonus razziale di Mezzorco",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                }
+              ]
+            },
+            {
+              "id": "dexterity",
+              "name": "Destrezza",
+              "effects": [
+                {
+                  "id": "abilityBonus",
+                  "type": "modifier",
+                  "resource": "dex",
+                  "description": "Bonus razziale di Mezzorco",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                }
+              ]
+            },
+            {
+              "id": "constitution",
+              "name": "Costituzione",
+              "effects": [
+                {
+                  "id": "abilityBonus",
+                  "type": "modifier",
+                  "resource": "con",
+                  "description": "Bonus razziale di Mezzorco",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                }
+              ]
+            },
+            {
+              "id": "intelligence",
+              "name": "Intelligenza",
+              "effects": [
+                {
+                  "id": "abilityBonus",
+                  "type": "modifier",
+                  "resource": "int",
+                  "description": "Bonus razziale di Mezzorco",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                }
+              ]
+            },
+            {
+              "id": "wisdom",
+              "name": "Saggezza",
+              "effects": [
+                {
+                  "id": "abilityBonus",
+                  "type": "modifier",
+                  "resource": "wis",
+                  "description": "Bonus razziale di Mezzorco",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                }
+              ]
+            },
+            {
+              "id": "charisma",
+              "name": "Carisma",
+              "effects": [
+                {
+                  "id": "abilityBonus",
+                  "type": "modifier",
+                  "resource": "cha",
+                  "description": "Bonus razziale di Mezzorco",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "halfOrc.darkvision",
+      "name": "Scurovisione",
+      "description": "Vede al buio entro 18 metri.",
+      "effects": [
+        {
+          "id": "darkvision",
+          "type": "reminder",
+          "message": "Vede al buio entro 18 metri. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "halfOrc.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi iniziali: Comune, Orchesco. Bonus per Intelligenza: Abissale, Draconico, Gigante, Gnoll, Goblin.",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "orc",
+          "type": "languageGrant",
+          "languageId": "orc"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "abyssal",
+            "draconic",
+            "giant",
+            "gnoll",
+            "goblin"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "halfOrc.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita corrispondente.",
+      "effects": [
+        {
+          "id": "alchemistBomb",
+          "type": "favoredClassBonus",
+          "name": "Alchimista — Bombe",
+          "description": "Alchimista — Bombe (1 beneficio ogni 2 scelte). Gestione manuale: +1 ai danni delle bombe. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "alchemist"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 ai danni delle bombe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "alchemistMutagen",
+          "type": "favoredClassBonus",
+          "name": "Alchimista — Mutageno",
+          "description": "Alchimista — Mutageno (1 beneficio ogni 2 scelte).",
+          "classes": [
+            "alchemist"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "abilityCheck_str",
+              "type": "modifier",
+              "resource": "abilityCheck.str",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Rompere oggetti sotto mutageno che aumenta Forza o Costituzione"
+            },
+            {
+              "id": "combatManeuver_bonus_sunder",
+              "type": "modifier",
+              "resource": "combatManeuver.bonus.sunder",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Sotto mutageno che aumenta Forza o Costituzione"
+            }
+          ]
+        },
+        {
+          "id": "arcanistConcentration",
+          "type": "favoredClassBonus",
+          "name": "Arcanista — Concentrazione",
+          "description": "Arcanista — Concentrazione. Gestione manuale: +1 a concentrazione per incantesimi da arcanista. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "arcanist"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 a concentrazione per incantesimi da arcanista. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "brawlerUnarmed",
+          "type": "favoredClassBonus",
+          "name": "Attaccabrighe — Colpo Senz'Armi",
+          "description": "Attaccabrighe — Colpo Senz'Armi (1 beneficio ogni 4 scelte). Gestione manuale: +1 livello effettivo per il danno del colpo senz'armi. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "brawler"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 livello effettivo per il danno del colpo senz'armi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "barbarianRage",
+          "type": "favoredClassBonus",
+          "name": "Barbaro — Ira",
+          "description": "Barbaro — Ira. Gestione manuale: +1 round/giorno di ira. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "barbarian"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 round/giorno di ira. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "bardPerformance",
+          "type": "favoredClassBonus",
+          "name": "Bardo — Esibizione",
+          "description": "Bardo — Esibizione. Gestione manuale: +1 round/giorno di esibizione bardica. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "bard"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 round/giorno di esibizione bardica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "bardSecrets",
+          "type": "favoredClassBonus",
+          "name": "Bardo — Messaggi",
+          "description": "Bardo — Messaggi (1 beneficio ogni 2 scelte).",
+          "classes": [
+            "bard"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "skill_bluff",
+              "type": "modifier",
+              "resource": "skill.bluff",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Trasmettere messaggi segreti"
+            },
+            {
+              "id": "skill_senseMotive",
+              "type": "modifier",
+              "resource": "skill.senseMotive",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Discernere messaggi segreti"
+            },
+            {
+              "id": "skill_linguistics",
+              "type": "modifier",
+              "resource": "skill.linguistics",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Decifrare grafie insolite"
+            }
+          ]
+        },
+        {
+          "id": "hunterCompanion",
+          "type": "favoredClassBonus",
+          "name": "Cacciatore — Compagno",
+          "description": "Cacciatore — Compagno. Gestione manuale: +1 PF al compagno animale, trasferibile al sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "hunter"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 PF al compagno animale, trasferibile al sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "cavalierMount",
+          "type": "favoredClassBonus",
+          "name": "Cavaliere — Cavalcatura",
+          "description": "Cavaliere — Cavalcatura. Gestione manuale: +1 PF alla cavalcatura, trasferibile alla sostituta. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "cavalier"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 PF alla cavalcatura, trasferibile alla sostituta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "clericDomain",
+          "type": "favoredClassBonus",
+          "name": "Chierico — Dominio",
+          "description": "Chierico — Dominio (1 beneficio ogni 2 scelte). Gestione manuale: +1 uso/giorno di un potere di dominio di livello 1 normalmente usabile 3 + modificatore Saggezza volte. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 uso/giorno di un potere di dominio di livello 1 normalmente usabile 3 + modificatore Saggezza volte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "summonerEidolon",
+          "type": "favoredClassBonus",
+          "name": "Convocatore — Eidolon",
+          "description": "Convocatore — Eidolon. Gestione manuale: +1 PF all'eidolon. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "summoner"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 PF all'eidolon. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "druidArmor",
+          "type": "favoredClassBonus",
+          "name": "Druido — Forma Selvatica",
+          "description": "Druido — Forma Selvatica (1 beneficio ogni 3 scelte).",
+          "classes": [
+            "druid"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "armorClass_solid",
+              "type": "modifier",
+              "resource": "armorClass.solid",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Durante Forma Selvatica, incremento dell'armatura naturale"
+            }
+          ]
+        },
+        {
+          "id": "witchFamiliar",
+          "type": "favoredClassBonus",
+          "name": "Fattucchiere — Famiglio",
+          "description": "Fattucchiere — Famiglio. Gestione manuale: +1 grado al famiglio, trasferibile al sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "witch"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 grado al famiglio, trasferibile al sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "fighterStabilize",
+          "type": "favoredClassBonus",
+          "name": "Guerriero — Stabilizzazione",
+          "description": "Guerriero — Stabilizzazione.",
+          "classes": [
+            "fighter"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "abilityCheck_con",
+              "type": "modifier",
+              "resource": "abilityCheck.con",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "2",
+              "condition": "Stabilizzarsi quando morente"
+            }
+          ]
+        },
+        {
+          "id": "fighterResistance",
+          "type": "favoredClassBonus",
+          "name": "Guerriero — Resistenza",
+          "description": "Guerriero — Resistenza (1 beneficio ogni 2 scelte). Gestione manuale: RD 1/− aggiuntiva contro danni non letali; massimo RD 10/−. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "fighter"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "RD 1/− aggiuntiva contro danni non letali; massimo RD 10/−. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "inquisitorSkills",
+          "type": "favoredClassBonus",
+          "name": "Inquisitore — Conoscenze",
+          "description": "Inquisitore — Conoscenze (1 beneficio ogni 2 scelte).",
+          "classes": [
+            "inquisitor"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "skill_knowledge",
+              "type": "modifier",
+              "resource": "skill.knowledge",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Identificare creature"
+            },
+            {
+              "id": "skill_intimidate",
+              "type": "modifier",
+              "resource": "skill.intimidate",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        },
+        {
+          "id": "swashbucklerCritical",
+          "type": "favoredClassBonus",
+          "name": "Intrepido — Critici",
+          "description": "Intrepido — Critici (1 beneficio ogni 3 scelte). Gestione manuale: +1 alla conferma usando Colpo Preciso, massimo +5; non cumulabile con Critico Focalizzato o simili. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "swashbuckler"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 alla conferma usando Colpo Preciso, massimo +5; non cumulabile con Critico Focalizzato o simili. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "investigatorCritical",
+          "type": "favoredClassBonus",
+          "name": "Investigatore — Critici",
+          "description": "Investigatore — Critici (1 beneficio ogni 3 scelte). Gestione manuale: +1 alla conferma usando Combattimento Studiato, massimo +5; non cumulabile con Critico Focalizzato o simili. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "investigator"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 alla conferma usando Combattimento Studiato, massimo +5; non cumulabile con Critico Focalizzato o simili. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "bloodragerRage",
+          "type": "favoredClassBonus",
+          "name": "Iracondo di Stirpe — Ira",
+          "description": "Iracondo di Stirpe — Ira. Gestione manuale: +1 round/giorno di Ira di Stirpe. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "bloodrager"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 round/giorno di Ira di Stirpe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rogueCritical",
+          "type": "favoredClassBonus",
+          "name": "Ladro — Critici",
+          "description": "Ladro — Critici (1 beneficio ogni 3 scelte). Gestione manuale: +1 alla conferma mentre effettui Attacco Furtivo, massimo +5; non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 alla conferma mentre effettui Attacco Furtivo, massimo +5; non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "wizardConcentration",
+          "type": "favoredClassBonus",
+          "name": "Mago — Concentrazione",
+          "description": "Mago — Concentrazione. Gestione manuale: +1 a concentrazione per danni subiti durante il lancio di incantesimi da mago. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "wizard"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 a concentrazione per danni subiti durante il lancio di incantesimi da mago. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "magusFire",
+          "type": "favoredClassBonus",
+          "name": "Magus — Fuoco",
+          "description": "Magus — Fuoco (1 beneficio ogni 2 scelte). Gestione manuale: +1 ai danni da fuoco degli incantesimi basati sul fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "magus"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 ai danni da fuoco degli incantesimi basati sul fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkStunning",
+          "type": "favoredClassBonus",
+          "name": "Monaco — Lotta e Pugno",
+          "description": "Monaco — Lotta e Pugno. Gestione manuale: Per scelta: +1 DMC contro lotta e +1/2 uso/giorno di Pugno Stordente; arrotonda gli usi sul totale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "monk"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Per scelta: +1 DMC contro lotta e +1/2 uso/giorno di Pugno Stordente; arrotonda gli usi sul totale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleSpell",
+          "type": "favoredClassBonus",
+          "name": "Oracolo — Incantesimo",
+          "description": "Oracolo — Incantesimo. Gestione manuale: Un incantesimo conosciuto della lista, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "oracle"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un incantesimo conosciuto della lista, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "paladinCritical",
+          "type": "favoredClassBonus",
+          "name": "Paladino — Critici",
+          "description": "Paladino — Critici (1 beneficio ogni 3 scelte). Gestione manuale: +1 alla conferma durante Punire il Male, massimo +5; non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "paladin"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 alla conferma durante Punire il Male, massimo +5; non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "gunslingerPistolWhip",
+          "type": "favoredClassBonus",
+          "name": "Pistolero — Colpo di Calcio",
+          "description": "Pistolero — Colpo di Calcio (1 beneficio ogni 3 scelte).",
+          "classes": [
+            "gunslinger"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "attack_all",
+              "type": "modifier",
+              "resource": "attack.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Usare Colpo di Calcio"
+            }
+          ]
+        },
+        {
+          "id": "slayerCritical",
+          "type": "favoredClassBonus",
+          "name": "Predatore — Critici",
+          "description": "Predatore — Critici (1 beneficio ogni 3 scelte). Gestione manuale: +1 alla conferma durante Attacco Furtivo, massimo +5; non cumulabile con Critico Focalizzato o simili. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "slayer"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 alla conferma durante Attacco Furtivo, massimo +5; non cumulabile con Critico Focalizzato o simili. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rangerCompanion",
+          "type": "favoredClassBonus",
+          "name": "Ranger — Compagno",
+          "description": "Ranger — Compagno. Gestione manuale: +1 PF al compagno animale, trasferibile al sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "ranger"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 PF al compagno animale, trasferibile al sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "warpriestStabilize",
+          "type": "favoredClassBonus",
+          "name": "Sacerdote Guerriero — Stabilizzazione",
+          "description": "Sacerdote Guerriero — Stabilizzazione.",
+          "classes": [
+            "warpriest"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "abilityCheck_con",
+              "type": "modifier",
+              "resource": "abilityCheck.con",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "2",
+              "condition": "Stabilizzarsi quando morente"
+            }
+          ]
+        },
+        {
+          "id": "skaldSong",
+          "type": "favoredClassBonus",
+          "name": "Scaldo — Canto",
+          "description": "Scaldo — Canto. Gestione manuale: +1 round/giorno di Canto Furioso. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "skald"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 round/giorno di Canto Furioso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "shamanSpell",
+          "type": "favoredClassBonus",
+          "name": "Sciamano — Incantesimo",
+          "description": "Sciamano — Incantesimo. Gestione manuale: Un incantesimo conosciuto dalla lista Chierico, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "shaman"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un incantesimo conosciuto dalla lista Chierico, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererFire",
+          "type": "favoredClassBonus",
+          "name": "Stregone — Fuoco",
+          "description": "Stregone — Fuoco (1 beneficio ogni 2 scelte). Gestione manuale: +1 ai danni da fuoco degli incantesimi basati sul fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 ai danni da fuoco degli incantesimi basati sul fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "kineticistFire",
+          "type": "favoredClassBonus",
+          "name": "Cineta — Fuoco",
+          "description": "Cineta — Fuoco (1 beneficio ogni 3 scelte). Gestione manuale: +1 danno da fuoco alle ondate dell'elemento Fuoco che infliggono danni. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "kineticist"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 danno da fuoco alle ondate dell'elemento Fuoco che infliggono danni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "mediumSurge",
+          "type": "favoredClassBonus",
+          "name": "Medium — Impulso",
+          "description": "Medium — Impulso (1 beneficio ogni 4 scelte). Gestione manuale: Con un Tabù, +1 uso/giorno di Impulso dello Spirito senza cedere Influenza. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "medium"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Con un Tabù, +1 uso/giorno di Impulso dello Spirito senza cedere Influenza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "mesmeristStare",
+          "type": "favoredClassBonus",
+          "name": "Mesmerista — Occhiata",
+          "description": "Mesmerista — Occhiata (1 beneficio ogni 2 scelte). Gestione manuale: +1 danno bonus di Occhiata Dolorosa. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "mesmerist"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 danno bonus di Occhiata Dolorosa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "occultistFocus",
+          "type": "favoredClassBonus",
+          "name": "Occultista — Poteri",
+          "description": "Occultista — Poteri (1 beneficio ogni 2 scelte). Gestione manuale: +1 ai danni dei poteri di focus. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "occultist"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 ai danni dei poteri di focus. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "psychicConcentration",
+          "type": "favoredClassBonus",
+          "name": "Parapsichico — Concentrazione",
+          "description": "Parapsichico — Concentrazione. Gestione manuale: +1 a concentrazione per danni subiti durante incantesimi da parapsichico. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "psychic"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 a concentrazione per danni subiti durante incantesimi da parapsichico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "spiritualistPhantom",
+          "type": "favoredClassBonus",
+          "name": "Spiritista — Apparizione",
+          "description": "Spiritista — Apparizione. Gestione manuale: +1 PF all'apparizione. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "spiritualist"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 PF all'apparizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "vigilanteFearless",
+          "type": "favoredClassBonus",
+          "name": "Vigilante — Senza Paura",
+          "description": "Vigilante — Senza Paura (1 beneficio ogni 2 scelte). Gestione manuale: +1 all'aumento di CD di Senza Paura. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "vigilante"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 all'aumento di CD di Senza Paura. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "halfOrc.weaponFamiliarity",
+      "name": "Familiarità nelle Armi",
+      "description": "Competenza in ascia bipenne e falchion; le armi orchesche sono considerate da guerra.",
+      "effects": [
+        {
+          "id": "weaponFamiliarity",
+          "type": "reminder",
+          "message": "Competenza in ascia bipenne e falchion; le armi orchesche sono considerate da guerra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "halfOrc.orcFerocity",
+      "name": "Ferocia degli Orchi",
+      "description": "Una volta al giorno, sotto 0 PF ma ancora vivo, può combattere per un altro round come Inabile. Al termine del turno successivo, senza PF positivi, perde i sensi e diventa Morente.",
+      "effects": [
+        {
+          "id": "orcFerocity",
+          "type": "reminder",
+          "message": "Una volta al giorno, sotto 0 PF ma ancora vivo, può combattere per un altro round come Inabile. Al termine del turno successivo, senza PF positivi, perde i sensi e diventa Morente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "halfOrc.intimidating",
+      "name": "Intimidazione",
+      "description": "+2 razziale a Intimidire.",
+      "effects": [
+        {
+          "id": "intimidate",
+          "type": "modifier",
+          "resource": "skill.intimidate",
+          "description": "Intimidazione",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "halfOrc.skilled",
+      "name": "Abile",
+      "description": "Abile",
+      "effects": [
+        {
+          "id": "ranks",
+          "type": "contribution",
+          "resource": "skill.ranks.max",
+          "expression": "@level"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.darkvision"
+      ]
+    },
+    {
+      "id": "halfOrc.shamansApprentice",
+      "name": "Apprendista dello Sciamano",
+      "description": "Apprendista dello Sciamano",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Concede Resistenza Fisica come talento bonus; catalogo del talento da completare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.intimidating"
+      ]
+    },
+    {
+      "id": "halfOrc.brutalityHardened",
+      "name": "Avvezzo alla Brutalità",
+      "description": "Avvezzo alla Brutalità",
+      "effects": [
+        {
+          "id": "savingThrow_will",
+          "type": "modifier",
+          "resource": "savingThrow.will",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "4",
+          "condition": "Evitare danni alla Sanità Mentale da mostri, violenza estrema o morte"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.orcFerocity"
+      ]
+    },
+    {
+      "id": "halfOrc.beastial",
+      "name": "Bestiale",
+      "description": "Bestiale",
+      "effects": [
+        {
+          "id": "skill_perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.orcFerocity"
+      ]
+    },
+    {
+      "id": "halfOrc.chainFighter",
+      "name": "Combattente con le Catene",
+      "description": "Combattente con le Catene",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Competenza in mazzafrusto e mazzafrusto pesante; mazzafrusto doppio e catena chiodata contano come armi da guerra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.weaponFamiliarity"
+      ]
+    },
+    {
+      "id": "halfOrc.cityRaised",
+      "name": "Cresciuto in Città",
+      "description": "Cresciuto in Città",
+      "effects": [
+        {
+          "id": "skill_knowledge_local",
+          "type": "modifier",
+          "resource": "skill.knowledge.local",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Competenza in frusta e spada lunga. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.weaponFamiliarity"
+      ]
+    },
+    {
+      "id": "halfOrc.monstrousSympathy",
+      "name": "Mentalità Mostruosa",
+      "description": "Mentalità Mostruosa",
+      "effects": [
+        {
+          "id": "skill_diplomacy",
+          "type": "modifier",
+          "resource": "skill.diplomacy",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Contro creature malvagie"
+        },
+        {
+          "id": "skill_senseMotive",
+          "type": "modifier",
+          "resource": "skill.senseMotive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Contro creature malvagie"
+        },
+        {
+          "id": "skill_bluff",
+          "type": "modifier",
+          "resource": "skill.bluff",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Contro creature malvagie"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.orcFerocity",
+        "halfOrc.intimidating"
+      ]
+    },
+    {
+      "id": "halfOrc.projectingNegativity",
+      "name": "Proiettare Negatività",
+      "description": "Proiettare Negatività",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "+1 alla CD dei tuoi incantesimi con descrittore paura o dolore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.weaponFamiliarity",
+        "halfOrc.orcFerocity"
+      ]
+    },
+    {
+      "id": "halfOrc.plagueborn",
+      "name": "Resistente alle Malattie",
+      "description": "Resistente alle Malattie",
+      "effects": [
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Malattie, veleni ingeriti, nausea o disgusto"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.orcFerocity",
+        "halfOrc.intimidating"
+      ]
+    },
+    {
+      "id": "halfOrc.rockClimber",
+      "name": "Scalatore Roccioso",
+      "description": "Scalatore Roccioso",
+      "effects": [
+        {
+          "id": "skill_acrobatics",
+          "type": "modifier",
+          "resource": "skill.acrobatics",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1"
+        },
+        {
+          "id": "skill_climb",
+          "type": "modifier",
+          "resource": "skill.climb",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.intimidating"
+      ]
+    },
+    {
+      "id": "halfOrc.acuteDarkvision",
+      "name": "Scurovisione Acuta",
+      "description": "Scurovisione Acuta",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Il raggio della scurovisione aumenta a 27 m; non sommarlo alla distanza di base. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.orcFerocity"
+      ]
+    },
+    {
+      "id": "halfOrc.beastmaster",
+      "name": "Signore delle Bestie",
+      "description": "Signore delle Bestie",
+      "effects": [
+        {
+          "id": "skill_handleAnimal",
+          "type": "modifier",
+          "resource": "skill.handleAnimal",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Rete e bolas contano come armi da guerra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.orcFerocity"
+      ]
+    },
+    {
+      "id": "halfOrc.gatecrasher",
+      "name": "Spaccaporte",
+      "description": "Spaccaporte",
+      "effects": [
+        {
+          "id": "abilityCheck_str",
+          "type": "modifier",
+          "resource": "abilityCheck.str",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Rompere oggetti"
+        },
+        {
+          "id": "combatManeuver_bonus_sunder",
+          "type": "modifier",
+          "resource": "combatManeuver.bonus.sunder",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.orcFerocity"
+      ]
+    },
+    {
+      "id": "halfOrc.scavenger",
+      "name": "Spazzino",
+      "description": "Spazzino",
+      "effects": [
+        {
+          "id": "skill_perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Trovare oggetti nascosti, valutare commestibilità o identificare pozioni dal sapore"
+        },
+        {
+          "id": "skill_appraise",
+          "type": "modifier",
+          "resource": "skill.appraise",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Trovare oggetti nascosti, valutare commestibilità o identificare pozioni dal sapore"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.intimidating"
+      ]
+    },
+    {
+      "id": "halfOrc.cavewight",
+      "name": "Spettro di Caverna",
+      "description": "Spettro di Caverna",
+      "effects": [
+        {
+          "id": "skill_knowledge_dungeoneering",
+          "type": "modifier",
+          "resource": "skill.knowledge.dungeoneering",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1"
+        },
+        {
+          "id": "skill_survival",
+          "type": "modifier",
+          "resource": "skill.survival",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Sottoterra"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.intimidating"
+      ]
+    },
+    {
+      "id": "halfOrc.stoic",
+      "name": "Stoico",
+      "description": "Stoico",
+      "effects": [
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Emozione o paura, senza rinuncia ai benefici di Stoico nelle ultime 24 ore"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "CD per intimidirti +2; niente bonus morali. Accettandoli rinunci a tutti i benefici di Stoico per 24 ore: gestire manualmente la rinuncia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.orcFerocity",
+        "halfOrc.intimidating"
+      ]
+    },
+    {
+      "id": "halfOrc.sacredTattoo",
+      "name": "Tatuaggio Sacro",
+      "description": "Tatuaggio Sacro",
+      "effects": [
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "luck",
+          "expression": "1"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.orcFerocity"
+      ]
+    },
+    {
+      "id": "halfOrc.painTolerance",
+      "name": "Tolleranza al Dolore",
+      "description": "Tolleranza al Dolore",
+      "effects": [
+        {
+          "id": "nonlethal",
+          "type": "damageReduction",
+          "expression": "1",
+          "bypass": [],
+          "applicability": "Danni non letali"
+        },
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Incantesimi ed effetti magici con descrittore dolore"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.orcFerocity",
+        "halfOrc.intimidating"
+      ]
+    },
+    {
+      "id": "halfOrc.forestWalker",
+      "name": "Viandante della Foresta",
+      "description": "Viandante della Foresta",
+      "effects": [
+        {
+          "id": "skill_climb",
+          "type": "modifier",
+          "resource": "skill.climb",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Visione crepuscolare: distanza visiva raddoppiata in luce scarsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.darkvision"
+      ]
+    },
+    {
+      "id": "halfOrc.smogSight",
+      "name": "Vedere nella Caligine",
+      "description": "Vedere nella Caligine",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Vedi a distanza doppia in nebbia densa e fumo fitto, anche magici; ignori il loro occultamento entro 1,5 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.darkvision"
+      ]
+    },
+    {
+      "id": "halfOrc.toothy",
+      "name": "Zannuto",
+      "description": "Zannuto",
+      "effects": [
+        {
+          "id": "bite",
+          "type": "strikeGrant",
+          "name": "Morso",
+          "mode": "melee",
+          "tags": [
+            "natural"
+          ],
+          "naturalAttackClassification": "primary",
+          "usageChannels": [
+            "mouth"
+          ],
+          "ability": "str",
+          "damageAbilityRule": "full",
+          "reach": {
+            "maximumUnits": 1
+          },
+          "damageComponents": [
+            {
+              "id": "base",
+              "role": "base",
+              "dice": {
+                "diceCount": 1,
+                "dieSize": 4
+              },
+              "types": [
+                "piercing"
+              ],
+              "typeMode": "all",
+              "criticalRule": "multiplied"
+            }
+          ]
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.orcFerocity"
+      ]
+    },
+    {
+      "id": "halfOrc.squalid",
+      "name": "Squallido",
+      "description": "Squallido",
+      "effects": [
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Nausea, infermità o malattie"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfOrc.orcFerocity"
+      ]
+    }
+  ]
+}

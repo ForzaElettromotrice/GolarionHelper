@@ -1,0 +1,35 @@
+{
+  "id": "combatPatrol",
+  "name": "Combattente di Pattuglia",
+  "description": "Amplia l'area controllata per intercettare i movimenti nemici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Combattente_di_Pattuglia",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Mobilità",
+      "feat": {
+        "id": "mobility"
+      }
+    },
+    {
+      "description": "Riflessi in Combattimento",
+      "feat": {
+        "id": "combatReflexes"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +5",
+      "expression": "@bab >= 5"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Combattente di Pattuglia: https://golarion.altervista.org/wiki/Talenti/Combattente_di_Pattuglia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

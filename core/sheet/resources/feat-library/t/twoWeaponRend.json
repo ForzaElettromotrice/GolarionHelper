@@ -1,0 +1,47 @@
+{
+  "id": "twoWeaponRend",
+  "name": "Attacco Lacerante a Due Armi",
+  "description": "Colpire con entrambe le armi produce una lacerazione aggiuntiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Attacco_Lacerante_a_Due_Armi",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 17",
+      "expression": "@dex >= 17"
+    },
+    {
+      "description": "Combattere con Due Armi",
+      "feat": {
+        "id": "twoWeaponFighting"
+      }
+    },
+    {
+      "description": "Combattere con Due Armi Migliorato",
+      "feat": {
+        "id": "improvedTwoWeaponFighting"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Doppio Taglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +11",
+      "expression": "@bab >= 11"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Attacco Lacerante a Due Armi: https://golarion.altervista.org/wiki/Talenti/Attacco_Lacerante_a_Due_Armi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Doppio Taglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

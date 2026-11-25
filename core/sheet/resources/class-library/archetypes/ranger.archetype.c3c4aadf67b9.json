@@ -1,0 +1,88 @@
+{
+  "id": "ranger.archetype.c3c4aadf67b9",
+  "classType": "ranger",
+  "name": "Cacciatore Selvaggio",
+  "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_Selvaggio Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "ranger.feature.01c4bca80955",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.46f82d7b7888",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.5c89d9b3bdef",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "ranger.feature.01c4bca80955",
+    "ranger.feature.46f82d7b7888",
+    "ranger.feature.5c89d9b3bdef"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "ranger.archetype.c3c4aadf67b9.instructions",
+      "name": "Cacciatore Selvaggio",
+      "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_Selvaggio Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "ranger.archetype.c3c4aadf67b9.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_Selvaggio Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.c3c4aadf67b9.feature.5de2ead727",
+      "name": "Animale Focalizzato (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_Selvaggio",
+      "progression": [
+        {
+          "id": "ranger.archetype.c3c4aadf67b9.feature.5de2ead727.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore Selvaggio — Animale Focalizzato (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_Selvaggio Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.c3c4aadf67b9.feature.cec94413ee",
+      "name": "Focus Divino (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_Selvaggio",
+      "progression": [
+        {
+          "id": "ranger.archetype.c3c4aadf67b9.feature.cec94413ee.initial",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore Selvaggio — Focus Divino (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_Selvaggio Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

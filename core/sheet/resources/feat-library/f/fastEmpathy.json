@@ -1,0 +1,30 @@
+{
+  "id": "fastEmpathy",
+  "name": "Empatia Rapida",
+  "description": "Riduce il tempo necessario a impiegare Empatia Selvatica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Empatia_Rapida",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Addestrare Animali 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Empatia Selvatica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Empatia Rapida: https://golarion.altervista.org/wiki/Talenti/Empatia_Rapida. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Addestrare Animali 5 gradi; Prerequisito da verificare manualmente: privilegio di classe Empatia Selvatica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

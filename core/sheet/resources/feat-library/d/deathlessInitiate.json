@@ -1,0 +1,27 @@
+{
+  "id": "deathlessInitiate",
+  "name": "Iniziato dell'Immortalità",
+  "description": "Permette azioni più efficaci quando si continua a combattere vicino alla morte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Iniziato_dell%27Immortalit%C3%A0",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Forza 13, Costituzione 13, Orco o Mezzorco, Duro a Morire, Resistenza Fisica, Bonus di Attacco Base +6. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Iniziato dell'Immortalità: https://golarion.altervista.org/wiki/Talenti/Iniziato_dell%27Immortalit%C3%A0. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Forza 13, Costituzione 13, Orco o Mezzorco, Duro a Morire, Resistenza Fisica, Bonus di Attacco Base +6. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

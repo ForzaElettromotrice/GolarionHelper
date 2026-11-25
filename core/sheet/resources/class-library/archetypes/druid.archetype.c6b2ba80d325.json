@@ -1,0 +1,163 @@
+{
+  "id": "druid.archetype.c6b2ba80d325",
+  "classType": "druid",
+  "name": "Druido dell'Avvizzimento",
+  "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Legame con la Natura. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "druid.feature.44b793b57d4f",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.cb6c692c6b8a",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.5cb4f58f9490",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.eb66996dc90e",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.59dc53dc9a87",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.40f9a719229c",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "druid.feature.44b793b57d4f",
+    "druid.feature.cb6c692c6b8a",
+    "druid.feature.5cb4f58f9490",
+    "druid.feature.eb66996dc90e",
+    "druid.feature.59dc53dc9a87",
+    "druid.feature.40f9a719229c"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "druid.archetype.c6b2ba80d325.instructions",
+      "name": "Druido dell'Avvizzimento",
+      "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "druid.archetype.c6b2ba80d325.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Legame con la Natura. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.c6b2ba80d325.feature.1",
+      "name": "Legame con la Natura (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento",
+      "progression": [
+        {
+          "id": "druid.archetype.c6b2ba80d325.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido dell'Avvizzimento — Legame con la Natura (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.c6b2ba80d325.feature.2",
+      "name": "Empatia con i Parassiti (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento",
+      "progression": [
+        {
+          "id": "druid.archetype.c6b2ba80d325.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido dell'Avvizzimento — Empatia con i Parassiti (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.c6b2ba80d325.feature.3",
+      "name": "Miasma (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento",
+      "progression": [
+        {
+          "id": "druid.archetype.c6b2ba80d325.feature.3.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido dell'Avvizzimento — Miasma (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.c6b2ba80d325.feature.4",
+      "name": "Sangue Avvizzito (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento",
+      "progression": [
+        {
+          "id": "druid.archetype.c6b2ba80d325.feature.4.initial",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido dell'Avvizzimento — Sangue Avvizzito (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.c6b2ba80d325.feature.5",
+      "name": "Untore (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento",
+      "progression": [
+        {
+          "id": "druid.archetype.c6b2ba80d325.feature.5.initial",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido dell'Avvizzimento — Untore (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_dell.27Avvizzimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

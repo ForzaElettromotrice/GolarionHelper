@@ -1,0 +1,73 @@
+{
+  "id": "vanish",
+  "name": "Svanire",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "BARD": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "MESMERIST": 1,
+    "OCCULTIST": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (fino a 5 round) (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Rende invisibile il bersaglio per un round per livello dell'incantatore, fino a cinque round, terminando se attacca. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Svanire",
+  "effects": [
+    {
+      "id": "invisible",
+      "type": "conditionEntry",
+      "conditionId": "invisible"
+    },
+    {
+      "id": "stillStealth",
+      "type": "modifier",
+      "resource": "skill.stealth",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "40",
+      "condition": "Invisibile e immobile"
+    },
+    {
+      "id": "movingStealth",
+      "type": "modifier",
+      "resource": "skill.stealth",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "20",
+      "condition": "Invisibile e in movimento"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "I due bonus di Furtività sono alternativi, mai simultanei. Gestire rivelazione, equipaggiamento, sensi speciali e cessazione immediata all'attacco; durata dipendente dal LI, non dal livello totale. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

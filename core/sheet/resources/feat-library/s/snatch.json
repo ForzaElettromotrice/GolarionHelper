@@ -1,0 +1,27 @@
+{
+  "id": "snatch",
+  "name": "Ghermire",
+  "description": "Facilita la cattura di creature con gli attacchi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ghermire",
+  "types": [
+    "monster"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Taglie Enorme o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ghermire: https://golarion.altervista.org/wiki/Talenti/Ghermire. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Taglie Enorme o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

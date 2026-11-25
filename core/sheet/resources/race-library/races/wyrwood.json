@@ -1,0 +1,225 @@
+{
+  "id": "wyrwood",
+  "name": "Wyrwood",
+  "qualities": [
+    {
+      "id": "wyrwood.type",
+      "name": "Tipo",
+      "description": "Costrutto.",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Costrutto. Le interazioni basate sul tipo richiedono verifica manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "wyrwood.size",
+      "name": "Taglia",
+      "description": "Piccola.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "small"
+        }
+      ]
+    },
+    {
+      "id": "wyrwood.baseSpeed",
+      "name": "Velocità",
+      "description": "9 m sul terreno.",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "wyrwood.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Modificatori razziali.",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "int",
+          "type": "modifier",
+          "resource": "int",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "wyrwood.languages",
+      "name": "Linguaggi",
+      "description": "Lingue concesse e apprendimento.",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "draconic",
+            "elven",
+            "gnome",
+            "goblin",
+            "dwarven",
+            "orc"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "pathfinderSignLanguage",
+            "polyglot",
+            "reptoid",
+            "rougarou",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varisianSignLanguage",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "yaddithian"
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "wyrwood.senses",
+      "name": "Sensi",
+      "description": "Sensi",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Scurovisione 18 m e visione crepuscolare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "wyrwood.absentConstitution",
+      "name": "Costituzione Assente",
+      "description": "Costituzione Assente",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Non possiede Costituzione. Il modello richiede ancora un valore numerico: non considerare validi i calcoli dipendenti da Costituzione senza correzione manuale, incluse le regole dei costrutti su PF e Tempra. Zero non equivale ad assenza di caratteristica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": []
+}

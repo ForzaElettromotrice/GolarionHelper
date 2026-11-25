@@ -1,0 +1,39 @@
+{
+  "id": "vengefulComets",
+  "name": "Comete Vendicative",
+  "school": "EVOCATION",
+  "descriptors": [
+    "COLD"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "HUNTER": 3,
+    "DRUID": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 metri + 12 m/ livello)",
+  "effect": "1 cometa ogni 4 livelli",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello o finché non viene scaricato completamente (vedi sotto)",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Prepara comete magiche che proteggono dal fuoco e reagiscono contro gli incantatori nemici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Comete_Vendicative",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Comete Vendicative: https://golarion.altervista.org/wiki/Incantesimi/Comete_Vendicative Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

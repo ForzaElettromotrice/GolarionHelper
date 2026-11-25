@@ -1,0 +1,52 @@
+{
+  "id": "gustingSphere",
+  "name": "Sfera di Raffiche di Vento",
+  "school": "CONJURATION",
+  "descriptors": [
+    "AIR"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "HUNTER": 2,
+    "DRUID": 2,
+    "BLOODRAGER": 2,
+    "MAGUS": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "una sfera d'aria del diametro di 1,5 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (oggetto) o Riflessi nega; vedi testo"
+    },
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Tempra nega (oggetto) o Riflessi nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una sfera di vento mobile investe e disturba le creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sfera_di_Raffiche_di_Vento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sfera di Raffiche di Vento: https://golarion.altervista.org/wiki/Incantesimi/Sfera_di_Raffiche_di_Vento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

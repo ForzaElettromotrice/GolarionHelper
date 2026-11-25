@@ -1,0 +1,39 @@
+{
+  "id": "staggeringFist",
+  "name": "Pugno Barcollante",
+  "description": "Permette di far barcollare il nemico con un colpo senz'armi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Pugno_Barcollante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Saggezza 13",
+      "expression": "@wis >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +2",
+      "expression": "@bab >= 2"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Pugno Barcollante: https://golarion.altervista.org/wiki/Talenti/Pugno_Barcollante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

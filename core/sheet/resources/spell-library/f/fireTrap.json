@@ -1,0 +1,54 @@
+{
+  "id": "fireTrap",
+  "name": "Trappola di Fuoco",
+  "school": "ABJURATION",
+  "descriptors": [
+    "FIRE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "HUNTER": 2,
+    "DRUID": 2,
+    "WIZARD": 4,
+    "OCCULTIST": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "polvere d’oro che valga almeno 25 mo",
+  "materialComponentCostInGoldPieces": 25,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto toccato",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente finché non viene scaricato (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Protegge un oggetto con un'esplosione che si scatena all'apertura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trappola_di_Fuoco",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Trappola di Fuoco: https://golarion.altervista.org/wiki/Incantesimi/Trappola_di_Fuoco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Fuoco 4 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

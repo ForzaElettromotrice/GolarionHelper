@@ -1,0 +1,31 @@
+{
+  "id": "boarStyle",
+  "name": "Stile del Cinghiale",
+  "description": "Permette di scegliere fra danni contundenti e taglienti senz'armi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Stile_del_Cinghiale",
+  "types": [
+    "combat",
+    "style"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intimidire 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Stile del Cinghiale: https://golarion.altervista.org/wiki/Talenti/Stile_del_Cinghiale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Intimidire 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,42 @@
+{
+  "id": "consecrate",
+  "name": "Consacrare",
+  "school": "EVOCATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "INQUISITOR": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un’ampolla di acquasanta e polvere d’argento per almeno 25 mo",
+  "materialComponentCostInGoldPieces": 25,
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "area": "emanazione del raggio di 6 m",
+  "durationType": "HOUR",
+  "durationDescription": "2 ore/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Consacra un'area con energia positiva, ostacolando i non morti e le pratiche necromantiche previste. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Consacrare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Consacrare: https://golarion.altervista.org/wiki/Incantesimi/Consacrare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

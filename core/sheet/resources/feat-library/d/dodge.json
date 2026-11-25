@@ -1,0 +1,28 @@
+{
+  "id": "dodge",
+  "name": "Schivare",
+  "description": "Migliora la CA finché si mantiene il beneficio della Destrezza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Schivare",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    }
+  ],
+  "effects": [
+    {
+      "id": "armorClass",
+      "type": "modifier",
+      "resource": "armorClass.reflexive",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "dodge",
+      "expression": "1",
+      "condition": "Finché mantiene il bonus di Destrezza alla CA"
+    }
+  ],
+  "choices": []
+}

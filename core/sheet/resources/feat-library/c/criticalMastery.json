@@ -1,0 +1,37 @@
+{
+  "id": "criticalMastery",
+  "name": "Critico Prodigioso",
+  "description": "Permette di combinare due effetti speciali dello stesso colpo critico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Critico_Prodigioso",
+  "types": [
+    "combat",
+    "critical"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Critico Focalizzato",
+      "feat": {
+        "id": "criticalFocus"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: altri due talenti critici Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Guerriero di 14° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Critico Prodigioso: https://golarion.altervista.org/wiki/Talenti/Critico_Prodigioso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: altri due talenti critici; Prerequisito da verificare manualmente: Guerriero di 14° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

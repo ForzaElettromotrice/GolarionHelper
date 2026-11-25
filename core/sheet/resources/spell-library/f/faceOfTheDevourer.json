@@ -1,0 +1,69 @@
+{
+  "id": "faceOfTheDevourer",
+  "name": "Aspetto del Divoratore",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ADEPT": 1,
+    "ANTIPALADIN": 1,
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "DRUID": 1,
+    "BLOODRAGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Deforma orribilmente il volto, conferendo +4 circostanza a Intimidire e un morso a chi ne è privo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aspetto_del_Divoratore",
+  "effects": [
+    {
+      "id": "intimidate",
+      "type": "modifier",
+      "resource": "skill.intimidate",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "circumstance",
+      "expression": "4"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Il morso è manuale perché dipende dalle armi naturali già presenti e dalla taglia; danni 1d4 Piccola, 1d6 Media, 1d8 Grande. La forma può impedire di parlare ma non compromette i sensi o il respiro. Gestire manualmente durata e risoluzione del lancio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Adepto 1, Antipaladino 1, Arcanista/Mago/Stregone 1, Assassino della Mantide Rossa 1, Cacciatore 1, Chierico/Oracolo/Sacerdote Guerriero 1, Druido 1, Iracondo di Stirpe 1 (Rovagug) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Assassino della Mantide Rossa 1 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

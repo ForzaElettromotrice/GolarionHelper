@@ -1,0 +1,47 @@
+{
+  "id": "halfBloodExtraction",
+  "name": "Estrazione del Sangue Umano",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 5,
+    "ARCANIST": 5,
+    "HUNTER": 5,
+    "CLERIC": 5,
+    "DRUID": 5,
+    "WITCH": 5,
+    "INVESTIGATOR": 5,
+    "WIZARD": 5,
+    "ORACLE": 5,
+    "PSYCHIC": 5,
+    "WARPRIEST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "1 ora",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "oli e pozioni dal valore di 3.000 mo",
+  "materialComponentCostInGoldPieces": 3000,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "un Mezzorco consenziente toccato",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasforma definitivamente un mezzorco in un orco. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Estrazione_del_Sangue_Umano",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Estrazione del Sangue Umano: https://golarion.altervista.org/wiki/Incantesimi/Estrazione_del_Sangue_Umano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

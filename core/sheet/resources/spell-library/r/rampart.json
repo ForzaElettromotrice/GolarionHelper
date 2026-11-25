@@ -1,0 +1,46 @@
+{
+  "id": "rampart",
+  "name": "Bastione",
+  "school": "CONJURATION",
+  "descriptors": [
+    "EARTH"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "WIZARD": 7,
+    "SORCERER": 7,
+    "DRUID": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una manciata di terra",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "muro di terra alto 3 m, in una linea fino a 3 m di lunghezza ogni 2 livelli, o un cerchio del raggio fino a 90 cm + 30 cm/livello",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Innalza un terrapieno che costituisce una barriera fisica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bastione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bastione: https://golarion.altervista.org/wiki/Incantesimi/Bastione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Terra 7 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

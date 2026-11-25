@@ -1,0 +1,47 @@
+{
+  "id": "gozrehSTrident",
+  "name": "Tridente di Gozreh",
+  "school": "EVOCATION",
+  "descriptors": [
+    "ELECTRICITY"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "BLOODRAGER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "0 m",
+  "effect": "dardo d'elettricità a forma di tridente",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Manifesta un tridente di elettricità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Tridente_di_Gozreh",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Tridente di Gozreh: https://golarion.altervista.org/wiki/Incantesimi/Tridente_di_Gozreh Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Cacciatore 2, Chierico/Oracolo/Sacerdote Guerriero 2, Druido 2, Fattucchiere 2, Iracondo di Stirpe 2 (Gozreh) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

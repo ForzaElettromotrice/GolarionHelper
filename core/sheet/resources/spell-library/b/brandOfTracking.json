@@ -1,0 +1,47 @@
+{
+  "id": "brandOfTracking",
+  "name": "Marchio dell'Inseguimento",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "INQUISITOR": 4
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "effect": "1 creature toccata",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "SEE_TEXT",
+      "description": "Tempra nessuno"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Imprime un segno che consente di seguire il marchiato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Marchio_dell%27Inseguimento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Marchio dell'Inseguimento: https://golarion.altervista.org/wiki/Incantesimi/Marchio_dell%27Inseguimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza ambiguo nella fonte: verificare quale effetto abbia il successo: Tempra nessuno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

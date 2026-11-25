@@ -1,0 +1,56 @@
+{
+  "id": "draconicReservoir",
+  "name": "Riserva Draconica",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "INVESTIGATOR": 3,
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "BLOODRAGER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una scaglia di drago che produce l'energia che si cerca di assorbire",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello o finché non viene scaricato; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Assorbe danni energetici e permette di scaricare l'energia accumulata tramite attacchi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Riserva_Draconica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Riserva Draconica: https://golarion.altervista.org/wiki/Incantesimi/Riserva_Draconica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 3, Aria 3, Fuoco 3, Terra 3 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Descrittori variabili da determinare al lancio: acido, elettricità, freddo o fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

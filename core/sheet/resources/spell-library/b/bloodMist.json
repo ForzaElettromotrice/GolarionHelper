@@ -1,0 +1,45 @@
+{
+  "id": "bloodMist",
+  "name": "Foschia di Sangue",
+  "school": "CONJURATION",
+  "descriptors": [
+    "POISON"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "DRUID": 8,
+    "SHAMAN": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di alga rossa secca",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "raggio di 18 m",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "La nebbia sanguigna altera la mente e suscita furia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Foschia_di_Sangue",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Foschia di Sangue: https://golarion.altervista.org/wiki/Incantesimi/Foschia_di_Sangue Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

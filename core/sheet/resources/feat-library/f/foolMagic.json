@@ -1,0 +1,36 @@
+{
+  "id": "foolMagic",
+  "name": "Ingannare Magia",
+  "description": "Usa un camuffamento per simulare requisiti di razza o allineamento nell'attivazione degli oggetti magici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ingannare_Magia",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Ingannevole",
+      "feat": {
+        "id": "deceitful"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Camuffare 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Utilizzare Congegni Magici 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ingannare Magia: https://golarion.altervista.org/wiki/Talenti/Ingannare_Magia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Camuffare 1 grado; Prerequisito da verificare manualmente: Utilizzare Congegni Magici 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

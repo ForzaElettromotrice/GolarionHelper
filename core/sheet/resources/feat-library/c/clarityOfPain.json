@@ -1,0 +1,35 @@
+{
+  "id": "clarityOfPain",
+  "name": "Lucidità nel Dolore",
+  "description": "Infliggersi dolore aiuta a contrastare condizionamenti magici della mente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Lucidit%C3%A0_nel_Dolore",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Costituzione 13",
+      "expression": "@con >= 13"
+    },
+    {
+      "description": "Volontà di Ferro",
+      "feat": {
+        "id": "ironWill"
+      }
+    },
+    {
+      "description": "Volontà di Ferro Migliorata",
+      "feat": {
+        "id": "improvedIronWill"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Lucidità nel Dolore: https://golarion.altervista.org/wiki/Talenti/Lucidit%C3%A0_nel_Dolore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

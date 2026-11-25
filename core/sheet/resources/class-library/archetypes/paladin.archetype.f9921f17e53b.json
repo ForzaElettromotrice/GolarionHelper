@@ -1,0 +1,43 @@
+{
+  "id": "paladin.archetype.f9921f17e53b",
+  "classType": "paladin",
+  "name": "Giuramento Contro la Barbarie",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_la_Barbarie Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.feature.2ee066756d50",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.bfc31e289a75",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "paladin.feature.2ee066756d50",
+    "paladin.feature.bfc31e289a75"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.f9921f17e53b.instructions",
+      "name": "Giuramento Contro la Barbarie",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_la_Barbarie Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.f9921f17e53b.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_la_Barbarie Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "carrionCompass",
+  "name": "Bussola Cadaverica",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "WITCH": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura Non Morta",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Un organo del non morto diventa una guida verso il suo precedente controllore o l'origine della sua condizione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bussola_Cadaverica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bussola Cadaverica: https://golarion.altervista.org/wiki/Incantesimi/Bussola_Cadaverica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

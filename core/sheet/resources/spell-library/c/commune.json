@@ -1,0 +1,43 @@
+{
+  "id": "commune",
+  "name": "Comunione",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ADEPT": 5,
+    "CLERIC": 5,
+    "INQUISITOR": 5,
+    "OCCULTIST": 5,
+    "ORACLE": 5,
+    "WARPRIEST": 5,
+    "SHAMAN": 5
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "acquasanta o sacrilega e incenso del valore di almeno 500 mo",
+  "materialComponentCostInGoldPieces": 500,
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Permette di rivolgere a una divinità domande alle quali ottenere risposte limitate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Comunione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Comunione: https://golarion.altervista.org/wiki/Incantesimi/Comunione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

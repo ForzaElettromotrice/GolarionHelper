@@ -1,0 +1,47 @@
+{
+  "id": "twistedSpace",
+  "name": "Spazio Contorto",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "PSYCHIC": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo di filo metallico piegato a cerchio",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Deforma lo spazio attorno al bersaglio, deviando i suoi attacchi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Spazio_Contorto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Spazio Contorto: https://golarion.altervista.org/wiki/Incantesimi/Spazio_Contorto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

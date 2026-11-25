@@ -1,0 +1,52 @@
+{
+  "id": "selectiveAlarm",
+  "name": "Allarme Selettivo",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 3,
+    "HUNTER": 2,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "INQUISITOR": 3,
+    "WIZARD": 3,
+    "OCCULTIST": 3,
+    "PSYCHIC": 3,
+    "RANGER": 2,
+    "SKALD": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "una sottile asta di ferro lunga 30 cm",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 metri + 1,5 m ogni 2 livelli)",
+  "target": "Emanazione centrata in un punto fino a 6 m di raggio",
+  "durationType": "HOUR",
+  "durationDescription": "2 ore/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Predispone un allarme che reagisce soltanto alle creature rispondenti alle condizioni scelte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Allarme_Selettivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Allarme Selettivo: https://golarion.altervista.org/wiki/Incantesimi/Allarme_Selettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: Emanazione centrata in un punto fino a 6 m di raggio. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

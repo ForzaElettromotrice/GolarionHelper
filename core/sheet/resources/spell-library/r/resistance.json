@@ -1,0 +1,69 @@
+{
+  "id": "resistance",
+  "name": "Resistenza",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 0,
+    "BARD": 0,
+    "HUNTER": 0,
+    "CLERIC": 0,
+    "SUMMONER": 0,
+    "UNCHAINED_SUMMONER": 0,
+    "DRUID": 0,
+    "WITCH": 0,
+    "INQUISITOR": 0,
+    "WIZARD": 0,
+    "MEDIUM": 0,
+    "OCCULTIST": 0,
+    "ORACLE": 0,
+    "PALADIN": 1,
+    "PSYCHIC": 0,
+    "WARPRIEST": 0,
+    "SKALD": 0,
+    "SHAMAN": 0,
+    "SPIRITUALIST": 0,
+    "SORCERER": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un mantello in miniatura",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Protegge il soggetto con un bonus di resistenza +1 a tutti i tiri salvezza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Resistenza",
+  "effects": [
+    {
+      "id": "saves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "resistance",
+      "expression": "1"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "L'eventuale permanenza richiede l'incantesimo appropriato. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

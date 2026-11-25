@@ -1,0 +1,53 @@
+{
+  "id": "deepSlumber",
+  "name": "Sonno Profondo",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "MESMERIST": 3,
+    "OCCULTIST": 3,
+    "PSYCHIC": 3,
+    "SKALD": 3,
+    "SHAMAN": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "sabbia fine, petali di rosa o un grillo vivo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "area": "1 o più creature viventi entro un'esplosione del raggio di 3 m",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega;"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Induce un sonno magico in creature entro il limite complessivo di Dadi Vita. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sonno_Profondo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sonno Profondo: https://golarion.altervista.org/wiki/Incantesimi/Sonno_Profondo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

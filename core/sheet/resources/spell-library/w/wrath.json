@@ -1,0 +1,39 @@
+{
+  "id": "wrath",
+  "name": "Furia",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "INQUISITOR": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un rampicante spinoso",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Concentra l'ostilità contro un avversario, migliorando attacchi e danni diretti contro di lui. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Furia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Furia: https://golarion.altervista.org/wiki/Incantesimi/Furia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

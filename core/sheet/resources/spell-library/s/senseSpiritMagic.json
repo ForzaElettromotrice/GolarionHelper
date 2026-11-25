@@ -1,0 +1,33 @@
+{
+  "id": "senseSpiritMagic",
+  "name": "Percepire Magia dello Spirito",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Aiuta a riconoscere la magia collegata agli spiriti e a difendersi dai relativi incantesimi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Percepire_Magia_dello_Spirito",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Percepire Magia dello Spirito: https://golarion.altervista.org/wiki/Incantesimi/Percepire_Magia_dello_Spirito Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

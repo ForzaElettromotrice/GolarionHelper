@@ -1,0 +1,2142 @@
+{
+  "type": "arcanist",
+  "name": "Arcanista",
+  "description": "Studioso arcano che modifica la magia attraverso una scorta di energia.",
+  "hitDie": 6,
+  "skillRanksPerLevel": 2,
+  "classSkills": [
+    "skill.craft",
+    "skill.knowledge.arcana",
+    "skill.knowledge.dungeoneering",
+    "skill.knowledge.engineering",
+    "skill.knowledge.geography",
+    "skill.knowledge.history",
+    "skill.knowledge.local",
+    "skill.knowledge.nature",
+    "skill.knowledge.nobility",
+    "skill.knowledge.planes",
+    "skill.knowledge.religion",
+    "skill.linguistics",
+    "skill.profession",
+    "skill.spellcraft",
+    "skill.useMagicDevice",
+    "skill.appraise",
+    "skill.fly"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 2
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 3
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 3
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 6
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 6
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 8
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 9
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 9
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 12
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "arcanist.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "arcanist.spellcasting",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Arcanista",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 1,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "flexible",
+              "spellListClass": "arcanist"
+            },
+            {
+              "id": "initialKnown",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. La quota iniziale comprende i 3 incantesimi di primo livello. Aggiungere manualmente i trucchetti iniziali consentiti, gli ulteriori incantesimi per il bonus di Intelligenza iniziale e 2 nuovi incantesimi per livello successivo; le quote fra livelli alternativi non sono rappresentabili direttamente. Libro o famiglio e relativi vincoli rimangono manuali. La tabella giornaliera non contiene slot di livello 0: il backend richiede un gruppo tecnico o una futura API per il lancio gratuito; non viene inventato uno slot giornaliero. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level1"
+          ]
+        },
+        {
+          "id": "castingSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level2"
+          ]
+        },
+        {
+          "id": "castingSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level3"
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level4"
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                },
+                {
+                  "level": 8,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                },
+                {
+                  "level": 8,
+                  "capacity": 4
+                },
+                {
+                  "level": 9,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                },
+                {
+                  "level": 8,
+                  "capacity": 4
+                },
+                {
+                  "level": 9,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                },
+                {
+                  "level": 8,
+                  "capacity": 4
+                },
+                {
+                  "level": 9,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        },
+        {
+          "id": "preparationSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "preparationSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level1"
+          ]
+        },
+        {
+          "id": "preparationSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 5
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level2"
+          ]
+        },
+        {
+          "id": "preparationSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 6
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level3"
+          ]
+        },
+        {
+          "id": "preparationSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 6
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level4"
+          ]
+        },
+        {
+          "id": "preparationSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 7
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level5"
+          ]
+        },
+        {
+          "id": "preparationSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 7
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level6"
+          ]
+        },
+        {
+          "id": "preparationSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 8
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level7"
+          ]
+        },
+        {
+          "id": "preparationSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 8
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level8"
+          ]
+        },
+        {
+          "id": "preparationSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 9
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level9"
+          ]
+        },
+        {
+          "id": "preparationSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 9
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level10"
+          ]
+        },
+        {
+          "id": "preparationSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 9
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level11"
+          ]
+        },
+        {
+          "id": "preparationSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 9
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level12"
+          ]
+        },
+        {
+          "id": "preparationSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 9
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                },
+                {
+                  "level": 7,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level13"
+          ]
+        },
+        {
+          "id": "preparationSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 9
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level14"
+          ]
+        },
+        {
+          "id": "preparationSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 9
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                },
+                {
+                  "level": 8,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level15"
+          ]
+        },
+        {
+          "id": "preparationSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 9
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level16"
+          ]
+        },
+        {
+          "id": "preparationSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 9
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 2
+                },
+                {
+                  "level": 9,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level17"
+          ]
+        },
+        {
+          "id": "preparationSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 9
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                },
+                {
+                  "level": 9,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level18"
+          ]
+        },
+        {
+          "id": "preparationSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:arcanist12:spellcasting7:casting",
+              "pool": "preparation",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 9
+                },
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                },
+                {
+                  "level": 9,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "preparationSlots.level19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arcanist.feature.9bfb09d46faa",
+      "name": "Consumare Incantesimi",
+      "description": "Privilegio della classe Arcanista. Regole e condizioni: https://golarion.altervista.org/wiki/Arcanista#Consumare_Incantesimi_(Sop)",
+      "progression": [
+        {
+          "id": "arcanist.feature.9bfb09d46faa.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Arcanista: verificare e applicare Consumare Incantesimi. https://golarion.altervista.org/wiki/Arcanista#Consumare_Incantesimi_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "arcanist.feature.56746e4c8ac1",
+      "name": "Scorta Arcana",
+      "description": "Privilegio della classe Arcanista. Regole e condizioni: https://golarion.altervista.org/wiki/Arcanista#Scorta_Arcana_(Sop)",
+      "progression": [
+        {
+          "id": "arcanist.feature.56746e4c8ac1.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Arcanista: verificare e applicare Scorta Arcana. https://golarion.altervista.org/wiki/Arcanista#Scorta_Arcana_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "arcanist.feature.758c942bcdea",
+      "name": "Exploit dell'Arcanista",
+      "description": "Privilegio della classe Arcanista. Regole e condizioni: https://golarion.altervista.org/wiki/Arcanista#Exploit_dell'Arcanista",
+      "progression": [
+        {
+          "id": "arcanist.feature.758c942bcdea.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Arcanista: verificare e applicare Exploit dell'Arcanista. https://golarion.altervista.org/wiki/Arcanista#Exploit_dell'Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "arcanist.feature.758c942bcdea.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Arcanista: verificare e applicare Exploit dell'Arcanista. https://golarion.altervista.org/wiki/Arcanista#Exploit_dell'Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "arcanist.feature.758c942bcdea.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Arcanista: verificare e applicare Exploit dell'Arcanista. https://golarion.altervista.org/wiki/Arcanista#Exploit_dell'Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "arcanist.feature.758c942bcdea.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Arcanista: verificare e applicare Exploit dell'Arcanista. https://golarion.altervista.org/wiki/Arcanista#Exploit_dell'Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "arcanist.feature.758c942bcdea.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Arcanista: verificare e applicare Exploit dell'Arcanista. https://golarion.altervista.org/wiki/Arcanista#Exploit_dell'Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "arcanist.feature.758c942bcdea.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Arcanista: verificare e applicare Exploit dell'Arcanista. https://golarion.altervista.org/wiki/Arcanista#Exploit_dell'Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "arcanist.feature.758c942bcdea.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Arcanista: verificare e applicare Exploit dell'Arcanista. https://golarion.altervista.org/wiki/Arcanista#Exploit_dell'Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "arcanist.feature.758c942bcdea.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Arcanista: verificare e applicare Exploit dell'Arcanista. https://golarion.altervista.org/wiki/Arcanista#Exploit_dell'Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "arcanist.feature.758c942bcdea.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Arcanista: verificare e applicare Exploit dell'Arcanista. https://golarion.altervista.org/wiki/Arcanista#Exploit_dell'Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "arcanist.feature.758c942bcdea.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Arcanista: verificare e applicare Exploit dell'Arcanista. https://golarion.altervista.org/wiki/Arcanista#Exploit_dell'Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "arcanist.feature.1cafd1f5d734",
+      "name": "Trucchetti",
+      "description": "Privilegio della classe Arcanista. Regole e condizioni: https://golarion.altervista.org/wiki/Arcanista#Trucchetti",
+      "progression": [
+        {
+          "id": "arcanist.feature.1cafd1f5d734.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Arcanista: verificare e applicare Trucchetti. https://golarion.altervista.org/wiki/Arcanista#Trucchetti Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "arcanist.feature.9ec9ad2e2429",
+      "name": "Exploit Superiori",
+      "description": "Privilegio della classe Arcanista. Regole e condizioni: https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori",
+      "progression": [
+        {
+          "id": "arcanist.feature.9ec9ad2e2429.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Arcanista: verificare e applicare Exploit Superiori. https://golarion.altervista.org/wiki/Arcanista#Exploit_Superiori Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "arcanist.feature.0d249cde3d59",
+      "name": "Supremazia Magica",
+      "description": "Privilegio della classe Arcanista. Regole e condizioni: https://golarion.altervista.org/wiki/Arcanista#Supremazia_Magica_(Sop)",
+      "progression": [
+        {
+          "id": "arcanist.feature.0d249cde3d59.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Arcanista: verificare e applicare Supremazia Magica. https://golarion.altervista.org/wiki/Arcanista#Supremazia_Magica_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "arcanist.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi. https://golarion.altervista.org/wiki/Arcanista",
+      "progression": [
+        {
+          "id": "arcanist.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi. https://golarion.altervista.org/wiki/Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "arcanist.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Arcanista",
+      "progression": [
+        {
+          "id": "arcanist.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "arcanist.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Arcanista",
+      "progression": [
+        {
+          "id": "arcanist.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Arcanista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "arcanist.exploitBinding",
+      "classType": "arcanist",
+      "featureId": "arcanist.feature.758c942bcdea",
+      "acquisitionIds": [
+        "arcanist.feature.758c942bcdea.level1",
+        "arcanist.feature.758c942bcdea.level3",
+        "arcanist.feature.758c942bcdea.level5",
+        "arcanist.feature.758c942bcdea.level7",
+        "arcanist.feature.758c942bcdea.level9"
+      ],
+      "choice": {
+        "id": "exploit",
+        "prompt": "Scegli: Exploit dell’arcanista",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "arcanist.exploits"
+      }
+    },
+    {
+      "id": "arcanist.greaterExploitBinding",
+      "classType": "arcanist",
+      "featureId": "arcanist.feature.758c942bcdea",
+      "acquisitionIds": [
+        "arcanist.feature.758c942bcdea.level11",
+        "arcanist.feature.758c942bcdea.level13",
+        "arcanist.feature.758c942bcdea.level15",
+        "arcanist.feature.758c942bcdea.level17",
+        "arcanist.feature.758c942bcdea.level19"
+      ],
+      "choice": {
+        "id": "greaterExploit",
+        "prompt": "Scegli: Exploit dell’arcanista e superiori",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "arcanist.greaterExploits"
+      }
+    }
+  ]
+}

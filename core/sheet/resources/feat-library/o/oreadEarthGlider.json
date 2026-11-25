@@ -1,0 +1,42 @@
+{
+  "id": "oreadEarthGlider",
+  "name": "Scorrere sulla Terra Oreade",
+  "description": "Permette di scorrere attraverso la terra con la capacità concessa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Scorrere_sulla_Terra_Oreade",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Oreade Scavatore",
+      "feat": {
+        "id": "oreadBurrower"
+      }
+    },
+    {
+      "description": "Passo Pietroso",
+      "feat": {
+        "id": "stonyStep"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: personaggio di 13° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Oreade Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Scorrere sulla Terra Oreade: https://golarion.altervista.org/wiki/Talenti/Scorrere_sulla_Terra_Oreade. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: personaggio di 13° livello; Prerequisito da verificare manualmente: Oreade Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

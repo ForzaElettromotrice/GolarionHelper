@@ -1,0 +1,27 @@
+{
+  "id": "battleCry",
+  "name": "Grido di Battaglia",
+  "description": "Un grido di battaglia incoraggia attacchi e resistenza alla paura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Grido_di_Battaglia",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Carisma 13, Bonus di Attacco Base +5 o 5 gradi in Intrattenere (canto, oratoria o recitazione). Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Grido di Battaglia: https://golarion.altervista.org/wiki/Talenti/Grido_di_Battaglia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Carisma 13, Bonus di Attacco Base +5 o 5 gradi in Intrattenere (canto, oratoria o recitazione). Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

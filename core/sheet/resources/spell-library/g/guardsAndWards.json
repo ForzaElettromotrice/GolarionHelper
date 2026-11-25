@@ -1,0 +1,51 @@
+{
+  "id": "guardsAndWards",
+  "name": "Vigilanza e Interdizione",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "SORCERER": 6,
+    "WITCH": 6
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "HOME": 6,
+      "INTERDICTIONS": 6
+    }
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "30 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "FOCUS"
+  ],
+  "materialComponentDescription": "incenso da bruciare, un pezzo di zolfo, olio, una stringa annodata e una piccola dose di sangue",
+  "focusComponentDescription": "una piccola verga d’argento",
+  "rangeType": "OTHER",
+  "rangeDescription": "ovunque all’interno dell’area da proteggere",
+  "area": "fino a 18 m2/livello (F)",
+  "durationType": "HOUR",
+  "durationDescription": "2 ore/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "vedi testo",
+  "description": "Predispone diversi ostacoli e protezioni magiche all'interno di un luogo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vigilanza_e_Interdizione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Vigilanza e Interdizione: https://golarion.altervista.org/wiki/Incantesimi/Vigilanza_e_Interdizione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

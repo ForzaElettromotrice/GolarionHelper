@@ -1,6 +1,6 @@
 #include "golarion/character/race_definition_manager.hpp"
 
-#include "golarion/character/race_definition_catalog.hpp"
+#include "golarion/catalog/catalog_reader.hpp"
 #include "golarion/character/race_definition_json.hpp"
 #include "golarion/util/string_utils.hpp"
 
@@ -8,11 +8,6 @@
 
 #include <stdexcept>
 #include <utility>
-
-namespace
-{
-    using Json = nlohmann::json;
-}
 
 namespace golarion
 {
@@ -26,27 +21,19 @@ namespace golarion
     {
         const std::string normalizedId = normalize(raceDefinitionId);
         const std::scoped_lock lock(mutex_);
-        if (!loaded_)
-        {
-            loadCatalog();
-        }
-
-        const auto definition = definitions_.find(normalizedId);
-        if (definition == definitions_.end())
-        {
-            throw std::invalid_argument("race definition is not registered: " + normalizedId);
-        }
-        return definition->second;
+        if (const auto cached = definitions_.find(normalizedId); cached != definitions_.end()) return cached->second;
+        const auto name = names_.find(normalizedId);
+        if (name == names_.end()) throw std::invalid_argument("race definition is not registered: " + normalizedId);
+        auto definition = raceDefinitionFromJson(catalog::readFile("race-library/races/" + normalizedId + ".json"));
+        if (definition.id != normalizedId || definition.name != name->second) throw std::invalid_argument("Race index mismatch");
+        return definitions_.emplace(normalizedId, std::move(definition)).first->second;
     }
 
-    std::vector<RaceSummaryView> RaceDefinitionManager::toView()
+    std::vector<RaceSummaryView> RaceDefinitionManager::listRaces() const
     {
-        const std::scoped_lock lock(mutex_);
-        if (!loaded_) loadCatalog();
         std::vector<RaceSummaryView> result;
-        result.reserve(definitions_.size());
-        for (const auto &[id, definition] : definitions_)
-            result.push_back({id, definition.name});
+        result.reserve(names_.size());
+        for (const auto &[id, name] : names_) result.push_back({id, name});
         return result;
     }
 
@@ -60,33 +47,15 @@ namespace golarion
         return result;
     }
 
-    void RaceDefinitionManager::loadCatalog()
+    RaceDefinitionManager::RaceDefinitionManager()
     {
-        try
+        const auto index = catalog::readFile("race-library/index.json");
+        if (!index.is_array()) throw std::invalid_argument("Expected race index");
+        for (const auto &entry : index)
         {
-            const Json catalog = catalog::loadRaceDefinitionCatalog();
-            if (!catalog.is_array())
-            {
-                throw std::invalid_argument("race definition catalog must be a JSON array");
-            }
-
-            std::map<std::string, RaceDefinition> loadedDefinitions;
-            for (const Json &entry : catalog)
-            {
-                RaceDefinition definition = raceDefinitionFromJson(entry);
-                const std::string id = definition.id;
-                if (!loadedDefinitions.emplace(id, std::move(definition)).second)
-                {
-                    throw std::invalid_argument("race definition is duplicated: " + id);
-                }
-            }
-
-            definitions_ = std::move(loadedDefinitions);
-            loaded_ = true;
-        }
-        catch (const nlohmann::json::exception &exception)
-        {
-            throw std::invalid_argument("invalid race definition catalog: " + std::string(exception.what()));
+            const auto id = entry.at("id").get<std::string>();
+            if (id.empty() || id.front() == '.' || id.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-") != std::string::npos ||
+                !names_.emplace(id, entry.at("name").get<std::string>()).second) throw std::invalid_argument("Invalid or duplicate race index entry");
         }
     }
 }

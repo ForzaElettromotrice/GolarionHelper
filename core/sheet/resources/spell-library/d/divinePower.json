@@ -1,0 +1,65 @@
+{
+  "id": "divinePower",
+  "name": "Potere Divino",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "INQUISITOR": 4,
+    "SHAMAN": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "WAR": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Aumenta la capacità offensiva, concede PF temporanei e un attacco aggiuntivo nell'attacco completo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Potere_Divino",
+  "effects": [
+    {
+      "id": "extraWeaponAttack",
+      "type": "routineProgressionGrant",
+      "routineId": "base.fullAttack",
+      "slotId": "weapon",
+      "progression": {
+        "kind": "fixed",
+        "countExpression": "1",
+        "attackBonusAdjustmentExpression": "0"
+      }
+    },
+    {
+      "id": "extraTwoWeaponAttack",
+      "type": "routineProgressionGrant",
+      "routineId": "base.twoWeaponFighting",
+      "slotId": "mainHand",
+      "progression": {
+        "kind": "fixed",
+        "countExpression": "1",
+        "attackBonusAdjustmentExpression": "0"
+      }
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Bonus di fortuna a colpire, danni d'arma, prove e abilità di Forza: +1 ogni tre LI, massimo +6; PF temporanei pari al LI, entrambi manuali. Attacco aggiunto solo alle routine base con arma, naturale/custom manuale. Non cumulare l'attacco extra con Velocità o effetti simili. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

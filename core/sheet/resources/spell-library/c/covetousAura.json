@@ -1,0 +1,36 @@
+{
+  "id": "covetousAura",
+  "name": "Aura di Cupidigia",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "SORCERER": 5,
+    "WITCH": 5
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "area": "emanazione del raggio di 7,5 metri centrata su di sé",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette al lanciatore di beneficiare di alcuni incantesimi innocui lanciati nelle vicinanze. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aura_di_Cupidigia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Aura di Cupidigia: https://golarion.altervista.org/wiki/Incantesimi/Aura_di_Cupidigia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

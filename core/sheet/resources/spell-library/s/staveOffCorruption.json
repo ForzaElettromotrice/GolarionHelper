@@ -1,0 +1,44 @@
+{
+  "id": "staveOffCorruption",
+  "name": "Ritardare la Corruzione",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "PALADIN": 2,
+    "WARPRIEST": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "vedi testo",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura",
+  "durationType": "HOUR",
+  "durationDescription": "1 giorno/2 livelli dell'incantatore",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Ostacola temporaneamente l'avanzamento di una corruzione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Ritardare_la_Corruzione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ritardare la Corruzione: https://golarion.altervista.org/wiki/Ritardare_la_Corruzione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

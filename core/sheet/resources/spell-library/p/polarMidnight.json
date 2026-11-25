@@ -1,0 +1,46 @@
+{
+  "id": "polarMidnight",
+  "name": "Mezzanotte Polare",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "COLD",
+    "DARKNESS"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 9,
+    "ORACLE": 9,
+    "DRUID": 9,
+    "WITCH": 9,
+    "SHAMAN": 9
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "propagazione di 9 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Crea una zona di tenebra gelida e paralizzante. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Mezzanotte_Polare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Mezzanotte Polare: https://golarion.altervista.org/wiki/Incantesimi/Mezzanotte_Polare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

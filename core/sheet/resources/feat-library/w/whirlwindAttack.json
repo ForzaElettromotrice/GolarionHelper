@@ -1,0 +1,57 @@
+{
+  "id": "whirlwindAttack",
+  "name": "Attacco Turbinante",
+  "description": "Permette di colpire in mischia più avversari alla propria portata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Attacco_Turbinante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Attacco Rapido",
+      "feat": {
+        "id": "springAttack"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Mobilità",
+      "feat": {
+        "id": "mobility"
+      }
+    },
+    {
+      "description": "Schivare",
+      "feat": {
+        "id": "dodge"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +4",
+      "expression": "@bab >= 4"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Attacco Turbinante: https://golarion.altervista.org/wiki/Talenti/Attacco_Turbinante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

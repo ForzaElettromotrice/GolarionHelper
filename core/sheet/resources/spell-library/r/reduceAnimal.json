@@ -1,0 +1,35 @@
+{
+  "id": "reduceAnimal",
+  "name": "Ridurre Animali",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "DRUID": 2,
+    "RANGER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 Animale consenziente di taglia Piccola, Media, Grande o Enorme",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Riduce di taglia un animale che accetta la trasformazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ridurre_Animali",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ridurre Animali: https://golarion.altervista.org/wiki/Incantesimi/Ridurre_Animali Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

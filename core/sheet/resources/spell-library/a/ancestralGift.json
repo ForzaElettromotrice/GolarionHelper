@@ -1,0 +1,40 @@
+{
+  "id": "ancestralGift",
+  "name": "Dono Ancestrale",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "BARD": 4,
+    "SKALD": 4,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "immagine del proprio avo realizzata in pietra o metallo",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "effect": "Arma Magica",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Un antenato richiamato dona temporaneamente un'arma dotata della proprietà scelta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Dono_Ancestrale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Dono Ancestrale: https://golarion.altervista.org/wiki/Incantesimi/Dono_Ancestrale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

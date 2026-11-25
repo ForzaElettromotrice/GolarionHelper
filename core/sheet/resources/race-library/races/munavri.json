@@ -1,0 +1,289 @@
+{
+  "id": "munavri",
+  "name": "Munavri",
+  "qualities": [
+    {
+      "id": "munavri.type",
+      "name": "Tipo",
+      "description": "Umanoide.",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide. Le interazioni basate sul tipo richiedono verifica manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "munavri.size",
+      "name": "Taglia",
+      "description": "Media.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "munavri.baseSpeed",
+      "name": "Velocità",
+      "description": "9 m sul terreno.",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "munavri.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Modificatori razziali.",
+      "effects": [
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        },
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        },
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "int",
+          "type": "modifier",
+          "resource": "int",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "munavri.languages",
+      "name": "Linguaggi",
+      "description": "Lingue concesse e apprendimento.",
+      "effects": [
+        {
+          "id": "munavri",
+          "type": "languageGrant",
+          "languageId": "munavri"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aklo",
+            "aboleth",
+            "aquan",
+            "darkFolk",
+            "draconic",
+            "terran",
+            "undercommon"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "pathfinderSignLanguage",
+            "polyglot",
+            "reptoid",
+            "rougarou",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varisianSignLanguage",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "yaddithian"
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "munavri.spellResistance",
+      "name": "Resistenza agli Incantesimi",
+      "description": "Resistenza agli Incantesimi",
+      "effects": [
+        {
+          "id": "resistance",
+          "type": "spellResistance",
+          "expression": "8+@level"
+        }
+      ]
+    },
+    {
+      "id": "munavri.senses",
+      "name": "Sensi",
+      "description": "Sensi",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Scurovisione 36 m. Luce intensa: accecato per il primo round, poi abbagliato finché esposto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "munavri.telepathy",
+      "name": "Telepatia",
+      "description": "Telepatia",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Comunica mentalmente soltanto con altri munavri, entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "munavri.advancedObjectReading",
+      "name": "Lettura Avanzata",
+      "description": "Lettura Avanzata",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Lettura dell'Oggetto a volontà. 1/giorno, un oggetto già esaminato concede competenza temporanea (arma/armatura) o uso come incantatore appropriato (attivazione di incantesimi) per minuti pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "munavri.powerfulRace",
+      "name": "Razza Potente",
+      "description": "Razza Potente",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Il GS è superiore di 1 rispetto a un umano della stessa classe; nessun livello di classe viene aggiunto alla scheda. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": []
+}

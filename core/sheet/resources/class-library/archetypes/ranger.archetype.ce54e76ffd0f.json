@@ -1,0 +1,114 @@
+{
+  "id": "ranger.archetype.ce54e76ffd0f",
+  "classType": "ranger",
+  "name": "Camminatore Cinereo",
+  "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Camminatore_Cinereo Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "ranger.feature.2372e79a4c70",
+      "type": "alter"
+    },
+    {
+      "featureId": "ranger.feature.5c89d9b3bdef",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.70580438b030",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.87b0d1e8f950",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "ranger.feature.5c89d9b3bdef",
+    "ranger.feature.70580438b030",
+    "ranger.feature.87b0d1e8f950"
+  ],
+  "removedAcquisitionIds": [
+    "ranger.feature.2372e79a4c70.level3"
+  ],
+  "addedFeatures": [
+    {
+      "id": "ranger.archetype.ce54e76ffd0f.instructions",
+      "name": "Camminatore Cinereo",
+      "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Camminatore_Cinereo Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "ranger.archetype.ce54e76ffd0f.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Camminatore_Cinereo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.ce54e76ffd0f.feature.da8d622b62",
+      "name": "Nato per il Fuoco (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Camminatore_Cinereo",
+      "progression": [
+        {
+          "id": "ranger.archetype.ce54e76ffd0f.feature.da8d622b62.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Camminatore Cinereo — Nato per il Fuoco (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger_di_Golarion#Camminatore_Cinereo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.ce54e76ffd0f.feature.ea4b737f5f",
+      "name": "Abituato (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Camminatore_Cinereo",
+      "progression": [
+        {
+          "id": "ranger.archetype.ce54e76ffd0f.feature.ea4b737f5f.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Camminatore Cinereo — Abituato (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger_di_Golarion#Camminatore_Cinereo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.ce54e76ffd0f.feature.3c01db68d8",
+      "name": "Camminata Cinerea (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Camminatore_Cinereo",
+      "progression": [
+        {
+          "id": "ranger.archetype.ce54e76ffd0f.feature.3c01db68d8.initial",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Camminatore Cinereo — Camminata Cinerea (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger_di_Golarion#Camminatore_Cinereo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

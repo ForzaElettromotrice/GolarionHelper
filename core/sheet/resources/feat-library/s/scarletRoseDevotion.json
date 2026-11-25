@@ -1,0 +1,42 @@
+{
+  "id": "scarletRoseDevotion",
+  "name": "Devozione alla Rosa Scarlatta",
+  "description": "Usa un'orazione per aiutare un'alleata a superare un tiro salvezza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Devozione_alla_Rosa_Scarlatta",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Guardia del Corpo",
+      "feat": {
+        "id": "bodyguard"
+      }
+    },
+    {
+      "description": "Riflessi in Combattimento",
+      "feat": {
+        "id": "combatReflexes"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intrattenere (orazione) 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: qualsiasi Allineamento buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Devozione alla Rosa Scarlatta: https://golarion.altervista.org/wiki/Talenti/Devozione_alla_Rosa_Scarlatta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intrattenere (orazione) 3 gradi; Prerequisito da verificare manualmente: qualsiasi Allineamento buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

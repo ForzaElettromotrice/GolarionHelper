@@ -1,0 +1,45 @@
+{
+  "id": "temporalStasis",
+  "name": "Stasi Temporale",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WIZARD": 8,
+    "PSYCHIC": 8,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "polvere di diamante, smeraldo, rubino e zaffiro, per un valore totale di almeno 5.000 mo",
+  "materialComponentCostInGoldPieces": 5000,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Sospende il soggetto in uno stato immutabile di stasi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Stasi_Temporale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Stasi Temporale: https://golarion.altervista.org/wiki/Incantesimi/Stasi_Temporale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

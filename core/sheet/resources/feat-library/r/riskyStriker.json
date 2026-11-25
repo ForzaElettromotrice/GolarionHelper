@@ -1,0 +1,31 @@
+{
+  "id": "riskyStriker",
+  "name": "Attacco Rischioso",
+  "description": "Accetta maggiori rischi difensivi per ferire nemici molto più grandi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Attacco_Rischioso",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Halfling Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Attacco Rischioso: https://golarion.altervista.org/wiki/Talenti/Attacco_Rischioso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Halfling Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

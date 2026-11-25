@@ -1,0 +1,667 @@
+{
+  "id": "goblin",
+  "name": "Goblin",
+  "qualities": [
+    {
+      "id": "goblin.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide goblinoide. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "goblin.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "small"
+        }
+      ]
+    },
+    {
+      "id": "goblin.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "goblin.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        },
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "goblin.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "goblin",
+          "type": "languageGrant",
+          "languageId": "goblin"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "common",
+            "draconic",
+            "gnoll",
+            "gnome",
+            "halfling",
+            "dwarven",
+            "orc"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "goblin.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "alchemistFireResistance",
+          "type": "favoredClassBonus",
+          "name": "Alchimista — Resistenza fuoco pari al numero di selezioni; non cumulabile con altre fonti",
+          "classes": [
+            "alchemist"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "Resistenza fuoco pari al numero di selezioni; non cumulabile con altre fonti. Conteggio applicato manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "Resistenza fuoco pari al numero di selezioni; non cumulabile con altre fonti. Conteggio applicato manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "barbarianCritical",
+          "type": "favoredClassBonus",
+          "name": "Barbaro — +1 conferma critica senz'armi o naturali; massimo+4, non cumulabile con Critico Focalizzato",
+          "classes": [
+            "barbarian"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 conferma critica senz'armi o naturali; massimo+4, non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 conferma critica senz'armi o naturali; massimo+4, non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "bardPerformance",
+          "type": "favoredClassBonus",
+          "name": "Bardo — +1 round/giorno di Esibizione Bardica",
+          "classes": [
+            "bard"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 round/giorno di Esibizione Bardica. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 round/giorno di Esibizione Bardica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "cavalierMount",
+          "type": "favoredClassBonus",
+          "name": "Cavaliere — +1 PF alla cavalcatura, conservato dal sostituto",
+          "classes": [
+            "cavalier"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 PF alla cavalcatura, conservato dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 PF alla cavalcatura, conservato dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "summonerEvolution",
+          "type": "favoredClassBonus",
+          "name": "Convocatore — +1 punto evoluzione, solo evoluzioni di danno/protezione dal fuoco",
+          "classes": [
+            "summoner"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 punto evoluzione, solo evoluzioni di danno/protezione dal fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 punto evoluzione, solo evoluzioni di danno/protezione dal fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "druidCompanion",
+          "type": "favoredClassBonus",
+          "name": "Druido — +1 PF al compagno animale, conservato dal sostituto",
+          "classes": [
+            "druid"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 PF al compagno animale, conservato dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 PF al compagno animale, conservato dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "witchSpell",
+          "type": "favoredClassBonus",
+          "name": "Fattucchiere — Un incantesimo da fattucchiere al famiglio, almeno un livello sotto il massimo lanciabile; conservato dal sostituto",
+          "classes": [
+            "witch"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "Un incantesimo da fattucchiere al famiglio, almeno un livello sotto il massimo lanciabile; conservato dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "Un incantesimo da fattucchiere al famiglio, almeno un livello sotto il massimo lanciabile; conservato dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleConcentration",
+          "type": "favoredClassBonus",
+          "name": "Oracolo — +1 Concentrazione per incantesimi con descrittore fuoco",
+          "classes": [
+            "oracle"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 Concentrazione per incantesimi con descrittore fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 Concentrazione per incantesimi con descrittore fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "gunslingerCritical",
+          "type": "favoredClassBonus",
+          "name": "Pistolero — +1 conferma critica con armi da fuoco; massimo+5, non cumulabile con Critico Focalizzato",
+          "classes": [
+            "gunslinger"
+          ],
+          "selectionsPerBenefit": 3,
+          "description": "+1 conferma critica con armi da fuoco; massimo+5, non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 conferma critica con armi da fuoco; massimo+5, non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererSpell",
+          "type": "favoredClassBonus",
+          "name": "Stregone — Un incantesimo da stregone conosciuto con descrittore fuoco, almeno un livello sotto il massimo lanciabile",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "Un incantesimo da stregone conosciuto con descrittore fuoco, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "Un incantesimo da stregone conosciuto con descrittore fuoco, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rogueSneakDamage",
+          "type": "favoredClassBonus",
+          "name": "Ladro — Attacco Furtivo",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 danno furtivo nel round di sorpresa o prima che il bersaglio agisca.",
+          "effects": [
+            {
+              "id": "damage",
+              "type": "modifier",
+              "resource": "damage.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Danni da Attacco Furtivo nel round di sorpresa o prima che il bersaglio agisca"
+            }
+          ]
+        },
+        {
+          "id": "rangerHatedAnimals",
+          "type": "favoredClassBonus",
+          "name": "Ranger — Cani e cavalli",
+          "classes": [
+            "ranger"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 danno contro cani/cavalli e creature simili.",
+          "effects": [
+            {
+              "id": "damage",
+              "type": "modifier",
+              "resource": "damage.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Danni contro cani, cavalli o creature simili"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "goblin.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "goblin.skilled",
+      "name": "Esperto",
+      "description": "Esperto",
+      "effects": [
+        {
+          "id": "ride",
+          "type": "modifier",
+          "resource": "skill.ride",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        },
+        {
+          "id": "stealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "goblin.caveCrawler",
+      "name": "Cavernicolo Strisciante",
+      "description": "Cavernicolo Strisciante",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        },
+        {
+          "id": "climb",
+          "type": "movementGrant",
+          "movementType": "climb",
+          "baseSpeedExpression": "2",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": false
+        },
+        {
+          "id": "climbBonus",
+          "type": "modifier",
+          "resource": "skill.climb",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "8"
+        }
+      ],
+      "replaces": [
+        "goblin.baseSpeed"
+      ]
+    },
+    {
+      "id": "goblin.treeRunner",
+      "name": "Corridore Arboreo",
+      "description": "Corridore Arboreo",
+      "effects": [
+        {
+          "id": "acrobatics",
+          "type": "modifier",
+          "resource": "skill.acrobatics",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        },
+        {
+          "id": "climb",
+          "type": "modifier",
+          "resource": "skill.climb",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        }
+      ],
+      "replaces": [
+        "goblin.skilled"
+      ]
+    },
+    {
+      "id": "goblin.weaponFamiliarity",
+      "name": "Familiarità nelle Armi",
+      "description": "Competenza in Affettacani e Squartacavalli; armi con goblin nel nome considerate da guerra. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Competenza in Affettacani e Squartacavalli; armi con goblin nel nome considerate da guerra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "goblin.skilled"
+      ]
+    },
+    {
+      "id": "goblin.eatAnything",
+      "name": "Mangiatutto",
+      "description": "Mangiatutto",
+      "effects": [
+        {
+          "id": "survival",
+          "type": "modifier",
+          "resource": "skill.survival",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "4",
+          "condition": "Trovare cibo"
+        },
+        {
+          "id": "saves",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Effetti che causano nausea o infermità"
+        }
+      ],
+      "replaces": [
+        "goblin.skilled"
+      ]
+    },
+    {
+      "id": "goblin.oversizedEars",
+      "name": "Orecchie Sproporzionate",
+      "description": "Orecchie Sproporzionate",
+      "effects": [
+        {
+          "id": "perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "4"
+        }
+      ],
+      "replaces": [
+        "goblin.skilled"
+      ]
+    },
+    {
+      "id": "goblin.cityScavenger",
+      "name": "Spazzino Urbano",
+      "description": "Spazzino Urbano",
+      "effects": [
+        {
+          "id": "perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "survival",
+          "type": "modifier",
+          "resource": "skill.survival",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "forage",
+          "type": "reminder",
+          "message": "Può cercare cibo in città usando Sopravvivenza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "goblin.skilled"
+      ]
+    },
+    {
+      "id": "goblin.hardHeadBigTeeth",
+      "name": "Testa Dura, Denti Grossi",
+      "description": "Testa Dura, Denti Grossi",
+      "effects": [
+        {
+          "id": "bite",
+          "type": "strikeGrant",
+          "name": "Morso",
+          "mode": "melee",
+          "tags": [
+            "natural"
+          ],
+          "naturalAttackClassification": "primary",
+          "usageChannels": [
+            "mouth"
+          ],
+          "ability": "str",
+          "damageAbilityRule": "full",
+          "reach": {
+            "maximumUnits": 1
+          },
+          "damageComponents": [
+            {
+              "id": "base",
+              "role": "base",
+              "dice": {
+                "diceCount": 1,
+                "dieSize": 4
+              },
+              "types": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ],
+              "typeMode": "all",
+              "criticalRule": "multiplied"
+            }
+          ]
+        }
+      ],
+      "replaces": [
+        "goblin.skilled"
+      ]
+    }
+  ]
+}

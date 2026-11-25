@@ -1,0 +1,38 @@
+{
+  "id": "giantFormII",
+  "name": "Forma di Gigante II",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WIZARD": 8,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo della creatura di cui si vuole assumere la forma",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Estende la trasformazione ai giganti di taglia Enorme. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Forma_di_Gigante_II",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Forma di Gigante II: https://golarion.altervista.org/wiki/Incantesimi/Forma_di_Gigante_II Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

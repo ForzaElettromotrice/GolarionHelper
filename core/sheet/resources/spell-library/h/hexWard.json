@@ -1,0 +1,52 @@
+{
+  "id": "hexWard",
+  "name": "Protezione dalle Fatture",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "OCCULTIST": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Concede +4 resistenza ai tiri salvezza contro le fatture del fattucchiere. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Protezione_dalle_Fatture",
+  "effects": [
+    {
+      "id": "hexSaves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "resistance",
+      "expression": "4",
+      "condition": "Contro fatture del fattucchiere"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare il bonus solo alle fatture indicate, non a ogni incantesimo. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

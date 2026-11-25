@@ -1,0 +1,50 @@
+{
+  "id": "brightestLight",
+  "name": "Luce Intensificata",
+  "school": "EVOCATION",
+  "descriptors": [
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "BARD": 4,
+    "SKALD": 4,
+    "HUNTER": 4,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "DRUID": 4,
+    "INQUISITOR": 4,
+    "MAGUS": 4,
+    "OCCULTIST": 4,
+    "PALADIN": 4,
+    "RANGER": 4,
+    "SHAMAN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "oggetto toccato",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Produce una luce diurna più persistente ed efficace contro l'oscurità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Luce_Intensificata",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Luce Intensificata: https://golarion.altervista.org/wiki/Incantesimi/Luce_Intensificata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

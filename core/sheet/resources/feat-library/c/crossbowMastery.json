@@ -1,0 +1,43 @@
+{
+  "id": "crossbowMastery",
+  "name": "Padronanza delle Balestre",
+  "description": "Rende più rapida la ricarica delle balestre. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Padronanza_delle_Balestre",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Ricarica Rapida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Tiro Rapido",
+      "feat": {
+        "id": "rapidShot"
+      }
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Padronanza delle Balestre: https://golarion.altervista.org/wiki/Talenti/Padronanza_delle_Balestre. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Ricarica Rapida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

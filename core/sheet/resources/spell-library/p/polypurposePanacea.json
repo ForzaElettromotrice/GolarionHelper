@@ -1,0 +1,38 @@
+{
+  "id": "polypurposePanacea",
+  "name": "Panacea Polivalente",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "MESMERIST": 1,
+    "PSYCHIC": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "OTHER",
+  "durationDescription": "vedi sotto",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Produce un piccolo beneficio scelto fra diversi effetti di benessere. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Panacea_Polivalente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Panacea Polivalente: https://golarion.altervista.org/wiki/Incantesimi/Panacea_Polivalente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,61 @@
+{
+  "id": "resistEnergyCommunal",
+  "name": "Resistere all'Energia Collettivo",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 3,
+    "HUNTER": 3,
+    "CLERIC": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "DRUID": 3,
+    "INQUISITOR": 3,
+    "INVESTIGATOR": 3,
+    "WIZARD": 3,
+    "OCCULTIST": 3,
+    "ORACLE": 3,
+    "PALADIN": 3,
+    "PSYCHIC": 3,
+    "RANGER": 3,
+    "WARPRIEST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creature toccate",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Divide fra più creature la durata della resistenza a un tipo di energia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Resistere_all%27Energia_Collettivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Resistere all'Energia Collettivo: https://golarion.altervista.org/wiki/Incantesimi/Resistere_all%27Energia_Collettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: creature toccate. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

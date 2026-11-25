@@ -1,0 +1,50 @@
+{
+  "id": "hauntingMists",
+  "name": "Foschia Infestante",
+  "school": "ILLUSION",
+  "descriptors": [
+    "SHADOW",
+    "FEAR"
+  ],
+  "subschool": "FIGMENT",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "MESMERIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "6 m",
+  "effect": "nube in una propagazione del raggio di 6 m e alta 6 m",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale (vedere testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una foschia spettrale provoca timore e danni mentali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Foschia_Infestante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Foschia Infestante: https://golarion.altervista.org/wiki/Incantesimi/Foschia_Infestante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

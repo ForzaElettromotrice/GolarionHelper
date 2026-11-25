@@ -1,0 +1,47 @@
+{
+  "id": "hideFromAnimals",
+  "name": "Nascondersi agli Animali",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "DRUID": 1,
+    "RANGER": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata/livello",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Impedisce agli animali di rilevare i soggetti protetti finché restano valide le condizioni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Nascondersi_agli_Animali",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Nascondersi agli Animali: https://golarion.altervista.org/wiki/Incantesimi/Nascondersi_agli_Animali Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura toccata/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

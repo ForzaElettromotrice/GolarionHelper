@@ -1,0 +1,364 @@
+{
+  "id": "android",
+  "name": "Androide",
+  "qualities": [
+    {
+      "id": "android.type",
+      "name": "Tipo",
+      "description": "Umanoide (androide).",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Per gli effetti legati al tipo, considera sia umanoide sia costrutto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "android.size",
+      "name": "Taglia Media",
+      "description": "Taglia Media.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "android.baseSpeed",
+      "name": "Velocità",
+      "description": "Movimento terrestre: 9 m.",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "android.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Destrezza e Intelligenza +2; Carisma −2.",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "int",
+          "type": "modifier",
+          "resource": "int",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "android.languages",
+      "name": "Linguaggi",
+      "description": "Lingue iniziali e opzioni di apprendimento.",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "android.constructed",
+      "name": "Costruito",
+      "description": "Resistenza agli effetti biologici e mentali.",
+      "effects": [
+        {
+          "id": "saves",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Influenza mentale, paralisi, stordimento o veleno"
+        },
+        {
+          "id": "biology",
+          "type": "reminder",
+          "message": "La descrizione biologica della pagina contiene indicazioni contraddittorie su malattie e vulnerabilità: verificare con il GM prima di applicare immunità ulteriori. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "android.emotionless",
+      "name": "Privo di Emozioni",
+      "description": "Immunità emotive; Intuizione −4.",
+      "effects": [
+        {
+          "id": "senseMotive",
+          "type": "modifier",
+          "resource": "skill.senseMotive",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "4"
+        },
+        {
+          "id": "fear",
+          "type": "immunity",
+          "targetId": "fear",
+          "name": "Paura"
+        },
+        {
+          "id": "emotion",
+          "type": "immunity",
+          "targetId": "emotion",
+          "name": "Emozioni"
+        },
+        {
+          "id": "morale",
+          "type": "reminder",
+          "message": "Non applicare bonus di morale: il filtro automatico non è implementato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "android.naniteSurge",
+      "name": "Impulso dei Naniti",
+      "description": "Attivazione giornaliera dei naniti.",
+      "effects": [
+        {
+          "id": "nanites",
+          "type": "reminder",
+          "message": "1/giorno, azione immediata prima del tiro: +3 + livello del personaggio a un singolo d20. I circuiti illuminano come una torcia per 1 round; utilizzo e tiro sono manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "android.exceptionalSenses",
+      "name": "Sensi Eccezionali",
+      "description": "Percezione +2; vista potenziata.",
+      "effects": [
+        {
+          "id": "perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Scurovisione 18 m e visione crepuscolare; applicazione ambientale manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": []
+}

@@ -1,0 +1,54 @@
+{
+  "id": "youthfulAppearance",
+  "name": "Aspetto Giovanile",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "BARD": 1,
+    "WITCH": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "MEDIUM": 1,
+    "OCCULTIST": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "tocco",
+  "target": "una creatura toccata",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "Non indicata nella fonte; verificare manualmente.",
+  "description": "Fa sembrare il soggetto più giovane senza modificarne realmente l'età. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aspetto_Giovanile",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Aspetto Giovanile: https://golarion.altervista.org/wiki/Incantesimi/Aspetto_Giovanile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte non indica il tiro salvezza; la lista strutturata vuota non implica che non sia consentito. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "La fonte non indica la resistenza agli incantesimi: verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

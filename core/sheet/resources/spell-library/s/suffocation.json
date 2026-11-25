@@ -1,0 +1,57 @@
+{
+  "id": "suffocation",
+  "name": "Asfissia",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "OCCULTIST": 5,
+    "PSYCHIC": 5,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "ASSASSINATION": 5
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una fiala contenente un po' del proprio alito",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura vivente",
+  "durationType": "ROUND",
+  "durationDescription": "3 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Impedisce alla vittima di respirare, facendola rapidamente progredire verso la morte per asfissia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Asfissia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Asfissia: https://golarion.altervista.org/wiki/Incantesimi/Asfissia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Aria 5 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

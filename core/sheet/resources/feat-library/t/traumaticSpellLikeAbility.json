@@ -1,0 +1,32 @@
+{
+  "id": "traumaticSpellLikeAbility",
+  "name": "Capacità Magiche Traumatiche",
+  "description": "La capacità magica può lasciare incubi persistenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Capacit%C3%A0_Magiche_Traumatiche",
+  "types": [
+    "monster"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Capacità Magica a livello dell'incantatore 6° o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Capacità Magiche Traumatiche: https://golarion.altervista.org/wiki/Talenti/Capacit%C3%A0_Magiche_Traumatiche. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Capacità Magica a livello dell'incantatore 6° o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

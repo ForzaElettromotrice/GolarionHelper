@@ -1,0 +1,58 @@
+{
+  "id": "ranger.archetype.ddef954ef567",
+  "classType": "ranger",
+  "name": "Infiltrato",
+  "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Infiltrato Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "ranger.feature.2372e79a4c70",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "ranger.feature.2372e79a4c70"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "ranger.archetype.ddef954ef567.instructions",
+      "name": "Infiltrato",
+      "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Infiltrato Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "ranger.archetype.ddef954ef567.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Infiltrato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.ddef954ef567.feature.17d90baf23",
+      "name": "Adattamento (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger/Archetipi#Infiltrato",
+      "progression": [
+        {
+          "id": "ranger.archetype.ddef954ef567.feature.17d90baf23.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Infiltrato — Adattamento (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger/Archetipi#Infiltrato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

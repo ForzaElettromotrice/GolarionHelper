@@ -1,0 +1,31 @@
+{
+  "id": "bloodSpurt",
+  "name": "Spruzzo di Sangue",
+  "description": "Il sangue spruzzato da una ferita può accecare gli aggressori vicini. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Spruzzo_di_Sangue",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +2",
+      "expression": "@bab >= 2"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: suscettibilità ai danni da sanguinamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Spruzzo di Sangue: https://golarion.altervista.org/wiki/Talenti/Spruzzo_di_Sangue. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: suscettibilità ai danni da sanguinamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

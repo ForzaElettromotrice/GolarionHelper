@@ -1,0 +1,42 @@
+{
+  "id": "ageResistance",
+  "name": "Resistenza all'Invecchiamento",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "ARCANIST": 6,
+    "HUNTER": 6,
+    "DRUID": 6,
+    "WITCH": 6,
+    "INVESTIGATOR": 4,
+    "WIZARD": 6,
+    "OCCULTIST": 4,
+    "PSYCHIC": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Permette di ignorare le penalità fisiche della vecchiaia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Resistenza_all%27Invecchiamento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Resistenza all'Invecchiamento: https://golarion.altervista.org/wiki/Incantesimi/Resistenza_all%27Invecchiamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

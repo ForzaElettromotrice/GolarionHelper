@@ -1,0 +1,52 @@
+{
+  "id": "createGreaterUndead",
+  "name": "Creare Non Morti Superiori",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WIZARD": 8,
+    "SORCERER": 8,
+    "CLERIC": 8,
+    "ORACLE": 8,
+    "SHAMAN": 8
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DEATH": 8
+    }
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "1 ora",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un vaso di argilla riempito con la terra di una tomba e un’onice che valga almeno 50 mo per DV del non morto che deve essere creato",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 cadavere",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di creare forme non morte più potenti rispetto a Creare Non Morti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Creare_Non_Morti_Superiori",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Creare Non Morti Superiori: https://golarion.altervista.org/wiki/Incantesimi/Creare_Non_Morti_Superiori Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Costo materiale variabile o alternativo: determinarlo dalla descrizione dei componenti, non da un importo fisso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

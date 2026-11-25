@@ -1,0 +1,44 @@
+{
+  "id": "stumbleGap",
+  "name": "Buchetta",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "pala in miniatura del costo di 10 mo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "vedi testo",
+  "durationType": "ROUND",
+  "durationDescription": "1 round + 1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "PARTIAL",
+      "description": "Riflessi parziale"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Apre una piccola irregolarità nel terreno che può far inciampare chi la attraversa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Buchetta",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Buchetta: https://golarion.altervista.org/wiki/Incantesimi/Buchetta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

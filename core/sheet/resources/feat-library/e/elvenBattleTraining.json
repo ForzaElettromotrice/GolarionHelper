@@ -1,0 +1,31 @@
+{
+  "id": "elvenBattleTraining",
+  "name": "Addestramento Marziale Elfico",
+  "description": "Rende più difficile sottrarre o spezzare le armi elfiche impugnate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Addestramento_Marziale_Elfico",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Elfo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Addestramento Marziale Elfico: https://golarion.altervista.org/wiki/Talenti/Addestramento_Marziale_Elfico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Elfo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

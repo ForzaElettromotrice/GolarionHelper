@@ -1,0 +1,47 @@
+{
+  "id": "wallOfForce",
+  "name": "Muro di Forza",
+  "school": "EVOCATION",
+  "descriptors": [
+    "FORCE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "MAGUS": 5,
+    "OCCULTIST": 5,
+    "PSYCHIC": 5,
+    "SORCERER": 5
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "ISOLATION": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "quarzo in polvere",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "muro la cui area è fino a un quadrato con lato di 3 m/livello",
+  "durationType": "ROUND",
+  "durationDescription": "1 round /livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Forma una barriera di forza resistente ai normali danneggiamenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Forza",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Muro di Forza: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Forza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

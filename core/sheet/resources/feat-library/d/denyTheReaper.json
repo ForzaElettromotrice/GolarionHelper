@@ -1,0 +1,27 @@
+{
+  "id": "denyTheReaper",
+  "name": "Respingere il Mietitore",
+  "description": "Agevola il pronto soccorso e premia chi riporta in vita un alleato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Respingere_il_Mietitore",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Bisogna essere stati testimone della morte di un intimo compagno di battaglia, una morte che si poteva evitare, come a causa di Sanguinamento, fallimento della Stabilizzazione o danni da Veleno continuati, oppure possedere il background La Guerra o Morte in Famiglia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Respingere il Mietitore: https://golarion.altervista.org/wiki/Talenti/Respingere_il_Mietitore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Bisogna essere stati testimone della morte di un intimo compagno di battaglia, una morte che si poteva evitare, come a causa di Sanguinamento, fallimento della Stabilizzazione o danni da Veleno continuati, oppure possedere il background La Guerra o Morte in Famiglia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

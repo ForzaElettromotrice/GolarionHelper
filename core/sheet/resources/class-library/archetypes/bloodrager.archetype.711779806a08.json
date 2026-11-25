@@ -1,0 +1,93 @@
+{
+  "id": "bloodrager.archetype.711779806a08",
+  "classType": "bloodrager",
+  "name": "Iracondo Intoccabile",
+  "description": "Archetipo di Iracondo di Stirpe. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Archetipi#Iracondo_Intoccabile Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "bloodrager.spellcasting",
+      "type": "replace"
+    },
+    {
+      "featureId": "bloodrager.feature.29404a1ca3f2",
+      "type": "replace"
+    },
+    {
+      "featureId": "bloodrager.feature.cf633921d016",
+      "type": "replace"
+    },
+    {
+      "featureId": "bloodrager.feature.15f94f163a47",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "bloodrager.feature.15f94f163a47",
+    "bloodrager.feature.29404a1ca3f2",
+    "bloodrager.feature.cf633921d016",
+    "bloodrager.spellcasting"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "bloodrager.archetype.711779806a08.instructions",
+      "name": "Iracondo Intoccabile",
+      "description": "Archetipo di Iracondo di Stirpe. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Archetipi#Iracondo_Intoccabile Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "bloodrager.archetype.711779806a08.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Iracondo di Stirpe. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Archetipi#Iracondo_Intoccabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bloodrager.archetype.711779806a08.feature.1",
+      "name": "Resistenza d'Ira (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Archetipi#Iracondo_Intoccabile",
+      "progression": [
+        {
+          "id": "bloodrager.archetype.711779806a08.feature.1.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Iracondo Intoccabile — Resistenza d'Ira (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Archetipi#Iracondo_Intoccabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bloodrager.archetype.711779806a08.feature.2",
+      "name": "Controllo della Resistenza (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Archetipi#Iracondo_Intoccabile",
+      "progression": [
+        {
+          "id": "bloodrager.archetype.711779806a08.feature.2.initial",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Iracondo Intoccabile — Controllo della Resistenza (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Iracondo_di_Stirpe/Archetipi#Iracondo_Intoccabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

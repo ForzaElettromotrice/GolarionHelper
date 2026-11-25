@@ -1,0 +1,46 @@
+{
+  "id": "shieldMaster",
+  "name": "Maestria negli Scudi",
+  "description": "Elimina specifiche penalità quando si combatte con lo scudo come arma. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestria_negli_Scudi",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Attacco con lo Scudo Migliorato",
+      "feat": {
+        "id": "improvedShieldBash"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Botta di Scudo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Combattere con Due Armi",
+      "feat": {
+        "id": "twoWeaponFighting"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza negli Scudi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +11",
+      "expression": "@bab >= 11"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestria negli Scudi: https://golarion.altervista.org/wiki/Talenti/Maestria_negli_Scudi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Botta di Scudo; Prerequisito da verificare manualmente: Competenza negli Scudi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

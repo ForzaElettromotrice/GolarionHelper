@@ -1,0 +1,66 @@
+{
+  "id": "shiftedSteps",
+  "name": "Passi Spostati",
+  "school": "ILLUSION",
+  "descriptors": [
+    "SONIC"
+  ],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ANTIPALADIN": 2,
+    "ARCANIST": 2,
+    "BARD": 2,
+    "INQUISITOR": 2,
+    "INVESTIGATOR": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/ogni 2 livelli)",
+  "target": "una creatura o un oggetto fino a 3 metri di diametro",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione + 1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo) e Volontà dubita (se interagisce); vedi testo"
+    },
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà nega (innocuo) e Volontà dubita (se interagisce); vedi testo"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Fa provenire i rumori dei passi da una posizione diversa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Passi_Spostati",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Passi Spostati: https://golarion.altervista.org/wiki/Incantesimi/Passi_Spostati Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: una creatura o un oggetto fino a 3 metri di diametro. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,884 @@
+{
+  "type": "brawler",
+  "name": "Attaccabrighe",
+  "description": "Combattente flessibile specializzato negli scontri ravvicinati.",
+  "hitDie": 10,
+  "skillRanksPerLevel": 4,
+  "classSkills": [
+    "skill.acrobatics",
+    "skill.handleAnimal",
+    "skill.craft",
+    "skill.escapeArtist",
+    "skill.ride",
+    "skill.knowledge.dungeoneering",
+    "skill.knowledge.local",
+    "skill.intimidate",
+    "skill.senseMotive",
+    "skill.swim",
+    "skill.perception",
+    "skill.profession",
+    "skill.climb"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 0
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 0
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 1
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 2
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 3
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 4
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 5
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 16,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 17,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 18,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 19,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 20,
+      "baseSavingThrows": {
+        "fortitude": 12,
+        "reflex": 12,
+        "will": 6
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "brawler.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "brawler.feature.246d68e8ed15",
+      "name": "Addestramento Marziale",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Addestramento_Marziale_(Str)",
+      "progression": [
+        {
+          "id": "brawler.feature.246d68e8ed15.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Attaccabrighe: verificare e applicare Addestramento Marziale. https://golarion.altervista.org/wiki/Attaccabrighe#Addestramento_Marziale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "brawler.feature.0163f1953b1c",
+      "name": "Astuzia dell'Attaccabrighe",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Astuzia_dell'Attaccabrighe_(Str)",
+      "progression": [
+        {
+          "id": "brawler.feature.0163f1953b1c.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Attaccabrighe: verificare e applicare Astuzia dell'Attaccabrighe. https://golarion.altervista.org/wiki/Attaccabrighe#Astuzia_dell'Attaccabrighe_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "brawler.feature.6388008e0642",
+      "name": "Colpo Senz'Armi",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Colpo_Senz'Armi",
+      "progression": [
+        {
+          "id": "brawler.feature.6388008e0642.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Attaccabrighe: verificare e applicare Colpo Senz'Armi. https://golarion.altervista.org/wiki/Attaccabrighe#Colpo_Senz'Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "brawler.feature.125db7b55188",
+      "name": "Flessibilità Marziale",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Flessibilità_Marziale_(Str)",
+      "progression": [
+        {
+          "id": "brawler.feature.125db7b55188.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Attaccabrighe: verificare e applicare Flessibilità Marziale. https://golarion.altervista.org/wiki/Attaccabrighe#Flessibilità_Marziale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.125db7b55188.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Attaccabrighe: verificare e applicare Flessibilità Marziale (azione veloce). https://golarion.altervista.org/wiki/Attaccabrighe#Flessibilità_Marziale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.125db7b55188.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Attaccabrighe: verificare e applicare Flessibilità Marziale (azione gratuita). https://golarion.altervista.org/wiki/Attaccabrighe#Flessibilità_Marziale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.125db7b55188.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Attaccabrighe: verificare e applicare Flessibilità Marziale (azione immediata). https://golarion.altervista.org/wiki/Attaccabrighe#Flessibilità_Marziale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.125db7b55188.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Attaccabrighe: verificare e applicare Flessibilità Marziale (qualsiasi numero). https://golarion.altervista.org/wiki/Attaccabrighe#Flessibilità_Marziale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "brawler.feature.c0d0e10a0288",
+      "name": "Raffica dell'Attaccabrighe",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Raffica_dell'Attaccabrighe_(Str)",
+      "progression": [
+        {
+          "id": "brawler.feature.c0d0e10a0288.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Attaccabrighe: verificare e applicare Raffica dell'Attaccabrighe (Combattere con Due Armi). https://golarion.altervista.org/wiki/Attaccabrighe#Raffica_dell'Attaccabrighe_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.c0d0e10a0288.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Attaccabrighe: verificare e applicare Raffica dell'Attaccabrighe (Combattere con Due Armi Migliorato). https://golarion.altervista.org/wiki/Attaccabrighe#Raffica_dell'Attaccabrighe_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.c0d0e10a0288.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Attaccabrighe: verificare e applicare Raffica dell'Attaccabrighe (Combattere con Due Armi Superiore). https://golarion.altervista.org/wiki/Attaccabrighe#Raffica_dell'Attaccabrighe_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "brawler.feature.2197e04fb2ad",
+      "name": "Talento Bonus di Combattimento",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Talenti_Bonus_di_Combattimento",
+      "progression": [
+        {
+          "id": "brawler.feature.2197e04fb2ad.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Attaccabrighe: verificare e applicare Talento Bonus di Combattimento. https://golarion.altervista.org/wiki/Attaccabrighe#Talenti_Bonus_di_Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.2197e04fb2ad.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Attaccabrighe: verificare e applicare Talento Bonus di Combattimento. https://golarion.altervista.org/wiki/Attaccabrighe#Talenti_Bonus_di_Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.2197e04fb2ad.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Attaccabrighe: verificare e applicare Talento Bonus di Combattimento. https://golarion.altervista.org/wiki/Attaccabrighe#Talenti_Bonus_di_Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.2197e04fb2ad.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Attaccabrighe: verificare e applicare Talento Bonus di Combattimento. https://golarion.altervista.org/wiki/Attaccabrighe#Talenti_Bonus_di_Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.2197e04fb2ad.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Attaccabrighe: verificare e applicare Talento Bonus di Combattimento. https://golarion.altervista.org/wiki/Attaccabrighe#Talenti_Bonus_di_Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.2197e04fb2ad.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Attaccabrighe: verificare e applicare Talento Bonus di Combattimento. https://golarion.altervista.org/wiki/Attaccabrighe#Talenti_Bonus_di_Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.2197e04fb2ad.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Attaccabrighe: verificare e applicare Talento Bonus di Combattimento. https://golarion.altervista.org/wiki/Attaccabrighe#Talenti_Bonus_di_Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "brawler.feature.d00dd2c0cc5f",
+      "name": "Addestramento alle Manovre",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Addestramento_alle_Manovre_(Str)",
+      "progression": [
+        {
+          "id": "brawler.feature.d00dd2c0cc5f.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Attaccabrighe: verificare e applicare Addestramento alle Manovre 1. https://golarion.altervista.org/wiki/Attaccabrighe#Addestramento_alle_Manovre_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.d00dd2c0cc5f.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Attaccabrighe: verificare e applicare Addestramento alle Manovre 2. https://golarion.altervista.org/wiki/Attaccabrighe#Addestramento_alle_Manovre_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "brawler.feature.d00dd2c0cc5f.level3"
+          ]
+        },
+        {
+          "id": "brawler.feature.d00dd2c0cc5f.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Attaccabrighe: verificare e applicare Addestramento alle Manovre 3. https://golarion.altervista.org/wiki/Attaccabrighe#Addestramento_alle_Manovre_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "brawler.feature.d00dd2c0cc5f.level7"
+          ]
+        },
+        {
+          "id": "brawler.feature.d00dd2c0cc5f.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Attaccabrighe: verificare e applicare Addestramento alle Manovre 4. https://golarion.altervista.org/wiki/Attaccabrighe#Addestramento_alle_Manovre_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "brawler.feature.d00dd2c0cc5f.level11"
+          ]
+        },
+        {
+          "id": "brawler.feature.d00dd2c0cc5f.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Attaccabrighe: verificare e applicare Addestramento alle Manovre 5. https://golarion.altervista.org/wiki/Attaccabrighe#Addestramento_alle_Manovre_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "brawler.feature.d00dd2c0cc5f.level15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brawler.feature.7188b6d0f811",
+      "name": "Bonus alla CA",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Bonus_alla_CA_(Str)",
+      "progression": [
+        {
+          "id": "brawler.feature.7188b6d0f811.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Attaccabrighe: verificare e applicare Bonus alla CA +1. https://golarion.altervista.org/wiki/Attaccabrighe#Bonus_alla_CA_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.7188b6d0f811.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Attaccabrighe: verificare e applicare Bonus alla CA +2. https://golarion.altervista.org/wiki/Attaccabrighe#Bonus_alla_CA_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "brawler.feature.7188b6d0f811.level4"
+          ]
+        },
+        {
+          "id": "brawler.feature.7188b6d0f811.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Attaccabrighe: verificare e applicare Bonus alla CA +3. https://golarion.altervista.org/wiki/Attaccabrighe#Bonus_alla_CA_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "brawler.feature.7188b6d0f811.level9"
+          ]
+        },
+        {
+          "id": "brawler.feature.7188b6d0f811.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Attaccabrighe: verificare e applicare Bonus alla CA +4. https://golarion.altervista.org/wiki/Attaccabrighe#Bonus_alla_CA_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "brawler.feature.7188b6d0f811.level13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brawler.feature.f7b68f0163a4",
+      "name": "Knockout",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Knockout_(Str)",
+      "progression": [
+        {
+          "id": "brawler.feature.f7b68f0163a4.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Attaccabrighe: verificare e applicare Knockout 1/giorno. https://golarion.altervista.org/wiki/Attaccabrighe#Knockout_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.f7b68f0163a4.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Attaccabrighe: verificare e applicare Knockout 2/giorno. https://golarion.altervista.org/wiki/Attaccabrighe#Knockout_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "brawler.feature.f7b68f0163a4.level4"
+          ]
+        },
+        {
+          "id": "brawler.feature.f7b68f0163a4.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Attaccabrighe: verificare e applicare Knockout 3/giorno. https://golarion.altervista.org/wiki/Attaccabrighe#Knockout_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "brawler.feature.f7b68f0163a4.level10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brawler.feature.7a33f3249dce",
+      "name": "Colpo dell'Attaccabrighe",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Colpo_dell'Attaccabrighe_(Str)",
+      "progression": [
+        {
+          "id": "brawler.feature.7a33f3249dce.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Attaccabrighe: verificare e applicare Colpo dell'Attaccabrighe (magia). https://golarion.altervista.org/wiki/Attaccabrighe#Colpo_dell'Attaccabrighe_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.7a33f3249dce.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Attaccabrighe: verificare e applicare Colpo dell'Attaccabrighe (argento e ferro freddo). https://golarion.altervista.org/wiki/Attaccabrighe#Colpo_dell'Attaccabrighe_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.7a33f3249dce.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Attaccabrighe: verificare e applicare Colpo dell'Attaccabrighe (allineamento). https://golarion.altervista.org/wiki/Attaccabrighe#Colpo_dell'Attaccabrighe_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "brawler.feature.7a33f3249dce.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Attaccabrighe: verificare e applicare Colpo dell'Attaccabrighe (adamantio). https://golarion.altervista.org/wiki/Attaccabrighe#Colpo_dell'Attaccabrighe_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "brawler.feature.e538a34c4701",
+      "name": "Padronanza delle Armi da Combattimento Ravvicinato",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Padronanza_delle_Armi_da_Combattimento_Ravvicinato_(Str)",
+      "progression": [
+        {
+          "id": "brawler.feature.e538a34c4701.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Attaccabrighe: verificare e applicare Padronanza delle Armi da Combattimento Ravvicinato. https://golarion.altervista.org/wiki/Attaccabrighe#Padronanza_delle_Armi_da_Combattimento_Ravvicinato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "brawler.feature.152c2f3a58e5",
+      "name": "Colpo Terrificante",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Colpo_Terrificante_(Str)",
+      "progression": [
+        {
+          "id": "brawler.feature.152c2f3a58e5.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Attaccabrighe: verificare e applicare Colpo Terrificante. https://golarion.altervista.org/wiki/Attaccabrighe#Colpo_Terrificante_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "brawler.feature.4a1ce9126799",
+      "name": "Colpo Terrificante Migliorato",
+      "description": "Privilegio della classe Attaccabrighe. Regole e condizioni: https://golarion.altervista.org/wiki/Attaccabrighe#Colpo_Terrificante_Migliorato_(Str)",
+      "progression": [
+        {
+          "id": "brawler.feature.4a1ce9126799.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Attaccabrighe: verificare e applicare Colpo Terrificante Migliorato. https://golarion.altervista.org/wiki/Attaccabrighe#Colpo_Terrificante_Migliorato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "brawler.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Attaccabrighe",
+      "progression": [
+        {
+          "id": "brawler.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Attaccabrighe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "brawler.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Attaccabrighe",
+      "progression": [
+        {
+          "id": "brawler.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Attaccabrighe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "brawler.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Attaccabrighe",
+      "progression": [
+        {
+          "id": "brawler.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Attaccabrighe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "brawler.maneuverTrainingBinding",
+      "classType": "brawler",
+      "featureId": "brawler.feature.d00dd2c0cc5f",
+      "acquisitionIds": [
+        "brawler.feature.d00dd2c0cc5f.level3",
+        "brawler.feature.d00dd2c0cc5f.level7",
+        "brawler.feature.d00dd2c0cc5f.level11",
+        "brawler.feature.d00dd2c0cc5f.level15",
+        "brawler.feature.d00dd2c0cc5f.level19"
+      ],
+      "choice": {
+        "id": "maneuverTraining",
+        "prompt": "Scegli: Addestramento alle manovre",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "brawler.maneuverTraining"
+      },
+      "retainEarlierAcquisitions": true
+    }
+  ]
+}

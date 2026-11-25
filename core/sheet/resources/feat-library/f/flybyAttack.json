@@ -1,0 +1,27 @@
+{
+  "id": "flybyAttack",
+  "name": "Attacco in Volo",
+  "description": "Consente di attaccare durante uno spostamento in volo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Attacco_in_Volo",
+  "types": [
+    "monster"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Velocità di Volare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Attacco in Volo: https://golarion.altervista.org/wiki/Talenti/Attacco_in_Volo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Velocità di Volare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

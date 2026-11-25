@@ -1,0 +1,68 @@
+{
+  "id": "confusion",
+  "name": "Confusione",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 3,
+    "WITCH": 4,
+    "BLOODRAGER": 4,
+    "WIZARD": 4,
+    "MESMERIST": 3,
+    "OCCULTIST": 4,
+    "PSYCHIC": 4,
+    "SKALD": 3,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "MADNESS": 4,
+      "TRICKERY": 4
+    },
+    "subdomain": {
+      "LUST": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "tre gusci di noce",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "tutte le creature entro un’esplosione del raggio di 4,5 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Altera imprevedibilmente il comportamento delle vittime secondo le regole della confusione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Confusione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Confusione: https://golarion.altervista.org/wiki/Incantesimi/Confusione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: tutte le creature entro un’esplosione del raggio di 4,5 m. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

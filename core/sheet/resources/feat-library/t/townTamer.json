@@ -1,0 +1,27 @@
+{
+  "id": "townTamer",
+  "name": "Ripulisci Città",
+  "description": "Favorisce la lotta alla criminalità in un insediamento prescelto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ripulisci_Citt%C3%A0",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Bisogna possedere 5 gradi in Intimidire e una motivazione personale per ripulire una particolare città (come un vecchio amico che chiede un favore o mentre si cerca un posto dove insediarsi) o possedere il background Cacciatore di Taglie o Campione del Popolo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ripulisci Città: https://golarion.altervista.org/wiki/Talenti/Ripulisci_Citt%C3%A0. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Bisogna possedere 5 gradi in Intimidire e una motivazione personale per ripulire una particolare città (come un vecchio amico che chiede un favore o mentre si cerca un posto dove insediarsi) o possedere il background Cacciatore di Taglie o Campione del Popolo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,59 @@
+{
+  "id": "overwhelmingPresence",
+  "name": "Presenza Soverchiante",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "BARD": 6,
+    "CLERIC": 9,
+    "INQUISITOR": 6,
+    "WIZARD": 9,
+    "MESMERIST": 6,
+    "ORACLE": 9,
+    "PSYCHIC": 9,
+    "SKALD": 6,
+    "SORCERER": 9
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una piuma di cigno",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega, vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una presenza opprimente induce i soggetti a inchinarsi e venerare l'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Presenza_Soverchiante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Presenza Soverchiante: https://golarion.altervista.org/wiki/Incantesimi/Presenza_Soverchiante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: una creatura/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

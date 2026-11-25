@@ -1,0 +1,27 @@
+{
+  "id": "summonersCall",
+  "name": "Richiamo del Convocatore",
+  "description": "Rafforza l'eidolon quando viene richiamato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Richiamo_del_Convocatore",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Eidolon Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Richiamo del Convocatore: https://golarion.altervista.org/wiki/Talenti/Richiamo_del_Convocatore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Eidolon Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

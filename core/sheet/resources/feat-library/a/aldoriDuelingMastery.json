@@ -1,0 +1,39 @@
+{
+  "id": "aldoriDuelingMastery",
+  "name": "Maestria nel Duello Aldori",
+  "description": "Concede vantaggi specifici nel duello con la spada Aldori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestria_nel_Duello_Aldori",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Arma Accurata",
+      "feat": {
+        "id": "weaponFinesse"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Spada Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Spada Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Estrazione Rapida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestria nel Duello Aldori: https://golarion.altervista.org/wiki/Talenti/Maestria_nel_Duello_Aldori. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Spada Aldori); Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Spada Aldori); Prerequisito da verificare manualmente: Estrazione Rapida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

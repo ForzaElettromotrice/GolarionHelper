@@ -1,0 +1,29 @@
+{
+  "id": "coveringDefense",
+  "name": "Concedere Copertura",
+  "description": "Una difesa totale può offrire riparo anche a un compagno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Concedere_Copertura",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Scudo Focalizzato",
+      "feat": {
+        "id": "shieldFocus"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Concedere Copertura: https://golarion.altervista.org/wiki/Talenti/Concedere_Copertura. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

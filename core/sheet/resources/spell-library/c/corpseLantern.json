@@ -1,0 +1,38 @@
+{
+  "id": "corpseLantern",
+  "name": "Lanterne Fantasma",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "WITCH": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "fino a 4 luci, tutte all’interno di un’area di 3 metri di raggio",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Produce sfere luminose che ostacolano il nascondersi dei nemici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lanterne_Fantasma",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Lanterne Fantasma: https://golarion.altervista.org/wiki/Incantesimi/Lanterne_Fantasma Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

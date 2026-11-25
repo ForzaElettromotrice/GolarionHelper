@@ -1,0 +1,44 @@
+{
+  "id": "anchoredStep",
+  "name": "Passo Ancorato",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 3,
+    "HUNTER": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "INVESTIGATOR": 3,
+    "WIZARD": 3,
+    "PSYCHIC": 3,
+    "SHAMAN": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un po' di radice di quercia",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Stabilizza i piedi con viticci, sacrificando parte della mobilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Passo_Ancorato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Passo Ancorato: https://golarion.altervista.org/wiki/Incantesimi/Passo_Ancorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

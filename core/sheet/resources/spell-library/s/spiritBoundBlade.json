@@ -1,0 +1,46 @@
+{
+  "id": "spiritBoundBlade",
+  "name": "Lama Legata allo Spirito",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "MEDIUM": 4,
+    "OCCULTIST": 4,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "arma toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Uno spirito conferisce all'arma tocco fantasma e un potere emotivo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lama_Legata_allo_Spirito",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Lama Legata allo Spirito: https://golarion.altervista.org/wiki/Incantesimi/Lama_Legata_allo_Spirito Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: arma toccata. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

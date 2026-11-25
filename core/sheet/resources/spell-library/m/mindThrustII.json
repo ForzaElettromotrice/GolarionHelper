@@ -1,0 +1,40 @@
+{
+  "id": "mindThrustII",
+  "name": "Affondo Mentale II",
+  "school": "DIVINATION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "spellLevelByClass": {
+    "PSYCHIC": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "HALF",
+      "description": "Volontà dimezza"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Assale la mente della vittima con danni psichici proporzionati al livello dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Affondo_Mentale_II",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Affondo Mentale II: https://golarion.altervista.org/wiki/Incantesimi/Affondo_Mentale_II Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

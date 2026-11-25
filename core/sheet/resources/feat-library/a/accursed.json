@@ -1,0 +1,27 @@
+{
+  "id": "accursed",
+  "name": "Maledetto",
+  "description": "Una maledizione concede resistenza magica che cambia dopo la liberazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maledetto",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Bisogna essere afflitti da una Maledizione che può essere tolta solo attraverso una cerca o simile impresa grandiosa, oppure possedere il background Nascita Maledetta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maledetto: https://golarion.altervista.org/wiki/Talenti/Maledetto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Bisogna essere afflitti da una Maledizione che può essere tolta solo attraverso una cerca o simile impresa grandiosa, oppure possedere il background Nascita Maledetta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

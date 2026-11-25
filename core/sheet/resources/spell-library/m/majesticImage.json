@@ -1,0 +1,52 @@
+{
+  "id": "majesticImage",
+  "name": "Immagine Maestosa",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 4,
+    "CLERIC": 4,
+    "WIZARD": 4,
+    "MEDIUM": 4,
+    "MESMERIST": 4,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "SKALD": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una goccia di vernice e una palla di argilla",
+  "rangeType": "OTHER",
+  "rangeDescription": "60 m/livello",
+  "effect": "si trasferisce la coscienza a un oggetto con le proprie sembianze.",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Proietta una presenza autorevole attraverso una rappresentazione dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Immagine_Maestosa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Immagine Maestosa: https://golarion.altervista.org/wiki/Incantesimi/Immagine_Maestosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,48 @@
+{
+  "id": "illusionOfCalm",
+  "name": "Illusione di Calma",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "FIGMENT",
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "MESMERIST": 1,
+    "OCCULTIST": 1,
+    "PSYCHIC": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita (se colpito; vedi sotto)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Fa apparire l'incantatore immobile anche mentre sta svolgendo altre attività. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Illusione_di_Calma",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Illusione di Calma: https://golarion.altervista.org/wiki/Incantesimi/Illusione_di_Calma Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

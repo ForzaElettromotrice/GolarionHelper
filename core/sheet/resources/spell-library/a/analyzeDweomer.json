@@ -1,0 +1,61 @@
+{
+  "id": "analyzeDweomer",
+  "name": "Analizzare Dweomer",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 6,
+    "ARCANIST": 6,
+    "BARD": 6,
+    "WITCH": 6,
+    "INVESTIGATOR": 6,
+    "WIZARD": 6,
+    "OCCULTIST": 6,
+    "PSYCHIC": 6,
+    "SKALD": 6,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "ARCANE": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una lente d’oro e rubino che deve valere almeno 1.500 mo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 oggetto o 1 creatura/livello dell’incantatore",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "nessuno o Volontà nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Analizza in dettaglio gli effetti magici presenti su creature od oggetti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Analizzare_Dweomer",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Analizzare Dweomer: https://golarion.altervista.org/wiki/Incantesimi/Analizzare_Dweomer Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 oggetto o 1 creatura/livello dell’incantatore. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "veil",
+  "name": "Velo",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "SORCERER": 6,
+    "BARD": 6,
+    "SKALD": 6
+  },
+  "spellLevelByBloodline": {
+    "ABERRANT": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "target": "1 o più creature, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione + 1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì; vedi testo",
+  "description": "Altera l'aspetto apparente di un gruppo di creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Velo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Velo: https://golarion.altervista.org/wiki/Incantesimi/Velo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 o più creature, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

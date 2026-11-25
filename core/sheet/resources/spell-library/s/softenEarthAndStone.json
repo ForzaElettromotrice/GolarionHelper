@@ -1,0 +1,42 @@
+{
+  "id": "softenEarthAndStone",
+  "name": "Ammorbidire Terra e Pietra",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "EARTH"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "DRUID": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "EARTH": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "area": "un quadrato con lato di 3 m/livello; vedi testo",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Rende più cedevoli terra e pietra, trasformandole nei materiali indicati dal potere. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ammorbidire_Terra_e_Pietra",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ammorbidire Terra e Pietra: https://golarion.altervista.org/wiki/Incantesimi/Ammorbidire_Terra_e_Pietra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

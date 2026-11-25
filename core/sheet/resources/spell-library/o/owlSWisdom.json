@@ -1,0 +1,66 @@
+{
+  "id": "owlSWisdom",
+  "name": "Saggezza del Gufo",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ARCANIST": 2,
+    "HUNTER": 2,
+    "CLERIC": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "DRUID": 2,
+    "INVESTIGATOR": 2,
+    "WIZARD": 2,
+    "MEDIUM": 2,
+    "ORACLE": 2,
+    "PALADIN": 2,
+    "PSYCHIC": 2,
+    "RANGER": 2,
+    "WARPRIEST": 2,
+    "SHAMAN": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "piume o sterco di gufo",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Concede +4 di potenziamento a Saggezza e ne modifica gli usi derivati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Saggezza_del_Gufo",
+  "effects": [
+    {
+      "id": "ability",
+      "type": "modifier",
+      "resource": "wis",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "enhancement",
+      "expression": "4"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Gli eventuali incantesimi bonus non aumentano; gli effetti sulle CD si risolvono con il lancio. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

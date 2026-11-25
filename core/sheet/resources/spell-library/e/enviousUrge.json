@@ -1,0 +1,54 @@
+{
+  "id": "enviousUrge",
+  "name": "Instillare Invidia",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "BARD": 4,
+    "WIZARD": 6,
+    "MESMERIST": 4,
+    "PSYCHIC": 6,
+    "SKALD": 4,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Spinge le vittime a impossessarsi dei beni altrui. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Instillare_Invidia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Instillare Invidia: https://golarion.altervista.org/wiki/Incantesimi/Instillare_Invidia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: una creatura/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

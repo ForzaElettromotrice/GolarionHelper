@@ -1,0 +1,83 @@
+{
+  "id": "alchemist.archetype.18e4a856796a",
+  "classType": "alchemist",
+  "name": "Ricercatore di Oenopion",
+  "description": "Archetipo di Alchimista. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Alchimista_di_Golarion#Ricercatore_di_Oenopion Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "alchemist.feature.c5334e4a6844",
+      "type": "replace"
+    },
+    {
+      "featureId": "alchemist.feature.c75626442ae3",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "alchemist.feature.c5334e4a6844",
+    "alchemist.feature.c75626442ae3"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "alchemist.archetype.18e4a856796a.instructions",
+      "name": "Ricercatore di Oenopion",
+      "description": "Archetipo di Alchimista. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Alchimista_di_Golarion#Ricercatore_di_Oenopion Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "alchemist.archetype.18e4a856796a.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Alchimista. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Alchimista_di_Golarion#Ricercatore_di_Oenopion Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.archetype.18e4a856796a.feature.a383264933",
+      "name": "Mutageno Sperimentale (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Alchimista_di_Golarion#Ricercatore_di_Oenopion",
+      "progression": [
+        {
+          "id": "alchemist.archetype.18e4a856796a.feature.a383264933.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ricercatore di Oenopion — Mutageno Sperimentale (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Alchimista_di_Golarion#Ricercatore_di_Oenopion Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.archetype.18e4a856796a.feature.a0836053c0",
+      "name": "Resistenza all'Acido (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Alchimista_di_Golarion#Ricercatore_di_Oenopion",
+      "progression": [
+        {
+          "id": "alchemist.archetype.18e4a856796a.feature.a0836053c0.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ricercatore di Oenopion — Resistenza all'Acido (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Alchimista_di_Golarion#Ricercatore_di_Oenopion Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

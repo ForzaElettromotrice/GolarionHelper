@@ -1,0 +1,46 @@
+{
+  "id": "idInsinuationII",
+  "name": "Insinuazione nell'ID II",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "PSYCHIC": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "2 creature",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione + 1 round",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Confonde due vittime con un'influenza più intensa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Insinuazione_nell%27ID#Insinuazione_nell'ID_II",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Insinuazione nell'ID II: https://golarion.altervista.org/wiki/Incantesimi/Insinuazione_nell%27ID#Insinuazione_nell'ID_II Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 2 creature. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

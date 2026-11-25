@@ -1,0 +1,62 @@
+{
+  "id": "teleport",
+  "name": "Teletrasporto",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "TELEPORTATION",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 5,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "MAGUS": 5,
+    "OCCULTIST": 5,
+    "PSYCHIC": 5,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "TRAVEL": 5
+    }
+  },
+  "spellLevelByBloodline": {
+    "ABYSSAL": 7,
+    "ARCANE": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale e contatto",
+  "target": "se stessi e oggetti toccati, oppure altre creature consenzienti toccate",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "nessuno e Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "no e sì (oggetto)",
+  "description": "Trasporta istantaneamente l'incantatore e gli accompagnatori verso una destinazione distante. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Teletrasporto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Teletrasporto: https://golarion.altervista.org/wiki/Incantesimi/Teletrasporto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi e oggetti toccati, oppure altre creature consenzienti toccate. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

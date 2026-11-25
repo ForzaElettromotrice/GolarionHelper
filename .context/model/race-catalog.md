@@ -10,7 +10,7 @@ Preserve supported effects and source cleanup. All manual benefits, including pa
 
 All 63 entries are reviewed. This means page coverage, not complete automation. The catalog contains 278 alternate entries and 485 class-filtered favored options. No English-only rules were imported.
 
-Data is split between `resources/races.json` (Human) and `resources/races/{core,uncommon,rare,other}.json`, embedded together by CMake. Coverage and manual boundaries: [Human](human-catalog.md), [other core races](race-core-coverage.md), [uncommon](race-uncommon-coverage.md), [unusual](race-rare-coverage.md), [other races](race-other-coverage.md).
+Edit `core/sheet/resources/race-library/races/<id>.json` directly. Coverage and manual boundaries: [Human](human-catalog.md), [other core races](race-core-coverage.md), [uncommon](race-uncommon-coverage.md), [unusual](race-rare-coverage.md), [other races](race-other-coverage.md).
 
 `race_catalog_test` checks every baseline, alternate and choice, favored rewards through their thresholds, save/load, cleanup and mandatory reminder markers. Independent numeric assertions cover selected movement, defense and conditional-stacking examples.
 

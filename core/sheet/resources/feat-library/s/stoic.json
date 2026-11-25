@@ -1,0 +1,25 @@
+{
+  "id": "stoic",
+  "name": "Stoico",
+  "description": "Rafforza il controllo della paura e offre protezioni circoscritte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Stoico",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Volontà di Ferro",
+      "feat": {
+        "id": "ironWill"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Stoico: https://golarion.altervista.org/wiki/Talenti/Stoico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

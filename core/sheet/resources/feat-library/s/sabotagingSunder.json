@@ -1,0 +1,40 @@
+{
+  "id": "sabotagingSunder",
+  "name": "Spezzare con Sabotaggio",
+  "description": "Impiega il sabotaggio per compromettere gli oggetti dell'avversario. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Spezzare_con_Sabotaggio",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Disattivare Congegni 7 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Forza 13",
+      "expression": "@str >= 13"
+    },
+    {
+      "description": "Spezzare Migliorato",
+      "feat": {
+        "id": "improvedSunder"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Spezzare con Sabotaggio: https://golarion.altervista.org/wiki/Talenti/Spezzare_con_Sabotaggio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Poderoso; Prerequisito da verificare manualmente: Disattivare Congegni 7 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,53 @@
+{
+  "id": "sympatheticAura",
+  "name": "Aura Simpatetica",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "WIZARD": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un quadretto di seta che deve essere passato sopra l'oggetto che riceve l'aura",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "un oggetto toccato che pesa fino a 2,5 Kg/livello",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Estende un'aura magica alterata ad altri oggetti simili nelle vicinanze. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aura_Simpatetica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Aura Simpatetica: https://golarion.altervista.org/wiki/Incantesimi/Aura_Simpatetica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno (vedi testo) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: un oggetto toccato che pesa fino a 2,5 Kg/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

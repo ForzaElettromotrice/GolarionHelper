@@ -1,0 +1,53 @@
+{
+  "id": "whirlwind",
+  "name": "Turbine",
+  "school": "EVOCATION",
+  "descriptors": [
+    "AIR"
+  ],
+  "spellLevelByClass": {
+    "DRUID": 8
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "AIR": 8,
+      "WEATHER": 8
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "effect": "un ciclone ampio 3 m alla base e 9 m al vertice, alto 9 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Crea un vortice d'aria che ferisce e trascina le creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Turbine",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Turbine: https://golarion.altervista.org/wiki/Incantesimi/Turbine Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Dominio o sottodominio non presente nel vocabolario del modello: Sciamano 8. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

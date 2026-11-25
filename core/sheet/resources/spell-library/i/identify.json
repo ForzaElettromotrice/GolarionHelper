@@ -1,0 +1,53 @@
+{
+  "id": "identify",
+  "name": "Identificare",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "BARD": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "WITCH": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "MEDIUM": 1,
+    "OCCULTIST": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1,
+    "SPIRITUALIST": 1,
+    "SORCERER": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "MAGIC": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "vino agitato con una penna di gufo",
+  "rangeType": "OTHER",
+  "rangeDescription": "18 m",
+  "area": "emanazione a forma di cono",
+  "durationType": "ROUND",
+  "durationDescription": "3 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Facilita l'analisi delle proprietà magiche di un oggetto con un bonus di +10. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Identificare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Identificare: https://golarion.altervista.org/wiki/Incantesimi/Identificare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

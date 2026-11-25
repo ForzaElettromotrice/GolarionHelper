@@ -1,0 +1,34 @@
+{
+  "id": "impactCriticalShot",
+  "name": "Colpo Critico Impattante",
+  "description": "Un tiro critico può spingere il nemico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_Critico_Impattante",
+  "types": [
+    "combat",
+    "critical"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +9",
+      "expression": "@bab >= 9"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo Critico Impattante: https://golarion.altervista.org/wiki/Talenti/Colpo_Critico_Impattante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

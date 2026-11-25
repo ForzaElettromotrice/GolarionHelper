@@ -1,0 +1,48 @@
+{
+  "id": "wallOfEctoplasm",
+  "name": "Muro di Ectoplasma",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "CLERIC": 5,
+    "WIZARD": 5,
+    "ORACLE": 5,
+    "PSYCHIC": 5,
+    "WARPRIEST": 5,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un piccolo frammento di garza",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "lenzuolo opaco di ectoplasma fino a 3 m2/livello o una sfera o semisfera con un raggio fino a 0,3 m/livello",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "nessuno e Volontà nega; vedi testo;"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Una barriera ectoplasmatica blocca i passaggi materiali ed eterei. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Ectoplasma",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Muro di Ectoplasma: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Ectoplasma Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

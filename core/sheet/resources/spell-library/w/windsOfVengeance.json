@@ -1,0 +1,52 @@
+{
+  "id": "windsOfVengeance",
+  "name": "Venti di Vendetta",
+  "school": "EVOCATION",
+  "descriptors": [
+    "AIR"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WIZARD": 9,
+    "SORCERER": 9,
+    "CLERIC": 9,
+    "ORACLE": 9,
+    "DRUID": 9,
+    "SHAMAN": 9
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "WIND": 9
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Venti possenti sostengono il volo e colpiscono gli avversari. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Venti_di_Vendetta",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Venti di Vendetta: https://golarion.altervista.org/wiki/Incantesimi/Venti_di_Vendetta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Aria 9, Legno 9 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

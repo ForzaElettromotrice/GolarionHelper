@@ -1,0 +1,42 @@
+{
+  "id": "blazingAura",
+  "name": "Aura Fiammante",
+  "description": "L'impiego delle armi roventi può sprigionare un'aura ardente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Aura_Fiammante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Armi Roventi",
+      "feat": {
+        "id": "scorchingWeapons"
+      }
+    },
+    {
+      "description": "Fiamma Interiore",
+      "feat": {
+        "id": "innerFlame"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: personaggio di 13° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Ifrit Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Aura Fiammante: https://golarion.altervista.org/wiki/Talenti/Aura_Fiammante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: personaggio di 13° livello; Prerequisito da verificare manualmente: Ifrit Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

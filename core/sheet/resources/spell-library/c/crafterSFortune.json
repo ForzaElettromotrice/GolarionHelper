@@ -1,0 +1,46 @@
+{
+  "id": "crafterSFortune",
+  "name": "Fortuna dell'Artigiano",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "OCCULTIST": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un attrezzo",
+  "rangeType": "OTHER",
+  "rangeDescription": "corto (7,5 m + 1,5 m/2 livelli)",
+  "target": "1 creatura",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello o finché non viene scaricato (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Favorisce la prossima lavorazione artigianale del soggetto con un bonus di +5. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fortuna_dell%27Artigiano",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fortuna dell'Artigiano: https://golarion.altervista.org/wiki/Incantesimi/Fortuna_dell%27Artigiano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

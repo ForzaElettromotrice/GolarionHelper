@@ -1,0 +1,56 @@
+{
+  "id": "dispelEvil",
+  "name": "Dissolvi il Male",
+  "school": "ABJURATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 5,
+    "ORACLE": 5,
+    "WARPRIEST": 5,
+    "INQUISITOR": 5,
+    "PALADIN": 4,
+    "SHAMAN": 5
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "GOOD": 5
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "o Bersagli: se stessi e 1 creatura malvagia di un altro piano toccata; oppure se stessi e un ammaliamento o un incantesimo del male su 1 creatura o 1 oggetto toccato",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello oppure finché non viene scaricato, a seconda dell’evento che si verifica per primo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "vedi testo",
+  "description": "Protegge dagli attacchi malvagi e permette di scacciare o dissolvere le influenze appropriate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Dissolvi_il_Male",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Dissolvi il Male: https://golarion.altervista.org/wiki/Incantesimi/Dissolvi_il_Male Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: o Bersagli: se stessi e 1 creatura malvagia di un altro piano toccata; oppure se stessi e un ammaliamento o un incantesimo del male su 1 creatura o 1 oggetto toccato. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

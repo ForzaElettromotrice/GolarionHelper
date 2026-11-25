@@ -1,0 +1,44 @@
+{
+  "id": "emotiveBlock",
+  "name": "Blocco Emotivo",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "MESMERIST": 2,
+    "PSYCHIC": 3,
+    "SPIRITUALIST": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Impone una componente emotiva aggiuntiva alle magie lanciate dal bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Blocco_Emotivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Blocco Emotivo: https://golarion.altervista.org/wiki/Incantesimi/Blocco_Emotivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

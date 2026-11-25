@@ -1,0 +1,31 @@
+{
+  "id": "smokingBoulder",
+  "name": "Masso Fumante",
+  "description": "La roccia scagliata genera una nube fumosa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Masso_Fumante",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +11",
+      "expression": "@bab >= 11"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: attacco speciale Scaldare Rocce Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Masso Fumante: https://golarion.altervista.org/wiki/Talenti/Masso_Fumante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: attacco speciale Scaldare Rocce Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

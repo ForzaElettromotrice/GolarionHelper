@@ -1,0 +1,54 @@
+{
+  "id": "auraOfDoom",
+  "name": "Aura di Devastazione",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING",
+    "FEAR"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4,
+    "SPIRITUALIST": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "ossa in polvere",
+  "rangeType": "OTHER",
+  "rangeDescription": "emanazione del raggio di 6 m centrata su se stessi",
+  "target": "personale",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Circonda il lanciatore con un influsso terrificante che può rendere scosse le creature vicine. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aura_di_Devastazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Aura di Devastazione: https://golarion.altervista.org/wiki/Incantesimi/Aura_di_Devastazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: personale. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

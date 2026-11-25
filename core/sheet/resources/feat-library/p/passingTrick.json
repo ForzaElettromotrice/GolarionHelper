@@ -1,0 +1,27 @@
+{
+  "id": "passingTrick",
+  "name": "Passaggio Truccato",
+  "description": "Una manovra acrobatica riuscita apre la strada a una finta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Passaggio_Truccato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Intelligenza 13, Fintare Migliorato, Maestria in Combattimento, Mobilità, Schivare, Taglia Piccola o inferiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Passaggio Truccato: https://golarion.altervista.org/wiki/Talenti/Passaggio_Truccato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intelligenza 13, Fintare Migliorato, Maestria in Combattimento, Mobilità, Schivare, Taglia Piccola o inferiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

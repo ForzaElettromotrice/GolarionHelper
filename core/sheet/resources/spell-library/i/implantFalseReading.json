@@ -1,0 +1,41 @@
+{
+  "id": "implantFalseReading",
+  "name": "Impiantare Falsa Lettura",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto toccato",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Falsifica le tracce parapsichiche conservate da un oggetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Impiantare_Falsa_Lettura",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Impiantare Falsa Lettura: https://golarion.altervista.org/wiki/Incantesimi/Impiantare_Falsa_Lettura Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno; vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

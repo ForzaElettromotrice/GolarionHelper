@@ -1,0 +1,42 @@
+{
+  "id": "bloodMoney",
+  "name": "Moneta di Sangue",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "WITCH": 1,
+    "MAGUS": 1
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 Azione Veloce",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "0 m",
+  "effect": "1 componente materiale",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Converte il sangue dell'incantatore in una componente materiale per una magia successiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Moneta_di_Sangue",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Moneta di Sangue: https://golarion.altervista.org/wiki/Incantesimi/Moneta_di_Sangue Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Assassino della Mantide Rossa 1 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

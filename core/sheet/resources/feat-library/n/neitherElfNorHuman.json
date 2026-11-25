@@ -1,0 +1,42 @@
+{
+  "id": "neitherElfNorHuman",
+  "name": "Né Elfo né Umano",
+  "description": "Modifica il trattamento del personaggio rispetto alle ascendenze umana ed elfica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/N%C3%A9_Elfo_n%C3%A9_Umano",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Strada dell'Esilio",
+      "feat": {
+        "id": "exilesPath"
+      }
+    },
+    {
+      "description": "Visto e Non Visto",
+      "feat": {
+        "id": "seenAndUnseen"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: personaggio di 11° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Mezzelfo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Né Elfo né Umano: https://golarion.altervista.org/wiki/Talenti/N%C3%A9_Elfo_n%C3%A9_Umano. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: personaggio di 11° livello; Prerequisito da verificare manualmente: Mezzelfo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

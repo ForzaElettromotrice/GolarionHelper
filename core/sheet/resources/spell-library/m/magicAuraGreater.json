@@ -1,0 +1,53 @@
+{
+  "id": "magicAuraGreater",
+  "name": "Aura Magica Superiore",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 3,
+    "WIZARD": 4,
+    "MESMERIST": 3,
+    "OCCULTIST": 3,
+    "PSYCHIC": 4,
+    "SKALD": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un fazzoletto di lana",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/ogni 2 livelli)",
+  "target": "1 creatura, o 1 oggetto che pesa fino a 9 chili/livello",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di falsificare aure con più opzioni e di influenzare anche creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aura_Magica_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Aura Magica Superiore: https://golarion.altervista.org/wiki/Incantesimi/Aura_Magica_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno (vedi testo) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura, o 1 oggetto che pesa fino a 9 chili/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

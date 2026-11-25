@@ -1,0 +1,30 @@
+{
+  "id": "channeledShieldWall",
+  "name": "Incanalare Barriera Protettiva",
+  "description": "Usa l'energia incanalata per rafforzare lo scudo personale e quelli degli alleati vicini. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Incanalare_Barriera_Protettiva",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Incanalare Energia 3d6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza negli Scudi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Incanalare Barriera Protettiva: https://golarion.altervista.org/wiki/Talenti/Incanalare_Barriera_Protettiva. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incanalare Energia 3d6; Prerequisito da verificare manualmente: Competenza negli Scudi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

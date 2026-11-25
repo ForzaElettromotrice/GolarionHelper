@@ -1,0 +1,50 @@
+{
+  "id": "conjurationFoil",
+  "name": "Ostacolare Evocazione",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 4,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "MAGUS": 3,
+    "MEDIUM": 4,
+    "OCCULTIST": 4,
+    "PSYCHIC": 4,
+    "SKALD": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "IMMEDIATE_ACTION",
+  "castingTimeDescription": "1 Azione Immediata",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "6 metri di raggio",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (oggetto)",
+  "description": "Interferisce con i teletrasporti nelle vicinanze. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ostacolare_Evocazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ostacolare Evocazione: https://golarion.altervista.org/wiki/Incantesimi/Ostacolare_Evocazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

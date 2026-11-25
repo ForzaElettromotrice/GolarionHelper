@@ -1,0 +1,42 @@
+{
+  "id": "phaseDoor",
+  "name": "Porta in Fase",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "WITCH": 7,
+    "WIZARD": 7,
+    "PSYCHIC": 7,
+    "SORCERER": 7
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "TRAVEL": 8
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "effect": "apertura eterea di 1,5 m × 2,4 m, profonda 3 m + 1,5 m ogni 3 livelli",
+  "durationType": "OTHER",
+  "durationDescription": "1 utilizzo ogni 2 livelli",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Apre nella materia solida un passaggio nascosto attraverso legno o pietra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Porta_in_Fase",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Porta in Fase: https://golarion.altervista.org/wiki/Incantesimi/Porta_in_Fase Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

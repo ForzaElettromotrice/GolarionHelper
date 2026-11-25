@@ -26,12 +26,10 @@ namespace golarion
         std::vector<std::pair<std::string, std::string>> catalogEntries();
 
     private:
-        ItemDefinitionManager() = default;
-
-        void loadCatalog();
+        ItemDefinitionManager();
 
         std::map<std::string, ItemDefinition> definitions_;
-        bool loaded_ = false;
+        std::map<std::string, std::string> names_;
         std::mutex mutex_;
     };
 }

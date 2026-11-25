@@ -1,0 +1,41 @@
+{
+  "id": "cleansingFire",
+  "name": "Fuoco Purificatore",
+  "school": "EVOCATION",
+  "descriptors": [
+    "GOOD",
+    "FIRE"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 5,
+    "ORACLE": 5,
+    "WARPRIEST": 5,
+    "INQUISITOR": 4,
+    "PALADIN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "area": "area con 6 metri di raggio dal punto toccato",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione fino a 1 round/livello",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un anello infuocato ferisce chi lo attraversa e ostacola magie malvagie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fuoco_Purificatore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fuoco Purificatore: https://golarion.altervista.org/wiki/Incantesimi/Fuoco_Purificatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

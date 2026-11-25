@@ -1,0 +1,290 @@
+{
+  "id": "monk.archetype.53dae09109a1",
+  "classType": "monk",
+  "name": "Monaco del Loto",
+  "description": "Archetipo di Monaco. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Monaco/Archetipi#Monaco_del_Loto Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "monk.feature.fcc883afe085",
+      "type": "replace"
+    },
+    {
+      "featureId": "monk.feature.f77a0087c3a2",
+      "type": "replace"
+    },
+    {
+      "featureId": "monk.feature.538666b4f1d1",
+      "type": "replace"
+    },
+    {
+      "featureId": "monk.feature.901a9b4b671e",
+      "type": "replace"
+    },
+    {
+      "featureId": "monk.classSkills",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "monk.feature.fcc883afe085",
+    "monk.feature.f77a0087c3a2",
+    "monk.feature.538666b4f1d1",
+    "monk.feature.901a9b4b671e",
+    "monk.classSkills"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "monk.archetype.53dae09109a1.instructions",
+      "name": "Monaco del Loto",
+      "description": "Archetipo di Monaco. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Monaco/Archetipi#Monaco_del_Loto Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "monk.archetype.53dae09109a1.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Monaco. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Monaco/Archetipi#Monaco_del_Loto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.archetype.53dae09109a1.feature.1",
+      "name": "Tocco di Serenità (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Monaco/Archetipi#Monaco_del_Loto",
+      "progression": [
+        {
+          "id": "monk.archetype.53dae09109a1.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Monaco del Loto — Tocco di Serenità (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Monaco/Archetipi#Monaco_del_Loto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.archetype.53dae09109a1.feature.2",
+      "name": "Tocco della Resa (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Monaco/Archetipi#Monaco_del_Loto",
+      "progression": [
+        {
+          "id": "monk.archetype.53dae09109a1.feature.2.initial",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Monaco del Loto — Tocco della Resa (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Monaco/Archetipi#Monaco_del_Loto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.archetype.53dae09109a1.feature.3",
+      "name": "Tocco di Pace (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Monaco/Archetipi#Monaco_del_Loto",
+      "progression": [
+        {
+          "id": "monk.archetype.53dae09109a1.feature.3.initial",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Monaco del Loto — Tocco di Pace (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Monaco/Archetipi#Monaco_del_Loto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.archetype.53dae09109a1.feature.4",
+      "name": "Maestro Erudito (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Monaco/Archetipi#Monaco_del_Loto",
+      "progression": [
+        {
+          "id": "monk.archetype.53dae09109a1.feature.4.initial",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Monaco del Loto — Maestro Erudito (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Monaco/Archetipi#Monaco_del_Loto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.archetype.53dae09109a1.classSkills.17",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Concessione dal privilegio di archetipo.",
+      "progression": [
+        {
+          "id": "monk.archetype.53dae09109a1.classSkills.17.initial",
+          "level": 17,
+          "effects": [
+            {
+              "id": "skill0",
+              "type": "classSkillGrant",
+              "resource": "skill.linguistics"
+            },
+            {
+              "id": "skill1",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.arcana"
+            },
+            {
+              "id": "skill2",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.dungeoneering"
+            },
+            {
+              "id": "skill3",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.engineering"
+            },
+            {
+              "id": "skill4",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.geography"
+            },
+            {
+              "id": "skill5",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.history"
+            },
+            {
+              "id": "skill6",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.local"
+            },
+            {
+              "id": "skill7",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.nature"
+            },
+            {
+              "id": "skill8",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.nobility"
+            },
+            {
+              "id": "skill9",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.planes"
+            },
+            {
+              "id": "skill10",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.religion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monk.archetype.53dae09109a1.scholarAbility",
+      "name": "Saggezza del maestro erudito",
+      "description": "Alternative di Saggezza nella View; la regola ne richiede la scelta manuale.",
+      "progression": [
+        {
+          "id": "monk.archetype.53dae09109a1.scholarAbility.initial",
+          "level": 17,
+          "effects": [
+            {
+              "id": "ability0",
+              "type": "skillAbilityReplacement",
+              "resource": "skill.linguistics",
+              "ability": "wis"
+            },
+            {
+              "id": "ability1",
+              "type": "skillAbilityReplacement",
+              "resource": "skill.knowledge.arcana",
+              "ability": "wis"
+            },
+            {
+              "id": "ability2",
+              "type": "skillAbilityReplacement",
+              "resource": "skill.knowledge.dungeoneering",
+              "ability": "wis"
+            },
+            {
+              "id": "ability3",
+              "type": "skillAbilityReplacement",
+              "resource": "skill.knowledge.engineering",
+              "ability": "wis"
+            },
+            {
+              "id": "ability4",
+              "type": "skillAbilityReplacement",
+              "resource": "skill.knowledge.geography",
+              "ability": "wis"
+            },
+            {
+              "id": "ability5",
+              "type": "skillAbilityReplacement",
+              "resource": "skill.knowledge.history",
+              "ability": "wis"
+            },
+            {
+              "id": "ability6",
+              "type": "skillAbilityReplacement",
+              "resource": "skill.knowledge.local",
+              "ability": "wis"
+            },
+            {
+              "id": "ability7",
+              "type": "skillAbilityReplacement",
+              "resource": "skill.knowledge.nature",
+              "ability": "wis"
+            },
+            {
+              "id": "ability8",
+              "type": "skillAbilityReplacement",
+              "resource": "skill.knowledge.nobility",
+              "ability": "wis"
+            },
+            {
+              "id": "ability9",
+              "type": "skillAbilityReplacement",
+              "resource": "skill.knowledge.planes",
+              "ability": "wis"
+            },
+            {
+              "id": "ability10",
+              "type": "skillAbilityReplacement",
+              "resource": "skill.knowledge.religion",
+              "ability": "wis"
+            },
+            {
+              "id": "requiredAbility",
+              "type": "reminder",
+              "message": "Maestro erudito: usa obbligatoriamente le alternative di Saggezza per Conoscenze e Linguistica. L’opzione base di Intelligenza resta visibile e i target generici del core non impongono la sostituzione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

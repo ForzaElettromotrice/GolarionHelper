@@ -1,0 +1,30 @@
+{
+  "id": "layOfTheLand",
+  "name": "Disposizione dell'Ambiente",
+  "description": "Conferisce una conoscenza limitata del territorio simile ai benefici di Ambiente Prescelto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Disposizione_dell%27Ambiente",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Animale Focalizzato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Empatia Selvatica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Disposizione dell'Ambiente: https://golarion.altervista.org/wiki/Talenti/Disposizione_dell%27Ambiente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Animale Focalizzato; Prerequisito da verificare manualmente: privilegio di classe Empatia Selvatica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

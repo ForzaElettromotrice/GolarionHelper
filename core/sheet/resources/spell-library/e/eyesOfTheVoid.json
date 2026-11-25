@@ -1,0 +1,41 @@
+{
+  "id": "eyesOfTheVoid",
+  "name": "Occhi del Vuoto",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "ANTIPALADIN": 4,
+    "ARCANIST": 4,
+    "INVESTIGATOR": 4,
+    "WIZARD": 4,
+    "PSYCHIC": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di carota secca o un'agata",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Permette di vedere anche nell'oscurità magica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Occhi_del_Vuoto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Occhi del Vuoto: https://golarion.altervista.org/wiki/Incantesimi/Occhi_del_Vuoto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

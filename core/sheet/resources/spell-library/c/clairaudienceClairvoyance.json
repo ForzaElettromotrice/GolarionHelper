@@ -1,0 +1,47 @@
+{
+  "id": "clairaudienceClairvoyance",
+  "name": "Chiaroudienza/Chiaroveggenza",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "subschool": "SCRYING",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "MEDIUM": 2,
+    "MESMERIST": 3,
+    "OCCULTIST": 3,
+    "PSYCHIC": 3,
+    "SKALD": 3,
+    "SHAMAN": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "un piccolo corno o un occhio di vetro",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "effect": "sensore magico",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Crea un punto remoto dal quale il lanciatore può osservare oppure ascoltare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Chiaroudienza/Chiaroveggenza",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Chiaroudienza/Chiaroveggenza: https://golarion.altervista.org/wiki/Incantesimi/Chiaroudienza/Chiaroveggenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

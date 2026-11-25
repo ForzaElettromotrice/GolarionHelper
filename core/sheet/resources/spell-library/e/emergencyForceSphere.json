@@ -1,0 +1,36 @@
+{
+  "id": "emergencyForceSphere",
+  "name": "Sfera di Forza d'Emergenza",
+  "school": "EVOCATION",
+  "descriptors": [
+    "FORCE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "IMMEDIATE_ACTION",
+  "castingTimeDescription": "1 Azione Immediata",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "1,5 m",
+  "effect": "semisfera di forza di 1,5 metri di raggio centrata su di sè",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Crea immediatamente una cupola di forza protettiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sfera_di_Forza_d%27Emergenza",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sfera di Forza d'Emergenza: https://golarion.altervista.org/wiki/Incantesimi/Sfera_di_Forza_d%27Emergenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "removeSickness",
+  "name": "Rimuovere Infermità",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "DRUID": 1,
+    "WITCH": 1,
+    "MESMERIST": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SPIRITUALIST": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Offre protezione o sollievo da infermità, nausea e malattia secondo gli effetti e le condizioni specificati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Rimuovere_Infermit%C3%A0",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Rimuovere Infermità: https://golarion.altervista.org/wiki/Incantesimi/Rimuovere_Infermit%C3%A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

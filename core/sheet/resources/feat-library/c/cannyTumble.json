@@ -1,0 +1,39 @@
+{
+  "id": "cannyTumble",
+  "name": "Acrobazia Astuta",
+  "description": "Un passaggio acrobatico favorisce l'attacco successivo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Acrobazia_Astuta",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Mobilità",
+      "feat": {
+        "id": "mobility"
+      }
+    },
+    {
+      "description": "Schivare",
+      "feat": {
+        "id": "dodge"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Acrobazia 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Acrobazia Astuta: https://golarion.altervista.org/wiki/Talenti/Acrobazia_Astuta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Acrobazia 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

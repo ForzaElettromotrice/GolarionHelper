@@ -1,0 +1,61 @@
+{
+  "id": "firefall",
+  "name": "Pioggia di Fuoco",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "FIRE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "BLOODRAGER": 4,
+    "MAGUS": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una fonte di fuoco",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "target": "1 fonte di fuoco, 1 cubo di spigolo fino a 6 m",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "Non indicata nella fonte; verificare manualmente.",
+  "description": "Scatena una pioggia ardente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pioggia_di_Fuoco",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pioggia di Fuoco: https://golarion.altervista.org/wiki/Incantesimi/Pioggia_di_Fuoco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Fuoco 4 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "La fonte non indica il tiro salvezza; la lista strutturata vuota non implica che non sia consentito. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview3",
+      "type": "reminder",
+      "message": "La fonte non indica la resistenza agli incantesimi: verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 fonte di fuoco, 1 cubo di spigolo fino a 6 m. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

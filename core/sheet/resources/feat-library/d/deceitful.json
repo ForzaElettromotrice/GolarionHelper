@@ -1,0 +1,56 @@
+{
+  "id": "deceitful",
+  "name": "Ingannevole",
+  "description": "Migliora Camuffare e Raggirare, con beneficio maggiore raggiunti 10 gradi nella singola abilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ingannevole",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "disguise",
+      "type": "modifier",
+      "resource": "skill.disguise",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "disguiseExperienced",
+      "type": "modifier",
+      "resource": "skill.disguise",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2",
+      "condition": "Con almeno 10 gradi in Camuffare"
+    },
+    {
+      "id": "bluff",
+      "type": "modifier",
+      "resource": "skill.bluff",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "bluffExperienced",
+      "type": "modifier",
+      "resource": "skill.bluff",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2",
+      "condition": "Con almeno 10 gradi in Raggirare"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Il bonus aggiuntivo condizionale richiede la verifica manuale dei 10 gradi nella specifica abilità. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,42 @@
+{
+  "id": "spellImmunityGreater",
+  "name": "Immunità agli Incantesimi Superiore",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 8,
+    "ORACLE": 8,
+    "PSYCHIC": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Estende la protezione specifica fino agli incantesimi di ottavo livello. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Immunit%C3%A0_agli_Incantesimi_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Immunità agli Incantesimi Superiore: https://golarion.altervista.org/wiki/Incantesimi/Immunit%C3%A0_agli_Incantesimi_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

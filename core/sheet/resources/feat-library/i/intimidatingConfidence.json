@@ -1,0 +1,40 @@
+{
+  "id": "intimidatingConfidence",
+  "name": "Sicurezza Intimidatrice",
+  "description": "Unisce resistenza emotiva e capacità di intimidire attraverso la sicurezza in sé. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Sicurezza_Intimidatrice",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Curiosità Intrepida",
+      "feat": {
+        "id": "fearlessCuriosity"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intimidire 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Umano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Sicurezza Intimidatrice: https://golarion.altervista.org/wiki/Talenti/Sicurezza_Intimidatrice. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intimidire 5 gradi; Prerequisito da verificare manualmente: Umano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

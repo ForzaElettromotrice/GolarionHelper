@@ -1,0 +1,1751 @@
+{
+  "type": "unchainedSummoner",
+  "name": "Convocatore Rivisitato",
+  "description": "Interpretazione rivisitata del convocatore e del legame con l'eidolon.",
+  "hitDie": 8,
+  "skillRanksPerLevel": 2,
+  "classSkills": [
+    "skill.handleAnimal",
+    "skill.craft",
+    "skill.ride",
+    "skill.knowledge.arcana",
+    "skill.knowledge.dungeoneering",
+    "skill.knowledge.engineering",
+    "skill.knowledge.geography",
+    "skill.knowledge.history",
+    "skill.knowledge.local",
+    "skill.knowledge.nature",
+    "skill.knowledge.nobility",
+    "skill.knowledge.planes",
+    "skill.knowledge.religion",
+    "skill.linguistics",
+    "skill.profession",
+    "skill.spellcraft",
+    "skill.useMagicDevice",
+    "skill.fly"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 2
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 3
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 3
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 6
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 6
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 9
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 9
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 12
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "unchainedSummoner.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "unchainedSummoner.spellcasting",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Convocatore_Rivisitato",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 1,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "spontaneous",
+              "spellListClass": "unchainedSummoner"
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. La tabella giornaliera non contiene slot di livello 0: il backend richiede un gruppo tecnico o una futura API per il lancio gratuito; non viene inventato uno slot giornaliero. Le sostituzioni degli incantesimi conosciuti restano soggette alle finestre e ai limiti di livello descritti dalla classe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level1"
+          ]
+        },
+        {
+          "id": "castingSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level2"
+          ]
+        },
+        {
+          "id": "castingSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level3"
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level4"
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        },
+        {
+          "id": "repertoire.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 3,
+                  "capacity": 1
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 4,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 3,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.17:unchainedSummoner12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 4,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.fbeff22814fe",
+      "name": "Eidolon",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Eidolon",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.fbeff22814fe.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Convocatore Rivisitato: verificare e applicare Eidolon. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Eidolon Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.b2d86457460e",
+      "name": "Evoca Mostri",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag)",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.b2d86457460e.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Convocatore Rivisitato: verificare e applicare Evoca Mostri I. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedSummoner.feature.b2d86457460e.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Convocatore Rivisitato: verificare e applicare Evoca Mostri II. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedSummoner.feature.b2d86457460e.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Convocatore Rivisitato: verificare e applicare Evoca Mostri III. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedSummoner.feature.b2d86457460e.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Convocatore Rivisitato: verificare e applicare Evoca Mostri IV. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedSummoner.feature.b2d86457460e.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Convocatore Rivisitato: verificare e applicare Evoca Mostri V. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedSummoner.feature.b2d86457460e.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Convocatore Rivisitato: verificare e applicare Evoca Mostri VI. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedSummoner.feature.b2d86457460e.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Convocatore Rivisitato: verificare e applicare Evoca Mostri VII. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedSummoner.feature.b2d86457460e.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Convocatore Rivisitato: verificare e applicare Evoca Mostri VIII. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedSummoner.feature.b2d86457460e.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Convocatore Rivisitato: verificare e applicare Evoca Mostri IX. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedSummoner.feature.b2d86457460e.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Convocatore Rivisitato: verificare e applicare Portale. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Evoca_Mostri_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.f6f7245a061b",
+      "name": "Legame Vitale",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Legame_Vitale_(Sop)",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.f6f7245a061b.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Convocatore Rivisitato: verificare e applicare Legame Vitale. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Legame_Vitale_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.6f564326c1ef",
+      "name": "Trucchetti",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore#Trucchetti",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.6f564326c1ef.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Convocatore Rivisitato: verificare e applicare Trucchetti. https://golarion.altervista.org/wiki/Convocatore#Trucchetti Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.fdd056ec6ba5",
+      "name": "Sensi del Legame",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Sensi_del_Legame_(Sop)",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.fdd056ec6ba5.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Convocatore Rivisitato: verificare e applicare Sensi del Legame. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Sensi_del_Legame_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.e66aa0bd0f1d",
+      "name": "Scudo Alleato",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Scudo_Alleato_(Str)",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.e66aa0bd0f1d.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Convocatore Rivisitato: verificare e applicare Scudo Alleato. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Scudo_Alleato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.674a812d6761",
+      "name": "Richiamo del Creatore",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Richiamo_del_Creatore_(Sop)",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.674a812d6761.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Convocatore Rivisitato: verificare e applicare Richiamo del Creatore. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Richiamo_del_Creatore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.723be834233f",
+      "name": "Trasposizione",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Trasposizione_(Sop)",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.723be834233f.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Convocatore Rivisitato: verificare e applicare Trasposizione. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Trasposizione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.df845028d539",
+      "name": "Aspetto",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Aspetto_(Sop)",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.df845028d539.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Convocatore Rivisitato: verificare e applicare Aspetto. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Aspetto_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.d1fabe8adea3",
+      "name": "Scudo Alleato Superiore",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Scudo_Alleato_Superiore_(Sop)",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.d1fabe8adea3.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Convocatore Rivisitato: verificare e applicare Scudo Alleato Superiore. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Scudo_Alleato_Superiore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.a8784db3b13c",
+      "name": "Per la Vita",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Per_la_Vita_(Sop)",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.a8784db3b13c.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Convocatore Rivisitato: verificare e applicare Per la Vita. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Per_la_Vita_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.cc4314ef1d58",
+      "name": "Fondere forme",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Fondere_Forme_(Sop)",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.cc4314ef1d58.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Convocatore Rivisitato: verificare e applicare Fondere forme. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Fondere_Forme_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.508a1f2c29ac",
+      "name": "Aspetto Superiore",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Aspetto_Superiore_(Sop)",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.508a1f2c29ac.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Convocatore Rivisitato: verificare e applicare Aspetto Superiore. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Aspetto_Superiore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.feature.80b5747ee87e",
+      "name": "Doppio Eidolon",
+      "description": "Privilegio della classe Convocatore Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Doppio_Eidolon_(Sop)",
+      "progression": [
+        {
+          "id": "unchainedSummoner.feature.80b5747ee87e.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Convocatore Rivisitato: verificare e applicare Doppio Eidolon. https://golarion.altervista.org/wiki/Convocatore_Rivisitato#Doppio_Eidolon_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Convocatore_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedSummoner.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Convocatore_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Convocatore_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedSummoner.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Convocatore_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedSummoner.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Convocatore_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedSummoner.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Convocatore_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "unchainedSummoner.eidolonSubtypeBinding",
+      "classType": "unchainedSummoner",
+      "featureId": "unchainedSummoner.feature.fbeff22814fe",
+      "acquisitionIds": [
+        "unchainedSummoner.feature.fbeff22814fe.level1"
+      ],
+      "choice": {
+        "id": "eidolonSubtype",
+        "prompt": "Scegli: Sottotipi dell’eidolon",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "unchainedSummoner.eidolonSubtypes"
+      }
+    },
+    {
+      "id": "unchainedSummoner.eidolonFormBinding",
+      "classType": "unchainedSummoner",
+      "featureId": "unchainedSummoner.feature.fbeff22814fe",
+      "acquisitionIds": [
+        "unchainedSummoner.feature.fbeff22814fe.level1"
+      ],
+      "choice": {
+        "id": "eidolonForm",
+        "prompt": "Scegli: Forme base dell’eidolon",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "unchainedSummoner.eidolonForms"
+      }
+    }
+  ]
+}

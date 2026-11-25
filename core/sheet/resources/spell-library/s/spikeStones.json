@@ -1,0 +1,49 @@
+{
+  "id": "spikeStones",
+  "name": "Rocce Aguzze",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "EARTH"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 4,
+    "DRUID": 4,
+    "SHAMAN": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "EARTH": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "un quadrato con lato di 6 metri/livello",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "PARTIAL",
+      "description": "Riflessi parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Trasforma il terreno roccioso in una superficie appuntita che ferisce e ostacola. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Rocce_Aguzze",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Rocce Aguzze: https://golarion.altervista.org/wiki/Incantesimi/Rocce_Aguzze Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

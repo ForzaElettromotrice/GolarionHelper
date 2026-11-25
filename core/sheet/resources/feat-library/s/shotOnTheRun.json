@@ -1,0 +1,45 @@
+{
+  "id": "shotOnTheRun",
+  "name": "Tirare in Movimento",
+  "description": "Permette di tirare durante il movimento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tirare_in_Movimento",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Mobilità",
+      "feat": {
+        "id": "mobility"
+      }
+    },
+    {
+      "description": "Schivare",
+      "feat": {
+        "id": "dodge"
+      }
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +4",
+      "expression": "@bab >= 4"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tirare in Movimento: https://golarion.altervista.org/wiki/Talenti/Tirare_in_Movimento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

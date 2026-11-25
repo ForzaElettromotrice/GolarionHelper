@@ -1,0 +1,31 @@
+{
+  "id": "earthtouched",
+  "name": "Toccato dalla Terra",
+  "description": "Rafforza la magia terrestre e amplia gli incantesimi disponibili. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Toccato_dalla_Terra",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 15",
+      "expression": "@cha >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Gigante delle Rocce Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Toccato dalla Terra: https://golarion.altervista.org/wiki/Talenti/Toccato_dalla_Terra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Gigante delle Rocce Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

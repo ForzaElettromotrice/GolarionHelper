@@ -1,4 +1,5 @@
 #include "sheet_controller.hpp"
+#include "sheet_view_changes.hpp"
 
 #include "golarion/catalog/catalog_reader.hpp"
 #include "golarion/character/character_sheet.hpp"
@@ -311,10 +312,16 @@ namespace
 
     int enumValue(auto value) { return static_cast<int>(value); }
 
-    QVariantMap featCatalogEntry(const auto &feat)
+    QVariantMap featSummary(const auto &feat)
+    {
+        auto entry = namedEntry(feat);
+        entry.insert("types", snapshotList(feat.types, enumValue<golarion::FeatType>));
+        return entry;
+    }
+
+    QVariantMap featDetails(const golarion::FeatDefinition &feat)
     {
         auto entry = describedEntry(feat);
-        entry.insert("types", snapshotList(feat.types, enumValue<golarion::FeatType>));
         entry.insert("choices", snapshotList(feat.choices, [](const auto &choice) {
             return QVariantMap{{"id", QString::fromStdString(choice.id)}, {"prompt", QString::fromStdString(choice.prompt)},
                 {"selectionCount", static_cast<qulonglong>(choice.selectionCount)}, {"options", snapshotList(choice.options, [](const auto &option) {
@@ -326,7 +333,7 @@ namespace
 
     const QVariantList &standardFeatCatalog()
     {
-        static const auto catalog = snapshotList(golarion::FeatDefinitionManager::instance().toView(), featCatalogEntry<golarion::FeatDefinitionView>);
+        static const auto catalog = snapshotList(golarion::FeatDefinitionManager::instance().catalogEntries(), featSummary<golarion::FeatDefinitionManager::CatalogEntry>);
         return catalog;
     }
 
@@ -395,9 +402,9 @@ namespace
         })}};
     }
 
-    QVariantMap talentsSnapshot(const golarion::CharacterSheetView &view, const std::vector<golarion::PendingChoice> &pending)
+    QVariantMap featsSnapshot(const golarion::FeatsView &view)
     {
-        auto slots = snapshotList(view.feats.slots, [](const auto &slot) {
+        auto slots = snapshotList(view.slots, [](const auto &slot) {
             return QVariantMap{{"id", QString::fromStdString(slot.id)}, {"source", QString::fromStdString(slot.source)},
                 {"featId", optionalText(slot.featId)}, {"available", slot.available}, {"origin", enumValue(slot.origin)},
                 {"allowedType", slot.allowedType ? QVariant(enumValue(*slot.allowedType)) : QVariant{}},
@@ -407,7 +414,7 @@ namespace
             const auto slot = entry.toMap();
             return slot.value("available").toBool() && slot.value("featId").isNull();
         });
-        const auto feats = snapshotList(view.feats.feats, [](const auto &feat) {
+        const auto feats = snapshotList(view.feats, [](const auto &feat) {
             auto entry = describedEntry(feat);
             entry.insert("slotId", QString::fromStdString(feat.slotId));
             entry.insert("active", feat.active);
@@ -418,7 +425,11 @@ namespace
             }));
             return entry;
         });
-        const auto &languages = view.languages;
+        return {{"feats", QVariantMap{{"slots", slots}, {"feats", feats}}}};
+    }
+
+    QVariantMap languagesSnapshot(const golarion::LanguagesView &languages)
+    {
         const auto spoken = snapshotList(languages.spoken, [](const auto &language) {
             auto sources = snapshotList(language.grantedSources, QString::fromStdString);
             const bool extra = language.learnedFrom == golarion::LanguageOrigin::Extra;
@@ -431,10 +442,13 @@ namespace
         const auto options = snapshotList(languages.options, [](const auto &option) {
             return QVariantMap{{"origin", enumValue(option.origin)}, {"languageIds", snapshotList(option.languageIds, QString::fromStdString)}};
         });
-        return {{"feats", QVariantMap{{"slots", slots}, {"feats", feats}}},
-            {"languages", QVariantMap{{"spoken", spoken}, {"options", options},
-                {"remainingIntelligence", languages.remainingIntelligence}, {"remainingLinguistics", languages.remainingLinguistics}}},
-            {"reminders", QVariantMap{{"messages", snapshotList(view.reminders.messages, QString::fromStdString)},
+        return {{"languages", QVariantMap{{"spoken", spoken}, {"options", options},
+                {"remainingIntelligence", languages.remainingIntelligence}, {"remainingLinguistics", languages.remainingLinguistics}}}};
+    }
+
+    QVariantMap remindersSnapshot(const golarion::RemindersView &view, const std::vector<golarion::PendingChoice> &pending)
+    {
+        return {{"reminders", QVariantMap{{"messages", snapshotList(view.messages, QString::fromStdString)},
                 {"choices", snapshotList(pending, [](const auto &choice) {
                     return QVariantMap{{"type", enumValue(choice.type())}, {"description", QString::fromStdString(choice.description)},
                         {"remaining", static_cast<qulonglong>(choice.remaining)}, {"blocksAdvancement", choice.blocksAdvancement}};
@@ -492,15 +506,11 @@ namespace
         return static_cast<golarion::CharacterClassType>(type);
     }
 
-    QVariantMap inventorySnapshot(const golarion::CharacterSheetView &sheet)
+    QVariant integer(auto value) { return QVariant::fromValue(static_cast<qlonglong>(value)); }
+    QVariant optionalInteger(const auto &value) { return value ? integer(*value) : QVariant{}; }
+
+    QVariantMap inventoryItemsSnapshot(const golarion::InventoryView &inventory)
     {
-        const auto integer = [](auto value) { return QVariant::fromValue(static_cast<qlonglong>(value)); };
-        const auto optionalInteger = [&](const auto &value) { return value ? integer(*value) : QVariant{}; };
-        const auto amounts = [&](const auto &value) {
-            return QVariantMap{{"copper", integer(value.copper)}, {"silver", integer(value.silver)},
-                {"gold", integer(value.gold)}, {"platinum", integer(value.platinum)}, {"weightGrams", integer(value.weightGrams)}};
-        };
-        const auto &inventory = sheet.inventory;
         const auto items = snapshotList(inventory.items, [&](const auto &item) {
             return QVariantMap{{"id", QString::fromStdString(item.id)}, {"name", QString::fromStdString(item.name)},
                 {"itemDefinitionId", QString::fromStdString(item.itemDefinitionId)}, {"quantity", item.quantity},
@@ -517,6 +527,11 @@ namespace
                     })}};
                 })}};
         });
+        return {{"items", items}, {"totalCarriedWeightGrams", integer(inventory.totalCarriedWeightGrams)}};
+    }
+
+    QVariantMap inventoryContainersSnapshot(const golarion::InventoryView &inventory)
+    {
         const auto containers = snapshotList(inventory.containers, [&](const auto &container) {
             return QVariantMap{{"id", QString::fromStdString(container.id)}, {"name", QString::fromStdString(container.name)},
                 {"ownerItemId", optionalText(container.ownerItemId)}, {"itemIds", snapshotList(container.itemIds, QString::fromStdString)},
@@ -526,18 +541,33 @@ namespace
                 {"currentContentsVolumeMilliliters", integer(container.currentContentsVolumeMilliliters)},
                 {"ignoresContentsWeight", container.ignoresContentsWeight}, {"contributesToCarriedWeight", container.contributesToCarriedWeight}};
         });
+        return {{"containers", containers}};
+    }
+
+    QVariantMap inventoryMoneySnapshot(const golarion::InventoryView &inventory)
+    {
+        const auto amounts = [&](const auto &value) {
+            return QVariantMap{{"copper", integer(value.copper)}, {"silver", integer(value.silver)},
+                {"gold", integer(value.gold)}, {"platinum", integer(value.platinum)}, {"weightGrams", integer(value.weightGrams)}};
+        };
         const auto money = QVariantMap{{"total", amounts(inventory.money.total)}, {"containers", snapshotList(inventory.money.containers, [&](const auto &entry) {
             return QVariantMap{{"containerId", QString::fromStdString(entry.containerId)}, {"amounts", amounts(entry.amounts)}};
         })}};
-        const auto &load = sheet.encumbrance;
-        const auto &effects = load.effects;
-        return {{"items", items}, {"containers", containers}, {"money", money},
-            {"totalCarriedWeightGrams", integer(inventory.totalCarriedWeightGrams)},
-            {"equipmentSlots", snapshotList(inventory.equipmentSlots, [&](const auto &slot) {
+        return {{"money", money}};
+    }
+
+    QVariantMap inventoryEquipmentSnapshot(const golarion::InventoryView &inventory)
+    {
+        return {{"equipmentSlots", snapshotList(inventory.equipmentSlots, [&](const auto &slot) {
                 return QVariantMap{{"slot", static_cast<int>(slot.slot)}, {"capacity", integer(slot.capacity)},
                     {"itemIds", snapshotList(slot.itemIds, QString::fromStdString)}};
-            })},
-            {"encumbrance", QVariantMap{{"totalWeightGrams", integer(load.totalWeightGrams)}, {"category", static_cast<int>(load.category)},
+            })}};
+    }
+
+    QVariantMap encumbranceSnapshot(const golarion::EncumbranceView &load)
+    {
+        const auto &effects = load.effects;
+        return {{"encumbrance", QVariantMap{{"totalWeightGrams", integer(load.totalWeightGrams)}, {"category", static_cast<int>(load.category)},
                 {"lightLoadMaxGrams", integer(load.lightLoadMaxGrams)}, {"mediumLoadMaxGrams", integer(load.mediumLoadMaxGrams)},
                 {"heavyLoadMaxGrams", integer(load.heavyLoadMaxGrams)}, {"effects", QVariantMap{
                     {"maximumDexterityBonus", optionalInteger(effects.maximumDexterityBonus)}, {"armorCheckPenalty", effects.armorCheckPenalty},
@@ -633,13 +663,18 @@ namespace
             })}};
     }
 
-    QVariantMap combatSnapshot(const golarion::CharacterSheetView &sheet)
+    QVariantMap attackRoutinesSnapshot(const golarion::CharacterSheetView &sheet)
     {
         const auto routines = snapshotList(sheet.attackRoutines.routines, [](const auto &routine) {
             return QVariantMap{{"id", QString::fromStdString(routine.id)}, {"name", QString::fromStdString(routine.name)},
                 {"actionId", QString::fromStdString(routine.actionId)}, {"usable", routine.usable},
                 {"failureReasons", snapshotList(routine.failureReasons, QString::fromStdString)}};
         });
+        return {{"attackRoutines", QVariantMap{{"routines", routines}}}};
+    }
+
+    QVariantMap actionsSnapshot(const golarion::CharacterSheetView &sheet)
+    {
         const auto categories = snapshotList(sheet.actions.categories, [](const auto &category) {
             return QVariantMap{{"id", QString::fromStdString(category.id)}, {"name", QString::fromStdString(category.name)},
                 {"actions", snapshotList(category.actions, [](const auto &action) {
@@ -654,6 +689,11 @@ namespace
                         })}};
                 })}};
         });
+        return {{"actions", QVariantMap{{"categories", categories}}}};
+    }
+
+    QVariantMap maneuversSnapshot(const golarion::CharacterSheetView &sheet)
+    {
         const auto maneuvers = snapshotList(sheet.combatManeuvers.maneuvers, [](const auto &entry) {
             const auto &defense = entry.defense;
             return QVariantMap{{"type", static_cast<int>(entry.type)},
@@ -666,18 +706,21 @@ namespace
                         return QVariantMap{{"source", QString::fromStdString(value.source)}};
                     })}}}};
         });
-        return {{"attacks", QVariantMap{{"attacks", snapshotList(sheet.attacks.attacks, attackSnapshot)}}},
-            {"attackRoutines", QVariantMap{{"routines", routines}}}, {"actions", QVariantMap{{"categories", categories}}},
-            {"baseAttackBonus", QVariantMap{{"total", sheet.baseAttackBonus.total}}},
-            {"combatManeuvers", QVariantMap{{"baseAttackBonus", sheet.combatManeuvers.baseAttackBonus}, {"maneuvers", maneuvers}}}};
+        return {{"combatManeuvers", QVariantMap{{"baseAttackBonus", sheet.combatManeuvers.baseAttackBonus}, {"maneuvers", maneuvers}}}};
     }
 
-    QVariantMap homeSnapshot(const golarion::CharacterSheetView &sheet)
+    QVariantMap abilitiesSnapshot(const golarion::CharacterSheetView &sheet)
     {
-        QVariantList abilities, skills, savingThrows;
+        QVariantList abilities;
         for (const auto &ability : sheet.abilities)
             abilities.push_back(QVariantMap{{"type", static_cast<int>(ability.type)}, {"baseValue", ability.baseValue},
                 {"totalValue", ability.totalValue}, {"modifier", ability.modifier}, {"modifiers", modifierSnapshot(ability.modifiers)}});
+        return {{"abilities", abilities}};
+    }
+
+    QVariantMap skillsSnapshot(const golarion::CharacterSheetView &sheet)
+    {
+        QVariantList skills;
         for (const auto &skill : sheet.skills.skills)
         {
             QVariantList rankGrants;
@@ -691,39 +734,92 @@ namespace
                 {"custom", skill.custom}, {"appliedArmorCheckPenalty", skill.appliedArmorCheckPenalty}, {"rankGrants", rankGrants},
                 {"abilityOptions", abilityOptionsSnapshot(skill.abilityOptions)}});
         }
-        for (const auto &savingThrow : sheet.savingThrows.savingThrows)
-            savingThrows.push_back(QVariantMap{{"type", static_cast<int>(savingThrow.type)}, {"baseValue", savingThrow.baseValue},
-                {"baseContributions", contributionSnapshot(savingThrow.baseContributions)}, {"modifiers", modifierSnapshot(savingThrow.modifiers)},
-                {"abilityOptions", abilityOptionsSnapshot(savingThrow.abilityOptions)}});
         const auto skillCategories = snapshotList(sheet.skills.categoryClassSkills, [](const auto &category) {
             return QVariantMap{{"type", static_cast<int>(category.type)}, {"classSkill", category.classSkill},
                 {"customClassSkill", category.customClassSkill}};
         });
-        return {{"abilities", abilities}, {"skills", skills}, {"skillCategories", skillCategories}, {"savingThrows", savingThrows},
-            {"armorClass", armorClassSnapshot(sheet.armorClass)}, {"hitPoints", hitPointsSnapshot(sheet.hitPoints)},
-            {"defenses", defensesSnapshot(sheet.specialDefenses)},
-            {"movement", movementSnapshot(sheet.movement)},
-            {"activeConditions", activeConditionsSnapshot(sheet.conditions)},
-            {"initiative", QVariantMap{{"abilityOptions", abilityOptionsSnapshot(sheet.initiative.abilityOptions)}}},
-            {"spentRanks", sheet.skills.spentRanks}, {"maxRanks", sheet.skills.maxRanks}};
+        return {{"skills", skills}, {"skillCategories", skillCategories}, {"spentRanks", sheet.skills.spentRanks}, {"maxRanks", sheet.skills.maxRanks}};
+    }
+
+    QVariantMap savesSnapshot(const golarion::CharacterSheetView &sheet)
+    {
+        QVariantList savingThrows;
+        for (const auto &savingThrow : sheet.savingThrows.savingThrows)
+            savingThrows.push_back(QVariantMap{{"type", static_cast<int>(savingThrow.type)}, {"baseValue", savingThrow.baseValue},
+                {"baseContributions", contributionSnapshot(savingThrow.baseContributions)}, {"modifiers", modifierSnapshot(savingThrow.modifiers)},
+                {"abilityOptions", abilityOptionsSnapshot(savingThrow.abilityOptions)}});
+        return {{"savingThrows", savingThrows}};
     }
 }
 
+struct SheetController::PublishedInputs
+{
+    golarion::CharacterSheetView view;
+    std::vector<golarion::PendingChoice> pending;
+    std::vector<std::string> modifiers, contributions, targets;
+};
+
 SheetController::SheetController(QObject *parent, QString sheetDirectory) : QObject(parent), sheetDirectory_(std::move(sheetDirectory))
 {
+    connect(&saveWatcher_, &QFutureWatcherBase::finished, this, &SheetController::finishSave);
     connect(&catalogWatcher_, &QFutureWatcherBase::finished, this, &SheetController::finishCatalogLoad);
     connect(&browsingCatalogWatcher_, &QFutureWatcherBase::finished, this, &SheetController::finishBrowsingCatalogLoad);
 }
 
 SheetController::~SheetController()
 {
+    if (!flushSaves()) qWarning() << "Could not finish saving the sheet:" << currentPath_;
     catalogWatcher_.waitForFinished();
     browsingCatalogWatcher_.waitForFinished();
 }
 
 QVariantMap SheetController::identity() const { return identity_; }
-QVariantMap SheetController::home() const { return home_; }
-QVariantMap SheetController::combat() const { return combat_; }
+QVariantMap SheetController::home() const
+{
+    auto result = abilityScores_;
+    result.insert(skillScores_);
+    result.insert(savingThrows_);
+    result.insert(armorClass_);
+    result.insert(hitPoints_);
+    result.insert(defenses_);
+    result.insert(movement_);
+    result.insert(activeConditions_);
+    result.insert(initiative_);
+    return result;
+}
+QVariantMap SheetController::combat() const
+{
+    auto result = attacks_;
+    result.insert(attackRoutines_);
+    result.insert(actions_);
+    result.insert(baseAttackBonus_);
+    result.insert(combatManeuvers_);
+    return result;
+}
+QVariantMap SheetController::talents() const
+{
+    auto result = feats_;
+    result.insert(languages_);
+    result.insert(reminders_);
+    return result;
+}
+QVariantMap SheetController::inventory() const
+{
+    auto result = inventoryItems_;
+    result.insert(inventoryContainers_);
+    result.insert(inventoryEquipment_);
+    result.insert(inventoryMoney_);
+    result.insert(encumbrance_);
+    return result;
+}
+QVariantMap SheetController::spells() const
+{
+    auto result = spellcastings_;
+    result.insert(spellCatalogData_);
+    result.insert(grantedSpells_);
+    result.insert(lastCast_);
+    return result;
+}
 QString SheetController::notes() const { return notes_; }
 QString SheetController::errorMessage() const { return errorMessage_; }
 bool SheetController::opening() const { return opening_; }
@@ -829,6 +925,7 @@ void SheetController::importSavedSheet(const QUrl &file)
 
 void SheetController::exportSavedSheet(const QUrl &file, const QUrl &destination)
 {
+    if (QFileInfo(file.toLocalFile()) == QFileInfo(currentPath_) && !flushSaves()) return;
     QFile source(file.toLocalFile());
     const QFileInfo target(destination.toLocalFile());
     QSaveFile copy(target.absoluteFilePath());
@@ -863,7 +960,7 @@ void SheetController::refreshSavedSheets()
 
 void SheetController::requestSheet(const QString &path, bool create)
 {
-    if (opening_) return;
+    if (opening_ || !flushSaves()) return;
     pendingPath_ = path;
     createPendingFile_ = create;
     setErrorMessage({});
@@ -968,30 +1065,57 @@ void SheetController::setErrorMessage(QString message)
     if (replaceIfChanged(errorMessage_, std::move(message))) Q_EMIT errorMessageChanged();
 }
 
-QString SheetController::saveCurrentSheet()
+void SheetController::queueCurrentSheetSave()
 {
-    if (currentPath_.isEmpty()) return {};
-    try
+    if (currentPath_.isEmpty()) return;
+    pendingSave_ = std::make_shared<const golarion::CharacterSheetSaveData>(sheet_->toSaveData());
+    startPendingSave();
+}
+
+void SheetController::startPendingSave()
+{
+    if (activeSave_ || !pendingSave_) return;
+    activeSave_ = std::move(pendingSave_);
+    saveWatcher_.setFuture(QtConcurrent::run([snapshot = activeSave_, path = currentPath_] {
+        try {
+            const auto data = golarion::persistence::toJson(*snapshot);
+            QSaveFile file(path);
+            return file.open(QIODevice::WriteOnly) && file.write(data.data(), data.size()) == qint64(data.size()) && file.commit();
+        }
+        catch (const std::exception &) { return false; }
+    }));
+}
+
+bool SheetController::finishSave()
+{
+    if (!activeSave_ || !saveWatcher_.isFinished()) return true;
+    if (!saveWatcher_.result() && !pendingSave_)
     {
-        const auto data = golarion::persistence::toJson(sheet_->toSaveData());
-        QSaveFile file(currentPath_);
-        if (!file.open(QIODevice::WriteOnly) || file.write(data.data(), data.size()) != qint64(data.size()) || !file.commit())
-            throw std::runtime_error("Cannot save sheet file");
+        pendingSave_ = std::move(activeSave_);
+        setErrorMessage(tr("Impossibile salvare le modifiche della scheda."));
+        return false;
     }
-    catch (const std::exception &)
+    activeSave_.reset();
+    startPendingSave();
+    return true;
+}
+
+bool SheetController::flushSaves()
+{
+    startPendingSave();
+    while (activeSave_)
     {
-        return tr("Impossibile salvare le modifiche della scheda.");
+        saveWatcher_.waitForFinished();
+        if (!finishSave()) return false;
     }
-    return {};
+    return true;
 }
 
 void SheetController::setNotes(const QString &notes)
 {
     if (!sheet_ || notes == notes_) return;
     sheet_->setNotes(notes.toStdString());
-    notes_ = notes;
-    setErrorMessage(saveCurrentSheet());
-    Q_EMIT notesChanged();
+    publish();
 }
 
 template<typename Change>
@@ -1045,7 +1169,7 @@ void SheetController::setAbilityBaseValue(int abilityType, int value)
 void SheetController::setSkillRanks(const QString &resourceName, int ranks)
 {
     applySheetChange([&] {
-        const auto skills = home_.value(QStringLiteral("skills")).toList();
+        const auto skills = skillScores_.value(QStringLiteral("skills")).toList();
         for (const auto &entry : skills)
         {
             const auto skill = entry.toMap();
@@ -1120,7 +1244,7 @@ void SheetController::setIdentityField(const QString &field, const QVariant &val
 void SheetController::addAttackRoutine(const QString &routineId)
 {
     applySheetChange([&] {
-        const auto available = combat_.value(QStringLiteral("attackRoutines")).toMap().value(QStringLiteral("routines")).toList();
+        const auto available = attackRoutines_.value(QStringLiteral("attackRoutines")).toMap().value(QStringLiteral("routines")).toList();
         for (const auto &entry : available)
         {
             const auto routine = entry.toMap();
@@ -1196,13 +1320,16 @@ QVariantList SheetController::itemCatalog()
 {
     try
     {
-        auto entries = golarion::ItemDefinitionManager::instance().catalogEntries();
-        std::ranges::sort(entries, [](const auto &first, const auto &second) {
-            return QString::localeAwareCompare(QString::fromStdString(first.second), QString::fromStdString(second.second)) < 0;
-        });
-        return snapshotList(entries, [](const auto &entry) {
-            return QVariantMap{{"id", QString::fromStdString(entry.first)}, {"name", QString::fromStdString(entry.second)}};
-        });
+        static const QVariantList catalog = [] {
+            auto rows = snapshotList(golarion::ItemDefinitionManager::instance().catalogEntries(), [](const auto &entry) {
+                return QVariantMap{{"id", QString::fromStdString(entry.first)}, {"name", QString::fromStdString(entry.second)}};
+            });
+            std::stable_sort(rows.begin(), rows.end(), [](const QVariant &a, const QVariant &b) {
+                return QString::localeAwareCompare(a.toMap().value("name").toString(), b.toMap().value("name").toString()) < 0;
+            });
+            return rows;
+        }();
+        return catalog;
     }
     catch (const golarion::catalog::CatalogReadError &error)
     {
@@ -1388,7 +1515,7 @@ QVariantList SheetController::raceCatalog()
 {
     try
     {
-        return snapshotList(golarion::RaceDefinitionManager::instance().toView(), namedEntry<golarion::RaceSummaryView>);
+        return snapshotList(golarion::RaceDefinitionManager::instance().listRaces(), namedEntry<golarion::RaceSummaryView>);
     }
     catch (const golarion::catalog::CatalogReadError &error)
     {
@@ -1429,18 +1556,26 @@ void SheetController::setRacialChoice(const QString &elementId, const QString &c
     }, tr("Impossibile applicare la scelta razziale."));
 }
 
-QVariantMap SheetController::classCatalog() const
+QVariantList SheetController::classCatalog() const
 {
     if (!classCatalog_) return {};
-    QVariantList classes;
-    QVariantMap archetypes;
-    for (int value = enumValue(golarion::CharacterClassType::Barbarian); value <= enumValue(golarion::CharacterClassType::UnchainedMonk); ++value)
-    {
-        const auto type = classTypeFromInt(value);
-        classes.push_back(QVariantMap{{"type", value}, {"name", QString::fromStdString(classCatalog_->get(type).name)}});
-        archetypes.insert(QString::number(value), snapshotList(classCatalog_->archetypesView(type), describedEntry<golarion::ArchetypeView>));
-    }
-    return {{"classes", classes}, {"archetypes", archetypes}};
+    return snapshotList(classCatalog_->listClasses(), [](const auto &entry) {
+        return QVariantMap{{"type", enumValue(entry.type)}, {"name", QString::fromStdString(entry.name)}};
+    });
+}
+
+QVariantList SheetController::archetypeCatalog(int classType)
+{
+    if (!classCatalog_) return {};
+    try { return snapshotList(classCatalog_->listArchetypes(classTypeFromInt(classType)), namedEntry<golarion::ArchetypeSummary>); }
+    catch (const std::exception &) { setErrorMessage(tr("Impossibile leggere gli archetipi della classe.")); return {}; }
+}
+
+QString SheetController::archetypeDescription(const QString &id)
+{
+    if (!classCatalog_) return {};
+    try { return QString::fromStdString(classCatalog_->getArchetype(id.toStdString()).description); }
+    catch (const std::exception &) { setErrorMessage(tr("Impossibile leggere la descrizione dell’archetipo.")); return {}; }
 }
 
 void SheetController::addClassLevel(int type)
@@ -1510,7 +1645,7 @@ QVariantList SheetController::featCatalog(const QString &slotId)
     QVariantMap slot;
     if (!slotId.isEmpty())
     {
-        const auto slots = talents_.value("feats").toMap().value("slots").toList();
+        const auto slots = feats_.value("feats").toMap().value("slots").toList();
         const auto found = std::ranges::find_if(slots, [&](const QVariant &entry) {
             return entry.toMap().value("id").toString() == slotId;
         });
@@ -1539,6 +1674,22 @@ QVariantList SheetController::featCatalog(const QString &slotId)
     append(standardFeatCatalog());
     append(customFeatCatalog_);
     return catalog;
+}
+
+QVariantMap SheetController::featDetail(const QString &featId)
+{
+    if (!sheet_ || !previousInputs_) return {};
+    try
+    {
+        const auto id = featId.toStdString();
+        const auto &custom = previousInputs_->view.customFeatDefinitions;
+        const auto it = std::ranges::find(custom, id, &golarion::FeatDefinition::id);
+        if (it != custom.end()) return featDetails(*it);
+        return featDetails(golarion::FeatDefinitionManager::instance().get(id));
+    }
+    catch (const golarion::catalog::CatalogReadError &error) { setErrorMessage(catalogReadMessage(error)); }
+    catch (const std::exception &) { setErrorMessage(tr("Impossibile leggere il talento.")); }
+    return {};
 }
 
 void SheetController::selectFeat(const QString &slotId, const QString &featId, const QVariantMap &choices)
@@ -1674,47 +1825,91 @@ void SheetController::removeConditions(const QStringList &ids)
 
 void SheetController::publish(bool save, QString error)
 {
-    if (save)
+    if (save) queueCurrentSheetSave();
+    auto next = std::make_unique<PublishedInputs>(PublishedInputs{sheet_->toView(), sheet_->pendingChoices(),
+        sheet_->modifierResourceNames(), sheet_->contributionResourceNames(), sheet_->expressionTargetNames()});
+    const auto &view = next->view;
+    const auto changed = compareSheetViews(previousInputs_ ? &previousInputs_->view : nullptr, view);
+    const auto hasSpellCatalog = [](const auto &snapshot) { return !snapshot.spellcastings.castings.empty() || !snapshot.grantedSpells.empty(); };
+
+    // Publish atomically: convert only dirty inputs, then notify only when visible data differs.
+    std::vector<void (SheetController::*)()> notifications;
+    auto update = [&](QVariantMap &current, QVariantMap value, void (SheetController::*notify)()) {
+        if (replaceIfChanged(current, std::move(value))) notifications.push_back(notify);
+    };
+    if (changed.identity)
+        update(identity_, identitySnapshot(view.identity), &SheetController::identityChanged);
+    if (changed.abilities)
+        update(abilityScores_, abilitiesSnapshot(view), &SheetController::abilityScoresChanged);
+    if (changed.skills)
+        update(skillScores_, skillsSnapshot(view), &SheetController::skillScoresChanged);
+    if (changed.saves)
+        update(savingThrows_, savesSnapshot(view), &SheetController::savingThrowsChanged);
+    if (changed.armor)
+        update(armorClass_, QVariantMap{{"armorClass", armorClassSnapshot(view.armorClass)}}, &SheetController::armorClassChanged);
+    if (changed.initiative)
+        update(initiative_, QVariantMap{{"initiative", QVariantMap{{"abilityOptions", abilityOptionsSnapshot(view.initiative.abilityOptions)}}}}, &SheetController::initiativeChanged);
+    if (changed.hp)
+        update(hitPoints_, QVariantMap{{"hitPoints", hitPointsSnapshot(view.hitPoints)}}, &SheetController::hitPointsChanged);
+    if (changed.defenses)
+        update(defenses_, QVariantMap{{"defenses", defensesSnapshot(view.specialDefenses)}}, &SheetController::defensesChanged);
+    if (changed.movement)
+        update(movement_, QVariantMap{{"movement", movementSnapshot(view.movement)}}, &SheetController::movementChanged);
+    if (changed.conditions)
+        update(activeConditions_, QVariantMap{{"activeConditions", activeConditionsSnapshot(view.conditions)}}, &SheetController::activeConditionsChanged);
+    if (changed.conditions)
+        update(conditions_, conditionsSnapshot(view.conditions), &SheetController::conditionsChanged);
+    if (changed.attacks)
+        update(attacks_, QVariantMap{{"attacks", QVariantMap{{"attacks", snapshotList(view.attacks.attacks, attackSnapshot)}}}}, &SheetController::attacksChanged);
+    if (changed.actions)
+        update(actions_, actionsSnapshot(view), &SheetController::actionsChanged);
+    if (changed.bab)
+        update(baseAttackBonus_, QVariantMap{{"baseAttackBonus", QVariantMap{{"total", view.baseAttackBonus.total}}}}, &SheetController::baseAttackBonusChanged);
+    if (changed.routines)
+        update(attackRoutines_, attackRoutinesSnapshot(view), &SheetController::attackRoutinesChanged);
+    if (changed.maneuvers)
+        update(combatManeuvers_, maneuversSnapshot(view), &SheetController::combatManeuversChanged);
+    if (changed.race)
+        update(race_, raceSnapshot(view.race), &SheetController::raceChanged);
+    if (changed.classes)
+        update(classes_, classesSnapshot(view.classes), &SheetController::classesChanged);
+    if (changed.items || changed.weight)
+        update(inventoryItems_, inventoryItemsSnapshot(view.inventory), &SheetController::inventoryItemsChanged);
+    if (changed.containers)
+        update(inventoryContainers_, inventoryContainersSnapshot(view.inventory), &SheetController::inventoryContainersChanged);
+    if (changed.equipment)
+        update(inventoryEquipment_, inventoryEquipmentSnapshot(view.inventory), &SheetController::inventoryEquipmentChanged);
+    if (changed.money)
+        update(inventoryMoney_, inventoryMoneySnapshot(view.inventory), &SheetController::inventoryMoneyChanged);
+    if (changed.load)
+        update(encumbrance_, encumbranceSnapshot(view.encumbrance), &SheetController::encumbranceChanged);
+    if (changed.feats)
+        update(feats_, featsSnapshot(view.feats), &SheetController::featsChanged);
+    if (changed.languages)
+        update(languages_, languagesSnapshot(view.languages), &SheetController::languagesChanged);
+    if (changed.reminders || previousInputs_->pending != next->pending)
+        update(reminders_, remindersSnapshot(view.reminders, next->pending), &SheetController::remindersChanged);
+    if (changed.castings)
+        update(spellcastings_, spellcastingSnapshot(view), &SheetController::spellcastingsChanged);
+    if (changed.granted)
+        update(grantedSpells_, grantedSpellSnapshot(view), &SheetController::grantedSpellsChanged);
+    if (changed.customSpells || hasSpellCatalog(previousInputs_->view) != hasSpellCatalog(view))
+        update(spellCatalogData_, spellCatalogSnapshot(view), &SheetController::spellCatalogDataChanged);
+    if (!previousInputs_ || lastCast_.value("lastCast").toMap() != lastSpellCast_)
+        update(lastCast_, QVariantMap{{"lastCast", lastSpellCast_}}, &SheetController::lastCastChanged);
+    if (changed.enhancements || previousInputs_->modifiers != next->modifiers ||
+        previousInputs_->contributions != next->contributions || previousInputs_->targets != next->targets)
     {
-        auto saveError = saveCurrentSheet();
-        if (!saveError.isEmpty()) error = std::move(saveError);
+        auto data = enhancementsSnapshot(view.enhancements);
+        data.insert("modifierResources", snapshotList(next->modifiers, QString::fromStdString));
+        data.insert("contributionResources", snapshotList(next->contributions, QString::fromStdString));
+        data.insert("expressionTargets", snapshotList(next->targets, QString::fromStdString));
+        update(enhancements_, std::move(data), &SheetController::enhancementsChanged);
     }
-    const auto view = sheet_->toView();
-    auto enhancements = enhancementsSnapshot(view.enhancements);
-    enhancements.insert("modifierResources", snapshotList(sheet_->modifierResourceNames(), QString::fromStdString));
-    enhancements.insert("contributionResources", snapshotList(sheet_->contributionResourceNames(), QString::fromStdString));
-    enhancements.insert("expressionTargets", snapshotList(sheet_->expressionTargetNames(), QString::fromStdString));
-
-    struct SectionUpdate
-    {
-        QVariantMap &current;
-        QVariantMap next;
-        void (SheetController::*notify)();
-        bool changed = false;
-    };
-    SectionUpdate sections[] = {
-        {identity_, identitySnapshot(view.identity), &SheetController::identityChanged},
-        {home_, homeSnapshot(view), &SheetController::homeChanged},
-        {combat_, combatSnapshot(view), &SheetController::combatChanged},
-        {inventory_, inventorySnapshot(view), &SheetController::inventoryChanged},
-        {race_, raceSnapshot(view.race), &SheetController::raceChanged},
-        {classes_, classesSnapshot(view.classes), &SheetController::classesChanged},
-        {talents_, talentsSnapshot(view, sheet_->pendingChoices()), &SheetController::talentsChanged},
-        {spells_, spellSnapshot(view), &SheetController::spellsChanged},
-        {enhancements_, std::move(enhancements), &SheetController::enhancementsChanged},
-        {conditions_, conditionsSnapshot(view.conditions), &SheetController::conditionsChanged}
-    };
-    const auto notes = QString::fromStdString(view.notes);
-    customFeatCatalog_ = snapshotList(view.customFeatDefinitions, featCatalogEntry<golarion::FeatDefinition>);
-
-    // Install every changed snapshot before QML can react to the first notification.
-    for (auto &section : sections)
-        section.changed = replaceIfChanged(section.current, std::move(section.next));
-    const bool notesUpdated = replaceIfChanged(notes_, notes);
-    const bool errorUpdated = replaceIfChanged(errorMessage_, std::move(error));
-
-    for (const auto &section : sections)
-        if (section.changed) Q_EMIT (this->*section.notify)();
-    if (notesUpdated) Q_EMIT notesChanged();
-    if (errorUpdated) Q_EMIT errorMessageChanged();
+    if (changed.customFeats)
+        customFeatCatalog_ = snapshotList(view.customFeatDefinitions, featSummary<golarion::FeatDefinition>);
+    if (changed.notes && replaceIfChanged(notes_, QString::fromStdString(view.notes))) notifications.push_back(&SheetController::notesChanged);
+    if (replaceIfChanged(errorMessage_, std::move(error))) notifications.push_back(&SheetController::errorMessageChanged);
+    previousInputs_ = std::move(next);
+    for (auto notify : notifications) Q_EMIT (this->*notify)();
 }

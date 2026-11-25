@@ -16,6 +16,7 @@ set(session_controller_sources
     controllers/session_controller.cpp
 )
 set(sheet_controller_sources
+    controllers/sheet_view_changes.cpp
     controllers/sheet_controller.hpp
     controllers/sheet_controller.cpp
     controllers/sheet_spell_controller.cpp

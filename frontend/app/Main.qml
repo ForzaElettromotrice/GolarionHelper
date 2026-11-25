@@ -179,8 +179,21 @@ ApplicationWindow {
         SheetView {
             id: localSheet
             identity: window.sheetController.identity
-            home: window.sheetController.home
-            combat: window.sheetController.combat
+            combatEnabled: true
+            abilityScoresData: window.sheetController.abilityScores
+            skillScoresData: window.sheetController.skillScores
+            savingThrowsData: window.sheetController.savingThrows
+            armorClassData: window.sheetController.armorClass
+            hitPointsData: window.sheetController.hitPoints
+            movementData: window.sheetController.movement
+            defensesData: window.sheetController.defenses
+            initiativeData: window.sheetController.initiative
+            activeConditionsData: window.sheetController.activeConditions
+            actionsData: window.sheetController.actions
+            attacksData: window.sheetController.attacks
+            baseAttackBonusData: window.sheetController.baseAttackBonus
+            combatManeuversData: window.sheetController.combatManeuvers
+            attackRoutinesData: window.sheetController.attackRoutines
             enhancementsTabPage: Component {
                 Column {
                     spacing: 8
@@ -230,8 +243,6 @@ ApplicationWindow {
             }
             spellsTabPage: Component {
                 Column {
-                    id: spellPage
-                    readonly property var snapshot: window.sheetController.spells
                     spacing: 24
                     Label {
                         width: parent.width
@@ -242,10 +253,10 @@ ApplicationWindow {
                     }
                     SpellcastingsPanel {
                         width: parent.width
-                        spellcastings: spellPage.snapshot
-                        spellNames: spellPage.snapshot.names ?? ({})
-                        spellCatalog: spellPage.snapshot.catalog ?? []
-                        spellLevelsByClass: spellPage.snapshot.levels ?? ({})
+                        spellcastings: window.sheetController.spellcastings
+                        spellNames: window.sheetController.spellCatalogData.names ?? ({})
+                        spellCatalog: window.sheetController.spellCatalogData.catalog ?? []
+                        spellLevelsByClass: window.sheetController.spellCatalogData.levels ?? ({})
                         metamagicDetails: [
                             {name: qsTr("Incantesimi Potenziati"), levelAdjustment: 2},
                             {name: qsTr("Incantesimi Ingranditi"), levelAdjustment: 1},
@@ -305,13 +316,13 @@ ApplicationWindow {
                     }
                     GrantedSpellsPanel {
                         width: parent.width
-                        grantedSpells: spellPage.snapshot.granted ?? []
-                        spellNames: spellPage.snapshot.names ?? ({})
+                        grantedSpells: window.sheetController.grantedSpells.granted ?? []
+                        spellNames: window.sheetController.spellCatalogData.names ?? ({})
                         onCastGrantedSpellRequested: id => window.sheetController.spellCommand(SheetController.ConsumeGranted, id, {})
                     }
                     Label {
                         width: parent.width
-                        visible: Object.keys(spellPage.snapshot.lastCast ?? {}).length > 0
+                        visible: Object.keys(window.sheetController.lastCast.lastCast ?? {}).length > 0
                         text: qsTr("Incantesimo lanciato.")
                     }
                 }
@@ -328,12 +339,12 @@ ApplicationWindow {
                     }
                     TalentsTab {
                         width: parent.width
-                        reminders: window.sheetController.talents.reminders
+                        reminders: window.sheetController.reminders.reminders
                         tabForChoice: type => localSheet.tabForChoice(type)
                         onOpenChoiceRequested: type => localSheet.openChoiceTab(type)
                         languagesPage: Component {
                             LanguagesPanel {
-                                languages: window.sheetController.talents.languages
+                                languages: window.sheetController.languages.languages
                                 languageNames: ({common: qsTr("Comune"), elven: qsTr("Elfico"), draconic: qsTr("Draconico"),
                                     dwarven: qsTr("Nanico"), orc: qsTr("Orchesco"), sylvan: qsTr("Silvano"),
                                     halfling: qsTr("Halfling"), gnome: qsTr("Gnomesco"), goblin: qsTr("Goblin"),
@@ -350,7 +361,7 @@ ApplicationWindow {
                         featsPage: Component {
                             FeatsPanel {
                                 id: liveFeats
-                                feats: window.sheetController.talents.feats
+                                feats: window.sheetController.feats.feats
 
                                 function openCatalog(slotId) {
                                     picker.slotId = slotId;
@@ -362,8 +373,9 @@ ApplicationWindow {
                                     picker.open();
                                 }
                                 function chooseFeat(slotId, featId) {
-                                    const feat = picker.catalog.find(entry => entry.id === featId);
-                                    if (!feat?.choices?.length) {
+                                    const feat = window.sheetController.featDetail(featId);
+                                    if (!feat.id) return;
+                                    if (!feat.choices.length) {
                                         window.sheetController.selectFeat(slotId, featId, {});
                                         return;
                                     }
@@ -470,8 +482,9 @@ ApplicationWindow {
                     ClassesPanel {
                         width: parent.width
                         classes: window.sheetController.classes
-                        catalog: classesPage.classCatalog.classes ?? []
-                        archetypeCatalog: classesPage.classCatalog.archetypes ?? ({})
+                        catalog: classesPage.classCatalog
+                        loadArchetypes: type => window.sheetController.archetypeCatalog(type)
+                        loadArchetypeDescription: id => window.sheetController.archetypeDescription(id)
                         onAddLevelRequested: type => window.sheetController.addClassLevel(type)
                         onRemoveLevelRequested: type => window.sheetController.removeClassLevel(type)
                         onFavoredClassRequested: (type, favored) => window.sheetController.setFavoredClass(type, favored)
@@ -523,13 +536,14 @@ ApplicationWindow {
 
                     InventoryPanel {
                         width: parent.width
-                        inventory: window.sheetController.inventory
-                        encumbrance: inventory.encumbrance
+                        inventory: Object.assign({}, window.sheetController.inventoryItems,
+                            window.sheetController.inventoryContainers, window.sheetController.inventoryEquipment)
+                        encumbrance: window.sheetController.encumbrance.encumbrance
                         encumbranceBelowItems: true
                         equipmentFooter: Component {
                             MoneyPanel {
-                                money: window.sheetController.inventory.money
-                                containers: window.sheetController.inventory.containers ?? []
+                                money: window.sheetController.inventoryMoney.money
+                                containers: window.sheetController.inventoryContainers.containers ?? []
                                 onAddMoneyRequested: (denomination, quantity, containerId) =>
                                     window.sheetController.changeMoney(denomination, quantity, containerId)
                                 onConvertMoneyRequested: (from, to, cost, proceeds, sourceId, destinationId) =>

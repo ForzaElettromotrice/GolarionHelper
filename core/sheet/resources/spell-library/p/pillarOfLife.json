@@ -1,0 +1,39 @@
+{
+  "id": "pillarOfLife",
+  "name": "Pilastro di Vita",
+  "school": "CONJURATION",
+  "descriptors": [
+    "LIGHT"
+  ],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "CLERIC": 5,
+    "ORACLE": 5,
+    "WARPRIEST": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "pilastro di energia positiva di 1,5 m di spigolo, alto 6 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Crea una colonna luminosa dal potere curativo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pilastro_di_Vita",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pilastro di Vita: https://golarion.altervista.org/wiki/Incantesimi/Pilastro_di_Vita Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

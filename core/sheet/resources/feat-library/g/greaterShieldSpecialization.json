@@ -1,0 +1,50 @@
+{
+  "id": "greaterShieldSpecialization",
+  "name": "Scudo Specializzato Superiore",
+  "description": "Rafforza la difesa dai critici e può neutralizzarne occasionalmente uno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Scudo_Specializzato_Superiore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza negli Scudi (scudo scelto) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Scudo Focalizzato",
+      "feat": {
+        "id": "shieldFocus"
+      }
+    },
+    {
+      "description": "Scudo Focalizzato Superiore",
+      "feat": {
+        "id": "greaterShieldFocus"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Scudo Specializzato (scudo scelto) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Guerriero di 12° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Scudo Specializzato Superiore: https://golarion.altervista.org/wiki/Talenti/Scudo_Specializzato_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Competenza negli Scudi (scudo scelto); Prerequisito da verificare manualmente: Scudo Specializzato (scudo scelto); Prerequisito da verificare manualmente: Guerriero di 12° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

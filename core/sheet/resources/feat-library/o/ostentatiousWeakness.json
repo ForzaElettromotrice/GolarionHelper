@@ -1,0 +1,32 @@
+{
+  "id": "ostentatiousWeakness",
+  "name": "Debolezza Vistosa",
+  "description": "Espone teatralmente le debolezze dei nemici conosciuti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Debolezza_Vistosa",
+  "types": [
+    "combat",
+    "performance"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +5",
+      "expression": "@bab >= 5"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di Classe Nemico Prescelto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Debolezza Vistosa: https://golarion.altervista.org/wiki/Talenti/Debolezza_Vistosa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di Classe Nemico Prescelto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

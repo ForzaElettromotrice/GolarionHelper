@@ -1,0 +1,54 @@
+{
+  "id": "hungerForFlesh",
+  "name": "Brama di Carne",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "MIND_AFFECTING",
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 3,
+    "ARCANIST": 4,
+    "CLERIC": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "la zanna di un Ghoul",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/2 livelli)",
+  "target": "un umanoide, una bestia magica o un umanoide mostruoso",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Dona un morso e impone una brama di carne diretta verso creature della propria specie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Brama_di_Carne",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Brama di Carne: https://golarion.altervista.org/wiki/Brama_di_Carne Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

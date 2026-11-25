@@ -1,0 +1,50 @@
+{
+  "id": "protectivePenumbra",
+  "name": "Penombra Protettiva",
+  "school": "EVOCATION",
+  "descriptors": [
+    "DARKNESS"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "CLERIC": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Avvolge il bersaglio in ombra protettiva contro la luce. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Penombra_Protettiva",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Penombra Protettiva: https://golarion.altervista.org/wiki/Incantesimi/Penombra_Protettiva Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

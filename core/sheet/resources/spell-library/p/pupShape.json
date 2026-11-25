@@ -1,0 +1,52 @@
+{
+  "id": "pupShape",
+  "name": "Forma di Cucciolo",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "HUNTER": 3,
+    "DRUID": 3,
+    "WITCH": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una bambola di pezza",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 Animale o 1 Bestia Magica",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (e Volontà speciale, vedi testo)"
+    },
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "Tempra nega (e Volontà speciale, vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Riduce temporaneamente un animale o una bestia magica alla forma di cucciolo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Forma_di_Cucciolo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Forma di Cucciolo: https://golarion.altervista.org/wiki/Incantesimi/Forma_di_Cucciolo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

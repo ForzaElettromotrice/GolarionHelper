@@ -1,0 +1,46 @@
+{
+  "id": "spitVenom",
+  "name": "Sputare Veleno",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "POISON"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "DRUID": 3,
+    "WITCH": 3,
+    "SHAMAN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "un getto di veleno",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di sputare veleno negli occhi del bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sputare_Veleno",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sputare Veleno: https://golarion.altervista.org/wiki/Incantesimi/Sputare_Veleno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

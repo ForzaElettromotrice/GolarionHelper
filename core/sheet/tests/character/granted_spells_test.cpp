@@ -1,6 +1,6 @@
 #include "golarion/character/character_sheet.hpp"
 #include "golarion/effect/effect_json.hpp"
-#include "golarion/equipment/item_definition_catalog.hpp"
+#include "golarion/equipment/item_definition_json.hpp"
 #include "golarion/persistence/json.hpp"
 #include <nlohmann/json.hpp>
 #include <cassert>
@@ -119,7 +119,7 @@ int main()
     GrantedSpells recreated(resources);
 
     // Exercise the actual item compiler, activation lifecycle, sheet facade and save/load path.
-    embedded::ItemDefinitionCatalogJson = R"([{
+    const auto item = itemDefinitionFromJson(Json::parse(R"({
         "id":"testItem","name":"Oggetto di prova","description":"Ricaricare secondo le regole della descrizione.",
         "weightGrams":0,"volumeMilliliters":0,"tags":[],"slot":"ring",
         "usagePools":[{"id":"charges","capacity":3}],
@@ -127,13 +127,15 @@ int main()
             {"id":"one","activation":"possessed","type":"spellGrant","spellId":"fireball","usage":{"type":"sharedPool","poolId":"charges"}},
             {"id":"two","activation":"equipped","type":"spellGrant","spellId":"fireball","usage":{"type":"sharedPool","poolId":"charges","cost":2}}
         ]
-    }])";
+    })"));
     ResourceManager itemResources;
     GrantedSpells itemSpells(itemResources);
     itemResources.registerTarget("str", [] { return 10; });
     CarryingCapacity capacity(itemResources);
     Encumbrance encumbrance(itemResources, capacity);
-    Inventory inventory(itemResources);
+    ItemCatalog catalog;
+    catalog.add(item);
+    Inventory inventory(itemResources, catalog);
     inventory.addItem({"item", "testItem"});
     const auto firstId = itemSpells.toView()[0].id;
     inventory.equip("item");
@@ -151,6 +153,7 @@ int main()
     inventory.restoreUsagePool("item", "charges", 1);
     assert(itemSpells.toView()[0].remaining == 1);
     auto sheetData = CharacterSheet().toSaveData();
+    sheetData.customItemDefinitions = catalog.customDefinitions();
     sheetData.inventory = inventory.toSaveData();
     assert(sheetData.grantedSpells.spells.empty());
     const auto path = std::filesystem::temp_directory_path() / ("golarion-granted-spells-" + std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()) + ".json");

@@ -1,0 +1,286 @@
+{
+  "id": "occultist.archetype.c1dad0384c1f",
+  "classType": "occultist",
+  "name": "Portatore di Battaglia",
+  "description": "Archetipo di Occultista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Catalizzatori, Focus Mentale, Padronanza dei Catalizzatori, Abile con gli Oggetti Magici, Lettura dell'Oggetto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "occultist.proficiencies",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.faf48b3bbb51",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.dd67538cfd2b",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.6570d7b13546",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.79236ec78fb4",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.3bc358693969",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.19d6f17d323d",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.b4da10c20dab",
+      "type": "alter"
+    },
+    {
+      "featureId": "occultist.feature.834062cfcd84",
+      "type": "alter"
+    },
+    {
+      "featureId": "occultist.spellcasting",
+      "type": "alter"
+    },
+    {
+      "featureId": "occultist.feature.c399c71bc8d9",
+      "type": "alter"
+    },
+    {
+      "featureId": "occultist.feature.8e09d5c33d07",
+      "type": "alter"
+    },
+    {
+      "featureId": "occultist.feature.5f0664c0baeb",
+      "type": "alter"
+    },
+    {
+      "featureId": "occultist.classSkills",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "occultist.feature.19d6f17d323d",
+    "occultist.feature.3bc358693969",
+    "occultist.feature.5f0664c0baeb",
+    "occultist.feature.6570d7b13546",
+    "occultist.feature.79236ec78fb4",
+    "occultist.feature.834062cfcd84",
+    "occultist.feature.8e09d5c33d07",
+    "occultist.feature.b4da10c20dab",
+    "occultist.feature.c399c71bc8d9",
+    "occultist.feature.dd67538cfd2b",
+    "occultist.feature.faf48b3bbb51",
+    "occultist.proficiencies"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "occultist.archetype.c1dad0384c1f.instructions",
+      "name": "Portatore di Battaglia",
+      "description": "Archetipo di Occultista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Catalizzatori, Focus Mentale, Padronanza dei Catalizzatori, Abile con gli Oggetti Magici, Lettura dell'Oggetto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "occultist.archetype.c1dad0384c1f.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Occultista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Catalizzatori, Focus Mentale, Padronanza dei Catalizzatori, Abile con gli Oggetti Magici, Lettura dell'Oggetto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.archetype.c1dad0384c1f.feature.1",
+      "name": "Abilità di Classe",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia",
+      "progression": [
+        {
+          "id": "occultist.archetype.c1dad0384c1f.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Portatore di Battaglia — Abilità di Classe: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.archetype.c1dad0384c1f.feature.2",
+      "name": "Competenza nelle Armi e nelle Armature",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia",
+      "progression": [
+        {
+          "id": "occultist.archetype.c1dad0384c1f.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Portatore di Battaglia — Competenza nelle Armi e nelle Armature: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.archetype.c1dad0384c1f.feature.3",
+      "name": "Legame con la Panoplia (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia",
+      "progression": [
+        {
+          "id": "occultist.archetype.c1dad0384c1f.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Portatore di Battaglia — Legame con la Panoplia (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.archetype.c1dad0384c1f.feature.4",
+      "name": "Abile in Battaglia",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia",
+      "progression": [
+        {
+          "id": "occultist.archetype.c1dad0384c1f.feature.4.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Portatore di Battaglia — Abile in Battaglia: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.archetype.c1dad0384c1f.feature.5",
+      "name": "Lettura da Battaglia",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia",
+      "progression": [
+        {
+          "id": "occultist.archetype.c1dad0384c1f.feature.5.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Portatore di Battaglia — Lettura da Battaglia: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.archetype.c1dad0384c1f.feature.6",
+      "name": "Talenti Bonus",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia",
+      "progression": [
+        {
+          "id": "occultist.archetype.c1dad0384c1f.feature.6.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Portatore di Battaglia — Talenti Bonus: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.archetype.c1dad0384c1f.feature.7",
+      "name": "Spirito Combattente (Mag)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia",
+      "progression": [
+        {
+          "id": "occultist.archetype.c1dad0384c1f.feature.7.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Portatore di Battaglia — Spirito Combattente (Mag): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.archetype.c1dad0384c1f.feature.8",
+      "name": "Splendore Eroico (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia",
+      "progression": [
+        {
+          "id": "occultist.archetype.c1dad0384c1f.feature.8.initial",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Portatore di Battaglia — Splendore Eroico (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.archetype.c1dad0384c1f.classSkills",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Aggiunte indicate dalla fonte: https://golarion.altervista.org/wiki/Occultista/Archetipi#Portatore_di_Battaglia",
+      "progression": [
+        {
+          "id": "occultist.archetype.c1dad0384c1f.classSkills.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "skill1",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.local"
+            },
+            {
+              "id": "skill2",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.nobility"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

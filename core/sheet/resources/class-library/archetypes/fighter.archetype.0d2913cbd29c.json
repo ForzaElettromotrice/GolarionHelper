@@ -1,0 +1,267 @@
+{
+  "id": "fighter.archetype.0d2913cbd29c",
+  "classType": "fighter",
+  "name": "Tattico",
+  "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "fighter.feature.d44c6514cc68",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.proficiencies",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.classSkills",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.skillRanksPerLevel",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.feature.d85ccd994169",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.feature.0bfec277b39e",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.feature.42853dd168a3",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "fighter.feature.d44c6514cc68",
+    "fighter.proficiencies",
+    "fighter.classSkills",
+    "fighter.skillRanksPerLevel"
+  ],
+  "removedAcquisitionIds": [
+    "fighter.bonusFeats.level1",
+    "fighter.feature.0bfec277b39e.level5",
+    "fighter.feature.42853dd168a3.level11",
+    "fighter.feature.42853dd168a3.level15"
+  ],
+  "addedFeatures": [
+    {
+      "id": "fighter.archetype.0d2913cbd29c.instructions",
+      "name": "Tattico",
+      "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "fighter.archetype.0d2913cbd29c.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.0d2913cbd29c.feature.1",
+      "name": "Competenza nelle Armi e nelle Armature",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico",
+      "progression": [
+        {
+          "id": "fighter.archetype.0d2913cbd29c.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Tattico — Competenza nelle Armi e nelle Armature: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.0d2913cbd29c.feature.2",
+      "name": "Addestramento Strategico (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico",
+      "progression": [
+        {
+          "id": "fighter.archetype.0d2913cbd29c.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Tattico — Addestramento Strategico (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.0d2913cbd29c.feature.3",
+      "name": "Talenti Bonus",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico",
+      "progression": [
+        {
+          "id": "fighter.archetype.0d2913cbd29c.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Tattico — Talenti Bonus: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.0d2913cbd29c.feature.4",
+      "name": "Consapevolezza Tattica (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico",
+      "progression": [
+        {
+          "id": "fighter.archetype.0d2913cbd29c.feature.4.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Tattico — Consapevolezza Tattica (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.0d2913cbd29c.feature.5",
+      "name": "Tattico (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico",
+      "progression": [
+        {
+          "id": "fighter.archetype.0d2913cbd29c.feature.5.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Tattico — Tattico (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.0d2913cbd29c.feature.6",
+      "name": "Combattimento Cooperativo (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico",
+      "progression": [
+        {
+          "id": "fighter.archetype.0d2913cbd29c.feature.6.initial",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Tattico — Combattimento Cooperativo (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.0d2913cbd29c.feature.7",
+      "name": "Intuito da Battaglia (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico",
+      "progression": [
+        {
+          "id": "fighter.archetype.0d2913cbd29c.feature.7.initial",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Tattico — Intuito da Battaglia (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Tattico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.0d2913cbd29c.classSkills.1",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Concessione dal privilegio di archetipo.",
+      "progression": [
+        {
+          "id": "fighter.archetype.0d2913cbd29c.classSkills.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "skill0",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.geography"
+            },
+            {
+              "id": "skill1",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.nobility"
+            },
+            {
+              "id": "skill2",
+              "type": "classSkillGrant",
+              "resource": "skill.diplomacy"
+            },
+            {
+              "id": "skill3",
+              "type": "classSkillGrant",
+              "resource": "skill.linguistics"
+            },
+            {
+              "id": "skill4",
+              "type": "classSkillGrant",
+              "resource": "skill.perception"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.0d2913cbd29c.skillRankRate",
+      "name": "Progressione alternativa",
+      "description": "Differenza rispetto ai contributi base della classe.",
+      "progression": [
+        {
+          "id": "fighter.archetype.0d2913cbd29c.skillRankRate.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "rankDifference",
+              "type": "contribution",
+              "resource": "skill.ranks.max",
+              "expression": "@classLevel * ((3 + @intSkillRanksMod) * (4 + @intSkillRanksMod > 1) - (1 + @intSkillRanksMod) * (2 + @intSkillRanksMod > 1))"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

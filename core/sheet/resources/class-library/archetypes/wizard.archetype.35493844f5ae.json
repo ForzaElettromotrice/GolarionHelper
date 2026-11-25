@@ -1,0 +1,83 @@
+{
+  "id": "wizard.archetype.35493844f5ae",
+  "classType": "wizard",
+  "name": "Saggio Incantato",
+  "description": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Saggio_Incantato Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "wizard.feature.e0eb2aa5ac5e",
+      "type": "replace"
+    },
+    {
+      "featureId": "wizard.feature.5805de6bd2db",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "wizard.feature.e0eb2aa5ac5e",
+    "wizard.feature.5805de6bd2db"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "wizard.archetype.35493844f5ae.instructions",
+      "name": "Saggio Incantato",
+      "description": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Saggio_Incantato Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "wizard.archetype.35493844f5ae.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Saggio_Incantato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.35493844f5ae.feature.1",
+      "name": "Incantesimi Acutizzati (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Saggio_Incantato",
+      "progression": [
+        {
+          "id": "wizard.archetype.35493844f5ae.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Saggio Incantato — Incantesimi Acutizzati (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Saggio_Incantato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.35493844f5ae.feature.2",
+      "name": "Studio degli Incantesimi (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Saggio_Incantato",
+      "progression": [
+        {
+          "id": "wizard.archetype.35493844f5ae.feature.2.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Saggio Incantato — Studio degli Incantesimi (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Saggio_Incantato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

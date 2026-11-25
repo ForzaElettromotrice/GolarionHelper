@@ -1,0 +1,51 @@
+{
+  "id": "heartOfTheMetal",
+  "name": "Cuore del Metallo",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "EARTH"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "WITCH": 3,
+    "MAGUS": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo di adamantio del valore di 100 mo o un pezzo di ferro freddo o argento del valore di 20 mo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 arma per livello",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Conferisce alle armi le proprietà necessarie a superare specifiche riduzioni del danno legate ai metalli. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cuore_del_Metallo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cuore del Metallo: https://golarion.altervista.org/wiki/Incantesimi/Cuore_del_Metallo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 arma per livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Costo materiale variabile o alternativo: determinarlo dalla descrizione dei componenti, non da un importo fisso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

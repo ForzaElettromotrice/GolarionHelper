@@ -1,0 +1,48 @@
+{
+  "id": "disfiguringTouch",
+  "name": "Tocco Sfigurante",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "WITCH": 2,
+    "BLOODRAGER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Deforma l'aspetto del bersaglio imponendo una debilitazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Tocco_Sfigurante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Tocco Sfigurante: https://golarion.altervista.org/wiki/Incantesimi/Tocco_Sfigurante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

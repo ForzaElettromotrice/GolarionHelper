@@ -1,0 +1,27 @@
+{
+  "id": "stronghold",
+  "name": "Roccaforte",
+  "description": "La conquista di una roccaforte rafforza gli ordini impartiti alle truppe. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Roccaforte",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Bisogna possedere il talento Autorità e guidare almeno 10 seguaci abili nel combattimento (come Guerrieri o Ranger). Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Roccaforte: https://golarion.altervista.org/wiki/Talenti/Roccaforte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Bisogna possedere il talento Autorità e guidare almeno 10 seguaci abili nel combattimento (come Guerrieri o Ranger). Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

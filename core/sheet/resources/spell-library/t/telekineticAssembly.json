@@ -1,0 +1,39 @@
+{
+  "id": "telekineticAssembly",
+  "name": "Assemblaggio Telecinetico",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 Macchina d'Assedio smontata",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Assembla a distanza una macchina d'assedio riducendo il personale necessario. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Assemblaggio_Telecinetico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Assemblaggio Telecinetico: https://golarion.altervista.org/wiki/Incantesimi/Assemblaggio_Telecinetico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

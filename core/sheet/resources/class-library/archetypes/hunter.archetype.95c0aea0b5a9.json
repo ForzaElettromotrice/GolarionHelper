@@ -1,0 +1,193 @@
+{
+  "id": "hunter.archetype.95c0aea0b5a9",
+  "classType": "hunter",
+  "name": "Cacciatore Ferino",
+  "description": "Archetipo di Cacciatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Animale Focalizzato, Compagno Preciso. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "hunter.feature.94e8b3cfe14c",
+      "type": "replace"
+    },
+    {
+      "featureId": "hunter.feature.1827f204c3b7",
+      "type": "replace"
+    },
+    {
+      "featureId": "hunter.feature.0a7410cb499f",
+      "type": "replace"
+    },
+    {
+      "featureId": "hunter.feature.94a899227173",
+      "type": "replace"
+    },
+    {
+      "featureId": "hunter.feature.168edc94b476",
+      "type": "replace"
+    },
+    {
+      "featureId": "hunter.feature.444331a662b1",
+      "type": "replace"
+    },
+    {
+      "featureId": "hunter.feature.aa03e598fb57",
+      "type": "replace"
+    },
+    {
+      "featureId": "hunter.feature.51b0ca0fbbb2",
+      "type": "replace"
+    },
+    {
+      "featureId": "hunter.feature.21a91365dbee",
+      "type": "alter"
+    },
+    {
+      "featureId": "hunter.feature.4d09aa05647a",
+      "type": "alter"
+    },
+    {
+      "featureId": "hunter.feature.c6f2cec00acd",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "hunter.feature.0a7410cb499f",
+    "hunter.feature.168edc94b476",
+    "hunter.feature.1827f204c3b7",
+    "hunter.feature.21a91365dbee",
+    "hunter.feature.444331a662b1",
+    "hunter.feature.4d09aa05647a",
+    "hunter.feature.51b0ca0fbbb2",
+    "hunter.feature.94a899227173",
+    "hunter.feature.94e8b3cfe14c",
+    "hunter.feature.aa03e598fb57"
+  ],
+  "removedAcquisitionIds": [
+    "hunter.bonusFeats.level12",
+    "hunter.bonusFeats.level15",
+    "hunter.bonusFeats.level18",
+    "hunter.bonusFeats.level6",
+    "hunter.bonusFeats.level9"
+  ],
+  "addedFeatures": [
+    {
+      "id": "hunter.archetype.95c0aea0b5a9.instructions",
+      "name": "Cacciatore Ferino",
+      "description": "Archetipo di Cacciatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Animale Focalizzato, Compagno Preciso. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "hunter.archetype.95c0aea0b5a9.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Cacciatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Animale Focalizzato, Compagno Preciso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.archetype.95c0aea0b5a9.feature.1",
+      "name": "Solitario",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino",
+      "progression": [
+        {
+          "id": "hunter.archetype.95c0aea0b5a9.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore Ferino — Solitario: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.archetype.95c0aea0b5a9.feature.2",
+      "name": "Fiera Focalizzata (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino",
+      "progression": [
+        {
+          "id": "hunter.archetype.95c0aea0b5a9.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore Ferino — Fiera Focalizzata (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.archetype.95c0aea0b5a9.feature.3",
+      "name": "Animale Evocato Preciso (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino",
+      "progression": [
+        {
+          "id": "hunter.archetype.95c0aea0b5a9.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore Ferino — Animale Evocato Preciso (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.archetype.95c0aea0b5a9.feature.4",
+      "name": "Forma Selvatica (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino",
+      "progression": [
+        {
+          "id": "hunter.archetype.95c0aea0b5a9.feature.4.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore Ferino — Forma Selvatica (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.archetype.95c0aea0b5a9.feature.5",
+      "name": "Evoca Branco (Mag)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino",
+      "progression": [
+        {
+          "id": "hunter.archetype.95c0aea0b5a9.feature.5.initial",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore Ferino — Evoca Branco (Mag): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Ferino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

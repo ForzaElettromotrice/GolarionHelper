@@ -1,0 +1,83 @@
+{
+  "id": "unchainedRogue.archetype.f105db4f1e8c",
+  "classType": "unchainedRogue",
+  "name": "Esploratore",
+  "description": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Esploratore Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "unchainedRogue.feature.84bcfa0018b3",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedRogue.feature.947751edfb55",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "unchainedRogue.feature.84bcfa0018b3",
+    "unchainedRogue.feature.947751edfb55"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "unchainedRogue.archetype.f105db4f1e8c.instructions",
+      "name": "Esploratore",
+      "description": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Esploratore Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.f105db4f1e8c.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Esploratore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.archetype.f105db4f1e8c.feature.1",
+      "name": "Carica dell'Esploratore (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Esploratore",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.f105db4f1e8c.feature.1.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Esploratore — Carica dell'Esploratore (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Esploratore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.archetype.f105db4f1e8c.feature.2",
+      "name": "Schermidore (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Esploratore",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.f105db4f1e8c.feature.2.initial",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Esploratore — Schermidore (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Esploratore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "cleromancy",
+  "name": "Cleromanzia",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "HUNTER": 3,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "DRUID": 3,
+    "INQUISITOR": 3
+  },
+  "castingTimeCategory": "FULL_ROUND_ACTION",
+  "castingTimeDescription": "1 Azione di Round Completo",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "un set di 64 ossa di pollo",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Interpreta segni divinatori ottenuti tramite dadi per ricavare benefici sulle azioni future. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cleromanzia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cleromanzia: https://golarion.altervista.org/wiki/Incantesimi/Cleromanzia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

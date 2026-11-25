@@ -1,0 +1,47 @@
+{
+  "id": "unbearableBrightness",
+  "name": "Luminosità Insopportabile",
+  "school": "EVOCATION",
+  "descriptors": [
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "ARCANIST": 4,
+    "WITCH": 4,
+    "INVESTIGATOR": 4,
+    "WIZARD": 4,
+    "PSYCHIC": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale e 9 m (vedi testo)",
+  "area": "emanazione del raggio di 9 m centrata su di sé",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "PARTIAL",
+      "description": "nessuno e Riflessi parziale (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "no e sì (vedi testo)",
+  "description": "Il corpo emana una luce capace di abbagliare o accecare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Luminosit%C3%A0_Insopportabile",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Luminosità Insopportabile: https://golarion.altervista.org/wiki/Incantesimi/Luminosit%C3%A0_Insopportabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

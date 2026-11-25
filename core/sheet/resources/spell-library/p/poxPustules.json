@@ -1,0 +1,45 @@
+{
+  "id": "poxPustules",
+  "name": "Pustole del Vaiolo",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "DISEASE"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "DRUID": 2,
+    "WITCH": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "foglie di una pianta tossica",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Ricopre il soggetto di pustole, rendendolo infermo e riducendone la Destrezza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pustole_del_Vaiolo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pustole del Vaiolo: https://golarion.altervista.org/wiki/Incantesimi/Pustole_del_Vaiolo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

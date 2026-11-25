@@ -1,0 +1,65 @@
+{
+  "id": "dimensionDoor",
+  "name": "Porta Dimensionale",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "TELEPORTATION",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 4,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "MAGUS": 4,
+    "MEDIUM": 3,
+    "MESMERIST": 4,
+    "OCCULTIST": 4,
+    "PSYCHIC": 4,
+    "SKALD": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "TRAVEL": 4
+    }
+  },
+  "spellLevelByBloodline": {
+    "ARCANE": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "target": "se stessi e oggetti toccati oppure altre creature toccate consenzienti",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "nessuno e Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "no e sì (oggetto)",
+  "description": "Trasferisce istantaneamente l'incantatore e gli eventuali compagni ammessi a una destinazione vicina. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Porta_Dimensionale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Porta Dimensionale: https://golarion.altervista.org/wiki/Incantesimi/Porta_Dimensionale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi e oggetti toccati oppure altre creature toccate consenzienti. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

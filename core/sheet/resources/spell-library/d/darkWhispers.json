@@ -1,0 +1,55 @@
+{
+  "id": "darkWhispers",
+  "name": "Sussurri Oscuri",
+  "school": "ILLUSION",
+  "descriptors": [
+    "SHADOW",
+    "LANGUAGE_DEPENDENT"
+  ],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "ARCANIST": 2,
+    "BARD": 2,
+    "CLERIC": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "un brandello di vestito nero",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "target": "1 creatura/livello",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Trasmette parole sussurrate servendosi delle ombre. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sussurri_Oscuri",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sussurri Oscuri: https://golarion.altervista.org/wiki/Incantesimi/Sussurri_Oscuri Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

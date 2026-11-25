@@ -1,0 +1,39 @@
+{
+  "id": "hornOfPursuit",
+  "name": "Corno dell'Inseguimento",
+  "school": "EVOCATION",
+  "descriptors": [
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "BARD": 1,
+    "SKALD": 1,
+    "HUNTER": 1,
+    "INQUISITOR": 1,
+    "PALADIN": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "effect": "3 squilli di corno",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Produce una breve sequenza di squilli che può essere udita a grande distanza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Corno_dell%27Inseguimento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Corno dell'Inseguimento: https://golarion.altervista.org/wiki/Incantesimi/Corno_dell%27Inseguimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,888 @@
+{
+  "id": "oracle.archetype.5c15b91575a9",
+  "classType": "oracle",
+  "name": "Purificatore (Aasimar)",
+  "description": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Purificatore_.28Aasimar.29 Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Rivelazione. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "oracle.feature.aaa668a8100b",
+      "type": "alter"
+    },
+    {
+      "featureId": "oracle.spellcasting",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "oracle.feature.aaa668a8100b"
+  ],
+  "removedAcquisitionIds": [
+    "castingSlots.level1",
+    "castingSlots.level10",
+    "castingSlots.level11",
+    "castingSlots.level12",
+    "castingSlots.level13",
+    "castingSlots.level14",
+    "castingSlots.level15",
+    "castingSlots.level16",
+    "castingSlots.level17",
+    "castingSlots.level18",
+    "castingSlots.level19",
+    "castingSlots.level2",
+    "castingSlots.level20",
+    "castingSlots.level3",
+    "castingSlots.level4",
+    "castingSlots.level5",
+    "castingSlots.level6",
+    "castingSlots.level7",
+    "castingSlots.level8",
+    "castingSlots.level9"
+  ],
+  "addedFeatures": [
+    {
+      "id": "oracle.archetype.5c15b91575a9.instructions",
+      "name": "Purificatore (Aasimar)",
+      "description": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Purificatore_.28Aasimar.29 Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Rivelazione. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "oracle.archetype.5c15b91575a9.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Purificatore_.28Aasimar.29 Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Rivelazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.5c15b91575a9.feature.2de2bd9ee2",
+      "name": "Misteri Consigliati",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Purificatore_.28Aasimar.29",
+      "progression": [
+        {
+          "id": "oracle.archetype.5c15b91575a9.feature.2de2bd9ee2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Purificatore (Aasimar) — Misteri Consigliati: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Purificatore_.28Aasimar.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.5c15b91575a9.feature.bbdd91a63e",
+      "name": "Incantesimi Bonus",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Purificatore_.28Aasimar.29",
+      "progression": [
+        {
+          "id": "oracle.archetype.5c15b91575a9.feature.bbdd91a63e.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Purificatore (Aasimar) — Incantesimi Bonus: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Purificatore_.28Aasimar.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.5c15b91575a9.feature.ae46e3e092",
+      "name": "Diminuzione degli Incantesimi",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Purificatore_.28Aasimar.29",
+      "progression": [
+        {
+          "id": "oracle.archetype.5c15b91575a9.feature.ae46e3e092.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Gli slot base giornalieri sono già ridotti automaticamente di uno per livello di incantesimo; non applicare di nuovo la riduzione. Gli slot bonus di caratteristica e le altre eccezioni della fonte restano manuali. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Purificatore_.28Aasimar.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.5c15b91575a9.feature.df7c0bfd2d",
+      "name": "Rivelazioni",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Purificatore_.28Aasimar.29",
+      "progression": [
+        {
+          "id": "oracle.archetype.5c15b91575a9.feature.df7c0bfd2d.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Purificatore (Aasimar) — Rivelazioni: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Purificatore_.28Aasimar.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.5c15b91575a9.dailySlots",
+      "name": "Slot giornalieri modificati",
+      "description": "Progressione base modificata dalla fonte; il proprietario dello spellcasting e il repertorio originali restano attivi.",
+      "progression": [
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": []
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level1"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level2"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level3"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level4"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level5"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level6"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level7"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level8"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level9"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level10"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level11"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level12"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level13"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level14"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                },
+                {
+                  "level": 8,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level15"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                },
+                {
+                  "level": 7,
+                  "capacity": 5
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level16"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                },
+                {
+                  "level": 7,
+                  "capacity": 5
+                },
+                {
+                  "level": 8,
+                  "capacity": 4
+                },
+                {
+                  "level": 9,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level17"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                },
+                {
+                  "level": 7,
+                  "capacity": 5
+                },
+                {
+                  "level": 8,
+                  "capacity": 5
+                },
+                {
+                  "level": 9,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level18"
+          ]
+        },
+        {
+          "id": "oracle.archetype.5c15b91575a9.slots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                },
+                {
+                  "level": 7,
+                  "capacity": 5
+                },
+                {
+                  "level": 8,
+                  "capacity": 5
+                },
+                {
+                  "level": 9,
+                  "capacity": 5
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "oracle.archetype.5c15b91575a9.slots.level19"
+          ]
+        }
+      ]
+    }
+  ]
+}

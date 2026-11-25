@@ -1,0 +1,133 @@
+{
+  "id": "swashbuckler.archetype.c8ba9ec1146a",
+  "classType": "swashbuckler",
+  "name": "Picaro",
+  "description": "Archetipo di Intrepido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Intrepido/Archetipi#Picaro Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Eleganza, Gesta. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "swashbuckler.proficiencies",
+      "type": "replace"
+    },
+    {
+      "featureId": "swashbuckler.feature.2881cebd1649",
+      "type": "replace"
+    },
+    {
+      "featureId": "swashbuckler.feature.95a529112563",
+      "type": "alter"
+    },
+    {
+      "featureId": "swashbuckler.feature.0e52a8642b72",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "swashbuckler.feature.0e52a8642b72",
+    "swashbuckler.feature.2881cebd1649",
+    "swashbuckler.feature.95a529112563",
+    "swashbuckler.proficiencies"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "swashbuckler.archetype.c8ba9ec1146a.instructions",
+      "name": "Picaro",
+      "description": "Archetipo di Intrepido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Intrepido/Archetipi#Picaro Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Eleganza, Gesta. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "swashbuckler.archetype.c8ba9ec1146a.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Intrepido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Intrepido/Archetipi#Picaro Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Eleganza, Gesta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.archetype.c8ba9ec1146a.feature.1",
+      "name": "Competenza nelle Armi",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Intrepido/Archetipi#Picaro",
+      "progression": [
+        {
+          "id": "swashbuckler.archetype.c8ba9ec1146a.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Picaro — Competenza nelle Armi: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Intrepido/Archetipi#Picaro Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.archetype.c8ba9ec1146a.feature.2",
+      "name": "Eleganza",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Intrepido/Archetipi#Picaro",
+      "progression": [
+        {
+          "id": "swashbuckler.archetype.c8ba9ec1146a.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Picaro — Eleganza: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Intrepido/Archetipi#Picaro Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.archetype.c8ba9ec1146a.feature.3",
+      "name": "Gesta",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Intrepido/Archetipi#Picaro",
+      "progression": [
+        {
+          "id": "swashbuckler.archetype.c8ba9ec1146a.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Picaro — Gesta: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Intrepido/Archetipi#Picaro Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.archetype.c8ba9ec1146a.feature.4",
+      "name": "Accuratezza con Due Armi",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Intrepido/Archetipi#Picaro",
+      "progression": [
+        {
+          "id": "swashbuckler.archetype.c8ba9ec1146a.feature.4.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Picaro — Accuratezza con Due Armi: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Intrepido/Archetipi#Picaro Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

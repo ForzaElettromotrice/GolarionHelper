@@ -564,7 +564,10 @@ int main()
     const auto catalog = golarion::catalog::loadClassDefinitionCatalog();
     assert(catalog.size() == 44);
     std::set<CharacterClassType> types;
-    const auto definitions = classDefinitionsWithOptionsFromJson(catalog, golarion::catalog::loadClassOptionCatalog());
+    auto bindings = Json::array();
+    for (const auto &entry : catalog)
+        for (const auto &binding : entry.at("bindings")) bindings.push_back(binding);
+    const auto definitions = classDefinitionsWithOptionsFromJson(catalog, Json::array({Json{{"bindings", bindings}, {"optionSets", golarion::catalog::loadClassOptionSets()}}}));
     for (const auto &definition : definitions)
     {
         std::cerr << "Class catalog: " << characterClassId(definition.type) << '\n';

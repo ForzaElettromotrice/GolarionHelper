@@ -1,0 +1,33 @@
+{
+  "id": "sabotageSpecialist",
+  "name": "Specialista del Sabotaggio",
+  "description": "Rende più prevedibile il momento in cui un congegno sabotato smetterà di funzionare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Specialista_del_Sabotaggio",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Manolesta",
+      "feat": {
+        "id": "deftHands"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Rapidità di Mano 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Specialista del Sabotaggio: https://golarion.altervista.org/wiki/Talenti/Specialista_del_Sabotaggio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Rapidità di Mano 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

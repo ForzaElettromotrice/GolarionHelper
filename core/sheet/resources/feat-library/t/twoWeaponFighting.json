@@ -1,0 +1,23 @@
+{
+  "id": "twoWeaponFighting",
+  "name": "Combattere con Due Armi",
+  "description": "Attenua le penalità del combattimento con due armi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Combattere_con_Due_Armi",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Combattere con Due Armi: https://golarion.altervista.org/wiki/Talenti/Combattere_con_Due_Armi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

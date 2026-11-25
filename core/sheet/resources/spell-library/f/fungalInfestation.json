@@ -1,0 +1,42 @@
+{
+  "id": "fungalInfestation",
+  "name": "Infestazione Micotica",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "DISEASE"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "DRUID": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "DAY",
+  "durationDescription": "1d3 giorni",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una crescita fungina rende più sanguinose le ferite ricevute. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Infestazione_Micotica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Infestazione Micotica: https://golarion.altervista.org/wiki/Incantesimi/Infestazione_Micotica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

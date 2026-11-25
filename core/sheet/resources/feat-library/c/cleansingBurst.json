@@ -1,0 +1,27 @@
+{
+  "id": "cleansingBurst",
+  "name": "Esplosione Purificatrice",
+  "description": "L'energia incanalata sopprime la contagiosità dei non morti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Esplosione_Purificatrice",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Capacità di lanciare Rimuovi Malattia, o curare malattie con il privilegio di classe Indulgenza ed avere Incanalare Energia Positiva. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Esplosione Purificatrice: https://golarion.altervista.org/wiki/Talenti/Esplosione_Purificatrice. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Capacità di lanciare Rimuovi Malattia, o curare malattie con il privilegio di classe Indulgenza ed avere Incanalare Energia Positiva. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

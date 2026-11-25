@@ -1,0 +1,61 @@
+{
+  "id": "wallOfIron",
+  "name": "Muro di Ferro",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 6,
+    "WIZARD": 6,
+    "MAGUS": 6,
+    "OCCULTIST": 6,
+    "SORCERER": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "ARTIFICE": 7
+    },
+    "subdomain": {
+      "METAL": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un frammento di una lamina di ferro e polvere d'oro del valore di 50 mo",
+  "materialComponentCostInGoldPieces": 50,
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "muro di ferro la cui area è fino a un quadrato con lato di 1,5 m/livello; vedi testo",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Erige una lastra di ferro che può essere rovesciata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Ferro",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Muro di Ferro: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Ferro Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Metallo 6, Terra 6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "rendingFury",
+  "name": "Furia Lacerante",
+  "description": "Riduce il numero di attacchi naturali riusciti necessario a innescare lo squartamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Furia_Lacerante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: attacco speciale Squartare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Furia Lacerante: https://golarion.altervista.org/wiki/Talenti/Furia_Lacerante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: attacco speciale Squartare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

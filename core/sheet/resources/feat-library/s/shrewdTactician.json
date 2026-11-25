@@ -1,0 +1,31 @@
+{
+  "id": "shrewdTactician",
+  "name": "Tattico Astuto",
+  "description": "Contrasta fiancheggiamento e finte grazie all'attenzione tattica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tattico_Astuto",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Allerta",
+      "feat": {
+        "id": "alertness"
+      }
+    },
+    {
+      "description": "Riflessi in Combattimento",
+      "feat": {
+        "id": "combatReflexes"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tattico Astuto: https://golarion.altervista.org/wiki/Talenti/Tattico_Astuto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

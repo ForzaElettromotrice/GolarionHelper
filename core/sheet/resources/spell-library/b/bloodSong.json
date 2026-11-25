@@ -1,0 +1,42 @@
+{
+  "id": "bloodSong",
+  "name": "Canto del Sangue",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 4,
+    "SKALD": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "2 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "il sangue dell'incantatore",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata; vedi testo",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno o finché non viene scaricato (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Trasferisce al soggetto incantesimi delle categorie ammesse dal potere. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Canto_del_Sangue",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Canto del Sangue: https://golarion.altervista.org/wiki/Incantesimi/Canto_del_Sangue Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

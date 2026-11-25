@@ -53,7 +53,7 @@ int main()
 
     RaceDefinitionManager &manager = RaceDefinitionManager::instance();
     assert(&manager == &RaceDefinitionManager::instance());
-    auto views = manager.toView();
+    auto views = manager.listRaces();
     assert(views.size() == 63);
     std::set<std::string> ids;
     std::string previousId;
@@ -78,7 +78,7 @@ int main()
     const auto originalId = views.front().id;
     views.front().name = "Changed snapshot";
     assert(manager.get(originalId).name == originalName);
-    assert(manager.toView().front().name == originalName);
+    assert(manager.listRaces().front().name == originalName);
 
     const RaceDefinition &human = manager.get(" human ");
     auto alternatives = manager.alternateFeaturesView(" human ");

@@ -1,0 +1,39 @@
+{
+  "id": "lendJudgmentGreater",
+  "name": "Concedere Giudizio Superiore",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "INQUISITOR": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 alleato",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Condivide con un alleato tutti i giudizi attivi dell'inquisitore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Concedere_Giudizio_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Concedere Giudizio Superiore: https://golarion.altervista.org/wiki/Incantesimi/Concedere_Giudizio_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

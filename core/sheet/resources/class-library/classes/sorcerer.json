@@ -1,0 +1,1693 @@
+{
+  "type": "sorcerer",
+  "name": "Stregone",
+  "description": "Incantatore spontaneo il cui potere deriva da una stirpe.",
+  "hitDie": 6,
+  "skillRanksPerLevel": 2,
+  "classSkills": [
+    "skill.craft",
+    "skill.knowledge.arcana",
+    "skill.intimidate",
+    "skill.profession",
+    "skill.bluff",
+    "skill.spellcraft",
+    "skill.useMagicDevice",
+    "skill.appraise",
+    "skill.fly"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 2
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 3
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 3
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 6
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 6
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 9
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 9
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 12
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "sorcerer.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "sorcerer.bloodlineSelection",
+      "name": "Stirpe",
+      "description": "La stirpe viene scelta al 1° livello, indipendentemente dai singoli poteri successivi. Accesso e benefici rimangono manuali. Fonte: https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "sorcerer.bloodlineSelection.level1",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": "sorcerer.spellcasting",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Stregone",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 1,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "spontaneous",
+              "spellListClass": "sorcerer"
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. La tabella giornaliera non contiene slot di livello 0: il backend richiede un gruppo tecnico o una futura API per il lancio gratuito; non viene inventato uno slot giornaliero. Le sostituzioni degli incantesimi conosciuti restano soggette alle finestre e ai limiti di livello descritti dalla classe. Gli incantesimi aggiuntivi concessi da stirpe, mistero, patrono, maledizione o disciplina non sono inclusi nelle quote base e richiedono i relativi benefici selezionati. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level1"
+          ]
+        },
+        {
+          "id": "castingSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level2"
+          ]
+        },
+        {
+          "id": "castingSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level3"
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level4"
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 6
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 6
+                },
+                {
+                  "level": 7,
+                  "capacity": 5
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 6
+                },
+                {
+                  "level": 7,
+                  "capacity": 6
+                },
+                {
+                  "level": 8,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 6
+                },
+                {
+                  "level": 7,
+                  "capacity": 6
+                },
+                {
+                  "level": 8,
+                  "capacity": 5
+                },
+                {
+                  "level": 9,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 6
+                },
+                {
+                  "level": 7,
+                  "capacity": 6
+                },
+                {
+                  "level": 8,
+                  "capacity": 6
+                },
+                {
+                  "level": 9,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 6
+                },
+                {
+                  "level": 7,
+                  "capacity": 6
+                },
+                {
+                  "level": 8,
+                  "capacity": 6
+                },
+                {
+                  "level": 9,
+                  "capacity": 6
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        },
+        {
+          "id": "repertoire.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 4,
+                  "capacity": 1
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 7,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 5,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                },
+                {
+                  "level": 7,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 8,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 7,
+                  "capacity": 1
+                },
+                {
+                  "level": 8,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 9,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 8,
+                  "capacity": 1
+                },
+                {
+                  "level": 9,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.8:sorcerer12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 9,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sorcerer.feature.14ecd0058d8b",
+      "name": "Escludere Materiali",
+      "description": "Privilegio della classe Stregone. Regole e condizioni: https://golarion.altervista.org/wiki/Stregone#Escludere_Materiali",
+      "progression": [
+        {
+          "id": "sorcerer.feature.14ecd0058d8b.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Stregone: verificare e applicare Escludere Materiali. https://golarion.altervista.org/wiki/Stregone#Escludere_Materiali Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "sorcerer.feature.42a748882f25",
+      "name": "Potere della Stirpe",
+      "description": "Privilegio della classe Stregone. Regole e condizioni: https://golarion.altervista.org/wiki/Stregone#Stirpe",
+      "progression": [
+        {
+          "id": "sorcerer.feature.42a748882f25.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Stregone: verificare e applicare Potere della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "sorcerer.feature.42a748882f25.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Stregone: verificare e applicare Incantesimo della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            },
+            {
+              "id": "manual2",
+              "type": "reminder",
+              "message": "Livello 3 di Stregone: verificare e applicare Potere della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "sorcerer.feature.42a748882f25.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Stregone: verificare e applicare Incantesimo della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "sorcerer.feature.42a748882f25.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Stregone: verificare e applicare Incantesimo della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            },
+            {
+              "id": "manual2",
+              "type": "reminder",
+              "message": "Livello 7 di Stregone: verificare e applicare Talento della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "sorcerer.feature.42a748882f25.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Stregone: verificare e applicare Incantesimo della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            },
+            {
+              "id": "manual2",
+              "type": "reminder",
+              "message": "Livello 9 di Stregone: verificare e applicare Potere della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "sorcerer.feature.42a748882f25.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Stregone: verificare e applicare Incantesimo della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "sorcerer.feature.42a748882f25.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Stregone: verificare e applicare Incantesimo della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            },
+            {
+              "id": "manual2",
+              "type": "reminder",
+              "message": "Livello 13 di Stregone: verificare e applicare Talento della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "sorcerer.feature.42a748882f25.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Stregone: verificare e applicare Incantesimo della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            },
+            {
+              "id": "manual2",
+              "type": "reminder",
+              "message": "Livello 15 di Stregone: verificare e applicare Potere della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "sorcerer.feature.42a748882f25.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Stregone: verificare e applicare Incantesimo della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "sorcerer.feature.42a748882f25.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Stregone: verificare e applicare Incantesimo della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            },
+            {
+              "id": "manual2",
+              "type": "reminder",
+              "message": "Livello 19 di Stregone: verificare e applicare Talento della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "sorcerer.feature.42a748882f25.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Stregone: verificare e applicare Potere della Stirpe. https://golarion.altervista.org/wiki/Stregone#Stirpe Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "sorcerer.feature.63f1f8a1ea3d",
+      "name": "Trucchetti",
+      "description": "Privilegio della classe Stregone. Regole e condizioni: https://golarion.altervista.org/wiki/Stregone#Trucchetti",
+      "progression": [
+        {
+          "id": "sorcerer.feature.63f1f8a1ea3d.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Stregone: verificare e applicare Trucchetti. https://golarion.altervista.org/wiki/Stregone#Trucchetti Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "sorcerer.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi. https://golarion.altervista.org/wiki/Stregone",
+      "progression": [
+        {
+          "id": "sorcerer.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi. https://golarion.altervista.org/wiki/Stregone Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "sorcerer.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Stregone",
+      "progression": [
+        {
+          "id": "sorcerer.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Stregone Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "sorcerer.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Stregone",
+      "progression": [
+        {
+          "id": "sorcerer.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Stregone Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "sorcerer.bloodline.1",
+      "classType": "sorcerer",
+      "featureId": "sorcerer.bloodlineSelection",
+      "acquisitionIds": [
+        "sorcerer.bloodlineSelection.level1"
+      ],
+      "choice": {
+        "id": "bloodline",
+        "prompt": "Scegli la stirpe dello stregone",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "sorcerer.bloodlines"
+      }
+    }
+  ]
+}

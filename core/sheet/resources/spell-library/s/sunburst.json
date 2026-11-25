@@ -1,0 +1,55 @@
+{
+  "id": "sunburst",
+  "name": "Esplosione Solare",
+  "school": "EVOCATION",
+  "descriptors": [
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WIZARD": 8,
+    "SORCERER": 8,
+    "DRUID": 8,
+    "SHAMAN": 8
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "SUN": 8
+    },
+    "subdomain": {
+      "SEASONS": 8
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "pietra del sole e una fonte di fuoco",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "area": "esplosione del raggio di 24 m",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "PARTIAL",
+      "description": "Riflessi parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un'esplosione di luce solare acceca e danneggia, con conseguenze particolari sui soggetti vulnerabili. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Esplosione_Solare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Esplosione Solare: https://golarion.altervista.org/wiki/Incantesimi/Esplosione_Solare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "deftHands",
+  "name": "Manolesta",
+  "description": "Migliora Disattivare Congegni e Rapidità di Mano, con beneficio maggiore raggiunti 10 gradi nella singola abilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Manolesta",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "disableDevice",
+      "type": "modifier",
+      "resource": "skill.disableDevice",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "disableDeviceExperienced",
+      "type": "modifier",
+      "resource": "skill.disableDevice",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2",
+      "condition": "Con almeno 10 gradi in Disattivare Congegni"
+    },
+    {
+      "id": "sleightOfHand",
+      "type": "modifier",
+      "resource": "skill.sleightOfHand",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "sleightOfHandExperienced",
+      "type": "modifier",
+      "resource": "skill.sleightOfHand",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2",
+      "condition": "Con almeno 10 gradi in Rapidità di Mano"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Il bonus aggiuntivo condizionale richiede la verifica manuale dei 10 gradi nella specifica abilità. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

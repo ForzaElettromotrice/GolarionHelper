@@ -1,0 +1,94 @@
+{
+  "id": "slow",
+  "name": "Lentezza",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 3,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "MAGUS": 3,
+    "MEDIUM": 2,
+    "OCCULTIST": 3,
+    "PSYCHIC": 3,
+    "SKALD": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una goccia di melassa",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Rallenta azioni e movimento, imponendo -1 agli attacchi, alla CA e ai Riflessi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lentezza",
+  "effects": [
+    {
+      "id": "attack",
+      "type": "modifier",
+      "resource": "attack.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "1"
+    },
+    {
+      "id": "armor",
+      "type": "modifier",
+      "resource": "armorClass.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "1"
+    },
+    {
+      "id": "reflex",
+      "type": "modifier",
+      "resource": "savingThrow.reflex",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "1"
+    },
+    {
+      "id": "movement",
+      "type": "movementAdjustment",
+      "adjustment": "speedMultiplier",
+      "description": "Velocità dimezzata",
+      "expression": "50"
+    },
+    {
+      "id": "actionLimit",
+      "type": "conditionEntry",
+      "conditionId": "staggered"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Una creatura per LI; non cumulare più Lentezze. Contrastare/dissolvere Velocità richiede la rimozione manuale del gruppo corrispondente. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "spellAbsorptionGreater",
+  "name": "Assorbire Incantesimo Superiore",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WIZARD": 8,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un prisma",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Estende l'assorbimento agli incantesimi di potenza maggiore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Assorbire_Incantesimo_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Assorbire Incantesimo Superiore: https://golarion.altervista.org/wiki/Incantesimi/Assorbire_Incantesimo_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

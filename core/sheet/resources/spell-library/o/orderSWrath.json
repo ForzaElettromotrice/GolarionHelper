@@ -1,0 +1,49 @@
+{
+  "id": "orderSWrath",
+  "name": "Collera dell'Ordine",
+  "school": "EVOCATION",
+  "descriptors": [
+    "LAWFUL"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "INQUISITOR": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "LAW": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "creature non legali entro un’emanazione di 9 m3",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo (1 round); vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un'esplosione di energia legale danneggia le creature caotiche e può frastornarle. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Collera_dell%27Ordine",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Collera dell'Ordine: https://golarion.altervista.org/wiki/Incantesimi/Collera_dell%27Ordine Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

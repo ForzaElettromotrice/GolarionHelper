@@ -1,0 +1,59 @@
+{
+  "id": "speakWithDead",
+  "name": "Parlare con i Morti",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 3,
+    "WITCH": 3,
+    "INQUISITOR": 3,
+    "MEDIUM": 2,
+    "ORACLE": 3,
+    "PSYCHIC": 3,
+    "WARPRIEST": 3,
+    "SHAMAN": 3,
+    "SPIRITUALIST": 3
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "KNOWLEDGE": 3,
+      "REPOSE": 3
+    }
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "3 m",
+  "target": "1 creatura morta",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di interrogare un cadavere. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Parlare_con_i_Morti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Parlare con i Morti: https://golarion.altervista.org/wiki/Incantesimi/Parlare_con_i_Morti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Descrittori variabili da determinare al lancio: dipendente dal linguaggio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

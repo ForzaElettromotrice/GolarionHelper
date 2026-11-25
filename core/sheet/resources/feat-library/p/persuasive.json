@@ -1,0 +1,56 @@
+{
+  "id": "persuasive",
+  "name": "Persuasivo",
+  "description": "Migliora Diplomazia e Intimidire, con beneficio maggiore raggiunti 10 gradi nella singola abilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Persuasivo",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "diplomacy",
+      "type": "modifier",
+      "resource": "skill.diplomacy",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "diplomacyExperienced",
+      "type": "modifier",
+      "resource": "skill.diplomacy",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2",
+      "condition": "Con almeno 10 gradi in Diplomazia"
+    },
+    {
+      "id": "intimidate",
+      "type": "modifier",
+      "resource": "skill.intimidate",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "intimidateExperienced",
+      "type": "modifier",
+      "resource": "skill.intimidate",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2",
+      "condition": "Con almeno 10 gradi in Intimidire"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Il bonus aggiuntivo condizionale richiede la verifica manuale dei 10 gradi nella specifica abilità. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,132 @@
+{
+  "id": "kineticist.archetype.2c5929107fa4",
+  "classType": "kineticist",
+  "name": "Psicocineta",
+  "description": "Archetipo di Cineta. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cineta/Archetipi#Psicocineta Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Doti Istintive, Bruciare, Sovraflusso Elementale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "kineticist.wildTalents",
+      "type": "alter"
+    },
+    {
+      "featureId": "kineticist.feature.fbfbec3bfe37",
+      "type": "alter"
+    },
+    {
+      "featureId": "kineticist.feature.47e5a247d89c",
+      "type": "alter"
+    },
+    {
+      "featureId": "kineticist.classSkills",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "kineticist.feature.47e5a247d89c",
+    "kineticist.feature.fbfbec3bfe37",
+    "kineticist.wildTalents"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "kineticist.archetype.2c5929107fa4.instructions",
+      "name": "Psicocineta",
+      "description": "Archetipo di Cineta. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cineta/Archetipi#Psicocineta Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Doti Istintive, Bruciare, Sovraflusso Elementale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "kineticist.archetype.2c5929107fa4.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Cineta. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cineta/Archetipi#Psicocineta Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Doti Istintive, Bruciare, Sovraflusso Elementale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.archetype.2c5929107fa4.feature.1",
+      "name": "Intensità Emotiva (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cineta/Archetipi#Psicocineta",
+      "progression": [
+        {
+          "id": "kineticist.archetype.2c5929107fa4.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Psicocineta — Intensità Emotiva (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cineta/Archetipi#Psicocineta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.archetype.2c5929107fa4.feature.2",
+      "name": "Bruciare Mentale (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cineta/Archetipi#Psicocineta",
+      "progression": [
+        {
+          "id": "kineticist.archetype.2c5929107fa4.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Psicocineta — Bruciare Mentale (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cineta/Archetipi#Psicocineta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.archetype.2c5929107fa4.feature.3",
+      "name": "Sovraflusso Mentale (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cineta/Archetipi#Psicocineta",
+      "progression": [
+        {
+          "id": "kineticist.archetype.2c5929107fa4.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Psicocineta — Sovraflusso Mentale (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cineta/Archetipi#Psicocineta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.archetype.2c5929107fa4.classSkills",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Aggiunte indicate dalla fonte: https://golarion.altervista.org/wiki/Cineta/Archetipi#Psicocineta",
+      "progression": [
+        {
+          "id": "kineticist.archetype.2c5929107fa4.classSkills.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "skill1",
+              "type": "classSkillGrant",
+              "resource": "skill.senseMotive"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

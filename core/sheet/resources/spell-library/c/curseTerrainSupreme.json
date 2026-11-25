@@ -1,0 +1,46 @@
+{
+  "id": "curseTerrainSupreme",
+  "name": "Maledire Terreno Supremo",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL",
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "CLERIC": 8,
+    "DRUID": 8,
+    "WITCH": 8,
+    "WIZARD": 8,
+    "ORACLE": 8,
+    "SHAMAN": 8,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "il cuore di una creatura che dimorava nell'area e polvere d'onice del valore di 4.000 mo",
+  "materialComponentCostInGoldPieces": 4000,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "area": "emanazione del raggio di 7,5 chilometri dal punto toccato",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Imprime al territorio una combinazione di pericoli letali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Maledire_Terreno_Supremo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledire Terreno Supremo: https://golarion.altervista.org/wiki/Maledire_Terreno_Supremo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

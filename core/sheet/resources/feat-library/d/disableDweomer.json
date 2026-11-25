@@ -1,0 +1,33 @@
+{
+  "id": "disableDweomer",
+  "name": "Disattivare Dweomer",
+  "description": "Usa Disattivare Congegni per sopprimere temporaneamente le proprietà di un oggetto magico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Disattivare_Dweomer",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Disattivare Congegni 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Utilizzare Congegni Magici 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Scoprire Trappole Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Disattivare Dweomer: https://golarion.altervista.org/wiki/Talenti/Disattivare_Dweomer. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Disattivare Congegni 5 gradi; Prerequisito da verificare manualmente: Utilizzare Congegni Magici 5 gradi; Prerequisito da verificare manualmente: Scoprire Trappole Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

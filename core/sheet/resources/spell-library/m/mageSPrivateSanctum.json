@@ -1,0 +1,41 @@
+{
+  "id": "mageSPrivateSanctum",
+  "name": "Santuario Privato",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "MEDIUM": 4,
+    "MESMERIST": 5,
+    "PSYCHIC": 5,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una sottile lamina di piombo, un pezzo di vetro opaco, un batuffolo di cotone e un crisolito ridotto in polvere",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "area": "un cubo con spigolo di 9 m/livello (F)",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Protegge un'area da osservazione e intrusioni divinatorie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Santuario_Privato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Santuario Privato: https://golarion.altervista.org/wiki/Incantesimi/Santuario_Privato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

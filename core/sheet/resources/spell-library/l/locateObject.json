@@ -1,0 +1,57 @@
+{
+  "id": "locateObject",
+  "name": "Localizza Oggetto",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "CLERIC": 3,
+    "WITCH": 3,
+    "INQUISITOR": 3,
+    "WIZARD": 2,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 3,
+    "PSYCHIC": 2,
+    "WARPRIEST": 3,
+    "SKALD": 2,
+    "SPIRITUALIST": 3,
+    "SORCERER": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "TRAVEL": 3
+    },
+    "subdomain": {
+      "THEFT": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "un bastoncino biforcuto",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "area": "cerchio centrato su di sé del raggio di 120 m + 12 m/livello",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Fornisce la direzione di un oggetto cercato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Localizza_Oggetto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Localizza Oggetto: https://golarion.altervista.org/wiki/Incantesimi/Localizza_Oggetto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

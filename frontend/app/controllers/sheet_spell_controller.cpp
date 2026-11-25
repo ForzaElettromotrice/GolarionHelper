@@ -191,7 +191,7 @@ void SheetController::prepareStandardSpellCatalog()
     (void)standardCatalog();
 }
 
-QVariantMap SheetController::spellSnapshot(const golarion::CharacterSheetView &view) const
+QVariantMap SheetController::spellCatalogSnapshot(const golarion::CharacterSheetView &view)
 {
     SpellCatalogSnapshot catalog;
     if (!view.spellcastings.castings.empty() || !view.grantedSpells.empty())
@@ -200,9 +200,17 @@ QVariantMap SheetController::spellSnapshot(const golarion::CharacterSheetView &v
         for (const auto &definition : view.customSpellDefinitions)
             catalog.add(definition.id, definition.name, definition.spellLevelByClass);
     }
-    return {{"castings", list(view.spellcastings.castings, castingView)}, {"catalog", catalog.entries},
-        {"names", catalog.names}, {"levels", catalog.levelsView()}, {"lastCast", lastSpellCast_},
-        {"granted", list(view.grantedSpells, [](const auto &grant) {
+    return {{"catalog", catalog.entries}, {"names", catalog.names}, {"levels", catalog.levelsView()}};
+}
+
+QVariantMap SheetController::spellcastingSnapshot(const golarion::CharacterSheetView &view)
+{
+    return {{"castings", list(view.spellcastings.castings, castingView)}};
+}
+
+QVariantMap SheetController::grantedSpellSnapshot(const golarion::CharacterSheetView &view)
+{
+    return {{"granted", list(view.grantedSpells, [](const auto &grant) {
             return QVariantMap{{"id", text(grant.id)}, {"source", text(grant.source)}, {"spellId", text(grant.spellId)},
                 {"usage", number(grant.usage)}, {"capacity", optional(grant.capacity)}, {"remaining", optional(grant.remaining)}, {"cost", grant.cost}};
         })}};
@@ -286,7 +294,7 @@ QVariantList SheetController::spellConversionOptions(const QString &castingId, c
     try
     {
         if (!sheet_ || !sheet_->hasSpellConversions(castingId.toStdString())) return result;
-        for (const auto &entry : spells_.value("catalog").toList())
+        for (const auto &entry : spellCatalogData_.value("catalog").toList())
         {
             const auto id = entry.toMap().value("id");
             if (canConsumeSpell(ConsumePrepared, castingId, slot, {{"replacement", id}})) result.push_back(id);

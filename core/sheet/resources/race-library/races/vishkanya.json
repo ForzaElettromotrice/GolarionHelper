@@ -1,0 +1,419 @@
+{
+  "id": "vishkanya",
+  "name": "Vishkanya",
+  "qualities": [
+    {
+      "id": "vishkanya.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Umanoide (vishkanya). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "vishkanya.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "vishkanya.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "vishkanya.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "vishkanya.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "vishkanya",
+          "type": "languageGrant",
+          "languageId": "vishkanya"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aklo",
+            "draconic",
+            "elven",
+            "goblin",
+            "sylvan",
+            "undercommon"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vishkanya.lowLightVision",
+      "name": "Visione Crepuscolare",
+      "description": "Distanza visiva doppia rispetto a un umano con luce scarsa.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Distanza visiva doppia rispetto a un umano con luce scarsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "vishkanya.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita indicata.",
+      "effects": [
+        {
+          "id": "bardPerformance",
+          "type": "favoredClassBonus",
+          "classes": [
+            "bard"
+          ],
+          "name": "Bardo — Esibizione",
+          "description": "Bardo — Esibizione — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 round al giorno di Esibizione Bardica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rogueDefense",
+          "type": "favoredClassBonus",
+          "classes": [
+            "rogue"
+          ],
+          "name": "Ladro — Difesa",
+          "description": "Ladro — Difesa",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "combatManeuverdefensegrapple",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.grapple",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "combatManeuverdefensereposition",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.reposition",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        },
+        {
+          "id": "sorcererBloodline",
+          "type": "favoredClassBonus",
+          "classes": [
+            "sorcerer"
+          ],
+          "name": "Stregone — Stirpe",
+          "description": "Stregone — Stirpe — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un uso/giorno aggiuntivo di un potere di stirpe di 1° livello normalmente utilizzabile 3 + Carisma. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "vishkanya.weaponFamiliarity",
+      "name": "Familiarità nelle Armi",
+      "description": "Competenza in cerbottana, kukri e shuriken.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Competenza in cerbottana, kukri e shuriken. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "vishkanya.toxic",
+      "name": "Tossico",
+      "description": "Azione veloce su arma, usi/giorno max(1, modificatore Cos); sangue utilizzabile solo se ferito. Veleno: Tempra CD 10 + metà DV + Cos; 1d2 Des/round per 6 round, cura 1 TS.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Azione veloce su arma, usi/giorno max(1, modificatore Cos); sangue utilizzabile solo se ferito. Veleno: Tempra CD 10 + metà DV + Cos; 1d2 Des/round per 6 round, cura 1 TS. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "vishkanya.poisonResistance",
+      "name": "Resistenza al Veleno",
+      "description": "Resistenza al Veleno",
+      "effects": [
+        {
+          "id": "savingThrowall",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "@level",
+          "condition": "Veleno"
+        }
+      ]
+    },
+    {
+      "id": "vishkanya.poisonUse",
+      "name": "Uso dei Veleni",
+      "description": "Nessun rischio di avvelenamento accidentale usando o applicando veleni.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Nessun rischio di avvelenamento accidentale usando o applicando veleni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "vishkanya.limber",
+      "name": "Flessuoso",
+      "description": "Flessuoso",
+      "effects": [
+        {
+          "id": "skillescapeArtist",
+          "type": "modifier",
+          "resource": "skill.escapeArtist",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "skillstealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "vishkanya.keenSenses",
+      "name": "Sensi Acuti",
+      "description": "Sensi Acuti",
+      "effects": [
+        {
+          "id": "skillperception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "vishkanya.subtleAppearance",
+      "name": "Aspetto Discreto",
+      "description": "Aspetto Discreto",
+      "effects": [
+        {
+          "id": "skilldisguise",
+          "type": "modifier",
+          "resource": "skill.disguise",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "4",
+          "condition": "Apparire completamente umano"
+        }
+      ],
+      "replaces": [
+        "vishkanya.lowLightVision"
+      ]
+    },
+    {
+      "id": "vishkanya.sensual",
+      "name": "Sensuale",
+      "description": "Sensuale",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "+2 a una specializzazione di Intrattenere scelta; scelta aperta e bonus manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "vishkanya.keenSenses"
+      ]
+    }
+  ]
+}

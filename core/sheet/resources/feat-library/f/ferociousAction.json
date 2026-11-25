@@ -1,0 +1,30 @@
+{
+  "id": "ferociousAction",
+  "name": "Azione Feroce",
+  "description": "Permette di agire più efficacemente quando i punti ferita sono negativi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Azione_Feroce",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Tratto razziale Ferocia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Orco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Azione Feroce: https://golarion.altervista.org/wiki/Talenti/Azione_Feroce. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Tratto razziale Ferocia; Prerequisito da verificare manualmente: Orco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

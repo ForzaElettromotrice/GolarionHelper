@@ -1,0 +1,44 @@
+{
+  "id": "hunterSHowl",
+  "name": "Ululato del Cacciatore",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING",
+    "FEAR"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "6 m",
+  "area": "esplosione del raggio di 6 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Conferisce temporaneamente contro i nemici interessati benefici analoghi a quelli del nemico prescelto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ululato_del_Cacciatore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ululato del Cacciatore: https://golarion.altervista.org/wiki/Incantesimi/Ululato_del_Cacciatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

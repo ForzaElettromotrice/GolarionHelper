@@ -1,0 +1,35 @@
+{
+  "id": "grace",
+  "name": "Grazia",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "PALADIN": 1
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 azione veloce",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Protegge il movimento dell'incantatore dagli attacchi di opportunità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Grazia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Grazia: https://golarion.altervista.org/wiki/Incantesimi/Grazia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

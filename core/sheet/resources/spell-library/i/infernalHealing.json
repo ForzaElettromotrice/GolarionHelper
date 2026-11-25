@@ -1,0 +1,54 @@
+{
+  "id": "infernalHealing",
+  "name": "Guarigione Infernale",
+  "school": "CONJURATION",
+  "descriptors": [
+    "EVIL"
+  ],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "WITCH": 1,
+    "BLOODRAGER": 1,
+    "MAGUS": 1
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "1 goccia di sangue di Diavolo o 1 dose di acqua sacrilega",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Conferisce guarigione rapida mediante una componente di natura infernale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Guarigione_Infernale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Guarigione Infernale: https://golarion.altervista.org/wiki/Incantesimi/Guarigione_Infernale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

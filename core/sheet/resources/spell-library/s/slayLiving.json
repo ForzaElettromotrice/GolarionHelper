@@ -1,0 +1,53 @@
+{
+  "id": "slayLiving",
+  "name": "Distruggere Viventi",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "DEATH"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 4,
+    "CLERIC": 5,
+    "WITCH": 6,
+    "ORACLE": 5,
+    "WARPRIEST": 5,
+    "SHAMAN": 6,
+    "SPIRITUALIST": 5
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DEATH": 5,
+      "REPOSE": 5
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura vivente toccata",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un contatto necromantico infligge ingenti danni a una creatura vivente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Distruggere_Viventi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Distruggere Viventi: https://golarion.altervista.org/wiki/Incantesimi/Distruggere_Viventi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

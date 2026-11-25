@@ -1,0 +1,46 @@
+{
+  "id": "rustingGrasp",
+  "name": "Stretta Corrosiva",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 4,
+    "DRUID": 4,
+    "OCCULTIST": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto di ferro non magico (o il volume equivalente di quell'oggetto, entro 90 cm dal punto toccato) o 1 creatura di ferro",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Un tocco corrode e distrugge metalli ferrosi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Stretta_Corrosiva",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Stretta Corrosiva: https://golarion.altervista.org/wiki/Incantesimi/Stretta_Corrosiva Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Metallo 5 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 oggetto di ferro non magico (o il volume equivalente di quell'oggetto, entro 90 cm dal punto toccato) o 1 creatura di ferro. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

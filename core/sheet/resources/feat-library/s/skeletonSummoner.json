@@ -1,0 +1,30 @@
+{
+  "id": "skeletonSummoner",
+  "name": "Evocatore di Scheletri",
+  "description": "Consente di richiamare versioni scheletriche mediante le evocazioni consentite. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Evocatore_di_Scheletri",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Incantesimi Focalizzati (necromanzia) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di lanciare Evoca Mostri Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Evocatore di Scheletri: https://golarion.altervista.org/wiki/Talenti/Evocatore_di_Scheletri. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incantesimi Focalizzati (necromanzia); Prerequisito da verificare manualmente: capacità di lanciare Evoca Mostri Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

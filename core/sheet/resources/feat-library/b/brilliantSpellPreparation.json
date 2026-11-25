@@ -1,0 +1,36 @@
+{
+  "id": "brilliantSpellPreparation",
+  "name": "Preparazione Brillante degli Incantesimi",
+  "description": "Permette di riempire più rapidamente gli slot lasciati riservati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Preparazione_Brillante_degli_Incantesimi",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di preparare incantesimi di 3° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Preparazione Brillante degli Incantesimi: https://golarion.altervista.org/wiki/Talenti/Preparazione_Brillante_degli_Incantesimi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: capacità di preparare incantesimi di 3° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

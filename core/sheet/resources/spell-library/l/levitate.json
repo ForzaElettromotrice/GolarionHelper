@@ -1,0 +1,64 @@
+{
+  "id": "levitate",
+  "name": "Levitazione",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ARCANIST": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "WITCH": 2,
+    "INVESTIGATOR": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SHAMAN": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "VOID": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un piccolo cappio di cuoio, o del ﬁlo d'oro piegato a forma di coppa",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale o vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "se stessi oppure una creatura consenziente o 1 oggetto (peso totale fino a 50 kg/livello)",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di salire o scendere sospesi in aria. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Levitazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Levitazione: https://golarion.altervista.org/wiki/Incantesimi/Levitazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Aria 2 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi oppure una creatura consenziente o 1 oggetto (peso totale fino a 50 kg/livello). Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

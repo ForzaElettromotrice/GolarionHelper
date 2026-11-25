@@ -1,0 +1,58 @@
+{
+  "id": "voluminousVocabulary",
+  "name": "Vocabolario Voluminoso",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 3,
+    "BARD": 2,
+    "CLERIC": 3,
+    "WITCH": 3,
+    "INQUISITOR": 2,
+    "INVESTIGATOR": 3,
+    "WIZARD": 3,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 3,
+    "PSYCHIC": 3,
+    "WARPRIEST": 3,
+    "SKALD": 2,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una penna d'oca",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "HOUR",
+  "durationDescription": "8 ore (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Concede temporaneamente la conoscenza di una o più lingue. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vocabolario_Voluminoso",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Vocabolario Voluminoso: https://golarion.altervista.org/wiki/Incantesimi/Vocabolario_Voluminoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

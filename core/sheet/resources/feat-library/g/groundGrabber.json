@@ -1,0 +1,23 @@
+{
+  "id": "groundGrabber",
+  "name": "Far Presa sul Terreno",
+  "description": "La posizione salda resiste meglio alle manovre dei grandi avversari. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Far_Presa_sul_Terreno",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Cos 13",
+      "expression": "@con >= 13"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Far Presa sul Terreno: https://golarion.altervista.org/wiki/Talenti/Far_Presa_sul_Terreno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

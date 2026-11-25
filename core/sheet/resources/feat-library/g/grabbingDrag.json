@@ -1,0 +1,27 @@
+{
+  "id": "grabbingDrag",
+  "name": "Trascinata con Presa",
+  "description": "Permette di trascinare più lontano chi è in lotta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Trascinata_con_Presa",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Lottare Migliorato, Stile delle Prese; Attaccabrighe di 4° livello o Monaco di 4° livello, Bonus di Attacco Base +8. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Trascinata con Presa: https://golarion.altervista.org/wiki/Talenti/Trascinata_con_Presa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Lottare Migliorato, Stile delle Prese; Attaccabrighe di 4° livello o Monaco di 4° livello, Bonus di Attacco Base +8. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

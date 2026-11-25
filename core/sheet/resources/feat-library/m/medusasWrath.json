@@ -1,0 +1,43 @@
+{
+  "id": "medusasWrath",
+  "name": "Collera della Medusa",
+  "description": "Offre attacchi aggiuntivi contro nemici debilitati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Collera_della_Medusa",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Pugno della Gorgone",
+      "feat": {
+        "id": "gorgonsFist"
+      }
+    },
+    {
+      "description": "Stile dello Scorpione",
+      "feat": {
+        "id": "scorpionStyle"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +11",
+      "expression": "@bab >= 11"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Collera della Medusa: https://golarion.altervista.org/wiki/Talenti/Collera_della_Medusa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

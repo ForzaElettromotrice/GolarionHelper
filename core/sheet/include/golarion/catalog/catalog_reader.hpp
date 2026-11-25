@@ -16,5 +16,6 @@ namespace golarion::catalog
 
     // The application sets its installed data directory before starting catalog loading.
     void setDirectory(std::filesystem::path directory);
+    nlohmann::json readFile(const std::filesystem::path &relativePath);
     nlohmann::json readCatalog(std::initializer_list<const char *> files, CatalogEntries entries);
 }

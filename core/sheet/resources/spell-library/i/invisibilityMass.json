@@ -1,0 +1,63 @@
+{
+  "id": "invisibilityMass",
+  "name": "Invisibilità di Massa",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 6,
+    "WIZARD": 7,
+    "MESMERIST": 6,
+    "PSYCHIC": 7,
+    "SORCERER": 7
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "TRICKERY": 8
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un ciglio avvolto in una pallina di gomma arabica",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "target": "un numero qualsiasi di creature, due delle quali non possono trovarsi a più di 54 m l'una dall'altra",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo) o Volontà nega (innocuo, oggetto)"
+    },
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo) o Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo) o sì (innocuo, oggetto)",
+  "description": "Occulta visivamente un intero gruppo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Invisibilit%C3%A0_di_Massa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Invisibilità di Massa: https://golarion.altervista.org/wiki/Incantesimi/Invisibilit%C3%A0_di_Massa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: un numero qualsiasi di creature, due delle quali non possono trovarsi a più di 54 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

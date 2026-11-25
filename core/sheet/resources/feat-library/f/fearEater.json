@@ -1,0 +1,37 @@
+{
+  "id": "fearEater",
+  "name": "Mangiatore di Paura",
+  "description": "Assume su di sé la paura che affligge altre creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mangiatore_di_Paura",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Volontà di Ferro",
+      "feat": {
+        "id": "ironWill"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: non avere immunità agli effetti di paura Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mangiatore di Paura: https://golarion.altervista.org/wiki/Talenti/Mangiatore_di_Paura. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: non avere immunità agli effetti di paura Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

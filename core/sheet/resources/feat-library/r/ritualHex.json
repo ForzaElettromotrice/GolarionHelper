@@ -1,0 +1,33 @@
+{
+  "id": "ritualHex",
+  "name": "Fattura Rituale",
+  "description": "Un rituale permette di ottenere temporaneamente una fattura nuova. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Fattura_Rituale",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (arcane) 4 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (storia) 8 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Fattura come privilegio di classe Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Fattura Rituale: https://golarion.altervista.org/wiki/Talenti/Fattura_Rituale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (arcane) 4 gradi; Prerequisito da verificare manualmente: Conoscenze (storia) 8 gradi; Prerequisito da verificare manualmente: Fattura come privilegio di classe Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

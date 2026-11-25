@@ -1,0 +1,37 @@
+{
+  "id": "gebSHammer",
+  "name": "Martello del Geb",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "WITCH": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "sfera di resti di non morti composta da 3 o più non morti distrutti",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Usa i resti di non morti distrutti come proiettili. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Martello_del_Geb",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Martello del Geb: https://golarion.altervista.org/wiki/Incantesimi/Martello_del_Geb Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

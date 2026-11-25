@@ -1,0 +1,47 @@
+{
+  "id": "objectsPossessionGreater",
+  "name": "Possedere Oggetto Superiore",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "WITCH": 7,
+    "WIZARD": 7,
+    "OCCULTIST": 5,
+    "PSYCHIC": 6,
+    "SPIRITUALIST": 6,
+    "SORCERER": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una gemma o un cristallo del valore di almeno 100 mo",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 oggetto incustodito di taglia Mastodontica o inferiore (minimo Minuscolo) o 1 costrutto",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Consente di possedere oggetti più potenti e, alle condizioni indicate, costrutti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Possedere_Oggetto_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Possedere Oggetto Superiore: https://golarion.altervista.org/wiki/Incantesimi/Possedere_Oggetto_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

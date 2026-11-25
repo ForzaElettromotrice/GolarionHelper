@@ -1,0 +1,49 @@
+{
+  "id": "trueStrike",
+  "name": "Colpo Accurato",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "INQUISITOR": 1,
+    "INVESTIGATOR": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "MEDIUM": 1,
+    "PSYCHIC": 1,
+    "SORCERER": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DESTRUCTION": 1,
+      "LUCK": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un piccolo duplicato in legno di un bersaglio per frecce",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Conferisce una straordinaria precisione al prossimo attacco del lanciatore, poi si esaurisce. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Colpo_Accurato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Colpo Accurato: https://golarion.altervista.org/wiki/Incantesimi/Colpo_Accurato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

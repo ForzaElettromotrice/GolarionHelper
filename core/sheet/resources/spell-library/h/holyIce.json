@@ -1,0 +1,48 @@
+{
+  "id": "holyIce",
+  "name": "Ghiaccio Sacro",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "WATER",
+    "GOOD",
+    "COLD"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 5,
+    "ORACLE": 5,
+    "WARPRIEST": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una boccetta di acqua santa o 2,5 kg di argento in polvere del valore di 25 mo",
+  "materialComponentCostInGoldPieces": 25,
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "muro di ghiaccio o giavellotti di ghiaccio volanti (vedi testo)",
+  "durationType": "OTHER",
+  "durationDescription": "1 minuto/livello, istantaneo o fino a esaurimento (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "SEE_TEXT",
+      "description": "Riflessi nega o nessuno (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Modella acqua benedetta congelata in una barriera o in giavellotti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ghiaccio_Sacro",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ghiaccio Sacro: https://golarion.altervista.org/wiki/Incantesimi/Ghiaccio_Sacro Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

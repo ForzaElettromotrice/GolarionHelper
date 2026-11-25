@@ -1,0 +1,27 @@
+{
+  "id": "detectExpertise",
+  "name": "Maestria nell'Individuazione",
+  "description": "Permette di ottenere informazioni più approfondite sulle capacità magiche rilevate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestria_nell%27Individuazione",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Intelligenza 13, capacità di lanciare Individuazione del Bene, Individuazione del Caos, Individuazione della Legge, Individuazione del Magico o Individuazione del Male Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestria nell'Individuazione: https://golarion.altervista.org/wiki/Talenti/Maestria_nell%27Individuazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intelligenza 13, capacità di lanciare Individuazione del Bene, Individuazione del Caos, Individuazione della Legge, Individuazione del Magico o Individuazione del Male Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

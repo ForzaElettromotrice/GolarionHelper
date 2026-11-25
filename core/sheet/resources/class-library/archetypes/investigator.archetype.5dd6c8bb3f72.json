@@ -1,0 +1,93 @@
+{
+  "id": "investigator.archetype.5dd6c8bb3f72",
+  "classType": "investigator",
+  "name": "Indagatore",
+  "description": "Archetipo di Investigatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Indagatore Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Dote da Investigatore. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "investigator.feature.3147b46e7324",
+      "type": "replace"
+    },
+    {
+      "featureId": "alchemy",
+      "type": "replace"
+    },
+    {
+      "featureId": "investigator.feature.1a2806609b55",
+      "type": "replace"
+    },
+    {
+      "featureId": "investigator.feature.dc482781cd4a",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "alchemy",
+    "investigator.feature.1a2806609b55",
+    "investigator.feature.3147b46e7324",
+    "investigator.feature.dc482781cd4a"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "investigator.archetype.5dd6c8bb3f72.instructions",
+      "name": "Indagatore",
+      "description": "Archetipo di Investigatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Indagatore Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Dote da Investigatore. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "investigator.archetype.5dd6c8bb3f72.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Investigatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Indagatore Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Dote da Investigatore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "investigator.archetype.5dd6c8bb3f72.feature.1",
+      "name": "Fortuna dell'Indagatore (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Indagatore",
+      "progression": [
+        {
+          "id": "investigator.archetype.5dd6c8bb3f72.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Indagatore — Fortuna dell'Indagatore (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Investigatore/Archetipi#Indagatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "investigator.archetype.5dd6c8bb3f72.feature.2",
+      "name": "Gesta",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Indagatore",
+      "progression": [
+        {
+          "id": "investigator.archetype.5dd6c8bb3f72.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Indagatore — Gesta: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Investigatore/Archetipi#Indagatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

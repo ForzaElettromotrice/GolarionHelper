@@ -1,0 +1,68 @@
+{
+  "id": "protectionFromSpells",
+  "name": "Protezione dagli Incantesimi",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "SUMMONER": 6,
+    "WIZARD": 8,
+    "PSYCHIC": 8,
+    "SORCERER": 8
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "MAGIC": 8
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "FOCUS"
+  ],
+  "materialComponentDescription": "un diamante del valore di almeno 500 mo",
+  "focusComponentDescription": "un diamante del valore di almeno 1.000 mo a bersaglio. Ciascun soggetto deve portare la gemma per la durata dell’incantesimo. Se il soggetto perde la gemma, l’incantesimo cessa di avere effetto su di lui",
+  "materialComponentCostInGoldPieces": 500,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "fino ad 1 creatura toccata ogni 4 livelli",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Rafforza i tiri salvezza contro incantesimi e capacità magiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Protezione_dagli_Incantesimi",
+  "effects": [
+    {
+      "id": "saves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "resistance",
+      "expression": "8",
+      "condition": "Contro incantesimi e capacità magiche, non capacità soprannaturali o straordinarie"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Ogni soggetto deve portare la gemma richiesta; selezionare una creatura toccata ogni quattro livelli dell'incantatore. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: fino ad 1 creatura toccata ogni 4 livelli. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

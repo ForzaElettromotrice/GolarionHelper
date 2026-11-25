@@ -1,0 +1,60 @@
+{
+  "id": "madSultanSMelody",
+  "name": "Melodia del Sultano Pazzo",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING",
+    "SONIC"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 3,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "MESMERIST": 4,
+    "OCCULTIST": 4,
+    "PSYCHIC": 4,
+    "SKALD": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "flauto, piffero o strumento a corda perfetti",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/2 livelli)",
+  "target": "1 creatura/2 livelli, due dei quali non possono trovarsi a più di 9 m l'una dall'altro",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una musica aliena affascina creature innaturali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Melodia_del_Sultano_Pazzo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Melodia del Sultano Pazzo: https://golarion.altervista.org/wiki/Melodia_del_Sultano_Pazzo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/2 livelli, due dei quali non possono trovarsi a più di 9 m l'una dall'altro. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

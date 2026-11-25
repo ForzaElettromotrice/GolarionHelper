@@ -1,0 +1,33 @@
+{
+  "id": "monkeyLunge",
+  "name": "Stoccata della Scimmia",
+  "description": "Estende temporaneamente la portata tramite una tecnica di affondo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Stoccata_della_Scimmia",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Acrobazia 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Stoccata",
+      "feat": {
+        "id": "lunge"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Stoccata della Scimmia: https://golarion.altervista.org/wiki/Talenti/Stoccata_della_Scimmia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Acrobazia 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

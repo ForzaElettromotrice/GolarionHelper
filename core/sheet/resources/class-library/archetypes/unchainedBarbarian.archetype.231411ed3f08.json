@@ -1,0 +1,88 @@
+{
+  "id": "unchainedBarbarian.archetype.231411ed3f08",
+  "classType": "unchainedBarbarian",
+  "name": "Furia in Sella",
+  "description": "Archetipo di Barbaro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Furia_in_Sella Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "unchainedBarbarian.feature.e7a78d299884",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedBarbarian.feature.060b33e558e8",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedBarbarian.feature.28c251834485",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "unchainedBarbarian.feature.e7a78d299884",
+    "unchainedBarbarian.feature.060b33e558e8",
+    "unchainedBarbarian.feature.28c251834485"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "unchainedBarbarian.archetype.231411ed3f08.instructions",
+      "name": "Furia in Sella",
+      "description": "Archetipo di Barbaro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Furia_in_Sella Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.archetype.231411ed3f08.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Barbaro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Furia_in_Sella Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.archetype.231411ed3f08.feature.1",
+      "name": "Cavaliere Veloce (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Furia_in_Sella",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.archetype.231411ed3f08.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Furia in Sella — Cavaliere Veloce (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Furia_in_Sella Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.archetype.231411ed3f08.feature.2",
+      "name": "Cavalcatura Bestiale (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Furia_in_Sella",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.archetype.231411ed3f08.feature.2.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Furia in Sella — Cavalcatura Bestiale (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Furia_in_Sella Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

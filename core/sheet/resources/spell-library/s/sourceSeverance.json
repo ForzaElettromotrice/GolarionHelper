@@ -1,0 +1,42 @@
+{
+  "id": "sourceSeverance",
+  "name": "Rescissione della Fonte",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "SORCERER": 6,
+    "CLERIC": 6,
+    "ORACLE": 6,
+    "WARPRIEST": 6,
+    "OCCULTIST": 6,
+    "PSYCHIC": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "magnetite grezza",
+  "rangeType": "OTHER",
+  "rangeDescription": "1,5 m",
+  "area": "emanazione di raggio di 1,5 m centrata su di sé",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "vedi testo",
+  "description": "Sopprime nell'area la magia della categoria scelta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Rescissione_della_Fonte",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Rescissione della Fonte: https://golarion.altervista.org/wiki/Incantesimi/Rescissione_della_Fonte Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

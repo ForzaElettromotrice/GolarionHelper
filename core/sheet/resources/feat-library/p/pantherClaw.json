@@ -1,0 +1,43 @@
+{
+  "id": "pantherClaw",
+  "name": "Artigli della Pantera",
+  "description": "Rende più rapide le reazioni dello stile della pantera. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Artigli_della_Pantera",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Saggezza 15",
+      "expression": "@wis >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Riflessi in Combattimento",
+      "feat": {
+        "id": "combatReflexes"
+      }
+    },
+    {
+      "description": "Stile della Pantera",
+      "feat": {
+        "id": "pantherStyle"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Artigli della Pantera: https://golarion.altervista.org/wiki/Talenti/Artigli_della_Pantera. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

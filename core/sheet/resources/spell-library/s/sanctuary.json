@@ -1,0 +1,54 @@
+{
+  "id": "sanctuary",
+  "name": "Santuario",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 1,
+    "INQUISITOR": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SPIRITUALIST": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "PROTECTION": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Ostacola chi tenta di attaccare il protetto; la protezione impone anche limiti alle sue azioni offensive. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Santuario",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Santuario: https://golarion.altervista.org/wiki/Incantesimi/Santuario Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Attribuzione al dominio contraddittoria nelle fonti: la pagina dell’incantesimo indica Dominio della Libertà 1, ma https://golarion.altervista.org/wiki/Dominio_della_Libert%C3%A0 assegna Santuario al Sottodominio della Liberazione; attribuzione omessa in attesa di verifica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

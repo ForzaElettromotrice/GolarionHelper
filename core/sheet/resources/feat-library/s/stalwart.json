@@ -1,0 +1,35 @@
+{
+  "id": "stalwart",
+  "name": "Prestante",
+  "description": "Scambia determinati bonus difensivi alla CA con una riduzione del danno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Prestante",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Duro a Morire",
+      "feat": {
+        "id": "diehard"
+      }
+    },
+    {
+      "description": "Resistenza Fisica",
+      "feat": {
+        "id": "endurance"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +4",
+      "expression": "@bab >= 4"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Prestante: https://golarion.altervista.org/wiki/Talenti/Prestante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

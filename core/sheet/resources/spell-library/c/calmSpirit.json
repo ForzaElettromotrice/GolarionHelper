@@ -1,0 +1,44 @@
+{
+  "id": "calmSpirit",
+  "name": "Calmare Spirito",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "MEDIUM": 1,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "SHAMAN": 2,
+    "SPIRITUALIST": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura non morta incorporea o una infestazione",
+  "durationType": "OTHER",
+  "durationDescription": "1 minuto o 1 round/livello; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "Volontà nega o nessuno; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Sospende temporaneamente l'aggressività di un'infestazione o di un non morto incorporeo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Calmare_Spirito",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Calmare Spirito: https://golarion.altervista.org/wiki/Incantesimi/Calmare_Spirito Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

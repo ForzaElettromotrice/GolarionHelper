@@ -1,0 +1,27 @@
+{
+  "id": "spellHex",
+  "name": "Fattura Incantata",
+  "description": "Trasforma l'impiego di un incantesimo di primo livello in una capacità utilizzabile come fattura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Fattura_Incantata",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Fattura Maggiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Fattura Incantata: https://golarion.altervista.org/wiki/Talenti/Fattura_Incantata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Fattura Maggiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

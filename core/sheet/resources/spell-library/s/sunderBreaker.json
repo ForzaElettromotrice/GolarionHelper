@@ -1,0 +1,45 @@
+{
+  "id": "sunderBreaker",
+  "name": "Frantuma Spezzare",
+  "school": "ABJURATION",
+  "descriptors": [
+    "FORCE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "PSYCHIC": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I) o finché non viene scaricato",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo) e vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo) e vedi testo",
+  "description": "Predispone una ritorsione contro l'arma che danneggia un oggetto protetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Frantuma_Spezzare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Frantuma Spezzare: https://golarion.altervista.org/wiki/Incantesimi/Frantuma_Spezzare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

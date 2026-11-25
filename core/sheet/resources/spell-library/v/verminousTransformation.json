@@ -1,0 +1,39 @@
+{
+  "id": "verminousTransformation",
+  "name": "Trasformazione in Parassita",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ALCHEMIST": 6,
+    "WITCH": 7,
+    "INVESTIGATOR": 6,
+    "SHAMAN": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una manciata di ali di pipistrello, insetti e code di ratto",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Conferisce al corpo alcune proprietà di uno sciame di parassiti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Trasformazione_in_Parassita",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Trasformazione in Parassita: https://golarion.altervista.org/wiki/Trasformazione_in_Parassita Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,233 @@
+{
+  "id": "druid.archetype.96ba07ba190a",
+  "classType": "druid",
+  "name": "Druido della Tempesta",
+  "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Requisiti e condotta, Competenze della classe, Legame con la Natura. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "druid.feature.4705d0c8642b",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.cb6c692c6b8a",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.5cb4f58f9490",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.eb66996dc90e",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.spontaneousCasting",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.eligibility",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.proficiencies",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.feature.40f9a719229c",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "druid.feature.4705d0c8642b",
+    "druid.feature.cb6c692c6b8a",
+    "druid.feature.5cb4f58f9490",
+    "druid.feature.eb66996dc90e",
+    "druid.spontaneousCasting",
+    "druid.eligibility",
+    "druid.proficiencies",
+    "druid.feature.40f9a719229c"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "druid.archetype.96ba07ba190a.instructions",
+      "name": "Druido della Tempesta",
+      "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "druid.archetype.96ba07ba190a.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Requisiti e condotta, Competenze della classe, Legame con la Natura. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.96ba07ba190a.feature.1",
+      "name": "Allineamento",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta",
+      "progression": [
+        {
+          "id": "druid.archetype.96ba07ba190a.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido della Tempesta — Allineamento: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.96ba07ba190a.feature.2",
+      "name": "Competenza nelle Armi e Armature",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta",
+      "progression": [
+        {
+          "id": "druid.archetype.96ba07ba190a.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido della Tempesta — Competenza nelle Armi e Armature: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.96ba07ba190a.feature.3",
+      "name": "Lancio Spontaneo di Dominio",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta",
+      "progression": [
+        {
+          "id": "druid.archetype.96ba07ba190a.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido della Tempesta — Lancio Spontaneo di Dominio: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.96ba07ba190a.feature.4",
+      "name": "Legame con la Natura (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta",
+      "progression": [
+        {
+          "id": "druid.archetype.96ba07ba190a.feature.4.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido della Tempesta — Legame con la Natura (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.96ba07ba190a.feature.5",
+      "name": "Percezione della Costa Fradicia (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta",
+      "progression": [
+        {
+          "id": "druid.archetype.96ba07ba190a.feature.5.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido della Tempesta — Percezione della Costa Fradicia (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.96ba07ba190a.feature.6",
+      "name": "Resistenza all'Elettricità (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta",
+      "progression": [
+        {
+          "id": "druid.archetype.96ba07ba190a.feature.6.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido della Tempesta — Resistenza all'Elettricità (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.96ba07ba190a.feature.7",
+      "name": "Occhio della Tempesta (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta",
+      "progression": [
+        {
+          "id": "druid.archetype.96ba07ba190a.feature.7.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido della Tempesta — Occhio della Tempesta (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.96ba07ba190a.feature.8",
+      "name": "Piegare il Fulmine (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta",
+      "progression": [
+        {
+          "id": "druid.archetype.96ba07ba190a.feature.8.initial",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido della Tempesta — Piegare il Fulmine (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_della_Tempesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

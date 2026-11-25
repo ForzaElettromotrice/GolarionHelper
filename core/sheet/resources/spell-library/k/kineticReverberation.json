@@ -1,0 +1,46 @@
+{
+  "id": "kineticReverberation",
+  "name": "Risonanza Cinetica",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ARCANIST": 2,
+    "INVESTIGATOR": 2,
+    "WIZARD": 2,
+    "PSYCHIC": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "linfa di 'albero della gomma",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Fa reagire la difesa cinetica contro l'arma di chi colpisce il soggetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Risonanza_Cinetica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Risonanza Cinetica: https://golarion.altervista.org/wiki/Incantesimi/Risonanza_Cinetica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

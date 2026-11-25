@@ -1,0 +1,36 @@
+{
+  "id": "terrainBond",
+  "name": "Legarsi all'Ambiente",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 4,
+    "RANGER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di terra preso dal proprio Ambiente Prescelto primario",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/2 livelli (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Fornisce temporaneamente i vantaggi di un ambiente prescelto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Legarsi_all%27Ambiente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Legarsi all'Ambiente: https://golarion.altervista.org/wiki/Incantesimi/Legarsi_all%27Ambiente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

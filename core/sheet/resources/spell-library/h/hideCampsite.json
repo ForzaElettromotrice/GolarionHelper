@@ -1,0 +1,44 @@
+{
+  "id": "hideCampsite",
+  "name": "Nascondere Campo",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "DRUID": 3,
+    "RANGER": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un ramoscello di vischio e una fiala di argento vivo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "area": "cubo con spigolo di 6 m",
+  "durationType": "HOUR",
+  "durationDescription": "2 ore/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita (se si interagisce)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Occulta le tracce e la presenza di un accampamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Nascondere_Campo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Nascondere Campo: https://golarion.altervista.org/wiki/Incantesimi/Nascondere_Campo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

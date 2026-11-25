@@ -1,0 +1,47 @@
+{
+  "id": "summonLesserDemon",
+  "name": "Evoca Demoni Inferiore",
+  "school": "CONJURATION",
+  "descriptors": [
+    "CHAOTIC",
+    "EVIL"
+  ],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "SORCERER": 5,
+    "CLERIC": 5,
+    "ORACLE": 5,
+    "WARPRIEST": 5,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "WITCH": 5
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "una borsa minuscola e una piccola candela",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "una creatura evocata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Evoca demoni scelti dall'elenco consentito per questa versione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Demoni_Inferiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Demoni Inferiore: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Demoni_Inferiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

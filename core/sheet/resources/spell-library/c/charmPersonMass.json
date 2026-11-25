@@ -1,0 +1,56 @@
+{
+  "id": "charmPersonMass",
+  "name": "Charme su Persone di Massa",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "CHARM",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 4,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "MESMERIST": 4,
+    "OCCULTIST": 4,
+    "PSYCHIC": 5,
+    "SKALD": 4,
+    "SHAMAN": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 o più creature Umanoidi, nessuno delle quali può essere distante più di 9 m",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega;"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Rende amichevoli più umanoidi senza conferire un controllo assoluto sulle loro azioni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Charme_su_Persone_di_Massa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Charme su Persone di Massa: https://golarion.altervista.org/wiki/Incantesimi/Charme_su_Persone_di_Massa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 o più creature Umanoidi, nessuno delle quali può essere distante più di 9 m. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,48 @@
+{
+  "id": "sympatheticVibration",
+  "name": "Vibrazione Armonica",
+  "school": "EVOCATION",
+  "descriptors": [
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "BARD": 6,
+    "SKALD": 6
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un diapason",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una struttura isolata",
+  "durationType": "ROUND",
+  "durationDescription": "fino a 1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "Non indicata nella fonte; verificare manualmente.",
+  "description": "Fa vibrare una struttura fino a danneggiarla progressivamente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vibrazione_Armonica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Vibrazione Armonica: https://golarion.altervista.org/wiki/Incantesimi/Vibrazione_Armonica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte non indica il tiro salvezza; la lista strutturata vuota non implica che non sia consentito. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "La fonte non indica la resistenza agli incantesimi: verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

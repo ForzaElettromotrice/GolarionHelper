@@ -1,0 +1,49 @@
+{
+  "id": "getaway",
+  "name": "Fuga",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "TELEPORTATION",
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "BARD": 6,
+    "WIZARD": 6,
+    "MESMERIST": 6,
+    "OCCULTIST": 6,
+    "PSYCHIC": 6,
+    "SKALD": 6,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una maniglia di bronzo",
+  "rangeType": "UNLIMITED",
+  "rangeDescription": "illimitato",
+  "target": "se stessi e 1 creatura consenziente ogni 2 livelli, che non deve essere distante più di 9 m",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasporta un gruppo già designato verso un rifugio prestabilito. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fuga",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fuga: https://golarion.altervista.org/wiki/Incantesimi/Fuga Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi e 1 creatura consenziente ogni 2 livelli, che non deve essere distante più di 9 m. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

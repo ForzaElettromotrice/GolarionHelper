@@ -1,0 +1,33 @@
+{
+  "id": "goryFinish",
+  "name": "Assalto Cruento",
+  "description": "Un colpo che abbatte un nemico permette di intimidirne altri. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Assalto_Cruento",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Maestria Intimorente",
+      "feat": {
+        "id": "dazzlingDisplay"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Assalto Cruento: https://golarion.altervista.org/wiki/Talenti/Assalto_Cruento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

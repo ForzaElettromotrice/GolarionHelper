@@ -1,0 +1,43 @@
+{
+  "id": "toilsomeChant",
+  "name": "Canto Laborioso",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 1,
+    "SKALD": 1
+  },
+  "castingTimeCategory": "SPECIAL",
+  "castingTimeDescription": "vedi testo",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura vivente",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Prolunga l'utilità dell'Ispirare Competenza attraverso un canto ritmico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Canto_Laborioso",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Canto Laborioso: https://golarion.altervista.org/wiki/Incantesimi/Canto_Laborioso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

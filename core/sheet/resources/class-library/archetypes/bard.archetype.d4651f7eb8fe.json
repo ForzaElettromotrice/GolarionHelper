@@ -1,0 +1,88 @@
+{
+  "id": "bard.archetype.d4651f7eb8fe",
+  "classType": "bard",
+  "name": "Guaritore Musicale",
+  "description": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Guaritore_Musicale Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "bard.feature.2877836bd9c8",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.65cf9dcc8eaa",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.c65de99b3dfa",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "bard.feature.2877836bd9c8",
+    "bard.feature.65cf9dcc8eaa",
+    "bard.feature.c65de99b3dfa"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "bard.archetype.d4651f7eb8fe.instructions",
+      "name": "Guaritore Musicale",
+      "description": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Guaritore_Musicale Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "bard.archetype.d4651f7eb8fe.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Guaritore_Musicale Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.d4651f7eb8fe.feature.1",
+      "name": "Guarigione Potenziata (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Guaritore_Musicale",
+      "progression": [
+        {
+          "id": "bard.archetype.d4651f7eb8fe.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guaritore Musicale — Guarigione Potenziata (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Guaritore_Musicale Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.d4651f7eb8fe.feature.2",
+      "name": "Esibizione Bardica",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Guaritore_Musicale",
+      "progression": [
+        {
+          "id": "bard.archetype.d4651f7eb8fe.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guaritore Musicale — Esibizione Bardica: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Guaritore_Musicale Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

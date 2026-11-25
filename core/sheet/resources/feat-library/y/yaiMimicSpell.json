@@ -1,0 +1,29 @@
+{
+  "id": "yaiMimicSpell",
+  "name": "Incantesimi Imita Yai",
+  "description": "Un raggio scagliato dalla fronte offre breve rigenerazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Incantesimi_Imita_Yai",
+  "types": [
+    "metamagic"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Int 15",
+      "expression": "@int >= 15"
+    },
+    {
+      "description": "Incantesimi Immobili",
+      "feat": {
+        "id": "stillSpell"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Incantesimi Imita Yai: https://golarion.altervista.org/wiki/Talenti/Incantesimi_Imita_Yai. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

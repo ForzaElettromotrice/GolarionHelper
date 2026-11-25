@@ -1,0 +1,53 @@
+{
+  "id": "foolSGold",
+  "name": "Oro degli Stolti",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "BARD": 1,
+    "WIZARD": 1,
+    "MEDIUM": 1,
+    "MESMERIST": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo di argento o rame",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "oggetti toccati",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "Nessuno o Volontà dubita (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Fa apparire d'oro una quantità di metallo meno prezioso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Oro_degli_Stolti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Oro degli Stolti: https://golarion.altervista.org/wiki/Incantesimi/Oro_degli_Stolti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: oggetti toccati. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "coldIceStrike",
+  "name": "Colpo di Ghiaccio Freddo",
+  "school": "EVOCATION",
+  "descriptors": [
+    "COLD"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "CLERIC": 6,
+    "WIZARD": 6,
+    "OCCULTIST": 6,
+    "ORACLE": 6,
+    "WARPRIEST": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 azione veloce",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "area": "una linea di 9 m",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Proietta schegge ghiacciate lungo una linea infliggendo danni da freddo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Colpo_di_Ghiaccio_Freddo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Colpo di Ghiaccio Freddo: https://golarion.altervista.org/wiki/Incantesimi/Colpo_di_Ghiaccio_Freddo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

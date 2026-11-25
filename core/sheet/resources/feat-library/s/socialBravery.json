@@ -1,0 +1,31 @@
+{
+  "id": "socialBravery",
+  "name": "Audacia Sociale",
+  "description": "Trasmette agli altri la propria fermezza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Audacia_Sociale",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Car 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di classe audacia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Audacia Sociale: https://golarion.altervista.org/wiki/Talenti/Audacia_Sociale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: capacità di classe audacia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

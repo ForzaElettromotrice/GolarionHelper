@@ -1,0 +1,47 @@
+{
+  "id": "skeletonCrew",
+  "name": "Equipaggio Scheletrico",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "WITCH": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "uno o più cadaveri Umanoidi toccati",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Anima cadaveri come marinai non morti obbedienti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Equipaggio_Scheletrico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Equipaggio Scheletrico: https://golarion.altervista.org/wiki/Incantesimi/Equipaggio_Scheletrico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: uno o più cadaveri Umanoidi toccati. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,48 @@
+{
+  "id": "maskDweomerCommunal",
+  "name": "Mascherare Dweomer Collettivo",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "WITCH": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo di garza",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creature o oggetti toccati",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Nasconde le aure magiche di più destinatari dividendo la durata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Mascherare_Dweomer_Collettivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Mascherare Dweomer Collettivo: https://golarion.altervista.org/wiki/Incantesimi/Mascherare_Dweomer_Collettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno; vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: creature o oggetti toccati. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

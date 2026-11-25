@@ -1,0 +1,472 @@
+{
+  "id": "changeling",
+  "name": "Changeling",
+  "qualities": [
+    {
+      "id": "changeling.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Umanoide (changeling). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "changeling.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "changeling.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "changeling.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "changeling.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aklo",
+            "draconic",
+            "elven",
+            "giant",
+            "gnoll",
+            "goblin",
+            "dwarven",
+            "orc"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        },
+        {
+          "id": "hostLanguage",
+          "type": "reminder",
+          "message": "Aggiungere la lingua della società adottiva: scelta aperta non ancora automatizzata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "changeling.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione 18 m.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scurovisione 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "changeling.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita indicata.",
+      "effects": [
+        {
+          "id": "witchSpell",
+          "type": "favoredClassBonus",
+          "classes": [
+            "witch"
+          ],
+          "name": "Fattucchiere — Incantesimo del famiglio",
+          "description": "Fattucchiere — Incantesimo del famiglio — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un incantesimo da fattucchiere, almeno un livello sotto il massimo lanciabile, al famiglio; resta al sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rogueTalent",
+          "type": "favoredClassBonus",
+          "classes": [
+            "rogue"
+          ],
+          "name": "Ladro — Dote",
+          "description": "Ladro — Dote — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scegliere una nuova Dote da Ladro. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleCurse",
+          "type": "favoredClassBonus",
+          "classes": [
+            "oracle"
+          ],
+          "name": "Oracolo — Maledizione",
+          "description": "Oracolo — Maledizione — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Aumentare di 1 il livello effettivo della Maledizione dell'Oracolo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "changeling.claws",
+      "name": "Artigli",
+      "description": "Artigli",
+      "effects": [
+        {
+          "id": "leftClaw",
+          "type": "strikeGrant",
+          "name": "Artiglio sinistro",
+          "mode": "melee",
+          "tags": [
+            "natural"
+          ],
+          "naturalAttackClassification": "primary",
+          "ability": "str",
+          "damageAbilityRule": "full",
+          "usageChannels": [
+            "leftClaw"
+          ],
+          "reach": {
+            "maximumUnits": 1
+          },
+          "damageComponents": [
+            {
+              "id": "base",
+              "role": "base",
+              "dice": {
+                "diceCount": 1,
+                "dieSize": 4
+              },
+              "types": [
+                "bludgeoning",
+                "slashing"
+              ],
+              "typeMode": "all",
+              "criticalRule": "multiplied"
+            }
+          ]
+        },
+        {
+          "id": "rightClaw",
+          "type": "strikeGrant",
+          "name": "Artiglio destro",
+          "mode": "melee",
+          "tags": [
+            "natural"
+          ],
+          "naturalAttackClassification": "primary",
+          "ability": "str",
+          "damageAbilityRule": "full",
+          "usageChannels": [
+            "rightClaw"
+          ],
+          "reach": {
+            "maximumUnits": 1
+          },
+          "damageComponents": [
+            {
+              "id": "base",
+              "role": "base",
+              "dice": {
+                "diceCount": 1,
+                "dieSize": 4
+              },
+              "types": [
+                "bludgeoning",
+                "slashing"
+              ],
+              "typeMode": "all",
+              "criticalRule": "multiplied"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "changeling.naturalArmor",
+      "name": "Armatura Naturale",
+      "description": "Armatura Naturale",
+      "effects": [
+        {
+          "id": "armorClasssolid",
+          "type": "modifier",
+          "resource": "armorClass.solid",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "naturalArmor",
+          "expression": "1"
+        }
+      ]
+    },
+    {
+      "id": "changeling.hagTrait",
+      "name": "Retaggio Matriarcale",
+      "description": "Scegliere il tratto corrispondente alla madre.",
+      "effects": [],
+      "choices": [
+        {
+          "id": "heritage",
+          "prompt": "Retaggio materno",
+          "selectionCount": 1,
+          "options": [
+            {
+              "id": "annis",
+              "name": "Changeling Imponente",
+              "effects": [
+                {
+                  "id": "damagemelee",
+                  "type": "modifier",
+                  "resource": "damage.melee",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "1"
+                }
+              ]
+            },
+            {
+              "id": "sea",
+              "name": "Polmoni Marini",
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Trattiene il respiro per 3 × Costituzione round prima di rischiare annegamento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            },
+            {
+              "id": "green",
+              "name": "Vedova Verde",
+              "effects": [
+                {
+                  "id": "skillbluff",
+                  "type": "modifier",
+                  "resource": "skill.bluff",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "racial",
+                  "expression": "2",
+                  "condition": "Contro una creatura sessualmente attratta dal personaggio"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "changeling.oceansDaughter",
+      "name": "Figlia dell'Oceano",
+      "description": "Figlia dell'Oceano",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Solo retaggio Megera Marina: sostituisce Polmoni Marini. +1 di tratto a Nuotare; successo automatico alle prove contro danni non letali da nuoto. Tipo bonus di tratto non ancora disponibile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "changeling.hagTrait"
+      ]
+    },
+    {
+      "id": "changeling.mistChild",
+      "name": "Figlia della Nebbia",
+      "description": "Figlia della Nebbia",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Solo retaggio Megera Annis: sostituisce Changeling Imponente. Quando occultata, aumenta di 5 punti percentuali la probabilità di essere mancata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "changeling.hagTrait"
+      ]
+    },
+    {
+      "id": "changeling.objectOfDesire",
+      "name": "Oggetto del Desiderio",
+      "description": "Oggetto del Desiderio",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Solo retaggio Megera Verde: sostituisce Vedova Verde. LI +1 per Charme su Persone e Charme sui Mostri. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "changeling.hagTrait"
+      ]
+    }
+  ]
+}

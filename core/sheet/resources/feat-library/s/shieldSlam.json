@@ -1,0 +1,43 @@
+{
+  "id": "shieldSlam",
+  "name": "Botta di Scudo",
+  "description": "Un colpo di scudo può respingere il nemico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Botta_di_Scudo",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Attacco con lo Scudo Migliorato",
+      "feat": {
+        "id": "improvedShieldBash"
+      }
+    },
+    {
+      "description": "Combattere con Due Armi",
+      "feat": {
+        "id": "twoWeaponFighting"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza negli Scudi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Botta di Scudo: https://golarion.altervista.org/wiki/Talenti/Botta_di_Scudo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Competenza negli Scudi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

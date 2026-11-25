@@ -1,0 +1,57 @@
+{
+  "id": "protectionFromEnergyCommunal",
+  "name": "Protezione dall'Energia Collettivo",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "HUNTER": 3,
+    "CLERIC": 4,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "DRUID": 4,
+    "INQUISITOR": 4,
+    "WIZARD": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "RANGER": 3,
+    "WARPRIEST": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creature toccate",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Ripartisce fra più soggetti la durata di una protezione da energia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Protezione_dall%27Energia_Collettivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Protezione dall'Energia Collettivo: https://golarion.altervista.org/wiki/Incantesimi/Protezione_dall%27Energia_Collettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: creature toccate. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

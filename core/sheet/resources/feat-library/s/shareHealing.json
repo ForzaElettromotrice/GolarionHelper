@@ -1,0 +1,27 @@
+{
+  "id": "shareHealing",
+  "name": "Guarigione Condivisa",
+  "description": "Ripartisce un effetto curativo con la creatura compagna. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Guarigione_Condivisa",
+  "types": [
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Capacità di acquisire una Cavalcatura Speciale, un Compagno Animale, un Eidolon o un Famiglio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Guarigione Condivisa: https://golarion.altervista.org/wiki/Talenti/Guarigione_Condivisa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Capacità di acquisire una Cavalcatura Speciale, un Compagno Animale, un Eidolon o un Famiglio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

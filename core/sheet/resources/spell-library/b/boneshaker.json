@@ -1,0 +1,50 @@
+{
+  "id": "boneshaker",
+  "name": "Scuotiossa",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "ARCANIST": 2,
+    "CLERIC": 2,
+    "WITCH": 2,
+    "INQUISITOR": 2,
+    "WIZARD": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "feticcio d'osso di forma umana",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura vivente o non morta dotata di scheletro",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "SEE_TEXT",
+      "description": "Tempra parziale o nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Agisce sullo scheletro di una creatura per danneggiarla o costringerla brevemente a muoversi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Scuotiossa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Scuotiossa: https://golarion.altervista.org/wiki/Scuotiossa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

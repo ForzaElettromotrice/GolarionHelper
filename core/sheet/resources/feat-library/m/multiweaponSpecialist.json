@@ -1,0 +1,27 @@
+{
+  "id": "multiweaponSpecialist",
+  "name": "Specialista con Più Armi",
+  "description": "Premia l'uso coordinato di armi leggere identiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Specialista_con_Pi%C3%B9_Armi",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Tre o più braccia, Des 21. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Specialista con Più Armi: https://golarion.altervista.org/wiki/Talenti/Specialista_con_Pi%C3%B9_Armi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Tre o più braccia, Des 21. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

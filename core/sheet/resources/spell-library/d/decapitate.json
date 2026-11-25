@@ -1,0 +1,46 @@
+{
+  "id": "decapitate",
+  "name": "Decapitare",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "INQUISITOR": 5,
+    "WIZARD": 6,
+    "MAGUS": 6,
+    "PSYCHIC": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "IMMEDIATE_ACTION",
+  "castingTimeDescription": "1 azione immediata",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un frammento della lama di una ghigliottina",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/2 livelli)",
+  "target": "una creatura (vedi testo)",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Rende possibile che un colpo critico con l'arma interessata decapiti la vittima. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Decapitare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Decapitare: https://golarion.altervista.org/wiki/Decapitare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

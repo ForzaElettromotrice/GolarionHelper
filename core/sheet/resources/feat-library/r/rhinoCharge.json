@@ -1,0 +1,37 @@
+{
+  "id": "rhinoCharge",
+  "name": "Carica del Rinoceronte",
+  "description": "Permette di preparare una carica contro un evento atteso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Carica_del_Rinoceronte",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "BAB +5",
+      "expression": "@bab >= 5"
+    },
+    {
+      "description": "Spingere Migliorato",
+      "feat": {
+        "id": "improvedBullRush"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Carica del Rinoceronte: https://golarion.altervista.org/wiki/Talenti/Carica_del_Rinoceronte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

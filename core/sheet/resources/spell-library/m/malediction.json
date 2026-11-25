@@ -1,0 +1,47 @@
+{
+  "id": "malediction",
+  "name": "Maledizione",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL",
+    "DEATH"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "WITCH": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "polvere d’onice per un valore di 500 mo",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura vivente toccata",
+  "durationType": "OTHER",
+  "durationDescription": "istantanea/1 minuto per DV del bersaglio; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Uccide con il tocco una vittima morente per ricavarne potere eroico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Maledizione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledizione: https://golarion.altervista.org/wiki/Incantesimi/Maledizione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

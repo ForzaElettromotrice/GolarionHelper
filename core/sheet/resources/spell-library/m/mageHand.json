@@ -1,0 +1,50 @@
+{
+  "id": "mageHand",
+  "name": "Mano Magica",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 0,
+    "BARD": 0,
+    "SUMMONER": 0,
+    "UNCHAINED_SUMMONER": 0,
+    "WIZARD": 0,
+    "MAGUS": 0,
+    "MEDIUM": 0,
+    "MESMERIST": 0,
+    "OCCULTIST": 0,
+    "PSYCHIC": 0,
+    "SKALD": 0,
+    "SPIRITUALIST": 0,
+    "SORCERER": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 oggetto non magico incustodito che pesa fino a 2,5 kg",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Sposta a distanza piccoli oggetti mediante una debole forza telecinetica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Mano_Magica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Mano Magica: https://golarion.altervista.org/wiki/Incantesimi/Mano_Magica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 oggetto non magico incustodito che pesa fino a 2,5 kg. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

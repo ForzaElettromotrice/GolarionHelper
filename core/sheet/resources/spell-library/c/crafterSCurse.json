@@ -1,0 +1,54 @@
+{
+  "id": "crafterSCurse",
+  "name": "Maledizione dell'Artigiano",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "OCCULTIST": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un attrezzo rotto",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Impone -5 a ogni prova di Artigianato finché la maledizione permane. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Maledizione_dell%27Artigiano",
+  "effects": [
+    {
+      "id": "craft",
+      "type": "modifier",
+      "resource": "skill.craft",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "5"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "La penalità riguarda tutte le specializzazioni di Artigianato. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "traceTeleport",
+  "name": "Tracciare Teletrasporto",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "PSYCHIC": 4,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una lente magnificante",
+  "rangeType": "OTHER",
+  "rangeDescription": "12 m",
+  "area": "propagazione di 12 m centrata su di sé",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Ricostruisce informazioni su un teletrasporto avvenuto, comprese origine o destinazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Tracciare_Teletrasporto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Tracciare Teletrasporto: https://golarion.altervista.org/wiki/Incantesimi/Tracciare_Teletrasporto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

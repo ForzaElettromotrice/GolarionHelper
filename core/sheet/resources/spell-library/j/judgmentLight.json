@@ -1,0 +1,35 @@
+{
+  "id": "judgmentLight",
+  "name": "Luce del Giudizio",
+  "school": "EVOCATION",
+  "descriptors": [
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "INQUISITOR": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "area": "esplosione del raggio di 9 m",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo, vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Un giudizio attivo manifesta un ulteriore effetto luminoso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Luce_del_Giudizio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Luce del Giudizio: https://golarion.altervista.org/wiki/Incantesimi/Luce_del_Giudizio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

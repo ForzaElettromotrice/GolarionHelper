@@ -1,0 +1,48 @@
+{
+  "id": "endurance",
+  "name": "Resistenza Fisica",
+  "description": "Aiuta a sopportare sforzi prolungati e condizioni ambientali difficili. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Resistenza_Fisica",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "swim",
+      "type": "modifier",
+      "resource": "skill.swim",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "4",
+      "condition": "Per evitare danni non letali nuotando"
+    },
+    {
+      "id": "constitution",
+      "type": "modifier",
+      "resource": "abilityCheck.con",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "4",
+      "condition": "Per continuare a correre, marce forzate, trattenere il fiato, fame o sete"
+    },
+    {
+      "id": "fortitude",
+      "type": "modifier",
+      "resource": "savingThrow.fortitude",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "4",
+      "condition": "Per evitare danni non letali da caldo o freddo o danni da soffocamento"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "È possibile dormire in armatura media senza diventare affaticati. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

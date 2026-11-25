@@ -1,0 +1,27 @@
+{
+  "id": "improvedAwesomeThrow",
+  "name": "Lancio Terrificante Migliorato",
+  "description": "Potenzia il lancio esponendo la vittima ad attacchi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Lancio_Terrificante_Migliorato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Forza 25, Lanciare Oggetti o Scagliare Rocce, Lancio Terrificante, Spingere Superiore, taglia Grande o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Lancio Terrificante Migliorato: https://golarion.altervista.org/wiki/Talenti/Lancio_Terrificante_Migliorato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Forza 25, Lanciare Oggetti o Scagliare Rocce, Lancio Terrificante, Spingere Superiore, taglia Grande o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

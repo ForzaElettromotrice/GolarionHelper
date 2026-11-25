@@ -1,0 +1,50 @@
+{
+  "id": "sleepwalkingSuggestion",
+  "name": "Suggestione del Sonnambulo",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 4,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "MEDIUM": 3,
+    "MESMERIST": 4,
+    "PSYCHIC": 5,
+    "SKALD": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "due dosi di Olio di Taggit per un valore totale di 180 mo",
+  "materialComponentCostInGoldPieces": 180,
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "Volontà nega o nessuno (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Fa eseguire un suggerimento a una creatura mentre dorme. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Suggestione_del_Sonnambulo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Suggestione del Sonnambulo: https://golarion.altervista.org/wiki/Suggestione_del_Sonnambulo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

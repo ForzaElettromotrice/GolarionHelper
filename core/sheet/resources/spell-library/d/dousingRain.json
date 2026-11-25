@@ -1,0 +1,42 @@
+{
+  "id": "dousingRain",
+  "name": "Pioggia Estinguente",
+  "school": "EVOCATION",
+  "descriptors": [
+    "WATER"
+  ],
+  "spellLevelByClass": {
+    "BARD": 2,
+    "HUNTER": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "SKALD": 2,
+    "SHAMAN": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una goccia d'acqua",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "cilindro (3 metri di raggio, 12 metri di altezza)",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "La pioggia spegne le fiamme e protegge dal fuoco, aumentando la vulnerabilità elettrica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pioggia_Estinguente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pioggia Estinguente: https://golarion.altervista.org/wiki/Incantesimi/Pioggia_Estinguente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

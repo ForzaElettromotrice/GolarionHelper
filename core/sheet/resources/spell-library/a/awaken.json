@@ -1,0 +1,45 @@
+{
+  "id": "awaken",
+  "name": "Risveglio",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 5,
+    "DRUID": 5,
+    "SHAMAN": 6
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "24 ore",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "erbe ed oli del valore di almeno 2.000 mo",
+  "materialComponentCostInGoldPieces": 2000,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 Animale o 1 albero toccato",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Risveglia un animale o un albero, rendendolo intelligente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Risveglio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Risveglio: https://golarion.altervista.org/wiki/Incantesimi/Risveglio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

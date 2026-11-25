@@ -1,0 +1,48 @@
+{
+  "id": "forcedQuiet",
+  "name": "Quiete Forzata",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "BARD": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "WIZARD": 1,
+    "MESMERIST": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Riduce la capacità del bersaglio di produrre suoni forti, senza renderlo necessariamente silenzioso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Quiete_Forzata",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Quiete Forzata: https://golarion.altervista.org/wiki/Incantesimi/Quiete_Forzata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

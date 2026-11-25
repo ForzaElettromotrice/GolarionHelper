@@ -1,0 +1,49 @@
+{
+  "id": "ethericShards",
+  "name": "Schegge Eteriche",
+  "school": "EVOCATION",
+  "descriptors": [
+    "FORCE"
+  ],
+  "spellLevelByClass": {
+    "OCCULTIST": 4,
+    "PSYCHIC": 5,
+    "SPIRITUALIST": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "vetro rotto",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "1 cubi di 3 m/livello",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "PARTIAL",
+      "description": "Riflessi parziale o Riflessi nega; vedi testo"
+    },
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi parziale o Riflessi nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Dissemina schegge invisibili che feriscono e ostacolano chi attraversa l'area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Schegge_Eteriche",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Schegge Eteriche: https://golarion.altervista.org/wiki/Incantesimi/Schegge_Eteriche Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

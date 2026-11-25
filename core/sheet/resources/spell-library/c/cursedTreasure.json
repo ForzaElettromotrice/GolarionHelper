@@ -1,0 +1,58 @@
+{
+  "id": "cursedTreasure",
+  "name": "Tesoro Maledetto",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 3,
+    "ARCANIST": 4,
+    "CLERIC": 3,
+    "WITCH": 3,
+    "BLOODRAGER": 4,
+    "WIZARD": 4,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "SHAMAN": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una moneta di platino",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "oggetto incustodito toccato",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente fino allo scaricamento, poi permanente (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (oggetto), poi Volontà nega (vedi testo);"
+    },
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Tempra nega (oggetto), poi Volontà nega (vedi testo);"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto), poi sì (vedi testo)",
+  "description": "Un tesoro trasmette una maledizione alla creatura che lo tocca. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Tesoro_Maledetto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Tesoro Maledetto: https://golarion.altervista.org/wiki/Incantesimi/Tesoro_Maledetto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

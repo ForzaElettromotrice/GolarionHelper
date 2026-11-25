@@ -1,0 +1,28 @@
+{
+  "id": "pummelingStyle",
+  "name": "Stile dei Pestaggi",
+  "description": "Somma l'efficacia dei colpi senz'armi della sequenza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Stile_dei_Pestaggi",
+  "types": [
+    "combat",
+    "style"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Bonus di Attacco Base +6, privilegio di classe Raffica dell'Attaccabrighe o Raffica di Colpi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Stile dei Pestaggi: https://golarion.altervista.org/wiki/Talenti/Stile_dei_Pestaggi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Bonus di Attacco Base +6, privilegio di classe Raffica dell'Attaccabrighe o Raffica di Colpi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

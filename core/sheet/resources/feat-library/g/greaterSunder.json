@@ -1,0 +1,50 @@
+{
+  "id": "greaterSunder",
+  "name": "Spezzare Superiore",
+  "description": "Aggiunge +2 alle prove di Spezzare, cumulabile con il talento migliorato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Spezzare_Superiore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 13",
+      "expression": "@str >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Spezzare Migliorato",
+      "feat": {
+        "id": "improvedSunder"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "maneuver",
+      "type": "modifier",
+      "resource": "combatManeuver.bonus.sunder",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Il danno eccedente la distruzione dell'equipaggiamento viene trasferito al portatore; non trasferirlo se si lascia l'oggetto a 1 PF. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

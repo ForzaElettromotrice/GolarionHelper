@@ -1,0 +1,69 @@
+{
+  "id": "protectionFromEnergy",
+  "name": "Protezione dall'Energia",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 3,
+    "HUNTER": 2,
+    "CLERIC": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "DRUID": 3,
+    "INQUISITOR": 3,
+    "INVESTIGATOR": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "OCCULTIST": 3,
+    "ORACLE": 3,
+    "PSYCHIC": 3,
+    "RANGER": 2,
+    "WARPRIEST": 3,
+    "SHAMAN": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "LUCK": 3,
+      "PROTECTION": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Assorbe una riserva limitata di danni appartenenti a un tipo di energia scelto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Protezione_dall%27Energia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Protezione dall'Energia: https://golarion.altervista.org/wiki/Incantesimi/Protezione_dall%27Energia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 3, Aria 3, Fuoco 3, Terra 3 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "entreatingCritical",
+  "name": "Critico Conciliatore",
+  "description": "Dopo un critico permette di cercare una tregua. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Critico_Conciliatore",
+  "types": [
+    "combat",
+    "critical"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +11",
+      "expression": "@bab >= 11"
+    },
+    {
+      "description": "Carisma 15",
+      "expression": "@cha >= 15"
+    },
+    {
+      "description": "Chiamare Tregua",
+      "feat": {
+        "id": "callTruce"
+      }
+    },
+    {
+      "description": "Critico Focalizzato",
+      "feat": {
+        "id": "criticalFocus"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Diplomazia 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Persuasivo",
+      "feat": {
+        "id": "persuasive"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Critico Conciliatore: https://golarion.altervista.org/wiki/Talenti/Critico_Conciliatore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Diplomazia 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

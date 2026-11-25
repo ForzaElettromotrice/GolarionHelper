@@ -1,0 +1,32 @@
+{
+  "id": "defensiveWeaponTraining",
+  "name": "Addestramento Difensivo Contro Armi",
+  "description": "Specializza la difesa contro un gruppo di armi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Addestramento_Difensivo_Contro_Armi",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Bonus di Attacco Base +5",
+      "expression": "@bab >= 5"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Addestramento Difensivo Contro Armi: https://golarion.altervista.org/wiki/Talenti/Addestramento_Difensivo_Contro_Armi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,83 @@
+{
+  "id": "ranger.archetype.f1a3ce562047",
+  "classType": "ranger",
+  "name": "Ranger Spirituale",
+  "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Ranger_Spirituale Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "ranger.feature.70580438b030",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.cfe6c56ff989",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "ranger.feature.70580438b030",
+    "ranger.feature.cfe6c56ff989"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "ranger.archetype.f1a3ce562047.instructions",
+      "name": "Ranger Spirituale",
+      "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Ranger_Spirituale Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "ranger.archetype.f1a3ce562047.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Ranger_Spirituale Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.f1a3ce562047.feature.432feead08",
+      "name": "Legame Spirituale (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger/Archetipi#Ranger_Spirituale",
+      "progression": [
+        {
+          "id": "ranger.archetype.f1a3ce562047.feature.432feead08.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ranger Spirituale — Legame Spirituale (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger/Archetipi#Ranger_Spirituale Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.f1a3ce562047.feature.cfbfceb396",
+      "name": "Saggezza degli Spiriti (Mag)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger/Archetipi#Ranger_Spirituale",
+      "progression": [
+        {
+          "id": "ranger.archetype.f1a3ce562047.feature.cfbfceb396.initial",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ranger Spirituale — Saggezza degli Spiriti (Mag): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger/Archetipi#Ranger_Spirituale Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

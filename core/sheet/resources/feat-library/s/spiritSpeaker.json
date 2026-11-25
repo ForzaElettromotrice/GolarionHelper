@@ -1,0 +1,27 @@
+{
+  "id": "spiritSpeaker",
+  "name": "Parlare con gli Spiriti",
+  "description": "Permette di comunicare con gli spiriti che il personaggio ha assorbito. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Parlare_con_gli_Spiriti",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Carisma 13, Costituzione 13, Assorbire Spirito, Diplomazia 5 gradi, occorre essere morti almeno una volta o essere stati posseduti da una creatura non morta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Parlare con gli Spiriti: https://golarion.altervista.org/wiki/Talenti/Parlare_con_gli_Spiriti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Carisma 13, Costituzione 13, Assorbire Spirito, Diplomazia 5 gradi, occorre essere morti almeno una volta o essere stati posseduti da una creatura non morta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

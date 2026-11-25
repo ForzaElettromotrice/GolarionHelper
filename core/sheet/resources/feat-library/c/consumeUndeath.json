@@ -1,0 +1,31 @@
+{
+  "id": "consumeUndeath",
+  "name": "Consumare Non Morti",
+  "description": "Consuma la forza di un non morto per sottrargli poteri. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Consumare_Non_Morti",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Nabasu Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Cos 23",
+      "expression": "@con >= 23"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Consumare Non Morti: https://golarion.altervista.org/wiki/Talenti/Consumare_Non_Morti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Nabasu Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

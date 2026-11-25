@@ -1,0 +1,49 @@
+{
+  "id": "deathClutch",
+  "name": "Stretta della Morte",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL",
+    "DEATH"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "CLERIC": 8,
+    "DRUID": 9,
+    "WITCH": 8,
+    "WIZARD": 8,
+    "ORACLE": 8,
+    "PSYCHIC": 8,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura vivente",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra Parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Una forza magica tenta di estrarre il cuore della vittima. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Stretta_della_Morte",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Stretta della Morte: https://golarion.altervista.org/wiki/Stretta_della_Morte Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

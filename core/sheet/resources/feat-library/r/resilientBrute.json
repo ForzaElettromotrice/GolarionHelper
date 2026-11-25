@@ -1,0 +1,27 @@
+{
+  "id": "resilientBrute",
+  "name": "Gagliardia del Bruto",
+  "description": "Converte parte del danno di un critico subito in danno non letale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Gagliardia_del_Bruto",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Orco o Mezzorco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Gagliardia del Bruto: https://golarion.altervista.org/wiki/Talenti/Gagliardia_del_Bruto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Orco o Mezzorco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

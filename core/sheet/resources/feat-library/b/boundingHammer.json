@@ -1,0 +1,31 @@
+{
+  "id": "boundingHammer",
+  "name": "Martello Rimbalzante",
+  "description": "Un martello scagliato può rimbalzare e tornare indietro. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Martello_Rimbalzante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Competente nell'uso del martello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "BAB +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Martello Rimbalzante: https://golarion.altervista.org/wiki/Talenti/Martello_Rimbalzante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Competente nell'uso del martello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

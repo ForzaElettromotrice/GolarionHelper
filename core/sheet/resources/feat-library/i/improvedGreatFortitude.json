@@ -1,0 +1,25 @@
+{
+  "id": "improvedGreatFortitude",
+  "name": "Tempra Possente Migliorata",
+  "description": "Permette di ripetere occasionalmente un tiro salvezza sulla Tempra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tempra_Possente_Migliorata",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Tempra Possente",
+      "feat": {
+        "id": "greatFortitude"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tempra Possente Migliorata: https://golarion.altervista.org/wiki/Talenti/Tempra_Possente_Migliorata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

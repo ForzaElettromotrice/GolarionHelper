@@ -1,0 +1,47 @@
+{
+  "id": "theftWard",
+  "name": "Interdizione del Furto",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "CLERIC": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "WIZARD": 1,
+    "MESMERIST": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "un oggetto",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Rende più difficile sottrarre uno specifico oggetto alla persona protetta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Interdizione_del_Furto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Interdizione del Furto: https://golarion.altervista.org/wiki/Incantesimi/Interdizione_del_Furto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

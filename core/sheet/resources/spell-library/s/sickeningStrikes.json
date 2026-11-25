@@ -1,0 +1,48 @@
+{
+  "id": "sickeningStrikes",
+  "name": "Colpi Debilitanti",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "DISEASE"
+  ],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "INVESTIGATOR": 2,
+    "ANTIPALADIN": 2,
+    "HUNTER": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "MAGUS": 3,
+    "RANGER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Fa sì che gli attacchi interessati possano debilitare gli avversari secondo le condizioni previste. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Colpi_Debilitanti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Colpi Debilitanti: https://golarion.altervista.org/wiki/Incantesimi/Colpi_Debilitanti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

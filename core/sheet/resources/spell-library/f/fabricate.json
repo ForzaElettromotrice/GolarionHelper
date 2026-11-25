@@ -1,0 +1,54 @@
+{
+  "id": "fabricate",
+  "name": "Fabbricare",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "OCCULTIST": 5,
+    "PSYCHIC": 5,
+    "SORCERER": 5
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "ARTIFICE": 5
+    }
+  },
+  "castingTimeCategory": "SPECIAL",
+  "castingTimeDescription": "vedi testo",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "il materiale originale, che costa quanto il materiale grezzo necessario per fabbricare l’oggetto che deve essere creato",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "materiale fino a 270 dm3/livello; vedi testo",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Converte materiali grezzi in manufatti finiti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fabbricare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fabbricare: https://golarion.altervista.org/wiki/Incantesimi/Fabbricare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Legno 5 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: materiale fino a 270 dm3/livello; vedi testo. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

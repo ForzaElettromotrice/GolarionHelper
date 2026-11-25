@@ -1,0 +1,33 @@
+{
+  "id": "armoredRider",
+  "name": "Cavaliere Corazzato",
+  "description": "Riduce gli impedimenti dell'armatura durante la cavalcata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Cavaliere_Corazzato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Combattere in Sella",
+      "feat": {
+        "id": "mountedCombat"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Cavalcare 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Cavaliere Corazzato: https://golarion.altervista.org/wiki/Talenti/Cavaliere_Corazzato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Cavalcare 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

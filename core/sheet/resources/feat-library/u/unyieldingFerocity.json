@@ -1,0 +1,31 @@
+{
+  "id": "unyieldingFerocity",
+  "name": "Ferocia Implacabile",
+  "description": "Permette di continuare una sequenza offensiva anche in condizioni critiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ferocia_Implacabile",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Costituzione 19",
+      "expression": "@con >= 19"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Ferocia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ferocia Implacabile: https://golarion.altervista.org/wiki/Talenti/Ferocia_Implacabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Ferocia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

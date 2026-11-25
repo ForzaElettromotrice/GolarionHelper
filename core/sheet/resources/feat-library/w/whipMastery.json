@@ -1,0 +1,31 @@
+{
+  "id": "whipMastery",
+  "name": "Maestria con la Frusta",
+  "description": "Migliora l'uso della frusta evitando determinate reazioni avversarie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestria_con_la_Frusta",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Frusta) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +2",
+      "expression": "@bab >= 2"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestria con la Frusta: https://golarion.altervista.org/wiki/Talenti/Maestria_con_la_Frusta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Frusta) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,47 @@
+{
+  "id": "carryCompanion",
+  "name": "Compagno Portatile",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "HUNTER": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "PALADIN": 2,
+    "RANGER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di sabbia o calcare ridotto in polvere",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura consenziente toccata",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Trasforma un animale fidato in una statuina trasportabile finché non viene richiamato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Compagno_Portatile",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Compagno Portatile: https://golarion.altervista.org/wiki/Incantesimi/Compagno_Portatile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Assassino della Mantide Rossa 2 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

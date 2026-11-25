@@ -1,0 +1,52 @@
+{
+  "id": "sarzariShadowMemory",
+  "name": "Memoria Ombra di Sarzari",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "SORCERER": 6,
+    "BARD": 6,
+    "SKALD": 6,
+    "CLERIC": 6,
+    "ORACLE": 6,
+    "WARPRIEST": 6,
+    "WITCH": 6,
+    "INQUISITOR": 6,
+    "PSYCHIC": 6
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "1 ora",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un'opera d'arte raffigurante il proprio bersaglio del valore minimo di 1.500 mo",
+  "materialComponentCostInGoldPieces": 1500,
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "effect": "sé stessi",
+  "durationType": "OTHER",
+  "durationDescription": "1 mese",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no (innocuo)",
+  "description": "Ricava conoscenze utili a preparare l'assassinio di una creatura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Memoria_Ombra_di_Sarzari",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Memoria Ombra di Sarzari: https://golarion.altervista.org/wiki/Incantesimi/Memoria_Ombra_di_Sarzari Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

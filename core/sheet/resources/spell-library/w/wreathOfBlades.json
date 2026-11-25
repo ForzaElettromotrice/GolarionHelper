@@ -1,0 +1,56 @@
+{
+  "id": "wreathOfBlades",
+  "name": "Corona di Lame",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 5,
+    "WITCH": 5,
+    "BLOODRAGER": 4,
+    "WIZARD": 5,
+    "MAGUS": 4,
+    "OCCULTIST": 4,
+    "PSYCHIC": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "quattro pugnali in mithral, ognuno del valore di almeno 502 mo",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "area": "emanazione del raggio di 1,5 m centrata su di sé",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza (speciale, vedi sotto)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no (speciale, vedi sotto)",
+  "description": "Fa ruotare lame attorno al lanciatore per colpire gli avversari e proteggerne il lancio delle magie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Corona_di_Lame",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Corona di Lame: https://golarion.altervista.org/wiki/Incantesimi/Corona_di_Lame Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

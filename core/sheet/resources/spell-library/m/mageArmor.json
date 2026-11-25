@@ -1,0 +1,72 @@
+{
+  "id": "mageArmor",
+  "name": "Armatura Magica",
+  "school": "CONJURATION",
+  "descriptors": [
+    "FORCE"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "WITCH": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 1,
+    "OCCULTIST": 1,
+    "PSYCHIC": 1,
+    "SPIRITUALIST": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un pezzo di cuoio conciato",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo);"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una protezione di forza concede +4 di armatura alla CA senza gli impedimenti di un'armatura materiale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Armatura_Magica",
+  "effects": [
+    {
+      "id": "armor",
+      "type": "modifier",
+      "resource": "armorClass.solid",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "armor",
+      "expression": "4"
+    },
+    {
+      "id": "incorporealTouch",
+      "type": "modifier",
+      "resource": "armorClass.touch",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "armor",
+      "expression": "4",
+      "condition": "Contro attacchi di contatto incorporei"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "La barriera protegge anche dagli attacchi incorporei: selezionare il relativo contesto. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

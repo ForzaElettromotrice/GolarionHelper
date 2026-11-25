@@ -1,0 +1,45 @@
+{
+  "id": "firestream",
+  "name": "Getto di Fuoco",
+  "school": "EVOCATION",
+  "descriptors": [
+    "FIRE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "BLOODRAGER": 3,
+    "MAGUS": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "6 m",
+  "area": "(una) linea di 6 m",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione, fino a 1 round/livello; vedi testo",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un flusso di fiamme investe le creature lungo il suo percorso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Getto_di_Fuoco",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Getto di Fuoco: https://golarion.altervista.org/wiki/Incantesimi/Getto_di_Fuoco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

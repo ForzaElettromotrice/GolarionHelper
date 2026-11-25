@@ -1,0 +1,50 @@
+{
+  "id": "bleedingStrike",
+  "name": "Fendente Sanguinante",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "WITCH": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "un'arma da mischia tagliente toccata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo, oggetto)",
+  "description": "Fa sì che una lama da mischia possa provocare una ferita sanguinante. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fendente_Sanguinante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fendente Sanguinante: https://golarion.altervista.org/wiki/Incantesimi/Fendente_Sanguinante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Antipaladino 1, Cacciatore 1, Chierico/Oracolo/Sacerdote Guerriero 1, Fattucchiere 1, Ranger 1 (Baphomet) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

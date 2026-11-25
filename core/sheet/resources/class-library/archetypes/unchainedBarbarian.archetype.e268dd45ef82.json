@@ -1,0 +1,114 @@
+{
+  "id": "unchainedBarbarian.archetype.e268dd45ef82",
+  "classType": "unchainedBarbarian",
+  "name": "Iracondo Invulnerabile",
+  "description": "Archetipo di Barbaro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "unchainedBarbarian.feature.ff70c3d0d261",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedBarbarian.feature.060b33e558e8",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedBarbarian.feature.28c251834485",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedBarbarian.feature.0e6e4c25d2e0",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "unchainedBarbarian.feature.060b33e558e8",
+    "unchainedBarbarian.feature.0e6e4c25d2e0",
+    "unchainedBarbarian.feature.28c251834485",
+    "unchainedBarbarian.feature.ff70c3d0d261"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "unchainedBarbarian.archetype.e268dd45ef82.instructions",
+      "name": "Iracondo Invulnerabile",
+      "description": "Archetipo di Barbaro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.archetype.e268dd45ef82.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Barbaro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.archetype.e268dd45ef82.feature.1",
+      "name": "Invulnerabilità (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.archetype.e268dd45ef82.feature.1.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Iracondo Invulnerabile: la RD ordinaria è già calcolata; raddoppiala manualmente contro i danni non letali. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.archetype.e268dd45ef82.feature.2",
+      "name": "Resistenza Estrema (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.archetype.e268dd45ef82.feature.2.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Iracondo Invulnerabile — Resistenza Estrema (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.archetype.e268dd45ef82.damageReduction",
+      "name": "Invulnerabilità",
+      "description": "RD ordinaria pari a metà livello; raddoppio contro danni non letali manuale. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.archetype.e268dd45ef82.damageReduction.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "damageReduction",
+              "type": "damageReduction",
+              "expression": "@classLevel / 2",
+              "bypass": []
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

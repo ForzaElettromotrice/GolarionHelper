@@ -1,0 +1,35 @@
+{
+  "id": "landingRoll",
+  "name": "Rotolare per Terra",
+  "description": "Consente un breve spostamento mentre si cade dopo uno sbilanciamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Rotolare_per_Terra",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Mobilità",
+      "feat": {
+        "id": "mobility"
+      }
+    },
+    {
+      "description": "Schivare",
+      "feat": {
+        "id": "dodge"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Rotolare per Terra: https://golarion.altervista.org/wiki/Talenti/Rotolare_per_Terra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

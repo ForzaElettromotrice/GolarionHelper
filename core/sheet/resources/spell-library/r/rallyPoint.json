@@ -1,0 +1,45 @@
+{
+  "id": "rallyPoint",
+  "name": "Punto di Ritrovo",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "GOOD",
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "PALADIN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "1,5 m",
+  "area": "quadrato di 1,5 m di lato",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Consacra un punto di raccolta che offre vantaggi alle creature buone che ne soddisfano le condizioni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Punto_di_Ritrovo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Punto di Ritrovo: https://golarion.altervista.org/wiki/Incantesimi/Punto_di_Ritrovo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

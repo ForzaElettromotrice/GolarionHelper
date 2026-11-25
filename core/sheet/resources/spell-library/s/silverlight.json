@@ -1,0 +1,53 @@
+{
+  "id": "silverlight",
+  "name": "Luce Argentea",
+  "school": "EVOCATION",
+  "descriptors": [
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "BARD": 3,
+    "SKALD": 3,
+    "HUNTER": 3,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "DRUID": 3,
+    "PALADIN": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "1 ma",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "oggetto toccato",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una luminosità argentea colpisce particolarmente le creature vulnerabili all'argento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Luce_Argentea",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Luce Argentea: https://golarion.altervista.org/wiki/Incantesimi/Luce_Argentea Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

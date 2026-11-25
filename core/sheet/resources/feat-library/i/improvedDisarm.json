@@ -1,0 +1,49 @@
+{
+  "id": "improvedDisarm",
+  "name": "Disarmare Migliorato",
+  "description": "Conferisce +2 alla manovra Disarmare e alla difesa contro la stessa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Disarmare_Migliorato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "maneuver",
+      "type": "modifier",
+      "resource": "combatManeuver.bonus.disarm",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "defense",
+      "type": "modifier",
+      "resource": "combatManeuver.defense.disarm",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "La manovra Disarmare non provoca attacchi di opportunità. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

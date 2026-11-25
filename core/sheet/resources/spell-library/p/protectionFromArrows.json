@@ -1,0 +1,59 @@
+{
+  "id": "protectionFromArrows",
+  "name": "Protezione dalle Frecce",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ARCANIST": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "INVESTIGATOR": 2,
+    "BLOODRAGER": 2,
+    "WIZARD": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un frammento di guscio di tartaruga o testuggine",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Riduce i danni di alcuni attacchi a distanza, con RD superabile dalla magia e riserva limitata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Protezione_dalle_Frecce",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Protezione dalle Frecce: https://golarion.altervista.org/wiki/Incantesimi/Protezione_dalle_Frecce Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Livelli di classe contraddittori nella fonte: la voce in conflitto non è registrata: PSYCHIC [2, 3] Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Legno 2 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

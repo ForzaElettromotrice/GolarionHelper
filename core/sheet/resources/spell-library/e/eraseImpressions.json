@@ -1,0 +1,43 @@
+{
+  "id": "eraseImpressions",
+  "name": "Cancellare Impressioni",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "MEDIUM": 3,
+    "MESMERIST": 4,
+    "OCCULTIST": 3,
+    "PSYCHIC": 5,
+    "SPIRITUALIST": 4
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "oggetto toccato",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (oggetto)",
+  "description": "Elimina le tracce psichiche lasciate su un oggetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cancellare_Impressioni",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cancellare Impressioni: https://golarion.altervista.org/wiki/Incantesimi/Cancellare_Impressioni Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

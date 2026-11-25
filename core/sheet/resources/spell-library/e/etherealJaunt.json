@@ -1,0 +1,45 @@
+{
+  "id": "etherealJaunt",
+  "name": "Transizione Eterea",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "CLERIC": 7,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 6,
+    "WIZARD": 7,
+    "ORACLE": 7,
+    "PSYCHIC": 6,
+    "SORCERER": 7
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "THEFT": 7
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Trasferisce temporaneamente l'incantatore sul Piano Etereo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Transizione_Eterea",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Transizione Eterea: https://golarion.altervista.org/wiki/Incantesimi/Transizione_Eterea Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

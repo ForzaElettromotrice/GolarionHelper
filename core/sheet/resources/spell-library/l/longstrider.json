@@ -1,0 +1,51 @@
+{
+  "id": "longstrider",
+  "name": "Passo Veloce",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "DRUID": 1,
+    "RANGER": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "TRAVEL": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di terra",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Aumenta di 3 metri la velocità terrestre con un bonus di potenziamento; le altre modalità non cambiano. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Passo_Veloce",
+  "effects": [
+    {
+      "id": "landSpeed",
+      "type": "modifier",
+      "resource": "speed.land",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "enhancement",
+      "expression": "2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Il beneficio riguarda soltanto il movimento terrestre. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

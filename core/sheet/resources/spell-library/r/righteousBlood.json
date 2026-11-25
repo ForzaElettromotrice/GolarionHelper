@@ -1,0 +1,43 @@
+{
+  "id": "righteousBlood",
+  "name": "Sangue dei Giusti",
+  "school": "ABJURATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "INQUISITOR": 2,
+    "PALADIN": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura di Allineamento buono",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Il sangue consacrato ferisce gli esterni malvagi che colpiscono l'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sangue_dei_Giusti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sangue dei Giusti: https://golarion.altervista.org/wiki/Incantesimi/Sangue_dei_Giusti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

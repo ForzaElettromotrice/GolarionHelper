@@ -1,0 +1,29 @@
+{
+  "id": "devastatingStrike",
+  "name": "Colpo Devastante",
+  "description": "Aggiunge ulteriore potenza ai colpi vitali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_Devastante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Colpo Vitale",
+      "feat": {
+        "id": "vitalStrike"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +9",
+      "expression": "@bab >= 9"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo Devastante: https://golarion.altervista.org/wiki/Talenti/Colpo_Devastante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

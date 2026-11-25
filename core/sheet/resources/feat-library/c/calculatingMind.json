@@ -1,0 +1,33 @@
+{
+  "id": "calculatingMind",
+  "name": "Calcolo Mentale",
+  "description": "Rafforza l'impiego di tecniche magiche numerologiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Calcolo_Mentale",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Geometria Sacra",
+      "feat": {
+        "id": "sacredGeometry"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (ingegneria) 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Calcolo Mentale: https://golarion.altervista.org/wiki/Talenti/Calcolo_Mentale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (ingegneria) 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

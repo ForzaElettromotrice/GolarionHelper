@@ -1,0 +1,48 @@
+{
+  "id": "qlippothAppeareance",
+  "name": "Aspetto del Qlippoth",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ANTIPALADIN": 2,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "WITCH": 3,
+    "SHAMAN": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Deforma il soggetto in modo inquietante, migliorandone l'Intimidire e conferendo effetti offensivi scelti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aspetto_del_Qlippoth",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Aspetto del Qlippoth: https://golarion.altervista.org/wiki/Incantesimi/Aspetto_del_Qlippoth Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

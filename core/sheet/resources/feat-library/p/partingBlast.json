@@ -1,0 +1,27 @@
+{
+  "id": "partingBlast",
+  "name": "Ondata di Commiato",
+  "description": "Predispone un'esplosione del corpo alla morte secondo le regole dell'ondata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ondata_di_Commiato",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Ondata Cinetica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ondata di Commiato: https://golarion.altervista.org/wiki/Talenti/Ondata_di_Commiato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Ondata Cinetica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

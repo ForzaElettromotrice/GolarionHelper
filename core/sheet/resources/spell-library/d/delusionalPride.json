@@ -1,0 +1,51 @@
+{
+  "id": "delusionalPride",
+  "name": "Orgoglio Illusorio",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "BARD": 1,
+    "WITCH": 1,
+    "WIZARD": 1,
+    "MEDIUM": 1,
+    "MESMERIST": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una presunzione illusoria compromette le prestazioni ma protegge da certe influenze mentali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Orgoglio_Illusorio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Orgoglio Illusorio: https://golarion.altervista.org/wiki/Incantesimi/Orgoglio_Illusorio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

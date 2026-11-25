@@ -1,0 +1,44 @@
+{
+  "id": "improvedImpalingCritical",
+  "name": "Critico Impalante Migliorato",
+  "description": "Rende più difficile liberarsi da un'arma che ha impalato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Critico_Impalante_Migliorato",
+  "types": [
+    "combat",
+    "critical"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Specializzata con l'arma da mischia perforante selezionata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Critico Focalizzato",
+      "feat": {
+        "id": "criticalFocus"
+      }
+    },
+    {
+      "description": "Critico Impalante",
+      "feat": {
+        "id": "impalingCritical"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +13",
+      "expression": "@bab >= 13"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Critico Impalante Migliorato: https://golarion.altervista.org/wiki/Talenti/Critico_Impalante_Migliorato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Specializzata con l'arma da mischia perforante selezionata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

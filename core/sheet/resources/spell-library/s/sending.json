@@ -1,0 +1,56 @@
+{
+  "id": "sending",
+  "name": "Inviare",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 5,
+    "ARCANIST": 5,
+    "CLERIC": 4,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 5,
+    "INQUISITOR": 4,
+    "INVESTIGATOR": 5,
+    "WIZARD": 5,
+    "MEDIUM": 3,
+    "MESMERIST": 3,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "sottile filo di rame",
+  "rangeType": "OTHER",
+  "rangeDescription": "vedi testo",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round; vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasmette immediatamente poche parole a un destinatario lontano. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Inviare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Inviare: https://golarion.altervista.org/wiki/Incantesimi/Inviare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Legno 5 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

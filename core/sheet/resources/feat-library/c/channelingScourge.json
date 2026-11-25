@@ -1,0 +1,30 @@
+{
+  "id": "channelingScourge",
+  "name": "Incanalare Flagello",
+  "description": "Fa contribuire livelli da inquisitore ai danni incanalati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Incanalare_Flagello",
+  "types": [
+    "channeling"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Incanalare Energia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Inquisitore di 1° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Incanalare Flagello: https://golarion.altervista.org/wiki/Talenti/Incanalare_Flagello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Incanalare Energia; Prerequisito da verificare manualmente: Inquisitore di 1° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

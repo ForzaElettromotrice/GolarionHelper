@@ -1,0 +1,46 @@
+{
+  "id": "duelistOfTheRoaringFalls",
+  "name": "Duellante delle Cascate Ruggenti",
+  "description": "Premia gli attacchi contro nemici intimoriti e migliora la difesa nel duello. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Duellante_delle_Cascate_Ruggenti",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Arma Accurata",
+      "feat": {
+        "id": "weaponFinesse"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Discepolo del Duello Aldori",
+      "feat": {
+        "id": "aldoriDuelingDisciple"
+      }
+    },
+    {
+      "description": "BAB +5",
+      "expression": "@bab >= 5"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Duellante delle Cascate Ruggenti: https://golarion.altervista.org/wiki/Talenti/Duellante_delle_Cascate_Ruggenti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Spada da Duello Aldori); Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

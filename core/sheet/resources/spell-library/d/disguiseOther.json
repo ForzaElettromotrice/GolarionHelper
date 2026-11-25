@@ -1,0 +1,52 @@
+{
+  "id": "disguiseOther",
+  "name": "Camuffare Altri",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "INQUISITOR": 2,
+    "WIZARD": 2,
+    "MEDIUM": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "Non indicata nella fonte; verificare manualmente.",
+  "description": "Applica a un'altra creatura il camuffamento illusorio normalmente usato dal lanciatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Camuffare_Altri",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Camuffare Altri: https://golarion.altervista.org/wiki/Incantesimi/Camuffare_Altri Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte non indica il tiro salvezza; la lista strutturata vuota non implica che non sia consentito. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "La fonte non indica la resistenza agli incantesimi: verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "purgingEmesis",
+  "name": "Emesi Purificante",
+  "description": "Permette di espellere un veleno ingerito prima che produca tutte le sue conseguenze. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Emesi_Purificante",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Tempra Possente",
+      "feat": {
+        "id": "greatFortitude"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Emesi Purificante: https://golarion.altervista.org/wiki/Talenti/Emesi_Purificante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,53 @@
+{
+  "id": "jump",
+  "name": "Saltare",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "HUNTER": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "DRUID": 1,
+    "INVESTIGATOR": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "PSYCHIC": 1,
+    "RANGER": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una zampa posteriore di cavalletta",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Migliora le prove di Acrobazia effettuate per saltare; l'entità del beneficio dipende dal livello dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Saltare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Saltare: https://golarion.altervista.org/wiki/Incantesimi/Saltare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

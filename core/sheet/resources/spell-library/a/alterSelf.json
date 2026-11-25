@@ -1,0 +1,50 @@
+{
+  "id": "alterSelf",
+  "name": "Alterare Se Stesso",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ARCANIST": 2,
+    "BARD": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "WITCH": 2,
+    "INVESTIGATOR": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SHAMAN": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un frammento di una creatura di cui si desidera assumere l'aspetto",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Trasforma il lanciatore in un umanoide Piccolo o Medio, conferendo i benefici previsti dalla nuova forma. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Alterare_Se_Stesso",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Alterare Se Stesso: https://golarion.altervista.org/wiki/Incantesimi/Alterare_Se_Stesso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "abyssalVermin",
+  "name": "Parassita Abissale",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 2,
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "WITCH": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7.5 m + 1,5 m ogni 2 livelli)",
+  "target": "un Parassita o Sciame di Parassiti",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Trasmette poteri abissali a parassiti o sciami scelti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Parassita_Abissale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Parassita Abissale: https://golarion.altervista.org/wiki/Incantesimi/Parassita_Abissale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Antipaladino 2, Arcanista/Mago/Stregone 4, Assassino della Mantide Rossa 4, Chierico/Oracolo/Sacerdote Guerriero 4, Fattucchiere 4 (Deskari) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Assassino della Mantide Rossa 4 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

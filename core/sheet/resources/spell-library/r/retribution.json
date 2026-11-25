@@ -1,0 +1,41 @@
+{
+  "id": "retribution",
+  "name": "Castigo",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "PAIN",
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "INQUISITOR": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura che vi ha appena colpiti con un attacco",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Punisce chi ha appena attaccato il lanciatore, ostacolandone le azioni successive. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Castigo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Castigo: https://golarion.altervista.org/wiki/Incantesimi/Castigo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

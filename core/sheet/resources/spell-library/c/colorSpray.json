@@ -1,0 +1,50 @@
+{
+  "id": "colorSpray",
+  "name": "Spruzzo Colorato",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PATTERN",
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "MESMERIST": 1,
+    "PSYCHIC": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "polvere o sabbia colorata rossa, gialla e blu",
+  "rangeType": "OTHER",
+  "rangeDescription": "4,5 m",
+  "area": "esplosione a forma di cono",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Un ventaglio di colori può privare di sensi, accecare o stordire; l'esito dipende dai dadi vita delle vittime. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Spruzzo_Colorato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Spruzzo Colorato: https://golarion.altervista.org/wiki/Incantesimi/Spruzzo_Colorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

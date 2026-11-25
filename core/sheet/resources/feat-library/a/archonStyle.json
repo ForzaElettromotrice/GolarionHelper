@@ -1,0 +1,28 @@
+{
+  "id": "archonStyle",
+  "name": "Stile dell'Arconte",
+  "description": "Sacrifica parte della propria difesa per proteggere un alleato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Stile_dell%27Arconte",
+  "types": [
+    "combat",
+    "style"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato, Maestria in Combattimento, BAB +2 o Monaco di 2° livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Stile dell'Arconte: https://golarion.altervista.org/wiki/Talenti/Stile_dell%27Arconte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato, Maestria in Combattimento, BAB +2 o Monaco di 2° livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

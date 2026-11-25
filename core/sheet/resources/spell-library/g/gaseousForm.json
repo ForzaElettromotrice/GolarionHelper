@@ -1,0 +1,55 @@
+{
+  "id": "gaseousForm",
+  "name": "Forma Gassosa",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 3,
+    "BARD": 3,
+    "INVESTIGATOR": 3,
+    "WIZARD": 3,
+    "MAGUS": 3,
+    "MEDIUM": 3,
+    "OCCULTIST": 3,
+    "PSYCHIC": 3,
+    "SKALD": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "AIR": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un frammento di garza e uno sbuffo di fumo",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura corporea consenziente toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "2 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasforma il corpo in gas capace di spostarsi in volo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Forma_Gassosa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Forma Gassosa: https://golarion.altervista.org/wiki/Incantesimi/Forma_Gassosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Aria 3 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

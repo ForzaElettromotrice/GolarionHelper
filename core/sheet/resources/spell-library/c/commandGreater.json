@@ -1,0 +1,65 @@
+{
+  "id": "commandGreater",
+  "name": "Comando Superiore",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "CLERIC": 5,
+    "INQUISITOR": 5,
+    "MEDIUM": 4,
+    "MESMERIST": 4,
+    "OCCULTIST": 5,
+    "ORACLE": 5,
+    "PSYCHIC": 5,
+    "WARPRIEST": 5
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "INEVITABLES": 5,
+      "TACTICS": 5
+    },
+    "domain": {
+      "NOBILITY": 5
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Impone a più creature un comando prolungato rispetto alla versione di base. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Comando_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Comando Superiore: https://golarion.altervista.org/wiki/Incantesimi/Comando_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Descrittori variabili da determinare al lancio: dipendente dal linguaggio, influenza mentale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

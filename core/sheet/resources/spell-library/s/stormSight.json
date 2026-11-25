@@ -1,0 +1,51 @@
+{
+  "id": "stormSight",
+  "name": "Tempestavisione",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "subschool": "SCRYING",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "HUNTER": 2,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "SHAMAN": 2
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una tempesta, naturale o magica",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Estende la percezione attraverso una tempesta per rilevare chi vi si trova. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Tempestavisione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Tempestavisione: https://golarion.altervista.org/wiki/Incantesimi/Tempestavisione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

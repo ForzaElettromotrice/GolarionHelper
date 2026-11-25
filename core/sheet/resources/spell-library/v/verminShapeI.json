@@ -1,0 +1,50 @@
+{
+  "id": "verminShapeI",
+  "name": "Forma Parassitica I",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "INVESTIGATOR": 4,
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "HUNTER": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "BLOODRAGER": 4,
+    "MAGUS": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una parte della creatura di cui si vuole assumere la forma",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Permette una metamorfosi in parassita con alcune sue capacità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Forma_Parassitica_I",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Forma Parassitica I: https://golarion.altervista.org/wiki/Incantesimi/Forma_Parassitica_I Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Assassino della Mantide Rossa* 4 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

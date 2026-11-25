@@ -1,0 +1,46 @@
+{
+  "id": "createTreasureMap",
+  "name": "Creare Mappa del Tesoro",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "HUNTER": 2,
+    "DRUID": 3,
+    "WIZARD": 2,
+    "MEDIUM": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "RANGER": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "1 ora",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "metallo in polvere e inchiostri rari del valore di 100 mo",
+  "materialComponentCostInGoldPieces": 100,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura morta",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Usa i resti di una creatura per ottenere una mappa verso i suoi tesori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Creare_Mappa_del_Tesoro",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Creare Mappa del Tesoro: https://golarion.altervista.org/wiki/Incantesimi/Creare_Mappa_del_Tesoro Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "bodyCapacitance",
+  "name": "Corpo Capacitivo",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "ELECTRICITY"
+  ],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "INVESTIGATOR": 1,
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una bobina di ferro",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuti/livello o finché non viene scaricato (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Accumula parte dell'energia elettrica ricevuta per rilasciarla successivamente tramite contatto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Corpo_Capacitivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Corpo Capacitivo: https://golarion.altervista.org/wiki/Incantesimi/Corpo_Capacitivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

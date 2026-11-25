@@ -1,0 +1,46 @@
+{
+  "id": "pocketfulOfVipers",
+  "name": "Tascata di Vipere",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "OCCULTIST": 3,
+    "SHAMAN": 3
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una squama e zanna di serpente",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "oggetto toccato",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I) o finché scaricato (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Protegge un contenitore con vipere che aggrediscono chi lo apre. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Tascata_di_Vipere",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Tascata di Vipere: https://golarion.altervista.org/wiki/Incantesimi/Tascata_di_Vipere Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

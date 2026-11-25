@@ -1,0 +1,46 @@
+{
+  "id": "dancingLights",
+  "name": "Luci Danzanti",
+  "school": "EVOCATION",
+  "descriptors": [
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 0,
+    "BARD": 0,
+    "WITCH": 0,
+    "WIZARD": 0,
+    "MAGUS": 0,
+    "MEDIUM": 0,
+    "MESMERIST": 0,
+    "OCCULTIST": 0,
+    "PSYCHIC": 0,
+    "SKALD": 0,
+    "SHAMAN": 0,
+    "SORCERER": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "fino a 4 luci, tutte entro un'area del raggio di 3 m",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Manifesta punti luminosi mobili con forma scelta tra quelle consentite. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Luci_Danzanti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Luci Danzanti: https://golarion.altervista.org/wiki/Incantesimi/Luci_Danzanti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

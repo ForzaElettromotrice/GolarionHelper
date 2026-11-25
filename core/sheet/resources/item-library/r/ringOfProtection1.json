@@ -1,0 +1,23 @@
+{
+  "id": "ringOfProtection1",
+  "name": "Anello di Protezione +1",
+  "weightGrams": 0,
+  "volumeMilliliters": 0,
+  "tags": [
+    "magicItem",
+    "ring"
+  ],
+  "slot": "ring",
+  "effects": [
+    {
+      "id": "armorClass",
+      "activation": "equipped",
+      "type": "modifier",
+      "resource": "armorClass.all",
+      "description": "+1 alla Classe Armatura",
+      "modifierType": "bonus",
+      "bonusType": "deflection",
+      "expression": "1"
+    }
+  ]
+}

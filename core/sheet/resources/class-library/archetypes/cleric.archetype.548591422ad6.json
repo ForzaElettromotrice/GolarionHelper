@@ -1,0 +1,192 @@
+{
+  "id": "cleric.archetype.548591422ad6",
+  "classType": "cleric",
+  "name": "Esorcista Errante",
+  "description": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Domini, Competenze della classe, Incanalare Energia. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "cleric.feature.836718c23446",
+      "type": "alter"
+    },
+    {
+      "featureId": "cleric.proficiencies",
+      "type": "alter"
+    },
+    {
+      "featureId": "cleric.feature.03e9833bc00c",
+      "type": "alter"
+    },
+    {
+      "featureId": "cleric.skillRanksPerLevel",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "cleric.feature.836718c23446",
+    "cleric.proficiencies",
+    "cleric.feature.03e9833bc00c",
+    "cleric.skillRanksPerLevel"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "cleric.archetype.548591422ad6.instructions",
+      "name": "Esorcista Errante",
+      "description": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "cleric.archetype.548591422ad6.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Domini, Competenze della classe, Incanalare Energia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.548591422ad6.feature.1",
+      "name": "Vagabondo Devoto",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante",
+      "progression": [
+        {
+          "id": "cleric.archetype.548591422ad6.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Esorcista Errante — Vagabondo Devoto: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.548591422ad6.feature.2",
+      "name": "Svelare l'Occulto (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante",
+      "progression": [
+        {
+          "id": "cleric.archetype.548591422ad6.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Esorcista Errante — Svelare l'Occulto (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.548591422ad6.feature.3",
+      "name": "Investigatore Spiritico (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante",
+      "progression": [
+        {
+          "id": "cleric.archetype.548591422ad6.feature.3.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Esorcista Errante — Investigatore Spiritico (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.548591422ad6.feature.4",
+      "name": "Cerca Maledizioni (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante",
+      "progression": [
+        {
+          "id": "cleric.archetype.548591422ad6.feature.4.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Esorcista Errante — Cerca Maledizioni (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.548591422ad6.feature.5",
+      "name": "Spossessamento (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante",
+      "progression": [
+        {
+          "id": "cleric.archetype.548591422ad6.feature.5.initial",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Esorcista Errante — Spossessamento (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.548591422ad6.feature.6",
+      "name": "Mangia Maledizioni (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante",
+      "progression": [
+        {
+          "id": "cleric.archetype.548591422ad6.feature.6.initial",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Esorcista Errante — Mangia Maledizioni (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico_di_Golarion#Esorcista_Errante Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.548591422ad6.skillRankRate",
+      "name": "Progressione alternativa",
+      "description": "Differenza rispetto ai contributi base della classe.",
+      "progression": [
+        {
+          "id": "cleric.archetype.548591422ad6.skillRankRate.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "rankDifference",
+              "type": "contribution",
+              "resource": "skill.ranks.max",
+              "expression": "@classLevel * ((3 + @intSkillRanksMod) * (4 + @intSkillRanksMod > 1) - (1 + @intSkillRanksMod) * (2 + @intSkillRanksMod > 1))"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

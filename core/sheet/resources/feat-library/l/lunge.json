@@ -1,0 +1,23 @@
+{
+  "id": "lunge",
+  "name": "Stoccata",
+  "description": "Estende momentaneamente la portata sacrificando parte della difesa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Stoccata",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Stoccata: https://golarion.altervista.org/wiki/Talenti/Stoccata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

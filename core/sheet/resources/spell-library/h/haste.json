@@ -1,0 +1,115 @@
+{
+  "id": "haste",
+  "name": "Velocità",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 3,
+    "BARD": 3,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 3,
+    "INVESTIGATOR": 3,
+    "BLOODRAGER": 3,
+    "MAGUS": 3,
+    "WIZARD": 3,
+    "SKALD": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una buccia di radice di liquirizia",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura/livello; due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Concede un attacco aggiuntivo nell'attacco completo, +1 agli attacchi, +1 schivare a CA/Riflessi e movimento aumentato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Velocit%C3%A0",
+  "effects": [
+    {
+      "id": "attack",
+      "type": "modifier",
+      "resource": "attack.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "1"
+    },
+    {
+      "id": "armor",
+      "type": "modifier",
+      "resource": "armorClass.reflexive",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "dodge",
+      "expression": "1",
+      "condition": "Finché mantiene il bonus di Destrezza alla CA"
+    },
+    {
+      "id": "reflex",
+      "type": "modifier",
+      "resource": "savingThrow.reflex",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "dodge",
+      "expression": "1",
+      "condition": "Finché mantiene il bonus di Destrezza alla CA"
+    },
+    {
+      "id": "speed",
+      "type": "movementBoundedBonus",
+      "description": "Velocità",
+      "bonusType": "enhancement",
+      "expression": "6",
+      "maximumPercent": 200
+    },
+    {
+      "id": "extraWeaponAttack",
+      "type": "routineProgressionGrant",
+      "routineId": "base.fullAttack",
+      "slotId": "weapon",
+      "progression": {
+        "kind": "fixed",
+        "countExpression": "1",
+        "attackBonusAdjustmentExpression": "0"
+      }
+    },
+    {
+      "id": "extraTwoWeaponAttack",
+      "type": "routineProgressionGrant",
+      "routineId": "base.twoWeaponFighting",
+      "slotId": "mainHand",
+      "progression": {
+        "kind": "fixed",
+        "countExpression": "1",
+        "attackBonusAdjustmentExpression": "0"
+      }
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Una creatura per LI. Le routine base aggiungono un attacco con l'arma selezionata: alternativa con arma naturale e routine personalizzate sono manuali. Non cumulare attacchi extra con effetti analoghi né più gruppi Velocità; gestire il contrasto con Lentezza. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/livello; due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

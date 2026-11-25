@@ -1,0 +1,47 @@
+{
+  "id": "gildedWhispers",
+  "name": "Sussurri Dorati",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "100 mo in polvere di gemme",
+  "materialComponentCostInGoldPieces": 100,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una moneta d’oro o di platino",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Prepara una moneta come tramite per una successiva magia d'ascolto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sussurri_Dorati",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sussurri Dorati: https://golarion.altervista.org/wiki/Incantesimi/Sussurri_Dorati Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

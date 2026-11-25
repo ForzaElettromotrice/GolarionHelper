@@ -1,0 +1,66 @@
+{
+  "id": "phantasmalKiller",
+  "name": "Allucinazione Mortale",
+  "school": "ILLUSION",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING",
+    "FEAR"
+  ],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WITCH": 4,
+    "BLOODRAGER": 4,
+    "WIZARD": 4,
+    "MAGUS": 4,
+    "MEDIUM": 3,
+    "MESMERIST": 4,
+    "PSYCHIC": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "MADNESS": 6
+    },
+    "subdomain": {
+      "NIGHTMARE": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura vivente",
+  "durationType": "OTHER",
+  "durationDescription": "istataneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita, poi Tempra parziale; vedi testo;"
+    },
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Volontà dubita, poi Tempra parziale; vedi testo;"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Una figura di terrore minaccia di uccidere la vittima; resistere può limitarne le conseguenze. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Allucinazione_Mortale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Allucinazione Mortale: https://golarion.altervista.org/wiki/Incantesimi/Allucinazione_Mortale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

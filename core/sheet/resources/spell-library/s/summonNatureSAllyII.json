@@ -1,0 +1,38 @@
+{
+  "id": "summonNatureSAllyII",
+  "name": "Evoca Alleato Naturale II",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "DRUID": 2,
+    "RANGER": 2,
+    "SHAMAN": 2
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "1 creatura evocata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama un alleato naturale dalla lista di secondo livello. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Alleato_Naturale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Alleato Naturale II: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Alleato_Naturale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

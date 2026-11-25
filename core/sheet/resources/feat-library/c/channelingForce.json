@@ -1,0 +1,31 @@
+{
+  "id": "channelingForce",
+  "name": "Incanalare Forza",
+  "description": "Trasforma energia incanalata in forza offensiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Incanalare/Incanalare_Forza",
+  "types": [
+    "combat",
+    "channeling"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Capacità di lanciare almeno un incantesimo di forza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Incanalare Energia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Incanalare Forza: https://golarion.altervista.org/wiki/Talenti/Incanalare/Incanalare_Forza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Capacità di lanciare almeno un incantesimo di forza; Prerequisito da verificare manualmente: privilegio di classe Incanalare Energia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

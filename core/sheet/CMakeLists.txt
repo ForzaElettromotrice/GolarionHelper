@@ -1,4 +1,4 @@
-add_library(golarion_model STATIC
+add_library(golarion_model_objects OBJECT
     src/character/spell_cast_result.cpp
     src/effect/effect_to_json.cpp
     src/effect/collection_effect_to_json.cpp
@@ -135,18 +135,23 @@ if(WIN32)
 else()
     set(catalog_install_directory "${CMAKE_INSTALL_DATADIR}/golarion-helper/catalogs")
 endif()
-target_compile_definitions(golarion_model PRIVATE GOLARION_BUILD_CATALOG_DIRECTORY="${catalog_build_directory}")
+target_compile_definitions(golarion_model_objects PRIVATE GOLARION_BUILD_CATALOG_DIRECTORY="${catalog_build_directory}")
 
-function(configure_catalog directory header accessor entries)
+function(configure_catalog directory header accessor entries role)
     set(catalog_paths "")
+    set(source_files "")
     foreach(file IN LISTS ARGN)
+        list(APPEND source_files "${CMAKE_CURRENT_SOURCE_DIR}/resources/${file}")
         string(APPEND catalog_paths "        \"${file}\",\n")
-        configure_file("resources/${file}" "${catalog_build_directory}/${file}" COPYONLY)
-        if(GOLARION_TARGET STREQUAL "golarion_helper")
+        if(role STREQUAL "Runtime")
+            configure_file("resources/${file}" "${catalog_build_directory}/${file}" COPYONLY)
+        endif()
+        if(GOLARION_TARGET STREQUAL "golarion_helper" AND role STREQUAL "Runtime")
             get_filename_component(folder "${file}" DIRECTORY)
             install(FILES "resources/${file}" DESTINATION "${catalog_install_directory}/${folder}" COMPONENT Runtime)
         endif()
     endforeach()
+    set(${header}_inputs "${source_files}" PARENT_SCOPE)
     file(CONFIGURE OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated/golarion/${directory}/${header}.hpp"
         CONTENT [=[
 #pragma once
@@ -164,80 +169,79 @@ namespace golarion::catalog
 ]=] @ONLY)
 endfunction()
 
-configure_catalog(character class_definition_catalog loadClassDefinitionCatalog Array
-    classes/core.json
-    classes/advanced.json
-    classes/alternative.json
-    classes/hybrid.json
-    classes/occult.json
-    classes/unchained.json
-)
+function(configure_definition_files directory folder header accessor)
+    file(GLOB files CONFIGURE_DEPENDS RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/resources"
+        "resources/${folder}/*.json")
+    configure_catalog(${directory} ${header} ${accessor} Objects Indexed ${files})
+    set(${header}_inputs "${${header}_inputs}" PARENT_SCOPE)
+endfunction()
 
-configure_catalog(character class_option_catalog loadClassOptionCatalog Objects
-    class-options/advanced.json
-    class-options/alternative.json
-    class-options/barbarian.json
-    class-options/core-remaining.json
-    class-options/divine.json
-    class-options/hybrid.json
-    class-options/occult.json
-    class-options/unchained.json
-    class-options/wizard.json
-)
+configure_definition_files(character class-library/classes class_definition_catalog loadClassDefinitionCatalog)
+configure_definition_files(character class-library/options class_option_catalog loadClassOptionSets)
+configure_definition_files(character class-library/archetypes archetype_definition_catalog loadArchetypeDefinitionCatalog)
 
-configure_catalog(character archetype_definition_catalog loadArchetypeDefinitionCatalog Array
-    archetypes/core-early.json
-    archetypes/core-advanced.json
-    archetypes/other.json
-)
+configure_definition_files(character "spell-library/*" spell_definition_catalog loadSpellDefinitionCatalog)
 
-configure_catalog(character spell_definition_catalog loadSpellDefinitionCatalog Array
-    spells.json
-    spells/level-0-1.json
-    spells/level-2.json
-    spells/level-3.json
-    spells/level-4.json
-    spells/level-5.json
-    spells/level-6.json
-    spells/level-7.json
-    spells/level-8.json
-    spells/level-9.json
-)
+configure_definition_files(character race-library/races race_definition_catalog loadRaceDefinitionCatalog)
 
-configure_catalog(character race_definition_catalog loadRaceDefinitionCatalog Array
-    races.json
-    races/core.json
-    races/other.json
-    races/rare.json
-    races/uncommon.json
-)
+configure_definition_files(character "feat-library/*" feat_definition_catalog loadFeatDefinitionCatalog)
 
-configure_catalog(character feat_definition_catalog loadFeatDefinitionCatalog Array
-    feats.json
-    feats/general.json
-    feats/combat.json
-    feats/other.json
-)
+configure_definition_files(equipment "item-library/*" item_definition_catalog loadItemDefinitionCatalog)
 
-configure_catalog(equipment item_definition_catalog loadItemDefinitionCatalog Array
-    items.json
-)
+set_target_properties(golarion_model_objects PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
-set_target_properties(golarion_model PROPERTIES POSITION_INDEPENDENT_CODE ON)
-
-target_include_directories(golarion_model
+target_include_directories(golarion_model_objects
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
     PRIVATE
         "${CMAKE_CURRENT_BINARY_DIR}/generated"
 )
 
+target_link_libraries(golarion_model_objects PRIVATE nlohmann_json::nlohmann_json)
+add_library(golarion_model STATIC $<TARGET_OBJECTS:golarion_model_objects>)
 target_link_libraries(golarion_model PRIVATE nlohmann_json::nlohmann_json)
+target_include_directories(golarion_model PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+add_executable(catalog_index_builder tools/catalog_index_builder.cpp)
+target_include_directories(catalog_index_builder PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/generated")
+target_link_libraries(catalog_index_builder PRIVATE golarion_model_objects nlohmann_json::nlohmann_json)
+set(class_library "${catalog_build_directory}/class-library")
+set(race_library "${catalog_build_directory}/race-library")
+set(spell_library "${catalog_build_directory}/spell-library")
+set(feat_library "${catalog_build_directory}/feat-library")
+set(item_library "${catalog_build_directory}/item-library")
+set(stage "${CMAKE_CURRENT_BINARY_DIR}/indexed-catalogs.tmp")
+add_custom_command(OUTPUT "${class_library}/index.json" "${race_library}/index.json" "${spell_library}/index.json" "${feat_library}/index.json" "${item_library}/index.json"
+    COMMAND "${CMAKE_COMMAND}" -E rm -rf "${stage}"
+    COMMAND "${CMAKE_COMMAND}" -E copy_directory class-library "${stage}/class-library"
+    COMMAND "${CMAKE_COMMAND}" -E copy_directory race-library "${stage}/race-library"
+    COMMAND "${CMAKE_COMMAND}" -E copy_directory spell-library "${stage}/spell-library"
+    COMMAND "${CMAKE_COMMAND}" -E copy_directory feat-library "${stage}/feat-library"
+    COMMAND "${CMAKE_COMMAND}" -E copy_directory item-library "${stage}/item-library"
+    COMMAND catalog_index_builder "${stage}"
+    COMMAND "${CMAKE_COMMAND}" -E remove_directory "${class_library}"
+    COMMAND "${CMAKE_COMMAND}" -E rename "${stage}/class-library" "${class_library}"
+    COMMAND "${CMAKE_COMMAND}" -E remove_directory "${race_library}"
+    COMMAND "${CMAKE_COMMAND}" -E rename "${stage}/race-library" "${race_library}"
+    COMMAND "${CMAKE_COMMAND}" -E remove_directory "${spell_library}"
+    COMMAND "${CMAKE_COMMAND}" -E remove_directory "${feat_library}"
+    COMMAND "${CMAKE_COMMAND}" -E remove_directory "${item_library}"
+    COMMAND "${CMAKE_COMMAND}" -E rename "${stage}/spell-library" "${spell_library}"
+    COMMAND "${CMAKE_COMMAND}" -E rename "${stage}/feat-library" "${feat_library}"
+    COMMAND "${CMAKE_COMMAND}" -E rename "${stage}/item-library" "${item_library}"
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/resources"
+    DEPENDS catalog_index_builder ${class_definition_catalog_inputs} ${class_option_catalog_inputs} ${archetype_definition_catalog_inputs} ${race_definition_catalog_inputs} ${spell_definition_catalog_inputs} ${feat_definition_catalog_inputs} ${item_definition_catalog_inputs}
+    VERBATIM)
+add_custom_target(indexed_catalog_files DEPENDS "${class_library}/index.json" "${race_library}/index.json" "${spell_library}/index.json" "${feat_library}/index.json" "${item_library}/index.json")
+add_dependencies(golarion_model indexed_catalog_files)
+if(GOLARION_TARGET STREQUAL "golarion_helper")
+    install(DIRECTORY "${class_library}" "${race_library}" "${spell_library}" "${feat_library}" "${item_library}" DESTINATION "${catalog_install_directory}" COMPONENT Runtime)
+endif()
 
 if(MSVC)
-    target_compile_options(golarion_model PRIVATE /W4 /permissive-)
+    target_compile_options(golarion_model_objects PRIVATE /W4 /permissive-)
 else()
-    target_compile_options(golarion_model PRIVATE -Wall -Wextra -Wpedantic)
+    target_compile_options(golarion_model_objects PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
 if(BUILD_TESTING)
@@ -259,10 +263,9 @@ if(BUILD_TESTING)
     target_link_libraries(advancement_gate_test PRIVATE golarion_model)
     add_test(NAME advancement_gate_test COMMAND advancement_gate_test)
 
-    add_executable(pending_choices_test tests/character/pending_choices_test.cpp src/character/race_definition_manager.cpp)
-    target_include_directories(pending_choices_test PRIVATE tests/fixtures/pending_choices)
+    add_executable(pending_choices_test tests/character/pending_choices_test.cpp)
     target_link_libraries(pending_choices_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
-    add_test(NAME pending_choices_test COMMAND pending_choices_test)
+    add_test(NAME pending_choices_test COMMAND pending_choices_test "${CMAKE_CURRENT_SOURCE_DIR}/tests/fixtures/pending_choices" "${catalog_build_directory}")
 
     add_executable(custom_feats_test tests/character/custom_feats_test.cpp)
     target_link_libraries(custom_feats_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
@@ -291,16 +294,13 @@ if(BUILD_TESTING)
     add_executable(sheet_operations_test tests/character/sheet_operations_test.cpp)
     target_link_libraries(sheet_operations_test PRIVATE golarion_model)
     add_test(NAME sheet_operations_test COMMAND sheet_operations_test)
-    add_executable(granted_spells_test tests/character/granted_spells_test.cpp src/equipment/item_definition_manager.cpp)
-    target_include_directories(granted_spells_test PRIVATE tests/fixtures/item_usage)
+    add_executable(granted_spells_test tests/character/granted_spells_test.cpp)
     target_link_libraries(granted_spells_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
     add_test(NAME granted_spells_test COMMAND granted_spells_test)
 
-    # Compile the catalog loader against an isolated fixture, without adding test items to production.
-    add_executable(item_usage_pool_test tests/equipment/item_usage_pool_test.cpp src/equipment/item_definition_manager.cpp)
-    target_include_directories(item_usage_pool_test PRIVATE tests/fixtures/item_usage)
+    add_executable(item_usage_pool_test tests/equipment/item_usage_pool_test.cpp)
     target_link_libraries(item_usage_pool_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
-    add_test(NAME item_usage_pool_test COMMAND item_usage_pool_test)
+    add_test(NAME item_usage_pool_test COMMAND item_usage_pool_test "${CMAKE_CURRENT_SOURCE_DIR}/tests/fixtures/item_usage" "${catalog_build_directory}")
 
     add_executable(spellcasting_persistence_test tests/character/spellcasting_persistence_test.cpp)
     target_link_libraries(spellcasting_persistence_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
@@ -477,6 +477,9 @@ if(BUILD_TESTING)
     add_test(NAME class_option_catalog_json_test COMMAND class_option_catalog_json_test)
 
     add_executable(class_catalog_test tests/character/class_catalog_test.cpp)
+    add_executable(lazy_class_catalog_test tests/character/lazy_class_catalog_test.cpp)
+    target_link_libraries(lazy_class_catalog_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
+    add_test(NAME lazy_class_catalog_test COMMAND lazy_class_catalog_test "${catalog_build_directory}" "${CMAKE_CURRENT_BINARY_DIR}/test-lazy-catalog")
     target_include_directories(class_catalog_test PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/generated")
     target_link_libraries(class_catalog_test PRIVATE golarion_model nlohmann_json::nlohmann_json)
     add_test(NAME class_catalog_test COMMAND class_catalog_test)

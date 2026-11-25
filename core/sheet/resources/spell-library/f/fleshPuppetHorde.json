@@ -1,0 +1,72 @@
+{
+  "id": "fleshPuppetHorde",
+  "name": "Orda dei Burattini di Carne",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 3,
+    "ARCANIST": 5,
+    "CLERIC": 4,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una gemma d'onice da 50 mo per ciascuno zombi e un filo di seta",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "uno o più cadaveri toccati",
+  "durationType": "OTHER",
+  "durationDescription": "Non indicata nella fonte; verificare manualmente.",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "Non indicata nella fonte; verificare manualmente.",
+  "description": "Controlla più zombi dall'apparenza ancora umana. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Orda_dei_Burattini_di_Carne",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Orda dei Burattini di Carne: https://golarion.altervista.org/wiki/Orda_dei_Burattini_di_Carne Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte non indica il tiro salvezza; la lista strutturata vuota non implica che non sia consentito. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "La fonte non indica la resistenza agli incantesimi: verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: uno o più cadaveri toccati. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview4",
+      "type": "reminder",
+      "message": "Durata non indicata nella fonte; verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview5",
+      "type": "reminder",
+      "message": "Costo materiale variabile o alternativo: determinarlo dalla descrizione dei componenti, non da un importo fisso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

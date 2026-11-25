@@ -1,0 +1,60 @@
+{
+  "id": "disintegrate",
+  "name": "Disintegrazione",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "MAGUS": 6,
+    "OCCULTIST": 6,
+    "PSYCHIC": 6,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "ASH": 7
+    },
+    "domain": {
+      "DESTRUCTION": 7
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una pietra di magnetite e un pizzico di polvere",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "raggio",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un raggio distruttivo può ridurre in polvere creature, oggetti o parti di strutture. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Disintegrazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Disintegrazione: https://golarion.altervista.org/wiki/Incantesimi/Disintegrazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Metallo 6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

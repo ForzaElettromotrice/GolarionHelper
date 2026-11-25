@@ -1,0 +1,37 @@
+{
+  "id": "greaterChannelSmite",
+  "name": "Incanalare Punizione Superiore",
+  "description": "Accumula dadi offensivi rinunciando a un'incanalata positiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Incanalare_Punizione_Superiore",
+  "types": [
+    "channeling"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Incanalare Energia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Incanalare Punizione",
+      "feat": {
+        "id": "channelSmite"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +8",
+      "expression": "@bab >= 8"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Incanalare Punizione Superiore: https://golarion.altervista.org/wiki/Talenti/Incanalare_Punizione_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Incanalare Energia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

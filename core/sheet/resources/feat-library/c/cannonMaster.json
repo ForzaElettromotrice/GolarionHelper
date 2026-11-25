@@ -1,0 +1,27 @@
+{
+  "id": "cannonMaster",
+  "name": "Maestro dei Cannoni",
+  "description": "Facilita la preparazione delle macchine d'assedio a polvere nera. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestro_dei_Cannoni",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Ingegnere d'Assedio, Conoscenze (Ingegneria) o Professione (Ingegnere d'Assedio) 7 gradi, competenza nell'uso di almeno un'Arma da Fuoco d'Assedio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestro dei Cannoni: https://golarion.altervista.org/wiki/Talenti/Maestro_dei_Cannoni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Ingegnere d'Assedio, Conoscenze (Ingegneria) o Professione (Ingegnere d'Assedio) 7 gradi, competenza nell'uso di almeno un'Arma da Fuoco d'Assedio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

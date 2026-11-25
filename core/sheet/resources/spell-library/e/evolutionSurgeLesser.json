@@ -1,0 +1,47 @@
+{
+  "id": "evolutionSurgeLesser",
+  "name": "Sorgente Evolutiva Inferiore",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una squama di camaleonte",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "il proprio Eidolon",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Concede temporaneamente un'evoluzione poco costosa all'eidolon. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sorgente_Evolutiva_Inferiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sorgente Evolutiva Inferiore: https://golarion.altervista.org/wiki/Incantesimi/Sorgente_Evolutiva_Inferiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: il proprio Eidolon. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

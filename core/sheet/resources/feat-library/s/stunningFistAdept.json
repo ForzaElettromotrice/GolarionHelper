@@ -1,0 +1,31 @@
+{
+  "id": "stunningFistAdept",
+  "name": "Adepto del Pugno Stordente",
+  "description": "Rende più difficile resistere a Pugno Stordente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Adepto_del_Pugno_Stordente",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +3",
+      "expression": "@bab >= 3"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Pugno Stordente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Adepto del Pugno Stordente: https://golarion.altervista.org/wiki/Talenti/Adepto_del_Pugno_Stordente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Pugno Stordente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

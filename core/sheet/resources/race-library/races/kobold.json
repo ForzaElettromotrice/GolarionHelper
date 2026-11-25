@@ -1,0 +1,701 @@
+{
+  "id": "kobold",
+  "name": "Coboldo",
+  "qualities": [
+    {
+      "id": "kobold.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide rettile. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "kobold.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "small"
+        }
+      ]
+    },
+    {
+      "id": "kobold.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "kobold.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "4"
+        },
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "kobold.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "draconic",
+          "type": "languageGrant",
+          "languageId": "draconic"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "common",
+            "dwarven",
+            "gnome",
+            "undercommon"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kobold.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "alchemistBombs",
+          "type": "favoredClassBonus",
+          "name": "Alchimista — +1 bomba giornaliera",
+          "classes": [
+            "alchemist"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 bomba giornaliera. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 bomba giornaliera. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "bardFascinate",
+          "type": "favoredClassBonus",
+          "name": "Bardo — +1 livello effettivo per Affascinare",
+          "classes": [
+            "bard"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 livello effettivo per Affascinare. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 livello effettivo per Affascinare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "cavalierMountSpeed",
+          "type": "favoredClassBonus",
+          "name": "Cavaliere — +1,5 m alla cavalcatura in Carica o Ritirata; massimo +4,5 m",
+          "classes": [
+            "cavalier"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1,5 m alla cavalcatura in Carica o Ritirata; massimo +4,5 m. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1,5 m alla cavalcatura in Carica o Ritirata; massimo +4,5 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "clericChannel",
+          "type": "favoredClassBonus",
+          "name": "Chierico — +1 danno incanalato contro chi perde Destrezza alla CA",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 danno incanalato contro chi perde Destrezza alla CA. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 danno incanalato contro chi perde Destrezza alla CA. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "summonerShieldAlly",
+          "type": "favoredClassBonus",
+          "name": "Convocatore — +1 a Scudo Alleato; massimo +2",
+          "classes": [
+            "summoner"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 a Scudo Alleato; massimo +2. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 a Scudo Alleato; massimo +2. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "druidWildEmpathy",
+          "type": "favoredClassBonus",
+          "name": "Druido — +1 a Empatia Selvatica",
+          "classes": [
+            "druid"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Empatia Selvatica. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 a Empatia Selvatica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "witchAlertnessRange",
+          "type": "favoredClassBonus",
+          "name": "Fattucchiere — +1,5 m al raggio di Allerta del famiglio; massimo +6 m",
+          "classes": [
+            "witch"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1,5 m al raggio di Allerta del famiglio; massimo +6 m. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1,5 m al raggio di Allerta del famiglio; massimo +6 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rogueTrapSense",
+          "type": "favoredClassBonus",
+          "name": "Ladro — +1 alla CA da Percepire Trappole",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 alla CA da Percepire Trappole. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 alla CA da Percepire Trappole. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "magusConcentration",
+          "type": "favoredClassBonus",
+          "name": "Magus — +1 a Concentrazione per lancio difensivo",
+          "classes": [
+            "magus"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Concentrazione per lancio difensivo. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 a Concentrazione per lancio difensivo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkArmor",
+          "type": "favoredClassBonus",
+          "name": "Monaco — +1 al privilegio Bonus alla CA",
+          "classes": [
+            "monk"
+          ],
+          "selectionsPerBenefit": 3,
+          "description": "+1 al privilegio Bonus alla CA. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 al privilegio Bonus alla CA. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleArmorSpell",
+          "type": "favoredClassBonus",
+          "name": "Oracolo — +1 al bonus di armatura/armatura naturale degli incantesimi lanciati su se stesso",
+          "classes": [
+            "oracle"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 al bonus di armatura/armatura naturale degli incantesimi lanciati su se stesso. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 al bonus di armatura/armatura naturale degli incantesimi lanciati su se stesso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "gunslingerNimble",
+          "type": "favoredClassBonus",
+          "name": "Pistolero — +1 alla schivata da Leggiadria; massimo +4",
+          "classes": [
+            "gunslinger"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 alla schivata da Leggiadria; massimo +4. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 alla schivata da Leggiadria; massimo +4. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rangerHunterBond",
+          "type": "favoredClassBonus",
+          "name": "Ranger — +1 avversario dello stesso tipo per Legame del Cacciatore",
+          "classes": [
+            "ranger"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 avversario dello stesso tipo per Legame del Cacciatore. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 avversario dello stesso tipo per Legame del Cacciatore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererEnergyDamage",
+          "type": "favoredClassBonus",
+          "name": "Stregone — Scegli acido, elettricità, freddo o fuoco: +1 danno agli incantesimi da stregone che infliggono tale energia",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "Scegli acido, elettricità, freddo o fuoco: +1 danno agli incantesimi da stregone che infliggono tale energia. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "Scegli acido, elettricità, freddo o fuoco: +1 danno agli incantesimi da stregone che infliggono tale energia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "fighterFlankingDamage",
+          "type": "favoredClassBonus",
+          "name": "Guerriero — Danni opportunistici",
+          "classes": [
+            "fighter"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 danno con armi contro nemici fiancheggiati o privati della Destrezza alla CA.",
+          "effects": [
+            {
+              "id": "damage",
+              "type": "modifier",
+              "resource": "damage.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Attacco con arma contro avversario fiancheggiato o privo di Destrezza alla CA"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "kobold.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "kobold.armor",
+      "name": "Armatura",
+      "description": "Armatura",
+      "effects": [
+        {
+          "id": "armor",
+          "type": "modifier",
+          "resource": "armorClass.solid",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "naturalArmor",
+          "expression": "1"
+        }
+      ]
+    },
+    {
+      "id": "kobold.crafty",
+      "name": "Astuto",
+      "description": "Astuto",
+      "effects": [
+        {
+          "id": "perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "stealthClass",
+          "type": "classSkillGrant",
+          "resource": "skill.stealth"
+        },
+        {
+          "id": "specializations",
+          "type": "reminder",
+          "message": "+2 ad Artigianato (trappole) e Professione (minatore); Artigianato (trappole) è abilità di classe. Specializzazioni da configurare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "kobold.lightSensitivity",
+      "name": "Sensibilità alla Luce",
+      "description": "Sensibilità alla Luce",
+      "effects": [
+        {
+          "id": "light",
+          "type": "reminder",
+          "message": "Abbagliato in luce solare intensa o Luce Diurna. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "kobold.glidingWings",
+      "name": "Ali Plananti",
+      "description": "Volare CD15 per caduta sicura; un'altra prova CD15 consente 1,5 m laterali ogni 6 m di discesa. Non concede volo. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Volare CD15 per caduta sicura; un'altra prova CD15 consente 1,5 m laterali ogni 6 m di discesa. Non concede volo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "kobold.crafty"
+      ]
+    },
+    {
+      "id": "kobold.jester",
+      "name": "Giullare",
+      "description": "Giullare",
+      "effects": [
+        {
+          "id": "diplomacy",
+          "type": "modifier",
+          "resource": "skill.diplomacy",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "diplomacyClass",
+          "type": "classSkillGrant",
+          "resource": "skill.diplomacy"
+        },
+        {
+          "id": "perform",
+          "type": "modifier",
+          "resource": "skill.perform",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "performClass",
+          "type": "classSkillGrant",
+          "resource": "skill.perform"
+        }
+      ],
+      "replaces": [
+        "kobold.crafty"
+      ]
+    },
+    {
+      "id": "kobold.beastBond",
+      "name": "Legame Bestiale",
+      "description": "Legame Bestiale",
+      "effects": [
+        {
+          "id": "handleAnimal",
+          "type": "modifier",
+          "resource": "skill.handleAnimal",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "handleAnimalClass",
+          "type": "classSkillGrant",
+          "resource": "skill.handleAnimal"
+        },
+        {
+          "id": "ride",
+          "type": "modifier",
+          "resource": "skill.ride",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "rideClass",
+          "type": "classSkillGrant",
+          "resource": "skill.ride"
+        }
+      ],
+      "replaces": [
+        "kobold.crafty"
+      ]
+    },
+    {
+      "id": "kobold.dragonScaled",
+      "name": "Scaglie di Drago",
+      "description": "Scaglie di Drago",
+      "effects": [],
+      "replaces": [
+        "kobold.armor"
+      ],
+      "choices": [
+        {
+          "id": "scales",
+          "prompt": "Scegli il colore delle scaglie.",
+          "selectionCount": 1,
+          "options": [
+            {
+              "id": "black",
+              "name": "Nere",
+              "effects": [
+                {
+                  "id": "acid",
+                  "type": "energyResistance",
+                  "energy": "acid",
+                  "expression": "5"
+                }
+              ]
+            },
+            {
+              "id": "green",
+              "name": "Verdi",
+              "effects": [
+                {
+                  "id": "acid",
+                  "type": "energyResistance",
+                  "energy": "acid",
+                  "expression": "5"
+                }
+              ]
+            },
+            {
+              "id": "blue",
+              "name": "Blu",
+              "effects": [
+                {
+                  "id": "electricity",
+                  "type": "energyResistance",
+                  "energy": "electricity",
+                  "expression": "5"
+                }
+              ]
+            },
+            {
+              "id": "red",
+              "name": "Rosse",
+              "effects": [
+                {
+                  "id": "fire",
+                  "type": "energyResistance",
+                  "energy": "fire",
+                  "expression": "5"
+                }
+              ]
+            },
+            {
+              "id": "white",
+              "name": "Bianche",
+              "effects": [
+                {
+                  "id": "cold",
+                  "type": "energyResistance",
+                  "energy": "cold",
+                  "expression": "5"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

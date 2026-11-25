@@ -1,0 +1,27 @@
+{
+  "id": "scribeScroll",
+  "name": "Scrivere Pergamene",
+  "description": "Consente di confezionare pergamene contenenti incantesimi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Scrivere_Pergamene",
+  "types": [
+    "itemCreation"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Incantatore di 1° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Scrivere Pergamene: https://golarion.altervista.org/wiki/Talenti/Scrivere_Pergamene. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incantatore di 1° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

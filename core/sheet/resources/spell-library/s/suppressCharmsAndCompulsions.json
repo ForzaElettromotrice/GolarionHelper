@@ -1,0 +1,55 @@
+{
+  "id": "suppressCharmsAndCompulsions",
+  "name": "Sopprimere Charme e Compulsioni",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "BARD": 2,
+    "SKALD": 2,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "MESMERIST": 2,
+    "PALADIN": 2,
+    "PSYCHIC": 2,
+    "SHAMAN": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura più 1 creatura ogni 4 livelli, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Sospende charme e compulsioni esistenti oppure rafforza la resistenza a tali effetti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sopprimere_Charme_e_Compulsioni",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sopprimere Charme e Compulsioni: https://golarion.altervista.org/wiki/Incantesimi/Sopprimere_Charme_e_Compulsioni Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura più 1 creatura ogni 4 livelli, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

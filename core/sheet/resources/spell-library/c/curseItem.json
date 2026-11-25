@@ -1,0 +1,49 @@
+{
+  "id": "curseItem",
+  "name": "Maledire Oggetto",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "oggetto toccato",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (oggetto)",
+  "description": "Rende un oggetto fragile e meno affidabile. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Maledire_Oggetto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledire Oggetto: https://golarion.altervista.org/wiki/Incantesimi/Maledire_Oggetto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Chierico/Oracolo/Sacerdote Guerriero 2 (Groetus) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

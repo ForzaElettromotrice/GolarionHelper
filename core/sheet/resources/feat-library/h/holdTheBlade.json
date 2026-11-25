@@ -1,0 +1,29 @@
+{
+  "id": "holdTheBlade",
+  "name": "Afferrare la Lama",
+  "description": "Risponde ad attacchi insidiosi tentando di disarmare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Afferrare_la_Lama",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +10",
+      "expression": "@bab >= 10"
+    },
+    {
+      "description": "Disarmare Migliorato",
+      "feat": {
+        "id": "improvedDisarm"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Afferrare la Lama: https://golarion.altervista.org/wiki/Talenti/Afferrare_la_Lama. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

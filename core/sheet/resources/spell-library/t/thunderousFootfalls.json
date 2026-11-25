@@ -1,0 +1,44 @@
+{
+  "id": "thunderousFootfalls",
+  "name": "Passi Tonanti",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7.5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura di taglia Grande o superiore",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no (innocuo)",
+  "description": "Appesantisce il passo del soggetto, che può far cadere creature più piccole durante il movimento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Passi_Tonanti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Passi Tonanti: https://golarion.altervista.org/wiki/Incantesimi/Passi_Tonanti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

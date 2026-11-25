@@ -1,0 +1,65 @@
+{
+  "id": "heightenedAwareness",
+  "name": "Consapevolezza Intensificata",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "BARD": 1,
+    "HUNTER": 1,
+    "DRUID": 1,
+    "INQUISITOR": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "PSYCHIC": 1,
+    "RANGER": 1,
+    "SKALD": 1,
+    "SHAMAN": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un chicco di caffè",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Concede +2 competenza a Percezione e alle Conoscenze addestrate; può terminare per ottenere +4 a un tiro di iniziativa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Consapevolezza_Intensificata",
+  "effects": [
+    {
+      "id": "perception",
+      "type": "modifier",
+      "resource": "skill.perception",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "competence",
+      "expression": "2"
+    },
+    {
+      "id": "knowledge",
+      "type": "modifier",
+      "resource": "skill.knowledge",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "competence",
+      "expression": "2",
+      "condition": "Solo prove di Conoscenze in cui si è addestrati"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "La scarica per iniziativa +4 è una scelta manuale e termina l'intero gruppo. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

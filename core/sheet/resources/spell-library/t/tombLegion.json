@@ -1,0 +1,39 @@
+{
+  "id": "tombLegion",
+  "name": "Legione delle Tombe",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WIZARD": 8,
+    "SORCERER": 8,
+    "CLERIC": 8,
+    "ORACLE": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "3 o più Mummie Avanzate, due di quelle non devono stare più di 9 m l'uno dall'altra; vedi testo",
+  "durationType": "DAY",
+  "durationDescription": "7 giorni o 7 mesi (I); vedi testo",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama una schiera di mummie potenziate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Legione_delle_Tombe",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Legione delle Tombe: https://golarion.altervista.org/wiki/Incantesimi/Legione_delle_Tombe Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

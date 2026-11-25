@@ -1,0 +1,47 @@
+{
+  "id": "deathCandle",
+  "name": "Candela di Morte",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "FIRE",
+    "EVIL",
+    "DEATH"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "CLERIC": 2,
+    "WITCH": 2,
+    "INQUISITOR": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "Contatto",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo/1 round per DV del soggetto; vedi sotto",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Sfrutta la morte di una creatura per richiamare un piccolo elementale del fuoco. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Candela_di_Morte",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Candela di Morte: https://golarion.altervista.org/wiki/Incantesimi/Candela_di_Morte Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

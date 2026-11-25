@@ -1,0 +1,57 @@
+{
+  "id": "wailOfTheBanshee",
+  "name": "Lamento della Banshee",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "DEATH",
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WITCH": 9,
+    "WIZARD": 9,
+    "PSYCHIC": 9,
+    "SHAMAN": 9,
+    "SORCERER": 9
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DEATH": 9,
+      "REPOSE": 9
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura vivente/livello entro una propagazione del raggio di 12 m",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un lamento mortale colpisce numerose creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lamento_della_Banshee",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Lamento della Banshee: https://golarion.altervista.org/wiki/Incantesimi/Lamento_della_Banshee Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura vivente/livello entro una propagazione del raggio di 12 m. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

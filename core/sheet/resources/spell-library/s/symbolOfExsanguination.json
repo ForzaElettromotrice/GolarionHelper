@@ -1,0 +1,52 @@
+{
+  "id": "symbolOfExsanguination",
+  "name": "Simbolo di Dissanguamento",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "CLERIC": 3,
+    "WITCH": 3,
+    "BLOODRAGER": 2,
+    "WIZARD": 3,
+    "OCCULTIST": 2,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "polvere di granato ed eliotropio del valore totale di 500 mo",
+  "materialComponentCostInGoldPieces": 500,
+  "rangeType": "OTHER",
+  "rangeDescription": "0 m (vedi testo)",
+  "effect": "un simbolo",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una runa provoca sanguinamento nelle creature vicine. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Simbolo_di_Dissanguamento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Simbolo di Dissanguamento: https://golarion.altervista.org/wiki/Simbolo_di_Dissanguamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "walkThePlank",
+  "name": "Cammina sull’Asse",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 5,
+    "WIZARD": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un dente di squalo e una scheggia dello scafo di una nave",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "area": "6 metri per 6 metri di buca, 3 metri di profondità ogni 4 livelli",
+  "durationType": "ROUND",
+  "durationDescription": "1 round più 1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Apre una fossa piena d'acqua nella quale possono comparire squali evocati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cammina_sull%E2%80%99Asse",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cammina sull’Asse: https://golarion.altervista.org/wiki/Incantesimi/Cammina_sull%E2%80%99Asse Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

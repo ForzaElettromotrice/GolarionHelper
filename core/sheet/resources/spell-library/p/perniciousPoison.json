@@ -1,0 +1,52 @@
+{
+  "id": "perniciousPoison",
+  "name": "Veleno Pernicioso",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "POISON"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 2,
+    "ARCANIST": 2,
+    "HUNTER": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "OCCULTIST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Indebolisce la resistenza ai veleni e ne prolunga l'azione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Veleno_Pernicioso",
+  "effects": [
+    {
+      "id": "poisonSaves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "4",
+      "condition": "Contro veleno"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Prolungare ogni veleno di due incrementi di frequenza; applicare -4 ai tentativi di altri soggetti di curare il veleno. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

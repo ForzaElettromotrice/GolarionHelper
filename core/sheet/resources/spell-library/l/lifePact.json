@@ -1,0 +1,55 @@
+{
+  "id": "lifePact",
+  "name": "Patto di Vita",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "CLERIC": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "ORACLE": 2,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2,
+    "SHAMAN": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una goccia di sangue da ogni bersaglio",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura vivente consenziente/livello, due delle quali non possono trovarsi a più di 9 metri l'una dall'altra",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Permette agli alleati di condividere vitalità per stabilizzare un compagno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Patto_di_Vita",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Patto di Vita: https://golarion.altervista.org/wiki/Incantesimi/Patto_di_Vita Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura vivente consenziente/livello, due delle quali non possono trovarsi a più di 9 metri l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

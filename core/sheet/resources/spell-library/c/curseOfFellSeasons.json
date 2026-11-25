@@ -1,0 +1,45 @@
+{
+  "id": "curseOfFellSeasons",
+  "name": "Maledizione delle Stagioni Inclementi",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "CURSE",
+    "DARKNESS"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "CLERIC": 9,
+    "DRUID": 9,
+    "WITCH": 9,
+    "WIZARD": 9,
+    "ORACLE": 9,
+    "SHAMAN": 9,
+    "SORCERER": 9
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "scultura in legnoscuro di un albero da 15.000 mo",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "area": "emanazione del raggio di 3 chilometri dal punto toccato",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Altera sfavorevolmente il clima di una regione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Maledizione_delle_Stagioni_Inclementi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledizione delle Stagioni Inclementi: https://golarion.altervista.org/wiki/Maledizione_delle_Stagioni_Inclementi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

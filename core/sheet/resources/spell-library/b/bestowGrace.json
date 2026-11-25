@@ -1,0 +1,40 @@
+{
+  "id": "bestowGrace",
+  "name": "Concedere Grazia",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "PALADIN": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura buona toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Conferisce al soggetto il beneficio ai tiri salvezza previsto dalla grazia concessa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Concedere_Grazia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Concedere Grazia: https://golarion.altervista.org/wiki/Incantesimi/Concedere_Grazia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

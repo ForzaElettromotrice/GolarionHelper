@@ -1,0 +1,178 @@
+{
+  "id": "druid.archetype.af22f5e1e094",
+  "classType": "druid",
+  "name": "Sciamano dello Squalo",
+  "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Legame con la Natura, Empatia Selvatica, Forma Selvatica. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "druid.feature.59dc53dc9a87",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.eb66996dc90e",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.40f9a719229c",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.feature.44b793b57d4f",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.feature.a78313d04433",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "druid.feature.59dc53dc9a87",
+    "druid.feature.eb66996dc90e",
+    "druid.feature.40f9a719229c",
+    "druid.feature.44b793b57d4f",
+    "druid.feature.a78313d04433"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "druid.archetype.af22f5e1e094.instructions",
+      "name": "Sciamano dello Squalo",
+      "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "druid.archetype.af22f5e1e094.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Legame con la Natura, Empatia Selvatica, Forma Selvatica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.af22f5e1e094.feature.1",
+      "name": "Legame con la Natura",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo",
+      "progression": [
+        {
+          "id": "druid.archetype.af22f5e1e094.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Sciamano dello Squalo — Legame con la Natura: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.af22f5e1e094.feature.2",
+      "name": "Empatia Selvatica (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo",
+      "progression": [
+        {
+          "id": "druid.archetype.af22f5e1e094.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Sciamano dello Squalo — Empatia Selvatica (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.af22f5e1e094.feature.3",
+      "name": "Trasformazione Totemica (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo",
+      "progression": [
+        {
+          "id": "druid.archetype.af22f5e1e094.feature.3.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Sciamano dello Squalo — Trasformazione Totemica (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.af22f5e1e094.feature.4",
+      "name": "Evocazione Totemica (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo",
+      "progression": [
+        {
+          "id": "druid.archetype.af22f5e1e094.feature.4.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Sciamano dello Squalo — Evocazione Totemica (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.af22f5e1e094.feature.5",
+      "name": "Forma Selvatica (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo",
+      "progression": [
+        {
+          "id": "druid.archetype.af22f5e1e094.feature.5.initial",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Sciamano dello Squalo — Forma Selvatica (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.af22f5e1e094.feature.6",
+      "name": "Talenti Bonus",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo",
+      "progression": [
+        {
+          "id": "druid.archetype.af22f5e1e094.feature.6.initial",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Sciamano dello Squalo — Talenti Bonus: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Sciamano_dello_Squalo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

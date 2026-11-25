@@ -1,0 +1,37 @@
+{
+  "id": "netManeuvering",
+  "name": "Manovra della Rete",
+  "description": "Consente di disarmare e sbilanciare usando una rete. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Manovra_della_Rete",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Adepto della Rete",
+      "feat": {
+        "id": "netAdept"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Rete) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +3",
+      "expression": "@bab >= 3"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Manovra della Rete: https://golarion.altervista.org/wiki/Talenti/Manovra_della_Rete. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Rete) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

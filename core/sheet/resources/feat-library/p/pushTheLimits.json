@@ -1,0 +1,33 @@
+{
+  "id": "pushTheLimits",
+  "name": "Superare i Limiti",
+  "description": "Aggiunge una riserva supplementare utilizzabile oltre i normali limiti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Superare_i_Limiti",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Costituzione 13",
+      "expression": "@con >= 13"
+    },
+    {
+      "description": "Vigoria in Combattimento",
+      "feat": {
+        "id": "combatStamina"
+      }
+    },
+    {
+      "description": "bonus di attacco base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Superare i Limiti: https://golarion.altervista.org/wiki/Talenti/Superare_i_Limiti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

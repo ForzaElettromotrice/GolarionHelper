@@ -1,0 +1,47 @@
+{
+  "id": "webShelter",
+  "name": "Riparo di Ragnatele",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "HUNTER": 2,
+    "CLERIC": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "ORACLE": 2,
+    "RANGER": 2,
+    "WARPRIEST": 2,
+    "SHAMAN": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "una sfera di ragnatela del diametro da 1,5 - 3 m o una semisfera di 1,5 - 6 m",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Intesse un riparo di ragnatele per proteggere gli occupanti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Riparo_di_Ragnatele",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Riparo di Ragnatele: https://golarion.altervista.org/wiki/Incantesimi/Riparo_di_Ragnatele Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

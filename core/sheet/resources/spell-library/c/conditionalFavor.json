@@ -1,0 +1,47 @@
+{
+  "id": "conditionalFavor",
+  "name": "Favore Condizionato",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "BARD": 2,
+    "CLERIC": 2,
+    "WITCH": 2,
+    "INQUISITOR": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "PALADIN": 1,
+    "WARPRIEST": 2,
+    "SKALD": 2
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 Azione Veloce",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "vedi testo",
+  "target": "1 creatura consenziente",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Vincola la permanenza di un altro beneficio magico al rispetto di una condizione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Favore_Condizionato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Favore Condizionato: https://golarion.altervista.org/wiki/Incantesimi/Favore_Condizionato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno (vedi testo) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

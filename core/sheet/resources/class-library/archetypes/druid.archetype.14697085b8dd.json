@@ -1,0 +1,251 @@
+{
+  "id": "druid.archetype.14697085b8dd",
+  "classType": "druid",
+  "name": "Druido Urbano",
+  "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Legame con la Natura, Mille Volti, Forma Selvatica. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "druid.spontaneousCasting",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.1432c1479336",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.cb6c692c6b8a",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.5cb4f58f9490",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.eb66996dc90e",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.40f9a719229c",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.feature.59dc53dc9a87",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.feature.a78313d04433",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.classSkills",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "druid.spontaneousCasting",
+    "druid.feature.1432c1479336",
+    "druid.feature.cb6c692c6b8a",
+    "druid.feature.5cb4f58f9490",
+    "druid.feature.eb66996dc90e",
+    "druid.feature.40f9a719229c",
+    "druid.feature.59dc53dc9a87",
+    "druid.feature.a78313d04433",
+    "druid.classSkills"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "druid.archetype.14697085b8dd.instructions",
+      "name": "Druido Urbano",
+      "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "druid.archetype.14697085b8dd.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Legame con la Natura, Mille Volti, Forma Selvatica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.14697085b8dd.feature.1",
+      "name": "Lancio Spontaneo",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano",
+      "progression": [
+        {
+          "id": "druid.archetype.14697085b8dd.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido Urbano — Lancio Spontaneo: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.14697085b8dd.feature.2",
+      "name": "Legame con la Natura (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano",
+      "progression": [
+        {
+          "id": "druid.archetype.14697085b8dd.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido Urbano — Legame con la Natura (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.14697085b8dd.feature.3",
+      "name": "Custode del Sapere (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano",
+      "progression": [
+        {
+          "id": "druid.archetype.14697085b8dd.feature.3.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido Urbano — Custode del Sapere (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.14697085b8dd.feature.4",
+      "name": "Resistenza alle Tentazioni (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano",
+      "progression": [
+        {
+          "id": "druid.archetype.14697085b8dd.feature.4.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido Urbano — Resistenza alle Tentazioni (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.14697085b8dd.feature.5",
+      "name": "Mille Volti (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano",
+      "progression": [
+        {
+          "id": "druid.archetype.14697085b8dd.feature.5.initial",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido Urbano — Mille Volti (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.14697085b8dd.feature.6",
+      "name": "Forma Selvatica (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano",
+      "progression": [
+        {
+          "id": "druid.archetype.14697085b8dd.feature.6.initial",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido Urbano — Forma Selvatica (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.14697085b8dd.feature.7",
+      "name": "Forza della Mente (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano",
+      "progression": [
+        {
+          "id": "druid.archetype.14697085b8dd.feature.7.initial",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Druido Urbano — Forza della Mente (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Druido_Urbano Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.14697085b8dd.classSkills.2",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Concessione dal privilegio di archetipo.",
+      "progression": [
+        {
+          "id": "druid.archetype.14697085b8dd.classSkills.2.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "skill0",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.local"
+            },
+            {
+              "id": "skill1",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.nobility"
+            },
+            {
+              "id": "skill2",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.history"
+            },
+            {
+              "id": "skill3",
+              "type": "classSkillGrant",
+              "resource": "skill.diplomacy"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

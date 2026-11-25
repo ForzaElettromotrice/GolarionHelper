@@ -1,0 +1,40 @@
+{
+  "id": "improvedNaturalArmor",
+  "name": "Armatura Naturale Migliorata",
+  "description": "Incrementa di un punto l'armatura naturale già posseduta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Armatura_Naturale_Migliorata",
+  "types": [
+    "monster"
+  ],
+  "repeatability": "unlimited",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Armatura Naturale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Costituzione 13",
+      "expression": "@con >= 13"
+    }
+  ],
+  "effects": [
+    {
+      "id": "naturalArmor",
+      "type": "modifier",
+      "resource": "armorClass.solid",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "1"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "È un incremento dell'armatura naturale esistente, non una nuova fonte alternativa; mantenerne le esclusioni contro attacchi di contatto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Armatura Naturale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

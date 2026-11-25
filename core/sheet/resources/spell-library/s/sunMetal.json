@@ -1,0 +1,46 @@
+{
+  "id": "sunMetal",
+  "name": "Metallo Solare",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "FIRE"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "PALADIN": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 arma da mischia",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Ricopre temporaneamente un'arma di un rivestimento infuocato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Metallo_Solare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Metallo Solare: https://golarion.altervista.org/wiki/Incantesimi/Metallo_Solare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

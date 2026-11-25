@@ -1,0 +1,50 @@
+{
+  "id": "greaterGrapple",
+  "name": "Lottare Superiore",
+  "description": "Aggiunge +2 alle prove di Lottare, cumulabile con il talento migliorato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Lottare_Superiore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Lottare Migliorato",
+      "feat": {
+        "id": "improvedGrapple"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "maneuver",
+      "type": "modifier",
+      "resource": "combatManeuver.bonus.grapple",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Mantenere la presa diventa un'azione di movimento; sono consentite due prove per round e basta un successo per mantenerla. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

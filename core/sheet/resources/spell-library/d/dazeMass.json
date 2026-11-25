@@ -1,0 +1,64 @@
+{
+  "id": "dazeMass",
+  "name": "Frastornare di Massa",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 4,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "WITCH": 4,
+    "INQUISITOR": 4,
+    "WIZARD": 4,
+    "MEDIUM": 3,
+    "MESMERIST": 4,
+    "OCCULTIST": 4,
+    "PSYCHIC": 3,
+    "SKALD": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "SPECIAL",
+  "castingTimeDescription": "Non indicato nella fonte; verificare manualmente.",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una o più creature umanoidi, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Impedisce temporaneamente a più creature di agire. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Frastornare_di_Massa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Frastornare di Massa: https://golarion.altervista.org/wiki/Incantesimi/Frastornare_di_Massa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte non indica il tempo di lancio: verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: una o più creature umanoidi, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

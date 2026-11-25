@@ -1,0 +1,37 @@
+{
+  "id": "furiousFinish",
+  "name": "Assalto Furioso",
+  "description": "Conclude l'ira per massimizzare i danni del colpo consentito. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Assalto_Furioso",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Colpo Vitale",
+      "feat": {
+        "id": "vitalStrike"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Assalto Furioso: https://golarion.altervista.org/wiki/Talenti/Assalto_Furioso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

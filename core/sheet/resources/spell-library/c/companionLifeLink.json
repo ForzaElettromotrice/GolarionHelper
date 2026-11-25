@@ -1,0 +1,47 @@
+{
+  "id": "companionLifeLink",
+  "name": "Collegamento Vitale al Compagno",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "HUNTER": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "RANGER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una goccia di icore di Eidolon",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "uno dei propri Compagni Animali o il proprio Famiglio",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Rende percepibili le ferite del compagno e facilita il soccorso quando è in pericolo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Collegamento_Vitale_al_Compagno",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Collegamento Vitale al Compagno: https://golarion.altervista.org/wiki/Incantesimi/Collegamento_Vitale_al_Compagno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

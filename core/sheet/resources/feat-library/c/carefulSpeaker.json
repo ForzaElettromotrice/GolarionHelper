@@ -1,0 +1,23 @@
+{
+  "id": "carefulSpeaker",
+  "name": "Oratore Accorto",
+  "description": "Favorisce comunicazioni ingannevoli e difesa dalla lettura mentale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Oratore_Accorto",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Saggezza 13",
+      "expression": "@wis >= 13"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Oratore Accorto: https://golarion.altervista.org/wiki/Talenti/Oratore_Accorto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

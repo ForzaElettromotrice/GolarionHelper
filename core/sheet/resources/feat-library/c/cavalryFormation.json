@@ -1,0 +1,26 @@
+{
+  "id": "cavalryFormation",
+  "name": "Formazione di Cavalleria",
+  "description": "Permette cariche e posizionamenti coordinati delle cavalcature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Formazione_di_Cavalleria",
+  "types": [
+    "combat",
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Combattere in Sella",
+      "feat": {
+        "id": "mountedCombat"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Formazione di Cavalleria: https://golarion.altervista.org/wiki/Talenti/Formazione_di_Cavalleria. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

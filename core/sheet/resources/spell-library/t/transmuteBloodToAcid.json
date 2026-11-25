@@ -1,0 +1,48 @@
+{
+  "id": "transmuteBloodToAcid",
+  "name": "Trasmutare Sangue in Acido",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "ACID",
+    "PAIN"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WIZARD": 9,
+    "PSYCHIC": 9,
+    "SORCERER": 9
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una bambola di cera e una fiala di Acido del valore di 10 mo",
+  "materialComponentCostInGoldPieces": 10,
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura vivente",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione (massimo 1 round/5 livelli)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "HALF",
+      "description": "Tempra dimezza"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Rende acido il sangue della vittima, ferendola e minacciando chi la colpisce. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trasmutare_Sangue_in_Acido",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Trasmutare Sangue in Acido: https://golarion.altervista.org/wiki/Incantesimi/Trasmutare_Sangue_in_Acido Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

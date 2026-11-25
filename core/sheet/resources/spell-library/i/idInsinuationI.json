@@ -1,0 +1,41 @@
+{
+  "id": "idInsinuationI",
+  "name": "Insinuazione nell'ID I",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "PSYCHIC": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione + 1 round",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Introduce confusione mentale finché dura la concentrazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Insinuazione_nell%27ID#Insinuazione_nell'ID_I",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Insinuazione nell'ID I: https://golarion.altervista.org/wiki/Incantesimi/Insinuazione_nell%27ID#Insinuazione_nell'ID_I Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

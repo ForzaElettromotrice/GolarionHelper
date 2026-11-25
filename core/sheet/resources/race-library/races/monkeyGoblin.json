@@ -1,0 +1,304 @@
+{
+  "id": "monkeyGoblin",
+  "name": "Goblin Scimmia",
+  "qualities": [
+    {
+      "id": "monkeyGoblin.type",
+      "name": "Tipo",
+      "description": "Umanoide (goblinoide).",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide (goblinoide). Le interazioni basate sul tipo richiedono verifica manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "monkeyGoblin.size",
+      "name": "Taglia",
+      "description": "Piccola.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "small"
+        }
+      ]
+    },
+    {
+      "id": "monkeyGoblin.baseSpeed",
+      "name": "Velocità",
+      "description": "6 m sul terreno.",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "monkeyGoblin.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Modificatori razziali.",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "monkeyGoblin.languages",
+      "name": "Linguaggi",
+      "description": "Lingue concesse e apprendimento.",
+      "effects": [
+        {
+          "id": "goblin",
+          "type": "languageGrant",
+          "languageId": "goblin"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "common",
+            "draconic",
+            "gnoll",
+            "gnome",
+            "halfling",
+            "dwarven",
+            "orc"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "pathfinderSignLanguage",
+            "polyglot",
+            "reptoid",
+            "rougarou",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varisianSignLanguage",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "yaddithian"
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "monkeyGoblin.climb",
+      "name": "Movimento: scalare",
+      "description": "Movimento: scalare",
+      "effects": [
+        {
+          "id": "climb",
+          "type": "movementGrant",
+          "movementType": "climb",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": false
+        }
+      ]
+    },
+    {
+      "id": "monkeyGoblin.naturalClimber",
+      "name": "Scalatore Naturale",
+      "description": "Scalatore Naturale",
+      "effects": [
+        {
+          "id": "climb",
+          "type": "modifier",
+          "resource": "skill.climb",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "8"
+        },
+        {
+          "id": "climbing",
+          "type": "reminder",
+          "message": "Movimento di scalare: prendere 10 consentito anche sotto minaccia; le condizioni ambientali si valutano manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "monkeyGoblin.acrobatics",
+      "name": "Acrobatico",
+      "description": "Acrobatico",
+      "effects": [
+        {
+          "id": "acrobatics",
+          "type": "modifier",
+          "resource": "skill.acrobatics",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "stealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "monkeyGoblin.fearless",
+      "name": "Temerarietà",
+      "description": "Temerarietà",
+      "effects": [
+        {
+          "id": "fear",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Paura"
+        }
+      ]
+    },
+    {
+      "id": "monkeyGoblin.senses",
+      "name": "Sensi",
+      "description": "Sensi",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Visione crepuscolare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "monkeyGoblin.prehensileTail",
+      "name": "Coda Prensile",
+      "description": "Coda Prensile",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Trasporta oggetti ma non brandisce armi; recuperare un piccolo oggetto riposto su di sé richiede un'azione veloce. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": []
+}

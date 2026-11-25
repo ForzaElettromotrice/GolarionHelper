@@ -1,0 +1,46 @@
+{
+  "id": "instantSummonsGreater",
+  "name": "Evocazioni Instantanee Superiore",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WITCH": 8,
+    "WIZARD": 8,
+    "PSYCHIC": 8,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un zaffiro dal valore di 1.000 mo",
+  "materialComponentCostInGoldPieces": 1000,
+  "rangeType": "OTHER",
+  "rangeDescription": "vedi testo",
+  "target": "fino a un oggetto ogni 3 livelli dell'incantatore, ognuno dei quali pesa fino a 5 kg, la cui dimensione più lunga sia di 180 cm o meno",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Estende il richiamo istantaneo a più oggetti e creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evocazioni_Instantanee_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evocazioni Instantanee Superiore: https://golarion.altervista.org/wiki/Incantesimi/Evocazioni_Instantanee_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: fino a un oggetto ogni 3 livelli dell'incantatore, ognuno dei quali pesa fino a 5 kg, la cui dimensione più lunga sia di 180 cm o meno. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

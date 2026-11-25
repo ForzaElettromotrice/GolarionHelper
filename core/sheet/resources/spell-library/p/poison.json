@@ -1,0 +1,56 @@
+{
+  "id": "poison",
+  "name": "Veleno",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "POISON"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 4,
+    "HUNTER": 3,
+    "CLERIC": 4,
+    "DRUID": 3,
+    "WITCH": 4,
+    "MESMERIST": 4,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "SHAMAN": 4
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "DECAY": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura vivente toccata",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Trasmette un veleno che danneggia la Costituzione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Veleno",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Veleno: https://golarion.altervista.org/wiki/Incantesimi/Veleno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

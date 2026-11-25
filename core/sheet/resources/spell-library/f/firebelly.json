@@ -1,0 +1,58 @@
+{
+  "id": "firebelly",
+  "name": "Stomaco di Fuoco",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "INVESTIGATOR": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "DRUID": 1,
+    "PALADIN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza, vedi testo."
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si, vedi testo.",
+  "description": "Fornisce resistenza al fuoco 5 e un soffio a cono di 4,5 metri che causa 1d4 danni da fuoco. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Stomaco_di_Fuoco",
+  "effects": [
+    {
+      "id": "fireResistance",
+      "type": "energyResistance",
+      "energy": "fire",
+      "expression": "5"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Ogni soffio richiede un'azione standard e riduce la durata residua di un minuto; danni, Riflessi per dimezzare e RI sono manuali. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Alchimista/Investigatore 1, Cacciatore 1, Chierico/Oracolo/Sacerdote Guerriero 1, Druido 1, Paladino 1 (Torag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

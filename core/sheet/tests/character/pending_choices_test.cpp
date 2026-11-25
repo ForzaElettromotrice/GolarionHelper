@@ -1,6 +1,7 @@
 #include "golarion/character/character_sheet.hpp"
 #include "golarion/character/race_definition_json.hpp"
-#include "golarion/character/race_definition_catalog.hpp"
+#include "golarion/character/race_definition_manager.hpp"
+#include "golarion/catalog/catalog_reader.hpp"
 #include "golarion/character/prepared_spellcasting.hpp"
 #include "golarion/character/flexible_spellcasting.hpp"
 #include "golarion/character/spontaneous_spellcasting.hpp"
@@ -38,8 +39,13 @@ namespace
     }
 }
 
-int main()
+int main(int argc, char **argv)
 {
+    if (argc != 3) return 1;
+    golarion::catalog::setDirectory(argv[1]);
+    auto raceJson = golarion::catalog::readFile("race-library/races/test.json");
+    (void)golarion::RaceDefinitionManager::instance().get("test");
+    golarion::catalog::setDirectory(argv[2]);
     using namespace golarion;
     auto fighter = test::classDefinition(CharacterClassType::Fighter);
     fighter.features = {{"path", "Percorso", "Descrizione", {
@@ -124,7 +130,6 @@ int main()
     assert(!find(sheet.pendingChoices(), ClassOptionChoiceReference{CharacterClassType::Fighter, "nested", "child"}));
     assert(snapshot == restored.pendingChoices());
 
-    auto raceJson = catalog::loadRaceDefinitionCatalog().front();
     assert(raceDefinitionFromJson(raceJson).standardFeatures.front().choices.front().blocksAdvancement);
     raceJson["standardFeatures"][0]["choices"][0]["blocksAdvancement"] = "yes";
     rejects([&] { raceDefinitionFromJson(raceJson); });

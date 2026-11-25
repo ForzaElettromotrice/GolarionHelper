@@ -1,0 +1,56 @@
+{
+  "id": "feastOnFear",
+  "name": "Banchetto di Paura",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING",
+    "FEAR"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 4,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "PSYCHIC": 5,
+    "SKALD": 4,
+    "SHAMAN": 5,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una o più creature viventi (vedi testo)",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Terrorizza le vittime e trasforma la loro paura in punti ferita temporanei per il lanciatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Banchetto_di_Paura",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Banchetto di Paura: https://golarion.altervista.org/wiki/Incantesimi/Banchetto_di_Paura Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: una o più creature viventi (vedi testo). Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

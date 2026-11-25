@@ -1,0 +1,50 @@
+{
+  "id": "marionettePossession",
+  "name": "Possessione della Marionetta",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "WITCH": 3,
+    "INVESTIGATOR": 3,
+    "WIZARD": 3,
+    "MESMERIST": 3,
+    "PSYCHIC": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un pezzo di carta con il nome del bersaglio",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura consenziente",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello o finché non si ritorna nel proprio corpo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Permette di assumere il controllo di un'altra creatura visibile tramite possessione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Possessione_della_Marionetta",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Possessione della Marionetta: https://golarion.altervista.org/wiki/Incantesimi/Possessione_della_Marionetta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

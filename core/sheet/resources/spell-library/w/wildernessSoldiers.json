@@ -1,0 +1,35 @@
+{
+  "id": "wildernessSoldiers",
+  "name": "Soldati delle Terre Selvagge",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "DRUID": 2,
+    "RANGER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "area": "emanazione del raggio di 9 m, centrata su di sé",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Anima la vegetazione vicina affinché assista l'incantatore in combattimento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Soldati_delle_Terre_Selvagge",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Soldati delle Terre Selvagge: https://golarion.altervista.org/wiki/Incantesimi/Soldati_delle_Terre_Selvagge Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "shadowEvocationGreater",
+  "name": "Ombra di una Invocazione Superiore",
+  "school": "ILLUSION",
+  "descriptors": [
+    "SHADOW"
+  ],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WIZARD": 8,
+    "SORCERER": 8
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DARKNESS": 8
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "vedi testo",
+  "effect": "vedi testo",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita (se si interagisce)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Riproduce invocazioni più potenti attraverso ombre maggiormente consistenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ombra_di_una_Invocazione_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ombra di una Invocazione Superiore: https://golarion.altervista.org/wiki/Incantesimi/Ombra_di_una_Invocazione_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

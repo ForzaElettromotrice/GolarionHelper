@@ -1,0 +1,30 @@
+{
+  "id": "seaHunter",
+  "name": "Cacciatore Marino",
+  "description": "Estende le manovre di sbilanciamento ai nemici che nuotano. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Cacciatore_Marino",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Marinide Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Cacciatore Marino: https://golarion.altervista.org/wiki/Talenti/Cacciatore_Marino. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Maestria in Combattimento; Prerequisito da verificare manualmente: Marinide Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

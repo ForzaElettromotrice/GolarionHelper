@@ -1,0 +1,33 @@
+{
+  "id": "cartwheelDodge",
+  "name": "Schivare Ruotando",
+  "description": "Permette di spostarsi dopo aver evitato un attacco grazie a eludere. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Schivare_Ruotando",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Eludere Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Eludere Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Acrobazia 12 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Schivare Ruotando: https://golarion.altervista.org/wiki/Talenti/Schivare_Ruotando. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Eludere; Prerequisito da verificare manualmente: privilegio di classe Eludere Migliorato; Prerequisito da verificare manualmente: Acrobazia 12 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

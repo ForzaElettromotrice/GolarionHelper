@@ -1,0 +1,60 @@
+{
+  "id": "poxOfRumors",
+  "name": "Epidemia di Pettegolezzi",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING",
+    "CURSE"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "BARD": 5,
+    "CLERIC": 7,
+    "WITCH": 7,
+    "WIZARD": 7,
+    "MESMERIST": 5,
+    "ORACLE": 7,
+    "PSYCHIC": 7,
+    "SKALD": 5,
+    "SPIRITUALIST": 5,
+    "SORCERER": 7
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "8 ore",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una connessione fisica al bersaglio, vedi testo",
+  "rangeType": "OTHER",
+  "rangeDescription": "vedi testo",
+  "target": "1 creatura",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega, poi Volontà parziale (vedi testo)"
+    },
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà nega, poi Volontà parziale (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una maledizione attira sul soggetto voci e dicerie dannose. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Epidemia_di_Pettegolezzi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Epidemia di Pettegolezzi: https://golarion.altervista.org/wiki/Incantesimi/Epidemia_di_Pettegolezzi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

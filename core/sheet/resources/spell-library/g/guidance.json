@@ -1,0 +1,52 @@
+{
+  "id": "guidance",
+  "name": "Guida",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ADEPT": 0,
+    "HUNTER": 0,
+    "CLERIC": 0,
+    "SUMMONER": 0,
+    "UNCHAINED_SUMMONER": 0,
+    "DRUID": 0,
+    "WITCH": 0,
+    "INQUISITOR": 0,
+    "MEDIUM": 0,
+    "OCCULTIST": 0,
+    "ORACLE": 0,
+    "WARPRIEST": 0,
+    "SHAMAN": 0,
+    "SPIRITUALIST": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Fornisce +1 a un singolo attacco, tiro salvezza o test di abilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Guida",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Guida: https://golarion.altervista.org/wiki/Incantesimi/Guida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,97 @@
+{
+  "id": "spiritualist.archetype.77c8fe661c14",
+  "classType": "spiritualist",
+  "name": "Mente Frazionata",
+  "description": "Archetipo di Spiritista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Spiritista/Archetipi#Mente_Frazionata Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "spiritualist.feature.8b40f8aac4b6",
+      "type": "replace"
+    },
+    {
+      "featureId": "spiritualist.feature.873c85455334",
+      "type": "replace"
+    },
+    {
+      "featureId": "spiritualist.feature.913503a333e7",
+      "type": "replace"
+    },
+    {
+      "featureId": "spiritualist.feature.16bb33eb2f0d",
+      "type": "replace"
+    },
+    {
+      "featureId": "spiritualist.spellcasting",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "spiritualist.feature.16bb33eb2f0d",
+    "spiritualist.feature.873c85455334",
+    "spiritualist.feature.8b40f8aac4b6",
+    "spiritualist.feature.913503a333e7"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "spiritualist.archetype.77c8fe661c14.instructions",
+      "name": "Mente Frazionata",
+      "description": "Archetipo di Spiritista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Spiritista/Archetipi#Mente_Frazionata Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "spiritualist.archetype.77c8fe661c14.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Spiritista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Spiritista/Archetipi#Mente_Frazionata Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "spiritualist.archetype.77c8fe661c14.feature.1",
+      "name": "Lancio Emotivo",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Spiritista/Archetipi#Mente_Frazionata",
+      "progression": [
+        {
+          "id": "spiritualist.archetype.77c8fe661c14.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Mente Frazionata — Lancio Emotivo: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Spiritista/Archetipi#Mente_Frazionata Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "spiritualist.archetype.77c8fe661c14.feature.2",
+      "name": "Potere Emotivo (Mag)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Spiritista/Archetipi#Mente_Frazionata",
+      "progression": [
+        {
+          "id": "spiritualist.archetype.77c8fe661c14.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Mente Frazionata — Potere Emotivo (Mag): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Spiritista/Archetipi#Mente_Frazionata Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "sapMaster",
+  "name": "Maestro del Manganello",
+  "description": "Rende particolarmente devastanti determinati attacchi furtivi non letali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestro_del_Manganello",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Adepto del Manganello",
+      "feat": {
+        "id": "sapAdept"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Furtivo +3d6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestro del Manganello: https://golarion.altervista.org/wiki/Talenti/Maestro_del_Manganello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Furtivo +3d6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

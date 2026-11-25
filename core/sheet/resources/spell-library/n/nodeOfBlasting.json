@@ -1,0 +1,48 @@
+{
+  "id": "nodeOfBlasting",
+  "name": "Nodo di Brillamento",
+  "school": "ABJURATION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "spellLevelByClass": {
+    "MEDIUM": 3,
+    "MESMERIST": 3,
+    "OCCULTIST": 2,
+    "PSYCHIC": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto toccato che non pesi più di 5 kg",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale; vedi testo;"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Imprime su un oggetto una trappola mentale attivata dal contatto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Nodo_di_Brillamento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Nodo di Brillamento: https://golarion.altervista.org/wiki/Incantesimi/Nodo_di_Brillamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 oggetto toccato che non pesi più di 5 kg. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,53 @@
+{
+  "id": "gustOfWind",
+  "name": "Folata di Vento",
+  "school": "EVOCATION",
+  "descriptors": [
+    "AIR"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "HUNTER": 2,
+    "DRUID": 2,
+    "BLOODRAGER": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "OCCULTIST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "18 m",
+  "effect": "soffio di vento in forma lineare emanato da sé fino all’estremità del raggio di azione",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una raffica violenta sposta o abbatte le creature leggere. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Folata_di_Vento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Folata di Vento: https://golarion.altervista.org/wiki/Incantesimi/Folata_di_Vento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Aria 2 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

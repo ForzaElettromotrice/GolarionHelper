@@ -1,0 +1,37 @@
+{
+  "id": "desperateSwing",
+  "name": "Colpo Disperato",
+  "description": "Consente un attacco in mischia pur adottando una difesa totale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_Disperato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Guerriero Prudente",
+      "feat": {
+        "id": "cautiousFighter"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Halfling Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo Disperato: https://golarion.altervista.org/wiki/Talenti/Colpo_Disperato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Halfling Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

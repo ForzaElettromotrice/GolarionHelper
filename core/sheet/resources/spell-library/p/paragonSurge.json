@@ -1,0 +1,46 @@
+{
+  "id": "paragonSurge",
+  "name": "Impulso di Fierezza Razziale",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 3,
+    "CLERIC": 3,
+    "WITCH": 3,
+    "INVESTIGATOR": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "MAGUS": 4,
+    "MEDIUM": 3,
+    "ORACLE": 3,
+    "PALADIN": 4,
+    "WARPRIEST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale (solo Mezzelfo)",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Esalta temporaneamente le potenzialità della propria eredità razziale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Impulso_di_Fierezza_Razziale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Impulso di Fierezza Razziale: https://golarion.altervista.org/wiki/Incantesimi/Impulso_di_Fierezza_Razziale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

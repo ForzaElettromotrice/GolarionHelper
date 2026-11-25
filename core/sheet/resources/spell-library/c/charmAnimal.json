@@ -1,0 +1,46 @@
+{
+  "id": "charmAnimal",
+  "name": "Charme su Animali",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "CHARM",
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "DRUID": 1,
+    "PSYCHIC": 1,
+    "RANGER": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura Animale",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega;"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Modifica favorevolmente l'atteggiamento di un animale senza concederne un controllo assoluto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Charme_su_Animali",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Charme su Animali: https://golarion.altervista.org/wiki/Incantesimi/Charme_su_Animali Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

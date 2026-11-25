@@ -1,0 +1,58 @@
+{
+  "id": "unchainedRogue.archetype.4b5b05f6a3c0",
+  "classType": "unchainedRogue",
+  "name": "Investigatore",
+  "description": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Investigatore Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "unchainedRogue.feature.8f4dbb15b617",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "unchainedRogue.feature.8f4dbb15b617"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "unchainedRogue.archetype.4b5b05f6a3c0.instructions",
+      "name": "Investigatore",
+      "description": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Investigatore Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.4b5b05f6a3c0.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Investigatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.archetype.4b5b05f6a3c0.feature.1",
+      "name": "Indagare (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Investigatore",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.4b5b05f6a3c0.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Investigatore — Indagare (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Investigatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

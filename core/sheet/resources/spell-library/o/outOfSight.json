@@ -1,0 +1,45 @@
+{
+  "id": "outOfSight",
+  "name": "Lontano dagli Occhi",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "spellLevelByClass": {
+    "MEDIUM": 3,
+    "MESMERIST": 3,
+    "PSYCHIC": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una striscia di tessuto nero",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I), vedi testo",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega, vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si, vedi testo",
+  "description": "Quando distoglie lo sguardo, il soggetto dimentica la presenza dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lontano_dagli_Occhi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Lontano dagli Occhi: https://golarion.altervista.org/wiki/Incantesimi/Lontano_dagli_Occhi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

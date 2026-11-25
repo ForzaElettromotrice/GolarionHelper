@@ -1,0 +1,33 @@
+{
+  "id": "trapWrecker",
+  "name": "Distruttore di Trappole",
+  "description": "Permette di tentare di disarmare una trappola colpendola con un'arma da mischia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Distruttore_di_Trappole",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Disattivare Congegni 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Orco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Distruttore di Trappole: https://golarion.altervista.org/wiki/Talenti/Distruttore_di_Trappole. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Poderoso; Prerequisito da verificare manualmente: Disattivare Congegni 1 grado; Prerequisito da verificare manualmente: Orco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

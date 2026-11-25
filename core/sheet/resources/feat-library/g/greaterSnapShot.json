@@ -1,0 +1,59 @@
+{
+  "id": "greaterSnapShot",
+  "name": "Tiro Scattante Superiore",
+  "description": "Potenzia i danni e i critici dei tiri di reazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tiro_Scattante_Superiore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 17",
+      "expression": "@dex >= 17"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Tiro Rapido",
+      "feat": {
+        "id": "rapidShot"
+      }
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    },
+    {
+      "description": "Tiro Scattante",
+      "feat": {
+        "id": "snapShot"
+      }
+    },
+    {
+      "description": "Tiro Scattante Migliorato",
+      "feat": {
+        "id": "improvedSnapShot"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +12",
+      "expression": "@bab >= 12"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tiro Scattante Superiore: https://golarion.altervista.org/wiki/Talenti/Tiro_Scattante_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

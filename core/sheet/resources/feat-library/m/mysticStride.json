@@ -1,0 +1,37 @@
+{
+  "id": "mysticStride",
+  "name": "Andatura Mistica",
+  "description": "Permette di attraversare più agevolmente anche la vegetazione rafforzata dalla magia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Andatura_Mistica",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Passo Leggero",
+      "feat": {
+        "id": "nimbleMoves"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Andatura nel Bosco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Andatura Mistica: https://golarion.altervista.org/wiki/Talenti/Andatura_Mistica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di classe Andatura nel Bosco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

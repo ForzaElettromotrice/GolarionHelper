@@ -1,0 +1,67 @@
+{
+  "id": "neutralizePoison",
+  "name": "Neutralizza Veleno",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "ADEPT": 3,
+    "ALCHEMIST": 4,
+    "BARD": 4,
+    "HUNTER": 3,
+    "CLERIC": 4,
+    "DRUID": 3,
+    "WITCH": 4,
+    "INQUISITOR": 4,
+    "INVESTIGATOR": 4,
+    "ORACLE": 4,
+    "PALADIN": 4,
+    "RANGER": 3,
+    "WARPRIEST": 4,
+    "SKALD": 4,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 4
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "HEALING": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "carbone",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura o 1 oggetto fino a 27 dm3/livello toccato",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo o 10 minuti/livello; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Neutralizza il veleno presente nel bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Neutralizza_Veleno",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Neutralizza Veleno: https://golarion.altervista.org/wiki/Incantesimi/Neutralizza_Veleno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura o 1 oggetto fino a 27 dm3/livello toccato. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

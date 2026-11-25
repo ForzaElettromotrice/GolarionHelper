@@ -1,0 +1,83 @@
+{
+  "id": "paladin.archetype.90480f139e6d",
+  "classType": "paladin",
+  "name": "Difensore Divino",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Difensore_Divino Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Legame Divino. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.feature.46fda65c8c8d",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.57f13dada9e2",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "paladin.feature.46fda65c8c8d",
+    "paladin.feature.57f13dada9e2"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.90480f139e6d.instructions",
+      "name": "Difensore Divino",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Difensore_Divino Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Legame Divino. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.90480f139e6d.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Difensore_Divino Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Legame Divino. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.90480f139e6d.feature.afad2a1736",
+      "name": "Difesa Condivisa (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Difensore_Divino",
+      "progression": [
+        {
+          "id": "paladin.archetype.90480f139e6d.feature.afad2a1736.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Difensore Divino — Difesa Condivisa (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Difensore_Divino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.90480f139e6d.feature.f44f0bdece",
+      "name": "Legame Divino (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Difensore_Divino",
+      "progression": [
+        {
+          "id": "paladin.archetype.90480f139e6d.feature.f44f0bdece.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Difensore Divino — Legame Divino (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Difensore_Divino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

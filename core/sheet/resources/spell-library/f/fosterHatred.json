@@ -1,0 +1,51 @@
+{
+  "id": "fosterHatred",
+  "name": "Nutrire Odio",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ANTIPALADIN": 4,
+    "INQUISITOR": 5,
+    "MESMERIST": 5,
+    "PSYCHIC": 6,
+    "SPIRITUALIST": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "qualsiasi numero di creature viventi, due delle quali non possono trovarsi a più di 9 metri l'una dall'altra",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Alimenta l'odio verso una categoria di creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Nutrire_Odio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Nutrire Odio: https://golarion.altervista.org/wiki/Incantesimi/Nutrire_Odio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: qualsiasi numero di creature viventi, due delle quali non possono trovarsi a più di 9 metri l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

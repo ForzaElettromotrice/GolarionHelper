@@ -1,0 +1,40 @@
+{
+  "id": "plantShapeII",
+  "name": "Forma di Vegetale II",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ALCHEMIST": 6,
+    "INVESTIGATOR": 6,
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo della creatura di cui si vuole assumere la forma",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Estende la trasformazione vegetale alle forme Grandi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Forma_di_Vegetale_II",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Forma di Vegetale II: https://golarion.altervista.org/wiki/Incantesimi/Forma_di_Vegetale_II Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

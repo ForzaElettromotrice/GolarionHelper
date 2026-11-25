@@ -1,0 +1,41 @@
+{
+  "id": "incorporealChains",
+  "name": "Catene Incorporee",
+  "school": "EVOCATION",
+  "descriptors": [
+    "FORCE"
+  ],
+  "spellLevelByClass": {
+    "PSYCHIC": 6,
+    "SPIRITUALIST": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura incorporea/livello, due delle quali non possono trovarsi a più di 9 metri l'una dall'altra",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Vincola creature incorporee con catene capaci di danneggiarle. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Catene_Incorporee",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Catene Incorporee: https://golarion.altervista.org/wiki/Incantesimi/Catene_Incorporee Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura incorporea/livello, due delle quali non possono trovarsi a più di 9 metri l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

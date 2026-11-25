@@ -1,0 +1,48 @@
+{
+  "id": "beguilingGift",
+  "name": "Dono Seducente",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 1,
+    "WITCH": 1,
+    "MESMERIST": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "l'oggetto offerto",
+  "rangeType": "OTHER",
+  "rangeDescription": "1,5m",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Spinge chi riceve un oggetto offerto ad accettarlo e utilizzarlo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Dono_Seducente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Dono Seducente: https://golarion.altervista.org/wiki/Incantesimi/Dono_Seducente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

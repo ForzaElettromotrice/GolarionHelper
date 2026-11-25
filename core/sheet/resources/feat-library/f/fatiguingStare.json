@@ -1,0 +1,31 @@
+{
+  "id": "fatiguingStare",
+  "name": "Occhiata Affaticante",
+  "description": "Aggiunge affaticamento alla propria occhiata offensiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Occhiata_Affaticante",
+  "types": [
+    "combat",
+    "stare"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Mesmerista di 7° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Occhiata Dolorosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Occhiata Affaticante: https://golarion.altervista.org/wiki/Talenti/Occhiata_Affaticante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Mesmerista di 7° livello; Prerequisito da verificare manualmente: privilegio di classe Occhiata Dolorosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

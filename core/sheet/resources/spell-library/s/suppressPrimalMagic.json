@@ -1,0 +1,46 @@
+{
+  "id": "suppressPrimalMagic",
+  "name": "Sopprimere Magia Primordiale",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di sabbia del Deserto Piagamagica",
+  "rangeType": "OTHER",
+  "rangeDescription": "3 metri",
+  "area": "emanazione del raggio di 3 m centrata su di sé",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Impedisce manifestazioni di magia primordiale nell'area vicina all'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sopprimere_Magia_Primordiale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sopprimere Magia Primordiale: https://golarion.altervista.org/wiki/Incantesimi/Sopprimere_Magia_Primordiale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "enemyHammer",
+  "name": "Nemico Come Arma",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "OCCULTIST": 6,
+    "PSYCHIC": 6,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "fili di un burattino",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì Taglia della Creatura Danno Inflitto Piccolissima 1d4 Minuta 1d6 Minuscola 1d8 Piccola 1d10 Media 2d6 Grande 2d8 Enorme 2d10 Mastodontica 3d6 Colossale 3d8",
+  "description": "Muove telecineticamente una creatura per colpirne altre. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Nemico_Come_Arma",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Nemico Come Arma: https://golarion.altervista.org/wiki/Incantesimi/Nemico_Come_Arma Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

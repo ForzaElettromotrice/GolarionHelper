@@ -1,0 +1,27 @@
+{
+  "id": "absorbSpirit",
+  "name": "Assorbire Spirito",
+  "description": "Trattiene temporaneamente uno spirito assorbito e ne ostacola il ritorno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Assorbire_Spirito",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Costituzione 13, occorre essere morti almeno una volta o essere stati posseduti da una creatura non morta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Assorbire Spirito: https://golarion.altervista.org/wiki/Talenti/Assorbire_Spirito. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Costituzione 13, occorre essere morti almeno una volta o essere stati posseduti da una creatura non morta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

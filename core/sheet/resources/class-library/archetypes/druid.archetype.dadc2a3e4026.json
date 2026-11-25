@@ -1,0 +1,93 @@
+{
+  "id": "druid.archetype.dadc2a3e4026",
+  "classType": "druid",
+  "name": "Cambiaforma Ferino",
+  "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Cambiaforma_Ferino Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "druid.feature.40f9a719229c",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.ff1ff97218d0",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.eb66996dc90e",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.59dc53dc9a87",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "druid.feature.40f9a719229c",
+    "druid.feature.ff1ff97218d0",
+    "druid.feature.eb66996dc90e",
+    "druid.feature.59dc53dc9a87"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "druid.archetype.dadc2a3e4026.instructions",
+      "name": "Cambiaforma Ferino",
+      "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Cambiaforma_Ferino Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "druid.archetype.dadc2a3e4026.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Cambiaforma_Ferino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.dadc2a3e4026.feature.1",
+      "name": "Animale Focalizzato (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Cambiaforma_Ferino",
+      "progression": [
+        {
+          "id": "druid.archetype.dadc2a3e4026.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cambiaforma Ferino — Animale Focalizzato (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Cambiaforma_Ferino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.dadc2a3e4026.feature.2",
+      "name": "Secondo Animale Focalizzato (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Cambiaforma_Ferino",
+      "progression": [
+        {
+          "id": "druid.archetype.dadc2a3e4026.feature.2.initial",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cambiaforma Ferino — Secondo Animale Focalizzato (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Cambiaforma_Ferino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

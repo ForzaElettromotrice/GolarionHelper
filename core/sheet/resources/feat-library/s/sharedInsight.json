@@ -1,0 +1,31 @@
+{
+  "id": "sharedInsight",
+  "name": "Condividere Percezioni",
+  "description": "Condivide la propria attenzione con creature amichevoli migliorandone la Percezione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Condividere_Percezioni",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Saggezza 13",
+      "expression": "@wis >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Mezzelfo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Condividere Percezioni: https://golarion.altervista.org/wiki/Talenti/Condividere_Percezioni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Mezzelfo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

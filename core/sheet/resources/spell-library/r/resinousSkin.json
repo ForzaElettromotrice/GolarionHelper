@@ -1,0 +1,46 @@
+{
+  "id": "resinousSkin",
+  "name": "Pelle Resinosa",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 3,
+    "HUNTER": 3,
+    "DRUID": 3,
+    "INVESTIGATOR": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "PSYCHIC": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Riveste la pelle di resina protettiva e rende più difficile il disarmo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pelle_Resinosa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pelle Resinosa: https://golarion.altervista.org/wiki/Incantesimi/Pelle_Resinosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

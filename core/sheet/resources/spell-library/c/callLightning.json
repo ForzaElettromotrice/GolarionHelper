@@ -1,0 +1,52 @@
+{
+  "id": "callLightning",
+  "name": "Invocare il Fulmine",
+  "school": "EVOCATION",
+  "descriptors": [
+    "ELECTRICITY"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "DRUID": 3,
+    "OCCULTIST": 3,
+    "SHAMAN": 3
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "CATASTROPHE": 3
+    },
+    "domain": {
+      "WEATHER": 3
+    }
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "una o più linee verticali di fulmini lunghe 9 m",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Richiama dal cielo una successione di scariche elettriche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Invocare_il_Fulmine",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Invocare il Fulmine: https://golarion.altervista.org/wiki/Incantesimi/Invocare_il_Fulmine Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

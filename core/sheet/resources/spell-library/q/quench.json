@@ -1,0 +1,41 @@
+{
+  "id": "quench",
+  "name": "Estinguere Fuoco",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "DRUID": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "o Bersaglio: 1 cubo con spigolo di 6 m/livello (F) o 1 oggetto magico basato sul fuoco",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "nessuno o Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "no o sì (oggetto)",
+  "description": "Soffoca le fiamme e contrasta le manifestazioni di fuoco comprese fra i suoi bersagli. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Estinguere_Fuoco",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Estinguere Fuoco: https://golarion.altervista.org/wiki/Incantesimi/Estinguere_Fuoco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

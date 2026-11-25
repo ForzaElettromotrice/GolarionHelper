@@ -1,0 +1,27 @@
+{
+  "id": "fortuneTeller",
+  "name": "Indovino",
+  "description": "Un oggetto divinatorio sostituisce componenti e rafforza la magia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Indovino",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Capacità di lanciare Incantesimi Divini Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Indovino: https://golarion.altervista.org/wiki/Talenti/Indovino. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Capacità di lanciare Incantesimi Divini Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

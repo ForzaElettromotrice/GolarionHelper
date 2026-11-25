@@ -1,0 +1,589 @@
+{
+  "id": "ifrit",
+  "name": "Ifrit",
+  "qualities": [
+    {
+      "id": "ifrit.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Esterno nativo. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "ifrit.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "ifrit.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "ifrit.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "ifrit.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "ignan",
+          "type": "languageGrant",
+          "languageId": "ignan"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aquan",
+            "auran",
+            "elven",
+            "gnome",
+            "halfling",
+            "dwarven",
+            "terran"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ifrit.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "alchemistBombDamage",
+          "type": "favoredClassBonus",
+          "name": "Alchimista — +1 danno delle bombe",
+          "classes": [
+            "alchemist"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 danno delle bombe. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 danno delle bombe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "bardFascinate",
+          "type": "favoredClassBonus",
+          "name": "Bardo — +1 persona influenzabile con Affascinare",
+          "classes": [
+            "bard"
+          ],
+          "selectionsPerBenefit": 6,
+          "description": "+1 persona influenzabile con Affascinare. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 persona influenzabile con Affascinare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleRevelation",
+          "type": "favoredClassBonus",
+          "name": "Oracolo — +1 livello effettivo per una Rivelazione",
+          "classes": [
+            "oracle"
+          ],
+          "selectionsPerBenefit": 6,
+          "description": "+1 livello effettivo per una Rivelazione. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 livello effettivo per una Rivelazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererBloodline",
+          "type": "favoredClassBonus",
+          "name": "Stregone — +1 livello effettivo per potere posseduto della stirpe elementale fuoco o efreeti; massimo+2",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 6,
+          "description": "+1 livello effettivo per potere posseduto della stirpe elementale fuoco o efreeti; massimo+2. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 livello effettivo per potere posseduto della stirpe elementale fuoco o efreeti; massimo+2. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "clericPlanes",
+          "type": "favoredClassBonus",
+          "name": "Chierico — Piano del Fuoco",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Conoscenze(piani) su Piano del Fuoco/creature del fuoco.",
+          "effects": [
+            {
+              "id": "planes",
+              "type": "modifier",
+              "resource": "skill.knowledge.planes",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Piano del Fuoco o creature del fuoco"
+            }
+          ]
+        },
+        {
+          "id": "inquisitorFireLore",
+          "type": "favoredClassBonus",
+          "name": "Inquisitore — Conoscenza del fuoco",
+          "classes": [
+            "inquisitor"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Intimidire creature del fuoco e Conoscenze(piani) sul Piano del Fuoco.",
+          "effects": [
+            {
+              "id": "intimidate",
+              "type": "modifier",
+              "resource": "skill.intimidate",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Contro creature del fuoco"
+            },
+            {
+              "id": "planes",
+              "type": "modifier",
+              "resource": "skill.knowledge.planes",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Piano del Fuoco"
+            }
+          ]
+        },
+        {
+          "id": "rogueSkills",
+          "type": "favoredClassBonus",
+          "name": "Ladro — Salti e minacce",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a saltare e demoralizzare.",
+          "effects": [
+            {
+              "id": "jump",
+              "type": "modifier",
+              "resource": "skill.acrobatics",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Saltare"
+            },
+            {
+              "id": "intimidate",
+              "type": "modifier",
+              "resource": "skill.intimidate",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Demoralizzare"
+            }
+          ]
+        },
+        {
+          "id": "gunslingerInitiative",
+          "type": "favoredClassBonus",
+          "name": "Pistolero — Iniziativa del Pistolero",
+          "classes": [
+            "gunslinger"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 all'iniziativa usando la relativa gesta.",
+          "effects": [
+            {
+              "id": "initiative",
+              "type": "modifier",
+              "resource": "initiative",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Gesta Iniziativa del Pistolero"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "ifrit.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "ifrit.energyResistance",
+      "name": "Resistenza all'Energia",
+      "description": "Resistenza all'Energia",
+      "effects": [
+        {
+          "id": "fire",
+          "type": "energyResistance",
+          "energy": "fire",
+          "expression": "5"
+        }
+      ]
+    },
+    {
+      "id": "ifrit.fireAffinity",
+      "name": "Affinità col Fuoco",
+      "description": "Affinità col Fuoco",
+      "effects": [
+        {
+          "id": "affinity",
+          "type": "reminder",
+          "message": "Stregone di stirpe elementale fuoco: Carisma effettivo+2 per magie/capacità. Dominio Fuoco: LI+1 per poteri/incantesimi; nessun aumento generale del Carisma. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "ifrit.spellLikeAbility",
+      "name": "Capacità Magiche",
+      "description": "Capacità Magiche",
+      "effects": [
+        {
+          "id": "spell",
+          "type": "reminder",
+          "message": "Mani Brucianti1/giorno, LI pari al livello, CD11 + Carisma. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "ifrit.fireStarter",
+      "name": "Appicca Roghi",
+      "description": "Quando una creatura prende fuoco per causa tua, +1 morale al prossimo singolo tiro per colpire/TS/abilità/caratteristica entro il round seguente. Solo la prima accensione per ciascuna creatura. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Quando una creatura prende fuoco per causa tua, +1 morale al prossimo singolo tiro per colpire/TS/abilità/caratteristica entro il round seguente. Solo la prima accensione per ciascuna creatura. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "ifrit.fireAffinity"
+      ]
+    },
+    {
+      "id": "ifrit.wildfireHeart",
+      "name": "Cuore Avvampante",
+      "description": "Cuore Avvampante",
+      "effects": [
+        {
+          "id": "initiative",
+          "type": "modifier",
+          "resource": "initiative",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        }
+      ],
+      "replaces": [
+        "ifrit.energyResistance"
+      ]
+    },
+    {
+      "id": "ifrit.fireInTheBlood",
+      "name": "Fuoco nel Sangue",
+      "description": "Subire fuoco, anche assorbito dalla resistenza, attiva Guarigione Rapida2 per1 round; limite giornaliero2 PF/livello. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Subire fuoco, anche assorbito dalla resistenza, attiva Guarigione Rapida2 per1 round; limite giornaliero2 PF/livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "ifrit.fireAffinity"
+      ]
+    },
+    {
+      "id": "ifrit.fireInsight",
+      "name": "Intuito del Fuoco",
+      "description": "Evoca Mostri/Alleato Naturale durano2 round aggiuntivi evocando creature di fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Evoca Mostri/Alleato Naturale durano2 round aggiuntivi evocando creature di fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "ifrit.fireAffinity"
+      ]
+    },
+    {
+      "id": "ifrit.hypnotic",
+      "name": "Ipnotico",
+      "description": "+1 CD degli effetti che affascinano; 1/giorno azione immediata prima dell'esito del TS per obbligare un nuovo tiro, conservando il secondo. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "+1 CD degli effetti che affascinano; 1/giorno azione immediata prima dell'esito del TS per obbligare un nuovo tiro, conservando il secondo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "ifrit.fireAffinity"
+      ]
+    },
+    {
+      "id": "ifrit.efreetiMagic",
+      "name": "Magia degli Efreeti",
+      "description": "1/giorno Ingrandire o Ridurre Persone, scelto al lancio; LI pari al livello, può influenzare ifrit come umanoidi. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "1/giorno Ingrandire o Ridurre Persone, scelto al lancio; LI pari al livello, può influenzare ifrit come umanoidi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "ifrit.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "ifrit.desertMirage",
+      "name": "Miraggio del Deserto",
+      "description": "Miraggio del Deserto",
+      "effects": [
+        {
+          "id": "stealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Ambiente desertico"
+        },
+        {
+          "id": "saves",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Resistere a fame o sete"
+        }
+      ],
+      "replaces": [
+        "ifrit.fireAffinity"
+      ]
+    },
+    {
+      "id": "ifrit.forgeHardened",
+      "name": "Temprato dalla Forgia",
+      "description": "Temprato dalla Forgia",
+      "effects": [
+        {
+          "id": "saves",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Affaticamento o esaurimento"
+        },
+        {
+          "id": "craft",
+          "type": "reminder",
+          "message": "+2 razziale alle specializzazioni di Artigianato per armi e armature; configurare i modificatori nelle specializzazioni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "ifrit.spellLikeAbility"
+      ]
+    }
+  ]
+}

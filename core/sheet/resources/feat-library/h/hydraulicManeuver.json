@@ -1,0 +1,30 @@
+{
+  "id": "hydraulicManeuver",
+  "name": "Manovra Idraulica",
+  "description": "Estende l'impiego di Spinta Idraulica alle manovre in combattimento consentite. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Manovra_Idraulica",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Capacità magica Spinta Idraulica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Ondine Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Manovra Idraulica: https://golarion.altervista.org/wiki/Talenti/Manovra_Idraulica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Capacità magica Spinta Idraulica; Prerequisito da verificare manualmente: Ondine Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,38 @@
+{
+  "id": "pathOfGloryGreater",
+  "name": "Sentiero di Gloria Superiore",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "BARD": 4,
+    "SKALD": 4,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto (vedi testo)",
+  "area": "4 quadretti di 1,5 m/livello (vedi testo)",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Crea un percorso sacro dalla capacità curativa più intensa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sentiero_di_Gloria_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sentiero di Gloria Superiore: https://golarion.altervista.org/wiki/Incantesimi/Sentiero_di_Gloria_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

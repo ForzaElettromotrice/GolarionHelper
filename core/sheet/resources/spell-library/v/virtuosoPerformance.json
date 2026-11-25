@@ -1,0 +1,33 @@
+{
+  "id": "virtuosoPerformance",
+  "name": "Esibizione Virtuosa",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 4,
+    "SKALD": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stesso",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Permette di sostenere una seconda esibizione bardica mentre la prima rimane attiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Esibizione_Virtuosa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Esibizione Virtuosa: https://golarion.altervista.org/wiki/Incantesimi/Esibizione_Virtuosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

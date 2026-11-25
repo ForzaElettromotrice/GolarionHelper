@@ -1,0 +1,25 @@
+{
+  "id": "umbralSpell",
+  "name": "Incantesimi Ombratili",
+  "description": "Fa emanare oscurità dai bersagli della magia modificata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Incantesimi_Ombratili",
+  "types": [
+    "metamagic"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Incantesimi Tenebrosi",
+      "feat": {
+        "id": "tenebrousSpell"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Incantesimi Ombratili: https://golarion.altervista.org/wiki/Talenti/Incantesimi_Ombratili. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

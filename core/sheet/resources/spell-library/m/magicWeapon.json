@@ -1,0 +1,62 @@
+{
+  "id": "magicWeapon",
+  "name": "Arma Magica",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "ARCANIST": 1,
+    "CLERIC": 1,
+    "INQUISITOR": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "OCCULTIST": 1,
+    "ORACLE": 1,
+    "PALADIN": 1,
+    "WARPRIEST": 1,
+    "SHAMAN": 1,
+    "SORCERER": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "WAR": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 arma toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Conferisce a una singola arma un potenziamento magico di +1 agli attacchi e ai danni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Arma_Magica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Arma Magica: https://golarion.altervista.org/wiki/Incantesimi/Arma_Magica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Metallo 1 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

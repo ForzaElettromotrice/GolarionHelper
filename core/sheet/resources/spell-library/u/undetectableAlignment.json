@@ -1,0 +1,50 @@
+{
+  "id": "undetectableAlignment",
+  "name": "Allineamento Imperscrutabile",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ANTIPALADIN": 2,
+    "BARD": 1,
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "INVESTIGATOR": 2,
+    "MESMERIST": 1,
+    "ORACLE": 2,
+    "PALADIN": 2,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2,
+    "SKALD": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura o 1 oggetto",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Impedisce alle divinazioni di riconoscere l'allineamento del soggetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Allineamento_Imperscrutabile",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Allineamento Imperscrutabile: https://golarion.altervista.org/wiki/Incantesimi/Allineamento_Imperscrutabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

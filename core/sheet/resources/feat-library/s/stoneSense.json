@@ -1,0 +1,33 @@
+{
+  "id": "stoneSense",
+  "name": "Percezione della Pietra",
+  "description": "Conferisce una percezione limitata tramite le vibrazioni della pietra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Percezione_della_Pietra",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Esperto Minatore Migliorato",
+      "feat": {
+        "id": "improvedStonecunning"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Percezione 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Percezione della Pietra: https://golarion.altervista.org/wiki/Talenti/Percezione_della_Pietra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Percezione 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

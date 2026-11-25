@@ -1,0 +1,53 @@
+{
+  "id": "deathKnell",
+  "name": "Rintocco di Morte",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL",
+    "DEATH"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "CLERIC": 2,
+    "WITCH": 2,
+    "INQUISITOR": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "SPIRITUALIST": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DEATH": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura vivente toccata",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo/10 minuti per ogni DV del soggetto; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Sottrae la vita a una creatura morente e concede all'incantatore benefici temporanei in vigore, Forza e livello dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Rintocco_di_Morte",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Rintocco di Morte: https://golarion.altervista.org/wiki/Incantesimi/Rintocco_di_Morte Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

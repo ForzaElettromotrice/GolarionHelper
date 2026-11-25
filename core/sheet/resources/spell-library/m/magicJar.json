@@ -1,0 +1,48 @@
+{
+  "id": "magicJar",
+  "name": "Giara Magica",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 5,
+    "ARCANIST": 5,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 5,
+    "WITCH": 5,
+    "INVESTIGATOR": 5,
+    "WIZARD": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una gemma o un cristallo del valore di almeno 100 mo",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello oppure finché non si torna nel proprio corpo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Consente di trasferire la propria anima in un altro corpo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Giara_Magica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Giara Magica: https://golarion.altervista.org/wiki/Incantesimi/Giara_Magica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

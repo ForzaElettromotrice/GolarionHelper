@@ -1,0 +1,50 @@
+{
+  "id": "animateObjects",
+  "name": "Animare Oggetti",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 6,
+    "CLERIC": 6,
+    "WITCH": 6,
+    "OCCULTIST": 6,
+    "ORACLE": 6,
+    "PSYCHIC": 6,
+    "WARPRIEST": 6,
+    "SKALD": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "CHAOS": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 oggetto Piccolo per livello dell’incantatore; vedi testo",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Dà movimento a oggetti inanimati e li dirige contro gli avversari. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Animare_Oggetti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Animare Oggetti: https://golarion.altervista.org/wiki/Incantesimi/Animare_Oggetti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 oggetto Piccolo per livello dell’incantatore; vedi testo. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "compulsiveLiar",
+  "name": "Bugiardo Compulsivo",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 1,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "MESMERIST": 1,
+    "PSYCHIC": 2,
+    "SKALD": 1,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura toccata",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Induce il bersaglio a mentire invece di esprimere la verità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bugiardo_Compulsivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bugiardo Compulsivo: https://golarion.altervista.org/wiki/Incantesimi/Bugiardo_Compulsivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

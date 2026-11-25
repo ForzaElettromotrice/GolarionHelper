@@ -1,0 +1,487 @@
+{
+  "id": "grippli",
+  "name": "Grippli",
+  "qualities": [
+    {
+      "id": "grippli.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Umanoide (grippli). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "grippli.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "small"
+        }
+      ]
+    },
+    {
+      "id": "grippli.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "grippli.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "grippli.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "grippli",
+          "type": "languageGrant",
+          "languageId": "grippli"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "boggard",
+            "draconic",
+            "elven",
+            "gnome",
+            "goblin",
+            "sylvan"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grippli.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione 18 m.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scurovisione 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "grippli.climbSpeed",
+      "name": "Velocità di Scalare",
+      "description": "Velocità di Scalare",
+      "effects": [
+        {
+          "id": "climb",
+          "type": "movementGrant",
+          "movementType": "climb",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": false
+        },
+        {
+          "id": "skillclimb",
+          "type": "modifier",
+          "resource": "skill.climb",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "8"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scalata: prendere 10 anche sotto minaccia; conserva Destrezza alla CA. Gestire manualmente pareti, cadute e scalata accelerata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "grippli.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita indicata.",
+      "effects": [
+        {
+          "id": "alchemistToxicSkin",
+          "type": "favoredClassBonus",
+          "classes": [
+            "alchemist"
+          ],
+          "name": "Alchimista — Pelle Tossica",
+          "description": "Alchimista — Pelle Tossica — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un uso/giorno aggiuntivo di Pelle Tossica, se posseduta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "druidConcentration",
+          "type": "favoredClassBonus",
+          "classes": [
+            "druid"
+          ],
+          "name": "Druido — Concentrazione",
+          "description": "Druido — Concentrazione — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 Concentrazione; raddoppiare in foresta o palude. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "roguePerception",
+          "type": "favoredClassBonus",
+          "classes": [
+            "rogue"
+          ],
+          "name": "Ladro — Percezione",
+          "description": "Ladro — Percezione",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "skillperception",
+              "type": "modifier",
+              "resource": "skill.perception",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Foresta o palude"
+            }
+          ]
+        },
+        {
+          "id": "gunslingerDeeds",
+          "type": "favoredClassBonus",
+          "classes": [
+            "gunslinger"
+          ],
+          "name": "Pistolero — Gesta",
+          "description": "Pistolero — Gesta",
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "attackall",
+              "type": "modifier",
+              "resource": "attack.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Colpo di Utilità o Colpo Letale"
+            }
+          ]
+        },
+        {
+          "id": "rangerSwim",
+          "type": "favoredClassBonus",
+          "classes": [
+            "ranger"
+          ],
+          "name": "Ranger — Nuotare",
+          "description": "Nuotare +1; movimento alla soglia gestito manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "skillswim",
+              "type": "modifier",
+              "resource": "skill.swim",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "racial",
+              "expression": "1"
+            },
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Al raggiungimento di +8 da questa opzione, aggiungere velocità di nuoto 4,5 m senza un altro +8 alla prova. Soglia e movimento manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "grippli.swampStride",
+      "name": "Andatura nelle Paludi",
+      "description": "Ignora terreno difficile non magico nelle paludi.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Ignora terreno difficile non magico nelle paludi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "grippli.weaponFamiliarity",
+      "name": "Familiarità nelle Armi",
+      "description": "Competenza nelle reti.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Competenza nelle reti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "grippli.camouflage",
+      "name": "Mimetismo",
+      "description": "Mimetismo",
+      "effects": [
+        {
+          "id": "skillstealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Area boscosa o paludosa"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "grippli.toxicSkin",
+      "name": "Pelle Tossica",
+      "description": "Pelle Tossica",
+      "effects": [
+        {
+          "id": "ownGrippliPoison",
+          "type": "immunity",
+          "targetId": "ownGrippliPoison",
+          "name": "Proprio veleno di grippli"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "1/giorno: veleno con azione veloce su arma/contatto o standard sul corpo contro il primo colpo naturale/senz'armi. Dura 1 ora; Tempra CD 10 + metà DV + Cos, 1d2 Des/round per 6 round, cura 1 TS. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "grippli.swampStride",
+        "grippli.camouflage"
+      ]
+    },
+    {
+      "id": "grippli.glider",
+      "name": "Planatore",
+      "description": "Planatore",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Caduta considerata dimezzata; spostamento orizzontale fino a metà discesa. Non funziona con armatura/carico pesante o impossibilità di reagire. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "grippli.swampStride"
+      ]
+    },
+    {
+      "id": "grippli.princely",
+      "name": "Principesco",
+      "description": "Principesco",
+      "effects": [
+        {
+          "id": "skilldiplomacy",
+          "type": "modifier",
+          "resource": "skill.diplomacy",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "skillintimidate",
+          "type": "modifier",
+          "resource": "skill.intimidate",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Competenza nello stocco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "grippli.swampStride",
+        "grippli.weaponFamiliarity"
+      ]
+    },
+    {
+      "id": "grippli.jumper",
+      "name": "Saltatore",
+      "description": "Saltatore",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Per Saltare è sempre considerato con rincorsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "grippli.camouflage"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "subtleEnchantments",
+  "name": "Ammaliamenti Sottili",
+  "description": "Rende meno evidente alle vittime e agli osservatori l'impiego di ammaliamenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ammaliamenti_Sottili",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Ingannevole",
+      "feat": {
+        "id": "deceitful"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Incantesimi Focalizzati (Ammaliamento) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ammaliamenti Sottili: https://golarion.altervista.org/wiki/Talenti/Ammaliamenti_Sottili. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incantesimi Focalizzati (Ammaliamento) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

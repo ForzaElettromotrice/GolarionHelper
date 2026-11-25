@@ -1,0 +1,44 @@
+{
+  "id": "conjureBlackPudding",
+  "name": "Evoca Protoplasma Nero",
+  "school": "CONJURATION",
+  "descriptors": [
+    "ACID"
+  ],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 5,
+    "WIZARD": 6,
+    "PSYCHIC": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una fiala di acido del valore di 10 mo",
+  "materialComponentCostInGoldPieces": 10,
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "un Protoplasma Nero evocato",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Fa comparire una melma di tipo protoplasma nero. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Protoplasma_Nero",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Protoplasma Nero: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Protoplasma_Nero Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

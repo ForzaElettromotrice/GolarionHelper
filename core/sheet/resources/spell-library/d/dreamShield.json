@@ -1,0 +1,52 @@
+{
+  "id": "dreamShield",
+  "name": "Scudo Onirico",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "BARD": 2,
+    "SKALD": 2,
+    "WITCH": 4,
+    "INVESTIGATOR": 2,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "PSYCHIC": 2,
+    "SHAMAN": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una sfera di vetro vuota o un acchiappasogni",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Difende il riposo dalle intrusioni mentali e aiuta a resistere al sonno imposto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scudo_Onirico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Scudo Onirico: https://golarion.altervista.org/wiki/Incantesimi/Scudo_Onirico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

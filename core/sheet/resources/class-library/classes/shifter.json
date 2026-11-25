@@ -1,0 +1,808 @@
+{
+  "type": "shifter",
+  "name": "Morfico",
+  "description": "Combattente naturale capace di assumere aspetti animali.",
+  "hitDie": 10,
+  "skillRanksPerLevel": 4,
+  "classSkills": [
+    "skill.acrobatics",
+    "skill.handleAnimal",
+    "skill.craft",
+    "skill.ride",
+    "skill.knowledge.nature",
+    "skill.stealth",
+    "skill.swim",
+    "skill.perception",
+    "skill.profession",
+    "skill.climb",
+    "skill.survival",
+    "skill.fly"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 0
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 0
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 1
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 2
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 3
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 4
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 5
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 16,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 17,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 18,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 19,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 20,
+      "baseSavingThrows": {
+        "fortitude": 12,
+        "reflex": 12,
+        "will": 6
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "shifter.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "shifter.feature.e5127521dab4",
+      "name": "Artigli del Morfico",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Artigli_del_Morfico_(Sop)",
+      "progression": [
+        {
+          "id": "shifter.feature.e5127521dab4.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Morfico: verificare e applicare Artigli del Morfico. https://golarion.altervista.org/wiki/Morfico#Artigli_del_Morfico_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shifter.feature.e5127521dab4.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Morfico: verificare e applicare Artigli Potenziati. https://golarion.altervista.org/wiki/Morfico#Artigli_del_Morfico_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shifter.feature.e5127521dab4.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Morfico: verificare e applicare Artigli Potenziati. https://golarion.altervista.org/wiki/Morfico#Artigli_del_Morfico_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shifter.feature.e5127521dab4.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Morfico: verificare e applicare Artigli Potenziati. https://golarion.altervista.org/wiki/Morfico#Artigli_del_Morfico_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shifter.feature.e5127521dab4.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Morfico: verificare e applicare Artigli Potenziati. https://golarion.altervista.org/wiki/Morfico#Artigli_del_Morfico_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shifter.feature.e5127521dab4.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Morfico: verificare e applicare Artigli Potenziati. https://golarion.altervista.org/wiki/Morfico#Artigli_del_Morfico_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shifter.feature.e5127521dab4.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Morfico: verificare e applicare Artigli Potenziati. https://golarion.altervista.org/wiki/Morfico#Artigli_del_Morfico_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.cc118157147a",
+      "name": "Aspetto del Morfico",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Aspetto_del_Morfico_(Sop)",
+      "progression": [
+        {
+          "id": "shifter.feature.cc118157147a.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Morfico: verificare e applicare Aspetto del Morfico. https://golarion.altervista.org/wiki/Morfico#Aspetto_del_Morfico_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shifter.feature.cc118157147a.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Morfico: verificare e applicare Secondo Aspetto. https://golarion.altervista.org/wiki/Morfico#Aspetto_del_Morfico_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shifter.feature.cc118157147a.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Morfico: verificare e applicare Terzo Aspetto. https://golarion.altervista.org/wiki/Morfico#Aspetto_del_Morfico_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shifter.feature.cc118157147a.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Morfico: verificare e applicare Quarto Aspetto. https://golarion.altervista.org/wiki/Morfico#Aspetto_del_Morfico_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.ac41683c9c1f",
+      "name": "Empatia Selvatica",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Empatia_Selvatica_(Str)",
+      "progression": [
+        {
+          "id": "shifter.feature.ac41683c9c1f.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Morfico: verificare e applicare Empatia Selvatica. https://golarion.altervista.org/wiki/Morfico#Empatia_Selvatica_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.277c6af9cfa2",
+      "name": "Istinto Difensivo",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Istinto_Difensivo_(Str)",
+      "progression": [
+        {
+          "id": "shifter.feature.277c6af9cfa2.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Morfico: verificare e applicare Istinto Difensivo. https://golarion.altervista.org/wiki/Morfico#Istinto_Difensivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shifter.feature.277c6af9cfa2.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Morfico: verificare e applicare Istinto Difensivo (+1). https://golarion.altervista.org/wiki/Morfico#Istinto_Difensivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shifter.feature.277c6af9cfa2.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Morfico: verificare e applicare Istinto Difensivo (+2). https://golarion.altervista.org/wiki/Morfico#Istinto_Difensivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "shifter.feature.277c6af9cfa2.level4"
+          ]
+        },
+        {
+          "id": "shifter.feature.277c6af9cfa2.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Morfico: verificare e applicare Istinto Difensivo (+3). https://golarion.altervista.org/wiki/Morfico#Istinto_Difensivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "shifter.feature.277c6af9cfa2.level8"
+          ]
+        },
+        {
+          "id": "shifter.feature.277c6af9cfa2.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Morfico: verificare e applicare Istinto Difensivo (+4). https://golarion.altervista.org/wiki/Morfico#Istinto_Difensivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "shifter.feature.277c6af9cfa2.level12"
+          ]
+        },
+        {
+          "id": "shifter.feature.277c6af9cfa2.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Morfico: verificare e applicare Istinto Difensivo (+5). https://golarion.altervista.org/wiki/Morfico#Istinto_Difensivo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "shifter.feature.277c6af9cfa2.level16"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.d34c8ae33e7c",
+      "name": "Seguire Tracce",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Seguire_Tracce_(Str)",
+      "progression": [
+        {
+          "id": "shifter.feature.d34c8ae33e7c.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Morfico: verificare e applicare Seguire Tracce. https://golarion.altervista.org/wiki/Morfico#Seguire_Tracce_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.1fd6f1828188",
+      "name": "Andatura nel Bosco",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Andatura_nel_Bosco_(Str)",
+      "progression": [
+        {
+          "id": "shifter.feature.1fd6f1828188.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Morfico: verificare e applicare Andatura nel Bosco. https://golarion.altervista.org/wiki/Morfico#Andatura_nel_Bosco_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.54feb06232f5",
+      "name": "Forma Selvatica",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Forma_Selvatica_(Sop)",
+      "progression": [
+        {
+          "id": "shifter.feature.54feb06232f5.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Morfico: verificare e applicare Forma Selvatica. https://golarion.altervista.org/wiki/Morfico#Forma_Selvatica_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.f7a67465dfaa",
+      "name": "Passo Senza Tracce",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Passo_Senza_Tracce_(Str)",
+      "progression": [
+        {
+          "id": "shifter.feature.f7a67465dfaa.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Morfico: verificare e applicare Passo Senza Tracce. https://golarion.altervista.org/wiki/Morfico#Passo_Senza_Tracce_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.b83d247f890a",
+      "name": "Furia del Morfico",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Furia_del_Morfico_(Str)",
+      "progression": [
+        {
+          "id": "shifter.feature.b83d247f890a.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Morfico: verificare e applicare Furia del Morfico. https://golarion.altervista.org/wiki/Morfico#Furia_del_Morfico_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.df89b3266372",
+      "name": "Aspetto Chimerico",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Aspetto_Chimerico_(Sop)",
+      "progression": [
+        {
+          "id": "shifter.feature.df89b3266372.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Morfico: verificare e applicare Aspetto Chimerico. https://golarion.altervista.org/wiki/Morfico#Aspetto_Chimerico_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.f54eeebbd41f",
+      "name": "Aspetto Chimerico Superiore",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Aspetto_Chimerico_Superiore_(Sop)",
+      "progression": [
+        {
+          "id": "shifter.feature.f54eeebbd41f.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Morfico: verificare e applicare Aspetto Chimerico Superiore. https://golarion.altervista.org/wiki/Morfico#Aspetto_Chimerico_Superiore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.4c046fe98230",
+      "name": "Corpo Senza Tempo",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Corpo_Senza_Tempo_(Str)",
+      "progression": [
+        {
+          "id": "shifter.feature.4c046fe98230.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Morfico: verificare e applicare Corpo Senza Tempo. https://golarion.altervista.org/wiki/Morfico#Corpo_Senza_Tempo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.9d8aaa27336f",
+      "name": "Mille Volti",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Mille_Volti_(Sop)",
+      "progression": [
+        {
+          "id": "shifter.feature.9d8aaa27336f.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Morfico: verificare e applicare Mille Volti. https://golarion.altervista.org/wiki/Morfico#Mille_Volti_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.feature.715990f5a61e",
+      "name": "Aspetto Finale",
+      "description": "Privilegio della classe Morfico. Regole e condizioni: https://golarion.altervista.org/wiki/Morfico#Aspetto_Finale_(Sop)",
+      "progression": [
+        {
+          "id": "shifter.feature.715990f5a61e.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Morfico: verificare e applicare Aspetto Finale. https://golarion.altervista.org/wiki/Morfico#Aspetto_Finale_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi Neutrale.. https://golarion.altervista.org/wiki/Morfico",
+      "progression": [
+        {
+          "id": "shifter.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi Neutrale.. https://golarion.altervista.org/wiki/Morfico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Morfico",
+      "progression": [
+        {
+          "id": "shifter.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Morfico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Morfico",
+      "progression": [
+        {
+          "id": "shifter.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Morfico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shifter.languages",
+      "name": "Linguaggi di classe",
+      "description": "Linguaggi aggiuntivi e opzioni bonus concessi dalla classe. Fonte: https://golarion.altervista.org/wiki/Morfico",
+      "progression": [
+        {
+          "id": "shifter.languages.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "bonusLanguages",
+              "type": "languageOptions",
+              "origin": "intelligence",
+              "languageIds": [
+                "sylvan",
+                "aklo"
+              ]
+            },
+            {
+              "id": "druidic",
+              "type": "languageGrant",
+              "languageId": "druidic"
+            },
+            {
+              "id": "languageConduct",
+              "type": "reminder",
+              "message": "Druidico è una lingua segreta: rispettare i divieti di insegnamento e la condotta indicata dalla classe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "shifter.aspect.1",
+      "classType": "shifter",
+      "featureId": "shifter.feature.cc118157147a",
+      "acquisitionIds": [
+        "shifter.feature.cc118157147a.level1",
+        "shifter.feature.cc118157147a.level5",
+        "shifter.feature.cc118157147a.level10",
+        "shifter.feature.cc118157147a.level15"
+      ],
+      "choice": {
+        "id": "aspect",
+        "prompt": "Scegli un nuovo aspetto del morfico",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "shifter.aspects"
+      }
+    },
+    {
+      "id": "shifter.finalAspect.20",
+      "classType": "shifter",
+      "featureId": "shifter.feature.715990f5a61e",
+      "acquisitionIds": [
+        "shifter.feature.715990f5a61e.level20"
+      ],
+      "choice": {
+        "id": "finalAspect",
+        "prompt": "Scegli il quinto aspetto del morfico",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "shifter.aspects"
+      }
+    }
+  ]
+}

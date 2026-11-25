@@ -1,0 +1,54 @@
+{
+  "id": "rigorMortis",
+  "name": "Rigor Mortis",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "PAIN"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "CLERIC": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "MAGUS": 4,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "l'osso di una nocca",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura vivente",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Irrigidisce dolorosamente le articolazioni del bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Rigor_Mortis",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Rigor Mortis: https://golarion.altervista.org/wiki/Rigor_Mortis Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

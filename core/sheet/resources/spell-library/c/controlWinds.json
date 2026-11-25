@@ -1,0 +1,50 @@
+{
+  "id": "controlWinds",
+  "name": "Controllare Venti",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "AIR"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 5,
+    "DRUID": 5,
+    "OCCULTIST": 5,
+    "SHAMAN": 5
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "AIR": 5,
+      "WEATHER": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "12 m/livello",
+  "area": "un cilindro del raggio di 12 m/livello e alto 12 m",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Modifica direzione e forza delle correnti d'aria nell'area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Controllare_Venti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Controllare Venti: https://golarion.altervista.org/wiki/Incantesimi/Controllare_Venti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

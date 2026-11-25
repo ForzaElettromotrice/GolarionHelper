@@ -1,0 +1,30 @@
+{
+  "id": "implantBomb",
+  "name": "Impiantare Bomba",
+  "description": "Nasconde una bomba all'interno di una creatura consenziente o indifesa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Impiantare_Bomba",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Guarire 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Scoperta Bomba Ritardata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Impiantare Bomba: https://golarion.altervista.org/wiki/Talenti/Impiantare_Bomba. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Guarire 5 gradi; Prerequisito da verificare manualmente: Scoperta Bomba Ritardata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

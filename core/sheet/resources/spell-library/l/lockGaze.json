@@ -1,0 +1,51 @@
+{
+  "id": "lockGaze",
+  "name": "Bloccare Sguardo",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "BARD": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "MESMERIST": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Costringe il soggetto a concentrare lo sguardo sul lanciatore, limitando la sua attenzione verso gli altri. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bloccare_Sguardo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bloccare Sguardo: https://golarion.altervista.org/wiki/Incantesimi/Bloccare_Sguardo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

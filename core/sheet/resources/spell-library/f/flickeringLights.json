@@ -1,0 +1,55 @@
+{
+  "id": "flickeringLights",
+  "name": "Luci Sfarfallanti",
+  "school": "EVOCATION",
+  "descriptors": [
+    "LIGHT",
+    "DARKNESS"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "SKALD": 2,
+    "SHAMAN": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un lembo di stoffa bianca e uno di stoffa nera",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "area contigua formata da un cubo di 3 metri di lato/ livello (F)",
+  "durationType": "ROUND",
+  "durationDescription": "1 round /livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Rende instabile e mutevole l'illuminazione dell'area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Luci_Sfarfallanti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Luci Sfarfallanti: https://golarion.altervista.org/wiki/Luci_Sfarfallanti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

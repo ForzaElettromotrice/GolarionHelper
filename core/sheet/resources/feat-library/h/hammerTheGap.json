@@ -1,0 +1,23 @@
+{
+  "id": "hammerTheGap",
+  "name": "Martellare lo Squarcio",
+  "description": "Premia una sequenza di colpi riusciti contro lo stesso bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Martellare_lo_Squarcio",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Martellare lo Squarcio: https://golarion.altervista.org/wiki/Talenti/Martellare_lo_Squarcio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

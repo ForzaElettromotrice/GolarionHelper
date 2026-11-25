@@ -1,0 +1,60 @@
+{
+  "id": "fireShield",
+  "name": "Scudo di Fuoco",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "ARCANIST": 4,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "INVESTIGATOR": 4,
+    "BLOODRAGER": 4,
+    "WIZARD": 4,
+    "MAGUS": 4,
+    "OCCULTIST": 4,
+    "SORCERER": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "FIRE": 5,
+      "SUN": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "fosforo per scudo ardente; una lucciola o una lampiride per scudo gelido",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Un'aura di fiamme danneggia gli assalitori e protegge da caldo o freddo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scudo_di_Fuoco",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Scudo di Fuoco: https://golarion.altervista.org/wiki/Incantesimi/Scudo_di_Fuoco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Fuoco 4 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Descrittori variabili da determinare al lancio: freddo o fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

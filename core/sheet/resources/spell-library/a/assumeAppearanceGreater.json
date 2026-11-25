@@ -1,0 +1,50 @@
+{
+  "id": "assumeAppearanceGreater",
+  "name": "Assumere Aspetto Superiore",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "ARCANIST": 4,
+    "BARD": 4,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "INVESTIGATOR": 4,
+    "WIZARD": 4,
+    "MEDIUM": 4,
+    "MESMERIST": 4,
+    "OCCULTIST": 4,
+    "PSYCHIC": 4,
+    "SKALD": 4,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "cadavere o raffigurazione della creatura deceduta di cui si vuole assumere la forma",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Permette di imitare una creatura morta a partire da una sua raffigurazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Assumere_Aspetto_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Assumere Aspetto Superiore: https://golarion.altervista.org/wiki/Assumere_Aspetto_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

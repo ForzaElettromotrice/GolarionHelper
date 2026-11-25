@@ -1,0 +1,83 @@
+{
+  "id": "paladin.archetype.01b2afe8ee37",
+  "classType": "paladin",
+  "name": "Combattente della Sacra Luce",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Combattente_della_Sacra_Luce Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.feature.6ebcf6219137",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.6eed079a70d3",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "paladin.feature.6ebcf6219137",
+    "paladin.feature.6eed079a70d3"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.01b2afe8ee37.instructions",
+      "name": "Combattente della Sacra Luce",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Combattente_della_Sacra_Luce Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.01b2afe8ee37.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Combattente_della_Sacra_Luce Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.01b2afe8ee37.feature.eb0a71d18e",
+      "name": "Potere della Fede (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Combattente_della_Sacra_Luce",
+      "progression": [
+        {
+          "id": "paladin.archetype.01b2afe8ee37.feature.eb0a71d18e.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Combattente della Sacra Luce — Potere della Fede (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Combattente_della_Sacra_Luce Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.01b2afe8ee37.feature.6b733726e0",
+      "name": "Luce Splendente (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Combattente_della_Sacra_Luce",
+      "progression": [
+        {
+          "id": "paladin.archetype.01b2afe8ee37.feature.6b733726e0.initial",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Combattente della Sacra Luce — Luce Splendente (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Combattente_della_Sacra_Luce Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

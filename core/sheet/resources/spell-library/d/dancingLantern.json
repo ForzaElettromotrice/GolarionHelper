@@ -1,0 +1,54 @@
+{
+  "id": "dancingLantern",
+  "name": "Lanterna Danzante",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "FIRE",
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "BARD": 1,
+    "SKALD": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "WITCH": 1,
+    "RANGER": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una lanterna",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "effect": "anima una lanterna",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una lanterna si muove magicamente al seguito dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lanterna_Danzante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Lanterna Danzante: https://golarion.altervista.org/wiki/Incantesimi/Lanterna_Danzante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Fuoco 1 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

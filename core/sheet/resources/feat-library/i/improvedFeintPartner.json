@@ -1,0 +1,44 @@
+{
+  "id": "improvedFeintPartner",
+  "name": "Finta del Compagno Migliorata",
+  "description": "Una finta alleata riuscita offre un attacco di opportunità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Finta_del_Compagno_Migliorata",
+  "types": [
+    "combat",
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Finta del Compagno",
+      "feat": {
+        "id": "feintPartner"
+      }
+    },
+    {
+      "description": "Riflessi in Combattimento",
+      "feat": {
+        "id": "combatReflexes"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Raggirare 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Finta del Compagno Migliorata: https://golarion.altervista.org/wiki/Talenti/Finta_del_Compagno_Migliorata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Raggirare 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,47 @@
+{
+  "id": "escapeAlarm",
+  "name": "Allarme di Fuga",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "HUNTER": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "INQUISITOR": 2,
+    "WIZARD": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "RANGER": 2,
+    "SKALD": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un breve segmento di una catena",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "Medio (30 m + 3 m/livello)",
+  "area": "dieci cubi da 3 metri cubi/livello",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Segnala l'uscita di creature dall'area sorvegliata anziché il loro ingresso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Allarme_di_Fuga",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Allarme di Fuga: https://golarion.altervista.org/wiki/Incantesimi/Allarme_di_Fuga Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

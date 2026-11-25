@@ -1,0 +1,31 @@
+{
+  "id": "exsanguinate",
+  "name": "Vampirizzare",
+  "description": "Potenzia un'applicazione del risucchio di sangue. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Vampirizzare",
+  "types": [
+    "combat",
+    "monster"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Capacità universale dei mostri Risucchio di Sangue Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità universale dei mostri Afferrare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Vampirizzare: https://golarion.altervista.org/wiki/Talenti/Vampirizzare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Capacità universale dei mostri Risucchio di Sangue; Prerequisito da verificare manualmente: capacità universale dei mostri Afferrare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,25 @@
+{
+  "id": "farShot",
+  "name": "Tiro Lontano",
+  "description": "Riduce le penalità per gli attacchi effettuati oltre la gittata ottimale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tiro_Lontano",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tiro Lontano: https://golarion.altervista.org/wiki/Talenti/Tiro_Lontano. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

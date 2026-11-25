@@ -1,0 +1,64 @@
+{
+  "id": "daze",
+  "name": "Frastornare",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 0,
+    "BARD": 0,
+    "SUMMONER": 0,
+    "UNCHAINED_SUMMONER": 0,
+    "WITCH": 0,
+    "INQUISITOR": 0,
+    "WIZARD": 0,
+    "MAGUS": 0,
+    "MEDIUM": 0,
+    "MESMERIST": 0,
+    "OCCULTIST": 0,
+    "PSYCHIC": 0,
+    "SKALD": 0,
+    "SHAMAN": 0,
+    "SPIRITUALIST": 0,
+    "SORCERER": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un ciuffo di lana o di una sostanza simile",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura Umanoide con 4 DV o meno",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Priva brevemente un umanoide poco potente della possibilità di agire. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Frastornare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Frastornare: https://golarion.altervista.org/wiki/Incantesimi/Frastornare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura Umanoide con 4 DV o meno. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -8,8 +8,21 @@ Item {
     id: root
     required property var identity
     required property string notes
-    property var home: ({})
-    property var combat: null
+    property bool combatEnabled: false
+    property var abilityScoresData: ({})
+    property var skillScoresData: ({})
+    property var savingThrowsData: ({})
+    property var armorClassData: ({})
+    property var hitPointsData: ({})
+    property var movementData: ({})
+    property var defensesData: ({})
+    property var initiativeData: ({})
+    property var activeConditionsData: ({})
+    property var actionsData: ({})
+    property var attacksData: ({})
+    property var baseAttackBonusData: ({})
+    property var combatManeuversData: ({})
+    property var attackRoutinesData: ({})
     property Component inventoryTabPage
     property Component raceTabPage
     property Component classesTabPage
@@ -17,7 +30,7 @@ Item {
     property Component spellsTabPage
     property Component enhancementsTabPage
     property Component conditionsTabPage
-    readonly property int inventoryTabIndex: combat !== null ? 3 : 2
+    readonly property int inventoryTabIndex: combatEnabled ? 3 : 2
     readonly property int raceTabIndex: inventoryTabIndex + (inventoryTabPage !== null ? 1 : 0)
     readonly property int classesTabIndex: raceTabIndex + (raceTabPage !== null ? 1 : 0)
     readonly property int featsTabIndex: classesTabIndex + (classesTabPage !== null ? 1 : 0)
@@ -90,7 +103,7 @@ Item {
             TabButton { text: qsTr("Identità") }
             TabButton { text: qsTr("Home") }
             Repeater {
-                model: root.combat !== null ? 1 : 0
+                model: root.combatEnabled ? 1 : 0
                 TabButton { text: qsTr("Combattimento") }
             }
             Repeater {
@@ -202,7 +215,7 @@ Item {
                                 spacing: 12
                                 AbilityScoresPanel {
                                     width: parent.width
-                                    abilities: root.home.abilities ?? []
+                                    abilities: root.abilityScoresData.abilities ?? []
                                     readOnly: !root.statisticsEditingEnabled
                                     onBaseValueChangeRequested: (type, value) => root.abilityBaseChangeRequested(type, value)
                                 }
@@ -218,14 +231,14 @@ Item {
                                 topPadding: sideBySide ? (freeHeight - spacing) / 2 : 0
                                 bottomPadding: topPadding
                                 spacing: sideBySide ? freeHeight * 0.30 : 44
-                                InitiativePanel { id: homeInitiative; width: parent.width; initiative: root.home.initiative }
-                                SavingThrowsPanel { id: homeSavingThrows; width: parent.width; savingThrows: root.home.savingThrows ?? [] }
+                                InitiativePanel { id: homeInitiative; width: parent.width; initiative: root.initiativeData.initiative }
+                                SavingThrowsPanel { id: homeSavingThrows; width: parent.width; savingThrows: root.savingThrowsData.savingThrows ?? [] }
                             }
                             ArmorClassPanel {
                                 objectName: "sheetHomeArmorClass"
                                 Layout.columnSpan: homeSummary.columns
                                 Layout.fillWidth: true
-                                armorClass: root.home.armorClass
+                                armorClass: root.armorClassData.armorClass
                             }
                             HitPointsPanel {
                                 objectName: "sheetHomeHitPoints"
@@ -236,20 +249,20 @@ Item {
                                 onDamageRequested: (amount, lethality) => root.damageRequested(amount, lethality === HitPointsPanel.NonLethal)
                                 onHealRequested: amount => root.healRequested(amount)
                                 Layout.fillWidth: true
-                                hitPoints: root.home.hitPoints
+                                hitPoints: root.hitPointsData.hitPoints
                                 readOnly: !root.hitPointEditingEnabled
                                 belowHeader: Component {
                                     Column {
                                         spacing: 8
-                                        DefensesPanel { width: parent.width; defenses: root.home.defenses; presentation: DefensesPanel.Tags }
-                                        DefensesPanel { width: parent.width; defenses: root.home.defenses; presentation: DefensesPanel.Shields }
+                                        DefensesPanel { width: parent.width; defenses: root.defensesData.defenses; presentation: DefensesPanel.Tags }
+                                        DefensesPanel { width: parent.width; defenses: root.defensesData.defenses; presentation: DefensesPanel.Shields }
                                     }
                                 }
                             }
                             MovementPanel {
                                 Layout.columnSpan: homeSummary.columns
                                 Layout.fillWidth: true
-                                movement: root.home.movement
+                                movement: root.movementData.movement
                                 showHeading: false
                                 visible: grants.length > 0
                             }
@@ -258,7 +271,7 @@ Item {
                                 objectName: "sheetHomeActiveConditions"
                                 Layout.columnSpan: homeSummary.columns
                                 Layout.fillWidth: true
-                                readonly property var entries: root.home.activeConditions ?? []
+                                readonly property var entries: root.activeConditionsData.activeConditions ?? []
                                 property string selectedId: ""
                                 visible: entries.length > 0
                                 spacing: 6
@@ -349,10 +362,10 @@ Item {
                                 visible: status === Loader.Ready
                                 sourceComponent: SkillsPanel {
                                     objectName: "sheetHomeSkills"
-                                    skills: root.home.skills ?? []
-                                    skillCategories: root.home.skillCategories ?? []
-                                    spentRanks: root.home.spentRanks
-                                    maxRanks: root.home.maxRanks
+                                    skills: root.skillScoresData.skills ?? []
+                                    skillCategories: root.skillScoresData.skillCategories ?? []
+                                    spentRanks: root.skillScoresData.spentRanks
+                                    maxRanks: root.skillScoresData.maxRanks
                                     readOnly: !root.statisticsEditingEnabled
                                     onRanksChangeRequested: (resourceName, ranks) => root.skillRanksChangeRequested(resourceName, ranks)
                                     onSpecializationAddRequested: (type, name) => root.skillSpecializationAddRequested(type, name)
@@ -365,8 +378,8 @@ Item {
                 }
                 CachedTab {
                     width: contentScroll.availableWidth
-                    selected: root.combat !== null && tabs.currentIndex === 2
-                    sourceComponent: root.combat !== null ? combatPage : null
+                    selected: root.combatEnabled && tabs.currentIndex === 2
+                    sourceComponent: root.combatEnabled ? combatPage : null
                     Component {
                         id: combatPage
                         Column {
@@ -394,10 +407,10 @@ Item {
                                     Layout.fillWidth: true
                                     Layout.preferredWidth: combatLayout.columns === 3 ? combatLayout.equalColumnWidth : implicitWidth
                                     Layout.alignment: Qt.AlignTop
-                                    attacks: root.combat?.attacks ?? null
-                                    attackRoutines: root.combat?.attackRoutines ?? null
-                                    actions: root.combat?.actions ?? null
-                                    baseAttackBonus: root.combat?.baseAttackBonus ?? null
+                                    attacks: root.attacksData?.attacks ?? null
+                                    attackRoutines: root.attackRoutinesData?.attackRoutines ?? null
+                                    actions: root.actionsData?.actions ?? null
+                                    baseAttackBonus: root.baseAttackBonusData?.baseAttackBonus ?? null
                                     onAddRequested: routineId => root.attackRoutineAddRequested(routineId)
                                     onRemoveRequested: attackId => root.attackRoutineRemoveRequested(attackId)
                                     onRenameRequested: (attackId, name) => root.attackRoutineRenameRequested(attackId, name)
@@ -412,7 +425,7 @@ Item {
                                     Layout.fillWidth: true
                                     Layout.preferredWidth: combatLayout.columns === 3 ? combatLayout.equalColumnWidth : 340
                                     Layout.alignment: Qt.AlignTop
-                                    combatManeuvers: root.combat?.combatManeuvers ?? null
+                                    combatManeuvers: root.combatManeuversData?.combatManeuvers ?? null
                                 }
                                 ActionsPanel {
                                     objectName: "sheetCombatActions"
@@ -422,8 +435,8 @@ Item {
                                     Layout.fillWidth: true
                                     Layout.preferredWidth: combatLayout.columns === 3 ? combatLayout.equalColumnWidth : 270
                                     Layout.alignment: Qt.AlignTop
-                                    actions: root.combat?.listedActions ?? root.combat?.actions ?? null
-                                    attackRoutines: root.combat?.listedActionRoutines ?? root.combat?.attackRoutines ?? null
+                                    actions: root.actionsData?.listedActions ?? root.actionsData?.actions ?? null
+                                    attackRoutines: root.attackRoutinesData?.listedActionRoutines ?? root.attackRoutinesData?.attackRoutines ?? null
                                 }
                             }
                         }

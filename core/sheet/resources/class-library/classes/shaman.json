@@ -1,0 +1,1550 @@
+{
+  "type": "shaman",
+  "name": "Sciamano",
+  "description": "Incantatore divino che comunica con gli spiriti.",
+  "hitDie": 8,
+  "skillRanksPerLevel": 4,
+  "classSkills": [
+    "skill.handleAnimal",
+    "skill.craft",
+    "skill.ride",
+    "skill.knowledge.nature",
+    "skill.knowledge.planes",
+    "skill.knowledge.religion",
+    "skill.diplomacy",
+    "skill.heal",
+    "skill.profession",
+    "skill.spellcraft",
+    "skill.survival",
+    "skill.fly"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 2
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 3
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 3
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 6
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 6
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 9
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 9
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 12
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "shaman.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "shaman.spellcasting",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Sciamano",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 1,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "prepared",
+              "spellListClass": "shaman"
+            },
+            {
+              "id": "list",
+              "type": "spellRepertoireList",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting"
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. Magia dello Spirito è una riserva spontanea separata: uno slot per livello accessibile escluso 0, limitata agli incantesimi dello spirito e dello spirito errante. Non aggiungere slot liberi alla preparazione ordinaria. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level1"
+          ]
+        },
+        {
+          "id": "castingSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level2"
+          ]
+        },
+        {
+          "id": "castingSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level3"
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level4"
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                },
+                {
+                  "level": 7,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                },
+                {
+                  "level": 8,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 2
+                },
+                {
+                  "level": 9,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                },
+                {
+                  "level": 9,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                },
+                {
+                  "level": 9,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:shaman12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                },
+                {
+                  "level": 8,
+                  "capacity": 4
+                },
+                {
+                  "level": 9,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shaman.feature.3103466d9233",
+      "name": "Animale Spirituale",
+      "description": "Privilegio della classe Sciamano. Regole e condizioni: https://golarion.altervista.org/wiki/Sciamano#Animale_Spirituale_(Str)",
+      "progression": [
+        {
+          "id": "shaman.feature.3103466d9233.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Sciamano: verificare e applicare Animale Spirituale. https://golarion.altervista.org/wiki/Sciamano#Animale_Spirituale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.feature.ad57c42320b8",
+      "name": "Magia dello Spirito",
+      "description": "Privilegio della classe Sciamano. Regole e condizioni: https://golarion.altervista.org/wiki/Sciamano#Magia_dello_Spirito",
+      "progression": [
+        {
+          "id": "shaman.feature.ad57c42320b8.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Sciamano: verificare e applicare Magia dello Spirito. https://golarion.altervista.org/wiki/Sciamano#Magia_dello_Spirito Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.feature.51b8fa1e09e0",
+      "name": "Orazioni",
+      "description": "Privilegio della classe Sciamano. Regole e condizioni: https://golarion.altervista.org/wiki/Sciamano#Orazioni",
+      "progression": [
+        {
+          "id": "shaman.feature.51b8fa1e09e0.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Sciamano: verificare e applicare Orazioni. https://golarion.altervista.org/wiki/Sciamano#Orazioni Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.feature.943c6256334d",
+      "name": "Spirito",
+      "description": "Privilegio della classe Sciamano. Regole e condizioni: https://golarion.altervista.org/wiki/Sciamano#Spirito_(Sop)",
+      "progression": [
+        {
+          "id": "shaman.feature.943c6256334d.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Sciamano: verificare e applicare Spirito. https://golarion.altervista.org/wiki/Sciamano#Spirito_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shaman.feature.943c6256334d.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Sciamano: verificare e applicare Spirito (superiore). https://golarion.altervista.org/wiki/Sciamano#Spirito_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shaman.feature.943c6256334d.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Sciamano: verificare e applicare Spirito (puro). https://golarion.altervista.org/wiki/Sciamano#Spirito_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.feature.74332ce8ee6c",
+      "name": "Fattura",
+      "description": "Privilegio della classe Sciamano. Regole e condizioni: https://golarion.altervista.org/wiki/Sciamano#Fattura",
+      "progression": [
+        {
+          "id": "shaman.feature.74332ce8ee6c.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Sciamano: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Sciamano#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shaman.feature.74332ce8ee6c.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Sciamano: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Sciamano#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shaman.feature.74332ce8ee6c.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Sciamano: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Sciamano#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shaman.feature.74332ce8ee6c.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Sciamano: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Sciamano#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shaman.feature.74332ce8ee6c.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Sciamano: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Sciamano#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shaman.feature.74332ce8ee6c.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Sciamano: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Sciamano#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shaman.feature.74332ce8ee6c.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Sciamano: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Sciamano#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shaman.feature.74332ce8ee6c.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Sciamano: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Sciamano#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.feature.1d2853690b44",
+      "name": "Spirito Errante",
+      "description": "Privilegio della classe Sciamano. Regole e condizioni: https://golarion.altervista.org/wiki/Sciamano#Spirito_Errante_(Sop)",
+      "progression": [
+        {
+          "id": "shaman.feature.1d2853690b44.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Sciamano: verificare e applicare Spirito Errante. https://golarion.altervista.org/wiki/Sciamano#Spirito_Errante_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shaman.feature.1d2853690b44.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Sciamano: verificare e applicare Spirito Errante (superiore). https://golarion.altervista.org/wiki/Sciamano#Spirito_Errante_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shaman.feature.1d2853690b44.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Sciamano: verificare e applicare Spirito Errante (puro). https://golarion.altervista.org/wiki/Sciamano#Spirito_Errante_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.feature.e5331c0eca3a",
+      "name": "Fattura Errante",
+      "description": "Privilegio della classe Sciamano. Regole e condizioni: https://golarion.altervista.org/wiki/Sciamano#Fattura_Errante",
+      "progression": [
+        {
+          "id": "shaman.feature.e5331c0eca3a.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Sciamano: verificare e applicare Fattura Errante. https://golarion.altervista.org/wiki/Sciamano#Fattura_Errante Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "shaman.feature.e5331c0eca3a.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Sciamano: verificare e applicare Fattura Errante (2 fatture). https://golarion.altervista.org/wiki/Sciamano#Fattura_Errante Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.feature.c19f972cc903",
+      "name": "Manifestazione",
+      "description": "Privilegio della classe Sciamano. Regole e condizioni: https://golarion.altervista.org/wiki/Sciamano#Manifestazione_(Sop)",
+      "progression": [
+        {
+          "id": "shaman.feature.c19f972cc903.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Sciamano: verificare e applicare Manifestazione. https://golarion.altervista.org/wiki/Sciamano#Manifestazione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi. https://golarion.altervista.org/wiki/Sciamano",
+      "progression": [
+        {
+          "id": "shaman.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi. https://golarion.altervista.org/wiki/Sciamano Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Sciamano",
+      "progression": [
+        {
+          "id": "shaman.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Sciamano Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Sciamano",
+      "progression": [
+        {
+          "id": "shaman.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Sciamano Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "shaman.spiritBinding",
+      "classType": "shaman",
+      "featureId": "shaman.feature.943c6256334d",
+      "acquisitionIds": [
+        "shaman.feature.943c6256334d.level1"
+      ],
+      "choice": {
+        "id": "spirit",
+        "prompt": "Scegli: Spiriti",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "shaman.spirits"
+      }
+    },
+    {
+      "id": "shaman.wanderingSpiritBinding",
+      "classType": "shaman",
+      "featureId": "shaman.feature.1d2853690b44",
+      "acquisitionIds": [
+        "shaman.feature.1d2853690b44.level4"
+      ],
+      "choice": {
+        "id": "wanderingSpirit",
+        "prompt": "Scegli: Spiriti",
+        "selectionCount": 1,
+        "blocksAdvancement": false,
+        "optionSet": "shaman.spirits"
+      }
+    },
+    {
+      "id": "shaman.hexBinding",
+      "classType": "shaman",
+      "featureId": "shaman.feature.74332ce8ee6c",
+      "acquisitionIds": [
+        "shaman.feature.74332ce8ee6c.level2",
+        "shaman.feature.74332ce8ee6c.level4",
+        "shaman.feature.74332ce8ee6c.level8",
+        "shaman.feature.74332ce8ee6c.level10",
+        "shaman.feature.74332ce8ee6c.level12",
+        "shaman.feature.74332ce8ee6c.level16",
+        "shaman.feature.74332ce8ee6c.level18",
+        "shaman.feature.74332ce8ee6c.level20"
+      ],
+      "choice": {
+        "id": "hex",
+        "prompt": "Scegli: Fatture dello sciamano",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "shaman.hexes"
+      }
+    },
+    {
+      "id": "shaman.wanderingHexBinding",
+      "classType": "shaman",
+      "featureId": "shaman.feature.e5331c0eca3a",
+      "acquisitionIds": [
+        "shaman.feature.e5331c0eca3a.level6",
+        "shaman.feature.e5331c0eca3a.level14"
+      ],
+      "choice": {
+        "id": "wanderingHex",
+        "prompt": "Scegli: Fatture erranti degli spiriti",
+        "selectionCount": 1,
+        "blocksAdvancement": false,
+        "optionSet": "shaman.wanderingHexes"
+      }
+    },
+    {
+      "id": "shaman.spiritAnimalBinding",
+      "classType": "shaman",
+      "featureId": "shaman.feature.3103466d9233",
+      "acquisitionIds": [
+        "shaman.feature.3103466d9233.level1"
+      ],
+      "choice": {
+        "id": "spiritAnimal",
+        "prompt": "Scegli un’opzione (vincoli manuali)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "wizard.familiars"
+      }
+    }
+  ]
+}

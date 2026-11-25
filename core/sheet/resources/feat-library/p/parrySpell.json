@@ -1,0 +1,33 @@
+{
+  "id": "parrySpell",
+  "name": "Parare Incantesimo",
+  "description": "Può rimandare contro il suo autore una magia contrastata con successo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Parare_Incantesimo",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Sapienza Magica 15 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Controincantesimo Migliorato",
+      "feat": {
+        "id": "improvedCounterspell"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Parare Incantesimo: https://golarion.altervista.org/wiki/Talenti/Parare_Incantesimo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Sapienza Magica 15 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

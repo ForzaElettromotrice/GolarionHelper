@@ -1,0 +1,33 @@
+{
+  "id": "rideByAttack",
+  "name": "Attacco in Sella",
+  "description": "Permette di proseguire il movimento dopo una carica in sella. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Attacco_in_Sella",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Cavalcare 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Combattere in Sella",
+      "feat": {
+        "id": "mountedCombat"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Attacco in Sella: https://golarion.altervista.org/wiki/Talenti/Attacco_in_Sella. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Cavalcare 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,33 @@
+{
+  "id": "reboundingLeap",
+  "name": "Rimontare al Volo",
+  "description": "Un movimento acrobatico consente di risalire rapidamente in sella. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Rimontare_al_Volo",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Lancia Saltellante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Acrobazia 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Cavalcare 11 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Rimontare al Volo: https://golarion.altervista.org/wiki/Talenti/Rimontare_al_Volo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Lancia Saltellante; Prerequisito da verificare manualmente: Acrobazia 5 gradi; Prerequisito da verificare manualmente: Cavalcare 11 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

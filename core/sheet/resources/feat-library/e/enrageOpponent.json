@@ -1,0 +1,28 @@
+{
+  "id": "enrageOpponent",
+  "name": "Infuriare Avversario",
+  "description": "Provoca il nemico inducendolo a esporsi finché non reagisce. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Infuriare_Avversario",
+  "types": [
+    "combat",
+    "panache"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Persuasivo, Carisma 13, Intrepido Amatoriale o privilegio di classe Eleganza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Infuriare Avversario: https://golarion.altervista.org/wiki/Talenti/Infuriare_Avversario. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Persuasivo, Carisma 13, Intrepido Amatoriale o privilegio di classe Eleganza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,58 @@
+{
+  "id": "seeming",
+  "name": "Sembrare",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 5,
+    "WIZARD": 5,
+    "MEDIUM": 4,
+    "MESMERIST": 5,
+    "OCCULTIST": 5,
+    "PSYCHIC": 5,
+    "SKALD": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura ogni 2 livelli, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "HOUR",
+  "durationDescription": "12 ore (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega o Volontà dubita (se si interagisce con essa)"
+    },
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà nega o Volontà dubita (se si interagisce con essa)"
+    }
+  ],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "sì o no; vedi testo",
+  "description": "Modifica illusoriamente l'aspetto di più creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sembrare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sembrare: https://golarion.altervista.org/wiki/Incantesimi/Sembrare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura ogni 2 livelli, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

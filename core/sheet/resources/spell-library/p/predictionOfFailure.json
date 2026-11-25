@@ -1,0 +1,48 @@
+{
+  "id": "predictionOfFailure",
+  "name": "Predizione di Fallimento",
+  "school": "DIVINATION",
+  "descriptors": [
+    "MIND_AFFECTING",
+    "CURSE",
+    "FEAR"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WITCH": 8,
+    "WIZARD": 8,
+    "OCCULTIST": 6,
+    "PSYCHIC": 8,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura",
+  "durationType": "OTHER",
+  "durationDescription": "permanente o 1 round/livello (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Impone paura e infermità durature e può ostacolare la magia del bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Predizione_di_Fallimento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Predizione di Fallimento: https://golarion.altervista.org/wiki/Incantesimi/Predizione_di_Fallimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

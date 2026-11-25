@@ -1,0 +1,48 @@
+{
+  "id": "marchingChant",
+  "name": "Canto di Marcia",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 2,
+    "SKALD": 2,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura/livello",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo",
+  "description": "Un canto sostiene l'andatura accelerata degli alleati limitandone le normali conseguenze. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Canto_di_Marcia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Canto di Marcia: https://golarion.altervista.org/wiki/Incantesimi/Canto_di_Marcia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

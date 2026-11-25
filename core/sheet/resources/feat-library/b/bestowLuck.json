@@ -1,0 +1,39 @@
+{
+  "id": "bestowLuck",
+  "name": "Concedere Fortuna",
+  "description": "Estende l'uso della propria fortuna e permette di condividerne i benefici previsti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Concedere_Fortuna",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Fortuna Inspiegabile",
+      "feat": {
+        "id": "inexplicableLuck"
+      }
+    },
+    {
+      "description": "Fortuna Sprezzante",
+      "feat": {
+        "id": "defiantLuck"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Umano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Concedere Fortuna: https://golarion.altervista.org/wiki/Talenti/Concedere_Fortuna. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Umano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

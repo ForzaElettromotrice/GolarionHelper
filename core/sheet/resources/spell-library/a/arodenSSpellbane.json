@@ -1,0 +1,37 @@
+{
+  "id": "arodenSSpellbane",
+  "name": "Anatema degli Incantesimi di Aroden",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WIZARD": 9,
+    "SORCERER": 9
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "uno scettro di Ferro Freddo del valore di almeno 1.000 mo",
+  "rangeType": "OTHER",
+  "rangeDescription": "3 metri",
+  "area": "emanazione di 3 metri di raggio, centrata su di sé",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "vedi testo",
+  "description": "Sopprime nell'area gli incantesimi specificamente scelti al lancio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Anatema_degli_Incantesimi_di_Aroden",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Anatema degli Incantesimi di Aroden: https://golarion.altervista.org/wiki/Incantesimi/Anatema_degli_Incantesimi_di_Aroden Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "hexGlyph",
+  "name": "Glifo Fattura",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "WITCH": 3,
+    "SHAMAN": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "polvere di diamanti per almeno 200 mo",
+  "materialComponentCostInGoldPieces": 200,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto toccato o fino a 0,45 m2/livello",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente finché non viene scaricato (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "no (oggetto) e sì (vedi testo)",
+  "description": "Racchiude una fattura in un simbolo attivato dall'intruso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Glifo_Fattura",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Glifo Fattura: https://golarion.altervista.org/wiki/Incantesimi/Glifo_Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 oggetto toccato o fino a 0,45 m2/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

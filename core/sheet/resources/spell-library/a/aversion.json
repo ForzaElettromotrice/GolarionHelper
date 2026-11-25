@@ -1,0 +1,52 @@
+{
+  "id": "aversion",
+  "name": "Avversione",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 2,
+    "HUNTER": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Instilla un'avversione che induce il soggetto a tenersi lontano da un luogo o oggetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Avversione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Avversione: https://golarion.altervista.org/wiki/Incantesimi/Avversione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

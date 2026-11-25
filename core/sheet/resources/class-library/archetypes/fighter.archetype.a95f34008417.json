@@ -1,0 +1,263 @@
+{
+  "id": "fighter.archetype.a95f34008417",
+  "classType": "fighter",
+  "name": "Comandante Esperto",
+  "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "fighter.feature.0bfec277b39e",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.proficiencies",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.classSkills",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.skillRanksPerLevel",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.feature.d85ccd994169",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.feature.42853dd168a3",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "fighter.feature.0bfec277b39e",
+    "fighter.proficiencies",
+    "fighter.classSkills",
+    "fighter.skillRanksPerLevel"
+  ],
+  "removedAcquisitionIds": [
+    "fighter.bonusFeats.level1",
+    "fighter.feature.42853dd168a3.level3",
+    "fighter.feature.42853dd168a3.level11",
+    "fighter.feature.42853dd168a3.level15"
+  ],
+  "addedFeatures": [
+    {
+      "id": "fighter.archetype.a95f34008417.instructions",
+      "name": "Comandante Esperto",
+      "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "fighter.archetype.a95f34008417.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.a95f34008417.feature.1",
+      "name": "Addestramento Strategico (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto",
+      "progression": [
+        {
+          "id": "fighter.archetype.a95f34008417.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Comandante Esperto — Addestramento Strategico (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.a95f34008417.feature.2",
+      "name": "Tattico (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto",
+      "progression": [
+        {
+          "id": "fighter.archetype.a95f34008417.feature.2.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Comandante Esperto — Tattico (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.a95f34008417.feature.3",
+      "name": "Discorso Ispiratore (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto",
+      "progression": [
+        {
+          "id": "fighter.archetype.a95f34008417.feature.3.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Comandante Esperto — Discorso Ispiratore (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.a95f34008417.feature.4",
+      "name": "Ispirare Grandezza (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto",
+      "progression": [
+        {
+          "id": "fighter.archetype.a95f34008417.feature.4.initial",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Comandante Esperto — Ispirare Grandezza (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.a95f34008417.feature.5",
+      "name": "Tattico Superiore (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto",
+      "progression": [
+        {
+          "id": "fighter.archetype.a95f34008417.feature.5.initial",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Comandante Esperto — Tattico Superiore (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.a95f34008417.feature.6",
+      "name": "Ispirare Eroismo (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto",
+      "progression": [
+        {
+          "id": "fighter.archetype.a95f34008417.feature.6.initial",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Comandante Esperto — Ispirare Eroismo (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.a95f34008417.feature.7",
+      "name": "Maestro Tattico (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto",
+      "progression": [
+        {
+          "id": "fighter.archetype.a95f34008417.feature.7.initial",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Comandante Esperto — Maestro Tattico (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Comandante_Esperto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.a95f34008417.classSkills.1",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Concessione dal privilegio di archetipo.",
+      "progression": [
+        {
+          "id": "fighter.archetype.a95f34008417.classSkills.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "skill0",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.geography"
+            },
+            {
+              "id": "skill1",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.nobility"
+            },
+            {
+              "id": "skill2",
+              "type": "classSkillGrant",
+              "resource": "skill.diplomacy"
+            },
+            {
+              "id": "skill3",
+              "type": "classSkillGrant",
+              "resource": "skill.senseMotive"
+            },
+            {
+              "id": "skill4",
+              "type": "classSkillGrant",
+              "resource": "skill.linguistics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.a95f34008417.skillRankRate",
+      "name": "Progressione alternativa",
+      "description": "Differenza rispetto ai contributi base della classe.",
+      "progression": [
+        {
+          "id": "fighter.archetype.a95f34008417.skillRankRate.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "rankDifference",
+              "type": "contribution",
+              "resource": "skill.ranks.max",
+              "expression": "@classLevel * ((3 + @intSkillRanksMod) * (4 + @intSkillRanksMod > 1) - (1 + @intSkillRanksMod) * (2 + @intSkillRanksMod > 1))"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

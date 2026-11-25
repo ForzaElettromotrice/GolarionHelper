@@ -1,0 +1,1244 @@
+{
+  "type": "paladin",
+  "name": "Paladino",
+  "description": "Campione consacrato al bene, sostenuto da poteri divini.",
+  "hitDie": 10,
+  "skillRanksPerLevel": 2,
+  "classSkills": [
+    "skill.handleAnimal",
+    "skill.craft",
+    "skill.ride",
+    "skill.knowledge.nobility",
+    "skill.knowledge.religion",
+    "skill.diplomacy",
+    "skill.heal",
+    "skill.senseMotive",
+    "skill.profession",
+    "skill.spellcraft"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 0,
+        "will": 2
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 0,
+        "will": 3
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 1,
+        "will": 3
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 2,
+        "will": 6
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 3,
+        "will": 6
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 4,
+        "will": 9
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 5,
+        "will": 9
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 16,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 17,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 18,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 19,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 20,
+      "baseSavingThrows": {
+        "fortitude": 12,
+        "reflex": 6,
+        "will": 12
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "paladin.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "paladin.feature.6eed079a70d3",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Paladino",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 4,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "prepared",
+              "spellListClass": "paladin"
+            },
+            {
+              "id": "list",
+              "type": "spellRepertoireList",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting"
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. Il lancio inizia al livello di classe 4. Le celle 0 della tabella permettono solo slot bonus di caratteristica, da gestire manualmente; non equivalgono alle celle prive di accesso. Il livello incantatore è pari al livello di classe meno 3, non al livello totale del personaggio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.7:paladin12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.d13ee3e2f84c",
+      "name": "Aura di Bene",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Aura_di_Bene_(Str)",
+      "progression": [
+        {
+          "id": "paladin.feature.d13ee3e2f84c.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Paladino: verificare e applicare Aura di Bene. https://golarion.altervista.org/wiki/Paladino#Aura_di_Bene_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.f449a0ba5d05",
+      "name": "Individuazione del Male",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Individuazione_del_Male_(Mag)",
+      "progression": [
+        {
+          "id": "paladin.feature.f449a0ba5d05.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Paladino: verificare e applicare Individuazione del Male. https://golarion.altervista.org/wiki/Paladino#Individuazione_del_Male_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.b85d701a8180",
+      "name": "Punire il Male",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Punire_il_Male_(Sop)",
+      "progression": [
+        {
+          "id": "paladin.feature.b85d701a8180.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Paladino: verificare e applicare Punire il Male 1/giorno. https://golarion.altervista.org/wiki/Paladino#Punire_il_Male_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "paladin.feature.b85d701a8180.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Paladino: verificare e applicare Punire il Male 2/giorno. https://golarion.altervista.org/wiki/Paladino#Punire_il_Male_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "paladin.feature.b85d701a8180.level1"
+          ]
+        },
+        {
+          "id": "paladin.feature.b85d701a8180.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Paladino: verificare e applicare Punire il Male 3/giorno. https://golarion.altervista.org/wiki/Paladino#Punire_il_Male_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "paladin.feature.b85d701a8180.level4"
+          ]
+        },
+        {
+          "id": "paladin.feature.b85d701a8180.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Paladino: verificare e applicare Punire il Male 4/giorno. https://golarion.altervista.org/wiki/Paladino#Punire_il_Male_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "paladin.feature.b85d701a8180.level7"
+          ]
+        },
+        {
+          "id": "paladin.feature.b85d701a8180.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Paladino: verificare e applicare Punire il Male 5/giorno. https://golarion.altervista.org/wiki/Paladino#Punire_il_Male_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "paladin.feature.b85d701a8180.level10"
+          ]
+        },
+        {
+          "id": "paladin.feature.b85d701a8180.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Paladino: verificare e applicare Punire il Male 6/giorno. https://golarion.altervista.org/wiki/Paladino#Punire_il_Male_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "paladin.feature.b85d701a8180.level13"
+          ]
+        },
+        {
+          "id": "paladin.feature.b85d701a8180.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Paladino: verificare e applicare Punire il Male 7/giorno. https://golarion.altervista.org/wiki/Paladino#Punire_il_Male_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "paladin.feature.b85d701a8180.level16"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.4dc66a491261",
+      "name": "Imposizione delle Mani",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Imposizione_delle_Mani_(Sop)",
+      "progression": [
+        {
+          "id": "paladin.feature.4dc66a491261.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Paladino: verificare e applicare Imposizione delle Mani. https://golarion.altervista.org/wiki/Paladino#Imposizione_delle_Mani_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.f1744d66dd29",
+      "name": "Aura di Coraggio",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Aura_di_Coraggio_(Sop)",
+      "progression": [
+        {
+          "id": "paladin.feature.f1744d66dd29.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Paladino: verificare e applicare Aura di Coraggio. https://golarion.altervista.org/wiki/Paladino#Aura_di_Coraggio_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.46fda65c8c8d",
+      "name": "Indulgenza",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Indulgenza_(Sop)",
+      "progression": [
+        {
+          "id": "paladin.feature.46fda65c8c8d.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Paladino: verificare e applicare Indulgenza. https://golarion.altervista.org/wiki/Paladino#Indulgenza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "paladin.feature.46fda65c8c8d.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Paladino: verificare e applicare Indulgenza. https://golarion.altervista.org/wiki/Paladino#Indulgenza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "paladin.feature.46fda65c8c8d.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Paladino: verificare e applicare Indulgenza. https://golarion.altervista.org/wiki/Paladino#Indulgenza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "paladin.feature.46fda65c8c8d.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Paladino: verificare e applicare Indulgenza. https://golarion.altervista.org/wiki/Paladino#Indulgenza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "paladin.feature.46fda65c8c8d.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Paladino: verificare e applicare Indulgenza. https://golarion.altervista.org/wiki/Paladino#Indulgenza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "paladin.feature.46fda65c8c8d.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Paladino: verificare e applicare Indulgenza. https://golarion.altervista.org/wiki/Paladino#Indulgenza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.99f3e1a8c78d",
+      "name": "Incanalare Energia Positiva",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Incanalare_Energia_Positiva_(Sop)",
+      "progression": [
+        {
+          "id": "paladin.feature.99f3e1a8c78d.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Paladino: verificare e applicare Incanalare Energia Positiva. https://golarion.altervista.org/wiki/Paladino#Incanalare_Energia_Positiva_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.57f13dada9e2",
+      "name": "Legame Divino",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Legame_Divino_(Mag)",
+      "progression": [
+        {
+          "id": "paladin.feature.57f13dada9e2.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Paladino: verificare e applicare Legame Divino. https://golarion.altervista.org/wiki/Paladino#Legame_Divino_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.cb09c0adcbdf",
+      "name": "Aura di Fermezza",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Aura_di_Fermezza_(Sop)",
+      "progression": [
+        {
+          "id": "paladin.feature.cb09c0adcbdf.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Paladino: verificare e applicare Aura di Fermezza. https://golarion.altervista.org/wiki/Paladino#Aura_di_Fermezza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.2ee066756d50",
+      "name": "Aura di Giustizia",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Aura_di_Giustizia_(Sop)",
+      "progression": [
+        {
+          "id": "paladin.feature.2ee066756d50.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Paladino: verificare e applicare Aura di Giustizia. https://golarion.altervista.org/wiki/Paladino#Aura_di_Giustizia_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.6ebcf6219137",
+      "name": "Aura di Fede",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Aura_di_Fede_(Sop)",
+      "progression": [
+        {
+          "id": "paladin.feature.6ebcf6219137.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Paladino: verificare e applicare Aura di Fede. https://golarion.altervista.org/wiki/Paladino#Aura_di_Fede_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.90063f8fe9d0",
+      "name": "Aura di Rettitudine",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Aura_di_Rettitudine_(Sop)",
+      "progression": [
+        {
+          "id": "paladin.feature.90063f8fe9d0.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Paladino: verificare e applicare Aura di Rettitudine. https://golarion.altervista.org/wiki/Paladino#Aura_di_Rettitudine_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.19f84fbac558",
+      "name": "Campione Sacro",
+      "description": "Privilegio della classe Paladino. Regole e condizioni: https://golarion.altervista.org/wiki/Paladino#Campione_Sacro_(Sop)",
+      "progression": [
+        {
+          "id": "paladin.feature.19f84fbac558.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Paladino: verificare e applicare Campione Sacro. https://golarion.altervista.org/wiki/Paladino#Campione_Sacro_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Legale Buono. https://golarion.altervista.org/wiki/Paladino",
+      "progression": [
+        {
+          "id": "paladin.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Legale Buono. https://golarion.altervista.org/wiki/Paladino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Paladino",
+      "progression": [
+        {
+          "id": "paladin.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Paladino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Paladino",
+      "progression": [
+        {
+          "id": "paladin.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Paladino Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.bfc31e289a75",
+      "name": "Grazia Divina",
+      "description": "Aggiunge il bonus di Carisma ai tiri salvezza. Fonte: https://golarion.altervista.org/wiki/Paladino",
+      "progression": [
+        {
+          "id": "paladin.divineGrace.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "saves",
+              "type": "modifier",
+              "resource": "savingThrow.all",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "(@chaMod > 0) * @chaMod"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paladin.feature.1cb10aad1184",
+      "name": "Salute Divina",
+      "description": "Conferisce immunità alle malattie anche magiche e soprannaturali. Fonte: https://golarion.altervista.org/wiki/Paladino",
+      "progression": [
+        {
+          "id": "paladin.divineHealth.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "disease",
+              "type": "immunity",
+              "targetId": "disease",
+              "name": "Malattie"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "paladin.mercy.3",
+      "classType": "paladin",
+      "featureId": "paladin.feature.46fda65c8c8d",
+      "acquisitionIds": [
+        "paladin.feature.46fda65c8c8d.level3",
+        "paladin.feature.46fda65c8c8d.level6",
+        "paladin.feature.46fda65c8c8d.level9",
+        "paladin.feature.46fda65c8c8d.level12",
+        "paladin.feature.46fda65c8c8d.level15",
+        "paladin.feature.46fda65c8c8d.level18"
+      ],
+      "choice": {
+        "id": "mercy",
+        "prompt": "Scegli un’indulgenza (livello e prerequisiti manuali)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "paladin.mercies"
+      }
+    },
+    {
+      "id": "paladin.divineBond.5",
+      "classType": "paladin",
+      "featureId": "paladin.feature.57f13dada9e2",
+      "acquisitionIds": [
+        "paladin.feature.57f13dada9e2.level5"
+      ],
+      "choice": {
+        "id": "divineBond",
+        "prompt": "Scegli il tipo di legame divino",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "paladin.divineBonds"
+      }
+    }
+  ]
+}

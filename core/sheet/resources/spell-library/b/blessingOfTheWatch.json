@@ -1,0 +1,46 @@
+{
+  "id": "blessingOfTheWatch",
+  "name": "Benedizione della Guardia",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "INQUISITOR": 1,
+    "PALADIN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "15 m",
+  "area": "l'incantatore e tutti gli alleati in un'esplosione di 15 m, centrato sull'incantatore",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Offre i benefici di Benedizione per un periodo più lungo, ma solo nell'ambito territoriale previsto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Benedizione_della_Guardia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Benedizione della Guardia: https://golarion.altervista.org/wiki/Incantesimi/Benedizione_della_Guardia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Chierico/Oracolo/Sacerdote Guerriero 1, Inquisitore 1, Paladino 1 (Abadar) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

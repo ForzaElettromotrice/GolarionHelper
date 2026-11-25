@@ -1,0 +1,51 @@
+{
+  "id": "keepWatch",
+  "name": "Sorvegliare",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "HUNTER": 1,
+    "INQUISITOR": 1,
+    "MAGUS": 1,
+    "PALADIN": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata/2 livelli",
+  "durationType": "HOUR",
+  "durationDescription": "8 ore o meno (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Permette di ottenere benefici del riposo notturno restando svegli, se si rispettano le condizioni dell'incantesimo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sorvegliare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sorvegliare: https://golarion.altervista.org/wiki/Incantesimi/Sorvegliare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura toccata/2 livelli. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

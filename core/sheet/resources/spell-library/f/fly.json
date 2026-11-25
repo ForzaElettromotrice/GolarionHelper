@@ -1,0 +1,66 @@
+{
+  "id": "fly",
+  "name": "Volare",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "WITCH": 3,
+    "INVESTIGATOR": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "MAGUS": 3,
+    "SHAMAN": 3,
+    "SORCERER": 3
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "TRAVEL": 3,
+      "VOID": 3
+    },
+    "subdomain": {
+      "AZATA": 3,
+      "FEATHER": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una piuma d'ala",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Conferisce la capacità di volare mediante sostegno magico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Volare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Volare: https://golarion.altervista.org/wiki/Incantesimi/Volare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Aria 3 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

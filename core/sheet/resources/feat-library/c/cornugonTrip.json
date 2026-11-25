@@ -1,0 +1,37 @@
+{
+  "id": "cornugonTrip",
+  "name": "Sbilanciamento del Cornugon",
+  "description": "Consente di scagliare una catena per sbilanciare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Sbilanciamento_del_Cornugon",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Catena Chiodata) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Sbilanciare Migliorato",
+      "feat": {
+        "id": "improvedTrip"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Sbilanciamento del Cornugon: https://golarion.altervista.org/wiki/Talenti/Sbilanciamento_del_Cornugon. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Catena Chiodata) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

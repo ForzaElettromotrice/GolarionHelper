@@ -1,0 +1,25 @@
+{
+  "id": "inHarmsWay",
+  "name": "Frapporsi",
+  "description": "Permette di intercettare un attacco destinato a un compagno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Frapporsi",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Guardia del Corpo",
+      "feat": {
+        "id": "bodyguard"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Frapporsi: https://golarion.altervista.org/wiki/Talenti/Frapporsi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

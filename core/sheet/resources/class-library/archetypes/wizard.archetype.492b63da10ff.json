@@ -1,0 +1,104 @@
+{
+  "id": "wizard.archetype.492b63da10ff",
+  "classType": "wizard",
+  "name": "Padrone delle Pergamene",
+  "description": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Padrone_delle_Pergamene Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "wizard.feature.e0eb2aa5ac5e",
+      "type": "replace"
+    },
+    {
+      "featureId": "wizard.feature.53361bf45405",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "wizard.feature.e0eb2aa5ac5e"
+  ],
+  "removedAcquisitionIds": [
+    "wizard.bonusFeats.level10"
+  ],
+  "addedFeatures": [
+    {
+      "id": "wizard.archetype.492b63da10ff.instructions",
+      "name": "Padrone delle Pergamene",
+      "description": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Padrone_delle_Pergamene Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "wizard.archetype.492b63da10ff.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Padrone_delle_Pergamene Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.492b63da10ff.feature.1",
+      "name": "Pergamena Lama (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Padrone_delle_Pergamene",
+      "progression": [
+        {
+          "id": "wizard.archetype.492b63da10ff.feature.1.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Padrone delle Pergamene — Pergamena Lama (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Padrone_delle_Pergamene Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.492b63da10ff.feature.2",
+      "name": "Pergamena Scudo (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Padrone_delle_Pergamene",
+      "progression": [
+        {
+          "id": "wizard.archetype.492b63da10ff.feature.2.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Padrone delle Pergamene — Pergamena Scudo (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Padrone_delle_Pergamene Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.492b63da10ff.feature.3",
+      "name": "Incantare da Pergamena (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Padrone_delle_Pergamene",
+      "progression": [
+        {
+          "id": "wizard.archetype.492b63da10ff.feature.3.initial",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Padrone delle Pergamene — Incantare da Pergamena (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Padrone_delle_Pergamene Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

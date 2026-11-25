@@ -1,0 +1,83 @@
+{
+  "id": "barbarian.archetype.0eaed72efc62",
+  "classType": "barbarian",
+  "name": "Barbaro Selvaggio",
+  "description": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Barbaro_Selvaggio Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "barbarian.feature.b6a3e8829ae9",
+      "type": "replace"
+    },
+    {
+      "featureId": "barbarian.feature.15958bb2d625",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "barbarian.feature.b6a3e8829ae9",
+    "barbarian.feature.15958bb2d625"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "barbarian.archetype.0eaed72efc62.instructions",
+      "name": "Barbaro Selvaggio",
+      "description": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Barbaro_Selvaggio Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "barbarian.archetype.0eaed72efc62.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Barbaro_Selvaggio Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "barbarian.archetype.0eaed72efc62.feature.1",
+      "name": "Coraggio Nudo (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Barbaro_Selvaggio",
+      "progression": [
+        {
+          "id": "barbarian.archetype.0eaed72efc62.feature.1.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Barbaro Selvaggio — Coraggio Nudo (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Barbaro_Selvaggio Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "barbarian.archetype.0eaed72efc62.feature.2",
+      "name": "Robustezza Naturale (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Barbaro_Selvaggio",
+      "progression": [
+        {
+          "id": "barbarian.archetype.0eaed72efc62.feature.2.initial",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Barbaro Selvaggio — Robustezza Naturale (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Barbaro_Selvaggio Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

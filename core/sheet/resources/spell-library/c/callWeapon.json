@@ -1,0 +1,37 @@
+{
+  "id": "callWeapon",
+  "name": "Richiamare Arma",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 1,
+    "SKALD": 1,
+    "HUNTER": 1,
+    "MAGUS": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 Azione Veloce",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "target": "un'arma da mischia impugnata da un alleato",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Fa muovere telecineticamente un'arma posseduta da un alleato vicino. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Richiamare_Arma",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Richiamare Arma: https://golarion.altervista.org/wiki/Incantesimi/Richiamare_Arma Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

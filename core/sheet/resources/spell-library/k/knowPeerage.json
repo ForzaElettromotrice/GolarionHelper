@@ -1,0 +1,56 @@
+{
+  "id": "knowPeerage",
+  "name": "Conoscere Titolo",
+  "school": "DIVINATION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 1,
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "WIZARD": 2,
+    "MEDIUM": 1,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "PALADIN": 1,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2,
+    "SKALD": 1,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "filo di un tabarro di livrea",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Consente al bersaglio di sfruttare i gradi del lanciatore nelle Conoscenze relative alla nobiltà. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Conoscere_Titolo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Conoscere Titolo: https://golarion.altervista.org/wiki/Incantesimi/Conoscere_Titolo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

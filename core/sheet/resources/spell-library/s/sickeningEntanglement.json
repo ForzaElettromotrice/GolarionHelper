@@ -1,0 +1,50 @@
+{
+  "id": "sickeningEntanglement",
+  "name": "Intralcio Debilitante",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "POISON"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "DRUID": 2,
+    "RANGER": 2,
+    "SHAMAN": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "area": "vegetali in una propagazione del raggio di 12 m",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "PARTIAL",
+      "description": "Riflessi parziale e Tempra nega (vedi testo)"
+    },
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Riflessi parziale e Tempra nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Le piante che intrappolano le vittime le espongono a linfa nociva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Intralcio_Debilitante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Intralcio Debilitante: https://golarion.altervista.org/wiki/Incantesimi/Intralcio_Debilitante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

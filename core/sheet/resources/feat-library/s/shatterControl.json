@@ -1,0 +1,27 @@
+{
+  "id": "shatterControl",
+  "name": "Spezzare il Controllo",
+  "description": "L'incanalamento può interrompere il controllo esercitato sui non morti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Spezzare_il_Controllo",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Incanalare Energia Positiva 4d6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Spezzare il Controllo: https://golarion.altervista.org/wiki/Talenti/Spezzare_il_Controllo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incanalare Energia Positiva 4d6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

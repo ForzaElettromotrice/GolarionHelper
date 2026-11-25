@@ -1,0 +1,28 @@
+{
+  "id": "awesomeBlow",
+  "name": "Colpo Terrificante",
+  "description": "Un colpo potente scaglia lontano gli avversari. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_Terrificante",
+  "types": [
+    "combat",
+    "monster"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Forza 25, Attacco Poderoso, Spingere Migliorato, Taglia Grande o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo Terrificante: https://golarion.altervista.org/wiki/Talenti/Colpo_Terrificante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Forza 25, Attacco Poderoso, Spingere Migliorato, Taglia Grande o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

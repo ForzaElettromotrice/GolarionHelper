@@ -1,0 +1,56 @@
+{
+  "id": "magicalAptitude",
+  "name": "Vocazione Magica",
+  "description": "Migliora Sapienza Magica e Utilizzare Congegni Magici, con beneficio maggiore raggiunti 10 gradi nella singola abilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Vocazione_Magica",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "spellcraft",
+      "type": "modifier",
+      "resource": "skill.spellcraft",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "spellcraftExperienced",
+      "type": "modifier",
+      "resource": "skill.spellcraft",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2",
+      "condition": "Con almeno 10 gradi in Sapienza Magica"
+    },
+    {
+      "id": "useMagicDevice",
+      "type": "modifier",
+      "resource": "skill.useMagicDevice",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "useMagicDeviceExperienced",
+      "type": "modifier",
+      "resource": "skill.useMagicDevice",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2",
+      "condition": "Con almeno 10 gradi in Utilizzare Congegni Magici"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Il bonus aggiuntivo condizionale richiede la verifica manuale dei 10 gradi nella specifica abilità. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

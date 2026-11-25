@@ -1,0 +1,39 @@
+{
+  "id": "lightStep",
+  "name": "Movimenti Agili",
+  "description": "Facilita gli spostamenti a velocità normale attraverso il terreno difficile consentito. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Movimenti_Agili",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Passo Acrobatico",
+      "feat": {
+        "id": "acrobaticSteps"
+      }
+    },
+    {
+      "description": "Passo Leggero",
+      "feat": {
+        "id": "nimbleMoves"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Elfo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Movimenti Agili: https://golarion.altervista.org/wiki/Talenti/Movimenti_Agili. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Elfo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

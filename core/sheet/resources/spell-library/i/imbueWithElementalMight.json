@@ -1,0 +1,52 @@
+{
+  "id": "imbueWithElementalMight",
+  "name": "Infondere Possanza Elementale",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "BLOODRAGER": 2,
+    "MAGUS": 2,
+    "SHAMAN": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata; vedi testo",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore o finché non viene scaricato (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Trasferisce al soggetto l'uso di un assalto elementale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Infondere_Possanza_Elementale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Infondere Possanza Elementale: https://golarion.altervista.org/wiki/Incantesimi/Infondere_Possanza_Elementale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Descrittore non presente nel vocabolario del modello: vedi testo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

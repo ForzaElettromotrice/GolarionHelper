@@ -1,0 +1,23 @@
+{
+  "id": "proneShooter",
+  "name": "Sparatore Prono",
+  "description": "Riduce gli svantaggi del tiro effettuato da terra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Sparatore_Prono",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Sparatore Prono: https://golarion.altervista.org/wiki/Talenti/Sparatore_Prono. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

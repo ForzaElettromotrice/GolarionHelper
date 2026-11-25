@@ -1,0 +1,55 @@
+{
+  "id": "magicStone",
+  "name": "Pietra Magica",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "DRUID": 1,
+    "SHAMAN": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "EARTH": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "fino a 3 sassi toccati",
+  "durationType": "MINUTE",
+  "durationDescription": "30 minuti o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Rende magiche fino a tre pietre: ottengono +1 all'attacco e causano 1d6+1 danni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pietra_Magica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pietra Magica: https://golarion.altervista.org/wiki/Incantesimi/Pietra_Magica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: fino a 3 sassi toccati. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "musketeersDaring",
+  "name": "Audacia del Moschettiere",
+  "description": "Temerarietà può generare ulteriori dadi quando ottiene risultati elevati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Audacia_del_Moschettiere",
+  "types": [
+    "combat",
+    "panache"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intrepido liv. 6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Gesta Temerarietà Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Audacia del Moschettiere: https://golarion.altervista.org/wiki/Talenti/Audacia_del_Moschettiere. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intrepido liv. 6; Prerequisito da verificare manualmente: Gesta Temerarietà Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

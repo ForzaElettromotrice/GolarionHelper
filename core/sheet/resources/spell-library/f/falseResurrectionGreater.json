@@ -1,0 +1,43 @@
+{
+  "id": "falseResurrectionGreater",
+  "name": "Resurrezione Falsa Superiore",
+  "school": "CONJURATION",
+  "descriptors": [
+    "CHAOTIC",
+    "EVIL",
+    "RUSE"
+  ],
+  "subschool": "CALLING",
+  "spellLevelByClass": {
+    "CLERIC": 9,
+    "ORACLE": 9
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "diamante dal valore di 25.000 mo",
+  "materialComponentCostInGoldPieces": 25000,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura morta toccata",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Maschera da resurrezione completa la possessione del cadavere da parte di un diavolo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Resurrezione_Falsa_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Resurrezione Falsa Superiore: https://golarion.altervista.org/wiki/Incantesimi/Resurrezione_Falsa_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

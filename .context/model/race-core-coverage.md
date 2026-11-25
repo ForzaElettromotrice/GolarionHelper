@@ -1,6 +1,6 @@
 # Non-human core race coverage
 
-Reviewed against Golarion on 2026-11-13. The six existing race IDs and baseline feature IDs are preserved in `core/sheet/resources/races/core.json`; the human catalog is maintained separately. English references linked from the Italian pages were used for terminology only, never to supply additional rules.
+Reviewed against Golarion on 2026-11-13. The six existing race IDs and baseline feature IDs are preserved in `core/sheet/resources/race-library/races/<id>.json`; the human catalog is maintained separately. English references linked from the Italian pages were used for terminology only, never to supply additional rules.
 
 | Race/source | Alternate traits | Favored-class options |
 | --- | ---: | ---: |

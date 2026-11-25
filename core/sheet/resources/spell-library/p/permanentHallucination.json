@@ -1,0 +1,44 @@
+{
+  "id": "permanentHallucination",
+  "name": "Allucinazione Permanente",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "WIZARD": 7,
+    "PSYCHIC": 7,
+    "SORCERER": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 metri + 12 m/livello)",
+  "target": "1 creatura",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà per non credere"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Mantiene indefinitamente una scena allucinatoria entro i limiti previsti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Allucinazione_Permanente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Allucinazione Permanente: https://golarion.altervista.org/wiki/Incantesimi/Allucinazione_Permanente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

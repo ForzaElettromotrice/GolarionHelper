@@ -1,0 +1,22 @@
+{
+  "id": "greatFortitude",
+  "name": "Tempra Possente",
+  "description": "Conferisce +2 ai tiri salvezza su Tempra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tempra_Possente",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "save",
+      "type": "modifier",
+      "resource": "savingThrow.fortitude",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    }
+  ],
+  "choices": []
+}

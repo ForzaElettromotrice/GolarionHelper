@@ -1,0 +1,37 @@
+{
+  "id": "exquisiteSneak",
+  "name": "Furtivo Raffinato",
+  "description": "Permette di muoversi furtivamente con le armature consentite senza la normale penalità indicata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Furtivo_Raffinato",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Furtivo Attento",
+      "feat": {
+        "id": "carefulSneak"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Furtività 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Furtivo Raffinato: https://golarion.altervista.org/wiki/Talenti/Furtivo_Raffinato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Furtività 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

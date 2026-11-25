@@ -1,0 +1,39 @@
+{
+  "id": "improvedMountedArchery",
+  "name": "Tirare in Sella Migliorato",
+  "description": "Rafforza ulteriormente la precisione degli attacchi a distanza dalla sella. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tirare_in_Sella_Migliorato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Combattere in Sella",
+      "feat": {
+        "id": "mountedCombat"
+      }
+    },
+    {
+      "description": "Tirare in Sella",
+      "feat": {
+        "id": "mountedArchery"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Cavalcare 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tirare in Sella Migliorato: https://golarion.altervista.org/wiki/Talenti/Tirare_in_Sella_Migliorato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Cavalcare 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

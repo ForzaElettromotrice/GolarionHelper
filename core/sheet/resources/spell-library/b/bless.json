@@ -1,0 +1,71 @@
+{
+  "id": "bless",
+  "name": "Benedizione",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ADEPT": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "INQUISITOR": 1,
+    "PALADIN": 1,
+    "SHAMAN": 1
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "LEADERSHIP": 1,
+      "RESOLUTION": 1
+    },
+    "domain": {
+      "COMMUNITY": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "15 m",
+  "area": "se stessi e tutti gli alleati entro un’esplosione di 15 m centrata su di sé",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Gli alleati ricevono +1 morale agli attacchi e ai tiri salvezza contro la paura; contrasta Anatema. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Benedizione",
+  "effects": [
+    {
+      "id": "attacks",
+      "type": "modifier",
+      "resource": "attack.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "1"
+    },
+    {
+      "id": "fearSaves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "1",
+      "condition": "Contro effetti di paura"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Selezionare gli alleati nell'area; contrastare o dissolvere Anatema richiede intervento manuale. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

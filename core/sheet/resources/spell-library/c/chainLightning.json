@@ -1,0 +1,63 @@
+{
+  "id": "chainLightning",
+  "name": "Catena di Fulmini",
+  "school": "EVOCATION",
+  "descriptors": [
+    "ELECTRICITY"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WITCH": 7,
+    "WIZARD": 6,
+    "MAGUS": 6,
+    "OCCULTIST": 6,
+    "SORCERER": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "AIR": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un ciuffo di peli, un pezzo d’ambra, del vetro o una verga di cristallo; più uno spillo d’argento per livello dell’incantatore",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "target": "1 bersaglio primario, più 1 bersaglio secondario/livello",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una scarica principale salta verso altri bersagli con fulmini secondari. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Catena_di_Fulmini",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Catena di Fulmini: https://golarion.altervista.org/wiki/Incantesimi/Catena_di_Fulmini Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Aria 6, Metallo 6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 bersaglio primario, più 1 bersaglio secondario/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

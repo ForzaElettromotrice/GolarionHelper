@@ -1,0 +1,55 @@
+{
+  "id": "aggressiveThundercloudGreater",
+  "name": "Nembo Aggressivo Superiore",
+  "school": "EVOCATION",
+  "descriptors": [
+    "ELECTRICITY",
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "HUNTER": 4,
+    "DRUID": 4,
+    "WITCH": 4,
+    "MAGUS": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un frammento di albero colpito da un fulmine",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "sfera del diametro di 1,5 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega e Tempra nega (vedi testo)"
+    },
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Riflessi nega e Tempra nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Genera una nube temporalesca mobile più distruttiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Nembo_Aggressivo_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Nembo Aggressivo Superiore: https://golarion.altervista.org/wiki/Incantesimi/Nembo_Aggressivo_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

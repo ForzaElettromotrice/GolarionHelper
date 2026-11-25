@@ -1,0 +1,46 @@
+{
+  "id": "oldSaltSCurse",
+  "name": "Maledizione dell'Uomo di Mare",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 5,
+    "DRUID": 5,
+    "WITCH": 5,
+    "MESMERIST": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un'ampolla di acqua di mare",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Infligge un malessere persistente di natura maledetta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Maledizione_dell%27Uomo_di_Mare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledizione dell'Uomo di Mare: https://golarion.altervista.org/wiki/Incantesimi/Maledizione_dell%27Uomo_di_Mare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

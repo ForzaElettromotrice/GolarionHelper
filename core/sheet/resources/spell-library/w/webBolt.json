@@ -1,0 +1,45 @@
+{
+  "id": "webBolt",
+  "name": "Colpo di Ragnatela",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "WITCH": 1,
+    "BLOODRAGER": 1,
+    "MAGUS": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "una massa di ragnatele delle dimensioni di un pungo",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Scaglia un ammasso di ragnatela che può intrappolare il bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Colpo_di_Ragnatela",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Colpo di Ragnatela: https://golarion.altervista.org/wiki/Incantesimi/Colpo_di_Ragnatela Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

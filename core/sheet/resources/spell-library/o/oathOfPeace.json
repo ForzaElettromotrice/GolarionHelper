@@ -1,0 +1,61 @@
+{
+  "id": "oathOfPeace",
+  "name": "Voto di Pace",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "PALADIN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Un voto di non aggressione conferisce protezioni sacre. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Voto_di_Pace",
+  "effects": [
+    {
+      "id": "armorClass",
+      "type": "modifier",
+      "resource": "armorClass.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "sacred",
+      "expression": "5"
+    },
+    {
+      "id": "saves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "sacred",
+      "expression": "5"
+    },
+    {
+      "id": "damageReduction",
+      "type": "damageReduction",
+      "expression": "10",
+      "bypass": [
+        [
+          "evil"
+        ]
+      ]
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Terminare immediatamente il gruppo se si compie un attacco diretto o indiretto o una manifestazione ostile. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

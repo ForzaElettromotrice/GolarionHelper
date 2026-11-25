@@ -1,0 +1,53 @@
+{
+  "id": "summonMonsterVIII",
+  "name": "Evoca Mostri VIII",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "CLERIC": 8,
+    "SUMMONER": 6,
+    "WITCH": 8,
+    "WIZARD": 8,
+    "ORACLE": 8,
+    "PSYCHIC": 8,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "una borsa minuscola e una piccola candela",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "una creatura evocata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Evoca un servitore extraplanare dalla lista di ottavo livello. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Mostri#Evoca_Mostri_VIII",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Mostri VIII: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Mostri#Evoca_Mostri_VIII Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 8, Aria 8, Fuoco 8, Terra 8 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Descrittore non presente nel vocabolario del modello: vedi testo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

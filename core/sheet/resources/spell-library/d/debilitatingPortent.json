@@ -1,0 +1,42 @@
+{
+  "id": "debilitatingPortent",
+  "name": "Presagio Debilitante",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "CLERIC": 4,
+    "WITCH": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4,
+    "SPIRITUALIST": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I) vedi testo",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un presagio avverso può dimezzare il danno inflitto dalla creatura colpita. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Presagio_Debilitante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Presagio Debilitante: https://golarion.altervista.org/wiki/Incantesimi/Presagio_Debilitante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

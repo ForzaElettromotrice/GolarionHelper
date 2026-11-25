@@ -1,0 +1,34 @@
+{
+  "id": "lightningDraw",
+  "name": "Estrazione Fulminea",
+  "description": "Consente di estrarre le armi con prontezza riflessa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Estrazione_Fulminea",
+  "types": [
+    "combat",
+    "panache"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Estrazione Rapida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intrepido 7° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Gesta Iniziativa dell'Intrepido Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Estrazione Fulminea: https://golarion.altervista.org/wiki/Talenti/Estrazione_Fulminea. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Estrazione Rapida; Prerequisito da verificare manualmente: Intrepido 7° livello; Prerequisito da verificare manualmente: Gesta Iniziativa dell'Intrepido Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

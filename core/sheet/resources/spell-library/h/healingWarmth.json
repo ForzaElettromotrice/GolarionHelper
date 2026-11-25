@@ -1,0 +1,41 @@
+{
+  "id": "healingWarmth",
+  "name": "Calore Curativo",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "HUNTER": 4,
+    "CLERIC": 4,
+    "DRUID": 4,
+    "INQUISITOR": 4,
+    "INVESTIGATOR": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Offre una protezione dal fuoco collegata agli ulteriori effetti curativi descritti nella fonte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Calore_Curativo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Calore Curativo: https://golarion.altervista.org/wiki/Incantesimi/Calore_Curativo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

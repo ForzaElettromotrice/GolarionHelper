@@ -1,0 +1,54 @@
+{
+  "id": "keenSenses",
+  "name": "Sensi Sviluppati",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "HUNTER": 1,
+    "DRUID": 1,
+    "INVESTIGATOR": 1,
+    "OCCULTIST": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una piuma di Falco",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Concede +2 competenza a Percezione e migliora la visione in penombra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sensi_Sviluppati",
+  "effects": [
+    {
+      "id": "perception",
+      "type": "modifier",
+      "resource": "skill.perception",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "competence",
+      "expression": "2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Concede visione crepuscolare; se già posseduta, ne raddoppia la distanza. La visione resta manuale. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

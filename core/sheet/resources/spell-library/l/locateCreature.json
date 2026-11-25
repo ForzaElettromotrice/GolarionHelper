@@ -1,0 +1,52 @@
+{
+  "id": "locateCreature",
+  "name": "Localizza Creatura",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 4,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "MEDIUM": 3,
+    "MESMERIST": 4,
+    "OCCULTIST": 4,
+    "PSYCHIC": 4,
+    "SKALD": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "EXPLORATION": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un ciuffo di pelo di segugio",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "area": "cerchio centrato su di sé del raggio di 120 m + 12 m/livello",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Indica in quale direzione cercare una creatura conosciuta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Localizza_Creatura",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Localizza Creatura: https://golarion.altervista.org/wiki/Incantesimi/Localizza_Creatura Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

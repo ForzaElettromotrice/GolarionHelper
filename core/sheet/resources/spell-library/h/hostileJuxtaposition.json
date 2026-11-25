@@ -1,0 +1,49 @@
+{
+  "id": "hostileJuxtaposition",
+  "name": "Giustapposizione Ostile",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "TELEPORTATION",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 5,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "MESMERIST": 4,
+    "PSYCHIC": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una moneta",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura della stessa Taglia o inferiore",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Crea un vincolo dimensionale che permette di scambiare posizione con il bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Giustapposizione_Ostile",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Giustapposizione Ostile: https://golarion.altervista.org/wiki/Incantesimi/Giustapposizione_Ostile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

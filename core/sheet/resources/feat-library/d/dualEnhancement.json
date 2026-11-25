@@ -1,0 +1,27 @@
+{
+  "id": "dualEnhancement",
+  "name": "Duplice Potenziamento",
+  "description": "Consente di distribuire il potenziamento delle capacità indicate fra due armi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Duplice_Potenziamento",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Combattere con Due Armi; privilegio di classe Arma Consacrata o Legame Divino (arma). Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Duplice Potenziamento: https://golarion.altervista.org/wiki/Talenti/Duplice_Potenziamento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Combattere con Due Armi; privilegio di classe Arma Consacrata o Legame Divino (arma). Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

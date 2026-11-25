@@ -1,0 +1,37 @@
+{
+  "id": "vulpinePounce",
+  "name": "Balzo Volpino",
+  "description": "Combina trasformazione kitsune e carica nello stesso round. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Balzo_Volpino",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Mutaforma Rapido Kitsune",
+      "feat": {
+        "id": "swiftKitsuneShapechanger"
+      }
+    },
+    {
+      "description": "BAB +10",
+      "expression": "@bab >= 10"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Kitsune Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Balzo Volpino: https://golarion.altervista.org/wiki/Talenti/Balzo_Volpino. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Kitsune Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

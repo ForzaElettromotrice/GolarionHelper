@@ -1,0 +1,33 @@
+{
+  "id": "improvedBlindFight",
+  "name": "Combattere alla Cieca Migliorato",
+  "description": "Supera l'occultamento parziale con maggiore efficacia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Combattere_alla_Cieca_Migliorato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Percezione 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Combattere alla Cieca",
+      "feat": {
+        "id": "blindFight"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Combattere alla Cieca Migliorato: https://golarion.altervista.org/wiki/Talenti/Combattere_alla_Cieca_Migliorato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Percezione 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

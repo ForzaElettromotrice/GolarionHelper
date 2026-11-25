@@ -1,0 +1,30 @@
+{
+  "id": "toxicRecovery",
+  "name": "Recupero dalle Tossine",
+  "description": "Accelera il recupero dei danni alle caratteristiche dovuti alle tossine interessate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Recupero_dalle_Tossine",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Nano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: tratto razziale Resistenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Recupero dalle Tossine: https://golarion.altervista.org/wiki/Talenti/Recupero_dalle_Tossine. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Nano; Prerequisito da verificare manualmente: tratto razziale Resistenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

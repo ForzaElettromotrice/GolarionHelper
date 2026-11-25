@@ -1,0 +1,38 @@
+{
+  "id": "shadowbard",
+  "name": "Ombra di un Bardo",
+  "school": "ILLUSION",
+  "descriptors": [
+    "SHADOW"
+  ],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "BARD": 5,
+    "SKALD": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "cantore spettrale",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Genera un duplicato d'ombra capace di esibirsi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ombra_di_un_Bardo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ombra di un Bardo: https://golarion.altervista.org/wiki/Incantesimi/Ombra_di_un_Bardo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "page",
+  "name": "Paggio",
+  "description": "Permette di reclutare un paggio che assista nelle missioni e nei rapporti diplomatici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Paggio",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Personaggio di 4° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: competenza con le armi da guerra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Paggio: https://golarion.altervista.org/wiki/Talenti/Paggio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Personaggio di 4° livello; Prerequisito da verificare manualmente: competenza con le armi da guerra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,155 @@
+{
+  "id": "fighter.archetype.ed79d1d334e0",
+  "classType": "fighter",
+  "name": "Guerriero Mobile",
+  "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "fighter.feature.d44c6514cc68",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.feature.0bfec277b39e",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.feature.2f2d05fd0837",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.feature.42853dd168a3",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "fighter.feature.d44c6514cc68",
+    "fighter.feature.0bfec277b39e",
+    "fighter.feature.2f2d05fd0837"
+  ],
+  "removedAcquisitionIds": [
+    "fighter.feature.42853dd168a3.level11",
+    "fighter.feature.42853dd168a3.level15"
+  ],
+  "addedFeatures": [
+    {
+      "id": "fighter.archetype.ed79d1d334e0.instructions",
+      "name": "Guerriero Mobile",
+      "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "fighter.archetype.ed79d1d334e0.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.ed79d1d334e0.feature.1",
+      "name": "Agilità (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile",
+      "progression": [
+        {
+          "id": "fighter.archetype.ed79d1d334e0.feature.1.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Mobile — Agilità (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.ed79d1d334e0.feature.2",
+      "name": "Attacco in Salto (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile",
+      "progression": [
+        {
+          "id": "fighter.archetype.ed79d1d334e0.feature.2.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Mobile — Attacco in Salto (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.ed79d1d334e0.feature.3",
+      "name": "Attacco Veloce (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile",
+      "progression": [
+        {
+          "id": "fighter.archetype.ed79d1d334e0.feature.3.initial",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Mobile — Attacco Veloce (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.ed79d1d334e0.feature.4",
+      "name": "Piede Agile (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile",
+      "progression": [
+        {
+          "id": "fighter.archetype.ed79d1d334e0.feature.4.initial",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Mobile — Piede Agile (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.ed79d1d334e0.feature.5",
+      "name": "Sortita Turbinante (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile",
+      "progression": [
+        {
+          "id": "fighter.archetype.ed79d1d334e0.feature.5.initial",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Mobile — Sortita Turbinante (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Mobile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

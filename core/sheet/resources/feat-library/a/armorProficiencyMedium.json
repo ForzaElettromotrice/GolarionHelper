@@ -1,0 +1,25 @@
+{
+  "id": "armorProficiencyMedium",
+  "name": "Competenza nelle Armature Medie",
+  "description": "Conferisce addestramento nell'uso delle armature medie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Competenza_nelle_Armature_Medie",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Competenza nelle Armature Leggere",
+      "feat": {
+        "id": "armorProficiencyLight"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Competenza nelle Armature Medie: https://golarion.altervista.org/wiki/Talenti/Competenza_nelle_Armature_Medie. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,49 @@
+{
+  "id": "loathsomeVeil",
+  "name": "Velo Ripugnante",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PATTERN",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "MESMERIST": 3,
+    "PSYCHIC": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un groviglio di fili multicolore",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "una trama trasparente lunga 12 m e alta 6 m",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione + 1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un'apparizione ripugnante provoca nausea o malessere negli osservatori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Velo_Ripugnante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Velo Ripugnante: https://golarion.altervista.org/wiki/Incantesimi/Velo_Ripugnante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

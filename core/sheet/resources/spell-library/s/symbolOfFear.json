@@ -1,0 +1,53 @@
+{
+  "id": "symbolOfFear",
+  "name": "Simbolo di Paura",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING",
+    "FEAR"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "CLERIC": 6,
+    "WITCH": 6,
+    "WIZARD": 6,
+    "OCCULTIST": 4,
+    "ORACLE": 6,
+    "WARPRIEST": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "mercurio e fosforo, più polvere di diamante e opale con un valore totale di almeno 1.000 mo ognuno",
+  "materialComponentCostInGoldPieces": 1000,
+  "rangeType": "OTHER",
+  "rangeDescription": "0 m; vedi testo",
+  "effect": "un simbolo",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una runa scatena il panico nelle creature coinvolte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Simbolo_di_Paura",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Simbolo di Paura: https://golarion.altervista.org/wiki/Incantesimi/Simbolo_di_Paura Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

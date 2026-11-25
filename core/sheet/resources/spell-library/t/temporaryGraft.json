@@ -1,0 +1,42 @@
+{
+  "id": "temporaryGraft",
+  "name": "Innesto Temporaneo",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 4,
+    "INVESTIGATOR": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 4,
+    "MAGUS": 4,
+    "OCCULTIST": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una parte di un corpo smembrato",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Un innesto anatomico provvisorio fornisce uno dei benefici disponibili. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Innesto_Temporaneo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Innesto Temporaneo: https://golarion.altervista.org/wiki/Innesto_Temporaneo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

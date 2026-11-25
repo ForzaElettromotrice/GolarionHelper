@@ -1,0 +1,1489 @@
+{
+  "type": "witch",
+  "name": "Fattucchiere",
+  "description": "Incantatore che riceve magia e fatture attraverso un patrono.",
+  "hitDie": 6,
+  "skillRanksPerLevel": 2,
+  "classSkills": [
+    "skill.craft",
+    "skill.knowledge.arcana",
+    "skill.knowledge.history",
+    "skill.knowledge.nature",
+    "skill.knowledge.planes",
+    "skill.heal",
+    "skill.intimidate",
+    "skill.profession",
+    "skill.spellcraft",
+    "skill.useMagicDevice",
+    "skill.fly"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 2
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 3
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 3
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 6
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 6
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 9
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 9
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 12
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "witch.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "witch.spellcasting",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Fattucchiere",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 1,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "prepared",
+              "spellListClass": "witch"
+            },
+            {
+              "id": "initialKnown",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. La quota iniziale comprende i 3 incantesimi di primo livello. Aggiungere manualmente i trucchetti iniziali consentiti, gli ulteriori incantesimi per il bonus di Intelligenza iniziale e 2 nuovi incantesimi per livello successivo; le quote fra livelli alternativi non sono rappresentabili direttamente. Libro o famiglio e relativi vincoli rimangono manuali. Gli incantesimi aggiuntivi concessi da stirpe, mistero, patrono, maledizione o disciplina non sono inclusi nelle quote base e richiedono i relativi benefici selezionati. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level1"
+          ]
+        },
+        {
+          "id": "castingSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level2"
+          ]
+        },
+        {
+          "id": "castingSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level3"
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level4"
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                },
+                {
+                  "level": 7,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                },
+                {
+                  "level": 8,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 2
+                },
+                {
+                  "level": 9,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                },
+                {
+                  "level": 9,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                },
+                {
+                  "level": 9,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:witch12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                },
+                {
+                  "level": 8,
+                  "capacity": 4
+                },
+                {
+                  "level": 9,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "witch.feature.bfe8e4f5c10e",
+      "name": "Trucchetti",
+      "description": "Privilegio della classe Fattucchiere. Regole e condizioni: https://golarion.altervista.org/wiki/Fattucchiere#Trucchetti",
+      "progression": [
+        {
+          "id": "witch.feature.bfe8e4f5c10e.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Fattucchiere: verificare e applicare Trucchetti. https://golarion.altervista.org/wiki/Fattucchiere#Trucchetti Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "witch.feature.e133cbc4b90e",
+      "name": "Fattura",
+      "description": "Privilegio della classe Fattucchiere. Regole e condizioni: https://golarion.altervista.org/wiki/Fattucchiere#Fattura",
+      "progression": [
+        {
+          "id": "witch.feature.e133cbc4b90e.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Fattucchiere: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Fattucchiere#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "witch.feature.e133cbc4b90e.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Fattucchiere: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Fattucchiere#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "witch.feature.e133cbc4b90e.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Fattucchiere: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Fattucchiere#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "witch.feature.e133cbc4b90e.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Fattucchiere: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Fattucchiere#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "witch.feature.e133cbc4b90e.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Fattucchiere: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Fattucchiere#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "witch.feature.e133cbc4b90e.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Fattucchiere: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Fattucchiere#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "witch.feature.e133cbc4b90e.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Fattucchiere: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Fattucchiere#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "witch.feature.e133cbc4b90e.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Fattucchiere: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Fattucchiere#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "witch.feature.e133cbc4b90e.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Fattucchiere: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Fattucchiere#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "witch.feature.e133cbc4b90e.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Fattucchiere: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Fattucchiere#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "witch.feature.e133cbc4b90e.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Fattucchiere: verificare e applicare Fattura. https://golarion.altervista.org/wiki/Fattucchiere#Fattura Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "witch.feature.ac88924fcb50",
+      "name": "Famiglio del Fattucchiere",
+      "description": "Privilegio della classe Fattucchiere. Regole e condizioni: https://golarion.altervista.org/wiki/Fattucchiere#Famiglio_del_Fattucchiere_(Str)",
+      "progression": [
+        {
+          "id": "witch.feature.ac88924fcb50.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Fattucchiere: verificare e applicare Famiglio del Fattucchiere. https://golarion.altervista.org/wiki/Fattucchiere#Famiglio_del_Fattucchiere_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "witch.feature.b3a7f2d13ccd",
+      "name": "Incantesimi del Patrono",
+      "description": "Privilegio della classe Fattucchiere. Regole e condizioni: https://golarion.altervista.org/wiki/Fattucchiere#Incantesimi_del_Patrono",
+      "progression": [
+        {
+          "id": "witch.feature.b3a7f2d13ccd.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Fattucchiere: verificare e applicare Incantesimi del Patrono. https://golarion.altervista.org/wiki/Fattucchiere#Incantesimi_del_Patrono Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "witch.feature.bb1176106565",
+      "name": "Fattura Maggiore",
+      "description": "Privilegio della classe Fattucchiere. Regole e condizioni: https://golarion.altervista.org/wiki/Fattucchiere#Fattura_Maggiore",
+      "progression": [
+        {
+          "id": "witch.feature.bb1176106565.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Fattucchiere: verificare e applicare Fattura Maggiore. https://golarion.altervista.org/wiki/Fattucchiere#Fattura_Maggiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "witch.feature.fa5c4e64b9f2",
+      "name": "Fattura Superiore",
+      "description": "Privilegio della classe Fattucchiere. Regole e condizioni: https://golarion.altervista.org/wiki/Fattucchiere#Fattura_Superiore",
+      "progression": [
+        {
+          "id": "witch.feature.fa5c4e64b9f2.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Fattucchiere: verificare e applicare Fattura Superiore. https://golarion.altervista.org/wiki/Fattucchiere#Fattura_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "witch.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Fattucchiere",
+      "progression": [
+        {
+          "id": "witch.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Fattucchiere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "witch.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Fattucchiere",
+      "progression": [
+        {
+          "id": "witch.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Fattucchiere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "witch.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Fattucchiere",
+      "progression": [
+        {
+          "id": "witch.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Fattucchiere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "witch.hex.1",
+      "classType": "witch",
+      "featureId": "witch.feature.e133cbc4b90e",
+      "acquisitionIds": [
+        "witch.feature.e133cbc4b90e.level1",
+        "witch.feature.e133cbc4b90e.level2",
+        "witch.feature.e133cbc4b90e.level4",
+        "witch.feature.e133cbc4b90e.level6",
+        "witch.feature.e133cbc4b90e.level8"
+      ],
+      "choice": {
+        "id": "hex",
+        "prompt": "Scegli una fattura",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "witch.hexes"
+      }
+    },
+    {
+      "id": "witch.hex.10",
+      "classType": "witch",
+      "featureId": "witch.feature.e133cbc4b90e",
+      "acquisitionIds": [
+        "witch.feature.e133cbc4b90e.level10",
+        "witch.feature.e133cbc4b90e.level12",
+        "witch.feature.e133cbc4b90e.level14",
+        "witch.feature.e133cbc4b90e.level16"
+      ],
+      "choice": {
+        "id": "hex",
+        "prompt": "Scegli una fattura normale o maggiore",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "witch.majorHexes"
+      }
+    },
+    {
+      "id": "witch.hex.18",
+      "classType": "witch",
+      "featureId": "witch.feature.e133cbc4b90e",
+      "acquisitionIds": [
+        "witch.feature.e133cbc4b90e.level18",
+        "witch.feature.e133cbc4b90e.level20"
+      ],
+      "choice": {
+        "id": "hex",
+        "prompt": "Scegli una fattura normale, maggiore o superiore",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "witch.grandHexes"
+      }
+    },
+    {
+      "id": "witch.patron.1",
+      "classType": "witch",
+      "featureId": "witch.feature.b3a7f2d13ccd",
+      "acquisitionIds": [
+        "witch.feature.b3a7f2d13ccd.level1"
+      ],
+      "choice": {
+        "id": "patron",
+        "prompt": "Scegli un patrono",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "witch.patrons"
+      }
+    },
+    {
+      "id": "witch.familiar.1",
+      "classType": "witch",
+      "featureId": "witch.feature.ac88924fcb50",
+      "acquisitionIds": [
+        "witch.feature.ac88924fcb50.level1"
+      ],
+      "choice": {
+        "id": "familiar",
+        "prompt": "Scegli una specie di famiglio ordinario",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "wizard.familiars"
+      }
+    }
+  ]
+}

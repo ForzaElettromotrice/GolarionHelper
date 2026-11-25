@@ -1,0 +1,61 @@
+{
+  "id": "arcanist.archetype.0f7d843beb8f",
+  "classType": "arcanist",
+  "name": "Specialista degli Incantesimi",
+  "description": "Archetipo di Arcanista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Arcanista/Archetipi#Specialista_degli_Incantesimi Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "arcanist.feature.758c942bcdea",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [],
+  "removedAcquisitionIds": [
+    "arcanist.feature.758c942bcdea.level1",
+    "arcanist.feature.758c942bcdea.level13",
+    "arcanist.feature.758c942bcdea.level19",
+    "arcanist.feature.758c942bcdea.level7"
+  ],
+  "addedFeatures": [
+    {
+      "id": "arcanist.archetype.0f7d843beb8f.instructions",
+      "name": "Specialista degli Incantesimi",
+      "description": "Archetipo di Arcanista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Arcanista/Archetipi#Specialista_degli_Incantesimi Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "arcanist.archetype.0f7d843beb8f.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Arcanista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Arcanista/Archetipi#Specialista_degli_Incantesimi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "arcanist.archetype.0f7d843beb8f.feature.1",
+      "name": "Incantesimi Distintivi",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Arcanista/Archetipi#Specialista_degli_Incantesimi",
+      "progression": [
+        {
+          "id": "arcanist.archetype.0f7d843beb8f.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Specialista degli Incantesimi — Incantesimi Distintivi: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Arcanista/Archetipi#Specialista_degli_Incantesimi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "gazeReflection",
+  "name": "Riflesso dello Sguardo",
+  "description": "Protegge dagli attacchi di sguardo e può rifletterli. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Riflesso_dello_Sguardo",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Sapienza Magica 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegi di classe Occhiata Audace e Trucchi del Mesmerista Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Riflesso dello Sguardo: https://golarion.altervista.org/wiki/Talenti/Riflesso_dello_Sguardo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Sapienza Magica 10 gradi; Prerequisito da verificare manualmente: privilegi di classe Occhiata Audace e Trucchi del Mesmerista Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

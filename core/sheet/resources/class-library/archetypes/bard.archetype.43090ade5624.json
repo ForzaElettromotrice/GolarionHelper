@@ -1,0 +1,63 @@
+{
+  "id": "bard.archetype.43090ade5624",
+  "classType": "bard",
+  "name": "Burattinaio delle Ombre (Wayang)",
+  "description": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Burattinaio_delle_Ombre_.28Wayang.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "bard.feature.14a6ab6e3045",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.e91104f280e1",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "bard.feature.14a6ab6e3045",
+    "bard.feature.e91104f280e1"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "bard.archetype.43090ade5624.instructions",
+      "name": "Burattinaio delle Ombre (Wayang)",
+      "description": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Burattinaio_delle_Ombre_.28Wayang.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "bard.archetype.43090ade5624.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Burattinaio_delle_Ombre_.28Wayang.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.43090ade5624.feature.1",
+      "name": "Esibizione Bardica",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Burattinaio_delle_Ombre_.28Wayang.29",
+      "progression": [
+        {
+          "id": "bard.archetype.43090ade5624.feature.1.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Burattinaio delle Ombre (Wayang) — Esibizione Bardica: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Burattinaio_delle_Ombre_.28Wayang.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

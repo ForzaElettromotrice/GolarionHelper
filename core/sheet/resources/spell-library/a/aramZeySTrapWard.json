@@ -1,0 +1,38 @@
+{
+  "id": "aramZeySTrapWard",
+  "name": "Interdizione alle Trappole di Aram Zey",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "arnesi da scasso perfetti dal valore di 100 mo",
+  "materialComponentCostInGoldPieces": 100,
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello oppure finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Fornisce protezione contro le conseguenze delle trappole magiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Interdizione_alle_Trappole_di_Aram_Zey",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Interdizione alle Trappole di Aram Zey: https://golarion.altervista.org/wiki/Incantesimi/Interdizione_alle_Trappole_di_Aram_Zey Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

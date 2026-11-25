@@ -1,0 +1,37 @@
+{
+  "id": "gorgonsFist",
+  "name": "Pugno della Gorgone",
+  "description": "Può far barcollare una creatura già rallentata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Pugno_della_Gorgone",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Stile dello Scorpione",
+      "feat": {
+        "id": "scorpionStyle"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Pugno della Gorgone: https://golarion.altervista.org/wiki/Talenti/Pugno_della_Gorgone. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

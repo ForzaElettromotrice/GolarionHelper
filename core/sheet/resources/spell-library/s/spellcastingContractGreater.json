@@ -1,0 +1,47 @@
+{
+  "id": "spellcastingContractGreater",
+  "name": "Contratto Incantato Superiore",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 9,
+    "ORACLE": 9
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un contratto scritto",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura consenziente toccata",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente fino alla conclusione del contratto",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Permette di concedere tramite contratto incantesimi di livello più alto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Contratto_Incantato_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Contratto Incantato Superiore: https://golarion.altervista.org/wiki/Incantesimi/Contratto_Incantato_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Chierico/Oracolo 9 (Asmodeus) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,50 @@
+{
+  "id": "persistentImage",
+  "name": "Immagine Persistente",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "FIGMENT",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 5,
+    "WIZARD": 5,
+    "MEDIUM": 4,
+    "MESMERIST": 5,
+    "OCCULTIST": 5,
+    "PSYCHIC": 5,
+    "SKALD": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un ciuffo di lana",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "effect": "finzione visiva che non può estendersi oltre 4 cubi con spigolo di 3 m + un cubo con spigolo di 3 m/livello (F)",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita (se si interagisce)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Mantiene un'illusione complessa senza concentrazione continua. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Immagine_Persistente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Immagine Persistente: https://golarion.altervista.org/wiki/Incantesimi/Immagine_Persistente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

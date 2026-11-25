@@ -8,14 +8,16 @@ Item {
     enum ClassType { Barbarian, Bard, Cleric, Druid, Fighter, Rogue, Wizard, Monk, Paladin, Ranger, Sorcerer, Alchemist, Cavalier, Summoner, Witch, Inquisitor, Magus, Shifter, Oracle, Gunslinger, Vigilante, Antipaladin, Ninja, Samurai, Arcanist, Brawler, Hunter, Swashbuckler, Investigator, Bloodrager, Slayer, Warpriest, Skald, Shaman, Kineticist, Medium, Mesmerist, Occultist, Psychic, Spiritualist, UnchainedBarbarian, UnchainedSummoner, UnchainedRogue, UnchainedMonk, Adept }
     required property var classes
     property var catalog: []
-    property var archetypeCatalog: ({})
+    property var loadArchetypes: type => []
+    property var loadArchetypeDescription: id => ""
+    property var archetypeCatalog: []
     signal addArchetypeRequested(int classType, string archetypeId)
     signal removeArchetypeRequested(int classType, string archetypeId)
     property var editingArchetypeClass: null
     readonly property alias archetypePopup: archetypePicker
     function archetypeSelected(id) { return (editingArchetypeClass?.archetypes ?? []).some(entry => entry.id === id); }
     function archetypeCandidates() {
-        return (archetypeCatalog[editingArchetypeClass?.type] ?? []).filter(entry => !archetypeSearch.text || entry.name.toLocaleLowerCase().includes(archetypeSearch.text.toLocaleLowerCase()))
+        return archetypeCatalog.filter(entry => !archetypeSearch.text || entry.name.toLocaleLowerCase().includes(archetypeSearch.text.toLocaleLowerCase()))
             .slice().sort((a, b) => a.name.localeCompare(b.name, "it"));
     }
     Dialog {
@@ -26,7 +28,10 @@ Item {
         width: Math.min(520, (parent?.width ?? root.width) - 24)
         x: ((parent?.width ?? root.width) - width) / 2
         y: Math.max(12, ((parent?.height ?? 600) - height) / 2)
-        onAboutToShow: archetypeSearch.clear()
+        onAboutToShow: {
+            archetypeSearch.clear()
+            root.archetypeCatalog = root.loadArchetypes(root.editingArchetypeClass.type)
+        }
         footer: DialogButtonBox { Button { text: qsTr("Annulla"); onClicked: archetypePicker.reject() } }
         contentItem: Column {
             spacing: 10
@@ -47,7 +52,7 @@ Item {
                     enabled: !root.archetypeSelected(modelData.id)
                     contentItem: Label { text: archetypeCandidate.modelData.name + (root.archetypeSelected(archetypeCandidate.modelData.id) ? qsTr(" · Selezionato") : ""); textFormat: Text.PlainText; elide: Text.ElideRight; verticalAlignment: Text.AlignVCenter }
                     ToolTip.visible: hovered
-                    ToolTip.text: modelData.description
+                    ToolTip.text: hovered ? root.loadArchetypeDescription(modelData.id) : ""
                     onClicked: { root.addArchetypeRequested(root.editingArchetypeClass.type, modelData.id); archetypePicker.close(); }
                 }
             }

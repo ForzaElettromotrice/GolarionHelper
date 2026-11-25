@@ -1,0 +1,51 @@
+{
+  "id": "maridSMastery",
+  "name": "Maestria del Marid",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "WATER"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "DRUID": 1,
+    "WITCH": 1,
+    "BLOODRAGER": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura consenziente toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Conferisce un vantaggio in combattimento quando sono soddisfatte le condizioni legate all'acqua. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Maestria_del_Marid",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maestria del Marid: https://golarion.altervista.org/wiki/Incantesimi/Maestria_del_Marid Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

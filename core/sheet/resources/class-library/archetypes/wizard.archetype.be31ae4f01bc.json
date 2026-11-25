@@ -1,0 +1,160 @@
+{
+  "id": "wizard.archetype.be31ae4f01bc",
+  "classType": "wizard",
+  "name": "Studioso dei Miti Antichi",
+  "description": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Legame Arcano, Scuola Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "wizard.feature.aa63c3ab3557",
+      "type": "replace"
+    },
+    {
+      "featureId": "wizard.feature.e0eb2aa5ac5e",
+      "type": "alter"
+    },
+    {
+      "featureId": "wizard.feature.5805de6bd2db",
+      "type": "alter"
+    },
+    {
+      "featureId": "wizard.spellbook",
+      "type": "alter"
+    },
+    {
+      "featureId": "wizard.feature.53361bf45405",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "wizard.feature.aa63c3ab3557",
+    "wizard.feature.e0eb2aa5ac5e",
+    "wizard.feature.5805de6bd2db",
+    "wizard.spellbook"
+  ],
+  "removedAcquisitionIds": [
+    "wizard.bonusFeats.level5",
+    "wizard.bonusFeats.level10"
+  ],
+  "addedFeatures": [
+    {
+      "id": "wizard.archetype.be31ae4f01bc.instructions",
+      "name": "Studioso dei Miti Antichi",
+      "description": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "wizard.archetype.be31ae4f01bc.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Legame Arcano, Scuola Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.be31ae4f01bc.feature.1",
+      "name": "Legame Arcano",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi",
+      "progression": [
+        {
+          "id": "wizard.archetype.be31ae4f01bc.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Studioso dei Miti Antichi — Legame Arcano: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.be31ae4f01bc.feature.2",
+      "name": "Sapienza Proibita (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi",
+      "progression": [
+        {
+          "id": "wizard.archetype.be31ae4f01bc.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Studioso dei Miti Antichi — Sapienza Proibita (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.be31ae4f01bc.feature.3",
+      "name": "Grimorio Proibito",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi",
+      "progression": [
+        {
+          "id": "wizard.archetype.be31ae4f01bc.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Studioso dei Miti Antichi — Grimorio Proibito: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.be31ae4f01bc.feature.4",
+      "name": "Talismano della Rivelazione",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi",
+      "progression": [
+        {
+          "id": "wizard.archetype.be31ae4f01bc.feature.4.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Studioso dei Miti Antichi — Talismano della Rivelazione: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.be31ae4f01bc.feature.5",
+      "name": "Infuso Proibito (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi",
+      "progression": [
+        {
+          "id": "wizard.archetype.be31ae4f01bc.feature.5.initial",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Studioso dei Miti Antichi — Infuso Proibito (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Studioso_dei_Miti_Antichi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

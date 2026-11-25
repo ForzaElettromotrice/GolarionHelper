@@ -1,0 +1,52 @@
+{
+  "id": "breakGreater",
+  "name": "Rompere Superiore",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "BLOODRAGER": 4,
+    "WIZARD": 6,
+    "OCCULTIST": 6,
+    "PSYCHIC": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un diapason di platino intatto del valore di 100 mo",
+  "materialComponentCostInGoldPieces": 100,
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "target": "tutti gli oggetti di taglia Media o inferiore in una propagazione di 9 m di raggio centrata su di sé",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Danneggia o rompe numerosi oggetti nell'area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Rompere_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Rompere Superiore: https://golarion.altervista.org/wiki/Incantesimi/Rompere_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: tutti gli oggetti di taglia Media o inferiore in una propagazione di 9 m di raggio centrata su di sé. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

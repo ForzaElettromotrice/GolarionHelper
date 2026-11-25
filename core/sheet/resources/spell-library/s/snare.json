@@ -1,0 +1,41 @@
+{
+  "id": "snare",
+  "name": "Calappio",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "DRUID": 3,
+    "RANGER": 2
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "3 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "calappio di corda o di arbusti non magico toccato del diametro di 60 cm + 60 cm/livello",
+  "durationType": "OTHER",
+  "durationDescription": "finché non viene attivato o distrutto",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Prepara un laccio magico che si stringe quando viene attivato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Calappio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Calappio: https://golarion.altervista.org/wiki/Incantesimi/Calappio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: calappio di corda o di arbusti non magico toccato del diametro di 60 cm + 60 cm/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

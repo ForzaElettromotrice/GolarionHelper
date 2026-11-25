@@ -1,0 +1,64 @@
+{
+  "id": "planarBindingGreater",
+  "name": "Legame Planare Superiore",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CALLING",
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "SUMMONER": 6,
+    "WIZARD": 8,
+    "PSYCHIC": 8,
+    "SORCERER": 8
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "VOID": 8
+    }
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "fino a 3 Elementali o Esterni, per un totale di non più di 18 DV, due dei quali non possono trovarsi a più di 9 m l’uno dall’altro quando appaiono",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "no e sì; vedi testo",
+  "description": "Permette di vincolare esterni più potenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Legame_Planare_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Legame Planare Superiore: https://golarion.altervista.org/wiki/Incantesimi/Legame_Planare_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 8, Aria 8, Fuoco 8, Terra 8 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: fino a 3 Elementali o Esterni, per un totale di non più di 18 DV, due dei quali non possono trovarsi a più di 9 m l’uno dall’altro quando appaiono. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview3",
+      "type": "reminder",
+      "message": "Descrittore non presente nel vocabolario del modello: vedi testo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

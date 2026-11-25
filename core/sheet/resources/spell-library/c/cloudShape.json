@@ -1,0 +1,41 @@
+{
+  "id": "cloudShape",
+  "name": "Forma di Nube",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "AIR"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "HUNTER": 4,
+    "DRUID": 4,
+    "RANGER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un frammento di garza e uno sbuffo di fumo",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di diventare una nube gassosa di dimensioni colossali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Forma_di_Nube",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Forma di Nube: https://golarion.altervista.org/wiki/Incantesimi/Forma_di_Nube Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "toxicStench",
+  "name": "Fetore Tossico",
+  "description": "Il fetore acquisisce proprietà tossiche o disorientanti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Fetore_Tossico",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Fetore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Fetore Migliorato",
+      "feat": {
+        "id": "improvedStench"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: immunità ai Veleni Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Robustezza",
+      "feat": {
+        "id": "toughness"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Fetore Tossico: https://golarion.altervista.org/wiki/Talenti/Fetore_Tossico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Fetore; Prerequisito da verificare manualmente: immunità ai Veleni Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

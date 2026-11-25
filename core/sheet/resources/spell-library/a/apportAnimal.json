@@ -1,0 +1,49 @@
+{
+  "id": "apportAnimal",
+  "name": "Apporta Animale",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "TELEPORTATION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "HUNTER": 3,
+    "SUMMONER": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "MEDIUM": 3,
+    "MESMERIST": 3,
+    "PSYCHIC": 3,
+    "RANGER": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 animale toccato di taglia Minuscola o inferiore",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo o 1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Teletrasporta un animale molto piccolo verso una destinazione o lo richiama a sé. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Apporta_Animale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Apporta Animale: https://golarion.altervista.org/wiki/Incantesimi/Apporta_Animale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "blessWeapon",
+  "name": "Benedire un'Arma",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "PALADIN": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "GLORY": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 arma toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Benedice un'arma rendendola particolarmente efficace contro creature malvagie e modificando la risoluzione dei suoi critici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Benedire_un%27Arma",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Benedire un'Arma: https://golarion.altervista.org/wiki/Incantesimi/Benedire_un%27Arma Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

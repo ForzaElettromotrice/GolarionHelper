@@ -1,0 +1,42 @@
+{
+  "id": "synapticPulse",
+  "name": "Pulsazione Sinaptica",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "MESMERIST": 3,
+    "PSYCHIC": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "area": "emanazione del raggio di 9 m, centrata su se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un impulso mentale può stordire le creature nell'area circostante. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pulsazione_Sinaptica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pulsazione Sinaptica: https://golarion.altervista.org/wiki/Incantesimi/Pulsazione_Sinaptica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "cloudOfSeasickness",
+  "name": "Nube di Mal di Mare",
+  "school": "CONJURATION",
+  "descriptors": [
+    "POISON"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "HUNTER": 2,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "DRUID": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo d'alga",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m più 1,5 m ogni 2 livelli)",
+  "effect": "nube che si propaga per 6 m ed è alta 6 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Produce una nube che rende inferme le creature esposte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Nube_di_Mal_di_Mare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Nube di Mal di Mare: https://golarion.altervista.org/wiki/Incantesimi/Nube_di_Mal_di_Mare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Arcanista/Mago/Stregone 2, Cacciatore 2, Chierico/Oracolo/Sacerdote Guerriero 2, Druido 2 (Besmara) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

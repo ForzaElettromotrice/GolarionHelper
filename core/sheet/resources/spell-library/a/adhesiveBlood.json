@@ -1,0 +1,46 @@
+{
+  "id": "adhesiveBlood",
+  "name": "Sangue Adesivo",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ARCANIST": 2,
+    "WITCH": 2,
+    "INVESTIGATOR": 2,
+    "BLOODRAGER": 2,
+    "WIZARD": 2,
+    "PSYCHIC": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Il sangue del soggetto può incollare l'arma che lo ha ferito. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sangue_Adesivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sangue Adesivo: https://golarion.altervista.org/wiki/Incantesimi/Sangue_Adesivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

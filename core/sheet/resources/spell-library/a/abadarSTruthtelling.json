@@ -1,0 +1,52 @@
+{
+  "id": "abadarSTruthtelling",
+  "name": "Verità di Abadar",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "INQUISITOR": 1,
+    "PALADIN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 min/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Costringe un singolo soggetto a rispettare vincoli di veridicità simili a quelli di Zona di Verità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Verit%C3%A0_di_Abadar",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Verità di Abadar: https://golarion.altervista.org/wiki/Incantesimi/Verit%C3%A0_di_Abadar Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Chierico/Oracolo/Sacerdote Guerriero 1, Inquisitore 1, Paladino 1 (Abadar) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

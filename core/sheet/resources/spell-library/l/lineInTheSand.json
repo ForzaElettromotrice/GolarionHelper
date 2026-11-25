@@ -1,0 +1,37 @@
+{
+  "id": "lineInTheSand",
+  "name": "Linea nella Sabbia",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "BLOODRAGER": 1,
+    "MAGUS": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "1,5 m",
+  "area": "esplosione del raggio di 1,5 m centrata su di sé",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Predispone una linea difensiva che offre ulteriori opportunità di attacco. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Linea_nella_Sabbia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Linea nella Sabbia: https://golarion.altervista.org/wiki/Incantesimi/Linea_nella_Sabbia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

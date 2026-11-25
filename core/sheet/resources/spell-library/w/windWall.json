@@ -1,0 +1,67 @@
+{
+  "id": "windWall",
+  "name": "Muro di Vento",
+  "school": "EVOCATION",
+  "descriptors": [
+    "AIR"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "HUNTER": 2,
+    "CLERIC": 3,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 3,
+    "DRUID": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "MAGUS": 3,
+    "OCCULTIST": 3,
+    "ORACLE": 3,
+    "RANGER": 2,
+    "WARPRIEST": 3,
+    "SHAMAN": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "AIR": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un piccolo ventaglio e una piuma esotica",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "muro lungo fino a 3 m/livello e alto 1,5 m/livello (F)",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Produce una barriera di vento contro proiettili, gas e piccole creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Vento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Muro di Vento: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Vento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Aria 3, Legno 3 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno; vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "meldIntoStone",
+  "name": "Fondersi nella Pietra",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "EARTH"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "CLERIC": 3,
+    "DRUID": 3,
+    "ORACLE": 3,
+    "PSYCHIC": 3,
+    "WARPRIEST": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Consente di entrare nella pietra portando con sé l'equipaggiamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fondersi_nella_Pietra",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fondersi nella Pietra: https://golarion.altervista.org/wiki/Incantesimi/Fondersi_nella_Pietra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

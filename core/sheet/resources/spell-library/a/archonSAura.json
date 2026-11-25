@@ -1,0 +1,45 @@
+{
+  "id": "archonSAura",
+  "name": "Aura dell'Arconte",
+  "school": "EVOCATION",
+  "descriptors": [
+    "GOOD",
+    "LAWFUL"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "PALADIN": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "6 m",
+  "area": "raggio di 6 m centrato su se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un'aura soprannaturale indebolisce l'efficacia offensiva e difensiva degli avversari vicini. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aura_dell%27Arconte",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Aura dell'Arconte: https://golarion.altervista.org/wiki/Incantesimi/Aura_dell%27Arconte Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,93 @@
+{
+  "id": "druid.archetype.1eaf94667caf",
+  "classType": "druid",
+  "name": "Giramondo",
+  "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Giramondo Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "druid.feature.cb6c692c6b8a",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.5cb4f58f9490",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.eb66996dc90e",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.ff1ff97218d0",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "druid.feature.cb6c692c6b8a",
+    "druid.feature.5cb4f58f9490",
+    "druid.feature.eb66996dc90e",
+    "druid.feature.ff1ff97218d0"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "druid.archetype.1eaf94667caf.instructions",
+      "name": "Giramondo",
+      "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Giramondo Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "druid.archetype.1eaf94667caf.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Giramondo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.1eaf94667caf.feature.1",
+      "name": "Ambiente Prescelto (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Giramondo",
+      "progression": [
+        {
+          "id": "druid.archetype.1eaf94667caf.feature.1.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Giramondo — Ambiente Prescelto (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Giramondo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.1eaf94667caf.feature.2",
+      "name": "Sentiero tra gli Alberi (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Giramondo",
+      "progression": [
+        {
+          "id": "druid.archetype.1eaf94667caf.feature.2.initial",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Giramondo — Sentiero tra gli Alberi (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Giramondo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

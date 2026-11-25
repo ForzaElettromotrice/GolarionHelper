@@ -1,0 +1,50 @@
+{
+  "id": "greaterShieldFocus",
+  "name": "Scudo Focalizzato Superiore",
+  "description": "Aumenta di 1 la protezione dello scudo utilizzato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Scudo_Focalizzato_Superiore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza negli Scudi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Scudo Focalizzato",
+      "feat": {
+        "id": "shieldFocus"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Guerriero di 8° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "shield",
+      "type": "modifier",
+      "resource": "armorClass.solid",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "1",
+      "condition": "Quando si beneficia del bonus alla CA di uno scudo effettivamente utilizzato"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Incremento del bonus dello scudo: non applicarlo senza scudo, né quando lo scudo perde efficacia; gestire gli eventuali effetti che estendono lo scudo ad altre difese. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Competenza negli Scudi; Prerequisito da verificare manualmente: Guerriero di 8° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

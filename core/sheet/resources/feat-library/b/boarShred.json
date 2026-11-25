@@ -1,0 +1,42 @@
+{
+  "id": "boarShred",
+  "name": "Trinciatura del Cinghiale",
+  "description": "I colpi senz'armi possono provocare emorragie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Trinciatura_del_Cinghiale",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Ferocia del Cinghiale",
+      "feat": {
+        "id": "boarFerocity"
+      }
+    },
+    {
+      "description": "Stile del Cinghiale",
+      "feat": {
+        "id": "boarStyle"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intimidire 9 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Trinciatura del Cinghiale: https://golarion.altervista.org/wiki/Talenti/Trinciatura_del_Cinghiale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Intimidire 9 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

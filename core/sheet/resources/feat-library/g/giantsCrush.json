@@ -1,0 +1,44 @@
+{
+  "id": "giantsCrush",
+  "name": "Urlo del Gigante",
+  "description": "Una combinazione offensiva abbatte un avversario più piccolo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Urlo_del_Gigante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 13",
+      "expression": "@str >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Colpo Vitale",
+      "feat": {
+        "id": "vitalStrike"
+      }
+    },
+    {
+      "description": "BAB +6",
+      "expression": "@bab >= 6"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Sottotipo Gigante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Urlo del Gigante: https://golarion.altervista.org/wiki/Talenti/Urlo_del_Gigante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Poderoso; Prerequisito da verificare manualmente: Sottotipo Gigante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,34 @@
+{
+  "id": "musketeersReposition",
+  "name": "Riposizionamento del Moschettiere",
+  "description": "Un colpo con il calcio può spostare il nemico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Riposizionamento_del_Moschettiere",
+  "types": [
+    "combat",
+    "grit"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Pistolero liv. 6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Armi da Fuoco) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Gesta Colpo di Calcio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Riposizionamento del Moschettiere: https://golarion.altervista.org/wiki/Talenti/Riposizionamento_del_Moschettiere. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Pistolero liv. 6; Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Armi da Fuoco); Prerequisito da verificare manualmente: Gesta Colpo di Calcio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

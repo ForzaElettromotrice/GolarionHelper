@@ -1,0 +1,27 @@
+{
+  "id": "redemption",
+  "name": "Redenzione",
+  "description": "Permette un aiuto rischioso ai propri tiri e premia la redenzione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Redenzione",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Bisogna aver perso i privilegi di classe per aver violato il codice di condotta di una classe che lo prevede, oppure possedere il background Famiglia Disonorata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Redenzione: https://golarion.altervista.org/wiki/Talenti/Redenzione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Bisogna aver perso i privilegi di classe per aver violato il codice di condotta di una classe che lo prevede, oppure possedere il background Famiglia Disonorata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

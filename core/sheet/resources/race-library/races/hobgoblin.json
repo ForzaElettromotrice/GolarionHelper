@@ -1,0 +1,677 @@
+{
+  "id": "hobgoblin",
+  "name": "Hobgoblin",
+  "qualities": [
+    {
+      "id": "hobgoblin.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide goblinoide. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "hobgoblin.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "hobgoblin.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "hobgoblin.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "hobgoblin.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "goblin",
+          "type": "languageGrant",
+          "languageId": "goblin"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "draconic",
+            "giant",
+            "infernal",
+            "dwarven",
+            "orc"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hobgoblin.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "alchemistBombs",
+          "type": "favoredClassBonus",
+          "name": "Alchimista — +1 bomba giornaliera",
+          "classes": [
+            "alchemist"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 bomba giornaliera. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 bomba giornaliera. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "clericNegativeSpells",
+          "type": "favoredClassBonus",
+          "name": "Chierico — +1 danno negativo degli incantesimi, inclusi Infliggere",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 danno negativo degli incantesimi, inclusi Infliggere. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 danno negativo degli incantesimi, inclusi Infliggere. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "fighterCritical",
+          "type": "favoredClassBonus",
+          "name": "Guerriero — +1 circostanza alla conferma critica con arma scelta; massimo+4 e non cumulabile con Critico Focalizzato",
+          "classes": [
+            "fighter"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 circostanza alla conferma critica con arma scelta; massimo+4 e non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 circostanza alla conferma critica con arma scelta; massimo+4 e non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "inquisitorConcentration",
+          "type": "favoredClassBonus",
+          "name": "Inquisitore — +1 Concentrazione per incantesimi da inquisitore",
+          "classes": [
+            "inquisitor"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 Concentrazione per incantesimi da inquisitore. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 Concentrazione per incantesimi da inquisitore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rogueProficiency",
+          "type": "favoredClassBonus",
+          "name": "Ladro — Riduci di1 la penalità di incompetenza con arma scelta; quando diventa0 vale come relativo talento di competenza",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "Riduci di1 la penalità di incompetenza con arma scelta; quando diventa0 vale come relativo talento di competenza. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "Riduci di1 la penalità di incompetenza con arma scelta; quando diventa0 vale come relativo talento di competenza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "gunslingerGrit",
+          "type": "favoredClassBonus",
+          "name": "Pistolero — +1 punto Grinta",
+          "classes": [
+            "gunslinger"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 punto Grinta. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 punto Grinta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rangerFavoredEnemy",
+          "type": "favoredClassBonus",
+          "name": "Ranger — +1 a un bonus di Nemico Prescelto esistente; massimo+1 per tipo",
+          "classes": [
+            "ranger"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 a un bonus di Nemico Prescelto esistente; massimo+1 per tipo. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 a un bonus di Nemico Prescelto esistente; massimo+1 per tipo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "cavalierSocialRider",
+          "type": "favoredClassBonus",
+          "name": "Cavaliere — Cavalcare e Intimidire",
+          "classes": [
+            "cavalier"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Cavalcare e Intimidire.",
+          "effects": [
+            {
+              "id": "ride",
+              "type": "modifier",
+              "resource": "skill.ride",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "intimidate",
+              "type": "modifier",
+              "resource": "skill.intimidate",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        },
+        {
+          "id": "monkManeuvers",
+          "type": "favoredClassBonus",
+          "name": "Monaco — Lotta e sbilanciare",
+          "classes": [
+            "monk"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 BMC a lottare e sbilanciare.",
+          "effects": [
+            {
+              "id": "grapple",
+              "type": "modifier",
+              "resource": "combatManeuver.bonus.grapple",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "trip",
+              "type": "modifier",
+              "resource": "combatManeuver.bonus.trip",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "hobgoblin.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "hobgoblin.sneaky",
+      "name": "Furtivo",
+      "description": "Furtivo",
+      "effects": [
+        {
+          "id": "stealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "hobgoblin.magehunter",
+      "name": "Cacciatore di Incantatori",
+      "description": "Cacciatore di Incantatori",
+      "effects": [
+        {
+          "id": "spellcraft",
+          "type": "modifier",
+          "resource": "skill.spellcraft",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Identificare incantesimo durante il lancio"
+        },
+        {
+          "id": "attack",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Contro incantatori arcani, non solo utilizzatori di capacità magiche"
+        }
+      ],
+      "replaces": [
+        "hobgoblin.sneaky"
+      ]
+    },
+    {
+      "id": "hobgoblin.slaveHunter",
+      "name": "Cacciatore di Schiavi",
+      "description": "Cacciatore di Schiavi",
+      "effects": [
+        {
+          "id": "survival",
+          "type": "modifier",
+          "resource": "skill.survival",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "fortitude",
+          "type": "modifier",
+          "resource": "savingThrow.fortitude",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Malattia"
+        }
+      ],
+      "replaces": [
+        "hobgoblin.sneaky"
+      ]
+    },
+    {
+      "id": "hobgoblin.pitBoss",
+      "name": "Capofossa",
+      "description": "Capofossa",
+      "effects": [
+        {
+          "id": "disarm",
+          "type": "modifier",
+          "resource": "combatManeuver.bonus.disarm",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Manovra con frusta"
+        },
+        {
+          "id": "trip",
+          "type": "modifier",
+          "resource": "combatManeuver.bonus.trip",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Manovra con frusta"
+        },
+        {
+          "id": "whip",
+          "type": "reminder",
+          "message": "Competenza nella frusta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "hobgoblin.sneaky"
+      ]
+    },
+    {
+      "id": "hobgoblin.bandyLegged",
+      "name": "Gambestorte",
+      "description": "Velocità6 m; Cavalcare/Scalare +2, difesa da sbilanciare/spingere +2 su terreno solido. La fonte non sostituisce Furtivo.",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        },
+        {
+          "id": "ride",
+          "type": "modifier",
+          "resource": "skill.ride",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "climb",
+          "type": "modifier",
+          "resource": "skill.climb",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "trip",
+          "type": "modifier",
+          "resource": "combatManeuver.defense.trip",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Su terreno solido"
+        },
+        {
+          "id": "bullRush",
+          "type": "modifier",
+          "resource": "combatManeuver.defense.bullRush",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Su terreno solido"
+        }
+      ],
+      "replaces": [
+        "hobgoblin.baseSpeed"
+      ]
+    },
+    {
+      "id": "hobgoblin.unfit",
+      "name": "Inadatto",
+      "description": "Inadatto",
+      "effects": [
+        {
+          "id": "diplomacy",
+          "type": "modifier",
+          "resource": "skill.diplomacy",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1"
+        },
+        {
+          "id": "bluff",
+          "type": "modifier",
+          "resource": "skill.bluff",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1"
+        },
+        {
+          "id": "weapon",
+          "type": "reminder",
+          "message": "Scegli una singola arma da guerra in cui ottenere competenza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "hobgoblin.sneaky"
+      ]
+    },
+    {
+      "id": "hobgoblin.engineer",
+      "name": "Ingegnere",
+      "description": "Ingegnere",
+      "effects": [
+        {
+          "id": "engineering",
+          "type": "modifier",
+          "resource": "skill.knowledge.engineering",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "alchemy",
+          "type": "reminder",
+          "message": "+2 razziale ad Artigianato (alchimia); configurare la specializzazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "hobgoblin.sneaky"
+      ]
+    },
+    {
+      "id": "hobgoblin.scarred",
+      "name": "Sfregiato",
+      "description": "Sfregiato",
+      "effects": [
+        {
+          "id": "armor",
+          "type": "modifier",
+          "resource": "armorClass.solid",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "naturalArmor",
+          "expression": "1"
+        }
+      ],
+      "replaces": [
+        "hobgoblin.darkvision"
+      ]
+    },
+    {
+      "id": "hobgoblin.fearsome",
+      "name": "Spaventoso",
+      "description": "Spaventoso",
+      "effects": [
+        {
+          "id": "intimidate",
+          "type": "modifier",
+          "resource": "skill.intimidate",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        }
+      ],
+      "replaces": [
+        "hobgoblin.sneaky"
+      ]
+    },
+    {
+      "id": "hobgoblin.battleHardened",
+      "name": "Temprato dalla Battaglia",
+      "description": "Temprato dalla Battaglia",
+      "effects": [
+        {
+          "id": "cmd",
+          "type": "modifier",
+          "resource": "combatManeuver.defense.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "1"
+        }
+      ],
+      "replaces": [
+        "hobgoblin.sneaky"
+      ]
+    }
+  ]
+}

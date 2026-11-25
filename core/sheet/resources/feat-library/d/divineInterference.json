@@ -1,0 +1,30 @@
+{
+  "id": "divineInterference",
+  "name": "Interferenza Divina",
+  "description": "Sacrifica un incantesimo per far ripetere a un nemico un attacco riuscito contro un alleato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Interferenza_Divina",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Incantatore divino Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: incantatore di 10° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Interferenza Divina: https://golarion.altervista.org/wiki/Talenti/Interferenza_Divina. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incantatore divino; Prerequisito da verificare manualmente: incantatore di 10° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

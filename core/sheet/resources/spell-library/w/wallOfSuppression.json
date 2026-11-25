@@ -1,0 +1,39 @@
+{
+  "id": "wallOfSuppression",
+  "name": "Muro di Soppressione",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WIZARD": 9,
+    "PSYCHIC": 9,
+    "SORCERER": 9
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "polvere di adamantio del valore di 1.000 mo",
+  "materialComponentCostInGoldPieces": 1000,
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "muro di anti magia che occupa un cubo con spigolo fino a 1,5 m/livello (F)",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello; vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Genera una barriera che sopprime gli effetti magici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Soppressione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Muro di Soppressione: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Soppressione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "siegeGunner",
+  "name": "Tiratore d'Assedio",
+  "description": "Migliora la precisione delle macchine d'assedio a tiro diretto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tiratore_d%27Assedio",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Ingegnere d'Assedio",
+      "feat": {
+        "id": "siegeEngineer"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Professione (Ingegnere d'Assedio) 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tiratore d'Assedio: https://golarion.altervista.org/wiki/Talenti/Tiratore_d%27Assedio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Professione (Ingegnere d'Assedio) 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

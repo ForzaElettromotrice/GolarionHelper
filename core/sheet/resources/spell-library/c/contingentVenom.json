@@ -1,0 +1,47 @@
+{
+  "id": "contingentVenom",
+  "name": "Veleno Contingente",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "POISON"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SHAMAN": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "erbe usate dentro un'antitossina dal valore di 25 mo",
+  "materialComponentCostInGoldPieces": 25,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una dose di veleno o una creatura velenosa",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente finchè scaricato (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Prepara un veleno che inizia ad agire quando si verifica una condizione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Veleno_Contingente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Veleno Contingente: https://golarion.altervista.org/wiki/Incantesimi/Veleno_Contingente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

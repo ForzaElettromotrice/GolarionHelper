@@ -1,0 +1,46 @@
+{
+  "id": "hauntedGnomeShroud",
+  "name": "Sudario dello Gnomo Stregato",
+  "description": "Accresce le possibilità di occultamento della magia gnomesca stregata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Sudario_dello_Gnomo_Stregato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: tratto razziale Magia Gnomesca Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Assalto dello Gnomo Stregato",
+      "feat": {
+        "id": "hauntedGnomeAssault"
+      }
+    },
+    {
+      "description": "Gnomo Stregato",
+      "feat": {
+        "id": "hauntedGnome"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (arcane) 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Sudario dello Gnomo Stregato: https://golarion.altervista.org/wiki/Talenti/Sudario_dello_Gnomo_Stregato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: tratto razziale Magia Gnomesca; Prerequisito da verificare manualmente: Conoscenze (arcane) 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

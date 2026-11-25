@@ -1,0 +1,53 @@
+{
+  "id": "visionOfHell",
+  "name": "Visione dell'Inferno",
+  "school": "ILLUSION",
+  "descriptors": [
+    "EVIL",
+    "FEAR"
+  ],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "BARD": 3,
+    "SKALD": 3,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "WITCH": 3,
+    "BLOODRAGER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di zolfo",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "emanazione di 15 m di raggio",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una visione infernale suscita paura nell'area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Visione_dell%27Inferno",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Visione dell'Inferno: https://golarion.altervista.org/wiki/Visione_dell%27Inferno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

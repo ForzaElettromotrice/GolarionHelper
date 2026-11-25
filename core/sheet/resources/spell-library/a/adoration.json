@@ -1,0 +1,56 @@
+{
+  "id": "adoration",
+  "name": "Adorazione",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 1,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "MESMERIST": 1,
+    "PSYCHIC": 2,
+    "SKALD": 1,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Favorisce l'influenza sociale con +2 morale a Diplomazia fuori combattimento e alle prove di esibizione in combattimento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Adorazione",
+  "effects": [
+    {
+      "id": "diplomacy",
+      "type": "modifier",
+      "resource": "skill.diplomacy",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "2",
+      "condition": "Fuori combattimento, per influenzare creature"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Il bonus alle prove di esibizione in combattimento è manuale e non equivale a Intrattenere. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

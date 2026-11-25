@@ -1,0 +1,40 @@
+{
+  "id": "linebreaker",
+  "name": "Spezzalinee",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "INVESTIGATOR": 1,
+    "ANTIPALADIN": 1,
+    "HUNTER": 1,
+    "INQUISITOR": 1,
+    "MAGUS": 1,
+    "PALADIN": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Aumenta il movimento in carica e concede +2 alle manovre di spingere e oltrepassare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Spezzalinee",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Spezzalinee: https://golarion.altervista.org/wiki/Incantesimi/Spezzalinee Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

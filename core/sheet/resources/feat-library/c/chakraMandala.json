@@ -1,0 +1,27 @@
+{
+  "id": "chakraMandala",
+  "name": "Mandala del Chakra",
+  "description": "Riduce il prezzo di un chakra mantenuto senza successo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mandala_del_Chakra",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Riserva Ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mandala del Chakra: https://golarion.altervista.org/wiki/Talenti/Mandala_del_Chakra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di classe Riserva Ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

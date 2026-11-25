@@ -1,0 +1,27 @@
+{
+  "id": "sinisterReputation",
+  "name": "Reputazione Sinistra",
+  "description": "Costruisce una reputazione temibile all'interno di un insediamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Reputazione_Sinistra",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Carisma 13; Intimidire 5 gradi, Persuasivo o Dote Sociale Rinomanza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Reputazione Sinistra: https://golarion.altervista.org/wiki/Talenti/Reputazione_Sinistra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Carisma 13; Intimidire 5 gradi, Persuasivo o Dote Sociale Rinomanza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

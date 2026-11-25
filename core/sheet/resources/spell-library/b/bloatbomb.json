@@ -1,0 +1,53 @@
+{
+  "id": "bloatbomb",
+  "name": "Bomba Gonfia",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "ACID",
+    "DEATH"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "ANTIPALADIN": 4,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura vivente toccata",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo e 1 minuto/livello (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega o Riflessi dimezza (vedi testo)"
+    },
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Tempra nega o Riflessi dimezza (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Uccide una creatura sufficientemente debole e ne prepara il corpo come trappola esplosiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bomba_Gonfia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bomba Gonfia: https://golarion.altervista.org/wiki/Incantesimi/Bomba_Gonfia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

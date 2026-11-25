@@ -1,0 +1,42 @@
+{
+  "id": "fangedCrownMassacre",
+  "name": "Massacro della Corona di Zanne",
+  "description": "Un'orazione sostiene l'attacco di un alleato e può convertirne i danni non letali in letali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Massacro_della_Corona_di_Zanne",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Guardia del Corpo",
+      "feat": {
+        "id": "bodyguard"
+      }
+    },
+    {
+      "description": "Riflessi in Combattimento",
+      "feat": {
+        "id": "combatReflexes"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intrattenere (orazione) 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: qualsiasi Allineamento malvagio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Massacro della Corona di Zanne: https://golarion.altervista.org/wiki/Talenti/Massacro_della_Corona_di_Zanne. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intrattenere (orazione) 3 gradi; Prerequisito da verificare manualmente: qualsiasi Allineamento malvagio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

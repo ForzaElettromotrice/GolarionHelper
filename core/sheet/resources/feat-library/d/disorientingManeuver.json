@@ -1,0 +1,33 @@
+{
+  "id": "disorientingManeuver",
+  "name": "Manovra Disorientante",
+  "description": "Un'acrobazia riuscita attraverso lo spazio nemico prepara attacchi più precisi contro quella creatura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Manovra_Disorientante",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Schivare",
+      "feat": {
+        "id": "dodge"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Acrobazia 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Manovra Disorientante: https://golarion.altervista.org/wiki/Talenti/Manovra_Disorientante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Acrobazia 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

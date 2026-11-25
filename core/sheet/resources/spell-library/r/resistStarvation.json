@@ -1,0 +1,45 @@
+{
+  "id": "resistStarvation",
+  "name": "Resistere alla Fame",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "mollica di cibo",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura vivente toccata",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Rallenta l'aumento della difficoltà delle prove necessarie a sopportare la fame. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Resistere_alla_Fame",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Resistere alla Fame: https://golarion.altervista.org/wiki/Incantesimi/Resistere_alla_Fame Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

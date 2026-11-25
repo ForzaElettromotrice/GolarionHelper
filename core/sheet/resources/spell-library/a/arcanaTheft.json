@@ -1,0 +1,34 @@
+{
+  "id": "arcanaTheft",
+  "name": "Furto Arcano",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "MAGUS": 4,
+    "PSYCHIC": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Sottrae un effetto magico dissolto e lo trasferisce all'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Furto_Arcano",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Furto Arcano: https://golarion.altervista.org/wiki/Incantesimi/Furto_Arcano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

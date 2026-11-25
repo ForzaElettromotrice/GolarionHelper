@@ -1,0 +1,32 @@
+{
+  "id": "sealedLifeGreater",
+  "name": "Vita Sigillata Superiore",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "SPIRITUALIST": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Protegge il soggetto anche da effetti di morte e trasferimenti dell'anima. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vita_Sigillata_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Vita Sigillata Superiore: https://golarion.altervista.org/wiki/Incantesimi/Vita_Sigillata_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

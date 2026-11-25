@@ -1,0 +1,582 @@
+{
+  "id": "undine",
+  "name": "Ondine",
+  "qualities": [
+    {
+      "id": "undine.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Esterno nativo. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "undine.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "undine.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "undine.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "undine.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "aquan",
+          "type": "languageGrant",
+          "languageId": "aquan"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "auran",
+            "elven",
+            "gnome",
+            "halfling",
+            "ignan",
+            "dwarven",
+            "terran"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "undine.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "bardCountersong",
+          "type": "favoredClassBonus",
+          "name": "Bardo — +1 alle prove di Controcanto contro creature acqua/acquatiche",
+          "classes": [
+            "bard"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 alle prove di Controcanto contro creature acqua/acquatiche. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 alle prove di Controcanto contro creature acqua/acquatiche. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "clericSpellResistance",
+          "type": "favoredClassBonus",
+          "name": "Chierico — +1 alle prove LI contro RI di creature acqua/acquatiche",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 alle prove LI contro RI di creature acqua/acquatiche. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 alle prove LI contro RI di creature acqua/acquatiche. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "summonerLifeLink",
+          "type": "favoredClassBonus",
+          "name": "Convocatore — +1,5 m portata Legame Vitale per eidolon con forma base acquatica",
+          "classes": [
+            "summoner"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1,5 m portata Legame Vitale per eidolon con forma base acquatica. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1,5 m portata Legame Vitale per eidolon con forma base acquatica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "druidWildEmpathy",
+          "type": "favoredClassBonus",
+          "name": "Druido — +1 Empatia Selvatica su animali/bestie magiche acquatiche",
+          "classes": [
+            "druid"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 Empatia Selvatica su animali/bestie magiche acquatiche. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 Empatia Selvatica su animali/bestie magiche acquatiche. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "wizardSpell",
+          "type": "favoredClassBonus",
+          "name": "Mago — Aggiungi al libro un incantesimo di chierico/druido/mago; se assente dalla lista mago conta un livello più alto",
+          "classes": [
+            "wizard"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "Aggiungi al libro un incantesimo di chierico/druido/mago; se assente dalla lista mago conta un livello più alto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "Aggiungi al libro un incantesimo di chierico/druido/mago; se assente dalla lista mago conta un livello più alto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererUnderwater",
+          "type": "favoredClassBonus",
+          "name": "Stregone — +1 prove LI per lanciare incantesimi sott'acqua",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 prove LI per lanciare incantesimi sott'acqua. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 prove LI per lanciare incantesimi sott'acqua. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkGrappleAndStunning",
+          "type": "favoredClassBonus",
+          "name": "Monaco — Difesa e Attacco Stordente",
+          "classes": [
+            "monk"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 DMC contro lotta e +1/3 uso giornaliero di Attacco Stordente per selezione. La frazione degli usi resta manuale.",
+          "effects": [
+            {
+              "id": "grapple",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.grapple",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "stunning",
+              "type": "reminder",
+              "message": "Accumula1/3 uso giornaliero di Attacco Stordente per scelta; completa un uso ogni3 selezioni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "undine.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "undine.swim",
+      "name": "Nuotare",
+      "description": "Nuotare",
+      "effects": [
+        {
+          "id": "swim",
+          "type": "movementGrant",
+          "movementType": "swim",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": false
+        },
+        {
+          "id": "swimBonus",
+          "type": "modifier",
+          "resource": "skill.swim",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "8"
+        },
+        {
+          "id": "swimClass",
+          "type": "classSkillGrant",
+          "resource": "skill.swim"
+        },
+        {
+          "id": "swimRules",
+          "type": "reminder",
+          "message": "La velocità di nuoto consente movimento ordinario senza prova; regole di nuoto e prendere10 si applicano manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "undine.energyResistance",
+      "name": "Resistenza all'Energia",
+      "description": "Resistenza all'Energia",
+      "effects": [
+        {
+          "id": "cold",
+          "type": "energyResistance",
+          "energy": "cold",
+          "expression": "5"
+        }
+      ]
+    },
+    {
+      "id": "undine.waterAffinity",
+      "name": "Affinità all'Acqua",
+      "description": "Affinità all'Acqua",
+      "effects": [
+        {
+          "id": "affinity",
+          "type": "reminder",
+          "message": "Stirpe elementale acqua: Carisma effettivo+2 per magie/capacità da stregone. Dominio Acqua: LI+1 a poteri/incantesimi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "undine.spellLikeAbility",
+      "name": "Capacità Magiche",
+      "description": "Capacità Magiche",
+      "effects": [
+        {
+          "id": "spell",
+          "type": "reminder",
+          "message": "Spinta Idraulica1/giorno, LI pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "undine.amphibious",
+      "name": "Anfibio",
+      "description": "Acquisisce sottotipo acquatico e capacità anfibio: respirazione in acqua e aria. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Acquisisce sottotipo acquatico e capacità anfibio: respirazione in acqua e aria. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "undine.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "undine.terrainChameleon",
+      "name": "Camaleonte Ambientale",
+      "description": "Camaleonte Ambientale",
+      "effects": [
+        {
+          "id": "stealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Sott'acqua, colorazione camaleontica attiva"
+        },
+        {
+          "id": "activation",
+          "type": "reminder",
+          "message": "Azione standard per attivare la colorazione; gratuita per tornare normale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "undine.energyResistance"
+      ]
+    },
+    {
+      "id": "undine.fleshChameleon",
+      "name": "Carnagione Camaleontica",
+      "description": "Carnagione Camaleontica",
+      "effects": [
+        {
+          "id": "disguise",
+          "type": "modifier",
+          "resource": "skill.disguise",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Apparire umano con carnagione camaleontica attiva"
+        },
+        {
+          "id": "activation",
+          "type": "reminder",
+          "message": "Azione standard per assumere carnagione umana; gratuita per ripristinarla. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "undine.energyResistance"
+      ]
+    },
+    {
+      "id": "undine.nereidFascination",
+      "name": "Fascinazione della Nereide",
+      "description": "1/giorno azione standard: aura6 m affascina umanoidi per metà livello round(minimo1), Volontà CD10 + metà livello + Carisma nega. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "1/giorno azione standard: aura6 m affascina umanoidi per metà livello round(minimo1), Volontà CD10 + metà livello + Carisma nega. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "undine.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "undine.waterSense",
+      "name": "Percezione Acquatica",
+      "description": "Percezione cieca9 m per creature nella stessa massa d'acqua. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Percezione cieca9 m per creature nella stessa massa d'acqua. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "undine.energyResistance"
+      ]
+    },
+    {
+      "id": "undine.acidBreath",
+      "name": "Soffio Acido",
+      "description": "1/giorno cono1,5 m:1d8 acido ogni2 livelli, massimo5d8; Riflessi CD10 + metà livello + Costituzione dimezza. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "1/giorno cono1,5 m:1d8 acido ogni2 livelli, massimo5d8; Riflessi CD10 + metà livello + Costituzione dimezza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "undine.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "undine.oozeBreath",
+      "name": "Soffio di Melma",
+      "description": "1/giorno cono1,5 m:1d4 acido ogni2 livelli, massimo5d4; infermo3 round. Riflessi CD10 + metà livello + Costituzione dimezza e nega infermità. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "1/giorno cono1,5 m:1d4 acido ogni2 livelli, massimo5d4; infermo3 round. Riflessi CD10 + metà livello + Costituzione dimezza e nega infermità. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "undine.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "undine.deepsight",
+      "name": "Visione di Profondità",
+      "description": "Scurovisione36 m solo sott'acqua; nessuna scurovisione altrove. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scurovisione36 m solo sott'acqua; nessuna scurovisione altrove. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "undine.darkvision"
+      ]
+    },
+    {
+      "id": "undine.hydratedVitality",
+      "name": "Vitalità Idratata",
+      "description": "Immersione completa in acqua naturale non stagnante/avvelenata: Guarigione Rapida2 per1 round, massimo2 PF/livello al giorno. Non vale in invasi artificiali. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Immersione completa in acqua naturale non stagnante/avvelenata: Guarigione Rapida2 per1 round, massimo2 PF/livello al giorno. Non vale in invasi artificiali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "undine.waterAffinity"
+      ]
+    }
+  ]
+}

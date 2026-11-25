@@ -1,0 +1,29 @@
+{
+  "id": "ricochetSplashWeapon",
+  "name": "Armi a Spargimento Rimbalzanti",
+  "description": "Offre una possibilità ulteriore di colpire quando un'arma a spargimento manca il bersaglio iniziale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Armi_a_Spargimento_Rimbalzanti",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Lanciare Oggetti",
+      "feat": {
+        "id": "throwAnything"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Armi a Spargimento Rimbalzanti: https://golarion.altervista.org/wiki/Talenti/Armi_a_Spargimento_Rimbalzanti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

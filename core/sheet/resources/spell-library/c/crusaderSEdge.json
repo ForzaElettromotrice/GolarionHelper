@@ -1,0 +1,47 @@
+{
+  "id": "crusaderSEdge",
+  "name": "Lama del Crociato",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "INQUISITOR": 4,
+    "PALADIN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "sangue essiccato di un Esterno Malvagio, cosparso sull'arma",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 arma da mischia toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Rende un'arma particolarmente letale contro gli esterni malvagi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lama_del_Crociato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Lama del Crociato: https://golarion.altervista.org/wiki/Incantesimi/Lama_del_Crociato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

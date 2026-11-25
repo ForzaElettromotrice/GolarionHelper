@@ -1,0 +1,129 @@
+{
+  "id": "oracle.archetype.2c8fc0c4844a",
+  "classType": "oracle",
+  "name": "Oracolo Planare",
+  "description": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Oracolo_Planare Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "oracle.feature.9fd0a7d15ca8",
+      "type": "replace"
+    },
+    {
+      "featureId": "oracle.feature.aaa668a8100b",
+      "type": "alter"
+    },
+    {
+      "featureId": "oracle.feature.d5cd6abc2865",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "oracle.feature.9fd0a7d15ca8",
+    "oracle.feature.d5cd6abc2865"
+  ],
+  "removedAcquisitionIds": [
+    "oracle.feature.aaa668a8100b.level3"
+  ],
+  "addedFeatures": [
+    {
+      "id": "oracle.archetype.2c8fc0c4844a.instructions",
+      "name": "Oracolo Planare",
+      "description": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Oracolo_Planare Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "oracle.archetype.2c8fc0c4844a.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Oracolo_Planare Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.2c8fc0c4844a.feature.d8fd7ae943",
+      "name": "Misteri Raccomandati",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Oracolo_Planare",
+      "progression": [
+        {
+          "id": "oracle.archetype.2c8fc0c4844a.feature.d8fd7ae943.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Oracolo Planare — Misteri Raccomandati: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Oracolo_Planare Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.2c8fc0c4844a.feature.3192da30c5",
+      "name": "Incantesimi Bonus",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Oracolo_Planare",
+      "progression": [
+        {
+          "id": "oracle.archetype.2c8fc0c4844a.feature.3192da30c5.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Oracolo Planare — Incantesimi Bonus: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Oracolo_Planare Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.2c8fc0c4844a.feature.5dffa6d8a8",
+      "name": "Rivelazioni",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Oracolo_Planare",
+      "progression": [
+        {
+          "id": "oracle.archetype.2c8fc0c4844a.feature.5dffa6d8a8.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Oracolo Planare — Rivelazioni: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Oracolo_Planare Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.2c8fc0c4844a.feature.61ece7e8e5",
+      "name": "Rivelazione Finale",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Oracolo_Planare",
+      "progression": [
+        {
+          "id": "oracle.archetype.2c8fc0c4844a.feature.61ece7e8e5.initial",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Oracolo Planare — Rivelazione Finale: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Oracolo_Planare Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

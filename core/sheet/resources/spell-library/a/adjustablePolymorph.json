@@ -1,0 +1,48 @@
+{
+  "id": "adjustablePolymorph",
+  "name": "Metamorfosi Regolabile",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "ARCANIST": 4,
+    "BARD": 4,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "WITCH": 4,
+    "INVESTIGATOR": 4,
+    "WIZARD": 4,
+    "MAGUS": 4,
+    "PSYCHIC": 4,
+    "SKALD": 4,
+    "SHAMAN": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un piccolo brandello di carne di Doppelganger",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Consente di cambiare rapidamente fra le forme ammesse. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Metamorfosi_Regolabile",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Metamorfosi Regolabile: https://golarion.altervista.org/wiki/Incantesimi/Metamorfosi_Regolabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

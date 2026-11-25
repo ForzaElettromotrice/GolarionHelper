@@ -1,0 +1,44 @@
+{
+  "id": "terraform",
+  "name": "Terraformare",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "HUNTER": 6,
+    "CLERIC": 7,
+    "DRUID": 6,
+    "WITCH": 7,
+    "WIZARD": 7,
+    "ORACLE": 7,
+    "PSYCHIC": 7,
+    "SORCERER": 7
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "1 ora",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "minerali preziosi del valore di 10.000 mo, vedi testo",
+  "materialComponentCostInGoldPieces": 10000,
+  "rangeType": "OTHER",
+  "rangeDescription": "30 metri",
+  "area": "emanazione del raggio di 30 metri, centrata sull'incantatore",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasforma terreno e clima in un diverso ambiente compatibile con il mondo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Terraformare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Terraformare: https://golarion.altervista.org/wiki/Terraformare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

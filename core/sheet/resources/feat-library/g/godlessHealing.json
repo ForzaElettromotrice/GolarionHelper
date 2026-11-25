@@ -1,0 +1,27 @@
+{
+  "id": "godlessHealing",
+  "name": "Guarigione Atea",
+  "description": "Permette un recupero autonomo quando si è gravemente feriti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Guarigione_Atea",
+  "types": [
+    "general"
+  ],
+  "repeatability": "unlimited",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Nessuna Divinità patrona Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Guarigione Atea: https://golarion.altervista.org/wiki/Talenti/Guarigione_Atea. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Nessuna Divinità patrona Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

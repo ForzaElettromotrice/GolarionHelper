@@ -21,7 +21,7 @@ User selections survive source-slot withdrawal, level decreases and save/load wi
 
 Prerequisites are checked against live active feats, by user decision. No numerical projection or temporary sheet state is used. The previous simulation experiment remains removed; see [the rollback decision](../history/2026-11-10-feat-evaluation.md).
 
-Valid active feats retain their effects and mutable state across checks. Feat-owned slots and favored-class slot rewards are supported, including source loss, reacquisition, save/load and cleanup. Genuine deactivation still removes owned effects; reactivation creates them again. The embedded catalog now contains 1648 ordinary Golarion feats, with explicit automation and choice boundaries; see [feat-catalog.md](feat-catalog.md).
+Valid active feats retain their effects and mutable state across checks. Feat-owned slots and favored-class slot rewards are supported, including source loss, reacquisition, save/load and cleanup. Genuine deactivation still removes owned effects; reactivation creates them again. The standard runtime catalog now contains 1648 ordinary Golarion feats, with explicit automation and choice boundaries; see [feat-catalog.md](feat-catalog.md).
 
 ## Declarative slot grants
 

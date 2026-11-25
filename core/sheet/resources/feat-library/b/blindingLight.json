@@ -1,0 +1,36 @@
+{
+  "id": "blindingLight",
+  "name": "Luce Accecante",
+  "description": "Chi tenta invano di sopprimere la luce rischia la cecità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Luce_Accecante",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Aasimar Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità magica Luce Diurna Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Luce Interiore",
+      "feat": {
+        "id": "innerLight"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Luce Accecante: https://golarion.altervista.org/wiki/Talenti/Luce_Accecante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Aasimar; Prerequisito da verificare manualmente: capacità magica Luce Diurna Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,27 @@
+{
+  "id": "thiefOfLegend",
+  "name": "Ladro Leggendario",
+  "description": "Favorisce furti difficili e premia un colpo leggendario. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ladro_Leggendario",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Bisogna avere rubato un tesoro del valore di almeno 1.000 mo senza essere stati presi e aver tenuto un ricordo di quel furto del valore di almeno 500 mo, oppure possedere il background Avidità. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ladro Leggendario: https://golarion.altervista.org/wiki/Talenti/Ladro_Leggendario. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Bisogna avere rubato un tesoro del valore di almeno 1.000 mo senza essere stati presi e aver tenuto un ricordo di quel furto del valore di almeno 500 mo, oppure possedere il background Avidità. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

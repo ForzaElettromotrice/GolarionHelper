@@ -1,0 +1,49 @@
+{
+  "id": "emblazonCrest",
+  "name": "Esibire Crest",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "MAGUS": 1,
+    "PALADIN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un esemplare del crest o del blasone",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "effect": "1 creatura toccata",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Fa comparire l'emblema del soggetto sulle sue sopravvesti e sui suoi scudi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Esibire_Crest",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Esibire Crest: https://golarion.altervista.org/wiki/Incantesimi/Esibire_Crest Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Assassino della Mantide Rossa 1 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

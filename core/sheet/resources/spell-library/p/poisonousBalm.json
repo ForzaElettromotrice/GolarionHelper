@@ -1,0 +1,55 @@
+{
+  "id": "poisonousBalm",
+  "name": "Balsamo Velenoso",
+  "school": "CONJURATION",
+  "descriptors": [
+    "POISON",
+    "RUSE"
+  ],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "HUNTER": 5,
+    "CLERIC": 4,
+    "DRUID": 5,
+    "WITCH": 5,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "SHAMAN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo, poi 1 ora o fino all'attivazione più 6 round; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale (innocuo), poi Tempra nega (vedi testo)"
+    },
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Volontà parziale (innocuo), poi Tempra nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Cura il bersaglio ma lascia nel suo corpo un veleno destinato a manifestarsi successivamente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Balsamo_Velenoso",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Balsamo Velenoso: https://golarion.altervista.org/wiki/Incantesimi/Balsamo_Velenoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

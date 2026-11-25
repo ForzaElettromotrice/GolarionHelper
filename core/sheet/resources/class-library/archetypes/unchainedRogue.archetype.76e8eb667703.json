@@ -1,0 +1,83 @@
+{
+  "id": "unchainedRogue.archetype.76e8eb667703",
+  "classType": "unchainedRogue",
+  "name": "Esperto di Sopravvivenza",
+  "description": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Esperto_di_Sopravvivenza Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "unchainedRogue.feature.8f4dbb15b617",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedRogue.feature.05107c446e3f",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "unchainedRogue.feature.05107c446e3f",
+    "unchainedRogue.feature.8f4dbb15b617"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "unchainedRogue.archetype.76e8eb667703.instructions",
+      "name": "Esperto di Sopravvivenza",
+      "description": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Esperto_di_Sopravvivenza Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.76e8eb667703.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Esperto_di_Sopravvivenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.archetype.76e8eb667703.feature.1",
+      "name": "Resistenza (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Esperto_di_Sopravvivenza",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.76e8eb667703.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Esperto di Sopravvivenza — Resistenza (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Esperto_di_Sopravvivenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.archetype.76e8eb667703.feature.2",
+      "name": "Contrastare Elementi (Mag)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Esperto_di_Sopravvivenza",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.76e8eb667703.feature.2.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Esperto di Sopravvivenza — Contrastare Elementi (Mag): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Esperto_di_Sopravvivenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

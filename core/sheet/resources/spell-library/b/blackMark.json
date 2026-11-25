@@ -1,0 +1,45 @@
+{
+  "id": "blackMark",
+  "name": "Sigillo Nero",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "CURSE",
+    "FEAR"
+  ],
+  "spellLevelByClass": {
+    "DRUID": 7,
+    "WITCH": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un'ampolla di acqua di mare",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un marchio maledetto comporta anche timore in prossimità dell'acqua. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sigillo_Nero",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sigillo Nero: https://golarion.altervista.org/wiki/Incantesimi/Sigillo_Nero Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

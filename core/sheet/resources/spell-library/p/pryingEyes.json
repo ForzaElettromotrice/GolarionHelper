@@ -1,0 +1,42 @@
+{
+  "id": "pryingEyes",
+  "name": "Occhi Indagatori",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "MESMERIST": 5,
+    "OCCULTIST": 5,
+    "PSYCHIC": 5,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una manciata di biglie di cristallo",
+  "rangeType": "OTHER",
+  "rangeDescription": "1,6 km",
+  "effect": "10 o più occhi levitanti",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello; vedi testo (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Crea occhi fluttuanti che esplorano e riferiscono quanto osservato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Occhi_Indagatori",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Occhi Indagatori: https://golarion.altervista.org/wiki/Incantesimi/Occhi_Indagatori Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

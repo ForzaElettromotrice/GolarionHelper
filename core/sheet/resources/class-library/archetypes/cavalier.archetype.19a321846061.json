@@ -1,0 +1,98 @@
+{
+  "id": "cavalier.archetype.19a321846061",
+  "classType": "cavalier",
+  "name": "Gendarme",
+  "description": "Archetipo di Cavaliere. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Cavaliere/Archetipi#Gendarme Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "cavalier.feature.4639b35a7f37",
+      "type": "replace"
+    },
+    {
+      "featureId": "cavalier.feature.a966503e00c0",
+      "type": "replace"
+    },
+    {
+      "featureId": "cavalier.feature.e98050cea1bc",
+      "type": "replace"
+    },
+    {
+      "featureId": "cavalier.feature.ea174526f75f",
+      "type": "replace"
+    },
+    {
+      "featureId": "cavalier.feature.f8e616699805",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "cavalier.feature.4639b35a7f37",
+    "cavalier.feature.a966503e00c0",
+    "cavalier.feature.e98050cea1bc",
+    "cavalier.feature.ea174526f75f",
+    "cavalier.feature.f8e616699805"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "cavalier.archetype.19a321846061.instructions",
+      "name": "Gendarme",
+      "description": "Archetipo di Cavaliere. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Cavaliere/Archetipi#Gendarme Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "cavalier.archetype.19a321846061.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Cavaliere. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Cavaliere/Archetipi#Gendarme Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cavalier.archetype.19a321846061.feature.2ff11982e6",
+      "name": "Talenti Bonus",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cavaliere/Archetipi#Gendarme",
+      "progression": [
+        {
+          "id": "cavalier.archetype.19a321846061.feature.2ff11982e6.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Gendarme — Talenti Bonus: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Cavaliere/Archetipi#Gendarme Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cavalier.archetype.19a321846061.feature.a891f0fe09",
+      "name": "Carica Trafiggitrice (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cavaliere/Archetipi#Gendarme",
+      "progression": [
+        {
+          "id": "cavalier.archetype.19a321846061.feature.a891f0fe09.initial",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Gendarme — Carica Trafiggitrice (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Cavaliere/Archetipi#Gendarme Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

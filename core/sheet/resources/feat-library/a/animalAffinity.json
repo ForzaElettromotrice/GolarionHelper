@@ -1,0 +1,56 @@
+{
+  "id": "animalAffinity",
+  "name": "Affinità Animale",
+  "description": "Migliora Addestrare Animali e Cavalcare, con beneficio maggiore raggiunti 10 gradi nella singola abilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Affinit%C3%A0_Animale",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "handleAnimal",
+      "type": "modifier",
+      "resource": "skill.handleAnimal",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "handleAnimalExperienced",
+      "type": "modifier",
+      "resource": "skill.handleAnimal",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2",
+      "condition": "Con almeno 10 gradi in Addestrare Animali"
+    },
+    {
+      "id": "ride",
+      "type": "modifier",
+      "resource": "skill.ride",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "rideExperienced",
+      "type": "modifier",
+      "resource": "skill.ride",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2",
+      "condition": "Con almeno 10 gradi in Cavalcare"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Il bonus aggiuntivo condizionale richiede la verifica manuale dei 10 gradi nella specifica abilità. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

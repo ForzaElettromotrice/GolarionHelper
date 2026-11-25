@@ -1,0 +1,1009 @@
+{
+  "id": "magus.archetype.a602c869e229",
+  "classType": "magus",
+  "name": "Skirnir",
+  "description": "Archetipo di Magus. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Colpo Incantato, Competenze della classe, Riserva Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "magus.feature.2d867f9191d1",
+      "type": "alter"
+    },
+    {
+      "featureId": "magus.feature.47552ac0288b",
+      "type": "alter"
+    },
+    {
+      "featureId": "magus.feature.6c9fc2cfe057",
+      "type": "replace"
+    },
+    {
+      "featureId": "magus.feature.838af611bb31",
+      "type": "replace"
+    },
+    {
+      "featureId": "magus.feature.9dd2cf659f49",
+      "type": "replace"
+    },
+    {
+      "featureId": "magus.feature.c4608b3292de",
+      "type": "replace"
+    },
+    {
+      "featureId": "magus.feature.ce2b2aa7ce03",
+      "type": "replace"
+    },
+    {
+      "featureId": "magus.feature.e682b09abbc9",
+      "type": "replace"
+    },
+    {
+      "featureId": "magus.feature.ff62f81fddb8",
+      "type": "replace"
+    },
+    {
+      "featureId": "magus.proficiencies",
+      "type": "alter"
+    },
+    {
+      "featureId": "magus.spellcasting",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "magus.feature.2d867f9191d1",
+    "magus.feature.47552ac0288b",
+    "magus.feature.6c9fc2cfe057",
+    "magus.feature.838af611bb31",
+    "magus.feature.9dd2cf659f49",
+    "magus.feature.c4608b3292de",
+    "magus.feature.ce2b2aa7ce03",
+    "magus.feature.e682b09abbc9",
+    "magus.feature.ff62f81fddb8",
+    "magus.proficiencies"
+  ],
+  "removedAcquisitionIds": [
+    "castingSlots.level1",
+    "castingSlots.level10",
+    "castingSlots.level11",
+    "castingSlots.level12",
+    "castingSlots.level13",
+    "castingSlots.level14",
+    "castingSlots.level15",
+    "castingSlots.level16",
+    "castingSlots.level17",
+    "castingSlots.level18",
+    "castingSlots.level19",
+    "castingSlots.level2",
+    "castingSlots.level20",
+    "castingSlots.level3",
+    "castingSlots.level4",
+    "castingSlots.level5",
+    "castingSlots.level6",
+    "castingSlots.level7",
+    "castingSlots.level8",
+    "castingSlots.level9"
+  ],
+  "addedFeatures": [
+    {
+      "id": "magus.archetype.a602c869e229.instructions",
+      "name": "Skirnir",
+      "description": "Archetipo di Magus. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Colpo Incantato, Competenze della classe, Riserva Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "magus.archetype.a602c869e229.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Magus. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Colpo Incantato, Competenze della classe, Riserva Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.a602c869e229.feature.390879ba95",
+      "name": "Diminuzione degli Incantesimi",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir",
+      "progression": [
+        {
+          "id": "magus.archetype.a602c869e229.feature.390879ba95.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Gli slot base giornalieri sono già ridotti automaticamente di uno per livello di incantesimo; non applicare di nuovo la riduzione. Gli slot bonus di caratteristica e le altre eccezioni della fonte restano manuali. https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.a602c869e229.feature.6eaa11ca11",
+      "name": "Colpo Incantato (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir",
+      "progression": [
+        {
+          "id": "magus.archetype.a602c869e229.feature.6eaa11ca11.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Skirnir — Colpo Incantato (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.a602c869e229.feature.aca976af9b",
+      "name": "Legame Arcano (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir",
+      "progression": [
+        {
+          "id": "magus.archetype.a602c869e229.feature.aca976af9b.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Skirnir — Legame Arcano (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.a602c869e229.feature.b1c2b936d7",
+      "name": "Riserva Arcana",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir",
+      "progression": [
+        {
+          "id": "magus.archetype.a602c869e229.feature.b1c2b936d7.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Skirnir — Riserva Arcana: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.a602c869e229.feature.60b21efb23",
+      "name": "Scudo Stregonesco (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir",
+      "progression": [
+        {
+          "id": "magus.archetype.a602c869e229.feature.60b21efb23.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Skirnir — Scudo Stregonesco (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.a602c869e229.feature.6cc90e6a38",
+      "name": "Riserva Scudo (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir",
+      "progression": [
+        {
+          "id": "magus.archetype.a602c869e229.feature.6cc90e6a38.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Skirnir — Riserva Scudo (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.a602c869e229.feature.6a64bf7454",
+      "name": "Scudo Incantato (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir",
+      "progression": [
+        {
+          "id": "magus.archetype.a602c869e229.feature.6a64bf7454.initial",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Skirnir — Scudo Incantato (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.a602c869e229.feature.20ab9dc3ac",
+      "name": "Incantesimi in Combattimento con lo Scudo (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir",
+      "progression": [
+        {
+          "id": "magus.archetype.a602c869e229.feature.20ab9dc3ac.initial",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Skirnir — Incantesimi in Combattimento con lo Scudo (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.a602c869e229.feature.aff716b76a",
+      "name": "Scudo Incantato Superiore (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir",
+      "progression": [
+        {
+          "id": "magus.archetype.a602c869e229.feature.aff716b76a.initial",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Skirnir — Scudo Incantato Superiore (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.a602c869e229.feature.8ac09fed4a",
+      "name": "Segreti del Magus",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir",
+      "progression": [
+        {
+          "id": "magus.archetype.a602c869e229.feature.8ac09fed4a.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Skirnir — Segreti del Magus: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Magus/Archetipi#Skirnir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "magus.archetype.a602c869e229.dailySlots",
+      "name": "Slot giornalieri modificati",
+      "description": "Progressione base modificata dalla fonte; il proprietario dello spellcasting e il repertorio originali restano attivi.",
+      "progression": [
+        {
+          "id": "magus.archetype.a602c869e229.slots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": []
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level1"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level2"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level3"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level4"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level5"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level6"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level7"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level8"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level9"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level10"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level11"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level12"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level13"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level14"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level15"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level16"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level17"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level18"
+          ]
+        },
+        {
+          "id": "magus.archetype.a602c869e229.slots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.5:magus12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "magus.archetype.a602c869e229.slots.level19"
+          ]
+        }
+      ]
+    }
+  ]
+}

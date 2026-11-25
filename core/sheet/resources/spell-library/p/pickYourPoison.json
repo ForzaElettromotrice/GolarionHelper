@@ -1,0 +1,54 @@
+{
+  "id": "pickYourPoison",
+  "name": "Scegli il tuo Veleno",
+  "school": "CONJURATION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "BARD": 1,
+    "SKALD": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Trasforma provvisoriamente un veleno in una sostanza alcolica inebriante. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scegli_il_tuo_Veleno",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Scegli il tuo Veleno: https://golarion.altervista.org/wiki/Incantesimi/Scegli_il_tuo_Veleno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Bardo/Scaldo 1, Chierico/Oracolo/Sacerdote Guerriero 1, Fattucchiere 1, Inquisitore 1 (Cayden Cailean) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

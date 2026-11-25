@@ -1,0 +1,37 @@
+{
+  "id": "callTruce",
+  "name": "Chiamare Tregua",
+  "description": "Permette di proporre una tregua durante uno scontro seguendo la procedura prevista. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Chiamare_Tregua",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 15",
+      "expression": "@cha >= 15"
+    },
+    {
+      "description": "Persuasivo",
+      "feat": {
+        "id": "persuasive"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Diplomazia 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Chiamare Tregua: https://golarion.altervista.org/wiki/Talenti/Chiamare_Tregua. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Diplomazia 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,24 @@
+{
+  "id": "cloakOfResistance1",
+  "name": "Mantello della Resistenza +1",
+  "weightGrams": 500,
+  "volumeMilliliters": 0,
+  "tags": [
+    "cloak",
+    "magicItem",
+    "wondrousItem"
+  ],
+  "slot": "shoulders",
+  "effects": [
+    {
+      "id": "savingThrows",
+      "activation": "equipped",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "+1 ai tiri salvezza",
+      "modifierType": "bonus",
+      "bonusType": "resistance",
+      "expression": "1"
+    }
+  ]
+}

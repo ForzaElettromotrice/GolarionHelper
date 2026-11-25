@@ -1,0 +1,49 @@
+{
+  "id": "blastBarrier",
+  "name": "Barriera Esplosiva",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "HUNTER": 3,
+    "DRUID": 4,
+    "WITCH": 3,
+    "RANGER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "manciata di neve, terra o ghiaia",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "muro spesso 30 cm, alto fino a 3 m e largo 6 m",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione, fino a 1 round/2 livelli",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza (vedi sotto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (vedi sotto)",
+  "description": "Erige un riparo instabile che termina esplodendo in frammenti e onde sonore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Barriera_Esplosiva",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Barriera Esplosiva: https://golarion.altervista.org/wiki/Incantesimi/Barriera_Esplosiva Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

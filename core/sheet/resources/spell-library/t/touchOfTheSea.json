@@ -1,0 +1,72 @@
+{
+  "id": "touchOfTheSea",
+  "name": "Tocco del Mare",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "INVESTIGATOR": 1,
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "HUNTER": 1,
+    "DRUID": 1,
+    "BLOODRAGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una squama di pesce",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Concede nuotare 9 metri, +8 alle relative prove e le normali facoltà di movimento acquatico indicate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Tocco_del_Mare",
+  "effects": [
+    {
+      "id": "swim",
+      "type": "movementGrant",
+      "movementType": "swim",
+      "baseSpeedExpression": "6",
+      "affectedByArmor": true,
+      "affectedByLoad": true,
+      "supportsRunning": true
+    },
+    {
+      "id": "swimChecks",
+      "type": "modifier",
+      "resource": "skill.swim",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "racial",
+      "expression": "8",
+      "condition": "Solo se il bonus da velocità di nuotare non è già fornito da un'altra fonte"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Il bonus +8 proprio della velocità di nuotare non va duplicato se già posseduto. Si può prendere 10 anche in pericolo e correre in linea retta; guanti e stivali si fondono, gli effetti continui restano, e non si ottiene respirazione acquatica. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 1 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

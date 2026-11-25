@@ -1,0 +1,39 @@
+{
+  "id": "ancestralCommunion",
+  "name": "Comunione Ancestrale",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 2,
+    "SKALD": 2,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "immagine del proprio avo realizzata in pietra o metallo",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Consulta gli antenati per migliorare le proprie prove di Conoscenze. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Comunione_Ancestrale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Comunione Ancestrale: https://golarion.altervista.org/wiki/Incantesimi/Comunione_Ancestrale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

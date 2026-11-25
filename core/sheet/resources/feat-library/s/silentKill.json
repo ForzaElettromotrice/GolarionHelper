@@ -1,0 +1,27 @@
+{
+  "id": "silentKill",
+  "name": "Uccisione Silenziosa",
+  "description": "Favorisce un'uccisione improvvisa seguita dal ritorno nell'occultamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Uccisione_Silenziosa",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Furtività 12 gradi; Dote Avanzata da Predatore o Trucco Magistrale Ninja Assassinare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Uccisione Silenziosa: https://golarion.altervista.org/wiki/Talenti/Uccisione_Silenziosa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Furtività 12 gradi; Dote Avanzata da Predatore o Trucco Magistrale Ninja Assassinare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

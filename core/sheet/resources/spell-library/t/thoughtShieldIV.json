@@ -1,0 +1,42 @@
+{
+  "id": "thoughtShieldIV",
+  "name": "Scudo ai Pensieri IV",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "PSYCHIC": 5
+  },
+  "castingTimeCategory": "IMMEDIATE_ACTION",
+  "castingTimeDescription": "1 azione immediata",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Una reazione magica protegge la mente da intrusioni e lettura dei pensieri. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scudo_ai_Pensieri#Scudo_ai_Pensieri_IV",
+  "effects": [
+    {
+      "id": "mentalWill",
+      "type": "modifier",
+      "resource": "savingThrow.will",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "circumstance",
+      "expression": "8",
+      "condition": "Contro effetti di influenza mentale"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "La lettura dei pensieri non raccoglie informazioni. Gestire il TS di chi tenta di leggere i pensieri e lo stordimento conseguente. Un TS riuscito annulla i danni di Frantumazione Parapsichica. Verificare sulla fonte la durata specifica di questa versione. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

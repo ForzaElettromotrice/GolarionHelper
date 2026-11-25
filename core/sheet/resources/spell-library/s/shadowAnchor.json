@@ -1,0 +1,49 @@
+{
+  "id": "shadowAnchor",
+  "name": "Ancora d'Ombra",
+  "school": "ILLUSION",
+  "subschool": "SHADOW",
+  "descriptors": [
+    "SHADOW"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "MESMERIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "effect": "una fune di ombra evanescente",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I); vedi testo",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Fissa l'ombra del bersaglio al terreno, ostacolandone l'allontanamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ancora_d%27Ombra",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ancora d'Ombra: https://golarion.altervista.org/wiki/Incantesimi/Ancora_d%27Ombra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

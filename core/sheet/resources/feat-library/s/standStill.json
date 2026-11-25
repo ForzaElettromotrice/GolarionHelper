@@ -1,0 +1,25 @@
+{
+  "id": "standStill",
+  "name": "Impedire il Movimento",
+  "description": "Blocca il movimento di un avversario attraverso una reazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Impedire_il_Movimento",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Riflessi in Combattimento",
+      "feat": {
+        "id": "combatReflexes"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Impedire il Movimento: https://golarion.altervista.org/wiki/Talenti/Impedire_il_Movimento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

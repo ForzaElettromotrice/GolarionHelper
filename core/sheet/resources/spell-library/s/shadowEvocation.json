@@ -1,0 +1,48 @@
+{
+  "id": "shadowEvocation",
+  "name": "Ombra di una Invocazione",
+  "school": "ILLUSION",
+  "descriptors": [
+    "SHADOW"
+  ],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 5,
+    "WIZARD": 5,
+    "MESMERIST": 5,
+    "SKALD": 5,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "vedi testo",
+  "effect": "vedi testo",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita (se si interagisce)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Riproduce determinate invocazioni attraverso ombre parzialmente reali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ombra_di_una_Invocazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ombra di una Invocazione: https://golarion.altervista.org/wiki/Incantesimi/Ombra_di_una_Invocazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,1940 @@
+{
+  "type": "bard",
+  "name": "Bardo",
+  "description": "Artista e incantatore che ispira gli alleati con le esibizioni.",
+  "hitDie": 8,
+  "skillRanksPerLevel": 6,
+  "classSkills": [
+    "skill.acrobatics",
+    "skill.craft",
+    "skill.escapeArtist",
+    "skill.disguise",
+    "skill.knowledge.arcana",
+    "skill.knowledge.dungeoneering",
+    "skill.knowledge.engineering",
+    "skill.knowledge.geography",
+    "skill.knowledge.history",
+    "skill.knowledge.local",
+    "skill.knowledge.nature",
+    "skill.knowledge.nobility",
+    "skill.knowledge.planes",
+    "skill.knowledge.religion",
+    "skill.diplomacy",
+    "skill.stealth",
+    "skill.intimidate",
+    "skill.perform",
+    "skill.senseMotive",
+    "skill.linguistics",
+    "skill.perception",
+    "skill.profession",
+    "skill.bluff",
+    "skill.sleightOfHand",
+    "skill.spellcraft",
+    "skill.climb",
+    "skill.useMagicDevice",
+    "skill.appraise"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 2,
+        "will": 2
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 3,
+        "will": 3
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 3,
+        "will": 3
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 4,
+        "will": 4
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 4,
+        "will": 4
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 5,
+        "will": 5
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 5,
+        "will": 5
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 6,
+        "will": 6
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 6,
+        "will": 6
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 7,
+        "will": 7
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 7,
+        "will": 7
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 8,
+        "will": 8
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 8,
+        "will": 8
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 9,
+        "will": 9
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 9,
+        "will": 9
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 10,
+        "will": 10
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 10,
+        "will": 10
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 11,
+        "will": 11
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 11,
+        "will": 11
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 12,
+        "will": 12
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "bard.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "bard.spellcasting",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Bardo",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 1,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "spontaneous",
+              "spellListClass": "bard"
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. La tabella giornaliera non contiene slot di livello 0: il backend richiede un gruppo tecnico o una futura API per il lancio gratuito; non viene inventato uno slot giornaliero. Le sostituzioni degli incantesimi conosciuti restano soggette alle finestre e ai limiti di livello descritti dalla classe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level1"
+          ]
+        },
+        {
+          "id": "castingSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level2"
+          ]
+        },
+        {
+          "id": "castingSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level3"
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level4"
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        },
+        {
+          "id": "repertoire.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 3,
+                  "capacity": 1
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 4,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 3,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.4:bard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 4,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.a7be72734c8f",
+      "name": "Affascinare",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Affascinare_(Sop)",
+      "progression": [
+        {
+          "id": "bard.feature.a7be72734c8f.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Bardo: verificare e applicare Affascinare. https://golarion.altervista.org/wiki/Bardo#Affascinare_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.54e7c3cf7bb2",
+      "name": "Conoscenze Bardiche",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Conoscenze_Bardiche",
+      "progression": [
+        {
+          "id": "bard.feature.54e7c3cf7bb2.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Bardo: verificare e applicare Conoscenze Bardiche. https://golarion.altervista.org/wiki/Bardo#Conoscenze_Bardiche Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.35d36894a211",
+      "name": "Controcanto",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Controcanto_(Sop)",
+      "progression": [
+        {
+          "id": "bard.feature.35d36894a211.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Bardo: verificare e applicare Controcanto. https://golarion.altervista.org/wiki/Bardo#Controcanto_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.17eb901e48f6",
+      "name": "Distrazione",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Distrazione_(Sop)",
+      "progression": [
+        {
+          "id": "bard.feature.17eb901e48f6.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Bardo: verificare e applicare Distrazione. https://golarion.altervista.org/wiki/Bardo#Distrazione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.892ea4b76339",
+      "name": "Esibizione Bardica",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Esibizione_Bardica",
+      "progression": [
+        {
+          "id": "bard.feature.892ea4b76339.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Bardo: verificare e applicare Esibizione Bardica. https://golarion.altervista.org/wiki/Bardo#Esibizione_Bardica Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.e91104f280e1",
+      "name": "Ispirare Coraggio",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Ispirare_Coraggio_(Sop)",
+      "progression": [
+        {
+          "id": "bard.feature.e91104f280e1.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Bardo: verificare e applicare Ispirare Coraggio +1. https://golarion.altervista.org/wiki/Bardo#Ispirare_Coraggio_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "bard.feature.e91104f280e1.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Bardo: verificare e applicare Ispirare Coraggio +2. https://golarion.altervista.org/wiki/Bardo#Ispirare_Coraggio_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "bard.feature.e91104f280e1.level1"
+          ]
+        },
+        {
+          "id": "bard.feature.e91104f280e1.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Bardo: verificare e applicare Ispirare Coraggio +3. https://golarion.altervista.org/wiki/Bardo#Ispirare_Coraggio_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "bard.feature.e91104f280e1.level5"
+          ]
+        },
+        {
+          "id": "bard.feature.e91104f280e1.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Bardo: verificare e applicare Ispirare Coraggio +4. https://golarion.altervista.org/wiki/Bardo#Ispirare_Coraggio_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "bard.feature.e91104f280e1.level11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.65434b520bcb",
+      "name": "Trucchetti",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Trucchetti",
+      "progression": [
+        {
+          "id": "bard.feature.65434b520bcb.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Bardo: verificare e applicare Trucchetti. https://golarion.altervista.org/wiki/Bardo#Trucchetti Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.32b7ffca1f1a",
+      "name": "Avvezzo",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Avvezzo_(Str)",
+      "progression": [
+        {
+          "id": "bard.feature.32b7ffca1f1a.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Bardo: verificare e applicare Avvezzo. https://golarion.altervista.org/wiki/Bardo#Avvezzo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.2877836bd9c8",
+      "name": "Esecuzione Versatile",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Esecuzione_Versatile_(Str)",
+      "progression": [
+        {
+          "id": "bard.feature.2877836bd9c8.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Bardo: verificare e applicare Esecuzione Versatile. https://golarion.altervista.org/wiki/Bardo#Esecuzione_Versatile_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "bard.feature.2877836bd9c8.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Bardo: verificare e applicare Esecuzione Versatile. https://golarion.altervista.org/wiki/Bardo#Esecuzione_Versatile_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "bard.feature.2877836bd9c8.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Bardo: verificare e applicare Esecuzione Versatile. https://golarion.altervista.org/wiki/Bardo#Esecuzione_Versatile_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "bard.feature.2877836bd9c8.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Bardo: verificare e applicare Esecuzione Versatile. https://golarion.altervista.org/wiki/Bardo#Esecuzione_Versatile_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "bard.feature.2877836bd9c8.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Bardo: verificare e applicare Esecuzione Versatile. https://golarion.altervista.org/wiki/Bardo#Esecuzione_Versatile_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.14a6ab6e3045",
+      "name": "Ispirare Competenza",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Ispirare_Competenza_(Sop)",
+      "progression": [
+        {
+          "id": "bard.feature.14a6ab6e3045.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Bardo: verificare e applicare Ispirare Competenza +2. https://golarion.altervista.org/wiki/Bardo#Ispirare_Competenza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "bard.feature.14a6ab6e3045.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Bardo: verificare e applicare Ispirare Competenza +3. https://golarion.altervista.org/wiki/Bardo#Ispirare_Competenza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "bard.feature.14a6ab6e3045.level3"
+          ]
+        },
+        {
+          "id": "bard.feature.14a6ab6e3045.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Bardo: verificare e applicare Ispirare Competenza +4. https://golarion.altervista.org/wiki/Bardo#Ispirare_Competenza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "bard.feature.14a6ab6e3045.level7"
+          ]
+        },
+        {
+          "id": "bard.feature.14a6ab6e3045.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Bardo: verificare e applicare Ispirare Competenza +5. https://golarion.altervista.org/wiki/Bardo#Ispirare_Competenza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "bard.feature.14a6ab6e3045.level11"
+          ]
+        },
+        {
+          "id": "bard.feature.14a6ab6e3045.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Bardo: verificare e applicare Ispirare Competenza +6. https://golarion.altervista.org/wiki/Bardo#Ispirare_Competenza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "bard.feature.14a6ab6e3045.level15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.8b1162bb0751",
+      "name": "Maestro del Sapere",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Maestro_del_Sapere_(Str)",
+      "progression": [
+        {
+          "id": "bard.feature.8b1162bb0751.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Bardo: verificare e applicare Maestro del Sapere 1/giorno. https://golarion.altervista.org/wiki/Bardo#Maestro_del_Sapere_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "bard.feature.8b1162bb0751.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Bardo: verificare e applicare Maestro del Sapere 2/giorno. https://golarion.altervista.org/wiki/Bardo#Maestro_del_Sapere_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "bard.feature.8b1162bb0751.level5"
+          ]
+        },
+        {
+          "id": "bard.feature.8b1162bb0751.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Bardo: verificare e applicare Maestro del Sapere 3/giorno. https://golarion.altervista.org/wiki/Bardo#Maestro_del_Sapere_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "bard.feature.8b1162bb0751.level11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.82871e5e9434",
+      "name": "Suggestione",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Suggestione_(Mag)",
+      "progression": [
+        {
+          "id": "bard.feature.82871e5e9434.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Bardo: verificare e applicare Suggestione. https://golarion.altervista.org/wiki/Bardo#Suggestione_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.34d6c8faf104",
+      "name": "Ispirare Terrore",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Ispirare_Terrore_(Sop)",
+      "progression": [
+        {
+          "id": "bard.feature.34d6c8faf104.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Bardo: verificare e applicare Ispirare Terrore. https://golarion.altervista.org/wiki/Bardo#Ispirare_Terrore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.9df20aaa15a2",
+      "name": "Ispirare Grandezza",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Ispirare_Grandezza_(Sop)",
+      "progression": [
+        {
+          "id": "bard.feature.9df20aaa15a2.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Bardo: verificare e applicare Ispirare Grandezza. https://golarion.altervista.org/wiki/Bardo#Ispirare_Grandezza_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.06a2ea82383b",
+      "name": "Eclettico",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Eclettico_(Str)",
+      "progression": [
+        {
+          "id": "bard.feature.06a2ea82383b.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Bardo: verificare e applicare Eclettico. https://golarion.altervista.org/wiki/Bardo#Eclettico_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.86feb5703282",
+      "name": "Musica Lenitiva",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Musica_Lenitiva_(Mag)",
+      "progression": [
+        {
+          "id": "bard.feature.86feb5703282.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Bardo: verificare e applicare Musica Lenitiva. https://golarion.altervista.org/wiki/Bardo#Musica_Lenitiva_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.65cf9dcc8eaa",
+      "name": "Accordo Spaventoso",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Accordo_Spaventoso_(Mag)",
+      "progression": [
+        {
+          "id": "bard.feature.65cf9dcc8eaa.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Bardo: verificare e applicare Accordo Spaventoso. https://golarion.altervista.org/wiki/Bardo#Accordo_Spaventoso_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.037e07cf6194",
+      "name": "Ispirare Eroismo",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Ispirare_Eroismo_(Sop)",
+      "progression": [
+        {
+          "id": "bard.feature.037e07cf6194.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Bardo: verificare e applicare Ispirare Eroismo. https://golarion.altervista.org/wiki/Bardo#Ispirare_Eroismo_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.385f142880cc",
+      "name": "Suggestione di Massa",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Suggestione_di_Massa_(Mag)",
+      "progression": [
+        {
+          "id": "bard.feature.385f142880cc.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Bardo: verificare e applicare Suggestione di Massa. https://golarion.altervista.org/wiki/Bardo#Suggestione_di_Massa_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.feature.c65de99b3dfa",
+      "name": "Musica Mortale",
+      "description": "Privilegio della classe Bardo. Regole e condizioni: https://golarion.altervista.org/wiki/Bardo#Musica_Mortale_(Sop)",
+      "progression": [
+        {
+          "id": "bard.feature.c65de99b3dfa.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Bardo: verificare e applicare Musica Mortale. https://golarion.altervista.org/wiki/Bardo#Musica_Mortale_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Bardo",
+      "progression": [
+        {
+          "id": "bard.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Bardo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Bardo",
+      "progression": [
+        {
+          "id": "bard.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Bardo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Bardo",
+      "progression": [
+        {
+          "id": "bard.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Bardo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "bard.performance.2",
+      "classType": "bard",
+      "featureId": "bard.feature.2877836bd9c8",
+      "acquisitionIds": [
+        "bard.feature.2877836bd9c8.level2",
+        "bard.feature.2877836bd9c8.level6",
+        "bard.feature.2877836bd9c8.level10",
+        "bard.feature.2877836bd9c8.level14",
+        "bard.feature.2877836bd9c8.level18"
+      ],
+      "choice": {
+        "id": "performance",
+        "prompt": "Scegli un tipo di Intrattenere per Esecuzione Versatile",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "bard.versatilePerformances"
+      }
+    }
+  ]
+}

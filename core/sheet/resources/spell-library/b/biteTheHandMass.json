@@ -1,0 +1,54 @@
+{
+  "id": "biteTheHandMass",
+  "name": "Far Rivoltare di Massa",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "WIZARD": 7,
+    "SORCERER": 7,
+    "HUNTER": 6,
+    "SUMMONER": 6,
+    "UNCHAINED_SUMMONER": 6,
+    "DRUID": 6,
+    "WITCH": 7,
+    "INQUISITOR": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura convocata tramite un incantesimo o una capacità magica/livello, due delle quali non possono trovarsi a più di 9 l’una dall’altra",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Induce più creature evocate a ribellarsi ai propri evocatori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Far_Rivoltare_di_Massa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Far Rivoltare di Massa: https://golarion.altervista.org/wiki/Incantesimi/Far_Rivoltare_di_Massa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: una creatura convocata tramite un incantesimo o una capacità magica/livello, due delle quali non possono trovarsi a più di 9 l’una dall’altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

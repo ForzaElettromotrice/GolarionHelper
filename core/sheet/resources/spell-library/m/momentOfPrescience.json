@@ -1,0 +1,45 @@
+{
+  "id": "momentOfPrescience",
+  "name": "Momento di Prescienza",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WITCH": 8,
+    "WIZARD": 8,
+    "PSYCHIC": 8,
+    "SORCERER": 8
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "LUCK": 8
+    },
+    "subdomain": {
+      "MEMORY": 8
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Una previsione eccezionale favorisce un singolo tiro decisivo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Momento_di_Prescienza",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Momento di Prescienza: https://golarion.altervista.org/wiki/Incantesimi/Momento_di_Prescienza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

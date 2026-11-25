@@ -1,0 +1,27 @@
+{
+  "id": "fieldRepair",
+  "name": "Riparazione sul Campo",
+  "description": "Agevola le riparazioni eseguite con attrezzatura improvvisata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Riparazione_sul_Campo",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Artigianato 4 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Riparazione sul Campo: https://golarion.altervista.org/wiki/Talenti/Riparazione_sul_Campo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Artigianato 4 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

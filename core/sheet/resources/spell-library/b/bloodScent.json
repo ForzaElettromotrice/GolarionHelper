@@ -1,0 +1,59 @@
+{
+  "id": "bloodScent",
+  "name": "Fiutare Sangue",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ANTIPALADIN": 2,
+    "ARCANIST": 3,
+    "HUNTER": 2,
+    "CLERIC": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "INQUISITOR": 3,
+    "INVESTIGATOR": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "ORACLE": 3,
+    "PSYCHIC": 3,
+    "RANGER": 2,
+    "WARPRIEST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura ogni 2 livelli, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Affina la capacità di riconoscere l'odore del sangue. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fiutare_Sangue",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fiutare Sangue: https://golarion.altervista.org/wiki/Incantesimi/Fiutare_Sangue Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: una creatura ogni 2 livelli, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

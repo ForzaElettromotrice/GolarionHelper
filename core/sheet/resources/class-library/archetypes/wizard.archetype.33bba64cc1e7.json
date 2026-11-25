@@ -1,0 +1,194 @@
+{
+  "id": "wizard.archetype.33bba64cc1e7",
+  "classType": "wizard",
+  "name": "Ascoltatore del Vento (Silfide)",
+  "description": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29 Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Scuola Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "wizard.feature.e0eb2aa5ac5e",
+      "type": "replace"
+    },
+    {
+      "featureId": "wizard.feature.5805de6bd2db",
+      "type": "alter"
+    },
+    {
+      "featureId": "wizard.classSkills",
+      "type": "alter"
+    },
+    {
+      "featureId": "wizard.feature.53361bf45405",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "wizard.feature.e0eb2aa5ac5e",
+    "wizard.feature.5805de6bd2db",
+    "wizard.classSkills"
+  ],
+  "removedAcquisitionIds": [
+    "wizard.bonusFeats.level5",
+    "wizard.bonusFeats.level10",
+    "wizard.bonusFeats.level15"
+  ],
+  "addedFeatures": [
+    {
+      "id": "wizard.archetype.33bba64cc1e7.instructions",
+      "name": "Ascoltatore del Vento (Silfide)",
+      "description": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "wizard.archetype.33bba64cc1e7.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29 Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Scuola Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.33bba64cc1e7.feature.1",
+      "name": "Abilità di Classe",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29",
+      "progression": [
+        {
+          "id": "wizard.archetype.33bba64cc1e7.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ascoltatore del Vento (Silfide) — Abilità di Classe: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.33bba64cc1e7.feature.2",
+      "name": "Scuola Arcana",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29",
+      "progression": [
+        {
+          "id": "wizard.archetype.33bba64cc1e7.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ascoltatore del Vento (Silfide) — Scuola Arcana: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.33bba64cc1e7.feature.3",
+      "name": "Divinazione Spontanea (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29",
+      "progression": [
+        {
+          "id": "wizard.archetype.33bba64cc1e7.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ascoltatore del Vento (Silfide) — Divinazione Spontanea (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.33bba64cc1e7.feature.4",
+      "name": "Percepire Abiurazione (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29",
+      "progression": [
+        {
+          "id": "wizard.archetype.33bba64cc1e7.feature.4.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ascoltatore del Vento (Silfide) — Percepire Abiurazione (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.33bba64cc1e7.feature.5",
+      "name": "Forma Ariosa (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29",
+      "progression": [
+        {
+          "id": "wizard.archetype.33bba64cc1e7.feature.5.initial",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ascoltatore del Vento (Silfide) — Forma Ariosa (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.33bba64cc1e7.feature.6",
+      "name": "Ascoltare il Vento (Mag)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29",
+      "progression": [
+        {
+          "id": "wizard.archetype.33bba64cc1e7.feature.6.initial",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ascoltatore del Vento (Silfide) — Ascoltare il Vento (Mag): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Ascoltatore_del_Vento_.28Silfide.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.33bba64cc1e7.classSkills.1",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Concessione dal privilegio di archetipo.",
+      "progression": [
+        {
+          "id": "wizard.archetype.33bba64cc1e7.classSkills.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "skill0",
+              "type": "classSkillGrant",
+              "resource": "skill.perception"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

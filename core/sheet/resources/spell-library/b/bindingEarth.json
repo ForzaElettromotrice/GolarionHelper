@@ -1,0 +1,44 @@
+{
+  "id": "bindingEarth",
+  "name": "Vincolare alla Terra",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "EARTH"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "DRUID": 2,
+    "WITCH": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura o un oggetto incustodito (vedi testo)",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Il terreno trattiene il soggetto come una palude che tenta di inghiottirlo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vincolare_alla_Terra",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Vincolare alla Terra: https://golarion.altervista.org/wiki/Incantesimi/Vincolare_alla_Terra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,1291 @@
+{
+  "type": "ranger",
+  "name": "Ranger",
+  "description": "Esploratore e cacciatore specializzato contro determinati nemici.",
+  "hitDie": 10,
+  "skillRanksPerLevel": 6,
+  "classSkills": [
+    "skill.handleAnimal",
+    "skill.craft",
+    "skill.ride",
+    "skill.knowledge.dungeoneering",
+    "skill.knowledge.geography",
+    "skill.knowledge.nature",
+    "skill.stealth",
+    "skill.heal",
+    "skill.intimidate",
+    "skill.swim",
+    "skill.perception",
+    "skill.profession",
+    "skill.spellcraft",
+    "skill.climb",
+    "skill.survival"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 0
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 0
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 1
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 2
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 3
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 4
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 5
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 16,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 17,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 18,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 19,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 20,
+      "baseSavingThrows": {
+        "fortitude": 12,
+        "reflex": 12,
+        "will": 6
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "ranger.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "ranger.spellcasting",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Ranger",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 4,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "prepared",
+              "spellListClass": "ranger"
+            },
+            {
+              "id": "list",
+              "type": "spellRepertoireList",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting"
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. Il lancio inizia al livello di classe 4. Le celle 0 della tabella permettono solo slot bonus di caratteristica, da gestire manualmente; non equivalgono alle celle prive di accesso. Il livello incantatore è pari al livello di classe meno 3, non al livello totale del personaggio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:ranger12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.01c4bca80955",
+      "name": "Nemico Prescelto",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Nemico_Prescelto_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.01c4bca80955.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Ranger: verificare e applicare 1° Nemico Prescelto. https://golarion.altervista.org/wiki/Ranger#Nemico_Prescelto_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "ranger.feature.01c4bca80955.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Ranger: verificare e applicare 2° Nemico Prescelto. https://golarion.altervista.org/wiki/Ranger#Nemico_Prescelto_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "ranger.feature.01c4bca80955.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Ranger: verificare e applicare 3° Nemico Prescelto. https://golarion.altervista.org/wiki/Ranger#Nemico_Prescelto_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "ranger.feature.01c4bca80955.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Ranger: verificare e applicare 4° Nemico Prescelto. https://golarion.altervista.org/wiki/Ranger#Nemico_Prescelto_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "ranger.feature.01c4bca80955.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Ranger: verificare e applicare 5° Nemico Prescelto. https://golarion.altervista.org/wiki/Ranger#Nemico_Prescelto_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.b66f79f3e4f4",
+      "name": "Seguire Tracce",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Seguire_Tracce_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.b66f79f3e4f4.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Ranger: verificare e applicare Seguire Tracce. https://golarion.altervista.org/wiki/Ranger#Seguire_Tracce_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.87b0d1e8f950",
+      "name": "Empatia Selvatica",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Empatia_Selvatica_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.87b0d1e8f950.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Ranger: verificare e applicare Empatia Selvatica. https://golarion.altervista.org/wiki/Ranger#Empatia_Selvatica_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.dde076a46463",
+      "name": "Talento di Stile di Combattimento",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Stile_di_Combattimento_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.dde076a46463.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Ranger: verificare e applicare Talento di Stile di Combattimento. https://golarion.altervista.org/wiki/Ranger#Stile_di_Combattimento_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "ranger.feature.dde076a46463.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Ranger: verificare e applicare Talento di Stile di Combattimento. https://golarion.altervista.org/wiki/Ranger#Stile_di_Combattimento_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "ranger.feature.dde076a46463.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Ranger: verificare e applicare Talento di Stile di Combattimento. https://golarion.altervista.org/wiki/Ranger#Stile_di_Combattimento_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "ranger.feature.dde076a46463.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Ranger: verificare e applicare Talento di Stile di Combattimento. https://golarion.altervista.org/wiki/Ranger#Stile_di_Combattimento_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "ranger.feature.dde076a46463.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Ranger: verificare e applicare Talento di Stile di Combattimento. https://golarion.altervista.org/wiki/Ranger#Stile_di_Combattimento_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.2372e79a4c70",
+      "name": "Ambiente Prescelto",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Ambiente_Prescelto_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.2372e79a4c70.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Ranger: verificare e applicare 1°Ambiente Prescelto. https://golarion.altervista.org/wiki/Ranger#Ambiente_Prescelto_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "ranger.feature.2372e79a4c70.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Ranger: verificare e applicare 2°Ambiente Prescelto. https://golarion.altervista.org/wiki/Ranger#Ambiente_Prescelto_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "ranger.feature.2372e79a4c70.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Ranger: verificare e applicare 3°Ambiente Prescelto. https://golarion.altervista.org/wiki/Ranger#Ambiente_Prescelto_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "ranger.feature.2372e79a4c70.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Ranger: verificare e applicare 4°Ambiente Prescelto. https://golarion.altervista.org/wiki/Ranger#Ambiente_Prescelto_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.70580438b030",
+      "name": "Legame del Cacciatore",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Legame_del_Cacciatore_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.70580438b030.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Ranger: verificare e applicare Legame del Cacciatore. https://golarion.altervista.org/wiki/Ranger#Legame_del_Cacciatore_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.5c89d9b3bdef",
+      "name": "Andatura nel Bosco",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Andatura_nel_Bosco_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.5c89d9b3bdef.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Ranger: verificare e applicare Andatura nel Bosco. https://golarion.altervista.org/wiki/Ranger#Andatura_nel_Bosco_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.46f82d7b7888",
+      "name": "Rapido Segugio",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Rapido_Segugio_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.46f82d7b7888.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Ranger: verificare e applicare Rapido Segugio. https://golarion.altervista.org/wiki/Ranger#Rapido_Segugio_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.ad20f245681a",
+      "name": "Eludere",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Eludere_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.ad20f245681a.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Ranger: verificare e applicare Eludere. https://golarion.altervista.org/wiki/Ranger#Eludere_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.2c7313b19da9",
+      "name": "Preda",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Preda_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.2c7313b19da9.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Ranger: verificare e applicare Preda. https://golarion.altervista.org/wiki/Ranger#Preda_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.cfe6c56ff989",
+      "name": "Mimetismo",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Mimetismo_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.cfe6c56ff989.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Ranger: verificare e applicare Mimetismo. https://golarion.altervista.org/wiki/Ranger#Mimetismo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.55f045640b3b",
+      "name": "Eludere Migliorato",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Eludere_Migliorato_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.55f045640b3b.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Ranger: verificare e applicare Eludere Migliorato. https://golarion.altervista.org/wiki/Ranger#Eludere_Migliorato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.616f278ce471",
+      "name": "Nascondersi in Piena Vista",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Nascondersi_in_Piena_Vista_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.616f278ce471.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Ranger: verificare e applicare Nascondersi in Piena Vista. https://golarion.altervista.org/wiki/Ranger#Nascondersi_in_Piena_Vista_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.eebfbc15f44e",
+      "name": "Preda Migliorata",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Preda_Migliorata_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.eebfbc15f44e.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Ranger: verificare e applicare Preda Migliorata. https://golarion.altervista.org/wiki/Ranger#Preda_Migliorata_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.4fad43923586",
+      "name": "Maestro Cacciatore",
+      "description": "Privilegio della classe Ranger. Regole e condizioni: https://golarion.altervista.org/wiki/Ranger#Maestro_Cacciatore_(Str)",
+      "progression": [
+        {
+          "id": "ranger.feature.4fad43923586.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Ranger: verificare e applicare Maestro Cacciatore. https://golarion.altervista.org/wiki/Ranger#Maestro_Cacciatore_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Ranger",
+      "progression": [
+        {
+          "id": "ranger.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Ranger Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Ranger",
+      "progression": [
+        {
+          "id": "ranger.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Ranger Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Ranger",
+      "progression": [
+        {
+          "id": "ranger.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Ranger Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.feature.0a623f464363",
+      "name": "Resistenza Fisica",
+      "description": "Concede il talento Resistenza Fisica tramite uno slot dedicato. Fonte: https://golarion.altervista.org/wiki/Ranger",
+      "progression": [
+        {
+          "id": "ranger.endurance.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "endurance",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "ids",
+                "featIds": [
+                  "endurance"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "ranger.favoredEnemy.1",
+      "classType": "ranger",
+      "featureId": "ranger.feature.01c4bca80955",
+      "acquisitionIds": [
+        "ranger.feature.01c4bca80955.level1",
+        "ranger.feature.01c4bca80955.level5",
+        "ranger.feature.01c4bca80955.level10",
+        "ranger.feature.01c4bca80955.level15",
+        "ranger.feature.01c4bca80955.level20"
+      ],
+      "choice": {
+        "id": "favoredEnemy",
+        "prompt": "Scegli un nuovo nemico prescelto",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "ranger.favoredEnemies"
+      }
+    },
+    {
+      "id": "ranger.favoredTerrain.3",
+      "classType": "ranger",
+      "featureId": "ranger.feature.2372e79a4c70",
+      "acquisitionIds": [
+        "ranger.feature.2372e79a4c70.level3",
+        "ranger.feature.2372e79a4c70.level8",
+        "ranger.feature.2372e79a4c70.level13",
+        "ranger.feature.2372e79a4c70.level18"
+      ],
+      "choice": {
+        "id": "favoredTerrain",
+        "prompt": "Scegli un nuovo ambiente prescelto",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "ranger.favoredTerrains"
+      }
+    },
+    {
+      "id": "ranger.combatStyle.2",
+      "classType": "ranger",
+      "featureId": "ranger.feature.dde076a46463",
+      "acquisitionIds": [
+        "ranger.feature.dde076a46463.level2"
+      ],
+      "choice": {
+        "id": "combatStyle",
+        "prompt": "Scegli uno stile di combattimento permanente",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "ranger.combatStyles"
+      }
+    },
+    {
+      "id": "ranger.hunterBond.4",
+      "classType": "ranger",
+      "featureId": "ranger.feature.70580438b030",
+      "acquisitionIds": [
+        "ranger.feature.70580438b030.level4"
+      ],
+      "choice": {
+        "id": "hunterBond",
+        "prompt": "Scegli il legame del cacciatore",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "ranger.hunterBonds"
+      }
+    }
+  ]
+}

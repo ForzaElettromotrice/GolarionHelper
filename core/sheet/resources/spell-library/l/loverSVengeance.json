@@ -1,0 +1,52 @@
+{
+  "id": "loverSVengeance",
+  "name": "Vendetta dell'Amante",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "BARD": 3,
+    "SKALD": 3,
+    "WITCH": 3,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un gioiello di valore di almeno 100 mo",
+  "materialComponentCostInGoldPieces": 100,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "DAY",
+  "durationDescription": "fino a 1 giorno/livello (I) oppure finché non viene scaricato",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Alimenta un'ira vendicativa verso una persona che ha offeso l'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vendetta_dell%27Amante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Vendetta dell'Amante: https://golarion.altervista.org/wiki/Incantesimi/Vendetta_dell%27Amante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

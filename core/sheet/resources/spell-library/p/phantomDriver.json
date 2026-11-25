@@ -1,0 +1,40 @@
+{
+  "id": "phantomDriver",
+  "name": "Guidatore Fantomatico",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 3,
+    "WIZARD": 3,
+    "OCCULTIST": 3,
+    "SKALD": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "3 m",
+  "effect": "1 creatura Umana quasi reale",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Un conducente spettrale assume la guida di un mezzo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Guidatore_Fantomatico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Guidatore Fantomatico: https://golarion.altervista.org/wiki/Incantesimi/Guidatore_Fantomatico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

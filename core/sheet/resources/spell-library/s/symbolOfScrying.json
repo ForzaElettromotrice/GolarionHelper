@@ -1,0 +1,44 @@
+{
+  "id": "symbolOfScrying",
+  "name": "Simbolo di Scrutamento",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "subschool": "SCRYING",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "CLERIC": 5,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "OCCULTIST": 4,
+    "ORACLE": 5,
+    "WARPRIEST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "mercurio e fosforo, più diamante e opale in polvere del valore totale di 1000 mo",
+  "materialComponentCostInGoldPieces": 1000,
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "un simbolo",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una runa attiva un sensore per osservare a distanza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Simbolo_di_Scrutamento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Simbolo di Scrutamento: https://golarion.altervista.org/wiki/Incantesimi/Simbolo_di_Scrutamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "corrosiveConsumption",
+  "name": "Consunzione Corrosiva",
+  "school": "CONJURATION",
+  "descriptors": [
+    "ACID"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "SORCERER": 5,
+    "MAGUS": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "ROUND",
+  "durationDescription": "3 round",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Deposita sulla vittima una sostanza acida che continua a corroderla. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Consunzione_Corrosiva",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Consunzione Corrosiva: https://golarion.altervista.org/wiki/Incantesimi/Consunzione_Corrosiva Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

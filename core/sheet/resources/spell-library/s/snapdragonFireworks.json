@@ -1,0 +1,48 @@
+{
+  "id": "snapdragonFireworks",
+  "name": "Draghi d'Artificio",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "FIRE",
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "BARD": 2,
+    "SKALD": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una manciata di zolfo avvolto in un pezzo di stoffa",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "effect": "fuochi d'artificio dalla forma di drago",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Produce piccoli draghi pirotecnici che possono essere diretti contro gli avversari. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Draghi_d%27Artificio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Draghi d'Artificio: https://golarion.altervista.org/wiki/Incantesimi/Draghi_d%27Artificio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

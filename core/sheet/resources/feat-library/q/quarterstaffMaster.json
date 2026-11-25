@@ -1,0 +1,31 @@
+{
+  "id": "quarterstaffMaster",
+  "name": "Maestria nei Bastoni Ferrati",
+  "description": "Permette di brandire il bastone ferrato con una mano. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestria_nei_Bastoni_Ferrati",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (bastone ferrato) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +5",
+      "expression": "@bab >= 5"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestria nei Bastoni Ferrati: https://golarion.altervista.org/wiki/Talenti/Maestria_nei_Bastoni_Ferrati. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (bastone ferrato) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

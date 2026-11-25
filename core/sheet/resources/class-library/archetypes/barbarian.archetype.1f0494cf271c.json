@@ -1,0 +1,58 @@
+{
+  "id": "barbarian.archetype.1f0494cf271c",
+  "classType": "barbarian",
+  "name": "Bruto Ubriaco",
+  "description": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Bruto_Ubriaco Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "barbarian.feature.07240188784c",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "barbarian.feature.07240188784c"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "barbarian.archetype.1f0494cf271c.instructions",
+      "name": "Bruto Ubriaco",
+      "description": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Bruto_Ubriaco Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "barbarian.archetype.1f0494cf271c.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Bruto_Ubriaco Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "barbarian.archetype.1f0494cf271c.feature.1",
+      "name": "Ira Ubriaca (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Bruto_Ubriaco",
+      "progression": [
+        {
+          "id": "barbarian.archetype.1f0494cf271c.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Bruto Ubriaco — Ira Ubriaca (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Bruto_Ubriaco Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

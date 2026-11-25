@@ -1,0 +1,62 @@
+{
+  "id": "battleTrance",
+  "name": "Trance da Battaglia",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "INVESTIGATOR": 3,
+    "ANTIPALADIN": 3,
+    "HUNTER": 3,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "WITCH": 4,
+    "INQUISITOR": 3,
+    "RANGER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una trance combattiva aiuta a resistere e proseguire lo scontro. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trance_da_Battaglia",
+  "effects": [
+    {
+      "id": "mentalSaves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "4",
+      "condition": "Contro effetti di influenza mentale"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare subito 4 danni a Intelligenza, ferocia e 1d6+LI PF temporanei (massimo +10). Vietare ritirata e allontanamento volontario da chi ha attaccato; richiedere Concentrazione CD 20 per lanciare e -5 alle altre prove di Concentrazione. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

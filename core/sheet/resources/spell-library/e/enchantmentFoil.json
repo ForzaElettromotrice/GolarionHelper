@@ -1,0 +1,43 @@
+{
+  "id": "enchantmentFoil",
+  "name": "Confondere Ammaliamento",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "ARCANIST": 4,
+    "CLERIC": 4,
+    "WITCH": 4,
+    "INQUISITOR": 4,
+    "INVESTIGATOR": 4,
+    "WIZARD": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Inganna chi tenta un ammaliamento e protegge il soggetto secondo le condizioni previste. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Confondere_Ammaliamento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Confondere Ammaliamento: https://golarion.altervista.org/wiki/Incantesimi/Confondere_Ammaliamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

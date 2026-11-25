@@ -1,0 +1,28 @@
+{
+  "id": "exoticWeaponProficiency",
+  "name": "Competenza nelle Armi Esotiche",
+  "description": "Concede competenza con un'arma esotica scelta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Competenza_nelle_Armi_Esotiche",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Competenza nelle Armi Esotiche: https://golarion.altervista.org/wiki/Talenti/Competenza_nelle_Armi_Esotiche. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

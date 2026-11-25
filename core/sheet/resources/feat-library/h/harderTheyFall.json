@@ -1,0 +1,39 @@
+{
+  "id": "harderTheyFall",
+  "name": "Agevolare Caduta",
+  "description": "La collaborazione facilita lo spingere o abbattere il nemico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Agevolare_Caduta",
+  "types": [
+    "combat",
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "For 13",
+      "expression": "@str >= 13"
+    },
+    {
+      "description": "Int 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Agevolare Caduta: https://golarion.altervista.org/wiki/Talenti/Agevolare_Caduta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Poderoso; Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

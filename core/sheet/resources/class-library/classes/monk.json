@@ -1,0 +1,988 @@
+{
+  "type": "monk",
+  "name": "Monaco",
+  "description": "Combattente disciplinato che perfeziona corpo e spirito.",
+  "hitDie": 8,
+  "skillRanksPerLevel": 4,
+  "classSkills": [
+    "skill.acrobatics",
+    "skill.craft",
+    "skill.escapeArtist",
+    "skill.ride",
+    "skill.knowledge.history",
+    "skill.knowledge.religion",
+    "skill.stealth",
+    "skill.intimidate",
+    "skill.perform",
+    "skill.senseMotive",
+    "skill.swim",
+    "skill.perception",
+    "skill.profession",
+    "skill.climb"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 2
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 3
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 3
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 4
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 4
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 5
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 5
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 6
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 6
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 7
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 7
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 8
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 8
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 9
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 9
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 10
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 10
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 11
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 11
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 12,
+        "reflex": 12,
+        "will": 12
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "monk.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "monk.feature.fa7e61ce6b2a",
+      "name": "Colpo Senz'Armi",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Colpo_Senz'Armi",
+      "progression": [
+        {
+          "id": "monk.feature.fa7e61ce6b2a.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Monaco: verificare e applicare Colpo Senz'Armi. https://golarion.altervista.org/wiki/Monaco#Colpo_Senz'Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.fcc883afe085",
+      "name": "Pugno Stordente",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Pugno_Stordente_(Str)",
+      "progression": [
+        {
+          "id": "monk.feature.fcc883afe085.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Monaco: verificare e applicare Pugno Stordente. https://golarion.altervista.org/wiki/Monaco#Pugno_Stordente_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.cd7c82fe2901",
+      "name": "Raffica di Colpi",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Raffica_di_Colpi_(Str)",
+      "progression": [
+        {
+          "id": "monk.feature.cd7c82fe2901.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Monaco: verificare e applicare Raffica di Colpi. https://golarion.altervista.org/wiki/Monaco#Raffica_di_Colpi_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.1086aa505e88",
+      "name": "Talento Bonus",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Talento_Bonus",
+      "progression": [
+        {
+          "id": "monk.feature.1086aa505e88.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Monaco: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Monaco#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "monk.feature.1086aa505e88.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Monaco: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Monaco#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "monk.feature.1086aa505e88.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Monaco: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Monaco#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "monk.feature.1086aa505e88.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Monaco: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Monaco#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "monk.feature.1086aa505e88.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Monaco: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Monaco#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "monk.feature.1086aa505e88.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Monaco: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Monaco#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.61d1d22a6be6",
+      "name": "Eludere",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Eludere_(Str)",
+      "progression": [
+        {
+          "id": "monk.feature.61d1d22a6be6.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Monaco: verificare e applicare Eludere. https://golarion.altervista.org/wiki/Monaco#Eludere_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.bf8a5dd56471",
+      "name": "Addestramento alle Manovre",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Addestramento_alle_Manovre_(Str)",
+      "progression": [
+        {
+          "id": "monk.feature.bf8a5dd56471.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Monaco: verificare e applicare Addestramento alle Manovre. https://golarion.altervista.org/wiki/Monaco#Addestramento_alle_Manovre_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.ab8c74a07c34",
+      "name": "Caduta Lenta",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Caduta_Lenta_(Str)",
+      "progression": [
+        {
+          "id": "monk.feature.ab8c74a07c34.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Monaco: verificare e applicare Caduta Lenta 6 m. https://golarion.altervista.org/wiki/Monaco#Caduta_Lenta_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "monk.feature.ab8c74a07c34.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Monaco: verificare e applicare Caduta Lenta 9 m. https://golarion.altervista.org/wiki/Monaco#Caduta_Lenta_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "monk.feature.ab8c74a07c34.level4"
+          ]
+        },
+        {
+          "id": "monk.feature.ab8c74a07c34.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Monaco: verificare e applicare Caduta Lenta 12 m. https://golarion.altervista.org/wiki/Monaco#Caduta_Lenta_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "monk.feature.ab8c74a07c34.level6"
+          ]
+        },
+        {
+          "id": "monk.feature.ab8c74a07c34.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Monaco: verificare e applicare Caduta Lenta 15 m. https://golarion.altervista.org/wiki/Monaco#Caduta_Lenta_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "monk.feature.ab8c74a07c34.level8"
+          ]
+        },
+        {
+          "id": "monk.feature.ab8c74a07c34.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Monaco: verificare e applicare Caduta Lenta 18 m. https://golarion.altervista.org/wiki/Monaco#Caduta_Lenta_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "monk.feature.ab8c74a07c34.level10"
+          ]
+        },
+        {
+          "id": "monk.feature.ab8c74a07c34.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Monaco: verificare e applicare Caduta Lenta 21 m. https://golarion.altervista.org/wiki/Monaco#Caduta_Lenta_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "monk.feature.ab8c74a07c34.level12"
+          ]
+        },
+        {
+          "id": "monk.feature.ab8c74a07c34.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Monaco: verificare e applicare Caduta Lenta 24 m. https://golarion.altervista.org/wiki/Monaco#Caduta_Lenta_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "monk.feature.ab8c74a07c34.level14"
+          ]
+        },
+        {
+          "id": "monk.feature.ab8c74a07c34.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Monaco: verificare e applicare Caduta Lenta 27 m. https://golarion.altervista.org/wiki/Monaco#Caduta_Lenta_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "monk.feature.ab8c74a07c34.level16"
+          ]
+        },
+        {
+          "id": "monk.feature.ab8c74a07c34.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Monaco: verificare e applicare Caduta Lenta da qualsiasi altezza. https://golarion.altervista.org/wiki/Monaco#Caduta_Lenta_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.6c6df5139658",
+      "name": "Riserva Ki",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Riserva_Ki_(Sop)",
+      "progression": [
+        {
+          "id": "monk.feature.6c6df5139658.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Monaco: verificare e applicare Riserva Ki (magia). https://golarion.altervista.org/wiki/Monaco#Riserva_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "monk.feature.6c6df5139658.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Monaco: verificare e applicare Riserva Ki (ferro freddo e argento). https://golarion.altervista.org/wiki/Monaco#Riserva_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "monk.feature.6c6df5139658.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Monaco: verificare e applicare Riserva Ki (legale). https://golarion.altervista.org/wiki/Monaco#Riserva_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "monk.feature.6c6df5139658.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Monaco: verificare e applicare Riserva Ki (Adamantio). https://golarion.altervista.org/wiki/Monaco#Riserva_Ki_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.bf07464e4294",
+      "name": "Salto Sublime",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Salto_Sublime_(Str)",
+      "progression": [
+        {
+          "id": "monk.feature.bf07464e4294.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Monaco: verificare e applicare Salto Sublime. https://golarion.altervista.org/wiki/Monaco#Salto_Sublime_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.c53d0415de09",
+      "name": "Integrità del Corpo",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Integrità_del_Corpo_(Sop)",
+      "progression": [
+        {
+          "id": "monk.feature.c53d0415de09.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Monaco: verificare e applicare Integrità del Corpo. https://golarion.altervista.org/wiki/Monaco#Integrità_del_Corpo_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.64b30c87a4ec",
+      "name": "Eludere Migliorato",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Eludere_Migliorato_(Str)",
+      "progression": [
+        {
+          "id": "monk.feature.64b30c87a4ec.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Monaco: verificare e applicare Eludere Migliorato. https://golarion.altervista.org/wiki/Monaco#Eludere_Migliorato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.f77a0087c3a2",
+      "name": "Passo Abbondante",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Passo_Abbondante_(Sop)",
+      "progression": [
+        {
+          "id": "monk.feature.f77a0087c3a2.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Monaco: verificare e applicare Passo Abbondante. https://golarion.altervista.org/wiki/Monaco#Passo_Abbondante_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.99f1e3d6bdbe",
+      "name": "Anima Adamantina",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Anima_Adamantina_(Str)",
+      "progression": [
+        {
+          "id": "monk.feature.99f1e3d6bdbe.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Monaco: verificare e applicare Anima Adamantina. https://golarion.altervista.org/wiki/Monaco#Anima_Adamantina_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.538666b4f1d1",
+      "name": "Palmo Tremante",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Palmo_Tremante_(Sop)",
+      "progression": [
+        {
+          "id": "monk.feature.538666b4f1d1.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Monaco: verificare e applicare Palmo Tremante. https://golarion.altervista.org/wiki/Monaco#Palmo_Tremante_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.a4dc83dff494",
+      "name": "Corpo Senza Tempo",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Corpo_Senza_Tempo_(Str)",
+      "progression": [
+        {
+          "id": "monk.feature.a4dc83dff494.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Monaco: verificare e applicare Corpo Senza Tempo. https://golarion.altervista.org/wiki/Monaco#Corpo_Senza_Tempo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.901a9b4b671e",
+      "name": "Lingua del Sole e della Luna",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Lingua_del_Sole_e_della_Luna_(Str)",
+      "progression": [
+        {
+          "id": "monk.feature.901a9b4b671e.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Monaco: verificare e applicare Lingua del Sole e della Luna. https://golarion.altervista.org/wiki/Monaco#Lingua_del_Sole_e_della_Luna_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.703d92c129c9",
+      "name": "Corpo Vuoto",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Corpo_Vuoto_(Sop)",
+      "progression": [
+        {
+          "id": "monk.feature.703d92c129c9.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Monaco: verificare e applicare Corpo Vuoto. https://golarion.altervista.org/wiki/Monaco#Corpo_Vuoto_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.a5b2ebf37218",
+      "name": "Perfezione Interiore",
+      "description": "Privilegio della classe Monaco. Regole e condizioni: https://golarion.altervista.org/wiki/Monaco#Perfezione_Interiore",
+      "progression": [
+        {
+          "id": "monk.feature.a5b2ebf37218.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Monaco: verificare e applicare Perfezione Interiore. https://golarion.altervista.org/wiki/Monaco#Perfezione_Interiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi legale.. https://golarion.altervista.org/wiki/Monaco",
+      "progression": [
+        {
+          "id": "monk.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi legale.. https://golarion.altervista.org/wiki/Monaco Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Monaco",
+      "progression": [
+        {
+          "id": "monk.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Monaco Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Monaco",
+      "progression": [
+        {
+          "id": "monk.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Monaco Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.armorClassBonus",
+      "name": "Bonus alla CA",
+      "description": "Aggiunge il bonus di Saggezza e il beneficio progressivo del livello alla CA e alla DMC, anche da impreparato e contro contatto. Fonte: https://golarion.altervista.org/wiki/Monaco",
+      "progression": [
+        {
+          "id": "monk.armorClassBonus.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "armorClass",
+              "type": "modifier",
+              "resource": "armorClass.all",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "(@wisMod > 0) * @wisMod + @classLevel / 4",
+              "condition": "Senza armatura né scudo, con carico nullo o leggero, non immobilizzato né indifeso"
+            },
+            {
+              "id": "maneuverDefense",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.all",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "(@wisMod > 0) * @wisMod + @classLevel / 4",
+              "condition": "Senza armatura né scudo, con carico nullo o leggero, non immobilizzato né indifeso"
+            },
+            {
+              "id": "conditionalReview",
+              "type": "reminder",
+              "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.138658c0c957",
+      "name": "Movimento Veloce",
+      "description": "Concede un bonus di potenziamento crescente alla velocità sul terreno. Fonte: https://golarion.altervista.org/wiki/Monaco",
+      "progression": [
+        {
+          "id": "monk.fastMovement.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "speed",
+              "type": "modifier",
+              "resource": "speed.land",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "enhancement",
+              "expression": "2 * (@classLevel / 3)",
+              "condition": "Senza armatura, con carico nullo o leggero"
+            },
+            {
+              "id": "conditionalReview",
+              "type": "reminder",
+              "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.60381686a043",
+      "name": "Purezza del Corpo",
+      "description": "Conferisce immunità alle malattie, comprese quelle magiche e soprannaturali. Fonte: https://golarion.altervista.org/wiki/Monaco",
+      "progression": [
+        {
+          "id": "monk.purityOfBody.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "disease",
+              "type": "immunity",
+              "targetId": "disease",
+              "name": "Malattie"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.3ff1c7631708",
+      "name": "Mente Lucida",
+      "description": "Rafforza i tiri salvezza contro ammaliamento. Fonte: https://golarion.altervista.org/wiki/Monaco",
+      "progression": [
+        {
+          "id": "monk.stillMind.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "enchantment",
+              "type": "modifier",
+              "resource": "savingThrow.all",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "2",
+              "condition": "Contro incantesimi ed effetti di ammaliamento"
+            },
+            {
+              "id": "conditionalReview",
+              "type": "reminder",
+              "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monk.feature.9e320f21435a",
+      "name": "Corpo Adamantino",
+      "description": "Conferisce immunità ai veleni. Fonte: https://golarion.altervista.org/wiki/Monaco",
+      "progression": [
+        {
+          "id": "monk.diamondBody.initial",
+          "level": 11,
+          "effects": [
+            {
+              "id": "poison",
+              "type": "immunity",
+              "targetId": "poison",
+              "name": "Veleni"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bindings": []
+}

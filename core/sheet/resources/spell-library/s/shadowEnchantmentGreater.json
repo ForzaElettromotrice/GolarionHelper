@@ -1,0 +1,48 @@
+{
+  "id": "shadowEnchantmentGreater",
+  "name": "Ombra di un Ammaliamento Superiore",
+  "school": "ILLUSION",
+  "descriptors": [
+    "SHADOW"
+  ],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "SORCERER": 6,
+    "BARD": 6,
+    "SKALD": 6,
+    "MESMERIST": 6,
+    "PSYCHIC": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "vedi testo",
+  "effect": "vedi testo",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "Volontà dubito, vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Imita ammaliamenti più potenti attraverso ombre maggiormente consistenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ombra_di_un_Ammaliamento_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ombra di un Ammaliamento Superiore: https://golarion.altervista.org/wiki/Incantesimi/Ombra_di_un_Ammaliamento_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

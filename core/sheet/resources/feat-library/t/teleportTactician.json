@@ -1,0 +1,37 @@
+{
+  "id": "teleportTactician",
+  "name": "Tattico del Teletrasporto",
+  "description": "Permette di colpire creature durante determinati teletrasporti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tattico_del_Teletrasporto",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Dirompente",
+      "feat": {
+        "id": "disruptive"
+      }
+    },
+    {
+      "description": "Riflessi in Combattimento",
+      "feat": {
+        "id": "combatReflexes"
+      }
+    },
+    {
+      "description": "Spezzaincantesimi",
+      "feat": {
+        "id": "spellbreaker"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tattico del Teletrasporto: https://golarion.altervista.org/wiki/Talenti/Tattico_del_Teletrasporto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

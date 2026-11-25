@@ -1,0 +1,55 @@
+{
+  "id": "incendiaryCloud",
+  "name": "Nube Incendiaria",
+  "school": "CONJURATION",
+  "descriptors": [
+    "FIRE"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WIZARD": 8,
+    "SORCERER": 8,
+    "SUMMONER": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "FIRE": 8
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "nube in una propagazione del raggio di 6 m e alta 6 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza, vedi testo"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Forma una nube infuocata che continua a infliggere danni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Nube_Incendiaria",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Nube Incendiaria: https://golarion.altervista.org/wiki/Incantesimi/Nube_Incendiaria Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Fuoco 8 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

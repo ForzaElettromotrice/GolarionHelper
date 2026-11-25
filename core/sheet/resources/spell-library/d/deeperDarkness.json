@@ -1,0 +1,48 @@
+{
+  "id": "deeperDarkness",
+  "name": "Oscurità Profonda",
+  "school": "EVOCATION",
+  "descriptors": [
+    "DARKNESS"
+  ],
+  "spellLevelByClass": {
+    "ADEPT": 3,
+    "ANTIPALADIN": 3,
+    "CLERIC": 3,
+    "INQUISITOR": 3,
+    "OCCULTIST": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "SHAMAN": 3
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DARKNESS": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "pelliccia di pipistrello e carbone",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto toccato",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Diffonde un'oscurità più intensa e ampia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Oscurit%C3%A0_Profonda",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Oscurità Profonda: https://golarion.altervista.org/wiki/Incantesimi/Oscurit%C3%A0_Profonda Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

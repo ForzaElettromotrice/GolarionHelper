@@ -1,0 +1,52 @@
+{
+  "id": "deadhandMaster",
+  "name": "Maestro del Pugno Mortale",
+  "description": "I colpi senz'armi possono sottrarre energia vitale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestro_del_Pugno_Mortale",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Saggezza 23",
+      "expression": "@wis >= 23"
+    },
+    {
+      "description": "Iniziato del Pugno Mortale",
+      "feat": {
+        "id": "deadhandInitiate"
+      }
+    },
+    {
+      "description": "Stile del Pugno Mortale",
+      "feat": {
+        "id": "deadhandStyle"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (religioni) 14 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe riserva ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: allineamento non buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestro del Pugno Mortale: https://golarion.altervista.org/wiki/Talenti/Maestro_del_Pugno_Mortale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Conoscenze (religioni) 14 gradi; Prerequisito da verificare manualmente: privilegio di classe riserva ki; Prerequisito da verificare manualmente: allineamento non buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

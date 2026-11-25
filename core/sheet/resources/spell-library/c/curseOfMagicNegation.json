@@ -1,0 +1,54 @@
+{
+  "id": "curseOfMagicNegation",
+  "name": "Maledizione della Negazione Magica",
+  "school": "ABJURATION",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "CLERIC": 5,
+    "WITCH": 4,
+    "INQUISITOR": 4,
+    "WIZARD": 4,
+    "MESMERIST": 3,
+    "OCCULTIST": 4,
+    "ORACLE": 5,
+    "PSYCHIC": 4,
+    "WARPRIEST": 5,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "piombo e platino in polvere del valore di 250 mo",
+  "materialComponentCostInGoldPieces": 250,
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Affligge il bersaglio con un difetto che ostacola la magia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Maledizione_della_Negazione_Magica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledizione della Negazione Magica: https://golarion.altervista.org/wiki/Incantesimi/Maledizione_della_Negazione_Magica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

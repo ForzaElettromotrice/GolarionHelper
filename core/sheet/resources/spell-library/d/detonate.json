@@ -1,0 +1,58 @@
+{
+  "id": "detonate",
+  "name": "Detonazione",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "INVESTIGATOR": 4,
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "BLOODRAGER": 4,
+    "MAGUS": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "due fialette; una contenente acido e una contenente una soluzione alcalina del valore totale di 50 mo",
+  "materialComponentCostInGoldPieces": 50,
+  "rangeType": "OTHER",
+  "rangeDescription": "9 metri",
+  "area": "propagazione del raggio di 9 metri centrata su di sé",
+  "durationType": "OTHER",
+  "durationDescription": "1 round, poi istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Accumula energia nel lanciatore per liberarla in un'esplosione che colpisce l'area circostante. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Detonazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Detonazione: https://golarion.altervista.org/wiki/Incantesimi/Detonazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 4, Aria 4, Fuoco 4, Terra 4 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Descrittori variabili da determinare al lancio: acido, elettricità, freddo o fuoco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

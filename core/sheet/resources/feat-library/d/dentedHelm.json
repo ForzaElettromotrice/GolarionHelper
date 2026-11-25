@@ -1,0 +1,37 @@
+{
+  "id": "dentedHelm",
+  "name": "Elmo Ammaccabile",
+  "description": "Permette di danneggiare l'elmo per attenuare un colpo critico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Elmo_Ammaccabile",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Testa Dura",
+      "feat": {
+        "id": "hardHeaded"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Nano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Elmo Ammaccabile: https://golarion.altervista.org/wiki/Talenti/Elmo_Ammaccabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Nano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

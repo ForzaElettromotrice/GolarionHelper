@@ -1,0 +1,40 @@
+{
+  "id": "psychicDisciple",
+  "name": "Discepolo Parapsichico",
+  "description": "Concede l'uso limitato di un incantesimo parapsichico di primo livello. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Discepolo_Parapsichico",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Adepto Parapsichico",
+      "feat": {
+        "id": "psychicAdept"
+      }
+    },
+    {
+      "description": "Sensitività Parapsichica",
+      "feat": {
+        "id": "psychicSensitivity"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Discepolo Parapsichico: https://golarion.altervista.org/wiki/Talenti/Discepolo_Parapsichico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

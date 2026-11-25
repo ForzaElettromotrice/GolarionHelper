@@ -1,0 +1,42 @@
+{
+  "id": "severedFate",
+  "name": "Fato Spezzato",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "WITCH": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/2 livelli)",
+  "target": "una creatura vivente",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Scuote il soggetto e gli impedisce di spendere punti eroe. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fato_Spezzato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fato Spezzato: https://golarion.altervista.org/wiki/Incantesimi/Fato_Spezzato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

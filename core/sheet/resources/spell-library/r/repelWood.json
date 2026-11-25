@@ -1,0 +1,39 @@
+{
+  "id": "repelWood",
+  "name": "Respingere Legno",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 6,
+    "DRUID": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "PLANT": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "18 m",
+  "area": "emanazione in una linea di 18 m che ha origine su di sé",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Spinge lontano dall'incantatore oggetti di legno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Respingere_Legno",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Respingere Legno: https://golarion.altervista.org/wiki/Incantesimi/Respingere_Legno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "communeWithBirds",
+  "name": "Comunione con gli Uccelli",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "HUNTER": 1,
+    "DRUID": 1,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "MESMERIST": 2,
+    "PSYCHIC": 2,
+    "RANGER": 1,
+    "SKALD": 2,
+    "SHAMAN": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti; vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Raccoglie dagli uccelli informazioni tramite un richiamo formulato come domanda. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Comunione_con_gli_Uccelli",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Comunione con gli Uccelli: https://golarion.altervista.org/wiki/Incantesimi/Comunione_con_gli_Uccelli Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

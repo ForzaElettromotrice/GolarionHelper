@@ -1,0 +1,43 @@
+{
+  "id": "surpriseStrike",
+  "name": "Colpo a Sorpresa",
+  "description": "Elimina la penalità del colpo sferrato durante la difesa totale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_a_Sorpresa",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Guerriero Prudente",
+      "feat": {
+        "id": "cautiousFighter"
+      }
+    },
+    {
+      "description": "Colpo Disperato",
+      "feat": {
+        "id": "desperateSwing"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Halfling Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo a Sorpresa: https://golarion.altervista.org/wiki/Talenti/Colpo_a_Sorpresa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Halfling Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

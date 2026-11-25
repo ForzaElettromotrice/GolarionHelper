@@ -1,0 +1,37 @@
+{
+  "id": "omnipresentMentor",
+  "name": "Mentore Onnipresente",
+  "description": "Conferisce a un alleato un sostegno prolungato di Ispirare Competenza anche a distanza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mentore_Onnipresente",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 17",
+      "expression": "@cha >= 17"
+    },
+    {
+      "description": "Mentore Motivante",
+      "feat": {
+        "id": "inspiringMentor"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Ispirare Competenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mentore Onnipresente: https://golarion.altervista.org/wiki/Talenti/Mentore_Onnipresente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di classe Ispirare Competenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,23 @@
+{
+  "id": "reapTheInfirm",
+  "name": "Mietere gli Infermi",
+  "description": "Favorisce danni e manovre contro creature ammalate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mietere_gli_Infermi",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +3",
+      "expression": "@bab >= 3"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mietere gli Infermi: https://golarion.altervista.org/wiki/Talenti/Mietere_gli_Infermi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

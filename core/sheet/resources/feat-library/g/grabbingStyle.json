@@ -1,0 +1,28 @@
+{
+  "id": "grabbingStyle",
+  "name": "Stile delle Prese",
+  "description": "Agevola la presa con una mano e la difesa immobilizzando. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Stile_delle_Prese",
+  "types": [
+    "combat",
+    "style"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Lottare Migliorato; Bonus di Attacco Base +6, privilegio di classe Raffica dell'Attaccabrighe o Raffica di Colpi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Stile delle Prese: https://golarion.altervista.org/wiki/Talenti/Stile_delle_Prese. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Lottare Migliorato; Bonus di Attacco Base +6, privilegio di classe Raffica dell'Attaccabrighe o Raffica di Colpi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

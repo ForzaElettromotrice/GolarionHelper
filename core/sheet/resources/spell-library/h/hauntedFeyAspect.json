@@ -1,0 +1,40 @@
+{
+  "id": "hauntedFeyAspect",
+  "name": "Aspetto del Folletto Stregato",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 0,
+    "BARD": 0,
+    "WIZARD": 0,
+    "MEDIUM": 0,
+    "MESMERIST": 0,
+    "PSYCHIC": 0,
+    "SKALD": 0,
+    "SORCERER": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Avvolge il lanciatore in immagini fatate inquietanti che lo proteggono temporaneamente dagli attacchi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aspetto_del_Folletto_Stregato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Aspetto del Folletto Stregato: https://golarion.altervista.org/wiki/Incantesimi/Aspetto_del_Folletto_Stregato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

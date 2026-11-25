@@ -1,0 +1,36 @@
+{
+  "id": "eyeForIngredients",
+  "name": "Occhio per gli Ingredienti",
+  "description": "Riduce il costo di acquisto delle componenti materiali appropriate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Occhio_per_gli_Ingredienti",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Escludere Materiali",
+      "feat": {
+        "id": "eschewMaterials"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Sapienza Magica 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Valutare 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Occhio per gli Ingredienti: https://golarion.altervista.org/wiki/Talenti/Occhio_per_gli_Ingredienti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Sapienza Magica 6 gradi; Prerequisito da verificare manualmente: Valutare 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

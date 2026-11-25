@@ -1,0 +1,49 @@
+{
+  "id": "oneiricHorror",
+  "name": "Orrore Onirico",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 2,
+    "WIZARD": 3,
+    "MEDIUM": 1,
+    "MESMERIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura vivente",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una creatura proveniente dagli incubi distrae la vittima e ne consuma le energie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Orrore_Onirico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Orrore Onirico: https://golarion.altervista.org/wiki/Incantesimi/Orrore_Onirico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "netAndTrident",
+  "name": "Rete e Tridente",
+  "description": "Facilita l'uso congiunto di rete e arma da mischia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Rete_e_Tridente",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Adepto della Rete",
+      "feat": {
+        "id": "netAdept"
+      }
+    },
+    {
+      "description": "Combattere con Due Armi",
+      "feat": {
+        "id": "twoWeaponFighting"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Rete) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Rete e Tridente: https://golarion.altervista.org/wiki/Talenti/Rete_e_Tridente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Rete) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,72 @@
+{
+  "id": "bullSStrengthMass",
+  "name": "Forza del Toro di Massa",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "HUNTER": 6,
+    "CLERIC": 6,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 6,
+    "DRUID": 6,
+    "WIZARD": 6,
+    "MAGUS": 6,
+    "ORACLE": 6,
+    "PSYCHIC": 6,
+    "WARPRIEST": 6,
+    "SHAMAN": 6,
+    "SORCERER": 6
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "FEROCITY": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "alcuni peli o del letame di toro",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Concede +4 di potenziamento a Forza e ne modifica gli usi derivati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Forza_del_Toro_di_Massa",
+  "effects": [
+    {
+      "id": "ability",
+      "type": "modifier",
+      "resource": "str",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "enhancement",
+      "expression": "4"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Gli eventuali incantesimi bonus non aumentano; gli effetti sulle CD si risolvono con il lancio. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo.  Selezionare al massimo una creatura per livello dell'incantatore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/livello, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "mantleOfDoubt",
+  "name": "Manto del Dubbio",
+  "school": "ILLUSION",
+  "descriptors": [
+    "EMOTION",
+    "FEAR",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "MESMERIST": 6,
+    "PSYCHIC": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Insinua dubbi debilitanti nelle creature che attaccano l'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Manto_del_Dubbio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Manto del Dubbio: https://golarion.altervista.org/wiki/Incantesimi/Manto_del_Dubbio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

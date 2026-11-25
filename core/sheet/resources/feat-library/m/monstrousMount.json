@@ -1,0 +1,27 @@
+{
+  "id": "monstrousMount",
+  "name": "Cavalcatura Mostruosa",
+  "description": "Permette di acquisire una cavalcatura di specie insolita. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Cavalcatura_Mostruosa",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Addestrare Animali 4 gradi, Cavalcare 4 gradi, privilegio di Classe Cavalcatura (livello effettivo da Druido 4), Legame del Cacciatore (Compagno Animale) o Legame Divino (cavalcatura). Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Cavalcatura Mostruosa: https://golarion.altervista.org/wiki/Talenti/Cavalcatura_Mostruosa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Addestrare Animali 4 gradi, Cavalcare 4 gradi, privilegio di Classe Cavalcatura (livello effettivo da Druido 4), Legame del Cacciatore (Compagno Animale) o Legame Divino (cavalcatura). Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,53 @@
+{
+  "id": "planarInquiry",
+  "name": "Richiesta Planare",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CALLING",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "HUNTER": 3,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "INQUISITOR": 3,
+    "SHAMAN": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "offerte dal valore di 100 mo per DV della creatura richiamata",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/2 livelli)",
+  "effect": "un Esterno richiamato che risponde a domande",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo, vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Convoca un esterno da consultare per ottenere informazioni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Richiesta_Planare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Richiesta Planare: https://golarion.altervista.org/wiki/Incantesimi/Richiesta_Planare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Costo materiale variabile o alternativo: determinarlo dalla descrizione dei componenti, non da un importo fisso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

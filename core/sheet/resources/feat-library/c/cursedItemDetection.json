@@ -1,0 +1,27 @@
+{
+  "id": "cursedItemDetection",
+  "name": "Individuazione degli Oggetti Maledetti",
+  "description": "L'identificazione accurata permette di riconoscere oggetti maledetti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Individuazione_degli_Oggetti_Maledetti",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Sapienza Magica 5 gradi, capacità di lanciare Individuazione del Magico come incantesimo o capacità magica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Individuazione degli Oggetti Maledetti: https://golarion.altervista.org/wiki/Talenti/Individuazione_degli_Oggetti_Maledetti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Sapienza Magica 5 gradi, capacità di lanciare Individuazione del Magico come incantesimo o capacità magica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,51 @@
+{
+  "id": "circuitousShot",
+  "name": "Tiro Tortuoso",
+  "description": "Permette traiettorie di rimbalzo per aggirare una copertura completa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tiro_Tortuoso",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 19",
+      "expression": "@dex >= 19"
+    },
+    {
+      "description": "BAB +11",
+      "expression": "@bab >= 11"
+    },
+    {
+      "description": "Combattere alla Cieca",
+      "feat": {
+        "id": "blindFight"
+      }
+    },
+    {
+      "description": "Tiro Preciso",
+      "feat": {
+        "id": "preciseShot"
+      }
+    },
+    {
+      "description": "Tiro Preciso Migliorato",
+      "feat": {
+        "id": "improvedPreciseShot"
+      }
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tiro Tortuoso: https://golarion.altervista.org/wiki/Talenti/Tiro_Tortuoso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

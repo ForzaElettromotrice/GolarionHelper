@@ -1,0 +1,54 @@
+{
+  "id": "wavesOfBlood",
+  "name": "Onde di Sangue",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WITCH": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "MAGUS": 3,
+    "PSYCHIC": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una goccia del sangue dell'incantatore",
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "area": "esplosione di forma conica",
+  "durationType": "OTHER",
+  "durationDescription": "istantanea e 1 round; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega, Tempra nega (vedi testo)"
+    },
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Riflessi nega, Tempra nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Scatena sangue che respinge e disturba le creature, rendendo scivoloso il terreno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Onde_di_Sangue",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Onde di Sangue: https://golarion.altervista.org/wiki/Onde_di_Sangue Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

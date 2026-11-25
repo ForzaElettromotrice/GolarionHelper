@@ -1,0 +1,48 @@
+{
+  "id": "restEternal",
+  "name": "Riposo Eterno",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 5,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "DRUID": 5,
+    "WITCH": 5,
+    "SHAMAN": 5
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "ANCESTORS": 4
+    }
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "ceneri e una fiala di acqua santa o sacrilega",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura morta toccata",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Ostacola il ritorno in vita e la rianimazione dei morti designati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Riposo_Eterno",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Riposo Eterno: https://golarion.altervista.org/wiki/Incantesimi/Riposo_Eterno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

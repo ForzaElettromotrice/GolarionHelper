@@ -1,0 +1,41 @@
+{
+  "id": "enticeFey",
+  "name": "Attirare Folletti",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CALLING",
+  "spellLevelByClass": {
+    "BARD": 6,
+    "DRUID": 7,
+    "SKALD": 6,
+    "SHAMAN": 7
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "offerte del valore di 1.250 mo più il pagamento",
+  "materialComponentCostInGoldPieces": 1250,
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/ogni 2 livelli)",
+  "effect": "1 o 2 Folletti richiamati, con 12 DV o meno totali, non devono distare più di 9 m l'uno dall'altro",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Attira un folletto e ne richiede i servigi entro i limiti di potenza previsti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Attirare_Folletti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Attirare Folletti: https://golarion.altervista.org/wiki/Incantesimi/Attirare_Folletti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

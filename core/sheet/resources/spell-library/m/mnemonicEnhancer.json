@@ -1,0 +1,37 @@
+{
+  "id": "mnemonicEnhancer",
+  "name": "Potenziatore Mnemonico",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "WIZARD": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "FOCUS"
+  ],
+  "materialComponentDescription": "un pezzo di spago e inchiostro fatto di nero di seppia e sangue di drago nero",
+  "focusComponentDescription": "una placca d’avorio del valore di almeno 50 mo",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Amplia temporaneamente la capacità di preparare o recuperare incantesimi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Potenziatore_Mnemonico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Potenziatore Mnemonico: https://golarion.altervista.org/wiki/Incantesimi/Potenziatore_Mnemonico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

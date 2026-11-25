@@ -1,0 +1,36 @@
+{
+  "id": "guidedHand",
+  "name": "Mano Guidata",
+  "description": "Permette di usare la Saggezza per colpire con l'arma preferita dalla propria divinità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mano_Guidata",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Incanalare Energia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Incanalare Punizione",
+      "feat": {
+        "id": "channelSmite"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: competenza nell'arma preferita della divinità Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mano Guidata: https://golarion.altervista.org/wiki/Talenti/Mano_Guidata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Incanalare Energia; Prerequisito da verificare manualmente: competenza nell'arma preferita della divinità Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

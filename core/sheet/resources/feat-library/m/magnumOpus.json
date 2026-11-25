@@ -1,0 +1,27 @@
+{
+  "id": "magnumOpus",
+  "name": "Opera Magna",
+  "description": "Favorisce un'attività artistica e premia la realizzazione di un capolavoro. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Opera_Magna",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Bisogna aver venduto cinque o più delle proprie opere d'arte per un totale di almeno 5.000 mo, aver eseguito almeno cinque esibizioni per un pubblico di 50 o più persone ottenendo un risultato pari a grande spettacolo o migliore dalla propria prova di Intrattenere, oppure possedere il background Virtuoso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Opera Magna: https://golarion.altervista.org/wiki/Talenti/Opera_Magna. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Bisogna aver venduto cinque o più delle proprie opere d'arte per un totale di almeno 5.000 mo, aver eseguito almeno cinque esibizioni per un pubblico di 50 o più persone ottenendo un risultato pari a grande spettacolo o migliore dalla propria prova di Intrattenere, oppure possedere il background Virtuoso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

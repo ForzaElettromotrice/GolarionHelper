@@ -1,0 +1,46 @@
+{
+  "id": "absorbRuneIII",
+  "name": "Assorbire Rune III",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "CLERIC": 9,
+    "WIZARD": 9,
+    "ORACLE": 9,
+    "SORCERER": 9
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un guanto di seta bianco dal valore di 25 mo",
+  "materialComponentCostInGoldPieces": 25,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "un effetto dell'incantesimo",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo più 1 minuto/livello (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Permette di assorbire rune fino al limite più alto della serie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Assorbire_Rune_III",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Assorbire Rune III: https://golarion.altervista.org/wiki/Incantesimi/Assorbire_Rune_III Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

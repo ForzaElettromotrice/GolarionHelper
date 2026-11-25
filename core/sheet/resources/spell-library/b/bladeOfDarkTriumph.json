@@ -1,0 +1,46 @@
+{
+  "id": "bladeOfDarkTriumph",
+  "name": "Lama dell'Oscuro Trionfo",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "l'arma con dono immondo dell'Antipaladino",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Conferisce alla lama vincolata la proprietà tocco fantasma. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lama_dell%27Oscuro_Trionfo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Lama dell'Oscuro Trionfo: https://golarion.altervista.org/wiki/Incantesimi/Lama_dell%27Oscuro_Trionfo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: l'arma con dono immondo dell'Antipaladino. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

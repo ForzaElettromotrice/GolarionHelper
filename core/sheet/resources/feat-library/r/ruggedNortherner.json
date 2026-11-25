@@ -1,0 +1,31 @@
+{
+  "id": "ruggedNortherner",
+  "name": "Nordico Robusto",
+  "description": "Riduce gli effetti nocivi degli ambienti particolarmente freddi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Nordico_Robusto",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Costituzione 13",
+      "expression": "@con >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Sopravvivenza 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Nordico Robusto: https://golarion.altervista.org/wiki/Talenti/Nordico_Robusto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Sopravvivenza 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,27 @@
+{
+  "id": "dieForYourMaster",
+  "name": "Muori per il Tuo Padrone",
+  "description": "Permette al famiglio tumorale di sacrificarsi per evitare la morte del padrone. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Muori_per_il_Tuo_Padrone",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Scoperta Famiglio Tumorale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Muori per il Tuo Padrone: https://golarion.altervista.org/wiki/Talenti/Muori_per_il_Tuo_Padrone. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Scoperta Famiglio Tumorale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

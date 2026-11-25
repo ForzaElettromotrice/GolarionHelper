@@ -1,0 +1,33 @@
+{
+  "id": "carefulFlyer",
+  "name": "Volatore Prudente",
+  "description": "Consente un volo prudente che evita alcune prove e riduce l'esposizione alle reazioni nemiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Volatore_Prudente",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Acrobatico",
+      "feat": {
+        "id": "acrobatic"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Volare 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Volatore Prudente: https://golarion.altervista.org/wiki/Talenti/Volatore_Prudente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Volare 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

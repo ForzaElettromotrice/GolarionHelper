@@ -1,0 +1,133 @@
+{
+  "id": "hunter.archetype.fc5fd91a73a7",
+  "classType": "hunter",
+  "name": "Cacciatore Parassitico",
+  "description": "Archetipo di Cacciatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Parassitico Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Compagno Animale, Empatia Selvatica. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "hunter.feature.21a91365dbee",
+      "type": "replace"
+    },
+    {
+      "featureId": "hunter.feature.e8a20c5061aa",
+      "type": "replace"
+    },
+    {
+      "featureId": "hunter.feature.94e8b3cfe14c",
+      "type": "alter"
+    },
+    {
+      "featureId": "hunter.feature.d1407b6be4e4",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "hunter.feature.21a91365dbee",
+    "hunter.feature.94e8b3cfe14c",
+    "hunter.feature.d1407b6be4e4",
+    "hunter.feature.e8a20c5061aa"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "hunter.archetype.fc5fd91a73a7.instructions",
+      "name": "Cacciatore Parassitico",
+      "description": "Archetipo di Cacciatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Parassitico Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Compagno Animale, Empatia Selvatica. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "hunter.archetype.fc5fd91a73a7.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Cacciatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Parassitico Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Compagno Animale, Empatia Selvatica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.archetype.fc5fd91a73a7.feature.1",
+      "name": "Compagno Parassita (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Parassitico",
+      "progression": [
+        {
+          "id": "hunter.archetype.fc5fd91a73a7.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore Parassitico — Compagno Parassita (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Parassitico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.archetype.fc5fd91a73a7.feature.2",
+      "name": "Empatia con i Parassiti (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Parassitico",
+      "progression": [
+        {
+          "id": "hunter.archetype.fc5fd91a73a7.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore Parassitico — Empatia con i Parassiti (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Parassitico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.archetype.fc5fd91a73a7.feature.3",
+      "name": "Parassita Focalizzato (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Parassitico",
+      "progression": [
+        {
+          "id": "hunter.archetype.fc5fd91a73a7.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore Parassitico — Parassita Focalizzato (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Parassitico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.archetype.fc5fd91a73a7.feature.4",
+      "name": "Andatura dello Sciame (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Parassitico",
+      "progression": [
+        {
+          "id": "hunter.archetype.fc5fd91a73a7.feature.4.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore Parassitico — Andatura dello Sciame (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Cacciatore_Parassitico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "telepathy",
+  "name": "Telepatia",
+  "school": "DIVINATION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "MEDIUM": 4,
+    "MESMERIST": 4,
+    "PSYCHIC": 5,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Permette di comunicare mentalmente con le creature nel raggio previsto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Telepatia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Telepatia: https://golarion.altervista.org/wiki/Incantesimi/Telepatia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

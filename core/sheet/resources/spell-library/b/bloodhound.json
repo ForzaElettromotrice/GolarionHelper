@@ -1,0 +1,40 @@
+{
+  "id": "bloodhound",
+  "name": "Segugio",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "HUNTER": 2,
+    "INQUISITOR": 2,
+    "INVESTIGATOR": 3,
+    "OCCULTIST": 3,
+    "RANGER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una goccia di sangue e un pizzico di cannella",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Affina l'olfatto per seguire le tracce. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Segugio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Segugio: https://golarion.altervista.org/wiki/Incantesimi/Segugio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "improvedStudiedCombatant",
+  "name": "Combattente Studiato Migliorato",
+  "description": "Potenzia i benefici offensivi del Combattimento Studiato ottenuto dal talento precedente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Combattente_Studiato_Migliorato",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: 1 grado in almeno una Abilità Conoscenze Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: non avere livelli in una classe che conceda il privilegio di classe Ispirazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Combattente Studiato",
+      "feat": {
+        "id": "studiedCombatant"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Investigatore Amatoriale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +8",
+      "expression": "@bab >= 8"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Combattente Studiato Migliorato: https://golarion.altervista.org/wiki/Talenti/Combattente_Studiato_Migliorato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: 1 grado in almeno una Abilità Conoscenze; Prerequisito da verificare manualmente: non avere livelli in una classe che conceda il privilegio di classe Ispirazione; Prerequisito da verificare manualmente: Investigatore Amatoriale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

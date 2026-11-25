@@ -1,0 +1,44 @@
+{
+  "id": "furyOfSun",
+  "name": "Furia del Sole",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "FIRE",
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "DRUID": 2,
+    "WITCH": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Maledice la vittima con una sensazione di calore insostenibile. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Furia_del_Sole",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Furia del Sole: https://golarion.altervista.org/wiki/Incantesimi/Furia_del_Sole Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

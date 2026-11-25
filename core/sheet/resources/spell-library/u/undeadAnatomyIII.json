@@ -1,0 +1,42 @@
+{
+  "id": "undeadAnatomyIII",
+  "name": "Anatomia Non Morta III",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ALCHEMIST": 6,
+    "ARCANIST": 6,
+    "INVESTIGATOR": 6,
+    "WIZARD": 6,
+    "MAGUS": 6,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo della creatura di cui si vuole assumere la forma",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Conferisce una forma non morta più potente e ulteriori capacità previste dalla trasformazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Anatomia_Non_Morta_III",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Anatomia Non Morta III: https://golarion.altervista.org/wiki/Incantesimi/Anatomia_Non_Morta_III Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,45 @@
+{
+  "id": "fingerOfDeath",
+  "name": "Dito della Morte",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "DEATH"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "DRUID": 8,
+    "WIZARD": 7,
+    "PSYCHIC": 7,
+    "SORCERER": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Scatena energia mortale che infligge danni proporzionati al livello dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Dito_della_Morte",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Dito della Morte: https://golarion.altervista.org/wiki/Incantesimi/Dito_della_Morte Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

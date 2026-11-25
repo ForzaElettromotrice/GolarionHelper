@@ -1,0 +1,36 @@
+{
+  "id": "chakraMaster",
+  "name": "Maestro del Chakra",
+  "description": "Migliora ulteriormente la gestione dei chakra e permette di combinarne i benefici previsti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestro_del_Chakra",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Adepto del Chakra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Iniziato del Chakra",
+      "feat": {
+        "id": "chakraInitiate"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di risvegliare il Chakra della Corona Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestro del Chakra: https://golarion.altervista.org/wiki/Talenti/Maestro_del_Chakra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Adepto del Chakra; Prerequisito da verificare manualmente: capacità di risvegliare il Chakra della Corona Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

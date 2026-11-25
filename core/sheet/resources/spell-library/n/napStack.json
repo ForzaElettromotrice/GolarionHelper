@@ -1,0 +1,44 @@
+{
+  "id": "napStack",
+  "name": "Sonnellino",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un piccolo cuscino di seta del valore di 100 mo",
+  "materialComponentCostInGoldPieces": 100,
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "area": "emanazione del raggio di 9 m",
+  "durationType": "HOUR",
+  "durationDescription": "8 ore",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Riduce il riposo necessario e può offrire ulteriori benefici prolungando il sonno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sonnellino",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sonnellino: https://golarion.altervista.org/wiki/Incantesimi/Sonnellino Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "damnation",
+  "name": "Dannazione",
+  "school": "EVOCATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 3,
+    "INQUISITOR": 3,
+    "ORACLE": 3,
+    "PALADIN": 3,
+    "WARPRIEST": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una goccia d'acqua santa",
+  "rangeType": "OTHER",
+  "rangeDescription": "Non indicato nella fonte; verificare manualmente.",
+  "area": "esplosione di raggio 9 m centrata su di sé",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "HALF",
+      "description": "Volontà dimezza"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Punisce un soggetto in relazione alle magie malvagie che possiede o che lo influenzano. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Dannazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Dannazione: https://golarion.altervista.org/wiki/Dannazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte non indica il raggio di azione: verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

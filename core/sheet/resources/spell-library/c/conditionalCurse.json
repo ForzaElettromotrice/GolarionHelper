@@ -1,0 +1,55 @@
+{
+  "id": "conditionalCurse",
+  "name": "Maledizione Condizionata",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 4,
+    "ARCANIST": 5,
+    "CLERIC": 4,
+    "WITCH": 4,
+    "INQUISITOR": 4,
+    "WIZARD": 5,
+    "MEDIUM": 3,
+    "MESMERIST": 3,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 5,
+    "WARPRIEST": 4,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Rende una maledizione difficile da spezzare senza soddisfarne la condizione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Maledizione_Condizionata",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledizione Condizionata: https://golarion.altervista.org/wiki/Incantesimi/Maledizione_Condizionata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

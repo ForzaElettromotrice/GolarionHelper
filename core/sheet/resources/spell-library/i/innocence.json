@@ -1,0 +1,45 @@
+{
+  "id": "innocence",
+  "name": "Innocenza",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 1,
+    "MESMERIST": 1,
+    "SKALD": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto per livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Concede +10 competenza a Raggirare soltanto per apparire innocenti e irreprensibili. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Innocenza",
+  "effects": [
+    {
+      "id": "innocence",
+      "type": "modifier",
+      "resource": "skill.bluff",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "competence",
+      "expression": "10",
+      "condition": "Per convincere gli altri della propria innocenza"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Non aiuta finte, messaggi segreti, diversivi o altre menzogne. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

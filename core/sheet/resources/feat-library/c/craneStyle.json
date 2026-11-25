@@ -1,0 +1,28 @@
+{
+  "id": "craneStyle",
+  "name": "Stile della Gru",
+  "description": "Riduce la penalità offensiva del combattere sulla difensiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Stile_della_Gru",
+  "types": [
+    "combat",
+    "style"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato, Schivare, Bonus di Attacco Base +2 o Monaco di 1° livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Stile della Gru: https://golarion.altervista.org/wiki/Talenti/Stile_della_Gru. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato, Schivare, Bonus di Attacco Base +2 o Monaco di 1° livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

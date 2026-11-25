@@ -1,0 +1,53 @@
+{
+  "id": "animalAmbassador",
+  "name": "Ambasciatore Animale",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 4,
+    "HUNTER": 3,
+    "DRUID": 4,
+    "RANGER": 3,
+    "SKALD": 4,
+    "SHAMAN": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un boccone di cibo gradito all'animale",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 metri + 1,5 m/2 livelli)",
+  "target": "1 Animale Medio o più piccolo",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello o finché il messaggio non viene consegnato",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Potenzia un messaggero animale affinché comprenda e comunichi il messaggio affidatogli. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ambasciatore_Animale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ambasciatore Animale: https://golarion.altervista.org/wiki/Incantesimi/Ambasciatore_Animale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno (vedi testo) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 Animale Medio o più piccolo. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

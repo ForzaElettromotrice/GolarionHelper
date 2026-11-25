@@ -1,0 +1,63 @@
+{
+  "id": "suggestion",
+  "name": "Suggestione",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 2,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 3,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SORCERER": 3
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "CHARM": 3
+    },
+    "subdomain": {
+      "DEVIL": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una lingua di serpente e un pezzo di alveare",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura vivente",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello o finché non viene completata",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Induce il soggetto a seguire un suggerimento formulato entro i limiti dell'incantesimo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Suggestione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Suggestione: https://golarion.altervista.org/wiki/Incantesimi/Suggestione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Descrittori variabili da determinare al lancio: dipendente dal linguaggio, influenza mentale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

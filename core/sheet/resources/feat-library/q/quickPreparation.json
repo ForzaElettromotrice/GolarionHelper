@@ -1,0 +1,27 @@
+{
+  "id": "quickPreparation",
+  "name": "Preparazione Rapida",
+  "description": "Accorcia il tempo richiesto per preparare gli incantesimi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Preparazione_Rapida",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Capacità di preparare incantesimi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Preparazione Rapida: https://golarion.altervista.org/wiki/Talenti/Preparazione_Rapida. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Capacità di preparare incantesimi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

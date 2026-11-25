@@ -1,0 +1,42 @@
+{
+  "id": "kiLeech",
+  "name": "Salasso Ki",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "CLERIC": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "ORACLE": 3,
+    "PSYCHIC": 3,
+    "WARPRIEST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Permette di recuperare ki attraverso determinate azioni offensive riuscite. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Salasso_Ki",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Salasso Ki: https://golarion.altervista.org/wiki/Incantesimi/Salasso_Ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

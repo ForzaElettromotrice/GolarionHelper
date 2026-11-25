@@ -1,0 +1,87 @@
+{
+  "id": "raimentOfCommand",
+  "name": "Veste del Comando",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "BARD": 2,
+    "SKALD": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Un'illusione autorevole agevola l'influenza sociale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Veste_del_Comando",
+  "effects": [
+    {
+      "id": "diplomacy",
+      "type": "modifier",
+      "resource": "skill.diplomacy",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "5"
+    },
+    {
+      "id": "intimidate",
+      "type": "modifier",
+      "resource": "skill.intimidate",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "5"
+    },
+    {
+      "id": "disguise",
+      "type": "modifier",
+      "resource": "skill.disguise",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "competence",
+      "expression": "10",
+      "condition": "Per impersonare una specifica figura autoritaria incontrata personalmente"
+    },
+    {
+      "id": "bluff",
+      "type": "modifier",
+      "resource": "skill.bluff",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "competence",
+      "expression": "10",
+      "condition": "Per impersonare una specifica figura autoritaria incontrata personalmente"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare -2 alle prove contrapposte degli altri soggetti con Intelligenza almeno 3 contro l'incantatore. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Assassino della Mantide Rossa 2 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

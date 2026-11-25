@@ -1,0 +1,25 @@
+{
+  "id": "preciseShot",
+  "name": "Tiro Preciso",
+  "description": "Elimina la normale penalità per tirare contro avversari impegnati in mischia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tiro_Preciso",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tiro Preciso: https://golarion.altervista.org/wiki/Talenti/Tiro_Preciso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,109 @@
+{
+  "id": "ranger.archetype.14fa9bb06377",
+  "classType": "ranger",
+  "name": "Palafreniere",
+  "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Palafreniere Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "ranger.feature.0a623f464363",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.2372e79a4c70",
+      "type": "alter"
+    },
+    {
+      "featureId": "ranger.feature.b66f79f3e4f4",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "ranger.feature.0a623f464363",
+    "ranger.feature.b66f79f3e4f4"
+  ],
+  "removedAcquisitionIds": [
+    "ranger.feature.2372e79a4c70.level3"
+  ],
+  "addedFeatures": [
+    {
+      "id": "ranger.archetype.14fa9bb06377.instructions",
+      "name": "Palafreniere",
+      "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Palafreniere Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "ranger.archetype.14fa9bb06377.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Palafreniere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.14fa9bb06377.feature.b2b7f01f87",
+      "name": "Nascondere i Cavalli (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Palafreniere",
+      "progression": [
+        {
+          "id": "ranger.archetype.14fa9bb06377.feature.b2b7f01f87.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Palafreniere — Nascondere i Cavalli (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger_di_Golarion#Palafreniere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.14fa9bb06377.feature.a971ff54dd",
+      "name": "Sussurrare ai Cavalli (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Palafreniere",
+      "progression": [
+        {
+          "id": "ranger.archetype.14fa9bb06377.feature.a971ff54dd.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Palafreniere — Sussurrare ai Cavalli (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger_di_Golarion#Palafreniere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.14fa9bb06377.feature.828c623297",
+      "name": "Perlustrare l'Area (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Palafreniere",
+      "progression": [
+        {
+          "id": "ranger.archetype.14fa9bb06377.feature.828c623297.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Palafreniere — Perlustrare l'Area (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger_di_Golarion#Palafreniere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

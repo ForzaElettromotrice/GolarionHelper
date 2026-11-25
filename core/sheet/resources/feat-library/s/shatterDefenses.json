@@ -1,0 +1,40 @@
+{
+  "id": "shatterDefenses",
+  "name": "Spezzare le Difese",
+  "description": "Espone le difese degli avversari già destabilizzati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Spezzare_le_Difese",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza nelle Armi (arma scelta) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Maestria Intimorente",
+      "feat": {
+        "id": "dazzlingDisplay"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Spezzare le Difese: https://golarion.altervista.org/wiki/Talenti/Spezzare_le_Difese. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata; Prerequisito da verificare manualmente: Competenza nelle Armi (arma scelta) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

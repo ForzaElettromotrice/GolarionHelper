@@ -1,0 +1,45 @@
+{
+  "id": "shadowJaunt",
+  "name": "Escursione nell'Ombra",
+  "school": "ILLUSION",
+  "descriptors": [
+    "SHADOW"
+  ],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "ANTIPALADIN": 3,
+    "ARCANIST": 4,
+    "BARD": 4,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "WIZARD": 4,
+    "PSYCHIC": 4,
+    "SKALD": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "se stessi",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo e 1 round, vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Consente un breve trasferimento fra ombre lasciando un'immagine oscura nella posizione abbandonata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Escursione_nell%27Ombra",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Escursione nell'Ombra: https://golarion.altervista.org/wiki/Incantesimi/Escursione_nell%27Ombra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

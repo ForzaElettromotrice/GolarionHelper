@@ -1,0 +1,58 @@
+{
+  "id": "signiferSRally",
+  "name": "Richiamo del Signifer",
+  "school": "CONJURATION",
+  "descriptors": [
+    "EVIL"
+  ],
+  "subschool": "TELEPORTATION",
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "WIZARD": 7,
+    "SORCERER": 7,
+    "CLERIC": 7,
+    "ORACLE": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "1 pietra di sangue del valore di 100 mo per alleato teletrasportato",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "un alleato consenziente/5 livelli",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Richiama mediante teletrasporto gli alleati designati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Richiamo_del_Signifer",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Richiamo del Signifer: https://golarion.altervista.org/wiki/Incantesimi/Richiamo_del_Signifer Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: un alleato consenziente/5 livelli. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Costo materiale variabile o alternativo: determinarlo dalla descrizione dei componenti, non da un importo fisso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "elementalBodyIII",
+  "name": "Corpo Elementale III",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ALCHEMIST": 6,
+    "INVESTIGATOR": 6,
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "SORCERER": 6,
+    "MAGUS": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "l'elemento di cui si vuole assumere la forma",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Consente forme elementali Grandi con le relative capacità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Corpo_Elementale_III",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Corpo Elementale III: https://golarion.altervista.org/wiki/Incantesimi/Corpo_Elementale_III Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 6, Aria 6, Fuoco 6, Terra 6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

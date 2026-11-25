@@ -1,0 +1,40 @@
+{
+  "id": "shambler",
+  "name": "Cumulo Strisciante",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "DRUID": 9,
+    "SHAMAN": 9
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "PLANT": 9
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "3 o più Cumuli Striscianti, due dei quali non possono trovarsi a più di 9 m l’uno dall’altro; vedi testo",
+  "durationType": "DAY",
+  "durationDescription": "7 giorni o 7 mesi (I); vedi testo",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama cumuli striscianti che svolgono il compito assegnato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cumulo_Strisciante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cumulo Strisciante: https://golarion.altervista.org/wiki/Incantesimi/Cumulo_Strisciante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

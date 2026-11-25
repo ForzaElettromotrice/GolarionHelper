@@ -1,0 +1,37 @@
+{
+  "id": "closeQuartersThrower",
+  "name": "Colpo Ravvicinato",
+  "description": "Evita determinate reazioni nemiche quando si lanciano le armi prescelte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_Ravvicinato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (arma da lancio scelta) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Schivare",
+      "feat": {
+        "id": "dodge"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo Ravvicinato: https://golarion.altervista.org/wiki/Talenti/Colpo_Ravvicinato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (arma da lancio scelta) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

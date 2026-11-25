@@ -1,0 +1,28 @@
+{
+  "id": "banishingCritical",
+  "name": "Critico Esiliante",
+  "description": "Un critico permette di tentare un rapido esilio magico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Critico_Esiliante",
+  "types": [
+    "combat",
+    "critical"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Critico Focalizzato, capacità di lanciare Congedo o Esilio, incantatore di 9° livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Critico Esiliante: https://golarion.altervista.org/wiki/Talenti/Critico_Esiliante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Critico Focalizzato, capacità di lanciare Congedo o Esilio, incantatore di 9° livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

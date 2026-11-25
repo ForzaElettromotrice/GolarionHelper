@@ -1,0 +1,36 @@
+{
+  "id": "capeOfWasps",
+  "name": "Cappa di Vespe",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "HUNTER": 4,
+    "DRUID": 4,
+    "WITCH": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stesso",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Forma uno sciame di vespe utilizzabile per difendersi o farsi trasportare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cappa_di_Vespe",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cappa di Vespe: https://golarion.altervista.org/wiki/Incantesimi/Cappa_di_Vespe Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "polarRay",
+  "name": "Raggio Polare",
+  "school": "EVOCATION",
+  "descriptors": [
+    "COLD"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WIZARD": 8,
+    "SORCERER": 8
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "ICE": 9
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un piccolo cono o un prisma di ceramica bianca",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "raggio",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un raggio estremamente gelido infligge danni da freddo e risucchia Destrezza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Raggio_Polare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Raggio Polare: https://golarion.altervista.org/wiki/Incantesimi/Raggio_Polare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 8 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Stirpe non presente nel vocabolario del modello: Boreale 8. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

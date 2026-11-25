@@ -1,0 +1,57 @@
+{
+  "id": "contagion",
+  "name": "Contagio",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "DISEASE",
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ADEPT": 3,
+    "ANTIPALADIN": 3,
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "HUNTER": 3,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "DRUID": 3,
+    "BLOODRAGER": 4
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "DECAY": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura vivente toccata",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Infetta la vittima con una delle malattie consentite dall'incantesimo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Contagio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Contagio: https://golarion.altervista.org/wiki/Incantesimi/Contagio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

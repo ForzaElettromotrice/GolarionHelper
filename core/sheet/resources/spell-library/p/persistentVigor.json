@@ -1,0 +1,61 @@
+{
+  "id": "persistentVigor",
+  "name": "Vigore Persistente",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "CLERIC": 4,
+    "WITCH": 4,
+    "INQUISITOR": 4,
+    "INVESTIGATOR": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4,
+    "SHAMAN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "trucioli di radice di ginseng",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Una vitalità persistente sostiene il recupero e contrasta alcune afflizioni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vigore_Persistente",
+  "effects": [
+    {
+      "id": "bleed",
+      "type": "immunity",
+      "targetId": "bleed",
+      "name": "Sanguinamento"
+    },
+    {
+      "id": "sickened",
+      "type": "immunity",
+      "targetId": "sickened",
+      "name": "Infermo"
+    },
+    {
+      "id": "nauseated",
+      "type": "immunity",
+      "targetId": "nauseated",
+      "name": "Nauseato"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare guarigione rapida 2. Un TS riuscito contro malattia o veleno termina quell'afflizione. Si può terminare il gruppo per ritirare un TS fallito con +4, tenendo il secondo risultato. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

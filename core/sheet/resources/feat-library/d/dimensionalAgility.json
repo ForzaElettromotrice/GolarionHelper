@@ -1,0 +1,27 @@
+{
+  "id": "dimensionalAgility",
+  "name": "Agilità Dimensionale",
+  "description": "Consente di proseguire il proprio turno dopo gli spostamenti dimensionali interessati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Agilit%C3%A0_Dimensionale",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Capacità di utilizzare il privilegio di classe Passo Abbondante o lanciare Porta Dimensionale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Agilità Dimensionale: https://golarion.altervista.org/wiki/Talenti/Agilit%C3%A0_Dimensionale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Capacità di utilizzare il privilegio di classe Passo Abbondante o lanciare Porta Dimensionale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

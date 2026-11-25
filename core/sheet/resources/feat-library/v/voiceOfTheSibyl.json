@@ -1,0 +1,23 @@
+{
+  "id": "voiceOfTheSibyl",
+  "name": "Voce della Sibilla",
+  "description": "Rafforza l'eloquenza nelle trattative, negli inganni e nell'oratoria. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Voce_della_Sibilla",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 15",
+      "expression": "@cha >= 15"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Voce della Sibilla: https://golarion.altervista.org/wiki/Talenti/Voce_della_Sibilla. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

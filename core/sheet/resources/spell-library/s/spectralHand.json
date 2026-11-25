@@ -1,0 +1,40 @@
+{
+  "id": "spectralHand",
+  "name": "Mano Spettrale",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "MEDIUM": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "una mano spettrale",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasmette attacchi magici a contatto attraverso una mano spettrale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Mano_Spettrale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Mano Spettrale: https://golarion.altervista.org/wiki/Incantesimi/Mano_Spettrale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

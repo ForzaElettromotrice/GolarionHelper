@@ -1,0 +1,181 @@
+{
+  "id": "druid.archetype.644e0619ac02",
+  "classType": "druid",
+  "name": "Paranormalista",
+  "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido_di_Golarion#Paranormalista Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe, Legame con la Natura, Empatia Selvatica. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "druid.feature.4705d0c8642b",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.cb6c692c6b8a",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.5cb4f58f9490",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.a78313d04433",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.proficiencies",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.feature.40f9a719229c",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.feature.44b793b57d4f",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.classSkills",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "druid.feature.4705d0c8642b",
+    "druid.feature.cb6c692c6b8a",
+    "druid.feature.5cb4f58f9490",
+    "druid.feature.a78313d04433",
+    "druid.proficiencies",
+    "druid.feature.40f9a719229c",
+    "druid.feature.44b793b57d4f",
+    "druid.classSkills"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "druid.archetype.644e0619ac02.instructions",
+      "name": "Paranormalista",
+      "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido_di_Golarion#Paranormalista Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "druid.archetype.644e0619ac02.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido_di_Golarion#Paranormalista Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe, Legame con la Natura, Empatia Selvatica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.644e0619ac02.feature.1",
+      "name": "Competenza nelle Armi e nelle Armature",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido_di_Golarion#Paranormalista",
+      "progression": [
+        {
+          "id": "druid.archetype.644e0619ac02.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Paranormalista — Competenza nelle Armi e nelle Armature: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido_di_Golarion#Paranormalista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.644e0619ac02.feature.2",
+      "name": "Botanico Mistico (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido_di_Golarion#Paranormalista",
+      "progression": [
+        {
+          "id": "druid.archetype.644e0619ac02.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Paranormalista — Botanico Mistico (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido_di_Golarion#Paranormalista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.644e0619ac02.feature.3",
+      "name": "Studioso del Paranormale (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido_di_Golarion#Paranormalista",
+      "progression": [
+        {
+          "id": "druid.archetype.644e0619ac02.feature.3.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Paranormalista — Studioso del Paranormale (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido_di_Golarion#Paranormalista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.644e0619ac02.feature.4",
+      "name": "Spirito Animale (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido_di_Golarion#Paranormalista",
+      "progression": [
+        {
+          "id": "druid.archetype.644e0619ac02.feature.4.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Paranormalista — Spirito Animale (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido_di_Golarion#Paranormalista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.644e0619ac02.classSkills.1",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Concessione dal privilegio di archetipo.",
+      "progression": [
+        {
+          "id": "druid.archetype.644e0619ac02.classSkills.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "skill0",
+              "type": "classSkillGrant",
+              "resource": "skill.diplomacy"
+            },
+            {
+              "id": "skill1",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.arcana"
+            },
+            {
+              "id": "skill2",
+              "type": "classSkillGrant",
+              "resource": "skill.senseMotive"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

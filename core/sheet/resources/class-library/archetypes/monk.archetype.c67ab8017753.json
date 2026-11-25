@@ -1,0 +1,109 @@
+{
+  "id": "monk.archetype.c67ab8017753",
+  "classType": "monk",
+  "name": "Adepto dello Sgattaiolare (Halfling)",
+  "description": "Archetipo di Monaco. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Monaco/Archetipi#Adepto_dello_Sgattaiolare_.28Halfling.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "monk.feature.fcc883afe085",
+      "type": "replace"
+    },
+    {
+      "featureId": "monk.feature.bf07464e4294",
+      "type": "replace"
+    },
+    {
+      "featureId": "monk.feature.1086aa505e88",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "monk.feature.fcc883afe085",
+    "monk.feature.bf07464e4294"
+  ],
+  "removedAcquisitionIds": [
+    "monk.feature.1086aa505e88.level1"
+  ],
+  "addedFeatures": [
+    {
+      "id": "monk.archetype.c67ab8017753.instructions",
+      "name": "Adepto dello Sgattaiolare (Halfling)",
+      "description": "Archetipo di Monaco. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Monaco/Archetipi#Adepto_dello_Sgattaiolare_.28Halfling.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "monk.archetype.c67ab8017753.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Monaco. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Monaco/Archetipi#Adepto_dello_Sgattaiolare_.28Halfling.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.archetype.c67ab8017753.feature.1",
+      "name": "Grazia Sgattaiolante (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Monaco/Archetipi#Adepto_dello_Sgattaiolare_.28Halfling.29",
+      "progression": [
+        {
+          "id": "monk.archetype.c67ab8017753.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Adepto dello Sgattaiolare (Halfling) — Grazia Sgattaiolante (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Monaco/Archetipi#Adepto_dello_Sgattaiolare_.28Halfling.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.archetype.c67ab8017753.feature.2",
+      "name": "Sbilanciare Sgattaiolante (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Monaco/Archetipi#Adepto_dello_Sgattaiolare_.28Halfling.29",
+      "progression": [
+        {
+          "id": "monk.archetype.c67ab8017753.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Adepto dello Sgattaiolare (Halfling) — Sbilanciare Sgattaiolante (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Monaco/Archetipi#Adepto_dello_Sgattaiolare_.28Halfling.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "monk.archetype.c67ab8017753.feature.3",
+      "name": "Grazia Sgattaiolante Migliorata (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Monaco/Archetipi#Adepto_dello_Sgattaiolare_.28Halfling.29",
+      "progression": [
+        {
+          "id": "monk.archetype.c67ab8017753.feature.3.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Adepto dello Sgattaiolare (Halfling) — Grazia Sgattaiolante Migliorata (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Monaco/Archetipi#Adepto_dello_Sgattaiolare_.28Halfling.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

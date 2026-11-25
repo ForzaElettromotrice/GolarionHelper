@@ -1,0 +1,42 @@
+{
+  "id": "aldoriArtistry",
+  "name": "Bravura Aldori",
+  "description": "Affina una manovra di combattimento quando si impugna la spada Aldori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Bravura_Aldori",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +2",
+      "expression": "@bab >= 2"
+    },
+    {
+      "description": "Arma Accurata",
+      "feat": {
+        "id": "weaponFinesse"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Bravura Aldori: https://golarion.altervista.org/wiki/Talenti/Bravura_Aldori. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

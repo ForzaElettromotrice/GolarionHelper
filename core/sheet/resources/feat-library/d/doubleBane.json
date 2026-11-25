@@ -1,0 +1,33 @@
+{
+  "id": "doubleBane",
+  "name": "Doppio Anatema",
+  "description": "Permette di estendere Anatema a una seconda arma. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Doppio_Anatema",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Anatema Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Combattere con Due Armi",
+      "feat": {
+        "id": "twoWeaponFighting"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Doppio Anatema: https://golarion.altervista.org/wiki/Talenti/Doppio_Anatema. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Anatema Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

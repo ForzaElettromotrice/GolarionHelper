@@ -1,0 +1,27 @@
+{
+  "id": "craftShoddyItem",
+  "name": "Creare Oggetti Scadenti",
+  "description": "Permette di costruire oggetti economici e scadenti che sembrano di qualità migliore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Creare_Oggetti_Scadenti",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: 1 grado in un'abilità di Artigianato appropriata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Creare Oggetti Scadenti: https://golarion.altervista.org/wiki/Talenti/Creare_Oggetti_Scadenti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: 1 grado in un'abilità di Artigianato appropriata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

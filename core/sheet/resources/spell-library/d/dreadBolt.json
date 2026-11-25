@@ -1,0 +1,44 @@
+{
+  "id": "dreadBolt",
+  "name": "Quadrello Terrificante",
+  "school": "EVOCATION",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "un proiettile a forma di freccia di energia malvagia",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo (1d4 round)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una scarica sacrilega ferisce creature buone e può indebolirle. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Quadrello_Terrificante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Quadrello Terrificante: https://golarion.altervista.org/wiki/Incantesimi/Quadrello_Terrificante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

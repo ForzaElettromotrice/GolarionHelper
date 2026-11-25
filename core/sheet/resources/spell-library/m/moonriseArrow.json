@@ -1,0 +1,52 @@
+{
+  "id": "moonriseArrow",
+  "name": "Freccia della Luna Crescente",
+  "school": "EVOCATION",
+  "descriptors": [
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "INQUISITOR": 3,
+    "MAGUS": 3,
+    "OCCULTIST": 3,
+    "PALADIN": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "fino a 50 pezzi di munizione, che devono stare tutte insieme al momento del lancio.",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo, oggetto)",
+  "description": "La luce lunare rende le munizioni efficaci contro determinate difese. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Freccia_della_Luna_Crescente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Freccia della Luna Crescente: https://golarion.altervista.org/wiki/Incantesimi/Freccia_della_Luna_Crescente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: fino a 50 pezzi di munizione, che devono stare tutte insieme al momento del lancio.. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

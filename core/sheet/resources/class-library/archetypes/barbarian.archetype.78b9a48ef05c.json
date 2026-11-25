@@ -1,0 +1,58 @@
+{
+  "id": "barbarian.archetype.78b9a48ef05c",
+  "classType": "barbarian",
+  "name": "Lanciatore",
+  "description": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Lanciatore Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "barbarian.feature.07240188784c",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "barbarian.feature.07240188784c"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "barbarian.archetype.78b9a48ef05c.instructions",
+      "name": "Lanciatore",
+      "description": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Lanciatore Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "barbarian.archetype.78b9a48ef05c.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Lanciatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "barbarian.archetype.78b9a48ef05c.feature.1",
+      "name": "Lanciatore Specializzato (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Lanciatore",
+      "progression": [
+        {
+          "id": "barbarian.archetype.78b9a48ef05c.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Lanciatore — Lanciatore Specializzato (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Lanciatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

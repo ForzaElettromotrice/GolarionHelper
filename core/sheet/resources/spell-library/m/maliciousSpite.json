@@ -1,0 +1,52 @@
+{
+  "id": "maliciousSpite",
+  "name": "Disprezzo Malevolo",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 3,
+    "WIZARD": 4,
+    "MESMERIST": 3,
+    "PSYCHIC": 4,
+    "SKALD": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "turchese in polvere del valore di 150 mo",
+  "materialComponentCostInGoldPieces": 150,
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno /livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Alimenta un rancore che spinge la vittima a complottare contro una creatura designata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Disprezzo_Malevolo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Disprezzo Malevolo: https://golarion.altervista.org/wiki/Incantesimi/Disprezzo_Malevolo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

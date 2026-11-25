@@ -1,0 +1,30 @@
+{
+  "id": "plannedSpontaneity",
+  "name": "Spontaneità Preparata",
+  "description": "Consente maggiore flessibilità nell'impiego degli slot spontanei. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Spontaneit%C3%A0_Preparata",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (arcane) 9 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di preparare e lanciare incantesimi di 4° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Spontaneità Preparata: https://golarion.altervista.org/wiki/Talenti/Spontaneit%C3%A0_Preparata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (arcane) 9 gradi; Prerequisito da verificare manualmente: capacità di preparare e lanciare incantesimi di 4° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

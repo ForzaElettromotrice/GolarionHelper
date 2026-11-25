@@ -1,0 +1,27 @@
+{
+  "id": "sleepVenom",
+  "name": "Veleno del Sonno",
+  "description": "Modifica il proprio veleno per provocare perdita di coscienza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Veleno_del_Sonno",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Vishkanya Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Veleno del Sonno: https://golarion.altervista.org/wiki/Talenti/Veleno_del_Sonno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Vishkanya Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

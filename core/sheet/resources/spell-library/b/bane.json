@@ -1,0 +1,73 @@
+{
+  "id": "bane",
+  "name": "Anatema",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING",
+    "FEAR"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "CLERIC": 1,
+    "INQUISITOR": 1,
+    "MESMERIST": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SHAMAN": 1
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "CURSE": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "15 m",
+  "area": "emanazione del raggio di 15 m, centrata su se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Indebolisce i nemici con -1 agli attacchi e ai tiri salvezza contro la paura; contrasta Benedizione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Anatema",
+  "effects": [
+    {
+      "id": "attacks",
+      "type": "modifier",
+      "resource": "attack.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "1"
+    },
+    {
+      "id": "fearSaves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "1",
+      "condition": "Contro effetti di paura"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Selezionare soltanto i nemici influenzati; gestire manualmente il contrasto con Benedizione. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

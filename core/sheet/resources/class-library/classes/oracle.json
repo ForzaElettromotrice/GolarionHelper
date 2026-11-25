@@ -1,0 +1,1779 @@
+{
+  "type": "oracle",
+  "name": "Oracolo",
+  "description": "Incantatore divino segnato da una maledizione e da un mistero.",
+  "hitDie": 8,
+  "skillRanksPerLevel": 4,
+  "classSkills": [
+    "skill.craft",
+    "skill.knowledge.history",
+    "skill.knowledge.planes",
+    "skill.knowledge.religion",
+    "skill.diplomacy",
+    "skill.heal",
+    "skill.senseMotive",
+    "skill.profession",
+    "skill.spellcraft"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 2
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 3
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 3
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 6
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 6
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 9
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 9
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 12
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "oracle.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "oracle.spellcasting",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Oracolo",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 1,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "spontaneous",
+              "spellListClass": "oracle"
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. La tabella giornaliera non contiene slot di livello 0: il backend richiede un gruppo tecnico o una futura API per il lancio gratuito; non viene inventato uno slot giornaliero. Le sostituzioni degli incantesimi conosciuti restano soggette alle finestre e ai limiti di livello descritti dalla classe. Gli incantesimi aggiuntivi concessi da stirpe, mistero, patrono, maledizione o disciplina non sono inclusi nelle quote base e richiedono i relativi benefici selezionati. Aggiungere gli incantesimi curare oppure infliggere concessi gratuitamente dalla scelta iniziale, senza consumare le quote base. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level1"
+          ]
+        },
+        {
+          "id": "castingSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level2"
+          ]
+        },
+        {
+          "id": "castingSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level3"
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level4"
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 6
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 6
+                },
+                {
+                  "level": 7,
+                  "capacity": 5
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 6
+                },
+                {
+                  "level": 7,
+                  "capacity": 6
+                },
+                {
+                  "level": 8,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 6
+                },
+                {
+                  "level": 7,
+                  "capacity": 6
+                },
+                {
+                  "level": 8,
+                  "capacity": 5
+                },
+                {
+                  "level": 9,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 6
+                },
+                {
+                  "level": 7,
+                  "capacity": 6
+                },
+                {
+                  "level": 8,
+                  "capacity": 6
+                },
+                {
+                  "level": 9,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 6
+                },
+                {
+                  "level": 2,
+                  "capacity": 6
+                },
+                {
+                  "level": 3,
+                  "capacity": 6
+                },
+                {
+                  "level": 4,
+                  "capacity": 6
+                },
+                {
+                  "level": 5,
+                  "capacity": 6
+                },
+                {
+                  "level": 6,
+                  "capacity": 6
+                },
+                {
+                  "level": 7,
+                  "capacity": 6
+                },
+                {
+                  "level": 8,
+                  "capacity": 6
+                },
+                {
+                  "level": 9,
+                  "capacity": 6
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        },
+        {
+          "id": "repertoire.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 4,
+                  "capacity": 1
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 7,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 5,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                },
+                {
+                  "level": 7,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 8,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 7,
+                  "capacity": 1
+                },
+                {
+                  "level": 8,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 9,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 8,
+                  "capacity": 1
+                },
+                {
+                  "level": 9,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:oracle12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 9,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oracle.feature.8f0fbdc392d9",
+      "name": "Maledizione dell'Oracolo",
+      "description": "Privilegio della classe Oracolo. Regole e condizioni: https://golarion.altervista.org/wiki/Oracolo#Maledizione_dell'Oracolo_(Str)",
+      "progression": [
+        {
+          "id": "oracle.feature.8f0fbdc392d9.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Oracolo: verificare e applicare Maledizione dell'Oracolo. https://golarion.altervista.org/wiki/Oracolo#Maledizione_dell'Oracolo_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.feature.d5cd6abc2865",
+      "name": "Mistero",
+      "description": "Privilegio della classe Oracolo. Regole e condizioni: https://golarion.altervista.org/wiki/Oracolo#Mistero",
+      "progression": [
+        {
+          "id": "oracle.feature.d5cd6abc2865.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Oracolo: verificare e applicare Mistero. https://golarion.altervista.org/wiki/Oracolo#Mistero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.d5cd6abc2865.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Oracolo: verificare e applicare Incantesimo del Mistero. https://golarion.altervista.org/wiki/Oracolo#Mistero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.d5cd6abc2865.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Oracolo: verificare e applicare Incantesimo del Mistero. https://golarion.altervista.org/wiki/Oracolo#Mistero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.d5cd6abc2865.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Oracolo: verificare e applicare Incantesimo del Mistero. https://golarion.altervista.org/wiki/Oracolo#Mistero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.d5cd6abc2865.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Oracolo: verificare e applicare Incantesimo del Mistero. https://golarion.altervista.org/wiki/Oracolo#Mistero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.d5cd6abc2865.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Oracolo: verificare e applicare Incantesimo del Mistero. https://golarion.altervista.org/wiki/Oracolo#Mistero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.d5cd6abc2865.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Oracolo: verificare e applicare Incantesimo del Mistero. https://golarion.altervista.org/wiki/Oracolo#Mistero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.d5cd6abc2865.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Oracolo: verificare e applicare Incantesimo del Mistero. https://golarion.altervista.org/wiki/Oracolo#Mistero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.d5cd6abc2865.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Oracolo: verificare e applicare Incantesimo del Mistero. https://golarion.altervista.org/wiki/Oracolo#Mistero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.d5cd6abc2865.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Oracolo: verificare e applicare Incantesimo del Mistero. https://golarion.altervista.org/wiki/Oracolo#Mistero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.feature.69ce88ccfb80",
+      "name": "Orazioni",
+      "description": "Privilegio della classe Oracolo. Regole e condizioni: https://golarion.altervista.org/wiki/Oracolo#Orazioni",
+      "progression": [
+        {
+          "id": "oracle.feature.69ce88ccfb80.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Oracolo: verificare e applicare Orazioni. https://golarion.altervista.org/wiki/Oracolo#Orazioni Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.feature.aaa668a8100b",
+      "name": "Rivelazione",
+      "description": "Privilegio della classe Oracolo. Regole e condizioni: https://golarion.altervista.org/wiki/Oracolo#Rivelazione",
+      "progression": [
+        {
+          "id": "oracle.feature.aaa668a8100b.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Oracolo: verificare e applicare Rivelazione. https://golarion.altervista.org/wiki/Oracolo#Rivelazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.aaa668a8100b.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Oracolo: verificare e applicare Rivelazione. https://golarion.altervista.org/wiki/Oracolo#Rivelazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.aaa668a8100b.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Oracolo: verificare e applicare Rivelazione. https://golarion.altervista.org/wiki/Oracolo#Rivelazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.aaa668a8100b.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Oracolo: verificare e applicare Rivelazione. https://golarion.altervista.org/wiki/Oracolo#Rivelazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.aaa668a8100b.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Oracolo: verificare e applicare Rivelazione. https://golarion.altervista.org/wiki/Oracolo#Rivelazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "oracle.feature.aaa668a8100b.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Oracolo: verificare e applicare Rivelazione. https://golarion.altervista.org/wiki/Oracolo#Rivelazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.feature.9fd0a7d15ca8",
+      "name": "Rivelazione Finale",
+      "description": "Privilegio della classe Oracolo. Regole e condizioni: https://golarion.altervista.org/wiki/Oracolo#Rivelazione_Finale",
+      "progression": [
+        {
+          "id": "oracle.feature.9fd0a7d15ca8.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Oracolo: verificare e applicare Rivelazione Finale. https://golarion.altervista.org/wiki/Oracolo#Rivelazione_Finale Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi. https://golarion.altervista.org/wiki/Oracolo",
+      "progression": [
+        {
+          "id": "oracle.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi. https://golarion.altervista.org/wiki/Oracolo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Oracolo",
+      "progression": [
+        {
+          "id": "oracle.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Oracolo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Oracolo",
+      "progression": [
+        {
+          "id": "oracle.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Oracolo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "oracle.mystery.1",
+      "classType": "oracle",
+      "featureId": "oracle.feature.d5cd6abc2865",
+      "acquisitionIds": [
+        "oracle.feature.d5cd6abc2865.level1"
+      ],
+      "choice": {
+        "id": "mystery",
+        "prompt": "Scegli un mistero",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "oracle.mysteries"
+      }
+    },
+    {
+      "id": "oracle.curse.1",
+      "classType": "oracle",
+      "featureId": "oracle.feature.8f0fbdc392d9",
+      "acquisitionIds": [
+        "oracle.feature.8f0fbdc392d9.level1"
+      ],
+      "choice": {
+        "id": "curse",
+        "prompt": "Scegli una maledizione",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "oracle.curses"
+      }
+    },
+    {
+      "id": "oracle.revelation.1",
+      "classType": "oracle",
+      "featureId": "oracle.feature.aaa668a8100b",
+      "acquisitionIds": [
+        "oracle.feature.aaa668a8100b.level1",
+        "oracle.feature.aaa668a8100b.level3",
+        "oracle.feature.aaa668a8100b.level7",
+        "oracle.feature.aaa668a8100b.level11",
+        "oracle.feature.aaa668a8100b.level15",
+        "oracle.feature.aaa668a8100b.level19"
+      ],
+      "choice": {
+        "id": "revelation",
+        "prompt": "Scegli una rivelazione del tuo mistero (compatibilità manuale)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "oracle.revelations"
+      }
+    }
+  ]
+}

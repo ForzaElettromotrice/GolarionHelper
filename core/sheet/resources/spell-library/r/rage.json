@@ -1,0 +1,102 @@
+{
+  "id": "rage",
+  "name": "Ira",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 3,
+    "BARD": 2,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "WITCH": 3,
+    "INVESTIGATOR": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "MESMERIST": 2,
+    "PSYCHIC": 3,
+    "SKALD": 2,
+    "SORCERER": 3
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "DEMON": 3,
+      "FEROCITY": 3
+    },
+    "domain": {
+      "DESTRUCTION": 3,
+      "MADNESS": 3
+    }
+  },
+  "spellLevelByBloodline": {
+    "ABYSSAL": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura vivente consenziente ogni 3 livelli, due delle quali non possono trovarsi a più di 9 m l'una dall'altra",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione + 1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Concede +2 morale a Forza e Costituzione, +1 morale a Volontà e -2 alla CA, senza affaticamento finale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ira",
+  "effects": [
+    {
+      "id": "strength",
+      "type": "modifier",
+      "resource": "str",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "2"
+    },
+    {
+      "id": "constitution",
+      "type": "modifier",
+      "resource": "con",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "2"
+    },
+    {
+      "id": "will",
+      "type": "modifier",
+      "resource": "savingThrow.will",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "1"
+    },
+    {
+      "id": "armor",
+      "type": "modifier",
+      "resource": "armorClass.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Solo viventi consenzienti, uno ogni tre livelli dell'incantatore; concentrazione e restrizioni dell'ira sono manuali. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura vivente consenziente ogni 3 livelli, due delle quali non possono trovarsi a più di 9 m l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

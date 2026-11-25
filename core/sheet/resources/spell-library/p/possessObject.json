@@ -1,0 +1,44 @@
+{
+  "id": "possessObject",
+  "name": "Possedere un Oggetto",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una gemma o un cristallo del valore di almeno 100 mo",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "un oggetto; vedi testo",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello o finché non si ritorna nel proprio corpo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Permette di entrare in un oggetto e animarlo mediante possessione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Possedere_un_Oggetto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Possedere un Oggetto: https://golarion.altervista.org/wiki/Incantesimi/Possedere_un_Oggetto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

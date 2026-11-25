@@ -1,0 +1,39 @@
+{
+  "id": "craftConstruct",
+  "name": "Creare Costrutti",
+  "description": "Consente la creazione di costrutti rispettandone i requisiti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Creare_Costrutti",
+  "types": [
+    "itemCreation"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Livello dell'Incantatore 5 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Creare Armi e Armature Magiche",
+      "feat": {
+        "id": "craftMagicArmsAndArmor"
+      }
+    },
+    {
+      "description": "Creare Oggetti Meravigliosi",
+      "feat": {
+        "id": "craftWondrousItem"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Creare Costrutti: https://golarion.altervista.org/wiki/Talenti/Creare_Costrutti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Livello dell'Incantatore 5 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

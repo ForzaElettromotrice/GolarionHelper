@@ -1,0 +1,44 @@
+{
+  "id": "improvedDrag",
+  "name": "Trascinare Migliorato",
+  "description": "Migliora il trascinamento senza provocare attacchi di opportunità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Trascinare_Migliorato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 13",
+      "expression": "@str >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "maneuver",
+      "type": "modifier",
+      "resource": "combatManeuver.bonus.drag",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "La manovra Trascinare non provoca attacchi di opportunità. La pagina Golarion indica +2 alla DMC contro Sbilanciare: verificare questa incongruenza prima di automatizzare la difesa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

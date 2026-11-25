@@ -1,0 +1,87 @@
+{
+  "id": "unchainedMonk.archetype.d663dc43d59c",
+  "classType": "unchainedMonk",
+  "name": "Aspide Nero",
+  "description": "Archetipo di Monaco Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato/Archetipi#Aspide_Nero Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "unchainedMonk.feature.e586ea91ff60",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedMonk.feature.4ed2411827a1",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedMonk.feature.b225b386e9a9",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "unchainedMonk.feature.4ed2411827a1",
+    "unchainedMonk.feature.e586ea91ff60"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "unchainedMonk.archetype.d663dc43d59c.instructions",
+      "name": "Aspide Nero",
+      "description": "Archetipo di Monaco Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato/Archetipi#Aspide_Nero Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "unchainedMonk.archetype.d663dc43d59c.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Monaco Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Monaco_Rivisitato/Archetipi#Aspide_Nero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedMonk.archetype.d663dc43d59c.feature.1",
+      "name": "Sentiero dell'Aspide Nero (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Monaco_Rivisitato/Archetipi#Aspide_Nero",
+      "progression": [
+        {
+          "id": "unchainedMonk.archetype.d663dc43d59c.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Aspide Nero — Sentiero dell'Aspide Nero (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Monaco_Rivisitato/Archetipi#Aspide_Nero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedMonk.archetype.d663dc43d59c.feature.2",
+      "name": "Poteri Proibiti (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Monaco_Rivisitato/Archetipi#Aspide_Nero",
+      "progression": [
+        {
+          "id": "unchainedMonk.archetype.d663dc43d59c.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Aspide Nero — Poteri Proibiti (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Monaco_Rivisitato/Archetipi#Aspide_Nero Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

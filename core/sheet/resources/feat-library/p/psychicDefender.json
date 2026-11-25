@@ -1,0 +1,27 @@
+{
+  "id": "psychicDefender",
+  "name": "Difensore Parapsichico",
+  "description": "Conferisce punti ferita temporanei all'inizio di un duello parapsichico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Difensore_Parapsichico",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Intelligenza 13, Sensitività Parapsichica o capacità di lanciare incantesimi parapsichici o usare capacità magiche parapsichiche, personaggio di 3° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Difensore Parapsichico: https://golarion.altervista.org/wiki/Talenti/Difensore_Parapsichico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intelligenza 13, Sensitività Parapsichica o capacità di lanciare incantesimi parapsichici o usare capacità magiche parapsichiche, personaggio di 3° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

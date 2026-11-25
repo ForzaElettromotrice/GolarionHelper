@@ -1,0 +1,43 @@
+{
+  "id": "greaterRendingFury",
+  "name": "Furia Lacerante Superiore",
+  "description": "Lo squartamento provoca anche un'emorragia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Furia_Lacerante_Superiore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Furia Lacerante",
+      "feat": {
+        "id": "rendingFury"
+      }
+    },
+    {
+      "description": "Furia Lacerante Migliorata",
+      "feat": {
+        "id": "improvedRendingFury"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +12",
+      "expression": "@bab >= 12"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: attacco speciale Squartare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Furia Lacerante Superiore: https://golarion.altervista.org/wiki/Talenti/Furia_Lacerante_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: attacco speciale Squartare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

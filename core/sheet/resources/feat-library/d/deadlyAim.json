@@ -1,0 +1,46 @@
+{
+  "id": "deadlyAim",
+  "name": "Mira Letale",
+  "description": "Scambia precisione a distanza per danni maggiori secondo il BAB. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mira_Letale",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "attack",
+      "type": "modifier",
+      "resource": "attack.ranged",
+      "description": "Beneficio del talento",
+      "modifierType": "penalty",
+      "expression": "1 + @bab / 4",
+      "condition": "Quando Mira Letale è attivata fino al turno successivo"
+    },
+    {
+      "id": "damage",
+      "type": "modifier",
+      "resource": "damage.weaponRoll",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2 * (1 + @bab / 4)",
+      "condition": "Mira Letale attiva: danni con armi a distanza, esclusi attacchi a contatto ed effetti senza danni ai PF"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Decidere prima dell'attacco e mantenere gli effetti fino al turno successivo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

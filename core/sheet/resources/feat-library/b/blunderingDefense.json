@@ -1,0 +1,33 @@
+{
+  "id": "blunderingDefense",
+  "name": "Difesa Impacciata",
+  "description": "La propria prudenza protegge anche i compagni vicini. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Difesa_Impacciata",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Guerriero Prudente",
+      "feat": {
+        "id": "cautiousFighter"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Halfling Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Difesa Impacciata: https://golarion.altervista.org/wiki/Talenti/Difesa_Impacciata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Halfling Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

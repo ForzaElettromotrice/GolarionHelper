@@ -1,0 +1,43 @@
+{
+  "id": "magnifyingChime",
+  "name": "Campana Accrescente",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "BARD": 6,
+    "SKALD": 6
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto incustodito o in proprio possesso",
+  "effect": "vibrazioni distruttive",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "HALF",
+      "description": "Tempra dimezza (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Fa risuonare un oggetto con vibrazioni sonore via via più distruttive. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Campana_Accrescente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Campana Accrescente: https://golarion.altervista.org/wiki/Incantesimi/Campana_Accrescente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

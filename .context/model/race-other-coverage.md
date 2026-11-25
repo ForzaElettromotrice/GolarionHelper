@@ -1,6 +1,6 @@
 # Other race coverage
 
-Read when reviewing the 25 entries in `resources/races/other.json`. Reviewed 2026-11-13 against the corresponding pages under [Golarion's Other Races](https://golarion.altervista.org/wiki/Razze). Individual sources are linked in [the catalog checklist](race-catalog.md). Linked English references supplied terminology only.
+Read when reviewing the 25 entries in `core/sheet/resources/race-library/races/<id>.json`. Reviewed 2026-11-13 against the corresponding pages under [Golarion's Other Races](https://golarion.altervista.org/wiki/Razze). Individual sources are linked in [the catalog checklist](race-catalog.md). Linked English references supplied terminology only.
 
 ## Scope
 

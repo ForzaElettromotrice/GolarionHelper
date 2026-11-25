@@ -1,0 +1,42 @@
+{
+  "id": "synapticPulseGreater",
+  "name": "Pulsazione Sinaptica Superiore",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "MESMERIST": 4,
+    "PSYCHIC": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "area": "emanazione del raggio di 9 m, centrata su se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1d4 round; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Produce un impulso mentale il cui stordimento può durare 1d4 round. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pulsazione_Sinaptica_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pulsazione Sinaptica Superiore: https://golarion.altervista.org/wiki/Incantesimi/Pulsazione_Sinaptica_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

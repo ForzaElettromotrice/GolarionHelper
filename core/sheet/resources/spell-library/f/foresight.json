@@ -1,0 +1,77 @@
+{
+  "id": "foresight",
+  "name": "Previsione",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "DRUID": 9,
+    "WITCH": 9,
+    "WIZARD": 9,
+    "PSYCHIC": 9,
+    "SHAMAN": 9,
+    "SORCERER": 9
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "KNOWLEDGE": 9
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una piuma di colibrì",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale o contatto",
+  "target": "vedi testo",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "nessuno o Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "no o sì (innocuo)",
+  "description": "Avverte dei pericoli imminenti e migliora le difese. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Previsione",
+  "effects": [
+    {
+      "id": "armorClass",
+      "type": "modifier",
+      "resource": "armorClass.reflexive",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "insight",
+      "expression": "2",
+      "condition": "Finché mantiene il bonus di Destrezza alla CA"
+    },
+    {
+      "id": "reflex",
+      "type": "modifier",
+      "resource": "savingThrow.reflex",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "insight",
+      "expression": "2",
+      "condition": "Finché mantiene il bonus di Destrezza alla CA"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Se il destinatario è l'incantatore, impedire sorpresa e impreparato. Per altri destinatari l'incantatore deve comunicare tempestivamente gli avvertimenti. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: vedi testo. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

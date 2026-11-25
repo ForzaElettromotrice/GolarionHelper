@@ -1,0 +1,152 @@
+{
+  "id": "barbarian.archetype.1c5a5e823f80",
+  "classType": "barbarian",
+  "name": "Iracondo della Giungla",
+  "description": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro_di_Golarion#Iracondo_della_Giungla Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Riduzione del Danno. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "barbarian.feature.01ce50436da1",
+      "type": "replace"
+    },
+    {
+      "featureId": "barbarian.feature.b6a3e8829ae9",
+      "type": "replace"
+    },
+    {
+      "featureId": "barbarian.feature.bf93e5b2d71e",
+      "type": "replace"
+    },
+    {
+      "featureId": "barbarian.feature.15958bb2d625",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "barbarian.feature.01ce50436da1",
+    "barbarian.feature.b6a3e8829ae9",
+    "barbarian.feature.bf93e5b2d71e",
+    "barbarian.feature.15958bb2d625"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "barbarian.archetype.1c5a5e823f80.instructions",
+      "name": "Iracondo della Giungla",
+      "description": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro_di_Golarion#Iracondo_della_Giungla Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "barbarian.archetype.1c5a5e823f80.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro_di_Golarion#Iracondo_della_Giungla Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Riduzione del Danno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "barbarian.archetype.1c5a5e823f80.feature.1",
+      "name": "Giocare in Casa (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro_di_Golarion#Iracondo_della_Giungla",
+      "progression": [
+        {
+          "id": "barbarian.archetype.1c5a5e823f80.feature.1.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Iracondo della Giungla — Giocare in Casa (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro_di_Golarion#Iracondo_della_Giungla Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "barbarian.archetype.1c5a5e823f80.feature.2",
+      "name": "Resistenza della Giungla (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro_di_Golarion#Iracondo_della_Giungla",
+      "progression": [
+        {
+          "id": "barbarian.archetype.1c5a5e823f80.feature.2.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Iracondo della Giungla — Resistenza della Giungla (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro_di_Golarion#Iracondo_della_Giungla Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "barbarian.archetype.1c5a5e823f80.feature.3",
+      "name": "Vantaggio Domestico (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro_di_Golarion#Iracondo_della_Giungla",
+      "progression": [
+        {
+          "id": "barbarian.archetype.1c5a5e823f80.feature.3.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Iracondo della Giungla — Vantaggio Domestico (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro_di_Golarion#Iracondo_della_Giungla Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "barbarian.archetype.1c5a5e823f80.feature.4",
+      "name": "Riduzione del Danno (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro_di_Golarion#Iracondo_della_Giungla",
+      "progression": [
+        {
+          "id": "barbarian.archetype.1c5a5e823f80.feature.4.initial",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "La RD ordinaria dell’iracondo della giungla è già calcolata; raddoppiala manualmente contro danni inflitti da creature con sottotipo sciame. https://golarion.altervista.org/wiki/Barbaro_di_Golarion#Iracondo_della_Giungla Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "barbarian.archetype.1c5a5e823f80.delayedDamageReduction",
+      "name": "Riduzione del danno ritardata",
+      "description": "Livello effettivo da barbaro ridotto di uno.",
+      "progression": [
+        {
+          "id": "barbarian.archetype.1c5a5e823f80.delayedDamageReduction.initial",
+          "level": 8,
+          "effects": [
+            {
+              "id": "damageReduction",
+              "type": "damageReduction",
+              "expression": "1 + (@classLevel - 8) / 3",
+              "bypass": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "namedBulletGreater",
+  "name": "Proiettile Nominativo Superiore",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "HUNTER": 4,
+    "WITCH": 6,
+    "INQUISITOR": 6,
+    "WIZARD": 6,
+    "PSYCHIC": 6,
+    "RANGER": 4,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una oggetto della creatura o tipo di creatura scelta",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 munizione o arma da lancio",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Potenzia una munizione designata, aggiungendo danni pari al doppio del livello dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Proiettile_Nominativo_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Proiettile Nominativo Superiore: https://golarion.altervista.org/wiki/Incantesimi/Proiettile_Nominativo_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

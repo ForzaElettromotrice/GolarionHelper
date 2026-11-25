@@ -1,0 +1,32 @@
+{
+  "id": "coordinatedCharge",
+  "name": "Carica Coordinata",
+  "description": "Permette di partecipare alla carica di un alleato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Carica_Coordinata",
+  "types": [
+    "combat",
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Possedere almeno altri due Talenti di Squadra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +10",
+      "expression": "@bab >= 10"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Carica Coordinata: https://golarion.altervista.org/wiki/Talenti/Carica_Coordinata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Possedere almeno altri due Talenti di Squadra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

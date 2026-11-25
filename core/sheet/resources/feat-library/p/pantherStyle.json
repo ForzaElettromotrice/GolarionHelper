@@ -1,0 +1,38 @@
+{
+  "id": "pantherStyle",
+  "name": "Stile della Pantera",
+  "description": "Permette di reagire ai colpi provocati dal proprio movimento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Stile_della_Pantera",
+  "types": [
+    "combat",
+    "style"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Saggezza 13",
+      "expression": "@wis >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Riflessi in Combattimento",
+      "feat": {
+        "id": "combatReflexes"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Stile della Pantera: https://golarion.altervista.org/wiki/Talenti/Stile_della_Pantera. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

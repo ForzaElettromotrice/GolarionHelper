@@ -1,0 +1,39 @@
+{
+  "id": "concealSpell",
+  "name": "Nascondere Incantesimo",
+  "description": "Nasconde i segni riconoscibili del lancio di magie e dell'uso di capacità magiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Nascondere_Incantesimo",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Ingannevole",
+      "feat": {
+        "id": "deceitful"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Camuffare 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Raggirare 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Rapidità di Mano 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Nascondere Incantesimo: https://golarion.altervista.org/wiki/Talenti/Nascondere_Incantesimo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Camuffare 1 grado; Prerequisito da verificare manualmente: Raggirare 1 grado; Prerequisito da verificare manualmente: Rapidità di Mano 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

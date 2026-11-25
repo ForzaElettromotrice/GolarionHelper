@@ -1,0 +1,37 @@
+{
+  "id": "barrowHaze",
+  "name": "Foschia Tombale",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "PSYCHIC": 2,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "nebbia in una propagazione del raggio di 6 m e alta 6 m",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Nasconde l'area e agevola l'impiego a distanza delle fatture. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Foschia_Tombale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Foschia Tombale: https://golarion.altervista.org/wiki/Incantesimi/Foschia_Tombale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

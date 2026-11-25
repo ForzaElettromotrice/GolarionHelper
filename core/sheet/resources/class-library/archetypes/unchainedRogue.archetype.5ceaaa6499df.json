@@ -1,0 +1,83 @@
+{
+  "id": "unchainedRogue.archetype.5ceaaa6499df",
+  "classType": "unchainedRogue",
+  "name": "Mistificatore Kitsune (Kitsune)",
+  "description": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Mistificatore_Kitsune_.28Kitsune.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "unchainedRogue.feature.8f4dbb15b617",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedRogue.feature.05107c446e3f",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "unchainedRogue.feature.05107c446e3f",
+    "unchainedRogue.feature.8f4dbb15b617"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "unchainedRogue.archetype.5ceaaa6499df.instructions",
+      "name": "Mistificatore Kitsune (Kitsune)",
+      "description": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Mistificatore_Kitsune_.28Kitsune.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.5ceaaa6499df.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Mistificatore_Kitsune_.28Kitsune.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.archetype.5ceaaa6499df.feature.1",
+      "name": "Scaltrezza Kitsune (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Mistificatore_Kitsune_.28Kitsune.29",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.5ceaaa6499df.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Mistificatore Kitsune (Kitsune) — Scaltrezza Kitsune (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Mistificatore_Kitsune_.28Kitsune.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.archetype.5ceaaa6499df.feature.2",
+      "name": "Charme Kitsune (Mag)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Mistificatore_Kitsune_.28Kitsune.29",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.5ceaaa6499df.feature.2.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Mistificatore Kitsune (Kitsune) — Charme Kitsune (Mag): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Mistificatore_Kitsune_.28Kitsune.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

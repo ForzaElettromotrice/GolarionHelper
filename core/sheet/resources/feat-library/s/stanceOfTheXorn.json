@@ -1,0 +1,27 @@
+{
+  "id": "stanceOfTheXorn",
+  "name": "Posizione dello Xorn",
+  "description": "Una posizione attenta nega il normale vantaggio del fiancheggiamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Posizione_dello_Xorn",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Saggezza 15",
+      "expression": "@wis >= 15"
+    },
+    {
+      "description": "BAB +3",
+      "expression": "@bab >= 3"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Posizione dello Xorn: https://golarion.altervista.org/wiki/Talenti/Posizione_dello_Xorn. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

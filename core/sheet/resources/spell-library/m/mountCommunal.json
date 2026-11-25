@@ -1,0 +1,43 @@
+{
+  "id": "mountCommunal",
+  "name": "Cavalcatura Collettivo",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "OCCULTIST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un ciuffo di pelo di cavallo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "fino a sei cavalcature",
+  "durationType": "HOUR",
+  "durationDescription": "2 ore/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Condivide tra più cavalcature evocate la durata disponibile. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cavalcatura_Collettivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cavalcatura Collettivo: https://golarion.altervista.org/wiki/Incantesimi/Cavalcatura_Collettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

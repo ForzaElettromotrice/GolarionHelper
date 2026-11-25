@@ -1,0 +1,62 @@
+{
+  "id": "eaglesoul",
+  "name": "Anima Aquilina",
+  "school": "CONJURATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "CLERIC": 6,
+    "ORACLE": 6,
+    "WARPRIEST": 6,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 5,
+    "PALADIN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una cartapecora con scritto il nome di un Esterno Buono",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (vedi sotto)",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Una presenza celestiale affina percezione e prontezza contro il male. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Anima_Aquilina",
+  "effects": [
+    {
+      "id": "perception",
+      "type": "modifier",
+      "resource": "skill.perception",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "2",
+      "condition": "Contro creature malvagie"
+    },
+    {
+      "id": "initiative",
+      "type": "modifier",
+      "resource": "initiative",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Individuazione del Male è continua. Gestire separatamente l'ondata di potere: ore residue diventano round, +2 sacro CA, +4 sacro Forza, resistenza acido e fuoco 5, +5 sacro Intimidire contro malvagi, guarigione rapida 2 e conferme automatiche dei critici contro malvagi. Attivazione automatica attaccando esterni malvagi; caster neutrale infermo o malvagio barcollante. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

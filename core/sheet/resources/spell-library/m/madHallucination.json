@@ -1,0 +1,47 @@
+{
+  "id": "madHallucination",
+  "name": "Allucinazione Folle",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "MESMERIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (6 m)",
+  "target": "una creatura umanoide",
+  "durationType": "OTHER",
+  "durationDescription": "5 minuti/livello (massimo 1 ora)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Confonde le percezioni del bersaglio e ne ostacola le attività mentali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Allucinazione_Folle",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Allucinazione Folle: https://golarion.altervista.org/wiki/Incantesimi/Allucinazione_Folle Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

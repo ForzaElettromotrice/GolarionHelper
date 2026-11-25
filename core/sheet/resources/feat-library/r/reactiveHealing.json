@@ -1,0 +1,27 @@
+{
+  "id": "reactiveHealing",
+  "name": "Cura Reattiva",
+  "description": "Permette una cura reattiva quando si viene abbattuti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Cura_Reattiva",
+  "types": [
+    "channeling"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Incanalare Rapido o Incantesimi Rapidi; privilegio di classe Incanalare Energia o Imposizione delle Mani. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Cura Reattiva: https://golarion.altervista.org/wiki/Talenti/Cura_Reattiva. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incanalare Rapido o Incantesimi Rapidi; privilegio di classe Incanalare Energia o Imposizione delle Mani. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

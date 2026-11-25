@@ -1,0 +1,27 @@
+{
+  "id": "enforcer",
+  "name": "Sgherro",
+  "description": "Un colpo non letale può intimidire immediatamente chi lo subisce. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Sgherro",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Intimidire 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Sgherro: https://golarion.altervista.org/wiki/Talenti/Sgherro. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intimidire 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

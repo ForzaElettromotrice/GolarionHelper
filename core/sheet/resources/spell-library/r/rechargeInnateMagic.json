@@ -1,0 +1,49 @@
+{
+  "id": "rechargeInnateMagic",
+  "name": "Ricaricare Magia Innata",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "BARD": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "DRUID": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "MESMERIST": 1,
+    "ORACLE": 1,
+    "PSYCHIC": 1,
+    "WARPRIEST": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Ripristina utilizzi di capacità magiche innate secondo i limiti dell'incantesimo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ricaricare_Magia_Innata",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ricaricare Magia Innata: https://golarion.altervista.org/wiki/Incantesimi/Ricaricare_Magia_Innata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

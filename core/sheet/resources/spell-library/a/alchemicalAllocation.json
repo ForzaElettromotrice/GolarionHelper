@@ -1,0 +1,33 @@
+{
+  "id": "alchemicalAllocation",
+  "name": "Distribuzione Alchemica",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "INVESTIGATOR": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Consente di ottenere i benefici di una pozione secondo una procedura che ne evita il consumo definitivo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Distribuzione_Alchemica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Distribuzione Alchemica: https://golarion.altervista.org/wiki/Incantesimi/Distribuzione_Alchemica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

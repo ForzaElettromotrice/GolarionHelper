@@ -1,0 +1,485 @@
+{
+  "id": "duergar",
+  "name": "Duergar",
+  "qualities": [
+    {
+      "id": "duergar.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Umanoide (nano). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "duergar.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "duergar.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": false,
+          "affectedByLoad": false,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "duergar.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "4"
+        }
+      ]
+    },
+    {
+      "id": "duergar.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "dwarven",
+          "type": "languageGrant",
+          "languageId": "dwarven"
+        },
+        {
+          "id": "undercommon",
+          "type": "languageGrant",
+          "languageId": "undercommon"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aklo",
+            "draconic",
+            "giant",
+            "goblin",
+            "orc",
+            "terran"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "duergar.darkvision",
+      "name": "Scurovisione Superiore",
+      "description": "Scurovisione 36 m.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scurovisione 36 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "duergar.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita indicata.",
+      "effects": [
+        {
+          "id": "clericCrafting",
+          "type": "favoredClassBonus",
+          "classes": [
+            "cleric"
+          ],
+          "name": "Chierico — Creazione magica",
+          "description": "Chierico — Creazione magica",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "skillall",
+              "type": "modifier",
+              "resource": "skill.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Prova per creare un oggetto magico"
+            }
+          ]
+        },
+        {
+          "id": "fighterDefense",
+          "type": "favoredClassBonus",
+          "classes": [
+            "fighter"
+          ],
+          "name": "Guerriero — Difesa",
+          "description": "Guerriero — Difesa",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "combatManeuverdefensetrip",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.trip",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "combatManeuverdefensebullRush",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.bullRush",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        },
+        {
+          "id": "inquisitorJudgment",
+          "type": "favoredClassBonus",
+          "classes": [
+            "inquisitor"
+          ],
+          "name": "Inquisitore — Giudizio",
+          "description": "Inquisitore — Giudizio — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un uso giornaliero aggiuntivo di Giudizio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "duergar.lightSensitivity",
+      "name": "Sensibilità alla Luce",
+      "description": "Abbagliato in luce intensa.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Abbagliato in luce intensa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "duergar.duergarImmunities",
+      "name": "Immunità dei Duergar",
+      "description": "Immunità dei Duergar",
+      "effects": [
+        {
+          "id": "phantasm",
+          "type": "immunity",
+          "targetId": "phantasm",
+          "name": "Allucinazioni"
+        },
+        {
+          "id": "paralysis",
+          "type": "immunity",
+          "targetId": "paralysis",
+          "name": "Paralisi"
+        },
+        {
+          "id": "poison",
+          "type": "immunity",
+          "targetId": "poison",
+          "name": "Veleno"
+        },
+        {
+          "id": "savingThrowall",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Incantesimi o capacità magiche"
+        }
+      ]
+    },
+    {
+      "id": "duergar.stability",
+      "name": "Stabilità",
+      "description": "Stabilità",
+      "effects": [
+        {
+          "id": "combatManeuverdefensetrip",
+          "type": "modifier",
+          "resource": "combatManeuver.defense.trip",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Saldo sul terreno"
+        },
+        {
+          "id": "combatManeuverdefensebullRush",
+          "type": "modifier",
+          "resource": "combatManeuver.defense.bullRush",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Saldo sul terreno"
+        }
+      ]
+    },
+    {
+      "id": "duergar.enlargePerson",
+      "name": "Ingrandire Persone",
+      "description": "Ingrandire Persone su se stesso 1/giorno, LI pari al livello.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Ingrandire Persone su se stesso 1/giorno, LI pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "duergar.invisibility",
+      "name": "Invisibilità",
+      "description": "Invisibilità su se stesso 1/giorno, LI pari al livello.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Invisibilità su se stesso 1/giorno, LI pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "duergar.bloodEnmity",
+      "name": "Inimicizia di Sangue",
+      "description": "Inimicizia di Sangue",
+      "effects": [
+        {
+          "id": "attackall",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Contro umanoidi elfi o nani"
+        }
+      ],
+      "replaces": [
+        "duergar.invisibility"
+      ]
+    },
+    {
+      "id": "duergar.deepMagic",
+      "name": "Magia delle Profondità",
+      "description": "Magia delle Profondità",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "+2 razziale a prove di LI per superare RI e prove di dissoluzione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "duergar.enlargePerson",
+        "duergar.invisibility"
+      ]
+    },
+    {
+      "id": "duergar.dwarvenTraits",
+      "name": "Tratto dei Nani — Stabilità",
+      "description": "Tratto dei Nani — Stabilità",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scegliere un tratto razziale dei nani al posto di Stabilità; selezione aperta ed effetti da applicare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "duergar.stability"
+      ]
+    },
+    {
+      "id": "duergar.dwarvenHardy",
+      "name": "Tratto dei Nani — Resistenza",
+      "description": "Tratto dei Nani — Resistenza",
+      "effects": [
+        {
+          "id": "savingThrowall",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Veleno, incantesimi o capacità magiche"
+        }
+      ],
+      "replaces": [
+        "duergar.duergarImmunities"
+      ]
+    },
+    {
+      "id": "duergar.daysighted",
+      "name": "Vista Diurna",
+      "description": "Vista Diurna",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scurovisione limitata a 18 m; nessuna sensibilità alla luce. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "duergar.darkvision",
+        "duergar.lightSensitivity"
+      ]
+    }
+  ]
+}

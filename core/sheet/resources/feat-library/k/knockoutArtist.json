@@ -1,0 +1,30 @@
+{
+  "id": "knockoutArtist",
+  "name": "Artista del Knockout",
+  "description": "Aumenta i danni di precisione quando il colpo infligge danni non letali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Artista_del_Knockout",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Attacco Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Artista del Knockout: https://golarion.altervista.org/wiki/Talenti/Artista_del_Knockout. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Attacco Furtivo; Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

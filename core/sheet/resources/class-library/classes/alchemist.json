@@ -1,0 +1,867 @@
+{
+  "type": "alchemist",
+  "name": "Alchimista",
+  "description": "Sperimentatore che impiega estratti, bombe e mutageni.",
+  "hitDie": 8,
+  "skillRanksPerLevel": 4,
+  "classSkills": [
+    "skill.craft",
+    "skill.knowledge.arcana",
+    "skill.knowledge.nature",
+    "skill.disableDevice",
+    "skill.heal",
+    "skill.perception",
+    "skill.profession",
+    "skill.sleightOfHand",
+    "skill.spellcraft",
+    "skill.survival",
+    "skill.useMagicDevice",
+    "skill.appraise",
+    "skill.fly"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 0
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 0
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 1
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 2
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 3
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 4
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 5
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 12,
+        "reflex": 12,
+        "will": 6
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "alchemist.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "alchemist.feature.d48bcfc1abf5",
+      "name": "Alchimia",
+      "description": "Privilegio della classe Alchimista. Regole e condizioni: https://golarion.altervista.org/wiki/Alchimista#Alchimia_.28Sop.29",
+      "progression": [
+        {
+          "id": "alchemist.feature.d48bcfc1abf5.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Alchimista: verificare e applicare Alchimia. https://golarion.altervista.org/wiki/Alchimista#Alchimia_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.feature.bf1c344630aa",
+      "name": "Bomba",
+      "description": "Privilegio della classe Alchimista. Regole e condizioni: https://golarion.altervista.org/wiki/Alchimista#Bomba_.28Sop.29",
+      "progression": [
+        {
+          "id": "alchemist.feature.bf1c344630aa.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Alchimista: verificare e applicare Bomba 1d6. https://golarion.altervista.org/wiki/Alchimista#Bomba_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "alchemist.feature.bf1c344630aa.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Alchimista: verificare e applicare Bomba 2d6. https://golarion.altervista.org/wiki/Alchimista#Bomba_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "alchemist.feature.bf1c344630aa.level1"
+          ]
+        },
+        {
+          "id": "alchemist.feature.bf1c344630aa.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Alchimista: verificare e applicare Bomba 3d6. https://golarion.altervista.org/wiki/Alchimista#Bomba_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "alchemist.feature.bf1c344630aa.level3"
+          ]
+        },
+        {
+          "id": "alchemist.feature.bf1c344630aa.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Alchimista: verificare e applicare Bomba 4d6. https://golarion.altervista.org/wiki/Alchimista#Bomba_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "alchemist.feature.bf1c344630aa.level5"
+          ]
+        },
+        {
+          "id": "alchemist.feature.bf1c344630aa.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Alchimista: verificare e applicare Bomba 5d6. https://golarion.altervista.org/wiki/Alchimista#Bomba_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "alchemist.feature.bf1c344630aa.level7"
+          ]
+        },
+        {
+          "id": "alchemist.feature.bf1c344630aa.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Alchimista: verificare e applicare Bomba 6d6. https://golarion.altervista.org/wiki/Alchimista#Bomba_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "alchemist.feature.bf1c344630aa.level9"
+          ]
+        },
+        {
+          "id": "alchemist.feature.bf1c344630aa.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Alchimista: verificare e applicare Bomba 7d6. https://golarion.altervista.org/wiki/Alchimista#Bomba_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "alchemist.feature.bf1c344630aa.level11"
+          ]
+        },
+        {
+          "id": "alchemist.feature.bf1c344630aa.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Alchimista: verificare e applicare Bomba 8d6. https://golarion.altervista.org/wiki/Alchimista#Bomba_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "alchemist.feature.bf1c344630aa.level13"
+          ]
+        },
+        {
+          "id": "alchemist.feature.bf1c344630aa.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Alchimista: verificare e applicare Bomba 9d6. https://golarion.altervista.org/wiki/Alchimista#Bomba_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "alchemist.feature.bf1c344630aa.level15"
+          ]
+        },
+        {
+          "id": "alchemist.feature.bf1c344630aa.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Alchimista: verificare e applicare Bomba 10d6. https://golarion.altervista.org/wiki/Alchimista#Bomba_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "alchemist.feature.bf1c344630aa.level17"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alchemist.feature.1c8b2e7f5727",
+      "name": "Lanciare Oggetti",
+      "description": "Privilegio della classe Alchimista. Regole e condizioni: https://golarion.altervista.org/wiki/Alchimista#Lanciare_Oggetti_.28Str.29",
+      "progression": [
+        {
+          "id": "alchemist.feature.1c8b2e7f5727.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Alchimista: verificare e applicare Lanciare Oggetti. https://golarion.altervista.org/wiki/Alchimista#Lanciare_Oggetti_.28Str.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.feature.521c9e2b11d3",
+      "name": "Mescere Pozioni",
+      "description": "Privilegio della classe Alchimista. Regole e condizioni: https://golarion.altervista.org/wiki/Alchimista#Mescere_Pozioni_.28Str.29",
+      "progression": [
+        {
+          "id": "alchemist.feature.521c9e2b11d3.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Alchimista: verificare e applicare Mescere Pozioni. https://golarion.altervista.org/wiki/Alchimista#Mescere_Pozioni_.28Str.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.feature.4b2b03ee5cc8",
+      "name": "Mutageno",
+      "description": "Privilegio della classe Alchimista. Regole e condizioni: https://golarion.altervista.org/wiki/Alchimista#Mutageno_.28Sop.29",
+      "progression": [
+        {
+          "id": "alchemist.feature.4b2b03ee5cc8.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Alchimista: verificare e applicare Mutageno. https://golarion.altervista.org/wiki/Alchimista#Mutageno_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.feature.ea692acc0f06",
+      "name": "Scoperta",
+      "description": "Privilegio della classe Alchimista. Regole e condizioni: https://golarion.altervista.org/wiki/Alchimista#Scoperta_.28Sop.29",
+      "progression": [
+        {
+          "id": "alchemist.feature.ea692acc0f06.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Alchimista: verificare e applicare Scoperta. https://golarion.altervista.org/wiki/Alchimista#Scoperta_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "alchemist.feature.ea692acc0f06.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Alchimista: verificare e applicare Scoperta. https://golarion.altervista.org/wiki/Alchimista#Scoperta_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "alchemist.feature.ea692acc0f06.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Alchimista: verificare e applicare Scoperta. https://golarion.altervista.org/wiki/Alchimista#Scoperta_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "alchemist.feature.ea692acc0f06.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Alchimista: verificare e applicare Scoperta. https://golarion.altervista.org/wiki/Alchimista#Scoperta_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "alchemist.feature.ea692acc0f06.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Alchimista: verificare e applicare Scoperta. https://golarion.altervista.org/wiki/Alchimista#Scoperta_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "alchemist.feature.ea692acc0f06.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Alchimista: verificare e applicare Scoperta. https://golarion.altervista.org/wiki/Alchimista#Scoperta_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "alchemist.feature.ea692acc0f06.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Alchimista: verificare e applicare Scoperta. https://golarion.altervista.org/wiki/Alchimista#Scoperta_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "alchemist.feature.ea692acc0f06.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Alchimista: verificare e applicare Scoperta. https://golarion.altervista.org/wiki/Alchimista#Scoperta_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "alchemist.feature.ea692acc0f06.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Alchimista: verificare e applicare Scoperta. https://golarion.altervista.org/wiki/Alchimista#Scoperta_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.feature.c75626442ae3",
+      "name": "Uso dei Veleni",
+      "description": "Privilegio della classe Alchimista. Regole e condizioni: https://golarion.altervista.org/wiki/Alchimista#Uso_dei_Veleni_.28Str.29",
+      "progression": [
+        {
+          "id": "alchemist.feature.c75626442ae3.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Alchimista: verificare e applicare Uso dei Veleni. https://golarion.altervista.org/wiki/Alchimista#Uso_dei_Veleni_.28Str.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.feature.c5334e4a6844",
+      "name": "Alchimia Rapida",
+      "description": "Privilegio della classe Alchimista. Regole e condizioni: https://golarion.altervista.org/wiki/Alchimista#Alchimia_Rapida_.28Str.29",
+      "progression": [
+        {
+          "id": "alchemist.feature.c5334e4a6844.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Alchimista: verificare e applicare Alchimia Rapida. https://golarion.altervista.org/wiki/Alchimista#Alchimia_Rapida_.28Str.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.feature.1cb37d28802a",
+      "name": "Avvelenamento Rapido",
+      "description": "Privilegio della classe Alchimista. Regole e condizioni: https://golarion.altervista.org/wiki/Alchimista#Avvelenamento_Rapido_.28Str.29",
+      "progression": [
+        {
+          "id": "alchemist.feature.1cb37d28802a.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Alchimista: verificare e applicare Avvelenamento Rapido. https://golarion.altervista.org/wiki/Alchimista#Avvelenamento_Rapido_.28Str.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.feature.93d5cb38ec91",
+      "name": "Mutageno Persistente",
+      "description": "Privilegio della classe Alchimista. Regole e condizioni: https://golarion.altervista.org/wiki/Alchimista#Mutageno_Persistente_.28Sop.29",
+      "progression": [
+        {
+          "id": "alchemist.feature.93d5cb38ec91.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Alchimista: verificare e applicare Mutageno Persistente. https://golarion.altervista.org/wiki/Alchimista#Mutageno_Persistente_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.feature.9ef53be1a5b0",
+      "name": "Alchimia Istantanea",
+      "description": "Privilegio della classe Alchimista. Regole e condizioni: https://golarion.altervista.org/wiki/Alchimista#Alchimia_Istantanea_.28Str.29",
+      "progression": [
+        {
+          "id": "alchemist.feature.9ef53be1a5b0.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Alchimista: verificare e applicare Alchimia Istantanea. https://golarion.altervista.org/wiki/Alchimista#Alchimia_Istantanea_.28Str.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.feature.b3f48b04ccd0",
+      "name": "Grande Scoperta",
+      "description": "Privilegio della classe Alchimista. Regole e condizioni: https://golarion.altervista.org/wiki/Alchimista#Grande_Scoperta_.28Sop.29",
+      "progression": [
+        {
+          "id": "alchemist.feature.b3f48b04ccd0.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Alchimista: verificare e applicare Grande Scoperta. https://golarion.altervista.org/wiki/Alchimista#Grande_Scoperta_.28Sop.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Alchimista",
+      "progression": [
+        {
+          "id": "alchemist.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Alchimista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Alchimista",
+      "progression": [
+        {
+          "id": "alchemist.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Alchimista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Alchimista",
+      "progression": [
+        {
+          "id": "alchemist.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Alchimista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemy",
+      "name": "Alchimia",
+      "description": "Gli estratti richiedono un sistema distinto dal lancio ordinario degli incantesimi. Fonte: https://golarion.altervista.org/wiki/Alchimista",
+      "progression": [
+        {
+          "id": "alchemy",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manualExtracts",
+              "type": "reminder",
+              "message": "Gestire formule, preparazione, conservazione, consumo e infusione degli estratti secondo la tabella e le regole di classe. Non viene creata una capacità di lancio preparato impropria. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alchemist.feature.98ee29e97f46",
+      "name": "Resistenza al Veleno",
+      "description": "Migliora le difese contro veleno fino a conferire immunità. Fonte: https://golarion.altervista.org/wiki/Alchimista",
+      "progression": [
+        {
+          "id": "alchemist.poisonResistance.bonus",
+          "level": 2,
+          "effects": [
+            {
+              "id": "poison",
+              "type": "modifier",
+              "resource": "savingThrow.all",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "2 * (1 + (@classLevel >= 5) + (@classLevel >= 8))",
+              "condition": "Contro veleno"
+            },
+            {
+              "id": "conditionalReview",
+              "type": "reminder",
+              "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "alchemist.poisonResistance.immunity",
+          "level": 10,
+          "replaces": [
+            "alchemist.poisonResistance.bonus"
+          ],
+          "effects": [
+            {
+              "id": "poison",
+              "type": "immunity",
+              "targetId": "poison",
+              "name": "Veleni"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "alchemist.discovery.2",
+      "classType": "alchemist",
+      "featureId": "alchemist.feature.ea692acc0f06",
+      "acquisitionIds": [
+        "alchemist.feature.ea692acc0f06.level2",
+        "alchemist.feature.ea692acc0f06.level4",
+        "alchemist.feature.ea692acc0f06.level6",
+        "alchemist.feature.ea692acc0f06.level8",
+        "alchemist.feature.ea692acc0f06.level10",
+        "alchemist.feature.ea692acc0f06.level12",
+        "alchemist.feature.ea692acc0f06.level14",
+        "alchemist.feature.ea692acc0f06.level16",
+        "alchemist.feature.ea692acc0f06.level18"
+      ],
+      "choice": {
+        "id": "discovery",
+        "prompt": "Scegli una scoperta",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "alchemist.discoveries"
+      }
+    },
+    {
+      "id": "alchemist.extraDiscoveries.20",
+      "classType": "alchemist",
+      "featureId": "alchemist.feature.b3f48b04ccd0",
+      "acquisitionIds": [
+        "alchemist.feature.b3f48b04ccd0.level20"
+      ],
+      "choice": {
+        "id": "extraDiscoveries",
+        "prompt": "Scegli le due scoperte normali del 20° livello",
+        "selectionCount": 2,
+        "blocksAdvancement": true,
+        "optionSet": "alchemist.discoveries"
+      }
+    },
+    {
+      "id": "alchemist.grandDiscovery.20",
+      "classType": "alchemist",
+      "featureId": "alchemist.feature.b3f48b04ccd0",
+      "acquisitionIds": [
+        "alchemist.feature.b3f48b04ccd0.level20"
+      ],
+      "choice": {
+        "id": "grandDiscovery",
+        "prompt": "Scegli una grande scoperta",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "alchemist.grandDiscoveries"
+      }
+    }
+  ]
+}

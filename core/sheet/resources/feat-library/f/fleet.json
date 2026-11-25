@@ -1,0 +1,28 @@
+{
+  "id": "fleet",
+  "name": "Agile",
+  "description": "Aumenta di 1,5 metri la velocità base nelle condizioni di equipaggiamento consentite. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Agile",
+  "types": [
+    "general"
+  ],
+  "repeatability": "unlimited",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "speed",
+      "type": "modifier",
+      "resource": "speed.land",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "1",
+      "condition": "Senza armatura o con armatura leggera e con carico leggero"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare armatura e carico prima di applicare il bonus condizionale; benefici ripetuti cumulabili. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

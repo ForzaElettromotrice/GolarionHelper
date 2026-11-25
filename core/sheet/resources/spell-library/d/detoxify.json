@@ -1,0 +1,50 @@
+{
+  "id": "detoxify",
+  "name": "Detossificare",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "CLERIC": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "INQUISITOR": 3,
+    "ORACLE": 3,
+    "PALADIN": 3,
+    "RANGER": 2,
+    "WARPRIEST": 3,
+    "SHAMAN": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "uno stelo di dente di leone",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m più 1,5 m/2 livelli)",
+  "target": "una creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Elimina temporaneamente la capacità di una creatura di avvelenare altri soggetti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Detossificare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Detossificare: https://golarion.altervista.org/wiki/Incantesimi/Detossificare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

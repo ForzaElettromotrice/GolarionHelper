@@ -1,0 +1,40 @@
+{
+  "id": "createSanguineElixir",
+  "name": "Creare Elisir Sanguigno",
+  "description": "Prepara un elisir che trasmette temporaneamente un potere di stirpe. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Creare_Elisir_Sanguigno",
+  "types": [
+    "itemCreation"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Mescere Pozioni",
+      "feat": {
+        "id": "brewPotion"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Artigianato (alchimia) 12 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Stregone di 3° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Creare Elisir Sanguigno: https://golarion.altervista.org/wiki/Talenti/Creare_Elisir_Sanguigno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Artigianato (alchimia) 12 gradi; Prerequisito da verificare manualmente: Stregone di 3° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

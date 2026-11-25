@@ -1,0 +1,37 @@
+{
+  "id": "objectReading",
+  "name": "Lettura dell'Oggetto",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "MEDIUM": 1,
+    "MESMERIST": 2,
+    "OCCULTIST": 1,
+    "PSYCHIC": 2,
+    "SPIRITUALIST": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto toccato",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione, fino a 1 round/livello",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Ricava informazioni dalle impronte parapsichiche conservate da un oggetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lettura_dell%27Oggetto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Lettura dell'Oggetto: https://golarion.altervista.org/wiki/Incantesimi/Lettura_dell%27Oggetto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

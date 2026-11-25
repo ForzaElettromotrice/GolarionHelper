@@ -1,0 +1,27 @@
+{
+  "id": "eldritchResearcher",
+  "name": "Ricercatore Arcano",
+  "description": "Premia la ricerca originale di magie con benefici agli incantesimi creati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ricercatore_Arcano",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Bisogna aver creato un nuovo incantesimo o possedere il background Il Modo in cui Funzionano le Cose. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ricercatore Arcano: https://golarion.altervista.org/wiki/Talenti/Ricercatore_Arcano. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Bisogna aver creato un nuovo incantesimo o possedere il background Il Modo in cui Funzionano le Cose. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

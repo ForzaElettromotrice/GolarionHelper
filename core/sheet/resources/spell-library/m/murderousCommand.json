@@ -1,0 +1,48 @@
+{
+  "id": "murderousCommand",
+  "name": "Comando Omicida",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "CLERIC": 1,
+    "MEDIUM": 1,
+    "MESMERIST": 1,
+    "OCCULTIST": 1,
+    "ORACLE": 1,
+    "PSYCHIC": 1,
+    "WARPRIEST": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura vivente",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Spinge il bersaglio ad aggredire uno dei suoi alleati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Comando_Omicida",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Comando Omicida: https://golarion.altervista.org/wiki/Incantesimi/Comando_Omicida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,578 @@
+{
+  "id": "sylph",
+  "name": "Silfide",
+  "qualities": [
+    {
+      "id": "sylph.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Esterno nativo. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "sylph.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "sylph.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "sylph.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "int",
+          "type": "modifier",
+          "resource": "int",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "sylph.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "auran",
+          "type": "languageGrant",
+          "languageId": "auran"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aquan",
+            "elven",
+            "gnome",
+            "halfling",
+            "ignan",
+            "dwarven",
+            "terran"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sylph.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "witchFamiliarSkills",
+          "type": "favoredClassBonus",
+          "name": "Fattucchiere — +1 a Furtività e Percezione del famiglio, mantenuto dal sostituto",
+          "classes": [
+            "witch"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Furtività e Percezione del famiglio, mantenuto dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 a Furtività e Percezione del famiglio, mantenuto dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "wizardSchool",
+          "type": "favoredClassBonus",
+          "name": "Mago — +1 livello effettivo per un potere di scuola elementale aria/legno; massimo+2",
+          "classes": [
+            "wizard"
+          ],
+          "selectionsPerBenefit": 6,
+          "description": "+1 livello effettivo per un potere di scuola elementale aria/legno; massimo+2. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 livello effettivo per un potere di scuola elementale aria/legno; massimo+2. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleRevelation",
+          "type": "favoredClassBonus",
+          "name": "Oracolo — +1 livello effettivo per una Rivelazione",
+          "classes": [
+            "oracle"
+          ],
+          "selectionsPerBenefit": 6,
+          "description": "+1 livello effettivo per una Rivelazione. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 livello effettivo per una Rivelazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererBloodline",
+          "type": "favoredClassBonus",
+          "name": "Stregone — +1 livello effettivo per potere posseduto di stirpe elementale aria/djinni; massimo+2",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 6,
+          "description": "+1 livello effettivo per potere posseduto di stirpe elementale aria/djinni; massimo+2. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 livello effettivo per potere posseduto di stirpe elementale aria/djinni; massimo+2. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "clericPlanes",
+          "type": "favoredClassBonus",
+          "name": "Chierico — Piano dell'Aria",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 Conoscenze(piani) su aria/creature dell'aria.",
+          "effects": [
+            {
+              "id": "planes",
+              "type": "modifier",
+              "resource": "skill.knowledge.planes",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Piano dell'Aria o creature di aria"
+            }
+          ]
+        },
+        {
+          "id": "druidNature",
+          "type": "favoredClassBonus",
+          "name": "Druido — Clima e volo",
+          "classes": [
+            "druid"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 Conoscenze(natura) su clima/animali volanti.",
+          "effects": [
+            {
+              "id": "nature",
+              "type": "modifier",
+              "resource": "skill.knowledge.nature",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Clima o animali volanti"
+            }
+          ]
+        },
+        {
+          "id": "inquisitorSkills",
+          "type": "favoredClassBonus",
+          "name": "Inquisitore — Osservazione e immobilità",
+          "classes": [
+            "inquisitor"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 Furtività immobili e Percezione contrapposta.",
+          "effects": [
+            {
+              "id": "stealth",
+              "type": "modifier",
+              "resource": "skill.stealth",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Da immobile"
+            },
+            {
+              "id": "perception",
+              "type": "modifier",
+              "resource": "skill.perception",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Prova contrapposta"
+            }
+          ]
+        },
+        {
+          "id": "rogueSkills",
+          "type": "favoredClassBonus",
+          "name": "Ladro — Salti e Percezione",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 Acrobazia per saltare e Percezione.",
+          "effects": [
+            {
+              "id": "acrobatics",
+              "type": "modifier",
+              "resource": "skill.acrobatics",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Saltare"
+            },
+            {
+              "id": "perception",
+              "type": "modifier",
+              "resource": "skill.perception",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "sylph.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "sylph.energyResistance",
+      "name": "Resistenza all'Energia",
+      "description": "Resistenza all'Energia",
+      "effects": [
+        {
+          "id": "electricity",
+          "type": "energyResistance",
+          "energy": "electricity",
+          "expression": "5"
+        }
+      ]
+    },
+    {
+      "id": "sylph.airAffinity",
+      "name": "Affinità all'Aria",
+      "description": "Affinità all'Aria",
+      "effects": [
+        {
+          "id": "affinity",
+          "type": "reminder",
+          "message": "Stirpe elementale aria: Carisma effettivo+2 per magie/capacità da stregone. Dominio Aria: LI+1 a poteri/incantesimi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "sylph.spellLikeAbility",
+      "name": "Capacità Magiche",
+      "description": "Capacità Magiche",
+      "effects": [
+        {
+          "id": "spell",
+          "type": "reminder",
+          "message": "Caduta Morbida1/giorno, LI pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "sylph.weatherSavvy",
+      "name": "Acume Meteorologico",
+      "description": "Azione di round completo per prevedere con precisione il meteo locale per24 ore; esclude cambiamenti magici/soprannaturali. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Azione di round completo per prevedere con precisione il meteo locale per24 ore; esclude cambiamenti magici/soprannaturali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "sylph.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "sylph.breezeKissed",
+      "name": "Baciato dalla Brezza",
+      "description": "Baciato dalla Brezza",
+      "effects": [
+        {
+          "id": "armor",
+          "type": "modifier",
+          "resource": "armorClass.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Venti attivi, contro attacchi a distanza non magici"
+        },
+        {
+          "id": "wind",
+          "type": "reminder",
+          "message": "Attivare/calmare i venti con azione veloce.1/giorno Spingere o Sbilanciare entro9 m esaurisce il vento e il bonus CA per24 ore, anche se fallisce. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "sylph.airAffinity"
+      ]
+    },
+    {
+      "id": "sylph.likeTheWind",
+      "name": "Come il Vento",
+      "description": "Come il Vento",
+      "effects": [
+        {
+          "id": "speed",
+          "type": "modifier",
+          "resource": "speed.land",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "1"
+        }
+      ],
+      "replaces": [
+        "sylph.energyResistance"
+      ]
+    },
+    {
+      "id": "sylph.airInsight",
+      "name": "Intuito dell'Aria",
+      "description": "Evoca Mostri/Alleato Naturale durano2 round aggiuntivi per creature di aria. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Evoca Mostri/Alleato Naturale durano2 round aggiuntivi per creature di aria. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "sylph.airAffinity"
+      ]
+    },
+    {
+      "id": "sylph.skySpeaker",
+      "name": "Oratore del Cielo",
+      "description": "Parlare con gli Animali1/giorno, solo uccelli/animali volanti; LI pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Parlare con gli Animali1/giorno, solo uccelli/animali volanti; LI pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "sylph.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "sylph.thunderousResilience",
+      "name": "Resistenza Tonante",
+      "description": "Resistenza Tonante",
+      "effects": [
+        {
+          "id": "sonic",
+          "type": "energyResistance",
+          "energy": "sonic",
+          "expression": "5"
+        }
+      ],
+      "replaces": [
+        "sylph.energyResistance"
+      ]
+    },
+    {
+      "id": "sylph.stormInTheBlood",
+      "name": "Tempesta nel Sangue",
+      "description": "Subire elettricità, anche assorbita dalla resistenza, attiva Guarigione Rapida2 per1 round; massimo2 PF/livello al giorno. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Subire elettricità, anche assorbita dalla resistenza, attiva Guarigione Rapida2 per1 round; massimo2 PF/livello al giorno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "sylph.airAffinity"
+      ]
+    },
+    {
+      "id": "sylph.whisperingWind",
+      "name": "Vento Sussurrante",
+      "description": "Vento Sussurrante",
+      "effects": [
+        {
+          "id": "stealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        }
+      ],
+      "replaces": [
+        "sylph.spellLikeAbility"
+      ]
+    }
+  ]
+}

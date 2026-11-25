@@ -1,0 +1,43 @@
+{
+  "id": "whisperingLore",
+  "name": "Sapere Sussurrante",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "CLERIC": 2,
+    "DRUID": 1,
+    "WITCH": 1,
+    "MEDIUM": 1,
+    "ORACLE": 2,
+    "PSYCHIC": 1,
+    "RANGER": 1,
+    "WARPRIEST": 2
+  },
+  "castingTimeCategory": "FULL_ROUND_ACTION",
+  "castingTimeDescription": "1 azione di round completo",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un becco di civetta",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Attinge alle informazioni del territorio circostante per migliorare le proprie conoscenze. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sapere_Sussurrante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sapere Sussurrante: https://golarion.altervista.org/wiki/Incantesimi/Sapere_Sussurrante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

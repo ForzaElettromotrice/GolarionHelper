@@ -1,0 +1,53 @@
+{
+  "id": "inciteParanoia",
+  "name": "Instillare Paranoia",
+  "description": "Semina sospetti che compromettono la collaborazione tra avversari. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Instillare_Paranoia",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +6",
+      "expression": "@bab >= 6"
+    },
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Fintare Migliorato",
+      "feat": {
+        "id": "improvedFeint"
+      }
+    },
+    {
+      "description": "Fintare Superiore",
+      "feat": {
+        "id": "greaterFeint"
+      }
+    },
+    {
+      "description": "Ingannevole",
+      "feat": {
+        "id": "deceitful"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Instillare Paranoia: https://golarion.altervista.org/wiki/Talenti/Instillare_Paranoia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

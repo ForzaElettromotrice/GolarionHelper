@@ -1,0 +1,43 @@
+{
+  "id": "phantomSteedCommunal",
+  "name": "Destriero Fantomatico Collettivo",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 4,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 4,
+    "OCCULTIST": 4,
+    "SKALD": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "fino a sei creature equine quasi reali",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Ripartisce la durata disponibile fra più cavalcature fantomatiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Destriero_Fantomatico_Collettivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Destriero Fantomatico Collettivo: https://golarion.altervista.org/wiki/Incantesimi/Destriero_Fantomatico_Collettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

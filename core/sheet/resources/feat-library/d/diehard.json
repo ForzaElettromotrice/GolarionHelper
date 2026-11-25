@@ -1,0 +1,25 @@
+{
+  "id": "diehard",
+  "name": "Duro a Morire",
+  "description": "Mantiene stabile e cosciente il personaggio sotto zero punti ferita, imponendo i normali rischi delle azioni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Duro_a_Morire",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Resistenza Fisica",
+      "feat": {
+        "id": "endurance"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Duro a Morire: https://golarion.altervista.org/wiki/Talenti/Duro_a_Morire. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

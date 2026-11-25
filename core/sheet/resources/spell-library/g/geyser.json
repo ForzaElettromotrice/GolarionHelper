@@ -1,0 +1,58 @@
+{
+  "id": "geyser",
+  "name": "Geyser",
+  "school": "CONJURATION",
+  "descriptors": [
+    "WATER",
+    "FIRE"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "SORCERER": 5,
+    "HUNTER": 4,
+    "DRUID": 4,
+    "MAGUS": 5
+  },
+  "spellLevelByBloodline": {
+    "AQUATIC": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un pezzo di roccia lavica",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "effect": "spruzzo di acqua bollente riempie un quadretto di 1,5 m e si innalza di 3 m ogni 2 livelli",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione + 1 round/livello",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "PARTIAL",
+      "description": "Riflessi parziale (vedi sotto)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una colonna d'acqua bollente erompe dal terreno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Geyser",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Geyser: https://golarion.altervista.org/wiki/Incantesimi/Geyser Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 5, Fuoco 5 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

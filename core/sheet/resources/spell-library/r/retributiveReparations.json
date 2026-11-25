@@ -1,0 +1,45 @@
+{
+  "id": "retributiveReparations",
+  "name": "Riparazioni Castiganti",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 3,
+    "WITCH": 4,
+    "INQUISITOR": 3,
+    "OCCULTIST": 3,
+    "SPIRITUALIST": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto",
+  "durationType": "OTHER",
+  "durationDescription": "permanente finché non viene attivato, poi 1 giorno per livello; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "La refurtiva impone debilitazioni al ladro finché non viene restituita. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Riparazioni_Castiganti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Riparazioni Castiganti: https://golarion.altervista.org/wiki/Incantesimi/Riparazioni_Castiganti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

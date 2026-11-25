@@ -1,0 +1,31 @@
+{
+  "id": "falconsCry",
+  "name": "Grido del Falcone",
+  "description": "Aiuta gli alleati a sottrarsi al pericolo mediante il richiamo previsto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Grido_del_Falcone",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: affiliato ai Falconi d'Acciaio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Grido del Falcone: https://golarion.altervista.org/wiki/Talenti/Grido_del_Falcone. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: affiliato ai Falconi d'Acciaio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

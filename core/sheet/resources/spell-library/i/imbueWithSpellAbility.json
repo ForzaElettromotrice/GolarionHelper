@@ -1,0 +1,50 @@
+{
+  "id": "imbueWithSpellAbility",
+  "name": "Infondere Capacità Magiche",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "COMMUNITY": 4,
+      "MAGIC": 4
+    }
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata; vedi testo",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente finché non viene scaricato (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo) DV del Ricevente Incantesimi Trasferiti 2 o inferiore Un incantesimo di 1° livello 3–4 Uno o due incantesimi di 1° livello 5 o superiore Uno o due incantesimi di 1° livello e uno di 2° livello",
+  "description": "Affida al destinatario la possibilità di usare alcuni incantesimi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Infondere_Capacit%C3%A0_Magiche",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Infondere Capacità Magiche: https://golarion.altervista.org/wiki/Incantesimi/Infondere_Capacit%C3%A0_Magiche Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

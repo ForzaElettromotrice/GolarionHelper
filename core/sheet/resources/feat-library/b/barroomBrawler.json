@@ -1,0 +1,23 @@
+{
+  "id": "barroomBrawler",
+  "name": "Rissaiolo da Taverna",
+  "description": "Concede temporaneamente una tecnica marziale non posseduta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Rissaiolo_da_Taverna",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +4",
+      "expression": "@bab >= 4"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Rissaiolo da Taverna: https://golarion.altervista.org/wiki/Talenti/Rissaiolo_da_Taverna. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

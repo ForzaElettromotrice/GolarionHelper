@@ -1,0 +1,41 @@
+{
+  "id": "instantArmor",
+  "name": "Armatura Istantanea",
+  "school": "CONJURATION",
+  "descriptors": [
+    "FORCE"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "PALADIN": 2,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Fa apparire un'armatura temporanea al posto degli abiti del lanciatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Armatura_Istantanea",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Armatura Istantanea: https://golarion.altervista.org/wiki/Incantesimi/Armatura_Istantanea Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

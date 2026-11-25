@@ -1,0 +1,48 @@
+{
+  "id": "unshakeableZeal",
+  "name": "Zelo Incrollabile",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 5,
+    "INQUISITOR": 6,
+    "PSYCHIC": 7,
+    "SKALD": 5,
+    "SPIRITUALIST": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un cerchietto d'argento",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura toccata",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Sostiene nuovi tentativi dopo un fallimento e difende da paura ed emozioni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Zelo_Incrollabile",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Zelo Incrollabile: https://golarion.altervista.org/wiki/Incantesimi/Zelo_Incrollabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

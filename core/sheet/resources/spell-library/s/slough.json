@@ -1,0 +1,52 @@
+{
+  "id": "slough",
+  "name": "Scarnificazione",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "CLERIC": 5,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "OCCULTIST": 4,
+    "ORACLE": 5,
+    "PSYCHIC": 5,
+    "WARPRIEST": 5,
+    "SPIRITUALIST": 4,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un pizzico di scaglie di pelle essicate",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura vivente",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Strappa dolorosamente la pelle del bersaglio provocando danni e debilitazioni. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Scarnificazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Scarnificazione: https://golarion.altervista.org/wiki/Scarnificazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "grantInitiative",
+  "name": "Concedere Iniziativa",
+  "description": "Aiuta gli alleati a reagire rapidamente all'inizio di uno scontro. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Concedere_Iniziativa",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Iniziativa Astuta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Concedere Iniziativa: https://golarion.altervista.org/wiki/Talenti/Concedere_Iniziativa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Iniziativa Astuta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

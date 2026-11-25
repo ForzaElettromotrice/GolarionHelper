@@ -1,0 +1,45 @@
+{
+  "id": "draconicParagon",
+  "name": "Esemplare Draconico",
+  "description": "Potenzia i benefici draconici già acquisiti, compresi gli utilizzi del soffio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Esemplare_Draconico",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Aspetto Draconico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Planata Draconica",
+      "feat": {
+        "id": "draconicGlide"
+      }
+    },
+    {
+      "description": "Soffio Draconico",
+      "feat": {
+        "id": "draconicBreath"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: personaggio di 10° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Coboldo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Esemplare Draconico: https://golarion.altervista.org/wiki/Talenti/Esemplare_Draconico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Aspetto Draconico; Prerequisito da verificare manualmente: personaggio di 10° livello; Prerequisito da verificare manualmente: Coboldo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

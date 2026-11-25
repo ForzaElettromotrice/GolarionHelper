@@ -1,0 +1,45 @@
+{
+  "id": "bungle",
+  "name": "Pasticcio",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WITCH": 1,
+    "WIZARD": 1,
+    "MESMERIST": 1,
+    "PSYCHIC": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "un umanoide",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione + 2 round o finché non viene attivato",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Il prossimo tiro per colpire del bersaglio subisce una penalità di 20. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pasticcio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pasticcio: https://golarion.altervista.org/wiki/Incantesimi/Pasticcio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

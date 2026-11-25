@@ -1,0 +1,35 @@
+{
+  "id": "survivor",
+  "name": "Sopravvissuto",
+  "description": "Rafforza la capacità di stabilizzarsi quando si è morenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Sopravvissuto",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Costituzione 13",
+      "expression": "@con >= 13"
+    },
+    {
+      "description": "Duro a Morire",
+      "feat": {
+        "id": "diehard"
+      }
+    },
+    {
+      "description": "Resistenza Fisica",
+      "feat": {
+        "id": "endurance"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Sopravvissuto: https://golarion.altervista.org/wiki/Talenti/Sopravvissuto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

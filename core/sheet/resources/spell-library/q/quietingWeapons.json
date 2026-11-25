@@ -1,0 +1,58 @@
+{
+  "id": "quietingWeapons",
+  "name": "Armi Silenziose",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 4,
+    "HUNTER": 3,
+    "CLERIC": 4,
+    "INQUISITOR": 4,
+    "WIZARD": 4,
+    "MAGUS": 4,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "RANGER": 3,
+    "WARPRIEST": 4,
+    "SKALD": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/ogni 2 livelli)",
+  "target": "1 Arma Naturale o Arma Manufatta ogni 3 LI",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Sopprime il rumore delle armi e può impedire alle vittime di dare l'allarme. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Armi_Silenziose",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Armi Silenziose: https://golarion.altervista.org/wiki/Incantesimi/Armi_Silenziose Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 Arma Naturale o Arma Manufatta ogni 3 LI. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

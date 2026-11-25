@@ -1,0 +1,31 @@
+{
+  "id": "sacredGeometry",
+  "name": "Geometria Sacra",
+  "description": "Usa calcoli geometrici per applicare metamagia con minore costo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Geometria_Sacra",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Int 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (ingegneria) 2 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Geometria Sacra: https://golarion.altervista.org/wiki/Talenti/Geometria_Sacra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (ingegneria) 2 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

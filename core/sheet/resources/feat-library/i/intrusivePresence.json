@@ -1,0 +1,27 @@
+{
+  "id": "intrusivePresence",
+  "name": "Presenza Indiscreta",
+  "description": "Consente di leggere i pensieri dell'ospite durante la possessione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Presenza_Indiscreta",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Intelligenza o Carisma 21, Presenza Manipolatrice, Presenza Occultata, capacità di lanciare Possessione o Possessione Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Presenza Indiscreta: https://golarion.altervista.org/wiki/Talenti/Presenza_Indiscreta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intelligenza o Carisma 21, Presenza Manipolatrice, Presenza Occultata, capacità di lanciare Possessione o Possessione Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

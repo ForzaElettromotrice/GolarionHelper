@@ -1,0 +1,309 @@
+{
+  "id": "fighter.archetype.b0b49666177f",
+  "classType": "fighter",
+  "name": "Guerriero Senz'Armi",
+  "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe, Padronanza dell'Arma. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "fighter.feature.d44c6514cc68",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.feature.42853dd168a3",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.feature.0bfec277b39e",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.feature.9bf7907ca8e5",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.proficiencies",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.feature.2f2d05fd0837",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.feature.d85ccd994169",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "fighter.feature.d44c6514cc68",
+    "fighter.feature.42853dd168a3",
+    "fighter.feature.0bfec277b39e",
+    "fighter.feature.9bf7907ca8e5",
+    "fighter.proficiencies",
+    "fighter.feature.2f2d05fd0837"
+  ],
+  "removedAcquisitionIds": [
+    "fighter.bonusFeats.level1"
+  ],
+  "addedFeatures": [
+    {
+      "id": "fighter.archetype.b0b49666177f.instructions",
+      "name": "Guerriero Senz'Armi",
+      "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe, Padronanza dell'Arma. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.b0b49666177f.feature.1",
+      "name": "Competenza nelle Armi e nelle Armature",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Senz'Armi — Competenza nelle Armi e nelle Armature: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.b0b49666177f.feature.2",
+      "name": "Stile Senz'Armi",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Senz'Armi — Stile Senz'Armi: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.b0b49666177f.feature.3",
+      "name": "Addestramento Servero (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.feature.3.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Senz'Armi — Addestramento Servero (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.b0b49666177f.feature.4",
+      "name": "Tosto (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.feature.4.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Senz'Armi — Tosto (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.b0b49666177f.feature.5",
+      "name": "Addestramento nelle Armi (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.feature.5.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Senz'Armi — Addestramento nelle Armi (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.b0b49666177f.feature.6",
+      "name": "Lottatore Ingegnoso (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.feature.6.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Senz'Armi — Lottatore Ingegnoso (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.b0b49666177f.feature.7",
+      "name": "Colpo Ingannevole (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.feature.7.initial",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Senz'Armi — Colpo Ingannevole (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.b0b49666177f.feature.8",
+      "name": "Tirar Giù (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.feature.8.initial",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Senz'Armi — Tirar Giù (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.b0b49666177f.feature.9",
+      "name": "Cavare gli Occhi (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.feature.9.initial",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Senz'Armi — Cavare gli Occhi (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.b0b49666177f.feature.10",
+      "name": "Pugno a Ventosa (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.feature.10.initial",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Senz'Armi — Pugno a Ventosa (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.b0b49666177f.feature.11",
+      "name": "Robustezza Pura (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.feature.11.initial",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Senz'Armi — Robustezza Pura (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.b0b49666177f.feature.12",
+      "name": "Padronanza dell'Arma (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi",
+      "progression": [
+        {
+          "id": "fighter.archetype.b0b49666177f.feature.12.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Senz'Armi — Padronanza dell'Arma (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guerriero_Senz.27Armi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

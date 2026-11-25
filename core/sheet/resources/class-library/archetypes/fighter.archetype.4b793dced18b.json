@@ -1,0 +1,202 @@
+{
+  "id": "fighter.archetype.4b793dced18b",
+  "classType": "fighter",
+  "name": "Guardiano del Sapere",
+  "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guardiano_del_Sapere Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "fighter.feature.d44c6514cc68",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.feature.42853dd168a3",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.feature.9bf7907ca8e5",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.proficiencies",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.classSkills",
+      "type": "alter"
+    },
+    {
+      "featureId": "fighter.feature.d85ccd994169",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "fighter.feature.d44c6514cc68",
+    "fighter.feature.42853dd168a3",
+    "fighter.feature.9bf7907ca8e5",
+    "fighter.proficiencies",
+    "fighter.classSkills"
+  ],
+  "removedAcquisitionIds": [
+    "fighter.bonusFeats.level2"
+  ],
+  "addedFeatures": [
+    {
+      "id": "fighter.archetype.4b793dced18b.instructions",
+      "name": "Guardiano del Sapere",
+      "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guardiano_del_Sapere Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "fighter.archetype.4b793dced18b.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guardiano_del_Sapere Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.4b793dced18b.feature.1",
+      "name": "Scolastico (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guardiano_del_Sapere",
+      "progression": [
+        {
+          "id": "fighter.archetype.4b793dced18b.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guardiano del Sapere — Scolastico (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guardiano_del_Sapere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.4b793dced18b.feature.2",
+      "name": "Abilità Sopra la Forza (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guardiano_del_Sapere",
+      "progression": [
+        {
+          "id": "fighter.archetype.4b793dced18b.feature.2.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guardiano del Sapere — Abilità Sopra la Forza (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guardiano_del_Sapere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.4b793dced18b.feature.3",
+      "name": "Segreto delle Spade (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guardiano_del_Sapere",
+      "progression": [
+        {
+          "id": "fighter.archetype.4b793dced18b.feature.3.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guardiano del Sapere — Segreto delle Spade (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero/Archetipi#Guardiano_del_Sapere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.4b793dced18b.classSkills.1",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Concessione dal privilegio di archetipo.",
+      "progression": [
+        {
+          "id": "fighter.archetype.4b793dced18b.classSkills.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "skill0",
+              "type": "classSkillGrant",
+              "resource": "skill.craft"
+            },
+            {
+              "id": "skill1",
+              "type": "classSkillGrant",
+              "resource": "skill.linguistics"
+            },
+            {
+              "id": "skill2",
+              "type": "classSkillGrant",
+              "resource": "skill.spellcraft"
+            },
+            {
+              "id": "skill3",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.arcana"
+            },
+            {
+              "id": "skill4",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.dungeoneering"
+            },
+            {
+              "id": "skill5",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.engineering"
+            },
+            {
+              "id": "skill6",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.geography"
+            },
+            {
+              "id": "skill7",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.history"
+            },
+            {
+              "id": "skill8",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.local"
+            },
+            {
+              "id": "skill9",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.nature"
+            },
+            {
+              "id": "skill10",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.nobility"
+            },
+            {
+              "id": "skill11",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.planes"
+            },
+            {
+              "id": "skill12",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.religion"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

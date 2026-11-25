@@ -1,0 +1,41 @@
+{
+  "id": "teamUp",
+  "name": "Unirsi",
+  "description": "Rende più rapido aiutare un compagno quando si combatte in gruppo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Unirsi",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Rissa",
+      "feat": {
+        "id": "gangUp"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Unirsi: https://golarion.altervista.org/wiki/Talenti/Unirsi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

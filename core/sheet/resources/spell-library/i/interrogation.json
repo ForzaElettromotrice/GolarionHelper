@@ -1,0 +1,48 @@
+{
+  "id": "interrogation",
+  "name": "Interrogazione",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "PAIN",
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "WIZARD": 1,
+    "MESMERIST": 1,
+    "PSYCHIC": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "Contatto",
+  "target": "Una creatura vivente toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Il dolore magico viene usato per costringere un prigioniero a rispondere. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Interrogazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Interrogazione: https://golarion.altervista.org/wiki/Incantesimi/Interrogazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,592 @@
+{
+  "id": "ratfolk",
+  "name": "Rattoide",
+  "qualities": [
+    {
+      "id": "ratfolk.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide rattoide. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "ratfolk.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "small"
+        }
+      ]
+    },
+    {
+      "id": "ratfolk.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "ratfolk.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "int",
+          "type": "modifier",
+          "resource": "int",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "ratfolk.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aklo",
+            "draconic",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "halfling",
+            "dwarven",
+            "orc",
+            "undercommon"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ratfolk.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "alchemistDiscovery",
+          "type": "favoredClassBonus",
+          "name": "Alchimista — Una nuova Scoperta",
+          "classes": [
+            "alchemist"
+          ],
+          "selectionsPerBenefit": 6,
+          "description": "Una nuova Scoperta. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "Una nuova Scoperta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "summonerEidolonSaves",
+          "type": "favoredClassBonus",
+          "name": "Convocatore — +1 ai TS del proprio eidolon contro veleno",
+          "classes": [
+            "summoner"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 ai TS del proprio eidolon contro veleno. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 ai TS del proprio eidolon contro veleno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "druidWildEmpathy",
+          "type": "favoredClassBonus",
+          "name": "Druido — +1 Empatia Selvatica su animali/bestie magiche sotterranei",
+          "classes": [
+            "druid"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 Empatia Selvatica su animali/bestie magiche sotterranei. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 Empatia Selvatica su animali/bestie magiche sotterranei. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "witchHexRange",
+          "type": "favoredClassBonus",
+          "name": "Fattucchiere — +1,5 m alla portata di una fattura non a contatto",
+          "classes": [
+            "witch"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1,5 m alla portata di una fattura non a contatto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1,5 m alla portata di una fattura non a contatto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkStealthSpeed",
+          "type": "favoredClassBonus",
+          "name": "Monaco — +1,5 m alla velocità senza penalità di Furtività; non permette Furtività durante Corsa/Carica",
+          "classes": [
+            "monk"
+          ],
+          "selectionsPerBenefit": 5,
+          "description": "+1,5 m alla velocità senza penalità di Furtività; non permette Furtività durante Corsa/Carica. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1,5 m alla velocità senza penalità di Furtività; non permette Furtività durante Corsa/Carica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rangerCompanionDefense",
+          "type": "favoredClassBonus",
+          "name": "Ranger — +1 DMC al compagno animale quando adiacente al ranger, conservato dal sostituto",
+          "classes": [
+            "ranger"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 DMC al compagno animale quando adiacente al ranger, conservato dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 DMC al compagno animale quando adiacente al ranger, conservato dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "barbarianSwarmingAttack",
+          "type": "favoredClassBonus",
+          "name": "Barbaro — Sciamare in Ira",
+          "classes": [
+            "barbarian"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 al bonus di fiancheggiamento da Sciamare durante Ira.",
+          "effects": [
+            {
+              "id": "attack",
+              "type": "modifier",
+              "resource": "attack.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "In Ira e fiancheggiamento concesso da Sciamare"
+            }
+          ]
+        },
+        {
+          "id": "fighterDefense",
+          "type": "favoredClassBonus",
+          "name": "Guerriero — Difesa",
+          "classes": [
+            "fighter"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 DMC contro spingere/lotta.",
+          "effects": [
+            {
+              "id": "bullRush",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.bullRush",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "grapple",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.grapple",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        },
+        {
+          "id": "rogueEscape",
+          "type": "favoredClassBonus",
+          "name": "Ladro — Artista della Fuga",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 ad Artista della Fuga.",
+          "effects": [
+            {
+              "id": "escape",
+              "type": "modifier",
+              "resource": "skill.escapeArtist",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        },
+        {
+          "id": "gunslingerInitiative",
+          "type": "favoredClassBonus",
+          "name": "Pistolero — Grinta e iniziativa",
+          "classes": [
+            "gunslinger"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 Iniziativa con almeno1 Grinta.",
+          "effects": [
+            {
+              "id": "initiative",
+              "type": "modifier",
+              "resource": "initiative",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Almeno1 punto Grinta"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "ratfolk.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "ratfolk.swarming",
+      "name": "Sciamare",
+      "description": "Sciamare",
+      "effects": [
+        {
+          "id": "swarm",
+          "type": "reminder",
+          "message": "Due rattoidi possono condividere un quadretto; contro lo stesso nemico contano come fiancheggiatori opposti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "ratfolk.tinker",
+      "name": "Armeggiatore",
+      "description": "Armeggiatore",
+      "effects": [
+        {
+          "id": "perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "useMagicDevice",
+          "type": "modifier",
+          "resource": "skill.useMagicDevice",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "craft",
+          "type": "reminder",
+          "message": "+2 razziale ad Artigianato (alchimia); configurare la specializzazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "ratfolk.rodentEmpathy",
+      "name": "Empatia con i Roditori",
+      "description": "Empatia con i Roditori",
+      "effects": [
+        {
+          "id": "handleAnimal",
+          "type": "modifier",
+          "resource": "skill.handleAnimal",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Influenzare roditori"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "ratfolk.skulk",
+      "name": "Agguatista",
+      "description": "Agguatista",
+      "effects": [
+        {
+          "id": "stealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "hide",
+          "type": "reminder",
+          "message": "Nascondersi da chi è stato distratto con Raggirare: penalità−5 anziché−10. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "ratfolk.tinker"
+      ]
+    },
+    {
+      "id": "ratfolk.scent",
+      "name": "Fiuto",
+      "description": "Fiuto",
+      "effects": [
+        {
+          "id": "perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2",
+          "condition": "Percezione basata principalmente su vista o udito"
+        },
+        {
+          "id": "scent",
+          "type": "reminder",
+          "message": "Capacità Fiuto; individuazione olfattiva manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "ratfolk.tinker"
+      ]
+    },
+    {
+      "id": "ratfolk.corneredFury",
+      "name": "Furia Intrappolata",
+      "description": "Furia Intrappolata",
+      "effects": [
+        {
+          "id": "attack",
+          "type": "modifier",
+          "resource": "attack.melee",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "PF al massimo metà e nessun alleato cosciente entro9 m"
+        },
+        {
+          "id": "armor",
+          "type": "modifier",
+          "resource": "armorClass.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "PF al massimo metà e nessun alleato cosciente entro9 m"
+        }
+      ],
+      "replaces": [
+        "ratfolk.swarming"
+      ]
+    },
+    {
+      "id": "ratfolk.unnatural",
+      "name": "Innaturale",
+      "description": "Innaturale",
+      "effects": [
+        {
+          "id": "charisma",
+          "type": "modifier",
+          "resource": "skillCheck.cha",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "4",
+          "condition": "Influenzare creature animali"
+        },
+        {
+          "id": "armor",
+          "type": "modifier",
+          "resource": "armorClass.reflexive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "dodge",
+          "expression": "2",
+          "condition": "Contro animali"
+        },
+        {
+          "id": "attitude",
+          "type": "reminder",
+          "message": "Atteggiamento iniziale degli animali peggiore di un grado. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "ratfolk.rodentEmpathy"
+      ]
+    }
+  ]
+}

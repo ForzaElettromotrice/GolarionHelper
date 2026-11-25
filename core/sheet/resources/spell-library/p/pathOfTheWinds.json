@@ -1,0 +1,45 @@
+{
+  "id": "pathOfTheWinds",
+  "name": "Percorso dei Venti",
+  "school": "EVOCATION",
+  "descriptors": [
+    "AIR"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "SORCERER": 6,
+    "HUNTER": 6,
+    "DRUID": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "30 m",
+  "effect": "una raffica di vento discendente alta 12 metri in una linea di 30 metri",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione + 1 round",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Apre un percorso attraverso il vento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Percorso_dei_Venti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Percorso dei Venti: https://golarion.altervista.org/wiki/Incantesimi/Percorso_dei_Venti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

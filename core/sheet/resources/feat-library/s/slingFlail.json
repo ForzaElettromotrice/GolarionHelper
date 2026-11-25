@@ -1,0 +1,31 @@
+{
+  "id": "slingFlail",
+  "name": "Fionda Mazzafrusto",
+  "description": "Permette di usare una fionda per colpire in mischia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Fionda_Mazzafrusto",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (fionda) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Fionda Mazzafrusto: https://golarion.altervista.org/wiki/Talenti/Fionda_Mazzafrusto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (fionda) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

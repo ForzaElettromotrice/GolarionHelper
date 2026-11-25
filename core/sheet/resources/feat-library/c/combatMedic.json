@@ -1,0 +1,27 @@
+{
+  "id": "combatMedic",
+  "name": "Medico da Battaglia",
+  "description": "Permette cure affidabili anche sotto minaccia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Medico_da_Battaglia",
+  "types": [
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Guarire 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Medico da Battaglia: https://golarion.altervista.org/wiki/Talenti/Medico_da_Battaglia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Guarire 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

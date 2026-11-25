@@ -1,0 +1,43 @@
+{
+  "id": "paladin.archetype.dd07c6f6b619",
+  "classType": "paladin",
+  "name": "Giuramento di Carità",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_di_Carit.C3.A0 Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.feature.4dc66a491261",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.57f13dada9e2",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "paladin.feature.4dc66a491261",
+    "paladin.feature.57f13dada9e2"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.dd07c6f6b619.instructions",
+      "name": "Giuramento di Carità",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_di_Carit.C3.A0 Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.dd07c6f6b619.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_di_Carit.C3.A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

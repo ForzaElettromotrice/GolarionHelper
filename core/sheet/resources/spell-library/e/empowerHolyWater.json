@@ -1,0 +1,44 @@
+{
+  "id": "empowerHolyWater",
+  "name": "Potenziare Acqua Santa",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "INVESTIGATOR": 2,
+    "BARD": 2,
+    "SKALD": 2,
+    "PALADIN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 o più ampolle di Acqua Santa",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Accresce l'efficacia di un'ampolla di acqua santa contro i non morti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Potenziare_Acqua_Santa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Potenziare Acqua Santa: https://golarion.altervista.org/wiki/Incantesimi/Potenziare_Acqua_Santa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 o più ampolle di Acqua Santa. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

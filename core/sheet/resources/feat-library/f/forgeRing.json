@@ -1,0 +1,27 @@
+{
+  "id": "forgeRing",
+  "name": "Forgiare Anelli",
+  "description": "Consente di forgiare anelli magici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Forgiare_Anelli",
+  "types": [
+    "itemCreation"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Incantatore di 7° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Forgiare Anelli: https://golarion.altervista.org/wiki/Talenti/Forgiare_Anelli. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incantatore di 7° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

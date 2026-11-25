@@ -1,0 +1,58 @@
+{
+  "id": "shoutGreater",
+  "name": "Grido Superiore",
+  "school": "EVOCATION",
+  "descriptors": [
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "BARD": 6,
+    "WIZARD": 8,
+    "PSYCHIC": 8,
+    "SKALD": 6,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un piccolo corno di metallo o avorio",
+  "rangeType": "OTHER",
+  "rangeDescription": "18 m",
+  "area": "esplosione a forma di cono",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale o Riflessi nega (oggetto); vedi testo"
+    },
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Tempra parziale o Riflessi nega (oggetto); vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Una versione amplificata del grido produce danni e stordimento maggiori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Grido_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Grido Superiore: https://golarion.altervista.org/wiki/Incantesimi/Grido_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Aria 8, Metallo 8 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

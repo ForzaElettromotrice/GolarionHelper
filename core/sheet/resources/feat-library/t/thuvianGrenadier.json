@@ -1,0 +1,27 @@
+{
+  "id": "thuvianGrenadier",
+  "name": "Granatiere Thuviano",
+  "description": "Permette di risparmiare un alleato dallo spargimento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Granatiere_Thuviano",
+  "types": [
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Lanciare Oggetti o Tiro Preciso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Granatiere Thuviano: https://golarion.altervista.org/wiki/Talenti/Granatiere_Thuviano. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Lanciare Oggetti o Tiro Preciso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,27 @@
+{
+  "id": "ferociousSummons",
+  "name": "Evocazioni Feroci",
+  "description": "Conferisce Ferocia alle creature richiamate dalle evocazioni appropriate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Evocazioni_Feroci",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Aumentare Evocazione, Incantesimi Focalizzati (evocazione), Orco o Mezzorco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Evocazioni Feroci: https://golarion.altervista.org/wiki/Talenti/Evocazioni_Feroci. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Aumentare Evocazione, Incantesimi Focalizzati (evocazione), Orco o Mezzorco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

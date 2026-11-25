@@ -1,0 +1,43 @@
+{
+  "id": "markOfObviousEthics",
+  "name": "Marchio dell'Etica Ovvia",
+  "school": "DIVINATION",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura toccata",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Rende percepibile agli altri l'allineamento del bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Marchio_dell%27Etica_Ovvia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Marchio dell'Etica Ovvia: https://golarion.altervista.org/wiki/Incantesimi/Marchio_dell%27Etica_Ovvia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "contingentChanneling",
+  "name": "Incanalare Contingente",
+  "description": "Prepara su un alleato una riserva di energia positiva che potrà attivare per curarsi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Incanalare_Contingente",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Vero Guaritore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Incanalare Selettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Incanalare Contingente: https://golarion.altervista.org/wiki/Talenti/Incanalare_Contingente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Vero Guaritore; Prerequisito da verificare manualmente: Incanalare Selettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

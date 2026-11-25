@@ -1,0 +1,29 @@
+{
+  "id": "twoWeaponDefense",
+  "name": "Difendere con Due Armi",
+  "description": "L'uso di due armi offre una protezione difensiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Difendere_con_Due_Armi",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Combattere con Due Armi",
+      "feat": {
+        "id": "twoWeaponFighting"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Difendere con Due Armi: https://golarion.altervista.org/wiki/Talenti/Difendere_con_Due_Armi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

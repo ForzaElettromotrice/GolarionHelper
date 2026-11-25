@@ -1,0 +1,55 @@
+{
+  "id": "mislead",
+  "name": "Fuorviare",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ALCHEMIST": 6,
+    "ARCANIST": 6,
+    "BARD": 5,
+    "INVESTIGATOR": 6,
+    "WIZARD": 6,
+    "MAGUS": 6,
+    "MESMERIST": 5,
+    "OCCULTIST": 5,
+    "PSYCHIC": 6,
+    "SKALD": 5,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "LUCK": 6,
+      "TRICKERY": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli) Bersaglio/Effetto: se stessi/1 duplicato illusorio",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "1 round/livello (I) e Concentrazione + 3 round; vedi testo",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "nessuno o Volontà dubita (se si interagisce); vedi testo"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Combina l'invisibilità con un duplicato illusorio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fuorviare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fuorviare: https://golarion.altervista.org/wiki/Incantesimi/Fuorviare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

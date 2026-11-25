@@ -1,0 +1,27 @@
+{
+  "id": "arcaneTrapSuppressor",
+  "name": "Soppressore di Trappole Arcane",
+  "description": "La dissoluzione magica può interrompere temporaneamente una trappola. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Soppressore_di_Trappole_Arcane",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Capacità di lanciare Dissolvi Magie o Dissolvi Magie Superiore come incantesimo o capacità magica. . Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Soppressore di Trappole Arcane: https://golarion.altervista.org/wiki/Talenti/Soppressore_di_Trappole_Arcane. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Capacità di lanciare Dissolvi Magie o Dissolvi Magie Superiore come incantesimo o capacità magica. . Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

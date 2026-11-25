@@ -1,0 +1,31 @@
+{
+  "id": "shadowGrasp",
+  "name": "Presa d'Ombra",
+  "description": "Le magie oscure ostacolano fisicamente i nemici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Presa_d%27Ombra",
+  "types": [
+    "metamagic"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Incantesimi Ombratili",
+      "feat": {
+        "id": "umbralSpell"
+      }
+    },
+    {
+      "description": "Incantesimi Tenebrosi",
+      "feat": {
+        "id": "tenebrousSpell"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Presa d'Ombra: https://golarion.altervista.org/wiki/Talenti/Presa_d%27Ombra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

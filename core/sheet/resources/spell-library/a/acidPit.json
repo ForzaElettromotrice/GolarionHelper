@@ -1,0 +1,55 @@
+{
+  "id": "acidPit",
+  "name": "Fossa Acida",
+  "school": "CONJURATION",
+  "descriptors": [
+    "ACID"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "WIZARD": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "FOCUS"
+  ],
+  "materialComponentDescription": "goccia di acido",
+  "focusComponentDescription": "una buona pala del valore di 10 mo",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "buco di 3 m per 3 m, profondo 3 m ogni 2 livelli",
+  "durationType": "ROUND",
+  "durationDescription": "1 round + 1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Apre una cavità il cui fondo contiene acido. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fossa_Acida",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fossa Acida: https://golarion.altervista.org/wiki/Incantesimi/Fossa_Acida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Terra 4 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

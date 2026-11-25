@@ -1,0 +1,34 @@
+{
+  "id": "furysFall",
+  "name": "Caduta Furiosa",
+  "description": "Aggiunge il bonus di Destrezza alle prove di Sbilanciare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Caduta_Furiosa",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Sbilanciare Migliorato",
+      "feat": {
+        "id": "improvedTrip"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "dexterity",
+      "type": "modifier",
+      "resource": "combatManeuver.bonus.trip",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "(@dexMod > 0) * @dexMod"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare le interazioni con altre capacità che già sostituiscono la Forza con Destrezza; non duplicare lo stesso modificatore dove le regole lo impediscono. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

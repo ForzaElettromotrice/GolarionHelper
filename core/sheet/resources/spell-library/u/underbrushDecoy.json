@@ -1,0 +1,41 @@
+{
+  "id": "underbrushDecoy",
+  "name": "Esca del Sottobosco",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "DRUID": 1,
+    "RANGER": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 Azione Veloce",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/ogni 2 livelli)",
+  "target": "1 creatura (non Vegetale) di taglia Minuscola, Piccola o Media",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Un rumore nel sottobosco distrae gli osservatori e favorisce il nascondersi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Esca_del_Sottobosco",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Esca del Sottobosco: https://golarion.altervista.org/wiki/Incantesimi/Esca_del_Sottobosco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

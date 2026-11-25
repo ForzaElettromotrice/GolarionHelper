@@ -1,0 +1,45 @@
+{
+  "id": "resonatingWord",
+  "name": "Parola Risonante",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "BARD": 5,
+    "WIZARD": 7,
+    "PSYCHIC": 7,
+    "SKALD": 5,
+    "SORCERER": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura",
+  "durationType": "ROUND",
+  "durationDescription": "3 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Una parola risonante danneggia e debilita progressivamente il bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Parola_Risonante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Parola Risonante: https://golarion.altervista.org/wiki/Incantesimi/Parola_Risonante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

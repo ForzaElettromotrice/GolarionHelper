@@ -1,0 +1,40 @@
+{
+  "id": "playToTheCrowd",
+  "name": "Parlare alla Folla",
+  "description": "Usa la comprensione del pubblico per favorire i tentativi di Diplomazia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Parlare_alla_Folla",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 19",
+      "expression": "@int >= 19"
+    },
+    {
+      "description": "Logica Inviolabile",
+      "feat": {
+        "id": "ironcladLogic"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Diplomazia 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intuizione 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Parlare alla Folla: https://golarion.altervista.org/wiki/Talenti/Parlare_alla_Folla. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Diplomazia 5 gradi; Prerequisito da verificare manualmente: Intuizione 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

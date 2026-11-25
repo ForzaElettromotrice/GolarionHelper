@@ -1,0 +1,50 @@
+{
+  "id": "packEmpathy",
+  "name": "Empatia del Branco",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "HUNTER": 2,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "DRUID": 3,
+    "INQUISITOR": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "MEDIUM": 2,
+    "RANGER": 2,
+    "WARPRIEST": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/ogni 2 livelli)",
+  "target": "sé stessi più una creatura vivente consenziente ogni 3 livelli, nessuna delle quali può trovarsi a più di 9 metri di distanza.",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Crea un collegamento empatico fra gli alleati interessati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Empatia_del_Branco",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Empatia del Branco: https://golarion.altervista.org/wiki/Incantesimi/Empatia_del_Branco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: sé stessi più una creatura vivente consenziente ogni 3 livelli, nessuna delle quali può trovarsi a più di 9 metri di distanza.. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

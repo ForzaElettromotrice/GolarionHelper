@@ -1,0 +1,42 @@
+{
+  "id": "arcaneConcordance",
+  "name": "Concordanza Arcana",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 3,
+    "SKALD": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una verga esaurita",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "area": "emanazione del raggio di 3 metri centrata su di sé",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Facilita l'applicazione di metamagia alle magie arcane lanciate nell'area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Concordanza_Arcana",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Concordanza Arcana: https://golarion.altervista.org/wiki/Incantesimi/Concordanza_Arcana Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

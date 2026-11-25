@@ -1,0 +1,387 @@
+{
+  "id": "wayang",
+  "name": "Wayang",
+  "qualities": [
+    {
+      "id": "wayang.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Umanoide (wayang). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "wayang.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "small"
+        }
+      ]
+    },
+    {
+      "id": "wayang.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "wayang.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "int",
+          "type": "modifier",
+          "resource": "int",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "wayang.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "tien",
+          "type": "languageGrant",
+          "languageId": "tien"
+        },
+        {
+          "id": "wayang",
+          "type": "languageGrant",
+          "languageId": "wayang"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "dtang",
+            "erutaki",
+            "hallit",
+            "honLa",
+            "hwan",
+            "iobarian",
+            "kelish",
+            "minatan",
+            "minkaian",
+            "osiriani",
+            "polyglot",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "tien",
+            "varisian",
+            "varki",
+            "vudrani",
+            "common",
+            "abyssal",
+            "aklo",
+            "draconic",
+            "goblin",
+            "infernal",
+            "nagaji",
+            "samsaran",
+            "tengu"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wayang.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita indicata.",
+      "effects": [
+        {
+          "id": "bardIllusion",
+          "type": "favoredClassBonus",
+          "classes": [
+            "bard"
+          ],
+          "name": "Bardo — Illusione",
+          "description": "Bardo — Illusione — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un'illusione della lista mago, almeno un livello sotto il massimo da bardo; considerala di un livello maggiore salvo che sia già nella lista bardo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "summonerEidolon",
+          "type": "favoredClassBonus",
+          "classes": [
+            "summoner"
+          ],
+          "name": "Convocatore — Eidolon",
+          "description": "Convocatore — Eidolon — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 grado di abilità all'eidolon. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleIllusion",
+          "type": "favoredClassBonus",
+          "classes": [
+            "oracle"
+          ],
+          "name": "Oracolo — Illusione",
+          "description": "Oracolo — Illusione — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un'illusione della lista mago, almeno un livello sotto il massimo da oracolo; considerala di un livello maggiore salvo che sia già nella lista oracolo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererShadowDamage",
+          "type": "favoredClassBonus",
+          "classes": [
+            "sorcerer"
+          ],
+          "name": "Stregone — Ombra",
+          "description": "Stregone — Ombra — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 danno agli incantesimi di illusione, sottoscuola ombra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "wayang.lightAndDark",
+      "name": "Luce e Oscurità",
+      "description": "1/giorno, azione immediata per 1 minuto: considera energia positiva e negativa come un non morto, subendo la prima e guarendo con la seconda.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "1/giorno, azione immediata per 1 minuto: considera energia positiva e negativa come un non morto, subendo la prima e guarendo con la seconda. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "wayang.shadowMagic",
+      "name": "Magia delle Ombre",
+      "description": "+1 CD incantesimi della sottoscuola ombra; con Carisma almeno 11, Passare Senza Tracce, Suono Fantasma, Ventriloquio ciascuno 1/giorno; LI pari al livello, CD 10 + livello incantesimo + Carisma.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "+1 CD incantesimi della sottoscuola ombra; con Carisma almeno 11, Passare Senza Tracce, Suono Fantasma, Ventriloquio ciascuno 1/giorno; LI pari al livello, CD 10 + livello incantesimo + Carisma. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "wayang.shadowResistance",
+      "name": "Resistenza alle Ombre",
+      "description": "Resistenza alle Ombre",
+      "effects": [
+        {
+          "id": "savingThrowall",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Incantesimi della sottoscuola ombra"
+        }
+      ]
+    },
+    {
+      "id": "wayang.lurker",
+      "name": "Appostato",
+      "description": "Appostato",
+      "effects": [
+        {
+          "id": "skillstealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "skillperception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "wayang.dissolutionChild",
+      "name": "Figlio della Dissoluzione",
+      "description": "Figlio della Dissoluzione",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "1/giorno diventa una chiazza d'ombra come Invisibilità per 1 round/livello, massimo 8; rimane corporeo. Capacità soprannaturale, gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "wayang.shadowMagic"
+      ]
+    }
+  ]
+}

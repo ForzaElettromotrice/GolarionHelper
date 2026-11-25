@@ -1,0 +1,43 @@
+{
+  "id": "createFoodAndWater",
+  "name": "Creare Cibo e Acqua",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "CLERIC": 3,
+    "OCCULTIST": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "SHAMAN": 3
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "FAMILY": 3
+    }
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "cibo e acqua per sostenere 3 umani o un cavallo/livello per 24 ore",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore; vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Produce alimenti e acqua sufficienti a nutrire il numero di creature consentito. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Creare_Cibo_e_Acqua",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Creare Cibo e Acqua: https://golarion.altervista.org/wiki/Incantesimi/Creare_Cibo_e_Acqua Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

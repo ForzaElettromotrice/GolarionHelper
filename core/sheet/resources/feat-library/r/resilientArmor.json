@@ -1,0 +1,27 @@
+{
+  "id": "resilientArmor",
+  "name": "Armatura Resiliente",
+  "description": "Conferisce riduzione del danno tramite le capacità appropriate di potenziamento dell'armatura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Armatura_Resiliente",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Armatura Consacrata o Legame Divino (armatura o scudo). Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Armatura Resiliente: https://golarion.altervista.org/wiki/Talenti/Armatura_Resiliente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Armatura Consacrata o Legame Divino (armatura o scudo). Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

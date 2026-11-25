@@ -1,0 +1,25 @@
+{
+  "id": "uncannyConcentration",
+  "name": "Concentrazione Prodigiosa",
+  "description": "Rafforza la concentrazione e permette di ignorare le prove imposte da determinati movimenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Concentrazione_Prodigiosa",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Incantare in Combattimento",
+      "feat": {
+        "id": "combatCasting"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Concentrazione Prodigiosa: https://golarion.altervista.org/wiki/Talenti/Concentrazione_Prodigiosa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

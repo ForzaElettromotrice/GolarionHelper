@@ -1,0 +1,83 @@
+{
+  "id": "unchainedBarbarian.archetype.412abe6526bc",
+  "classType": "unchainedBarbarian",
+  "name": "Distruttore",
+  "description": "Archetipo di Barbaro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Distruttore Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "unchainedBarbarian.feature.e7a78d299884",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedBarbarian.feature.0e6e4c25d2e0",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "unchainedBarbarian.feature.0e6e4c25d2e0",
+    "unchainedBarbarian.feature.e7a78d299884"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "unchainedBarbarian.archetype.412abe6526bc.instructions",
+      "name": "Distruttore",
+      "description": "Archetipo di Barbaro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Distruttore Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.archetype.412abe6526bc.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Barbaro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Distruttore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.archetype.412abe6526bc.feature.1",
+      "name": "Distruttivo (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Distruttore",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.archetype.412abe6526bc.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Distruttore — Distruttivo (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Distruttore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.archetype.412abe6526bc.feature.2",
+      "name": "Spazzino della Battaglia (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Distruttore",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.archetype.412abe6526bc.feature.2.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Distruttore — Spazzino della Battaglia (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Distruttore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

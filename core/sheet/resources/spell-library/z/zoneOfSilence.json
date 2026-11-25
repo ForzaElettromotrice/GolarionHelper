@@ -1,0 +1,35 @@
+{
+  "id": "zoneOfSilence",
+  "name": "Zona di Silenzio",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "BARD": 4,
+    "SKALD": 4
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "area": "emanazione di raggio di 1,5 m centrata su di sé",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Trattiene i suoni nell'area impedendo l'ascolto dall'esterno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Zona_di_Silenzio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Zona di Silenzio: https://golarion.altervista.org/wiki/Incantesimi/Zona_di_Silenzio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

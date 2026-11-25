@@ -1,0 +1,39 @@
+{
+  "id": "greaterMesmerizingFeint",
+  "name": "Finta Mesmerizzante Superiore",
+  "description": "Permette di ingannare in combattimento perfino creature prive di mente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Finta_Mesmerizzante_Superiore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Finta Mesmerizzante",
+      "feat": {
+        "id": "mesmerizingFeint"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Raggirare 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Occhiata Ipnotica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Principio Parapsichico Occhiata Audace Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Finta Mesmerizzante Superiore: https://golarion.altervista.org/wiki/Talenti/Finta_Mesmerizzante_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Raggirare 10 gradi; Prerequisito da verificare manualmente: privilegio di classe Occhiata Ipnotica; Prerequisito da verificare manualmente: Principio Parapsichico Occhiata Audace Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

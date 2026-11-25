@@ -1,0 +1,42 @@
+{
+  "id": "nightmareWeaver",
+  "name": "Tessitore di Incubi",
+  "description": "Il lancio dell'oscurità può anche demoralizzare i nemici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tessitore_di_Incubi",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Pugno da Incubo",
+      "feat": {
+        "id": "nightmareFist"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intimidire 2 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di lanciare Oscurità. Benefìcio: Spendendo un'Azione di Round Completo per lanciare Oscurità Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: si possono effettuare prove di Intimidire per Demoralizzare tutti gli avversari presenti nell'area iniziale dell'incantesimo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tessitore di Incubi: https://golarion.altervista.org/wiki/Talenti/Tessitore_di_Incubi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Intimidire 2 gradi; Prerequisito da verificare manualmente: capacità di lanciare Oscurità. Benefìcio: Spendendo un'Azione di Round Completo per lanciare Oscurità; Prerequisito da verificare manualmente: si possono effettuare prove di Intimidire per Demoralizzare tutti gli avversari presenti nell'area iniziale dell'incantesimo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

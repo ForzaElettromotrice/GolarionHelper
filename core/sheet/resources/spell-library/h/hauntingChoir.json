@@ -1,0 +1,44 @@
+{
+  "id": "hauntingChoir",
+  "name": "Coro Ossessionante",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "PAIN",
+    "MIND_AFFECTING"
+  ],
+  "spellLevelByClass": {
+    "BARD": 3,
+    "MESMERIST": 3,
+    "SKALD": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "area": "emanazione del raggio di 9 m",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione + 2 round",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un coro di presenze spettrali infligge dolore a chi ne percepisce il canto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Coro_Ossessionante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Coro Ossessionante: https://golarion.altervista.org/wiki/Incantesimi/Coro_Ossessionante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

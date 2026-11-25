@@ -1,0 +1,48 @@
+{
+  "id": "denounce",
+  "name": "Denunciare",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 4,
+    "INQUISITOR": 4,
+    "MESMERIST": 4,
+    "PSYCHIC": 5,
+    "SKALD": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "area": "esplosione del raggio di 9 metri",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Scredita una creatura agli occhi degli osservatori influenzandone l'atteggiamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Denunciare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Denunciare: https://golarion.altervista.org/wiki/Incantesimi/Denunciare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Descrittori variabili da determinare al lancio: dipendente dal linguaggio, influenza mentale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

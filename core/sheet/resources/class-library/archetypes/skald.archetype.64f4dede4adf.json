@@ -1,0 +1,114 @@
+{
+  "id": "skald.archetype.64f4dede4adf",
+  "classType": "skald",
+  "name": "Scaldo Totemico",
+  "description": "Archetipo di Scaldo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Scaldo/Archetipi#Scaldo_Totemico Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "skald.feature.818c29e14f0f",
+      "type": "replace"
+    },
+    {
+      "featureId": "skald.feature.cc169e82d808",
+      "type": "replace"
+    },
+    {
+      "featureId": "skald.feature.8cc0b8ce2bc6",
+      "type": "replace"
+    },
+    {
+      "featureId": "skald.feature.b1f72c6aba32",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "skald.feature.818c29e14f0f",
+    "skald.feature.8cc0b8ce2bc6",
+    "skald.feature.cc169e82d808"
+  ],
+  "removedAcquisitionIds": [
+    "skald.feature.b1f72c6aba32.level3"
+  ],
+  "addedFeatures": [
+    {
+      "id": "skald.archetype.64f4dede4adf.instructions",
+      "name": "Scaldo Totemico",
+      "description": "Archetipo di Scaldo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Scaldo/Archetipi#Scaldo_Totemico Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "skald.archetype.64f4dede4adf.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Scaldo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Scaldo/Archetipi#Scaldo_Totemico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "skald.archetype.64f4dede4adf.feature.1",
+      "name": "Totem (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Scaldo/Archetipi#Scaldo_Totemico",
+      "progression": [
+        {
+          "id": "skald.archetype.64f4dede4adf.feature.1.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scaldo Totemico — Totem (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Scaldo/Archetipi#Scaldo_Totemico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "skald.archetype.64f4dede4adf.feature.2",
+      "name": "Empatia Totemica (Mag e Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Scaldo/Archetipi#Scaldo_Totemico",
+      "progression": [
+        {
+          "id": "skald.archetype.64f4dede4adf.feature.2.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scaldo Totemico — Empatia Totemica (Mag e Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Scaldo/Archetipi#Scaldo_Totemico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "skald.archetype.64f4dede4adf.feature.3",
+      "name": "Forma Selvatica (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Scaldo/Archetipi#Scaldo_Totemico",
+      "progression": [
+        {
+          "id": "skald.archetype.64f4dede4adf.feature.3.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scaldo Totemico — Forma Selvatica (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Scaldo/Archetipi#Scaldo_Totemico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

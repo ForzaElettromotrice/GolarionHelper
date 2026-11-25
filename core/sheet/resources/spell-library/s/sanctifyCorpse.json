@@ -1,0 +1,44 @@
+{
+  "id": "sanctifyCorpse",
+  "name": "Santificare Cadavere",
+  "school": "EVOCATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "ORACLE": 1,
+    "PALADIN": 1,
+    "WARPRIEST": 1,
+    "SPIRITUALIST": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di polvere d' argento",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "un cadavere toccato",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Protegge i resti di una creatura contro la trasformazione in non morto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Santificare_Cadavere",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Santificare Cadavere: https://golarion.altervista.org/wiki/Incantesimi/Santificare_Cadavere Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

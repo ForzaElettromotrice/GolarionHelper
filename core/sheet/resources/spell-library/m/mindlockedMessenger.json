@@ -1,0 +1,53 @@
+{
+  "id": "mindlockedMessenger",
+  "name": "Messaggero Vincolato",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 2,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "PSYCHIC": 3,
+    "SKALD": 2,
+    "SHAMAN": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura vivente consenziente",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente o finché non viene scaricato (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Affida un messaggio che può essere comunicato soltanto alla persona stabilita. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Messaggero_Vincolato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Messaggero Vincolato: https://golarion.altervista.org/wiki/Incantesimi/Messaggero_Vincolato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Descrittori variabili da determinare al lancio: dipendente dal linguaggio, influenza mentale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

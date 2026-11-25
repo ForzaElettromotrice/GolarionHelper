@@ -1,0 +1,132 @@
+{
+  "id": "paladin.archetype.0bff0e001cd4",
+  "classType": "paladin",
+  "name": "Servitore Sacro",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Servitore_Sacro Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Legame Divino, Punire il Male. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.feature.57f13dada9e2",
+      "type": "alter"
+    },
+    {
+      "featureId": "paladin.feature.6eed079a70d3",
+      "type": "alter"
+    },
+    {
+      "featureId": "paladin.feature.b85d701a8180",
+      "type": "alter"
+    },
+    {
+      "featureId": "paladin.feature.cb09c0adcbdf",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "paladin.feature.57f13dada9e2",
+    "paladin.feature.b85d701a8180",
+    "paladin.feature.cb09c0adcbdf"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.0bff0e001cd4.instructions",
+      "name": "Servitore Sacro",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Servitore_Sacro Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Legame Divino, Punire il Male. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.0bff0e001cd4.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Servitore_Sacro Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Legame Divino, Punire il Male. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.0bff0e001cd4.feature.3ea75fd1f3",
+      "name": "Punire il Male (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Servitore_Sacro",
+      "progression": [
+        {
+          "id": "paladin.archetype.0bff0e001cd4.feature.3ea75fd1f3.initial",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Servitore Sacro — Punire il Male (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Servitore_Sacro Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.0bff0e001cd4.feature.e54074b867",
+      "name": "Incantesimi",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Servitore_Sacro",
+      "progression": [
+        {
+          "id": "paladin.archetype.0bff0e001cd4.feature.e54074b867.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Servitore Sacro — Incantesimi: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Servitore_Sacro Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.0bff0e001cd4.feature.c8c90e671f",
+      "name": "Legame Divino (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Servitore_Sacro",
+      "progression": [
+        {
+          "id": "paladin.archetype.0bff0e001cd4.feature.c8c90e671f.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Servitore Sacro — Legame Divino (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Servitore_Sacro Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.0bff0e001cd4.feature.f1ae3869ca",
+      "name": "Invocare Alleato Celestiale (Mag)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Servitore_Sacro",
+      "progression": [
+        {
+          "id": "paladin.archetype.0bff0e001cd4.feature.f1ae3869ca.initial",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Servitore Sacro — Invocare Alleato Celestiale (Mag): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Servitore_Sacro Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

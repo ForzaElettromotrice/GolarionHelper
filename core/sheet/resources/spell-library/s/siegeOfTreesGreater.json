@@ -1,0 +1,38 @@
+{
+  "id": "siegeOfTreesGreater",
+  "name": "Assedio di Alberi Superiore",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "DRUID": 9
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 Vegetale Mastodontico, Enorme o Grande ogni tre livelli dell'incantatore",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di trasformare alberi di dimensioni maggiori in potenti catapulte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Assedio_di_Alberi_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Assedio di Alberi Superiore: https://golarion.altervista.org/wiki/Incantesimi/Assedio_di_Alberi_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 Vegetale Mastodontico, Enorme o Grande ogni tre livelli dell'incantatore. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

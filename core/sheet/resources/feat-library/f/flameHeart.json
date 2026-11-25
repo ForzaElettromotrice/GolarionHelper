@@ -1,0 +1,36 @@
+{
+  "id": "flameHeart",
+  "name": "Cuore di Fiamma",
+  "description": "Sviluppa una resistenza innata ai danni da fuoco. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Cuore_di_Fiamma",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Domatore del Fuoco",
+      "feat": {
+        "id": "fireTamer"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: personaggio di 5° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Goblin Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Cuore di Fiamma: https://golarion.altervista.org/wiki/Talenti/Cuore_di_Fiamma. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: personaggio di 5° livello; Prerequisito da verificare manualmente: Goblin Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

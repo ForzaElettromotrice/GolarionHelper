@@ -1,0 +1,44 @@
+{
+  "id": "spearOfPurity",
+  "name": "Lancia di Purezza",
+  "school": "EVOCATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "proiettile di energia benefica a forma di lancia",
+  "durationType": "OTHER",
+  "durationDescription": "istantanea (1 round)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un proiettile sacro ferisce e può accecare gli esseri malvagi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lancia_di_Purezza",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Lancia di Purezza: https://golarion.altervista.org/wiki/Incantesimi/Lancia_di_Purezza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

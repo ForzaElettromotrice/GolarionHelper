@@ -1,0 +1,33 @@
+{
+  "id": "splitMajorHex",
+  "name": "Dividere Fatture Maggiori",
+  "description": "Permette di distribuire una fattura maggiore idonea fra due bersagli. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Dividere_Fatture_Maggiori",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Dividere Fatture",
+      "feat": {
+        "id": "splitHex"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: incantatore di 18° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Dividere Fatture Maggiori: https://golarion.altervista.org/wiki/Talenti/Dividere_Fatture_Maggiori. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: incantatore di 18° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

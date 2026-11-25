@@ -1,0 +1,57 @@
+{
+  "id": "hiddenSpeech",
+  "name": "Frasi Nascoste",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 2,
+    "WITCH": 2,
+    "INQUISITOR": 3,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un messaggio cifrato scritto su un pezzo di pergamena",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "se stessi più 1 creatura/livello, due delle quali non possono trovarsi a più di 9 m l’una dall’altra",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Agevola enormemente l'invio di messaggi nascosti nelle parole. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Frasi_Nascoste",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Frasi Nascoste: https://golarion.altervista.org/wiki/Incantesimi/Frasi_Nascoste Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi più 1 creatura/livello, due delle quali non possono trovarsi a più di 9 m l’una dall’altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Descrittori variabili da determinare al lancio: dipendente dal linguaggio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "summonGenieGreater",
+  "name": "Evoca Geni Superiore",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "SORCERER": 6,
+    "CLERIC": 6,
+    "ORACLE": 6,
+    "WARPRIEST": 6,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 5,
+    "WITCH": 6
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "una lampada ad olio del valore di almeno 50 mo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "1 genio evocato",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di richiamare uno shaitan o gruppi di geni minori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Geni_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Geni Superiore: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Geni_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

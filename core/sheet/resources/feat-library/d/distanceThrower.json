@@ -1,0 +1,23 @@
+{
+  "id": "distanceThrower",
+  "name": "Tiro a Distanza",
+  "description": "Attenua le penalità di distanza delle armi da lancio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tiro_a_Distanza",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 13",
+      "expression": "@str >= 13"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tiro a Distanza: https://golarion.altervista.org/wiki/Talenti/Tiro_a_Distanza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

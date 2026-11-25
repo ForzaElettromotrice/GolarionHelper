@@ -1,0 +1,23 @@
+{
+  "id": "plagueResistance",
+  "name": "Resistenza alla Piaga",
+  "description": "Mitiga i danni e i risucchi alle caratteristiche prodotti dalle malattie attraverso il tiro aggiuntivo previsto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Resistenza_alla_Piaga",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Costituzione 13",
+      "expression": "@con >= 13"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Resistenza alla Piaga: https://golarion.altervista.org/wiki/Talenti/Resistenza_alla_Piaga. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

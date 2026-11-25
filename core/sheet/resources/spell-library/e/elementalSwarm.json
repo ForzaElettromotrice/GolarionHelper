@@ -1,0 +1,49 @@
+{
+  "id": "elementalSwarm",
+  "name": "Sciame Elementale",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "DRUID": 9,
+    "WITCH": 9,
+    "SHAMAN": 9
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "WATER": 9,
+      "AIR": 9,
+      "FIRE": 9,
+      "EARTH": 9
+    }
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "2 o più creature convocate, due delle quali non possono trovarsi a più di 9 m l’una dall’altra",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama più gruppi di elementali al servizio dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sciame_Elementale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sciame Elementale: https://golarion.altervista.org/wiki/Incantesimi/Sciame_Elementale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Descrittore non presente nel vocabolario del modello: vedi testo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

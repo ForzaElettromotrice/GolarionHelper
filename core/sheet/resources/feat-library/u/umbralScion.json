@@ -1,0 +1,56 @@
+{
+  "id": "umbralScion",
+  "name": "Discendenza Oscura",
+  "description": "Conferisce una capacità magica aggiuntiva legata all'eredità oscura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Discendenza_Oscura",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Saggezza 13",
+      "expression": "@wis >= 13"
+    },
+    {
+      "description": "Nobiltà Drow",
+      "feat": {
+        "id": "drowNobility"
+      }
+    },
+    {
+      "description": "Nobiltà Drow Superiore",
+      "feat": {
+        "id": "greaterDrowNobility"
+      }
+    },
+    {
+      "description": "Nobiltà Drow Migliorata",
+      "feat": {
+        "id": "improvedDrowNobility"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: essere in grado di usare le capacità magiche drow Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Drow Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Discendenza Oscura: https://golarion.altervista.org/wiki/Talenti/Discendenza_Oscura. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: essere in grado di usare le capacità magiche drow; Prerequisito da verificare manualmente: Drow Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

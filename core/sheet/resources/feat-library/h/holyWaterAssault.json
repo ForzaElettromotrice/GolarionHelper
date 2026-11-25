@@ -1,0 +1,31 @@
+{
+  "id": "holyWaterAssault",
+  "name": "Assalto con l'Acqua Santa",
+  "description": "Estende gli impieghi offensivi dell'acqua santa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Assalto_con_l%27Acqua_Santa",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +1",
+      "expression": "@bab >= 1"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (religioni) 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Assalto con l'Acqua Santa: https://golarion.altervista.org/wiki/Talenti/Assalto_con_l%27Acqua_Santa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (religioni) 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

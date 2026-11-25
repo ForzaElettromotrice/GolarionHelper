@@ -1,0 +1,31 @@
+{
+  "id": "martialDominance",
+  "name": "Dominanza Marziale",
+  "description": "Usa l'esperienza marziale per intimidire e sfrutta i critici per demoralizzare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Dominanza_Marziale",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +5",
+      "expression": "@bab >= 5"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intimidire 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Dominanza Marziale: https://golarion.altervista.org/wiki/Talenti/Dominanza_Marziale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intimidire 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

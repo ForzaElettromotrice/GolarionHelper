@@ -1,0 +1,293 @@
+{
+  "id": "kasatha",
+  "name": "Kasatha",
+  "qualities": [
+    {
+      "id": "kasatha.type",
+      "name": "Tipo",
+      "description": "Umanoide (kasatha).",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide (kasatha). Le interazioni basate sul tipo richiedono verifica manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "kasatha.size",
+      "name": "Taglia",
+      "description": "Media.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "kasatha.baseSpeed",
+      "name": "Velocità",
+      "description": "9 m sul terreno.",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "kasatha.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Modificatori razziali.",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "kasatha.languages",
+      "name": "Linguaggi",
+      "description": "Lingue concesse e apprendimento.",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "kasatha",
+          "type": "languageGrant",
+          "languageId": "kasatha"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "draconic",
+            "gnoll",
+            "dwarven",
+            "orc",
+            "sphinx"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "pathfinderSignLanguage",
+            "polyglot",
+            "reptoid",
+            "rougarou",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varisianSignLanguage",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "yaddithian"
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "kasatha.defensiveTraining",
+      "name": "Addestramento Difensivo",
+      "description": "Addestramento Difensivo",
+      "effects": [
+        {
+          "id": "dodge",
+          "type": "modifier",
+          "resource": "armorClass.reflexive",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "dodge",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "kasatha.desertRunner",
+      "name": "Corridore del Deserto",
+      "description": "Corridore del Deserto",
+      "effects": [
+        {
+          "id": "constitution",
+          "type": "modifier",
+          "resource": "abilityCheck.con",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Resistere a fatica, esaurimento, corsa, marcia forzata, fame, sete o clima caldo/freddo"
+        },
+        {
+          "id": "fortitude",
+          "type": "modifier",
+          "resource": "savingThrow.fortitude",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Resistere a fatica, esaurimento, corsa, marcia forzata, fame, sete o clima caldo/freddo"
+        }
+      ]
+    },
+    {
+      "id": "kasatha.desertStride",
+      "name": "Andatura nel Deserto",
+      "description": "Andatura nel Deserto",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Ignora il terreno difficile non magico negli ambienti desertici. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "kasatha.multiArmed",
+      "name": "Molte Braccia",
+      "description": "Molte Braccia",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Quattro braccia: una mano primaria e tre secondarie. Occupazione, equipaggiamento e combinazioni di attacchi vanno configurati manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "kasatha.stalker",
+      "name": "Predatore",
+      "description": "Predatore",
+      "effects": [
+        {
+          "id": "skill_stealth",
+          "type": "classSkillGrant",
+          "resource": "skill.stealth"
+        },
+        {
+          "id": "skill_perception",
+          "type": "classSkillGrant",
+          "resource": "skill.perception"
+        }
+      ]
+    },
+    {
+      "id": "kasatha.jumper",
+      "name": "Saltatore",
+      "description": "Saltatore",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Per saltare è sempre considerato dotato di rincorsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": []
+}

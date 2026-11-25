@@ -1,0 +1,50 @@
+{
+  "id": "serrenSArmorLock",
+  "name": "Serra Armatura di Serren",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "WITCH": 3,
+    "MAGUS": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di ruggine",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 metri/livello)",
+  "target": "1 creatura con armatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "PARTIAL",
+      "description": "Riflessi parziale (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Irrigidisce le articolazioni di un'armatura per ostacolare chi la indossa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Serra_Armatura_di_Serren",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Serra Armatura di Serren: https://golarion.altervista.org/wiki/Incantesimi/Serra_Armatura_di_Serren Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Assassino della Mantide Rossa 3 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

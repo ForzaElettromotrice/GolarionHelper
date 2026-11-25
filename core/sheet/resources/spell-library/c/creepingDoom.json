@@ -1,0 +1,43 @@
+{
+  "id": "creepingDoom",
+  "name": "Piaga Strisciante",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 6,
+    "DRUID": 7,
+    "SHAMAN": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)/30 m; vedi testo",
+  "effect": "4 sciami di insetti",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale; vedi testo;"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Raduna sciami di centopiedi controllabili. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Piaga_Strisciante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Piaga Strisciante: https://golarion.altervista.org/wiki/Incantesimi/Piaga_Strisciante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

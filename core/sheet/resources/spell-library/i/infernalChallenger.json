@@ -1,0 +1,45 @@
+{
+  "id": "infernalChallenger",
+  "name": "Sfidante Infernale",
+  "school": "CONJURATION",
+  "descriptors": [
+    "LAWFUL"
+  ],
+  "subschool": "CALLING",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "un medaglione o badge di ferro",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/2 livelli)",
+  "effect": "1 Diavolo Barbuto richiamato e banco di prova, vedi testo",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Evoca un avversario infernale per la prova prevista dall'incantesimo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sfidante_Infernale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sfidante Infernale: https://golarion.altervista.org/wiki/Incantesimi/Sfidante_Infernale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

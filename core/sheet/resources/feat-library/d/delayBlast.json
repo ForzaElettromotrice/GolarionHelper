@@ -1,0 +1,31 @@
+{
+  "id": "delayBlast",
+  "name": "Ondata Ritardata",
+  "description": "Permette di rimandare la manifestazione di un'ondata cinetica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ondata_Ritardata",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +3",
+      "expression": "@bab >= 3"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Ondata Cinetica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ondata Ritardata: https://golarion.altervista.org/wiki/Talenti/Ondata_Ritardata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di classe Ondata Cinetica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

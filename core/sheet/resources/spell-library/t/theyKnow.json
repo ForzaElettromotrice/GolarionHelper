@@ -1,0 +1,53 @@
+{
+  "id": "theyKnow",
+  "name": "Loro Sanno!",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "FEAR"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 3,
+    "WITCH": 4,
+    "INQUISITOR": 3,
+    "MESMERIST": 3,
+    "PALADIN": 3,
+    "PSYCHIC": 4,
+    "SKALD": 3,
+    "SHAMAN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una goccia di inchiostro nero",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura intelligente",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Insinua la convinzione che qualcuno conosca un segreto inconfessabile. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Loro_Sanno!",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Loro Sanno!: https://golarion.altervista.org/wiki/Incantesimi/Loro_Sanno! Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

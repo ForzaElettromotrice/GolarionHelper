@@ -1,0 +1,50 @@
+{
+  "id": "planarAdaptation",
+  "name": "Adattamento Planare",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 5,
+    "ARCANIST": 5,
+    "CLERIC": 4,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 5,
+    "INVESTIGATOR": 5,
+    "WIZARD": 5,
+    "MEDIUM": 4,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Protegge dai pericoli ambientali di uno specifico piano di esistenza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Adattamento_Planare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Adattamento Planare: https://golarion.altervista.org/wiki/Incantesimi/Adattamento_Planare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 5, Aria 5, Fuoco 5, Terra 5 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "hauntedGnome",
+  "name": "Gnomo Stregato",
+  "description": "Conferisce un aspetto fatato inquietante. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Gnomo_Stregato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: tratto razziale Magia Gnomesca Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (arcane) 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Gnomo Stregato: https://golarion.altervista.org/wiki/Talenti/Gnomo_Stregato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: tratto razziale Magia Gnomesca; Prerequisito da verificare manualmente: Conoscenze (arcane) 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

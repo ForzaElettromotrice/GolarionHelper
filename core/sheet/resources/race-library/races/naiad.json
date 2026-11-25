@@ -1,0 +1,348 @@
+{
+  "id": "naiad",
+  "name": "Naiade",
+  "qualities": [
+    {
+      "id": "naiad.type",
+      "name": "Tipo",
+      "description": "Folletto (acqua).",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Folletto (acqua). Le interazioni basate sul tipo richiedono verifica manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "naiad.size",
+      "name": "Taglia",
+      "description": "Media.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "naiad.baseSpeed",
+      "name": "Velocità",
+      "description": "9 m sul terreno.",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "naiad.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Modificatori razziali.",
+      "effects": [
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Tratto razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "naiad.languages",
+      "name": "Linguaggi",
+      "description": "Lingue concesse e apprendimento.",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "sylvan",
+          "type": "languageGrant",
+          "languageId": "sylvan"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aklo",
+            "aquan",
+            "dwarven",
+            "elven",
+            "giant",
+            "gnome",
+            "goblin",
+            "halfling",
+            "sylvan",
+            "dtang",
+            "erutaki",
+            "hallit",
+            "honLa",
+            "hwan",
+            "iobarian",
+            "kelish",
+            "minatan",
+            "minkaian",
+            "osiriani",
+            "polyglot",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "tien",
+            "varisian",
+            "varki",
+            "vudrani"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "pathfinderSignLanguage",
+            "polyglot",
+            "reptoid",
+            "rougarou",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varisianSignLanguage",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "yaddithian"
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "naiad.swim",
+      "name": "Movimento: nuoto",
+      "description": "Movimento: nuoto",
+      "effects": [
+        {
+          "id": "swim",
+          "type": "movementGrant",
+          "movementType": "swim",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": false
+        }
+      ]
+    },
+    {
+      "id": "naiad.swimmer",
+      "name": "Nuotatrice",
+      "description": "Nuotatrice",
+      "effects": [
+        {
+          "id": "swim",
+          "type": "modifier",
+          "resource": "skill.swim",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "8"
+        },
+        {
+          "id": "swimming",
+          "type": "reminder",
+          "message": "Applicare manualmente prendere 10 e le altre facoltà del movimento di nuotare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "naiad.feyNature",
+      "name": "Natura del Folletto",
+      "description": "Natura del Folletto",
+      "effects": [
+        {
+          "id": "handleAnimal",
+          "type": "modifier",
+          "resource": "skill.handleAnimal",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "nature",
+          "type": "modifier",
+          "resource": "skill.knowledge.nature",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "naiad.waterBond",
+      "name": "Legame con l'Acqua",
+      "description": "Legame con l'Acqua",
+      "effects": [
+        {
+          "id": "armor",
+          "type": "modifier",
+          "resource": "armorClass.all",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "insight",
+          "expression": "1",
+          "condition": "Entro 300 m dallo specchio d'acqua dolce legato"
+        },
+        {
+          "id": "saves",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Tratto razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Entro 300 m dallo specchio d'acqua dolce legato"
+        },
+        {
+          "id": "bond",
+          "type": "reminder",
+          "message": "Legame nuovo 1/giorno: round completo che provoca attacchi di opportunità. Selezione dello specchio d'acqua e distanza restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "naiad.inspiration",
+      "name": "Ispirazione",
+      "description": "Ispirazione",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Un unico destinatario intelligente che conserva il dono e il favore ottiene +1 cognitivo a Volontà, Artigianato e Intrattenere. Collegamento come Status, revocabile con azione gratuita; applicare sulla scheda del destinatario. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "naiad.senses",
+      "name": "Sensi",
+      "description": "Sensi",
+      "effects": [
+        {
+          "id": "rule",
+          "type": "reminder",
+          "message": "Visione crepuscolare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": []
+}

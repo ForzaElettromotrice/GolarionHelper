@@ -1,0 +1,58 @@
+{
+  "id": "mindBlankCommunal",
+  "name": "Vuoto Mentale Collettivo",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WITCH": 9,
+    "WIZARD": 9,
+    "PSYCHIC": 8,
+    "SORCERER": 9
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "creature toccate",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Protegge dalla divinazione e rafforza la resistenza all'influenza mentale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vuoto_Mentale_Collettivo",
+  "effects": [
+    {
+      "id": "mentalSaves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "resistance",
+      "expression": "8",
+      "condition": "Contro incantesimi ed effetti di influenza mentale"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Gestire l'occultamento dalle divinazioni e i relativi effetti di desiderio o miracolo. Non conferisce immunità generale all'influenza mentale. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo.  Suddividere la durata in intervalli di un'ora fra le creature toccate. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: creature toccate. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

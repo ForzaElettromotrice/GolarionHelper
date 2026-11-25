@@ -1,0 +1,55 @@
+{
+  "id": "createUndead",
+  "name": "Creare Non Morti",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "CLERIC": 6,
+    "WIZARD": 6,
+    "ORACLE": 6,
+    "WARPRIEST": 6,
+    "SHAMAN": 6,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "EVIL": 6,
+      "DEATH": 6
+    }
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "1 ora",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un vaso di argilla riempito con la terra di una tomba e un’onice che valga almeno 50 mo per DV del non morto che deve essere creato",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 cadavere",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasforma un cadavere in una delle forme non morte consentite, senza implicarne automaticamente il controllo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Creare_Non_Morti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Creare Non Morti: https://golarion.altervista.org/wiki/Incantesimi/Creare_Non_Morti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Costo materiale variabile o alternativo: determinarlo dalla descrizione dei componenti, non da un importo fisso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

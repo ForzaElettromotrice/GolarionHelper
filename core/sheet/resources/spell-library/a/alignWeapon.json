@@ -1,0 +1,61 @@
+{
+  "id": "alignWeapon",
+  "name": "Allineare Arma",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "INQUISITOR": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "GOOD": 2,
+      "CHAOS": 2,
+      "LAW": 2,
+      "EVIL": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 arma toccata o 50 proiettili (che devono essere in contatto tra loro al momento del lancio dell’incantesimo)",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Assegna temporaneamente a un'arma un allineamento per superare le difese appropriate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Allineare_Arma",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Allineare Arma: https://golarion.altervista.org/wiki/Incantesimi/Allineare_Arma Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 arma toccata o 50 proiettili (che devono essere in contatto tra loro al momento del lancio dell’incantesimo). Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Descrittore non presente nel vocabolario del modello: vedi testo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

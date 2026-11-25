@@ -1,0 +1,30 @@
+{
+  "id": "horseMaster",
+  "name": "Maestro delle Cavalcature",
+  "description": "Determina i progressi della cavalcatura attraverso il livello complessivo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestro_delle_Cavalcature",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Addestratore Esperto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Cavalcare 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestro delle Cavalcature: https://golarion.altervista.org/wiki/Talenti/Maestro_delle_Cavalcature. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Addestratore Esperto; Prerequisito da verificare manualmente: Cavalcare 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

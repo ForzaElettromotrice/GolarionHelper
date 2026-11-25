@@ -1,0 +1,43 @@
+{
+  "id": "dirgeOfTheVictoriousKnights",
+  "name": "Canto dei Cavalieri Vittoriosi",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "BARD": 6,
+    "SKALD": 6
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round completo",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "la medaglia di un Cavaliere Infernale morto o una copia scritta di un'opera del Cheliax, entrambi del valore di almeno 100 mo",
+  "rangeType": "OTHER",
+  "rangeDescription": "36 metri",
+  "effect": "linea di 36 metri, larga 3 metri",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Evoca una carica illusoria di cavalieri infernali che travolge le vittime. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Canto_dei_Cavalieri_Vittoriosi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Canto dei Cavalieri Vittoriosi: https://golarion.altervista.org/wiki/Incantesimi/Canto_dei_Cavalieri_Vittoriosi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

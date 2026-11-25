@@ -1,0 +1,58 @@
+{
+  "id": "burningGaze",
+  "name": "Sguardo Bruciante",
+  "school": "EVOCATION",
+  "descriptors": [
+    "FIRE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "HUNTER": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "BLOODRAGER": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "SHAMAN": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "l'occhio di una salamandra comune",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Lo sguardo dell'incantatore può incendiare un bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sguardo_Bruciante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sguardo Bruciante: https://golarion.altervista.org/wiki/Incantesimi/Sguardo_Bruciante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Fuoco 2 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

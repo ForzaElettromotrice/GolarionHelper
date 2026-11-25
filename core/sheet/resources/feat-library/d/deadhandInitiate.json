@@ -1,0 +1,46 @@
+{
+  "id": "deadhandInitiate",
+  "name": "Iniziato del Pugno Mortale",
+  "description": "Trae beneficio dal terrore suscitato negli avversari. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Iniziato_del_Pugno_Mortale",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Saggezza 19",
+      "expression": "@wis >= 19"
+    },
+    {
+      "description": "Stile del Pugno Mortale",
+      "feat": {
+        "id": "deadhandStyle"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (religioni) 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe riserva ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: allineamento non buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Iniziato del Pugno Mortale: https://golarion.altervista.org/wiki/Talenti/Iniziato_del_Pugno_Mortale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Conoscenze (religioni) 6 gradi; Prerequisito da verificare manualmente: privilegio di classe riserva ki; Prerequisito da verificare manualmente: allineamento non buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

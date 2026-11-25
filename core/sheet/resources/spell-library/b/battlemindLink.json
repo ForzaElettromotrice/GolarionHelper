@@ -1,0 +1,57 @@
+{
+  "id": "battlemindLink",
+  "name": "Legame di Battaglia",
+  "school": "DIVINATION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "INQUISITOR": 4,
+    "WIZARD": 6,
+    "MEDIUM": 4,
+    "MESMERIST": 4,
+    "PSYCHIC": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale e vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "se stessi e 1 alleato",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Collega due menti combattenti migliorandone coordinazione e difese. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Legame_di_Battaglia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Legame di Battaglia: https://golarion.altervista.org/wiki/Incantesimi/Legame_di_Battaglia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Legno 6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi e 1 alleato. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

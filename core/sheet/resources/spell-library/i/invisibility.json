@@ -1,0 +1,74 @@
+{
+  "id": "invisibility",
+  "name": "Invisibilità",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ADEPT": 2,
+    "ALCHEMIST": 2,
+    "ANTIPALADIN": 2,
+    "ARCANIST": 2,
+    "BARD": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "INQUISITOR": 2,
+    "INVESTIGATOR": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "TRICKERY": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un ciglio avvolto in una pallina di gomma arabica",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale o contatto",
+  "target": "se stessi oppure 1 creatura o 1 oggetto che pesi fino a 50 kg/livello",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo) o Volontà nega (innocuo, oggetto)"
+    },
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo) o Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo) o sì (innocuo, oggetto)",
+  "description": "Nasconde il soggetto alla vista finché non compie un attacco. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Invisibilit%C3%A0",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Invisibilità: https://golarion.altervista.org/wiki/Incantesimi/Invisibilit%C3%A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi oppure 1 creatura o 1 oggetto che pesi fino a 50 kg/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

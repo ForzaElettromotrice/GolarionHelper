@@ -1,0 +1,27 @@
+{
+  "id": "channeledRevival",
+  "name": "Incanalare Forza Vitale",
+  "description": "Converte un'incanalata in un intervento capace di rianimare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Incanalare_Forza_Vitale",
+  "types": [
+    "channeling"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Incanalare Energia 6d6 (energia positiva) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Incanalare Forza Vitale: https://golarion.altervista.org/wiki/Talenti/Incanalare_Forza_Vitale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incanalare Energia 6d6 (energia positiva) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

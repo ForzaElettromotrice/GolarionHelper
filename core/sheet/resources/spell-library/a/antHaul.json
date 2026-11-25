@@ -1,0 +1,61 @@
+{
+  "id": "antHaul",
+  "name": "Carico della Formica",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "DRUID": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "MEDIUM": 1,
+    "OCCULTIST": 1,
+    "PSYCHIC": 1,
+    "RANGER": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una piccola carrucola",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "HOUR",
+  "durationDescription": "2 ore/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Triplica il peso trasportabile senza aumentare la Forza né eliminare le penalità dell'armatura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Carico_della_Formica",
+  "effects": [
+    {
+      "id": "carrying",
+      "type": "carryingCapacityMultiplier",
+      "stackingGroup": "antHaul",
+      "numerator": 3,
+      "denominator": 1
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Le normali limitazioni dell'armatura restano valide. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,50 @@
+{
+  "id": "agonize",
+  "name": "Agonizzare",
+  "school": "EVOCATION",
+  "descriptors": [
+    "PAIN",
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "CLERIC": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 4,
+    "WIZARD": 4,
+    "ORACLE": 3,
+    "PSYCHIC": 4,
+    "WARPRIEST": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "un esterno o elementale evocato (vedere testo)",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Usa il dolore per ottenere obbedienza da una creatura extraplanare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Agonizzare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Agonizzare: https://golarion.altervista.org/wiki/Incantesimi/Agonizzare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

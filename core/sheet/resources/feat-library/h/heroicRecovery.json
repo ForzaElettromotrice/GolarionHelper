@@ -1,0 +1,39 @@
+{
+  "id": "heroicRecovery",
+  "name": "Recupero Eroico",
+  "description": "Offre una possibilità giornaliera di resistere nuovamente a una condizione legata alla Tempra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Recupero_Eroico",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Duro a Morire",
+      "feat": {
+        "id": "diehard"
+      }
+    },
+    {
+      "description": "Resistenza Fisica",
+      "feat": {
+        "id": "endurance"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Tiro Salvezza Base su Tempra +4 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Recupero Eroico: https://golarion.altervista.org/wiki/Talenti/Recupero_Eroico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Tiro Salvezza Base su Tempra +4 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

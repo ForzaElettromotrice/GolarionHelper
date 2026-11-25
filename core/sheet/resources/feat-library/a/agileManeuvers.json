@@ -1,0 +1,19 @@
+{
+  "id": "agileManeuvers",
+  "name": "Manovre Agili",
+  "description": "Calcola il bonus di manovra utilizzando Destrezza al posto di Forza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Manovre_Agili",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "dexterity",
+      "type": "combatManeuverAbilityReplacement",
+      "resource": "combatManeuver.bonus.all",
+      "ability": "dex"
+    }
+  ],
+  "choices": []
+}

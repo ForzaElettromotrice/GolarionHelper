@@ -1,0 +1,27 @@
+{
+  "id": "arisen",
+  "name": "Risorto",
+  "description": "Una nuova vita concede resistenza e una meta religiosa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Risorto",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Bisogna essere stati uccisi e riportati in vita o avere il background Lasciato a Morire o Nascita Maledetta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Risorto: https://golarion.altervista.org/wiki/Talenti/Risorto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Bisogna essere stati uccisi e riportati in vita o avere il background Lasciato a Morire o Nascita Maledetta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,51 @@
+{
+  "id": "catatonia",
+  "name": "Catatonia",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ARCANIST": 3,
+    "BARD": 2,
+    "CLERIC": 3,
+    "WITCH": 3,
+    "INVESTIGATOR": 2,
+    "WIZARD": 3,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "ORACLE": 3,
+    "PSYCHIC": 3,
+    "WARPRIEST": 3,
+    "SKALD": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura consenziente toccata",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Pone un soggetto consenziente in uno stato che lo fa apparire morto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Catatonia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Catatonia: https://golarion.altervista.org/wiki/Incantesimi/Catatonia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno; vedi testo; Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

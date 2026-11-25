@@ -76,19 +76,19 @@ int main()
     wrongClass.id = "wrongClass";
     wrongClass.classType = CharacterClassType::Wizard;
     const ClassDefinitionManager catalog({fighter, test::classDefinition(CharacterClassType::Wizard)}, {partial, replacement, conflict, failing, wrongClass});
-    const auto archetypeViews = catalog.archetypesView(CharacterClassType::Fighter);
+    const auto archetypeViews = catalog.listArchetypes(CharacterClassType::Fighter);
     assert(archetypeViews.size() == 4);
     for (const auto &view : archetypeViews)
     {
         const auto &definition = catalog.getArchetype(view.id);
         assert(definition.classType == CharacterClassType::Fighter);
-        assert(view.name == definition.name && view.description == definition.description);
+        assert(view.name == definition.name);
     }
-    auto detached = catalog.archetypesView(CharacterClassType::Wizard);
+    auto detached = catalog.listArchetypes(CharacterClassType::Wizard);
     assert(detached.size() == 1);
     detached.front().name = "Changed snapshot";
-    assert(catalog.archetypesView(CharacterClassType::Wizard).front().name != detached.front().name);
-    rejects([&] { catalog.archetypesView(CharacterClassType::Adept); });
+    assert(catalog.listArchetypes(CharacterClassType::Wizard).front().name != detached.front().name);
+    rejects([&] { catalog.listArchetypes(CharacterClassType::Adept); });
     CharacterSheet sheet(catalog);
     rejects([&] { sheet.addClassArchetype(CharacterClassType::Fighter, "partial"); });
     test::advanceSheetFixture(sheet, CharacterClassType::Fighter);

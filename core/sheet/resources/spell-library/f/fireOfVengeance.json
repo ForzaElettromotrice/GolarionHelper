@@ -1,0 +1,35 @@
+{
+  "id": "fireOfVengeance",
+  "name": "Fuoco della Vendetta",
+  "school": "EVOCATION",
+  "descriptors": [
+    "FIRE"
+  ],
+  "spellLevelByClass": {
+    "PALADIN": 4
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 azione veloce",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "speciale; vedi testo",
+  "target": "1 creatura",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Infligge danni da vendetta ai bersagli della punizione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fuoco_della_Vendetta",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fuoco della Vendetta: https://golarion.altervista.org/wiki/Incantesimi/Fuoco_della_Vendetta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "icyPrison",
+  "name": "Prigione di Ghiaccio",
+  "school": "EVOCATION",
+  "descriptors": [
+    "COLD"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "PARTIAL",
+      "description": "Riflessi parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Intrappola il soggetto nel ghiaccio, che continua a danneggiarlo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Prigione_di_Ghiaccio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Prigione di Ghiaccio: https://golarion.altervista.org/wiki/Incantesimi/Prigione_di_Ghiaccio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

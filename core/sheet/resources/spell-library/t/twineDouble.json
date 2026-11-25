@@ -1,0 +1,43 @@
+{
+  "id": "twineDouble",
+  "name": "Doppio di Stoffa",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "stoffa e vimini",
+  "rangeType": "OTHER",
+  "rangeDescription": "0 m",
+  "area": "duplicato di una creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Crea un duplicato del lanciatore composto da stoffa e vimini. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Doppio_di_Stoffa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Doppio di Stoffa: https://golarion.altervista.org/wiki/Incantesimi/Doppio_di_Stoffa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Assassino della Mantide Rossa 3 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

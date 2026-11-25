@@ -1,0 +1,27 @@
+{
+  "id": "bookishRogue",
+  "name": "Ladro Studioso",
+  "description": "Permette di sostituire le capacità magiche ottenute tramite le doti appropriate studiando un libro. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ladro_Studioso",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Dote da Ladro Magia Minore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ladro Studioso: https://golarion.altervista.org/wiki/Talenti/Ladro_Studioso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Dote da Ladro Magia Minore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

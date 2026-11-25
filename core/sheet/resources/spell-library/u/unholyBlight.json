@@ -1,0 +1,49 @@
+{
+  "id": "unholyBlight",
+  "name": "Influenza Sacrilega",
+  "school": "EVOCATION",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "INQUISITOR": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "EVIL": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "emanazione con raggio di 6 m",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo (1d4 round); vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un potere sacrilego ferisce e debilita le creature buone. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Influenza_Sacrilega",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Influenza Sacrilega: https://golarion.altervista.org/wiki/Incantesimi/Influenza_Sacrilega Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

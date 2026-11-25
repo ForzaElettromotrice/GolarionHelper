@@ -1,0 +1,58 @@
+{
+  "id": "legendLore",
+  "name": "Conoscenza delle Leggende",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "BARD": 4,
+    "WITCH": 6,
+    "INQUISITOR": 6,
+    "WIZARD": 6,
+    "MEDIUM": 4,
+    "OCCULTIST": 6,
+    "PSYCHIC": 6,
+    "SKALD": 4,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "KNOWLEDGE": 6
+    }
+  },
+  "castingTimeCategory": "SPECIAL",
+  "castingTimeDescription": "vedi testo",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "FOCUS"
+  ],
+  "materialComponentDescription": "incenso del valore di almeno 250 mo",
+  "focusComponentDescription": "4 listelli di avorio del valore di 50 mo ognuno",
+  "materialComponentCostInGoldPieces": 250,
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Rivela tradizioni e conoscenze legate a una persona, un oggetto o un luogo di importanza leggendaria. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Conoscenza_delle_Leggende",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Conoscenza delle Leggende: https://golarion.altervista.org/wiki/Incantesimi/Conoscenza_delle_Leggende Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: mistero Ascesi 6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

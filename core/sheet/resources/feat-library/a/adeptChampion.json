@@ -1,0 +1,31 @@
+{
+  "id": "adeptChampion",
+  "name": "Campione Esperto",
+  "description": "Scambia parte dei danni di Punire il Male con una maggiore efficacia nelle manovre. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Campione_Esperto",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Punire il Male Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +5",
+      "expression": "@bab >= 5"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Campione Esperto: https://golarion.altervista.org/wiki/Talenti/Campione_Esperto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Punire il Male Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

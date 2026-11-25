@@ -1,0 +1,29 @@
+{
+  "id": "cypherMagic",
+  "name": "Magia Glifica",
+  "description": "Potenzia il livello dell'incantatore quando si utilizzano pergamene. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Magia_Glifica",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 15",
+      "expression": "@int >= 15"
+    },
+    {
+      "description": "Scrivere Pergamene",
+      "feat": {
+        "id": "scribeScroll"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Magia Glifica: https://golarion.altervista.org/wiki/Talenti/Magia_Glifica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

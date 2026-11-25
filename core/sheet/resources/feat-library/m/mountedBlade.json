@@ -1,0 +1,39 @@
+{
+  "id": "mountedBlade",
+  "name": "Lama in Sella",
+  "description": "Aggiunge un colpo contro un nemico vicino durante una manovra in sella. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Lama_in_Sella",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Attacco in Sella",
+      "feat": {
+        "id": "rideByAttack"
+      }
+    },
+    {
+      "description": "Combattere in Sella",
+      "feat": {
+        "id": "mountedCombat"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Cavalcare 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Lama in Sella: https://golarion.altervista.org/wiki/Talenti/Lama_in_Sella. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Cavalcare 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,45 @@
+{
+  "id": "blend",
+  "name": "Mimetizzazione",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "HUNTER": 1,
+    "DRUID": 1,
+    "WITCH": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "MESMERIST": 1,
+    "PSYCHIC": 1,
+    "RANGER": 1,
+    "SHAMAN": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Uniforma l'aspetto dell'incantatore e del suo equipaggiamento all'ambiente circostante. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Mimetizzazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Mimetizzazione: https://golarion.altervista.org/wiki/Incantesimi/Mimetizzazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

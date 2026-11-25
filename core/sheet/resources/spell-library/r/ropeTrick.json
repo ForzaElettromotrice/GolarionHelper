@@ -1,0 +1,45 @@
+{
+  "id": "ropeTrick",
+  "name": "Trucco della Corda",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "MEDIUM": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "grano in polvere e un cerchietto arrotolato di pergamena",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "un pezzo di corda toccato lungo da 1,5 m a 9 m",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Apre un nascondiglio extradimensionale accessibile tramite una corda. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trucco_della_Corda",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Trucco della Corda: https://golarion.altervista.org/wiki/Incantesimi/Trucco_della_Corda Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: un pezzo di corda toccato lungo da 1,5 m a 9 m. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

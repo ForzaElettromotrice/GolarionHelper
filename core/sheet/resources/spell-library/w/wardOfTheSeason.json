@@ -1,0 +1,46 @@
+{
+  "id": "wardOfTheSeason",
+  "name": "Interdizione della Stagione",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "DRUID": 3,
+    "WITCH": 3,
+    "RANGER": 3,
+    "SHAMAN": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Conferisce una protezione stagionale con benefici variabili. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Interdizione_della_Stagione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Interdizione della Stagione: https://golarion.altervista.org/wiki/Incantesimi/Interdizione_della_Stagione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

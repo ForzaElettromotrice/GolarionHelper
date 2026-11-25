@@ -1,0 +1,1152 @@
+{
+  "type": "kineticist",
+  "name": "Cineta",
+  "description": "Manipolatore delle energie elementali attraverso poteri cinetici.",
+  "hitDie": 8,
+  "skillRanksPerLevel": 4,
+  "classSkills": [
+    "skill.acrobatics",
+    "skill.craft",
+    "skill.stealth",
+    "skill.heal",
+    "skill.intimidate",
+    "skill.perception",
+    "skill.profession",
+    "skill.useMagicDevice"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 0
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 0
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 1
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 2
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 3
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 4
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 5
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 12,
+        "reflex": 12,
+        "will": 6
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "kineticist.baseSavingThrows",
+      "name": "Tiri salvezza base",
+      "description": "Progressioni base di Tempra, Riflessi e Volontà concesse dalla tabella del Cineta. Fonte: https://golarion.altervista.org/wiki/Cineta",
+      "progression": []
+    },
+    {
+      "id": "kineticist.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "kineticist.wildTalents",
+      "name": "Doti Istintive",
+      "description": "Regole generali delle doti istintive, distinte dalle singole infusioni e doti di utilità. Fonte: https://golarion.altervista.org/wiki/Cineta#Doti_Istintive",
+      "progression": [
+        {
+          "id": "kineticist.wildTalents.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cineta: gestire manualmente caratteristica chiave, CD, concentrazione e livelli effettivi delle doti istintive secondo la fonte e gli eventuali archetipi. https://golarion.altervista.org/wiki/Cineta#Doti_Istintive Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.fbfbec3bfe37",
+      "name": "Bruciare",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Bruciare_(Str)",
+      "progression": [
+        {
+          "id": "kineticist.feature.fbfbec3bfe37.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Cineta: verificare e applicare Bruciare. https://golarion.altervista.org/wiki/Cineta#Bruciare_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.21c8554c8210",
+      "name": "Elemento Focalizzato",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Elemento_Focalizzato_(Sop)",
+      "progression": [
+        {
+          "id": "kineticist.feature.21c8554c8210.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Cineta: verificare e applicare Elemento Focalizzato. https://golarion.altervista.org/wiki/Cineta#Elemento_Focalizzato_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.f96c0e13aed9",
+      "name": "Infusione",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Infusione_(Sop)",
+      "progression": [
+        {
+          "id": "kineticist.feature.f96c0e13aed9.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Cineta: verificare e applicare Infusione. https://golarion.altervista.org/wiki/Cineta#Infusione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.f96c0e13aed9.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Cineta: verificare e applicare Infusione. https://golarion.altervista.org/wiki/Cineta#Infusione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.f96c0e13aed9.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Cineta: verificare e applicare Infusione. https://golarion.altervista.org/wiki/Cineta#Infusione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.f96c0e13aed9.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Cineta: verificare e applicare Infusione. https://golarion.altervista.org/wiki/Cineta#Infusione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.f96c0e13aed9.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Cineta: verificare e applicare Infusione. https://golarion.altervista.org/wiki/Cineta#Infusione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.f96c0e13aed9.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Cineta: verificare e applicare Infusione. https://golarion.altervista.org/wiki/Cineta#Infusione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.f96c0e13aed9.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Cineta: verificare e applicare Infusione. https://golarion.altervista.org/wiki/Cineta#Infusione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.f96c0e13aed9.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Cineta: verificare e applicare Infusione. https://golarion.altervista.org/wiki/Cineta#Infusione_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.7c4825a6dbb1",
+      "name": "Ondata Cinetica",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Ondata_Cinetica_(Mag)",
+      "progression": [
+        {
+          "id": "kineticist.feature.7c4825a6dbb1.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Cineta: verificare e applicare Ondata Cinetica. https://golarion.altervista.org/wiki/Cineta#Ondata_Cinetica_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.905fc0ba5b8b",
+      "name": "Raccogliere Potere",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Raccogliere_Potere_(Sop)",
+      "progression": [
+        {
+          "id": "kineticist.feature.905fc0ba5b8b.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Cineta: verificare e applicare Raccogliere Potere. https://golarion.altervista.org/wiki/Cineta#Raccogliere_Potere_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.e4c960c8ff5a",
+      "name": "Difesa Elementale",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Difesa_Elementale_(Sop)",
+      "progression": [
+        {
+          "id": "kineticist.feature.e4c960c8ff5a.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Cineta: verificare e applicare Difesa Elementale. https://golarion.altervista.org/wiki/Cineta#Difesa_Elementale_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.ccbb06a1d56f",
+      "name": "Dote Istintiva di Utilità",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Doti_Istintive",
+      "progression": [
+        {
+          "id": "kineticist.feature.ccbb06a1d56f.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Cineta: verificare e applicare Dote Istintiva di Utilità. https://golarion.altervista.org/wiki/Cineta#Doti_Istintive Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.ccbb06a1d56f.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Cineta: verificare e applicare Dote Istintiva di Utilità. https://golarion.altervista.org/wiki/Cineta#Doti_Istintive Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.ccbb06a1d56f.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Cineta: verificare e applicare Dote Istintiva di Utilità. https://golarion.altervista.org/wiki/Cineta#Doti_Istintive Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.ccbb06a1d56f.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Cineta: verificare e applicare Dote Istintiva di Utilità. https://golarion.altervista.org/wiki/Cineta#Doti_Istintive Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.ccbb06a1d56f.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Cineta: verificare e applicare Dote Istintiva di Utilità. https://golarion.altervista.org/wiki/Cineta#Doti_Istintive Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.ccbb06a1d56f.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Cineta: verificare e applicare Dote Istintiva di Utilità. https://golarion.altervista.org/wiki/Cineta#Doti_Istintive Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.ccbb06a1d56f.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Cineta: verificare e applicare Dote Istintiva di Utilità. https://golarion.altervista.org/wiki/Cineta#Doti_Istintive Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.ccbb06a1d56f.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Cineta: verificare e applicare Dote Istintiva di Utilità. https://golarion.altervista.org/wiki/Cineta#Doti_Istintive Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.ccbb06a1d56f.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Cineta: verificare e applicare Dote Istintiva di Utilità. https://golarion.altervista.org/wiki/Cineta#Doti_Istintive Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.ccbb06a1d56f.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Cineta: verificare e applicare Dote Istintiva di Utilità. https://golarion.altervista.org/wiki/Cineta#Doti_Istintive Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.47e5a247d89c",
+      "name": "Sovraflusso Elementale",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Sovraflusso_Elementale_(Str)",
+      "progression": [
+        {
+          "id": "kineticist.feature.47e5a247d89c.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Cineta: verificare e applicare Sovraflusso Elementale +1. https://golarion.altervista.org/wiki/Cineta#Sovraflusso_Elementale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.47e5a247d89c.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Cineta: verificare e applicare Sovraflusso Elementale +2. https://golarion.altervista.org/wiki/Cineta#Sovraflusso_Elementale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "kineticist.feature.47e5a247d89c.level3"
+          ]
+        },
+        {
+          "id": "kineticist.feature.47e5a247d89c.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Cineta: verificare e applicare Sovraflusso Elementale +3. https://golarion.altervista.org/wiki/Cineta#Sovraflusso_Elementale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "kineticist.feature.47e5a247d89c.level6"
+          ]
+        },
+        {
+          "id": "kineticist.feature.47e5a247d89c.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Cineta: verificare e applicare Sovraflusso Elementale +4. https://golarion.altervista.org/wiki/Cineta#Sovraflusso_Elementale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "kineticist.feature.47e5a247d89c.level9"
+          ]
+        },
+        {
+          "id": "kineticist.feature.47e5a247d89c.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Cineta: verificare e applicare Sovraflusso Elementale +5. https://golarion.altervista.org/wiki/Cineta#Sovraflusso_Elementale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "kineticist.feature.47e5a247d89c.level12"
+          ]
+        },
+        {
+          "id": "kineticist.feature.47e5a247d89c.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Cineta: verificare e applicare Sovraflusso Elementale +6. https://golarion.altervista.org/wiki/Cineta#Sovraflusso_Elementale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "kineticist.feature.47e5a247d89c.level15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.30109831cf87",
+      "name": "Metacinesi",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Metacinesi_(Sop)",
+      "progression": [
+        {
+          "id": "kineticist.feature.30109831cf87.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Cineta: verificare e applicare Metacinesi (potenziata). https://golarion.altervista.org/wiki/Cineta#Metacinesi_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.30109831cf87.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Cineta: verificare e applicare Metacinesi (massimizzata). https://golarion.altervista.org/wiki/Cineta#Metacinesi_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.30109831cf87.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Cineta: verificare e applicare Metacinesi (rapida). https://golarion.altervista.org/wiki/Cineta#Metacinesi_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.30109831cf87.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Cineta: verificare e applicare Metacinesi (doppia). https://golarion.altervista.org/wiki/Cineta#Metacinesi_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.4850175475ff",
+      "name": "Specialista nelle Infusioni",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Specializzazione_nelle_Infusioni_(Str)",
+      "progression": [
+        {
+          "id": "kineticist.feature.4850175475ff.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Cineta: verificare e applicare Specialista nelle Infusioni 1. https://golarion.altervista.org/wiki/Cineta#Specializzazione_nelle_Infusioni_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.4850175475ff.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Cineta: verificare e applicare Specializzazione nelle Infusioni 2. https://golarion.altervista.org/wiki/Cineta#Specializzazione_nelle_Infusioni_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.4850175475ff.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Cineta: verificare e applicare Specializzazione nelle Infusioni 3. https://golarion.altervista.org/wiki/Cineta#Specializzazione_nelle_Infusioni_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.4850175475ff.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Cineta: verificare e applicare Specializzazione nelle Infusioni 4. https://golarion.altervista.org/wiki/Cineta#Specializzazione_nelle_Infusioni_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.4850175475ff.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Cineta: verificare e applicare Specializzazione nelle Infusioni 5. https://golarion.altervista.org/wiki/Cineta#Specializzazione_nelle_Infusioni_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.4850175475ff.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Cineta: verificare e applicare Specializzazione nelle Infusioni 6. https://golarion.altervista.org/wiki/Cineta#Specializzazione_nelle_Infusioni_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.30cef0d679ef",
+      "name": "Provvista Interiore",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Provvista_Interiore_(Sop)",
+      "progression": [
+        {
+          "id": "kineticist.feature.30cef0d679ef.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Cineta: verificare e applicare Provvista Interiore 1. https://golarion.altervista.org/wiki/Cineta#Provvista_Interiore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.30cef0d679ef.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Cineta: verificare e applicare Provvista Interiore 2. https://golarion.altervista.org/wiki/Cineta#Provvista_Interiore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "kineticist.feature.30cef0d679ef.level6"
+          ]
+        },
+        {
+          "id": "kineticist.feature.30cef0d679ef.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Cineta: verificare e applicare Provvista Interiore 3. https://golarion.altervista.org/wiki/Cineta#Provvista_Interiore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "kineticist.feature.30cef0d679ef.level11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.07c5c0a4af2e",
+      "name": "Elemento Ampliato",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Elemento_Ampliato_(Sop)",
+      "progression": [
+        {
+          "id": "kineticist.feature.07c5c0a4af2e.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Cineta: verificare e applicare Elemento Ampliato. https://golarion.altervista.org/wiki/Cineta#Elemento_Ampliato_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "kineticist.feature.07c5c0a4af2e.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Cineta: verificare e applicare Elemento Ampliato. https://golarion.altervista.org/wiki/Cineta#Elemento_Ampliato_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.a8e40ce7a5f1",
+      "name": "Sovraccaricare",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Sovraccaricare_(Sop)",
+      "progression": [
+        {
+          "id": "kineticist.feature.a8e40ce7a5f1.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Cineta: verificare e applicare Sovraccaricare. https://golarion.altervista.org/wiki/Cineta#Sovraccaricare_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.37a154bc121f",
+      "name": "Specializzazione nelle Ondate Composite",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Specializzazione_nelle_Ondate_Composite_(Sop)",
+      "progression": [
+        {
+          "id": "kineticist.feature.37a154bc121f.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Cineta: verificare e applicare Specializzazione nelle Ondate Composite. https://golarion.altervista.org/wiki/Cineta#Specializzazione_nelle_Ondate_Composite_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.8ba962731c4a",
+      "name": "Padrone della Metacinetica",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Padrone_della_Metacinetica_(Sop)",
+      "progression": [
+        {
+          "id": "kineticist.feature.8ba962731c4a.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Cineta: verificare e applicare Padrone della Metacinetica. https://golarion.altervista.org/wiki/Cineta#Padrone_della_Metacinetica_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.feature.1d428cd93143",
+      "name": "Omnicinesi",
+      "description": "Privilegio della classe Cineta. Regole e condizioni: https://golarion.altervista.org/wiki/Cineta#Omnicinesi_(Sop)",
+      "progression": [
+        {
+          "id": "kineticist.feature.1d428cd93143.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Cineta: verificare e applicare Omnicinesi. https://golarion.altervista.org/wiki/Cineta#Omnicinesi_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Cineta",
+      "progression": [
+        {
+          "id": "kineticist.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Cineta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Cineta",
+      "progression": [
+        {
+          "id": "kineticist.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Cineta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Cineta",
+      "progression": [
+        {
+          "id": "kineticist.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Cineta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "kineticist.element.1",
+      "classType": "kineticist",
+      "featureId": "kineticist.feature.21c8554c8210",
+      "acquisitionIds": [
+        "kineticist.feature.21c8554c8210.level1"
+      ],
+      "choice": {
+        "id": "element",
+        "prompt": "Scegli: Elemento Focalizzato (restrizioni da verificare manualmente)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "kineticist.elements"
+      }
+    },
+    {
+      "id": "kineticist.expandedElement.7",
+      "classType": "kineticist",
+      "featureId": "kineticist.feature.07c5c0a4af2e",
+      "acquisitionIds": [
+        "kineticist.feature.07c5c0a4af2e.level7",
+        "kineticist.feature.07c5c0a4af2e.level15"
+      ],
+      "choice": {
+        "id": "expandedElement",
+        "prompt": "Scegli: Elemento Ampliato (restrizioni da verificare manualmente)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "kineticist.elements"
+      }
+    },
+    {
+      "id": "kineticist.simpleBlast.1",
+      "classType": "kineticist",
+      "featureId": "kineticist.feature.7c4825a6dbb1",
+      "acquisitionIds": [
+        "kineticist.feature.7c4825a6dbb1.level1"
+      ],
+      "choice": {
+        "id": "simpleBlast",
+        "prompt": "Scegli: Ondata Cinetica (restrizioni da verificare manualmente)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "kineticist.simpleBlasts"
+      }
+    },
+    {
+      "id": "kineticist.infusion.1",
+      "classType": "kineticist",
+      "featureId": "kineticist.feature.f96c0e13aed9",
+      "acquisitionIds": [
+        "kineticist.feature.f96c0e13aed9.level1",
+        "kineticist.feature.f96c0e13aed9.level3",
+        "kineticist.feature.f96c0e13aed9.level5",
+        "kineticist.feature.f96c0e13aed9.level9",
+        "kineticist.feature.f96c0e13aed9.level11",
+        "kineticist.feature.f96c0e13aed9.level13",
+        "kineticist.feature.f96c0e13aed9.level17",
+        "kineticist.feature.f96c0e13aed9.level19"
+      ],
+      "choice": {
+        "id": "infusion",
+        "prompt": "Scegli: Infusione (restrizioni da verificare manualmente)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "kineticist.infusions"
+      }
+    },
+    {
+      "id": "kineticist.utilityTalent.2",
+      "classType": "kineticist",
+      "featureId": "kineticist.feature.ccbb06a1d56f",
+      "acquisitionIds": [
+        "kineticist.feature.ccbb06a1d56f.level2",
+        "kineticist.feature.ccbb06a1d56f.level4",
+        "kineticist.feature.ccbb06a1d56f.level6",
+        "kineticist.feature.ccbb06a1d56f.level8",
+        "kineticist.feature.ccbb06a1d56f.level10",
+        "kineticist.feature.ccbb06a1d56f.level12",
+        "kineticist.feature.ccbb06a1d56f.level14",
+        "kineticist.feature.ccbb06a1d56f.level16",
+        "kineticist.feature.ccbb06a1d56f.level18",
+        "kineticist.feature.ccbb06a1d56f.level20"
+      ],
+      "choice": {
+        "id": "utilityTalent",
+        "prompt": "Scegli: Dote Istintiva di Utilità (restrizioni da verificare manualmente)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "kineticist.utilityTalents"
+      }
+    },
+    {
+      "id": "kineticist.metakineticMaster.19",
+      "classType": "kineticist",
+      "featureId": "kineticist.feature.8ba962731c4a",
+      "acquisitionIds": [
+        "kineticist.feature.8ba962731c4a.level19"
+      ],
+      "choice": {
+        "id": "metakineticMaster",
+        "prompt": "Scegli: Padrone della Metacinetica (restrizioni da verificare manualmente)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "kineticist.metakinesis"
+      }
+    }
+  ]
+}

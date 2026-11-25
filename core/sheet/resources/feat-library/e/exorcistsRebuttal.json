@@ -1,0 +1,31 @@
+{
+  "id": "exorcistsRebuttal",
+  "name": "Oppugnazione dell'Esorcista",
+  "description": "Resistere a una compulsione può ferire la mente del responsabile. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Oppugnazione_dell%27Esorcista",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Volontà di Ferro",
+      "feat": {
+        "id": "ironWill"
+      }
+    },
+    {
+      "description": "Volontà di Ferro Migliorata",
+      "feat": {
+        "id": "improvedIronWill"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Oppugnazione dell'Esorcista: https://golarion.altervista.org/wiki/Talenti/Oppugnazione_dell%27Esorcista. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

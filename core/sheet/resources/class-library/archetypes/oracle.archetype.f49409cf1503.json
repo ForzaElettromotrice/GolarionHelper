@@ -1,0 +1,142 @@
+{
+  "id": "oracle.archetype.f49409cf1503",
+  "classType": "oracle",
+  "name": "Custode dell'Antico Sapere (Elfo)",
+  "description": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Custode_dell.27Antico_Sapere_.28Elfo.29 Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "oracle.classSkills",
+      "type": "alter"
+    },
+    {
+      "featureId": "oracle.feature.d5cd6abc2865",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "oracle.feature.d5cd6abc2865"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "oracle.archetype.f49409cf1503.instructions",
+      "name": "Custode dell'Antico Sapere (Elfo)",
+      "description": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Custode_dell.27Antico_Sapere_.28Elfo.29 Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "oracle.archetype.f49409cf1503.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Custode_dell.27Antico_Sapere_.28Elfo.29 Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.f49409cf1503.feature.ff45a7c835",
+      "name": "Abilità di Classe",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Custode_dell.27Antico_Sapere_.28Elfo.29",
+      "progression": [
+        {
+          "id": "oracle.archetype.f49409cf1503.feature.ff45a7c835.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Custode dell'Antico Sapere (Elfo) — Abilità di Classe: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Custode_dell.27Antico_Sapere_.28Elfo.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.f49409cf1503.feature.9e258dd748",
+      "name": "Segreto Elfico (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Custode_dell.27Antico_Sapere_.28Elfo.29",
+      "progression": [
+        {
+          "id": "oracle.archetype.f49409cf1503.feature.9e258dd748.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Custode dell'Antico Sapere (Elfo) — Segreto Elfico (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Custode_dell.27Antico_Sapere_.28Elfo.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.f49409cf1503.feature.27110d279b",
+      "name": "Misteri",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Custode_dell.27Antico_Sapere_.28Elfo.29",
+      "progression": [
+        {
+          "id": "oracle.archetype.f49409cf1503.feature.27110d279b.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Custode dell'Antico Sapere (Elfo) — Misteri: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Custode_dell.27Antico_Sapere_.28Elfo.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.f49409cf1503.classSkill.1",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Custode_dell.27Antico_Sapere_.28Elfo.29",
+      "progression": [
+        {
+          "id": "oracle.archetype.f49409cf1503.classSkill.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.arcana"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.f49409cf1503.classSkill.2",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Custode_dell.27Antico_Sapere_.28Elfo.29",
+      "progression": [
+        {
+          "id": "oracle.archetype.f49409cf1503.classSkill.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.local"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

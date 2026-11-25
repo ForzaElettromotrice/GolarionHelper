@@ -1,0 +1,45 @@
+{
+  "id": "foeToFriend",
+  "name": "Da Nemico ad Amico",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 5,
+    "MESMERIST": 5,
+    "PSYCHIC": 7,
+    "SKALD": 5
+  },
+  "castingTimeCategory": "IMMEDIATE_ACTION",
+  "castingTimeDescription": "1 azione immediata",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura vivente",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Interviene su un attacco nemico per deviarne l'esito a favore del lanciatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Da_Nemico_ad_Amico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Da Nemico ad Amico: https://golarion.altervista.org/wiki/Incantesimi/Da_Nemico_ad_Amico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

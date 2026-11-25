@@ -1,0 +1,30 @@
+{
+  "id": "deafeningCritical",
+  "name": "Critico Assordante",
+  "description": "Un colpo critico può danneggiare l'udito del nemico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Critico_Assordante",
+  "types": [
+    "combat",
+    "critical"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Critico Focalizzato",
+      "feat": {
+        "id": "criticalFocus"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +13",
+      "expression": "@bab >= 13"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Critico Assordante: https://golarion.altervista.org/wiki/Talenti/Critico_Assordante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

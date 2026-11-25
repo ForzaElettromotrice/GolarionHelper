@@ -1,0 +1,47 @@
+{
+  "id": "greaterOverrun",
+  "name": "Oltrepassare Superiore",
+  "description": "Aggiunge +2 alle prove di Oltrepassare, cumulabile con il talento migliorato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Oltrepassare_Superiore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 13",
+      "expression": "@str >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Oltrepassare Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "maneuver",
+      "type": "modifier",
+      "resource": "combatManeuver.bonus.overrun",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Gli avversari che cadono proni a causa della manovra provocano attacchi di opportunità. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Poderoso; Prerequisito da verificare manualmente: Oltrepassare Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

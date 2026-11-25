@@ -1,0 +1,43 @@
+{
+  "id": "paladin.archetype.84c1bf32f641",
+  "classType": "paladin",
+  "name": "Giuramento di Castità",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_di_Castit.C3.A0 Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.feature.bfc31e289a75",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.cb09c0adcbdf",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "paladin.feature.bfc31e289a75",
+    "paladin.feature.cb09c0adcbdf"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.84c1bf32f641.instructions",
+      "name": "Giuramento di Castità",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_di_Castit.C3.A0 Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.84c1bf32f641.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_di_Castit.C3.A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

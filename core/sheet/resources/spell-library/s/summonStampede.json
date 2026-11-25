@@ -1,0 +1,48 @@
+{
+  "id": "summonStampede",
+  "name": "Evocare Mandria",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "HUNTER": 6,
+    "CLERIC": 6,
+    "ORACLE": 6,
+    "WARPRIEST": 6,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "DRUID": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una ciocca di pelo di animale da pascolo",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "propagazione del raggio di 6 metri",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Evoca animali da pascolo che travolgono una direzione prescelta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evocare_Mandria",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evocare Mandria: https://golarion.altervista.org/wiki/Incantesimi/Evocare_Mandria Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

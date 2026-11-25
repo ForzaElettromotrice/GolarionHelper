@@ -1,0 +1,62 @@
+{
+  "id": "doom",
+  "name": "Devastazione",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING",
+    "FEAR"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "CLERIC": 1,
+    "INQUISITOR": 1,
+    "MESMERIST": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SHAMAN": 1,
+    "SPIRITUALIST": 1
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "CURSE": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura vivente",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un terrore soprannaturale rende scossa una creatura vivente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Devastazione",
+  "effects": [
+    {
+      "id": "shaken",
+      "type": "conditionEntry",
+      "conditionId": "fear",
+      "severity": 1
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare solo dopo aver risolto Volontà, RI e immunità; gestire interazioni con altre fonti di paura. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,45 @@
+{
+  "id": "sensoryAmplifier",
+  "name": "Amplificazione Sensoriale",
+  "school": "DIVINATION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 4,
+    "DRUID": 4,
+    "WITCH": 3,
+    "MEDIUM": 2,
+    "MESMERIST": 3,
+    "PSYCHIC": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "area": "emanazione del raggio di 3 m centrata su di sé",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Potenzia le capacità percettive degli alleati vicini e può conferire sensi aggiuntivi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Amplificazione_Sensoriale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Amplificazione Sensoriale: https://golarion.altervista.org/wiki/Incantesimi/Amplificazione_Sensoriale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

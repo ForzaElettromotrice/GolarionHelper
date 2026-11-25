@@ -1,0 +1,62 @@
+{
+  "id": "charmMonster",
+  "name": "Charme sui Mostri",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "CHARM",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "MESMERIST": 3,
+    "OCCULTIST": 4,
+    "PSYCHIC": 4,
+    "SKALD": 3,
+    "SORCERER": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "CHARM": 5
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura vivente",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega;"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Influenza favorevolmente l'atteggiamento di una creatura, estendendo lo charme oltre gli umanoidi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Charme_sui_Mostri",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Charme sui Mostri: https://golarion.altervista.org/wiki/Incantesimi/Charme_sui_Mostri Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Legno 4 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

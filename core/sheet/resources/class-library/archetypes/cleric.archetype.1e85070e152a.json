@@ -1,0 +1,944 @@
+{
+  "id": "cleric.archetype.1e85070e152a",
+  "classType": "cleric",
+  "name": "Crociato",
+  "description": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico/Archetipi#Crociato Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Domini. Ehi, appena hai tempo vedi di correggermi se necessario! Gli slot modificati sono già calcolati; non sommare gli slot della progressione originale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "cleric.feature.836718c23446",
+      "type": "alter"
+    },
+    {
+      "featureId": "cleric.spellcasting",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "cleric.feature.836718c23446"
+  ],
+  "removedAcquisitionIds": [
+    "castingSlots.level1",
+    "castingSlots.level2",
+    "castingSlots.level3",
+    "castingSlots.level4",
+    "castingSlots.level5",
+    "castingSlots.level6",
+    "castingSlots.level7",
+    "castingSlots.level8",
+    "castingSlots.level9",
+    "castingSlots.level10",
+    "castingSlots.level11",
+    "castingSlots.level12",
+    "castingSlots.level13",
+    "castingSlots.level14",
+    "castingSlots.level15",
+    "castingSlots.level16",
+    "castingSlots.level17",
+    "castingSlots.level18",
+    "castingSlots.level19",
+    "castingSlots.level20"
+  ],
+  "addedFeatures": [
+    {
+      "id": "cleric.archetype.1e85070e152a.instructions",
+      "name": "Crociato",
+      "description": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico/Archetipi#Crociato Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "cleric.archetype.1e85070e152a.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico/Archetipi#Crociato Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Domini. Ehi, appena hai tempo vedi di correggermi se necessario! Gli slot modificati sono già calcolati; non sommare gli slot della progressione originale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.1e85070e152a.feature.1",
+      "name": "Diminuzione degli Incantesimi",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico/Archetipi#Crociato",
+      "progression": [
+        {
+          "id": "cleric.archetype.1e85070e152a.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Crociato — Diminuzione degli Incantesimi: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico/Archetipi#Crociato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.1e85070e152a.feature.2",
+      "name": "Talento Bonus",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico/Archetipi#Crociato",
+      "progression": [
+        {
+          "id": "cleric.archetype.1e85070e152a.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Crociato — Talento Bonus: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico/Archetipi#Crociato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.1e85070e152a.feature.3",
+      "name": "Benedizione della Legione (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico/Archetipi#Crociato",
+      "progression": [
+        {
+          "id": "cleric.archetype.1e85070e152a.feature.3.initial",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Crociato — Benedizione della Legione (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico/Archetipi#Crociato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.1e85070e152a.castingSlots",
+      "name": "Slot della progressione modificata",
+      "description": "Gruppi di slot sostitutivi; repertorio e identità del lancio conservati.",
+      "progression": [
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": []
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level1"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level2"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level3"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level4"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level5"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level6"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level7"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level8"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level9"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level10"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level11"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level12"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                },
+                {
+                  "level": 7,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level13"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                },
+                {
+                  "level": 7,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level14"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                },
+                {
+                  "level": 8,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level15"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                },
+                {
+                  "level": 8,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level16"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                },
+                {
+                  "level": 8,
+                  "capacity": 2
+                },
+                {
+                  "level": 9,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level17"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 2
+                },
+                {
+                  "level": 9,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level18"
+          ]
+        },
+        {
+          "id": "cleric.archetype.1e85070e152a.castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:cleric12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                },
+                {
+                  "level": 9,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "cleric.archetype.1e85070e152a.castingSlots.level19"
+          ]
+        }
+      ]
+    }
+  ]
+}

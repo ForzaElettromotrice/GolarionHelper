@@ -1,0 +1,54 @@
+{
+  "id": "oneiricHorrorGreater",
+  "name": "Orrore Onirico Superiore",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 4,
+    "WIZARD": 5,
+    "MEDIUM": 2,
+    "MESMERIST": 3,
+    "PSYCHIC": 4,
+    "SKALD": 4,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura vivente",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega; Tempra nega; vedi testo"
+    },
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Volontà nega; Tempra nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Tormenta il bersaglio con incubi che ne indeboliscono anche la forza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Orrore_Onirico_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Orrore Onirico Superiore: https://golarion.altervista.org/wiki/Incantesimi/Orrore_Onirico_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,48 @@
+{
+  "id": "fearsomeDuplicate",
+  "name": "Copia Spaventosa",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "FIGMENT",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 3,
+    "WITCH": 3,
+    "INQUISITOR": 3,
+    "WIZARD": 3,
+    "MESMERIST": 3,
+    "PSYCHIC": 3,
+    "SKALD": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "copia mostruosamente distorta di se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita (se si interagisce)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Crea un'immagine ingrandita e minacciosa del lanciatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Copia_Spaventosa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Copia Spaventosa: https://golarion.altervista.org/wiki/Incantesimi/Copia_Spaventosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

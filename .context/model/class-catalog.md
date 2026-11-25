@@ -4,8 +4,8 @@ Read when changing embedded class data or reviewing its automation boundaries. R
 
 ## Scope and Sources
 
-- The default manager embeds 44 playable Golarion classes: 11 core, 10 advanced, 3 alternative, 10 hybrid, 6 occult and 4 unchained. Prestige and NPC classes are excluded. Archetypes now have a separate [partial catalog](archetype-catalog.md).
-- Runtime files live in `core/sheet/resources/classes/`; `catalog.sources.json` records the 44 Golarion source pages and is not runtime input. Rules were collected only from Golarion.
+- The default manager indexes 44 playable Golarion classes: 11 core, 10 advanced, 3 alternative, 10 hybrid, 6 occult and 4 unchained. Prestige and NPC classes are excluded. Archetypes have a separate [catalog](archetype-catalog.md).
+- Edit `core/sheet/resources/class-library/classes/<type>.json` directly, including its option bindings. The provenance report `resources/classes/catalog.sources.json` is not runtime input. The build copies each definition and generates [only indexes](../development.md#dependencies-and-local-tools).
 - All definitions contain hit dice, base skill ranks, typed class skills and 20 numerical rows (880 total). Rows store total BAB and base saves. There are 762 feature records, including source-linked privilege reminders, a dedicated sorcerer bloodline-selection owner and explicit metadata compatibility identities needed by archetypes.
 - Unimplemented rule portions end with `Ehi, appena hai tempo vedi di correggermi se necessario!`. Catalog presence does not imply complete class automation.
 
@@ -30,6 +30,6 @@ Read when changing embedded class data or reviewing its automation boundaries. R
 - Archetype integration adds metadata-only compatibility identities for class skills, selected BAB/rank/save changes and the Wizard spellbook, without changing the original grants. Missing standalone Druid spontaneous casting and Kineticist wild-talent rules now have real source-linked manual features. Medium's mislabeled Spirit feature and split Spirit Surge progression were corrected from its Golarion body text; original acquisition IDs are retained where possible. See [archetype coverage](archetype-catalog.md).
 
 - `classDefinitionFromJson` / `classDefinitionToJson` provide a strict enum boundary and nested feature/choice/effect round trips. Unknown categories, malformed numbers, duplicate IDs, missing replacements and replacement cycles are rejected.
-- `ClassDefinitionManager::instance()` parses the embedded catalog once. Explicit typed managers remain supported; archetype content is still independently supplied.
+- `ClassDefinitionManager::instance()` loads the name index, then individual definitions on request. Explicit typed managers remain supported.
 - `class_catalog_test` exercises every class from level 0 through 20 and back, numerical contributions, cleanup, reconstruction, multiclass casting separation and preservation of wizard repertoire quota IDs. `class_definition_json_test` covers malformed definitions and nested round trips. No play-module tests are required for this change.
 - Verification on 2026-11-13: the sheet build succeeds and all 102 sheet tests pass, including expanded option selection/save-load/reactivation, archetype catalog lifecycle and numerical/continuity checks. The catalog audit confirms 44 unique classes, 880 ordered level rows and 44 matching source entries; option coverage is detailed in [class options](class-options.md). Save format and library version are unchanged.

@@ -1,0 +1,57 @@
+{
+  "id": "compelHostility",
+  "name": "Imporre Ostilità",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "MEDIUM": 1,
+    "MESMERIST": 1,
+    "ORACLE": 1,
+    "PALADIN": 1,
+    "PSYCHIC": 1,
+    "RANGER": 1,
+    "WARPRIEST": 1,
+    "SKALD": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una goccia del proprio sangue",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "vedi testo",
+  "description": "Richiama su di sé l'aggressività dei nemici per distoglierla dagli alleati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Imporre_Ostilit%C3%A0",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Imporre Ostilità: https://golarion.altervista.org/wiki/Incantesimi/Imporre_Ostilit%C3%A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

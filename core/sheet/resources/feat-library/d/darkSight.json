@@ -1,0 +1,33 @@
+{
+  "id": "darkSight",
+  "name": "Visione Oscura",
+  "description": "Consente di vedere attraverso determinate tenebre magiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Visione_Oscura",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Visione Tenebrosa",
+      "feat": {
+        "id": "gloomSight"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Ghermito Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Visione Oscura: https://golarion.altervista.org/wiki/Talenti/Visione_Oscura. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Ghermito Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,33 @@
+{
+  "id": "pointBlankShot",
+  "name": "Tiro Ravvicinato",
+  "description": "Migliora la precisione e i danni delle armi a distanza entro 9 metri. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tiro_Ravvicinato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "attack",
+      "type": "modifier",
+      "resource": "attack.ranged",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "1",
+      "condition": "Con arma a distanza contro un bersaglio entro 9 metri"
+    },
+    {
+      "id": "damage",
+      "type": "modifier",
+      "resource": "damage.weaponRoll",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "1",
+      "condition": "Con arma a distanza contro un bersaglio entro 9 metri; solo colpo diretto, non danni da spargimento"
+    }
+  ],
+  "choices": []
+}

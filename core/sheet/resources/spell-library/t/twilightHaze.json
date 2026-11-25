@@ -1,0 +1,41 @@
+{
+  "id": "twilightHaze",
+  "name": "Foschia Crepuscolare",
+  "school": "ILLUSION",
+  "descriptors": [
+    "SHADOW",
+    "DARKNESS"
+  ],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "nebbia in una propagazione del raggio di 6 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una coltre di foschia illusoria intralcia la visibilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Foschia_Crepuscolare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Foschia Crepuscolare: https://golarion.altervista.org/wiki/Incantesimi/Foschia_Crepuscolare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "ragingVitality",
+  "name": "Furia Vitale",
+  "description": "Rafforza la Costituzione durante l'ira e permette di mantenerla anche perdendo conoscenza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Furia_Vitale",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Costituzione 15",
+      "expression": "@con >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Furia Vitale: https://golarion.altervista.org/wiki/Talenti/Furia_Vitale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di classe Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

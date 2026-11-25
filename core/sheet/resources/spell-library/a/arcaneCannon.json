@@ -1,0 +1,37 @@
+{
+  "id": "arcaneCannon",
+  "name": "Cannone Arcano",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "WIZARD": 7,
+    "SORCERER": 7
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un'elaborata miniatura di Cannone forgiata con una goccia del proprio sangue del costo di 5.000 mo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "un Cannone animato magicamente",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasforma il focus in un cannone magico capace di sparare seguendo le istruzioni ricevute. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cannone_Arcano",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cannone Arcano: https://golarion.altervista.org/wiki/Incantesimi/Cannone_Arcano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

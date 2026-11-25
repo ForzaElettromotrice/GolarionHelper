@@ -1,0 +1,48 @@
+{
+  "id": "curseTerrain",
+  "name": "Maledire Terreno",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL",
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "HUNTER": 4,
+    "CLERIC": 4,
+    "DRUID": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "SHAMAN": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "il cuore di una creatura che dimorava nell'area e polvere d'onice del valore di 700 mo",
+  "materialComponentCostInGoldPieces": 700,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "area": "emanazione del raggio di 1,5 chilometri dal punto toccato",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Infesta un'area con diversi pericoli soprannaturali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Maledire_Terreno",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledire Terreno: https://golarion.altervista.org/wiki/Maledire_Terreno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

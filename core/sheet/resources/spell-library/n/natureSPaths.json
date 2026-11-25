@@ -1,0 +1,47 @@
+{
+  "id": "natureSPaths",
+  "name": "Sentieri della Natura",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 1,
+    "HUNTER": 1,
+    "DRUID": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "RANGER": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una pietra liscia",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura",
+  "durationType": "HOUR",
+  "durationDescription": "8 ore (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Il soggetto individua intuitivamente percorsi favorevoli per attraversare ambienti naturali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sentieri_della_Natura",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sentieri della Natura: https://golarion.altervista.org/wiki/Incantesimi/Sentieri_della_Natura Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

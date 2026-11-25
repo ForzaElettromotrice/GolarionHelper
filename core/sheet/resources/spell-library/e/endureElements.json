@@ -1,0 +1,62 @@
+{
+  "id": "endureElements",
+  "name": "Contrastare Elementi",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ADEPT": 1,
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "DRUID": 1,
+    "INVESTIGATOR": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 1,
+    "ORACLE": 1,
+    "PALADIN": 1,
+    "PSYCHIC": 1,
+    "RANGER": 1,
+    "WARPRIEST": 1,
+    "SHAMAN": 1,
+    "SPIRITUALIST": 1,
+    "SORCERER": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "SUN": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Protegge dal disagio e dai rischi delle temperature ambientali entro l'intervallo previsto, non dai danni da energia in generale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Contrastare_Elementi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Contrastare Elementi: https://golarion.altervista.org/wiki/Incantesimi/Contrastare_Elementi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

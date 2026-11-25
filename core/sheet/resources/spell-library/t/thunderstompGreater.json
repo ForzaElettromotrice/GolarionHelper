@@ -1,0 +1,42 @@
+{
+  "id": "thunderstompGreater",
+  "name": "Passo Tonante Superiore",
+  "school": "EVOCATION",
+  "descriptors": [
+    "EARTH"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "HUNTER": 3,
+    "DRUID": 3,
+    "BLOODRAGER": 3,
+    "MAGUS": 3,
+    "RANGER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "18 m",
+  "area": "linea di 18 m",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Scatena un colpo al suolo capace di sbilanciare più creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Passo_Tonante_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Passo Tonante Superiore: https://golarion.altervista.org/wiki/Incantesimi/Passo_Tonante_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

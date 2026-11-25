@@ -1,0 +1,29 @@
+{
+  "id": "doubleSlice",
+  "name": "Doppio Taglio",
+  "description": "Applica più efficacemente la forza ai danni dell'arma secondaria. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Doppio_Taglio",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Combattere con Due Armi",
+      "feat": {
+        "id": "twoWeaponFighting"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Doppio Taglio: https://golarion.altervista.org/wiki/Talenti/Doppio_Taglio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

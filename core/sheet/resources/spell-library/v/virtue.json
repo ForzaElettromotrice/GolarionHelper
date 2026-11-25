@@ -1,0 +1,50 @@
+{
+  "id": "virtue",
+  "name": "Virtù",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 0,
+    "CLERIC": 0,
+    "DRUID": 0,
+    "INQUISITOR": 0,
+    "MEDIUM": 0,
+    "ORACLE": 0,
+    "PALADIN": 1,
+    "PSYCHIC": 0,
+    "WARPRIEST": 0,
+    "SHAMAN": 0,
+    "SPIRITUALIST": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Il bersaglio riceve un punto ferita temporaneo per un minuto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Virt%C3%B9",
+  "effects": [
+    {
+      "id": "temporaryHealth",
+      "type": "temporaryHitPoints",
+      "expression": "1",
+      "durationRounds": 10
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Rimuovere il gruppo alla scadenza; riattivarlo ricrea la riserva, quindi non usarlo per rinnovare un lancio già consumato. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "strongWings",
+  "name": "Ali Forti",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "HUNTER": 1,
+    "DRUID": 1,
+    "WITCH": 1,
+    "BLOODRAGER": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Rafforza ali già capaci di volare, aumentando di 3 metri la velocità e migliorando la manovrabilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ali_Forti",
+  "effects": [
+    {
+      "id": "flightSpeed",
+      "type": "modifier",
+      "resource": "speed.fly",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "enhancement",
+      "expression": "2",
+      "condition": "Volo mediante ali già funzionanti"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Non concede volo né migliora volo senza ali; aumentare manualmente la manovrabilità di una categoria, senza superare buona. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

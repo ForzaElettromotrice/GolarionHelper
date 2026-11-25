@@ -1,0 +1,70 @@
+{
+  "id": "shield",
+  "name": "Scudo",
+  "school": "ABJURATION",
+  "descriptors": [
+    "FORCE"
+  ],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "INVESTIGATOR": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "OCCULTIST": 1,
+    "PSYCHIC": 1,
+    "SPIRITUALIST": 1,
+    "SORCERER": 1
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "DEFENSE": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Un disco di forza concede +4 di scudo alla CA e blocca Dardo Incantato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scudo",
+  "effects": [
+    {
+      "id": "shield",
+      "type": "modifier",
+      "resource": "armorClass.solid",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "shield",
+      "expression": "4"
+    },
+    {
+      "id": "incorporealTouch",
+      "type": "modifier",
+      "resource": "armorClass.touch",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "shield",
+      "expression": "4",
+      "condition": "Contro attacchi di contatto incorporei"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "La negazione di Dardo Incantato è manuale. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

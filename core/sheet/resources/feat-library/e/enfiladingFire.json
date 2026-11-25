@@ -1,0 +1,40 @@
+{
+  "id": "enfiladingFire",
+  "name": "Fuoco di Infilata",
+  "description": "Migliora i tiri contro un nemico accerchiato dagli alleati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Fuoco_di_Infilata",
+  "types": [
+    "combat",
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Tiro Preciso",
+      "feat": {
+        "id": "preciseShot"
+      }
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: un altro Talento di Squadra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Fuoco di Infilata: https://golarion.altervista.org/wiki/Talenti/Fuoco_di_Infilata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: un altro Talento di Squadra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

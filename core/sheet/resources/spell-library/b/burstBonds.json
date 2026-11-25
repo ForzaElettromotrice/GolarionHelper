@@ -1,0 +1,38 @@
+{
+  "id": "burstBonds",
+  "name": "Bruciare Legami",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "INQUISITOR": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto o 1 creatura che vincola l’incantatore",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "HALF",
+      "description": "Tempra dimezza (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Danneggia i vincoli che impediscono al soggetto di muoversi, con efficacia legata al livello dell'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bruciare_Legami",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bruciare Legami: https://golarion.altervista.org/wiki/Incantesimi/Bruciare_Legami Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

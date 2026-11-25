@@ -1,0 +1,44 @@
+{
+  "id": "lifeBlast",
+  "name": "Esplosione Vitale",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "DRUID": 4,
+    "RANGER": 3,
+    "SHAMAN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una foglia morta",
+  "rangeType": "OTHER",
+  "rangeDescription": "45 m",
+  "area": "linea di 45 m",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "HALF",
+      "description": "Volontà dimezza"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Sottrae energia alla vegetazione per liberare un'onda di energia positiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Esplosione_Vitale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Esplosione Vitale: https://golarion.altervista.org/wiki/Esplosione_Vitale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

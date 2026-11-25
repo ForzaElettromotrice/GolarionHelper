@@ -1,0 +1,37 @@
+{
+  "id": "stokeTheInnerFire",
+  "name": "Alimentare il Fuoco Interiore",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "FIRE"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "INQUISITOR": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Accende un calore interno che può essere trasferito all'equipaggiamento con effetti differenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Alimentare_il_Fuoco_Interiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Alimentare il Fuoco Interiore: https://golarion.altervista.org/wiki/Incantesimi/Alimentare_il_Fuoco_Interiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

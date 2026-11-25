@@ -1,0 +1,161 @@
+{
+  "id": "cleric.archetype.bf6c86b895f0",
+  "classType": "cleric",
+  "name": "Cardinale",
+  "description": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico/Archetipi#Cardinale Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe, Domini. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "cleric.feature.0a085100c7f0",
+      "type": "replace"
+    },
+    {
+      "featureId": "cleric.proficiencies",
+      "type": "alter"
+    },
+    {
+      "featureId": "cleric.feature.836718c23446",
+      "type": "alter"
+    },
+    {
+      "featureId": "cleric.classSkills",
+      "type": "alter"
+    },
+    {
+      "featureId": "cleric.baseAttackBonus",
+      "type": "alter"
+    },
+    {
+      "featureId": "cleric.skillRanksPerLevel",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "cleric.feature.0a085100c7f0",
+    "cleric.proficiencies",
+    "cleric.feature.836718c23446",
+    "cleric.classSkills",
+    "cleric.baseAttackBonus",
+    "cleric.skillRanksPerLevel"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "cleric.archetype.bf6c86b895f0.instructions",
+      "name": "Cardinale",
+      "description": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico/Archetipi#Cardinale Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "cleric.archetype.bf6c86b895f0.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico/Archetipi#Cardinale Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe, Domini. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.bf6c86b895f0.feature.1",
+      "name": "Competenza nelle Armature",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico/Archetipi#Cardinale",
+      "progression": [
+        {
+          "id": "cleric.archetype.bf6c86b895f0.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cardinale — Competenza nelle Armature: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico/Archetipi#Cardinale Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.bf6c86b895f0.feature.2",
+      "name": "Abilità Politica",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico/Archetipi#Cardinale",
+      "progression": [
+        {
+          "id": "cleric.archetype.bf6c86b895f0.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cardinale — Abilità Politica: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico/Archetipi#Cardinale Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.bf6c86b895f0.classSkills.1",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Concessione dal privilegio di archetipo.",
+      "progression": [
+        {
+          "id": "cleric.archetype.bf6c86b895f0.classSkills.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "skill0",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.geography"
+            },
+            {
+              "id": "skill1",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.local"
+            },
+            {
+              "id": "skill2",
+              "type": "classSkillGrant",
+              "resource": "skill.intimidate"
+            },
+            {
+              "id": "skill3",
+              "type": "classSkillGrant",
+              "resource": "skill.bluff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.bf6c86b895f0.skillRankRate",
+      "name": "Progressione alternativa",
+      "description": "Differenza rispetto ai contributi base della classe.",
+      "progression": [
+        {
+          "id": "cleric.archetype.bf6c86b895f0.skillRankRate.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "rankDifference",
+              "type": "contribution",
+              "resource": "skill.ranks.max",
+              "expression": "@classLevel * ((5 + @intSkillRanksMod) * (6 + @intSkillRanksMod > 1) - (1 + @intSkillRanksMod) * (2 + @intSkillRanksMod > 1))"
+            },
+            {
+              "id": "baseAttackDifference",
+              "type": "contribution",
+              "resource": "baseAttackBonus",
+              "expression": "@classLevel / 2 - 3 * @classLevel / 4"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

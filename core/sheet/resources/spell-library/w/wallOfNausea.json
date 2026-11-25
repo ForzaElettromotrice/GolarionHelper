@@ -1,0 +1,46 @@
+{
+  "id": "wallOfNausea",
+  "name": "Muro di Nausea",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PATTERN",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 3,
+    "WIZARD": 3,
+    "PSYCHIC": 3,
+    "SKALD": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "muro trasparente la cui area misura fino a un quadretto di 3 m/livello",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Provoca nausea nelle creature che attraversano la barriera. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Nausea",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Muro di Nausea: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Nausea Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

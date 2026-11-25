@@ -1,0 +1,49 @@
+{
+  "id": "shades",
+  "name": "Ombre",
+  "school": "ILLUSION",
+  "descriptors": [
+    "SHADOW"
+  ],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WIZARD": 9,
+    "SORCERER": 9
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DARKNESS": 9
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "vedi testo",
+  "effect": "vedi testo",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita (se si interagisce); variabile; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì; vedi testo",
+  "description": "Realizza evocazioni d'ombra particolarmente potenti e consistenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ombre",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ombre: https://golarion.altervista.org/wiki/Incantesimi/Ombre Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

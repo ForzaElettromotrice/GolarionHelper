@@ -1,0 +1,37 @@
+{
+  "id": "betrayer",
+  "name": "Traditore",
+  "description": "Sfrutta una trattativa riuscita per sferrare un attacco inatteso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Traditore",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Estrazione Rapida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Persuasivo",
+      "feat": {
+        "id": "persuasive"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +3",
+      "expression": "@bab >= 3"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Traditore: https://golarion.altervista.org/wiki/Talenti/Traditore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Estrazione Rapida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

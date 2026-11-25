@@ -1,0 +1,47 @@
+{
+  "id": "witness",
+  "name": "Testimoniare",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "subschool": "SCRYING",
+  "spellLevelByClass": {
+    "BARD": 3,
+    "WITCH": 3,
+    "INQUISITOR": 3,
+    "MEDIUM": 3,
+    "MESMERIST": 3,
+    "OCCULTIST": 3,
+    "PSYCHIC": 3,
+    "SKALD": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "target": "una creatura vivente",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Permette di assistere agli eventi attraverso i sensi del bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Testimoniare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Testimoniare: https://golarion.altervista.org/wiki/Incantesimi/Testimoniare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

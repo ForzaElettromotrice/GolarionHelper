@@ -1,0 +1,30 @@
+{
+  "id": "bleedingCritical",
+  "name": "Critico Sanguinante",
+  "description": "I colpi critici provocano un sanguinamento persistente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Critico_Sanguinante",
+  "types": [
+    "combat",
+    "critical"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Critico Focalizzato",
+      "feat": {
+        "id": "criticalFocus"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +11",
+      "expression": "@bab >= 11"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Critico Sanguinante: https://golarion.altervista.org/wiki/Talenti/Critico_Sanguinante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

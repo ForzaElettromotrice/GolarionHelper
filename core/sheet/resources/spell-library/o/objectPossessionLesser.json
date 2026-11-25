@@ -1,0 +1,41 @@
+{
+  "id": "objectPossessionLesser",
+  "name": "Possedere Oggetto Inferiore",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "MEDIUM": 2,
+    "MESMERIST": 3,
+    "OCCULTIST": 2,
+    "PSYCHIC": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto Minuscolo o Piccolo incustodito",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasferisce temporaneamente l'anima dell'incantatore in un oggetto, rendendolo animato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Possedere_Oggetto_Inferiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Possedere Oggetto Inferiore: https://golarion.altervista.org/wiki/Incantesimi/Possedere_Oggetto_Inferiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

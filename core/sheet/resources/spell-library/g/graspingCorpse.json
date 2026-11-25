@@ -1,0 +1,48 @@
+{
+  "id": "graspingCorpse",
+  "name": "Stretta del Cadavere",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "ARCANIST": 1,
+    "CLERIC": 1,
+    "OCCULTIST": 1,
+    "ORACLE": 1,
+    "SHAMAN": 1,
+    "WIZARD": 1,
+    "SPIRITUALIST": 1,
+    "WARPRIEST": 1,
+    "WITCH": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "pizzico di polvere d'onice da 1 mo",
+  "materialComponentCostInGoldPieces": 1,
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "un cadavere",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Fa muovere brevemente un cadavere affinché tenti di afferrare o far cadere un avversario. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Stretta_del_Cadavere",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Stretta del Cadavere: https://golarion.altervista.org/wiki/Stretta_del_Cadavere Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

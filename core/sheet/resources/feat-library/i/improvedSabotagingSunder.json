@@ -1,0 +1,43 @@
+{
+  "id": "improvedSabotagingSunder",
+  "name": "Spezzare con Sabotaggio Migliorato",
+  "description": "Estende il sabotaggio a più oggetti e lo rende meno rischioso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Spezzare_con_Sabotaggio_Migliorato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Disattivare Congegni 9 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Forza 13",
+      "expression": "@str >= 13"
+    },
+    {
+      "description": "Spezzare Migliorato",
+      "feat": {
+        "id": "improvedSunder"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Spezzare con Sabotaggio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Spezzare con Sabotaggio Migliorato: https://golarion.altervista.org/wiki/Talenti/Spezzare_con_Sabotaggio_Migliorato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Poderoso; Prerequisito da verificare manualmente: Disattivare Congegni 9 gradi; Prerequisito da verificare manualmente: Spezzare con Sabotaggio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

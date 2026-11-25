@@ -1,0 +1,39 @@
+{
+  "id": "aldoriAlacrity",
+  "name": "Prontezza Aldori",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "BARD": 2,
+    "SKALD": 2,
+    "INVESTIGATOR": 2,
+    "MAGUS": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "trucioli di radice di zenzero",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Migliora il movimento di 3 metri e concede +1 schivare alla CA. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Prontezza_Aldori",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Prontezza Aldori: https://golarion.altervista.org/wiki/Incantesimi/Prontezza_Aldori Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

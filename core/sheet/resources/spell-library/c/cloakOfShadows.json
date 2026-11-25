@@ -1,0 +1,43 @@
+{
+  "id": "cloakOfShadows",
+  "name": "Mantello d'Ombre",
+  "school": "ILLUSION",
+  "descriptors": [
+    "EVIL",
+    "SHADOW"
+  ],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "ANTIPALADIN": 4,
+    "ARCANIST": 5,
+    "BARD": 5,
+    "WIZARD": 5,
+    "MESMERIST": 5,
+    "SKALD": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Un rivestimento d'ombra semireale protegge l'incantatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Mantello_d%27Ombre",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Mantello d'Ombre: https://golarion.altervista.org/wiki/Incantesimi/Mantello_d%27Ombre Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

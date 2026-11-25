@@ -1,0 +1,47 @@
+{
+  "id": "rainOfFrogs",
+  "name": "Pioggia di Rane",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 3,
+    "HUNTER": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "PSYCHIC": 3,
+    "SKALD": 3,
+    "SHAMAN": 4,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un quadrato di stoffa rossa",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "1 sciame di rane velenose",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione + 2 round",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama uno sciame di rane velenose. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pioggia_di_Rane",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pioggia di Rane: https://golarion.altervista.org/wiki/Incantesimi/Pioggia_di_Rane Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

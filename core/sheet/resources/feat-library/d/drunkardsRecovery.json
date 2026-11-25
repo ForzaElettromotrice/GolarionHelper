@@ -1,0 +1,23 @@
+{
+  "id": "drunkardsRecovery",
+  "name": "Recupero dell'Ubriaco",
+  "description": "Permette di stabilizzare un morente somministrandogli alcol secondo la procedura prevista. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Recupero_dell%27Ubriaco",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Costituzione 13",
+      "expression": "@con >= 13"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Recupero dell'Ubriaco: https://golarion.altervista.org/wiki/Talenti/Recupero_dell%27Ubriaco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

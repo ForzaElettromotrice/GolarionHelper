@@ -1,0 +1,33 @@
+{
+  "id": "sealedLife",
+  "name": "Vita Sigillata",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "MEDIUM": 2,
+    "SPIRITUALIST": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Impedisce determinati trasferimenti di forza vitale da o verso il soggetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vita_Sigillata",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Vita Sigillata: https://golarion.altervista.org/wiki/Incantesimi/Vita_Sigillata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

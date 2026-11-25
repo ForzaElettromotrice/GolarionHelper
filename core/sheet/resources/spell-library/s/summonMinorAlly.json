@@ -1,0 +1,37 @@
+{
+  "id": "summonMinorAlly",
+  "name": "Evoca Alleato Minore",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "DRUID": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "1d3 creature evocate",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Evoca un piccolo gruppo di animali Minuscoli dalla lista prevista. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Alleato_Minore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Alleato Minore: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Alleato_Minore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

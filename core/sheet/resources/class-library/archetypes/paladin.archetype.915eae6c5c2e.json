@@ -1,0 +1,283 @@
+{
+  "id": "paladin.archetype.915eae6c5c2e",
+  "classType": "paladin",
+  "name": "Signore della Pietra (Nano)",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.feature.19f84fbac558",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.1cb10aad1184",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.2ee066756d50",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.46fda65c8c8d",
+      "type": "alter"
+    },
+    {
+      "featureId": "paladin.feature.57f13dada9e2",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.6eed079a70d3",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.99f3e1a8c78d",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.b85d701a8180",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.bfc31e289a75",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "paladin.feature.19f84fbac558",
+    "paladin.feature.1cb10aad1184",
+    "paladin.feature.2ee066756d50",
+    "paladin.feature.57f13dada9e2",
+    "paladin.feature.6eed079a70d3",
+    "paladin.feature.99f3e1a8c78d",
+    "paladin.feature.b85d701a8180",
+    "paladin.feature.bfc31e289a75"
+  ],
+  "removedAcquisitionIds": [
+    "paladin.feature.46fda65c8c8d.level12",
+    "paladin.feature.46fda65c8c8d.level15",
+    "paladin.feature.46fda65c8c8d.level18",
+    "paladin.feature.46fda65c8c8d.level3",
+    "paladin.feature.46fda65c8c8d.level9"
+  ],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.915eae6c5c2e.instructions",
+      "name": "Signore della Pietra (Nano)",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.915eae6c5c2e.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.915eae6c5c2e.feature.ecaee0e956",
+      "name": "Colpo di Pietra (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29",
+      "progression": [
+        {
+          "id": "paladin.archetype.915eae6c5c2e.feature.ecaee0e956.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Signore della Pietra (Nano) — Colpo di Pietra (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.915eae6c5c2e.feature.9571d3a0c9",
+      "name": "Cuore di Pietra (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29",
+      "progression": [
+        {
+          "id": "paladin.archetype.915eae6c5c2e.feature.9571d3a0c9.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Signore della Pietra (Nano) — Cuore di Pietra (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.915eae6c5c2e.feature.e65259cc9b",
+      "name": "Sangue di Pietra (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29",
+      "progression": [
+        {
+          "id": "paladin.archetype.915eae6c5c2e.feature.e65259cc9b.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Signore della Pietra (Nano) — Sangue di Pietra (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.915eae6c5c2e.feature.306e9547bf",
+      "name": "Posizione Difensiva (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29",
+      "progression": [
+        {
+          "id": "paladin.archetype.915eae6c5c2e.feature.306e9547bf.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Signore della Pietra (Nano) — Posizione Difensiva (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.915eae6c5c2e.feature.69bedf4830",
+      "name": "Incanalare Terra (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29",
+      "progression": [
+        {
+          "id": "paladin.archetype.915eae6c5c2e.feature.69bedf4830.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Signore della Pietra (Nano) — Incanalare Terra (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.915eae6c5c2e.feature.e5d97c1356",
+      "name": "Servitore di Pietra (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29",
+      "progression": [
+        {
+          "id": "paladin.archetype.915eae6c5c2e.feature.e5d97c1356.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Signore della Pietra (Nano) — Servitore di Pietra (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.915eae6c5c2e.feature.bc548a036f",
+      "name": "Anatema della Pietra (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29",
+      "progression": [
+        {
+          "id": "paladin.archetype.915eae6c5c2e.feature.bc548a036f.initial",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Signore della Pietra (Nano) — Anatema della Pietra (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.915eae6c5c2e.feature.36ba4985f4",
+      "name": "Colpo Fase (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29",
+      "progression": [
+        {
+          "id": "paladin.archetype.915eae6c5c2e.feature.36ba4985f4.initial",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Signore della Pietra (Nano) — Colpo Fase (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.915eae6c5c2e.feature.9566715064",
+      "name": "Difesa Mobile (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29",
+      "progression": [
+        {
+          "id": "paladin.archetype.915eae6c5c2e.feature.9566715064.initial",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Signore della Pietra (Nano) — Difesa Mobile (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.915eae6c5c2e.feature.3135cb9ec8",
+      "name": "Corpo di Pietra (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29",
+      "progression": [
+        {
+          "id": "paladin.archetype.915eae6c5c2e.feature.3135cb9ec8.initial",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Signore della Pietra (Nano) — Corpo di Pietra (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Signore_della_Pietra_.28Nano.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

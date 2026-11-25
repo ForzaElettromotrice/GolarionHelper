@@ -1,0 +1,31 @@
+{
+  "id": "netAdept",
+  "name": "Adepto della Rete",
+  "description": "Agevola l'impiego della rete con una sola mano. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Adepto_della_Rete",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Rete) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Adepto della Rete: https://golarion.altervista.org/wiki/Talenti/Adepto_della_Rete. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Rete) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

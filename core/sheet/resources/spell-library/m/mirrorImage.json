@@ -1,0 +1,50 @@
+{
+  "id": "mirrorImage",
+  "name": "Immagine Speculare",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "FIGMENT",
+  "spellLevelByClass": {
+    "ADEPT": 2,
+    "ARCANIST": 2,
+    "BARD": 2,
+    "BLOODRAGER": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "SUBTERFUGE": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Circonda l'incantatore di immagini ingannevoli che confondono gli attaccanti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Immagine_Speculare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Immagine Speculare: https://golarion.altervista.org/wiki/Incantesimi/Immagine_Speculare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

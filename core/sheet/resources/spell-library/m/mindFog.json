@@ -1,0 +1,51 @@
+{
+  "id": "mindFog",
+  "name": "Nebbia Mentale",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 5,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "MESMERIST": 5,
+    "OCCULTIST": 5,
+    "PSYCHIC": 5,
+    "SKALD": 5,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "nebbia in una propagazione del raggio di 6 m, alta 6 m",
+  "durationType": "OTHER",
+  "durationDescription": "30 minuti e 2d6 round; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Indebolisce le difese mentali delle creature immerse nella nebbia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Nebbia_Mentale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Nebbia Mentale: https://golarion.altervista.org/wiki/Incantesimi/Nebbia_Mentale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

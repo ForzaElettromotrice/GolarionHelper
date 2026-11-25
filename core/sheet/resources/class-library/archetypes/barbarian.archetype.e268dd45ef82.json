@@ -1,0 +1,99 @@
+{
+  "id": "barbarian.archetype.e268dd45ef82",
+  "classType": "barbarian",
+  "name": "Iracondo Invulnerabile",
+  "description": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "barbarian.feature.15958bb2d625",
+      "type": "replace"
+    },
+    {
+      "featureId": "barbarian.feature.01ce50436da1",
+      "type": "replace"
+    },
+    {
+      "featureId": "barbarian.feature.bf93e5b2d71e",
+      "type": "replace"
+    },
+    {
+      "featureId": "barbarian.feature.b6a3e8829ae9",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "barbarian.feature.15958bb2d625",
+    "barbarian.feature.01ce50436da1",
+    "barbarian.feature.bf93e5b2d71e",
+    "barbarian.feature.b6a3e8829ae9"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "barbarian.archetype.e268dd45ef82.instructions",
+      "name": "Iracondo Invulnerabile",
+      "description": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "barbarian.archetype.e268dd45ef82.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Barbaro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "barbarian.archetype.e268dd45ef82.feature.1",
+      "name": "Invulnerabilità (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile",
+      "progression": [
+        {
+          "id": "barbarian.archetype.e268dd45ef82.feature.1.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "damageReduction",
+              "type": "damageReduction",
+              "expression": "@classLevel / 2",
+              "bypass": []
+            },
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Iracondo Invulnerabile: la RD ordinaria è già calcolata; raddoppiala manualmente contro i danni non letali. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "barbarian.archetype.e268dd45ef82.feature.2",
+      "name": "Resistenza Estrema (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile",
+      "progression": [
+        {
+          "id": "barbarian.archetype.e268dd45ef82.feature.2.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Iracondo Invulnerabile — Resistenza Estrema (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Barbaro/Archetipi#Iracondo_Invulnerabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "insectPlague",
+  "name": "Piaga degli Insetti",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "HUNTER": 5,
+    "CLERIC": 5,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 5,
+    "DRUID": 5,
+    "ORACLE": 5,
+    "WARPRIEST": 5,
+    "SHAMAN": 5
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "effect": "1 Sciame di Vespe ogni 3 livelli, ognuno dei quali deve essere adiacente ad almeno un altro sciame",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama sciami di vespe. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Piaga_degli_Insetti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Piaga degli Insetti: https://golarion.altervista.org/wiki/Incantesimi/Piaga_degli_Insetti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

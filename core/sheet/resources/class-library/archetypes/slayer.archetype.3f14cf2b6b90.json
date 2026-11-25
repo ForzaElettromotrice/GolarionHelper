@@ -1,0 +1,78 @@
+{
+  "id": "slayer.archetype.3f14cf2b6b90",
+  "classType": "slayer",
+  "name": "Tiratore Scelto",
+  "description": "Archetipo di Predatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Predatore/Archetipi#Tiratore_Scelto Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "slayer.feature.66220ae3ac4c",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "slayer.feature.66220ae3ac4c"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "slayer.archetype.3f14cf2b6b90.instructions",
+      "name": "Tiratore Scelto",
+      "description": "Archetipo di Predatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Predatore/Archetipi#Tiratore_Scelto Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "slayer.archetype.3f14cf2b6b90.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Predatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Predatore/Archetipi#Tiratore_Scelto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "slayer.archetype.3f14cf2b6b90.feature.1",
+      "name": "Accuratezza (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Predatore/Archetipi#Tiratore_Scelto",
+      "progression": [
+        {
+          "id": "slayer.archetype.3f14cf2b6b90.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Tiratore Scelto — Accuratezza (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Predatore/Archetipi#Tiratore_Scelto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "slayer.archetype.3f14cf2b6b90.feature.2",
+      "name": "Tiratore Letale (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Predatore/Archetipi#Tiratore_Scelto",
+      "progression": [
+        {
+          "id": "slayer.archetype.3f14cf2b6b90.feature.2.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Tiratore Scelto — Tiratore Letale (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Predatore/Archetipi#Tiratore_Scelto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

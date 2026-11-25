@@ -1,0 +1,52 @@
+{
+  "id": "lissalanSnakeSigil",
+  "name": "Sigillo del Serpente di Lissala",
+  "school": "VARIABLE",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "ambra in polvere del valore di 500 mo e una squama di serpente",
+  "materialComponentCostInGoldPieces": 500,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "un libro o scritto toccato",
+  "durationType": "OTHER",
+  "durationDescription": "permanente finché non viene scaricato, 1 giorno/livello; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Inscrive un sigillo serpentino con effetti legati alle scuole thassiloniane. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sigillo_del_Serpente_di_Lissala",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sigillo del Serpente di Lissala: https://golarion.altervista.org/wiki/Incantesimi/Sigillo_del_Serpente_di_Lissala Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Arcanista/Mago/Stregone 3, Chierico/Oracolo/Sacerdote Guerriero 3 (Lissala) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

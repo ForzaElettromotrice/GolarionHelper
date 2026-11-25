@@ -1,0 +1,75 @@
+{
+  "id": "powerAttack",
+  "name": "Attacco Poderoso",
+  "description": "Scambia precisione per danni in mischia, con valori crescenti secondo il BAB. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Attacco_Poderoso",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 13",
+      "expression": "@str >= 13"
+    },
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "attack",
+      "type": "modifier",
+      "resource": "attack.melee",
+      "description": "Beneficio del talento",
+      "modifierType": "penalty",
+      "expression": "1 + @bab / 4",
+      "condition": "Quando Attacco Poderoso è attivato fino al turno successivo"
+    },
+    {
+      "id": "maneuver",
+      "type": "modifier",
+      "resource": "combatManeuver.bonus.all",
+      "description": "Beneficio del talento",
+      "modifierType": "penalty",
+      "expression": "1 + @bab / 4",
+      "condition": "Quando Attacco Poderoso è attivato fino al turno successivo"
+    },
+    {
+      "id": "damageOrdinary",
+      "type": "modifier",
+      "resource": "damage.weaponRoll",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2 * (1 + @bab / 4)",
+      "condition": "Attacco Poderoso attivo: danno in mischia ordinario, esclusi casi a due mani, mano secondaria, naturali secondari e contatto"
+    },
+    {
+      "id": "damageTwoHands",
+      "type": "modifier",
+      "resource": "damage.weaponRoll",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "3 * (1 + @bab / 4)",
+      "condition": "Attacco Poderoso attivo: arma a due mani, arma a una mano impugnata a due mani o naturale primario con 1,5 volte Forza; escluso contatto"
+    },
+    {
+      "id": "damageOffHand",
+      "type": "modifier",
+      "resource": "damage.weaponRoll",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "1 + @bab / 4",
+      "condition": "Attacco Poderoso attivo: arma nella mano secondaria o attacco naturale secondario; escluso contatto"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Decidere prima dell'attacco; mantenere penalità fino al turno successivo. Applicare una sola categoria di danno per attacco, mai sommare i tre bonus condizionali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

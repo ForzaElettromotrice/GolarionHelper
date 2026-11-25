@@ -1,0 +1,45 @@
+{
+  "id": "kissOfTheFirstWorld",
+  "name": "Bacio del Primo Mondo",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 4,
+    "SKALD": 4,
+    "DRUID": 4,
+    "HUNTER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "polvere di diamante del valore di 100 mo",
+  "materialComponentCostInGoldPieces": 100,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura vivente o Non Morto toccato",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Trasmette energia vitale che favorisce i viventi e indebolisce i non morti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bacio_del_Primo_Mondo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bacio del Primo Mondo: https://golarion.altervista.org/wiki/Incantesimi/Bacio_del_Primo_Mondo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

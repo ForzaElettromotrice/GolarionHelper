@@ -1,0 +1,58 @@
+{
+  "id": "shadowWalk",
+  "name": "Camminare nelle Ombre",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "ALCHEMIST": 6,
+    "ARCANIST": 6,
+    "BARD": 5,
+    "INVESTIGATOR": 6,
+    "WIZARD": 6,
+    "MESMERIST": 5,
+    "SKALD": 5,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DARKNESS": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "fino a 1 creatura toccata/livello",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Usa il Piano delle Ombre come via per viaggiare rapidamente tra luoghi lontani. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Camminare_nelle_Ombre",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Camminare nelle Ombre: https://golarion.altervista.org/wiki/Incantesimi/Camminare_nelle_Ombre Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: fino a 1 creatura toccata/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

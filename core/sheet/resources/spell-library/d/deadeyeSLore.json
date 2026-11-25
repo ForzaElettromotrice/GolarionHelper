@@ -1,0 +1,50 @@
+{
+  "id": "deadeyeSLore",
+  "name": "Sapienza dell'Occhio Letale",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 1,
+    "SKALD": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "DRUID": 1,
+    "INQUISITOR": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Concede +4 sacro a Sopravvivenza e permette di seguire tracce o attraversare terre selvagge senza dimezzare il passo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sapienza_dell%27Occhio_Letale",
+  "effects": [
+    {
+      "id": "survival",
+      "type": "modifier",
+      "resource": "skill.survival",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "sacred",
+      "expression": "4"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "La rimozione delle riduzioni al movimento durante esplorazione e inseguimento è manuale. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

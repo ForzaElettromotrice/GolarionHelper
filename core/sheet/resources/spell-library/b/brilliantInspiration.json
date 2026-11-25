@@ -1,0 +1,50 @@
+{
+  "id": "brilliantInspiration",
+  "name": "Ispirazione Brillante",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 6,
+    "PSYCHIC": 8,
+    "SKALD": 6
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "LEADERSHIP": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura vivente",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello e speciale (vedi sotto)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Permette di ottenere sistematicamente il migliore fra due risultati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ispirazione_Brillante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ispirazione Brillante: https://golarion.altervista.org/wiki/Incantesimi/Ispirazione_Brillante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Descrittori variabili da determinare al lancio: dipendente dal linguaggio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

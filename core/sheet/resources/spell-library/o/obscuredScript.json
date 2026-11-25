@@ -1,0 +1,53 @@
+{
+  "id": "obscuredScript",
+  "name": "Testo Oscurato",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "BARD": 2,
+    "SKALD": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo di carta con una semplice frase scritta in almeno cinque lingue",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una pagina, un rotolo, un'iscrizione, un libro o altro documento di dimensioni non superiori a 3 piedi in qualsiasi direzione",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Rende più arduo decifrare un testo scritto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Testo_Oscurato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Testo Oscurato: https://golarion.altervista.org/wiki/Incantesimi/Testo_Oscurato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno, vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: una pagina, un rotolo, un'iscrizione, un libro o altro documento di dimensioni non superiori a 3 piedi in qualsiasi direzione. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

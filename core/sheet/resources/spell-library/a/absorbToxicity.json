@@ -1,0 +1,48 @@
+{
+  "id": "absorbToxicity",
+  "name": "Assorbire Tossicità",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 5,
+    "HUNTER": 4,
+    "DRUID": 4,
+    "WITCH": 4,
+    "INVESTIGATOR": 3,
+    "WIZARD": 5,
+    "PSYCHIC": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una spina di pianta velenosa",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Protegge da tossine e malattie e permette di assorbirne una per trasmetterla successivamente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Assorbire_Tossicit%C3%A0",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Assorbire Tossicità: https://golarion.altervista.org/wiki/Incantesimi/Assorbire_Tossicit%C3%A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

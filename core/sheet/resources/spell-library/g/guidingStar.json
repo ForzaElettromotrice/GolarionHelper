@@ -1,0 +1,42 @@
+{
+  "id": "guidingStar",
+  "name": "Stella Guida",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "CLERIC": 3,
+    "WITCH": 3,
+    "ORACLE": 3,
+    "PSYCHIC": 3,
+    "RANGER": 2,
+    "WARPRIEST": 3,
+    "SHAMAN": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un rocchetto di filo o un laccio",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Fornisce un riferimento per ritrovare il luogo in cui è stato lanciato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Stella_Guida",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Stella Guida: https://golarion.altervista.org/wiki/Incantesimi/Stella_Guida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

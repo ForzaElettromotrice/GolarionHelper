@@ -1,0 +1,175 @@
+{
+  "id": "wizard.archetype.5c456ed2767f",
+  "classType": "wizard",
+  "name": "Necromante Virtuoso",
+  "description": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Scuola Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "wizard.feature.aa63c3ab3557",
+      "type": "replace"
+    },
+    {
+      "featureId": "wizard.feature.5805de6bd2db",
+      "type": "alter"
+    },
+    {
+      "featureId": "wizard.spellcasting",
+      "type": "alter"
+    },
+    {
+      "featureId": "wizard.feature.53361bf45405",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "wizard.feature.aa63c3ab3557",
+    "wizard.feature.5805de6bd2db"
+  ],
+  "removedAcquisitionIds": [
+    "wizard.bonusFeats.level5",
+    "wizard.bonusFeats.level10",
+    "wizard.bonusFeats.level15"
+  ],
+  "addedFeatures": [
+    {
+      "id": "wizard.archetype.5c456ed2767f.instructions",
+      "name": "Necromante Virtuoso",
+      "description": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "wizard.archetype.5c456ed2767f.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Scuola Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.5c456ed2767f.feature.1",
+      "name": "Scuola Arcana",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso",
+      "progression": [
+        {
+          "id": "wizard.archetype.5c456ed2767f.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Necromante Virtuoso — Scuola Arcana: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.5c456ed2767f.feature.2",
+      "name": "Scacciare Non Morti (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso",
+      "progression": [
+        {
+          "id": "wizard.archetype.5c456ed2767f.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Necromante Virtuoso — Scacciare Non Morti (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.5c456ed2767f.feature.3",
+      "name": "Tocco Positivo (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso",
+      "progression": [
+        {
+          "id": "wizard.archetype.5c456ed2767f.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Necromante Virtuoso — Tocco Positivo (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.5c456ed2767f.feature.4",
+      "name": "Anatema della Morte (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso",
+      "progression": [
+        {
+          "id": "wizard.archetype.5c456ed2767f.feature.4.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Necromante Virtuoso — Anatema della Morte (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.5c456ed2767f.feature.5",
+      "name": "Anatema dei Fantasmi (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso",
+      "progression": [
+        {
+          "id": "wizard.archetype.5c456ed2767f.feature.5.initial",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Necromante Virtuoso — Anatema dei Fantasmi (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.5c456ed2767f.feature.6",
+      "name": "Protezione della Vita (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso",
+      "progression": [
+        {
+          "id": "wizard.archetype.5c456ed2767f.feature.6.initial",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Necromante Virtuoso — Protezione della Vita (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Necromante_Virtuoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

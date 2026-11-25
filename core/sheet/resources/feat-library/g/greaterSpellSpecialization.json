@@ -1,0 +1,37 @@
+{
+  "id": "greaterSpellSpecialization",
+  "name": "Incantesimo Specializzato Superiore",
+  "description": "Consente di convertire altre magie nell'incantesimo specializzato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Incantesimo_Specializzato_Superiore",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Incantesimi Focalizzati Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Incantesimo Specializzato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di preparare incantesimi di 5° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Incantesimo Specializzato Superiore: https://golarion.altervista.org/wiki/Talenti/Incantesimo_Specializzato_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incantesimi Focalizzati; Prerequisito da verificare manualmente: Incantesimo Specializzato; Prerequisito da verificare manualmente: capacità di preparare incantesimi di 5° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

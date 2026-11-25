@@ -1,0 +1,48 @@
+{
+  "id": "painStrike",
+  "name": "Colpo Doloroso",
+  "school": "EVOCATION",
+  "descriptors": [
+    "PAIN",
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WITCH": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "PSYCHIC": 2,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura vivente",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Infligge dolore persistente sotto forma di danni non letali ripetuti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Colpo_Doloroso",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Colpo Doloroso: https://golarion.altervista.org/wiki/Incantesimi/Colpo_Doloroso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

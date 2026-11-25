@@ -1,0 +1,48 @@
+{
+  "id": "excruciatingDeformation",
+  "name": "Deformazione Straziante",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "EVIL",
+    "PAIN"
+  ],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WITCH": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "PSYCHIC": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale (vedere testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Tormenta e distorce il corpo della vittima infliggendo danni alle caratteristiche fisiche indicate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Deformazione_Straziante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Deformazione Straziante: https://golarion.altervista.org/wiki/Incantesimi/Deformazione_Straziante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

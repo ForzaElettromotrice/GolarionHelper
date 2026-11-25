@@ -1,0 +1,27 @@
+{
+  "id": "grabbingMaster",
+  "name": "Maestro delle Prese",
+  "description": "Consente di mantenere contemporaneamente due avversari in presa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestro_delle_Prese",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Lottare Migliorato, Stile delle Prese, Trascinata con Presa; Attaccabrighe di 8° livello o Monaco di 8° livello, Bonus di Attacco Base +12. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestro delle Prese: https://golarion.altervista.org/wiki/Talenti/Maestro_delle_Prese. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Lottare Migliorato, Stile delle Prese, Trascinata con Presa; Attaccabrighe di 8° livello o Monaco di 8° livello, Bonus di Attacco Base +12. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

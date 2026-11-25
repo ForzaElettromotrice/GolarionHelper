@@ -1,0 +1,40 @@
+{
+  "id": "wickerHorse",
+  "name": "Cavallo di Vimini",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "WITCH": 2,
+    "OCCULTIST": 2,
+    "SHAMAN": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti, vedi testo",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una canna di ramoscello",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "effect": "un costrutto di vimini a forma di cavallo",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Anima un cavallo di materiale vegetale, con qualità dipendenti dai componenti utilizzati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cavallo_di_Vimini",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cavallo di Vimini: https://golarion.altervista.org/wiki/Incantesimi/Cavallo_di_Vimini Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

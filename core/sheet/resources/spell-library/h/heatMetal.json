@@ -1,0 +1,63 @@
+{
+  "id": "heatMetal",
+  "name": "Riscaldare il Metallo",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "FIRE"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "DRUID": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "SUN": 2
+    },
+    "subdomain": {
+      "METAL": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "Equipaggiamento in metallo di 1 creatura ogni 2 livelli; due delle quali non possono trovarsi a più di 9 m l’una dall’altra; oppure 12,5 kg di metallo/livello entro un cerchio di 9 m",
+  "durationType": "ROUND",
+  "durationDescription": "7 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Riscalda progressivamente il metallo, danneggiando chi vi rimane a contatto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Riscaldare_il_Metallo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Riscaldare il Metallo: https://golarion.altervista.org/wiki/Incantesimi/Riscaldare_il_Metallo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Metallo 3 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: Equipaggiamento in metallo di 1 creatura ogni 2 livelli; due delle quali non possono trovarsi a più di 9 m l’una dall’altra; oppure 12,5 kg di metallo/livello entro un cerchio di 9 m. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

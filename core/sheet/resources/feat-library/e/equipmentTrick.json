@@ -1,0 +1,28 @@
+{
+  "id": "equipmentTrick",
+  "name": "Trucco con l'Equipaggiamento",
+  "description": "Sblocca impieghi speciali di un tipo di equipaggiamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Trucco_con_l%27Equipaggiamento",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Trucco con l'Equipaggiamento: https://golarion.altervista.org/wiki/Talenti/Trucco_con_l%27Equipaggiamento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

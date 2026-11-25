@@ -1,0 +1,30 @@
+{
+  "id": "falseFocus",
+  "name": "Falso Focus",
+  "description": "Permette di usare un simbolo sacro nella magia arcana. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Falso_Focus",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (Religioni) 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di lanciare Incantesimi Arcani Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Falso Focus: https://golarion.altervista.org/wiki/Talenti/Falso_Focus. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (Religioni) 1 grado; Prerequisito da verificare manualmente: capacità di lanciare Incantesimi Arcani Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

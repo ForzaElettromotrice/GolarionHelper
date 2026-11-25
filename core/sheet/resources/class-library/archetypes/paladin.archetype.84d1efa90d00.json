@@ -1,0 +1,143 @@
+{
+  "id": "paladin.archetype.84d1efa90d00",
+  "classType": "paladin",
+  "name": "Guida Sacra",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Guida_Sacra Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.classSkills",
+      "type": "alter"
+    },
+    {
+      "featureId": "paladin.feature.46fda65c8c8d",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [],
+  "removedAcquisitionIds": [
+    "paladin.feature.46fda65c8c8d.level3",
+    "paladin.feature.46fda65c8c8d.level6"
+  ],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.84d1efa90d00.instructions",
+      "name": "Guida Sacra",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Guida_Sacra Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.84d1efa90d00.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Guida_Sacra Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.84d1efa90d00.feature.caf976c3b4",
+      "name": "Abilità di Classe",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Guida_Sacra",
+      "progression": [
+        {
+          "id": "paladin.archetype.84d1efa90d00.feature.caf976c3b4.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guida Sacra — Abilità di Classe: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Guida_Sacra Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.84d1efa90d00.feature.f7f2d002f9",
+      "name": "Ambiente Prescelto (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Guida_Sacra",
+      "progression": [
+        {
+          "id": "paladin.archetype.84d1efa90d00.feature.f7f2d002f9.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guida Sacra — Ambiente Prescelto (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Guida_Sacra Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.84d1efa90d00.feature.94ccec02ec",
+      "name": "Talento di Squadra (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Guida_Sacra",
+      "progression": [
+        {
+          "id": "paladin.archetype.84d1efa90d00.feature.94ccec02ec.initial",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guida Sacra — Talento di Squadra (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Guida_Sacra Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.84d1efa90d00.classSkill.1",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Paladino/Archetipi#Guida_Sacra",
+      "progression": [
+        {
+          "id": "paladin.archetype.84d1efa90d00.classSkill.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.geography"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.84d1efa90d00.classSkill.2",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Paladino/Archetipi#Guida_Sacra",
+      "progression": [
+        {
+          "id": "paladin.archetype.84d1efa90d00.classSkill.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.survival"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

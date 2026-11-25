@@ -1,0 +1,72 @@
+{
+  "id": "catSGrace",
+  "name": "Grazia del Gatto",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ADEPT": 2,
+    "ALCHEMIST": 2,
+    "ARCANIST": 2,
+    "BARD": 2,
+    "HUNTER": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "DRUID": 2,
+    "INVESTIGATOR": 2,
+    "BLOODRAGER": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "PSYCHIC": 2,
+    "RANGER": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un ciuffo di peli di gatto",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Concede +4 di potenziamento a Destrezza e ne modifica gli usi derivati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Grazia_del_Gatto",
+  "effects": [
+    {
+      "id": "ability",
+      "type": "modifier",
+      "resource": "dex",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "enhancement",
+      "expression": "4"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Gli eventuali incantesimi bonus non aumentano; gli effetti sulle CD si risolvono con il lancio. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Legno 2 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

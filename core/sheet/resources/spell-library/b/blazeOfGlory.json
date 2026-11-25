@@ -1,0 +1,47 @@
+{
+  "id": "blazeOfGlory",
+  "name": "Fiamme della Gloria",
+  "school": "CONJURATION",
+  "descriptors": [
+    "GOOD",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "PALADIN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard o immediata; vedi testo",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "Non indicato nella fonte; verificare manualmente.",
+  "area": "esplosione nel raggio di 9 metri centrata su di sé",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo e 1 round/livello; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Libera energia che risana i buoni e colpisce i malvagi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fiamme_della_Gloria",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fiamme della Gloria: https://golarion.altervista.org/wiki/Incantesimi/Fiamme_della_Gloria Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte non indica il raggio di azione: verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

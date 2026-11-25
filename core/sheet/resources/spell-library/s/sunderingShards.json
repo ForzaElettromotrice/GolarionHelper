@@ -1,0 +1,44 @@
+{
+  "id": "sunderingShards",
+  "name": "Spezzare in Frammenti",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "WITCH": 1,
+    "BLOODRAGER": 1,
+    "MAGUS": 1,
+    "PSYCHIC": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 arma da mischia toccata",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Quando l'oggetto viene spezzato, i suoi frammenti possono ferire le creature vicine. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Spezzare_in_Frammenti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Spezzare in Frammenti: https://golarion.altervista.org/wiki/Incantesimi/Spezzare_in_Frammenti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

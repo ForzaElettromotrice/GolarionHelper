@@ -1,0 +1,53 @@
+{
+  "id": "unerringWeapon",
+  "name": "Arma Infallibile",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "MEDIUM": 1,
+    "OCCULTIST": 2,
+    "PSYCHIC": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino(7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 arma o 20 proiettili, i quali devono essere tutti insieme al momento del lancio",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Migliora le prove dell'arma interessata per confermare minacce di critico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Arma_Infallibile",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Arma Infallibile: https://golarion.altervista.org/wiki/Incantesimi/Arma_Infallibile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 arma o 20 proiettili, i quali devono essere tutti insieme al momento del lancio. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

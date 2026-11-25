@@ -1,0 +1,47 @@
+{
+  "id": "blindingRay",
+  "name": "Raggio Accecante",
+  "school": "EVOCATION",
+  "descriptors": [
+    "GOOD",
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "INQUISITOR": 3,
+    "PALADIN": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "uno o più raggi di luce",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Proietta raggi di luce capaci di accecare gli avversari. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Raggio_Accecante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Raggio Accecante: https://golarion.altervista.org/wiki/Incantesimi/Raggio_Accecante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

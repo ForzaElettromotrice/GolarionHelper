@@ -1,0 +1,55 @@
+{
+  "id": "auditoryHallucination",
+  "name": "Allucinazione Uditiva",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "BARD": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "MEDIUM": 1,
+    "MESMERIST": 1,
+    "OCCULTIST": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 metri + 12 m/livello)",
+  "target": "1 creatura/livello, nessuno delle quali deve essere distante più di 9 metri l'una dall'altra",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà per non credere"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Produce nella mente del bersaglio una percezione sonora illusoria. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Allucinazione_Uditiva",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Allucinazione Uditiva: https://golarion.altervista.org/wiki/Incantesimi/Allucinazione_Uditiva Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/livello, nessuno delle quali deve essere distante più di 9 metri l'una dall'altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

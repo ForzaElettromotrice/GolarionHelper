@@ -1,0 +1,43 @@
+{
+  "id": "madMonkeys",
+  "name": "Scimmie Folli",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 3,
+    "HUNTER": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "DRUID": 3,
+    "WIZARD": 3,
+    "SKALD": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "Sciame di Scimmie",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Evoca uno sciame di scimmie che disturba e assale i nemici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scimmie_Folli",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Scimmie Folli: https://golarion.altervista.org/wiki/Incantesimi/Scimmie_Folli Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

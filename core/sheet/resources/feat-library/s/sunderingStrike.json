@@ -1,0 +1,41 @@
+{
+  "id": "sunderingStrike",
+  "name": "Colpo Spezzante",
+  "description": "Un colpo critico permette di danneggiare anche l'arma nemica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_Spezzante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 13",
+      "expression": "@str >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Spezzare Migliorato",
+      "feat": {
+        "id": "improvedSunder"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +9",
+      "expression": "@bab >= 9"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo Spezzante: https://golarion.altervista.org/wiki/Talenti/Colpo_Spezzante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

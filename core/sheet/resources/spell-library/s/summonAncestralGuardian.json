@@ -1,0 +1,40 @@
+{
+  "id": "summonAncestralGuardian",
+  "name": "Evoca Guardiano Ancestrale",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "BARD": 3,
+    "SKALD": 3,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "immagine del tuo avo realizzata in pietra o metallo",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "2 spiriti di avi evocati",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Due spiriti ancestrali si manifestano per combattere i nemici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Guardiano_Ancestrale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Guardiano Ancestrale: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Guardiano_Ancestrale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

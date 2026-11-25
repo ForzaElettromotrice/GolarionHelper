@@ -1,0 +1,25 @@
+{
+  "id": "cryChallenge",
+  "name": "Sfida Ostentata",
+  "description": "Provoca reazioni nemiche preparandosi a evitarle. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Sfida_Ostentata",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Istigare",
+      "feat": {
+        "id": "antagonize"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Sfida Ostentata: https://golarion.altervista.org/wiki/Talenti/Sfida_Ostentata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

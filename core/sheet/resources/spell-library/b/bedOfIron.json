@@ -1,0 +1,46 @@
+{
+  "id": "bedOfIron",
+  "name": "Letto di Ferro",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "INQUISITOR": 1,
+    "MAGUS": 1,
+    "PALADIN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una piuma o uno scampolo di tessuto morbido",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "effect": "1 creatura toccata/livello",
+  "durationType": "HOUR",
+  "durationDescription": "8 ore",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Consente un riposo confortevole pur indossando armature ingombranti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Letto_di_Ferro",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Letto di Ferro: https://golarion.altervista.org/wiki/Incantesimi/Letto_di_Ferro Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

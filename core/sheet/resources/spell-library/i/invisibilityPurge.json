@@ -1,0 +1,38 @@
+{
+  "id": "invisibilityPurge",
+  "name": "Epurare Invisibilità",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 3,
+    "INQUISITOR": 3,
+    "OCCULTIST": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "SPIRITUALIST": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Rende visibili nell'area le creature protette da invisibilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Epurare_Invisibilit%C3%A0",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Epurare Invisibilità: https://golarion.altervista.org/wiki/Incantesimi/Epurare_Invisibilit%C3%A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

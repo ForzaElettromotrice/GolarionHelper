@@ -1,0 +1,44 @@
+{
+  "id": "wallOfThorns",
+  "name": "Muro di Spine",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "HUNTER": 5,
+    "DRUID": 5,
+    "SHAMAN": 5
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "BLOOD": 5
+    },
+    "domain": {
+      "PLANT": 5
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "muro di arbusti spinosi, fino a un cubo con spigolo di 3 m/livello (F)",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Erige un intrico spinoso pericoloso da attraversare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Spine",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Muro di Spine: https://golarion.altervista.org/wiki/Incantesimi/Muro_di_Spine Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

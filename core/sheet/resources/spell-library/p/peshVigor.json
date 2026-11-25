@@ -1,0 +1,70 @@
+{
+  "id": "peshVigor",
+  "name": "Vigore da Pesh",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "INVESTIGATOR": 1,
+    "ANTIPALADIN": 1,
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SUMMONER": 1,
+    "DRUID": 1,
+    "BLOODRAGER": 1,
+    "MAGUS": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una dosa di Pesh da 15 mo",
+  "materialComponentCostInGoldPieces": 15,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura vivente toccata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello, vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Concede +2 potenziamento a Forza; il soggetto può intensificarlo temporaneamente pagando danni non letali e durata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vigore_da_Pesh",
+  "effects": [
+    {
+      "id": "strength",
+      "type": "modifier",
+      "resource": "str",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "enhancement",
+      "expression": "2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Aumenti volontari, limiti per livello dell'incantatore, danni non letali e spesa della durata sono manuali. Alla fine il soggetto diventa affaticato; verificare le condizioni relative al pesh. Gestire manualmente durata e risoluzione del lancio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Sahir-Afiyun 1 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

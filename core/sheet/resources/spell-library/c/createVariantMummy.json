@@ -1,0 +1,51 @@
+{
+  "id": "createVariantMummy",
+  "name": "Creare Mummia Variante",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "WIZARD": 7,
+    "SORCERER": 7,
+    "CLERIC": 7,
+    "ORACLE": 7
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "1 ora",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "gemme di onice per un valore di 50 mo per DV del Non Morto creato",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 metri + 1,5 metri ogni 2 livelli)",
+  "target": "1 corpo immerso in una torbiera per almeno 24 ore",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di creare mummie dotate delle varianti previste dal rito. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Creare_Mummia_Variante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Creare Mummia Variante: https://golarion.altervista.org/wiki/Incantesimi/Creare_Mummia_Variante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 corpo immerso in una torbiera per almeno 24 ore. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Costo materiale variabile o alternativo: determinarlo dalla descrizione dei componenti, non da un importo fisso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

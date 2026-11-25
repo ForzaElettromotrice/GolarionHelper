@@ -1,0 +1,46 @@
+{
+  "id": "summonFlightOfEagles",
+  "name": "Evoca Stormo di Aquile",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "SORCERER": 6,
+    "HUNTER": 4,
+    "SUMMONER": 6,
+    "UNCHAINED_SUMMONER": 6,
+    "DRUID": 6,
+    "WITCH": 6,
+    "BLOODRAGER": 4,
+    "RANGER": 4,
+    "SHAMAN": 6
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una piuma d'oro del valore di 100 mo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "1d4+1 creature evocate",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama diverse aquile giganti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Stormo_di_Aquile",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Stormo di Aquile: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Stormo_di_Aquile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

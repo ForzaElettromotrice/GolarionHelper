@@ -1,0 +1,89 @@
+{
+  "id": "heroismGreater",
+  "name": "Eroismo Superiore",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "BARD": 5,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 6,
+    "WITCH": 6,
+    "WIZARD": 6,
+    "PSYCHIC": 6,
+    "SKALD": 5,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "HEROISM": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Concede +4 morale ad attacchi, tiri salvezza e abilità, protegge dalla paura e fornisce PF temporanei. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Eroismo_Superiore",
+  "effects": [
+    {
+      "id": "bonus0",
+      "type": "modifier",
+      "resource": "attack.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "4"
+    },
+    {
+      "id": "bonus1",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "4"
+    },
+    {
+      "id": "bonus2",
+      "type": "modifier",
+      "resource": "skill.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "4"
+    },
+    {
+      "id": "fearImmunity",
+      "type": "immunity",
+      "targetId": "fear",
+      "name": "Paura"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Aggiungere manualmente PF temporanei pari al livello dell'incantatore, massimo 20; non usare il livello totale. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

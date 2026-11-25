@@ -1,0 +1,31 @@
+{
+  "id": "intensePain",
+  "name": "Dolore Intenso",
+  "description": "Potenzia il danno prodotto da Occhiata Dolorosa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Dolore_Intenso",
+  "types": [
+    "combat",
+    "stare"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Mesmerista di 7° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Occhiata Dolorosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Dolore Intenso: https://golarion.altervista.org/wiki/Talenti/Dolore_Intenso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Mesmerista di 7° livello; Prerequisito da verificare manualmente: privilegio di classe Occhiata Dolorosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,58 @@
+{
+  "id": "fallingWaterGambit",
+  "name": "Mossa dell'Acqua Cadente",
+  "description": "Rende più pericolosi i critici contro avversari privati dell'agilità difensiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mossa_dell%27Acqua_Cadente",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Arma Accurata",
+      "feat": {
+        "id": "weaponFinesse"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Discepolo del Duello Aldori",
+      "feat": {
+        "id": "aldoriDuelingDisciple"
+      }
+    },
+    {
+      "description": "Duellante delle Cascate Ruggenti",
+      "feat": {
+        "id": "duelistOfTheRoaringFalls"
+      }
+    },
+    {
+      "description": "Duellante del Lago Velato",
+      "feat": {
+        "id": "duelistOfTheShroudedLake"
+      }
+    },
+    {
+      "description": "BAB +8",
+      "expression": "@bab >= 8"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mossa dell'Acqua Cadente: https://golarion.altervista.org/wiki/Talenti/Mossa_dell%27Acqua_Cadente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Spada da Duello Aldori); Prerequisito da verificare manualmente: Competenza nelle Armi Esotiche (Spada da Duello Aldori) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

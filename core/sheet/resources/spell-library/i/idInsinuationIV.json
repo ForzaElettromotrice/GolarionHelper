@@ -1,0 +1,46 @@
+{
+  "id": "idInsinuationIV",
+  "name": "Insinuazione nell'ID IV",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "PSYCHIC": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "4 creature",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione + 1 round",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Controlla la confusione inflitta a quattro avversari. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Insinuazione_nell%27ID#Insinuazione_nell'ID_IV",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Insinuazione nell'ID IV: https://golarion.altervista.org/wiki/Incantesimi/Insinuazione_nell%27ID#Insinuazione_nell'ID_IV Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 4 creature. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

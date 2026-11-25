@@ -1,0 +1,31 @@
+{
+  "id": "furysSnare",
+  "name": "Laccio Furioso",
+  "description": "Lascia una frusta avvolta al nemico abbattuto per intralciarlo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Laccio_Furioso",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Caduta Furiosa",
+      "feat": {
+        "id": "furysFall"
+      }
+    },
+    {
+      "description": "Sbilanciare Migliorato",
+      "feat": {
+        "id": "improvedTrip"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Laccio Furioso: https://golarion.altervista.org/wiki/Talenti/Laccio_Furioso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

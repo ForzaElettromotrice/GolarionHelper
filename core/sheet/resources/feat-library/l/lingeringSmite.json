@@ -1,0 +1,33 @@
+{
+  "id": "lingeringSmite",
+  "name": "Punire Persistentemente",
+  "description": "Fa persistere il danno incanalato contro i non morti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Punire_Persistentemente",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Incanalare Punizione",
+      "feat": {
+        "id": "channelSmite"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Incanalare Energia 3d6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Punire Persistentemente: https://golarion.altervista.org/wiki/Talenti/Punire_Persistentemente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incanalare Energia 3d6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

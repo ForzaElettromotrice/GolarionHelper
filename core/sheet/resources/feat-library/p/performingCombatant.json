@@ -1,0 +1,33 @@
+{
+  "id": "performingCombatant",
+  "name": "Combattente da Esibizione",
+  "description": "Consente di esibirsi marzialmente anche fuori dagli scontri da spettacolo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Combattente_da_Esibizione",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Maestria Intimorente",
+      "feat": {
+        "id": "dazzlingDisplay"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: un Talento di Esibizione qualsiasi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Combattente da Esibizione: https://golarion.altervista.org/wiki/Talenti/Combattente_da_Esibizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: un Talento di Esibizione qualsiasi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

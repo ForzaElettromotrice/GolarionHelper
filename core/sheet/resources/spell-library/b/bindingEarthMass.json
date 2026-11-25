@@ -1,0 +1,49 @@
+{
+  "id": "bindingEarthMass",
+  "name": "Vincolare alla Terra di Massa",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "EARTH"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 6,
+    "DRUID": 6,
+    "WITCH": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura o un oggetto/livello, nessuno dei quali può trovarsi a più di 9 metri di distanza (vedi testo)",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Il terreno ostacola e tenta di inghiottire più soggetti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vincolare_alla_Terra_di_Massa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Vincolare alla Terra di Massa: https://golarion.altervista.org/wiki/Incantesimi/Vincolare_alla_Terra_di_Massa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: una creatura o un oggetto/livello, nessuno dei quali può trovarsi a più di 9 metri di distanza (vedi testo). Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

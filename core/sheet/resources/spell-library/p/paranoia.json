@@ -1,0 +1,48 @@
+{
+  "id": "paranoia",
+  "name": "Paranoia",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "MEDIUM": 1,
+    "MESMERIST": 1,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Instilla sospetto generalizzato, rendendo la vittima ostile anche verso chi le è vicino. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Paranoia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Paranoia: https://golarion.altervista.org/wiki/Incantesimi/Paranoia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,1515 @@
+{
+  "type": "occultist",
+  "name": "Occultista",
+  "description": "Studioso occulto che risveglia poteri negli oggetti catalizzatori.",
+  "hitDie": 8,
+  "skillRanksPerLevel": 4,
+  "classSkills": [
+    "skill.craft",
+    "skill.disguise",
+    "skill.knowledge.arcana",
+    "skill.knowledge.engineering",
+    "skill.knowledge.history",
+    "skill.knowledge.planes",
+    "skill.knowledge.religion",
+    "skill.diplomacy",
+    "skill.disableDevice",
+    "skill.senseMotive",
+    "skill.linguistics",
+    "skill.perception",
+    "skill.profession",
+    "skill.sleightOfHand",
+    "skill.spellcraft",
+    "skill.useMagicDevice",
+    "skill.appraise",
+    "skill.fly"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 0,
+        "will": 2
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 0,
+        "will": 3
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 1,
+        "will": 3
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 2,
+        "will": 6
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 3,
+        "will": 6
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 4,
+        "will": 9
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 5,
+        "will": 9
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 12,
+        "reflex": 6,
+        "will": 12
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "occultist.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "occultist.spellcasting",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Occultista",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 1,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "spontaneous",
+              "spellListClass": "occultist"
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. La tabella giornaliera non contiene slot di livello 0: il backend richiede un gruppo tecnico o una futura API per il lancio gratuito; non viene inventato uno slot giornaliero. Le sostituzioni degli incantesimi conosciuti restano soggette alle finestre e ai limiti di livello descritti dalla classe. Il repertorio dipende dai catalizzatori scelti: un incantesimo per livello accessibile per ciascuna scelta di scuola, limitato a quella scuola, anche per scelte ripetute. Non viene concessa una quota generica non filtrata: selezioni e presenza del catalizzatore restano manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level1"
+          ]
+        },
+        {
+          "id": "castingSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level2"
+          ]
+        },
+        {
+          "id": "castingSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level3"
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level4"
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.9:occultist12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.95674950208b",
+      "name": "Bravure",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Bravure",
+      "progression": [
+        {
+          "id": "occultist.feature.95674950208b.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Occultista: verificare e applicare Bravure. https://golarion.altervista.org/wiki/Occultista#Bravure Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.b4da10c20dab",
+      "name": "Catalizzatori",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Catalizzatori_(Sop)",
+      "progression": [
+        {
+          "id": "occultist.feature.b4da10c20dab.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Occultista: verificare e applicare Catalizzatori 2. https://golarion.altervista.org/wiki/Occultista#Catalizzatori_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.b4da10c20dab.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Occultista: verificare e applicare Catalizzatori 3. https://golarion.altervista.org/wiki/Occultista#Catalizzatori_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.b4da10c20dab.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Occultista: verificare e applicare Catalizzatori 4. https://golarion.altervista.org/wiki/Occultista#Catalizzatori_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.b4da10c20dab.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Occultista: verificare e applicare Catalizzatori 5. https://golarion.altervista.org/wiki/Occultista#Catalizzatori_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.b4da10c20dab.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Occultista: verificare e applicare Catalizzatori 6. https://golarion.altervista.org/wiki/Occultista#Catalizzatori_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.b4da10c20dab.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Occultista: verificare e applicare Catalizzatori 7. https://golarion.altervista.org/wiki/Occultista#Catalizzatori_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.834062cfcd84",
+      "name": "Focus Mentale",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Focus_Mentale_(Sop)",
+      "progression": [
+        {
+          "id": "occultist.feature.834062cfcd84.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Occultista: verificare e applicare Focus Mentale. https://golarion.altervista.org/wiki/Occultista#Focus_Mentale_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.89f4cdb60d41",
+      "name": "Potere di Focus",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Poteri_di_Focus_(Sop)",
+      "progression": [
+        {
+          "id": "occultist.feature.89f4cdb60d41.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Occultista: verificare e applicare Potere di Focus. https://golarion.altervista.org/wiki/Occultista#Poteri_di_Focus_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.89f4cdb60d41.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Occultista: verificare e applicare Potere di Focus. https://golarion.altervista.org/wiki/Occultista#Poteri_di_Focus_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.89f4cdb60d41.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Occultista: verificare e applicare Potere di Focus. https://golarion.altervista.org/wiki/Occultista#Poteri_di_Focus_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.89f4cdb60d41.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Occultista: verificare e applicare Potere di Focus. https://golarion.altervista.org/wiki/Occultista#Poteri_di_Focus_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.89f4cdb60d41.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Occultista: verificare e applicare Potere di Focus. https://golarion.altervista.org/wiki/Occultista#Poteri_di_Focus_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.89f4cdb60d41.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Occultista: verificare e applicare Potere di Focus. https://golarion.altervista.org/wiki/Occultista#Poteri_di_Focus_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.89f4cdb60d41.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Occultista: verificare e applicare Potere di Focus. https://golarion.altervista.org/wiki/Occultista#Poteri_di_Focus_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.89f4cdb60d41.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Occultista: verificare e applicare Potere di Focus. https://golarion.altervista.org/wiki/Occultista#Poteri_di_Focus_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.89f4cdb60d41.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Occultista: verificare e applicare Potere di Focus. https://golarion.altervista.org/wiki/Occultista#Poteri_di_Focus_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.89f4cdb60d41.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Occultista: verificare e applicare Potere di Focus. https://golarion.altervista.org/wiki/Occultista#Poteri_di_Focus_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.8e09d5c33d07",
+      "name": "Abile con gli Oggetti Magici",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Abile_con_gli_Oggetti_Magici_(Str)",
+      "progression": [
+        {
+          "id": "occultist.feature.8e09d5c33d07.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Occultista: verificare e applicare Abile con gli Oggetti Magici. https://golarion.altervista.org/wiki/Occultista#Abile_con_gli_Oggetti_Magici_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.5f0664c0baeb",
+      "name": "Lettura dell'Oggetto",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Lettura_dell'Oggetto_(Sop)",
+      "progression": [
+        {
+          "id": "occultist.feature.5f0664c0baeb.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Occultista: verificare e applicare Lettura dell'Oggetto. https://golarion.altervista.org/wiki/Occultista#Lettura_dell'Oggetto_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.faf48b3bbb51",
+      "name": "Traslare Focus",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Traslare_Focus_(Sop)",
+      "progression": [
+        {
+          "id": "occultist.feature.faf48b3bbb51.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Occultista: verificare e applicare Traslare Focus. https://golarion.altervista.org/wiki/Occultista#Traslare_Focus_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.3bc358693969",
+      "name": "Visione dell'Aura",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Visione_dell'Aura_(Sop)",
+      "progression": [
+        {
+          "id": "occultist.feature.3bc358693969.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Occultista: verificare e applicare Visione dell'Aura. https://golarion.altervista.org/wiki/Occultista#Visione_dell'Aura_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.dd67538cfd2b",
+      "name": "Cerchi Magici",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Cerchi_Magici_(Sop)",
+      "progression": [
+        {
+          "id": "occultist.feature.dd67538cfd2b.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Occultista: verificare e applicare Cerchi Magici. https://golarion.altervista.org/wiki/Occultista#Cerchi_Magici_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.19d6f17d323d",
+      "name": "Contatto Esterno",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Contatto_Esterno_(Sop)",
+      "progression": [
+        {
+          "id": "occultist.feature.19d6f17d323d.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Occultista: verificare e applicare Contatto Esterno 1. https://golarion.altervista.org/wiki/Occultista#Contatto_Esterno_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "occultist.feature.19d6f17d323d.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Occultista: verificare e applicare Contatto Esterno 2. https://golarion.altervista.org/wiki/Occultista#Contatto_Esterno_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "occultist.feature.19d6f17d323d.level8"
+          ]
+        },
+        {
+          "id": "occultist.feature.19d6f17d323d.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Occultista: verificare e applicare Contatto Esterno 3. https://golarion.altervista.org/wiki/Occultista#Contatto_Esterno_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "occultist.feature.19d6f17d323d.level12"
+          ]
+        },
+        {
+          "id": "occultist.feature.19d6f17d323d.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Occultista: verificare e applicare Contatto Esterno 4. https://golarion.altervista.org/wiki/Occultista#Contatto_Esterno_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "occultist.feature.19d6f17d323d.level16"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.6570d7b13546",
+      "name": "Cerchi Vincolanti",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Cerchi_Vincolanti_(Sop)",
+      "progression": [
+        {
+          "id": "occultist.feature.6570d7b13546.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Occultista: verificare e applicare Cerchi Vincolanti +4. https://golarion.altervista.org/wiki/Occultista#Cerchi_Vincolanti_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.79236ec78fb4",
+      "name": "Cerchi Rapidi",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Cerchi_Rapidi_(Sop)",
+      "progression": [
+        {
+          "id": "occultist.feature.79236ec78fb4.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Occultista: verificare e applicare Cerchi Rapidi. https://golarion.altervista.org/wiki/Occultista#Cerchi_Rapidi_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.feature.c399c71bc8d9",
+      "name": "Padronanza dei Catalizzatori",
+      "description": "Privilegio della classe Occultista. Regole e condizioni: https://golarion.altervista.org/wiki/Occultista#Padronanza_dei_Catalizzatori_(Sop)",
+      "progression": [
+        {
+          "id": "occultist.feature.c399c71bc8d9.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Occultista: verificare e applicare Padronanza dei Catalizzatori. https://golarion.altervista.org/wiki/Occultista#Padronanza_dei_Catalizzatori_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Occultista",
+      "progression": [
+        {
+          "id": "occultist.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Occultista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Occultista",
+      "progression": [
+        {
+          "id": "occultist.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Occultista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Occultista",
+      "progression": [
+        {
+          "id": "occultist.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Occultista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "occultist.implementSchool.1",
+      "classType": "occultist",
+      "featureId": "occultist.feature.b4da10c20dab",
+      "acquisitionIds": [
+        "occultist.feature.b4da10c20dab.level1"
+      ],
+      "choice": {
+        "id": "implementSchool",
+        "prompt": "Scegli: Catalizzatori (restrizioni da verificare manualmente)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "occultist.schools"
+      }
+    },
+    {
+      "id": "occultist.secondImplementSchool.1",
+      "classType": "occultist",
+      "featureId": "occultist.feature.b4da10c20dab",
+      "acquisitionIds": [
+        "occultist.feature.b4da10c20dab.level1"
+      ],
+      "choice": {
+        "id": "secondImplementSchool",
+        "prompt": "Scegli: Catalizzatori (restrizioni da verificare manualmente)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "occultist.schools"
+      }
+    },
+    {
+      "id": "occultist.implementSchool.2",
+      "classType": "occultist",
+      "featureId": "occultist.feature.b4da10c20dab",
+      "acquisitionIds": [
+        "occultist.feature.b4da10c20dab.level2",
+        "occultist.feature.b4da10c20dab.level6",
+        "occultist.feature.b4da10c20dab.level10",
+        "occultist.feature.b4da10c20dab.level14",
+        "occultist.feature.b4da10c20dab.level18"
+      ],
+      "choice": {
+        "id": "implementSchool",
+        "prompt": "Scegli: Catalizzatori (restrizioni da verificare manualmente)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "occultist.schools"
+      }
+    },
+    {
+      "id": "occultist.focusPower.1",
+      "classType": "occultist",
+      "featureId": "occultist.feature.89f4cdb60d41",
+      "acquisitionIds": [
+        "occultist.feature.89f4cdb60d41.level1",
+        "occultist.feature.89f4cdb60d41.level3",
+        "occultist.feature.89f4cdb60d41.level5",
+        "occultist.feature.89f4cdb60d41.level7",
+        "occultist.feature.89f4cdb60d41.level9",
+        "occultist.feature.89f4cdb60d41.level11",
+        "occultist.feature.89f4cdb60d41.level13",
+        "occultist.feature.89f4cdb60d41.level15",
+        "occultist.feature.89f4cdb60d41.level17",
+        "occultist.feature.89f4cdb60d41.level19"
+      ],
+      "choice": {
+        "id": "focusPower",
+        "prompt": "Scegli: Potere di Focus (restrizioni da verificare manualmente)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "occultist.focusPowers"
+      }
+    },
+    {
+      "id": "occultist.implementMastery.20",
+      "classType": "occultist",
+      "featureId": "occultist.feature.c399c71bc8d9",
+      "acquisitionIds": [
+        "occultist.feature.c399c71bc8d9.level20"
+      ],
+      "choice": {
+        "id": "implementMastery",
+        "prompt": "Scegli: Padronanza dei Catalizzatori (restrizioni da verificare manualmente)",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "occultist.schools"
+      }
+    }
+  ]
+}

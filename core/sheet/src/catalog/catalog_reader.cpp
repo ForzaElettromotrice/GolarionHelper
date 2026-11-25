@@ -25,31 +25,34 @@ namespace golarion::catalog
         catalogDirectory = std::move(directory);
     }
 
-    nlohmann::json readCatalog(std::initializer_list<const char *> files, CatalogEntries entries)
+    nlohmann::json readFile(const std::filesystem::path &relativePath)
     {
         const auto directory = [] {
             const std::scoped_lock lock(directoryMutex);
             return catalogDirectory;
         }();
+        const auto path = directory / relativePath;
+        std::ifstream file(path, std::ios::binary);
+        if (!file) throw CatalogReadError("Cannot open catalog: " + displayPath(path));
+        try { return nlohmann::json::parse(file); }
+        catch (const nlohmann::json::exception &error)
+        {
+            throw CatalogReadError("Invalid catalog JSON in " + displayPath(path) + ": " + error.what());
+        }
+    }
+
+    nlohmann::json readCatalog(std::initializer_list<const char *> files, CatalogEntries entries)
+    {
         auto catalog = nlohmann::json::array();
         for (const auto *filename : files)
         {
-            const auto path = directory / filename;
-            std::ifstream file(path, std::ios::binary);
-            if (!file) throw CatalogReadError("Cannot open catalog: " + displayPath(path));
-
-            nlohmann::json data;
-            try { data = nlohmann::json::parse(file); }
-            catch (const nlohmann::json::exception &error)
-            {
-                throw CatalogReadError("Invalid catalog JSON in " + displayPath(path) + ": " + error.what());
-            }
+            auto data = readFile(filename);
             if (entries == CatalogEntries::Objects && data.is_object()) catalog.push_back(std::move(data));
             else if (entries == CatalogEntries::Array && data.is_array())
             {
                 for (auto &entry : data) catalog.push_back(std::move(entry));
             }
-            else throw CatalogReadError("Unexpected catalog JSON type in " + displayPath(path));
+            else throw CatalogReadError("Unexpected catalog JSON type in " + std::string(filename));
         }
         return catalog;
     }

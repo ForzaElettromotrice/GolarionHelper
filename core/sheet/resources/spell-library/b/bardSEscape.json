@@ -1,0 +1,42 @@
+{
+  "id": "bardSEscape",
+  "name": "Uscita di Scena",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "TELEPORTATION",
+  "spellLevelByClass": {
+    "BARD": 5,
+    "SKALD": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "frammenti di un violino frantumato",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "se stessi più 1 creatura consenziente ogni 2 livelli, due delle quali non possono trovarsi a più di 9 m l’una dall’altra",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Teletrasporta l'incantatore e gli alleati lontano dal pericolo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Uscita_di_Scena",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Uscita di Scena: https://golarion.altervista.org/wiki/Incantesimi/Uscita_di_Scena Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi più 1 creatura consenziente ogni 2 livelli, due delle quali non possono trovarsi a più di 9 m l’una dall’altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

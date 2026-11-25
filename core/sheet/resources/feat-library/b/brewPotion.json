@@ -1,0 +1,27 @@
+{
+  "id": "brewPotion",
+  "name": "Mescere Pozioni",
+  "description": "Permette di preparare pozioni magiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mescere_Pozioni",
+  "types": [
+    "itemCreation"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Incantatore di 3° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mescere Pozioni: https://golarion.altervista.org/wiki/Talenti/Mescere_Pozioni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incantatore di 3° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

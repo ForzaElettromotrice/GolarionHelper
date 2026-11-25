@@ -1,0 +1,803 @@
+{
+  "type": "slayer",
+  "name": "Predatore",
+  "description": "Cacciatore di bersagli che unisce studio e precisione offensiva.",
+  "hitDie": 10,
+  "skillRanksPerLevel": 6,
+  "classSkills": [
+    "skill.acrobatics",
+    "skill.craft",
+    "skill.disguise",
+    "skill.ride",
+    "skill.knowledge.dungeoneering",
+    "skill.knowledge.geography",
+    "skill.knowledge.local",
+    "skill.stealth",
+    "skill.heal",
+    "skill.intimidate",
+    "skill.senseMotive",
+    "skill.swim",
+    "skill.perception",
+    "skill.profession",
+    "skill.bluff",
+    "skill.climb",
+    "skill.survival"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 0
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 0
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 1
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 2
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 3
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 4
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 5
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 16,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 17,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 18,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 19,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 20,
+      "baseSavingThrows": {
+        "fortitude": 12,
+        "reflex": 12,
+        "will": 6
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "slayer.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "slayer.feature.a5c0ada45aea",
+      "name": "1° Bersaglio Studiato",
+      "description": "Privilegio della classe Predatore. Regole e condizioni: https://golarion.altervista.org/wiki/Predatore#Bersaglio_Studiato_(Str)",
+      "progression": [
+        {
+          "id": "slayer.feature.a5c0ada45aea.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Predatore: verificare e applicare 1° Bersaglio Studiato. https://golarion.altervista.org/wiki/Predatore#Bersaglio_Studiato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "slayer.feature.a5c0ada45aea.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Predatore: verificare e applicare 2° Bersaglio Studiato. https://golarion.altervista.org/wiki/Predatore#Bersaglio_Studiato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "slayer.feature.a5c0ada45aea.level1"
+          ]
+        },
+        {
+          "id": "slayer.feature.a5c0ada45aea.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Predatore: verificare e applicare 3° Bersaglio Studiato. https://golarion.altervista.org/wiki/Predatore#Bersaglio_Studiato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "slayer.feature.a5c0ada45aea.level5"
+          ]
+        },
+        {
+          "id": "slayer.feature.a5c0ada45aea.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Predatore: verificare e applicare 4° Bersaglio Studiato. https://golarion.altervista.org/wiki/Predatore#Bersaglio_Studiato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "slayer.feature.a5c0ada45aea.level10"
+          ]
+        },
+        {
+          "id": "slayer.feature.a5c0ada45aea.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Predatore: verificare e applicare 5° Bersaglio Studiato. https://golarion.altervista.org/wiki/Predatore#Bersaglio_Studiato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "slayer.feature.a5c0ada45aea.level15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slayer.feature.66220ae3ac4c",
+      "name": "Seguire Tracce",
+      "description": "Privilegio della classe Predatore. Regole e condizioni: https://golarion.altervista.org/wiki/Predatore#Seguire_Tracce_(Str)",
+      "progression": [
+        {
+          "id": "slayer.feature.66220ae3ac4c.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Predatore: verificare e applicare Seguire Tracce. https://golarion.altervista.org/wiki/Predatore#Seguire_Tracce_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "slayer.feature.6b16a354bd5b",
+      "name": "Dote da Predatore",
+      "description": "Privilegio della classe Predatore. Regole e condizioni: https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore",
+      "progression": [
+        {
+          "id": "slayer.feature.6b16a354bd5b.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Predatore: verificare e applicare Dote da Predatore. https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "slayer.feature.6b16a354bd5b.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Predatore: verificare e applicare Dote da Predatore. https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "slayer.feature.6b16a354bd5b.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Predatore: verificare e applicare Dote da Predatore. https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "slayer.feature.6b16a354bd5b.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Predatore: verificare e applicare Dote da Predatore. https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "slayer.feature.6b16a354bd5b.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Predatore: verificare e applicare Dote da Predatore. https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "slayer.feature.6b16a354bd5b.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Predatore: verificare e applicare Dote da Predatore. https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "slayer.feature.6b16a354bd5b.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Predatore: verificare e applicare Dote da Predatore. https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "slayer.feature.6b16a354bd5b.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Predatore: verificare e applicare Dote da Predatore. https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "slayer.feature.6b16a354bd5b.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Predatore: verificare e applicare Dote da Predatore. https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "slayer.feature.6b16a354bd5b.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Predatore: verificare e applicare Dote da Predatore. https://golarion.altervista.org/wiki/Predatore#Doti_da_Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "slayer.feature.739422d9d5e1",
+      "name": "Attacco Furtivo",
+      "description": "Privilegio della classe Predatore. Regole e condizioni: https://golarion.altervista.org/wiki/Predatore#Attacco_Furtivo",
+      "progression": [
+        {
+          "id": "slayer.feature.739422d9d5e1.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Predatore: verificare e applicare Attacco Furtivo +1d6. https://golarion.altervista.org/wiki/Predatore#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "slayer.feature.739422d9d5e1.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Predatore: verificare e applicare Attacco Furtivo +2d6. https://golarion.altervista.org/wiki/Predatore#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "slayer.feature.739422d9d5e1.level3"
+          ]
+        },
+        {
+          "id": "slayer.feature.739422d9d5e1.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Predatore: verificare e applicare Attacco Furtivo +3d6. https://golarion.altervista.org/wiki/Predatore#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "slayer.feature.739422d9d5e1.level6"
+          ]
+        },
+        {
+          "id": "slayer.feature.739422d9d5e1.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Predatore: verificare e applicare Attacco Furtivo +4d6. https://golarion.altervista.org/wiki/Predatore#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "slayer.feature.739422d9d5e1.level9"
+          ]
+        },
+        {
+          "id": "slayer.feature.739422d9d5e1.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Predatore: verificare e applicare Attacco Furtivo +5d6. https://golarion.altervista.org/wiki/Predatore#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "slayer.feature.739422d9d5e1.level12"
+          ]
+        },
+        {
+          "id": "slayer.feature.739422d9d5e1.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Predatore: verificare e applicare Attacco Furtivo +6d6. https://golarion.altervista.org/wiki/Predatore#Attacco_Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "slayer.feature.739422d9d5e1.level15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slayer.feature.98470437c742",
+      "name": "Persecutore",
+      "description": "Privilegio della classe Predatore. Regole e condizioni: https://golarion.altervista.org/wiki/Predatore#Persecutore_(Str)",
+      "progression": [
+        {
+          "id": "slayer.feature.98470437c742.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Predatore: verificare e applicare Persecutore. https://golarion.altervista.org/wiki/Predatore#Persecutore_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "slayer.feature.27ece9114b17",
+      "name": "Doti Avanzate da Predatore",
+      "description": "Privilegio della classe Predatore. Regole e condizioni: https://golarion.altervista.org/wiki/Predatore#Doti_Avanzate_da_Predatore",
+      "progression": [
+        {
+          "id": "slayer.feature.27ece9114b17.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Predatore: verificare e applicare Doti Avanzate da Predatore. https://golarion.altervista.org/wiki/Predatore#Doti_Avanzate_da_Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "slayer.feature.b8373b0b621f",
+      "name": "Rapido Segugio",
+      "description": "Privilegio della classe Predatore. Regole e condizioni: https://golarion.altervista.org/wiki/Predatore#Rapido_Segugio_(Str)",
+      "progression": [
+        {
+          "id": "slayer.feature.b8373b0b621f.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Predatore: verificare e applicare Rapido Segugio. https://golarion.altervista.org/wiki/Predatore#Rapido_Segugio_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "slayer.feature.0ffe07b5b70e",
+      "name": "Avanzata del Predatore",
+      "description": "Privilegio della classe Predatore. Regole e condizioni: https://golarion.altervista.org/wiki/Predatore#Avanzata_del_Predatore_(Str)",
+      "progression": [
+        {
+          "id": "slayer.feature.0ffe07b5b70e.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Predatore: verificare e applicare Avanzata del Predatore 1/giorno. https://golarion.altervista.org/wiki/Predatore#Avanzata_del_Predatore_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "slayer.feature.0ffe07b5b70e.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Predatore: verificare e applicare Avanzata del Predatore 2/giorno. https://golarion.altervista.org/wiki/Predatore#Avanzata_del_Predatore_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "slayer.feature.0ffe07b5b70e.level13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slayer.feature.e6e6ad26bfec",
+      "name": "Preda",
+      "description": "Privilegio della classe Predatore. Regole e condizioni: https://golarion.altervista.org/wiki/Predatore#Preda_(Str)",
+      "progression": [
+        {
+          "id": "slayer.feature.e6e6ad26bfec.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Predatore: verificare e applicare Preda. https://golarion.altervista.org/wiki/Predatore#Preda_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "slayer.feature.ddd4b369ef87",
+      "name": "Preda Migliorata",
+      "description": "Privilegio della classe Predatore. Regole e condizioni: https://golarion.altervista.org/wiki/Predatore#Preda_Migliorata_(Str)",
+      "progression": [
+        {
+          "id": "slayer.feature.ddd4b369ef87.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Predatore: verificare e applicare Preda Migliorata. https://golarion.altervista.org/wiki/Predatore#Preda_Migliorata_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "slayer.feature.caa8b7be13a1",
+      "name": "Maestro Predatore",
+      "description": "Privilegio della classe Predatore. Regole e condizioni: https://golarion.altervista.org/wiki/Predatore#Maestro_Predatore_(Str)",
+      "progression": [
+        {
+          "id": "slayer.feature.caa8b7be13a1.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Predatore: verificare e applicare Maestro Predatore. https://golarion.altervista.org/wiki/Predatore#Maestro_Predatore_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "slayer.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Predatore",
+      "progression": [
+        {
+          "id": "slayer.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "slayer.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Predatore",
+      "progression": [
+        {
+          "id": "slayer.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "slayer.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Predatore",
+      "progression": [
+        {
+          "id": "slayer.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Predatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "slayer.slayerTalentBinding",
+      "classType": "slayer",
+      "featureId": "slayer.feature.6b16a354bd5b",
+      "acquisitionIds": [
+        "slayer.feature.6b16a354bd5b.level2",
+        "slayer.feature.6b16a354bd5b.level4",
+        "slayer.feature.6b16a354bd5b.level6",
+        "slayer.feature.6b16a354bd5b.level8"
+      ],
+      "choice": {
+        "id": "slayerTalent",
+        "prompt": "Scegli: Doti da predatore",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "slayer.talents"
+      }
+    },
+    {
+      "id": "slayer.advancedSlayerTalentBinding",
+      "classType": "slayer",
+      "featureId": "slayer.feature.6b16a354bd5b",
+      "acquisitionIds": [
+        "slayer.feature.6b16a354bd5b.level10",
+        "slayer.feature.6b16a354bd5b.level12",
+        "slayer.feature.6b16a354bd5b.level14",
+        "slayer.feature.6b16a354bd5b.level16",
+        "slayer.feature.6b16a354bd5b.level18",
+        "slayer.feature.6b16a354bd5b.level20"
+      ],
+      "choice": {
+        "id": "advancedSlayerTalent",
+        "prompt": "Scegli: Doti da predatore e avanzate",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "slayer.advancedTalents"
+      }
+    }
+  ]
+}

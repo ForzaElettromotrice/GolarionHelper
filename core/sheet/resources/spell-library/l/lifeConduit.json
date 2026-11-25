@@ -1,0 +1,35 @@
+{
+  "id": "lifeConduit",
+  "name": "Condotto Vitale",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Rafforza il collegamento con l'eidolon consentendo lo scambio di punti ferita attraverso il legame. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Condotto_Vitale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Condotto Vitale: https://golarion.altervista.org/wiki/Incantesimi/Condotto_Vitale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

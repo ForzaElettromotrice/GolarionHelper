@@ -1,0 +1,49 @@
+{
+  "id": "reinforceArmaments",
+  "name": "Rinforzare Armamenti",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "CLERIC": 1,
+    "WITCH": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "OCCULTIST": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "uno spillo di metallo",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 armatura o arma toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Rinforza temporaneamente un'arma o armatura fragile, attenuandone la vulnerabilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Rinforzare_Armamenti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Rinforzare Armamenti: https://golarion.altervista.org/wiki/Incantesimi/Rinforzare_Armamenti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

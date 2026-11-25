@@ -1,0 +1,46 @@
+{
+  "id": "burningSands",
+  "name": "Sabbie Roventi",
+  "school": "CONJURATION",
+  "descriptors": [
+    "FIRE",
+    "EARTH"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "HUNTER": 1,
+    "DRUID": 1,
+    "WITCH": 1,
+    "RANGER": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una manciata di sale",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "6 metri di raggio",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Ricopre una zona di sabbia rovente, rendendola difficile da attraversare e pericolosa per il calore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sabbie_Roventi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sabbie Roventi: https://golarion.altervista.org/wiki/Incantesimi/Sabbie_Roventi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

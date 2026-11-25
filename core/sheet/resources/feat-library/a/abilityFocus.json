@@ -1,0 +1,32 @@
+{
+  "id": "abilityFocus",
+  "name": "Capacità Focalizzata",
+  "description": "Rende più difficile resistere a una capacità speciale scelta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Capacit%C3%A0_Focalizzata",
+  "types": [
+    "monster"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco speciale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Capacità Focalizzata: https://golarion.altervista.org/wiki/Talenti/Capacit%C3%A0_Focalizzata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco speciale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

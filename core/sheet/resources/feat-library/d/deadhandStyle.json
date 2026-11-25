@@ -1,0 +1,41 @@
+{
+  "id": "deadhandStyle",
+  "name": "Stile del Pugno Mortale",
+  "description": "Aiuta a resistere alla paura e a trasmetterla. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Stile_del_Pugno_Mortale",
+  "types": [
+    "combat",
+    "style"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Saggezza 15",
+      "expression": "@wis >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (religioni) 4 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe riserva ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: allineamento non buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Stile del Pugno Mortale: https://golarion.altervista.org/wiki/Talenti/Stile_del_Pugno_Mortale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Conoscenze (religioni) 4 gradi; Prerequisito da verificare manualmente: privilegio di classe riserva ki; Prerequisito da verificare manualmente: allineamento non buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

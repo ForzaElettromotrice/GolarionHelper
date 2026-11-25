@@ -1,0 +1,49 @@
+{
+  "id": "irresistibleDance",
+  "name": "Danza Irresistibile",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "BARD": 6,
+    "WITCH": 8,
+    "WIZARD": 8,
+    "MESMERIST": 6,
+    "PSYCHIC": 8,
+    "SKALD": 6,
+    "SHAMAN": 8,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura vivente toccata",
+  "durationType": "ROUND",
+  "durationDescription": "1d4+1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Costringe la vittima a ballare, impedendole di agire normalmente e compromettendone le difese. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Danza_Irresistibile",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Danza Irresistibile: https://golarion.altervista.org/wiki/Incantesimi/Danza_Irresistibile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

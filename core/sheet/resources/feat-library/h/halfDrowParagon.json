@@ -1,0 +1,30 @@
+{
+  "id": "halfDrowParagon",
+  "name": "Mezzodrow Esemplare",
+  "description": "Fa contare il personaggio come drow per le interazioni razziali appropriate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mezzodrow_Esemplare",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Tratti razziali Sangue Drow e Magia Drow Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Mezzelfo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mezzodrow Esemplare: https://golarion.altervista.org/wiki/Talenti/Mezzodrow_Esemplare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Tratti razziali Sangue Drow e Magia Drow; Prerequisito da verificare manualmente: Mezzelfo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

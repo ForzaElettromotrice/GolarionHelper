@@ -1,0 +1,48 @@
+{
+  "id": "shapechange",
+  "name": "Trasformazione",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WIZARD": 9,
+    "SORCERER": 9,
+    "DRUID": 9,
+    "SHAMAN": 9
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "ANIMAL": 9
+    }
+  },
+  "spellLevelByBloodline": {
+    "ABERRANT": 9
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un diadema di giada del valore di almeno 1.500 mo",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Permette di assumere forme diverse e cambiarle ripetutamente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trasformazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Trasformazione: https://golarion.altervista.org/wiki/Incantesimi/Trasformazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "snatchArrows",
+  "name": "Afferrare Frecce",
+  "description": "Permette di afferrare i proiettili che si intercettano. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Afferrare_Frecce",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Deviare Frecce",
+      "feat": {
+        "id": "deflectArrows"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Afferrare Frecce: https://golarion.altervista.org/wiki/Talenti/Afferrare_Frecce. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

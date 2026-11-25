@@ -1,0 +1,50 @@
+{
+  "id": "prayer",
+  "name": "Preghiera",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "INQUISITOR": 3,
+    "PALADIN": 3
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "ARCHON": 3,
+      "LEADERSHIP": 3
+    },
+    "domain": {
+      "COMMUNITY": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "12 m",
+  "area": "tutti gli alleati e i nemici entro un’esplosione del raggio di 12 m centrata su di sé",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Favorisce l'incantatore e gli alleati con +1 fortuna a colpire, danni d'arma, TS e abilità; infligge -1 agli stessi tiri dei nemici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Preghiera",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Scegliere separatamente effetti benefici e penalità per ogni destinatario; non applicare entrambi a una stessa scheda. Mancando una scelta al lancio, i due rami restano manuali. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

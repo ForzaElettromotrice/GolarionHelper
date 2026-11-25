@@ -1,0 +1,1604 @@
+{
+  "type": "wizard",
+  "name": "Mago",
+  "description": "Studioso della magia arcana che prepara gli incantesimi appresi.",
+  "hitDie": 6,
+  "skillRanksPerLevel": 2,
+  "classSkills": [
+    "skill.craft",
+    "skill.knowledge.arcana",
+    "skill.knowledge.dungeoneering",
+    "skill.knowledge.engineering",
+    "skill.knowledge.geography",
+    "skill.knowledge.history",
+    "skill.knowledge.local",
+    "skill.knowledge.nature",
+    "skill.knowledge.nobility",
+    "skill.knowledge.planes",
+    "skill.knowledge.religion",
+    "skill.linguistics",
+    "skill.profession",
+    "skill.spellcraft",
+    "skill.appraise",
+    "skill.fly"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 2
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 0,
+        "will": 3
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 3
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 1,
+        "will": 4
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 5
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 6
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 6
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 7
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 8
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 9
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 9
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 10
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 11
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 12
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "wizard.spellbook",
+      "name": "Libro degli Incantesimi",
+      "description": "Proprietà del repertorio del Mago ai fini delle modifiche e della compatibilità degli archetipi. La gestione materiale del libro resta manuale. Fonte: https://golarion.altervista.org/wiki/Mago#Libro_degli_Incantesimi",
+      "progression": []
+    },
+    {
+      "id": "wizard.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "wizard.spellcasting",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Mago",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 1,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "prepared",
+              "spellListClass": "wizard"
+            },
+            {
+              "id": "initialKnown",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. La quota iniziale comprende i 3 incantesimi di primo livello. Aggiungere manualmente i trucchetti iniziali consentiti, gli ulteriori incantesimi per il bonus di Intelligenza iniziale e 2 nuovi incantesimi per livello successivo; le quote fra livelli alternativi non sono rappresentabili direttamente. Libro o famiglio e relativi vincoli rimangono manuali. Scuola, scuole opposte e slot specialistici dipendono dalle scelte: non sono concessi da questa tabella base. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 3
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level1"
+          ]
+        },
+        {
+          "id": "castingSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level2"
+          ]
+        },
+        {
+          "id": "castingSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level3"
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level4"
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                },
+                {
+                  "level": 7,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 2
+                },
+                {
+                  "level": 8,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 2
+                },
+                {
+                  "level": 9,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 3
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                },
+                {
+                  "level": 9,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                },
+                {
+                  "level": 8,
+                  "capacity": 3
+                },
+                {
+                  "level": 9,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:wizard12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                },
+                {
+                  "level": 7,
+                  "capacity": 4
+                },
+                {
+                  "level": 8,
+                  "capacity": 4
+                },
+                {
+                  "level": 9,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wizard.feature.e0eb2aa5ac5e",
+      "name": "Legame Arcano",
+      "description": "Privilegio della classe Mago. Regole e condizioni: https://golarion.altervista.org/wiki/Mago#Legame_Arcano_(Str_o_Mag)",
+      "progression": [
+        {
+          "id": "wizard.feature.e0eb2aa5ac5e.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Mago: verificare e applicare Legame Arcano. https://golarion.altervista.org/wiki/Mago#Legame_Arcano_(Str_o_Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.feature.aa63c3ab3557",
+      "name": "Scrivere Pergamene",
+      "description": "Privilegio della classe Mago. Regole e condizioni: https://golarion.altervista.org/wiki/Mago#Scrivere_Pergamene",
+      "progression": [
+        {
+          "id": "wizard.feature.aa63c3ab3557.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Mago: verificare e applicare Scrivere Pergamene. https://golarion.altervista.org/wiki/Mago#Scrivere_Pergamene Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.feature.5805de6bd2db",
+      "name": "Scuola Arcana",
+      "description": "Privilegio della classe Mago. Regole e condizioni: https://golarion.altervista.org/wiki/Mago#Scuola_Arcana",
+      "progression": [
+        {
+          "id": "wizard.feature.5805de6bd2db.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Mago: verificare e applicare Scuola Arcana. https://golarion.altervista.org/wiki/Mago#Scuola_Arcana Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.feature.647b832fe92f",
+      "name": "Trucchetti",
+      "description": "Privilegio della classe Mago. Regole e condizioni: https://golarion.altervista.org/wiki/Mago#Trucchetti",
+      "progression": [
+        {
+          "id": "wizard.feature.647b832fe92f.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Mago: verificare e applicare Trucchetti. https://golarion.altervista.org/wiki/Mago#Trucchetti Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi. https://golarion.altervista.org/wiki/Mago",
+      "progression": [
+        {
+          "id": "wizard.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi. https://golarion.altervista.org/wiki/Mago Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Mago",
+      "progression": [
+        {
+          "id": "wizard.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Mago Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Mago",
+      "progression": [
+        {
+          "id": "wizard.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Mago Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.feature.53361bf45405",
+      "name": "Talenti Bonus",
+      "description": "Concede slot aggiuntivi per talenti della categoria prevista, mantenendo i prerequisiti ordinari. Fonte: https://golarion.altervista.org/wiki/Mago",
+      "progression": [
+        {
+          "id": "wizard.bonusFeats.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "ids",
+                "featIds": [
+                  "ascendantSpell",
+                  "bouncingSpell",
+                  "brewPotion",
+                  "burningSpell",
+                  "coaxingSpell",
+                  "concussiveSpell",
+                  "consecrateSpell",
+                  "contagiousSpell",
+                  "craftConstruct",
+                  "craftMagicArmsAndArmor",
+                  "craftRod",
+                  "craftStaff",
+                  "craftWand",
+                  "craftWondrousItem",
+                  "createReliquaryArmsAndShields",
+                  "createSanguineElixir",
+                  "dazingSpell",
+                  "demonGrafter",
+                  "disruptiveSpell",
+                  "echoingSpell",
+                  "ectoplasmicSpell",
+                  "elementalSpell",
+                  "empowerSpell",
+                  "enlargeSpell",
+                  "extendSpell",
+                  "fearsomeSpell",
+                  "flaringSpell",
+                  "fleetingSpell",
+                  "fleshwarper",
+                  "focusedSpell",
+                  "forgeRing",
+                  "furiousSpell",
+                  "heightenSpell",
+                  "inscribeMagicalTattoo",
+                  "intensifiedSpell",
+                  "intuitiveSpell",
+                  "lingeringSpell",
+                  "logicalSpell",
+                  "maximizeSpell",
+                  "mercifulSpell",
+                  "persistentSpell",
+                  "piercingSpell",
+                  "quickenSpell",
+                  "reachSpell",
+                  "rimeSpell",
+                  "scarringSpell",
+                  "scribeScroll",
+                  "selectiveSpell",
+                  "shadowGrasp",
+                  "sickeningSpell",
+                  "silentSpell",
+                  "spellMastery",
+                  "stillSpell",
+                  "studiedSpell",
+                  "stylizedSpell",
+                  "tenaciousSpell",
+                  "tenebrousSpell",
+                  "thanatopicSpell",
+                  "threnodicSpell",
+                  "thunderingSpell",
+                  "topplingSpell",
+                  "traumaticSpell",
+                  "umbralSpell",
+                  "widenSpell",
+                  "yaiMimicSpell"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "wizard.bonusFeats.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "ids",
+                "featIds": [
+                  "ascendantSpell",
+                  "bouncingSpell",
+                  "brewPotion",
+                  "burningSpell",
+                  "coaxingSpell",
+                  "concussiveSpell",
+                  "consecrateSpell",
+                  "contagiousSpell",
+                  "craftConstruct",
+                  "craftMagicArmsAndArmor",
+                  "craftRod",
+                  "craftStaff",
+                  "craftWand",
+                  "craftWondrousItem",
+                  "createReliquaryArmsAndShields",
+                  "createSanguineElixir",
+                  "dazingSpell",
+                  "demonGrafter",
+                  "disruptiveSpell",
+                  "echoingSpell",
+                  "ectoplasmicSpell",
+                  "elementalSpell",
+                  "empowerSpell",
+                  "enlargeSpell",
+                  "extendSpell",
+                  "fearsomeSpell",
+                  "flaringSpell",
+                  "fleetingSpell",
+                  "fleshwarper",
+                  "focusedSpell",
+                  "forgeRing",
+                  "furiousSpell",
+                  "heightenSpell",
+                  "inscribeMagicalTattoo",
+                  "intensifiedSpell",
+                  "intuitiveSpell",
+                  "lingeringSpell",
+                  "logicalSpell",
+                  "maximizeSpell",
+                  "mercifulSpell",
+                  "persistentSpell",
+                  "piercingSpell",
+                  "quickenSpell",
+                  "reachSpell",
+                  "rimeSpell",
+                  "scarringSpell",
+                  "scribeScroll",
+                  "selectiveSpell",
+                  "shadowGrasp",
+                  "sickeningSpell",
+                  "silentSpell",
+                  "spellMastery",
+                  "stillSpell",
+                  "studiedSpell",
+                  "stylizedSpell",
+                  "tenaciousSpell",
+                  "tenebrousSpell",
+                  "thanatopicSpell",
+                  "threnodicSpell",
+                  "thunderingSpell",
+                  "topplingSpell",
+                  "traumaticSpell",
+                  "umbralSpell",
+                  "widenSpell",
+                  "yaiMimicSpell"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "wizard.bonusFeats.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "ids",
+                "featIds": [
+                  "ascendantSpell",
+                  "bouncingSpell",
+                  "brewPotion",
+                  "burningSpell",
+                  "coaxingSpell",
+                  "concussiveSpell",
+                  "consecrateSpell",
+                  "contagiousSpell",
+                  "craftConstruct",
+                  "craftMagicArmsAndArmor",
+                  "craftRod",
+                  "craftStaff",
+                  "craftWand",
+                  "craftWondrousItem",
+                  "createReliquaryArmsAndShields",
+                  "createSanguineElixir",
+                  "dazingSpell",
+                  "demonGrafter",
+                  "disruptiveSpell",
+                  "echoingSpell",
+                  "ectoplasmicSpell",
+                  "elementalSpell",
+                  "empowerSpell",
+                  "enlargeSpell",
+                  "extendSpell",
+                  "fearsomeSpell",
+                  "flaringSpell",
+                  "fleetingSpell",
+                  "fleshwarper",
+                  "focusedSpell",
+                  "forgeRing",
+                  "furiousSpell",
+                  "heightenSpell",
+                  "inscribeMagicalTattoo",
+                  "intensifiedSpell",
+                  "intuitiveSpell",
+                  "lingeringSpell",
+                  "logicalSpell",
+                  "maximizeSpell",
+                  "mercifulSpell",
+                  "persistentSpell",
+                  "piercingSpell",
+                  "quickenSpell",
+                  "reachSpell",
+                  "rimeSpell",
+                  "scarringSpell",
+                  "scribeScroll",
+                  "selectiveSpell",
+                  "shadowGrasp",
+                  "sickeningSpell",
+                  "silentSpell",
+                  "spellMastery",
+                  "stillSpell",
+                  "studiedSpell",
+                  "stylizedSpell",
+                  "tenaciousSpell",
+                  "tenebrousSpell",
+                  "thanatopicSpell",
+                  "threnodicSpell",
+                  "thunderingSpell",
+                  "topplingSpell",
+                  "traumaticSpell",
+                  "umbralSpell",
+                  "widenSpell",
+                  "yaiMimicSpell"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "wizard.bonusFeats.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "ids",
+                "featIds": [
+                  "ascendantSpell",
+                  "bouncingSpell",
+                  "brewPotion",
+                  "burningSpell",
+                  "coaxingSpell",
+                  "concussiveSpell",
+                  "consecrateSpell",
+                  "contagiousSpell",
+                  "craftConstruct",
+                  "craftMagicArmsAndArmor",
+                  "craftRod",
+                  "craftStaff",
+                  "craftWand",
+                  "craftWondrousItem",
+                  "createReliquaryArmsAndShields",
+                  "createSanguineElixir",
+                  "dazingSpell",
+                  "demonGrafter",
+                  "disruptiveSpell",
+                  "echoingSpell",
+                  "ectoplasmicSpell",
+                  "elementalSpell",
+                  "empowerSpell",
+                  "enlargeSpell",
+                  "extendSpell",
+                  "fearsomeSpell",
+                  "flaringSpell",
+                  "fleetingSpell",
+                  "fleshwarper",
+                  "focusedSpell",
+                  "forgeRing",
+                  "furiousSpell",
+                  "heightenSpell",
+                  "inscribeMagicalTattoo",
+                  "intensifiedSpell",
+                  "intuitiveSpell",
+                  "lingeringSpell",
+                  "logicalSpell",
+                  "maximizeSpell",
+                  "mercifulSpell",
+                  "persistentSpell",
+                  "piercingSpell",
+                  "quickenSpell",
+                  "reachSpell",
+                  "rimeSpell",
+                  "scarringSpell",
+                  "scribeScroll",
+                  "selectiveSpell",
+                  "shadowGrasp",
+                  "sickeningSpell",
+                  "silentSpell",
+                  "spellMastery",
+                  "stillSpell",
+                  "studiedSpell",
+                  "stylizedSpell",
+                  "tenaciousSpell",
+                  "tenebrousSpell",
+                  "thanatopicSpell",
+                  "threnodicSpell",
+                  "thunderingSpell",
+                  "topplingSpell",
+                  "traumaticSpell",
+                  "umbralSpell",
+                  "widenSpell",
+                  "yaiMimicSpell"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "wizard.schoolChoices",
+      "classType": "wizard",
+      "featureId": "wizard.feature.5805de6bd2db",
+      "acquisitionIds": [
+        "wizard.feature.5805de6bd2db.level1"
+      ],
+      "choice": {
+        "id": "school",
+        "prompt": "Scegli la scuola arcana",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "wizard.arcaneSchools"
+      }
+    },
+    {
+      "id": "wizard.bondChoices",
+      "classType": "wizard",
+      "featureId": "wizard.feature.e0eb2aa5ac5e",
+      "acquisitionIds": [
+        "wizard.feature.e0eb2aa5ac5e.level1"
+      ],
+      "choice": {
+        "id": "bond",
+        "prompt": "Scegli il legame arcano",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "wizard.arcaneBonds"
+      }
+    }
+  ]
+}

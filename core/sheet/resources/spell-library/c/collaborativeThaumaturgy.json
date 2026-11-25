@@ -1,0 +1,48 @@
+{
+  "id": "collaborativeThaumaturgy",
+  "name": "Taumaturgia Collaborativa",
+  "school": "UNIVERSAL",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "BARD": 3,
+    "SKALD": 3,
+    "HUNTER": 3,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "MAGUS": 3
+  },
+  "castingTimeCategory": "IMMEDIATE_ACTION",
+  "castingTimeDescription": "1 Azione Immediata",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un diapason di bronzo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni due livelli)",
+  "target": "una creatura",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Coordina l'energia magica di più alleati per rafforzare un incantesimo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Taumaturgia_Collaborativa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Taumaturgia Collaborativa: https://golarion.altervista.org/wiki/Incantesimi/Taumaturgia_Collaborativa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

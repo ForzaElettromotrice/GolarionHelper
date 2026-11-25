@@ -1,0 +1,47 @@
+{
+  "id": "windBlades",
+  "name": "Lame di Vento",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "AIR"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "SORCERER": 5,
+    "HUNTER": 5,
+    "DRUID": 5,
+    "WITCH": 5,
+    "MAGUS": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "L'aria attorno al bersaglio si trasforma in taglienti lame invisibili. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lame_di_Vento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Lame di Vento: https://golarion.altervista.org/wiki/Incantesimi/Lame_di_Vento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

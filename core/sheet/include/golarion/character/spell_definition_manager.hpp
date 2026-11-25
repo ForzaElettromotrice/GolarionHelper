@@ -31,12 +31,10 @@ namespace golarion
         std::vector<CatalogEntry> catalogEntries();
 
     private:
-        SpellDefinitionManager() = default;
-
-        void loadCatalog();
+        SpellDefinitionManager();
 
         std::map<std::string, SpellDefinition> definitions_;
-        bool loaded_ = false;
+        std::map<std::string, CatalogEntry> entries_;
         std::mutex mutex_;
     };
 }

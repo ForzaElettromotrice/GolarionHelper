@@ -1,0 +1,49 @@
+{
+  "id": "urbanStep",
+  "name": "Passo Urbano",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "TELEPORTATION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 2,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "WIZARD": 3,
+    "MAGUS": 3,
+    "OCCULTIST": 3,
+    "SKALD": 2,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "frammento di ragnatela",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "due porte o altri portali a tiro",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Collega temporaneamente due porte per attraversare lo spazio fra esse. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Passo_Urbano",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Passo Urbano: https://golarion.altervista.org/wiki/Incantesimi/Passo_Urbano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: due porte o altri portali a tiro. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

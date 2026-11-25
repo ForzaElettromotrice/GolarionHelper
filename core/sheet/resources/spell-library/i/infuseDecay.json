@@ -1,0 +1,46 @@
+{
+  "id": "infuseDecay",
+  "name": "Infondere Decomposizione",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "WITCH": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un set di arnesi da becchino del valore di 100 mo",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura Non Morta corporea toccata, vedi testo",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente finché non viene scaricato (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Affida incantesimi a contatto a un servitore non morto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Infondere_Decomposizione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Infondere Decomposizione: https://golarion.altervista.org/wiki/Incantesimi/Infondere_Decomposizione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

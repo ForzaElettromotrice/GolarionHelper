@@ -1,0 +1,27 @@
+{
+  "id": "peshRejuvenation",
+  "name": "Ringiovanimento da Pesh",
+  "description": "Converte il pesh in recupero quando si perde coscienza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ringiovanimento_da_Pesh",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Sahir-Afiyun o dipendente dal Pesh Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ringiovanimento da Pesh: https://golarion.altervista.org/wiki/Talenti/Ringiovanimento_da_Pesh. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Sahir-Afiyun o dipendente dal Pesh Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

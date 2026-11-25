@@ -1,0 +1,34 @@
+{
+  "id": "underhandedTeamwork",
+  "name": "Colpo Subdolo di Squadra",
+  "description": "La minaccia coordinata prolunga le debilitazioni di un trucco sporco. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_Subdolo_di_Squadra",
+  "types": [
+    "combat",
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Sporco Trucco Migliorato",
+      "feat": {
+        "id": "improvedDirtyTrick"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo Subdolo di Squadra: https://golarion.altervista.org/wiki/Talenti/Colpo_Subdolo_di_Squadra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

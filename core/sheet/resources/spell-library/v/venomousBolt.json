@@ -1,0 +1,42 @@
+{
+  "id": "venomousBolt",
+  "name": "Proiettile Velenoso",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "POISON"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "RANGER": 3
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 azione veloce",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "0 m",
+  "target": "1 freccia o 1 quadrello",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Conferisce a una freccia o a un quadrello la capacità di avvelenare chi viene colpito. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Proiettile_Velenoso",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Proiettile Velenoso: https://golarion.altervista.org/wiki/Incantesimi/Proiettile_Velenoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

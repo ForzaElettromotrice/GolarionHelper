@@ -1,0 +1,709 @@
+{
+  "id": "aasimar",
+  "name": "Aasimar",
+  "qualities": [
+    {
+      "id": "aasimar.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Esterno nativo. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "aasimar.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "aasimar.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "aasimar.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "aasimar.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "draconic",
+            "elven",
+            "gnome",
+            "halfling",
+            "dwarven",
+            "sylvan"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aasimar.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "bardPerformance",
+          "type": "favoredClassBonus",
+          "name": "Bardo — +1 livello effettivo per una Esibizione Bardica scelta",
+          "classes": [
+            "bard"
+          ],
+          "selectionsPerBenefit": 6,
+          "description": "+1 livello effettivo per una Esibizione Bardica scelta. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 livello effettivo per una Esibizione Bardica scelta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "cavalierChallenge",
+          "type": "favoredClassBonus",
+          "name": "Cavaliere — +1 danno contro il bersaglio della Sfida",
+          "classes": [
+            "cavalier"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 danno contro il bersaglio della Sfida. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 danno contro il bersaglio della Sfida. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "clericChannel",
+          "type": "favoredClassBonus",
+          "name": "Chierico — +1 danno da energia positiva contro non morti o Incanalare Allineamento contro esterni malvagi",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 danno da energia positiva contro non morti o Incanalare Allineamento contro esterni malvagi. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 danno da energia positiva contro non morti o Incanalare Allineamento contro esterni malvagi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "summonerEidolon",
+          "type": "favoredClassBonus",
+          "name": "Convocatore — Alla prima scelta RD 1/male all'eidolon; successive +1/2, massimo 10",
+          "classes": [
+            "summoner"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "Alla prima scelta RD 1/male all'eidolon; successive +1/2, massimo 10. Conteggio e applicazione manuali. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "Alla prima scelta RD 1/male all'eidolon; successive +1/2, massimo 10. Conteggio e applicazione manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleRevelation",
+          "type": "favoredClassBonus",
+          "name": "Oracolo — +1 livello effettivo per una Rivelazione scelta",
+          "classes": [
+            "oracle"
+          ],
+          "selectionsPerBenefit": 6,
+          "description": "+1 livello effettivo per una Rivelazione scelta. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 livello effettivo per una Rivelazione scelta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "paladinAura",
+          "type": "favoredClassBonus",
+          "name": "Paladino — +1 al bonus morale ai TS delle aure",
+          "classes": [
+            "paladin"
+          ],
+          "selectionsPerBenefit": 6,
+          "description": "+1 al bonus morale ai TS delle aure. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 al bonus morale ai TS delle aure. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererGoodSpells",
+          "type": "favoredClassBonus",
+          "name": "Stregone — +1 LI degli incantesimi da stregone con descrittore bene",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 LI degli incantesimi da stregone con descrittore bene. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 LI degli incantesimi da stregone con descrittore bene. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "inquisitorOutsiders",
+          "type": "favoredClassBonus",
+          "name": "Inquisitore — Conoscere gli esterni",
+          "classes": [
+            "inquisitor"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Conoscenze, Intimidire e Intuizione contro esterni.",
+          "effects": [
+            {
+              "id": "knowledge",
+              "type": "modifier",
+              "resource": "skill.knowledge",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Contro esterni"
+            },
+            {
+              "id": "intimidate",
+              "type": "modifier",
+              "resource": "skill.intimidate",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Contro esterni"
+            },
+            {
+              "id": "senseMotive",
+              "type": "modifier",
+              "resource": "skill.senseMotive",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Contro esterni"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "aasimar.celestialLanguage",
+      "name": "Linguaggio celestiale",
+      "description": "Linguaggio celestiale",
+      "effects": [
+        {
+          "id": "celestial",
+          "type": "languageGrant",
+          "languageId": "celestial"
+        }
+      ]
+    },
+    {
+      "id": "aasimar.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "aasimar.celestialResistance",
+      "name": "Resistenze Celestiali",
+      "description": "Resistenze Celestiali",
+      "effects": [
+        {
+          "id": "acid",
+          "type": "energyResistance",
+          "energy": "acid",
+          "expression": "5"
+        },
+        {
+          "id": "electricity",
+          "type": "energyResistance",
+          "energy": "electricity",
+          "expression": "5"
+        },
+        {
+          "id": "cold",
+          "type": "energyResistance",
+          "energy": "cold",
+          "expression": "5"
+        }
+      ]
+    },
+    {
+      "id": "aasimar.spellLikeAbility",
+      "name": "Capacità Magiche",
+      "description": "Capacità Magiche",
+      "effects": [
+        {
+          "id": "daylight",
+          "type": "reminder",
+          "message": "Luce Diurna 1/giorno; LI pari al livello del personaggio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "aasimar.skilled",
+      "name": "Abile",
+      "description": "Abile",
+      "effects": [
+        {
+          "id": "diplomacy",
+          "type": "modifier",
+          "resource": "skill.diplomacy",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "aasimar.halo",
+      "name": "Aureola",
+      "description": "Aureola",
+      "effects": [
+        {
+          "id": "intimidate",
+          "type": "modifier",
+          "resource": "skill.intimidate",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "circumstance",
+          "expression": "2",
+          "condition": "Aureola attiva, contro creature malvagie"
+        },
+        {
+          "id": "saves",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "circumstance",
+          "expression": "2",
+          "condition": "Aureola attiva, contro cecità o abbagliamento"
+        },
+        {
+          "id": "light",
+          "type": "reminder",
+          "message": "Luce a volontà sulla testa; attivazione e illuminazione manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "aasimar.darkvision"
+      ]
+    },
+    {
+      "id": "aasimar.celestialCrusader",
+      "name": "Crociato Celestiale",
+      "description": "Crociato Celestiale",
+      "effects": [
+        {
+          "id": "attack",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "insight",
+          "expression": "1",
+          "condition": "Contro esterni malvagi"
+        },
+        {
+          "id": "armor",
+          "type": "modifier",
+          "resource": "armorClass.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "insight",
+          "expression": "1",
+          "condition": "Contro esterni malvagi"
+        },
+        {
+          "id": "planes",
+          "type": "modifier",
+          "resource": "skill.knowledge.planes",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Identificare esterni malvagi o loro oggetti ed effetti"
+        },
+        {
+          "id": "spellcraft",
+          "type": "modifier",
+          "resource": "skill.spellcraft",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Identificare esterni malvagi o loro oggetti ed effetti"
+        },
+        {
+          "id": "untrained",
+          "type": "reminder",
+          "message": "Per queste identificazioni sono utilizzabili senza addestramento Conoscenze (piani) e Sapienza Magica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "aasimar.skilled",
+        "aasimar.celestialResistance"
+      ]
+    },
+    {
+      "id": "aasimar.scionOfHumanity",
+      "name": "Discendente dell'Umanità",
+      "description": "Considera anche umanoide umano per effetti e prerequisiti; può passare per umano senza Camuffare. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Considera anche umanoide umano per effetti e prerequisiti; può passare per umano senza Camuffare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "aasimar.celestialLanguage"
+      ]
+    },
+    {
+      "id": "aasimar.heavenborn",
+      "name": "Figlio del Paradiso",
+      "description": "Figlio del Paradiso",
+      "effects": [
+        {
+          "id": "planes",
+          "type": "modifier",
+          "resource": "skill.knowledge.planes",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2"
+        },
+        {
+          "id": "caster",
+          "type": "reminder",
+          "message": "LI +1 per incantesimi con descrittore bene o luce. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "aasimar.skilled",
+        "aasimar.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "aasimar.incorruptible",
+      "name": "Incorruttibile",
+      "description": "Resistenza alla Corruzione contro male 1/giorno; su se stesso dura 1 ora/livello. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Resistenza alla Corruzione contro male 1/giorno; su se stesso dura 1 ora/livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "aasimar.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "aasimar.truespeaker",
+      "name": "Oratore Primevo",
+      "description": "Oratore Primevo",
+      "effects": [
+        {
+          "id": "senseMotive",
+          "type": "modifier",
+          "resource": "skill.senseMotive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2"
+        },
+        {
+          "id": "linguistics",
+          "type": "modifier",
+          "resource": "skill.linguistics",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2"
+        },
+        {
+          "id": "languages",
+          "type": "reminder",
+          "message": "Ogni grado in Linguistica permette due lingue invece di una; gestire manualmente la lingua aggiuntiva. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "aasimar.skilled"
+      ]
+    },
+    {
+      "id": "aasimar.exaltedResistance",
+      "name": "Resistenza Eccelsa",
+      "description": "Resistenza Eccelsa",
+      "effects": [
+        {
+          "id": "resistance",
+          "type": "spellResistance",
+          "expression": "5 + @level",
+          "applicability": "Incantesimi e capacità magiche con descrittore male o lanciati da esterni malvagi"
+        }
+      ],
+      "replaces": [
+        "aasimar.celestialResistance"
+      ]
+    },
+    {
+      "id": "aasimar.immortalSpark",
+      "name": "Scintilla Immortale",
+      "description": "Scintilla Immortale",
+      "effects": [
+        {
+          "id": "history",
+          "type": "modifier",
+          "resource": "skill.knowledge.history",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2"
+        },
+        {
+          "id": "death",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2",
+          "condition": "Effetti di morte"
+        },
+        {
+          "id": "spell",
+          "type": "reminder",
+          "message": "Resistenza all'Invecchiamento Inferiore 1/giorno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "aasimar.skilled",
+        "aasimar.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "aasimar.deathlessSpirit",
+      "name": "Spirito Immortale",
+      "description": "Spirito Immortale",
+      "effects": [
+        {
+          "id": "negativeEnergy",
+          "type": "energyResistance",
+          "energy": "negativeEnergy",
+          "expression": "5"
+        },
+        {
+          "id": "saves",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Morte, risucchio di energia, energia negativa, incantesimi o capacità magiche di necromanzia"
+        },
+        {
+          "id": "hitPoints",
+          "type": "reminder",
+          "message": "I livelli negativi non riducono i PF; eccezione da applicare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "aasimar.celestialResistance"
+      ]
+    }
+  ]
+}

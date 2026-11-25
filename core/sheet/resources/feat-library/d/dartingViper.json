@@ -1,0 +1,31 @@
+{
+  "id": "dartingViper",
+  "name": "Vipera Guizzante",
+  "description": "Accelera il cambio di impiego del dorn-dergar. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Vipera_Guizzante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Competente nell'uso del Dorn-Dergar Nanico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "BAB +4",
+      "expression": "@bab >= 4"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Vipera Guizzante: https://golarion.altervista.org/wiki/Talenti/Vipera_Guizzante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Competente nell'uso del Dorn-Dergar Nanico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

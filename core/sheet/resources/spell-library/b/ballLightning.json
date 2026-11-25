@@ -1,0 +1,57 @@
+{
+  "id": "ballLightning",
+  "name": "Fulmine Globulare",
+  "school": "EVOCATION",
+  "descriptors": [
+    "AIR",
+    "ELECTRICITY"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "HUNTER": 4,
+    "DRUID": 4,
+    "BLOODRAGER": 4,
+    "WIZARD": 4,
+    "MAGUS": 4,
+    "OCCULTIST": 4,
+    "SHAMAN": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un piccolo anello di ferro",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "due o più sfere del diametro di 1,5 metri",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Crea globi elettrici mobili che folgorano le creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fulmine_Globulare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fulmine Globulare: https://golarion.altervista.org/wiki/Incantesimi/Fulmine_Globulare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Aria 4 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "gruesomeSlaughter",
+  "name": "Orribile Massacro",
+  "description": "Una dimostrazione cruenta può rendere infermi i nemici demoralizzati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Orribile_Massacro",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prodezza Intimidatrice",
+      "feat": {
+        "id": "intimidatingProwess"
+      }
+    },
+    {
+      "description": "Uccisione Plateale",
+      "feat": {
+        "id": "killingFlourish"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intimidire 11 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Predatore di 11° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Orribile Massacro: https://golarion.altervista.org/wiki/Talenti/Orribile_Massacro. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intimidire 11 gradi; Prerequisito da verificare manualmente: Predatore di 11° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

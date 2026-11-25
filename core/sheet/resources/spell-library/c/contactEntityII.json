@@ -1,0 +1,52 @@
+{
+  "id": "contactEntityII",
+  "name": "Contattare Entità II",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "CLERIC": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "MEDIUM": 2,
+    "OCCULTIST": 3,
+    "ORACLE": 3,
+    "PSYCHIC": 3,
+    "SHAMAN": 3,
+    "WARPRIEST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "vedi testo",
+  "rangeType": "OTHER",
+  "rangeDescription": "300 chilometri",
+  "target": "fino a 20 entità con 12 DV o meno",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Invia un invito soprannaturale a entità di potenza superiore rispetto alla versione iniziale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Contattare_Entit%C3%A0#Contattare_Entità_II",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Contattare Entità II: https://golarion.altervista.org/wiki/Contattare_Entit%C3%A0#Contattare_Entità_II Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: fino a 20 entità con 12 DV o meno. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

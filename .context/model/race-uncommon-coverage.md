@@ -1,6 +1,6 @@
 # Uncommon race catalog coverage
 
-Read when changing the sixteen `Razze Peculiari` in `core/sheet/resources/races/uncommon.json`. Reviewed against Golarion on 2026-11-13. All rule content comes from the Italian pages; linked English references were consulted only for identifiers/terminology, never to add missing rules or options.
+Read when changing the sixteen `Razze Peculiari` in `core/sheet/resources/race-library/races/<id>.json`. Reviewed against Golarion on 2026-11-13. All rule content comes from the Italian pages; linked English references were consulted only for identifiers/terminology, never to add missing rules or options.
 
 ## Page coverage
 

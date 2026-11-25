@@ -1,0 +1,53 @@
+{
+  "id": "cloakOfChaos",
+  "name": "Mantello del Caos",
+  "school": "ABJURATION",
+  "descriptors": [
+    "CHAOTIC"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 8,
+    "ORACLE": 8
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "CHAOS": 8
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un minuscolo reliquiario che vale almeno 500 mo",
+  "rangeType": "OTHER",
+  "rangeDescription": "6 m",
+  "target": "1 creatura/livello entro un’esplosione del raggio di 6 m centrata su se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Una protezione caotica migliora difese e resistenza alle magie legali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Mantello_del_Caos",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Mantello del Caos: https://golarion.altervista.org/wiki/Incantesimi/Mantello_del_Caos Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/livello entro un’esplosione del raggio di 6 m centrata su se stessi. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "spite",
+  "name": "Dispetto",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "WITCH": 4,
+    "MESMERIST": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "rari inchiostri del valore di 250 mo",
+  "materialComponentCostInGoldPieces": 250,
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I) o finché non viene scaricato",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Prepara un effetto di contatto destinato a colpire una creatura che aggredisce il lanciatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Dispetto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Dispetto: https://golarion.altervista.org/wiki/Incantesimi/Dispetto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

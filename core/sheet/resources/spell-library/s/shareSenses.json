@@ -1,0 +1,52 @@
+{
+  "id": "shareSenses",
+  "name": "Condividere Sensi",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "subschool": "SCRYING",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WITCH": 3,
+    "WIZARD": 4,
+    "MEDIUM": 3,
+    "PSYCHIC": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round completo",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pelo, scaglia o piuma del proprio famiglio",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "target": "il proprio famiglio",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Collega i sensi per percepire a distanza ciò che circonda il soggetto interessato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Condividere_Sensi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Condividere Sensi: https://golarion.altervista.org/wiki/Incantesimi/Condividere_Sensi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: il proprio famiglio. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

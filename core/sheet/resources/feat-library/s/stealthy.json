@@ -1,0 +1,56 @@
+{
+  "id": "stealthy",
+  "name": "Furtivo",
+  "description": "Migliora Artista della Fuga e Furtività, con beneficio maggiore raggiunti 10 gradi nella singola abilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Furtivo",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "escapeArtist",
+      "type": "modifier",
+      "resource": "skill.escapeArtist",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "escapeArtistExperienced",
+      "type": "modifier",
+      "resource": "skill.escapeArtist",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2",
+      "condition": "Con almeno 10 gradi in Artista della Fuga"
+    },
+    {
+      "id": "stealth",
+      "type": "modifier",
+      "resource": "skill.stealth",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    },
+    {
+      "id": "stealthExperienced",
+      "type": "modifier",
+      "resource": "skill.stealth",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2",
+      "condition": "Con almeno 10 gradi in Furtività"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Il bonus aggiuntivo condizionale richiede la verifica manuale dei 10 gradi nella specifica abilità. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

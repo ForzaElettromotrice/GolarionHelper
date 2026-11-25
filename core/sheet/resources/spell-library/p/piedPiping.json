@@ -1,0 +1,44 @@
+{
+  "id": "piedPiping",
+  "name": "Flauto Magico",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING",
+    "SONIC"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 6,
+    "SKALD": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL_OR_FOCUS"
+  ],
+  "focusComponentDescription": "strumento musicale",
+  "rangeType": "OTHER",
+  "rangeDescription": "27 m",
+  "area": "emanazione del raggio di 27 m, centrata su di sé",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione + 1 round/livello",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "La musica costringe creature dello stesso tipo a seguire il bardo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Flauto_Magico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Flauto Magico: https://golarion.altervista.org/wiki/Incantesimi/Flauto_Magico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

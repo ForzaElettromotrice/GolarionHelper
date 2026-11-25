@@ -1,0 +1,56 @@
+{
+  "id": "lightOfIomedae",
+  "name": "Luce di Iomedae",
+  "school": "CONJURATION",
+  "descriptors": [
+    "GOOD",
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "INQUISITOR": 3,
+    "PALADIN": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 metri + 3 metri/livello)",
+  "target": "tutti i Non Morti in una propagazione del raggio di 6 m",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Una luce sacra espone i non morti all'energia positiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Luce_di_Iomedae",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Luce di Iomedae: https://golarion.altervista.org/wiki/Incantesimi/Luce_di_Iomedae Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: tutti i Non Morti in una propagazione del raggio di 6 m. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "La fonte riporta la componente «5», non interpretabile: non viene convertita in componente somatica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "orchidSDrop",
+  "name": "Goccia di Orchidea",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "INVESTIGATOR": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una goccia di nettare di orchidea del sole molto diluito del valore di 500 mo",
+  "materialComponentCostInGoldPieces": 500,
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Accompagna l'assunzione di un mutageno con guarigione e protezione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Goccia_di_Orchidea",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Goccia di Orchidea: https://golarion.altervista.org/wiki/Incantesimi/Goccia_di_Orchidea Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

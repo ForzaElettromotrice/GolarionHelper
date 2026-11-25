@@ -1,0 +1,81 @@
+{
+  "id": "stoneskin",
+  "name": "Pelle di Pietra",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ADEPT": 4,
+    "ALCHEMIST": 4,
+    "ARCANIST": 4,
+    "HUNTER": 5,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "DRUID": 5,
+    "INQUISITOR": 4,
+    "INVESTIGATOR": 4,
+    "BLOODRAGER": 4,
+    "WIZARD": 4,
+    "MAGUS": 4,
+    "OCCULTIST": 4,
+    "PSYCHIC": 4,
+    "SHAMAN": 5,
+    "SORCERER": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "EARTH": 4,
+      "STRENGTH": 4
+    }
+  },
+  "spellLevelByBloodline": {
+    "ABYSSAL": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "polvere di granito e diamante del valore di almeno 250 mo",
+  "materialComponentCostInGoldPieces": 250,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Protegge dai colpi fino all'esaurimento della capacità assorbente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pelle_di_Pietra",
+  "effects": [
+    {
+      "id": "damageReduction",
+      "type": "damageReduction",
+      "expression": "10",
+      "bypass": [
+        [
+          "adamantine"
+        ]
+      ]
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Contare i danni assorbiti: esaurimento a 10 per livello dell'incantatore, massimo 150. Rimuovere il gruppo quando la riserva termina. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Metallo 4, Terra 4 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

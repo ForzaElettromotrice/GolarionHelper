@@ -1,0 +1,53 @@
+{
+  "id": "maddeningStrike",
+  "name": "Colpo della Follia",
+  "description": "Spende ki per ledere gravemente la mente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_della_Follia",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Saggezza 17",
+      "expression": "@wis >= 17"
+    },
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Stile della Follia",
+      "feat": {
+        "id": "maddeningStyle"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Pugno Stordente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (arcane) 8 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe riserva ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: allineamento non buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo della Follia: https://golarion.altervista.org/wiki/Talenti/Colpo_della_Follia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Pugno Stordente; Prerequisito da verificare manualmente: Conoscenze (arcane) 8 gradi; Prerequisito da verificare manualmente: privilegio di classe riserva ki; Prerequisito da verificare manualmente: allineamento non buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

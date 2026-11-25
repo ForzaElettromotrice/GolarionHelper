@@ -1,0 +1,49 @@
+{
+  "id": "magicSiegeEngineGreater",
+  "name": "Macchina d'Assedio Magica Superiore",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 4,
+    "ARCANIST": 4,
+    "CLERIC": 5,
+    "INQUISITOR": 4,
+    "WIZARD": 4,
+    "OCCULTIST": 4,
+    "ORACLE": 5,
+    "PALADIN": 4,
+    "WARPRIEST": 5,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "area": "1 Macchina d'Assedio toccata",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Fornisce a una macchina d'assedio un potenziamento crescente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Macchina_d%27Assedio_Magica_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Macchina d'Assedio Magica Superiore: https://golarion.altervista.org/wiki/Incantesimi/Macchina_d%27Assedio_Magica_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "vengefulOutrage",
+  "name": "Oltraggio da Vendicare",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "BARD": 5,
+    "WITCH": 6,
+    "WIZARD": 6,
+    "MESMERIST": 5,
+    "PSYCHIC": 6,
+    "SKALD": 5,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Spinge il bersaglio a vendicarsi di un nemico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Oltraggio_da_Vendicare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Oltraggio da Vendicare: https://golarion.altervista.org/wiki/Incantesimi/Oltraggio_da_Vendicare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Descrittori variabili da determinare al lancio: dipendente dal linguaggio, emozione, influenza mentale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

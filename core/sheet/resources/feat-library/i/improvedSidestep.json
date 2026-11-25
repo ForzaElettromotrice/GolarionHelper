@@ -1,0 +1,41 @@
+{
+  "id": "improvedSidestep",
+  "name": "Passo Laterale Migliorato",
+  "description": "Permette un passo laterale senza compromettere il movimento del turno seguente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Passo_Laterale_Migliorato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Mobilità",
+      "feat": {
+        "id": "mobility"
+      }
+    },
+    {
+      "description": "Passo Laterale",
+      "feat": {
+        "id": "sidestep"
+      }
+    },
+    {
+      "description": "Schivare",
+      "feat": {
+        "id": "dodge"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Passo Laterale Migliorato: https://golarion.altervista.org/wiki/Talenti/Passo_Laterale_Migliorato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

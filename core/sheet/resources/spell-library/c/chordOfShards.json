@@ -1,0 +1,40 @@
+{
+  "id": "chordOfShards",
+  "name": "Accordo di Schegge",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 1,
+    "SKALD": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "4,5 m",
+  "area": "esplosione a forma di cono",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasforma un'esibizione bardica in un attacco di schegge che infligge danni perforanti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Accordo_di_Schegge",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Accordo di Schegge: https://golarion.altervista.org/wiki/Incantesimi/Accordo_di_Schegge Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

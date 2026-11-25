@@ -1,0 +1,53 @@
+{
+  "id": "majorCreation",
+  "name": "Creazione Maggiore",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ADEPT": 5,
+    "ARCANIST": 5,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "PSYCHIC": 5,
+    "SORCERER": 5
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "ARTIFICE": 6
+    }
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un minuscolo pezzo di materiale dello stesso tipo di oggetto che si vuole creare con Creazione minore",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "1 oggetto non magico incustodito di materia vegetale inerte, fino a 28 cm3 per livello",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Materializza oggetti di materiali vegetali, minerali o metallici per una durata dipendente dalla loro natura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Creazione_Maggiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Creazione Maggiore: https://golarion.altervista.org/wiki/Incantesimi/Creazione_Maggiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Metallo 5 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

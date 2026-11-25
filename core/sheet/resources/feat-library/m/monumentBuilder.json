@@ -1,0 +1,27 @@
+{
+  "id": "monumentBuilder",
+  "name": "Costruttore di Monumenti",
+  "description": "Favorisce la costruzione di un grande monumento e premia il completamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Costruttore_di_Monumenti",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (Ingegneria) 1 grado e bisogna aver costruito una struttura da almeno 5.000 mo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Costruttore di Monumenti: https://golarion.altervista.org/wiki/Talenti/Costruttore_di_Monumenti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (Ingegneria) 1 grado e bisogna aver costruito una struttura da almeno 5.000 mo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

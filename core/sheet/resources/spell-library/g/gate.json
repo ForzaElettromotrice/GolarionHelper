@@ -1,0 +1,50 @@
+{
+  "id": "gate",
+  "name": "Portale",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "CLERIC": 9,
+    "WIZARD": 9,
+    "ORACLE": 9,
+    "PSYCHIC": 9,
+    "SORCERER": 9
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "vedi testo",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "vedi testo",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "istantaneo o Concentrazione (fino a 1 round/livello); vedi testo",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Stabilisce un collegamento con un altro piano, utilizzabile per attraversarlo o richiamarne creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Portale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Portale: https://golarion.altervista.org/wiki/Incantesimi/Portale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 9, Aria 9, Fuoco 9, Terra 9 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Sottoscuola da scegliere in base alla versione: creazione o richiamo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

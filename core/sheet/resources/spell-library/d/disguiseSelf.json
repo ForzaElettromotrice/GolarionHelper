@@ -1,0 +1,61 @@
+{
+  "id": "disguiseSelf",
+  "name": "Camuffare Se Stesso",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ANTIPALADIN": 1,
+    "ARCANIST": 1,
+    "BARD": 1,
+    "INQUISITOR": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "MEDIUM": 1,
+    "MESMERIST": 1,
+    "OCCULTIST": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "TRICKERY": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Modifica illusoriamente l'aspetto, concedendo +10 a Camuffare quando usato per un travestimento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Camuffare_Se_Stesso",
+  "effects": [
+    {
+      "id": "disguise",
+      "type": "modifier",
+      "resource": "skill.disguise",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "10",
+      "condition": "Per il travestimento creato dall'incantesimo"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "L'aspetto può variare entro 30 cm senza cambiare tipo di creatura, tatto o suoni; interagire consente Volontà per riconoscere l'illusione. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

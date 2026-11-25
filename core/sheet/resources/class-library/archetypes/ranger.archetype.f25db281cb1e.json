@@ -1,0 +1,133 @@
+{
+  "id": "ranger.archetype.f25db281cb1e",
+  "classType": "ranger",
+  "name": "Cambiaforma",
+  "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cambiaforma Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Talento di Stile di Combattimento. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "ranger.feature.2372e79a4c70",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.4fad43923586",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.cfe6c56ff989",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.dde076a46463",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "ranger.feature.2372e79a4c70",
+    "ranger.feature.4fad43923586",
+    "ranger.feature.cfe6c56ff989",
+    "ranger.feature.dde076a46463"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "ranger.archetype.f25db281cb1e.instructions",
+      "name": "Cambiaforma",
+      "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cambiaforma Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Talento di Stile di Combattimento. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "ranger.archetype.f25db281cb1e.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cambiaforma Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Talento di Stile di Combattimento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.f25db281cb1e.feature.7480d4bf9b",
+      "name": "Stile di Combattimento (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cambiaforma",
+      "progression": [
+        {
+          "id": "ranger.archetype.f25db281cb1e.feature.7480d4bf9b.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cambiaforma — Stile di Combattimento (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger/Archetipi#Cambiaforma Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.f25db281cb1e.feature.df5b696bb9",
+      "name": "Benedizione del Cambiaforma (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cambiaforma",
+      "progression": [
+        {
+          "id": "ranger.archetype.f25db281cb1e.feature.df5b696bb9.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cambiaforma — Benedizione del Cambiaforma (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger/Archetipi#Cambiaforma Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.f25db281cb1e.feature.c3a169abf1",
+      "name": "Forma Duplice (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cambiaforma",
+      "progression": [
+        {
+          "id": "ranger.archetype.f25db281cb1e.feature.c3a169abf1.initial",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cambiaforma — Forma Duplice (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger/Archetipi#Cambiaforma Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.f25db281cb1e.feature.a6a1794d9b",
+      "name": "Mutaforma Esperto (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cambiaforma",
+      "progression": [
+        {
+          "id": "ranger.archetype.f25db281cb1e.feature.a6a1794d9b.initial",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cambiaforma — Mutaforma Esperto (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger/Archetipi#Cambiaforma Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "id": "calmAnimals",
+  "name": "Calmare Animali",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "DRUID": 1,
+    "PSYCHIC": 1,
+    "RANGER": 1,
+    "SHAMAN": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "ANIMAL": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "degli animali a non più di 9 m l’uno dall’altro",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Placa un gruppo di animali entro un limite complessivo di Dadi Vita. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Calmare_Animali",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Calmare Animali: https://golarion.altervista.org/wiki/Incantesimi/Calmare_Animali Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: degli animali a non più di 9 m l’uno dall’altro. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

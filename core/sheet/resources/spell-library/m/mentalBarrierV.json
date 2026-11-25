@@ -1,0 +1,32 @@
+{
+  "id": "mentalBarrierV",
+  "name": "Barriera Mentale V",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "PSYCHIC": 6
+  },
+  "castingTimeCategory": "IMMEDIATE_ACTION",
+  "castingTimeDescription": "1 azione immediata",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Offre la massima protezione della serie, compresa una maggiore probabilità di neutralizzare colpi precisi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Barriera_Mentale_V",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Barriera Mentale V: https://golarion.altervista.org/wiki/Incantesimi/Barriera_Mentale_V Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

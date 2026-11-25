@@ -1,0 +1,45 @@
+{
+  "id": "greenCaress",
+  "name": "Carezza Verde",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 4,
+    "DRUID": 6,
+    "WITCH": 6,
+    "RANGER": 4,
+    "SHAMAN": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "pizzico di muschio o foglia di kudzu",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura vivente",
+  "durationType": "DAY",
+  "durationDescription": "7 giorni (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Avvia una trasformazione graduale della vittima in un vegetale immobile. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Carezza_Verde",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Carezza Verde: https://golarion.altervista.org/wiki/Carezza_Verde Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "steelSoul",
+  "name": "Anima di Ferro",
+  "description": "Rafforza la resistenza razziale nanica contro la magia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Anima_di_Ferro",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Nano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: tratto razziale Resistenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "saves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "racial",
+      "expression": "2",
+      "condition": "Contro incantesimi e capacità magiche, se si possiede il bonus razziale Resistenza +2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "L'incremento +2 porta il bonus razziale Resistenza da +2 a +4; non sommare +4 ulteriore. Verificare la presenza del tratto se è stato sostituito. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Nano; Prerequisito da verificare manualmente: tratto razziale Resistenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

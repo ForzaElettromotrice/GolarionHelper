@@ -1,0 +1,58 @@
+{
+  "id": "controlWater",
+  "name": "Controllare Acqua",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "WATER"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "SORCERER": 6,
+    "HUNTER": 4,
+    "CLERIC": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "DRUID": 4,
+    "SHAMAN": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "WATER": 4
+    }
+  },
+  "spellLevelByBloodline": {
+    "AQUATIC": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una goccia d'acqua per Alzare Acqua o un pizzico di polvere per Abbassare Acqua",
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "area": "acqua per un volume di 3 m/livello x 3 m/livello x 60 cm/livello (F)",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Solleva, abbassa o modifica una massa d'acqua secondo le modalità previste. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Controllare_Acqua",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Controllare Acqua: https://golarion.altervista.org/wiki/Incantesimi/Controllare_Acqua Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno; vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

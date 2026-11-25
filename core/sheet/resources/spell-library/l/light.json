@@ -1,0 +1,62 @@
+{
+  "id": "light",
+  "name": "Luce",
+  "school": "EVOCATION",
+  "descriptors": [
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "ADEPT": 0,
+    "ARCANIST": 0,
+    "BARD": 0,
+    "HUNTER": 0,
+    "CLERIC": 0,
+    "SUMMONER": 0,
+    "UNCHAINED_SUMMONER": 0,
+    "DRUID": 0,
+    "WITCH": 0,
+    "INQUISITOR": 0,
+    "WIZARD": 0,
+    "MAGUS": 0,
+    "MEDIUM": 0,
+    "MESMERIST": 0,
+    "OCCULTIST": 0,
+    "ORACLE": 0,
+    "PSYCHIC": 0,
+    "WARPRIEST": 0,
+    "SKALD": 0,
+    "SHAMAN": 0,
+    "SPIRITUALIST": 0,
+    "SORCERER": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una lucciola",
+  "rangeType": "TOUCH",
+  "rangeDescription": "Contatto",
+  "target": "1 oggetto toccato",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasforma un oggetto toccato in una sorgente di illuminazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Luce",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Luce: https://golarion.altervista.org/wiki/Incantesimi/Luce Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Legno 0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

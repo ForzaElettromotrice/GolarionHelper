@@ -1,0 +1,83 @@
+{
+  "id": "cleric.archetype.6fa66413912a",
+  "classType": "cleric",
+  "name": "Scismatico",
+  "description": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico/Archetipi#Scismatico Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "cleric.feature.836718c23446",
+      "type": "replace"
+    },
+    {
+      "featureId": "cleric.proficiencies",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "cleric.feature.836718c23446",
+    "cleric.proficiencies"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "cleric.archetype.6fa66413912a.instructions",
+      "name": "Scismatico",
+      "description": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico/Archetipi#Scismatico Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "cleric.archetype.6fa66413912a.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico/Archetipi#Scismatico Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.6fa66413912a.feature.1",
+      "name": "Competenza nelle Armi e nelle Armature",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico/Archetipi#Scismatico",
+      "progression": [
+        {
+          "id": "cleric.archetype.6fa66413912a.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scismatico — Competenza nelle Armi e nelle Armature: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico/Archetipi#Scismatico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.6fa66413912a.feature.2",
+      "name": "Riti Proibiti",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico/Archetipi#Scismatico",
+      "progression": [
+        {
+          "id": "cleric.archetype.6fa66413912a.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scismatico — Riti Proibiti: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico/Archetipi#Scismatico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

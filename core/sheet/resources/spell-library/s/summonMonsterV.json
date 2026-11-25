@@ -1,0 +1,67 @@
+{
+  "id": "summonMonsterV",
+  "name": "Evoca Mostri V",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 5,
+    "CLERIC": 5,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 4,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "MEDIUM": 4,
+    "ORACLE": 5,
+    "PSYCHIC": 5,
+    "WARPRIEST": 5,
+    "SKALD": 5,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DARKNESS": 5
+    },
+    "subdomain": {
+      "DARK_TAPESTRY": 5
+    }
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "una borsa minuscola e una piccola candela",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "una creatura evocata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Evoca un servitore extraplanare dalla lista di quinto livello. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Mostri#Evoca_Mostri_V",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Mostri V: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Mostri#Evoca_Mostri_V Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Acqua 5, Aria 5, Fuoco 5, Terra 5 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Descrittore non presente nel vocabolario del modello: vedi testo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

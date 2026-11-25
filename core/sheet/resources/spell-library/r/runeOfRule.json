@@ -1,0 +1,48 @@
+{
+  "id": "runeOfRule",
+  "name": "Runa della Regola",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "BARD": 2,
+    "SKALD": 2,
+    "WITCH": 2,
+    "OCCULTIST": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "fiala di pittura dal valore di 25 mo",
+  "materialComponentCostInGoldPieces": 25,
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/2 livelli)",
+  "target": "1 creatura vivente",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno o finché attivato (vedi descrizione)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Appone una delle sette rune previste, ciascuna con un beneficio diverso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Runa_della_Regola",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Runa della Regola: https://golarion.altervista.org/wiki/Incantesimi/Runa_della_Regola Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "returningWeapon",
+  "name": "Arma Ritornante",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "TELEPORTATION",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "WITCH": 2,
+    "INQUISITOR": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 2,
+    "MAGUS": 1,
+    "OCCULTIST": 1,
+    "ORACLE": 1,
+    "PSYCHIC": 2,
+    "RANGER": 1,
+    "WARPRIEST": 1,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "un'arma che può essere lanciata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Fa tornare l'arma da lancio al suo utilizzatore secondo le regole della capacità Ritornante. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Arma_Ritornante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Arma Ritornante: https://golarion.altervista.org/wiki/Incantesimi/Arma_Ritornante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

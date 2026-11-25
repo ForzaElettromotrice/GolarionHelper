@@ -1,0 +1,51 @@
+{
+  "id": "restorationLesser",
+  "name": "Ristorare Inferiore",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "HUNTER": 2,
+    "CLERIC": 2,
+    "DRUID": 2,
+    "INQUISITOR": 2,
+    "INVESTIGATOR": 2,
+    "MESMERIST": 2,
+    "ORACLE": 2,
+    "PALADIN": 1,
+    "WARPRIEST": 2,
+    "SHAMAN": 2,
+    "SPIRITUALIST": 2
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "3 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Rimuove alcune penalità magiche alle caratteristiche o recupera 1d4 punti di danno a una caratteristica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ristorare_Inferiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ristorare Inferiore: https://golarion.altervista.org/wiki/Incantesimi/Ristorare_Inferiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

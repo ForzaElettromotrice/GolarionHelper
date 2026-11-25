@@ -1,0 +1,108 @@
+{
+  "id": "paladin.archetype.5524ae223760",
+  "classType": "paladin",
+  "name": "Ospedaliere",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Ospedaliere Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Incanalare Energia Positiva, Punire il Male. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.feature.2ee066756d50",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.99f3e1a8c78d",
+      "type": "alter"
+    },
+    {
+      "featureId": "paladin.feature.b85d701a8180",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "paladin.feature.2ee066756d50",
+    "paladin.feature.99f3e1a8c78d",
+    "paladin.feature.b85d701a8180"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.5524ae223760.instructions",
+      "name": "Ospedaliere",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Ospedaliere Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Incanalare Energia Positiva, Punire il Male. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.5524ae223760.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Ospedaliere Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Incanalare Energia Positiva, Punire il Male. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.5524ae223760.feature.a47dd8b3aa",
+      "name": "Punire il Male (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Ospedaliere",
+      "progression": [
+        {
+          "id": "paladin.archetype.5524ae223760.feature.a47dd8b3aa.initial",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ospedaliere — Punire il Male (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Ospedaliere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.5524ae223760.feature.6ee8718fcd",
+      "name": "Incanalare Energia Positiva (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Ospedaliere",
+      "progression": [
+        {
+          "id": "paladin.archetype.5524ae223760.feature.6ee8718fcd.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ospedaliere — Incanalare Energia Positiva (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Ospedaliere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "paladin.archetype.5524ae223760.feature.02acabe111",
+      "name": "Aura di Guarigione (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Paladino/Archetipi#Ospedaliere",
+      "progression": [
+        {
+          "id": "paladin.archetype.5524ae223760.feature.02acabe111.initial",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ospedaliere — Aura di Guarigione (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Paladino/Archetipi#Ospedaliere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "phantasmalAsphyxiation",
+  "name": "Asfissia Fantasma",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "MEDIUM": 3,
+    "MESMERIST": 4,
+    "PSYCHIC": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un'ampolla vuota",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "una creatura vivente",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita, poi Tempra parziale (vedi testo)"
+    },
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Volontà dubita, poi Tempra parziale (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Fa credere alla vittima di soffocare, producendo le conseguenze previste dall'allucinazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Asfissia_Fantasma",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Asfissia Fantasma: https://golarion.altervista.org/wiki/Asfissia_Fantasma Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

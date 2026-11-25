@@ -1,15 +1,24 @@
-#include "../controllers/sheet_controller.hpp"
 #include "golarion/character/ability.hpp"
+#include "golarion/character/character_sheet.hpp"
+#include "golarion/character/feat_definition_json.hpp"
+#include "golarion/persistence/json.hpp"
 #include "golarion/character/character_class_type.hpp"
 #include "golarion/character/pending_choice.hpp"
 #include "golarion/character/skill.hpp"
 #include "golarion/data/languages_data.hpp"
 #include "golarion/resource/modifier.hpp"
 
+#include <nlohmann/json.hpp>
+#include "../controllers/sheet_controller.hpp"
+
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QSignalSpy>
 #include <QSettings>
 #include <QTemporaryDir>
 #include <QtTest>
+
+#include <algorithm>
 
 class SheetControllerTest : public QObject
 {
@@ -35,6 +44,11 @@ private Q_SLOTS:
         QVERIFY(QFile::exists(url.toLocalFile()));
         creator.setNotes(QStringLiteral("Note salvate"));
         QVERIFY2(creator.errorMessage().isEmpty(), qPrintable(creator.errorMessage()));
+        const auto immediateExport = directory.filePath("immediate.json");
+        creator.exportSavedSheet(url, QUrl::fromLocalFile(immediateExport));
+        QFile exported(immediateExport);
+        QVERIFY(exported.open(QIODevice::ReadOnly));
+        QCOMPARE(QJsonDocument::fromJson(exported.readAll()).object().value("notes").toString(), QStringLiteral("Note salvate"));
 
         creator.createSavedSheet("../outside");
         QCOMPARE(opened.count(), 1);
@@ -85,6 +99,78 @@ private Q_SLOTS:
         reader.forgetSavedSheet(imported);
         QVERIFY(reader.savedSheets().isEmpty());
         QVERIFY(QFile::exists(imported.toLocalFile()));
+    }
+
+    void opensChoicesForSheetLocalFeat()
+    {
+        QTemporaryDir dir;
+        QVERIFY(dir.isValid());
+        const auto path = dir.filePath("Custom.json");
+        golarion::CharacterSheet sheet;
+        sheet.addCustomFeatDefinition(golarion::featDefinitionFromJson(nlohmann::json::parse(R"({
+            "id":"custom.gift","name":"Dono","description":"Talento di prova","types":["combat"],
+            "choices":[{"id":"gift","prompt":"Scegli","selectionCount":1,"options":[{"id":"health","name":"Vigore"}]}]
+        })")));
+        golarion::persistence::saveToFile(sheet.toSaveData(), std::filesystem::path(path.toStdU16String()));
+        SheetController controller(nullptr, dir.path());
+        QSignalSpy opened(&controller, &SheetController::sheetOpened);
+        controller.openSavedSheet(QUrl::fromLocalFile(path));
+        QTRY_COMPARE_WITH_TIMEOUT(opened.count(), 1, 15000);
+        const auto rows = controller.featCatalog({});
+        QVERIFY(std::ranges::any_of(rows, [](const QVariant &v) {
+            const auto row = v.toMap();
+            return row.value("id") == "custom.gift" && !row.contains("choices");
+        }));
+        const auto choices = controller.featDetail("custom.gift").value("choices").toList();
+        QCOMPARE(choices.size(), 1);
+        QCOMPARE(choices.front().toMap().value("id").toString(), QStringLiteral("gift"));
+        controller.selectFeat({}, "custom.gift", {{"gift", QStringList{"health"}}});
+        QVERIFY2(controller.errorMessage().isEmpty(), qPrintable(controller.errorMessage()));
+    }
+
+    void drainsLatestAutosaveOnSwitchAndShutdown()
+    {
+        QTemporaryDir dir;
+        QVERIFY(dir.isValid());
+        {
+            SheetController controller(nullptr, dir.path());
+            QSignalSpy opened(&controller, &SheetController::sheetOpened);
+            controller.createSavedSheet("First");
+            QTRY_COMPARE_WITH_TIMEOUT(opened.count(), 1, 15000);
+            for (int i = 0; i < 12; ++i) controller.setNotes(QString::number(i));
+            controller.createSavedSheet("Second");
+            QCOMPARE(opened.count(), 2);
+            controller.setNotes("intermediate");
+            controller.setNotes("latest");
+        }
+        auto notes = [&](const QString &name) {
+            QFile file(dir.filePath(name));
+            if (!file.open(QIODevice::ReadOnly)) return QString{};
+            return QJsonDocument::fromJson(file.readAll()).object().value("notes").toString();
+        };
+        QCOMPARE(notes("First.json"), "11");
+        QCOMPARE(notes("Second.json"), "latest");
+    }
+
+    void retainsFailedAutosaveForRetry()
+    {
+        QTemporaryDir dir;
+        SheetController controller(nullptr, dir.path());
+        QSignalSpy opened(&controller, &SheetController::sheetOpened);
+        controller.createSavedSheet("First");
+        QTRY_COMPARE_WITH_TIMEOUT(opened.count(), 1, 15000);
+        const auto path = dir.filePath("First.json");
+        QVERIFY(QFile::remove(path));
+        QVERIFY(QDir().mkdir(path));
+        controller.setNotes("recoverable");
+        QTRY_VERIFY(!controller.errorMessage().isEmpty());
+        controller.createSavedSheet("Second");
+        QCOMPARE(opened.count(), 1);
+        QVERIFY(QDir().rmdir(path));
+        controller.openSavedSheet(QUrl::fromLocalFile(path));
+        QCOMPARE(opened.count(), 2);
+        QCOMPARE(controller.notes(), QStringLiteral("recoverable"));
+        QVERIFY(controller.errorMessage().isEmpty());
     }
 
     void listsAllEnhancementBonusTypesWithoutAnOpenSheet()
@@ -253,7 +339,13 @@ private Q_SLOTS:
         controller.setRacialChoice("human.abilityScores", "ability", {QStringLiteral("strength")});
         controller.addClassLevel(fighter);
         QVERIFY2(controller.errorMessage().isEmpty(), qPrintable(controller.errorMessage()));
-        QVERIFY(!controller.featCatalog("base.feat.level1").isEmpty());
+        const auto candidates = controller.featCatalog("base.feat.level1");
+        QVERIFY(!candidates.isEmpty());
+        QVERIFY(!candidates.front().toMap().contains("choices"));
+        QVERIFY(!candidates.front().toMap().contains("description"));
+        const auto detail = controller.featDetail("improvedInitiative");
+        QCOMPARE(detail.value("id").toString(), QStringLiteral("improvedInitiative"));
+        QVERIFY(detail.contains("choices") && !detail.value("description").toString().isEmpty());
         controller.selectFeat("base.feat.level1", "improvedInitiative", {});
         QVERIFY2(controller.errorMessage().isEmpty(), qPrintable(controller.errorMessage()));
         controller.selectFeat({}, "unknown", {});
@@ -300,9 +392,11 @@ private Q_SLOTS:
         const auto level = [&] { return controller.classes().value("level").toInt(); };
         const auto entry = [&] { return controller.classes().value("classes").toList().value(0).toMap(); };
         const auto catalog = controller.classCatalog();
-        QVERIFY(!catalog.value("classes").toList().isEmpty());
-        const auto archetypes = catalog.value("archetypes").toMap().value(QString::number(wizard)).toList();
+        QVERIFY(!catalog.isEmpty());
+        const auto archetypes = controller.archetypeCatalog(wizard);
         QVERIFY(!archetypes.isEmpty());
+        QVERIFY(!archetypes.first().toMap().contains("description"));
+        QVERIFY(!controller.archetypeDescription(archetypes.first().toMap().value("id").toString()).isEmpty());
         controller.addClassLevel(wizard);
         QVERIFY(!controller.errorMessage().isEmpty());
         QCOMPARE(level(), 0);
@@ -469,6 +563,71 @@ private Q_SLOTS:
         controller.unequipItem(secondArmor, homeId);
         QVERIFY(!findItem("id", secondArmor).value("equipped").toBool());
         QCOMPARE(controller.inventory().value("totalCarriedWeightGrams").toLongLong(), 0);
+    }
+
+    void publishesOnlyChangedPanelsFromOneCoherentView()
+    {
+        SheetController controller;
+        QSignalSpy opened(&controller, &SheetController::sheetOpened);
+        controller.openLocalSheet();
+        QTRY_COMPARE_WITH_TIMEOUT(opened.count(), 1, 15000);
+
+        QSignalSpy hp(&controller, &SheetController::hitPointsChanged);
+        QSignalSpy skills(&controller, &SheetController::skillScoresChanged);
+        QSignalSpy initiative(&controller, &SheetController::initiativeChanged);
+        QSignalSpy spells(&controller, &SheetController::spellCatalogDataChanged);
+        QSignalSpy inventory(&controller, &SheetController::inventoryItemsChanged);
+        QSignalSpy notes(&controller, &SheetController::notesChanged);
+        controller.addTemporaryHitPoints("Test", 3);
+        QCOMPARE(hp.count(), 1);
+        QCOMPARE(skills.count(), 0);
+        QCOMPARE(initiative.count(), 0);
+        QCOMPARE(spells.count(), 0);
+        QCOMPARE(inventory.count(), 0);
+        controller.setNotes("Una nota");
+        QCOMPARE(notes.count(), 1);
+        QCOMPARE(hp.count(), 1);
+        QCOMPARE(skills.count(), 0);
+
+        // The first notified panel must already see the new state of the others.
+        const auto initialInitiative = controller.initiative();
+        bool coherent = false;
+        connect(&controller, &SheetController::abilityScoresChanged, this, [&] {
+            coherent = controller.initiative() != initialInitiative;
+        });
+        controller.setAbilityBaseValue(static_cast<int>(golarion::AbilityType::Dexterity), 18);
+        QVERIFY(coherent);
+        QCOMPARE(skills.count(), 1);
+        QCOMPARE(initiative.count(), 1);
+        QCOMPARE(hp.count(), 1);
+        QCOMPARE(spells.count(), 0);
+        QCOMPARE(inventory.count(), 0);
+
+        // A visible modifier source matters even when the displayed total stays the same.
+        const auto addStrengthBonus = [&](const QString &source, int bonus) {
+            controller.addEnhancementGroup({{"name", source}});
+            for (const auto &row : controller.enhancements().value("groups").toList())
+            {
+                const auto info = row.toMap();
+                if (info.value("name").toString() != source) continue;
+                const auto id = info.value("id").toString();
+                controller.addEnhancement(id, {{"kind", 1}, {"resource", "str"}, {"expression", QString::number(bonus)},
+                    {"description", source}, {"bonusType", static_cast<int>(golarion::BonusType::Enhancement)}});
+                QVERIFY2(controller.errorMessage().isEmpty(), qPrintable(controller.errorMessage()));
+                controller.setEnhancementGroupActive(id, true);
+                QVERIFY2(controller.errorMessage().isEmpty(), qPrintable(controller.errorMessage()));
+                return;
+            }
+            QFAIL("Missing test enhancement group");
+        };
+        addStrengthBonus("Prima fonte", 4);
+        const auto strength = [&] { return controller.abilityScores().value("abilities").toList().first().toMap(); };
+        const auto before = strength();
+        QSignalSpy abilities(&controller, &SheetController::abilityScoresChanged);
+        addStrengthBonus("Seconda fonte", 2);
+        QCOMPARE(abilities.count(), 1);
+        QCOMPARE(strength().value("totalValue"), before.value("totalValue"));
+        QVERIFY(strength().value("modifiers") != before.value("modifiers"));
     }
 
     void createsAndReopensLocalSheet()

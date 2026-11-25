@@ -1,0 +1,40 @@
+{
+  "id": "disruptingFist",
+  "name": "Pugno Distruttivo",
+  "description": "Un colpo senz'armi può distruggere un non morto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Pugno_Distruttivo",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Incanalare Punizione",
+      "feat": {
+        "id": "channelSmite"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +9",
+      "expression": "@bab >= 9"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: incanalare energia positiva 4d6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Pugno Distruttivo: https://golarion.altervista.org/wiki/Talenti/Pugno_Distruttivo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: incanalare energia positiva 4d6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

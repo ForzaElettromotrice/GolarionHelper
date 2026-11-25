@@ -1,0 +1,30 @@
+{
+  "id": "carefulReader",
+  "name": "Lettore Accorto",
+  "description": "Rafforza la difesa contro scritti magici e rune. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Lettore_Accorto",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Linguistica 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Sapienza Magica 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Lettore Accorto: https://golarion.altervista.org/wiki/Talenti/Lettore_Accorto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Linguistica 3 gradi; Prerequisito da verificare manualmente: Sapienza Magica 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

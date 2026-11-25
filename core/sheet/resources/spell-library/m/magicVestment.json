@@ -1,0 +1,52 @@
+{
+  "id": "magicVestment",
+  "name": "Veste Magica",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 3,
+    "INQUISITOR": 3,
+    "OCCULTIST": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "SHAMAN": 3
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "STRENGTH": 3,
+      "WAR": 3,
+      "NOBILITY": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 armatura o scudo toccati",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Concede un bonus di potenziamento a un'armatura o a uno scudo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Veste_Magica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Veste Magica: https://golarion.altervista.org/wiki/Incantesimi/Veste_Magica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "spellPerfection",
+  "name": "Incantesimo Perfetto",
+  "description": "Potenzia il controllo di un incantesimo specifico e la sua interazione con la metamagia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Incantesimo_Perfetto",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Sapienza Magica 15 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: almeno tre Talenti di Metamagia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Incantesimo Perfetto: https://golarion.altervista.org/wiki/Talenti/Incantesimo_Perfetto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Sapienza Magica 15 gradi; Prerequisito da verificare manualmente: almeno tre Talenti di Metamagia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

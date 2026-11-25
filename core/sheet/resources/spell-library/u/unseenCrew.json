@@ -1,0 +1,42 @@
+{
+  "id": "unseenCrew",
+  "name": "Equipaggio Inosservato",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "SORCERER": 5,
+    "BARD": 4,
+    "SKALD": 4,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 5,
+    "WITCH": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "effect": "un marinaio Invisibile per livello",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Fornisce lavoratori invisibili per le mansioni di bordo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Equipaggio_Inosservato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Equipaggio Inosservato: https://golarion.altervista.org/wiki/Incantesimi/Equipaggio_Inosservato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

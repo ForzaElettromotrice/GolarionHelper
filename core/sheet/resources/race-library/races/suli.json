@@ -1,0 +1,515 @@
+{
+  "id": "suli",
+  "name": "Suli",
+  "qualities": [
+    {
+      "id": "suli.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Esterno (nativo). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "suli.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "suli.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "suli.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "int",
+          "type": "modifier",
+          "resource": "int",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "suli.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aquan",
+            "auran",
+            "draconic",
+            "ignan",
+            "terran"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "id": "elemental",
+          "prompt": "Scegli la lingua elementale iniziale",
+          "selectionCount": 1,
+          "options": [
+            {
+              "id": "aquan",
+              "name": "Aquan",
+              "effects": [
+                {
+                  "id": "language",
+                  "type": "languageGrant",
+                  "languageId": "aquan"
+                }
+              ]
+            },
+            {
+              "id": "auran",
+              "name": "Auran",
+              "effects": [
+                {
+                  "id": "language",
+                  "type": "languageGrant",
+                  "languageId": "auran"
+                }
+              ]
+            },
+            {
+              "id": "ignan",
+              "name": "Ignan",
+              "effects": [
+                {
+                  "id": "language",
+                  "type": "languageGrant",
+                  "languageId": "ignan"
+                }
+              ]
+            },
+            {
+              "id": "terran",
+              "name": "Terran",
+              "effects": [
+                {
+                  "id": "language",
+                  "type": "languageGrant",
+                  "languageId": "terran"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suli.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione 18 m.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scurovisione 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "suli.lowLightVision",
+      "name": "Visione Crepuscolare",
+      "description": "Distanza visiva doppia rispetto a un umano con luce scarsa.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Distanza visiva doppia rispetto a un umano con luce scarsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "suli.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita indicata.",
+      "effects": [
+        {
+          "id": "magusPool",
+          "type": "favoredClassBonus",
+          "classes": [
+            "magus"
+          ],
+          "name": "Magus — Riserva Arcana",
+          "description": "Magus — Riserva Arcana — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 punto alla riserva arcana. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkAssault",
+          "type": "favoredClassBonus",
+          "classes": [
+            "monk"
+          ],
+          "name": "Monaco — Assalto Elementale",
+          "description": "Monaco — Assalto Elementale — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 danno con Assalto Elementale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rangerResistance",
+          "type": "favoredClassBonus",
+          "classes": [
+            "ranger"
+          ],
+          "name": "Ranger — Resistenza",
+          "description": "Ranger — Resistenza — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scegli acido, elettricità, freddo o fuoco e aumenta di 1 la resistenza: scelta per livello e applicazione manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "suli.elementalAssault",
+      "name": "Assalto Elementale",
+      "description": "1/giorno, azione veloce: +1d6 acido/elettricità/freddo/fuoco a colpi di braccia/mani o armi impugnate per livello round. Terminabile con azione gratuita; attivazione e danni manuali.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "1/giorno, azione veloce: +1d6 acido/elettricità/freddo/fuoco a colpi di braccia/mani o armi impugnate per livello round. Terminabile con azione gratuita; attivazione e danni manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "suli.energyResistance",
+      "name": "Resistenza all'Energia",
+      "description": "Resistenza all'Energia",
+      "effects": [
+        {
+          "id": "acid",
+          "type": "energyResistance",
+          "energy": "acid",
+          "expression": "5",
+          "tags": [
+            "racial"
+          ]
+        },
+        {
+          "id": "electricity",
+          "type": "energyResistance",
+          "energy": "electricity",
+          "expression": "5",
+          "tags": [
+            "racial"
+          ]
+        },
+        {
+          "id": "cold",
+          "type": "energyResistance",
+          "energy": "cold",
+          "expression": "5",
+          "tags": [
+            "racial"
+          ]
+        },
+        {
+          "id": "fire",
+          "type": "energyResistance",
+          "energy": "fire",
+          "expression": "5",
+          "tags": [
+            "racial"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suli.negotiator",
+      "name": "Negoziatore",
+      "description": "Negoziatore",
+      "effects": [
+        {
+          "id": "skilldiplomacy",
+          "type": "modifier",
+          "resource": "skill.diplomacy",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "skillsenseMotive",
+          "type": "modifier",
+          "resource": "skill.senseMotive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "suli.energyStrike",
+      "name": "Colpo Energetico",
+      "description": "Colpo Energetico",
+      "effects": [],
+      "replaces": [
+        "suli.elementalAssault",
+        "suli.energyResistance"
+      ],
+      "choices": [
+        {
+          "id": "energy",
+          "prompt": "Scegli l'energia",
+          "selectionCount": 1,
+          "options": [
+            {
+              "id": "acid",
+              "name": "Acido",
+              "effects": [
+                {
+                  "id": "acid",
+                  "type": "energyResistance",
+                  "energy": "acid",
+                  "expression": "5",
+                  "tags": [
+                    "racial"
+                  ]
+                },
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Assalto Elementale soltanto di questa energia: 1/giorno, veloce, livello round. Durante Assalto Elementale, 1,5 m/round di terreno difficile di terra/pietra contano normali, anche per il passo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            },
+            {
+              "id": "electricity",
+              "name": "Elettricità",
+              "effects": [
+                {
+                  "id": "electricity",
+                  "type": "energyResistance",
+                  "energy": "electricity",
+                  "expression": "5",
+                  "tags": [
+                    "racial"
+                  ]
+                },
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Assalto Elementale soltanto di questa energia: 1/giorno, veloce, livello round. Durante Assalto Elementale, 1/round come immediata infliggi 1d6 elettricità a chi tocchi o colpisce con naturale, senz'armi o arma metallica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            },
+            {
+              "id": "cold",
+              "name": "Freddo",
+              "effects": [
+                {
+                  "id": "cold",
+                  "type": "energyResistance",
+                  "energy": "cold",
+                  "expression": "5",
+                  "tags": [
+                    "racial"
+                  ]
+                },
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Assalto Elementale soltanto di questa energia: 1/giorno, veloce, livello round. Durante Assalto Elementale cammini sui liquidi acquosi su ghiaccio temporaneo che sostiene solo te e ciò che trasporti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            },
+            {
+              "id": "fire",
+              "name": "Fuoco",
+              "effects": [
+                {
+                  "id": "fire",
+                  "type": "energyResistance",
+                  "energy": "fire",
+                  "expression": "5",
+                  "tags": [
+                    "racial"
+                  ]
+                },
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Assalto Elementale soltanto di questa energia: 1/giorno, veloce, livello round. Durante Assalto Elementale puoi sostituire il danno in mischia con contatto a distanza da 1d6 fuoco, incremento 3 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "id": "mageSDecree",
+  "name": "Decreto dell'Incantatore",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "BARD": 5,
+    "CLERIC": 6,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 5,
+    "WITCH": 6,
+    "INQUISITOR": 5,
+    "WIZARD": 6,
+    "MESMERIST": 5,
+    "ORACLE": 6,
+    "PSYCHIC": 6,
+    "WARPRIEST": 6,
+    "SKALD": 5,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un cono o una tromba di ottone",
+  "rangeType": "OTHER",
+  "rangeDescription": "fino a 1,6 km/livello, vedi testo",
+  "target": "vedi testo",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Diffonde un messaggio alle creature idonee entro una vasta area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Decreto_dell%27Incantatore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Decreto dell'Incantatore: https://golarion.altervista.org/wiki/Incantesimi/Decreto_dell%27Incantatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: vedi testo. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

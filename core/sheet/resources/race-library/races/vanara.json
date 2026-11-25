@@ -1,0 +1,515 @@
+{
+  "id": "vanara",
+  "name": "Vanara",
+  "qualities": [
+    {
+      "id": "vanara.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Umanoide (vanara). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "vanara.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "vanara.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "vanara.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "vanara.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "vanaran",
+          "type": "languageGrant",
+          "languageId": "vanaran"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aklo",
+            "celestial",
+            "elven",
+            "gnome",
+            "goblin",
+            "sylvan"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vanara.climbSpeed",
+      "name": "Velocità di Scalare",
+      "description": "Velocità di Scalare",
+      "effects": [
+        {
+          "id": "climb",
+          "type": "movementGrant",
+          "movementType": "climb",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": false
+        },
+        {
+          "id": "skillclimb",
+          "type": "modifier",
+          "resource": "skill.climb",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "8"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scalata: prendere 10 anche sotto minaccia; conserva Destrezza alla CA. Gestire manualmente pareti, cadute e scalata accelerata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "vanara.lowLightVision",
+      "name": "Visione Crepuscolare",
+      "description": "Distanza visiva doppia rispetto a un umano con luce scarsa.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Distanza visiva doppia rispetto a un umano con luce scarsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "vanara.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita indicata.",
+      "effects": [
+        {
+          "id": "alchemistBomb",
+          "type": "favoredClassBonus",
+          "classes": [
+            "alchemist"
+          ],
+          "name": "Alchimista — Bombe",
+          "description": "Alchimista — Bombe — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 danno alle bombe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "druidEmpathy",
+          "type": "favoredClassBonus",
+          "classes": [
+            "druid"
+          ],
+          "name": "Druido — Empatia",
+          "description": "Addestrare Animali +1 per beneficio; Empatia Selvatica manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "skillhandleAnimal",
+              "type": "modifier",
+              "resource": "skill.handleAnimal",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 alle prove di Empatia Selvatica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "fighterDefense",
+          "type": "favoredClassBonus",
+          "classes": [
+            "fighter"
+          ],
+          "name": "Guerriero — Difesa",
+          "description": "Guerriero — Difesa",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "combatManeuverdefensereposition",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.reposition",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "combatManeuverdefensetrip",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.trip",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        },
+        {
+          "id": "rogueTalent",
+          "type": "favoredClassBonus",
+          "classes": [
+            "rogue"
+          ],
+          "name": "Ladro — Dote",
+          "description": "Ladro — Dote — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Una nuova Dote da Ladro. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkJump",
+          "type": "favoredClassBonus",
+          "classes": [
+            "monk"
+          ],
+          "name": "Monaco — Salti",
+          "description": "Monaco — Salti",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "skillacrobatics",
+              "type": "modifier",
+              "resource": "skill.acrobatics",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Saltare"
+            }
+          ]
+        },
+        {
+          "id": "rangerDefense",
+          "type": "favoredClassBonus",
+          "classes": [
+            "ranger"
+          ],
+          "name": "Ranger — Difesa",
+          "description": "Ranger — Difesa",
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "armorClassall",
+              "type": "modifier",
+              "resource": "armorClass.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Contro un Nemico Prescelto"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "vanara.nimble",
+      "name": "Agilità",
+      "description": "Agilità",
+      "effects": [
+        {
+          "id": "skillacrobatics",
+          "type": "modifier",
+          "resource": "skill.acrobatics",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "skillstealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "vanara.prehensileTail",
+      "name": "Coda Prensile",
+      "description": "Trasporta oggetti ma non brandisce armi; recupera un piccolo oggetto riposto sulla persona con azione veloce.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Trasporta oggetti ma non brandisce armi; recupera un piccolo oggetto riposto sulla persona con azione veloce. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "vanara.whitecape",
+      "name": "Mantobianco",
+      "description": "Mantobianco",
+      "effects": [
+        {
+          "id": "combatManeuverdefensetrip",
+          "type": "modifier",
+          "resource": "combatManeuver.defense.trip",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        },
+        {
+          "id": "combatManeuverdefensebullRush",
+          "type": "modifier",
+          "resource": "combatManeuver.defense.bullRush",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        }
+      ],
+      "replaces": [
+        "vanara.prehensileTail"
+      ]
+    },
+    {
+      "id": "vanara.treeStranger",
+      "name": "Novizio Arboreo",
+      "description": "Novizio Arboreo",
+      "effects": [
+        {
+          "id": "skillknowledgearcanaClass",
+          "type": "classSkillGrant",
+          "resource": "skill.knowledge.arcana"
+        },
+        {
+          "id": "skillknowledgedungeoneeringClass",
+          "type": "classSkillGrant",
+          "resource": "skill.knowledge.dungeoneering"
+        },
+        {
+          "id": "skillknowledgeengineeringClass",
+          "type": "classSkillGrant",
+          "resource": "skill.knowledge.engineering"
+        },
+        {
+          "id": "skillknowledgegeographyClass",
+          "type": "classSkillGrant",
+          "resource": "skill.knowledge.geography"
+        },
+        {
+          "id": "skillknowledgehistoryClass",
+          "type": "classSkillGrant",
+          "resource": "skill.knowledge.history"
+        },
+        {
+          "id": "skillknowledgelocalClass",
+          "type": "classSkillGrant",
+          "resource": "skill.knowledge.local"
+        },
+        {
+          "id": "skillknowledgenatureClass",
+          "type": "classSkillGrant",
+          "resource": "skill.knowledge.nature"
+        },
+        {
+          "id": "skillknowledgenobilityClass",
+          "type": "classSkillGrant",
+          "resource": "skill.knowledge.nobility"
+        },
+        {
+          "id": "skillknowledgeplanesClass",
+          "type": "classSkillGrant",
+          "resource": "skill.knowledge.planes"
+        },
+        {
+          "id": "skillknowledgereligionClass",
+          "type": "classSkillGrant",
+          "resource": "skill.knowledge.religion"
+        }
+      ],
+      "replaces": [
+        "vanara.climbSpeed"
+      ]
+    }
+  ]
+}

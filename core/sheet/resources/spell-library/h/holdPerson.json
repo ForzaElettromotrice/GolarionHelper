@@ -1,0 +1,60 @@
+{
+  "id": "holdPerson",
+  "name": "Blocca Persone",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ANTIPALADIN": 2,
+    "ARCANIST": 3,
+    "BARD": 2,
+    "CLERIC": 2,
+    "WITCH": 2,
+    "INQUISITOR": 2,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 3,
+    "ORACLE": 2,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2,
+    "SKALD": 2,
+    "SHAMAN": 2,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "un piccolo pezzo dritto di ferro",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura Umanoide",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (D); vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Blocca i movimenti di un umanoide lasciandogli le possibilità di resistenza indicate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Blocca_Persone",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Blocca Persone: https://golarion.altervista.org/wiki/Incantesimi/Blocca_Persone Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

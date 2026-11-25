@@ -1,0 +1,60 @@
+{
+  "id": "buoyancy",
+  "name": "Galleggiabilità",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SHAMAN": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "IMMEDIATE_ACTION",
+  "castingTimeDescription": "1 azione immediata",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 oggetto o creatura di taglia Medio o inferiore/livello, due dei quali non possono trovarsi a più di 6 metri l'uno dall'altro",
+  "durationType": "ROUND",
+  "durationDescription": "fino a 1 round/livello (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo) o Volontà nega (oggetto)"
+    },
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo) o Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Fornisce galleggiamento naturale alle creature o agli oggetti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Galleggiabilit%C3%A0",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Galleggiabilità: https://golarion.altervista.org/wiki/Incantesimi/Galleggiabilit%C3%A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 oggetto o creatura di taglia Medio o inferiore/livello, due dei quali non possono trovarsi a più di 6 metri l'uno dall'altro. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "aliasReview",
+      "type": "reminder",
+      "message": "Golarion pubblica lo stesso incantesimo anche come Galleggiamento: https://golarion.altervista.org/wiki/Incantesimi/Galleggiamento. Non rappresenta un secondo incantesimo. La lista da Assassino della Mantide Rossa indicata nella pagina alternativa non è modellata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

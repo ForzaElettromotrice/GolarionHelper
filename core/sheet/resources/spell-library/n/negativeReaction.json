@@ -1,0 +1,70 @@
+{
+  "id": "negativeReaction",
+  "name": "Reazione Negativa",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "BARD": 1,
+    "WITCH": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "MEDIUM": 1,
+    "PSYCHIC": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Il bersaglio subisce -10 alle prove sociali di Diplomazia, Intimidire, Raggirare ed esibizione in combattimento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Reazione_Negativa",
+  "effects": [
+    {
+      "id": "diplomacy",
+      "type": "modifier",
+      "resource": "skill.diplomacy",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "10"
+    },
+    {
+      "id": "intimidate",
+      "type": "modifier",
+      "resource": "skill.intimidate",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "10"
+    },
+    {
+      "id": "bluff",
+      "type": "modifier",
+      "resource": "skill.bluff",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "10"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "La penalità alle prove di esibizione in combattimento resta manuale. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

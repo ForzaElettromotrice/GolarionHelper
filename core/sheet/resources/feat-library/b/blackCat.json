@@ -1,0 +1,27 @@
+{
+  "id": "blackCat",
+  "name": "Gatto Nero",
+  "description": "Costringe un aggressore a ripetere un attacco in mischia con uno svantaggio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Gatto_Nero",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Felinide Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Gatto Nero: https://golarion.altervista.org/wiki/Talenti/Gatto_Nero. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Felinide Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

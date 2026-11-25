@@ -1,0 +1,48 @@
+{
+  "id": "curseTerrainLesser",
+  "name": "Maledire Terreno Inferiore",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL",
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "HUNTER": 2,
+    "CLERIC": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "SHAMAN": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "il cuore di una creatura che dimorava nell'area e polvere d'onice del valore di 350 mo",
+  "materialComponentCostInGoldPieces": 350,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "area": "emanazione del raggio di 90 metri dal punto toccato",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Introduce pericoli relativamente lievi nel territorio maledetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Maledire_Terreno_Inferiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledire Terreno Inferiore: https://golarion.altervista.org/wiki/Maledire_Terreno_Inferiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

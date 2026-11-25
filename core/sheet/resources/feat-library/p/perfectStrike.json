@@ -1,0 +1,39 @@
+{
+  "id": "perfectStrike",
+  "name": "Colpo Perfetto",
+  "description": "Consente di scegliere il migliore fra due tiri per un attacco qualificato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_Perfetto",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Saggezza 13",
+      "expression": "@wis >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +8",
+      "expression": "@bab >= 8"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo Perfetto: https://golarion.altervista.org/wiki/Talenti/Colpo_Perfetto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

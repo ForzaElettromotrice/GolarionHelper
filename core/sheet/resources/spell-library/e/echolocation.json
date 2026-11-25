@@ -1,0 +1,44 @@
+{
+  "id": "echolocation",
+  "name": "Ecolocazione",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "ARCANIST": 5,
+    "BARD": 4,
+    "HUNTER": 4,
+    "DRUID": 4,
+    "INVESTIGATOR": 4,
+    "WIZARD": 5,
+    "OCCULTIST": 4,
+    "PSYCHIC": 5,
+    "SKALD": 4,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stesso",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Conferisce percezione precisa dell'ambiente tramite echi sonori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ecolocazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ecolocazione: https://golarion.altervista.org/wiki/Incantesimi/Ecolocazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

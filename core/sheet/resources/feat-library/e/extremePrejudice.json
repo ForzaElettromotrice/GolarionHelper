@@ -1,0 +1,33 @@
+{
+  "id": "extremePrejudice",
+  "name": "Pregiudizio Estremo",
+  "description": "Potenzia i dadi dell'attacco furtivo contro il bersaglio dell'odio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Pregiudizio_Estremo",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Odio Ribollente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Furtivo +3d6 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Bersaglio Studiato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Pregiudizio Estremo: https://golarion.altervista.org/wiki/Talenti/Pregiudizio_Estremo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Odio Ribollente; Prerequisito da verificare manualmente: Attacco Furtivo +3d6; Prerequisito da verificare manualmente: privilegio di classe Bersaglio Studiato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

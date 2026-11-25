@@ -1,0 +1,30 @@
+{
+  "id": "superiorScryer",
+  "name": "Scrutatore Superiore",
+  "description": "Potenzia vari aspetti della magia di scrutamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Scrutatore_Superiore",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Incantesimi Focalizzati (Divinazione) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di lanciare almeno un incantesimo della sottoscuola di Scrutamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Scrutatore Superiore: https://golarion.altervista.org/wiki/Talenti/Scrutatore_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incantesimi Focalizzati (Divinazione); Prerequisito da verificare manualmente: capacità di lanciare almeno un incantesimo della sottoscuola di Scrutamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

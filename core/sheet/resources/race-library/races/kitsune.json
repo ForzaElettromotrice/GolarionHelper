@@ -1,0 +1,489 @@
+{
+  "id": "kitsune",
+  "name": "Kitsune",
+  "qualities": [
+    {
+      "id": "kitsune.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Umanoide (kitsune, mutaforma). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "kitsune.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "kitsune.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "kitsune.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "kitsune.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "sylvan",
+          "type": "languageGrant",
+          "languageId": "sylvan"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "dtang",
+            "erutaki",
+            "hallit",
+            "honLa",
+            "hwan",
+            "iobarian",
+            "kelish",
+            "minatan",
+            "minkaian",
+            "osiriani",
+            "polyglot",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "tien",
+            "varisian",
+            "varki",
+            "vudrani",
+            "common",
+            "aklo",
+            "celestial",
+            "elven",
+            "gnome",
+            "tengu"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kitsune.lowLightVision",
+      "name": "Visione Crepuscolare",
+      "description": "Distanza visiva doppia rispetto a un umano con luce scarsa.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Distanza visiva doppia rispetto a un umano con luce scarsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "kitsune.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita indicata.",
+      "effects": [
+        {
+          "id": "bardSocial",
+          "type": "favoredClassBonus",
+          "classes": [
+            "bard"
+          ],
+          "name": "Bardo — Abilità sociali",
+          "description": "Bardo — Abilità sociali",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "skilldiplomacy",
+              "type": "modifier",
+              "resource": "skill.diplomacy",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Raccogliere informazioni"
+            },
+            {
+              "id": "skillbluff",
+              "type": "modifier",
+              "resource": "skill.bluff",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Mentire"
+            }
+          ]
+        },
+        {
+          "id": "druidAttitude",
+          "type": "favoredClassBonus",
+          "classes": [
+            "druid"
+          ],
+          "name": "Druido — Atteggiamenti",
+          "description": "Druido — Atteggiamenti",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "skilldiplomacy",
+              "type": "modifier",
+              "resource": "skill.diplomacy",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Modificare l'atteggiamento di una creatura"
+            },
+            {
+              "id": "skillintimidate",
+              "type": "modifier",
+              "resource": "skill.intimidate",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Modificare l'atteggiamento di una creatura"
+            }
+          ]
+        },
+        {
+          "id": "rogueTalent",
+          "type": "favoredClassBonus",
+          "classes": [
+            "rogue"
+          ],
+          "name": "Ladro — Dote",
+          "description": "Ladro — Dote — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scegliere una nuova Dote da Ladro. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleWeapon",
+          "type": "favoredClassBonus",
+          "classes": [
+            "oracle"
+          ],
+          "name": "Oracolo — Competenza",
+          "description": "Oracolo — Competenza — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ridurre di 1 la penalità di incompetenza per un'arma scelta; a zero conta come il talento di competenza da guerra/esotica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererEnchantment",
+          "type": "favoredClassBonus",
+          "classes": [
+            "sorcerer"
+          ],
+          "name": "Stregone — Ammaliamento",
+          "description": "Stregone — Ammaliamento — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Aumentare di 1 le CD degli incantesimi di ammaliamento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "kitsune.naturalWeapons",
+      "name": "Armi Naturali",
+      "description": "Armi Naturali",
+      "effects": [
+        {
+          "id": "bite",
+          "type": "strikeGrant",
+          "name": "Morso",
+          "mode": "melee",
+          "tags": [
+            "natural"
+          ],
+          "naturalAttackClassification": "primary",
+          "ability": "str",
+          "damageAbilityRule": "full",
+          "usageChannels": [
+            "bite"
+          ],
+          "reach": {
+            "maximumUnits": 1
+          },
+          "damageComponents": [
+            {
+              "id": "base",
+              "role": "base",
+              "dice": {
+                "diceCount": 1,
+                "dieSize": 4
+              },
+              "types": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ],
+              "typeMode": "all",
+              "criticalRule": "multiplied"
+            }
+          ]
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Morso utilizzabile solo nella forma naturale; la scheda non rileva il cambio di forma. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "kitsune.changeShape",
+      "name": "Cambiare Forma",
+      "description": "Cambiare Forma",
+      "effects": [
+        {
+          "id": "skilldisguise",
+          "type": "modifier",
+          "resource": "skill.disguise",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "10",
+          "condition": "In forma umana per apparire umano"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Azione standard: assume una sola forma umana fissa del proprio sesso, senza limite di durata né variazioni alle caratteristiche; niente morso in tale forma. Gestione della forma manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "kitsune.kitsuneMagic",
+      "name": "Magia dei Kitsune",
+      "description": "+1 CD ammaliamenti; con Carisma almeno 11, Luci Danzanti 3/giorno, LI pari al livello.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "+1 CD ammaliamenti; con Carisma almeno 11, Luci Danzanti 3/giorno, LI pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "kitsune.agile",
+      "name": "Flessuoso",
+      "description": "Flessuoso",
+      "effects": [
+        {
+          "id": "skillacrobatics",
+          "type": "modifier",
+          "resource": "skill.acrobatics",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "kitsune.fastShifter",
+      "name": "Cambia Forma Rapido",
+      "description": "Cambia Forma Rapido",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Cambiare Forma richiede azione di movimento, anziché standard. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "kitsune.kitsuneMagic"
+      ]
+    },
+    {
+      "id": "kitsune.gregarious",
+      "name": "Socievolezza",
+      "description": "Socievolezza",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Dopo aver conquistato un individuo con Diplomazia, questi ha −2 per resistere alle prove di abilità basate su Carisma del kitsune per 24 ore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "kitsune.agile"
+      ]
+    }
+  ]
+}

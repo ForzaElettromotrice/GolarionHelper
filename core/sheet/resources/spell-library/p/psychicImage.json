@@ -1,0 +1,39 @@
+{
+  "id": "psychicImage",
+  "name": "Immagine Parapsichica",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "PSYCHIC": 9
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "effect": "1 duplicato ombra",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita (se si interagisce)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Proietta un doppio parapsichico attraverso cui operare. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Immagine_Parapsichica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Immagine Parapsichica: https://golarion.altervista.org/wiki/Incantesimi/Immagine_Parapsichica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

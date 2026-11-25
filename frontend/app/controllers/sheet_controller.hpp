@@ -11,7 +11,7 @@
 #include <functional>
 #include <utility>
 
-namespace golarion { class CharacterSheet; class ClassDefinitionManager; struct CharacterSheetView; }
+namespace golarion { class CharacterSheet; class ClassDefinitionManager; struct CharacterSheetView; struct CharacterSheetSaveData; }
 
 class SheetController : public QObject
 {
@@ -19,13 +19,34 @@ class SheetController : public QObject
     QML_ELEMENT
     QML_UNCREATABLE("Provided by the application")
     Q_PROPERTY(QVariantMap identity READ identity NOTIFY identityChanged FINAL)
-    Q_PROPERTY(QVariantMap home READ home NOTIFY homeChanged FINAL)
-    Q_PROPERTY(QVariantMap combat READ combat NOTIFY combatChanged FINAL)
-    Q_PROPERTY(QVariantMap inventory READ inventory NOTIFY inventoryChanged FINAL)
+    Q_PROPERTY(QVariantMap abilityScores READ abilityScores NOTIFY abilityScoresChanged FINAL)
+    Q_PROPERTY(QVariantMap skillScores READ skillScores NOTIFY skillScoresChanged FINAL)
+    Q_PROPERTY(QVariantMap savingThrows READ savingThrows NOTIFY savingThrowsChanged FINAL)
+    Q_PROPERTY(QVariantMap armorClass READ armorClass NOTIFY armorClassChanged FINAL)
+    Q_PROPERTY(QVariantMap hitPoints READ hitPoints NOTIFY hitPointsChanged FINAL)
+    Q_PROPERTY(QVariantMap defenses READ defenses NOTIFY defensesChanged FINAL)
+    Q_PROPERTY(QVariantMap movement READ movement NOTIFY movementChanged FINAL)
+    Q_PROPERTY(QVariantMap activeConditions READ activeConditions NOTIFY activeConditionsChanged FINAL)
+    Q_PROPERTY(QVariantMap initiative READ initiative NOTIFY initiativeChanged FINAL)
+    Q_PROPERTY(QVariantMap attacks READ attacks NOTIFY attacksChanged FINAL)
+    Q_PROPERTY(QVariantMap attackRoutines READ attackRoutines NOTIFY attackRoutinesChanged FINAL)
+    Q_PROPERTY(QVariantMap actions READ actions NOTIFY actionsChanged FINAL)
+    Q_PROPERTY(QVariantMap baseAttackBonus READ baseAttackBonus NOTIFY baseAttackBonusChanged FINAL)
+    Q_PROPERTY(QVariantMap combatManeuvers READ combatManeuvers NOTIFY combatManeuversChanged FINAL)
+    Q_PROPERTY(QVariantMap inventoryItems READ inventoryItems NOTIFY inventoryItemsChanged FINAL)
+    Q_PROPERTY(QVariantMap inventoryContainers READ inventoryContainers NOTIFY inventoryContainersChanged FINAL)
+    Q_PROPERTY(QVariantMap inventoryEquipment READ inventoryEquipment NOTIFY inventoryEquipmentChanged FINAL)
+    Q_PROPERTY(QVariantMap inventoryMoney READ inventoryMoney NOTIFY inventoryMoneyChanged FINAL)
+    Q_PROPERTY(QVariantMap encumbrance READ encumbrance NOTIFY encumbranceChanged FINAL)
     Q_PROPERTY(QVariantMap race READ race NOTIFY raceChanged FINAL)
     Q_PROPERTY(QVariantMap classes READ classes NOTIFY classesChanged FINAL)
-    Q_PROPERTY(QVariantMap talents READ talents NOTIFY talentsChanged FINAL)
-    Q_PROPERTY(QVariantMap spells READ spells NOTIFY spellsChanged FINAL)
+    Q_PROPERTY(QVariantMap feats READ feats NOTIFY featsChanged FINAL)
+    Q_PROPERTY(QVariantMap languages READ languages NOTIFY languagesChanged FINAL)
+    Q_PROPERTY(QVariantMap reminders READ reminders NOTIFY remindersChanged FINAL)
+    Q_PROPERTY(QVariantMap spellcastings READ spellcastings NOTIFY spellcastingsChanged FINAL)
+    Q_PROPERTY(QVariantMap spellCatalogData READ spellCatalogData NOTIFY spellCatalogDataChanged FINAL)
+    Q_PROPERTY(QVariantMap grantedSpells READ grantedSpells NOTIFY grantedSpellsChanged FINAL)
+    Q_PROPERTY(QVariantMap lastCast READ lastCast NOTIFY lastCastChanged FINAL)
     Q_PROPERTY(QVariantMap enhancements READ enhancements NOTIFY enhancementsChanged FINAL)
     Q_PROPERTY(QVariantMap conditions READ conditions NOTIFY conditionsChanged FINAL)
     Q_PROPERTY(QString notes READ notes NOTIFY notesChanged FINAL)
@@ -42,12 +63,38 @@ public:
 
     QVariantMap identity() const;
     QVariantMap home() const;
+    QVariantMap abilityScores() const { return abilityScores_; }
+    QVariantMap skillScores() const { return skillScores_; }
+    QVariantMap savingThrows() const { return savingThrows_; }
+    QVariantMap armorClass() const { return armorClass_; }
+    QVariantMap hitPoints() const { return hitPoints_; }
+    QVariantMap defenses() const { return defenses_; }
+    QVariantMap movement() const { return movement_; }
+    QVariantMap activeConditions() const { return activeConditions_; }
+    QVariantMap initiative() const { return initiative_; }
     QVariantMap combat() const;
-    QVariantMap inventory() const { return inventory_; }
+    QVariantMap attacks() const { return attacks_; }
+    QVariantMap attackRoutines() const { return attackRoutines_; }
+    QVariantMap actions() const { return actions_; }
+    QVariantMap baseAttackBonus() const { return baseAttackBonus_; }
+    QVariantMap combatManeuvers() const { return combatManeuvers_; }
+    QVariantMap inventory() const;
+    QVariantMap inventoryItems() const { return inventoryItems_; }
+    QVariantMap inventoryContainers() const { return inventoryContainers_; }
+    QVariantMap inventoryEquipment() const { return inventoryEquipment_; }
+    QVariantMap inventoryMoney() const { return inventoryMoney_; }
+    QVariantMap encumbrance() const { return encumbrance_; }
     QVariantMap race() const { return race_; }
     QVariantMap classes() const { return classes_; }
-    QVariantMap talents() const { return talents_; }
-    QVariantMap spells() const { return spells_; }
+    QVariantMap talents() const;
+    QVariantMap feats() const { return feats_; }
+    QVariantMap languages() const { return languages_; }
+    QVariantMap reminders() const { return reminders_; }
+    QVariantMap spells() const;
+    QVariantMap spellcastings() const { return spellcastings_; }
+    QVariantMap spellCatalogData() const { return spellCatalogData_; }
+    QVariantMap grantedSpells() const { return grantedSpells_; }
+    QVariantMap lastCast() const { return lastCast_; }
     QVariantMap enhancements() const { return enhancements_; }
     QVariantMap conditions() const { return conditions_; }
     QString notes() const;
@@ -99,7 +146,9 @@ public:
     Q_INVOKABLE void selectAlternateRacialTrait(const QString &traitId);
     Q_INVOKABLE void removeAlternateRacialTrait(const QString &traitId);
     Q_INVOKABLE void setRacialChoice(const QString &elementId, const QString &choiceId, const QStringList &optionIds);
-    Q_INVOKABLE QVariantMap classCatalog() const;
+    Q_INVOKABLE QVariantList classCatalog() const;
+    Q_INVOKABLE QVariantList archetypeCatalog(int classType);
+    Q_INVOKABLE QString archetypeDescription(const QString &id);
     Q_INVOKABLE void addClassLevel(int type);
     Q_INVOKABLE void removeClassLevel(int type);
     Q_INVOKABLE void setFavoredClass(int type, bool favored);
@@ -108,6 +157,7 @@ public:
     Q_INVOKABLE void setClassArchetype(int type, const QString &archetypeId, bool enabled);
     Q_INVOKABLE void setClassOption(int type, const QString &acquisitionId, const QString &choiceId, const QString &optionId, bool selected);
     Q_INVOKABLE QVariantList featCatalog(const QString &slotId);
+    Q_INVOKABLE QVariantMap featDetail(const QString &featId);
     Q_INVOKABLE void selectFeat(const QString &slotId, const QString &featId, const QVariantMap &choices);
     Q_INVOKABLE void removeFeat(const QString &slotId, bool extra);
     Q_INVOKABLE void addLanguage(const QString &name, int origin);
@@ -128,13 +178,34 @@ public:
 
 Q_SIGNALS:
     void identityChanged();
-    void homeChanged();
-    void combatChanged();
-    void inventoryChanged();
+    void abilityScoresChanged();
+    void skillScoresChanged();
+    void savingThrowsChanged();
+    void armorClassChanged();
+    void hitPointsChanged();
+    void defensesChanged();
+    void movementChanged();
+    void activeConditionsChanged();
+    void initiativeChanged();
+    void attacksChanged();
+    void attackRoutinesChanged();
+    void actionsChanged();
+    void baseAttackBonusChanged();
+    void combatManeuversChanged();
+    void inventoryItemsChanged();
+    void inventoryContainersChanged();
+    void inventoryEquipmentChanged();
+    void inventoryMoneyChanged();
+    void encumbranceChanged();
     void raceChanged();
     void classesChanged();
-    void talentsChanged();
-    void spellsChanged();
+    void featsChanged();
+    void languagesChanged();
+    void remindersChanged();
+    void spellcastingsChanged();
+    void spellCatalogDataChanged();
+    void grantedSpellsChanged();
+    void lastCastChanged();
     void enhancementsChanged();
     void conditionsChanged();
     void notesChanged();
@@ -155,9 +226,18 @@ private:
     void createLocalSheet();
     void requestSheet(const QString &path, bool create);
     void setErrorMessage(QString message);
-    QString saveCurrentSheet();
+    void queueCurrentSheetSave();
+    void startPendingSave();
+    bool finishSave();
+    bool flushSaves();
+    QFutureWatcher<bool> saveWatcher_;
+    std::shared_ptr<const golarion::CharacterSheetSaveData> activeSave_, pendingSave_;
     void publish(bool save = true, QString error = {});
-    QVariantMap spellSnapshot(const golarion::CharacterSheetView &view) const;
+    struct PublishedInputs;
+    std::unique_ptr<PublishedInputs> previousInputs_;
+    static QVariantMap spellcastingSnapshot(const golarion::CharacterSheetView &view);
+    static QVariantMap spellCatalogSnapshot(const golarion::CharacterSheetView &view);
+    static QVariantMap grantedSpellSnapshot(const golarion::CharacterSheetView &view);
     using ClassCatalogResult = std::pair<const golarion::ClassDefinitionManager *, QString>;
     QFutureWatcher<ClassCatalogResult> catalogWatcher_;
     QFutureWatcher<QString> browsingCatalogWatcher_;
@@ -175,14 +255,35 @@ private:
     QString currentPath_;
     std::unique_ptr<golarion::CharacterSheet> sheet_;
     QVariantMap identity_;
-    QVariantMap home_;
-    QVariantMap combat_;
-    QVariantMap inventory_;
+    QVariantMap abilityScores_;
+    QVariantMap skillScores_;
+    QVariantMap savingThrows_;
+    QVariantMap armorClass_;
+    QVariantMap hitPoints_;
+    QVariantMap defenses_;
+    QVariantMap movement_;
+    QVariantMap activeConditions_;
+    QVariantMap initiative_;
+    QVariantMap attacks_;
+    QVariantMap attackRoutines_;
+    QVariantMap actions_;
+    QVariantMap baseAttackBonus_;
+    QVariantMap combatManeuvers_;
+    QVariantMap inventoryItems_;
+    QVariantMap inventoryContainers_;
+    QVariantMap inventoryEquipment_;
+    QVariantMap inventoryMoney_;
+    QVariantMap encumbrance_;
     QVariantMap race_;
     QVariantMap classes_;
-    QVariantMap talents_;
+    QVariantMap feats_;
+    QVariantMap languages_;
+    QVariantMap reminders_;
     QVariantList customFeatCatalog_;
-    QVariantMap spells_;
+    QVariantMap spellcastings_;
+    QVariantMap spellCatalogData_;
+    QVariantMap grantedSpells_;
+    QVariantMap lastCast_;
     QVariantMap lastSpellCast_;
     QVariantMap enhancements_;
     QVariantMap conditions_;

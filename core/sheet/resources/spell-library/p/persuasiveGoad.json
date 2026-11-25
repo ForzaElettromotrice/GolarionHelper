@@ -1,0 +1,41 @@
+{
+  "id": "persuasiveGoad",
+  "name": "Pungolo Persuasivo",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "PAIN"
+  ],
+  "spellLevelByClass": {
+    "INQUISITOR": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "una creatura",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo e 1 minuto",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Infligge 1d6 danni non letali al soggetto e agevola i successivi tentativi dell'incantatore di intimidirlo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pungolo_Persuasivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pungolo Persuasivo: https://golarion.altervista.org/wiki/Incantesimi/Pungolo_Persuasivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

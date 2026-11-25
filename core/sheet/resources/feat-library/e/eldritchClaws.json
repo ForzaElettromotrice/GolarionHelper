@@ -1,0 +1,35 @@
+{
+  "id": "eldritchClaws",
+  "name": "Artigli Arcani",
+  "description": "Conferisce alle armi naturali proprietà utili contro difese magiche e argentee. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Artigli_Arcani",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 15",
+      "expression": "@str >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: armi naturali Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Artigli Arcani: https://golarion.altervista.org/wiki/Talenti/Artigli_Arcani. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: armi naturali Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

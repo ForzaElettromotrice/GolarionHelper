@@ -1,0 +1,37 @@
+{
+  "id": "iomedaeanSwordOath",
+  "name": "Giuramento della Spada Iomedaeana",
+  "description": "Agevola la qualificazione per talenti legati alla spada lunga. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Giuramento_della_Spada_Iomedaeana",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Spada Lunga) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza nelle Armi da Guerra (Spada Lunga) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "BAB +4",
+      "expression": "@bab >= 4"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: fedele di Iomedae Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Giuramento della Spada Iomedaeana: https://golarion.altervista.org/wiki/Talenti/Giuramento_della_Spada_Iomedaeana. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Spada Lunga); Prerequisito da verificare manualmente: Competenza nelle Armi da Guerra (Spada Lunga); Prerequisito da verificare manualmente: fedele di Iomedae Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

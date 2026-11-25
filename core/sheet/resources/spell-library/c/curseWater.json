@@ -1,0 +1,48 @@
+{
+  "id": "curseWater",
+  "name": "Maledire l'Acqua",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "INQUISITOR": 1
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "2,5 kg d’argento del valore di 25 mo",
+  "materialComponentCostInGoldPieces": 25,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "ampolla d’acqua toccata",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Consacra negativamente dell'acqua, trasformandola in acqua sacrilega. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Maledire_l%27Acqua",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledire l'Acqua: https://golarion.altervista.org/wiki/Incantesimi/Maledire_l%27Acqua Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

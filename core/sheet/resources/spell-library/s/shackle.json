@@ -1,0 +1,48 @@
+{
+  "id": "shackle",
+  "name": "Ammanettare",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "HUNTER": 2,
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "WIZARD": 2,
+    "ORACLE": 2,
+    "RANGER": 2,
+    "WARPRIEST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "effect": "un set di restrizioni, vedi testo",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Fa apparire vincoli che possono immobilizzare gli arti del bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ammanettare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ammanettare: https://golarion.altervista.org/wiki/Incantesimi/Ammanettare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

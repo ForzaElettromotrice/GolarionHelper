@@ -1,0 +1,109 @@
+{
+  "id": "shaman.archetype.e39934fd5fe3",
+  "classType": "shaman",
+  "name": "Sciamano Posseduto",
+  "description": "Archetipo di Sciamano. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Sciamano/Archetipi#Sciamano_Posseduto Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "shaman.feature.ad57c42320b8",
+      "type": "replace"
+    },
+    {
+      "featureId": "shaman.feature.74332ce8ee6c",
+      "type": "alter"
+    },
+    {
+      "featureId": "shaman.feature.e5331c0eca3a",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "shaman.feature.ad57c42320b8"
+  ],
+  "removedAcquisitionIds": [
+    "shaman.feature.74332ce8ee6c.level2",
+    "shaman.feature.e5331c0eca3a.level6"
+  ],
+  "addedFeatures": [
+    {
+      "id": "shaman.archetype.e39934fd5fe3.instructions",
+      "name": "Sciamano Posseduto",
+      "description": "Archetipo di Sciamano. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Sciamano/Archetipi#Sciamano_Posseduto Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "shaman.archetype.e39934fd5fe3.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Sciamano. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Sciamano/Archetipi#Sciamano_Posseduto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.archetype.e39934fd5fe3.feature.1",
+      "name": "Condividere Abilità (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Sciamano/Archetipi#Sciamano_Posseduto",
+      "progression": [
+        {
+          "id": "shaman.archetype.e39934fd5fe3.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Sciamano Posseduto — Condividere Abilità (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Sciamano/Archetipi#Sciamano_Posseduto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.archetype.e39934fd5fe3.feature.2",
+      "name": "Tramite Affollato (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Sciamano/Archetipi#Sciamano_Posseduto",
+      "progression": [
+        {
+          "id": "shaman.archetype.e39934fd5fe3.feature.2.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Sciamano Posseduto — Tramite Affollato (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Sciamano/Archetipi#Sciamano_Posseduto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.archetype.e39934fd5fe3.feature.3",
+      "name": "Abilità Erranti (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Sciamano/Archetipi#Sciamano_Posseduto",
+      "progression": [
+        {
+          "id": "shaman.archetype.e39934fd5fe3.feature.3.initial",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Sciamano Posseduto — Abilità Erranti (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Sciamano/Archetipi#Sciamano_Posseduto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

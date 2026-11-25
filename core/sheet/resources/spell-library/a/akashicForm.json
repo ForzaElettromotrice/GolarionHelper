@@ -1,0 +1,33 @@
+{
+  "id": "akashicForm",
+  "name": "Forma Akashica",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "PSYCHIC": 9
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "1 ora",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Conserva una copia akashica dell'incantatore per ripristinarlo dopo la morte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Forma_Akashica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Forma Akashica: https://golarion.altervista.org/wiki/Incantesimi/Forma_Akashica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

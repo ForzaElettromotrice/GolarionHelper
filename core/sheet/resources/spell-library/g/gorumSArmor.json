@@ -1,0 +1,47 @@
+{
+  "id": "gorumSArmor",
+  "name": "Armatura di Gorum",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "INQUISITOR": 1,
+    "BLOODRAGER": 1,
+    "MAGUS": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "1 punta di ferro",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 armatura di metallo o 1 scudo di metallo",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Fa comparire punte metalliche sull'armatura o sullo scudo scelto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Armatura_di_Gorum",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Armatura di Gorum: https://golarion.altervista.org/wiki/Incantesimi/Armatura_di_Gorum La fonte associa Trasmutazione a Creazione, sottoscuola di Evocazione: la sottoscuola contraddittoria non è registrata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

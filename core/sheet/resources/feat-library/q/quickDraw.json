@@ -1,0 +1,23 @@
+{
+  "id": "quickDraw",
+  "name": "Estrazione Rapida",
+  "description": "Permette di estrarre rapidamente le armi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Estrazione_Rapida",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Estrazione Rapida: https://golarion.altervista.org/wiki/Talenti/Estrazione_Rapida. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

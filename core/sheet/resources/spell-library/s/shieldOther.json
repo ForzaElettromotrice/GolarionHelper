@@ -1,0 +1,73 @@
+{
+  "id": "shieldOther",
+  "name": "Scudo Su Altri",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "ORACLE": 2,
+    "PALADIN": 2,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "COMMUNITY": 2,
+      "PROTECTION": 2
+    },
+    "subdomain": {
+      "MARTYRDOM": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una coppia di anelli di platino del valore di 50 mo ognuno che devono essere indossati dall'incantatore e dalla creatura protetta",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Protegge un alleato condividendone parte delle ferite. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scudo_su_Altri",
+  "effects": [
+    {
+      "id": "armorClass",
+      "type": "modifier",
+      "resource": "armorClass.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "deflection",
+      "expression": "1"
+    },
+    {
+      "id": "saves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "resistance",
+      "expression": "1"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Dimezzare manualmente i danni ai PF del destinatario e infliggere la parte restante all'incantatore; non trasferire perdite di Costituzione o altri effetti. Il legame termina fuori portata. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

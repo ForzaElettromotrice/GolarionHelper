@@ -1,0 +1,46 @@
+{
+  "id": "implosion",
+  "name": "Implosione",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 9,
+    "ORACLE": 9,
+    "PSYCHIC": 9
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DESTRUCTION": 9
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura corporea per round",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione (fino a 1 round ogni 2 livelli)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Collassa violentemente il corpo di una creatura dopo l'altra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Implosione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Implosione: https://golarion.altervista.org/wiki/Incantesimi/Implosione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

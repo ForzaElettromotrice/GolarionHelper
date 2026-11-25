@@ -1,0 +1,27 @@
+{
+  "id": "pummelingCharge",
+  "name": "Carica dei Pestaggi",
+  "description": "Permette una raffica di colpi dopo la carica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Carica_dei_Pestaggi",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato, Stile dei Pestaggi; Attaccabrighe di 8° livello o Monaco di 8° livello, Bonus di Attacco Base +12. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Carica dei Pestaggi: https://golarion.altervista.org/wiki/Talenti/Carica_dei_Pestaggi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato, Stile dei Pestaggi; Attaccabrighe di 8° livello o Monaco di 8° livello, Bonus di Attacco Base +12. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

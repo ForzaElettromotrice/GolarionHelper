@@ -1,0 +1,41 @@
+{
+  "id": "evolvedSummonedMonster",
+  "name": "Mostri Evocati Evoluti",
+  "description": "Dona a una creatura evocata un'evoluzione scelta fra quelle consentite. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mostri_Evocati_Evoluti",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Aumentare Evocazione",
+      "feat": {
+        "id": "augmentSummoning"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Incantesimi Focalizzati (evocazione) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di lanciare Evoca Mostri I Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mostri Evocati Evoluti: https://golarion.altervista.org/wiki/Talenti/Mostri_Evocati_Evoluti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incantesimi Focalizzati (evocazione); Prerequisito da verificare manualmente: capacità di lanciare Evoca Mostri I Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,45 @@
+{
+  "id": "whipOfSpiders",
+  "name": "Frusta di Ragni",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 2,
+    "HUNTER": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una pezza di stoffa rossa",
+  "rangeType": "OTHER",
+  "rangeDescription": "0 m",
+  "effect": "sciame a forma di frusta",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livelllo (I) (vedi testo)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Intreccia ragni velenosi in una frusta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Frusta_di_Ragni",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Frusta di Ragni: https://golarion.altervista.org/wiki/Incantesimi/Frusta_di_Ragni Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

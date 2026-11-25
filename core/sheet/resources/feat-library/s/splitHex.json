@@ -1,0 +1,27 @@
+{
+  "id": "splitHex",
+  "name": "Dividere Fatture",
+  "description": "Estende una fattura idonea a un secondo bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Dividere_Fatture",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Fattucchiere di 10° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Dividere Fatture: https://golarion.altervista.org/wiki/Talenti/Dividere_Fatture. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Fattucchiere di 10° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

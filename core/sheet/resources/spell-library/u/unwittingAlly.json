@@ -1,0 +1,46 @@
+{
+  "id": "unwittingAlly",
+  "name": "Alleato Involontario",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING",
+    "FEAR"
+  ],
+  "subschool": "CHARM",
+  "spellLevelByClass": {
+    "BARD": 0,
+    "MESMERIST": 0,
+    "PSYCHIC": 1,
+    "SKALD": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura vivente",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Fa contare temporaneamente il bersaglio come alleato ai fini indicati dall'incantesimo, senza conferirne il controllo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Alleato_Involontario",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Alleato Involontario: https://golarion.altervista.org/wiki/Incantesimi/Alleato_Involontario Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

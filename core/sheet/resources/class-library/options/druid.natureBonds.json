@@ -1,0 +1,52 @@
+{
+  "id": "druid.natureBonds",
+  "name": "Legame con la Natura",
+  "description": "Scelta fra compagno animale e dominio.",
+  "options": [
+    {
+      "id": "animalCompanion",
+      "name": "Compagno animale",
+      "description": "Compagno animale: scegliere e gestire manualmente la creatura, le sue statistiche e il suo avanzamento; rispettare le modifiche degli archetipi. Fonte: https://golarion.altervista.org/wiki/Druido#Legame_con_la_Natura_.28Str.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Compagno animale: scegliere e gestire manualmente la creatura, le sue statistiche e il suo avanzamento; rispettare le modifiche degli archetipi. Fonte: https://golarion.altervista.org/wiki/Druido#Legame_con_la_Natura_.28Str.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "domain",
+      "name": "Dominio",
+      "description": "Dominio. Scegliere un dominio ammesso dal privilegio, al posto del compagno animale. Poteri, incantesimi, slot riservati e progressione sono manuali e si applicano soltanto se concessi dal privilegio della classe. https://golarion.altervista.org/wiki/Druido/Domini Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Dominio. Scegliere un dominio ammesso dal privilegio, al posto del compagno animale. Poteri, incantesimi, slot riservati e progressione sono manuali e si applicano soltanto se concessi dal privilegio della classe. https://golarion.altervista.org/wiki/Druido/Domini Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [
+            {
+              "id": "domain",
+              "prompt": "Scegli il dominio del druido",
+              "selectionCount": 1,
+              "blocksAdvancement": true,
+              "optionSet": "druid.domains"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

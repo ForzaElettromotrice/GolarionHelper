@@ -1,0 +1,36 @@
+{
+  "id": "vishkanyaPerfume",
+  "name": "Profumo Vishkanya",
+  "description": "Trasforma il veleno razziale in un'emissione inalabile e ne amplia la disponibilità. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Profumo_Vishkanya",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Vishkanya Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: tratto razziale Tossico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bacio Letale",
+      "feat": {
+        "id": "deadlyKiss"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Profumo Vishkanya: https://golarion.altervista.org/wiki/Talenti/Profumo_Vishkanya. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Vishkanya; Prerequisito da verificare manualmente: tratto razziale Tossico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

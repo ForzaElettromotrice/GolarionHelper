@@ -1,0 +1,40 @@
+{
+  "id": "hypercognition",
+  "name": "Ipercognizione",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 4,
+    "BARD": 3,
+    "INVESTIGATOR": 3,
+    "WIZARD": 4,
+    "MEDIUM": 2,
+    "PSYCHIC": 2,
+    "SKALD": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Organizza con rapidità soprannaturale le conoscenze su un oggetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ipercognizione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ipercognizione: https://golarion.altervista.org/wiki/Incantesimi/Ipercognizione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

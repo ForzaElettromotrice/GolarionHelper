@@ -1,0 +1,47 @@
+{
+  "id": "spellcastingContract",
+  "name": "Contratto Incantato",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 7,
+    "ORACLE": 7
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un contratto scritto",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura consenziente toccata",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente fino alla conclusione del contratto",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Stipula un accordo che concede a un altro soggetto l'uso di incantesimi entro i limiti intermedi previsti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Contratto_Incantato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Contratto Incantato: https://golarion.altervista.org/wiki/Incantesimi/Contratto_Incantato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Chierico/Oracolo 7 (Asmodeus) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

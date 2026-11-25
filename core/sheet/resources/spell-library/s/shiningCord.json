@@ -1,0 +1,44 @@
+{
+  "id": "shiningCord",
+  "name": "Fune Scintillante",
+  "school": "EVOCATION",
+  "descriptors": [
+    "FORCE"
+  ],
+  "spellLevelByClass": {
+    "MAGUS": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un piccolo tratto sottile dí catena d'argento del valore di 100 mo",
+  "materialComponentCostInGoldPieces": 100,
+  "rangeType": "OTHER",
+  "rangeDescription": "9 metri",
+  "target": "1 creatura",
+  "durationType": "OTHER",
+  "durationDescription": "1 round/livello o istantaneo (vedi sotto)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale (vedi sotto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Un filo luminoso punisce chi si allontana troppo dall'altro capo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fune_Scintillante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fune Scintillante: https://golarion.altervista.org/wiki/Incantesimi/Fune_Scintillante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "contingency",
+  "name": "Contingenza",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "WIZARD": 6,
+    "OCCULTIST": 6,
+    "PSYCHIC": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "almeno 10 minuti; vedi testo",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "FOCUS"
+  ],
+  "materialComponentDescription": "dell’argento vivo, un sopracciglio di una creatura con Capacità Magiche",
+  "focusComponentDescription": "una statuetta raffigurante le fattezze dell’incantatore scolpita in avorio di almeno 1.500 mo",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I) o finché non viene scaricato",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Collega un incantesimo a una condizione che ne farà scattare automaticamente gli effetti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Contingenza",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Contingenza: https://golarion.altervista.org/wiki/Incantesimi/Contingenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

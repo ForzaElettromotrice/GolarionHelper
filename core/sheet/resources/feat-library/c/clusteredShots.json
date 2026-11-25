@@ -1,0 +1,35 @@
+{
+  "id": "clusteredShots",
+  "name": "Colpi Raggruppati",
+  "description": "Raggruppa i danni di una sequenza di tiri prima di confrontarli con la riduzione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpi_Raggruppati",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Tiro Preciso",
+      "feat": {
+        "id": "preciseShot"
+      }
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpi Raggruppati: https://golarion.altervista.org/wiki/Talenti/Colpi_Raggruppati. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

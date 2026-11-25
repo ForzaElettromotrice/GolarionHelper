@@ -1,0 +1,47 @@
+{
+  "id": "anthropomorphicAnimal",
+  "name": "Animale Antropomorfico",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "HUNTER": 3,
+    "DRUID": 3,
+    "WITCH": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una falange di un pollice umanoide",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 animale toccato",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Trasforma un animale in una versione antropomorfa capace di assumere una postura bipede. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Animale_Antropomorfico",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Animale Antropomorfico: https://golarion.altervista.org/wiki/Incantesimi/Animale_Antropomorfico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

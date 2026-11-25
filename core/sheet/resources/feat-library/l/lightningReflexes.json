@@ -1,0 +1,22 @@
+{
+  "id": "lightningReflexes",
+  "name": "Riflessi Fulminei",
+  "description": "Conferisce +2 ai tiri salvezza su Riflessi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Riflessi_Fulminei",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "save",
+      "type": "modifier",
+      "resource": "savingThrow.reflex",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "2"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,56 @@
+{
+  "id": "torpidReanimation",
+  "name": "Rianimazione Indolente",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 4,
+    "ARCANIST": 5,
+    "CLERIC": 4,
+    "WIZARD": 5,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "WARPRIEST": 4,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un'onice del valore di almeno 25 mo per DV del Non Morto",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "uno o più cadaveri toccati",
+  "durationType": "OTHER",
+  "durationDescription": "1 giorno/livello dell'incantatore e istantanea (vedi testo)",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Prepara un'animazione dei morti che si avvia solo al verificarsi dell'innesco scelto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Rianimazione_Indolente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Rianimazione Indolente: https://golarion.altervista.org/wiki/Rianimazione_Indolente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: uno o più cadaveri toccati. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Costo materiale variabile o alternativo: determinarlo dalla descrizione dei componenti, non da un importo fisso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

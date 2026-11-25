@@ -1,0 +1,29 @@
+{
+  "id": "followingStep",
+  "name": "Ancora un Passo",
+  "description": "Estende il movimento con cui si segue un avversario. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ancora_un_Passo",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Inseguire",
+      "feat": {
+        "id": "stepUp"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ancora un Passo: https://golarion.altervista.org/wiki/Talenti/Ancora_un_Passo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

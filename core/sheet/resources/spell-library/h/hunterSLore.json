@@ -1,0 +1,37 @@
+{
+  "id": "hunterSLore",
+  "name": "Sapienza del Cacciatore",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "INQUISITOR": 2,
+    "RANGER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzetto di carta strappato da un libro che tratta di mostri",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Concede il tempo e l'intuizione necessari per riconoscere i punti deboli dei mostri. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sapienza_del_Cacciatore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sapienza del Cacciatore: https://golarion.altervista.org/wiki/Incantesimi/Sapienza_del_Cacciatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

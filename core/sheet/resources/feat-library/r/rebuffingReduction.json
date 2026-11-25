@@ -1,0 +1,44 @@
+{
+  "id": "rebuffingReduction",
+  "name": "Riduzione Respingente",
+  "description": "Un attacco fermato dalla riduzione del danno può provocare una spinta di risposta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Riduzione_Respingente",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 13",
+      "expression": "@str >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Riduzione del Danno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Spingere Migliorato",
+      "feat": {
+        "id": "improvedBullRush"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Riduzione Respingente: https://golarion.altervista.org/wiki/Talenti/Riduzione_Respingente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Riduzione del Danno; Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

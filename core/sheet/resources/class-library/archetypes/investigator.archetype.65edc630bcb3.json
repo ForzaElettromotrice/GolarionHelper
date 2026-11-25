@@ -1,0 +1,94 @@
+{
+  "id": "investigator.archetype.65edc630bcb3",
+  "classType": "investigator",
+  "name": "Cospiratore",
+  "description": "Archetipo di Investigatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Cospiratore Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Ispirazione. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "investigator.feature.218a0de6991a",
+      "type": "replace"
+    },
+    {
+      "featureId": "investigator.feature.174a9a0a2fc6",
+      "type": "replace"
+    },
+    {
+      "featureId": "investigator.feature.316907f83c2f",
+      "type": "alter"
+    },
+    {
+      "featureId": "investigator.feature.dc482781cd4a",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "investigator.feature.174a9a0a2fc6",
+    "investigator.feature.218a0de6991a",
+    "investigator.feature.316907f83c2f"
+  ],
+  "removedAcquisitionIds": [
+    "investigator.feature.dc482781cd4a.level7"
+  ],
+  "addedFeatures": [
+    {
+      "id": "investigator.archetype.65edc630bcb3.instructions",
+      "name": "Cospiratore",
+      "description": "Archetipo di Investigatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Cospiratore Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Ispirazione. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "investigator.archetype.65edc630bcb3.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Investigatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Cospiratore Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Ispirazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "investigator.archetype.65edc630bcb3.feature.1",
+      "name": "Subdolo (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Cospiratore",
+      "progression": [
+        {
+          "id": "investigator.archetype.65edc630bcb3.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cospiratore — Subdolo (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Investigatore/Archetipi#Cospiratore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "investigator.archetype.65edc630bcb3.feature.2",
+      "name": "Senso dell'Osservatore (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Cospiratore",
+      "progression": [
+        {
+          "id": "investigator.archetype.65edc630bcb3.feature.2.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cospiratore — Senso dell'Osservatore (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Investigatore/Archetipi#Cospiratore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

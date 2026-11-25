@@ -1,0 +1,45 @@
+{
+  "id": "placeboEffect",
+  "name": "Effetto Placebo",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "PSYCHIC": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una zolletta di zucchero",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo)",
+  "description": "Sopprime temporaneamente le conseguenze di alcune afflizioni o condizioni senza eliminarne necessariamente la causa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Effetto_Placebo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Effetto Placebo: https://golarion.altervista.org/wiki/Incantesimi/Effetto_Placebo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

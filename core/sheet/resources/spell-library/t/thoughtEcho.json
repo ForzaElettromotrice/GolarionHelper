@@ -1,0 +1,40 @@
+{
+  "id": "thoughtEcho",
+  "name": "Eco Mentale",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "MESMERIST": 1,
+    "PSYCHIC": 1
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura vivente toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livelli",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Occulta i pensieri superficiali dietro una ripetizione mentale prestabilita. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Eco_Mentale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Eco Mentale: https://golarion.altervista.org/wiki/Incantesimi/Eco_Mentale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

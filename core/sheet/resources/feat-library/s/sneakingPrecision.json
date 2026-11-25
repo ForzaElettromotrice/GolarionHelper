@@ -1,0 +1,40 @@
+{
+  "id": "sneakingPrecision",
+  "name": "Precisione Furtiva",
+  "description": "Consente di applicare un talento di critico al successivo attacco furtivo idoneo nello stesso round. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Precisione_Furtiva",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Attacco Furtivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Critico Focalizzato",
+      "feat": {
+        "id": "criticalFocus"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: un qualsiasi Talento di Critico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +9",
+      "expression": "@bab >= 9"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Precisione Furtiva: https://golarion.altervista.org/wiki/Talenti/Precisione_Furtiva. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Attacco Furtivo; Prerequisito da verificare manualmente: un qualsiasi Talento di Critico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

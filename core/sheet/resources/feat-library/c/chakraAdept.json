@@ -1,0 +1,33 @@
+{
+  "id": "chakraAdept",
+  "name": "Adepto del Chakra",
+  "description": "Potenzia la riserva e la capacità di mantenere attivi i chakra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Adepto_del_Chakra",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Iniziato del Chakra",
+      "feat": {
+        "id": "chakraInitiate"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di risvegliare il Chakra del Cuore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Adepto del Chakra: https://golarion.altervista.org/wiki/Talenti/Adepto_del_Chakra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: capacità di risvegliare il Chakra del Cuore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

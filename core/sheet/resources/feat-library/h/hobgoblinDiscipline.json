@@ -1,0 +1,31 @@
+{
+  "id": "hobgoblinDiscipline",
+  "name": "Disciplina Hobgoblin",
+  "description": "La presenza di altri hobgoblin rafforza la disciplina e i tiri salvezza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Disciplina_Hobgoblin",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Hobgoblin Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Disciplina Hobgoblin: https://golarion.altervista.org/wiki/Talenti/Disciplina_Hobgoblin. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Hobgoblin Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

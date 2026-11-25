@@ -1,0 +1,50 @@
+{
+  "id": "assumeAppearance",
+  "name": "Assumere Aspetto",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 3,
+    "BARD": 3,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "INVESTIGATOR": 3,
+    "WIZARD": 3,
+    "MEDIUM": 3,
+    "MESMERIST": 3,
+    "OCCULTIST": 3,
+    "PSYCHIC": 3,
+    "SKALD": 3,
+    "SHAMAN": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "cadavere della creatura deceduta di cui si vuole assumere la forma",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Usa un cadavere per imitare la forma della creatura a cui apparteneva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Assumere_Aspetto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Assumere Aspetto: https://golarion.altervista.org/wiki/Assumere_Aspetto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

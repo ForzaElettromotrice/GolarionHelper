@@ -1,0 +1,48 @@
+{
+  "id": "maddeningStyle",
+  "name": "Stile della Follia",
+  "description": "Rafforza tecniche stordenti e attacchi alla stabilità mentale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Stile_della_Follia",
+  "types": [
+    "combat",
+    "style"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Saggezza 15",
+      "expression": "@wis >= 15"
+    },
+    {
+      "description": "Carisma 11",
+      "expression": "@cha >= 11"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Pugno Stordente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (arcane) 4 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe riserva ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: allineamento non buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Stile della Follia: https://golarion.altervista.org/wiki/Talenti/Stile_della_Follia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Pugno Stordente; Prerequisito da verificare manualmente: Conoscenze (arcane) 4 gradi; Prerequisito da verificare manualmente: privilegio di classe riserva ki; Prerequisito da verificare manualmente: allineamento non buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,56 @@
+{
+  "id": "flare",
+  "name": "Lampo",
+  "school": "EVOCATION",
+  "descriptors": [
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 0,
+    "BARD": 0,
+    "HUNTER": 0,
+    "DRUID": 0,
+    "WIZARD": 0,
+    "MAGUS": 0,
+    "MEDIUM": 0,
+    "MESMERIST": 0,
+    "OCCULTIST": 0,
+    "PSYCHIC": 0,
+    "SKALD": 0,
+    "SORCERER": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "esplosione di luce",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un lampo diretto al volto può abbagliare una creatura per un minuto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Lampo",
+  "effects": [
+    {
+      "id": "dazzled",
+      "type": "conditionEntry",
+      "conditionId": "dazzled"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Non influenza creature prive di vista o già abbagliate; Tempra nega. La durata dell'abbagliamento è un minuto, benché il lampo sia istantaneo. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

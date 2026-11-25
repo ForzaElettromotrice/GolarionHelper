@@ -1,0 +1,47 @@
+{
+  "id": "virulentMiasma",
+  "name": "Miasma Virulento",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 2,
+    "ARCANIST": 3,
+    "HUNTER": 3,
+    "DRUID": 3,
+    "BLOODRAGER": 3,
+    "WIZARD": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una crosta secca di una creatura malata",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m ogni livello)",
+  "effect": "una nuvola si diffonde in 6 metri di raggio e 6 metri di altezza",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "vedi testo",
+  "description": "Una nebbia nociva rende più vulnerabili alle malattie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Miasma_Virulento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Miasma Virulento: https://golarion.altervista.org/wiki/Incantesimi/Miasma_Virulento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

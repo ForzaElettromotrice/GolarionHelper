@@ -1,0 +1,27 @@
+{
+  "id": "slayersFeint",
+  "name": "Finta del Predatore",
+  "description": "Permette di usare l'agilità acrobatica per eseguire finte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Finta_del_Predatore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Destrezza 15, Acrobatico o Predatore di 1° livello, Maestria in Combattimento, Acrobazia 1 grado. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Finta del Predatore: https://golarion.altervista.org/wiki/Talenti/Finta_del_Predatore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Destrezza 15, Acrobatico o Predatore di 1° livello, Maestria in Combattimento, Acrobazia 1 grado. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

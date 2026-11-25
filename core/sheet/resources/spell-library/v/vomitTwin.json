@@ -1,0 +1,42 @@
+{
+  "id": "vomitTwin",
+  "name": "Gemello di Vomito",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "TELEPORTATION",
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ARCANIST": 4,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "INVESTIGATOR": 3,
+    "WIZARD": 4,
+    "MAGUS": 3,
+    "PSYCHIC": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "effect": "crea una copia di fluido viscoso dell'incantatore",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Espelle una copia viscosa dell'incantatore nello spazio vicino. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Gemello_di_Vomito",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Gemello di Vomito: https://golarion.altervista.org/wiki/Incantesimi/Gemello_di_Vomito Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,132 @@
+{
+  "id": "alchemist.archetype.e1764a8deba4",
+  "classType": "alchemist",
+  "name": "Interrogatore",
+  "description": "Archetipo di Alchimista. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Alchimista/Archetipi#Interrogatore Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "alchemist.classSkills",
+      "type": "alter"
+    },
+    {
+      "featureId": "alchemist.feature.4b2b03ee5cc8",
+      "type": "replace"
+    },
+    {
+      "featureId": "alchemist.feature.93d5cb38ec91",
+      "type": "replace"
+    },
+    {
+      "featureId": "alchemist.feature.bf1c344630aa",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "alchemist.feature.4b2b03ee5cc8",
+    "alchemist.feature.93d5cb38ec91",
+    "alchemist.feature.bf1c344630aa"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "alchemist.archetype.e1764a8deba4.instructions",
+      "name": "Interrogatore",
+      "description": "Archetipo di Alchimista. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Alchimista/Archetipi#Interrogatore Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "alchemist.archetype.e1764a8deba4.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Alchimista. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Alchimista/Archetipi#Interrogatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.archetype.e1764a8deba4.feature.f1efe5b88f",
+      "name": "Iniezioni (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Alchimista/Archetipi#Interrogatore",
+      "progression": [
+        {
+          "id": "alchemist.archetype.e1764a8deba4.feature.f1efe5b88f.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Interrogatore — Iniezioni (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Alchimista/Archetipi#Interrogatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.archetype.e1764a8deba4.feature.67c464f5c3",
+      "name": "Sieri (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Alchimista/Archetipi#Interrogatore",
+      "progression": [
+        {
+          "id": "alchemist.archetype.e1764a8deba4.feature.67c464f5c3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Interrogatore — Sieri (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Alchimista/Archetipi#Interrogatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.archetype.e1764a8deba4.classSkill.1",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Alchimista/Archetipi#Interrogatore",
+      "progression": [
+        {
+          "id": "alchemist.archetype.e1764a8deba4.classSkill.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.intimidate"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.archetype.e1764a8deba4.classSkill.2",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Alchimista/Archetipi#Interrogatore",
+      "progression": [
+        {
+          "id": "alchemist.archetype.e1764a8deba4.classSkill.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.senseMotive"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

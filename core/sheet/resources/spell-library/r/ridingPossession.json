@@ -1,0 +1,48 @@
+{
+  "id": "ridingPossession",
+  "name": "Possessione Viaggiante",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "SUMMONER": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "MEDIUM": 2,
+    "MESMERIST": 4,
+    "OCCULTIST": 3,
+    "PSYCHIC": 4,
+    "SPIRITUALIST": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I); vedi testo;",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Consente di accompagnare una creatura osservandola dall'interno, senza prenderne il controllo ordinario. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Possessione_Viaggiante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Possessione Viaggiante: https://golarion.altervista.org/wiki/Incantesimi/Possessione_Viaggiante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

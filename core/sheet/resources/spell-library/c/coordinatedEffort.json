@@ -1,0 +1,41 @@
+{
+  "id": "coordinatedEffort",
+  "name": "Sforzi Coordinati",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 3,
+    "INQUISITOR": 3,
+    "PSYCHIC": 4,
+    "SKALD": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "se stessi più 1 creatura consenziente ogni 3 livelli, due delle quali non possono trovarsi a più di 9 m l’una dall’altra",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Condivide con gli alleati un talento di squadra consentito. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sforzi_Coordinati",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sforzi Coordinati: https://golarion.altervista.org/wiki/Incantesimi/Sforzi_Coordinati Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi più 1 creatura consenziente ogni 3 livelli, due delle quali non possono trovarsi a più di 9 m l’una dall’altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

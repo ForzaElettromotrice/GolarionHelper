@@ -1,0 +1,65 @@
+{
+  "id": "stunningBarrier",
+  "name": "Barriera Stordente",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "CLERIC": 1,
+    "INQUISITOR": 1,
+    "WIZARD": 1,
+    "ORACLE": 1,
+    "PALADIN": 1,
+    "PSYCHIC": 1,
+    "WARPRIEST": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "nessuno o Volontà nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no e sì (vedi testo)",
+  "description": "Fornisce +1 deviazione alla CA e +1 resistenza ai tiri salvezza; può stordire per un round chi colpisce in mischia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Barriera_Stordente",
+  "effects": [
+    {
+      "id": "armorClass",
+      "type": "modifier",
+      "resource": "armorClass.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "deflection",
+      "expression": "1"
+    },
+    {
+      "id": "savingThrows",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "resistance",
+      "expression": "1"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Risolvere manualmente Volontà e RI dell'aggressore; disattivare l'intero gruppo quando la barriera stordisce qualcuno. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

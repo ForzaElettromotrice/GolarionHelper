@@ -1,0 +1,91 @@
+{
+  "id": "transformation",
+  "name": "Trasformazione Arcana",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 6,
+    "ARCANIST": 6,
+    "WITCH": 6,
+    "INVESTIGATOR": 6,
+    "WIZARD": 6,
+    "MAGUS": 6,
+    "PSYCHIC": 6,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "spellLevelByBloodline": {
+    "ABYSSAL": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una pozione di Forza del Toro, che bisogna bere e i cui effetti sono sostituiti da quelli dell’incantesimo",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Potenzia il combattimento sacrificando temporaneamente l'uso della magia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trasformazione_Arcana",
+  "effects": [
+    {
+      "id": "strength",
+      "type": "modifier",
+      "resource": "str",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "enhancement",
+      "expression": "4"
+    },
+    {
+      "id": "dexterity",
+      "type": "modifier",
+      "resource": "dex",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "enhancement",
+      "expression": "4"
+    },
+    {
+      "id": "constitution",
+      "type": "modifier",
+      "resource": "con",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "enhancement",
+      "expression": "4"
+    },
+    {
+      "id": "naturalArmor",
+      "type": "modifier",
+      "resource": "armorClass.solid",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "naturalArmor",
+      "expression": "4"
+    },
+    {
+      "id": "fortitude",
+      "type": "modifier",
+      "resource": "savingThrow.fortitude",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "competence",
+      "expression": "5"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Impostare manualmente il BAB pari al livello del destinatario e conferire competenza nelle armi semplici e da guerra; impedire incantesimi e oggetti ad attivazione o completamento di incantesimo. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

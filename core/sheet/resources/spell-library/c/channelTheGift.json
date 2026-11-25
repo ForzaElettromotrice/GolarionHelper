@@ -1,0 +1,61 @@
+{
+  "id": "channelTheGift",
+  "name": "Incanalare il Dono",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WIZARD": 3,
+    "SORCERER": 3,
+    "BARD": 3,
+    "SKALD": 3,
+    "HUNTER": 3,
+    "CLERIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "RANGER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "incantatore alleato toccato",
+  "durationType": "ROUND",
+  "durationDescription": "1 round o vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "Volontà nega (innocuo) o nessuno"
+    }
+  ],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "sì (innocuo) o no",
+  "description": "Sostiene il lancio di un altro incantatore senza consumarne la normale risorsa prevista. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Incanalare_il_Dono",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Incanalare il Dono: https://golarion.altervista.org/wiki/Incantesimi/Incanalare_il_Dono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Arcanista/Mago/Stregone 3, Bardo/Scaldo 3, Cacciatore 3, Chierico/Oracolo/Sacerdote Guerriero 3, Druido 3, Fattucchiere 3, Ranger 3 (Nethys) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: incantatore alleato toccato. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

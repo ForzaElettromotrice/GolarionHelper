@@ -1,0 +1,593 @@
+{
+  "id": "dhampir",
+  "name": "Dhampir",
+  "qualities": [
+    {
+      "id": "dhampir.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide dhampir. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "dhampir.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "dhampir.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "dhampir.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "dhampir.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dhampir.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "alchemistMutagen",
+          "type": "favoredClassBonus",
+          "name": "Alchimista — +10 minuti al mutageno",
+          "classes": [
+            "alchemist"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+10 minuti al mutageno. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+10 minuti al mutageno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "clericChannelFeat",
+          "type": "favoredClassBonus",
+          "name": "Chierico — +1 LI dei talenti di incanalare che influenzano non morti",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 LI dei talenti di incanalare che influenzano non morti. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 LI dei talenti di incanalare che influenzano non morti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "wizardNecromancy",
+          "type": "favoredClassBonus",
+          "name": "Mago — +1 LI degli incantesimi da mago di necromanzia",
+          "classes": [
+            "wizard"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 LI degli incantesimi da mago di necromanzia. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 LI degli incantesimi da mago di necromanzia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleNegativeDamage",
+          "type": "favoredClassBonus",
+          "name": "Oracolo — +1 danno negativo agli incantesimi che ne infliggono",
+          "classes": [
+            "oracle"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 danno negativo agli incantesimi che ne infliggono. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 danno negativo agli incantesimi che ne infliggono. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "fighterStabilize",
+          "type": "favoredClassBonus",
+          "name": "Guerriero — Stabilizzazione",
+          "classes": [
+            "fighter"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+2 per stabilizzarsi.",
+          "effects": [
+            {
+              "id": "stabilize",
+              "type": "modifier",
+              "resource": "abilityCheck.con",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "2",
+              "condition": "Stabilizzarsi quando morente"
+            }
+          ]
+        },
+        {
+          "id": "inquisitorDemoralize",
+          "type": "favoredClassBonus",
+          "name": "Inquisitore — Demoralizzare umanoidi",
+          "classes": [
+            "inquisitor"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Intimidire per demoralizzare umanoidi.",
+          "effects": [
+            {
+              "id": "demoralize",
+              "type": "modifier",
+              "resource": "skill.intimidate",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Demoralizzare umanoidi"
+            }
+          ]
+        },
+        {
+          "id": "rogueDarkSkills",
+          "type": "favoredClassBonus",
+          "name": "Ladro — Abilità nell'oscurità",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Furtività e Percezione in luce fioca o buio.",
+          "effects": [
+            {
+              "id": "stealth",
+              "type": "modifier",
+              "resource": "skill.stealth",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Luce fioca o buio"
+            },
+            {
+              "id": "perception",
+              "type": "modifier",
+              "resource": "skill.perception",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Luce fioca o buio"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "dhampir.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "dhampir.lowLightVision",
+      "name": "Visione crepuscolare",
+      "description": "Visione crepuscolare",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Distanza visiva raddoppiata in luce scarsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "dhampir.negativeEnergyAffinity",
+      "name": "Affinità all'Energia Negativa",
+      "description": "Affinità all'Energia Negativa",
+      "effects": [
+        {
+          "id": "energy",
+          "type": "reminder",
+          "message": "Energia negativa cura ed energia positiva ferisce, come per un non morto; invertire manualmente cure e danni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "dhampir.lightSensitivity",
+      "name": "Sensibilità alla Luce",
+      "description": "Sensibilità alla Luce",
+      "effects": [
+        {
+          "id": "light",
+          "type": "reminder",
+          "message": "Abbagliato sotto sole intenso o Luce Diurna. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "dhampir.resistLevelDrain",
+      "name": "Resistenza al Risucchio di Livelli",
+      "description": "Resistenza al Risucchio di Livelli",
+      "effects": [
+        {
+          "id": "drain",
+          "type": "reminder",
+          "message": "Ignora le penalità dei livelli negativi, che scompaiono dopo 24 ore senza TS; può comunque morire quando superano i DV. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "dhampir.undeadResistance",
+      "name": "Resistenza dei Non Morti",
+      "description": "Resistenza dei Non Morti",
+      "effects": [
+        {
+          "id": "saves",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Malattia o influenza mentale"
+        }
+      ]
+    },
+    {
+      "id": "dhampir.spellLikeAbility",
+      "name": "Capacità Magiche",
+      "description": "Capacità Magiche",
+      "effects": [
+        {
+          "id": "detect",
+          "type": "reminder",
+          "message": "Individuazione dei Non Morti 3/giorno; LI pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "dhampir.manipulative",
+      "name": "Manipolatore",
+      "description": "Manipolatore",
+      "effects": [
+        {
+          "id": "perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "bluff",
+          "type": "modifier",
+          "resource": "skill.bluff",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "dhampir.dayborn",
+      "name": "Diurno",
+      "description": "Diurno",
+      "effects": [],
+      "replaces": [
+        "dhampir.spellLikeAbility",
+        "dhampir.lightSensitivity"
+      ]
+    },
+    {
+      "id": "dhampir.vampiricEmpathy",
+      "name": "Empatia Vampirica",
+      "description": "Empatia Vampirica",
+      "effects": [
+        {
+          "id": "diplomacy",
+          "type": "modifier",
+          "resource": "skill.diplomacy",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Interazione con lupi, pipistrelli o topi"
+        },
+        {
+          "id": "animals",
+          "type": "reminder",
+          "message": "Parlare con lupi, pipistrelli e topi come Parlare con gli Animali, LI metà DV; atteggiamento iniziale indifferente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "dhampir.manipulative"
+      ]
+    },
+    {
+      "id": "dhampir.fangs",
+      "name": "Zanne",
+      "description": "Morso 1d3 solo per danneggiare in lotta o, come azione standard, contro bersagli indifesi/legati/paralizzati. Non è un morso libero per la routine ordinaria. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Morso 1d3 solo per danneggiare in lotta o, come azione standard, contro bersagli indifesi/legati/paralizzati. Non è un morso libero per la routine ordinaria. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "dhampir.spellLikeAbility"
+      ]
+    }
+  ]
+}

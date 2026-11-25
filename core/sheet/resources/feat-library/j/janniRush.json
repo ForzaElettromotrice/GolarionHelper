@@ -1,0 +1,45 @@
+{
+  "id": "janniRush",
+  "name": "Assalto del Janni",
+  "description": "Agevola i salti e potenzia le cariche saltate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Assalto_del_Janni",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Stile del Janni",
+      "feat": {
+        "id": "janniStyle"
+      }
+    },
+    {
+      "description": "Tempesta del Janni",
+      "feat": {
+        "id": "janniTempest"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Acrobazia 8 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intrattenere (danza) 8 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Assalto del Janni: https://golarion.altervista.org/wiki/Talenti/Assalto_del_Janni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Acrobazia 8 gradi; Prerequisito da verificare manualmente: Intrattenere (danza) 8 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

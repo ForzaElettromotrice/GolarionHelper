@@ -1,0 +1,28 @@
+{
+  "id": "ricochetShotDeed",
+  "name": "Gesta del Colpo di Rimbalzo",
+  "description": "Fa raggiungere il bersaglio mediante proiettili di rimbalzo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Gesta_del_Colpo_di_Rimbalzo",
+  "types": [
+    "general",
+    "grit"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Grinta o talento Pistolero Amatoriale, Combattere alla Cieca. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Gesta del Colpo di Rimbalzo: https://golarion.altervista.org/wiki/Talenti/Gesta_del_Colpo_di_Rimbalzo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Grinta o talento Pistolero Amatoriale, Combattere alla Cieca. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

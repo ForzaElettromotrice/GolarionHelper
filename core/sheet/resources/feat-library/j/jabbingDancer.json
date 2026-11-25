@@ -1,0 +1,27 @@
+{
+  "id": "jabbingDancer",
+  "name": "Danzatore degli Affondi",
+  "description": "Ogni colpo senz'armi riuscito consente un piccolo spostamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Danzatore_degli_Affondi",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato, Mobilità, Schivare, Stile degli Affondi; Attaccabrighe di 5° livello o Monaco di 5° livello, Bonus di Attacco Base +9. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Danzatore degli Affondi: https://golarion.altervista.org/wiki/Talenti/Danzatore_degli_Affondi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato, Mobilità, Schivare, Stile degli Affondi; Attaccabrighe di 5° livello o Monaco di 5° livello, Bonus di Attacco Base +9. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

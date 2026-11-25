@@ -1,0 +1,34 @@
+{
+  "id": "tectonicCommunion",
+  "name": "Comunicazione Tettonica",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "DRUID": 7
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "1 ora",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Interroga il territorio su un'area molto vasta per ricavarne informazioni geografiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Comunicazione_Tettonica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Comunicazione Tettonica: https://golarion.altervista.org/wiki/Incantesimi/Comunicazione_Tettonica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

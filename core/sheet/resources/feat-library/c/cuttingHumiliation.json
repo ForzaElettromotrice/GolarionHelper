@@ -1,0 +1,33 @@
+{
+  "id": "cuttingHumiliation",
+  "name": "Umiliazione Tagliente",
+  "description": "Umilia pubblicamente una creatura e ne ostacola le prove basate sul Carisma. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Umiliazione_Tagliente",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Persuasivo",
+      "feat": {
+        "id": "persuasive"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intimidire 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Umiliazione Tagliente: https://golarion.altervista.org/wiki/Talenti/Umiliazione_Tagliente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intimidire 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

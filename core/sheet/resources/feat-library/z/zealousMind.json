@@ -1,0 +1,33 @@
+{
+  "id": "zealousMind",
+  "name": "Mente Infervorata",
+  "description": "La convinzione personale rafforza la difesa dagli ammaliamenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mente_Infervorata",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Volontà di Ferro",
+      "feat": {
+        "id": "ironWill"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Onore Indubitabile allineamento legale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mente Infervorata: https://golarion.altervista.org/wiki/Talenti/Mente_Infervorata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Onore Indubitabile allineamento legale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

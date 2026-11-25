@@ -1,0 +1,51 @@
+{
+  "id": "mageSDisjunction",
+  "name": "Disgiunzione Arcana",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WIZARD": 9,
+    "PSYCHIC": 9,
+    "SORCERER": 9
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "MAGIC": 9
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "area": "tutti gli effetti magici e gli oggetti magici in un'esplosione del raggio di 12 m (vedi testo)",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Disgrega effetti magici e può rimuovere le proprietà degli oggetti incantati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Disgiunzione_Arcana",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Disgiunzione Arcana: https://golarion.altervista.org/wiki/Incantesimi/Disgiunzione_Arcana Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: mistero Piagamagica 9 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

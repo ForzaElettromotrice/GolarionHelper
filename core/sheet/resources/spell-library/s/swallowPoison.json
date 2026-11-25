@@ -1,0 +1,39 @@
+{
+  "id": "swallowPoison",
+  "name": "Inghiottire Veleno",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 5,
+    "HUNTER": 5,
+    "DRUID": 5,
+    "WITCH": 5,
+    "INVESTIGATOR": 5,
+    "SHAMAN": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di ingerire veleno senza subirlo e di risputarlo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Inghiottire_Veleno",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Inghiottire Veleno: https://golarion.altervista.org/wiki/Incantesimi/Inghiottire_Veleno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

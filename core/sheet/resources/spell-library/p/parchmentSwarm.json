@@ -1,0 +1,44 @@
+{
+  "id": "parchmentSwarm",
+  "name": "Sciame di Pergamene",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "MAGUS": 5,
+    "OCCULTIST": 4,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "pergamena vuota o magica",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "creatura",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza; vedi testo;"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Uno sciame di pergamene taglienti può trasportare anche la magia di una pergamena. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sciame_di_Pergamene",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sciame di Pergamene: https://golarion.altervista.org/wiki/Incantesimi/Sciame_di_Pergamene Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

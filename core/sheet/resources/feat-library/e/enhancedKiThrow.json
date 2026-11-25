@@ -1,0 +1,33 @@
+{
+  "id": "enhancedKiThrow",
+  "name": "Lancio Ki Potenziato",
+  "description": "Spende ki per rendere più potente il lancio del nemico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Lancio_Ki_Potenziato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Lancio Ki",
+      "feat": {
+        "id": "kiThrow"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Riserva Ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Lancio Ki Potenziato: https://golarion.altervista.org/wiki/Talenti/Lancio_Ki_Potenziato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di classe Riserva Ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

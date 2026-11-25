@@ -1,0 +1,151 @@
+{
+  "id": "rogue.archetype.d996f406f892",
+  "classType": "rogue",
+  "name": "Rapinatore",
+  "description": "Archetipo di Ladro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "rogue.feature.cf55c97a4092",
+      "type": "replace"
+    },
+    {
+      "featureId": "rogue.feature.9cc579f45317",
+      "type": "replace"
+    },
+    {
+      "featureId": "rogue.feature.c23fa4329139",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "rogue.feature.cf55c97a4092",
+    "rogue.feature.9cc579f45317"
+  ],
+  "removedAcquisitionIds": [
+    "rogue.feature.c23fa4329139.level2",
+    "rogue.feature.c23fa4329139.level4",
+    "rogue.feature.c23fa4329139.level8"
+  ],
+  "addedFeatures": [
+    {
+      "id": "rogue.archetype.d996f406f892.instructions",
+      "name": "Rapinatore",
+      "description": "Archetipo di Ladro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "rogue.archetype.d996f406f892.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ladro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "rogue.archetype.d996f406f892.feature.1",
+      "name": "Esperto Scassinatore (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore",
+      "progression": [
+        {
+          "id": "rogue.archetype.d996f406f892.feature.1.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Rapinatore — Esperto Scassinatore (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "rogue.archetype.d996f406f892.feature.2",
+      "name": "Grazia del Furetto (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore",
+      "progression": [
+        {
+          "id": "rogue.archetype.d996f406f892.feature.2.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Rapinatore — Grazia del Furetto (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "rogue.archetype.d996f406f892.feature.3",
+      "name": "Non Visto (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore",
+      "progression": [
+        {
+          "id": "rogue.archetype.d996f406f892.feature.3.initial",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Rapinatore — Non Visto (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "rogue.archetype.d996f406f892.feature.4",
+      "name": "Doti da Ladro",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore",
+      "progression": [
+        {
+          "id": "rogue.archetype.d996f406f892.feature.4.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Rapinatore — Doti da Ladro: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "rogue.archetype.d996f406f892.feature.5",
+      "name": "Doti Avanzate",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore",
+      "progression": [
+        {
+          "id": "rogue.archetype.d996f406f892.feature.5.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Rapinatore — Doti Avanzate: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Rapinatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "sympathy",
+  "name": "Simpatia",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "SUMMONER": 6,
+    "DRUID": 9,
+    "WITCH": 8,
+    "WIZARD": 8,
+    "OCCULTIST": 6,
+    "PSYCHIC": 8,
+    "SORCERER": 8
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "1 ora",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una goccia di miele e polvere di perle del valore di 1.500 mo",
+  "materialComponentCostInGoldPieces": 1500,
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 locazione (fino a 1 cubo con spigolo di 3 m/livello) o 1 oggetto",
+  "durationType": "HOUR",
+  "durationDescription": "2 ore/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Rende un luogo o un oggetto irresistibilmente attraente per determinate creature. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Simpatia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Simpatia: https://golarion.altervista.org/wiki/Incantesimi/Simpatia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 locazione (fino a 1 cubo con spigolo di 3 m/livello) o 1 oggetto. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

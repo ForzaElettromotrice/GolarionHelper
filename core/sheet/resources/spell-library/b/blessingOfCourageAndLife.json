@@ -1,0 +1,46 @@
+{
+  "id": "blessingOfCourageAndLife",
+  "name": "Benedizione del Coraggio e della Vita",
+  "school": "CONJURATION",
+  "descriptors": [
+    "EMOTION"
+  ],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "PALADIN": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura vivente",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (vedi sotto)",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Protegge dalla paura e dagli effetti di morte, con un'ulteriore possibilità curativa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Benedizione_del_Coraggio_e_della_Vita",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Benedizione del Coraggio e della Vita: https://golarion.altervista.org/wiki/Incantesimi/Benedizione_del_Coraggio_e_della_Vita Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,48 @@
+{
+  "id": "curseTerrainGreater",
+  "name": "Maledire Terreno Superiore",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL",
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "HUNTER": 6,
+    "CLERIC": 6,
+    "DRUID": 6,
+    "WITCH": 6,
+    "WIZARD": 6,
+    "ORACLE": 6,
+    "WARPRIEST": 6,
+    "SHAMAN": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "il cuore di una creatura che dimorava nell'area e polvere d'onice del valore di 1.500 mo",
+  "materialComponentCostInGoldPieces": 1500,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "area": "emanazione del raggio di 7,5 chilometri dal punto toccato",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Diffonde pericoli più insidiosi su un'area maledetta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Maledire_Terreno_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Maledire Terreno Superiore: https://golarion.altervista.org/wiki/Maledire_Terreno_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

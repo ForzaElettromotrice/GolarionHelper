@@ -1,0 +1,40 @@
+{
+  "id": "deceptiveRedundancy",
+  "name": "Ridondanza Ingannevole",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "SORCERER": 5,
+    "BARD": 5,
+    "SKALD": 5,
+    "MESMERIST": 5,
+    "PSYCHIC": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "OTHER",
+  "durationDescription": "10 minuti/livello o finché attivato, poi 1 round/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Nasconde una difesa che ostacola i tentativi di dissolvere una magia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ridondanza_Ingannevole",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ridondanza Ingannevole: https://golarion.altervista.org/wiki/Incantesimi/Ridondanza_Ingannevole Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

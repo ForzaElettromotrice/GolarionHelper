@@ -1,0 +1,39 @@
+{
+  "id": "fireOfJudgment",
+  "name": "Fuoco del Giudizio",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "PALADIN": 3
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 azione veloce",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "speciale; vedi testo",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Punisce con danni ulteriori gli attacchi del nemico designato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fuoco_del_Giudizio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fuoco del Giudizio: https://golarion.altervista.org/wiki/Incantesimi/Fuoco_del_Giudizio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

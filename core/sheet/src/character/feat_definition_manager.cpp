@@ -1,6 +1,7 @@
 #include "golarion/character/feat_definition_manager.hpp"
 
-#include "golarion/character/feat_definition_catalog.hpp"
+#include "golarion/catalog/catalog_reader.hpp"
+#include "golarion/catalog/definition_path.hpp"
 #include "golarion/character/feat_definition_json.hpp"
 #include "golarion/util/string_utils.hpp"
 
@@ -34,10 +35,7 @@ namespace golarion
 {
     bool FeatDefinitionManager::contains(std::string_view id)
     {
-        const auto key = normalize(id);
-        const std::scoped_lock lock(mutex_);
-        if (!loaded_) loadCatalog();
-        return definitions_.contains(key);
+        return entries_.contains(normalize(id));
     }
 
     FeatDefinitionManager &FeatDefinitionManager::instance()
@@ -48,29 +46,24 @@ namespace golarion
 
     const FeatDefinition &FeatDefinitionManager::get(std::string_view featDefinitionId)
     {
-        const std::string normalizedId = normalize(featDefinitionId);
+        const auto key = normalize(featDefinitionId);
+        const auto entry = entries_.find(key);
+        if (entry == entries_.end()) throw std::invalid_argument("feat definition is not registered: " + key);
         const std::scoped_lock lock(mutex_);
-        if (!loaded_)
-        {
-            loadCatalog();
-        }
-
-        const auto definition = definitions_.find(normalizedId);
-        if (definition == definitions_.end())
-        {
-            throw std::invalid_argument("feat definition is not registered: " + normalizedId);
-        }
-        return definition->second;
+        if (const auto cached = definitions_.find(key); cached != definitions_.end()) return cached->second;
+        auto definition = featDefinitionFromJson(catalog::readFile(catalog::definitionPath("feat-library", key)));
+        if (definition.id != key || definition.name != entry->second.name || definition.types != entry->second.types)
+            throw std::invalid_argument("Feat definition disagrees with index: " + key);
+        return definitions_.emplace(key, std::move(definition)).first->second;
     }
 
     std::vector<FeatDefinitionView> FeatDefinitionManager::toView()
     {
-        const std::scoped_lock lock(mutex_);
-        if (!loaded_) loadCatalog();
         std::vector<FeatDefinitionView> result;
-        result.reserve(definitions_.size());
-        for (const auto &[id, definition] : definitions_)
+        result.reserve(entries_.size());
+        for (const auto &[id, entry] : entries_)
         {
+            const auto &definition = get(id);
             std::vector<FeatCatalogChoiceView> choices;
             for (const auto &choice : definition.choices)
             {
@@ -85,33 +78,27 @@ namespace golarion
         return result;
     }
 
-    void FeatDefinitionManager::loadCatalog()
+    FeatDefinitionManager::FeatDefinitionManager()
     {
-        try
+        const auto index = catalog::readFile("feat-library/index.json");
+        if (!index.is_array()) throw std::invalid_argument("Feat index must be an array");
+        for (const auto &entry : index)
         {
-            const Json catalog = catalog::loadFeatDefinitionCatalog();
-            if (!catalog.is_array())
-            {
-                throw std::invalid_argument("feat definition catalog must be a JSON array");
-            }
-
-            std::map<std::string, FeatDefinition> loadedDefinitions;
-            for (const Json &entry : catalog)
-            {
-                FeatDefinition definition = featDefinitionFromJson(entry);
-                const std::string id = definition.id;
-                if (!loadedDefinitions.emplace(id, std::move(definition)).second)
-                {
-                    throw std::invalid_argument("feat definition is duplicated: " + id);
-                }
-            }
-
-            definitions_ = std::move(loadedDefinitions);
-            loaded_ = true;
+            const auto id = entry.at("id").get<std::string>();
+            catalog::definitionPath("feat-library", id);
+            CatalogEntry summary{id, entry.at("name").get<std::string>(), {}};
+            for (const auto &name : entry.at("types").get<std::vector<std::string>>())
+                summary.types.push_back(featTypeFromName(name));
+            if (!entries_.emplace(id, std::move(summary)).second)
+                throw std::invalid_argument("Duplicate feat index ID: " + id);
         }
-        catch (const nlohmann::json::exception &exception)
-        {
-            throw std::invalid_argument("invalid feat definition catalog: " + std::string(exception.what()));
-        }
+    }
+
+    std::vector<FeatDefinitionManager::CatalogEntry> FeatDefinitionManager::catalogEntries() const
+    {
+        std::vector<CatalogEntry> result;
+        result.reserve(entries_.size());
+        for (const auto &[id, entry] : entries_) result.push_back(entry);
+        return result;
     }
 }

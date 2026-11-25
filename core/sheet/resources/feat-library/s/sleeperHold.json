@@ -1,0 +1,29 @@
+{
+  "id": "sleeperHold",
+  "name": "Blocco del Dormiente",
+  "description": "Una presa prolungata può far perdere coscienza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Blocco_del_Dormiente",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +8",
+      "expression": "@bab >= 8"
+    },
+    {
+      "description": "Lottare Superiore",
+      "feat": {
+        "id": "greaterGrapple"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Blocco del Dormiente: https://golarion.altervista.org/wiki/Talenti/Blocco_del_Dormiente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

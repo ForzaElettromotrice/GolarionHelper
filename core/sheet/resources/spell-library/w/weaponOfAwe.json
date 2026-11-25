@@ -1,0 +1,47 @@
+{
+  "id": "weaponOfAwe",
+  "name": "Arma Stupefacente",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "EMOTION"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "PALADIN": 2,
+    "WARPRIEST": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 arma toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Rende un'arma più dannosa e impressionante, con ulteriori conseguenze sui colpi critici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Arma_Stupefacente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Arma Stupefacente: https://golarion.altervista.org/wiki/Incantesimi/Arma_Stupefacente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

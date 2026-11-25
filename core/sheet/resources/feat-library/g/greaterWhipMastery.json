@@ -1,0 +1,40 @@
+{
+  "id": "greaterWhipMastery",
+  "name": "Maestria con la Frusta Superiore",
+  "description": "Consente di trattenere avversari in lotta con la frusta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestria_con_la_Frusta_Superiore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Frusta) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria con la Frusta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Maestria con la Frusta Migliorata",
+      "feat": {
+        "id": "improvedWhipMastery"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +8",
+      "expression": "@bab >= 8"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestria con la Frusta Superiore: https://golarion.altervista.org/wiki/Talenti/Maestria_con_la_Frusta_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Frusta); Prerequisito da verificare manualmente: Maestria con la Frusta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

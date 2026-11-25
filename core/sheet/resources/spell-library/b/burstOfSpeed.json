@@ -1,0 +1,42 @@
+{
+  "id": "burstOfSpeed",
+  "name": "Esplosione di Velocità",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ANTIPALADIN": 3,
+    "HUNTER": 3,
+    "INQUISITOR": 3,
+    "INVESTIGATOR": 3,
+    "BLOODRAGER": 3,
+    "MAGUS": 3,
+    "MEDIUM": 3,
+    "PALADIN": 3,
+    "PSYCHIC": 3,
+    "RANGER": 3
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 azione veloce",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "OTHER",
+  "durationDescription": "vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Concede una rapida accelerazione e permette di superare alcuni ostacoli e reazioni durante il movimento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Esplosione_di_Velocit%C3%A0",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Esplosione di Velocità: https://golarion.altervista.org/wiki/Incantesimi/Esplosione_di_Velocit%C3%A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "miasmaticShape",
+  "name": "Forma Miasmatica",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "AIR",
+    "POISON"
+  ],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "INVESTIGATOR": 4,
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "Veleno a contatto o ad inalazione del valore di 100 mo",
+  "materialComponentCostInGoldPieces": 100,
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "La forma gassosa acquisita danneggia chi entra in contatto con essa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Forma_Miasmatica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Forma Miasmatica: https://golarion.altervista.org/wiki/Incantesimi/Forma_Miasmatica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno; vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

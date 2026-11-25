@@ -1,0 +1,57 @@
+{
+  "id": "projectImage",
+  "name": "Immagine Proiettata",
+  "school": "ILLUSION",
+  "descriptors": [
+    "SHADOW"
+  ],
+  "subschool": "SHADOW",
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "BARD": 6,
+    "WIZARD": 7,
+    "MESMERIST": 6,
+    "OCCULTIST": 6,
+    "PSYCHIC": 7,
+    "SKALD": 6,
+    "SORCERER": 7
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "SUBTERFUGE": 7
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una propria replica in miniatura del valore di almeno 5 mo",
+  "materialComponentCostInGoldPieces": 5,
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "un duplicato d’ombra",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita (se si interagisce)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Un doppio distante può parlare e fungere da origine degli incantesimi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Immagine_Proiettata",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Immagine Proiettata: https://golarion.altervista.org/wiki/Incantesimi/Immagine_Proiettata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,601 @@
+{
+  "id": "drow",
+  "name": "Drow",
+  "qualities": [
+    {
+      "id": "drow.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide elfo. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "drow.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "drow.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "drow.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "drow.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "elven",
+          "type": "languageGrant",
+          "languageId": "elven"
+        },
+        {
+          "id": "undercommon",
+          "type": "languageGrant",
+          "languageId": "undercommon"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "abyssal",
+            "aklo",
+            "aquan",
+            "common",
+            "draconic",
+            "gnome",
+            "goblin",
+            "drowSignLanguage"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drow.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "alchemistMutagen",
+          "type": "favoredClassBonus",
+          "name": "Alchimista — +10 minuti al mutageno",
+          "classes": [
+            "alchemist"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+10 minuti al mutageno. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+10 minuti al mutageno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "antipaladinCruelty",
+          "type": "favoredClassBonus",
+          "name": "Antipaladino — Una Crudeltà aggiuntiva",
+          "classes": [
+            "antipaladin"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "Una Crudeltà aggiuntiva. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "Una Crudeltà aggiuntiva. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "clericDomain",
+          "type": "favoredClassBonus",
+          "name": "Chierico — +1 uso giornaliero di un potere di dominio del1° livello normalmente usabile 3 + Saggezza",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 uso giornaliero di un potere di dominio del1° livello normalmente usabile 3 + Saggezza. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 uso giornaliero di un potere di dominio del1° livello normalmente usabile 3 + Saggezza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "fighterManeuver",
+          "type": "favoredClassBonus",
+          "name": "Guerriero — +1 BMC a Disarmare o Riposizionare, scelto; massimo +4",
+          "classes": [
+            "fighter"
+          ],
+          "selectionsPerBenefit": 3,
+          "description": "+1 BMC a Disarmare o Riposizionare, scelto; massimo +4. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 BMC a Disarmare o Riposizionare, scelto; massimo +4. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "wizardSchool",
+          "type": "favoredClassBonus",
+          "name": "Mago — +1 uso giornaliero di un potere di scuola del1° livello normalmente usabile 3 + Intelligenza",
+          "classes": [
+            "wizard"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 uso giornaliero di un potere di scuola del1° livello normalmente usabile 3 + Intelligenza. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 uso giornaliero di un potere di scuola del1° livello normalmente usabile 3 + Intelligenza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererSpell",
+          "type": "favoredClassBonus",
+          "name": "Stregone — Un incantesimo conosciuto da stregone con descrittore maledizione, male o dolore, almeno un livello sotto il massimo lanciabile",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "Un incantesimo conosciuto da stregone con descrittore maledizione, male o dolore, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "Un incantesimo conosciuto da stregone con descrittore maledizione, male o dolore, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rogueBluff",
+          "type": "favoredClassBonus",
+          "name": "Ladro — Inganni",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Raggirare per fintare o messaggi segreti.",
+          "effects": [
+            {
+              "id": "bluff",
+              "type": "modifier",
+              "resource": "skill.bluff",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Fintare o trasmettere messaggi segreti"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "drow.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 36 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "drow.weaponFamiliarity",
+      "name": "Familiarità nelle Armi",
+      "description": "Familiarità nelle Armi",
+      "effects": [
+        {
+          "id": "weapons",
+          "type": "reminder",
+          "message": "Competenza in balestra a mano, stocco e spada corta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "drow.poisonUse",
+      "name": "Uso dei Veleni",
+      "description": "Uso dei Veleni",
+      "effects": [
+        {
+          "id": "poison",
+          "type": "reminder",
+          "message": "Nessun avvelenamento accidentale nell'uso dei veleni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "drow.lightBlindness",
+      "name": "Cecità alla Luce",
+      "description": "Cecità alla Luce",
+      "effects": [
+        {
+          "id": "light",
+          "type": "reminder",
+          "message": "Esposizione improvvisa a luce intensa: cieco per 1 round, poi abbagliato finché vi rimane. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "drow.drowImmunities",
+      "name": "Immunità dei Drow",
+      "description": "Immunità dei Drow",
+      "effects": [
+        {
+          "id": "magicalSleep",
+          "type": "immunity",
+          "targetId": "magicalSleep",
+          "name": "Sonno magico"
+        },
+        {
+          "id": "saves",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Ammaliamento"
+        }
+      ]
+    },
+    {
+      "id": "drow.spellResistance",
+      "name": "Resistenza agli Incantesimi",
+      "description": "Resistenza agli Incantesimi",
+      "effects": [
+        {
+          "id": "resistance",
+          "type": "spellResistance",
+          "expression": "6 + @level"
+        }
+      ]
+    },
+    {
+      "id": "drow.spellLikeAbility",
+      "name": "Capacità Magiche",
+      "description": "Capacità Magiche",
+      "effects": [
+        {
+          "id": "spells",
+          "type": "reminder",
+          "message": "Luci Danzanti, Luminescenza e Oscurità, ciascuno 1/giorno; LI pari al livello totale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "drow.keenSenses",
+      "name": "Sensi Acuti",
+      "description": "Sensi Acuti",
+      "effects": [
+        {
+          "id": "perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "drow.ambitiousSchemer",
+      "name": "Cospiratore Ambizioso",
+      "description": "Cospiratore Ambizioso",
+      "effects": [],
+      "replaces": [
+        "drow.keenSenses"
+      ],
+      "choices": [
+        {
+          "id": "skill",
+          "prompt": "Scegli un'abilità.",
+          "selectionCount": 1,
+          "options": [
+            {
+              "id": "bluff",
+              "name": "Raggirare",
+              "effects": [
+                {
+                  "id": "bluff",
+                  "type": "modifier",
+                  "resource": "skill.bluff",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "generic",
+                  "expression": "2"
+                },
+                {
+                  "id": "bluffClass",
+                  "type": "classSkillGrant",
+                  "resource": "skill.bluff"
+                }
+              ]
+            },
+            {
+              "id": "diplomacy",
+              "name": "Diplomazia",
+              "effects": [
+                {
+                  "id": "diplomacy",
+                  "type": "modifier",
+                  "resource": "skill.diplomacy",
+                  "description": "Beneficio razziale",
+                  "modifierType": "bonus",
+                  "bonusType": "generic",
+                  "expression": "2"
+                },
+                {
+                  "id": "diplomacyClass",
+                  "type": "classSkillGrant",
+                  "resource": "skill.diplomacy"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drow.surfaceInfiltrator",
+      "name": "Infiltrato in Superficie",
+      "description": "Visione crepuscolare: distanza visiva doppia in luce scarsa. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Visione crepuscolare: distanza visiva doppia in luce scarsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "drow.darkvision",
+        "drow.lightBlindness"
+      ]
+    },
+    {
+      "id": "drow.blasphemousCovenant",
+      "name": "Patto Blasfemo",
+      "description": "Patto Blasfemo",
+      "effects": [
+        {
+          "id": "diplomacy",
+          "type": "modifier",
+          "resource": "skill.diplomacy",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2",
+          "condition": "Demoni non vincolati"
+        },
+        {
+          "id": "demons",
+          "type": "reminder",
+          "message": "Demoni evocati: +2 PF/DV. Alleato Planare per demoni: compenso/offerta ridotto del 20%. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "drow.keenSenses",
+        "drow.poisonUse"
+      ]
+    },
+    {
+      "id": "drow.darklandsStalker",
+      "name": "Predatore delle Lande Tenebrose",
+      "description": "Ignora il terreno difficile sotterraneo; con Destrezza almeno13 concede Passo Leggero. Talento e movimento situazionale manuali. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Ignora il terreno difficile sotterraneo; con Destrezza almeno13 concede Passo Leggero. Talento e movimento situazionale manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "drow.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "drow.ancestralGrudge",
+      "name": "Rancore Ancestrale",
+      "description": "Rancore Ancestrale",
+      "effects": [
+        {
+          "id": "attack",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "1",
+          "condition": "Contro umanoidi nani o elfi, esclusi i drow"
+        }
+      ],
+      "replaces": [
+        "drow.poisonUse"
+      ]
+    },
+    {
+      "id": "drow.seducer",
+      "name": "Seduttore",
+      "description": "+1 CD degli incantesimi/capacità magiche di ammaliamento; con Saggezza almeno15, Charme su Persone 1/giorno, LI pari al livello. Usa il requisito Saggezza della pagina italiana. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "+1 CD degli incantesimi/capacità magiche di ammaliamento; con Saggezza almeno15, Charme su Persone 1/giorno, LI pari al livello. Usa il requisito Saggezza della pagina italiana. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "drow.drowImmunities"
+      ]
+    }
+  ]
+}

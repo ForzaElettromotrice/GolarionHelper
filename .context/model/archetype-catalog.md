@@ -9,11 +9,13 @@ Read before changing archetype data or reviewing missing automation. Runtime own
 - Discovery includes the class introduction tables, linked archetype pages, nested sections such as the eleven Animal Shamans, and the setting-class pages linked by Golarion's class-options index. It finds Samurai's Santo della Spada even though the Samurai introduction has no archetype table.
 - `core/sheet/resources/archetypes/catalog.sources.json` is the consolidated provenance/status index; the three `*.sources.json` group reports preserve individual review notes. They are maintenance data, not runtime input.
 
-| Runtime file | Source entries | Included | Pending |
+Individual archetypes are authored in `core/sheet/resources/class-library/archetypes/<id>.json`. The following groups identify provenance reports, not files loaded by the app.
+
+| Source report group | Source entries | Included | Pending |
 | --- | ---: | ---: | ---: |
-| `core-early.json` | 282 | 249 | 33 |
-| `core-advanced.json` | 262 | 226 | 36 |
-| `other.json` | 220 | 186 | 34 |
+| `core-early.sources.json` | 282 | 249 | 33 |
+| `core-advanced.sources.json` | 262 | 226 | 36 |
+| `other.sources.json` | 220 | 186 | 34 |
 
 Source IDs remain distinct for genuinely different profiles with the same Italian name (for example the two Fighter Guardiano del Sapere sources). The first 22 reviewed Barbarian/Unchained Barbarian IDs are preserved in the expanded files; their temporary seed file is removed.
 

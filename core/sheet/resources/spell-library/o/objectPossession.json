@@ -1,0 +1,48 @@
+{
+  "id": "objectPossession",
+  "name": "Possedere Oggetto",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WITCH": 5,
+    "WIZARD": 5,
+    "MESMERIST": 5,
+    "OCCULTIST": 4,
+    "PSYCHIC": 5,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una gemma o un cristallo del valore di almeno 100 mo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/2 livelli)",
+  "target": "1 oggetto incustodito di taglia Grande o inferiore (minimo Minuscolo)",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Estende la possessione animante a oggetti di dimensioni maggiori rispetto alla variante inferiore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Possedere_Oggetto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Possedere Oggetto: https://golarion.altervista.org/wiki/Incantesimi/Possedere_Oggetto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

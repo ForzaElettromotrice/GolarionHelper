@@ -1,0 +1,39 @@
+{
+  "id": "demonGrafter",
+  "name": "Chirurgo Demoniaco",
+  "description": "Consente innesti di tessuti demoniaci su creature mortali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Chirurgo_Demoniaco",
+  "types": [
+    "itemCreation"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Demonologo",
+      "feat": {
+        "id": "demonologist"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (piani) 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Guarire 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Sapienza Magica 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Chirurgo Demoniaco: https://golarion.altervista.org/wiki/Talenti/Chirurgo_Demoniaco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (piani) 5 gradi; Prerequisito da verificare manualmente: Guarire 5 gradi; Prerequisito da verificare manualmente: Sapienza Magica 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

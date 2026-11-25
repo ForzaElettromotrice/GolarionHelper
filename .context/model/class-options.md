@@ -4,7 +4,7 @@ Read when changing options of the 44 playable classes. Source review now covers 
 
 ## Runtime Input Contract
 
-Files under `core/sheet/resources/class-options/` contain objects with exactly `optionSets` and `bindings` arrays. Source/provenance reports are separate `*.sources.json` maintenance files, never runtime inputs.
+Each shared option set is a single object in `core/sheet/resources/class-library/options/<setId>.json`; each owning class JSON contains its `bindings` array. The build derives the reachable set IDs, including nested references. The option resolver receives these records in the logical format below. The old `class-options/*.sources.json` files are provenance reports only.
 
 ```json
 {

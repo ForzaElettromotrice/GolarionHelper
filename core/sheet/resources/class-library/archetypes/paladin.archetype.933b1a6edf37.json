@@ -1,0 +1,48 @@
+{
+  "id": "paladin.archetype.933b1a6edf37",
+  "classType": "paladin",
+  "name": "Giuramento Contro la Corruzione",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_la_Corruzione Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.feature.19f84fbac558",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.2ee066756d50",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.f1744d66dd29",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "paladin.feature.19f84fbac558",
+    "paladin.feature.2ee066756d50",
+    "paladin.feature.f1744d66dd29"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.933b1a6edf37.instructions",
+      "name": "Giuramento Contro la Corruzione",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_la_Corruzione Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.933b1a6edf37.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_la_Corruzione Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

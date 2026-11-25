@@ -1,0 +1,31 @@
+{
+  "id": "cornugonShield",
+  "name": "Scudo del Cornugon",
+  "description": "La catena chiodata conferisce un vantaggio difensivo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Scudo_del_Cornugon",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 15",
+      "expression": "@dex >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Catena Chiodata) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Scudo del Cornugon: https://golarion.altervista.org/wiki/Talenti/Scudo_del_Cornugon. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Catena Chiodata) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,43 @@
+{
+  "id": "cockatriceStrike",
+  "name": "Colpo della Cockatrice",
+  "description": "Un colpo critico qualificato può pietrificare il bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_della_Cockatrice",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Collera della Medusa",
+      "feat": {
+        "id": "medusasWrath"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Pugno della Gorgone",
+      "feat": {
+        "id": "gorgonsFist"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +14",
+      "expression": "@bab >= 14"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo della Cockatrice: https://golarion.altervista.org/wiki/Talenti/Colpo_della_Cockatrice. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

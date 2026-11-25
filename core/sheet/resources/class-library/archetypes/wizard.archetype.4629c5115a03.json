@@ -1,0 +1,83 @@
+{
+  "id": "wizard.archetype.4629c5115a03",
+  "classType": "wizard",
+  "name": "Mago degli Exploit",
+  "description": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Mago_degli_Exploit Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "wizard.feature.e0eb2aa5ac5e",
+      "type": "replace"
+    },
+    {
+      "featureId": "wizard.feature.5805de6bd2db",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "wizard.feature.e0eb2aa5ac5e",
+    "wizard.feature.5805de6bd2db"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "wizard.archetype.4629c5115a03.instructions",
+      "name": "Mago degli Exploit",
+      "description": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Mago_degli_Exploit Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "wizard.archetype.4629c5115a03.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Mago. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mago/Archetipi#Mago_degli_Exploit Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.4629c5115a03.feature.1",
+      "name": "Scorta Arcana (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Mago_degli_Exploit",
+      "progression": [
+        {
+          "id": "wizard.archetype.4629c5115a03.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Mago degli Exploit — Scorta Arcana (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Mago_degli_Exploit Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "wizard.archetype.4629c5115a03.feature.2",
+      "name": "Exploit del Mago",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mago/Archetipi#Mago_degli_Exploit",
+      "progression": [
+        {
+          "id": "wizard.archetype.4629c5115a03.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Mago degli Exploit — Exploit del Mago: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mago/Archetipi#Mago_degli_Exploit Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

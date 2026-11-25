@@ -1,0 +1,113 @@
+{
+  "id": "ranger.archetype.7c25cf5397f6",
+  "classType": "ranger",
+  "name": "Cacciatore di Trofei",
+  "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_di_Trofei Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Seguire Tracce. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "ranger.feature.70580438b030",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.87b0d1e8f950",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.b66f79f3e4f4",
+      "type": "alter"
+    },
+    {
+      "featureId": "ranger.feature.dde076a46463",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "ranger.feature.70580438b030",
+    "ranger.feature.87b0d1e8f950",
+    "ranger.feature.b66f79f3e4f4",
+    "ranger.feature.dde076a46463"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "ranger.archetype.7c25cf5397f6.instructions",
+      "name": "Cacciatore di Trofei",
+      "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_di_Trofei Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Seguire Tracce. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "ranger.archetype.7c25cf5397f6.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_di_Trofei Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Seguire Tracce. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.7c25cf5397f6.feature.77db8f80d6",
+      "name": "Seguire Tracce Migliorato (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_di_Trofei",
+      "progression": [
+        {
+          "id": "ranger.archetype.7c25cf5397f6.feature.77db8f80d6.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore di Trofei — Seguire Tracce Migliorato (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_di_Trofei Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.7c25cf5397f6.feature.cbb55037f2",
+      "name": "Stile con Armi da Fuoco",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_di_Trofei",
+      "progression": [
+        {
+          "id": "ranger.archetype.7c25cf5397f6.feature.cbb55037f2.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore di Trofei — Stile con Armi da Fuoco: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_di_Trofei Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.7c25cf5397f6.feature.6cd2c8a432",
+      "name": "Mira del Cacciatore (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_di_Trofei",
+      "progression": [
+        {
+          "id": "ranger.archetype.7c25cf5397f6.feature.6cd2c8a432.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore di Trofei — Mira del Cacciatore (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger/Archetipi#Cacciatore_di_Trofei Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

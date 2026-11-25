@@ -1,0 +1,52 @@
+{
+  "id": "summonMonsterIII",
+  "name": "Evoca Mostri III",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ANTIPALADIN": 3,
+    "ARCANIST": 3,
+    "BARD": 3,
+    "CLERIC": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "PSYCHIC": 3,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "SKALD": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "una borsa minuscola e una piccola candela",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "una creatura evocata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Evoca un servitore extraplanare dalla lista di terzo livello. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Mostri#Evoca_Mostri_III",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Evoca Mostri III: https://golarion.altervista.org/wiki/Incantesimi/Evoca_Mostri#Evoca_Mostri_III Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Descrittore non presente nel vocabolario del modello: vedi testo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

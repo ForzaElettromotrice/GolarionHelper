@@ -1,0 +1,28 @@
+{
+  "id": "structuralStrike",
+  "name": "Colpo Strutturale",
+  "description": "Estende Colpo Preciso contro alcune creature normalmente protette. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_Strutturale",
+  "types": [
+    "combat",
+    "panache"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (Ingegneria) 5 gradi, Privilegio di classe Colpo Preciso o Gesta Colpo Preciso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo Strutturale: https://golarion.altervista.org/wiki/Talenti/Colpo_Strutturale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (Ingegneria) 5 gradi, Privilegio di classe Colpo Preciso o Gesta Colpo Preciso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

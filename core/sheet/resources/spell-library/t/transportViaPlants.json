@@ -1,0 +1,41 @@
+{
+  "id": "transportViaPlants",
+  "name": "Trasporto Vegetale",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "TELEPORTATION",
+  "spellLevelByClass": {
+    "HUNTER": 6,
+    "DRUID": 6,
+    "SHAMAN": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "UNLIMITED",
+  "rangeDescription": "illimitato",
+  "target": "se stessi e gli oggetti toccati o le creature consenzienti toccate",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Consente un viaggio istantaneo fra due piante della stessa specie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Trasporto_Vegetale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Trasporto Vegetale: https://golarion.altervista.org/wiki/Incantesimi/Trasporto_Vegetale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: se stessi e gli oggetti toccati o le creature consenzienti toccate. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,94 @@
+{
+  "id": "bard.archetype.4a3783368609",
+  "classType": "bard",
+  "name": "Demagogo",
+  "description": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Demagogo Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "bard.feature.8b1162bb0751",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.82871e5e9434",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.385f142880cc",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.e91104f280e1",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "bard.feature.8b1162bb0751",
+    "bard.feature.82871e5e9434",
+    "bard.feature.385f142880cc"
+  ],
+  "removedAcquisitionIds": [
+    "bard.feature.e91104f280e1.level1"
+  ],
+  "addedFeatures": [
+    {
+      "id": "bard.archetype.4a3783368609.instructions",
+      "name": "Demagogo",
+      "description": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Demagogo Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "bard.archetype.4a3783368609.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Demagogo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.4a3783368609.feature.1",
+      "name": "Famoso",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Demagogo",
+      "progression": [
+        {
+          "id": "bard.archetype.4a3783368609.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Demagogo — Famoso: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Demagogo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.4a3783368609.feature.2",
+      "name": "Esibizione Bardica",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Demagogo",
+      "progression": [
+        {
+          "id": "bard.archetype.4a3783368609.feature.2.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Demagogo — Esibizione Bardica: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Demagogo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "mindBlank",
+  "name": "Vuoto Mentale",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 8,
+    "WITCH": 8,
+    "WIZARD": 8,
+    "PSYCHIC": 7,
+    "SORCERER": 8
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "LIBERATION": 8,
+      "PROTECTION": 8
+    },
+    "subdomain": {
+      "THOUGHT": 8
+    }
+  },
+  "spellLevelByBloodline": {
+    "ABERRANT": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "HOUR",
+  "durationDescription": "24 ore",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Protegge dalla divinazione e rafforza la resistenza all'influenza mentale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Vuoto_Mentale",
+  "effects": [
+    {
+      "id": "mentalSaves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "resistance",
+      "expression": "8",
+      "condition": "Contro incantesimi ed effetti di influenza mentale"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Gestire l'occultamento dalle divinazioni e i relativi effetti di desiderio o miracolo. Non conferisce immunità generale all'influenza mentale. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

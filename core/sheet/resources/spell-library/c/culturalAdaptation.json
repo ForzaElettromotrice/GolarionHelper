@@ -1,0 +1,65 @@
+{
+  "id": "culturalAdaptation",
+  "name": "Adattamento Culturale",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "BARD": 1,
+    "CLERIC": 1,
+    "WIZARD": 1,
+    "MEDIUM": 1,
+    "OCCULTIST": 1,
+    "ORACLE": 1,
+    "PSYCHIC": 1,
+    "WARPRIEST": 1,
+    "SKALD": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un documento scritto nella lingua della cultura da emulare",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Adatta modi e accento a una cultura scelta, facilitando l'influenza sociale e il camuffamento culturale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Adattamento_Culturale",
+  "effects": [
+    {
+      "id": "diplomacy",
+      "type": "modifier",
+      "resource": "skill.diplomacy",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "circumstance",
+      "expression": "2",
+      "condition": "Per influenzare membri della cultura scelta, senza altri bonus da appartenenza culturale"
+    },
+    {
+      "id": "disguise",
+      "type": "modifier",
+      "resource": "skill.disguise",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "circumstance",
+      "expression": "2",
+      "condition": "Per apparire membro della cultura scelta, non una persona specifica"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Non insegna lingue. Il bonus sociale non si cumula con quello da appartenenza alla stessa cultura. Annullamento di penalità culturali e +1 CD dei propri charme contro nativi della cultura restano manuali. Gestire manualmente durata e risoluzione del lancio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

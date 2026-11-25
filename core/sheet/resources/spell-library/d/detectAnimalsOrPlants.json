@@ -1,0 +1,37 @@
+{
+  "id": "detectAnimalsOrPlants",
+  "name": "Individuazione di Animali o Vegetali",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "DRUID": 1,
+    "PSYCHIC": 1,
+    "RANGER": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "area": "emanazione a forma di cono",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione, fino a 10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Localizza esemplari di una specie vegetale o animale prescelta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Individuazione_di_Animali_o_Vegetali",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Individuazione di Animali o Vegetali: https://golarion.altervista.org/wiki/Incantesimi/Individuazione_di_Animali_o_Vegetali Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

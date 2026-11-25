@@ -1,0 +1,31 @@
+{
+  "id": "ironcladLogic",
+  "name": "Logica Inviolabile",
+  "description": "Rafforza la persuasione razionale e adatta all'Intelligenza alcune tattiche dei duelli verbali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Logica_Inviolabile",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 19",
+      "expression": "@int >= 19"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Diplomazia 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Logica Inviolabile: https://golarion.altervista.org/wiki/Talenti/Logica_Inviolabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Diplomazia 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

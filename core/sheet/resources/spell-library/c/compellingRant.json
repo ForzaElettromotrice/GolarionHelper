@@ -1,0 +1,50 @@
+{
+  "id": "compellingRant",
+  "name": "Filippica Coinvolgente",
+  "school": "ENCHANTMENT",
+  "descriptors": [],
+  "subschool": "CHARM",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "CLERIC": 5,
+    "INQUISITOR": 5,
+    "WIZARD": 5,
+    "MESMERIST": 5,
+    "ORACLE": 5,
+    "PSYCHIC": 5,
+    "WARPRIEST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "foglio di appunti scritti a mano",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "un numero qualsiasi di creature",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione più 1 round/livello, fino a 1 ora/ livello",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Una tirata incessante tiene avvinti gli ascoltatori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Filippica_Coinvolgente",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Filippica Coinvolgente: https://golarion.altervista.org/wiki/Filippica_Coinvolgente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

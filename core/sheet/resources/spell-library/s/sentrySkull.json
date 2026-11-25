@@ -1,0 +1,45 @@
+{
+  "id": "sentrySkull",
+  "name": "Teschio Sentinella",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "WITCH": 2
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "1 ora",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una gemma d'onice del valore di almeno 10 mo",
+  "materialComponentCostInGoldPieces": 10,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una testa mozzata toccata",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente (I); vedi testo",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasforma una testa recisa in un punto di sorveglianza mediante la riattivazione dei suoi sensi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Teschio_Sentinella",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Teschio Sentinella: https://golarion.altervista.org/wiki/Incantesimi/Teschio_Sentinella Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

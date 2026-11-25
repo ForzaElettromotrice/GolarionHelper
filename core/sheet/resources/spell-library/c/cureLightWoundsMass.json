@@ -1,0 +1,60 @@
+{
+  "id": "cureLightWoundsMass",
+  "name": "Cura Ferite Leggere di Massa",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "BARD": 5,
+    "HUNTER": 6,
+    "CLERIC": 5,
+    "DRUID": 6,
+    "WITCH": 5,
+    "INQUISITOR": 5,
+    "OCCULTIST": 5,
+    "ORACLE": 5,
+    "WARPRIEST": 5,
+    "SKALD": 5,
+    "SHAMAN": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura/livello; due delle quali non possono trovarsi a più di 9 m l’una dall’altra",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "HALF",
+      "description": "Volontà dimezza (innocuo) o Volontà dimezza; vedi testo;"
+    },
+    {
+      "savingThrowType": "WILL",
+      "effect": "HALF",
+      "description": "Volontà dimezza (innocuo) o Volontà dimezza; vedi testo;"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo); o si vedi testo",
+  "description": "Guarisce più creature con la potenza della versione leggera. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Cura_Ferite_Leggere_di_Massa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Cura Ferite Leggere di Massa: https://golarion.altervista.org/wiki/Incantesimi/Cura_Ferite_Leggere_di_Massa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura/livello; due delle quali non possono trovarsi a più di 9 m l’una dall’altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

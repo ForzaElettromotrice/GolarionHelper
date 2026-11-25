@@ -1,0 +1,573 @@
+{
+  "id": "oread",
+  "name": "Oreade",
+  "qualities": [
+    {
+      "id": "oread.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Esterno nativo. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "oread.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "oread.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "oread.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "oread.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "terran",
+          "type": "languageGrant",
+          "languageId": "terran"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aquan",
+            "auran",
+            "elven",
+            "gnome",
+            "halfling",
+            "ignan",
+            "dwarven",
+            "undercommon"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oread.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "bardPerformanceRange",
+          "type": "favoredClassBonus",
+          "name": "Bardo — +1,5 m al raggio di una esibizione scelta; massimo+9 m per esibizione",
+          "classes": [
+            "bard"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1,5 m al raggio di una esibizione scelta; massimo+9 m per esibizione. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1,5 m al raggio di una esibizione scelta; massimo+9 m per esibizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "summonerEidolonArmor",
+          "type": "favoredClassBonus",
+          "name": "Convocatore — +1 armatura naturale all'eidolon",
+          "classes": [
+            "summoner"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 armatura naturale all'eidolon. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 armatura naturale all'eidolon. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkCritical",
+          "type": "favoredClassBonus",
+          "name": "Monaco — +1 conferma critica senz'armi; massimo+5, non cumulabile con Critico Focalizzato",
+          "classes": [
+            "monk"
+          ],
+          "selectionsPerBenefit": 3,
+          "description": "+1 conferma critica senz'armi; massimo+5, non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 conferma critica senz'armi; massimo+5, non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "paladinAura",
+          "type": "favoredClassBonus",
+          "name": "Paladino — +1 al bonus per gli alleati di Aura di Coraggio/Fermezza",
+          "classes": [
+            "paladin"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 al bonus per gli alleati di Aura di Coraggio/Fermezza. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 al bonus per gli alleati di Aura di Coraggio/Fermezza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rangerCompanionArmor",
+          "type": "favoredClassBonus",
+          "name": "Ranger — +1 armatura naturale al compagno animale, conservata dal sostituto",
+          "classes": [
+            "ranger"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 armatura naturale al compagno animale, conservata dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 armatura naturale al compagno animale, conservata dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "clericPlanes",
+          "type": "favoredClassBonus",
+          "name": "Chierico — Piano della Terra",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Conoscenze(piani) su Terra e sue creature.",
+          "effects": [
+            {
+              "id": "planes",
+              "type": "modifier",
+              "resource": "skill.knowledge.planes",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Piano della Terra o creature di terra"
+            }
+          ]
+        },
+        {
+          "id": "druidNature",
+          "type": "favoredClassBonus",
+          "name": "Druido — Natura sotterranea",
+          "classes": [
+            "druid"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Conoscenze(natura) su piante/animali scavatori.",
+          "effects": [
+            {
+              "id": "nature",
+              "type": "modifier",
+              "resource": "skill.knowledge.nature",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Piante o animali che scavano nel terreno"
+            }
+          ]
+        },
+        {
+          "id": "fighterDefense",
+          "type": "favoredClassBonus",
+          "name": "Guerriero — Difesa solida",
+          "classes": [
+            "fighter"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 DMC contro spingere/trascinare.",
+          "effects": [
+            {
+              "id": "bullRush",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.bullRush",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "drag",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.drag",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "oread.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "oread.energyResistance",
+      "name": "Resistenza all'Energia",
+      "description": "Resistenza all'Energia",
+      "effects": [
+        {
+          "id": "acid",
+          "type": "energyResistance",
+          "energy": "acid",
+          "expression": "5"
+        }
+      ]
+    },
+    {
+      "id": "oread.earthAffinity",
+      "name": "Affinità con la Terra",
+      "description": "Affinità con la Terra",
+      "effects": [
+        {
+          "id": "affinity",
+          "type": "reminder",
+          "message": "Stirpe elementale terra: Carisma effettivo+2 per magie/capacità da stregone. Dominio Terra: LI+1 a poteri/incantesimi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "oread.spellLikeAbility",
+      "name": "Capacità Magiche",
+      "description": "Capacità Magiche",
+      "effects": [
+        {
+          "id": "spell",
+          "type": "reminder",
+          "message": "Pietra Magica1/giorno; LI pari al livello, CD11 + Carisma. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "oread.ferrousGrowth",
+      "name": "Crescita Ferrosa",
+      "description": "1/giorno toccare ferro/acciaio non magico crea oggetto massimo5 kg per10 minuti, o finché rotto/distrutto; poi torna originale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "1/giorno toccare ferro/acciaio non magico crea oggetto massimo5 kg per10 minuti, o finché rotto/distrutto; poi torna originale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "oread.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "oread.crystallineForm",
+      "name": "Forma Cristallina",
+      "description": "Forma Cristallina",
+      "effects": [
+        {
+          "id": "armor",
+          "type": "modifier",
+          "resource": "armorClass.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Contro attacchi a raggio"
+        },
+        {
+          "id": "deflect",
+          "type": "reminder",
+          "message": "1/giorno deviare un raggio come Deviare Frecce; consumo manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "oread.earthAffinity"
+      ]
+    },
+    {
+      "id": "oread.earthInsight",
+      "name": "Intuito della Terra",
+      "description": "Evoca Mostri/Alleato Naturale durano2 round aggiuntivi per creature di terra. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Evoca Mostri/Alleato Naturale durano2 round aggiuntivi per creature di terra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "oread.earthAffinity"
+      ]
+    },
+    {
+      "id": "oread.mountainBorn",
+      "name": "Nato dalla Montagna",
+      "description": "Nato dalla Montagna",
+      "effects": [
+        {
+          "id": "acrobatics",
+          "type": "modifier",
+          "resource": "skill.acrobatics",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Attraversare strette sporgenze"
+        },
+        {
+          "id": "saves",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Fatica o infermità dovute all'altitudine"
+        }
+      ],
+      "replaces": [
+        "oread.spellLikeAbility"
+      ]
+    },
+    {
+      "id": "oread.graniteSkin",
+      "name": "Pelle di Granito",
+      "description": "Pelle di Granito",
+      "effects": [
+        {
+          "id": "armor",
+          "type": "modifier",
+          "resource": "armorClass.solid",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "naturalArmor",
+          "expression": "1"
+        }
+      ],
+      "replaces": [
+        "oread.energyResistance"
+      ]
+    },
+    {
+      "id": "oread.stoneInTheBlood",
+      "name": "Pietra nel Sangue",
+      "description": "Subire acido, anche assorbito dalla resistenza, attiva Guarigione Rapida2 per1 round; massimo2 PF/livello al giorno. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Subire acido, anche assorbito dalla resistenza, attiva Guarigione Rapida2 per1 round; massimo2 PF/livello al giorno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "oread.earthAffinity"
+      ]
+    },
+    {
+      "id": "oread.fertileSoil",
+      "name": "Suolo Fertile",
+      "description": "Stregone di stirpe verdeggiante: Carisma effettivo+2 per magie/capacità. Chierico con Dominio Vegetale: LI+1 a poteri/incantesimi. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Stregone di stirpe verdeggiante: Carisma effettivo+2 per magie/capacità. Chierico con Dominio Vegetale: LI+1 a poteri/incantesimi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "oread.earthAffinity"
+      ]
+    },
+    {
+      "id": "oread.treacherousEarth",
+      "name": "Terra Insidiosa",
+      "description": "1/giorno tocco: terreno, sabbia o pietra non lavorata entro3 m diventano terreno difficile per minuti pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "1/giorno tocco: terreno, sabbia o pietra non lavorata entro3 m diventano terreno difficile per minuti pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "oread.spellLikeAbility"
+      ]
+    }
+  ]
+}

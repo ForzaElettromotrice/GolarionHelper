@@ -1,0 +1,41 @@
+{
+  "id": "exorcisingMutilation",
+  "name": "Mutilazione Esorcizzante",
+  "description": "Ferirsi gravemente permette di contrastare il dominio o la possessione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mutilazione_Esorcizzante",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Costituzione 15",
+      "expression": "@con >= 15"
+    },
+    {
+      "description": "Lucidità nel Dolore",
+      "feat": {
+        "id": "clarityOfPain"
+      }
+    },
+    {
+      "description": "Volontà di Ferro",
+      "feat": {
+        "id": "ironWill"
+      }
+    },
+    {
+      "description": "Volontà di Ferro Migliorata",
+      "feat": {
+        "id": "improvedIronWill"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mutilazione Esorcizzante: https://golarion.altervista.org/wiki/Talenti/Mutilazione_Esorcizzante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

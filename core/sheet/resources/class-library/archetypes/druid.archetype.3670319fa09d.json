@@ -1,0 +1,195 @@
+{
+  "id": "druid.archetype.3670319fa09d",
+  "classType": "druid",
+  "name": "Parlafolletto",
+  "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Parlafolletto Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Forma Selvatica, Competenze della classe. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "druid.spontaneousCasting",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.4705d0c8642b",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.spellcasting",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.feature.a78313d04433",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.proficiencies",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.classSkills",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.baseAttackBonus",
+      "type": "alter"
+    },
+    {
+      "featureId": "druid.skillRanksPerLevel",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "druid.spontaneousCasting",
+    "druid.feature.4705d0c8642b",
+    "druid.feature.a78313d04433",
+    "druid.proficiencies",
+    "druid.classSkills",
+    "druid.baseAttackBonus",
+    "druid.skillRanksPerLevel"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "druid.archetype.3670319fa09d.instructions",
+      "name": "Parlafolletto",
+      "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Parlafolletto Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "druid.archetype.3670319fa09d.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Parlafolletto Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Forma Selvatica, Competenze della classe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.3670319fa09d.feature.1",
+      "name": "Magia Fatata",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Parlafolletto",
+      "progression": [
+        {
+          "id": "druid.archetype.3670319fa09d.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Parlafolletto — Magia Fatata: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Parlafolletto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.3670319fa09d.feature.2",
+      "name": "Parlare Folletto (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Parlafolletto",
+      "progression": [
+        {
+          "id": "druid.archetype.3670319fa09d.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Parlafolletto — Parlare Folletto (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Parlafolletto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.3670319fa09d.feature.3",
+      "name": "Malizia Selvaggia (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Parlafolletto",
+      "progression": [
+        {
+          "id": "druid.archetype.3670319fa09d.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Parlafolletto — Malizia Selvaggia (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Parlafolletto Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.3670319fa09d.classSkills.1",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Concessione dal privilegio di archetipo.",
+      "progression": [
+        {
+          "id": "druid.archetype.3670319fa09d.classSkills.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "skill0",
+              "type": "classSkillGrant",
+              "resource": "skill.disguise"
+            },
+            {
+              "id": "skill1",
+              "type": "classSkillGrant",
+              "resource": "skill.diplomacy"
+            },
+            {
+              "id": "skill2",
+              "type": "classSkillGrant",
+              "resource": "skill.senseMotive"
+            },
+            {
+              "id": "skill3",
+              "type": "classSkillGrant",
+              "resource": "skill.bluff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.3670319fa09d.skillRankRate",
+      "name": "Progressione alternativa",
+      "description": "Differenza rispetto ai contributi base della classe.",
+      "progression": [
+        {
+          "id": "druid.archetype.3670319fa09d.skillRankRate.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "rankDifference",
+              "type": "contribution",
+              "resource": "skill.ranks.max",
+              "expression": "@classLevel * ((5 + @intSkillRanksMod) * (6 + @intSkillRanksMod > 1) - (3 + @intSkillRanksMod) * (4 + @intSkillRanksMod > 1))"
+            },
+            {
+              "id": "baseAttackDifference",
+              "type": "contribution",
+              "resource": "baseAttackBonus",
+              "expression": "@classLevel / 2 - 3 * @classLevel / 4"
+            },
+            {
+              "id": "sylvan",
+              "type": "languageGrant",
+              "languageId": "sylvan"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "nightStalker",
+  "name": "Cacciatore Notturno",
+  "description": "Elimina le penalità di taglia alle prove di Furtività nelle condizioni di oscurità previste. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Cacciatore_Notturno",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Abilità Focalizzata (Furtività), Scurovisione, Ogre o Mezzogre, taglia Grande o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Cacciatore Notturno: https://golarion.altervista.org/wiki/Talenti/Cacciatore_Notturno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Abilità Focalizzata (Furtività), Scurovisione, Ogre o Mezzogre, taglia Grande o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

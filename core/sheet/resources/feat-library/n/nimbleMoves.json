@@ -1,0 +1,23 @@
+{
+  "id": "nimbleMoves",
+  "name": "Passo Leggero",
+  "description": "Permette di ignorare una breve porzione di terreno difficile durante il movimento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Passo_Leggero",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Passo Leggero: https://golarion.altervista.org/wiki/Talenti/Passo_Leggero. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

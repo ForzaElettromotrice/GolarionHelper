@@ -1,0 +1,27 @@
+{
+  "id": "expandedPreparation",
+  "name": "Preparazione Aggiuntiva",
+  "description": "Amplia gli slot disponibili per la preparazione secondo le condizioni del talento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Preparazione_Aggiuntiva",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arcanista di 1° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Preparazione Aggiuntiva: https://golarion.altervista.org/wiki/Talenti/Preparazione_Aggiuntiva. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arcanista di 1° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,61 @@
+{
+  "id": "calmEmotions",
+  "name": "Calmare Emozioni",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 2,
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2,
+    "SKALD": 2,
+    "SHAMAN": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "CHARM": 2
+    },
+    "subdomain": {
+      "FAMILY": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "creature in una propagazione con raggio di 6 m",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione, fino a 1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega;"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Sopprime forti emozioni e le influenze emotive previste, impedendo comportamenti aggressivi finché l'effetto permane. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Calmare_Emozioni",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Calmare Emozioni: https://golarion.altervista.org/wiki/Incantesimi/Calmare_Emozioni Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

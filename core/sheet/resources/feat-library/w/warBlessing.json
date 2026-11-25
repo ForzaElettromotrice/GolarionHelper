@@ -1,0 +1,27 @@
+{
+  "id": "warBlessing",
+  "name": "Benedizione da Battaglia",
+  "description": "Concede accesso limitato ad alcune benedizioni minori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Benedizione_da_Battaglia",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Domini o Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Benedizione da Battaglia: https://golarion.altervista.org/wiki/Talenti/Benedizione_da_Battaglia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Domini o Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

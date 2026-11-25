@@ -1,0 +1,46 @@
+{
+  "id": "idInsinuationIII",
+  "name": "Insinuazione nell'ID III",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "PSYCHIC": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "3 creature",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione + 1 round",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Colpisce tre menti con una confusione ulteriormente aggravata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Insinuazione_nell%27ID#Insinuazione_nell'ID_III",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Insinuazione nell'ID III: https://golarion.altervista.org/wiki/Incantesimi/Insinuazione_nell%27ID#Insinuazione_nell'ID_III Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 3 creature. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

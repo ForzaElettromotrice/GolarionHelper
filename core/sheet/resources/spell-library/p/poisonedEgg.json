@@ -1,0 +1,62 @@
+{
+  "id": "poisonedEgg",
+  "name": "Uovo Avvelenato",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "POISON"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "WIZARD": 1,
+    "SORCERER": 1,
+    "BARD": 1,
+    "SKALD": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "MAGUS": 1,
+    "SHAMAN": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 uovo",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no (oggetto)",
+  "description": "Trasforma un uovo in una singola dose di veleno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Uovo_Avvelenato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Uovo Avvelenato: https://golarion.altervista.org/wiki/Incantesimi/Uovo_Avvelenato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Arcanista/Mago/Stregone 1, Assassino della Mantide Rossa 1, Bardo/Scaldo 1, Chierico/Oracolo/Sacerdote Guerriero 1, Fattucchiere 1, Inquisitore 1, Magus 1, Sciamano 1 (Norgorber) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "Lista di classe non rappresentata nel modello: Assassino della Mantide Rossa 1 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview3",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno (oggetto) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

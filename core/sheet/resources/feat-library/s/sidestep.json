@@ -1,0 +1,35 @@
+{
+  "id": "sidestep",
+  "name": "Passo Laterale",
+  "description": "Un attacco nemico mancato permette un piccolo spostamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Passo_Laterale",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Mobilità",
+      "feat": {
+        "id": "mobility"
+      }
+    },
+    {
+      "description": "Schivare",
+      "feat": {
+        "id": "dodge"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Passo Laterale: https://golarion.altervista.org/wiki/Talenti/Passo_Laterale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

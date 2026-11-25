@@ -1,0 +1,45 @@
+{
+  "id": "ectoplasmaticEruption",
+  "name": "Eruzione Ectoplasmatica",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "PSYCHIC": 7,
+    "SPIRITUALIST": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "esplosione del raggio di 9 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza e Volontà parziale; vedi testo"
+    },
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Riflessi dimezza e Volontà parziale; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Un'esplosione di ectoplasma ferisce e intralcia, costringendo le presenze eteree verso il Piano Materiale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Eruzione_Ectoplasmatica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Eruzione Ectoplasmatica: https://golarion.altervista.org/wiki/Incantesimi/Eruzione_Ectoplasmatica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

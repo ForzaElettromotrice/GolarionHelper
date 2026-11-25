@@ -1,0 +1,98 @@
+{
+  "id": "crushingDespair",
+  "name": "Disperazione Opprimente",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "EMOTION",
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 3,
+    "WITCH": 4,
+    "BLOODRAGER": 4,
+    "WIZARD": 4,
+    "MESMERIST": 3,
+    "PSYCHIC": 4,
+    "SKALD": 3,
+    "SPIRITUALIST": 4,
+    "SORCERER": 4
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "ISOLATION": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "area": "esplosione a forma di cono",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Impone -2 ad attacchi, danni delle armi, tiri salvezza, abilità e prove di caratteristica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Disperazione_Opprimente",
+  "effects": [
+    {
+      "id": "bonus0",
+      "type": "modifier",
+      "resource": "attack.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "2"
+    },
+    {
+      "id": "bonus1",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "2"
+    },
+    {
+      "id": "bonus2",
+      "type": "modifier",
+      "resource": "skill.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "2"
+    },
+    {
+      "id": "damage",
+      "type": "modifier",
+      "resource": "damage.weaponRoll",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "2"
+    },
+    {
+      "id": "abilityChecks",
+      "type": "modifier",
+      "resource": "abilityCheck.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "penalty",
+      "expression": "2"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare soltanto alle creature influenzate nel cono; gestire il contrasto con Buone Speranze. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

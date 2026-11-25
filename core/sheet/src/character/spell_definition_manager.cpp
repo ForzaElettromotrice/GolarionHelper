@@ -1,37 +1,32 @@
 #include "golarion/character/spell_definition_manager.hpp"
 
-#include "golarion/character/spell_definition_catalog.hpp"
+#include "golarion/catalog/catalog_reader.hpp"
+#include "golarion/catalog/definition_path.hpp"
 #include "golarion/character/spell_definition_json.hpp"
 #include "golarion/util/string_utils.hpp"
 
-#include <nlohmann/json.hpp>
-
-#include <stdexcept>
-#include <utility>
-
-namespace
-{
-    using Json = nlohmann::json;
-}
-
 namespace golarion
 {
-    std::vector<SpellDefinitionManager::CatalogEntry> SpellDefinitionManager::catalogEntries()
+    SpellDefinitionManager::SpellDefinitionManager()
     {
-        const std::scoped_lock lock(mutex_);
-        if (!loaded_) loadCatalog();
-        std::vector<CatalogEntry> result;
-        result.reserve(definitions_.size());
-        for (const auto &[id, spell] : definitions_)
-            result.push_back({id, spell.name, spell.spellLevelByClass});
-        return result;
-    }
-    bool SpellDefinitionManager::contains(std::string_view id)
-    {
-        const auto key = normalize(id);
-        const std::scoped_lock lock(mutex_);
-        if (!loaded_) loadCatalog();
-        return definitions_.contains(key);
+        const auto index = catalog::readFile("spell-library/index.json");
+        if (!index.is_array()) throw std::invalid_argument("Spell index must be an array");
+        for (const auto &entry : index)
+        {
+            const auto id = entry.at("id").get<std::string>();
+            catalog::definitionPath("spell-library", id);
+            CatalogEntry summary{id, entry.at("name").get<std::string>(), {}};
+            const auto &levels = entry.at("levels");
+            if (!levels.is_object()) throw std::invalid_argument("Invalid spell index levels: " + id);
+            for (const auto &[key, value] : levels.items())
+            {
+                if (!value.is_number_integer() || value < 0 || value > 9)
+                    throw std::invalid_argument("Invalid spell index level: " + id);
+                summary.levels.emplace(characterClassFromId(key), value.get<int>());
+            }
+            if (!entries_.emplace(id, std::move(summary)).second)
+                throw std::invalid_argument("Duplicate spell index ID: " + id);
+        }
     }
 
     SpellDefinitionManager &SpellDefinitionManager::instance()
@@ -40,50 +35,29 @@ namespace golarion
         return manager;
     }
 
-    const SpellDefinition &SpellDefinitionManager::get(std::string_view spellDefinitionId)
+    std::vector<SpellDefinitionManager::CatalogEntry> SpellDefinitionManager::catalogEntries()
     {
-        const std::string normalizedId = normalize(spellDefinitionId);
-        const std::scoped_lock lock(mutex_);
-        if (!loaded_)
-        {
-            loadCatalog();
-        }
-
-        const auto definition = definitions_.find(normalizedId);
-        if (definition == definitions_.end())
-        {
-            throw std::invalid_argument("spell definition is not registered: " + normalizedId);
-        }
-        return definition->second;
+        std::vector<CatalogEntry> result;
+        result.reserve(entries_.size());
+        for (const auto &[id, entry] : entries_) result.push_back(entry);
+        return result;
     }
 
-    void SpellDefinitionManager::loadCatalog()
+    bool SpellDefinitionManager::contains(std::string_view id)
     {
-        try
-        {
-            const Json catalog = catalog::loadSpellDefinitionCatalog();
-            if (!catalog.is_array())
-            {
-                throw std::invalid_argument("spell definition catalog must be a JSON array");
-            }
+        return entries_.contains(normalize(id));
+    }
 
-            std::map<std::string, SpellDefinition> loadedDefinitions;
-            for (const Json &entry : catalog)
-            {
-                SpellDefinition definition = spellDefinitionFromJson(entry);
-                const std::string id = definition.id;
-                if (!loadedDefinitions.emplace(id, std::move(definition)).second)
-                {
-                    throw std::invalid_argument("spell definition is duplicated: " + id);
-                }
-            }
-
-            definitions_ = std::move(loadedDefinitions);
-            loaded_ = true;
-        }
-        catch (const nlohmann::json::exception &exception)
-        {
-            throw std::invalid_argument("invalid spell definition catalog: " + std::string(exception.what()));
-        }
+    const SpellDefinition &SpellDefinitionManager::get(std::string_view id)
+    {
+        const auto key = normalize(id);
+        const auto entry = entries_.find(key);
+        if (entry == entries_.end()) throw std::invalid_argument("spell definition is not registered: " + key);
+        const std::scoped_lock lock(mutex_);
+        if (const auto cached = definitions_.find(key); cached != definitions_.end()) return cached->second;
+        auto definition = spellDefinitionFromJson(catalog::readFile(catalog::definitionPath("spell-library", key)));
+        if (definition.id != key || definition.name != entry->second.name || definition.spellLevelByClass != entry->second.levels)
+            throw std::invalid_argument("Spell definition disagrees with index: " + key);
+        return definitions_.emplace(key, std::move(definition)).first->second;
     }
 }

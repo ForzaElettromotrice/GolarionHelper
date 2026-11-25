@@ -1,0 +1,56 @@
+{
+  "id": "daylight",
+  "name": "Luce Diurna",
+  "school": "EVOCATION",
+  "descriptors": [
+    "LIGHT"
+  ],
+  "spellLevelByClass": {
+    "ADEPT": 3,
+    "ARCANIST": 3,
+    "BARD": 3,
+    "HUNTER": 3,
+    "CLERIC": 3,
+    "DRUID": 3,
+    "INQUISITOR": 3,
+    "WIZARD": 3,
+    "MAGUS": 3,
+    "OCCULTIST": 3,
+    "ORACLE": 3,
+    "PALADIN": 3,
+    "WARPRIEST": 3,
+    "SKALD": 3,
+    "SHAMAN": 3,
+    "SORCERER": 3
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "DAY": 3,
+      "LIGHT": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto toccato",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Illumina intensamente una vasta zona. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Luce_Diurna",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Luce Diurna: https://golarion.altervista.org/wiki/Incantesimi/Luce_Diurna Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

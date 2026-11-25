@@ -1,0 +1,40 @@
+{
+  "id": "pierceDisguise",
+  "name": "Penetra Camuffamento",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "PSYCHIC": 3,
+    "SKALD": 3,
+    "SHAMAN": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Permette di riconoscere alcuni camuffamenti magici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Penetra_Camuffamento",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Penetra Camuffamento: https://golarion.altervista.org/wiki/Incantesimi/Penetra_Camuffamento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "superiorSummoning",
+  "name": "Evocazione Superiore",
+  "description": "Può aggiungere una creatura quando un'evocazione ne produce più di una. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Evocazione_Superiore",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Aumentare Evocazione",
+      "feat": {
+        "id": "augmentSummoning"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: incantatore di 3° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Evocazione Superiore: https://golarion.altervista.org/wiki/Talenti/Evocazione_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: incantatore di 3° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

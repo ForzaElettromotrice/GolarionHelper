@@ -1,0 +1,26 @@
+{
+  "id": "bloodOfHeroes",
+  "name": "Sangue dell'Eroe",
+  "description": "Fa ottenere più punti eroe durante l'avanzamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Sangue_dell%27Eroe",
+  "types": [
+    "general",
+    "heroPoint"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destino dell'Eroe",
+      "feat": {
+        "id": "herosFortune"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Sangue dell'Eroe: https://golarion.altervista.org/wiki/Talenti/Sangue_dell%27Eroe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

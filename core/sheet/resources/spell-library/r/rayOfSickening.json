@@ -1,0 +1,58 @@
+{
+  "id": "rayOfSickening",
+  "name": "Raggio di Debilitazione",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "DRUID": 1,
+    "WITCH": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 1,
+    "MESMERIST": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una goccia di sudore",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "raggio",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un attacco di contatto a distanza può rendere infermo il bersaglio per un minuto per livello. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Raggio_di_Debilitazione",
+  "effects": [
+    {
+      "id": "sickened",
+      "type": "conditionEntry",
+      "conditionId": "sickened"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare soltanto se il raggio colpisce e il bersaglio non supera Tempra o RI. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

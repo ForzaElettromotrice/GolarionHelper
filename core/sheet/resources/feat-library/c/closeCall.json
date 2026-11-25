@@ -1,0 +1,25 @@
+{
+  "id": "closeCall",
+  "name": "Cavarsela",
+  "description": "Consente un nuovo tentativo in alcune prove di destrezza manuale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Cavarsela",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Manolesta",
+      "feat": {
+        "id": "deftHands"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Cavarsela: https://golarion.altervista.org/wiki/Talenti/Cavarsela. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

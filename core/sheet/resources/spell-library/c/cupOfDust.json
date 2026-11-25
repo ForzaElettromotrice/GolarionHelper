@@ -1,0 +1,48 @@
+{
+  "id": "cupOfDust",
+  "name": "Coppa di Polvere",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "DRUID": 3,
+    "WITCH": 3,
+    "MESMERIST": 3,
+    "OCCULTIST": 3,
+    "PSYCHIC": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di polvere",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Infligge alla vittima una sete soprannaturale e le conseguenze della disidratazione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Coppa_di_Polvere",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Coppa di Polvere: https://golarion.altervista.org/wiki/Incantesimi/Coppa_di_Polvere Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

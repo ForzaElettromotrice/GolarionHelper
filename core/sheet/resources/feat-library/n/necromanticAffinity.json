@@ -1,0 +1,23 @@
+{
+  "id": "necromanticAffinity",
+  "name": "Affinità Necromantica",
+  "description": "Avvicina la reazione alle energie curative a quella dei non morti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Affinit%C3%A0_Necromantica",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Costituzione 15",
+      "expression": "@con >= 15"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Affinità Necromantica: https://golarion.altervista.org/wiki/Talenti/Affinit%C3%A0_Necromantica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

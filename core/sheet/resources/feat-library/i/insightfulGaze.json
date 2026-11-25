@@ -1,0 +1,30 @@
+{
+  "id": "insightfulGaze",
+  "name": "Sguardo Perspicace",
+  "description": "Permette di scegliere il risultato migliore fra due tiri di intuizione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Sguardo_Perspicace",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Sguardo Austero Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intuizione 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Sguardo Perspicace: https://golarion.altervista.org/wiki/Talenti/Sguardo_Perspicace. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Sguardo Austero; Prerequisito da verificare manualmente: Intuizione 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,49 @@
+{
+  "id": "arcaneLock",
+  "name": "Serratura Arcana",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "OCCULTIST": 2,
+    "SORCERER": 2
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "INTERDICTIONS": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "polvere d’oro del valore di 25 mo",
+  "materialComponentCostInGoldPieces": 25,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "la porta, il forziere o il portale toccato, fino a una grandezza di 2,7 m2/livello",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Sigilla magicamente un accesso rendendolo più difficile da aprire. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Serratura_Arcana",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Serratura Arcana: https://golarion.altervista.org/wiki/Incantesimi/Serratura_Arcana Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: la porta, il forziere o il portale toccato, fino a una grandezza di 2,7 m2/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

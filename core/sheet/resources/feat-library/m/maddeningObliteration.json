@@ -1,0 +1,59 @@
+{
+  "id": "maddeningObliteration",
+  "name": "Annientamento nella Follia",
+  "description": "Indebolisce contro la follia e può disintegrare i caduti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Annientamento_nella_Follia",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Saggezza 19",
+      "expression": "@wis >= 19"
+    },
+    {
+      "description": "Carisma 15",
+      "expression": "@cha >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Stile della Follia",
+      "feat": {
+        "id": "maddeningStyle"
+      }
+    },
+    {
+      "description": "Colpo della Follia",
+      "feat": {
+        "id": "maddeningStrike"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Pugno Stordente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (arcane) 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe riserva ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: allineamento non buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Annientamento nella Follia: https://golarion.altervista.org/wiki/Talenti/Annientamento_nella_Follia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Pugno Stordente; Prerequisito da verificare manualmente: Conoscenze (arcane) 10 gradi; Prerequisito da verificare manualmente: privilegio di classe riserva ki; Prerequisito da verificare manualmente: allineamento non buono Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

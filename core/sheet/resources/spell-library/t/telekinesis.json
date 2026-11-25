@@ -1,0 +1,50 @@
+{
+  "id": "telekinesis",
+  "name": "Telecinesi",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "MAGUS": 5,
+    "OCCULTIST": 5,
+    "PSYCHIC": 4,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "target": "vedi testo",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione (fino a un round/livello) o istantanea; vedi testo",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "Volontà nega (oggetto) o nessuno; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto); vedi testo",
+  "description": "Muove a distanza oggetti e creature oppure li scaglia con forza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Telecinesi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Telecinesi: https://golarion.altervista.org/wiki/Incantesimi/Telecinesi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: vedi testo. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "stretchedWings",
+  "name": "Ali Sviluppate",
+  "description": "Migliora la velocità di volo del personaggio che possiede i requisiti razziali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ali_Sviluppate",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 13",
+      "expression": "@str >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Abilità Focalizzata (Volare) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Strix Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: tratto razziale Ali Tarpate Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ali Sviluppate: https://golarion.altervista.org/wiki/Talenti/Ali_Sviluppate. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Abilità Focalizzata (Volare); Prerequisito da verificare manualmente: Strix; Prerequisito da verificare manualmente: tratto razziale Ali Tarpate Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

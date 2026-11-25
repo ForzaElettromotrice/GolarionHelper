@@ -1,0 +1,34 @@
+{
+  "id": "spellsong",
+  "name": "Canzone Incantata",
+  "description": "Intreccia il lancio di magie con l'esibizione bardica secondo le modalità consentite. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Canzone_Incantata",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Esibizione Bardica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di lanciare incantesimi di 1° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Canzone Incantata: https://golarion.altervista.org/wiki/Talenti/Canzone_Incantata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di classe Esibizione Bardica; Prerequisito da verificare manualmente: capacità di lanciare incantesimi di 1° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

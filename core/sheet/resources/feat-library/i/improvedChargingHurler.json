@@ -1,0 +1,31 @@
+{
+  "id": "improvedChargingHurler",
+  "name": "Lanciare in Carica Migliorato",
+  "description": "Estende le distanze a cui si può concludere una carica con un lancio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Lanciare_in_Carica_Migliorato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Lanciare in Carica",
+      "feat": {
+        "id": "chargingHurler"
+      }
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Lanciare in Carica Migliorato: https://golarion.altervista.org/wiki/Talenti/Lanciare_in_Carica_Migliorato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

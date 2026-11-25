@@ -1,0 +1,108 @@
+{
+  "id": "ranger.archetype.45d264aedd24",
+  "classType": "ranger",
+  "name": "Cacciatore di Yokai",
+  "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Cacciatore_di_Yokai Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "ranger.feature.01c4bca80955",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.5c89d9b3bdef",
+      "type": "replace"
+    },
+    {
+      "featureId": "ranger.feature.cfe6c56ff989",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "ranger.feature.01c4bca80955",
+    "ranger.feature.5c89d9b3bdef",
+    "ranger.feature.cfe6c56ff989"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "ranger.archetype.45d264aedd24.instructions",
+      "name": "Cacciatore di Yokai",
+      "description": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Cacciatore_di_Yokai Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "ranger.archetype.45d264aedd24.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ranger. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Cacciatore_di_Yokai Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.45d264aedd24.feature.bebc79b786",
+      "name": "Yokai Prescelto (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Cacciatore_di_Yokai",
+      "progression": [
+        {
+          "id": "ranger.archetype.45d264aedd24.feature.bebc79b786.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore di Yokai — Yokai Prescelto (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger_di_Golarion#Cacciatore_di_Yokai Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.45d264aedd24.feature.58cf3bf491",
+      "name": "Percezione degli Yokai (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Cacciatore_di_Yokai",
+      "progression": [
+        {
+          "id": "ranger.archetype.45d264aedd24.feature.58cf3bf491.initial",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore di Yokai — Percezione degli Yokai (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger_di_Golarion#Cacciatore_di_Yokai Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "ranger.archetype.45d264aedd24.feature.e78fd4fde1",
+      "name": "Resistere agli Yokai (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ranger_di_Golarion#Cacciatore_di_Yokai",
+      "progression": [
+        {
+          "id": "ranger.archetype.45d264aedd24.feature.e78fd4fde1.initial",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cacciatore di Yokai — Resistere agli Yokai (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Ranger_di_Golarion#Cacciatore_di_Yokai Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

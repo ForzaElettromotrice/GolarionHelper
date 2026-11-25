@@ -1,0 +1,45 @@
+{
+  "id": "pinpointTargeting",
+  "name": "Mira Inesorabile",
+  "description": "Un tiro mirato supera determinate protezioni fisiche del bersaglio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mira_Inesorabile",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 19",
+      "expression": "@dex >= 19"
+    },
+    {
+      "description": "Tiro Preciso",
+      "feat": {
+        "id": "preciseShot"
+      }
+    },
+    {
+      "description": "Tiro Preciso Migliorato",
+      "feat": {
+        "id": "improvedPreciseShot"
+      }
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +16",
+      "expression": "@bab >= 16"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mira Inesorabile: https://golarion.altervista.org/wiki/Talenti/Mira_Inesorabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,44 @@
+{
+  "id": "improvedFeintingFlurry",
+  "name": "Raffica con Finta Migliorata",
+  "description": "Una finta riuscita scopre la difesa per la raffica. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Raffica_con_Finta_Migliorata",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 17",
+      "expression": "@dex >= 17"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Raffica di Colpi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Raffica con Finta",
+      "feat": {
+        "id": "feintingFlurry"
+      }
+    },
+    {
+      "description": "BAB +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Raffica con Finta Migliorata: https://golarion.altervista.org/wiki/Talenti/Raffica_con_Finta_Migliorata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di classe Raffica di Colpi; Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,24 @@
+{
+  "id": "criticalFocus",
+  "name": "Critico Focalizzato",
+  "description": "Migliora i tiri necessari per confermare un critico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Critico_Focalizzato",
+  "types": [
+    "combat",
+    "critical"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Bonus di Attacco Base +9",
+      "expression": "@bab >= 9"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Critico Focalizzato: https://golarion.altervista.org/wiki/Talenti/Critico_Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

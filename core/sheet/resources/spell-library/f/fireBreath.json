@@ -1,0 +1,54 @@
+{
+  "id": "fireBreath",
+  "name": "Soffio di Fuoco",
+  "school": "EVOCATION",
+  "descriptors": [
+    "FIRE"
+  ],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "INVESTIGATOR": 2,
+    "ARCANIST": 2,
+    "WIZARD": 2,
+    "SORCERER": 2,
+    "BLOODRAGER": 2,
+    "MAGUS": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un peperoncino piccante",
+  "rangeType": "OTHER",
+  "rangeDescription": "4,5 m",
+  "area": "esplosione a forma di cono",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello o finché non viene scaricato; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Consente di emettere più volte un cono di fuoco durante l'effetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Soffio_di_Fuoco",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Soffio di Fuoco: https://golarion.altervista.org/wiki/Incantesimi/Soffio_di_Fuoco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Fuoco 2 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

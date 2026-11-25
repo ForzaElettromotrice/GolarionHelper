@@ -1,0 +1,27 @@
+{
+  "id": "fightOn",
+  "name": "Combattere Ancora",
+  "description": "Fornisce una riserva temporanea di punti ferita quando il personaggio viene ridotto alle soglie previste. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Combattere_Ancora",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Costituzione 13, Mezzorco, Nano o Orco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Combattere Ancora: https://golarion.altervista.org/wiki/Talenti/Combattere_Ancora. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Costituzione 13, Mezzorco, Nano o Orco. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

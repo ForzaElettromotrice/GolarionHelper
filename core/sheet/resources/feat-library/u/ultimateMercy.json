@@ -1,0 +1,40 @@
+{
+  "id": "ultimateMercy",
+  "name": "Indulgenza Suprema",
+  "description": "Consuma numerosi utilizzi di Imposizione delle Mani per riportare in vita una creatura secondo i limiti previsti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Indulgenza_Suprema",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 19",
+      "expression": "@cha >= 19"
+    },
+    {
+      "description": "Indulgenza Superiore",
+      "feat": {
+        "id": "greaterMercy"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Imposizione delle Mani Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Indulgenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Indulgenza Suprema: https://golarion.altervista.org/wiki/Talenti/Indulgenza_Suprema. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di classe Imposizione delle Mani; Prerequisito da verificare manualmente: privilegio di classe Indulgenza Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,42 @@
+{
+  "id": "horrificDoubles",
+  "name": "Duplicati Orripilanti",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "FIGMENT",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 4,
+    "BLOODRAGER": 4,
+    "WIZARD": 4,
+    "MEDIUM": 3,
+    "MESMERIST": 4,
+    "PSYCHIC": 4,
+    "SKALD": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Crea duplicati illusori terrificanti con funzioni difensive e ulteriori conseguenze sugli aggressori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Duplicati_Orripilanti",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Duplicati Orripilanti: https://golarion.altervista.org/wiki/Duplicati_Orripilanti Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

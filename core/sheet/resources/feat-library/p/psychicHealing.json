@@ -1,0 +1,27 @@
+{
+  "id": "psychicHealing",
+  "name": "Guarigione Parapsichica",
+  "description": "Unisce la cura delle ferite a un sostegno psichico che può conferire punti ferita temporanei. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Guarigione_Parapsichica",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Carisma 11, Sensitività Parapsichica o capacità di lanciare incantesimi parapsichici, Guarire 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Guarigione Parapsichica: https://golarion.altervista.org/wiki/Talenti/Guarigione_Parapsichica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Carisma 11, Sensitività Parapsichica o capacità di lanciare incantesimi parapsichici, Guarire 3 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

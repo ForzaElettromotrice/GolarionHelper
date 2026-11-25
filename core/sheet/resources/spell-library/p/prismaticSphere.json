@@ -1,0 +1,46 @@
+{
+  "id": "prismaticSphere",
+  "name": "Sfera Prismatica",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WIZARD": 9,
+    "SORCERER": 9
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "ARTIFICE": 9,
+      "PROTECTION": 9,
+      "SUN": 9
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "3 m",
+  "effect": "sfera del raggio di 3 m centrata su di sé",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "vedi testo",
+  "description": "Racchiude l'incantatore in una barriera sferica di colori magici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Sfera_Prismatica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Sfera Prismatica: https://golarion.altervista.org/wiki/Incantesimi/Sfera_Prismatica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: vedi testo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "mirrorHideaway",
+  "name": "Nascondiglio Speculare",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "PSYCHIC": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una biglia di vetro o di marmo e un laccio attorcigliato di pergamena",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 specchio",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Nasconde un gruppo in un rifugio extradimensionale accessibile da uno specchio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Nascondiglio_Speculare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Nascondiglio Speculare: https://golarion.altervista.org/wiki/Incantesimi/Nascondiglio_Speculare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "improvedBalorWhip",
+  "name": "Frustata del Balor Migliorata",
+  "description": "Permette di colpire immediatamente il nemico trascinato vicino. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Frustata_del_Balor_Migliorata",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Frusta) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria con la Frusta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Frustata del Balor Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +12",
+      "expression": "@bab >= 12"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Frustata del Balor Migliorata: https://golarion.altervista.org/wiki/Talenti/Frustata_del_Balor_Migliorata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Frusta); Prerequisito da verificare manualmente: Maestria con la Frusta; Prerequisito da verificare manualmente: Frustata del Balor Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

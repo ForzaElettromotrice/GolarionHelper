@@ -1,0 +1,41 @@
+{
+  "id": "shieldSpecialization",
+  "name": "Scudo Specializzato",
+  "description": "Specializza la difesa contro i colpi critici usando uno scudo scelto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Scudo_Specializzato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Competenza negli Scudi (scudo scelto) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Scudo Focalizzato",
+      "feat": {
+        "id": "shieldFocus"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Guerriero di 4° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Scudo Specializzato: https://golarion.altervista.org/wiki/Talenti/Scudo_Specializzato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Competenza negli Scudi (scudo scelto); Prerequisito da verificare manualmente: Guerriero di 4° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

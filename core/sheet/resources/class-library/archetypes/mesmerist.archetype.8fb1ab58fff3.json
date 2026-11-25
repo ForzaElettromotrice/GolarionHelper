@@ -1,0 +1,94 @@
+{
+  "id": "mesmerist.archetype.8fb1ab58fff3",
+  "classType": "mesmerist",
+  "name": "Visir",
+  "description": "Archetipo di Mesmerista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mesmerista/Archetipi#Visir Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "mesmerist.feature.971f1dc37169",
+      "type": "replace"
+    },
+    {
+      "featureId": "mesmerist.feature.93e135993e8c",
+      "type": "replace"
+    },
+    {
+      "featureId": "mesmerist.feature.cffce2b3e290",
+      "type": "replace"
+    },
+    {
+      "featureId": "mesmerist.feature.b2d53b32f34c",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "mesmerist.feature.93e135993e8c",
+    "mesmerist.feature.971f1dc37169",
+    "mesmerist.feature.cffce2b3e290"
+  ],
+  "removedAcquisitionIds": [
+    "mesmerist.feature.b2d53b32f34c.level3"
+  ],
+  "addedFeatures": [
+    {
+      "id": "mesmerist.archetype.8fb1ab58fff3.instructions",
+      "name": "Visir",
+      "description": "Archetipo di Mesmerista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mesmerista/Archetipi#Visir Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "mesmerist.archetype.8fb1ab58fff3.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Mesmerista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Mesmerista/Archetipi#Visir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "mesmerist.archetype.8fb1ab58fff3.feature.1",
+      "name": "Influenza Insidiosa (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mesmerista/Archetipi#Visir",
+      "progression": [
+        {
+          "id": "mesmerist.archetype.8fb1ab58fff3.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Visir — Influenza Insidiosa (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mesmerista/Archetipi#Visir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "mesmerist.archetype.8fb1ab58fff3.feature.2",
+      "name": "Potere Dietro il Trono (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Mesmerista/Archetipi#Visir",
+      "progression": [
+        {
+          "id": "mesmerist.archetype.8fb1ab58fff3.feature.2.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Visir — Potere Dietro il Trono (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Mesmerista/Archetipi#Visir Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

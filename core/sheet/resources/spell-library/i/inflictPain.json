@@ -1,0 +1,52 @@
+{
+  "id": "inflictPain",
+  "name": "Infliggi Dolore",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "PAIN",
+    "MIND_AFFECTING"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 2,
+    "ARCANIST": 3,
+    "WITCH": 3,
+    "INQUISITOR": 2,
+    "MEDIUM": 2,
+    "WIZARD": 3,
+    "MESMERIST": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SPIRITUALIST": 2,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Un tormento mentale compromette attacchi e prove. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Infliggi_Dolore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Infliggi Dolore: https://golarion.altervista.org/wiki/Incantesimi/Infliggi_Dolore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

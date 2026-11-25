@@ -1,0 +1,36 @@
+{
+  "id": "exhaustingCritical",
+  "name": "Critico Inesorabile",
+  "description": "I colpi critici possono rendere esausta la vittima. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Critico_Inesorabile",
+  "types": [
+    "combat",
+    "critical"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Critico Affaticante",
+      "feat": {
+        "id": "tiringCritical"
+      }
+    },
+    {
+      "description": "Critico Focalizzato",
+      "feat": {
+        "id": "criticalFocus"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +15",
+      "expression": "@bab >= 15"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Critico Inesorabile: https://golarion.altervista.org/wiki/Talenti/Critico_Inesorabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,38 @@
+{
+  "id": "eagleEye",
+  "name": "Occhio d'Aquila",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 2,
+    "DRUID": 2,
+    "PSYCHIC": 2,
+    "RANGER": 2,
+    "SHAMAN": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "effect": "sensore magico",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Osserva l'ambiente attraverso un punto di vista elevato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Occhio_d%27Aquila",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Occhio d'Aquila: https://golarion.altervista.org/wiki/Incantesimi/Occhio_d%27Aquila Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

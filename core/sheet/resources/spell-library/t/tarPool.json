@@ -1,0 +1,50 @@
+{
+  "id": "tarPool",
+  "name": "Pozza di Catrame",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "FIRE",
+    "EARTH"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "HUNTER": 6,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 6,
+    "DRUID": 6,
+    "WIZARD": 6,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una palla di catrame indurito",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni due livelli)",
+  "area": "esplosione del raggio di 6 m",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "PARTIAL",
+      "description": "Riflessi parziale, vedi testo"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasforma una porzione del suolo in una distesa di catrame rovente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pozza_di_Catrame",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pozza di Catrame: https://golarion.altervista.org/wiki/Incantesimi/Pozza_di_Catrame Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

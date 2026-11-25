@@ -1,0 +1,132 @@
+{
+  "id": "shaman.archetype.fef40991f28f",
+  "classType": "shaman",
+  "name": "Portavoce del Passato",
+  "description": "Archetipo di Sciamano. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Sciamano/Archetipi#Portavoce_del_Passato Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "shaman.feature.3103466d9233",
+      "type": "replace"
+    },
+    {
+      "featureId": "shaman.feature.1d2853690b44",
+      "type": "replace"
+    },
+    {
+      "featureId": "shaman.feature.e5331c0eca3a",
+      "type": "replace"
+    },
+    {
+      "featureId": "shaman.classSkills",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "shaman.feature.1d2853690b44",
+    "shaman.feature.3103466d9233",
+    "shaman.feature.e5331c0eca3a"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "shaman.archetype.fef40991f28f.instructions",
+      "name": "Portavoce del Passato",
+      "description": "Archetipo di Sciamano. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Sciamano/Archetipi#Portavoce_del_Passato Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "shaman.archetype.fef40991f28f.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Sciamano. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Sciamano/Archetipi#Portavoce_del_Passato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.archetype.fef40991f28f.feature.1",
+      "name": "Misteri del Passato",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Sciamano/Archetipi#Portavoce_del_Passato",
+      "progression": [
+        {
+          "id": "shaman.archetype.fef40991f28f.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Portavoce del Passato — Misteri del Passato: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Sciamano/Archetipi#Portavoce_del_Passato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.archetype.fef40991f28f.feature.2",
+      "name": "Rivelazioni del Passato",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Sciamano/Archetipi#Portavoce_del_Passato",
+      "progression": [
+        {
+          "id": "shaman.archetype.fef40991f28f.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Portavoce del Passato — Rivelazioni del Passato: verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Sciamano/Archetipi#Portavoce_del_Passato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "shaman.archetype.fef40991f28f.classSkills",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Aggiunte indicate dalla fonte: https://golarion.altervista.org/wiki/Sciamano/Archetipi#Portavoce_del_Passato",
+      "progression": [
+        {
+          "id": "shaman.archetype.fef40991f28f.classSkills.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "skill1",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.local"
+            },
+            {
+              "id": "skill2",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.history"
+            },
+            {
+              "id": "skill3",
+              "type": "classSkillGrant",
+              "resource": "skill.linguistics"
+            },
+            {
+              "id": "skill4",
+              "type": "classSkillGrant",
+              "resource": "skill.perception"
+            },
+            {
+              "id": "skill5",
+              "type": "classSkillGrant",
+              "resource": "skill.useMagicDevice"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

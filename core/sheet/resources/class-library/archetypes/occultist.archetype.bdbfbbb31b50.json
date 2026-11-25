@@ -1,0 +1,142 @@
+{
+  "id": "occultist.archetype.bdbfbbb31b50",
+  "classType": "occultist",
+  "name": "Mangia Tomi",
+  "description": "Archetipo di Occultista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Occultista/Archetipi#Mangia_Tomi Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Catalizzatori, Focus Mentale, Padronanza dei Catalizzatori. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "occultist.feature.faf48b3bbb51",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.dd67538cfd2b",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.19d6f17d323d",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.6570d7b13546",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.79236ec78fb4",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.3bc358693969",
+      "type": "replace"
+    },
+    {
+      "featureId": "occultist.feature.b4da10c20dab",
+      "type": "alter"
+    },
+    {
+      "featureId": "occultist.feature.834062cfcd84",
+      "type": "alter"
+    },
+    {
+      "featureId": "occultist.spellcasting",
+      "type": "alter"
+    },
+    {
+      "featureId": "occultist.feature.c399c71bc8d9",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "occultist.feature.19d6f17d323d",
+    "occultist.feature.3bc358693969",
+    "occultist.feature.6570d7b13546",
+    "occultist.feature.79236ec78fb4",
+    "occultist.feature.834062cfcd84",
+    "occultist.feature.b4da10c20dab",
+    "occultist.feature.c399c71bc8d9",
+    "occultist.feature.dd67538cfd2b",
+    "occultist.feature.faf48b3bbb51"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "occultist.archetype.bdbfbbb31b50.instructions",
+      "name": "Mangia Tomi",
+      "description": "Archetipo di Occultista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Occultista/Archetipi#Mangia_Tomi Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Catalizzatori, Focus Mentale, Padronanza dei Catalizzatori. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "occultist.archetype.bdbfbbb31b50.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Occultista. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Occultista/Archetipi#Mangia_Tomi Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Catalizzatori, Focus Mentale, Padronanza dei Catalizzatori. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.archetype.bdbfbbb31b50.feature.1",
+      "name": "Tomo Legato (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Occultista/Archetipi#Mangia_Tomi",
+      "progression": [
+        {
+          "id": "occultist.archetype.bdbfbbb31b50.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Mangia Tomi — Tomo Legato (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Occultista/Archetipi#Mangia_Tomi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.archetype.bdbfbbb31b50.feature.2",
+      "name": "Divorare Libri e Pergamene (Mag)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Occultista/Archetipi#Mangia_Tomi",
+      "progression": [
+        {
+          "id": "occultist.archetype.bdbfbbb31b50.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Mangia Tomi — Divorare Libri e Pergamene (Mag): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Occultista/Archetipi#Mangia_Tomi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "occultist.archetype.bdbfbbb31b50.feature.3",
+      "name": "Percepire Parole (Mag, Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Occultista/Archetipi#Mangia_Tomi",
+      "progression": [
+        {
+          "id": "occultist.archetype.bdbfbbb31b50.feature.3.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Mangia Tomi — Percepire Parole (Mag, Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Occultista/Archetipi#Mangia_Tomi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

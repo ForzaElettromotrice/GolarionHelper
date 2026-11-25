@@ -1,0 +1,27 @@
+{
+  "id": "signatureSkill",
+  "name": "Abilità Distintiva",
+  "description": "Sblocca capacità speciali collegate alla padronanza dell'abilità scelta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Abilit%C3%A0_Distintiva",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: 5 gradi nell'abilità scelta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Abilità Distintiva: https://golarion.altervista.org/wiki/Talenti/Abilit%C3%A0_Distintiva. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: 5 gradi nell'abilità scelta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,62 @@
+{
+  "id": "nondetection",
+  "name": "Anti-individuazione",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 3,
+    "ANTIPALADIN": 3,
+    "ARCANIST": 3,
+    "HUNTER": 4,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 3,
+    "INQUISITOR": 3,
+    "INVESTIGATOR": 3,
+    "WIZARD": 3,
+    "MEDIUM": 2,
+    "MESMERIST": 3,
+    "OCCULTIST": 3,
+    "PSYCHIC": 3,
+    "RANGER": 4,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "TRICKERY": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "polvere di diamante del valore di 50 mo",
+  "materialComponentCostInGoldPieces": 50,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura od oggetto toccato",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Ostacola divinazioni e scrutamenti diretti verso il soggetto protetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Anti-individuazione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Anti-individuazione: https://golarion.altervista.org/wiki/Incantesimi/Anti-individuazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

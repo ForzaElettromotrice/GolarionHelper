@@ -1,0 +1,27 @@
+{
+  "id": "discordantVoice",
+  "name": "Voce Discordante",
+  "description": "L'esibizione bardica aggiunge danni sonori agli attacchi degli alleati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Voce_Discordante",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Esibizione Bardica, Intrattenere (oratoria o canto) 10 gradi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Voce Discordante: https://golarion.altervista.org/wiki/Talenti/Voce_Discordante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Esibizione Bardica, Intrattenere (oratoria o canto) 10 gradi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,310 @@
+{
+  "id": "oracle.archetype.fbe220081e9d",
+  "classType": "oracle",
+  "name": "Guida Spiritica",
+  "description": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "oracle.classSkills",
+      "type": "alter"
+    },
+    {
+      "featureId": "oracle.feature.aaa668a8100b",
+      "type": "alter"
+    },
+    {
+      "featureId": "oracle.feature.d5cd6abc2865",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "oracle.feature.d5cd6abc2865"
+  ],
+  "removedAcquisitionIds": [
+    "oracle.feature.aaa668a8100b.level15",
+    "oracle.feature.aaa668a8100b.level3",
+    "oracle.feature.aaa668a8100b.level7"
+  ],
+  "addedFeatures": [
+    {
+      "id": "oracle.archetype.fbe220081e9d.instructions",
+      "name": "Guida Spiritica",
+      "description": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.feature.8acd997085",
+      "name": "Abilità di Classe",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.feature.8acd997085.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guida Spiritica — Abilità di Classe: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.feature.b95eef0e5d",
+      "name": "Spirito Legato (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.feature.b95eef0e5d.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guida Spiritica — Spirito Legato (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.feature.e648acbc56",
+      "name": "Misteri Raccomandati",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.feature.e648acbc56.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guida Spiritica — Misteri Raccomandati: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.classSkill.1",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.classSkill.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.arcana"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.classSkill.2",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.classSkill.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.dungeoneering"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.classSkill.3",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.classSkill.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.engineering"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.classSkill.4",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.classSkill.4.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.geography"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.classSkill.5",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.classSkill.5.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.history"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.classSkill.6",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.classSkill.6.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.local"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.classSkill.7",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.classSkill.7.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.nature"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.classSkill.8",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.classSkill.8.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.nobility"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.classSkill.9",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.classSkill.9.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.planes"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.fbe220081e9d.classSkill.10",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo/Archetipi#Guida_Spiritica",
+      "progression": [
+        {
+          "id": "oracle.archetype.fbe220081e9d.classSkill.10.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.knowledge.religion"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

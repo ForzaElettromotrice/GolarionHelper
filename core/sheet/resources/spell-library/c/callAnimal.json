@@ -1,0 +1,40 @@
+{
+  "id": "callAnimal",
+  "name": "Richiamare Animale",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "DRUID": 1,
+    "MESMERIST": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "vedi descrizione",
+  "effect": "Animale il cui GS è pari o inferiore al proprio livello dell’incantatore",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama un animale verso l'incantatore senza concedergli automaticamente un controllo completo sulla creatura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Richiamare_Animale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Richiamare Animale: https://golarion.altervista.org/wiki/Incantesimi/Richiamare_Animale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

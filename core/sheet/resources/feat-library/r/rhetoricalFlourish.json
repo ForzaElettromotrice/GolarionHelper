@@ -1,0 +1,29 @@
+{
+  "id": "rhetoricalFlourish",
+  "name": "Ostentazione di Retorica",
+  "description": "Intreccia dissimulazione e persuasione per favorire un tentativo diplomatico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ostentazione_di_Retorica",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Persuasivo",
+      "feat": {
+        "id": "persuasive"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ostentazione di Retorica: https://golarion.altervista.org/wiki/Talenti/Ostentazione_di_Retorica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

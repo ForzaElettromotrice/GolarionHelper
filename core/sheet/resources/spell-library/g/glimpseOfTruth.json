@@ -1,0 +1,53 @@
+{
+  "id": "glimpseOfTruth",
+  "name": "Barlume di Verità",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 5,
+    "ARCANIST": 5,
+    "HUNTER": 5,
+    "CLERIC": 4,
+    "DRUID": 5,
+    "WITCH": 5,
+    "INQUISITOR": 4,
+    "INVESTIGATOR": 5,
+    "WIZARD": 5,
+    "MAGUS": 5,
+    "MEDIUM": 3,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una tormalina dal valore di 50 mo",
+  "materialComponentCostInGoldPieces": 50,
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Conferisce per un solo round la capacità di distinguere le apparenze ingannevoli tramite Visione del Vero. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Barlume_di_Verit%C3%A0",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Barlume di Verità: https://golarion.altervista.org/wiki/Incantesimi/Barlume_di_Verit%C3%A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,60 @@
+{
+  "id": "scrying",
+  "name": "Scrutare",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "subschool": "SCRYING",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 3,
+    "HUNTER": 4,
+    "CLERIC": 5,
+    "DRUID": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "MEDIUM": 3,
+    "MESMERIST": 3,
+    "OCCULTIST": 4,
+    "ORACLE": 5,
+    "PSYCHIC": 4,
+    "WARPRIEST": 5,
+    "SKALD": 3,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 5,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "HOUR",
+  "castingTimeDescription": "1 ora",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS",
+    "FOCUS"
+  ],
+  "materialComponentDescription": "una polla d'acqua",
+  "focusComponentDescription": "uno specchio d'argento del valore di almeno 1.000 mo",
+  "rangeType": "OTHER",
+  "rangeDescription": "vedi testo",
+  "effect": "sensore magico",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Permette di osservare a distanza un soggetto mediante un sensore magico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scrutare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Scrutare: https://golarion.altervista.org/wiki/Incantesimi/Scrutare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

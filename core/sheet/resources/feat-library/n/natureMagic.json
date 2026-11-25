@@ -1,0 +1,27 @@
+{
+  "id": "natureMagic",
+  "name": "Magia della Natura",
+  "description": "Conferisce Conoscere Direzione e un impiego limitato dell'ulteriore orazione scelta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Magia_della_Natura",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (natura) 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Magia della Natura: https://golarion.altervista.org/wiki/Talenti/Magia_della_Natura. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (natura) 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

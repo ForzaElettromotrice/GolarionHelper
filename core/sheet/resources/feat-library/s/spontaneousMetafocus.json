@@ -1,0 +1,39 @@
+{
+  "id": "spontaneousMetafocus",
+  "name": "Metafocus Spontaneo",
+  "description": "Evita l'aumento del tempo di lancio dovuto alla metamagia per l'incantesimo spontaneo scelto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Metafocus_Spontaneo",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: un Talento di Metamagia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di lancio spontaneo degli incantesimi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Metafocus Spontaneo: https://golarion.altervista.org/wiki/Talenti/Metafocus_Spontaneo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: un Talento di Metamagia; Prerequisito da verificare manualmente: capacità di lancio spontaneo degli incantesimi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

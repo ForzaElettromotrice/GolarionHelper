@@ -1,0 +1,37 @@
+{
+  "id": "elementalBombardment",
+  "name": "Bombardamento Elementale",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "SUMMONING",
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "WIZARD": 7,
+    "SORCERER": 7,
+    "DRUID": 7
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "effect": "convocazione di uno o più Elementali",
+  "durationType": "ROUND",
+  "durationDescription": "1 round ogni 2 livelli",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama elementali e li scaglia contro il campo di battaglia come proiettili viventi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bombardamento_Elementale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bombardamento Elementale: https://golarion.altervista.org/wiki/Incantesimi/Bombardamento_Elementale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

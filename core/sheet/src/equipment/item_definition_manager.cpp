@@ -1,37 +1,33 @@
 #include "golarion/equipment/item_definition_manager.hpp"
-#include <limits>
 
+#include "golarion/catalog/catalog_reader.hpp"
+#include "golarion/catalog/definition_path.hpp"
 #include "golarion/equipment/item_definition_json.hpp"
-#include "golarion/equipment/item_definition_catalog.hpp"
 #include "golarion/util/string_utils.hpp"
-
-#include <nlohmann/json.hpp>
-
-#include <algorithm>
-#include <ranges>
-#include <stdexcept>
-#include <utility>
-
 
 namespace golarion
 {
+    ItemDefinitionManager::ItemDefinitionManager()
+    {
+        const auto index = catalog::readFile("item-library/index.json");
+        if (!index.is_array()) throw std::invalid_argument("Item index must be an array");
+        for (const auto &entry : index)
+        {
+            const auto id = entry.at("id").get<std::string>();
+            catalog::definitionPath("item-library", id);
+            if (!names_.emplace(id, entry.at("name").get<std::string>()).second)
+                throw std::invalid_argument("Duplicate item index ID: " + id);
+        }
+    }
+
     std::vector<std::pair<std::string, std::string>> ItemDefinitionManager::catalogEntries()
     {
-        const std::scoped_lock lock(mutex_);
-        if (!loaded_) loadCatalog();
-        std::vector<std::pair<std::string, std::string>> entries;
-        entries.reserve(definitions_.size());
-        for (const auto &[id, definition] : definitions_)
-            entries.emplace_back(id, definition.name);
-        return entries;
+        return {names_.begin(), names_.end()};
     }
 
     bool ItemDefinitionManager::contains(std::string_view id)
     {
-        const auto key = normalize(id);
-        const std::scoped_lock lock(mutex_);
-        if (!loaded_) loadCatalog();
-        return definitions_.contains(key);
+        return names_.contains(normalize(id));
     }
 
     ItemDefinitionManager &ItemDefinitionManager::instance()
@@ -40,55 +36,16 @@ namespace golarion
         return manager;
     }
 
-    const ItemDefinition &ItemDefinitionManager::get(std::string_view itemDefinitionId)
+    const ItemDefinition &ItemDefinitionManager::get(std::string_view id)
     {
-        const std::string normalizedId = normalize(itemDefinitionId);
+        const auto key = normalize(id);
+        const auto entry = names_.find(key);
+        if (entry == names_.end()) throw std::invalid_argument("item definition is not registered: " + key);
         const std::scoped_lock lock(mutex_);
-        if (!loaded_)
-        {
-            loadCatalog();
-        }
-
-        const auto definition = definitions_.find(normalizedId);
-        if (definition == definitions_.end())
-        {
-            throw std::invalid_argument("item definition is not registered: " + normalizedId);
-        }
-        return definition->second;
-    }
-
-    void ItemDefinitionManager::loadCatalog()
-    {
-        try
-        {
-            const nlohmann::json catalog = catalog::loadItemDefinitionCatalog();
-            if (!catalog.is_array())
-            {
-                throw std::invalid_argument("item definition catalog must be a JSON array");
-            }
-
-            std::map<std::string, ItemDefinition> loadedDefinitions;
-            for (const nlohmann::json &entry : catalog)
-            {
-                if (!entry.is_object())
-                {
-                    throw std::invalid_argument("item definition catalog entries must be JSON objects");
-                }
-
-                ItemDefinition definition = itemDefinitionFromJson(entry);
-                const std::string id = definition.id;
-                if (!loadedDefinitions.emplace(id, std::move(definition)).second)
-                {
-                    throw std::invalid_argument("item definition is duplicated: " + id);
-                }
-            }
-
-            definitions_ = std::move(loadedDefinitions);
-            loaded_ = true;
-        }
-        catch (const nlohmann::json::exception &exception)
-        {
-            throw std::invalid_argument("invalid item definition catalog: " + std::string(exception.what()));
-        }
+        if (const auto cached = definitions_.find(key); cached != definitions_.end()) return cached->second;
+        auto definition = itemDefinitionFromJson(catalog::readFile(catalog::definitionPath("item-library", key)));
+        if (definition.id != key || definition.name != entry->second)
+            throw std::invalid_argument("Item definition disagrees with index: " + key);
+        return definitions_.emplace(key, std::move(definition)).first->second;
     }
 }

@@ -1,0 +1,38 @@
+{
+  "id": "speakWithAnimals",
+  "name": "Parlare con gli Animali",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 3,
+    "HUNTER": 1,
+    "DRUID": 1,
+    "PSYCHIC": 2,
+    "RANGER": 1,
+    "SKALD": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Rende possibile uno scambio comprensibile di informazioni con gli animali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Parlare_con_gli_Animali",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Parlare con gli Animali: https://golarion.altervista.org/wiki/Incantesimi/Parlare_con_gli_Animali Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

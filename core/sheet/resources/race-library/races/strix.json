@@ -1,0 +1,670 @@
+{
+  "id": "strix",
+  "name": "Strix",
+  "qualities": [
+    {
+      "id": "strix.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Umanoide (strix). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "strix.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "strix.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "strix.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "strix.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "strix",
+          "type": "languageGrant",
+          "languageId": "strix"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "auran",
+            "common",
+            "draconic",
+            "giant",
+            "gnome",
+            "goblin",
+            "infernal"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strix.flySpeed",
+      "name": "Velocità di Volare",
+      "description": "Velocità di Volare",
+      "effects": [
+        {
+          "id": "fly",
+          "type": "movementGrant",
+          "movementType": "fly",
+          "baseSpeedExpression": "12",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": false,
+          "maneuverability": "average"
+        }
+      ]
+    },
+    {
+      "id": "strix.lowLightVision",
+      "name": "Visione Crepuscolare",
+      "description": "Distanza visiva doppia rispetto a un umano con luce scarsa.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Distanza visiva doppia rispetto a un umano con luce scarsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "strix.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione 18 m.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scurovisione 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "strix.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita indicata.",
+      "effects": [
+        {
+          "id": "brawlerUnarmed",
+          "type": "favoredClassBonus",
+          "classes": [
+            "brawler"
+          ],
+          "name": "Attaccabrighe — Colpo senz'armi",
+          "description": "Attaccabrighe — Colpo senz'armi — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 livello effettivo per i danni del colpo senz'armi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "barbarianRage",
+          "type": "favoredClassBonus",
+          "classes": [
+            "barbarian"
+          ],
+          "name": "Barbaro — Ira",
+          "description": "Barbaro — Ira — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 round di ira al giorno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "hunterCompanion",
+          "type": "favoredClassBonus",
+          "classes": [
+            "hunter"
+          ],
+          "name": "Cacciatore — Compagno",
+          "description": "Cacciatore — Compagno — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 PF al compagno animale, trasferito al sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "druidNature",
+          "type": "favoredClassBonus",
+          "classes": [
+            "druid"
+          ],
+          "name": "Druido — Natura",
+          "description": "Druido — Natura",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "skillknowledgenature",
+              "type": "modifier",
+              "resource": "skill.knowledge.nature",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Determinare il tempo atmosferico o identificare animali volanti"
+            }
+          ]
+        },
+        {
+          "id": "witchSpell",
+          "type": "favoredClassBonus",
+          "classes": [
+            "witch"
+          ],
+          "name": "Fattucchiere — Incantesimo",
+          "description": "Fattucchiere — Incantesimo — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un incantesimo da fattucchiere al famiglio, almeno un livello sotto il massimo lanciabile; trasferire al sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "fighterHatred",
+          "type": "favoredClassBonus",
+          "classes": [
+            "fighter"
+          ],
+          "name": "Guerriero — Odio",
+          "description": "Guerriero — Odio",
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "attackall",
+              "type": "modifier",
+              "resource": "attack.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Contro umanoidi con sottotipo umano"
+            }
+          ]
+        },
+        {
+          "id": "bloodragerRage",
+          "type": "favoredClassBonus",
+          "classes": [
+            "bloodrager"
+          ],
+          "name": "Iracondo di Stirpe — Ira",
+          "description": "Iracondo di Stirpe — Ira — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 round al giorno di Ira di Stirpe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkKi",
+          "type": "favoredClassBonus",
+          "classes": [
+            "monk"
+          ],
+          "name": "Monaco — Ki",
+          "description": "Monaco — Ki — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 punto alla riserva ki. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleSpell",
+          "type": "favoredClassBonus",
+          "classes": [
+            "oracle"
+          ],
+          "name": "Oracolo — Incantesimo",
+          "description": "Oracolo — Incantesimo — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un incantesimo conosciuto da oracolo, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "slayerStudiedTarget",
+          "type": "favoredClassBonus",
+          "classes": [
+            "slayer"
+          ],
+          "name": "Predatore — Bersaglio Studiato",
+          "description": "Incremento alle abilità del Bersaglio Studiato; Furtività dopo Persecutore manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "skillperception",
+              "type": "modifier",
+              "resource": "skill.perception",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Bersaglio Studiato"
+            },
+            {
+              "id": "skillsurvival",
+              "type": "modifier",
+              "resource": "skill.survival",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Bersaglio Studiato"
+            },
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Con Persecutore, applicare anche +1 al bonus di Bersaglio Studiato per Furtività. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rangerBond",
+          "type": "favoredClassBonus",
+          "classes": [
+            "ranger"
+          ],
+          "name": "Ranger — Legame",
+          "description": "Ranger — Legame — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 round di durata del bonus ai compagni conferito da Legame del Cacciatore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "shamanSpiritAnimal",
+          "type": "favoredClassBonus",
+          "classes": [
+            "shaman"
+          ],
+          "name": "Sciamano — Animale spirituale",
+          "description": "Sciamano — Animale spirituale — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 livello effettivo per armatura naturale, Intelligenza e capacità dell'animale spirituale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "strix.hatred",
+      "name": "Odio",
+      "description": "Odio",
+      "effects": [
+        {
+          "id": "attackall",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Contro umanoidi con sottotipo umano"
+        }
+      ]
+    },
+    {
+      "id": "strix.suspicious",
+      "name": "Sospettoso",
+      "description": "Sospettoso",
+      "effects": [
+        {
+          "id": "savingThrowall",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Incantesimi o effetti di illusione"
+        }
+      ]
+    },
+    {
+      "id": "strix.nocturnal",
+      "name": "Notturno",
+      "description": "Notturno",
+      "effects": [
+        {
+          "id": "skillstealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Luce fioca o buio"
+        },
+        {
+          "id": "skillperception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Luce fioca o buio"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "strix.wingClipped",
+      "name": "Ali Tarpate",
+      "description": "Ali Tarpate",
+      "effects": [
+        {
+          "id": "fly",
+          "type": "movementGrant",
+          "movementType": "fly",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": false,
+          "maneuverability": "poor"
+        },
+        {
+          "id": "skilldiplomacy",
+          "type": "modifier",
+          "resource": "skill.diplomacy",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "skillbluff",
+          "type": "modifier",
+          "resource": "skill.bluff",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "skillclimb",
+          "type": "modifier",
+          "resource": "skill.climb",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Per guadagnare quota occorre Volare CD 30. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "strix.flySpeed"
+      ]
+    },
+    {
+      "id": "strix.tough",
+      "name": "Duro",
+      "description": "Duro",
+      "effects": [
+        {
+          "id": "savingThrowfortitude",
+          "type": "modifier",
+          "resource": "savingThrow.fortitude",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1"
+        }
+      ],
+      "replaces": [
+        "strix.suspicious"
+      ]
+    },
+    {
+      "id": "strix.dayguard",
+      "name": "Guardia Diurna",
+      "description": "Guardia Diurna",
+      "effects": [
+        {
+          "id": "skillperception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "skillperceptionClass",
+          "type": "classSkillGrant",
+          "resource": "skill.perception"
+        }
+      ],
+      "replaces": [
+        "strix.nocturnal"
+      ]
+    },
+    {
+      "id": "strix.nimble",
+      "name": "Leggiadria",
+      "description": "Leggiadria",
+      "effects": [
+        {
+          "id": "savingThrowreflex",
+          "type": "modifier",
+          "resource": "savingThrow.reflex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1"
+        }
+      ],
+      "replaces": [
+        "strix.suspicious"
+      ]
+    },
+    {
+      "id": "strix.frightening",
+      "name": "Spaventare",
+      "description": "Spaventare",
+      "effects": [
+        {
+          "id": "skillintimidate",
+          "type": "modifier",
+          "resource": "skill.intimidate",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ],
+      "replaces": [
+        "strix.nocturnal"
+      ]
+    }
+  ]
+}

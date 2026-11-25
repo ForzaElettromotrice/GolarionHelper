@@ -1,0 +1,31 @@
+{
+  "id": "cutYourLosses",
+  "name": "Limitare le Perdite",
+  "description": "Permette di raccogliere oggetti o alleati durante la ritirata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Limitare_le_Perdite",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 13",
+      "expression": "@str >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Acrobazia 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Limitare le Perdite: https://golarion.altervista.org/wiki/Talenti/Limitare_le_Perdite. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Acrobazia 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,68 @@
+{
+  "id": "eagleSSplendor",
+  "name": "Splendore dell'Aquila",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ANTIPALADIN": 2,
+    "ARCANIST": 2,
+    "BARD": 2,
+    "CLERIC": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "INVESTIGATOR": 2,
+    "BLOODRAGER": 2,
+    "WIZARD": 2,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "ORACLE": 2,
+    "PALADIN": 2,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2,
+    "SKALD": 2,
+    "SHAMAN": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "alcune piume o un po' di sterco di aquila",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Accresce il Carisma senza concedere ulteriori incantesimi giornalieri. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Splendore_dell%27Aquila",
+  "effects": [
+    {
+      "id": "charisma",
+      "type": "modifier",
+      "resource": "cha",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "enhancement",
+      "expression": "4"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Non concede slot bonus; applicare alle CD degli incantesimi il beneficio pertinente. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

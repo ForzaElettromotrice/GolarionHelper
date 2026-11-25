@@ -1,0 +1,49 @@
+{
+  "id": "foxTrickery",
+  "name": "Trucco della Volpe",
+  "description": "Permette di reagire con manovre scorrette anziché attacchi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Trucco_della_Volpe",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Intelligenza 13",
+      "expression": "@int >= 13"
+    },
+    {
+      "description": "Intuizione della Volpe",
+      "feat": {
+        "id": "foxInsight"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Sporco Trucco Migliorato",
+      "feat": {
+        "id": "improvedDirtyTrick"
+      }
+    },
+    {
+      "description": "Stile della Volpe",
+      "feat": {
+        "id": "foxStyle"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Trucco della Volpe: https://golarion.altervista.org/wiki/Talenti/Trucco_della_Volpe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

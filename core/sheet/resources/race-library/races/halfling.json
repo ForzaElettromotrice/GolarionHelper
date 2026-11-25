@@ -1,0 +1,2722 @@
+{
+  "id": "halfling",
+  "name": "Halfling",
+  "qualities": [
+    {
+      "id": "halfling.type",
+      "name": "Tipo",
+      "description": "Umanoide con il sottotipo halfling.",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "creatureType",
+          "type": "reminder",
+          "message": "Il personaggio è un Umanoide con il sottotipo halfling. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "halfling.size",
+      "name": "Taglia Piccola",
+      "description": "Creatura di taglia Piccola.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "small"
+        }
+      ]
+    },
+    {
+      "id": "halfling.baseSpeed",
+      "name": "Velocità Lenta",
+      "description": "Velocità terrestre di 6 metri.",
+      "effects": [
+        {
+          "id": "landSpeed",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "halfling.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Destrezza +2, Carisma +2, Forza -2.",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Modificatore razziale di Halfling",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Modificatore razziale di Halfling",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Modificatore razziale di Halfling",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "halfling.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi iniziali: Comune, Halfling. Bonus per Intelligenza: Elfico, Gnomesco, Goblin, Nanico.",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "halfling",
+          "type": "languageGrant",
+          "languageId": "halfling"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "dwarven",
+            "elven",
+            "gnome",
+            "goblin"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "halfling.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita corrispondente.",
+      "effects": [
+        {
+          "id": "alchemistFormula",
+          "type": "favoredClassBonus",
+          "name": "Alchimista — Formula",
+          "description": "Alchimista — Formula. Gestione manuale: Una formula della lista Alchimista, almeno un livello sotto il massimo utilizzabile. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "alchemist"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Una formula della lista Alchimista, almeno un livello sotto il massimo utilizzabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "arcanistExploit",
+          "type": "favoredClassBonus",
+          "name": "Arcanista — Exploit",
+          "description": "Arcanista — Exploit (1 beneficio ogni 6 scelte). Gestione manuale: Scegli un nuovo exploit. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "arcanist"
+          ],
+          "selectionsPerBenefit": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scegli un nuovo exploit. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "brawlerDefense",
+          "type": "favoredClassBonus",
+          "name": "Attaccabrighe — Difesa",
+          "description": "Attaccabrighe — Difesa.",
+          "classes": [
+            "brawler"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "combatManeuver_defense_grapple",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.grapple",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "combatManeuver_defense_overrun",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.overrun",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        },
+        {
+          "id": "barbarianRange",
+          "type": "favoredClassBonus",
+          "name": "Barbaro — Gittata",
+          "description": "Barbaro — Gittata (1 beneficio ogni 5 scelte). Gestione manuale: +1,5 m all'incremento di gittata delle armi da lancio. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "barbarian"
+          ],
+          "selectionsPerBenefit": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1,5 m all'incremento di gittata delle armi da lancio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "barbarianTraps",
+          "type": "favoredClassBonus",
+          "name": "Barbaro — Trappole",
+          "description": "Barbaro — Trappole (1 beneficio ogni 2 scelte). Gestione manuale: +1 al bonus di Percepire Trappole. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "barbarian"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 al bonus di Percepire Trappole. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "barbarianAccuracy",
+          "type": "favoredClassBonus",
+          "name": "Barbaro — Accuratezza",
+          "description": "Barbaro — Accuratezza (1 beneficio ogni 3 scelte). Gestione manuale: +1 al bonus del potere d'ira Accuratezza Sorprendente. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "barbarian"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 al bonus del potere d'ira Accuratezza Sorprendente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "bardSkills",
+          "type": "favoredClassBonus",
+          "name": "Bardo — Comunicazione",
+          "description": "Bardo — Comunicazione (1 beneficio ogni 2 scelte).",
+          "classes": [
+            "bard"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "skill_bluff",
+              "type": "modifier",
+              "resource": "skill.bluff",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Inviare messaggi segreti"
+            },
+            {
+              "id": "skill_diplomacy",
+              "type": "modifier",
+              "resource": "skill.diplomacy",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Raccogliere informazioni"
+            },
+            {
+              "id": "skill_disguise",
+              "type": "modifier",
+              "resource": "skill.disguise",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Apparire un bambino umano, elfo o mezzelfo"
+            }
+          ]
+        },
+        {
+          "id": "hunterSaves",
+          "type": "favoredClassBonus",
+          "name": "Cacciatore — Compagno",
+          "description": "Cacciatore — Compagno (1 beneficio ogni 4 scelte). Gestione manuale: +1 fortuna ai TS del compagno animale; passa al sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "hunter"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 fortuna ai TS del compagno animale; passa al sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "cavalierChallenge",
+          "type": "favoredClassBonus",
+          "name": "Cavaliere — Sfida",
+          "description": "Cavaliere — Sfida (1 beneficio ogni 2 scelte). Gestione manuale: +1 livello effettivo per il danno degli attacchi di opportunità contro il nemico sfidato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "cavalier"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 livello effettivo per il danno degli attacchi di opportunità contro il nemico sfidato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "cavalierFear",
+          "type": "favoredClassBonus",
+          "name": "Cavaliere — Cavalcatura",
+          "description": "Cavaliere — Cavalcatura (1 beneficio ogni 2 scelte). Gestione manuale: +1 ai TS contro paura della cavalcatura, trasferibile alla sostituta. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "cavalier"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 ai TS contro paura della cavalcatura, trasferibile alla sostituta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "clericDomain",
+          "type": "favoredClassBonus",
+          "name": "Chierico — Dominio",
+          "description": "Chierico — Dominio (1 beneficio ogni 2 scelte). Gestione manuale: +1 uso/giorno di un potere di dominio di livello 1 normalmente usabile 3 + modificatore Saggezza volte. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 uso/giorno di un potere di dominio di livello 1 normalmente usabile 3 + modificatore Saggezza volte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "kineticistBuffer",
+          "type": "favoredClassBonus",
+          "name": "Cineta — Provvista",
+          "description": "Cineta — Provvista (1 beneficio ogni 6 scelte). Gestione manuale: +1 punto di Provvista Interiore. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "kineticist"
+          ],
+          "selectionsPerBenefit": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 punto di Provvista Interiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "summonerRanks",
+          "type": "favoredClassBonus",
+          "name": "Convocatore — Eidolon",
+          "description": "Convocatore — Eidolon. Gestione manuale: +1 grado di abilità all'eidolon. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "summoner"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 grado di abilità all'eidolon. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "druidSaves",
+          "type": "favoredClassBonus",
+          "name": "Druido — Compagno",
+          "description": "Druido — Compagno (1 beneficio ogni 4 scelte). Gestione manuale: +1 fortuna ai TS del compagno animale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "druid"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 fortuna ai TS del compagno animale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "witchPatron",
+          "type": "favoredClassBonus",
+          "name": "Fattucchiere — Patrono",
+          "description": "Fattucchiere — Patrono (1 beneficio ogni 4 scelte). Gestione manuale: +1 LI per gli effetti degli incantesimi concessi dal patrono. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "witch"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 LI per gli effetti degli incantesimi concessi dal patrono. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "fighterDefense",
+          "type": "favoredClassBonus",
+          "name": "Guerriero — Difesa",
+          "description": "Guerriero — Difesa.",
+          "classes": [
+            "fighter"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "combatManeuver_defense_grapple",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.grapple",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "combatManeuver_defense_trip",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.trip",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        },
+        {
+          "id": "inquisitorTeamwork",
+          "type": "favoredClassBonus",
+          "name": "Inquisitore — Squadra",
+          "description": "Inquisitore — Squadra (1 beneficio ogni 4 scelte). Gestione manuale: +1 cambio/giorno del talento di squadra più recente. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "inquisitor"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 cambio/giorno del talento di squadra più recente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "swashbucklerCharmed",
+          "type": "favoredClassBonus",
+          "name": "Intrepido — Vita Affascinante",
+          "description": "Intrepido — Vita Affascinante (1 beneficio ogni 4 scelte). Gestione manuale: +1 uso/giorno di Vita Affascinante. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "swashbuckler"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 uso/giorno di Vita Affascinante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "investigatorFormula",
+          "type": "favoredClassBonus",
+          "name": "Investigatore — Formula",
+          "description": "Investigatore — Formula. Gestione manuale: Una formula della lista Investigatore, almeno un livello sotto il massimo utilizzabile. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "investigator"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Una formula della lista Investigatore, almeno un livello sotto il massimo utilizzabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "bloodragerDodge",
+          "type": "favoredClassBonus",
+          "name": "Iracondo di Stirpe — Schivare",
+          "description": "Iracondo di Stirpe — Schivare (1 beneficio ogni 4 scelte).",
+          "classes": [
+            "bloodrager"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "armorClass_reflexive",
+              "type": "modifier",
+              "resource": "armorClass.reflexive",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "dodge",
+              "expression": "1",
+              "condition": "Durante Ira di Stirpe contro creature di almeno una taglia superiore"
+            }
+          ]
+        },
+        {
+          "id": "rogueCritical",
+          "type": "favoredClassBonus",
+          "name": "Ladro — Critici",
+          "description": "Ladro — Critici (1 beneficio ogni 2 scelte). Gestione manuale: +1 circostanza alla conferma con fionda, pugnale o arma halfling scelta; massimo +4, non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 circostanza alla conferma con fionda, pugnale o arma halfling scelta; massimo +4, non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "wizardFamiliar",
+          "type": "favoredClassBonus",
+          "name": "Mago — Famiglio",
+          "description": "Mago — Famiglio (1 beneficio ogni 2 scelte). Gestione manuale: +1 livello effettivo per armatura naturale, Intelligenza e capacità speciali del famiglio. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "wizard"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 livello effettivo per armatura naturale, Intelligenza e capacità speciali del famiglio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "magusArcana",
+          "type": "favoredClassBonus",
+          "name": "Magus — Segreto",
+          "description": "Magus — Segreto (1 beneficio ogni 6 scelte). Gestione manuale: Scegli un nuovo segreto del magus. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "magus"
+          ],
+          "selectionsPerBenefit": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scegli un nuovo segreto del magus. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "mediumSeance",
+          "type": "favoredClassBonus",
+          "name": "Medium — Seduta",
+          "description": "Medium — Seduta (1 beneficio ogni 3 scelte). Gestione manuale: +1 al bonus del dono della Seduta Spiritica solo per te, non agli alleati con Seduta Condivisa. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "medium"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 al bonus del dono della Seduta Spiritica solo per te, non agli alleati con Seduta Condivisa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "mesmeristTricks",
+          "type": "favoredClassBonus",
+          "name": "Mesmerista — Trucchi",
+          "description": "Mesmerista — Trucchi (1 beneficio ogni 3 scelte). Gestione manuale: +1 uso/giorno di Trucchi del Mesmerista. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "mesmerist"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 uso/giorno di Trucchi del Mesmerista. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkStunning",
+          "type": "favoredClassBonus",
+          "name": "Monaco — Lotta e Pugno",
+          "description": "Monaco — Lotta e Pugno. Gestione manuale: Per scelta: +1 DMC contro lotta e +1/2 uso/giorno di Pugno Stordente; arrotonda gli usi sul totale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "monk"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Per scelta: +1 DMC contro lotta e +1/2 uso/giorno di Pugno Stordente; arrotonda gli usi sul totale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkTrip",
+          "type": "favoredClassBonus",
+          "name": "Monaco — Bersagli Proni",
+          "description": "Monaco — Bersagli Proni (1 beneficio ogni 4 scelte).",
+          "classes": [
+            "monk"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "combatManeuver_defense_trip",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.trip",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "damage_all",
+              "type": "modifier",
+              "resource": "damage.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Contro bersaglio prono, tiro ai danni che include il modificatore di Forza del monaco"
+            }
+          ]
+        },
+        {
+          "id": "occultistFocus",
+          "type": "favoredClassBonus",
+          "name": "Occultista — Focus",
+          "description": "Occultista — Focus (1 beneficio ogni 2 scelte). Gestione manuale: +1 punto di focus mentale/giorno. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "occultist"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 punto di focus mentale/giorno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleCurse",
+          "type": "favoredClassBonus",
+          "name": "Oracolo — Maledizione",
+          "description": "Oracolo — Maledizione (1 beneficio ogni 2 scelte). Gestione manuale: +1 livello effettivo per Maledizione dell'Oracolo. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "oracle"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 livello effettivo per Maledizione dell'Oracolo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "paladinHealing",
+          "type": "favoredClassBonus",
+          "name": "Paladino — Imposizione",
+          "description": "Paladino — Imposizione (1 beneficio ogni 2 scelte). Gestione manuale: +1 PF curato o inflitto con Imposizione delle Mani. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "paladin"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 PF curato o inflitto con Imposizione delle Mani. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "psychicDiscipline",
+          "type": "favoredClassBonus",
+          "name": "Parapsichico — Disciplina",
+          "description": "Parapsichico — Disciplina (1 beneficio ogni 3 scelte). Gestione manuale: +1 al bonus di Carisma solo per determinare usi o round/giorno dei poteri di disciplina. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "psychic"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 al bonus di Carisma solo per determinare usi o round/giorno dei poteri di disciplina. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "gunslingerNimble",
+          "type": "favoredClassBonus",
+          "name": "Pistolero — Leggiadria",
+          "description": "Pistolero — Leggiadria (1 beneficio ogni 4 scelte). Gestione manuale: +1 al bonus di schivare alla CA di Leggiadria; incremento massimo +1. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "gunslinger"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 al bonus di schivare alla CA di Leggiadria; incremento massimo +1. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "gunslingerDodge",
+          "type": "favoredClassBonus",
+          "name": "Pistolero — Schivata",
+          "description": "Pistolero — Schivata (1 beneficio ogni 4 scelte). Gestione manuale: +1 al bonus alla CA quando usi Schivata del Pistolero. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "gunslinger"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 al bonus alla CA quando usi Schivata del Pistolero. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "slayerDodge",
+          "type": "favoredClassBonus",
+          "name": "Predatore — Schivare",
+          "description": "Predatore — Schivare (1 beneficio ogni 4 scelte).",
+          "classes": [
+            "slayer"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "armorClass_reflexive",
+              "type": "modifier",
+              "resource": "armorClass.reflexive",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "dodge",
+              "expression": "1",
+              "condition": "Contro il Bersaglio Studiato"
+            }
+          ]
+        },
+        {
+          "id": "rangerDodge",
+          "type": "favoredClassBonus",
+          "name": "Ranger — Schivare",
+          "description": "Ranger — Schivare (1 beneficio ogni 3 scelte).",
+          "classes": [
+            "ranger"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "armorClass_reflexive",
+              "type": "modifier",
+              "resource": "armorClass.reflexive",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "dodge",
+              "expression": "1",
+              "condition": "Contro il Nemico Prescelto"
+            }
+          ]
+        },
+        {
+          "id": "warpriestWeapon",
+          "type": "favoredClassBonus",
+          "name": "Sacerdote Guerriero — Arma",
+          "description": "Sacerdote Guerriero — Arma (1 beneficio ogni 4 scelte). Gestione manuale: +1 livello effettivo per i danni dell'Arma Consacrata. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "warpriest"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 livello effettivo per i danni dell'Arma Consacrata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "skaldCritical",
+          "type": "favoredClassBonus",
+          "name": "Scaldo — Critici",
+          "description": "Scaldo — Critici (1 beneficio ogni 2 scelte). Gestione manuale: +1 circostanza alla conferma con fionda, pugnale o arma halfling scelta; massimo +4, non cumulabile con Critico Focalizzato o simili. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "skald"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 circostanza alla conferma con fionda, pugnale o arma halfling scelta; massimo +4, non cumulabile con Critico Focalizzato o simili. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "shamanAnimal",
+          "type": "favoredClassBonus",
+          "name": "Sciamano — Animale",
+          "description": "Sciamano — Animale (1 beneficio ogni 2 scelte). Gestione manuale: +1 livello effettivo per armatura naturale, Intelligenza e capacità speciali dell'animale spirituale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "shaman"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 livello effettivo per armatura naturale, Intelligenza e capacità speciali dell'animale spirituale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "spiritualistPhantom",
+          "type": "favoredClassBonus",
+          "name": "Spiritista — Apparizione",
+          "description": "Spiritista — Apparizione (1 beneficio ogni 4 scelte). Gestione manuale: +1 round in cui l'apparizione incorporea può restare fuori da visuale e linea d'effetto prima di tornare al Piano Etereo. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "spiritualist"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 round in cui l'apparizione incorporea può restare fuori da visuale e linea d'effetto prima di tornare al Piano Etereo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererBloodline",
+          "type": "favoredClassBonus",
+          "name": "Stregone — Stirpe",
+          "description": "Stregone — Stirpe (1 beneficio ogni 2 scelte). Gestione manuale: +1 uso/giorno di un potere di stirpe di livello 1 normalmente usabile 3 + modificatore Carisma volte. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 uso/giorno di un potere di stirpe di livello 1 normalmente usabile 3 + modificatore Carisma volte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "vigilanteTalent",
+          "type": "favoredClassBonus",
+          "name": "Vigilante — Dote Sociale",
+          "description": "Vigilante — Dote Sociale (1 beneficio ogni 6 scelte). Gestione manuale: Scegli una nuova dote sociale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "vigilante"
+          ],
+          "selectionsPerBenefit": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scegli una nuova dote sociale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "halfling.weaponFamiliarity",
+      "name": "Familiarità nelle Armi",
+      "description": "Competenza nella fionda; le armi halfling sono considerate da guerra.",
+      "effects": [
+        {
+          "id": "weaponFamiliarity",
+          "type": "reminder",
+          "message": "Competenza nella fionda; le armi halfling sono considerate da guerra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "halfling.halflingLuck",
+      "name": "Fortuna Halfling",
+      "description": "+1 razziale a tutti i tiri salvezza.",
+      "effects": [
+        {
+          "id": "savingThrows",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Fortuna Halfling",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1"
+        }
+      ]
+    },
+    {
+      "id": "halfling.fearless",
+      "name": "Temerarietà",
+      "description": "+2 razziale ai tiri salvezza contro paura, cumulabile con Fortuna Halfling.",
+      "effects": [
+        {
+          "id": "fearSaves",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Temerarietà",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Contro effetti di paura"
+        }
+      ]
+    },
+    {
+      "id": "halfling.sureFooted",
+      "name": "Piede Saldo",
+      "description": "+2 razziale ad Acrobazia e Scalare.",
+      "effects": [
+        {
+          "id": "acrobatics",
+          "type": "modifier",
+          "resource": "skill.acrobatics",
+          "description": "Piede Saldo",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "climb",
+          "type": "modifier",
+          "resource": "skill.climb",
+          "description": "Piede Saldo",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "halfling.keenSenses",
+      "name": "Sensi Acuti",
+      "description": "+2 razziale alle prove di Percezione.",
+      "effects": [
+        {
+          "id": "perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Sensi Acuti",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "halfling.watchful",
+      "name": "All'Erta",
+      "description": "All'Erta",
+      "effects": [
+        {
+          "id": "skill_senseMotive",
+          "type": "modifier",
+          "resource": "skill.senseMotive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "enchantment",
+          "type": "modifier",
+          "resource": "skill.senseMotive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Capire se una creatura è ammaliata o posseduta"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.keenSenses"
+      ]
+    },
+    {
+      "id": "halfling.creepyDoll",
+      "name": "Bambola Inquietante",
+      "description": "Bambola Inquietante",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Immobile, non osservato e fingendoti un fantoccio puoi usare Furtività senza copertura/occultamento: ti notano come bambola, senza prendere 20. Nessuna penalità di taglia a Intimidire umanoidi più grandi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.keenSenses",
+        "halfling.sureFooted"
+      ]
+    },
+    {
+      "id": "halfling.blessed",
+      "name": "Benedetto",
+      "description": "Benedetto",
+      "effects": [
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2",
+          "condition": "Maledizioni o fatture"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.fearless"
+      ]
+    },
+    {
+      "id": "halfling.outrider",
+      "name": "Cavallerizzo",
+      "description": "Cavallerizzo",
+      "effects": [
+        {
+          "id": "skill_handleAnimal",
+          "type": "modifier",
+          "resource": "skill.handleAnimal",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2"
+        },
+        {
+          "id": "skill_ride",
+          "type": "modifier",
+          "resource": "skill.ride",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.sureFooted"
+      ]
+    },
+    {
+      "id": "halfling.lowBlow",
+      "name": "Colpo Basso",
+      "description": "Colpo Basso",
+      "effects": [
+        {
+          "id": "criticalConfirmation_all",
+          "type": "modifier",
+          "resource": "criticalConfirmation.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "1",
+          "condition": "Contro avversari più grandi"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.keenSenses"
+      ]
+    },
+    {
+      "id": "halfling.greed",
+      "name": "Cupidigia",
+      "description": "Cupidigia",
+      "effects": [
+        {
+          "id": "skill_appraise",
+          "type": "modifier",
+          "resource": "skill.appraise",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "treasure",
+          "type": "modifier",
+          "resource": "skill.appraise",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Individuare l'oggetto visibile più prezioso in un tesoro"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.keenSenses"
+      ]
+    },
+    {
+      "id": "halfling.adaptableLuck",
+      "name": "Fortuna Adattabile",
+      "description": "Fortuna Adattabile",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "3/giorno senza azione: bonus di fortuna +2 a una prova di caratteristica/abilità, attacco o TS se deciso prima del tiro, oppure +1 se deciso dopo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.halflingLuck"
+      ]
+    },
+    {
+      "id": "halfling.underfoot",
+      "name": "Fra i Piedi",
+      "description": "Fra i Piedi",
+      "effects": [
+        {
+          "id": "armorClass_reflexive",
+          "type": "modifier",
+          "resource": "armorClass.reflexive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "dodge",
+          "expression": "1",
+          "condition": "Contro creature più grandi"
+        },
+        {
+          "id": "savingThrow_reflex",
+          "type": "modifier",
+          "resource": "savingThrow.reflex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "1",
+          "condition": "Evitare Travolgere"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.halflingLuck"
+      ]
+    },
+    {
+      "id": "halfling.warslinger",
+      "name": "Fromboliere",
+      "description": "Fromboliere",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Ricaricare una fionda è azione gratuita, richiede due mani e provoca attacchi di opportunità. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.sureFooted"
+      ]
+    },
+    {
+      "id": "halfling.deepJungle",
+      "name": "Giungla Profonda",
+      "description": "Giungla Profonda",
+      "effects": [
+        {
+          "id": "skill_survival",
+          "type": "modifier",
+          "resource": "skill.survival",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "halfling",
+          "type": "languageGrant",
+          "languageId": "halfling"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "dwarven",
+            "elven",
+            "gnome",
+            "goblin"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Competenza in cerbottana e Uso dei Veleni: nessun avvelenamento accidentale durante l'uso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.sureFooted",
+        "halfling.weaponFamiliarity",
+        "halfling.languages"
+      ]
+    },
+    {
+      "id": "halfling.irrepressible",
+      "name": "Incoercibile",
+      "description": "Incoercibile",
+      "effects": [
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Dominazione o possessione"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.fearless"
+      ]
+    },
+    {
+      "id": "halfling.resourceful",
+      "name": "Ingegnoso",
+      "description": "Ingegnoso",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Nessuna penalità con armi improvvisate. Per i prerequisiti equivale a Cogliere di Sorpresa o Lanciare Oggetti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.sureFooted",
+        "halfling.weaponFamiliarity"
+      ]
+    },
+    {
+      "id": "halfling.filcher",
+      "name": "Ladresco",
+      "description": "Ladresco",
+      "effects": [
+        {
+          "id": "skill_bluff",
+          "type": "modifier",
+          "resource": "skill.bluff",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "skill_sleightOfHand",
+          "type": "modifier",
+          "resource": "skill.sleightOfHand",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "classSkill",
+          "type": "classSkillGrant",
+          "resource": "skill.sleightOfHand"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.sureFooted"
+      ]
+    },
+    {
+      "id": "halfling.fleetOfFoot",
+      "name": "Lesto di Piedi",
+      "description": "Lesto di Piedi",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.sureFooted",
+        "halfling.baseSpeed"
+      ]
+    },
+    {
+      "id": "halfling.ingratiating",
+      "name": "Ossequioso",
+      "description": "Ossequioso",
+      "effects": [
+        {
+          "id": "skill_craft",
+          "type": "modifier",
+          "resource": "skill.craft",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2"
+        },
+        {
+          "id": "skill_profession",
+          "type": "modifier",
+          "resource": "skill.profession",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scegli una specializzazione di Intrattenere: +2 alle prove e diventa abilità di classe. Scelta aperta e specializzazione da gestire manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.sureFooted",
+        "halfling.keenSenses"
+      ]
+    },
+    {
+      "id": "halfling.polyglot",
+      "name": "Poliglotta",
+      "description": "Conosci una lingua non segreta aggiuntiva; Linguistica +2 e di classe.",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "halfling",
+          "type": "languageGrant",
+          "languageId": "halfling"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "dwarven",
+            "elven",
+            "gnome",
+            "goblin"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        },
+        {
+          "id": "skill_linguistics",
+          "type": "modifier",
+          "resource": "skill.linguistics",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "classSkill",
+          "type": "classSkillGrant",
+          "resource": "skill.linguistics"
+        }
+      ],
+      "choices": [
+        {
+          "id": "language",
+          "prompt": "Scegli una lingua aggiuntiva",
+          "selectionCount": 1,
+          "options": [
+            {
+              "id": "aboleth",
+              "name": "Aboleth",
+              "effects": [
+                {
+                  "id": "aboleth",
+                  "type": "languageGrant",
+                  "languageId": "aboleth"
+                }
+              ]
+            },
+            {
+              "id": "abyssal",
+              "name": "Abissale",
+              "effects": [
+                {
+                  "id": "abyssal",
+                  "type": "languageGrant",
+                  "languageId": "abyssal"
+                }
+              ]
+            },
+            {
+              "id": "adlet",
+              "name": "Adlet",
+              "effects": [
+                {
+                  "id": "adlet",
+                  "type": "languageGrant",
+                  "languageId": "adlet"
+                }
+              ]
+            },
+            {
+              "id": "aklo",
+              "name": "Aklo",
+              "effects": [
+                {
+                  "id": "aklo",
+                  "type": "languageGrant",
+                  "languageId": "aklo"
+                }
+              ]
+            },
+            {
+              "id": "ancientOsiriani",
+              "name": "Osiriano Antico",
+              "effects": [
+                {
+                  "id": "ancientOsiriani",
+                  "type": "languageGrant",
+                  "languageId": "ancientOsiriani"
+                }
+              ]
+            },
+            {
+              "id": "aquan",
+              "name": "Aquan",
+              "effects": [
+                {
+                  "id": "aquan",
+                  "type": "languageGrant",
+                  "languageId": "aquan"
+                }
+              ]
+            },
+            {
+              "id": "auran",
+              "name": "Auran",
+              "effects": [
+                {
+                  "id": "auran",
+                  "type": "languageGrant",
+                  "languageId": "auran"
+                }
+              ]
+            },
+            {
+              "id": "azlanti",
+              "name": "Azlanti",
+              "effects": [
+                {
+                  "id": "azlanti",
+                  "type": "languageGrant",
+                  "languageId": "azlanti"
+                }
+              ]
+            },
+            {
+              "id": "boggard",
+              "name": "Boggard",
+              "effects": [
+                {
+                  "id": "boggard",
+                  "type": "languageGrant",
+                  "languageId": "boggard"
+                }
+              ]
+            },
+            {
+              "id": "canto",
+              "name": "Canto",
+              "effects": [
+                {
+                  "id": "canto",
+                  "type": "languageGrant",
+                  "languageId": "canto"
+                }
+              ]
+            },
+            {
+              "id": "catfolk",
+              "name": "Felinese",
+              "effects": [
+                {
+                  "id": "catfolk",
+                  "type": "languageGrant",
+                  "languageId": "catfolk"
+                }
+              ]
+            },
+            {
+              "id": "celestial",
+              "name": "Celestiale",
+              "effects": [
+                {
+                  "id": "celestial",
+                  "type": "languageGrant",
+                  "languageId": "celestial"
+                }
+              ]
+            },
+            {
+              "id": "ceratioidi",
+              "name": "Ceratioidi",
+              "effects": [
+                {
+                  "id": "ceratioidi",
+                  "type": "languageGrant",
+                  "languageId": "ceratioidi"
+                }
+              ]
+            },
+            {
+              "id": "cyclops",
+              "name": "Ciclope",
+              "effects": [
+                {
+                  "id": "cyclops",
+                  "type": "languageGrant",
+                  "languageId": "cyclops"
+                }
+              ]
+            },
+            {
+              "id": "draconic",
+              "name": "Draconico",
+              "effects": [
+                {
+                  "id": "draconic",
+                  "type": "languageGrant",
+                  "languageId": "draconic"
+                }
+              ]
+            },
+            {
+              "id": "dtang",
+              "name": "D'tang",
+              "effects": [
+                {
+                  "id": "dtang",
+                  "type": "languageGrant",
+                  "languageId": "dtang"
+                }
+              ]
+            },
+            {
+              "id": "dwarven",
+              "name": "Nanico",
+              "effects": [
+                {
+                  "id": "dwarven",
+                  "type": "languageGrant",
+                  "languageId": "dwarven"
+                }
+              ]
+            },
+            {
+              "id": "elven",
+              "name": "Elfico",
+              "effects": [
+                {
+                  "id": "elven",
+                  "type": "languageGrant",
+                  "languageId": "elven"
+                }
+              ]
+            },
+            {
+              "id": "erutaki",
+              "name": "Erutaki",
+              "effects": [
+                {
+                  "id": "erutaki",
+                  "type": "languageGrant",
+                  "languageId": "erutaki"
+                }
+              ]
+            },
+            {
+              "id": "flailSnail",
+              "name": "Lumaca Flagello",
+              "effects": [
+                {
+                  "id": "flailSnail",
+                  "type": "languageGrant",
+                  "languageId": "flailSnail"
+                }
+              ]
+            },
+            {
+              "id": "garuda",
+              "name": "Garuda",
+              "effects": [
+                {
+                  "id": "garuda",
+                  "type": "languageGrant",
+                  "languageId": "garuda"
+                }
+              ]
+            },
+            {
+              "id": "giant",
+              "name": "Gigante",
+              "effects": [
+                {
+                  "id": "giant",
+                  "type": "languageGrant",
+                  "languageId": "giant"
+                }
+              ]
+            },
+            {
+              "id": "girtablilu",
+              "name": "Girtablilu",
+              "effects": [
+                {
+                  "id": "girtablilu",
+                  "type": "languageGrant",
+                  "languageId": "girtablilu"
+                }
+              ]
+            },
+            {
+              "id": "gnoll",
+              "name": "Gnoll",
+              "effects": [
+                {
+                  "id": "gnoll",
+                  "type": "languageGrant",
+                  "languageId": "gnoll"
+                }
+              ]
+            },
+            {
+              "id": "gnome",
+              "name": "Gnomesco",
+              "effects": [
+                {
+                  "id": "gnome",
+                  "type": "languageGrant",
+                  "languageId": "gnome"
+                }
+              ]
+            },
+            {
+              "id": "goblin",
+              "name": "Goblin",
+              "effects": [
+                {
+                  "id": "goblin",
+                  "type": "languageGrant",
+                  "languageId": "goblin"
+                }
+              ]
+            },
+            {
+              "id": "grippli",
+              "name": "Grippli",
+              "effects": [
+                {
+                  "id": "grippli",
+                  "type": "languageGrant",
+                  "languageId": "grippli"
+                }
+              ]
+            },
+            {
+              "id": "gug",
+              "name": "Gug",
+              "effects": [
+                {
+                  "id": "gug",
+                  "type": "languageGrant",
+                  "languageId": "gug"
+                }
+              ]
+            },
+            {
+              "id": "hallit",
+              "name": "Hallit",
+              "effects": [
+                {
+                  "id": "hallit",
+                  "type": "languageGrant",
+                  "languageId": "hallit"
+                }
+              ]
+            },
+            {
+              "id": "honLa",
+              "name": "Hon-La",
+              "effects": [
+                {
+                  "id": "honLa",
+                  "type": "languageGrant",
+                  "languageId": "honLa"
+                }
+              ]
+            },
+            {
+              "id": "hwan",
+              "name": "Hwan",
+              "effects": [
+                {
+                  "id": "hwan",
+                  "type": "languageGrant",
+                  "languageId": "hwan"
+                }
+              ]
+            },
+            {
+              "id": "ignan",
+              "name": "Ignan",
+              "effects": [
+                {
+                  "id": "ignan",
+                  "type": "languageGrant",
+                  "languageId": "ignan"
+                }
+              ]
+            },
+            {
+              "id": "infernal",
+              "name": "Infernale",
+              "effects": [
+                {
+                  "id": "infernal",
+                  "type": "languageGrant",
+                  "languageId": "infernal"
+                }
+              ]
+            },
+            {
+              "id": "iobarian",
+              "name": "Iobariano",
+              "effects": [
+                {
+                  "id": "iobarian",
+                  "type": "languageGrant",
+                  "languageId": "iobarian"
+                }
+              ]
+            },
+            {
+              "id": "jistkan",
+              "name": "Jistka",
+              "effects": [
+                {
+                  "id": "jistkan",
+                  "type": "languageGrant",
+                  "languageId": "jistkan"
+                }
+              ]
+            },
+            {
+              "id": "kasatha",
+              "name": "Kasatha",
+              "effects": [
+                {
+                  "id": "kasatha",
+                  "type": "languageGrant",
+                  "languageId": "kasatha"
+                }
+              ]
+            },
+            {
+              "id": "kech",
+              "name": "Kech",
+              "effects": [
+                {
+                  "id": "kech",
+                  "type": "languageGrant",
+                  "languageId": "kech"
+                }
+              ]
+            },
+            {
+              "id": "kelish",
+              "name": "Kelish",
+              "effects": [
+                {
+                  "id": "kelish",
+                  "type": "languageGrant",
+                  "languageId": "kelish"
+                }
+              ]
+            },
+            {
+              "id": "kuru",
+              "name": "Kuru",
+              "effects": [
+                {
+                  "id": "kuru",
+                  "type": "languageGrant",
+                  "languageId": "kuru"
+                }
+              ]
+            },
+            {
+              "id": "minatan",
+              "name": "Minatano",
+              "effects": [
+                {
+                  "id": "minatan",
+                  "type": "languageGrant",
+                  "languageId": "minatan"
+                }
+              ]
+            },
+            {
+              "id": "minkaian",
+              "name": "Minkaiano",
+              "effects": [
+                {
+                  "id": "minkaian",
+                  "type": "languageGrant",
+                  "languageId": "minkaian"
+                }
+              ]
+            },
+            {
+              "id": "munavri",
+              "name": "Munavri",
+              "effects": [
+                {
+                  "id": "munavri",
+                  "type": "languageGrant",
+                  "languageId": "munavri"
+                }
+              ]
+            },
+            {
+              "id": "nagaji",
+              "name": "Nagaji",
+              "effects": [
+                {
+                  "id": "nagaji",
+                  "type": "languageGrant",
+                  "languageId": "nagaji"
+                }
+              ]
+            },
+            {
+              "id": "necril",
+              "name": "Necril",
+              "effects": [
+                {
+                  "id": "necril",
+                  "type": "languageGrant",
+                  "languageId": "necril"
+                }
+              ]
+            },
+            {
+              "id": "orc",
+              "name": "Orchesco",
+              "effects": [
+                {
+                  "id": "orc",
+                  "type": "languageGrant",
+                  "languageId": "orc"
+                }
+              ]
+            },
+            {
+              "id": "orvian",
+              "name": "Orviano",
+              "effects": [
+                {
+                  "id": "orvian",
+                  "type": "languageGrant",
+                  "languageId": "orvian"
+                }
+              ]
+            },
+            {
+              "id": "osiriani",
+              "name": "Osiriano",
+              "effects": [
+                {
+                  "id": "osiriani",
+                  "type": "languageGrant",
+                  "languageId": "osiriani"
+                }
+              ]
+            },
+            {
+              "id": "polyglot",
+              "name": "Poliglotta",
+              "effects": [
+                {
+                  "id": "polyglot",
+                  "type": "languageGrant",
+                  "languageId": "polyglot"
+                }
+              ]
+            },
+            {
+              "id": "sahuagin",
+              "name": "Sahuagin",
+              "effects": [
+                {
+                  "id": "sahuagin",
+                  "type": "languageGrant",
+                  "languageId": "sahuagin"
+                }
+              ]
+            },
+            {
+              "id": "samsaran",
+              "name": "Samsaran",
+              "effects": [
+                {
+                  "id": "samsaran",
+                  "type": "languageGrant",
+                  "languageId": "samsaran"
+                }
+              ]
+            },
+            {
+              "id": "sasquatch",
+              "name": "Sasquatch",
+              "effects": [
+                {
+                  "id": "sasquatch",
+                  "type": "languageGrant",
+                  "languageId": "sasquatch"
+                }
+              ]
+            },
+            {
+              "id": "senzar",
+              "name": "Senzar",
+              "effects": [
+                {
+                  "id": "senzar",
+                  "type": "languageGrant",
+                  "languageId": "senzar"
+                }
+              ]
+            },
+            {
+              "id": "shadowtongue",
+              "name": "Lingua delle Ombre",
+              "effects": [
+                {
+                  "id": "shadowtongue",
+                  "type": "languageGrant",
+                  "languageId": "shadowtongue"
+                }
+              ]
+            },
+            {
+              "id": "shoanti",
+              "name": "Shoanti",
+              "effects": [
+                {
+                  "id": "shoanti",
+                  "type": "languageGrant",
+                  "languageId": "shoanti"
+                }
+              ]
+            },
+            {
+              "id": "shory",
+              "name": "Shory",
+              "effects": [
+                {
+                  "id": "shory",
+                  "type": "languageGrant",
+                  "languageId": "shory"
+                }
+              ]
+            },
+            {
+              "id": "pathfinderSignLanguage",
+              "name": "Linguaggio dei Segni dei Cercatori",
+              "effects": [
+                {
+                  "id": "pathfinderSignLanguage",
+                  "type": "languageGrant",
+                  "languageId": "pathfinderSignLanguage"
+                }
+              ]
+            },
+            {
+              "id": "varisianSignLanguage",
+              "name": "Linguaggio dei Segni Varisiano",
+              "effects": [
+                {
+                  "id": "varisianSignLanguage",
+                  "type": "languageGrant",
+                  "languageId": "varisianSignLanguage"
+                }
+              ]
+            },
+            {
+              "id": "skald",
+              "name": "Skald",
+              "effects": [
+                {
+                  "id": "skald",
+                  "type": "languageGrant",
+                  "languageId": "skald"
+                }
+              ]
+            },
+            {
+              "id": "sphinx",
+              "name": "Sfinge",
+              "effects": [
+                {
+                  "id": "sphinx",
+                  "type": "languageGrant",
+                  "languageId": "sphinx"
+                }
+              ]
+            },
+            {
+              "id": "strix",
+              "name": "Strix",
+              "effects": [
+                {
+                  "id": "strix",
+                  "type": "languageGrant",
+                  "languageId": "strix"
+                }
+              ]
+            },
+            {
+              "id": "sylvan",
+              "name": "Silvano",
+              "effects": [
+                {
+                  "id": "sylvan",
+                  "type": "languageGrant",
+                  "languageId": "sylvan"
+                }
+              ]
+            },
+            {
+              "id": "syrinx",
+              "name": "Syrinx",
+              "effects": [
+                {
+                  "id": "syrinx",
+                  "type": "languageGrant",
+                  "languageId": "syrinx"
+                }
+              ]
+            },
+            {
+              "id": "tekritanin",
+              "name": "Tekritanin",
+              "effects": [
+                {
+                  "id": "tekritanin",
+                  "type": "languageGrant",
+                  "languageId": "tekritanin"
+                }
+              ]
+            },
+            {
+              "id": "tengu",
+              "name": "Tengu",
+              "effects": [
+                {
+                  "id": "tengu",
+                  "type": "languageGrant",
+                  "languageId": "tengu"
+                }
+              ]
+            },
+            {
+              "id": "terran",
+              "name": "Terran",
+              "effects": [
+                {
+                  "id": "terran",
+                  "type": "languageGrant",
+                  "languageId": "terran"
+                }
+              ]
+            },
+            {
+              "id": "thassilonian",
+              "name": "Thassiloniano",
+              "effects": [
+                {
+                  "id": "thassilonian",
+                  "type": "languageGrant",
+                  "languageId": "thassilonian"
+                }
+              ]
+            },
+            {
+              "id": "thriae",
+              "name": "Thriae",
+              "effects": [
+                {
+                  "id": "thriae",
+                  "type": "languageGrant",
+                  "languageId": "thriae"
+                }
+              ]
+            },
+            {
+              "id": "tien",
+              "name": "Tien",
+              "effects": [
+                {
+                  "id": "tien",
+                  "type": "languageGrant",
+                  "languageId": "tien"
+                }
+              ]
+            },
+            {
+              "id": "treant",
+              "name": "Treant",
+              "effects": [
+                {
+                  "id": "treant",
+                  "type": "languageGrant",
+                  "languageId": "treant"
+                }
+              ]
+            },
+            {
+              "id": "undercommon",
+              "name": "Sottocomune",
+              "effects": [
+                {
+                  "id": "undercommon",
+                  "type": "languageGrant",
+                  "languageId": "undercommon"
+                }
+              ]
+            },
+            {
+              "id": "vanaran",
+              "name": "Vanara",
+              "effects": [
+                {
+                  "id": "vanaran",
+                  "type": "languageGrant",
+                  "languageId": "vanaran"
+                }
+              ]
+            },
+            {
+              "id": "varisian",
+              "name": "Varisiano",
+              "effects": [
+                {
+                  "id": "varisian",
+                  "type": "languageGrant",
+                  "languageId": "varisian"
+                }
+              ]
+            },
+            {
+              "id": "varki",
+              "name": "Varki",
+              "effects": [
+                {
+                  "id": "varki",
+                  "type": "languageGrant",
+                  "languageId": "varki"
+                }
+              ]
+            },
+            {
+              "id": "vegepygmy",
+              "name": "Vegepigmeo",
+              "effects": [
+                {
+                  "id": "vegepygmy",
+                  "type": "languageGrant",
+                  "languageId": "vegepygmy"
+                }
+              ]
+            },
+            {
+              "id": "vishkanya",
+              "name": "Vishkanya",
+              "effects": [
+                {
+                  "id": "vishkanya",
+                  "type": "languageGrant",
+                  "languageId": "vishkanya"
+                }
+              ]
+            },
+            {
+              "id": "vudrani",
+              "name": "Vudrano",
+              "effects": [
+                {
+                  "id": "vudrani",
+                  "type": "languageGrant",
+                  "languageId": "vudrani"
+                }
+              ]
+            },
+            {
+              "id": "wayang",
+              "name": "Wayang",
+              "effects": [
+                {
+                  "id": "wayang",
+                  "type": "languageGrant",
+                  "languageId": "wayang"
+                }
+              ]
+            },
+            {
+              "id": "reptoid",
+              "name": "Rettiloide",
+              "effects": [
+                {
+                  "id": "reptoid",
+                  "type": "languageGrant",
+                  "languageId": "reptoid"
+                }
+              ]
+            },
+            {
+              "id": "rougarou",
+              "name": "Rougarou",
+              "effects": [
+                {
+                  "id": "rougarou",
+                  "type": "languageGrant",
+                  "languageId": "rougarou"
+                }
+              ]
+            },
+            {
+              "id": "yaddithian",
+              "name": "Yaddithian",
+              "effects": [
+                {
+                  "id": "yaddithian",
+                  "type": "languageGrant",
+                  "languageId": "yaddithian"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "replaces": [
+        "halfling.languages",
+        "halfling.keenSenses"
+      ]
+    },
+    {
+      "id": "halfling.practicality",
+      "name": "Praticone",
+      "description": "Praticone",
+      "effects": [
+        {
+          "id": "skill_senseMotive",
+          "type": "modifier",
+          "resource": "skill.senseMotive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2"
+        },
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2",
+          "condition": "Illusioni"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scegli una specializzazione di Artigianato o Professione e applicale +2. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.sureFooted",
+        "halfling.fearless"
+      ]
+    },
+    {
+      "id": "halfling.wanderlust",
+      "name": "Vagabondo",
+      "description": "Vagabondo",
+      "effects": [
+        {
+          "id": "skill_knowledge_geography",
+          "type": "modifier",
+          "resource": "skill.knowledge.geography",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2"
+        },
+        {
+          "id": "skill_survival",
+          "type": "modifier",
+          "resource": "skill.survival",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "+1 LI quando usi incantesimi o capacità che concedono o potenziano forme di movimento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.fearless",
+        "halfling.halflingLuck"
+      ]
+    },
+    {
+      "id": "halfling.swiftAsShadows",
+      "name": "Veloce come un'Ombra",
+      "description": "Veloce come un'Ombra",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Riduci di 5 le penalità di Furtività in movimento e di 10 quelle da cecchino; modifica la penalità, non un bonus generale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.sureFooted"
+      ]
+    },
+    {
+      "id": "halfling.craven",
+      "name": "Vigliacco",
+      "description": "Vigliacco",
+      "effects": [
+        {
+          "id": "initiative",
+          "type": "modifier",
+          "resource": "initiative",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1"
+        },
+        {
+          "id": "attack_all",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Attaccare ai fianchi"
+        },
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2",
+          "condition": "Paura"
+        },
+        {
+          "id": "speed_land",
+          "type": "modifier",
+          "resource": "speed.land",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "2",
+          "condition": "Sotto un effetto di paura"
+        },
+        {
+          "id": "armorClass_reflexive",
+          "type": "modifier",
+          "resource": "armorClass.reflexive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "dodge",
+          "expression": "1",
+          "condition": "Sotto un effetto di paura"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Non beneficiare di bonus morali ai TS contro paura; filtro automatico non implementato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "halfling.halflingLuck",
+        "halfling.fearless"
+      ]
+    }
+  ]
+}

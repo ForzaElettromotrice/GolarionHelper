@@ -1,0 +1,61 @@
+{
+  "id": "holdMonster",
+  "name": "Blocca Mostri",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 4,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 5,
+    "WITCH": 5,
+    "INQUISITOR": 4,
+    "WIZARD": 5,
+    "MEDIUM": 4,
+    "MESMERIST": 4,
+    "OCCULTIST": 4,
+    "PSYCHIC": 5,
+    "SKALD": 4,
+    "SORCERER": 5
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "LAW": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una sbarra o una verga di metallo duro, che può anche essere piccola come un chiodo",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 creatura vivente",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (D); vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Estende la paralisi magica a creature di tipi diversi dagli umanoidi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Blocca_Mostri",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Blocca Mostri: https://golarion.altervista.org/wiki/Incantesimi/Blocca_Mostri Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

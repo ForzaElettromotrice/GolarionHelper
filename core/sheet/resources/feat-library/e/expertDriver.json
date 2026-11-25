@@ -1,0 +1,27 @@
+{
+  "id": "expertDriver",
+  "name": "Guidatore Esperto",
+  "description": "Rende più rapide le manovre e gli arresti del veicolo appropriato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Guidatore_Esperto",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Guidatore Abile con il tipo di veicolo selezionato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Guidatore Esperto: https://golarion.altervista.org/wiki/Talenti/Guidatore_Esperto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Guidatore Abile con il tipo di veicolo selezionato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

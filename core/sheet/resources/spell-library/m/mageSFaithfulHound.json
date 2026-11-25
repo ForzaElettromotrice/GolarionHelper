@@ -1,0 +1,41 @@
+{
+  "id": "mageSFaithfulHound",
+  "name": "Segugio Fedele",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "SUMMONER": 4,
+    "UNCHAINED_SUMMONER": 5,
+    "WIZARD": 5,
+    "SPIRITUALIST": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un fischietto d'argento, una scheggia d'osso e del filo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "cane da guardia fantomatico",
+  "durationType": "OTHER",
+  "durationDescription": "1 ora/livello dell'incantatore o finché non viene scaricato, poi 1 round/livello dell'incantatore; vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Crea un guardiano canino invisibile che sorveglia un luogo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Segugio_Fedele",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Segugio Fedele: https://golarion.altervista.org/wiki/Incantesimi/Segugio_Fedele Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "craftWand",
+  "name": "Creare Bacchette",
+  "description": "Permette di creare bacchette incantate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Creare_Bacchette",
+  "types": [
+    "itemCreation"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Incantatore di 5° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Creare Bacchette: https://golarion.altervista.org/wiki/Talenti/Creare_Bacchette. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incantatore di 5° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

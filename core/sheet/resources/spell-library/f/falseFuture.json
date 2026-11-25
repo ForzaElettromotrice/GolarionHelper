@@ -1,0 +1,61 @@
+{
+  "id": "falseFuture",
+  "name": "Futuro Falso",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 3,
+    "CLERIC": 4,
+    "WITCH": 4,
+    "WIZARD": 5,
+    "MEDIUM": 3,
+    "MESMERIST": 3,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4,
+    "SKALD": 3,
+    "SHAMAN": 4,
+    "SPIRITUALIST": 4,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "giada frantumata dal valore di 100 mo",
+  "materialComponentCostInGoldPieces": 100,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "creatura od oggetto toccato",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega o Volontà per non credere (vedi testo)"
+    },
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà nega o Volontà per non credere (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Falsa le risposte delle divinazioni riguardanti eventi futuri. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Futuro_Falso",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Futuro Falso: https://golarion.altervista.org/wiki/Incantesimi/Futuro_Falso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

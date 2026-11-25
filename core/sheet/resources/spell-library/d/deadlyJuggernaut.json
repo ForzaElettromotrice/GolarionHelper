@@ -1,0 +1,40 @@
+{
+  "id": "deadlyJuggernaut",
+  "name": "Juggernaut Letale",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "DEATH"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 3,
+    "CLERIC": 3,
+    "INQUISITOR": 3,
+    "ORACLE": 3,
+    "PALADIN": 3,
+    "WARPRIEST": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Ogni avversario abbattuto alimenta ulteriormente la potenza combattiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Juggernaut_Letale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Juggernaut Letale: https://golarion.altervista.org/wiki/Incantesimi/Juggernaut_Letale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

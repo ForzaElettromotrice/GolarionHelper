@@ -1,0 +1,585 @@
+{
+  "id": "fetchling",
+  "name": "Ghermito",
+  "qualities": [
+    {
+      "id": "fetchling.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Esterno nativo. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "fetchling.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "fetchling.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "fetchling.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "fetchling.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aklo",
+            "aquan",
+            "auran",
+            "draconic",
+            "ignan",
+            "terran",
+            "dtang",
+            "erutaki",
+            "hallit",
+            "honLa",
+            "hwan",
+            "iobarian",
+            "kelish",
+            "minatan",
+            "minkaian",
+            "osiriani",
+            "polyglot",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "skald",
+            "tien",
+            "varisian",
+            "varki",
+            "vudrani"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fetchling.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "summonerEidolon",
+          "type": "favoredClassBonus",
+          "name": "Convocatore — +1 resistenza freddo o elettricità all'eidolon, scelta per beneficio; massimo10 ciascuna",
+          "classes": [
+            "summoner"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 resistenza freddo o elettricità all'eidolon, scelta per beneficio; massimo10 ciascuna. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 resistenza freddo o elettricità all'eidolon, scelta per beneficio; massimo10 ciascuna. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "wizardSpell",
+          "type": "favoredClassBonus",
+          "name": "Mago — Aggiungi al libro un incantesimo da mago di illusione(ombra) o descrittore oscurità, livello non superiore al massimo lanciabile",
+          "classes": [
+            "wizard"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "Aggiungi al libro un incantesimo da mago di illusione(ombra) o descrittore oscurità, livello non superiore al massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "Aggiungi al libro un incantesimo da mago di illusione(ombra) o descrittore oscurità, livello non superiore al massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleRacialMagic",
+          "type": "favoredClassBonus",
+          "name": "Oracolo — +1 livello effettivo per l'accesso alle capacità magiche razziali",
+          "classes": [
+            "oracle"
+          ],
+          "selectionsPerBenefit": 3,
+          "description": "+1 livello effettivo per l'accesso alle capacità magiche razziali. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 livello effettivo per l'accesso alle capacità magiche razziali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererResistance",
+          "type": "favoredClassBonus",
+          "name": "Stregone — +1 resistenza a freddo o elettricità, scelta; massimo10 per tipo",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 resistenza a freddo o elettricità, scelta; massimo10 per tipo. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 resistenza a freddo o elettricità, scelta; massimo10 per tipo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rogueShadowSkills",
+          "type": "favoredClassBonus",
+          "name": "Ladro — Abilità nell'ombra",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Furtività e Rapidità di Mano in luce fioca/buio.",
+          "effects": [
+            {
+              "id": "stealth",
+              "type": "modifier",
+              "resource": "skill.stealth",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Luce fioca o buio"
+            },
+            {
+              "id": "sleightOfHand",
+              "type": "modifier",
+              "resource": "skill.sleightOfHand",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Luce fioca o buio"
+            }
+          ]
+        },
+        {
+          "id": "rangerShadowPlane",
+          "type": "favoredClassBonus",
+          "name": "Ranger — Piano delle Ombre",
+          "classes": [
+            "ranger"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 a Percezione e Sopravvivenza sul Piano delle Ombre.",
+          "effects": [
+            {
+              "id": "perception",
+              "type": "modifier",
+              "resource": "skill.perception",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Sul Piano delle Ombre"
+            },
+            {
+              "id": "survival",
+              "type": "modifier",
+              "resource": "skill.survival",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Sul Piano delle Ombre"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "fetchling.darkvision",
+      "name": "Scurovisione",
+      "description": "Scurovisione",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Vista nel buio entro 18 m. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "fetchling.lowLightVision",
+      "name": "Visione crepuscolare",
+      "description": "Visione crepuscolare",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Distanza visiva raddoppiata in luce scarsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "fetchling.shadowBlending",
+      "name": "Fondersi con le Ombre",
+      "description": "Fondersi con le Ombre",
+      "effects": [
+        {
+          "id": "shadow",
+          "type": "reminder",
+          "message": "In luce fioca, probabilità di mancare il personaggio50% anziché20%; non concede occultamento totale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "fetchling.shadowResistance",
+      "name": "Resistenze Ombrose",
+      "description": "Resistenze Ombrose",
+      "effects": [
+        {
+          "id": "electricity",
+          "type": "energyResistance",
+          "energy": "electricity",
+          "expression": "5"
+        },
+        {
+          "id": "cold",
+          "type": "energyResistance",
+          "energy": "cold",
+          "expression": "5"
+        }
+      ]
+    },
+    {
+      "id": "fetchling.disguiseSelf",
+      "name": "Capacità Magiche — Camuffare",
+      "description": "Capacità Magiche — Camuffare",
+      "effects": [
+        {
+          "id": "disguise",
+          "type": "reminder",
+          "message": "Camuffare Se Stesso 1/giorno, qualsiasi aspetto umanoide; LI pari ai DV. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "fetchling.shadowWalk",
+      "name": "Capacità Magiche — Camminare",
+      "description": "Capacità Magiche — Camminare",
+      "effects": [
+        {
+          "id": "walk",
+          "type": "reminder",
+          "message": "Dal livello9, Camminare nelle Ombre solo su se stesso 1/giorno; LI pari ai DV. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "fetchling.planeShift",
+      "name": "Capacità Magiche — Spostamento",
+      "description": "Capacità Magiche — Spostamento",
+      "effects": [
+        {
+          "id": "shift",
+          "type": "reminder",
+          "message": "Dal livello13, Spostamento Planare 1/giorno, solo se stesso e fra Materiale/Ombre; LI pari ai DV. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "fetchling.skilled",
+      "name": "Abile",
+      "description": "Abile",
+      "effects": [
+        {
+          "id": "planes",
+          "type": "modifier",
+          "resource": "skill.knowledge.planes",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "stealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "fetchling.diziriakComprehension",
+      "name": "Comprendere il Diziriak",
+      "description": "Comprendere il Diziriak",
+      "effects": [
+        {
+          "id": "diziriak",
+          "type": "reminder",
+          "message": "Il Diziriak è selezionabile come lingua bonus ma permette solo comprensione, non parlato. La selezione a sola comprensione va gestita manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "fetchling.emissary",
+      "name": "Emissario",
+      "description": "1/giorno tira due volte Raggirare o Diplomazia e conserva il migliore. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "1/giorno tira due volte Raggirare o Diplomazia e conserva il migliore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "fetchling.shadowBlending"
+      ]
+    },
+    {
+      "id": "fetchling.worldWalker",
+      "name": "Giramondo",
+      "description": "Giramondo",
+      "effects": [
+        {
+          "id": "stealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "local",
+          "type": "modifier",
+          "resource": "skill.knowledge.local",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1"
+        },
+        {
+          "id": "nature",
+          "type": "modifier",
+          "resource": "skill.knowledge.nature",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1"
+        }
+      ],
+      "replaces": [
+        "fetchling.skilled"
+      ]
+    },
+    {
+      "id": "fetchling.shadowMagic",
+      "name": "Magia dell'Ombra",
+      "description": "+1 razziale alla CD degli incantesimi di illusione (ombra). Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "+1 razziale alla CD degli incantesimi di illusione (ombra). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "fetchling.skilled"
+      ]
+    },
+    {
+      "id": "fetchling.subtleManipulator",
+      "name": "Sottile Manipolatore",
+      "description": "Vuoto di Memoria 1/giorno, LI pari ai DV. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Vuoto di Memoria 1/giorno, LI pari ai DV. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "fetchling.disguiseSelf"
+      ]
+    },
+    {
+      "id": "fetchling.gloomShimmer",
+      "name": "Tenebra Brillante",
+      "description": "Dal livello9, Distorsione 2/giorno; LI pari ai DV. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Dal livello9, Distorsione 2/giorno; LI pari ai DV. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "fetchling.shadowWalk"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "id": "rogue.archetype.c00c2eef7afa",
+  "classType": "rogue",
+  "name": "Intrepido",
+  "description": "Archetipo di Ladro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Intrepido Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe, Dote da Ladro. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "rogue.feature.c251f3926976",
+      "type": "replace"
+    },
+    {
+      "featureId": "rogue.feature.0e47d1180e11",
+      "type": "replace"
+    },
+    {
+      "featureId": "rogue.proficiencies",
+      "type": "alter"
+    },
+    {
+      "featureId": "rogue.feature.c23fa4329139",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "rogue.feature.c251f3926976",
+    "rogue.feature.0e47d1180e11",
+    "rogue.proficiencies",
+    "rogue.feature.c23fa4329139"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "rogue.archetype.c00c2eef7afa.instructions",
+      "name": "Intrepido",
+      "description": "Archetipo di Ladro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Intrepido Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "rogue.archetype.c00c2eef7afa.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ladro. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Intrepido Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Competenze della classe, Dote da Ladro. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "rogue.archetype.c00c2eef7afa.feature.1",
+      "name": "Addestramento Marziale (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Intrepido",
+      "progression": [
+        {
+          "id": "rogue.archetype.c00c2eef7afa.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Intrepido — Addestramento Marziale (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Intrepido Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "rogue.archetype.c00c2eef7afa.feature.2",
+      "name": "Audace (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Intrepido",
+      "progression": [
+        {
+          "id": "rogue.archetype.c00c2eef7afa.feature.2.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Intrepido — Audace (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Intrepido Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "rogue.archetype.c00c2eef7afa.feature.3",
+      "name": "Doti da Ladro",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Intrepido",
+      "progression": [
+        {
+          "id": "rogue.archetype.c00c2eef7afa.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Intrepido — Doti da Ladro: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Intrepido Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "rogue.archetype.c00c2eef7afa.feature.4",
+      "name": "Doti Avanzate",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Intrepido",
+      "progression": [
+        {
+          "id": "rogue.archetype.c00c2eef7afa.feature.4.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Intrepido — Doti Avanzate: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Intrepido Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

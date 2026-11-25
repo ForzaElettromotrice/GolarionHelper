@@ -1,0 +1,53 @@
+{
+  "id": "decomposeCorpse",
+  "name": "Decomporre Cadavere",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 1,
+    "HUNTER": 1,
+    "CLERIC": 1,
+    "DRUID": 1,
+    "WITCH": 1,
+    "WIZARD": 1,
+    "MEDIUM": 1,
+    "OCCULTIST": 1,
+    "ORACLE": 1,
+    "PSYCHIC": 1,
+    "WARPRIEST": 1,
+    "SPIRITUALIST": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una pizzico di fungo velenoso secco",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "un cadavere o un Non Morto corporeo",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo o 1 minuto; vedi testo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Accelera la decomposizione dei tessuti di un cadavere, lasciandone lo scheletro. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Decomporre_Cadavere",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Decomporre Cadavere: https://golarion.altervista.org/wiki/Incantesimi/Decomporre_Cadavere Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

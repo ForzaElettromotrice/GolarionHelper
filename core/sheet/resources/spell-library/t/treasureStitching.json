@@ -1,0 +1,55 @@
+{
+  "id": "treasureStitching",
+  "name": "Ricamare Tesoro",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "BARD": 4,
+    "CLERIC": 5,
+    "WIZARD": 5,
+    "OCCULTIST": 4,
+    "ORACLE": 5,
+    "WARPRIEST": 5,
+    "SKALD": 4,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo di tessuto ricamato non più grande di un quadrato con lato di 3 m del valore di 100 mo",
+  "materialComponentCostInGoldPieces": 100,
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "tutti gli oggetti sul tessuto",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Trasforma oggetti in ricami conservabili su un tessuto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ricamare_Tesoro",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ricamare Tesoro: https://golarion.altervista.org/wiki/Incantesimi/Ricamare_Tesoro Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: tutti gli oggetti sul tessuto. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "luckyHealer",
+  "name": "Guaritore Fortunato",
+  "description": "Permette di ripetere determinati dadi usati per calcolare la guarigione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Guaritore_Fortunato",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Tratto razziale Fortuna Adattabile Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Halfling Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Guaritore Fortunato: https://golarion.altervista.org/wiki/Talenti/Guaritore_Fortunato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Tratto razziale Fortuna Adattabile; Prerequisito da verificare manualmente: Halfling Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

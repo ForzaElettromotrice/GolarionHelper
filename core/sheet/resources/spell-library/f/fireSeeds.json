@@ -1,0 +1,57 @@
+{
+  "id": "fireSeeds",
+  "name": "Semi di Fuoco",
+  "school": "CONJURATION",
+  "descriptors": [
+    "FIRE"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "HUNTER": 6,
+    "DRUID": 6,
+    "SHAMAN": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "FIRE": 6,
+      "SUN": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "ghiande o bacche di agrifoglio",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "fino a 4 ghiande toccate o fino a 8 bacche di agrifoglio toccate",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello o finché non vengono usate",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "SEE_TEXT",
+      "description": "nessuno o Riflessi dimezza; vedi testo"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Trasforma ghiande o bacche in proiettili o cariche esplosive. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Semi_di_Fuoco",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Semi di Fuoco: https://golarion.altervista.org/wiki/Incantesimi/Semi_di_Fuoco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: fino a 4 ghiande toccate o fino a 8 bacche di agrifoglio toccate. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

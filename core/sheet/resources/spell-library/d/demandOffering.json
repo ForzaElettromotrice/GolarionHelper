@@ -1,0 +1,52 @@
+{
+  "id": "demandOffering",
+  "name": "Richiedere Offerta",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ANTIPALADIN": 1,
+    "ARCANIST": 2,
+    "BARD": 1,
+    "WITCH": 2,
+    "INQUISITOR": 2,
+    "WIZARD": 2,
+    "MESMERIST": 1,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "1,5 m",
+  "target": "1 creatura",
+  "durationType": "OTHER",
+  "durationDescription": "istantaneo o 1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Costringe una creatura a consegnare un oggetto che possiede. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Richiedere_Offerta",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Richiedere Offerta: https://golarion.altervista.org/wiki/Incantesimi/Richiedere_Offerta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

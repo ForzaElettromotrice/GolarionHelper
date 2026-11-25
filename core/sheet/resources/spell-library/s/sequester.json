@@ -1,0 +1,51 @@
+{
+  "id": "sequester",
+  "name": "Celare",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 7,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 6,
+    "WIZARD": 7,
+    "PSYCHIC": 7,
+    "SORCERER": 7
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "ciglia di basilisco, gomma arabica",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura consenziente o 1 oggetto (fino a 1 cubo con spigolo di 60 cm/livello) toccati",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "SEE_TEXT",
+      "description": "nessuno o Volontà nega (oggetto);"
+    }
+  ],
+  "spellResistanceType": "SEE_TEXT",
+  "spellResistanceDescription": "no o sì (oggetto)",
+  "description": "Nasconde il soggetto ai sensi e alle divinazioni, ponendo le creature in uno stato comatoso. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Celare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Celare: https://golarion.altervista.org/wiki/Incantesimi/Celare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura consenziente o 1 oggetto (fino a 1 cubo con spigolo di 60 cm/livello) toccati. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

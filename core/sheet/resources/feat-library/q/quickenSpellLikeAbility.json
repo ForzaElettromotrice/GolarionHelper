@@ -1,0 +1,32 @@
+{
+  "id": "quickenSpellLikeAbility",
+  "name": "Capacità Magica Rapida",
+  "description": "Accelera l'impiego di una capacità magica scelta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Capacit%C3%A0_Magica_Rapida",
+  "types": [
+    "monster"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Capacità magica a LI 10° o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Capacità Magica Rapida: https://golarion.altervista.org/wiki/Talenti/Capacit%C3%A0_Magica_Rapida. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "catalogReview0",
+      "type": "reminder",
+      "message": "Talento ripetibile: la selezione multipla e le scelte richiedono gestione manuale; il catalogo consente provvisoriamente una sola acquisizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Capacità magica a LI 10° o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

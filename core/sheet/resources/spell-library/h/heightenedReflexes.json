@@ -1,0 +1,40 @@
+{
+  "id": "heightenedReflexes",
+  "name": "Riflessi Intensificati",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 2,
+    "SKALD": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "area": "tutti gli alleati entro un'esplosione del raggio di 9 m centrata su di sé",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Concede agli alleati nell'area un forte bonus ai tiri salvezza su Riflessi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Riflessi_Intensificati",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Riflessi Intensificati: https://golarion.altervista.org/wiki/Incantesimi/Riflessi_Intensificati Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

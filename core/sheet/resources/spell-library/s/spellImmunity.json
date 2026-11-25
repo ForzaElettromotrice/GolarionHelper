@@ -1,0 +1,54 @@
+{
+  "id": "spellImmunity",
+  "name": "Immunità agli Incantesimi",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "CLERIC": 4,
+    "INQUISITOR": 4,
+    "INVESTIGATOR": 4,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4,
+    "SPIRITUALIST": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "STRENGTH": 4,
+      "PROTECTION": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Protegge contro specifici incantesimi scelti al lancio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Immunit%C3%A0_agli_Incantesimi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Immunità agli Incantesimi: https://golarion.altervista.org/wiki/Incantesimi/Immunit%C3%A0_agli_Incantesimi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

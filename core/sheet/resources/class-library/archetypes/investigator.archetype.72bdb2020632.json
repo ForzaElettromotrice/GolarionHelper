@@ -1,0 +1,109 @@
+{
+  "id": "investigator.archetype.72bdb2020632",
+  "classType": "investigator",
+  "name": "Infiltrato",
+  "description": "Archetipo di Investigatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Infiltrato Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "investigator.feature.218a0de6991a",
+      "type": "replace"
+    },
+    {
+      "featureId": "investigator.feature.d1c5f46866c0",
+      "type": "replace"
+    },
+    {
+      "featureId": "investigator.feature.69147b8e796a",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "investigator.feature.218a0de6991a",
+    "investigator.feature.d1c5f46866c0"
+  ],
+  "removedAcquisitionIds": [
+    "investigator.poisonResistance.bonus"
+  ],
+  "addedFeatures": [
+    {
+      "id": "investigator.archetype.72bdb2020632.instructions",
+      "name": "Infiltrato",
+      "description": "Archetipo di Investigatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Infiltrato Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "investigator.archetype.72bdb2020632.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Investigatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Infiltrato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "investigator.archetype.72bdb2020632.feature.1",
+      "name": "Maestro del Travestimento (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Infiltrato",
+      "progression": [
+        {
+          "id": "investigator.archetype.72bdb2020632.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Infiltrato — Maestro del Travestimento (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Investigatore/Archetipi#Infiltrato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "investigator.archetype.72bdb2020632.feature.2",
+      "name": "Imitazione della voce (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Infiltrato",
+      "progression": [
+        {
+          "id": "investigator.archetype.72bdb2020632.feature.2.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Infiltrato — Imitazione della voce (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Investigatore/Archetipi#Infiltrato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "investigator.archetype.72bdb2020632.feature.3",
+      "name": "Maestria Imitatrice (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Investigatore/Archetipi#Infiltrato",
+      "progression": [
+        {
+          "id": "investigator.archetype.72bdb2020632.feature.3.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Infiltrato — Maestria Imitatrice (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Investigatore/Archetipi#Infiltrato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

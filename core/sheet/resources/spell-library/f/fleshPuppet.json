@@ -1,0 +1,48 @@
+{
+  "id": "fleshPuppet",
+  "name": "Burattino di Carne",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 2,
+    "ARCANIST": 4,
+    "CLERIC": 3,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "OCCULTIST": 4,
+    "ORACLE": 3,
+    "WARPRIEST": 3,
+    "SHAMAN": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "gemma d'onice da 25 mo e un filo di seta",
+  "materialComponentCostInGoldPieces": 25,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "un cadavere toccato",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Anima e controlla uno zombi che conserva l'aspetto avuto in vita, utilizzabile come copertura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Burattino_di_Carne",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Burattino di Carne: https://golarion.altervista.org/wiki/Burattino_di_Carne Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

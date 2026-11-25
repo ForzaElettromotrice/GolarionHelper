@@ -1,0 +1,27 @@
+{
+  "id": "ensemble",
+  "name": "Ensemble",
+  "description": "Consente agli artisti di sostenersi durante un'esibizione. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ensemble",
+  "types": [
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Intrattenere 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ensemble: https://golarion.altervista.org/wiki/Talenti/Ensemble. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intrattenere 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

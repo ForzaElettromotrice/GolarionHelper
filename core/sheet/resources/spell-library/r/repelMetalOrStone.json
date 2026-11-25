@@ -1,0 +1,40 @@
+{
+  "id": "repelMetalOrStone",
+  "name": "Respingere Metallo o Pietra",
+  "school": "ABJURATION",
+  "descriptors": [
+    "EARTH"
+  ],
+  "spellLevelByClass": {
+    "DRUID": 8
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "18 m",
+  "area": "linea di emanazione di 18 m centrata su si sé",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Allontana oggetti composti di pietra o metallo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Respingere_Metallo_o_Pietra",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Respingere Metallo o Pietra: https://golarion.altervista.org/wiki/Incantesimi/Respingere_Metallo_o_Pietra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Metallo 9 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

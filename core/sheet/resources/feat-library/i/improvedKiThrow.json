@@ -1,0 +1,31 @@
+{
+  "id": "improvedKiThrow",
+  "name": "Lancio Ki Migliorato",
+  "description": "Permette di scagliare una creatura contro uno spazio già occupato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Lancio_Ki_Migliorato",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Lancio Ki",
+      "feat": {
+        "id": "kiThrow"
+      }
+    },
+    {
+      "description": "Spingere Migliorato",
+      "feat": {
+        "id": "improvedBullRush"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Lancio Ki Migliorato: https://golarion.altervista.org/wiki/Talenti/Lancio_Ki_Migliorato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

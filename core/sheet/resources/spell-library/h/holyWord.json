@@ -1,0 +1,43 @@
+{
+  "id": "holyWord",
+  "name": "Parola Sacra",
+  "school": "EVOCATION",
+  "descriptors": [
+    "GOOD",
+    "SONIC"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 7,
+    "ORACLE": 7,
+    "INQUISITOR": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "12 m",
+  "area": "creature non buone entro una propagazione del raggio di 12 m centrata su di sé",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Colpisce le creature non buone con effetti debilitanti o letali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Parola_Sacra",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Parola Sacra: https://golarion.altervista.org/wiki/Incantesimi/Parola_Sacra Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

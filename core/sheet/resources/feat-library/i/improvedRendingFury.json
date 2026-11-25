@@ -1,0 +1,37 @@
+{
+  "id": "improvedRendingFury",
+  "name": "Furia Lacerante Migliorata",
+  "description": "Potenzia i danni dello squartamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Furia_Lacerante_Migliorata",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Furia Lacerante",
+      "feat": {
+        "id": "rendingFury"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +9",
+      "expression": "@bab >= 9"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: attacco speciale Squartare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Furia Lacerante Migliorata: https://golarion.altervista.org/wiki/Talenti/Furia_Lacerante_Migliorata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: attacco speciale Squartare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

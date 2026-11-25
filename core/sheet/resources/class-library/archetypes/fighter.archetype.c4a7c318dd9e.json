@@ -1,0 +1,109 @@
+{
+  "id": "fighter.archetype.c4a7c318dd9e",
+  "classType": "fighter",
+  "name": "Guerriero Titanico",
+  "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero_di_Golarion#Guerriero_Titanico Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "fighter.feature.42853dd168a3",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.feature.0bfec277b39e",
+      "type": "replace"
+    },
+    {
+      "featureId": "fighter.feature.d85ccd994169",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "fighter.feature.42853dd168a3",
+    "fighter.feature.0bfec277b39e"
+  ],
+  "removedAcquisitionIds": [
+    "fighter.bonusFeats.level1"
+  ],
+  "addedFeatures": [
+    {
+      "id": "fighter.archetype.c4a7c318dd9e.instructions",
+      "name": "Guerriero Titanico",
+      "description": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero_di_Golarion#Guerriero_Titanico Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "fighter.archetype.c4a7c318dd9e.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Guerriero. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Guerriero_di_Golarion#Guerriero_Titanico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.c4a7c318dd9e.feature.1",
+      "name": "Impugnare Armi Giganti (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero_di_Golarion#Guerriero_Titanico",
+      "progression": [
+        {
+          "id": "fighter.archetype.c4a7c318dd9e.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Titanico — Impugnare Armi Giganti (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero_di_Golarion#Guerriero_Titanico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.c4a7c318dd9e.feature.2",
+      "name": "Levata Incredibile (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero_di_Golarion#Guerriero_Titanico",
+      "progression": [
+        {
+          "id": "fighter.archetype.c4a7c318dd9e.feature.2.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Titanico — Levata Incredibile (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero_di_Golarion#Guerriero_Titanico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "fighter.archetype.c4a7c318dd9e.feature.3",
+      "name": "Impeto Inarrestabile (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Guerriero_di_Golarion#Guerriero_Titanico",
+      "progression": [
+        {
+          "id": "fighter.archetype.c4a7c318dd9e.feature.3.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Guerriero Titanico — Impeto Inarrestabile (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Guerriero_di_Golarion#Guerriero_Titanico Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

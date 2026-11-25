@@ -1,0 +1,61 @@
+{
+  "id": "dispelMagicGreater",
+  "name": "Dissolvi Magie Superiore",
+  "school": "ABJURATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "BARD": 5,
+    "HUNTER": 6,
+    "CLERIC": 6,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 5,
+    "DRUID": 6,
+    "WITCH": 6,
+    "INQUISITOR": 6,
+    "WIZARD": 6,
+    "MAGUS": 6,
+    "OCCULTIST": 5,
+    "ORACLE": 6,
+    "PSYCHIC": 6,
+    "WARPRIEST": 6,
+    "SKALD": 5,
+    "SHAMAN": 6,
+    "SPIRITUALIST": 6,
+    "SORCERER": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "LIBERATION": 6
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "target": "1 incantatore, 1 creatura o 1 oggetto; oppure un'esplosione con raggio di 6 m",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Potenzia la dissoluzione, permettendo di intervenire su più effetti o bersagli. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Dissolvi_Magie_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Dissolvi Magie Superiore: https://golarion.altervista.org/wiki/Incantesimi/Dissolvi_Magie_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 incantatore, 1 creatura o 1 oggetto; oppure un'esplosione con raggio di 6 m. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

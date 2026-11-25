@@ -1,0 +1,49 @@
+{
+  "id": "banCorruption",
+  "name": "Bandire Corruzione",
+  "school": "ABJURATION",
+  "descriptors": [
+    "GOOD"
+  ],
+  "spellLevelByClass": {
+    "CLERIC": 5,
+    "INQUISITOR": 4,
+    "MEDIUM": 3,
+    "OCCULTIST": 4,
+    "ORACLE": 5,
+    "PALADIN": 4,
+    "WARPRIEST": 5,
+    "SHAMAN": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "un pugnale cerimoniale",
+  "rangeType": "OTHER",
+  "rangeDescription": "emanazione di raggio 9 m centrata su di sé",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione più 1 round/livello, fino a 1 ora/ livello",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Sopprime i benefici delle manifestazioni di corruzione nelle creature interessate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Bandire_Corruzione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bandire Corruzione: https://golarion.altervista.org/wiki/Bandire_Corruzione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

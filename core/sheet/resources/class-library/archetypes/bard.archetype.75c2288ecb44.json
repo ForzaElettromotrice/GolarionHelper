@@ -1,0 +1,99 @@
+{
+  "id": "bard.archetype.75c2288ecb44",
+  "classType": "bard",
+  "name": "Cantore delle Acque (Ondine)",
+  "description": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantore_delle_Acque_.28Ondine.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "bard.feature.a7be72734c8f",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.82871e5e9434",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.385f142880cc",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.14a6ab6e3045",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.8b1162bb0751",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "bard.feature.a7be72734c8f",
+    "bard.feature.82871e5e9434",
+    "bard.feature.385f142880cc",
+    "bard.feature.14a6ab6e3045"
+  ],
+  "removedAcquisitionIds": [
+    "bard.feature.8b1162bb0751.level5"
+  ],
+  "addedFeatures": [
+    {
+      "id": "bard.archetype.75c2288ecb44.instructions",
+      "name": "Cantore delle Acque (Ondine)",
+      "description": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantore_delle_Acque_.28Ondine.29 Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "bard.archetype.75c2288ecb44.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantore_delle_Acque_.28Ondine.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.75c2288ecb44.feature.1",
+      "name": "Esibizione Bardica",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantore_delle_Acque_.28Ondine.29",
+      "progression": [
+        {
+          "id": "bard.archetype.75c2288ecb44.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cantore delle Acque (Ondine) — Esibizione Bardica: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantore_delle_Acque_.28Ondine.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.75c2288ecb44.feature.2",
+      "name": "Incantesimi da Cantore delle Acque",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantore_delle_Acque_.28Ondine.29",
+      "progression": [
+        {
+          "id": "bard.archetype.75c2288ecb44.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cantore delle Acque (Ondine) — Incantesimi da Cantore delle Acque: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantore_delle_Acque_.28Ondine.29 Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

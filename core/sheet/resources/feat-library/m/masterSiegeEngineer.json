@@ -1,0 +1,33 @@
+{
+  "id": "masterSiegeEngineer",
+  "name": "Mastro Ingegnere d'Assedio",
+  "description": "Accelera il caricamento delle macchine d'assedio da parte degli operatori. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Mastro_Ingegnere_d%27Assedio",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Ingegnere d'Assedio",
+      "feat": {
+        "id": "siegeEngineer"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (ingegneria) 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Mastro Ingegnere d'Assedio: https://golarion.altervista.org/wiki/Talenti/Mastro_Ingegnere_d%27Assedio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (ingegneria) 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

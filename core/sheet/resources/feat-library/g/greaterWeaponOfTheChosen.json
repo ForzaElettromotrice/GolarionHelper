@@ -1,0 +1,42 @@
+{
+  "id": "greaterWeaponOfTheChosen",
+  "name": "Arma del Prescelto Superiore",
+  "description": "Consente di scegliere fra due tiri per determinati attacchi con l'arma prediletta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Arma_del_Prescelto_Superiore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata con l'arma preferita della propria divinità Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: si deve venerare e ricevere incantesimi da una divinità Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Arma del Prescelto",
+      "feat": {
+        "id": "weaponOfTheChosen"
+      }
+    },
+    {
+      "description": "Arma del Prescelto Migliorata",
+      "feat": {
+        "id": "improvedWeaponOfTheChosen"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Arma del Prescelto Superiore: https://golarion.altervista.org/wiki/Talenti/Arma_del_Prescelto_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata con l'arma preferita della propria divinità; Prerequisito da verificare manualmente: si deve venerare e ricevere incantesimi da una divinità Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

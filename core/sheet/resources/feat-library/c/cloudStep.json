@@ -1,0 +1,33 @@
+{
+  "id": "cloudStep",
+  "name": "Passo delle Nuvole",
+  "description": "Usa la padronanza della Caduta Lenta per percorrere temporaneamente l'aria. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Passo_delle_Nuvole",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Passo del Ragno",
+      "feat": {
+        "id": "spiderStep"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Monaco di 12° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Passo delle Nuvole: https://golarion.altervista.org/wiki/Talenti/Passo_delle_Nuvole. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Monaco di 12° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

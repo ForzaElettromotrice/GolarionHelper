@@ -1,0 +1,22 @@
+{
+  "id": "defensiveCombatTraining",
+  "name": "Addestramento nel Combattimento Difensivo",
+  "description": "Usa i Dadi Vita totali invece del BAB nella difesa dalle manovre. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Addestramento_nel_Combattimento_Difensivo",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "defense",
+      "type": "modifier",
+      "resource": "combatManeuver.defense.all",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "@level - @bab"
+    }
+  ],
+  "choices": []
+}

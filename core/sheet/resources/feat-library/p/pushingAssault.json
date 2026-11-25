@@ -1,0 +1,35 @@
+{
+  "id": "pushingAssault",
+  "name": "Assalto Respingente",
+  "description": "Un colpo con un'arma impugnata a due mani può spostare il nemico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Assalto_Respingente",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 15",
+      "expression": "@str >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Bonus di Attacco Base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Assalto Respingente: https://golarion.altervista.org/wiki/Talenti/Assalto_Respingente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,30 @@
+{
+  "id": "sacredSummons",
+  "name": "Evocazioni Sacre",
+  "description": "Accelera l'evocazione di creature con i sottotipi morali corrispondenti all'aura del lanciatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Evocazioni_Sacre",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Aura Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di lanciare Evoca Mostri Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Evocazioni Sacre: https://golarion.altervista.org/wiki/Talenti/Evocazioni_Sacre. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Aura; Prerequisito da verificare manualmente: capacità di lanciare Evoca Mostri Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

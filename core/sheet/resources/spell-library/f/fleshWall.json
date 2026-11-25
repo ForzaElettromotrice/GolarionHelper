@@ -1,0 +1,47 @@
+{
+  "id": "fleshWall",
+  "name": "Muro di Carne",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 6,
+    "CLERIC": 6,
+    "SUMMONER": 5,
+    "UNCHAINED_SUMMONER": 5,
+    "WITCH": 6,
+    "WIZARD": 6,
+    "ORACLE": 6,
+    "WARPRIEST": 6,
+    "SHAMAN": 6,
+    "SPIRITUALIST": 5,
+    "SORCERER": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un cadavere per ogni 1,5 m quadrati di muro",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "muro di cadaveri la cui area è un quadrato con lato fino a 1,5 metri/livello (F)",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione + 1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Compone una barriera di corpi zombificati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Muro_di_Carne",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Muro di Carne: https://golarion.altervista.org/wiki/Muro_di_Carne Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

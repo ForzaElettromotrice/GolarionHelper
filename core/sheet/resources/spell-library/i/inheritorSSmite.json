@@ -1,0 +1,43 @@
+{
+  "id": "inheritorSSmite",
+  "name": "Castigo dell'Erede",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "INQUISITOR": 2,
+    "PALADIN": 2
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 Azione Veloce",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "OTHER",
+  "durationDescription": "vedere testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Potenzia il prossimo colpo in mischia e può farlo seguire da una spinta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Castigo_dell%27Erede",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Castigo dell'Erede: https://golarion.altervista.org/wiki/Incantesimi/Castigo_dell%27Erede Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "La fonte specifica restrizioni di accesso non verificate automaticamente: Chierico/Oracolo/Sacerdote Guerriero 2, Inquisitore 2, Paladino 2 (Iomedae) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

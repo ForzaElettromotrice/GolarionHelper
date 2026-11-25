@@ -1,0 +1,45 @@
+{
+  "id": "glidingSteps",
+  "name": "Passo Pattinato",
+  "description": "Consuma ki per ridurre le reazioni nemiche provocate dagli spostamenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Passo_Pattinato",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Mobilità",
+      "feat": {
+        "id": "mobility"
+      }
+    },
+    {
+      "description": "Passo Leggero",
+      "feat": {
+        "id": "nimbleMoves"
+      }
+    },
+    {
+      "description": "Schivare",
+      "feat": {
+        "id": "dodge"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Riserva Ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Passo Pattinato: https://golarion.altervista.org/wiki/Talenti/Passo_Pattinato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Riserva Ki Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

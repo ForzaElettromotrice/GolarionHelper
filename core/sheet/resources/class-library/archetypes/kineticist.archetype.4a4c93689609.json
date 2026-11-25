@@ -1,0 +1,137 @@
+{
+  "id": "kineticist.archetype.4a4c93689609",
+  "classType": "kineticist",
+  "name": "Anima Soverchiante",
+  "description": "Archetipo di Cineta. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cineta/Archetipi#Anima_Soverchiante Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Doti Istintive. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "kineticist.feature.30cef0d679ef",
+      "type": "replace"
+    },
+    {
+      "featureId": "kineticist.feature.47e5a247d89c",
+      "type": "replace"
+    },
+    {
+      "featureId": "kineticist.wildTalents",
+      "type": "alter"
+    },
+    {
+      "featureId": "kineticist.classSkills",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "kineticist.feature.30cef0d679ef",
+    "kineticist.feature.47e5a247d89c",
+    "kineticist.wildTalents"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "kineticist.archetype.4a4c93689609.instructions",
+      "name": "Anima Soverchiante",
+      "description": "Archetipo di Cineta. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cineta/Archetipi#Anima_Soverchiante Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Doti Istintive. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "kineticist.archetype.4a4c93689609.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Cineta. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cineta/Archetipi#Anima_Soverchiante Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Doti Istintive. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.archetype.4a4c93689609.feature.1",
+      "name": "Mente su Materia (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cineta/Archetipi#Anima_Soverchiante",
+      "progression": [
+        {
+          "id": "kineticist.archetype.4a4c93689609.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Anima Soverchiante — Mente su Materia (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cineta/Archetipi#Anima_Soverchiante Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.archetype.4a4c93689609.feature.2",
+      "name": "Prodezza Mentale (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cineta/Archetipi#Anima_Soverchiante",
+      "progression": [
+        {
+          "id": "kineticist.archetype.4a4c93689609.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Anima Soverchiante — Prodezza Mentale (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cineta/Archetipi#Anima_Soverchiante Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.archetype.4a4c93689609.feature.3",
+      "name": "Potere Soverchiante (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cineta/Archetipi#Anima_Soverchiante",
+      "progression": [
+        {
+          "id": "kineticist.archetype.4a4c93689609.feature.3.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Anima Soverchiante — Potere Soverchiante (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cineta/Archetipi#Anima_Soverchiante Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "kineticist.archetype.4a4c93689609.classSkills",
+      "name": "Abilità di classe aggiuntive",
+      "description": "Aggiunte indicate dalla fonte: https://golarion.altervista.org/wiki/Cineta/Archetipi#Anima_Soverchiante",
+      "progression": [
+        {
+          "id": "kineticist.archetype.4a4c93689609.classSkills.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "skill1",
+              "type": "classSkillGrant",
+              "resource": "skill.diplomacy"
+            },
+            {
+              "id": "skill2",
+              "type": "classSkillGrant",
+              "resource": "skill.bluff"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

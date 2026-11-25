@@ -1,0 +1,30 @@
+{
+  "id": "cooperativeCrafting",
+  "name": "Creazione Cooperativa",
+  "description": "Migliora la fabbricazione quando più personaggi idonei collaborano allo stesso lavoro. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Creazione_Cooperativa",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: 1 grado in un'abilità di Artigianato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: un Talento di Creazione Oggetto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Creazione Cooperativa: https://golarion.altervista.org/wiki/Talenti/Creazione_Cooperativa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: 1 grado in un'abilità di Artigianato; Prerequisito da verificare manualmente: un Talento di Creazione Oggetto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

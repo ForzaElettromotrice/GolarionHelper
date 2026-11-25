@@ -1,0 +1,37 @@
+{
+  "id": "speakWithPlants",
+  "name": "Parlare con i Vegetali",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 4,
+    "SKALD": 4,
+    "HUNTER": 2,
+    "DRUID": 3,
+    "RANGER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Consente di comunicare con i vegetali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Parlare_con_i_Vegetali",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Parlare con i Vegetali: https://golarion.altervista.org/wiki/Incantesimi/Parlare_con_i_Vegetali Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

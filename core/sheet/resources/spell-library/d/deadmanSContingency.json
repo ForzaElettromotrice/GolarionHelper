@@ -1,0 +1,47 @@
+{
+  "id": "deadmanSContingency",
+  "name": "Contingenza dell'Uomo Morto",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 4,
+    "CLERIC": 4,
+    "WITCH": 4,
+    "WIZARD": 4,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "PSYCHIC": 4,
+    "WARPRIEST": 4,
+    "SKALD": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti o più, vedi testo",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "FOCUS"
+  ],
+  "materialComponentDescription": "una coda di scorpione",
+  "focusComponentDescription": "statuetta d'avorio dal valore di 1,500 mo",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "OTHER",
+  "durationDescription": "fino ad 1 ora/livello più 1d6 round (I), vedi testo",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Predispone conseguenze magiche destinate ad attivarsi in caso di morte del lanciatore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Contingenza_dell%27Uomo_Morto",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Contingenza dell'Uomo Morto: https://golarion.altervista.org/wiki/Incantesimi/Contingenza_dell%27Uomo_Morto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

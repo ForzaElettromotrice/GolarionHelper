@@ -1,0 +1,718 @@
+{
+  "type": "swashbuckler",
+  "name": "Intrepido",
+  "description": "Duellante agile che alimenta le proprie gesta con l'eleganza.",
+  "hitDie": 10,
+  "skillRanksPerLevel": 4,
+  "classSkills": [
+    "skill.acrobatics",
+    "skill.craft",
+    "skill.escapeArtist",
+    "skill.ride",
+    "skill.knowledge.local",
+    "skill.knowledge.nobility",
+    "skill.diplomacy",
+    "skill.intimidate",
+    "skill.perform",
+    "skill.senseMotive",
+    "skill.swim",
+    "skill.perception",
+    "skill.profession",
+    "skill.bluff",
+    "skill.sleightOfHand",
+    "skill.climb"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 2,
+        "will": 0
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 0,
+        "reflex": 3,
+        "will": 0
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 3,
+        "will": 1
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 1,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 6,
+        "will": 2
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 6,
+        "will": 3
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 9,
+        "will": 4
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 9,
+        "will": 5
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 16,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 17,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 18,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 19,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 20,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 12,
+        "will": 6
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "swashbuckler.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "swashbuckler.feature.95a529112563",
+      "name": "Eleganza",
+      "description": "Privilegio della classe Intrepido. Regole e condizioni: https://golarion.altervista.org/wiki/Intrepido#Eleganza_(Str)",
+      "progression": [
+        {
+          "id": "swashbuckler.feature.95a529112563.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Intrepido: verificare e applicare Eleganza. https://golarion.altervista.org/wiki/Intrepido#Eleganza_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.feature.0e52a8642b72",
+      "name": "Gesta",
+      "description": "Privilegio della classe Intrepido. Regole e condizioni: https://golarion.altervista.org/wiki/Intrepido#Gesta",
+      "progression": [
+        {
+          "id": "swashbuckler.feature.0e52a8642b72.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Intrepido: verificare e applicare Gesta. https://golarion.altervista.org/wiki/Intrepido#Gesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "swashbuckler.feature.0e52a8642b72.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Intrepido: verificare e applicare Gesta. https://golarion.altervista.org/wiki/Intrepido#Gesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "swashbuckler.feature.0e52a8642b72.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Intrepido: verificare e applicare Gesta. https://golarion.altervista.org/wiki/Intrepido#Gesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "swashbuckler.feature.0e52a8642b72.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Intrepido: verificare e applicare Gesta. https://golarion.altervista.org/wiki/Intrepido#Gesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "swashbuckler.feature.0e52a8642b72.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Intrepido: verificare e applicare Gesta. https://golarion.altervista.org/wiki/Intrepido#Gesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "swashbuckler.feature.0e52a8642b72.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Intrepido: verificare e applicare Gesta. https://golarion.altervista.org/wiki/Intrepido#Gesta Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.feature.2881cebd1649",
+      "name": "Accuratezza dell'Intrepido",
+      "description": "Privilegio della classe Intrepido. Regole e condizioni: https://golarion.altervista.org/wiki/Intrepido#Accuratezza_dell'Intrepido_(Str)",
+      "progression": [
+        {
+          "id": "swashbuckler.feature.2881cebd1649.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Intrepido: verificare e applicare Accuratezza dell'Intrepido. https://golarion.altervista.org/wiki/Intrepido#Accuratezza_dell'Intrepido_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.feature.89d95bc1b5d4",
+      "name": "Vita Affascinante",
+      "description": "Privilegio della classe Intrepido. Regole e condizioni: https://golarion.altervista.org/wiki/Intrepido#Vita_Affascinante_(Str)",
+      "progression": [
+        {
+          "id": "swashbuckler.feature.89d95bc1b5d4.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Intrepido: verificare e applicare Vita Affascinante 3/giorno. https://golarion.altervista.org/wiki/Intrepido#Vita_Affascinante_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "swashbuckler.feature.89d95bc1b5d4.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Intrepido: verificare e applicare Vita Affascinante 4/giorno. https://golarion.altervista.org/wiki/Intrepido#Vita_Affascinante_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "swashbuckler.feature.89d95bc1b5d4.level2"
+          ]
+        },
+        {
+          "id": "swashbuckler.feature.89d95bc1b5d4.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Intrepido: verificare e applicare Vita Affascinante 5/giorno. https://golarion.altervista.org/wiki/Intrepido#Vita_Affascinante_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "swashbuckler.feature.89d95bc1b5d4.level6"
+          ]
+        },
+        {
+          "id": "swashbuckler.feature.89d95bc1b5d4.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Intrepido: verificare e applicare Vita Affascinante 6/giorno. https://golarion.altervista.org/wiki/Intrepido#Vita_Affascinante_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "swashbuckler.feature.89d95bc1b5d4.level10"
+          ]
+        },
+        {
+          "id": "swashbuckler.feature.89d95bc1b5d4.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Intrepido: verificare e applicare Vita Affascinante 7/giorno. https://golarion.altervista.org/wiki/Intrepido#Vita_Affascinante_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "swashbuckler.feature.89d95bc1b5d4.level14"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.feature.e4e6f0922149",
+      "name": "Leggiadria",
+      "description": "Privilegio della classe Intrepido. Regole e condizioni: https://golarion.altervista.org/wiki/Intrepido#Leggiadria_(Str)",
+      "progression": [
+        {
+          "id": "swashbuckler.feature.e4e6f0922149.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Intrepido: verificare e applicare Leggiadria +1. https://golarion.altervista.org/wiki/Intrepido#Leggiadria_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "swashbuckler.feature.e4e6f0922149.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Intrepido: verificare e applicare Leggiadria +2. https://golarion.altervista.org/wiki/Intrepido#Leggiadria_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "swashbuckler.feature.e4e6f0922149.level3"
+          ]
+        },
+        {
+          "id": "swashbuckler.feature.e4e6f0922149.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Intrepido: verificare e applicare Leggiadria +3. https://golarion.altervista.org/wiki/Intrepido#Leggiadria_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "swashbuckler.feature.e4e6f0922149.level7"
+          ]
+        },
+        {
+          "id": "swashbuckler.feature.e4e6f0922149.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 15 di Intrepido: verificare e applicare Leggiadria +4. https://golarion.altervista.org/wiki/Intrepido#Leggiadria_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "swashbuckler.feature.e4e6f0922149.level11"
+          ]
+        },
+        {
+          "id": "swashbuckler.feature.e4e6f0922149.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Intrepido: verificare e applicare Leggiadria +5. https://golarion.altervista.org/wiki/Intrepido#Leggiadria_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "swashbuckler.feature.e4e6f0922149.level15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.feature.c0ae0e89e925",
+      "name": "Talento Bonus",
+      "description": "Privilegio della classe Intrepido. Regole e condizioni: https://golarion.altervista.org/wiki/Intrepido#Talento_Bonus",
+      "progression": [
+        {
+          "id": "swashbuckler.feature.c0ae0e89e925.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Intrepido: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Intrepido#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "swashbuckler.feature.c0ae0e89e925.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Intrepido: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Intrepido#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "swashbuckler.feature.c0ae0e89e925.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Intrepido: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Intrepido#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "swashbuckler.feature.c0ae0e89e925.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Intrepido: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Intrepido#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "swashbuckler.feature.c0ae0e89e925.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Intrepido: verificare e applicare Talento Bonus. https://golarion.altervista.org/wiki/Intrepido#Talento_Bonus Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.feature.ce1d797c06ff",
+      "name": "Addestramento nelle Armi dell'Intrepido",
+      "description": "Privilegio della classe Intrepido. Regole e condizioni: https://golarion.altervista.org/wiki/Intrepido#Addestramento_nelle_Armi_dell'Intrepido_(Str)",
+      "progression": [
+        {
+          "id": "swashbuckler.feature.ce1d797c06ff.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Intrepido: verificare e applicare Addestramento nelle Armi dell'Intrepido +1. https://golarion.altervista.org/wiki/Intrepido#Addestramento_nelle_Armi_dell'Intrepido_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "swashbuckler.feature.ce1d797c06ff.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 9 di Intrepido: verificare e applicare Addestramento nelle Armi dell'Intrepido +2. https://golarion.altervista.org/wiki/Intrepido#Addestramento_nelle_Armi_dell'Intrepido_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "swashbuckler.feature.ce1d797c06ff.level5"
+          ]
+        },
+        {
+          "id": "swashbuckler.feature.ce1d797c06ff.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Intrepido: verificare e applicare Addestramento nelle Armi dell'Intrepido +3. https://golarion.altervista.org/wiki/Intrepido#Addestramento_nelle_Armi_dell'Intrepido_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "swashbuckler.feature.ce1d797c06ff.level9"
+          ]
+        },
+        {
+          "id": "swashbuckler.feature.ce1d797c06ff.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Intrepido: verificare e applicare Addestramento nelle Armi dell'Intrepido +4. https://golarion.altervista.org/wiki/Intrepido#Addestramento_nelle_Armi_dell'Intrepido_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": [
+            "swashbuckler.feature.ce1d797c06ff.level13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.feature.7e4c1ac11f66",
+      "name": "Padronanza delle Armi dell'Intrepido",
+      "description": "Privilegio della classe Intrepido. Regole e condizioni: https://golarion.altervista.org/wiki/Intrepido#Padronanza_delle_Armi_dell'Intrepido_(Str)",
+      "progression": [
+        {
+          "id": "swashbuckler.feature.7e4c1ac11f66.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Intrepido: verificare e applicare Padronanza delle Armi dell'Intrepido. https://golarion.altervista.org/wiki/Intrepido#Padronanza_delle_Armi_dell'Intrepido_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Intrepido",
+      "progression": [
+        {
+          "id": "swashbuckler.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi.. https://golarion.altervista.org/wiki/Intrepido Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Intrepido",
+      "progression": [
+        {
+          "id": "swashbuckler.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Intrepido Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "swashbuckler.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Intrepido",
+      "progression": [
+        {
+          "id": "swashbuckler.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Intrepido Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ],
+  "bindings": []
+}

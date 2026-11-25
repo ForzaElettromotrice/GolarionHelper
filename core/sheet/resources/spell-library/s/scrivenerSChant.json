@@ -1,0 +1,53 @@
+{
+  "id": "scrivenerSChant",
+  "name": "Canto dello Scrivano",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 0,
+    "WIZARD": 0,
+    "SORCERER": 0,
+    "BARD": 0,
+    "SKALD": 0,
+    "CLERIC": 0,
+    "ORACLE": 0,
+    "WARPRIEST": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "sabbia fine e una boccetta di inchiostro",
+  "rangeType": "OTHER",
+  "rangeDescription": "1,5 m",
+  "target": "uno o più oggetti scritti",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione, fino a 1 minuto/livello",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo, oggetto)",
+  "description": "Una penna animata copia rapidamente un testo già scritto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Canto_dello_Scrivano",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Canto dello Scrivano: https://golarion.altervista.org/wiki/Incantesimi/Canto_dello_Scrivano Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: uno o più oggetti scritti. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

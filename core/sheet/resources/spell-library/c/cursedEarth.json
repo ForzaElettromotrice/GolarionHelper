@@ -1,0 +1,55 @@
+{
+  "id": "cursedEarth",
+  "name": "Terra Maledetta",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "CURSE",
+    "EVIL"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WIZARD": 9,
+    "SORCERER": 9,
+    "CLERIC": 9,
+    "ORACLE": 9,
+    "WITCH": 9
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "onice in polvere da 10.000 mo",
+  "materialComponentCostInGoldPieces": 10000,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "area": "emanazione del raggio di 1,5 km dal punto toccato",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Maledice una zona facendo deperire la vita e rialzare i morti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Terra_Maledetta",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Terra Maledetta: https://golarion.altervista.org/wiki/Incantesimi/Terra_Maledetta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Tiro salvezza non strutturabile senza un tipo esplicito nella fonte: nessuno (vedi testo) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview2",
+      "type": "reminder",
+      "message": "Descrittore non presente nel vocabolario del modello: vedi testo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

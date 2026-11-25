@@ -1,0 +1,40 @@
+{
+  "id": "detectEvil",
+  "name": "Individuazione del Male",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ADEPT": 1,
+    "CLERIC": 1,
+    "INQUISITOR": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SHAMAN": 1,
+    "SPIRITUALIST": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "18 m",
+  "area": "emanazione a forma di cono",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione, fino a 10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Ricerca nell'area aure legate a creature, oggetti o magie malvagie. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Individuazione_del_Male",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Individuazione del Male: https://golarion.altervista.org/wiki/Incantesimi/Individuazione_del_Male Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

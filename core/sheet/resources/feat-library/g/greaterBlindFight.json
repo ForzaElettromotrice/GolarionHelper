@@ -1,0 +1,33 @@
+{
+  "id": "greaterBlindFight",
+  "name": "Combattere alla Cieca Superiore",
+  "description": "Riduce gli svantaggi anche dell'occultamento totale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Combattere_alla_Cieca_Superiore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Percezione 15 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Combattere alla Cieca Migliorato",
+      "feat": {
+        "id": "improvedBlindFight"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Combattere alla Cieca Superiore: https://golarion.altervista.org/wiki/Talenti/Combattere_alla_Cieca_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Percezione 15 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

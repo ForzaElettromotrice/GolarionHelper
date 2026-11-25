@@ -14,7 +14,14 @@ namespace golarion
     class FeatDefinitionManager final
     {
     public:
+        struct CatalogEntry
+        {
+            std::string id;
+            std::string name;
+            std::vector<FeatType> types;
+        };
         static FeatDefinitionManager &instance();
+        std::vector<CatalogEntry> catalogEntries() const;
 
         FeatDefinitionManager(const FeatDefinitionManager &) = delete;
         FeatDefinitionManager &operator=(const FeatDefinitionManager &) = delete;
@@ -26,12 +33,10 @@ namespace golarion
         std::vector<FeatDefinitionView> toView();
 
     private:
-        FeatDefinitionManager() = default;
-
-        void loadCatalog();
+        FeatDefinitionManager();
 
         std::map<std::string, FeatDefinition> definitions_;
-        bool loaded_ = false;
+        std::map<std::string, CatalogEntry> entries_;
         std::mutex mutex_;
     };
 }

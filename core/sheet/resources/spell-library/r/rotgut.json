@@ -1,0 +1,53 @@
+{
+  "id": "rotgut",
+  "name": "Liquore Bruciabudella",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 2,
+    "BARD": 2,
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "SKALD": 2
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pizzico di luppolo",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 metri più 1,5 metri ogni 2 livelli)",
+  "target": "4 litri di acqua/livello",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (oggetto)",
+  "description": "Converte acqua in una bevanda alcolica scadente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Liquore_Bruciabudella",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Liquore Bruciabudella: https://golarion.altervista.org/wiki/Incantesimi/Liquore_Bruciabudella Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 4 litri di acqua/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

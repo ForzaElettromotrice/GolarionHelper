@@ -1,0 +1,48 @@
+{
+  "id": "spinningThrow",
+  "name": "Lancio Rotante",
+  "description": "Combina una proiezione con spostamento e atterramento del nemico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Lancio_Rotante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Lancio Ki",
+      "feat": {
+        "id": "kiThrow"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Sbilanciare Migliorato",
+      "feat": {
+        "id": "improvedTrip"
+      }
+    },
+    {
+      "description": "Spingere Migliorato",
+      "feat": {
+        "id": "improvedBullRush"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Lancio Rotante: https://golarion.altervista.org/wiki/Talenti/Lancio_Rotante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Maestria in Combattimento Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

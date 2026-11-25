@@ -1,0 +1,39 @@
+{
+  "id": "mantisWisdom",
+  "name": "Saggezza della Mantide",
+  "description": "Fa contribuire altri livelli alle tecniche stordenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Saggezza_della_Mantide",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Pugno Stordente Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Stile della Mantide",
+      "feat": {
+        "id": "mantisStyle"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Guarire 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Saggezza della Mantide: https://golarion.altervista.org/wiki/Talenti/Saggezza_della_Mantide. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Pugno Stordente; Prerequisito da verificare manualmente: Guarire 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

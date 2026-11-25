@@ -1,0 +1,36 @@
+{
+  "id": "taskmaster",
+  "name": "Sorvegliante Tirannico",
+  "description": "Intimidisce gli alleati più deboli per stimolarne la ferocia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Sorvegliante_Tirannico",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Sferzata Demoralizzante",
+      "feat": {
+        "id": "demoralizingLash"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intimidire 5 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Hobgoblin Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Sorvegliante Tirannico: https://golarion.altervista.org/wiki/Talenti/Sorvegliante_Tirannico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intimidire 5 grado; Prerequisito da verificare manualmente: Hobgoblin Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

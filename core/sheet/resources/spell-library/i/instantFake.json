@@ -1,0 +1,56 @@
+{
+  "id": "instantFake",
+  "name": "Finzione Istantanea",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "FIGMENT",
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 3,
+    "HUNTER": 3,
+    "INQUISITOR": 3,
+    "WIZARD": 4,
+    "MAGUS": 4,
+    "MESMERIST": 3,
+    "OCCULTIST": 3,
+    "RANGER": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo di gioiello di un costume",
+  "rangeType": "OTHER",
+  "rangeDescription": "1 oggetto toccato",
+  "target": "1 oggetto che non pesi più di 0,5 Kg/livello",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà per non credere (sé ci si interagisce)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Produce una copia provvisoria di un oggetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Finzione_Istantanea",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Finzione Istantanea: https://golarion.altervista.org/wiki/Incantesimi/Finzione_Istantanea Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 oggetto che non pesi più di 0,5 Kg/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

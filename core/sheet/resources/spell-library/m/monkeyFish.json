@@ -1,0 +1,42 @@
+{
+  "id": "monkeyFish",
+  "name": "Pesce Scimmia",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "HUNTER": 1,
+    "DRUID": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "PSYCHIC": 1,
+    "SHAMAN": 1,
+    "SORCERER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Le modifiche a mani e piedi consentono di scalare e nuotare a 3 metri; armatura o carico medio o pesante impediscono il beneficio. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pesce_Scimmia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pesce Scimmia: https://golarion.altervista.org/wiki/Incantesimi/Pesce_Scimmia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

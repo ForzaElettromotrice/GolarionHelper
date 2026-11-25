@@ -1,0 +1,677 @@
+{
+  "type": "unchainedBarbarian",
+  "name": "Barbaro Rivisitato",
+  "description": "Interpretazione rivisitata del barbaro e dei suoi poteri d'ira.",
+  "hitDie": 12,
+  "skillRanksPerLevel": 4,
+  "classSkills": [
+    "skill.acrobatics",
+    "skill.handleAnimal",
+    "skill.craft",
+    "skill.ride",
+    "skill.knowledge.nature",
+    "skill.intimidate",
+    "skill.swim",
+    "skill.perception",
+    "skill.climb",
+    "skill.survival"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 0,
+        "will": 0
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 0,
+        "will": 0
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 1,
+        "will": 1
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 1,
+        "will": 1
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 1,
+        "will": 1
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 2,
+        "will": 2
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 2,
+        "will": 2
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 2,
+        "will": 2
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 3,
+        "will": 3
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 3,
+        "will": 3
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 3,
+        "will": 3
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 4,
+        "will": 4
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 4,
+        "will": 4
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 4,
+        "will": 4
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 5,
+        "will": 5
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 16,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 5,
+        "will": 5
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 17,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 5,
+        "will": 5
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 18,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 6,
+        "will": 6
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 19,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 6,
+        "will": 6
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 20,
+      "baseSavingThrows": {
+        "fortitude": 12,
+        "reflex": 6,
+        "will": 6
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "unchainedBarbarian.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "unchainedBarbarian.feature.e795ba0dd9d9",
+      "name": "Ira",
+      "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_(Str)",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.feature.e795ba0dd9d9.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Barbaro Rivisitato: verificare e applicare Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.feature.3803054e7b9d",
+      "name": "Potere d'Ira",
+      "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.feature.3803054e7b9d.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedBarbarian.feature.3803054e7b9d.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedBarbarian.feature.3803054e7b9d.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 6 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedBarbarian.feature.3803054e7b9d.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedBarbarian.feature.3803054e7b9d.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedBarbarian.feature.3803054e7b9d.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 12 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedBarbarian.feature.3803054e7b9d.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedBarbarian.feature.3803054e7b9d.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 16 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedBarbarian.feature.3803054e7b9d.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 18 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "unchainedBarbarian.feature.3803054e7b9d.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Barbaro Rivisitato: verificare e applicare Potere d'Ira. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Poteri_d'Ira Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.feature.28c251834485",
+      "name": "Schivare Prodigioso Migliorato",
+      "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Schivare_Prodigioso_Migliorato_(Str)",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.feature.28c251834485.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Barbaro Rivisitato: verificare e applicare Schivare Prodigioso Migliorato. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Schivare_Prodigioso_Migliorato_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.feature.fd8e328b22fe",
+      "name": "Ira Superiore",
+      "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_Superiore_(Str)",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.feature.fd8e328b22fe.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Barbaro Rivisitato: verificare e applicare Ira Superiore. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_Superiore_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.feature.a74f6041b223",
+      "name": "Volontà Indomita",
+      "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Volontà_Indomita_(Str)",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.feature.a74f6041b223.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Barbaro Rivisitato: verificare e applicare Volontà Indomita. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Volontà_Indomita_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.feature.5bd81ba2a978",
+      "name": "Ira Infaticabile",
+      "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_Infaticabile_(Str)",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.feature.5bd81ba2a978.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Barbaro Rivisitato: verificare e applicare Ira Infaticabile. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_Infaticabile_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.feature.a64d5f0617d0",
+      "name": "Ira Possente",
+      "description": "Privilegio della classe Barbaro Rivisitato. Regole e condizioni: https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_Possente_(Str)",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.feature.a64d5f0617d0.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Barbaro Rivisitato: verificare e applicare Ira Possente. https://golarion.altervista.org/wiki/Barbaro_Rivisitato#Ira_Possente_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi non legale.. https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi non legale.. https://golarion.altervista.org/wiki/Barbaro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Barbaro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Barbaro_Rivisitato Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.feature.0e6e4c25d2e0",
+      "name": "Senso del Pericolo",
+      "description": "Migliora progressivamente le difese contro trappole. Favorisce anche la percezione dei nemici che tentano di sorprendere. Fonte: https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.trapSense.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "reflex",
+              "type": "modifier",
+              "resource": "savingThrow.reflex",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "@classLevel / 3",
+              "condition": "Per evitare trappole"
+            },
+            {
+              "id": "armorClass",
+              "type": "modifier",
+              "resource": "armorClass.reflexive",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "dodge",
+              "expression": "@classLevel / 3",
+              "condition": "Contro attacchi effettuati da trappole, finché mantiene il bonus di Destrezza alla CA"
+            },
+            {
+              "id": "perception",
+              "type": "modifier",
+              "resource": "skill.perception",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "@classLevel / 3",
+              "condition": "Per evitare di essere colto di sorpresa da un nemico"
+            },
+            {
+              "id": "conditionalReview",
+              "type": "reminder",
+              "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.feature.e7a78d299884",
+      "name": "Movimento Veloce",
+      "description": "Aumenta la velocità sul terreno di 3 metri prima delle riduzioni da armatura e carico. Fonte: https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.fastMovement.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "speed",
+              "type": "modifier",
+              "resource": "speed.land",
+              "description": "Privilegio di classe",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "2",
+              "condition": "Senza armatura o con armatura leggera o media, senza carico pesante"
+            },
+            {
+              "id": "conditionalReview",
+              "type": "reminder",
+              "message": "Verificare manualmente le condizioni indicate nei modificatori del privilegio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.feature.060b33e558e8",
+      "name": "Schivare Prodigioso",
+      "description": "Conserva il bonus di Destrezza alla CA nelle circostanze previste. Fonte: https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.uncannyDodge.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "dexterityRetention",
+              "type": "armorClassDexterityRetention",
+              "causes": [
+                "flatFooted"
+              ]
+            },
+            {
+              "id": "manualResolution",
+              "type": "reminder",
+              "message": "Gestire l’acquisizione di Schivare Prodigioso Migliorato quando la capacità proviene già da un’altra classe; non protegge da fintare o immobilizzazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            },
+            {
+              "id": "sourceReview",
+              "type": "reminder",
+              "message": "La pagina del Barbaro Rivisitato presenta un testo incongruente sull’immobilizzazione e omette l’attaccante invisibile: automatizzata solo la conservazione della Destrezza da impreparato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unchainedBarbarian.feature.ff70c3d0d261",
+      "name": "Riduzione del Danno",
+      "description": "Riduce i danni delle armi e degli attacchi naturali in misura crescente. Fonte: https://golarion.altervista.org/wiki/Barbaro_Rivisitato",
+      "progression": [
+        {
+          "id": "unchainedBarbarian.damageReduction.initial",
+          "level": 7,
+          "effects": [
+            {
+              "id": "damageReduction",
+              "type": "damageReduction",
+              "expression": "1 + (@classLevel - 7) / 3",
+              "bypass": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "unchainedBarbarian.ragePowerBinding",
+      "classType": "unchainedBarbarian",
+      "featureId": "unchainedBarbarian.feature.3803054e7b9d",
+      "acquisitionIds": [
+        "unchainedBarbarian.feature.3803054e7b9d.level2",
+        "unchainedBarbarian.feature.3803054e7b9d.level4",
+        "unchainedBarbarian.feature.3803054e7b9d.level6",
+        "unchainedBarbarian.feature.3803054e7b9d.level8",
+        "unchainedBarbarian.feature.3803054e7b9d.level10",
+        "unchainedBarbarian.feature.3803054e7b9d.level12",
+        "unchainedBarbarian.feature.3803054e7b9d.level14",
+        "unchainedBarbarian.feature.3803054e7b9d.level16",
+        "unchainedBarbarian.feature.3803054e7b9d.level18",
+        "unchainedBarbarian.feature.3803054e7b9d.level20"
+      ],
+      "choice": {
+        "id": "ragePower",
+        "prompt": "Scegli: Poteri d’ira rivisitati",
+        "selectionCount": 1,
+        "blocksAdvancement": true,
+        "optionSet": "unchainedBarbarian.ragePowers"
+      }
+    }
+  ]
+}

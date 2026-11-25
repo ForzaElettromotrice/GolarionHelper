@@ -1,0 +1,60 @@
+{
+  "id": "waterWalk",
+  "name": "Camminare sull'Acqua",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "WATER"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "CLERIC": 3,
+    "WITCH": 3,
+    "MEDIUM": 2,
+    "ORACLE": 3,
+    "PSYCHIC": 3,
+    "RANGER": 3,
+    "WARPRIEST": 3,
+    "SHAMAN": 3
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "OCEANS": 3
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "fino a 1 creatura toccata/livello",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Sostiene i soggetti sulla superficie dell'acqua e di altri liquidi consentiti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Camminare_sull%27Acqua",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Camminare sull'Acqua: https://golarion.altervista.org/wiki/Incantesimi/Camminare_sull%27Acqua Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: fino a 1 creatura toccata/livello. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

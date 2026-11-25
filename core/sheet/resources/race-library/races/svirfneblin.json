@@ -1,0 +1,457 @@
+{
+  "id": "svirfneblin",
+  "name": "Svirfneblin",
+  "qualities": [
+    {
+      "id": "svirfneblin.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Umanoide (gnomo). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "svirfneblin.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "small"
+        }
+      ]
+    },
+    {
+      "id": "svirfneblin.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "svirfneblin.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "str",
+          "type": "modifier",
+          "resource": "str",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        },
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "4"
+        }
+      ]
+    },
+    {
+      "id": "svirfneblin.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "gnome",
+          "type": "languageGrant",
+          "languageId": "gnome"
+        },
+        {
+          "id": "undercommon",
+          "type": "languageGrant",
+          "languageId": "undercommon"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aklo",
+            "common",
+            "draconic",
+            "elven",
+            "giant",
+            "dwarven",
+            "orc",
+            "terran"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "svirfneblin.senses",
+      "name": "Sensi",
+      "description": "Scurovisione 36 m e visione crepuscolare.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scurovisione 36 m e visione crepuscolare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "svirfneblin.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita indicata.",
+      "effects": [
+        {
+          "id": "alchemistFormula",
+          "type": "favoredClassBonus",
+          "classes": [
+            "alchemist"
+          ],
+          "name": "Alchimista — Formula",
+          "description": "Alchimista — Formula — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Una formula da alchimista al formulario, almeno un livello sotto il massimo preparabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleSpell",
+          "type": "favoredClassBonus",
+          "classes": [
+            "oracle"
+          ],
+          "name": "Oracolo — Incantesimo",
+          "description": "Oracolo — Incantesimo — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un incantesimo conosciuto da oracolo, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rangerCompanionReduction",
+          "type": "favoredClassBonus",
+          "classes": [
+            "ranger"
+          ],
+          "name": "Ranger — Riduzione del compagno",
+          "description": "Ranger — Riduzione del compagno — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Al compagno: RD 1/magia iniziale, poi incrementi di 1/2 per scelta, massimo 10/magia; trasferire al sostituto. Progressione iniziale e limite manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "svirfneblin.hatred",
+      "name": "Odio",
+      "description": "Odio",
+      "effects": [
+        {
+          "id": "attackall",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "1",
+          "condition": "Contro umanoidi rettili o nani"
+        }
+      ]
+    },
+    {
+      "id": "svirfneblin.defensiveTraining",
+      "name": "Allenamento Difensivo",
+      "description": "Allenamento Difensivo",
+      "effects": [
+        {
+          "id": "armorClassreflexive",
+          "type": "modifier",
+          "resource": "armorClass.reflexive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "dodge",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "svirfneblin.fortunate",
+      "name": "Fortunato",
+      "description": "Fortunato",
+      "effects": [
+        {
+          "id": "savingThrowall",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "svirfneblin.spellResistance",
+      "name": "Resistenza agli Incantesimi",
+      "description": "Resistenza agli Incantesimi",
+      "effects": [
+        {
+          "id": "resistance",
+          "type": "spellResistance",
+          "expression": "11 + @level"
+        }
+      ]
+    },
+    {
+      "id": "svirfneblin.svirfneblinMagic",
+      "name": "Magia Svirfneblin",
+      "description": "+1 CD illusioni. Anti-individuazione permanente; Camuffare Se Stesso, Cecità/Sordità e Sfocatura ciascuno 1/giorno. LI pari al livello; Cecità/Sordità CD 12 + Carisma.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "+1 CD illusioni. Anti-individuazione permanente; Camuffare Se Stesso, Cecità/Sordità e Sfocatura ciascuno 1/giorno. LI pari al livello; Cecità/Sordità CD 12 + Carisma. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "svirfneblin.skilled",
+      "name": "Abile",
+      "description": "Abile",
+      "effects": [
+        {
+          "id": "skillstealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "undergroundStealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Nel sottosuolo"
+        },
+        {
+          "id": "skillperception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "+2 razziale Artigianato (alchimia); specializzazione da gestire manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "svirfneblin.stonecunning",
+      "name": "Esperto Minatore",
+      "description": "Esperto Minatore",
+      "effects": [
+        {
+          "id": "skillperception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Opere insolite, trappole o porte segrete in pietra"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Entro 3 m dalle opere in pietra, prova di Percezione anche senza ricerca attiva. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "svirfneblin.healthy",
+      "name": "Florido",
+      "description": "Florido",
+      "effects": [
+        {
+          "id": "savingThrowfortitude",
+          "type": "modifier",
+          "resource": "savingThrow.fortitude",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "generic",
+          "expression": "4",
+          "condition": "Malattie, incluse magiche, o veleno"
+        }
+      ],
+      "replaces": [
+        "svirfneblin.fortunate"
+      ]
+    },
+    {
+      "id": "svirfneblin.stoneseer",
+      "name": "Veggente della Pietra",
+      "description": "Veggente della Pietra",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "+1 LI incantesimi terra; Anti-individuazione permanente; Scolpire Pietra, Pietra Magica, Pietre Parlanti ciascuno 1/giorno, LI pari al livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "svirfneblin.svirfneblinMagic"
+      ]
+    }
+  ]
+}

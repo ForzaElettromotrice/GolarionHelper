@@ -1,0 +1,53 @@
+{
+  "id": "meticulousMatch",
+  "name": "Abbinamento Meticoloso",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "BARD": 3,
+    "HUNTER": 3,
+    "WITCH": 4,
+    "INQUISITOR": 3,
+    "WIZARD": 4,
+    "OCCULTIST": 3,
+    "RANGER": 3,
+    "SKALD": 3,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "2 oggetti toccati",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (oggetto)",
+  "description": "Confronta due elementi per stabilire quanto corrispondano e se siano effettivamente identici. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Abbinamento_Meticoloso",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Abbinamento Meticoloso: https://golarion.altervista.org/wiki/Incantesimi/Abbinamento_Meticoloso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 2 oggetti toccati. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

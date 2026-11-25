@@ -1,0 +1,27 @@
+{
+  "id": "incrementalElementalAssault",
+  "name": "Assalto Elementale Incrementale",
+  "description": "Permette di distribuire Assalto Elementale in intervalli più brevi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Assalto_Elementale_Incrementale",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Suli Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Assalto Elementale Incrementale: https://golarion.altervista.org/wiki/Talenti/Assalto_Elementale_Incrementale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Suli Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

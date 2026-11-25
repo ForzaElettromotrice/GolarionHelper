@@ -1,0 +1,109 @@
+{
+  "id": "unchainedRogue.archetype.6c03d86cb209",
+  "classType": "unchainedRogue",
+  "name": "Pirata",
+  "description": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Pirata Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "unchainedRogue.feature.8f4dbb15b617",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedRogue.feature.05107c446e3f",
+      "type": "replace"
+    },
+    {
+      "featureId": "unchainedRogue.feature.bdfa2a5c3eef",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "unchainedRogue.feature.05107c446e3f",
+    "unchainedRogue.feature.8f4dbb15b617"
+  ],
+  "removedAcquisitionIds": [
+    "unchainedRogue.feature.bdfa2a5c3eef.level2"
+  ],
+  "addedFeatures": [
+    {
+      "id": "unchainedRogue.archetype.6c03d86cb209.instructions",
+      "name": "Pirata",
+      "description": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Pirata Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.6c03d86cb209.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Ladro Rivisitato. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Ladro/Archetipi#Pirata Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.archetype.6c03d86cb209.feature.1",
+      "name": "Gambe da Marinaio (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Pirata",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.6c03d86cb209.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Pirata — Gambe da Marinaio (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Pirata Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.archetype.6c03d86cb209.feature.2",
+      "name": "Riposizionamento Dinamico (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Pirata",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.6c03d86cb209.feature.2.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Pirata — Riposizionamento Dinamico (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Pirata Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "unchainedRogue.archetype.6c03d86cb209.feature.3",
+      "name": "Indefesso (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Ladro/Archetipi#Pirata",
+      "progression": [
+        {
+          "id": "unchainedRogue.archetype.6c03d86cb209.feature.3.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Pirata — Indefesso (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Ladro/Archetipi#Pirata Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

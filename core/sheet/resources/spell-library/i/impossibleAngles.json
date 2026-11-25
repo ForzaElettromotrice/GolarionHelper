@@ -1,0 +1,48 @@
+{
+  "id": "impossibleAngles",
+  "name": "Geometrie Impossibili",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "FIGMENT",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "MEDIUM": 3,
+    "MESMERIST": 4,
+    "OCCULTIST": 4,
+    "PSYCHIC": 5,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un prisma fuso",
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "area contigua formata da un cubo di 1,5 m di lato/ livello dell'incantatore (F)",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Deforma le relazioni geometriche dell'area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Geometrie_Impossibili",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Geometrie Impossibili: https://golarion.altervista.org/wiki/Geometrie_Impossibili Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

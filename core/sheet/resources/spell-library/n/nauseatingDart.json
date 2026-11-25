@@ -1,0 +1,44 @@
+{
+  "id": "nauseatingDart",
+  "name": "Dardo Nauseante",
+  "school": "CONJURATION",
+  "descriptors": [
+    "POISON"
+  ],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "DRUID": 1,
+    "WITCH": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "1 aculeo velenoso",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "PARTIAL",
+      "description": "Tempra parziale (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Lancia un piccolo aculeo avvelenato che ferisce e provoca malessere. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Dardo_Nauseante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Dardo Nauseante: https://golarion.altervista.org/wiki/Incantesimi/Dardo_Nauseante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

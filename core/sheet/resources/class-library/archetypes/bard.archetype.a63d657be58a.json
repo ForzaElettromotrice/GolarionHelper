@@ -1,0 +1,144 @@
+{
+  "id": "bard.archetype.a63d657be58a",
+  "classType": "bard",
+  "name": "Cantambanco Argenteo",
+  "description": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantambanco_Argenteo Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Requisiti e condotta. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "bard.feature.82871e5e9434",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.9df20aaa15a2",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.385f142880cc",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.feature.32b7ffca1f1a",
+      "type": "replace"
+    },
+    {
+      "featureId": "bard.eligibility",
+      "type": "alter"
+    },
+    {
+      "featureId": "bard.feature.2877836bd9c8",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "bard.feature.82871e5e9434",
+    "bard.feature.9df20aaa15a2",
+    "bard.feature.385f142880cc",
+    "bard.feature.32b7ffca1f1a",
+    "bard.eligibility"
+  ],
+  "removedAcquisitionIds": [
+    "bard.feature.2877836bd9c8.level2"
+  ],
+  "addedFeatures": [
+    {
+      "id": "bard.archetype.a63d657be58a.instructions",
+      "name": "Cantambanco Argenteo",
+      "description": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantambanco_Argenteo Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "bard.archetype.a63d657be58a.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Bardo. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantambanco_Argenteo Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Requisiti e condotta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.a63d657be58a.feature.1",
+      "name": "Allineamento",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantambanco_Argenteo",
+      "progression": [
+        {
+          "id": "bard.archetype.a63d657be58a.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cantambanco Argenteo — Allineamento: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantambanco_Argenteo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.a63d657be58a.feature.2",
+      "name": "Esibizione Bardica",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantambanco_Argenteo",
+      "progression": [
+        {
+          "id": "bard.archetype.a63d657be58a.feature.2.initial",
+          "level": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cantambanco Argenteo — Esibizione Bardica: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantambanco_Argenteo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.a63d657be58a.feature.3",
+      "name": "Cuore Puro (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantambanco_Argenteo",
+      "progression": [
+        {
+          "id": "bard.archetype.a63d657be58a.feature.3.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cantambanco Argenteo — Cuore Puro (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantambanco_Argenteo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "bard.archetype.a63d657be58a.feature.4",
+      "name": "Maestria Argentea (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantambanco_Argenteo",
+      "progression": [
+        {
+          "id": "bard.archetype.a63d657be58a.feature.4.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Cantambanco Argenteo — Maestria Argentea (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Bardo/Archetipi#Cantambanco_Argenteo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

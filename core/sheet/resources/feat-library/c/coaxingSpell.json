@@ -1,0 +1,30 @@
+{
+  "id": "coaxingSpell",
+  "name": "Incantesimi Induttivi",
+  "description": "Estende determinate influenze mentali a creature prive di mente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Incantesimi_Induttivi",
+  "types": [
+    "metamagic"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Incantesimi Focalizzati (Ammaliamento) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (dungeon) 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Incantesimi Induttivi: https://golarion.altervista.org/wiki/Talenti/Incantesimi_Induttivi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Incantesimi Focalizzati (Ammaliamento); Prerequisito da verificare manualmente: Conoscenze (dungeon) 6 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,30 @@
+{
+  "id": "planarWildShape",
+  "name": "Forma Selvatica Planare",
+  "description": "Permette di aggiungere alla forma animale proprietà celestiali o immonde. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Forma_Selvatica_Planare",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Forma Selvatica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (piani) 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Forma Selvatica Planare: https://golarion.altervista.org/wiki/Talenti/Forma_Selvatica_Planare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Forma Selvatica; Prerequisito da verificare manualmente: Conoscenze (piani) 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

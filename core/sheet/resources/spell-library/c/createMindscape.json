@@ -1,0 +1,47 @@
+{
+  "id": "createMindscape",
+  "name": "Creare Paesaggio Mentale",
+  "school": "ILLUSION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "PHANTASM",
+  "spellLevelByClass": {
+    "ARCANIST": 5,
+    "WIZARD": 5,
+    "MEDIUM": 4,
+    "MESMERIST": 4,
+    "PSYCHIC": 4,
+    "SORCERER": 5
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "LONG",
+  "rangeDescription": "lungo (120 m + 12 m/livello)",
+  "target": "1 creatura",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "DISBELIEF",
+      "description": "Volontà dubita; vedi testo"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Costruisce un ambiente mentale immersivo per le creature coinvolte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Creare_Paesaggio_Mentale",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Creare Paesaggio Mentale: https://golarion.altervista.org/wiki/Incantesimi/Creare_Paesaggio_Mentale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

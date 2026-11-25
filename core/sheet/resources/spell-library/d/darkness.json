@@ -1,0 +1,49 @@
+{
+  "id": "darkness",
+  "name": "Oscurità",
+  "school": "EVOCATION",
+  "descriptors": [
+    "DARKNESS"
+  ],
+  "spellLevelByClass": {
+    "ADEPT": 2,
+    "ANTIPALADIN": 2,
+    "ARCANIST": 2,
+    "BARD": 2,
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "WIZARD": 2,
+    "MAGUS": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "SKALD": 2,
+    "SHAMAN": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "pelliccia di pipistrello e carbone",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 oggetto toccato",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Riduce l'illuminazione in un'area. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Oscurit%C3%A0",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Oscurità: https://golarion.altervista.org/wiki/Incantesimi/Oscurit%C3%A0 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

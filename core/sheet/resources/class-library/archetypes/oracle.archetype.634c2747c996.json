@@ -1,0 +1,88 @@
+{
+  "id": "oracle.archetype.634c2747c996",
+  "classType": "oracle",
+  "name": "Oracolo Elementalista",
+  "description": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Oracolo_Elementalista Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero, Rivelazione. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "oracle.feature.9fd0a7d15ca8",
+      "type": "replace"
+    },
+    {
+      "featureId": "oracle.feature.aaa668a8100b",
+      "type": "alter"
+    },
+    {
+      "featureId": "oracle.feature.d5cd6abc2865",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "oracle.feature.9fd0a7d15ca8",
+    "oracle.feature.aaa668a8100b",
+    "oracle.feature.d5cd6abc2865"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "oracle.archetype.634c2747c996.instructions",
+      "name": "Oracolo Elementalista",
+      "description": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Oracolo_Elementalista Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero, Rivelazione. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "oracle.archetype.634c2747c996.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Oracolo_Elementalista Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero, Rivelazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.634c2747c996.feature.523ddd83da",
+      "name": "Rivelazioni",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Oracolo_Elementalista",
+      "progression": [
+        {
+          "id": "oracle.archetype.634c2747c996.feature.523ddd83da.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Oracolo Elementalista — Rivelazioni: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Oracolo_Elementalista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.634c2747c996.feature.de4b0c059f",
+      "name": "Rivelazione Finale",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Oracolo_Elementalista",
+      "progression": [
+        {
+          "id": "oracle.archetype.634c2747c996.feature.de4b0c059f.initial",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Oracolo Elementalista — Rivelazione Finale: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Oracolo_Elementalista Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

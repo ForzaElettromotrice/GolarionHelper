@@ -1,0 +1,58 @@
+{
+  "id": "detectAnxieties",
+  "name": "Individuazione delle Ansie",
+  "school": "DIVINATION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "spellLevelByClass": {
+    "ANTIPALADIN": 2,
+    "ARCANIST": 3,
+    "BARD": 3,
+    "CLERIC": 3,
+    "WITCH": 3,
+    "INQUISITOR": 3,
+    "WIZARD": 3,
+    "MEDIUM": 2,
+    "MESMERIST": 2,
+    "ORACLE": 3,
+    "PALADIN": 3,
+    "PSYCHIC": 2,
+    "WARPRIEST": 3,
+    "SKALD": 3,
+    "SPIRITUALIST": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS_OR_DIVINE_FOCUS"
+  ],
+  "focusComponentDescription": "un medaglione",
+  "rangeType": "OTHER",
+  "rangeDescription": "18 m",
+  "area": "emanazione a forma di cono",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione, fino a 1 min/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Porta alla luce ciò che provoca ansia nella creatura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Individuazione_delle_Ansie",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Individuazione delle Ansie: https://golarion.altervista.org/wiki/Incantesimi/Individuazione_delle_Ansie Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

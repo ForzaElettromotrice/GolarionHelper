@@ -1,0 +1,39 @@
+{
+  "id": "aerialTracks",
+  "name": "Tracce Aeree",
+  "school": "DIVINATION",
+  "descriptors": [
+    "AIR"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 3,
+    "DRUID": 4,
+    "INQUISITOR": 4,
+    "RANGER": 3,
+    "SHAMAN": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "area": "cerchio centrato su di sé, con un raggio di 30 m + 3 m/livello",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di seguire nell'aria le tracce delle creature volanti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Tracce_Aeree",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Tracce Aeree: https://golarion.altervista.org/wiki/Incantesimi/Tracce_Aeree Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

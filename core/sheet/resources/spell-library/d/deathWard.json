@@ -1,0 +1,80 @@
+{
+  "id": "deathWard",
+  "name": "Interdizione alla Morte",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 4,
+    "HUNTER": 5,
+    "CLERIC": 4,
+    "DRUID": 5,
+    "WITCH": 4,
+    "INQUISITOR": 4,
+    "INVESTIGATOR": 4,
+    "MEDIUM": 4,
+    "OCCULTIST": 4,
+    "ORACLE": 4,
+    "PALADIN": 4,
+    "WARPRIEST": 4,
+    "SPIRITUALIST": 4
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "DEATH": 4,
+      "REPOSE": 4
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura vivente toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Protegge da morte magica, energia negativa e risucchi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Interdizione_alla_Morte",
+  "effects": [
+    {
+      "id": "deathSaves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "4",
+      "condition": "Contro incantesimi ed effetti magici di morte"
+    },
+    {
+      "id": "energyDrain",
+      "type": "immunity",
+      "targetId": "energyDrain",
+      "name": "Risucchio di energia"
+    },
+    {
+      "id": "negativeEnergy",
+      "type": "immunity",
+      "targetId": "negativeEnergy",
+      "name": "Energia negativa"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Consentire manualmente i TS contro morte anche quando normalmente assenti; sopprimere senza cancellare le penalità dei livelli negativi già acquisiti. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

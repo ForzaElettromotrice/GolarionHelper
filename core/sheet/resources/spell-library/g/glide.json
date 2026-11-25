@@ -1,0 +1,56 @@
+{
+  "id": "glide",
+  "name": "Planare",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "HUNTER": 1,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "WIZARD": 2,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "RANGER": 1,
+    "SHAMAN": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una foglia",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "fino all'atterraggio o 1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Trasforma una caduta in una discesa planata, evitando l'impatto dannoso e consentendo movimento orizzontale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Planare",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Planare: https://golarion.altervista.org/wiki/Incantesimi/Planare Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview1",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: scuola elementale Aria 2 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataReview2",
+      "type": "reminder",
+      "message": "Metadati supplementari conservati solo come promemoria: mistero Ascesi 2 Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

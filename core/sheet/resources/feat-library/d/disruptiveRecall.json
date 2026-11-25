@@ -1,0 +1,30 @@
+{
+  "id": "disruptiveRecall",
+  "name": "Ricordare Distruttivo",
+  "description": "Consente di recuperare magia dopo aver interrotto l'incantesimo di un avversario. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ricordare_Distruttivo",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Ricordare Incantesimi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Sapienza Magica 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ricordare Distruttivo: https://golarion.altervista.org/wiki/Talenti/Ricordare_Distruttivo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Ricordare Incantesimi; Prerequisito da verificare manualmente: Sapienza Magica 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

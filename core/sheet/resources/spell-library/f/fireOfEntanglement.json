@@ -1,0 +1,39 @@
+{
+  "id": "fireOfEntanglement",
+  "name": "Fuoco Intralciante",
+  "school": "EVOCATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "PALADIN": 2
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 azione veloce",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "speciale; vedi testo",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "PARTIAL",
+      "description": "Riflessi parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Aggiunge un effetto intralciante alla punizione contro il male. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Fuoco_Intralciante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Fuoco Intralciante: https://golarion.altervista.org/wiki/Incantesimi/Fuoco_Intralciante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

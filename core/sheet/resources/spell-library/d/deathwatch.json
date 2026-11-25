@@ -1,0 +1,42 @@
+{
+  "id": "deathwatch",
+  "name": "Visione della Morte",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 1,
+    "MEDIUM": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "SPIRITUALIST": 1
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "REPOSE": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "9 m",
+  "area": "emanazione a forma di cono",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Rivela informazioni sullo stato vitale delle creature osservate entro il raggio della magia. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Visione_della_Morte",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Visione della Morte: https://golarion.altervista.org/wiki/Incantesimi/Visione_della_Morte Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

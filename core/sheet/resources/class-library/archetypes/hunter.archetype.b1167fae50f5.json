@@ -1,0 +1,83 @@
+{
+  "id": "hunter.archetype.b1167fae50f5",
+  "classType": "hunter",
+  "name": "Legato al Totem",
+  "description": "Archetipo di Cacciatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Legato_al_Totem Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Compagno Animale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "hunter.feature.21a91365dbee",
+      "type": "replace"
+    },
+    {
+      "featureId": "hunter.feature.94e8b3cfe14c",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "hunter.feature.21a91365dbee",
+    "hunter.feature.94e8b3cfe14c"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "hunter.archetype.b1167fae50f5.instructions",
+      "name": "Legato al Totem",
+      "description": "Archetipo di Cacciatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Legato_al_Totem Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Compagno Animale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "hunter.archetype.b1167fae50f5.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Cacciatore. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Legato_al_Totem Ehi, appena hai tempo vedi di correggermi se necessario! Gestisci interamente a mano i privilegi modificati, comprese le parti originarie mantenute: Compagno Animale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.archetype.b1167fae50f5.feature.1",
+      "name": "Compagno Primitivo (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Legato_al_Totem",
+      "progression": [
+        {
+          "id": "hunter.archetype.b1167fae50f5.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Legato al Totem — Compagno Primitivo (Str): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Legato_al_Totem Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.archetype.b1167fae50f5.feature.2",
+      "name": "Forza Condivisa (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Legato_al_Totem",
+      "progression": [
+        {
+          "id": "hunter.archetype.b1167fae50f5.feature.2.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Legato al Totem — Forza Condivisa (Sop): verifica e applica manualmente acquisizione, benefici, utilizzi e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Cacciatore/Archetipi#Legato_al_Totem Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

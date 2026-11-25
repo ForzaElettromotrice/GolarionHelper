@@ -1,0 +1,55 @@
+{
+  "id": "aspectOfTheFalcon",
+  "name": "Aspetto del Falco",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "subschool": "POLYMORPH",
+  "spellLevelByClass": {
+    "HUNTER": 1,
+    "DRUID": 1,
+    "RANGER": 1
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Concede +3 competenza a Percezione, +1 competenza agli attacchi a distanza e migliora i critici di archi e balestre. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aspetto_del_Falco",
+  "effects": [
+    {
+      "id": "perception",
+      "type": "modifier",
+      "resource": "skill.perception",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "competence",
+      "expression": "3"
+    },
+    {
+      "id": "rangedAttacks",
+      "type": "modifier",
+      "resource": "attack.ranged",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "competence",
+      "expression": "1"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Impostare manualmente 19–20/×3 per archi e balestre; il beneficio non si cumula con altri ampliamenti della minaccia. Gestire incompatibilità di metamorfosi. Gestire manualmente durata, eventuali tiri salvezza e resistenza agli incantesimi prima dell'applicazione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

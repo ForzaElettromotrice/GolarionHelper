@@ -1,0 +1,1831 @@
+{
+  "id": "dwarf",
+  "name": "Nano",
+  "qualities": [
+    {
+      "id": "dwarf.type",
+      "name": "Tipo",
+      "description": "Umanoide con il sottotipo nano.",
+      "effects": [
+        {
+          "id": "bodyType",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "creatureType",
+          "type": "reminder",
+          "message": "Il personaggio è un Umanoide con il sottotipo nano. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "dwarf.size",
+      "name": "Taglia Media",
+      "description": "Creatura di taglia Media.",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "dwarf.baseSpeed",
+      "name": "Lenti e Saldi",
+      "description": "6 metri; armatura e ingombro non riducono la velocità.",
+      "effects": [
+        {
+          "id": "landSpeed",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "4",
+          "affectedByArmor": false,
+          "affectedByLoad": false,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "dwarf.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Costituzione +2, Saggezza +2, Carisma -2.",
+      "effects": [
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Modificatore razziale di Nano",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Modificatore razziale di Nano",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Modificatore razziale di Nano",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "dwarf.darkvision",
+      "name": "Scurovisione",
+      "description": "Vede al buio entro 18 metri.",
+      "effects": [
+        {
+          "id": "darkvision",
+          "type": "reminder",
+          "message": "Vede al buio entro 18 metri. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "dwarf.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi iniziali: Comune, Nanico. Bonus per Intelligenza: Gigante, Gnomesco, Goblin, Orchesco, Terran, Sottocomune.",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "dwarven",
+          "type": "languageGrant",
+          "languageId": "dwarven"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "giant",
+            "gnome",
+            "goblin",
+            "orc",
+            "terran",
+            "undercommon"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dwarf.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita corrispondente.",
+      "effects": [
+        {
+          "id": "alchemistArmor",
+          "type": "favoredClassBonus",
+          "name": "Mutageno: armatura naturale",
+          "description": "Mutageno: armatura naturale (1 beneficio ogni 4 scelte).",
+          "classes": [
+            "alchemist"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "armorClass_solid",
+              "type": "modifier",
+              "resource": "armorClass.solid",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Durante il mutageno"
+            }
+          ]
+        },
+        {
+          "id": "arcanistExploits",
+          "type": "favoredClassBonus",
+          "name": "Arma e barriera arcana",
+          "description": "Arma e barriera arcana (1 beneficio ogni 4 scelte). Gestione manuale: +1 livello effettivo per gli exploit Arma Arcana e Barriera Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "arcanist"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 livello effettivo per gli exploit Arma Arcana e Barriera Arcana. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "brawlerHardness",
+          "type": "favoredClassBonus",
+          "name": "Colpi senz'armi contro oggetti",
+          "description": "Colpi senz'armi contro oggetti. Gestione manuale: Ignora 1 punto aggiuntivo di durezza di oggetti di argilla, pietra o metallo colpiti senz'armi, minimo 0. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "brawler"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ignora 1 punto aggiuntivo di durezza di oggetti di argilla, pietra o metallo colpiti senz'armi, minimo 0. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "barbarianRage",
+          "type": "favoredClassBonus",
+          "name": "Round di ira",
+          "description": "Round di ira. Gestione manuale: Un round aggiuntivo di ira al giorno. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "barbarian"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un round aggiuntivo di ira al giorno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "bardArmor",
+          "type": "favoredClassBonus",
+          "name": "Incantesimi in armatura media",
+          "description": "Incantesimi in armatura media. Gestione manuale: Riduci dell'1% il fallimento arcano in armatura media; raggiunta una riduzione del 10%, ottieni competenza nelle armature medie. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "bard"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Riduci dell'1% il fallimento arcano in armatura media; raggiunta una riduzione del 10%, ottieni competenza nelle armature medie. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "hunterEmpathy",
+          "type": "favoredClassBonus",
+          "name": "Empatia selvatica sotterranea",
+          "description": "Empatia selvatica sotterranea (1 beneficio ogni 2 scelte). Gestione manuale: +1 a empatia selvatica con animali e bestie magiche sotterranei. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "hunter"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 a empatia selvatica con animali e bestie magiche sotterranei. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "cavalierChallenge",
+          "type": "favoredClassBonus",
+          "name": "Danni della sfida",
+          "description": "Danni della sfida (1 beneficio ogni 2 scelte).",
+          "classes": [
+            "cavalier"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "damage_all",
+              "type": "modifier",
+              "resource": "damage.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Contro il bersaglio della sfida del cavaliere"
+            }
+          ]
+        },
+        {
+          "id": "clericDomain",
+          "type": "favoredClassBonus",
+          "name": "Utilizzi del potere di dominio",
+          "description": "Utilizzi del potere di dominio (1 beneficio ogni 2 scelte). Gestione manuale: Un uso giornaliero aggiuntivo di un potere di dominio di 1° livello normalmente utilizzabile 3 + Saggezza volte al giorno. La riga del chierico su Golarion cita il druido: verificare questo refuso senza cambiare il filtro di classe. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "cleric"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un uso giornaliero aggiuntivo di un potere di dominio di 1° livello normalmente utilizzabile 3 + Saggezza volte al giorno. La riga del chierico su Golarion cita il druido: verificare questo refuso senza cambiare il filtro di classe. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "summonerArmor",
+          "type": "favoredClassBonus",
+          "name": "Armatura naturale dell'eidolon",
+          "description": "Armatura naturale dell'eidolon (1 beneficio ogni 4 scelte). Gestione manuale: +1 all'armatura naturale dell'eidolon. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "summoner"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 all'armatura naturale dell'eidolon. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "druidDomain",
+          "type": "favoredClassBonus",
+          "name": "Utilizzi del potere di dominio",
+          "description": "Utilizzi del potere di dominio (1 beneficio ogni 2 scelte). Gestione manuale: Un uso giornaliero aggiuntivo di un potere di dominio di 1° livello normalmente utilizzabile 3 + Saggezza volte al giorno. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "druid"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un uso giornaliero aggiuntivo di un potere di dominio di 1° livello normalmente utilizzabile 3 + Saggezza volte al giorno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "witchFamiliar",
+          "type": "favoredClassBonus",
+          "name": "Armatura naturale del famiglio",
+          "description": "Armatura naturale del famiglio (1 beneficio ogni 4 scelte). Gestione manuale: +1 all'armatura naturale del famiglio. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "witch"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 all'armatura naturale del famiglio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "fighterDefense",
+          "type": "favoredClassBonus",
+          "name": "Difesa da sbilanciare e spingere",
+          "description": "Difesa da sbilanciare e spingere.",
+          "classes": [
+            "fighter"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "combatManeuver_defense_trip",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.trip",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "combatManeuver_defense_bullRush",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.bullRush",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        },
+        {
+          "id": "inquisitorJudgment",
+          "type": "favoredClassBonus",
+          "name": "Giudizio potenziato",
+          "description": "Giudizio potenziato (1 beneficio ogni 2 scelte). Gestione manuale: +1 livello effettivo per gli effetti di un giudizio. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "inquisitor"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 livello effettivo per gli effetti di un giudizio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "swashbucklerStrike",
+          "type": "favoredClassBonus",
+          "name": "Colpo preciso con picconi",
+          "description": "Colpo preciso con picconi (1 beneficio ogni 4 scelte). Gestione manuale: +1 livello effettivo per colpo preciso con piccone leggero o pesante; un talento come Grazia Tagliente può estendere il beneficio ad asce e asce da battaglia trattate come armi perforanti a una mano. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "swashbuckler"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 livello effettivo per colpo preciso con piccone leggero o pesante; un talento come Grazia Tagliente può estendere il beneficio ad asce e asce da battaglia trattate come armi perforanti a una mano. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "bloodragerRage",
+          "type": "favoredClassBonus",
+          "name": "Round di ira di sangue",
+          "description": "Round di ira di sangue. Gestione manuale: Un round aggiuntivo di ira di sangue al giorno. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "bloodrager"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un round aggiuntivo di ira di sangue al giorno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "investigatorTraps",
+          "type": "favoredClassBonus",
+          "name": "Percezione e trappole di pietra",
+          "description": "Percezione e trappole di pietra. Gestione manuale: Ogni selezione concede +1/4 a Percezione sottoterra e +1/2 a percepire trappole contro trappole di pietra; conserva separatamente le due frazioni. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "investigator"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ogni selezione concede +1/4 a Percezione sottoterra e +1/2 a percepire trappole contro trappole di pietra; conserva separatamente le due frazioni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rogueTraps",
+          "type": "favoredClassBonus",
+          "name": "Disattivare trappole di pietra",
+          "description": "Disattivare trappole di pietra (1 beneficio ogni 2 scelte). Gestione manuale: +1 a percepire trappole contro trappole di pietra. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "skill_disableDevice",
+              "type": "modifier",
+              "resource": "skill.disableDevice",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Disattivare trappole di pietra"
+            },
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 a percepire trappole contro trappole di pietra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "wizardCrafting",
+          "type": "favoredClassBonus",
+          "name": "Creazione di oggetti magici",
+          "description": "Creazione di oggetti magici. Gestione manuale: Scegli un talento di creazione oggetto posseduto: aumenta di 200 mo il progresso in 8 ore, oppure di 50 mo durante le avventure. Il costo di creazione non cambia. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "wizard"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scegli un talento di creazione oggetto posseduto: aumenta di 200 mo il progresso in 8 ore, oppure di 50 mo durante le avventure. Il costo di creazione non cambia. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "wizardAbjuration",
+          "type": "favoredClassBonus",
+          "name": "Durata delle abiurazioni",
+          "description": "Durata delle abiurazioni (1 beneficio ogni 3 scelte). Gestione manuale: +1 al livello dell'incantatore delle abiurazioni soltanto per determinarne la durata. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "wizard"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 al livello dell'incantatore delle abiurazioni soltanto per determinarne la durata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "magusArcana",
+          "type": "favoredClassBonus",
+          "name": "Utilizzi di un arcano",
+          "description": "Utilizzi di un arcano (1 beneficio ogni 6 scelte). Gestione manuale: Un uso aggiuntivo di un arcano conosciuto normalmente utilizzabile una volta al giorno. Quando arriva a due utilizzi giornalieri, scegli un altro arcano. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "magus"
+          ],
+          "selectionsPerBenefit": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un uso aggiuntivo di un arcano conosciuto normalmente utilizzabile una volta al giorno. Quando arriva a due utilizzi giornalieri, scegli un altro arcano. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkHardness",
+          "type": "favoredClassBonus",
+          "name": "Colpi senz'armi contro oggetti",
+          "description": "Colpi senz'armi contro oggetti. Gestione manuale: Ignora 1 punto aggiuntivo di durezza di oggetti di argilla, pietra o metallo colpiti senz'armi, minimo 0. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "monk"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ignora 1 punto aggiuntivo di durezza di oggetti di argilla, pietra o metallo colpiti senz'armi, minimo 0. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleWeapon",
+          "type": "favoredClassBonus",
+          "name": "Competenza progressiva in un'arma",
+          "description": "Competenza progressiva in un'arma. Gestione manuale: Scegli un'arma: riduci di 1 la penalità per mancanza di competenza; arrivata a 0 ottieni il relativo talento di competenza. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "oracle"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scegli un'arma: riduci di 1 la penalità per mancanza di competenza; arrivata a 0 ottieni il relativo talento di competenza. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "paladinConcentration",
+          "type": "favoredClassBonus",
+          "name": "Concentrazione del paladino",
+          "description": "Concentrazione del paladino. Gestione manuale: +1 alle prove di concentrazione per lanciare incantesimi da paladino. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "paladin"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 alle prove di concentrazione per lanciare incantesimi da paladino. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "paladinIdentification",
+          "type": "favoredClassBonus",
+          "name": "Identificare e punire un nemico",
+          "description": "Identificare e punire un nemico. Gestione manuale: Scegli un tipo o sottotipo da nemico prescelto: +1/2 alle prove di Conoscenze per identificarlo. Massimo sei selezioni sullo stesso tipo; raggiunte sei ottieni anche +1 ai danni di punire contro di esso. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "paladin"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scegli un tipo o sottotipo da nemico prescelto: +1/2 alle prove di Conoscenze per identificarlo. Massimo sei selezioni sullo stesso tipo; raggiunte sei ottieni anche +1 ai danni di punire contro di esso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "gunslingerMisfire",
+          "type": "favoredClassBonus",
+          "name": "Affidabilità di un'arma da fuoco",
+          "description": "Affidabilità di un'arma da fuoco (1 beneficio ogni 4 scelte). Gestione manuale: Riduci di 1 il valore di inceppamento di un'arma da fuoco scelta, fino a un minimo di 1. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "gunslinger"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Riduci di 1 il valore di inceppamento di un'arma da fuoco scelta, fino a un minimo di 1. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "slayerUnderground",
+          "type": "favoredClassBonus",
+          "name": "Esplorazione sotterranea",
+          "description": "Esplorazione sotterranea (1 beneficio ogni 3 scelte). Gestione manuale: Con almeno +1 dal beneficio, puoi usare Conoscenze (dungeon) come se fossi addestrato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "slayer"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "skill_knowledge_dungeoneering",
+              "type": "modifier",
+              "resource": "skill.knowledge.dungeoneering",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "skill_survival",
+              "type": "modifier",
+              "resource": "skill.survival",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Sottoterra"
+            },
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Con almeno +1 dal beneficio, puoi usare Conoscenze (dungeon) come se fossi addestrato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rangerEmpathy",
+          "type": "favoredClassBonus",
+          "name": "Empatia selvatica sotterranea",
+          "description": "Empatia selvatica sotterranea (1 beneficio ogni 2 scelte). Gestione manuale: +1 a empatia selvatica con animali e bestie magiche sotterranei. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "ranger"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 a empatia selvatica con animali e bestie magiche sotterranei. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "warpriestBlessings",
+          "type": "favoredClassBonus",
+          "name": "Benedizioni di armi e armature",
+          "description": "Benedizioni di armi e armature (1 beneficio ogni 3 scelte). Gestione manuale: Un uso giornaliero aggiuntivo delle benedizioni, spendibile soltanto per benedizioni relative ad armi o armature. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "warpriest"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un uso giornaliero aggiuntivo delle benedizioni, spendibile soltanto per benedizioni relative ad armi o armature. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "skaldArmor",
+          "type": "favoredClassBonus",
+          "name": "Incantesimi in armatura pesante",
+          "description": "Incantesimi in armatura pesante. Gestione manuale: Riduci dell'1% il fallimento arcano in armatura pesante; raggiunta una riduzione del 10%, ottieni competenza nelle armature pesanti. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "skald"
+          ],
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Riduci dell'1% il fallimento arcano in armatura pesante; raggiunta una riduzione del 10%, ottieni competenza nelle armature pesanti. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "shamanAnimal",
+          "type": "favoredClassBonus",
+          "name": "Armatura naturale dell'animale spirituale",
+          "description": "Armatura naturale dell'animale spirituale (1 beneficio ogni 4 scelte). Gestione manuale: +1 all'armatura naturale dell'animale spirituale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "shaman"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 all'armatura naturale dell'animale spirituale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererDamage",
+          "type": "favoredClassBonus",
+          "name": "Danni di acido e terra",
+          "description": "Danni di acido e terra (1 beneficio ogni 2 scelte).",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "damage_all",
+              "type": "modifier",
+              "resource": "damage.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Danni di incantesimi o capacità magiche di acido o terra"
+            }
+          ]
+        },
+        {
+          "id": "kineticistEarth",
+          "type": "favoredClassBonus",
+          "name": "Danni delle ondate di terra",
+          "description": "Danni delle ondate di terra (1 beneficio ogni 3 scelte).",
+          "classes": [
+            "kineticist"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "damage_all",
+              "type": "modifier",
+              "resource": "damage.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Ondate cinetiche di terra che infliggono danni"
+            }
+          ]
+        },
+        {
+          "id": "mediumSaves",
+          "type": "favoredClassBonus",
+          "name": "Resistere alla possessione",
+          "description": "Resistere alla possessione (1 beneficio ogni 2 scelte).",
+          "classes": [
+            "medium"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "savingThrow_all",
+              "type": "modifier",
+              "resource": "savingThrow.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Contro possessione o per terminare Anima Spaziosa, Canale Ubicativo o Incanalare Infestazioni"
+            }
+          ]
+        },
+        {
+          "id": "mesmeristStare",
+          "type": "favoredClassBonus",
+          "name": "Danni dell'occhiata dolorosa",
+          "description": "Danni dell'occhiata dolorosa (1 beneficio ogni 4 scelte). Gestione manuale: +1 ai danni dell'occhiata dolorosa. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "mesmerist"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 ai danni dell'occhiata dolorosa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "occultistItems",
+          "type": "favoredClassBonus",
+          "name": "Oggetti di pietra e metallo",
+          "description": "Oggetti di pietra e metallo (1 beneficio ogni 3 scelte).",
+          "classes": [
+            "occultist"
+          ],
+          "selectionsPerBenefit": 3,
+          "effects": [
+            {
+              "id": "skill_useMagicDevice",
+              "type": "modifier",
+              "resource": "skill.useMagicDevice",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Oggetti di pietra o metallo"
+            },
+            {
+              "id": "skill_appraise",
+              "type": "modifier",
+              "resource": "skill.appraise",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Oggetti di pietra o metallo"
+            }
+          ]
+        },
+        {
+          "id": "psychicAbjuration",
+          "type": "favoredClassBonus",
+          "name": "Durata delle abiurazioni",
+          "description": "Durata delle abiurazioni (1 beneficio ogni 2 scelte). Gestione manuale: +1 al livello dell'incantatore delle abiurazioni soltanto per determinarne la durata. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "psychic"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 al livello dell'incantatore delle abiurazioni soltanto per determinarne la durata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "spiritualistShield",
+          "type": "favoredClassBonus",
+          "name": "Scudo della manifestazione vincolata",
+          "description": "Scudo della manifestazione vincolata (1 beneficio ogni 6 scelte). Gestione manuale: +1 al bonus di scudo della manifestazione vincolata ectoplasmatica ottenuta al 3° livello. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "classes": [
+            "spiritualist"
+          ],
+          "selectionsPerBenefit": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 al bonus di scudo della manifestazione vincolata ectoplasmatica ottenuta al 3° livello. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "spiritualistSlam",
+          "type": "favoredClassBonus",
+          "name": "Schianto della manifestazione vincolata",
+          "description": "Schianto della manifestazione vincolata (1 beneficio ogni 4 scelte).",
+          "classes": [
+            "spiritualist"
+          ],
+          "selectionsPerBenefit": 4,
+          "effects": [
+            {
+              "id": "damage_all",
+              "type": "modifier",
+              "resource": "damage.all",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Schianto ectoplasmatico della manifestazione vincolata"
+            }
+          ]
+        },
+        {
+          "id": "vigilanteSocial",
+          "type": "favoredClassBonus",
+          "name": "Grazia sociale nell'artigianato",
+          "description": "Grazia sociale nell'artigianato (1 beneficio ogni 2 scelte).",
+          "classes": [
+            "vigilante"
+          ],
+          "selectionsPerBenefit": 2,
+          "effects": [
+            {
+              "id": "skill_craft",
+              "type": "modifier",
+              "resource": "skill.craft",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1",
+              "condition": "Bonus di Grazia Sociale ad Artigianato"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "dwarf.weaponFamiliarity",
+      "name": "Familiarità nelle Armi",
+      "description": "Competenza in ascia da guerra, martello da guerra e piccone pesante; le armi naniche sono considerate da guerra.",
+      "effects": [
+        {
+          "id": "weaponFamiliarity",
+          "type": "reminder",
+          "message": "Competenza in ascia da guerra, martello da guerra e piccone pesante; le armi naniche sono considerate da guerra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "dwarf.hatred",
+      "name": "Odio",
+      "description": "+1 razziale ai tiri per colpire contro umanoidi orchi o goblinoidi.",
+      "effects": [
+        {
+          "id": "attack",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Odio",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Contro umanoidi del sottotipo orco o goblinoide"
+        }
+      ]
+    },
+    {
+      "id": "dwarf.defensiveTraining",
+      "name": "Addestramento Difensivo",
+      "description": "+4 di schivare alla CA contro creature del sottotipo gigante, se si conserva il bonus di Destrezza.",
+      "effects": [
+        {
+          "id": "giantArmorClass",
+          "type": "modifier",
+          "resource": "armorClass.reflexive",
+          "description": "Addestramento Difensivo",
+          "modifierType": "bonus",
+          "bonusType": "dodge",
+          "expression": "4",
+          "condition": "Contro creature del sottotipo gigante, se si conserva il bonus di Destrezza alla CA"
+        }
+      ]
+    },
+    {
+      "id": "dwarf.hardy",
+      "name": "Resistenza",
+      "description": "+2 razziale ai tiri salvezza contro veleni, incantesimi o capacità magiche.",
+      "effects": [
+        {
+          "id": "savingThrows",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Resistenza",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Contro veleni, incantesimi o capacità magiche"
+        }
+      ]
+    },
+    {
+      "id": "dwarf.stability",
+      "name": "Stabilità",
+      "description": "+4 razziale alla DMC contro Spingere e Sbilanciare, se saldi sul terreno.",
+      "effects": [
+        {
+          "id": "bullRushDefense",
+          "type": "modifier",
+          "resource": "combatManeuver.defense.bullRush",
+          "description": "Stabilità",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Quando si è saldi sul terreno"
+        },
+        {
+          "id": "tripDefense",
+          "type": "modifier",
+          "resource": "combatManeuver.defense.trip",
+          "description": "Stabilità",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4",
+          "condition": "Quando si è saldi sul terreno"
+        }
+      ]
+    },
+    {
+      "id": "dwarf.greed",
+      "name": "Cupidigia",
+      "description": "+2 razziale a Valutare beni non magici con metalli preziosi o gemme.",
+      "effects": [
+        {
+          "id": "appraise",
+          "type": "modifier",
+          "resource": "skill.appraise",
+          "description": "Cupidigia",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Per valutare beni non magici contenenti metalli preziosi o gemme"
+        }
+      ]
+    },
+    {
+      "id": "dwarf.stonecunning",
+      "name": "Esperto Minatore",
+      "description": "+2 razziale a Percezione per opere insolite in muratura; prova anche senza cercare entro 3 metri.",
+      "effects": [
+        {
+          "id": "perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Esperto Minatore",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Per individuare opere insolite in muratura"
+        },
+        {
+          "id": "automaticStoneworkCheck",
+          "type": "reminder",
+          "message": "Entro 3 metri da opere insolite in muratura, come trappole o porte segrete in pietra, effettua una prova di Percezione anche senza cercare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "dwarf.ancientEnmity",
+      "name": "Antiche Inimicizie",
+      "description": "Antiche Inimicizie",
+      "effects": [
+        {
+          "id": "attack_all",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Contro umanoidi del sottotipo elfo"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.hatred"
+      ]
+    },
+    {
+      "id": "dwarf.craftsman",
+      "name": "Artigiano",
+      "description": "Artigiano",
+      "effects": [
+        {
+          "id": "skill_craft",
+          "type": "modifier",
+          "resource": "skill.craft",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Creare oggetti in pietra o metallo"
+        },
+        {
+          "id": "skill_profession",
+          "type": "modifier",
+          "resource": "skill.profession",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Creare oggetti in pietra o metallo"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.greed"
+      ]
+    },
+    {
+      "id": "dwarf.avaricious",
+      "name": "Avaro",
+      "description": "Avaro",
+      "effects": [
+        {
+          "id": "combatManeuver_defense_steal",
+          "type": "modifier",
+          "resource": "combatManeuver.defense.steal",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        },
+        {
+          "id": "combatManeuver_defense_disarm",
+          "type": "modifier",
+          "resource": "combatManeuver.defense.disarm",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        },
+        {
+          "id": "skill_perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Accorgersi dell'uso di Rapidità di Mano"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Se noti un tentativo di furto con Rapidità di Mano, puoi compiere un attacco di opportunità se non sei impreparato o possiedi Riflessi in Combattimento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.stonecunning",
+        "dwarf.stability"
+      ]
+    },
+    {
+      "id": "dwarf.saltbeard",
+      "name": "Barba di Sale",
+      "description": "Sostituisce anche la gestione di Cupidigia: si applica ai tesori acquatici indipendentemente dai materiali.",
+      "effects": [
+        {
+          "id": "skill_profession_sailor",
+          "type": "modifier",
+          "resource": "skill.profession.sailor",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "In mare"
+        },
+        {
+          "id": "skill_survival",
+          "type": "modifier",
+          "resource": "skill.survival",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "In mare"
+        },
+        {
+          "id": "attack_all",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Contro creature acquatiche o del sottotipo acqua"
+        },
+        {
+          "id": "armorClass_reflexive",
+          "type": "modifier",
+          "resource": "armorClass.reflexive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "dodge",
+          "expression": "2",
+          "condition": "Contro creature acquatiche o del sottotipo acqua"
+        },
+        {
+          "id": "skill_appraise",
+          "type": "modifier",
+          "resource": "skill.appraise",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Valutare tesori trovati in acqua o sott'acqua"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.defensiveTraining",
+        "dwarf.stonecunning",
+        "dwarf.hatred",
+        "dwarf.greed"
+      ]
+    },
+    {
+      "id": "dwarf.giantHunter",
+      "name": "Cacciatore di Giganti",
+      "description": "Cacciatore di Giganti",
+      "effects": [
+        {
+          "id": "attack_all",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Contro umanoidi del sottotipo gigante"
+        },
+        {
+          "id": "skill_survival",
+          "type": "modifier",
+          "resource": "skill.survival",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Trovare o seguire tracce di umanoidi giganti"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.hatred"
+      ]
+    },
+    {
+      "id": "dwarf.rockStepper",
+      "name": "Camminatore della Roccia",
+      "description": "Camminatore della Roccia",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Ignori il terreno difficile dovuto a detriti, pietrisco o irregolarità delle caverne quando effettui un passo di 1,5 metri. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.stonecunning"
+      ]
+    },
+    {
+      "id": "dwarf.stonesinger",
+      "name": "Cantore della Pietra",
+      "description": "Cantore della Pietra",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Considera il livello superiore di 1 per incantesimi della terra, poteri del dominio della Terra, stirpi elementale della terra e sotterranea e rivelazioni della Pietra già disponibili; non concede accesso anticipato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.stonecunning"
+      ]
+    },
+    {
+      "id": "dwarf.stubborn",
+      "name": "Cocciuto",
+      "description": "Cocciuto",
+      "effects": [
+        {
+          "id": "savingThrow_will",
+          "type": "modifier",
+          "resource": "savingThrow.will",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Incantesimi o capacità magiche di charme o compulsione"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Dopo un TS fallito contro charme o compulsione puoi riprovare alla stessa CD nel round successivo se la durata supera un round. Capacità analoghe concedono al massimo un tentativo per round, con ulteriori tentativi nei round successivi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.hardy"
+      ]
+    },
+    {
+      "id": "dwarf.lorekeeper",
+      "name": "Custode della Sapienza",
+      "description": "Custode della Sapienza",
+      "effects": [
+        {
+          "id": "skill_knowledge_history",
+          "type": "modifier",
+          "resource": "skill.knowledge.history",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Informazioni sui nani o sui loro nemici"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Le prove di Conoscenze (storia) sui nani e sui loro nemici possono essere effettuate senza addestramento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.greed"
+      ]
+    },
+    {
+      "id": "dwarf.surfaceSurvivalist",
+      "name": "Esperto di Sopravvivenza in Superficie",
+      "description": "Scegli il clima a cui sei adattato.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Per determinare se il vento ti ostacola o ti trascina, considera la sua intensità inferiore di un grado. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [
+        {
+          "id": "climate",
+          "prompt": "A quale clima sei adattato?",
+          "selectionCount": 1,
+          "options": [
+            {
+              "id": "cold",
+              "name": "Freddo",
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Considera il clima freddo meno grave di un grado. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            },
+            {
+              "id": "hot",
+              "name": "Caldo",
+              "effects": [
+                {
+                  "id": "manual",
+                  "type": "reminder",
+                  "message": "Considera il clima caldo meno grave di un grado. Ehi, appena hai tempo vedi di correggermi se necessario!"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "replaces": [
+        "dwarf.darkvision"
+      ]
+    },
+    {
+      "id": "dwarf.wyrmscourged",
+      "name": "Flagellato dai Dragoni",
+      "description": "Flagellato dai Dragoni",
+      "effects": [
+        {
+          "id": "attack_all",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Contro draghi"
+        },
+        {
+          "id": "armorClass_reflexive",
+          "type": "modifier",
+          "resource": "armorClass.reflexive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "dodge",
+          "expression": "2",
+          "condition": "Contro draghi"
+        },
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Contro capacità straordinarie, magiche o soprannaturali dei draghi"
+        },
+        {
+          "id": "skill_knowledge_arcana",
+          "type": "modifier",
+          "resource": "skill.knowledge.arcana",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Identificare draghi"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Puoi identificare draghi con Conoscenze (arcane) anche senza addestramento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.defensiveTraining",
+        "dwarf.stonecunning",
+        "dwarf.hatred"
+      ]
+    },
+    {
+      "id": "dwarf.barrowWarden",
+      "name": "Guardiani dei Tumuli",
+      "description": "Guardiani dei Tumuli",
+      "effects": [
+        {
+          "id": "attack_all",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Contro non morti"
+        },
+        {
+          "id": "armorClass_reflexive",
+          "type": "modifier",
+          "resource": "armorClass.reflexive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "dodge",
+          "expression": "1",
+          "condition": "Contro non morti"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.defensiveTraining",
+        "dwarf.hatred"
+      ]
+    },
+    {
+      "id": "dwarf.deepWarrior",
+      "name": "Guerriero delle Profondità",
+      "description": "Guerriero delle Profondità",
+      "effects": [
+        {
+          "id": "armorClass_reflexive",
+          "type": "modifier",
+          "resource": "armorClass.reflexive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "dodge",
+          "expression": "2",
+          "condition": "Contro aberrazioni"
+        },
+        {
+          "id": "combatManeuver_bonus_grapple",
+          "type": "modifier",
+          "resource": "combatManeuver.bonus.grapple",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Iniziare o mantenere una lotta contro aberrazioni"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.defensiveTraining"
+      ]
+    },
+    {
+      "id": "dwarf.relentless",
+      "name": "Implacabile",
+      "description": "Implacabile",
+      "effects": [
+        {
+          "id": "combatManeuver_bonus_bullRush",
+          "type": "modifier",
+          "resource": "combatManeuver.bonus.bullRush",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Tu e l'avversario siete al suolo"
+        },
+        {
+          "id": "combatManeuver_bonus_overrun",
+          "type": "modifier",
+          "resource": "combatManeuver.bonus.overrun",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Tu e l'avversario siete al suolo"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.stability"
+      ]
+    },
+    {
+      "id": "dwarf.minesight",
+      "name": "Minieravisione",
+      "description": "Minieravisione",
+      "effects": [
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2",
+          "condition": "Effetti con descrittore luce"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scurovisione fino a 27 metri; sei automaticamente abbagliato nella luce intensa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.darkvision"
+      ]
+    },
+    {
+      "id": "dwarf.mountaineer",
+      "name": "Montanaro",
+      "description": "Montanaro",
+      "effects": [
+        {
+          "id": "altitude",
+          "type": "immunity",
+          "targetId": "altitude",
+          "name": "Effetti dell'altitudine"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Non perdi il bonus di Destrezza alla CA attraversando superfici strette o scivolose con Acrobazia o Scalare. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.stability"
+      ]
+    },
+    {
+      "id": "dwarf.senseAberration",
+      "name": "Percepire Aberrazioni",
+      "description": "Percepire Aberrazioni",
+      "effects": [
+        {
+          "id": "skill_knowledge_dungeoneering",
+          "type": "modifier",
+          "resource": "skill.knowledge.dungeoneering",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Notare aberrazioni camuffate o nascoste"
+        },
+        {
+          "id": "skill_perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Notare aberrazioni camuffate o nascoste"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.stonecunning"
+      ]
+    },
+    {
+      "id": "dwarf.magicResistant",
+      "name": "Resistente alla Magia",
+      "description": "Resistente alla Magia",
+      "effects": [
+        {
+          "id": "resistance",
+          "type": "spellResistance",
+          "expression": "5+@level",
+          "canBeLowered": true
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Abbassare questa resistenza richiede un'azione standard e dura un round. Penalità -2 alle prove di concentrazione per incantesimi arcani. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.hardy"
+      ]
+    },
+    {
+      "id": "dwarf.viscousBlood",
+      "name": "Sangue Viscoso",
+      "description": "Sangue Viscoso",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Riduci di 1 (minimo 1) danni ai PF, danni e risucchi alle caratteristiche causati da sanguinamento o risucchio di sangue. Ogni round puoi tentare come azione veloce una prova di Guarire per arrestare il sanguinamento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.hardy"
+      ]
+    },
+    {
+      "id": "dwarf.skySentinel",
+      "name": "Sentinella del Cielo",
+      "description": "Sentinella del Cielo",
+      "effects": [
+        {
+          "id": "attack_all",
+          "type": "modifier",
+          "resource": "attack.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Contro creature in volo"
+        },
+        {
+          "id": "armorClass_reflexive",
+          "type": "modifier",
+          "resource": "armorClass.reflexive",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "dodge",
+          "expression": "2",
+          "condition": "Contro creature in volo"
+        },
+        {
+          "id": "skill_perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Contro creature in volo"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Le creature in volo non ottengono il bonus per posizione sopraelevata contro di te. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.defensiveTraining",
+        "dwarf.stonecunning",
+        "dwarf.hatred"
+      ]
+    },
+    {
+      "id": "dwarf.barrowScholar",
+      "name": "Studioso dei Tumuli",
+      "description": "Studioso dei Tumuli",
+      "effects": [
+        {
+          "id": "skill_knowledge_religion",
+          "type": "modifier",
+          "resource": "skill.knowledge.religion",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Identificare non morti"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Puoi identificare non morti con Conoscenze (religioni) anche senza addestramento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.stonecunning"
+      ]
+    },
+    {
+      "id": "dwarf.healthy",
+      "name": "Vigoroso",
+      "description": "Vigoroso",
+      "effects": [
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Contro malattie o veleni"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Per guarire da malattie e veleni basta un successo consecutivo in meno del normale, con un minimo di uno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.hardy"
+      ]
+    },
+    {
+      "id": "dwarf.xenophobic",
+      "name": "Xenofobo",
+      "description": "Xenofobo",
+      "effects": [
+        {
+          "id": "dwarven",
+          "type": "languageGrant",
+          "languageId": "dwarven"
+        },
+        {
+          "id": "savingThrow_all",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "1",
+          "condition": "Effetti di influenza mentale diversi dalla paura"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Inizi conoscendo soltanto il Nanico, senza lingue aggiuntive per Intelligenza. Impari una lingua ogni 2 gradi in Linguistica: selezione e quota dimezzata vanno gestite manualmente, poiché il sistema ordinario concede una lingua per grado. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "choices": [],
+      "replaces": [
+        "dwarf.languages"
+      ]
+    }
+  ]
+}

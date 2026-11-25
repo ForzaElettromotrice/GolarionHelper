@@ -1,0 +1,1833 @@
+{
+  "type": "hunter",
+  "name": "Cacciatore",
+  "description": "Cacciatore magico che combatte in sintonia con il compagno animale.",
+  "hitDie": 8,
+  "skillRanksPerLevel": 6,
+  "classSkills": [
+    "skill.handleAnimal",
+    "skill.craft",
+    "skill.ride",
+    "skill.knowledge.dungeoneering",
+    "skill.knowledge.geography",
+    "skill.knowledge.nature",
+    "skill.stealth",
+    "skill.heal",
+    "skill.intimidate",
+    "skill.swim",
+    "skill.perception",
+    "skill.profession",
+    "skill.spellcraft",
+    "skill.climb",
+    "skill.survival"
+  ],
+  "progression": [
+    {
+      "level": 1,
+      "baseAttackBonus": 0,
+      "baseSavingThrows": {
+        "fortitude": 2,
+        "reflex": 2,
+        "will": 0
+      }
+    },
+    {
+      "level": 2,
+      "baseAttackBonus": 1,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 0
+      }
+    },
+    {
+      "level": 3,
+      "baseAttackBonus": 2,
+      "baseSavingThrows": {
+        "fortitude": 3,
+        "reflex": 3,
+        "will": 1
+      }
+    },
+    {
+      "level": 4,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 5,
+      "baseAttackBonus": 3,
+      "baseSavingThrows": {
+        "fortitude": 4,
+        "reflex": 4,
+        "will": 1
+      }
+    },
+    {
+      "level": 6,
+      "baseAttackBonus": 4,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 7,
+      "baseAttackBonus": 5,
+      "baseSavingThrows": {
+        "fortitude": 5,
+        "reflex": 5,
+        "will": 2
+      }
+    },
+    {
+      "level": 8,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 2
+      }
+    },
+    {
+      "level": 9,
+      "baseAttackBonus": 6,
+      "baseSavingThrows": {
+        "fortitude": 6,
+        "reflex": 6,
+        "will": 3
+      }
+    },
+    {
+      "level": 10,
+      "baseAttackBonus": 7,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 11,
+      "baseAttackBonus": 8,
+      "baseSavingThrows": {
+        "fortitude": 7,
+        "reflex": 7,
+        "will": 3
+      }
+    },
+    {
+      "level": 12,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 13,
+      "baseAttackBonus": 9,
+      "baseSavingThrows": {
+        "fortitude": 8,
+        "reflex": 8,
+        "will": 4
+      }
+    },
+    {
+      "level": 14,
+      "baseAttackBonus": 10,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 4
+      }
+    },
+    {
+      "level": 15,
+      "baseAttackBonus": 11,
+      "baseSavingThrows": {
+        "fortitude": 9,
+        "reflex": 9,
+        "will": 5
+      }
+    },
+    {
+      "level": 16,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 17,
+      "baseAttackBonus": 12,
+      "baseSavingThrows": {
+        "fortitude": 10,
+        "reflex": 10,
+        "will": 5
+      }
+    },
+    {
+      "level": 18,
+      "baseAttackBonus": 13,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 19,
+      "baseAttackBonus": 14,
+      "baseSavingThrows": {
+        "fortitude": 11,
+        "reflex": 11,
+        "will": 6
+      }
+    },
+    {
+      "level": 20,
+      "baseAttackBonus": 15,
+      "baseSavingThrows": {
+        "fortitude": 12,
+        "reflex": 12,
+        "will": 6
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "hunter.classSkills",
+      "name": "Abilità di classe",
+      "description": "La lista delle abilità di classe è concessa dai metadati della classe. Questa identità registra le modifiche degli archetipi ai fini della compatibilità.",
+      "progression": []
+    },
+    {
+      "id": "hunter.spellcasting",
+      "name": "Incantesimi",
+      "description": "Progressione base degli incantesimi; benefici dipendenti dalle scelte e dalle caratteristiche sono segnalati separatamente. Fonte: https://golarion.altervista.org/wiki/Cacciatore",
+      "progression": [
+        {
+          "id": "spellcasting",
+          "level": 1,
+          "effects": [
+            {
+              "id": "casting",
+              "type": "spellcastingGrant",
+              "mode": "spontaneous",
+              "spellListClass": "hunter"
+            },
+            {
+              "id": "manualCasting",
+              "type": "reminder",
+              "message": "Gli slot bonus per la caratteristica richiedono gestione manuale: le capacità accettano interi, non espressioni dinamiche. Trucchetti e orazioni sono riutilizzabili; il consumo automatico non distingue il livello effettivo delle versioni metamagiche. Gestire manualmente caratteristica minima, CD, livello incantatore, componenti e restrizioni specifiche della classe. La tabella giornaliera non contiene slot di livello 0: il backend richiede un gruppo tecnico o una futura API per il lancio gratuito; non viene inventato uno slot giornaliero. Le sostituzioni degli incantesimi conosciuti restano soggette alle finestre e ai limiti di livello descritti dalla classe. La lista combina Druido fino al livello 6 e Ranger, usando il livello inferiore quando entrambe contengono lo stesso incantesimo. Aggiungere gratuitamente Evoca Alleato Naturale ai livelli accessibili, senza consumare quote. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "castingSlots.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level1"
+          ]
+        },
+        {
+          "id": "castingSlots.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level2"
+          ]
+        },
+        {
+          "id": "castingSlots.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 3
+                },
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level3"
+          ]
+        },
+        {
+          "id": "castingSlots.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level4"
+          ]
+        },
+        {
+          "id": "castingSlots.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level5"
+          ]
+        },
+        {
+          "id": "castingSlots.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 3
+                },
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level6"
+          ]
+        },
+        {
+          "id": "castingSlots.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 4
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level7"
+          ]
+        },
+        {
+          "id": "castingSlots.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level8"
+          ]
+        },
+        {
+          "id": "castingSlots.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 3
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level9"
+          ]
+        },
+        {
+          "id": "castingSlots.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 4
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level10"
+          ]
+        },
+        {
+          "id": "castingSlots.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level11"
+          ]
+        },
+        {
+          "id": "castingSlots.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 3
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level12"
+          ]
+        },
+        {
+          "id": "castingSlots.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 4
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level13"
+          ]
+        },
+        {
+          "id": "castingSlots.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level14"
+          ]
+        },
+        {
+          "id": "castingSlots.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 3
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level15"
+          ]
+        },
+        {
+          "id": "castingSlots.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 4
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level16"
+          ]
+        },
+        {
+          "id": "castingSlots.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 4
+                },
+                {
+                  "level": 6,
+                  "capacity": 3
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level17"
+          ]
+        },
+        {
+          "id": "castingSlots.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 4
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level18"
+          ]
+        },
+        {
+          "id": "castingSlots.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "slots",
+              "type": "spellSlotGrant",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "pool": "casting",
+              "slots": [
+                {
+                  "level": 1,
+                  "capacity": 5
+                },
+                {
+                  "level": 2,
+                  "capacity": 5
+                },
+                {
+                  "level": 3,
+                  "capacity": 5
+                },
+                {
+                  "level": 4,
+                  "capacity": 5
+                },
+                {
+                  "level": 5,
+                  "capacity": 5
+                },
+                {
+                  "level": 6,
+                  "capacity": 5
+                }
+              ]
+            }
+          ],
+          "replaces": [
+            "castingSlots.level19"
+          ]
+        },
+        {
+          "id": "repertoire.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 4
+                },
+                {
+                  "level": 1,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 0,
+                  "capacity": 1
+                },
+                {
+                  "level": 1,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                },
+                {
+                  "level": 3,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 3,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 1,
+                  "capacity": 1
+                },
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 4,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 3,
+                  "capacity": 1
+                },
+                {
+                  "level": 5,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 2,
+                  "capacity": 1
+                },
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level16",
+          "level": 16,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 4,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 3,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 5,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "repertoire.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "known",
+              "type": "spellRepertoireQuota",
+              "castingId": "class.effect.6:hunter12:spellcasting7:casting",
+              "quotas": [
+                {
+                  "level": 4,
+                  "capacity": 1
+                },
+                {
+                  "level": 6,
+                  "capacity": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.94e8b3cfe14c",
+      "name": "Compagno Animale",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Compagno_Animale_(Str)",
+      "progression": [
+        {
+          "id": "hunter.feature.94e8b3cfe14c.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Cacciatore: verificare e applicare Compagno Animale. https://golarion.altervista.org/wiki/Cacciatore#Compagno_Animale_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.21a91365dbee",
+      "name": "Animale Focalizzato",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_(Sop)",
+      "progression": [
+        {
+          "id": "hunter.feature.21a91365dbee.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Cacciatore: verificare e applicare Animale Focalizzato. https://golarion.altervista.org/wiki/Cacciatore#Animale_Focalizzato_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.c8a3c0821b5c",
+      "name": "Addestramento alla Natura",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Addestramento_alla_Natura_(Str)",
+      "progression": [
+        {
+          "id": "hunter.feature.c8a3c0821b5c.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Cacciatore: verificare e applicare Addestramento alla Natura. https://golarion.altervista.org/wiki/Cacciatore#Addestramento_alla_Natura_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.222d358d056a",
+      "name": "Orazioni",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Orazioni",
+      "progression": [
+        {
+          "id": "hunter.feature.222d358d056a.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Cacciatore: verificare e applicare Orazioni. https://golarion.altervista.org/wiki/Cacciatore#Orazioni Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.d1407b6be4e4",
+      "name": "Empatia Selvatica",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Empatia_Selvatica_(Str)",
+      "progression": [
+        {
+          "id": "hunter.feature.d1407b6be4e4.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 1 di Cacciatore: verificare e applicare Empatia Selvatica. https://golarion.altervista.org/wiki/Cacciatore#Empatia_Selvatica_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.4d09aa05647a",
+      "name": "Compagno Preciso",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Compagno_Preciso_(Str)",
+      "progression": [
+        {
+          "id": "hunter.feature.4d09aa05647a.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Cacciatore: verificare e applicare Compagno Preciso. https://golarion.altervista.org/wiki/Cacciatore#Compagno_Preciso_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.a97a9e0e810a",
+      "name": "Seguire Tracce",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Seguire_Tracce_(Str)",
+      "progression": [
+        {
+          "id": "hunter.feature.a97a9e0e810a.level2",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 2 di Cacciatore: verificare e applicare Seguire Tracce. https://golarion.altervista.org/wiki/Cacciatore#Seguire_Tracce_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.0a7410cb499f",
+      "name": "Tattiche del Cacciatore",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Tattiche_del_Cacciatore_(Str)",
+      "progression": [
+        {
+          "id": "hunter.feature.0a7410cb499f.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 3 di Cacciatore: verificare e applicare Tattiche del Cacciatore. https://golarion.altervista.org/wiki/Cacciatore#Tattiche_del_Cacciatore_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.168edc94b476",
+      "name": "Legame Empatico Migliorato",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Legame_Empatico_Migliorato_(Sop)",
+      "progression": [
+        {
+          "id": "hunter.feature.168edc94b476.level4",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 4 di Cacciatore: verificare e applicare Legame Empatico Migliorato. https://golarion.altervista.org/wiki/Cacciatore#Legame_Empatico_Migliorato_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.e8a20c5061aa",
+      "name": "Andatura nel Bosco",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Andatura_nel_Bosco_(Sop)",
+      "progression": [
+        {
+          "id": "hunter.feature.e8a20c5061aa.level5",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 5 di Cacciatore: verificare e applicare Andatura nel Bosco. https://golarion.altervista.org/wiki/Cacciatore#Andatura_nel_Bosco_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.94a899227173",
+      "name": "Comando Bonus",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Comando_Bonus_(Str)",
+      "progression": [
+        {
+          "id": "hunter.feature.94a899227173.level7",
+          "level": 7,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 7 di Cacciatore: verificare e applicare Comando Bonus. https://golarion.altervista.org/wiki/Cacciatore#Comando_Bonus_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "hunter.feature.94a899227173.level13",
+          "level": 13,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 13 di Cacciatore: verificare e applicare Comando Bonus. https://golarion.altervista.org/wiki/Cacciatore#Comando_Bonus_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        },
+        {
+          "id": "hunter.feature.94a899227173.level19",
+          "level": 19,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 19 di Cacciatore: verificare e applicare Comando Bonus. https://golarion.altervista.org/wiki/Cacciatore#Comando_Bonus_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.2f96fe62fb60",
+      "name": "Secondo Animale Focalizzato",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Secondo_Animale_Focalizzato_(Sop)",
+      "progression": [
+        {
+          "id": "hunter.feature.2f96fe62fb60.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Cacciatore: verificare e applicare Secondo Animale Focalizzato. https://golarion.altervista.org/wiki/Cacciatore#Secondo_Animale_Focalizzato_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.12d03472db14",
+      "name": "Rapido Segugio",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Rapido_Segugio_(Str)",
+      "progression": [
+        {
+          "id": "hunter.feature.12d03472db14.level8",
+          "level": 8,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 8 di Cacciatore: verificare e applicare Rapido Segugio. https://golarion.altervista.org/wiki/Cacciatore#Rapido_Segugio_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.aa03e598fb57",
+      "name": "Rianimare Compagno Animale",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Rianimare_Compagno_Animale_(Mag)",
+      "progression": [
+        {
+          "id": "hunter.feature.aa03e598fb57.level10",
+          "level": 10,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 10 di Cacciatore: verificare e applicare Rianimare Compagno Animale. https://golarion.altervista.org/wiki/Cacciatore#Rianimare_Compagno_Animale_(Mag) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.1827f204c3b7",
+      "name": "Parlare con il Padrone",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Parlare_con_il_Padrone_(Str)",
+      "progression": [
+        {
+          "id": "hunter.feature.1827f204c3b7.level11",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 11 di Cacciatore: verificare e applicare Parlare con il Padrone. https://golarion.altervista.org/wiki/Cacciatore#Parlare_con_il_Padrone_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.444331a662b1",
+      "name": "Legame Empatico Superiore",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Legame_Empatico_Superiore_(Sop)",
+      "progression": [
+        {
+          "id": "hunter.feature.444331a662b1.level14",
+          "level": 14,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 14 di Cacciatore: verificare e applicare Legame Empatico Superiore. https://golarion.altervista.org/wiki/Cacciatore#Legame_Empatico_Superiore_(Sop) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.51b0ca0fbbb2",
+      "name": "Tutt'Uno con il Selvaggio",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Tutt'Uno_con_il_Selvaggio_(Str)",
+      "progression": [
+        {
+          "id": "hunter.feature.51b0ca0fbbb2.level17",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 17 di Cacciatore: verificare e applicare Tutt'Uno con il Selvaggio. https://golarion.altervista.org/wiki/Cacciatore#Tutt'Uno_con_il_Selvaggio_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.8469204d6fa5",
+      "name": "Maestro Cacciatore",
+      "description": "Privilegio della classe Cacciatore. Regole e condizioni: https://golarion.altervista.org/wiki/Cacciatore#Maestro_Cacciatore_(Str)",
+      "progression": [
+        {
+          "id": "hunter.feature.8469204d6fa5.level20",
+          "level": 20,
+          "effects": [
+            {
+              "id": "manual1",
+              "type": "reminder",
+              "message": "Livello 20 di Cacciatore: verificare e applicare Maestro Cacciatore. https://golarion.altervista.org/wiki/Cacciatore#Maestro_Cacciatore_(Str) Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.eligibility",
+      "name": "Requisiti e condotta",
+      "description": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi neutrale. https://golarion.altervista.org/wiki/Cacciatore",
+      "progression": [
+        {
+          "id": "hunter.eligibility.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare requisiti, condotta, vincoli di multiclasse e perdita dei privilegi della classe. Allineamento indicato: Qualsiasi neutrale. https://golarion.altervista.org/wiki/Cacciatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.proficiencies",
+      "name": "Competenze della classe",
+      "description": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Cacciatore",
+      "progression": [
+        {
+          "id": "hunter.proficiencies.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Applicare le competenze in armi, armature e scudi previste dalla classe, comprese eccezioni e restrizioni. https://golarion.altervista.org/wiki/Cacciatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.supplementalRules",
+      "name": "Regole complementari",
+      "description": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Cacciatore",
+      "progression": [
+        {
+          "id": "hunter.supplementalRules.level1",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Verificare le regole fuori dalla tabella e la loro effettiva disponibilità al livello attuale; questo promemoria non concede capacità future. https://golarion.altervista.org/wiki/Cacciatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "hunter.feature.c6f2cec00acd",
+      "name": "Talento di Squadra",
+      "description": "Concede slot aggiuntivi per talenti della categoria prevista, mantenendo i prerequisiti ordinari. Fonte: https://golarion.altervista.org/wiki/Cacciatore",
+      "progression": [
+        {
+          "id": "hunter.bonusFeats.level3",
+          "level": 3,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "type",
+                "featType": "teamwork"
+              }
+            },
+            {
+              "id": "manualResolution",
+              "type": "reminder",
+              "message": "Solo il talento di squadra più recente può essere scambiato con la frequenza concessa dal privilegio; verificare manualmente tempi e utilizzi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "hunter.bonusFeats.level6",
+          "level": 6,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "type",
+                "featType": "teamwork"
+              }
+            }
+          ]
+        },
+        {
+          "id": "hunter.bonusFeats.level9",
+          "level": 9,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "type",
+                "featType": "teamwork"
+              }
+            }
+          ]
+        },
+        {
+          "id": "hunter.bonusFeats.level12",
+          "level": 12,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "type",
+                "featType": "teamwork"
+              }
+            }
+          ]
+        },
+        {
+          "id": "hunter.bonusFeats.level15",
+          "level": 15,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "type",
+                "featType": "teamwork"
+              }
+            }
+          ]
+        },
+        {
+          "id": "hunter.bonusFeats.level18",
+          "level": 18,
+          "effects": [
+            {
+              "id": "slot",
+              "type": "featSlotGrant",
+              "filter": {
+                "kind": "type",
+                "featType": "teamwork"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "hunter.animalFocusBinding",
+      "classType": "hunter",
+      "featureId": "hunter.feature.21a91365dbee",
+      "acquisitionIds": [
+        "hunter.feature.21a91365dbee.level1"
+      ],
+      "choice": {
+        "id": "animalFocus",
+        "prompt": "Scegli: Animale focalizzato",
+        "selectionCount": 1,
+        "blocksAdvancement": false,
+        "optionSet": "hunter.animalFocus"
+      }
+    },
+    {
+      "id": "hunter.secondAnimalFocusBinding",
+      "classType": "hunter",
+      "featureId": "hunter.feature.2f96fe62fb60",
+      "acquisitionIds": [
+        "hunter.feature.2f96fe62fb60.level8"
+      ],
+      "choice": {
+        "id": "secondAnimalFocus",
+        "prompt": "Scegli: Animale focalizzato",
+        "selectionCount": 1,
+        "blocksAdvancement": false,
+        "optionSet": "hunter.animalFocus"
+      }
+    }
+  ]
+}

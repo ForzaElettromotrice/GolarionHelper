@@ -1,0 +1,30 @@
+{
+  "id": "feralCombatTraining",
+  "name": "Addestramento al Combattimento Bestiale",
+  "description": "Estende determinati benefici del combattimento senz'armi a un'arma naturale scelta. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Addestramento_al_Combattimento_Bestiale",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata con l'arma naturale selezionata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Addestramento al Combattimento Bestiale: https://golarion.altervista.org/wiki/Talenti/Addestramento_al_Combattimento_Bestiale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: Arma Focalizzata con l'arma naturale selezionata Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

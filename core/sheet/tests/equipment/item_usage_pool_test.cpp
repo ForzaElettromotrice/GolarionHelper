@@ -1,4 +1,5 @@
-#include "golarion/equipment/item_definition_catalog.hpp"
+#include "golarion/catalog/catalog_reader.hpp"
+#include "golarion/equipment/item_definition_json.hpp"
 #include "golarion/equipment/item_definition_manager.hpp"
 #include "golarion/character/character_sheet.hpp"
 #include "golarion/character/prepared_spellcasting.hpp"
@@ -19,22 +20,18 @@ namespace
     }
 }
 
-int main()
+int main(int argc, char **argv)
 {
     using namespace golarion;
     using Json = nlohmann::json;
-    const auto catalog = Json::parse(R"([{
-        "id":"testItem", "name":"Oggetto di prova", "weightGrams":0, "volumeMilliliters":0,
-        "tags":[], "slot":"ring", "usagePools":[
-            {"id":"charges", "capacity":50},
-            {"id":"daily", "capacity":3},
-            {"id":"weekly", "capacity":1}]
-    }])");
+    if (argc != 3) return 1;
+    catalog::setDirectory(argv[1]);
+    const auto source = catalog::readFile("item-library/t/testItem.json");
     auto &manager = ItemDefinitionManager::instance();
     for (int error = 0; error < 8; ++error)
     {
-        auto bad = catalog;
-        auto &pool = bad[0]["usagePools"][0];
+        auto bad = source;
+        auto &pool = bad["usagePools"][0];
         switch (error)
         {
         case 0: pool["capacity"] = 0; break;
@@ -43,16 +40,14 @@ int main()
         case 3: pool["capacity"] = std::numeric_limits<std::uint64_t>::max(); break;
         case 4: pool["recovery"] = "unknown"; break;
         case 5: pool["id"] = " "; break;
-        case 6: bad[0]["usagePools"].push_back(pool); break;
-        case 7: bad[0]["usagePools"] = Json::object(); break;
+        case 6: bad["usagePools"].push_back(pool); break;
+        case 7: bad["usagePools"] = Json::object(); break;
         }
-        const auto text = bad.dump();
-        embedded::ItemDefinitionCatalogJson = text;
-        rejects([&] { manager.get("testItem"); });
+        rejects([&] { itemDefinitionFromJson(bad); });
     }
-    const auto text = catalog.dump();
-    embedded::ItemDefinitionCatalogJson = text;
-    assert(manager.get("testItem").usagePools.size() == 3);
+    const auto &item = manager.get("testItem");
+    assert(item.usagePools.size() == 3);
+    catalog::setDirectory(argv[2]);
     ItemInstance first({"first", "testItem"});
     ItemInstance second({"second", "testItem"});
     {

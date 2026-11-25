@@ -1,0 +1,27 @@
+{
+  "id": "enemyCult",
+  "name": "Culto Nemico",
+  "description": "Agevola la lotta contro un culto e il suo allineamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Culto_Nemico",
+  "types": [
+    "story"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Occorre aver incontrato un culto il cui allineamento generale sia opposto al proprio su almeno un asse o che abbia minacciato il proprio credo o stile di vita, altrimenti si deve possedere uno fra i seguenti Background: Incontro Angelico, Falso Testimone, Il Presagio o Segreto Terribile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Culto Nemico: https://golarion.altervista.org/wiki/Talenti/Culto_Nemico. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Occorre aver incontrato un culto il cui allineamento generale sia opposto al proprio su almeno un asse o che abbia minacciato il proprio credo o stile di vita, altrimenti si deve possedere uno fra i seguenti Background: Incontro Angelico, Falso Testimone, Il Presagio o Segreto Terribile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

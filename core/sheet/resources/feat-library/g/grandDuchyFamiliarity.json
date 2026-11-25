@@ -1,0 +1,31 @@
+{
+  "id": "grandDuchyFamiliarity",
+  "name": "Familiarità del Gran Ducato",
+  "description": "L'esperienza di Alkenstar facilita la gestione delle armi da fuoco. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Familiarit%C3%A0_del_Gran_Ducato",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +3",
+      "expression": "@bab >= 3"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: competenza nell'uso di almeno un'Arma da Fuoco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Familiarità del Gran Ducato: https://golarion.altervista.org/wiki/Talenti/Familiarit%C3%A0_del_Gran_Ducato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: competenza nell'uso di almeno un'Arma da Fuoco Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

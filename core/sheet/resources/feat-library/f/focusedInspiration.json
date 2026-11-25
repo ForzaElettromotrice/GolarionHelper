@@ -1,0 +1,30 @@
+{
+  "id": "focusedInspiration",
+  "name": "Ispirazione Focalizzata",
+  "description": "Rende più efficaci i dadi d'ispirazione quando vengono usati sulle abilità scelte. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Ispirazione_Focalizzata",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Privilegio di classe Ispirazione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Ricordo Arguto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Ispirazione Focalizzata: https://golarion.altervista.org/wiki/Talenti/Ispirazione_Focalizzata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Privilegio di classe Ispirazione; Prerequisito da verificare manualmente: privilegio di classe Ricordo Arguto Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

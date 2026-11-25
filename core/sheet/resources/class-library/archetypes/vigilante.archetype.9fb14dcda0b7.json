@@ -1,0 +1,230 @@
+{
+  "id": "vigilante.archetype.9fb14dcda0b7",
+  "classType": "vigilante",
+  "name": "Giustiziere",
+  "description": "Archetipo di Vigilante. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Competenze della classe, Specializzazione da Vigilante. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "vigilante.feature.8c8b331496a7",
+      "type": "replace"
+    },
+    {
+      "featureId": "vigilante.feature.9372083d315e",
+      "type": "replace"
+    },
+    {
+      "featureId": "vigilante.feature.cdd6b265a400",
+      "type": "replace"
+    },
+    {
+      "featureId": "vigilante.feature.eaa6e7e1e1d5",
+      "type": "alter"
+    },
+    {
+      "featureId": "vigilante.feature.f7f478848a2c",
+      "type": "replace"
+    },
+    {
+      "featureId": "vigilante.feature.f7fe585bdfad",
+      "type": "alter"
+    },
+    {
+      "featureId": "vigilante.proficiencies",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "vigilante.feature.8c8b331496a7",
+    "vigilante.feature.9372083d315e",
+    "vigilante.feature.cdd6b265a400",
+    "vigilante.feature.eaa6e7e1e1d5",
+    "vigilante.feature.f7f478848a2c",
+    "vigilante.proficiencies"
+  ],
+  "removedAcquisitionIds": [
+    "vigilante.feature.f7fe585bdfad.level2",
+    "vigilante.feature.f7fe585bdfad.level4"
+  ],
+  "addedFeatures": [
+    {
+      "id": "vigilante.archetype.9fb14dcda0b7.instructions",
+      "name": "Giustiziere",
+      "description": "Archetipo di Vigilante. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Competenze della classe, Specializzazione da Vigilante. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "vigilante.archetype.9fb14dcda0b7.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Vigilante. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Competenze della classe, Specializzazione da Vigilante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "vigilante.archetype.9fb14dcda0b7.feature.05ea3a56d1",
+      "name": "Competenza nelle Armi e Armature",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere",
+      "progression": [
+        {
+          "id": "vigilante.archetype.9fb14dcda0b7.feature.05ea3a56d1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Giustiziere — Competenza nelle Armi e Armature: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "vigilante.archetype.9fb14dcda0b7.feature.b11b681102",
+      "name": "Specializzazione del Vigilante",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere",
+      "progression": [
+        {
+          "id": "vigilante.archetype.9fb14dcda0b7.feature.b11b681102.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Giustiziere — Specializzazione del Vigilante: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "vigilante.archetype.9fb14dcda0b7.feature.c2bcbc5b10",
+      "name": "Cappio del Giustiziere (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere",
+      "progression": [
+        {
+          "id": "vigilante.archetype.9fb14dcda0b7.feature.c2bcbc5b10.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Giustiziere — Cappio del Giustiziere (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "vigilante.archetype.9fb14dcda0b7.feature.fe75edb350",
+      "name": "Stretta della Sincerità (Str, Mag)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere",
+      "progression": [
+        {
+          "id": "vigilante.archetype.9fb14dcda0b7.feature.fe75edb350.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Giustiziere — Stretta della Sincerità (Str, Mag): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "vigilante.archetype.9fb14dcda0b7.feature.cfc15406d2",
+      "name": "Corda Ritorta (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere",
+      "progression": [
+        {
+          "id": "vigilante.archetype.9fb14dcda0b7.feature.cfc15406d2.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Giustiziere — Corda Ritorta (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "vigilante.archetype.9fb14dcda0b7.feature.6202b54ad2",
+      "name": "Morsa Soffocante",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere",
+      "progression": [
+        {
+          "id": "vigilante.archetype.9fb14dcda0b7.feature.6202b54ad2.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Giustiziere — Morsa Soffocante: applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "vigilante.archetype.9fb14dcda0b7.feature.2c4f09cbb1",
+      "name": "Stringere il Cappio (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere",
+      "progression": [
+        {
+          "id": "vigilante.archetype.9fb14dcda0b7.feature.2c4f09cbb1.initial",
+          "level": 11,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Giustiziere — Stringere il Cappio (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "vigilante.archetype.9fb14dcda0b7.feature.1157bd9db9",
+      "name": "Soffocamento (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere",
+      "progression": [
+        {
+          "id": "vigilante.archetype.9fb14dcda0b7.feature.1157bd9db9.initial",
+          "level": 17,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Giustiziere — Soffocamento (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Vigilante/Archetipi#Giustiziere Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

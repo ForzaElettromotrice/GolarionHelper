@@ -1,0 +1,33 @@
+{
+  "id": "serpentLash",
+  "name": "Sferzata del Serpente",
+  "description": "Una manovra riuscita con frusta può generarne altre. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Sferzata_del_Serpente",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Arma Accurata",
+      "feat": {
+        "id": "weaponFinesse"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: competente nella Frusta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Sferzata del Serpente: https://golarion.altervista.org/wiki/Talenti/Sferzata_del_Serpente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: competente nella Frusta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

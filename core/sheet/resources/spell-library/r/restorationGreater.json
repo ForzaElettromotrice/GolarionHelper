@@ -1,0 +1,45 @@
+{
+  "id": "restorationGreater",
+  "name": "Ristorare Superiore",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "HEALING",
+  "spellLevelByClass": {
+    "CLERIC": 7,
+    "ORACLE": 7,
+    "SHAMAN": 7
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "3 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "polvere di diamante del valore di 5.000 mo",
+  "materialComponentCostInGoldPieces": 5000,
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Rimedia a gravi debilitazioni, livelli negativi e perdite di caratteristica previste dall'incantesimo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ristorare_Superiore",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ristorare Superiore: https://golarion.altervista.org/wiki/Incantesimi/Ristorare_Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

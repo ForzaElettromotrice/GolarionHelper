@@ -1,0 +1,35 @@
+{
+  "id": "greaterVitalStrike",
+  "name": "Colpo Vitale Superiore",
+  "description": "Porta al massimo l'incremento dei dadi dell'arma previsto dal colpo vitale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Colpo_Vitale_Superiore",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Colpo Vitale",
+      "feat": {
+        "id": "vitalStrike"
+      }
+    },
+    {
+      "description": "Colpo Vitale Migliorato",
+      "feat": {
+        "id": "improvedVitalStrike"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +16",
+      "expression": "@bab >= 16"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Colpo Vitale Superiore: https://golarion.altervista.org/wiki/Talenti/Colpo_Vitale_Superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,45 @@
+{
+  "id": "senseMadness",
+  "name": "Percepire Follia",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "MEDIUM": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "PALADIN": 2,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m/2 livelli)",
+  "target": "creature nel raggio di azione (vedi testo)",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "concentrazione, fino a 1 round/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Rivela disturbi mentali nelle creature esaminate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Percepire_Follia",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Percepire Follia: https://golarion.altervista.org/wiki/Percepire_Follia Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: creature nel raggio di azione (vedi testo). Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

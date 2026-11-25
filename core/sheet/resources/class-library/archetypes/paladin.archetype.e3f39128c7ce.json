@@ -1,0 +1,44 @@
+{
+  "id": "paladin.archetype.e3f39128c7ce",
+  "classType": "paladin",
+  "name": "Giuramento Contro gli Immondi",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_gli_Immondi Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.feature.46fda65c8c8d",
+      "type": "alter"
+    },
+    {
+      "featureId": "paladin.feature.cb09c0adcbdf",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "paladin.feature.cb09c0adcbdf"
+  ],
+  "removedAcquisitionIds": [
+    "paladin.feature.46fda65c8c8d.level9"
+  ],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.e3f39128c7ce.instructions",
+      "name": "Giuramento Contro gli Immondi",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_gli_Immondi Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.e3f39128c7ce.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_gli_Immondi Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "heroesFeast",
+  "name": "Banchetto degli Eroi",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "BARD": 6,
+    "SKALD": 6,
+    "CLERIC": 6,
+    "ORACLE": 6,
+    "WARPRIEST": 6,
+    "INQUISITOR": 6
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "COMMUNITY": 6
+    },
+    "subdomain": {
+      "RESOLUTION": 6
+    }
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "effect": "banchetto per 1 creatura/livello",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora + 12 ore; vedi testo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Un banchetto magico nutre, cura e prepara gli ospiti ad affrontare i pericoli. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Banchetto_degli_Eroi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Banchetto degli Eroi: https://golarion.altervista.org/wiki/Incantesimi/Banchetto_degli_Eroi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

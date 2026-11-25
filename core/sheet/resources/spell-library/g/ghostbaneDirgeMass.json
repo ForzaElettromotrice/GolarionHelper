@@ -1,0 +1,54 @@
+{
+  "id": "ghostbaneDirgeMass",
+  "name": "Requiem del Fantasma di Massa",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 4,
+    "CLERIC": 5,
+    "INQUISITOR": 5,
+    "OCCULTIST": 5,
+    "ORACLE": 5,
+    "PALADIN": 3,
+    "WARPRIEST": 5,
+    "SKALD": 4,
+    "SHAMAN": 5
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "la vecchia canna di uno strumento a fiato",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura incorporea/livello, due delle quali non possono trovarsi a più di 9 m l’una dall’altra",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Rende più creature incorporee parzialmente vulnerabili alle armi non magiche. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Requiem_del_Fantasma_di_Massa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Requiem del Fantasma di Massa: https://golarion.altervista.org/wiki/Incantesimi/Requiem_del_Fantasma_di_Massa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 1 creatura incorporea/livello, due delle quali non possono trovarsi a più di 9 m l’una dall’altra. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

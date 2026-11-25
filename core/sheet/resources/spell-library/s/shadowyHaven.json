@@ -1,0 +1,43 @@
+{
+  "id": "shadowyHaven",
+  "name": "Rifugio delle Ombre",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "PSYCHIC": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una piccola borsa di seta nera",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "un quadretto di 1,5 metri di pavimento toccato",
+  "durationType": "HOUR",
+  "durationDescription": "2 ore/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Crea un rifugio extradimensionale con un accesso nascosto nelle ombre. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Rifugio_delle_Ombre",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Rifugio delle Ombre: https://golarion.altervista.org/wiki/Incantesimi/Rifugio_delle_Ombre Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: un quadretto di 1,5 metri di pavimento toccato. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

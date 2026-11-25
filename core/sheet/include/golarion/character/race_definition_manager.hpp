@@ -22,16 +22,14 @@ namespace golarion
         RaceDefinitionManager &operator=(RaceDefinitionManager &&) = delete;
 
         const RaceDefinition &get(std::string_view raceDefinitionId);
-        std::vector<RaceSummaryView> toView();
+        std::vector<RaceSummaryView> listRaces() const;
         std::vector<AlternateRacialFeatureView> alternateFeaturesView(std::string_view raceDefinitionId);
 
     private:
-        RaceDefinitionManager() = default;
-
-        void loadCatalog();
+        RaceDefinitionManager();
 
         std::map<std::string, RaceDefinition> definitions_;
-        bool loaded_ = false;
+        std::map<std::string, std::string> names_;
         std::mutex mutex_;
     };
 }

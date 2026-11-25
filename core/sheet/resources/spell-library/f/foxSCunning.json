@@ -1,0 +1,60 @@
+{
+  "id": "foxSCunning",
+  "name": "Astuzia della Volpe",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ARCANIST": 2,
+    "BARD": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "INVESTIGATOR": 2,
+    "WIZARD": 2,
+    "MEDIUM": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "peli o sterco di volpe",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Concede +4 di potenziamento a Intelligenza e ne modifica gli usi derivati. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Astuzia_della_Volpe",
+  "effects": [
+    {
+      "id": "ability",
+      "type": "modifier",
+      "resource": "intelligence.temporary",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "enhancement",
+      "expression": "4"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Non concede nuovi gradi, lingue o incantesimi bonus; applicare manualmente le CD del lancio. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

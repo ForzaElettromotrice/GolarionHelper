@@ -1,0 +1,51 @@
+{
+  "id": "augury",
+  "name": "Presagio",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "CLERIC": 2,
+    "WITCH": 2,
+    "MEDIUM": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "PSYCHIC": 2,
+    "WARPRIEST": 2,
+    "SHAMAN": 2,
+    "SPIRITUALIST": 2
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "FATE": 2
+    }
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "FOCUS"
+  ],
+  "materialComponentDescription": "incenso del valore di almeno 25 mo",
+  "focusComponentDescription": "una serie di bastoncini incisi od ossa del valore di almeno 25 mo",
+  "materialComponentCostInGoldPieces": 25,
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Fornisce un presagio sulle conseguenze favorevoli o sfavorevoli di un'azione imminente. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Presagio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Presagio: https://golarion.altervista.org/wiki/Incantesimi/Presagio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

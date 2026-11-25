@@ -1,0 +1,45 @@
+{
+  "id": "foolSForbiddance",
+  "name": "Protezione del Buffone",
+  "school": "ABJURATION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "spellLevelByClass": {
+    "BARD": 6,
+    "PSYCHIC": 8,
+    "SKALD": 6
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un mazzo di chiavi",
+  "rangeType": "OTHER",
+  "rangeDescription": "3 m",
+  "area": "emanazione sferica del raggio di 3 m centrata su di sé",
+  "durationType": "CONCENTRATION",
+  "durationDescription": "Concentrazione",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "PARTIAL",
+      "description": "Volontà parziale"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Un'emanazione centrata sull'incantatore può confondere gli avversari che si avvicinano. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Protezione_del_Buffone",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Protezione del Buffone: https://golarion.altervista.org/wiki/Incantesimi/Protezione_del_Buffone Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

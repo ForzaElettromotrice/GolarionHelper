@@ -1,0 +1,129 @@
+{
+  "id": "oracle.archetype.1509bde41d7e",
+  "classType": "oracle",
+  "name": "Ricercatore",
+  "description": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Ricercatore Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "oracle.classSkills",
+      "type": "alter"
+    },
+    {
+      "featureId": "oracle.feature.aaa668a8100b",
+      "type": "alter"
+    },
+    {
+      "featureId": "oracle.feature.d5cd6abc2865",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "oracle.feature.d5cd6abc2865"
+  ],
+  "removedAcquisitionIds": [
+    "oracle.feature.aaa668a8100b.level15",
+    "oracle.feature.aaa668a8100b.level3"
+  ],
+  "addedFeatures": [
+    {
+      "id": "oracle.archetype.1509bde41d7e.instructions",
+      "name": "Ricercatore",
+      "description": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Ricercatore Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "oracle.archetype.1509bde41d7e.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Oracolo. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Ricercatore Ehi, appena hai tempo vedi di correggermi se necessario! Sono da gestire manualmente per intero, comprese le parti mantenute e la progressione: Mistero. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.1509bde41d7e.feature.fb28641068",
+      "name": "Armeggio (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Ricercatore",
+      "progression": [
+        {
+          "id": "oracle.archetype.1509bde41d7e.feature.fb28641068.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ricercatore — Armeggio (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Ricercatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.1509bde41d7e.feature.58779408bd",
+      "name": "Sapere del Ricercatore (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Ricercatore",
+      "progression": [
+        {
+          "id": "oracle.archetype.1509bde41d7e.feature.58779408bd.initial",
+          "level": 3,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ricercatore — Sapere del Ricercatore (Str): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Ricercatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.1509bde41d7e.feature.bba8aea28d",
+      "name": "Magia del Ricercatore (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Ricercatore",
+      "progression": [
+        {
+          "id": "oracle.archetype.1509bde41d7e.feature.bba8aea28d.initial",
+          "level": 15,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Ricercatore — Magia del Ricercatore (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Ricercatore Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "oracle.archetype.1509bde41d7e.classSkill.1",
+      "name": "Abilità di classe aggiuntiva",
+      "description": "Concessione verificata: https://golarion.altervista.org/wiki/Oracolo_di_Golarion#Ricercatore",
+      "progression": [
+        {
+          "id": "oracle.archetype.1509bde41d7e.classSkill.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "grant",
+              "type": "classSkillGrant",
+              "resource": "skill.disableDevice"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

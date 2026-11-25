@@ -1,0 +1,79 @@
+{
+  "id": "alchemist.archetype.e946c78e7a80",
+  "classType": "alchemist",
+  "name": "Scienziato Pazzo",
+  "description": "Archetipo di Alchimista. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Alchimista/Archetipi#Scienziato_Pazzo Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "alchemist.feature.ea692acc0f06",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [],
+  "removedAcquisitionIds": [
+    "alchemist.feature.ea692acc0f06.level2",
+    "alchemist.feature.ea692acc0f06.level4"
+  ],
+  "addedFeatures": [
+    {
+      "id": "alchemist.archetype.e946c78e7a80.instructions",
+      "name": "Scienziato Pazzo",
+      "description": "Archetipo di Alchimista. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Alchimista/Archetipi#Scienziato_Pazzo Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "alchemist.archetype.e946c78e7a80.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Alchimista. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Alchimista/Archetipi#Scienziato_Pazzo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.archetype.e946c78e7a80.feature.4b033b72fb",
+      "name": "Genio Folle (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Alchimista/Archetipi#Scienziato_Pazzo",
+      "progression": [
+        {
+          "id": "alchemist.archetype.e946c78e7a80.feature.4b033b72fb.initial",
+          "level": 2,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scienziato Pazzo — Genio Folle (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Alchimista/Archetipi#Scienziato_Pazzo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "alchemist.archetype.e946c78e7a80.feature.08905e005a",
+      "name": "Mutageno Folle (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Alchimista/Archetipi#Scienziato_Pazzo",
+      "progression": [
+        {
+          "id": "alchemist.archetype.e946c78e7a80.feature.08905e005a.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Scienziato Pazzo — Mutageno Folle (Sop): applica manualmente benefici, limiti, scelte e progressione della fonte. https://golarion.altervista.org/wiki/Alchimista/Archetipi#Scienziato_Pazzo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

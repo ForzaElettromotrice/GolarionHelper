@@ -1,0 +1,23 @@
+{
+  "id": "combatStamina",
+  "name": "Vigoria in Combattimento",
+  "description": "Concede una riserva di vigoria per tecniche marziali. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Vigoria_in_Combattimento",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "bonus di attacco base +1",
+      "expression": "@bab >= 1"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Vigoria in Combattimento: https://golarion.altervista.org/wiki/Talenti/Vigoria_in_Combattimento. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

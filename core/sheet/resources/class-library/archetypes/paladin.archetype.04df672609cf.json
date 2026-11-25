@@ -1,0 +1,55 @@
+{
+  "id": "paladin.archetype.04df672609cf",
+  "classType": "paladin",
+  "name": "Giuramento Contro la Non Morte",
+  "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_la_Non_Morte Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "paladin.feature.2ee066756d50",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.46fda65c8c8d",
+      "type": "alter"
+    },
+    {
+      "featureId": "paladin.feature.cb09c0adcbdf",
+      "type": "replace"
+    },
+    {
+      "featureId": "paladin.feature.f449a0ba5d05",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "paladin.feature.2ee066756d50",
+    "paladin.feature.cb09c0adcbdf",
+    "paladin.feature.f449a0ba5d05"
+  ],
+  "removedAcquisitionIds": [
+    "paladin.feature.46fda65c8c8d.level3",
+    "paladin.feature.46fda65c8c8d.level9"
+  ],
+  "addedFeatures": [
+    {
+      "id": "paladin.archetype.04df672609cf.instructions",
+      "name": "Giuramento Contro la Non Morte",
+      "description": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_la_Non_Morte Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "paladin.archetype.04df672609cf.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Paladino. Requisiti, restrizioni e regole: https://golarion.altervista.org/wiki/Paladino/Archetipi#Giuramento_Contro_la_Non_Morte Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

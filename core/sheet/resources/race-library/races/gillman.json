@@ -1,0 +1,423 @@
+{
+  "id": "gillman",
+  "name": "Uomo Pesce",
+  "qualities": [
+    {
+      "id": "gillman.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Umanoide (acquatico). Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "gillman.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "gillman.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "gillman.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "cha",
+          "type": "modifier",
+          "resource": "cha",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "gillman.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "aboleth",
+          "type": "languageGrant",
+          "languageId": "aboleth"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aklo",
+            "aquan",
+            "draconic",
+            "elven"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gillman.swimSpeed",
+      "name": "Velocità di Nuotare",
+      "description": "Velocità di Nuotare",
+      "effects": [
+        {
+          "id": "swim",
+          "type": "movementGrant",
+          "movementType": "swim",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        },
+        {
+          "id": "skillswim",
+          "type": "modifier",
+          "resource": "skill.swim",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "8"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Nuoto: prendere 10 anche sotto minaccia; movimento ordinario senza prova; corsa solo in linea retta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        },
+        {
+          "id": "skillswimClass",
+          "type": "classSkillGrant",
+          "resource": "skill.swim"
+        }
+      ]
+    },
+    {
+      "id": "gillman.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Benefici riservati alla classe preferita indicata.",
+      "effects": [
+        {
+          "id": "fighterDefense",
+          "type": "favoredClassBonus",
+          "classes": [
+            "fighter"
+          ],
+          "name": "Guerriero — Difesa",
+          "description": "Guerriero — Difesa — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "+1 DMC contro due manovre a scelta; scelta e applicazione manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rogueTalent",
+          "type": "favoredClassBonus",
+          "classes": [
+            "rogue"
+          ],
+          "name": "Ladro — Dote",
+          "description": "Ladro — Dote — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 6,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Una nuova Dote da Ladro. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "wizardSpell",
+          "type": "favoredClassBonus",
+          "classes": [
+            "wizard"
+          ],
+          "name": "Mago — Incantesimo",
+          "description": "Mago — Incantesimo — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un incantesimo da mago al libro, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererSpell",
+          "type": "favoredClassBonus",
+          "classes": [
+            "sorcerer"
+          ],
+          "name": "Stregone — Incantesimo",
+          "description": "Stregone — Incantesimo — gestione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "selectionsPerBenefit": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Un incantesimo conosciuto da stregone, almeno un livello sotto il massimo lanciabile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "gillman.amphibious",
+      "name": "Anfibio",
+      "description": "Respira sia nell'acqua sia nell'aria.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Respira sia nell'acqua sia nell'aria. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "gillman.waterDependent",
+      "name": "Dipendenza dall'Acqua",
+      "description": "Dopo un giorno senza immersione in acqua dolce o salata, morte entro 4d6 ore. Tempo e conseguenze manuali.",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Dopo un giorno senza immersione in acqua dolce o salata, morte entro 4d6 ore. Tempo e conseguenze manuali. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "gillman.enchantmentResistance",
+      "name": "Resistenza agli Ammaliamenti",
+      "description": "Resistenza agli Ammaliamenti",
+      "effects": [
+        {
+          "id": "savingThrowall",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Ammaliamento non proveniente da aboleth"
+        },
+        {
+          "id": "abolethPenalty",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2",
+          "condition": "Ammaliamento proveniente da aboleth"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "gillman.abolethHunter",
+      "name": "Cacciatore di Aboleth",
+      "description": "Cacciatore di Aboleth",
+      "effects": [
+        {
+          "id": "savingThrowall",
+          "type": "modifier",
+          "resource": "savingThrow.all",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2",
+          "condition": "Incantesimi, capacità magiche o soprannaturali di aboleth"
+        }
+      ],
+      "replaces": [
+        "gillman.enchantmentResistance"
+      ]
+    },
+    {
+      "id": "gillman.riverfolk",
+      "name": "Gente di Fiume",
+      "description": "Gente di Fiume",
+      "effects": [
+        {
+          "id": "fire",
+          "type": "energyVulnerability",
+          "energy": "fire"
+        }
+      ],
+      "replaces": [
+        "gillman.waterDependent"
+      ]
+    },
+    {
+      "id": "gillman.throwback",
+      "name": "Regredito",
+      "description": "Regredito",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Umanoide (umano), non acquatico; non respira in acqua e non ha dipendenza dall'acqua. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "gillman.type",
+        "gillman.swimSpeed",
+        "gillman.amphibious",
+        "gillman.waterDependent"
+      ]
+    }
+  ]
+}

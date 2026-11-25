@@ -1,0 +1,58 @@
+{
+  "id": "magicMouth",
+  "name": "Bocca Magica",
+  "school": "ILLUSION",
+  "descriptors": [],
+  "subschool": "GLAMER",
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "BARD": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "WIZARD": 2,
+    "MEDIUM": 2,
+    "MESMERIST": 1,
+    "OCCULTIST": 2,
+    "PSYCHIC": 2,
+    "SKALD": 1,
+    "SORCERER": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "MAGIC": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo di favo e della polvere di giada del valore di 10 mo",
+  "materialComponentCostInGoldPieces": 10,
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura o 1 oggetto",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Lascia su un oggetto un messaggio parlato, riprodotto quando si verifica la condizione prestabilita. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Bocca_Magica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Bocca Magica: https://golarion.altervista.org/wiki/Incantesimi/Bocca_Magica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

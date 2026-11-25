@@ -1,0 +1,36 @@
+{
+  "id": "run",
+  "name": "Correre",
+  "description": "Aumenta la velocità di corsa e agevola i salti con rincorsa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Correre",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "runMultiplier",
+      "type": "runAdjustment",
+      "adjustment": "increase",
+      "description": "Correre",
+      "expression": "1",
+      "stackingGroup": "runFeat"
+    },
+    {
+      "id": "runningJump",
+      "type": "modifier",
+      "resource": "skill.acrobatics",
+      "description": "Beneficio del talento",
+      "modifierType": "bonus",
+      "bonusType": "generic",
+      "expression": "4",
+      "condition": "Per saltare con rincorsa"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Mantenere il bonus di Destrezza alla CA durante la corsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

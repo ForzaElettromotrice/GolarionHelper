@@ -1,0 +1,39 @@
+{
+  "id": "mountedSkirmisher",
+  "name": "Cavallerizzo da Guerra",
+  "description": "Permette attacchi completi durante determinati spostamenti della cavalcatura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Cavallerizzo_da_Guerra",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Cavalcare 14 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Cavallerizzo",
+      "feat": {
+        "id": "trickRiding"
+      }
+    },
+    {
+      "description": "Combattere in Sella",
+      "feat": {
+        "id": "mountedCombat"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Cavallerizzo da Guerra: https://golarion.altervista.org/wiki/Talenti/Cavallerizzo_da_Guerra. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Cavalcare 14 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

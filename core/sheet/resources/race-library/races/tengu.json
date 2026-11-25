@@ -1,0 +1,660 @@
+{
+  "id": "tengu",
+  "name": "Tengu",
+  "qualities": [
+    {
+      "id": "tengu.type",
+      "name": "Tipo",
+      "description": "Tipo",
+      "effects": [
+        {
+          "id": "body",
+          "type": "carryingBodyType",
+          "bodyType": "biped"
+        },
+        {
+          "id": "type",
+          "type": "reminder",
+          "message": "Umanoide tengu. Applicazione del tipo e dei prerequisiti razziali manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "tengu.size",
+      "name": "Taglia",
+      "description": "Taglia",
+      "effects": [
+        {
+          "id": "size",
+          "type": "sizeBase",
+          "category": "medium"
+        }
+      ]
+    },
+    {
+      "id": "tengu.baseSpeed",
+      "name": "Velocità terrestre",
+      "description": "Velocità terrestre",
+      "effects": [
+        {
+          "id": "land",
+          "type": "movementGrant",
+          "movementType": "land",
+          "baseSpeedExpression": "6",
+          "affectedByArmor": true,
+          "affectedByLoad": true,
+          "supportsRunning": true
+        }
+      ]
+    },
+    {
+      "id": "tengu.abilityScores",
+      "name": "Caratteristiche",
+      "description": "Caratteristiche",
+      "effects": [
+        {
+          "id": "dex",
+          "type": "modifier",
+          "resource": "dex",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "wis",
+          "type": "modifier",
+          "resource": "wis",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "con",
+          "type": "modifier",
+          "resource": "con",
+          "description": "Beneficio razziale",
+          "modifierType": "penalty",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "tengu.languages",
+      "name": "Linguaggi",
+      "description": "Linguaggi",
+      "effects": [
+        {
+          "id": "common",
+          "type": "languageGrant",
+          "languageId": "common"
+        },
+        {
+          "id": "tengu",
+          "type": "languageGrant",
+          "languageId": "tengu"
+        },
+        {
+          "id": "intelligence",
+          "type": "languageOptions",
+          "origin": "intelligence",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        },
+        {
+          "id": "linguistics",
+          "type": "languageOptions",
+          "origin": "linguistics",
+          "languageIds": [
+            "aboleth",
+            "abyssal",
+            "adlet",
+            "aklo",
+            "ancientOsiriani",
+            "aquan",
+            "auran",
+            "azlanti",
+            "boggard",
+            "canto",
+            "catfolk",
+            "celestial",
+            "ceratioidi",
+            "common",
+            "cyclops",
+            "draconic",
+            "dtang",
+            "dwarven",
+            "elven",
+            "erutaki",
+            "flailSnail",
+            "garuda",
+            "giant",
+            "girtablilu",
+            "gnoll",
+            "gnome",
+            "goblin",
+            "grippli",
+            "gug",
+            "halfling",
+            "hallit",
+            "honLa",
+            "hwan",
+            "ignan",
+            "infernal",
+            "iobarian",
+            "jistkan",
+            "kasatha",
+            "kech",
+            "kelish",
+            "kuru",
+            "minatan",
+            "minkaian",
+            "munavri",
+            "nagaji",
+            "necril",
+            "orc",
+            "orvian",
+            "osiriani",
+            "polyglot",
+            "sahuagin",
+            "samsaran",
+            "sasquatch",
+            "senzar",
+            "shadowtongue",
+            "shoanti",
+            "shory",
+            "pathfinderSignLanguage",
+            "varisianSignLanguage",
+            "skald",
+            "sphinx",
+            "strix",
+            "sylvan",
+            "syrinx",
+            "tekritanin",
+            "tengu",
+            "terran",
+            "thassilonian",
+            "thriae",
+            "tien",
+            "treant",
+            "undercommon",
+            "vanaran",
+            "varisian",
+            "varki",
+            "vegepygmy",
+            "vishkanya",
+            "vudrani",
+            "wayang",
+            "reptoid",
+            "rougarou",
+            "yaddithian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tengu.favoredClassOptions",
+      "name": "Opzioni di classe preferita",
+      "description": "Opzioni di classe preferita",
+      "effects": [
+        {
+          "id": "barbarianSuperstition",
+          "type": "favoredClassBonus",
+          "name": "Barbaro — +1 al bonus di Superstizione",
+          "classes": [
+            "barbarian"
+          ],
+          "selectionsPerBenefit": 3,
+          "description": "+1 al bonus di Superstizione. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 al bonus di Superstizione. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "witchSpell",
+          "type": "favoredClassBonus",
+          "name": "Fattucchiere — Un incantesimo da fattucchiere al famiglio, almeno un livello sotto il massimo lanciabile; conservato dal sostituto",
+          "classes": [
+            "witch"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "Un incantesimo da fattucchiere al famiglio, almeno un livello sotto il massimo lanciabile; conservato dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "Un incantesimo da fattucchiere al famiglio, almeno un livello sotto il massimo lanciabile; conservato dal sostituto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "rogueCritical",
+          "type": "favoredClassBonus",
+          "name": "Ladro — +1 conferma critica con arma scelta dall'elenco Spadaccino; massimo+4, non cumulabile con Critico Focalizzato",
+          "classes": [
+            "rogue"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 conferma critica con arma scelta dall'elenco Spadaccino; massimo+4, non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 conferma critica con arma scelta dall'elenco Spadaccino; massimo+4, non cumulabile con Critico Focalizzato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "monkKi",
+          "type": "favoredClassBonus",
+          "name": "Monaco — +1 punto Ki",
+          "classes": [
+            "monk"
+          ],
+          "selectionsPerBenefit": 4,
+          "description": "+1 punto Ki. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 punto Ki. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "oracleCurse",
+          "type": "favoredClassBonus",
+          "name": "Oracolo — +1 livello effettivo per la Maledizione dell'Oracolo",
+          "classes": [
+            "oracle"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 livello effettivo per la Maledizione dell'Oracolo. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 livello effettivo per la Maledizione dell'Oracolo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "sorcererBloodline",
+          "type": "favoredClassBonus",
+          "name": "Stregone — +1 uso/giorno di potere di stirpe del1° livello normalmente usabile3 + Carisma",
+          "classes": [
+            "sorcerer"
+          ],
+          "selectionsPerBenefit": 2,
+          "description": "+1 uso/giorno di potere di stirpe del1° livello normalmente usabile3 + Carisma. Ehi, appena hai tempo vedi di correggermi se necessario!",
+          "effects": [
+            {
+              "id": "benefit",
+              "type": "reminder",
+              "message": "+1 uso/giorno di potere di stirpe del1° livello normalmente usabile3 + Carisma. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ]
+        },
+        {
+          "id": "fighterDefense",
+          "type": "favoredClassBonus",
+          "name": "Guerriero — Difesa",
+          "classes": [
+            "fighter"
+          ],
+          "selectionsPerBenefit": 1,
+          "description": "+1 DMC contro lotta/sbilanciare.",
+          "effects": [
+            {
+              "id": "grapple",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.grapple",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            },
+            {
+              "id": "trip",
+              "type": "modifier",
+              "resource": "combatManeuver.defense.trip",
+              "description": "Beneficio razziale",
+              "modifierType": "bonus",
+              "bonusType": "generic",
+              "expression": "1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "standardFeatures": [
+    {
+      "id": "tengu.lowLightVision",
+      "name": "Visione crepuscolare",
+      "description": "Visione crepuscolare",
+      "effects": [
+        {
+          "id": "vision",
+          "type": "reminder",
+          "message": "Distanza visiva raddoppiata in luce scarsa. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "tengu.naturalWeapon",
+      "name": "Arma Naturale",
+      "description": "Arma Naturale",
+      "effects": [
+        {
+          "id": "bite",
+          "type": "strikeGrant",
+          "name": "Morso",
+          "mode": "melee",
+          "tags": [
+            "natural"
+          ],
+          "naturalAttackClassification": "primary",
+          "usageChannels": [
+            "mouth"
+          ],
+          "ability": "str",
+          "damageAbilityRule": "full",
+          "reach": {
+            "maximumUnits": 1
+          },
+          "damageComponents": [
+            {
+              "id": "base",
+              "role": "base",
+              "dice": {
+                "diceCount": 1,
+                "dieSize": 3
+              },
+              "types": [
+                "bludgeoning",
+                "piercing",
+                "slashing"
+              ],
+              "typeMode": "all",
+              "criticalRule": "multiplied"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tengu.swordtrained",
+      "name": "Spadaccino",
+      "description": "Spadaccino",
+      "effects": [
+        {
+          "id": "swords",
+          "type": "reminder",
+          "message": "Competenza nelle lame: falchion, kukri, pugnali, pugnali da mischia, sciabole elfiche, scimitarre, spade a doppia lama, bastarde, corte, lunghe, spadoni e stocchi. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    },
+    {
+      "id": "tengu.sneaky",
+      "name": "Furtivo",
+      "description": "Furtivo",
+      "effects": [
+        {
+          "id": "stealth",
+          "type": "modifier",
+          "resource": "skill.stealth",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        },
+        {
+          "id": "perception",
+          "type": "modifier",
+          "resource": "skill.perception",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "2"
+        }
+      ]
+    },
+    {
+      "id": "tengu.giftedLinguist",
+      "name": "Linguista Dotato",
+      "description": "Linguista Dotato",
+      "effects": [
+        {
+          "id": "linguistics",
+          "type": "modifier",
+          "resource": "skill.linguistics",
+          "description": "Beneficio razziale",
+          "modifierType": "bonus",
+          "bonusType": "racial",
+          "expression": "4"
+        },
+        {
+          "id": "languages",
+          "type": "reminder",
+          "message": "Ogni grado di Linguistica concede due lingue anziché una; gestire manualmente la lingua aggiuntiva. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ]
+    }
+  ],
+  "alternateFeatures": [
+    {
+      "id": "tengu.exoticWeaponTraining",
+      "name": "Addestramento nelle Armi Esotiche",
+      "description": "Scegli3 + bonus di Intelligenza armi orientali e ottienine competenza; selezione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Scegli3 + bonus di Intelligenza armi orientali e ottienine competenza; selezione manuale. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "tengu.swordtrained"
+      ]
+    },
+    {
+      "id": "tengu.clawAttack",
+      "name": "Attacco con gli Artigli",
+      "description": "Attacco con gli Artigli",
+      "effects": [
+        {
+          "id": "leftClaw",
+          "type": "strikeGrant",
+          "name": "Artiglio sinistro",
+          "mode": "melee",
+          "tags": [
+            "natural"
+          ],
+          "naturalAttackClassification": "primary",
+          "usageChannels": [
+            "hand"
+          ],
+          "ability": "str",
+          "damageAbilityRule": "full",
+          "reach": {
+            "maximumUnits": 1
+          },
+          "damageComponents": [
+            {
+              "id": "base",
+              "role": "base",
+              "dice": {
+                "diceCount": 1,
+                "dieSize": 3
+              },
+              "types": [
+                "slashing"
+              ],
+              "typeMode": "all",
+              "criticalRule": "multiplied"
+            }
+          ]
+        },
+        {
+          "id": "rightClaw",
+          "type": "strikeGrant",
+          "name": "Artiglio destro",
+          "mode": "melee",
+          "tags": [
+            "natural"
+          ],
+          "naturalAttackClassification": "primary",
+          "usageChannels": [
+            "hand"
+          ],
+          "ability": "str",
+          "damageAbilityRule": "full",
+          "reach": {
+            "maximumUnits": 1
+          },
+          "damageComponents": [
+            {
+              "id": "base",
+              "role": "base",
+              "dice": {
+                "diceCount": 1,
+                "dieSize": 3
+              },
+              "types": [
+                "slashing"
+              ],
+              "typeMode": "all",
+              "criticalRule": "multiplied"
+            }
+          ]
+        },
+        {
+          "id": "prerequisite",
+          "type": "reminder",
+          "message": "Conta come Colpo Senz'Armi Migliorato per qualificarsi ai talenti; equivalenza da verificare manualmente. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "tengu.swordtrained"
+      ]
+    },
+    {
+      "id": "tengu.carrionSense",
+      "name": "Percepire Carcasse",
+      "description": "Fiuto limitato a cadaveri e creature con metà PF o meno. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Fiuto limitato a cadaveri e creature con metà PF o meno. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "tengu.giftedLinguist"
+      ]
+    },
+    {
+      "id": "tengu.glide",
+      "name": "Planare",
+      "description": "Volare CD15 per evitare danni da caduta; seconda prova CD15 consente1,5 m orizzontali per6 m di discesa. Non concede volo. Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "effects": [
+        {
+          "id": "manual",
+          "type": "reminder",
+          "message": "Volare CD15 per evitare danni da caduta; seconda prova CD15 consente1,5 m orizzontali per6 m di discesa. Non concede volo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+        }
+      ],
+      "replaces": [
+        "tengu.giftedLinguist"
+      ]
+    }
+  ]
+}

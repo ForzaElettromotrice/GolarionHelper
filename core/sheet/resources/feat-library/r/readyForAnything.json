@@ -1,0 +1,27 @@
+{
+  "id": "readyForAnything",
+  "name": "Pronto a Tutto",
+  "description": "Mantiene la prontezza anche quando il pericolo coglie di sorpresa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Pronto_a_Tutto",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Allerta, Estrazione Rapida, Iniziativa Migliorata, Riflessi Fulminei, bonus di attacco base +6 o capacità di classe Schivare Prodigioso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Pronto a Tutto: https://golarion.altervista.org/wiki/Talenti/Pronto_a_Tutto. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Allerta, Estrazione Rapida, Iniziativa Migliorata, Riflessi Fulminei, bonus di attacco base +6 o capacità di classe Schivare Prodigioso. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

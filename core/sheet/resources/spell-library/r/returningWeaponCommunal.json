@@ -1,0 +1,59 @@
+{
+  "id": "returningWeaponCommunal",
+  "name": "Arma Ritornante Collettivo",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "TELEPORTATION",
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "BARD": 3,
+    "HUNTER": 2,
+    "CLERIC": 3,
+    "WITCH": 3,
+    "INQUISITOR": 2,
+    "WIZARD": 3,
+    "MAGUS": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 3,
+    "PSYCHIC": 3,
+    "RANGER": 2,
+    "WARPRIEST": 3,
+    "SKALD": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "armi toccate",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (innocuo, oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo, oggetto)",
+  "description": "Condivide tra più armi la capacità di tornare dopo essere state lanciate. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Arma_Ritornante_Collettivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Arma Ritornante Collettivo: https://golarion.altervista.org/wiki/Incantesimi/Arma_Ritornante_Collettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: armi toccate. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

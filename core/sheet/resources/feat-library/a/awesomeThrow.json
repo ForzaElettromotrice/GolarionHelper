@@ -1,0 +1,27 @@
+{
+  "id": "awesomeThrow",
+  "name": "Lancio Terrificante",
+  "description": "Scaglia lontano e abbatte un avversario più piccolo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Lancio_Terrificante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Forza 25, Lanciare Oggetti o Scagliare Rocce, Spingere Migliorato, taglia Grande o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Lancio Terrificante: https://golarion.altervista.org/wiki/Talenti/Lancio_Terrificante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Forza 25, Lanciare Oggetti o Scagliare Rocce, Spingere Migliorato, taglia Grande o superiore. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

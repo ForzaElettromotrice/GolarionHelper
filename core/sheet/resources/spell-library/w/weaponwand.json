@@ -1,0 +1,47 @@
+{
+  "id": "weaponwand",
+  "name": "Armabacchetta",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 1,
+    "SKALD": 1,
+    "CLERIC": 1,
+    "ORACLE": 1,
+    "WARPRIEST": 1,
+    "INQUISITOR": 1,
+    "MAGUS": 1
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "focusComponentDescription": "una bacchetta magica",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 arma",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si (innocuo, oggetto)",
+  "description": "Integra una bacchetta in un'arma, consentendo di tenere entrambe con la stessa impugnatura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Armabacchetta",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Armabacchetta: https://golarion.altervista.org/wiki/Incantesimi/Armabacchetta Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

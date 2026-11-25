@@ -1,0 +1,46 @@
+{
+  "id": "putrefyFoodAndDrink",
+  "name": "Putrefare Cibo e Bevande",
+  "school": "NECROMANCY",
+  "descriptors": [
+    "POISON"
+  ],
+  "spellLevelByClass": {
+    "WITCH": 0
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "3 m",
+  "target": "27 dm3/livello di cibo e acqua o una pozione; vedi testo",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantaneo",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega (oggetto)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (oggetto)",
+  "description": "Fa deteriorare alimenti e bevande, rendendoli inadatti al consumo. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Putrefare_Cibo_e_Bevande",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Putrefare Cibo e Bevande: https://golarion.altervista.org/wiki/Incantesimi/Putrefare_Cibo_e_Bevande Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: 27 dm3/livello di cibo e acqua o una pozione; vedi testo. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "quiveringPalmVersatility",
+  "name": "Versatilità del Palmo Tremante",
+  "description": "Permette esiti alternativi a quello letale di Palmo Tremante. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Versatilit%C3%A0_del_Palmo_Tremante",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "BAB +13",
+      "expression": "@bab >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Palmo Tremante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Versatilità del Palmo Tremante: https://golarion.altervista.org/wiki/Talenti/Versatilit%C3%A0_del_Palmo_Tremante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: privilegio di classe Palmo Tremante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,19 @@
+{
+  "id": "toughness",
+  "name": "Robustezza",
+  "description": "Aumenta i punti ferita massimi di 3, oppure di un valore pari ai Dadi Vita se maggiore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Robustezza",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [],
+  "effects": [
+    {
+      "id": "hitPoints",
+      "type": "contribution",
+      "resource": "hp.max",
+      "expression": "3 + (@level > 3) * (@level - 3)"
+    }
+  ],
+  "choices": []
+}

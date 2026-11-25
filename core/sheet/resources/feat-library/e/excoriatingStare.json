@@ -1,0 +1,31 @@
+{
+  "id": "excoriatingStare",
+  "name": "Occhiata Scorticante",
+  "description": "Aggiunge nausea all'occhiata offensiva. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Occhiata_Scorticante",
+  "types": [
+    "combat",
+    "stare"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Mesmerista di 11° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Occhiata Dolorosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Occhiata Scorticante: https://golarion.altervista.org/wiki/Talenti/Occhiata_Scorticante. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Mesmerista di 11° livello; Prerequisito da verificare manualmente: privilegio di classe Occhiata Dolorosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

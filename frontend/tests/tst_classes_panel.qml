@@ -15,13 +15,19 @@ TestCase {
     function test_archetypePickerAndRemoval() {
         const snapshot = fixture();
         const original = JSON.stringify(snapshot);
+        const requests = [];
         const panel = createTemporaryObject(component, testCase, {classes: snapshot, width: 800,
-            archetypeCatalog: {6: [{id: "example", name: "Selezionato", description: ""}, {id: "new", name: "Altro <test>", description: "Descrizione"}], 5: [{id: "rogue", name: "Ladro", description: ""}]}});
+            loadArchetypes: type => {
+                requests.push(type);
+                return type === 6 ? [{id: "example", name: "Selezionato"}, {id: "new", name: "Altro <test>"}] : [];
+            }});
         addArchetypeSpy.target = panel; addArchetypeSpy.clear();
         removeArchetypeSpy.target = panel; removeArchetypeSpy.clear();
         waitForRendering(panel);
+        compare(requests.length, 0);
         mouseClick(findChild(panel, "chooseArchetype_6"));
         tryCompare(panel.archetypePopup, "opened", true);
+        compare(requests, [6]);
         waitForRendering(panel.archetypePopup.contentItem);
         compare(panel.archetypeCandidates().map(entry => entry.id), ["new", "example"]);
         verify(!findChild(panel.archetypePopup.contentItem, "archetypeCandidate_example").enabled);

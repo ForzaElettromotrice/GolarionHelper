@@ -1,0 +1,37 @@
+{
+  "id": "dornDergarMaster",
+  "name": "Maestro del Dorn-Dergar",
+  "description": "Permette di maneggiare il dorn-dergar con una sola mano. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Maestro_del_Dorn-Dergar",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Combattere con Due Armi",
+      "feat": {
+        "id": "twoWeaponFighting"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: competenza nell'uso del Dorn-Dergar Nanico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "BAB +4",
+      "expression": "@bab >= 4"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Maestro del Dorn-Dergar: https://golarion.altervista.org/wiki/Talenti/Maestro_del_Dorn-Dergar. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: competenza nell'uso del Dorn-Dergar Nanico Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

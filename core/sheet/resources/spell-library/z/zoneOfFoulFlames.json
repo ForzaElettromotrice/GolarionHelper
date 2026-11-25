@@ -1,0 +1,42 @@
+{
+  "id": "zoneOfFoulFlames",
+  "name": "Zona delle Fiamme Scellerate",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "HUNTER": 4,
+    "DRUID": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una scheggia di corteccia d'albero bruciato del Bosco di Usk",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "area": "propagazione del raggio di 6 metri",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Un'area di fiamme ostacola la magia di fuoco e ne ritorce l'energia contro chi la usa. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Zona_delle_Fiamme_Scellerate",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Zona delle Fiamme Scellerate: https://golarion.altervista.org/wiki/Incantesimi/Zona_delle_Fiamme_Scellerate Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

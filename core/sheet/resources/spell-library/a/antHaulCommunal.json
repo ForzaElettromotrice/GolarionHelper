@@ -1,0 +1,60 @@
+{
+  "id": "antHaulCommunal",
+  "name": "Carico della Formica Collettivo",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "ARCANIST": 2,
+    "HUNTER": 2,
+    "CLERIC": 2,
+    "SUMMONER": 2,
+    "UNCHAINED_SUMMONER": 2,
+    "DRUID": 2,
+    "INVESTIGATOR": 2,
+    "WIZARD": 2,
+    "OCCULTIST": 2,
+    "ORACLE": 2,
+    "PSYCHIC": 2,
+    "RANGER": 2,
+    "WARPRIEST": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "una piccola carrucola",
+  "rangeType": "TOUCH",
+  "rangeDescription": "Contatto",
+  "target": "creature toccate",
+  "durationType": "HOUR",
+  "durationDescription": "2 ore/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega (innocuo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Ripartisce fra più creature la durata del potenziamento della capacità di trasporto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Carico_della_Formica_Collettivo",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Carico della Formica Collettivo: https://golarion.altervista.org/wiki/Incantesimi/Carico_della_Formica_Collettivo Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "targetLimitReview",
+      "type": "reminder",
+      "message": "Il numero e l'idoneità dei bersagli vanno verificati manualmente: creature toccate. Il limite -1 non elimina i vincoli della fonte. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

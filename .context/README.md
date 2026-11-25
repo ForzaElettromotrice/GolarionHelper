@@ -6,7 +6,8 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 
 ## Current State
 
-- Official sheet catalogs are shipped as runtime JSON files. Desktop tabs retain their panels after first visit, Home loads Abilità asynchronously, and the controller publishes changes per section. See [frontend](frontend.md#desktop-application) and [development](development.md#dependencies-and-local-tools).
+- Official sheet catalogs are shipped as runtime JSON files. Desktop tabs retain their panels after first visit, Home loads Abilità asynchronously, and the controller compares native View inputs before updating individual panels. See [frontend](frontend.md#desktop-application) and [development](development.md#dependencies-and-local-tools).
+- Classes, archetypes, shared option sets, races, spells, feats and items are authored directly as individual JSON files. The build generates only indexes; shared managers load and cache requested definitions. See [development](development.md#dependencies-and-local-tools).
 
 - Configure only from the repository root. The default target is the desktop application; sheet, play (including sheet), and UI-only builds are selectable with `GOLARION_TARGET`. Tests are opt-in. See [development](development.md) for the Windows/Arch installer target, build-local dependencies and offline builds.
 
@@ -15,7 +16,7 @@ Build a local-first native desktop tabletop role-playing application in C++, exp
 - The desktop sheet Home tab shows live abilities, armor class, HP and defenses, initiative, saves, movement, active conditions and skills in a responsive layout. The local controller supports HP, ability and skill editing. See [frontend](frontend.md).
 - The desktop sheet Combattimento tab shows live routines, combat maneuvers, and actions, including situational bonuses. The local controller supports routine configuration and strike assignment. See [frontend](frontend.md).
 
-- Schede creates and imports files into the app-local sheet library, autosaves there and exports independent JSON copies for sharing. See [frontend](frontend.md).
+- Schede creates and imports files into the app-local sheet library, autosaves edits in the background and exports independent JSON copies for sharing. See [frontend](frontend.md).
 
 - Azioni displays actions outside attack routines, their effective costs and any inhibition reasons in the desktop sheet. See [frontend](frontend.md).
 

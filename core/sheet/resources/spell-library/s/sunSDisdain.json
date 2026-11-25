@@ -1,0 +1,53 @@
+{
+  "id": "sunSDisdain",
+  "name": "Disprezzo del Sole",
+  "school": "TRANSMUTATION",
+  "descriptors": [
+    "CURSE"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 2,
+    "CLERIC": 2,
+    "WITCH": 2,
+    "INQUISITOR": 2,
+    "BLOODRAGER": 2,
+    "WIZARD": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "SHAMAN": 2,
+    "SORCERER": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 Azione Standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL",
+    "DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un pezzo di vetro",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "PERMANENT",
+  "durationDescription": "permanente",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Maledice il soggetto rendendolo vulnerabile alla luce e ai poteri luminosi previsti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Disprezzo_del_Sole",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Disprezzo del Sole: https://golarion.altervista.org/wiki/Incantesimi/Disprezzo_del_Sole Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

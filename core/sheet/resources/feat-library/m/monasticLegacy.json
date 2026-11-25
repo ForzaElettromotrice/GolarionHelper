@@ -1,0 +1,30 @@
+{
+  "id": "monasticLegacy",
+  "name": "Eredità Monastica",
+  "description": "Valorizza parte dei livelli non monastici per il danno senz'armi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Eredit%C3%A0_Monastica",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: privilegio di classe Mente Lucida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Eredità Monastica: https://golarion.altervista.org/wiki/Talenti/Eredit%C3%A0_Monastica. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Colpo Senz'Armi Migliorato; Prerequisito da verificare manualmente: privilegio di classe Mente Lucida Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

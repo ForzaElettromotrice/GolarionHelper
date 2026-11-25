@@ -1,0 +1,39 @@
+{
+  "id": "focusedScrutiny",
+  "name": "Scrutinio Focalizzato",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 2,
+    "BARD": 2,
+    "INQUISITOR": 2,
+    "INVESTIGATOR": 2,
+    "PSYCHIC": 2,
+    "SKALD": 2,
+    "SHAMAN": 2
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Migliora l'osservazione e l'influenza verso un individuo specifico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Scrutinio_Focalizzato",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Gestire manualmente i bonus concessi: spettano all’incantatore contro la creatura osservata, non al bersaglio dell’incantesimo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

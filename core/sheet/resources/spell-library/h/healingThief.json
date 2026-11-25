@@ -1,0 +1,41 @@
+{
+  "id": "healingThief",
+  "name": "Ruba Guarigione",
+  "school": "NECROMANCY",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 3,
+    "WITCH": 3,
+    "WIZARD": 3,
+    "MESMERIST": 1,
+    "OCCULTIST": 3,
+    "PSYCHIC": 3,
+    "SORCERER": 3
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo di spugna imbevuta di lacrime",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "una creatura toccata",
+  "durationType": "ROUND",
+  "durationDescription": "1 round/livello o finché non viene scaricato",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Devia verso l'incantatore una parte delle guarigioni magiche ricevute dalla vittima. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ruba_Guarigione",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ruba Guarigione: https://golarion.altervista.org/wiki/Incantesimi/Ruba_Guarigione Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

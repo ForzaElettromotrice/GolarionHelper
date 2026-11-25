@@ -1,0 +1,42 @@
+{
+  "id": "improvedForcefulCharge",
+  "name": "Carica Potente Migliorata",
+  "description": "Potenzia la risposta a una carica permettendo ulteriori manovre contro avversari più grandi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Carica_Potente_Migliorata",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Attacco Poderoso Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Carica Potente",
+      "feat": {
+        "id": "forcefulCharge"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Compagno Animale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Spingere Migliorato",
+      "feat": {
+        "id": "improvedBullRush"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Carica Potente Migliorata: https://golarion.altervista.org/wiki/Talenti/Carica_Potente_Migliorata. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Attacco Poderoso; Prerequisito da verificare manualmente: Compagno Animale Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

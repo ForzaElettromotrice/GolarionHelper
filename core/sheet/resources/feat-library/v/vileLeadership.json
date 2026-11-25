@@ -1,0 +1,30 @@
+{
+  "id": "vileLeadership",
+  "name": "Autorità Vile",
+  "description": "Adatta il sistema di gregari e seguaci ai personaggi malvagi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Autorit%C3%A0_Vile",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Qualsiasi Allineamento malvagio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: personaggio di 7° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Autorità Vile: https://golarion.altervista.org/wiki/Talenti/Autorit%C3%A0_Vile. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Qualsiasi Allineamento malvagio; Prerequisito da verificare manualmente: personaggio di 7° livello Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

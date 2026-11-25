@@ -1,0 +1,38 @@
+{
+  "id": "questingStone",
+  "name": "Pietra Rintracciante",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "WIZARD": 4,
+    "SORCERER": 4,
+    "BARD": 4,
+    "SKALD": 4
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto e illimitato",
+  "target": "una Pietra Magica toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Usa una pietra magica come sensore mobile per esplorare a distanza. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Pietra_Rintracciante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Pietra Rintracciante: https://golarion.altervista.org/wiki/Incantesimi/Pietra_Rintracciante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

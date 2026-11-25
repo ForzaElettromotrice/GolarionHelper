@@ -1,0 +1,23 @@
+{
+  "id": "twoHandedThrower",
+  "name": "Lanciare a Due Mani",
+  "description": "Valorizza la forza quando si lancia un'arma usando entrambe le mani. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Lanciare_a_Due_Mani",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 15",
+      "expression": "@str >= 15"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Lanciare a Due Mani: https://golarion.altervista.org/wiki/Talenti/Lanciare_a_Due_Mani. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

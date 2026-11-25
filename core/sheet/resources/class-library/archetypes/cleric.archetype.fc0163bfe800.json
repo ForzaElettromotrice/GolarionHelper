@@ -1,0 +1,78 @@
+{
+  "id": "cleric.archetype.fc0163bfe800",
+  "classType": "cleric",
+  "name": "Teologo",
+  "description": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico/Archetipi#Teologo Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "cleric.feature.836718c23446",
+      "type": "replace"
+    }
+  ],
+  "removedFeatureIds": [
+    "cleric.feature.836718c23446"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "cleric.archetype.fc0163bfe800.instructions",
+      "name": "Teologo",
+      "description": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico/Archetipi#Teologo Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "cleric.archetype.fc0163bfe800.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Chierico. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Chierico/Archetipi#Teologo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.fc0163bfe800.feature.1",
+      "name": "Dominio Focalizzato",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico/Archetipi#Teologo",
+      "progression": [
+        {
+          "id": "cleric.archetype.fc0163bfe800.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Teologo — Dominio Focalizzato: applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico/Archetipi#Teologo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "cleric.archetype.fc0163bfe800.feature.2",
+      "name": "Segreto del Dominio (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Chierico/Archetipi#Teologo",
+      "progression": [
+        {
+          "id": "cleric.archetype.fc0163bfe800.feature.2.initial",
+          "level": 5,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Teologo — Segreto del Dominio (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Chierico/Archetipi#Teologo Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    }
+  ]
+}

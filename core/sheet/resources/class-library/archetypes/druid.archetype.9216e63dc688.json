@@ -1,0 +1,107 @@
+{
+  "id": "druid.archetype.9216e63dc688",
+  "classType": "druid",
+  "name": "Urushiol",
+  "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Urushiol Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Immunità ai Veleni. Ehi, appena hai tempo vedi di correggermi se necessario!",
+  "affectedFeatures": [
+    {
+      "featureId": "druid.feature.40f9a719229c",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.5cb4f58f9490",
+      "type": "replace"
+    },
+    {
+      "featureId": "druid.feature.eb66996dc90e",
+      "type": "alter"
+    }
+  ],
+  "removedFeatureIds": [
+    "druid.feature.40f9a719229c",
+    "druid.feature.5cb4f58f9490",
+    "druid.feature.eb66996dc90e"
+  ],
+  "removedAcquisitionIds": [],
+  "addedFeatures": [
+    {
+      "id": "druid.archetype.9216e63dc688.instructions",
+      "name": "Urushiol",
+      "description": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Urushiol Ehi, appena hai tempo vedi di correggermi se necessario!",
+      "progression": [
+        {
+          "id": "druid.archetype.9216e63dc688.instructions.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Archetipo di Druido. Regole, requisiti e restrizioni: https://golarion.altervista.org/wiki/Druido/Archetipi#Urushiol Ehi, appena hai tempo vedi di correggermi se necessario! Gestione manuale integrale dei privilegi modificati, comprese le parti originali mantenute: Immunità ai Veleni. Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.9216e63dc688.feature.1",
+      "name": "Secrezioni Tossiche (Sop)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Urushiol",
+      "progression": [
+        {
+          "id": "druid.archetype.9216e63dc688.feature.1.initial",
+          "level": 1,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Urushiol — Secrezioni Tossiche (Sop): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Urushiol Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.9216e63dc688.feature.2",
+      "name": "Immunità ai Veleni (Str)",
+      "description": "Regole e progressione: https://golarion.altervista.org/wiki/Druido/Archetipi#Urushiol",
+      "progression": [
+        {
+          "id": "druid.archetype.9216e63dc688.feature.2.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "manual",
+              "type": "reminder",
+              "message": "Urushiol — Immunità ai Veleni (Str): applica manualmente benefici, scelte e progressione indicati nella fonte. https://golarion.altervista.org/wiki/Druido/Archetipi#Urushiol Ehi, appena hai tempo vedi di correggermi se necessario!"
+            }
+          ],
+          "choices": [],
+          "replaces": []
+        }
+      ]
+    },
+    {
+      "id": "druid.archetype.9216e63dc688.poisonImmunity",
+      "name": "Immunità ai veleni anticipata",
+      "description": "Immunità ai veleni dal livello 4.",
+      "progression": [
+        {
+          "id": "druid.archetype.9216e63dc688.poisonImmunity.initial",
+          "level": 4,
+          "effects": [
+            {
+              "id": "poison",
+              "type": "immunity",
+              "targetId": "poison",
+              "name": "Veleni"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

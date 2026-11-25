@@ -1,0 +1,36 @@
+{
+  "id": "improvedHorseWhisperer",
+  "name": "Sussurratore di Cavalli Migliorato",
+  "description": "Consente di comunicare verbalmente con i cavalli. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Sussurratore_di_Cavalli_Migliorato",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Sussurratore di Cavalli",
+      "feat": {
+        "id": "horseWhisperer"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Addestrare Animali 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Cavalcare 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Sussurratore di Cavalli Migliorato: https://golarion.altervista.org/wiki/Talenti/Sussurratore_di_Cavalli_Migliorato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Addestrare Animali 5 gradi; Prerequisito da verificare manualmente: Cavalcare 5 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,73 @@
+{
+  "id": "aid",
+  "name": "Aiuto",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "ADEPT": 2,
+    "ALCHEMIST": 2,
+    "CLERIC": 2,
+    "INQUISITOR": 2,
+    "INVESTIGATOR": 2,
+    "MEDIUM": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "SHAMAN": 2,
+    "SPIRITUALIST": 2
+  },
+  "spellLevelByDomain": {
+    "domain": {
+      "LUCK": 2
+    },
+    "subdomain": {
+      "TACTICS": 2
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 creatura vivente toccata",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì (innocuo)",
+  "description": "Concede +1 morale agli attacchi e contro paura, oltre a PF temporanei. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Aiuto",
+  "effects": [
+    {
+      "id": "attack",
+      "type": "modifier",
+      "resource": "attack.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "1"
+    },
+    {
+      "id": "fearSaves",
+      "type": "modifier",
+      "resource": "savingThrow.all",
+      "description": "Effetto dell'incantesimo",
+      "modifierType": "bonus",
+      "bonusType": "morale",
+      "expression": "1",
+      "condition": "Contro effetti di paura"
+    },
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Tirare e aggiungere manualmente 1d8+LI PF temporanei, con contributo massimo del LI +10. Gestire manualmente durata, tiri salvezza, RI, limiti dei bersagli e rimozione del gruppo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

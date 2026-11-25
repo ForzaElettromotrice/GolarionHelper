@@ -1,0 +1,43 @@
+{
+  "id": "vermiciousAssumption",
+  "name": "Assunzione Vermiciosa",
+  "school": "CONJURATION",
+  "descriptors": [
+    "CHAOTIC",
+    "EVIL"
+  ],
+  "subschool": "CALLING",
+  "spellLevelByClass": {
+    "CLERIC": 6,
+    "ORACLE": 6,
+    "WARPRIEST": 6,
+    "SUMMONER": 6,
+    "UNCHAINED_SUMMONER": 6
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "10 minuti",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "una manciata di vermi",
+  "rangeType": "TOUCH",
+  "rangeDescription": "contatto",
+  "target": "1 corpo di un Umanoide Medio",
+  "durationType": "INSTANTANEOUS",
+  "durationDescription": "istantanea",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Richiama un demone vermlek perché occupi un cadavere e ne assuma l'aspetto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Assunzione_Vermiciosa",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Assunzione Vermiciosa: https://golarion.altervista.org/wiki/Incantesimi/Assunzione_Vermiciosa Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

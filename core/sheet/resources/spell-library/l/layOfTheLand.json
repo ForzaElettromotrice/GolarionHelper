@@ -1,0 +1,43 @@
+{
+  "id": "layOfTheLand",
+  "name": "Disposizione Geografica",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "BARD": 2,
+    "SKALD": 2,
+    "HUNTER": 2,
+    "CLERIC": 2,
+    "ORACLE": 2,
+    "WARPRIEST": 2,
+    "DRUID": 2,
+    "WITCH": 2,
+    "RANGER": 2
+  },
+  "castingTimeCategory": "MINUTE",
+  "castingTimeDescription": "1 minuto",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un pezzo del suolo della terra da memorizzare",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "sé stessi",
+  "durationType": "DAY",
+  "durationDescription": "1 giorno",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "si",
+  "description": "Favorisce l'orientamento e la conoscenza geografica di una specifica zona circostante. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Disposizione_Geografica",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Disposizione Geografica: https://golarion.altervista.org/wiki/Incantesimi/Disposizione_Geografica Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

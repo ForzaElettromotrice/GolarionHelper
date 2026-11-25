@@ -1,0 +1,35 @@
+{
+  "id": "owlStyle",
+  "name": "Stile del Gufo",
+  "description": "Integra furtività e carica nell'addestramento marziale. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Stile_del_Gufo",
+  "types": [
+    "combat",
+    "style"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Abilità Focalizzata (Furtività) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Furtività 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Stile del Gufo: https://golarion.altervista.org/wiki/Talenti/Stile_del_Gufo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Abilità Focalizzata (Furtività); Prerequisito da verificare manualmente: Furtività 1 grado Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

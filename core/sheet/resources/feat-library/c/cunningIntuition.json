@@ -1,0 +1,27 @@
+{
+  "id": "cunningIntuition",
+  "name": "Intuizione Astuta",
+  "description": "Permette di decidere come reagire quando si verifica la condizione preparata. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Intuizione_Astuta",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Allerta, Estrazione Rapida, Iniziativa Migliorata, Pronto a Tutto, Riflessi Fulminei, BAB +13 o Ladro 13° livello, Intuizione 13 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Intuizione Astuta: https://golarion.altervista.org/wiki/Talenti/Intuizione_Astuta. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Allerta, Estrazione Rapida, Iniziativa Migliorata, Pronto a Tutto, Riflessi Fulminei, BAB +13 o Ladro 13° livello, Intuizione 13 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,39 @@
+{
+  "id": "manyshot",
+  "name": "Tiro Multiplo",
+  "description": "Permette di scoccare due frecce nel primo tiro qualificato. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tiro_Multiplo",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 17",
+      "expression": "@dex >= 17"
+    },
+    {
+      "description": "Tiro Rapido",
+      "feat": {
+        "id": "rapidShot"
+      }
+    },
+    {
+      "description": "Tiro Ravvicinato",
+      "feat": {
+        "id": "pointBlankShot"
+      }
+    },
+    {
+      "description": "Bonus di Attacco Base +6",
+      "expression": "@bab >= 6"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tiro Multiplo: https://golarion.altervista.org/wiki/Talenti/Tiro_Multiplo. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,44 @@
+{
+  "id": "callLightningStorm",
+  "name": "Invocare Tempesta di Fulmini",
+  "school": "EVOCATION",
+  "descriptors": [
+    "ELECTRICITY"
+  ],
+  "spellLevelByClass": {
+    "HUNTER": 5,
+    "DRUID": 5,
+    "OCCULTIST": 5,
+    "SHAMAN": 5
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "OTHER",
+  "rangeDescription": "(120 m + 12 m/livello)",
+  "effect": "una o più linee verticali di fulmini lunghe 9 m",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "HALF",
+      "description": "Riflessi dimezza"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Evoca una serie di fulmini più intensi. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Invocare_Tempesta_di_Fulmini",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Invocare Tempesta di Fulmini: https://golarion.altervista.org/wiki/Incantesimi/Invocare_Tempesta_di_Fulmini Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

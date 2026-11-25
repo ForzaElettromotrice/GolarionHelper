@@ -1,0 +1,58 @@
+{
+  "id": "comprehendLanguages",
+  "name": "Comprensione dei Linguaggi",
+  "school": "DIVINATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ADEPT": 1,
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "BARD": 1,
+    "CLERIC": 1,
+    "WITCH": 1,
+    "INQUISITOR": 1,
+    "INVESTIGATOR": 1,
+    "WIZARD": 1,
+    "MEDIUM": 1,
+    "MESMERIST": 1,
+    "OCCULTIST": 1,
+    "ORACLE": 1,
+    "PSYCHIC": 1,
+    "WARPRIEST": 1,
+    "SKALD": 1,
+    "SHAMAN": 1,
+    "SPIRITUALIST": 1,
+    "SORCERER": 1
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "LANGUAGE": 1
+    }
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL_OR_DIVINE_FOCUS"
+  ],
+  "materialComponentDescription": "un pizzico di fuliggine e sale",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Permette di comprendere parole e scritti sconosciuti, ma non conferisce automaticamente la capacità di parlarli. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Comprensione_dei_Linguaggi",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Comprensione dei Linguaggi: https://golarion.altervista.org/wiki/Incantesimi/Comprensione_dei_Linguaggi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "quickFavor",
+  "name": "Favore Rapido",
+  "description": "Accelera la raccolta o l'impiego delle informazioni attraverso il favore previsto. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Favore_Rapido",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Persuasivo",
+      "feat": {
+        "id": "persuasive"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Favore Rapido: https://golarion.altervista.org/wiki/Talenti/Favore_Rapido. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

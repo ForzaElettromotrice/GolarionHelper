@@ -1,0 +1,38 @@
+{
+  "id": "woodenPhalanx",
+  "name": "Falange di Legno",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CREATION",
+  "spellLevelByClass": {
+    "ARCANIST": 9,
+    "WIZARD": 9,
+    "SORCERER": 9,
+    "CLERIC": 9,
+    "ORACLE": 9
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "Medio (30m + 3m/livello)",
+  "effect": "tre o più Golem di Legno, due dei quali non possono trovarsi a più di 9 m l'uno dall'altro (vedi testo)",
+  "durationType": "HOUR",
+  "durationDescription": "1 ora/livello (I)",
+  "dismissible": true,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "no",
+  "description": "Produce una formazione temporanea di golem lignei combattenti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Falange_di_Legno",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Falange di Legno: https://golarion.altervista.org/wiki/Incantesimi/Falange_di_Legno Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

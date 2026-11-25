@@ -1,0 +1,40 @@
+{
+  "id": "dervishDance",
+  "name": "Danza del Derviscio",
+  "description": "La destrezza sostituisce la forza nell'uso della scimitarra. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Danza_del_Derviscio",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Destrezza 13",
+      "expression": "@dex >= 13"
+    },
+    {
+      "description": "Arma Accurata",
+      "feat": {
+        "id": "weaponFinesse"
+      }
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Intrattenere (Danza) 2 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: competenza nelle Scimitarre Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Danza del Derviscio: https://golarion.altervista.org/wiki/Talenti/Danza_del_Derviscio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Intrattenere (Danza) 2 gradi; Prerequisito da verificare manualmente: competenza nelle Scimitarre Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

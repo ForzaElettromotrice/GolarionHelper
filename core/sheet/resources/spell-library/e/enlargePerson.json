@@ -1,0 +1,64 @@
+{
+  "id": "enlargePerson",
+  "name": "Ingrandire Persone",
+  "school": "TRANSMUTATION",
+  "descriptors": [],
+  "spellLevelByClass": {
+    "ALCHEMIST": 1,
+    "ARCANIST": 1,
+    "SUMMONER": 1,
+    "UNCHAINED_SUMMONER": 1,
+    "WITCH": 1,
+    "INVESTIGATOR": 1,
+    "BLOODRAGER": 1,
+    "WIZARD": 1,
+    "MAGUS": 1,
+    "MEDIUM": 1,
+    "OCCULTIST": 1,
+    "PSYCHIC": 1,
+    "SORCERER": 1
+  },
+  "spellLevelByDomain": {
+    "subdomain": {
+      "GROWTH": 1
+    },
+    "domain": {
+      "STRENGTH": 1
+    }
+  },
+  "spellLevelByBloodline": {
+    "ABERRANT": 1
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "polvere di ferro",
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura Umanoide",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello (I)",
+  "dismissible": true,
+  "savingThrows": [
+    {
+      "savingThrowType": "FORTITUDE",
+      "effect": "NEGATES",
+      "description": "Tempra nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Accresce le dimensioni di un umanoide, modificandone capacità fisiche ed equipaggiamento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ingrandire_Persone",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ingrandire Persone: https://golarion.altervista.org/wiki/Incantesimi/Ingrandire_Persone Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

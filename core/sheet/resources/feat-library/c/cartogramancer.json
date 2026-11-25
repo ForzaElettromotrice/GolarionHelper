@@ -1,0 +1,30 @@
+{
+  "id": "cartogramancer",
+  "name": "Cartografo Arcano",
+  "description": "Sfrutta la conoscenza geografica per trovare destinazioni adatte al teletrasporto superiore. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Cartografo_Arcano",
+  "types": [
+    "general"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Prerequisito da verificare manualmente: Conoscenze (geografia) 10 gradi Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: capacità di lanciare Teletrasporto Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Cartografo Arcano: https://golarion.altervista.org/wiki/Talenti/Cartografo_Arcano. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Conoscenze (geografia) 10 gradi; Prerequisito da verificare manualmente: capacità di lanciare Teletrasporto Superiore Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

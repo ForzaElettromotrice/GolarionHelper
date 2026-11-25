@@ -1,0 +1,48 @@
+{
+  "id": "litanyOfEntanglement",
+  "name": "Litania di Intralcio",
+  "school": "CONJURATION",
+  "descriptors": [],
+  "subschool": "CALLING",
+  "spellLevelByClass": {
+    "ANTIPALADIN": 2,
+    "INQUISITOR": 3,
+    "PALADIN": 2
+  },
+  "castingTimeCategory": "SWIFT_ACTION",
+  "castingTimeDescription": "1 azione veloce",
+  "components": [
+    "VERBAL",
+    "SOMATIC",
+    "DIVINE_FOCUS"
+  ],
+  "rangeType": "CLOSE",
+  "rangeDescription": "vicino (7,5 m + 1,5 m ogni 2 livelli)",
+  "target": "1 creatura",
+  "durationType": "ROUND",
+  "durationDescription": "1 round",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "WILL",
+      "effect": "NEGATES",
+      "description": "Volontà nega"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Avviluppa brevemente una creatura. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Litania_di_Intralcio",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Litania di Intralcio: https://golarion.altervista.org/wiki/Incantesimi/Litania_di_Intralcio Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "metadataHighReview1",
+      "type": "reminder",
+      "message": "Descrittori variabili da determinare al lancio: dipendente dal linguaggio. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

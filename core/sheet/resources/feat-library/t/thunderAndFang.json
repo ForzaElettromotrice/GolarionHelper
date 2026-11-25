@@ -1,0 +1,37 @@
+{
+  "id": "thunderAndFang",
+  "name": "Tuono e Zanna",
+  "description": "Combina efficacemente spaccaterra e klar. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Tuono_e_Zanna",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Forza 15",
+      "expression": "@str >= 15"
+    },
+    {
+      "description": "Prerequisito da verificare manualmente: Arma Focalizzata (Klar, Spaccaterra) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "description": "Combattere con Due Armi",
+      "feat": {
+        "id": "twoWeaponFighting"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Tuono e Zanna: https://golarion.altervista.org/wiki/Talenti/Tuono_e_Zanna. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    },
+    {
+      "id": "manualPrerequisites",
+      "type": "reminder",
+      "message": "Prerequisiti non verificati automaticamente: Prerequisito da verificare manualmente: Arma Focalizzata (Klar, Spaccaterra) Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

@@ -1,0 +1,23 @@
+{
+  "id": "twinnedFeint",
+  "name": "Finta Gemella",
+  "description": "Una finta riuscita può essere seguita da un inganno contro un altro nemico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Finta_Gemella",
+  "types": [
+    "combat"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Carisma 13",
+      "expression": "@cha >= 13"
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Finta Gemella: https://golarion.altervista.org/wiki/Talenti/Finta_Gemella. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

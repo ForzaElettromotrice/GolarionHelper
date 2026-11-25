@@ -1,0 +1,26 @@
+{
+  "id": "improvedSwapPlaces",
+  "name": "Scambiare Posto Migliorato",
+  "description": "Amplia lo scambio di posizione e ne protegge il movimento. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Talenti/Scambiare_Posto_Migliorato",
+  "types": [
+    "combat",
+    "teamwork"
+  ],
+  "repeatability": "once",
+  "requirements": [
+    {
+      "description": "Scambiare Posto",
+      "feat": {
+        "id": "swapPlaces"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Applicare manualmente le regole di Scambiare Posto Migliorato: https://golarion.altervista.org/wiki/Talenti/Scambiare_Posto_Migliorato. Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "choices": []
+}

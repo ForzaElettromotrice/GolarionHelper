@@ -1,0 +1,39 @@
+{
+  "id": "repressMemory",
+  "name": "Reprimere Memoria",
+  "school": "ENCHANTMENT",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "subschool": "COMPULSION",
+  "spellLevelByClass": {
+    "BARD": 5,
+    "MESMERIST": 5,
+    "PSYCHIC": 6,
+    "SKALD": 5
+  },
+  "castingTimeCategory": "ROUND",
+  "castingTimeDescription": "1 round",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "Se stessi",
+  "durationType": "OTHER",
+  "durationDescription": "istantaeo",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Sottrae alla memoria del bersaglio una conoscenza o un ricordo specifico. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Reprimere_Memoria",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Reprimere Memoria: https://golarion.altervista.org/wiki/Incantesimi/Reprimere_Memoria Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}

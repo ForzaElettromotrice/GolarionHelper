@@ -1,0 +1,47 @@
+{
+  "id": "creepingIce",
+  "name": "Ghiaccio Strisciante",
+  "school": "EVOCATION",
+  "descriptors": [
+    "COLD"
+  ],
+  "spellLevelByClass": {
+    "ARCANIST": 4,
+    "HUNTER": 4,
+    "SUMMONER": 3,
+    "UNCHAINED_SUMMONER": 4,
+    "DRUID": 4,
+    "WIZARD": 4,
+    "SORCERER": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "SOMATIC"
+  ],
+  "rangeType": "MEDIUM",
+  "rangeDescription": "medio (30 m + 3 m/livello)",
+  "effect": "piano di ghiaccio ancorato, fino a un quadrato con lato di 3 m/livello",
+  "durationType": "MINUTE",
+  "durationDescription": "10 minuti/livello",
+  "dismissible": false,
+  "savingThrows": [
+    {
+      "savingThrowType": "REFLEX",
+      "effect": "NEGATES",
+      "description": "Riflessi nega (vedi testo)"
+    }
+  ],
+  "spellResistanceType": "YES",
+  "spellResistanceDescription": "sì",
+  "description": "Propaga lentamente una copertura ghiacciata sul terreno. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Ghiaccio_Strisciante",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Ghiaccio Strisciante: https://golarion.altervista.org/wiki/Incantesimi/Ghiaccio_Strisciante Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "-1"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "thoughtsense",
+  "name": "Percepire Pensieri",
+  "school": "DIVINATION",
+  "descriptors": [
+    "MIND_AFFECTING"
+  ],
+  "spellLevelByClass": {
+    "MEDIUM": 4,
+    "MESMERIST": 4,
+    "PSYCHIC": 4,
+    "SPIRITUALIST": 4
+  },
+  "castingTimeCategory": "STANDARD_ACTION",
+  "castingTimeDescription": "1 azione standard",
+  "components": [
+    "VERBAL",
+    "MATERIAL"
+  ],
+  "materialComponentDescription": "un frammento di tessuto cerebrale disseccato",
+  "rangeType": "PERSONAL",
+  "rangeDescription": "personale",
+  "target": "se stessi",
+  "durationType": "MINUTE",
+  "durationDescription": "1 minuto/livello",
+  "dismissible": false,
+  "savingThrows": [],
+  "spellResistanceType": "NO",
+  "spellResistanceDescription": "Non applicabile: incantesimo personale.",
+  "description": "Avverte la presenza delle menti coscienti. Riepilogo; regole complete: https://golarion.altervista.org/wiki/Incantesimi/Percepire_Pensieri",
+  "effects": [
+    {
+      "id": "manualResolution",
+      "type": "reminder",
+      "message": "Verificare e applicare manualmente le regole di Percepire Pensieri: https://golarion.altervista.org/wiki/Incantesimi/Percepire_Pensieri Ehi, appena hai tempo vedi di correggermi se necessario!"
+    }
+  ],
+  "maxTargetsExpression": "1"
+}
