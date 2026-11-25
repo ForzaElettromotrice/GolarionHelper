@@ -94,11 +94,14 @@ ApplicationWindow {
                     id: displayNameField
                     Layout.preferredWidth: 180
                     visible: !window.inSession
+                    text: "Franco"
                     placeholderText: qsTr("Nome")
                     Accessible.name: qsTr("Nome visualizzato")
+                    onAccepted: focus = false
+                    Keys.onEscapePressed: focus = false
                     horizontalAlignment: TextInput.AlignRight
                     selectByMouse: true
-                    palette.base: "#ffffff"
+                    background: null
                     palette.text: window.palette.windowText
                 }
 
@@ -146,25 +149,18 @@ ApplicationWindow {
         id: navigation
 
         anchors.fill: parent
-        initialItem: ScrollView {
-            id: home
+        initialItem: RowLayout {
+            spacing: 0
+            uniformCellSizes: true
 
-            padding: 20
-            contentWidth: availableWidth
+            HomeTile {
+                text: qsTr("Sessioni")
+                onClicked: navigation.push(sessionsPage, StackView.Immediate)
+            }
 
-            ColumnLayout {
-                width: Math.min(320, home.availableWidth)
-                spacing: 12
-
-                HomeTile {
-                    text: qsTr("Sessioni")
-                    onClicked: navigation.push(sessionsPage, StackView.Immediate)
-                }
-
-                HomeTile {
-                    text: qsTr("Schede")
-                    onClicked: navigation.push(savedSheetsPage, StackView.Immediate)
-                }
+            HomeTile {
+                text: qsTr("Schede")
+                onClicked: navigation.push(savedSheetsPage, StackView.Immediate)
             }
         }
     }
@@ -736,13 +732,12 @@ ApplicationWindow {
         id: tile
 
         Layout.fillWidth: true
-        Layout.preferredHeight: 112
+        Layout.fillHeight: true
         font.pixelSize: 22
         font.weight: Font.DemiBold
         palette.button: "#ffffff"
 
         background: Rectangle {
-            radius: 8
             color: tile.down ? "#e7edf4" : tile.palette.button
             border.color: tile.visualFocus || tile.hovered ? tile.palette.highlight : "#e1e5ea"
             border.width: tile.visualFocus ? 2 : 1
