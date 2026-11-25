@@ -42,6 +42,25 @@ ScrollView {
         onAccepted: page.controller.exportSavedSheet(source, selectedFile)
     }
 
+    Dialog {
+        id: deleteDialog
+        property url source
+        property string sheetName
+        title: qsTr("Elimina scheda")
+        modal: true
+        anchors.centerIn: parent
+        Label {
+            text: qsTr("Eliminare definitivamente la copia locale di «%1»?").arg(deleteDialog.sheetName)
+            textFormat: Text.PlainText
+            wrapMode: Text.Wrap
+        }
+        footer: DialogButtonBox {
+            Button { text: qsTr("Annulla"); DialogButtonBox.buttonRole: DialogButtonBox.RejectRole }
+            Button { text: qsTr("Elimina"); DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole }
+        }
+        onAccepted: page.controller.deleteSavedSheet(source)
+    }
+
     FileDialog {
         id: importDialog
         title: qsTr("Importa scheda")
@@ -131,8 +150,12 @@ ScrollView {
                     }
                 }
                 Button {
-                    text: qsTr("Rimuovi dall’elenco")
-                    onClicked: page.controller.forgetSavedSheet(entry.modelData.url)
+                    text: qsTr("Elimina")
+                    onClicked: {
+                        deleteDialog.source = entry.modelData.url
+                        deleteDialog.sheetName = entry.modelData.name
+                        deleteDialog.open()
+                    }
                 }
             }
         }

@@ -25,7 +25,7 @@ class SheetControllerTest : public QObject
     Q_OBJECT
 
 private Q_SLOTS:
-    void createsReopensAndForgetsSavedSheets()
+    void createsReopensAndDeletesSavedSheets()
     {
         QTemporaryDir directory;
         QVERIFY(directory.isValid());
@@ -95,10 +95,19 @@ private Q_SLOTS:
         reader.importSavedSheet(QUrl::fromLocalFile(invalid.fileName()));
         QVERIFY(!reader.errorMessage().isEmpty());
         QCOMPARE(QDir(library).entryList({"*.json"}, QDir::Files).size(), 2);
-        reader.forgetSavedSheet(url);
-        reader.forgetSavedSheet(imported);
+        reader.deleteSavedSheet(external);
+        QVERIFY(!reader.errorMessage().isEmpty());
+        QCOMPARE(reader.savedSheets().size(), 2);
+        reader.deleteSavedSheet(url);
+        reader.setNotes("Ultimo salvataggio prima di eliminare");
+        reader.deleteSavedSheet(imported);
         QVERIFY(reader.savedSheets().isEmpty());
-        QVERIFY(QFile::exists(imported.toLocalFile()));
+        QVERIFY(!QFile::exists(url.toLocalFile()));
+        QVERIFY(!QFile::exists(imported.toLocalFile()));
+        QVERIFY(QFile::exists(external.toLocalFile()));
+        reader.createSavedSheet("Scheda di prova");
+        QCOMPARE(reader.savedSheets().size(), 1);
+        QCOMPARE(reader.savedSheets().front().toMap().value("url").toUrl(), url);
     }
 
     void opensChoicesForSheetLocalFeat()

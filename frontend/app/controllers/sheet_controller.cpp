@@ -943,11 +943,28 @@ void SheetController::exportSavedSheet(const QUrl &file, const QUrl &destination
     setErrorMessage(tr("Impossibile esportare la scheda. Scegli un file esterno alla raccolta locale."));
 }
 
-void SheetController::forgetSavedSheet(const QUrl &file)
+void SheetController::deleteSavedSheet(const QUrl &file)
 {
+    if (opening_ || !file.isLocalFile()) return;
     QSettings settings;
     auto paths = settings.value(sheetLibraryKey).toStringList();
-    paths.removeAll(file.toLocalFile());
+    const auto path = file.toLocalFile();
+    const QFileInfo target(path);
+    if (sheetDirectory_.isEmpty() || !paths.contains(path) || target.dir() != QDir(sheetDirectory_)
+        || target.isSymLink() || target.suffix().compare("json", Qt::CaseInsensitive) != 0)
+    {
+        setErrorMessage(tr("Puoi eliminare solo una scheda della raccolta locale."));
+        return;
+    }
+    const bool current = path == currentPath_;
+    if (current && !flushSaves()) return;
+    if (QFileInfo::exists(path) && (!target.isFile() || !QFile::remove(path)))
+    {
+        setErrorMessage(tr("Impossibile eliminare il file della scheda."));
+        return;
+    }
+    if (current) currentPath_.clear();
+    paths.removeAll(path);
     settings.setValue(sheetLibraryKey, paths);
     refreshSavedSheets();
 }

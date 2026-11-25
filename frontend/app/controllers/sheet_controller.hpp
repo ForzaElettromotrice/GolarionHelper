@@ -107,7 +107,7 @@ public:
     Q_INVOKABLE void createSavedSheet(const QString &name);
     Q_INVOKABLE void importSavedSheet(const QUrl &file);
     Q_INVOKABLE void exportSavedSheet(const QUrl &file, const QUrl &destination);
-    Q_INVOKABLE void forgetSavedSheet(const QUrl &file);
+    Q_INVOKABLE void deleteSavedSheet(const QUrl &file);
     Q_INVOKABLE void refreshSavedSheets();
     Q_INVOKABLE void setNotes(const QString &notes);
     Q_INVOKABLE void addTemporaryHitPoints(const QString &source, int amount);
