@@ -6,7 +6,7 @@ Status: implemented 2026-11-19. Only currently admitted, connected users are lis
 
 ParticipantInfo in golarion/play/participants.hpp contains UserId, displayName and isHost. Display names come from the host's stored identities and can be shared by several users. UserId still identifies each entry. For legacy identities with no name, the snapshot uses Host or Giocatore. The local host is included directly.
 
-ParticipantsSnapshot contains a uint64 revision and vector<ParticipantInfo>. ProtocolManager::getParticipants derives it from current matching activeConnections_/connections_ bindings and permissions.getHostId, under execution/connection synchronization. The host is first; other users are sorted by UserId. Duplicate host bindings do not add a second host entry.
+ParticipantsSnapshot contains a uint64 revision and vector<ParticipantInfo>. ServerProtocol::getParticipants derives it from current matching activeConnections_/connections_ bindings and permissions.getHostId, under execution/connection synchronization. The host is first; other users are sorted by UserId. Duplicate host bindings do not add a second host entry.
 
 The host derives the participant list from current bindings and stored names. Its runtime revision advances for new bindings, removal of active bindings and effective name changes. Replacing a connection with the same name keeps the current revision. Restoring identities alone restores no presence.
 
@@ -38,7 +38,7 @@ registerClientCommands registers session.participantsChanged with the existing c
 
 The parser requires exactly revision/participants, an integer nonnegative uint64 revision, a nonempty array, exact userId/isHost/displayName entry fields, valid unique IDs, valid names, boolean host flags and exactly one host. Applied snapshots must include the client's admitted UserId. Older revisions are ignored. Conflicting equal revisions or a changed host identity within one connection reject. Invalid notifications close the connection through the existing worker error path.
 
-ClientSnapshot.participants is optional until the first complete event. It is copied out through getClientState and SessionView.client and clears on disconnect. HostSessionView.participants is built directly from the bindings. The [desktop participant panel](frontend.md#desktop-application) consumes both snapshots through Session::toView(). Presence is transient.
+ClientSnapshot.participants is optional until the first complete event. It is copied out through SessionClient::getClientState() and toView() and clears on disconnect. HostSessionView.participants is built directly from the bindings. The [desktop participant panel](frontend.md#desktop-application) consumes both snapshots through each session type’s toView(). Presence is transient.
 
 All snapshot updates retain the existing frame, event-queue and stop constraints documented in session-events.md. Each fresh ClientConnection starts with no cached revision, so a lower revision after host reconstruction is valid. Both binaries must understand the new built-in event; no event subscription or compatibility negotiation is introduced.
 

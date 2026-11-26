@@ -4,9 +4,9 @@ JSON v4 carries display names in admission requests and participant snapshots. T
 
 ## Session Code and Connections
 
-SessionCode has exactly five ASCII A-Z/0-9 symbols and accepts lowercase by normalization. A host ProtocolManager uses the code supplied by Session when available and otherwise generates a code for that object. The desktop app stores a code in each hosted campaign manifest and supplies it on reconstruction. Clients need a reachable IPv4, port and the campaign code. Resume additionally needs the original token. A host-wide uniqueness registry remains deferred.
+SessionCode has exactly five ASCII A-Z/0-9 symbols and accepts lowercase by normalization. A ServerProtocol uses the code supplied by Session when available and otherwise generates a code for that object. The desktop app stores a code in each hosted campaign manifest and supplies it on reconstruction. Clients need a reachable IPv4, port and the campaign code. Resume additionally needs the original token. A host-wide uniqueness registry remains deferred.
 
-ProtocolManager owns logical ConnectionIds, pending records and active UserId bindings. registerConnection allocates nonzero monotonically increasing IDs. bindUser associates an identity verified by its caller and replaces any previous binding. makeContext checks existence/both directions; closed/replaced peers are not anonymous peers. closeConnection removes only the matching active association. getUserId remains ProtocolManager-only; Session delegates the other logical methods. No connection features are published through ResourceManager.
+ServerProtocol owns logical ConnectionIds, pending records and active UserId bindings. registerConnection allocates nonzero monotonically increasing IDs. bindUser associates an identity verified by its caller and replaces any previous binding. makeContext checks existence/both directions; closed/replaced peers are not anonymous peers. closeConnection removes only the matching active association. getUserId remains ServerProtocol-only; Session delegates the other logical methods. No connection features are published through ResourceManager.
 
 Hosting owns sockets, bounded buffers and its worker; ClientConnection owns client transport/state/promises. The shared socket helpers implement RAII and nonblocking platform I/O. Select waits at most 50 ms. Pending peers expire after five seconds; admitted idle peers have no heartbeat deadline. At most 32 host peers are accepted.
 
@@ -22,7 +22,7 @@ The closed envelope fields are version/type/payload and optional requestId at co
 
 ## Permissions and Dispatch
 
-add_command takes CommandRequirements and a JSON callback. Permission::Any = 0 is public command access, reserved for requirements and not assignable to a participant. A PermissionSet{} requirement instead needs a registered authenticated user, with no flags. Other masks require all listed bits. Unknown access enum values or a public requirement with flags reject registration.
+add_command takes CommandRequirements and a JSON callback. Permission::NoAuth is public command access, reserved for requirements and not assignable to a participant. Permission::Any or a PermissionSet{} requirement instead needs a registered authenticated user, with no flags. Other masks require all listed bits. Unknown access enum values or a public requirement with flags reject registration.
 
 All names, including built-in join/resume, follow the same fresh-context lookup/dispatch path. Anonymous live peers execute explicit public commands; identified users are checked via permissions.hasPermissions at execution time. Client-supplied identity/masks do not define the actor. Target restrictions are enforced by the relevant manager. Internal permissions.* features are not automatically network RPCs.
 

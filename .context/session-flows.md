@@ -6,13 +6,13 @@ Aggiornato al 2026-11-18: Session usa PermissionManager, JSON v4 e archivi v2 nu
 
 ```mermaid
 flowchart TB
-    App[Applicazione C++] --> S[Session host]
-    S --> PM[ProtocolManager]
+    App[Applicazione C++] --> S[SessionServer]
+    S --> PM[ServerProtocol]
     S --> RM[ResourceManager]
     S --> P[PermissionManager]
     PM --> H[Hosting e thread TCP]
     PM --> L[LocalCommands e thread locale]
-    CS[Session client] --> CP[ProtocolManager client]
+    CS[Session client] --> CP[ClientProtocol]
     CP --> C[ClientConnection e thread TCP]
     C -->|richieste JSON con requestId| H
     H -->|risposte correlate e notifiche| C
@@ -34,7 +34,7 @@ flowchart TB
     PM --> F[(Archivio identità v2)]
 ```
 
-La Session client possiede ResourceManager/ProtocolManager, senza autorità locale sui permessi. La Session host possiede anche PermissionManager. Ogni ProtocolManager ha il proprio registro: sul server riceve richieste, sul client notifiche. Il registro delle feature RM resta distinto e una feature permissions.* non diventa automaticamente un RPC. CommandContext contiene solo identità e connessione, mai una maschera fidata dal payload. Sul client il mittente è il collegamento all'host ammesso, senza inventare un UserId dell'host. Il codec tratta struttura/framing; il dispatcher verifica la provenienza e, sull'host, i permessi correnti.
+SessionClient possiede ResourceManager/ClientProtocol, senza autorità locale sui permessi. SessionServer possiede anche PermissionManager e SheetManager. ServerProtocol registra richieste; ClientProtocol registra notifiche. Il registro delle feature RM resta distinto e una feature permissions.* non diventa automaticamente un RPC. CommandContext contiene solo identità e connessione, mai una maschera fidata dal payload. Sul client il mittente è il collegamento all'host ammesso, senza inventare un UserId dell'host. Il codec tratta struttura/framing; il dispatcher verifica la provenienza e, sull'host, i permessi correnti.
 
 ## Avvio
 
@@ -42,10 +42,10 @@ La Session client possiede ResourceManager/ProtocolManager, senza autorità loca
 sequenceDiagram
     participant App as Applicazione
     participant S as Session
-    participant PM as ProtocolManager
+    participant PM as ServerProtocol
     participant H as Hosting
-    App->>S: createHost(hostId)
-    Note over S,PM: ResourceManager, ProtocolManager e PermissionManager pronti
+    App->>S: SessionServer(hostId)
+    Note over S,PM: ResourceManager, ServerProtocol e PermissionManager pronti
     App->>S: saveIdentityState oppure loadIdentityState
     S->>PM: prepara archivio v2 e identità
     App->>S: startHosting(IP, porta)
@@ -57,20 +57,20 @@ sequenceDiagram
     end
 ```
 
-L'host esiste prima del listener, ha tutti i sei bit ed è identificato separatamente da hostId. Il codice della sessione nasce nel ProtocolManager e resta stabile durante stop/riavvio di quell'oggetto. La porta zero richiede un'assegnazione al sistema operativo. Non serve polling applicativo.
+L'host esiste prima del listener, ha tutti i sei bit ed è identificato separatamente da hostId. Il codice della sessione nasce nel ServerProtocol e resta stabile durante stop/riavvio di quell'oggetto. La porta zero richiede un'assegnazione al sistema operativo. Non serve polling applicativo.
 
 ## Primo ingresso
 
 ```mermaid
 sequenceDiagram
     participant C as Client
-    participant PM as ProtocolManager
+    participant PM as ServerProtocol
     participant RM as ResourceManager
     participant P as PermissionManager
     participant F as Archivio identità
     C->>PM: session.join tramite TCP e codec
     PM->>PM: makeContext della connessione in attesa
-    PM->>PM: lookup: requisito Permission::Any
+    PM->>PM: lookup: requisito Permission::NoAuth
     Note over PM: Accesso pubblico esplicito, zero bit richiesti
     PM->>PM: callback verifica codice e payload
     PM->>RM: permissions.registerUserWithCommit
@@ -82,14 +82,14 @@ sequenceDiagram
     PM-->>C: request.accepted con userId, permissions=7, token
 ```
 
-Se il salvataggio fallisce, il nuovo utente/token non viene installato e il binding viene annullato. Any non è assegnabile agli utenti. Una maschera richiesta ordinaria vuota ha invece accesso autenticato: non consente a una connessione anonima di eseguire il comando.
+Se il salvataggio fallisce, il nuovo utente/token non viene installato e il binding viene annullato. Né NoAuth né Any sono assegnabili agli utenti. Una maschera richiesta ordinaria vuota ha invece accesso autenticato: non consente a una connessione anonima di eseguire il comando.
 
 ## Comando remoto o locale
 
 ```mermaid
 sequenceDiagram
     participant C as Client o applicazione host
-    participant PM as ProtocolManager
+    participant PM as ServerProtocol
     participant RM as ResourceManager
     participant P as PermissionManager
     participant CB as Callback
@@ -115,11 +115,11 @@ La maschera viene letta per ogni esecuzione; una revoca interessa le richieste s
 ```mermaid
 sequenceDiagram
     participant C as Nuovo client
-    participant PM as ProtocolManager
+    participant PM as ServerProtocol
     participant RM as ResourceManager
     participant Old as Vecchia connessione
     C->>PM: session.resume(codice, token originale)
-    PM->>PM: requisito Any e callback di ammissione
+    PM->>PM: requisito NoAuth e callback di ammissione
     PM->>PM: verifica codice e risolve hash token
     PM->>RM: permissions.getPermissions(userId)
     RM-->>PM: maschera effettiva corrente
@@ -135,7 +135,7 @@ Il vecchio client non può inviare comandi usando il binding sostituito; una sua
 ```mermaid
 sequenceDiagram
     participant App as Applicazione
-    participant PM as ProtocolManager
+    participant PM as ServerProtocol
     participant H as Thread Hosting
     participant Peer as Client
     App->>PM: stopHosting tramite Session
@@ -186,12 +186,12 @@ Host e client usano il protocollo v4. L'archivio v2 resta leggibile e viene aggi
 ```mermaid
 sequenceDiagram
     participant App as Host locale o client delegato
-    participant PM as ProtocolManager
+    participant PM as ServerProtocol
     participant RM as ResourceManager
     participant P as PermissionManager
     participant F as Archivio identità
     participant Target as Client interessato
-    App->>PM: sendCommand permissions.setPermission o applyPreset
+    App->>PM: sendCommand permissions.update o applyPreset
     PM->>RM: verifica ChangePermissions dell'attore corrente
     PM->>RM: callback registrata da PermissionManager
     RM->>PM: identity.updateUserPermissions
@@ -224,10 +224,10 @@ I callback di commit non richiamano i manager. La stessa operazione funziona off
 ```mermaid
 sequenceDiagram
     participant Sub as Sottosistema host
-    participant HP as ProtocolManager host
+    participant HP as ServerProtocol host
     participant H as Thread Hosting
     participant C as Thread ClientConnection
-    participant CP as ProtocolManager client
+    participant CP as ClientProtocol
     participant State as Stato client
     Sub->>HP: sendEvent(userId, nome, payload), anche via RM
     HP->>HP: risolve binding e accoda frame senza requestId
@@ -239,7 +239,7 @@ sequenceDiagram
     alt Risposta con requestId
         C->>C: verifica ID pendente e completa il future
     else Notifica senza requestId
-        C->>CP: dispatch(nome, contesto host corrente, payload)
+        C->>CP: dispatchEvent(nome, contesto host corrente, payload)
         CP->>CP: verifica connessione ammessa e lookup
         CP->>State: callback permissions.changed aggiorna la maschera
         Note over C,CP: risultato JSON ignorato, nessuna risposta
@@ -256,18 +256,18 @@ Risposte e notifiche possono arrivare nello stesso blocco TCP o in frammenti. Gl
 
 | Passaggio | Funzioni principali | Implementazione |
 | --- | --- | --- |
-| Facade applicativa | createHost/createClient, startHosting/stopHosting, joinSession/resumeSession, add_command, sendCommand/sendEvent | core/play/src/session.cpp: solo delega e costruzione dei manager. |
-| Registrazione | PermissionManager::registerCommands, ProtocolManager::registerAdmissionCommands/registerClientCommands, add_command/registerCommand | permission_commands.cpp, admission.cpp, protocol_manager.cpp: callback e requisiti, un registro per istanza. |
-| Avvio server | ProtocolManager::startHosting, Hosting::Impl constructor/run/poll | protocol_manager.cpp, hosting.cpp: listener e thread TCP. |
-| Collegamento client | ProtocolManager::startClient, ClientConnection::start/run/connect/sendRequest/receiveReply | protocol_manager.cpp, client_connection.cpp: connessione, ammissione e future. |
-| Ammissione sull'host | Hosting::acceptConnection/processInput, registerConnection, handleMessage/handleCommand, makeContext/dispatch, admitNewUser/resumeUser, bindUser | hosting.cpp, admission.cpp, protocol_manager.cpp: contesto, codice/token, persistenza e binding. |
-| Richiesta remota | ClientConnection::sendCommand/monitor, Hosting::receive/processInput, ProtocolManager::handleCommand/dispatch | client_connection.cpp, hosting.cpp, admission.cpp: richiesta correlata e verifica corrente dell'attore. |
-| Richiesta locale dell'host | ProtocolManager::sendCommand, LocalCommands::submit/run, dispatch | protocol_manager.cpp, local_commands.cpp: coda separata, esecuzione come hostId senza TCP. |
-| Mutazione persistente | changePermissions, identity.updateUserPermissions, ProtocolManager::updateUserPermissions, setPermissionWithCommit/applyPresetWithCommit, writeIdentityState | permission_commands.cpp, protocol_manager.cpp, permission_manager.cpp, identity_storage.cpp: commit prima dello stato confermato e della notifica. |
+| Facade applicativa | SessionServer/SessionClient, startHosting/stopHosting, joinSession/resumeSession, add_command, sendCommand/sendEvent | core/play/server/src/session_server.cpp e core/play/client/src/session_client.cpp: solo delega e costruzione dei manager. |
+| Registrazione | PermissionManager::registerCommands, ServerProtocol::registerAdmissionCommands, ClientProtocol::registerClientEvents, add_command/on_event | permission_commands.cpp, admission.cpp, server_protocol.cpp: callback e requisiti, un registro per istanza. |
+| Avvio server | ServerProtocol::startHosting, Hosting::Impl constructor/run/poll | server_protocol.cpp, hosting.cpp: listener e thread TCP. |
+| Collegamento client | ClientProtocol::startClient, ClientConnection::start/run/connect/sendRequest/receiveReply | client_protocol.cpp, client_connection.cpp: connessione, ammissione e future. |
+| Ammissione sull'host | Hosting::acceptConnection/processInput, registerConnection, handleMessage/handleCommand, makeContext/dispatch, admitNewUser/resumeUser, bindUser | hosting.cpp, admission.cpp, server_protocol.cpp: contesto, codice/token, persistenza e binding. |
+| Richiesta remota | ClientConnection::sendCommand/monitor, Hosting::receive/processInput, ServerProtocol::handleCommand/dispatch | client_connection.cpp, hosting.cpp, admission.cpp: richiesta correlata e verifica corrente dell'attore. |
+| Richiesta locale dell'host | ServerProtocol::sendCommand, LocalCommands::submit/run, dispatch | server_protocol.cpp, local_commands.cpp: coda separata, esecuzione come hostId senza TCP. |
+| Mutazione persistente | changePermissions, identity.updateUserPermissions, ServerProtocol::updateUserPermissions, updatePermissionsWithCommit/applyPresetWithCommit, writeIdentityState | permission_commands.cpp, server_protocol.cpp, permission_manager.cpp, identity_storage.cpp: commit prima dello stato confermato e della notifica. |
 | Risposta al comando | makeCommandReply/makeRejection, encodeMessage, Hosting::send, ClientConnection::processMessages | admission.cpp, protocol.cpp, hosting.cpp, client_connection.cpp: risultato/errore e completamento del future corretto. |
-| Notifica mirata | ProtocolManager::sendEvent/takeEvent, Hosting::prepareOutput/send, ClientConnection::processMessages, dispatch | protocol_manager.cpp, hosting.cpp, client_connection.cpp: stessa rete, percorso di ricezione distinto dalle risposte. |
-| Aggiornamento permessi client | callback di registerClientCommands, ClientConnection::updatePermissions, getClientState/snapshot | protocol_manager.cpp, client_connection.cpp: maschera dell'utente ammesso sotto mutex. |
-| Arresto e sostituzione | stopHosting, disconnectFromHost, closeConnection/bindUser, Hosting::stop, ClientConnection::stop | protocol_manager.cpp, hosting.cpp, client_connection.cpp: join, pulizia code e invalidazione della generazione precedente. |
+| Notifica mirata | ServerProtocol::sendEvent/takeEvent, Hosting::prepareOutput/send, ClientConnection::processMessages, dispatch | server_protocol.cpp, hosting.cpp, client_connection.cpp: stessa rete, percorso di ricezione distinto dalle risposte. |
+| Aggiornamento permessi client | callback di registerClientEvents, ClientConnection::updatePermissions, getClientState/snapshot | client_protocol.cpp, client_connection.cpp: maschera dell'utente ammesso sotto mutex. |
+| Arresto e sostituzione | stopHosting, disconnectFromHost, closeConnection/bindUser, Hosting::stop, ClientConnection::stop | server_protocol.cpp, hosting.cpp, client_connection.cpp: join, pulizia code e invalidazione della generazione precedente. |
 
 ## Esito della verifica strutturale
 
@@ -280,7 +280,7 @@ Verifica eseguita con diciassette suite CTest, incluse presenza dei connessi, no
 ```mermaid
 sequenceDiagram
     participant C as Nuovo client
-    participant PM as ProtocolManager host
+    participant PM as ServerProtocol host
     participant P as Binding delle connessioni
     participant H as Hosting
     participant Other as Client già ammessi

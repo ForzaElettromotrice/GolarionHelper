@@ -1,21 +1,21 @@
-# ProtocolManager
+# ServerProtocol and ClientProtocol
 
-Status: connected-participant query/events added 2026-11-19 to shared command dispatch and targeted permission events. Session owns PermissionManager only on hosts; JSON v4 and archive v4 use numeric masks. See session-participants.md, session-events.md and session-permission-commands.md.
+ServerProtocol and ClientProtocol are independent implementations, not modes of a common manager. They share wire types, framing and small stateless utilities. Session owns PermissionManager only on hosts; JSON v4 and archive v4 use numeric masks. See session-participants.md, session-events.md and session-permission-commands.md.
 
 ## API and ResourceManager
 
-- Host ProtocolManager registers join/resume with Permission::Any, then publishes protocol.add_command, protocol.sendEvent and internal identity.updateUserPermissions. Host Session asks PermissionManager to register the permission adapters. Client mode registers permissions.changed and publishes protocol.add_command with AddClientCommandSignature (no requirements argument). Each Session owns a separate registry; registry features and network commands remain distinct.
+- ServerProtocol registers join/resume with Permission::NoAuth, then publishes protocol.add_command, protocol.sendEvent and internal identity.updateUserPermissions. Host Session asks PermissionManager to register the permission adapters. ClientProtocol registers permissions.changed and publishes protocol.on_event with OnEventSignature (no requirements argument). Each Session owns a separate registry; registry features and network commands remain distinct.
 - AddCommandSignature is void(std::string_view, CommandRequirements, CommandCallback). add_command validates a unique case-sensitive name with outer ASCII whitespace trimmed, requirements and a nonempty callback. Duplicate built-in names, including padded variants, cannot override admission.
-- CommandRequirements is in golarion/play/command_requirements.hpp. A single Permission or a combined PermissionSet converts to requirements. Permission::Any = 0 explicitly selects Public access with an empty mask. A default requirement or PermissionSet{} selects Authenticated access, also with an empty mask. Public access with nonempty flags and unknown CommandAccess enum values reject at registration.
+- CommandRequirements is in golarion/play/command_requirements.hpp. A single Permission or a combined PermissionSet converts to requirements. Permission::NoAuth explicitly selects Public access with an empty mask. Permission::Any, a default requirement or PermissionSet{} selects Authenticated access, also with an empty mask. Public access with nonempty flags and unknown CommandAccess enum values reject at registration.
 - dispatch(name, context, payload) remains a direct synchronous method, not a registry feature. It requires an object payload and a recognized local identity or live connection. For an identified user it invokes permissions.hasPermissions with the required set, requiring all flags at execution time. Unknown users/provider failures yield CommandFailed; denied flags or anonymous authenticated commands yield Forbidden. A live anonymous peer may execute an explicitly public command without participant permission lookup.
 - Callbacks receive the trusted context and payload and return any JSON result. Their mutable state persists. Nested dispatch/registration remain supported. Target-specific mutations are checked by PermissionManager or the relevant subsystem, including host-only ChangePermissions management and protection of self/host targets.
 
-The client overload add_command(name, callback) shares registerCommand/commands_/dispatch with the host API. Client dispatch validates its admitted connection generation without inventing a participant sender or invoking a local PermissionManager. Results are discarded for notifications. Session delegates both registration overloads and sendEvent. See session-events.md for the mode-specific signatures and routing.
+ClientProtocol::on_event registers void handlers in its own event map; dispatchEvent routes incoming notifications without using server commands. Client dispatch validates its admitted connection generation without inventing a participant sender or invoking a local PermissionManager. Results are discarded for notifications. SessionClient exposes on_event; SessionServer exposes add_command and sendEvent. See session-events.md for the mode-specific signatures and routing.
 
 Host registerParticipantCommands adds session.getParticipants with authenticated zero-bit access and an exact empty payload. Private getParticipants derives a revisioned projection from current bindings plus the local host. publishParticipantsChanged/sendParticipantsSnapshot reuse sendEvent; admitNewUser, bindUser and closeConnection call them after successful state changes and outside connection/identity locks. Client registerClientCommands adds session.participantsChanged, with a strict parser and ClientConnection::updateParticipants. No second participant registry or additional ResourceManager service is introduced; see session-participants.md.
 
 ```cpp
-resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "example.echo", Permission::Permission1 | Permission::Permission3, [](const CommandContext &context, const nlohmann::json &payload)
+resources.invoke<ServerProtocol::AddCommandSignature>("protocol.add_command", "example.echo", Permission::Permission1 | Permission::Permission3, [](const CommandContext &context, const nlohmann::json &payload)
 {
     return nlohmann::json{{"sender", *context.userId}, {"value", payload.at("value")}};
 });
@@ -35,11 +35,11 @@ startHosting, stopHosting, loadIdentityState and client join/resume/disconnect r
 
 ## Ownership and Other Operations
 
-Session is a facade with immutable Host/Client mode. Both own ResourceManager then ProtocolManager; only hosts construct optional PermissionManager and credentials/code. Its destructor calls private ProtocolManager shutdown before PermissionManager destruction. Shutdown joins networking, cancels queued local requests and joins an active local callback. Direct ProtocolManager owners must keep providers alive through shutdown. Fixed registry registration/removal is not concurrent with workers or feature invocation. Managers are noncopyable/nonmovable.
+SessionServer owns a host-mode protocol instance and nonoptional permissions and sheets. ClientProtocol owns its connection, mutex and request counter directly. The server destructor calls private ServerProtocol shutdown before PermissionManager destruction. Shutdown joins networking, cancels queued local requests and joins an active local callback. Direct ServerProtocol owners must keep providers alive through shutdown. Fixed registry registration/removal is not concurrent with workers or feature invocation. Managers are noncopyable/nonmovable.
 
 SessionCode remains five uppercase alphanumeric symbols, with lowercase accepted. It is stable during a live Session's hosting restarts; host-wide uniqueness and code persistence remain deferred. Clients supply the remote code. Wrong-mode methods throw logic_error; noexcept verifySessionCode returns false on clients.
 
-Token issuance, recognition, save/load and archive ownership remain in ProtocolManager. IdentitySaveData now includes hostId and UserPermissionsSaveData plus tokens. Trusted load checks the explicit hostId and immutable host mask before replacing state. No legacy importer exists. See session-tokens.md.
+Token issuance, recognition, save/load and archive ownership remain in ServerProtocol. IdentitySaveData now includes hostId and UserPermissionsSaveData plus tokens. Trusted load checks the explicit hostId and immutable host mask before replacing state. No legacy importer exists. See session-tokens.md.
 
 Hosting, ClientConnection and LocalCommands remain private implementations. Socket/runtime helpers are shared; the JSON codec is unaware of permissions. Standard C++20, nlohmann_json 3.12, and Threads are used, plus ws2_32 and bcrypt on Windows. The module remains independent of sheet/frontend.
 

@@ -4,32 +4,31 @@ Status: transactional RPCs implemented 2026-11-17, targeted live notifications a
 
 ## Registration and API
 
-PermissionManager::registerCommands() in src/permission_commands.cpp registers callbacks through ResourceManager's protocol.add_command. Host Session calls it after constructing its managers, before networking starts. A standalone PermissionManager still works without ProtocolManager until this explicit method is called. Register once during setup; duplicates reject without replacing callbacks. Session remains a facade.
+PermissionManager::registerCommands() in server/src/permission_commands.cpp registers callbacks through ResourceManager's protocol.add_command. Host Session calls it after constructing its managers, before networking starts. A standalone PermissionManager still works without ServerProtocol until this explicit method is called. Register once during setup; duplicates reject without replacing callbacks. Session remains a facade.
 
-Callbacks capture ResourceManager and call typed permission features. Actor identity comes only from CommandContext, verified by dispatch. Payload selects the target and change, never the actor. Providers outlive workers; fixed registration/removal is not concurrent with invocation. Direct ProtocolManager users call registerCommands explicitly if they want these built-ins.
+Callbacks capture ResourceManager and call typed permission features. Actor identity comes only from CommandContext, verified by dispatch. Payload selects the target and change, never the actor. Providers outlive workers; fixed registration/removal is not concurrent with invocation. Direct ServerProtocol users call registerCommands explicitly if they want these built-ins.
 
 | Command | Exact payload | Access |
 | --- | --- | --- |
 | permissions.get | Empty object for self, or only targetUserId | Authenticated zero-mask requirement. Reading another user requires ChangePermissions; self-read works with mask zero. |
-| permissions.setPermission | targetUserId, permission, enabled | ChangePermissions plus PermissionManager target restrictions. |
 | permissions.applyPreset | targetUserId, preset | ChangePermissions plus the same restrictions. |
 | permissions.update | targetUserId, grant, revoke | ChangePermissions plus the same restrictions, including host-only delegation. |
 
 Success returns exactly userId and the effective numeric permissions inside the existing payload.result wrapper. No preset label or credential is returned. Reads query current server state without archive I/O. ClientSnapshot refreshes through the built-in permissions.changed notification handler, independently of the command response.
 
-For setPermission, permission is one assignable bit: 1, 2, 4, 8, 16 or 32. Any/zero, combined/unknown flags, negative/floating/string/boolean values reject. enabled must be a JSON boolean. The target must be a valid, known, case-sensitive UserId. Extra fields including actorId reject. Presets accept only master, player and spectator, converted to PermissionPreset at the input boundary.
+The target must be a valid, known, case-sensitive UserId. Extra fields including actorId reject. Presets accept only master, player and spectator, converted to PermissionPreset at the input boundary.
 
 For update, grant and revoke are disjoint validated masks. Each may be zero. The server applies both masks to the current state under the same lock, persists once and returns the resulting mask. Untouched flags retain their current values even if another actor changed them since the editor opened.
 
 ```cpp
-auto reply = session.sendCommand("permissions.setPermission", {
-    {"targetUserId", targetId}, {"permission", 16}, {"enabled", true}
+auto reply = session.sendCommand("permissions.update", {
+    {"targetUserId", targetId}, {"grant", 16}, {"revoke", 0}
 });
 const auto result = reply.get(); // Player mask 7 becomes 23.
 ```
 
 ```json
-{"version":4,"type":"permissions.setPermission","requestId":"client-4","payload":{"targetUserId":"user-example","permission":16,"enabled":true}}
+{"version":4,"type":"permissions.update","requestId":"client-4","payload":{"targetUserId":"user-example","grant":16,"revoke":0}}
 {"version":4,"type":"request.accepted","requestId":"client-4","payload":{"result":{"userId":"user-example","permissions":23}}}
 ```
 
@@ -39,15 +38,15 @@ Only Host grants/revokes ChangePermissions. Delegates change other non-host user
 
 Mutations require a previously configured saveIdentityState/loadIdentityState archive, also for offline host commands. Without it they fail with COMMAND_FAILED without changing memory. Local and remote callers share the callback/execution path.
 
-ProtocolManager publishes trusted internal identity.updateUserPermissions, defined by private identity_transaction.hpp. It accepts a synchronous UserPermissionsMutation and returns PermissionSet. It acquires execution then identity locks, snapshots Host ID and credentials and supplies one persistence callback. The callback must be used synchronously once, must not escape, and writes the existing version-4 archive without reentering managers or their locks. It is not a network command.
+ServerProtocol publishes trusted internal identity.updateUserPermissions, defined by private identity_transaction.hpp. It accepts a synchronous UserPermissionsMutation and returns PermissionSet. It acquires execution then identity locks, snapshots Host ID and credentials and supplies one persistence callback. The callback must be used synchronously once, must not escape, and writes the existing version-4 archive without reentering managers or their locks. It is not a network command.
 
 PermissionManager's transactional mutation features validate restrictions under its mutex, build a candidate map/sorted snapshot, invoke persistence, then install the candidate with a nonthrowing swap and return its mask. Failed persistence leaves live state unchanged. The existing exclusive temporary file/flush/atomic replacement preserves the old file on storage failure. Lock order is execution, identity, permissions; a permission commit callback must not call saveIdentityState.
 
-Direct setPermission/applyPreset remain trusted in-memory domain operations. The commands use transactional variants and save the full current permission snapshot with existing tokens before success. Tokens are not reissued/rotated. Reads do not save. No-op mutations retain authorization checks and the same commit path. Snapshot restoration/staged commit remain internal trusted APIs.
+Direct updatePermissions/applyPreset remain trusted in-memory domain operations. The commands use transactional variants and save the full current permission snapshot with existing tokens before success. Tokens are not reissued/rotated. Reads do not save. No-op mutations retain authorization checks and the same commit path. Snapshot restoration/staged commit remain internal trusted APIs.
 
 After the transaction returns, changePermissions in the command adapters compares the previous/effective masks and invokes protocol.sendEvent for that target only. No-ops, denied changes and failed writes emit nothing. Delivery cannot roll back an already committed transaction; offline targets obtain current masks on resume. Direct manager setters do not publish events.
 
-ProtocolManager owns the identity and sendEvent features only in Host mode. Constructor collisions roll back successfully owned providers; destruction joins workers before unregistering services. Client mode owns only its callback-only protocol.add_command provider. PermissionManager manages the lifetime of its own features.
+ServerProtocol owns the identity and sendEvent features only in Host mode. Constructor collisions roll back successfully owned providers; destruction joins workers before unregistering services. Client mode owns only its callback-only protocol.add_command provider. PermissionManager manages the lifetime of its own features.
 
 ## Errors and Verification
 

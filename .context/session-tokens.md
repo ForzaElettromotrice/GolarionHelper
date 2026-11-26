@@ -1,6 +1,6 @@
 # Session Tokens and Identity Persistence
 
-ProtocolManager owns the credential registry and archive. Archive v4 stores a display name to each stored identity alongside its permission mask. Session delegates identity operations to ProtocolManager and PermissionManager.
+ServerProtocol owns the credential registry and archive. Archive v4 stores a display name to each stored identity alongside its permission mask. Session delegates identity operations to ServerProtocol and PermissionManager.
 
 ## Credentials and API
 
@@ -10,7 +10,7 @@ UserToken holds eight random bytes, encoded as exactly 16 lowercase hexadecimal 
 | --- | --- |
 | Session::registerUser(UserId) | Delegates to PermissionManager; registers Player flags without ChangePermissions. |
 | issueUserToken(UserId) | Requires a registered user and configured archive; persists the candidate credential before returning its original token. Session delegates. |
-| resolveUserToken(string_view) | ProtocolManager-only lookup returning optional UserId; malformed/unknown credentials return nullopt. |
+| resolveUserToken(string_view) | ServerProtocol-only lookup returning optional UserId; malformed/unknown credentials return nullopt. |
 | saveIdentityState(path) | Saves detached users/permission masks and tokens, configuring this archive for later issuance/admission. Session delegates. |
 | loadIdentityState(path) | Requires hosting stopped and no callback reentry; validates all data before replacing users/tokens and clearing bindings. Session delegates. |
 

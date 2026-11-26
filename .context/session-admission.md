@@ -1,6 +1,6 @@
 # Session Admission
 
-Status: host/client numeric-permission admission integrated 2026-11-17. Session hosts own PermissionManager. ProtocolManager registers session.join and session.resume with add_command and Permission::Any = 0, using the common JSON v4 dispatch path. Any is command-only public access; anonymous participants are not given an assignable permission.
+Status: host/client numeric-permission admission integrated 2026-11-17. Session hosts own PermissionManager. ServerProtocol registers session.join and session.resume with add_command and Permission::NoAuth, using the common JSON v4 dispatch path. NoAuth is command-only public access; anonymous participants are not given an assignable permission.
 
 ## Requests and Results
 
@@ -33,7 +33,7 @@ Join holds execution, identity and connection locks, stages a new token/binding 
 
 Resume resolves the existing token and obtains current permissions. If the supplied name changes, the host saves it before replacing the binding. Failed storage preserves the old name and active connection. A missing or unchanged name requires no write. Name changes publish a new participant revision, including on socket replacement. Hosting closes the replaced socket and ignores late disconnections from that generation. Resume keeps the original token and permissions.
 
-Pending peers have five seconds from acceptance; successful generic Any commands do not admit them or renew this deadline. Admitted idle peers have no heartbeat timeout. Limits remain 32 TCP peers, bounded input/output and nonblocking I/O. Disconnect and hosting stop remove presence while preserving users, permissions and credentials.
+Pending peers have five seconds from acceptance; successful generic NoAuth commands do not admit them or renew this deadline. Admitted idle peers have no heartbeat timeout. Limits remain 32 TCP peers, bounded input/output and nonblocking I/O. Disconnect and hosting stop remove presence while preserving users, permissions and credentials.
 
 Malformed framing and pending command/admission errors close the socket. Ordinary command errors after admission keep it open. The nine typed rejection codes and sanitized Italian messages are in session-commands.md. Built-in admission names are protected from duplicate registration, including padded variants.
 

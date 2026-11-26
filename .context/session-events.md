@@ -2,23 +2,23 @@
 
 Status: permissions.changed implemented 2026-11-18; session.participantsChanged added 2026-11-19. Permission changes notify only the affected user; connected-participant snapshots notify admitted users without extra permission bits. See session-participants.md for the derived projection and revisions. Frontend presentation remains separate.
 
-## Shared Registration and Dispatch
+## Separate Command and Event Dispatch
 
-ProtocolManager owns one commands_ registry per instance. Both modes reuse registerCommand and dispatch; no EventManager, add_event or second dispatcher was introduced. Session forwards registration and sending without implementing transport/domain logic.
+ServerProtocol owns one commands_ registry per instance. ClientProtocol independently owns an event callback registry and dispatchEvent; neither protocol inherits from the other. Session forwards registration and sending without implementing transport/domain logic.
 
 | Operation | Host | Client |
 | --- | --- | --- |
-| add_command(name, requirements, callback) | Registers an incoming request with current permission checks. | Rejects wrong mode. |
-| add_command(name, callback) | Rejects wrong mode. | Registers an incoming notification from the admitted host. |
-| dispatch(name, context, payload) | Validates the current actor/binding and required bits, then invokes the callback. | Validates the current admitted host connection, then invokes the callback without a local PermissionManager. |
+| add_command(name, requirements, callback) | Registers an incoming request with current permission checks. | Not exposed. |
+| on_event(name, callback) | Not exposed. | Registers an incoming notification from the admitted host. |
+| dispatch (server) / dispatchEvent (client) | Validates the current actor/binding and required bits, then invokes the callback. | Validates the current admitted host connection, then invokes the callback without a local PermissionManager. |
 | sendCommand(name, payload) | Queues execution as hostId through LocalCommands; returns future<json>. | Queues a correlated TCP request; returns future<json>. |
-| sendEvent(userId, name, payload) | Queues an uncorrelated notification for the current binding; returns bool. | Rejects wrong mode. |
+| sendEvent(userId, name, payload) | Queues an uncorrelated notification for the current binding; returns bool. | Not exposed. |
 
-ResourceManager's protocol.add_command uses AddCommandSignature on hosts and AddClientCommandSignature on clients. These are two signatures of the same feature name in separate Session registries, not overloaded registrations in one ResourceManager. Hosts additionally publish protocol.sendEvent using SendEventSignature; the identity commit service remains internal/host-only. Constructor rollback and destruction remove only successfully owned registrations.
+Hosts publish protocol.add_command (AddCommandSignature); clients publish protocol.on_event (OnEventSignature). Hosts additionally publish protocol.sendEvent using SendEventSignature; the identity commit service remains internal/host-only. Constructor rollback and destruction remove only successfully owned registrations.
 
 Client CommandContext contains the current connection generation in connectionId and no userId: the sender is the connected host, whose participant ID is not part of admission. ClientConnection creates the context locally; payload fields cannot define it. Cached generations, missing contexts, participant claims and disconnected/admitting sources reject. Public synchronous dispatch remains a trusted in-process API, as on hosts.
 
-Client callbacks keep the existing JSON return type. Their result is discarded for notifications: no reply, promise or request ID is created. request.accepted and request.rejected are reserved client registration/event names. Built-in permissions.changed cannot be replaced by another registration.
+Client event callbacks return void: no reply, promise or request ID is created. request.accepted and request.rejected are reserved client registration/event names. Built-in permissions.changed cannot be replaced by another registration.
 
 ## Framing and Routing
 
@@ -28,7 +28,7 @@ The codec is unchanged JSON v4: a four-byte big-endian size followed by strict U
 {"version":4,"type":"permissions.changed","payload":{"userId":"user-example","permissions":23}}
 ```
 
-ClientConnection::processMessages decodes complete frames in stream order, including leftovers from admission. With requestId, a message must be a valid accepted/rejected reply matching a fully sent pending command. Without requestId, it goes through ProtocolManager::dispatch and the client registry. A reply envelope without its ID, an unknown notification, invalid payload or throwing handler closes the connection and fails remaining promises; completed results/credentials remain completed.
+ClientConnection::processMessages decodes complete frames in stream order, including leftovers from admission. With requestId, a message must be a valid accepted/rejected reply matching a fully sent pending command. Without requestId, it goes through ClientProtocol::dispatchEvent and the client registry. A reply envelope without its ID, an unknown notification, invalid payload or throwing handler closes the connection and fails remaining promises; completed results/credentials remain completed.
 
 Partial notifications are allowed while idle. Notifications may be fragmented or coalesced with replies, do not consume a command future, and do not renew its fixed five-second deadline. The host still requires requestId on every incoming request: clients cannot turn notifications into a permission-check bypass.
 
