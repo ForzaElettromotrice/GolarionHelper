@@ -36,7 +36,7 @@ Only Host grants/revokes ChangePermissions. Delegates change other non-host user
 
 ## Transaction Coordination
 
-Mutations require a previously configured saveIdentityState/loadIdentityState archive, also for offline host commands. Without it they fail with COMMAND_FAILED without changing memory. Local and remote callers share the callback/execution path.
+Mutations require a previously configured saveIdentityState/loadIdentityState archive. Without it they fail with COMMAND_FAILED without changing memory. Local and remote callers share the callback/execution path.
 
 ServerProtocol publishes trusted internal identity.updateUserPermissions, defined by private identity_transaction.hpp. It accepts a synchronous UserPermissionsMutation and returns PermissionSet. It acquires execution then identity locks, snapshots Host ID and credentials and supplies one persistence callback. The callback must be used synchronously once, must not escape, and writes the existing version-4 archive without reentering managers or their locks. It is not a network command.
 

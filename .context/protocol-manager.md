@@ -25,9 +25,9 @@ resources.invoke<ServerProtocol::AddCommandSignature>("protocol.add_command", "e
 
 CommandContext contains optional UserId and ConnectionId, never a permission cache or token. On hosts, a pending peer has only ConnectionId; makeContext checks record existence and both binding directions, and dispatch revalidates the actor. On clients, a notification context has only the current host-connection generation and is checked against the admitted ClientConnection. Payload identity/mask fields never define the sender. Host logical connection methods remain registerConnection, bindUser, getUserId, makeContext and closeConnection; Session delegates all except getUserId. Binding trusts an identity verified by its caller.
 
-One recursive execution mutex serializes registration, local/remote dispatch, admission, binding and closing. Remote callbacks run on Hosting; host sendCommand callbacks run on private LocalCommands; direct dispatch runs on its caller. No connection/permission lock is held across an arbitrary command callback. Providers called independently retain their own threading contracts.
+One recursive execution mutex serializes registration, local/remote dispatch, admission, binding and closing. Host and guest requests both run on Hosting; direct dispatch runs on its caller. No connection/permission lock is held across an arbitrary command callback. Providers called independently retain their own threading contracts.
 
-sendCommand(name, payload) returns future<json> in both modes. Host queues local execution as permissions.getHostId, including offline; client queues framed requests and correlates replies. Same-manager callbacks cannot call sendCommand, preventing actor escalation and worker deadlock; nested dispatch with the original context remains available. See session-commands.md and session-client.md.
+SessionClient::sendCommand(name, payload) returns future<json> for host and guests over TCP. Same-manager callbacks cannot call sendCommand, preventing actor escalation and worker deadlock; nested dispatch with the original context remains available. See session-commands.md and session-client.md.
 
 startHosting opens numeric IPv4/port and starts the private TCP worker; port zero returns an OS-assigned port. stopHosting requests stop, joins and closes sockets/bindings while preserving identities, permissions, credentials, code and the logical-ID counter. It does not disable local commands. The final remote checkpoint acquires executionMutex and rechecks stop before handleMessage: buffered requests or requests waiting behind local execution are discarded. An already executing callback finishes; delivery of its final reply is not guaranteed.
 
@@ -41,7 +41,7 @@ SessionCode remains five uppercase alphanumeric symbols, with lowercase accepted
 
 Token issuance, recognition, save/load and archive ownership remain in ServerProtocol. IdentitySaveData now includes hostId and UserPermissionsSaveData plus tokens. Trusted load checks the explicit hostId and immutable host mask before replacing state. No legacy importer exists. See session-tokens.md.
 
-Hosting, ClientConnection and LocalCommands remain private implementations. Socket/runtime helpers are shared; the JSON codec is unaware of permissions. Standard C++20, nlohmann_json 3.12, and Threads are used, plus ws2_32 and bcrypt on Windows. The module remains independent of sheet/frontend.
+Hosting and ClientConnection remain private implementations. Socket/runtime helpers are shared; the JSON codec is unaware of permissions. Standard C++20, nlohmann_json 3.12, and Threads are used, plus ws2_32 and bcrypt on Windows. The module remains independent of sheet/frontend.
 
 ## Verification
 

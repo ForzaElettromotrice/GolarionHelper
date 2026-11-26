@@ -1,3 +1,4 @@
+#include "host_client.hpp"
 #include "socket_support.hpp"
 #include "protocol.hpp"
 #include "golarion/play/session_client.hpp"
@@ -236,6 +237,8 @@ namespace
         const auto rawToken = host.issueUserToken("raw-user");
         const auto port = host.startHosting("127.0.0.1", 0);
         const SessionCode code(host.getSessionCode());
+        SessionClient local;
+        test::connectHost(local, host, port);
         SessionClient delegate;
         SessionClient target;
         const auto a = completed(delegate.joinSession("127.0.0.1", port, code));
@@ -244,7 +247,7 @@ namespace
         {
             return Json{{"targetUserId", userId}, {"grant", enabled ? static_cast<std::uint64_t>(flag) : 0}, {"revoke", enabled ? 0 : static_cast<std::uint64_t>(flag)}};
         };
-        completed(host.sendCommand("permissions.update", change(a.userId, Permission::ChangePermissions, true)));
+        completed(local.sendCommand("permissions.update", change(a.userId, Permission::ChangePermissions, true)));
         eventually([&] { return delegate.getClientState().permissions == PermissionSet::fromMask(39); });
         completed(delegate.sendCommand("permissions.update", change(b.userId, Permission::Permission5, true)));
         eventually([&] { return target.getClientState().permissions == PermissionSet::fromMask(23); });
@@ -260,26 +263,26 @@ namespace
         check(readMessage(raw, input).type == "request.accepted", "raw client was not admitted");
         check(readMessage(raw, input).type == "session.participantsChanged", "raw client missed the initial participant snapshot");
         const Json batch{{"targetUserId", "raw-user"}, {"grant", 24}, {"revoke", 6}};
-        completed(host.sendCommand("permissions.update", batch));
+        completed(local.sendCommand("permissions.update", batch));
         const auto event = readMessage(raw, input);
         check(event.type == "permissions.changed" && !event.requestId && event.payload == Json{{"userId", "raw-user"}, {"permissions", 25}}, "wrong permission event envelope");
-        completed(host.sendCommand("permissions.update", batch));
+        completed(local.sendCommand("permissions.update", batch));
         check(input.empty() && !ready(raw, false, Clock::now() + 100ms), "no-op emitted a permission event");
 
         const auto backup = directory.path / "backup.json";
         std::filesystem::rename(archive, backup);
         check(std::filesystem::create_directory(archive), "cannot block the archive");
-        auto failed = host.sendCommand("permissions.update", change("raw-user", Permission::Permission4, true));
+        auto failed = local.sendCommand("permissions.update", change("raw-user", Permission::Permission4, true));
         check(rejects<ProtocolError>([&] { completed(std::move(failed)); }), "failed persistence succeeded");
         check(input.empty() && !ready(raw, false, Clock::now() + 100ms), "failed save emitted an event");
         std::filesystem::remove(archive);
         std::filesystem::rename(backup, archive);
-        completed(host.sendCommand("permissions.applyPreset", {{"targetUserId", b.userId}, {"preset", "spectator"}}));
-        completed(host.sendCommand("permissions.update", change(b.userId, Permission::Permission1, false)));
+        completed(local.sendCommand("permissions.applyPreset", {{"targetUserId", b.userId}, {"preset", "spectator"}}));
+        completed(local.sendCommand("permissions.update", change(b.userId, Permission::Permission1, false)));
         eventually([&] { return target.getClientState().permissions == PermissionSet{}; });
         check(target.getClientState().state == ClientConnectionState::Connected, "zero permissions disconnected a client");
         target.disconnectFromHost();
-        completed(host.sendCommand("permissions.applyPreset", {{"targetUserId", b.userId}, {"preset", "master"}}));
+        completed(local.sendCommand("permissions.applyPreset", {{"targetUserId", b.userId}, {"preset", "master"}}));
         const auto resumed = completed(target.resumeSession("127.0.0.1", port, code, *b.userToken));
         check(resumed.permissions == PermissionSet::fromMask(31), "offline mutation was not recovered by resume");
     }
@@ -473,19 +476,24 @@ namespace
         completed(returning.resumeSession("127.0.0.1", port, SessionCode(host.getSessionCode()), *user.userToken));
         std::promise<void> localEntered, localRelease;
         auto localReleased = localRelease.get_future().share();
+        bool eventAccepted = true;
         host.add_command("stop-sender", Permission::ChangePermissions, [&](const auto &, const auto &)
         {
             localEntered.set_value();
             check(localReleased.wait_for(3s) == std::future_status::ready, "local callback was not released");
-            return Json(host.sendEvent(user.userId, "permissions.changed", {{"userId", user.userId}, {"permissions", 7}}));
+            eventAccepted = host.sendEvent(user.userId, "permissions.changed", {{"userId", user.userId}, {"permissions", 7}});
+            return Json(eventAccepted);
         });
-        auto command = host.sendCommand("stop-sender", Json::object());
+        SessionClient local;
+        test::connectHost(local, host, port);
+        auto command = local.sendCommand("stop-sender", Json::object());
         completed(localEntered.get_future());
         auto hostStopped = std::async(std::launch::async, [&] { host.stopHosting(); });
         std::this_thread::sleep_for(100ms);
         localRelease.set_value();
         completed(std::move(hostStopped));
-        check(completed(std::move(command)) == false, "callback enqueued an event after stop");
+        try { completed(std::move(command)); } catch (const std::system_error &) {}
+        check(!eventAccepted, "callback enqueued an event after stop");
     }
 }
 

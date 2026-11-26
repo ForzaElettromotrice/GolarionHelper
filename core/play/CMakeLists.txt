@@ -12,7 +12,6 @@ add_library(golarion_play STATIC
     server/src/admission.cpp
     server/src/hosting.cpp
     server/src/identity_storage.cpp
-    server/src/local_commands.cpp
     server/src/participants.cpp
     server/src/permission_commands.cpp
     server/src/permission_manager.cpp

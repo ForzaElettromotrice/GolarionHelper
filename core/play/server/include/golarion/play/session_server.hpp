@@ -9,7 +9,6 @@
 
 #include <cstdint>
 #include <filesystem>
-#include <future>
 #include <optional>
 #include <string>
 #include <string_view>
@@ -29,7 +28,7 @@ namespace golarion::play
 
         HostSessionView toView() const;
         SessionData toData() const;
-        std::future<nlohmann::json> sendCommand(std::string name, nlohmann::json payload);
+        UserToken issueHostConnectionToken();
         void add_command(std::string_view name, CommandRequirements requirements, ServerProtocol::CommandCallback callback);
         bool sendEvent(const UserId &userId, std::string_view name, const nlohmann::json &payload);
 

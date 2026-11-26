@@ -11,7 +11,7 @@ ServerProtocol owns one commands_ registry per instance. ClientProtocol independ
 | add_command(name, requirements, callback) | Registers an incoming request with current permission checks. | Not exposed. |
 | on_event(name, callback) | Not exposed. | Registers an incoming notification from the admitted host. |
 | dispatch (server) / dispatchEvent (client) | Validates the current actor/binding and required bits, then invokes the callback. | Validates the current admitted host connection, then invokes the callback without a local PermissionManager. |
-| sendCommand(name, payload) | Queues execution as hostId through LocalCommands; returns future<json>. | Queues a correlated TCP request; returns future<json>. |
+| sendCommand(name, payload) | Not exposed by the server; the hosting app uses its own client. | Queues a correlated TCP request; returns future<json>. |
 | sendEvent(userId, name, payload) | Queues an uncorrelated notification for the current binding; returns bool. | Not exposed. |
 
 Hosts publish protocol.add_command (AddCommandSignature); clients publish protocol.on_event (OnEventSignature). Hosts additionally publish protocol.sendEvent using SendEventSignature; the identity commit service remains internal/host-only. Constructor rollback and destruction remove only successfully owned registrations.

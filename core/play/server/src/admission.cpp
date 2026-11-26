@@ -135,7 +135,7 @@ namespace golarion::play
         if (!identityArchivePath_) throw std::logic_error("save or load an identity archive before admitting users");
         std::unique_lock connectionsLock(connectionsMutex_);
         const auto connection = connections_.find(connectionId);
-        if (connection == connections_.end() || connection->second) throw std::invalid_argument("admission requires a pending connection");
+        if (connection == connections_.end() || connection->second.userId) throw std::invalid_argument("admission requires a pending connection");
 
         const auto users = resources_.invoke<PermissionManager::ToSaveDataSignature>("permissions.toSaveData");
         const auto hostId = resources_.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId");
@@ -154,7 +154,7 @@ namespace golarion::play
         const auto tokens = candidate->toSaveData();
         UserId boundUser = userId;
         activeConnections_.emplace(userId, connectionId);
-        connection->second = std::move(boundUser);
+        connection->second.userId = std::move(boundUser);
         try
         {
             resources_.invoke<PermissionManager::RegisterUserWithCommitSignature>("permissions.registerUserWithCommit", userId, [this, &tokens, &hostId](const std::vector<UserPermissionsSaveData> &savedUsers)
@@ -164,7 +164,7 @@ namespace golarion::play
         }
         catch (...)
         {
-            connection->second.reset();
+            connection->second.userId.reset();
             activeConnections_.erase(userId);
             throw;
         }
@@ -177,8 +177,20 @@ namespace golarion::play
 
     std::optional<ServerProtocol::AdmissionResult> ServerProtocol::resumeUser(ConnectionId connectionId, std::string_view token, std::optional<std::string> displayName)
     {
+        if (hostConnectionToken_ && token == hostConnectionToken_->value())
+        {
+            {
+                const std::lock_guard lock(connectionsMutex_);
+                if (!connections_.at(connectionId).loopback) return std::nullopt;
+            }
+            const auto host = resources_.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId");
+            AdmissionResult result{host, resources_.invoke<PermissionManager::GetPermissionsSignature>("permissions.getPermissions", host), std::nullopt};
+            bindUser(connectionId, host, std::nullopt, true);
+            hostConnectionToken_.reset();
+            return result;
+        }
         const auto userId = resolveUserToken(token);
-        if (!userId) return std::nullopt;
+        if (!userId || *userId == resources_.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId")) return std::nullopt;
         AdmissionResult result{*userId, resources_.invoke<PermissionManager::GetPermissionsSignature>("permissions.getPermissions", *userId), std::nullopt};
         bindUser(connectionId, *userId, std::move(displayName));
         return result;

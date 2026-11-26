@@ -12,7 +12,7 @@ The host derives the participant list from current bindings and stored names. It
 
 ## Command and Event
 
-Host registerParticipantCommands registers session.getParticipants through the existing add_command path with CommandRequirements{}: authenticated, no required bits. The exact request payload is an empty object. Both host and clients can use Session::sendCommand; the host local worker also supports offline queries. There is no extra ResourceManager feature or dispatcher for presence; permissions.getHostId and existing command/event services are reused.
+Host registerParticipantCommands registers session.getParticipants through the existing add_command path with CommandRequirements{}: authenticated, no required bits. The exact request payload is an empty object. All participants query through SessionClient after admission, including the host over loopback. There is no extra ResourceManager feature or dispatcher for presence; permissions.getHostId and existing command/event services are reused.
 
 The result and session.participantsChanged event share this payload:
 

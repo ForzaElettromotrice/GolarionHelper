@@ -97,7 +97,7 @@ private:
         int port = 0;
     };
 
-    static Hosting launchHosting(const QString &campaignDirectory, const golarion::play::HostedCampaignData &campaign, int port, const std::string &displayName);
+    static Hosting launchHosting(golarion::play::SessionClient &client, const QString &campaignDirectory, const golarion::play::HostedCampaignData &campaign, int port, const std::string &displayName);
     std::optional<std::string> validatedDisplayName(const QString &displayName);
     void pollHosting();
     void loadCampaigns();

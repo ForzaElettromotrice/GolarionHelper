@@ -541,7 +541,7 @@ void SessionControllerTest::hostsAndRestoresPlayer()
         controller.startHosting(0, QStringLiteral("Marta"));
         QTRY_VERIFY_WITH_TIMEOUT(!controller.busy(), 5000);
         QVERIFY2(controller.hostingPort() > 0, qPrintable(controller.errorMessage()));
-        QCOMPARE(controller.participants().size(), 1);
+        QTRY_COMPARE(controller.participants().size(), 1);
         const auto localParticipant = controller.participants().front().toMap();
         QVERIFY(localParticipant.value(QStringLiteral("isHost")).toBool());
         QVERIFY(localParticipant.value(QStringLiteral("isSelf")).toBool());

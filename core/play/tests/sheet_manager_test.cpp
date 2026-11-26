@@ -1,3 +1,4 @@
+#include "host_client.hpp"
 #include "golarion/play/sheet_manager.hpp"
 #include "golarion/play/session_server.hpp"
 
@@ -36,7 +37,9 @@ int main()
     std::string id;
     {
         SessionServer host("host", std::nullopt, root);
-        auto call = [&](const char *name, Json payload) { return host.sendCommand(name, std::move(payload)).get(); };
+        SessionClient local;
+        test::connectHost(local, host, host.startHosting("127.0.0.1", 0));
+        auto call = [&](const char *name, Json payload) { return local.sendCommand(name, std::move(payload)).get(); };
         for (const auto &payload : {Json{{"name", "  "}}, Json{{"name", 2}}, Json{{"name", "A"}, {"id", "external"}}})
         {
             try { call("sheets.create", payload); }
@@ -52,22 +55,26 @@ int main()
     }
     {
         SessionServer host("host", std::nullopt, root);
+        SessionClient local;
+        test::connectHost(local, host, host.startHosting("127.0.0.1", 0));
         if (SheetManager(root).namesById().at(id) != "Mago") return 1;
         fs::rename(index, folder / "backup.json");
         fs::create_directory(index); // Block the atomic index replacement.
-        try { host.sendCommand("sheets.delete", {{"id", id}}).get(); return 1; } catch (const std::exception &) {}
+        try { local.sendCommand("sheets.delete", {{"id", id}}).get(); return 1; } catch (const std::exception &) {}
         if (!fs::is_regular_file(folder / ("sheet-" + id + ".json"))) return 1;
         fs::remove(index);
         fs::rename(folder / "backup.json", index);
-        host.sendCommand("sheets.delete", {{"id", id}}).get();
-        try { host.sendCommand("sheets.delete", {{"id", "../index"}}).get(); return 1; }
+        local.sendCommand("sheets.delete", {{"id", id}}).get();
+        try { local.sendCommand("sheets.delete", {{"id", "../index"}}).get(); return 1; }
         catch (const ProtocolError &e) { if (e.code() != ProtocolErrorCode::InvalidRequest) return 1; }
         if (!SheetManager(root).namesById().empty() || fs::exists(folder / ("sheet-" + id + ".json"))) return 1;
     }
     std::string parent, child, sheet;
     {
         SessionServer host("host", std::nullopt, root);
-        auto call = [&](const char *name, Json payload) { return host.sendCommand(name, std::move(payload)).get(); };
+        SessionClient local;
+        test::connectHost(local, host, host.startHosting("127.0.0.1", 0));
+        auto call = [&](const char *name, Json payload) { return local.sendCommand(name, std::move(payload)).get(); };
         parent = call("sheets.folders.create", {{"name", "PNG"}}).at("id");
         child = call("sheets.folders.create", {{"name", "Alleati"}, {"parentId", parent}}).at("id");
         sheet = call("sheets.create", {{"name", "Merisiel"}, {"folderId", child}}).at("id");
@@ -89,7 +96,9 @@ int main()
     }
     {
         SessionServer host("host", std::nullopt, root);
-        auto call = [&](const char *name, Json payload) { return host.sendCommand(name, std::move(payload)).get(); };
+        SessionClient local;
+        test::connectHost(local, host, host.startHosting("127.0.0.1", 0));
+        auto call = [&](const char *name, Json payload) { return local.sendCommand(name, std::move(payload)).get(); };
         for (const auto &occupied : {parent, child})
         {
             try { call("sheets.folders.delete", {{"id", occupied}}); return 1; }

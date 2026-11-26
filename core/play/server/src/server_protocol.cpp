@@ -1,7 +1,6 @@
 #include "golarion/play/server_protocol.hpp"
 #include "hosting.hpp"
 #include "dispatch_support.hpp"
-#include "local_commands.hpp"
 #include "identity_storage.hpp"
 #include "identity_transaction.hpp"
 #include "permission_json.hpp"
@@ -86,26 +85,16 @@ namespace golarion::play
         {
             stopHosting();
         }
-        catch (...) { } // Still join the local worker if networking reported an error.
-        try
-        {
-            const std::lock_guard lock(localCommandsMutex_);
-            if (localCommands_) localCommands_->stop();
-            localCommands_.reset();
-        }
-        catch (...) { } // Destruction must not propagate worker errors.
+        catch (...) { } // Destruction must not throw.
     }
 
-    std::future<nlohmann::json> ServerProtocol::sendCommand(std::string name, nlohmann::json payload)
+    UserToken ServerProtocol::issueHostConnectionToken()
     {
-        // A callback must keep its existing actor and use nested dispatch instead.
-        // Queuing and waiting here would also deadlock the local worker.
-        if (detail::DispatchScope<ServerProtocol>::contains(*this)) throw std::logic_error("sendCommand is not allowed from a command callback");
-        name = detail::normalizedName(name);
-        if (!payload.is_object()) throw ProtocolError(ProtocolErrorCode::InvalidRequest, "command payload must be a JSON object");
-        const std::lock_guard lock(localCommandsMutex_);
-        if (!localCommands_) localCommands_ = std::make_unique<LocalCommands>(*this);
-        return localCommands_->submit(std::move(name), std::move(payload));
+        const std::lock_guard lock(executionMutex_);
+        const std::lock_guard eventsLock(eventsMutex_);
+        if (!acceptingEvents_) throw std::logic_error("host admission requires an active listener");
+        hostConnectionToken_ = UserToken::generate();
+        return *hostConnectionToken_;
     }
 
     void ServerProtocol::add_command(std::string_view name, CommandRequirements requirements, CommandCallback callback)
@@ -228,6 +217,8 @@ namespace golarion::play
     std::string ServerProtocol::issueUserToken(const UserId &userId)
     {
         const std::lock_guard lock(identityMutex_);
+        if (userId == resources_.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId"))
+            throw std::invalid_argument("the host cannot use a persistent user token");
         static_cast<void>(resources_.invoke<PermissionManager::GetPermissionsSignature>("permissions.getPermissions", userId));
         if (!identityArchivePath_) throw std::logic_error("save or load an identity archive before issuing tokens");
         auto candidate = std::make_unique<detail::UserTokens>(*userTokens_);
@@ -349,7 +340,9 @@ namespace golarion::play
         if (changed) publishParticipantsChanged();
     }
 
-    ConnectionId ServerProtocol::registerConnection()
+    ConnectionId ServerProtocol::registerConnection() { return registerConnection(false); }
+
+    ConnectionId ServerProtocol::registerConnection(bool loopback)
     {
         const std::lock_guard lock(connectionsMutex_);
         if (nextConnectionId_ == 0)
@@ -357,7 +350,7 @@ namespace golarion::play
             throw std::overflow_error("connection ID space is exhausted");
         }
         const ConnectionId connectionId = nextConnectionId_;
-        connections_.emplace(connectionId, std::nullopt);
+        connections_.emplace(connectionId, Peer{std::nullopt, loopback});
         // Zero is reserved; unsigned wraparound permanently exhausts this manager's IDs.
         ++nextConnectionId_;
         return connectionId;
@@ -368,7 +361,7 @@ namespace golarion::play
         return bindUser(connectionId, userId, std::nullopt);
     }
 
-    std::optional<ConnectionId> ServerProtocol::bindUser(ConnectionId connectionId, const UserId &userId, std::optional<std::string> displayName)
+    std::optional<ConnectionId> ServerProtocol::bindUser(ConnectionId connectionId, const UserId &userId, std::optional<std::string> displayName, bool alreadyPresent)
     {
         validateUserId(userId);
         const std::lock_guard executionLock(executionMutex_);
@@ -380,9 +373,9 @@ namespace golarion::play
         {
             throw std::invalid_argument("connection is not registered");
         }
-        if (connection->second)
+        if (connection->second.userId)
         {
-            if (*connection->second != userId)
+            if (*connection->second.userId != userId)
             {
                 throw std::invalid_argument("connection is already bound to another user");
             }
@@ -410,7 +403,7 @@ namespace golarion::play
             replaced = current->second;
             current->second = connectionId;
         }
-        connection->second = std::move(boundUser);
+        connection->second.userId = std::move(boundUser);
         if (replaced)
         {
             connections_.erase(*replaced);
@@ -419,7 +412,7 @@ namespace golarion::play
         }
         lock.unlock();
         if (identityLock.owns_lock()) identityLock.unlock();
-        if (newBinding || nameChanged) publishParticipantsChanged();
+        if (nameChanged || (newBinding && !alreadyPresent)) publishParticipantsChanged();
         else sendParticipantsSnapshot(userId);
         return replaced;
     }
@@ -428,16 +421,16 @@ namespace golarion::play
     {
         const std::lock_guard lock(connectionsMutex_);
         const auto connection = connections_.find(connectionId);
-        if (connection == connections_.end() || !connection->second)
+        if (connection == connections_.end() || !connection->second.userId)
         {
             return std::nullopt;
         }
-        const auto active = activeConnections_.find(*connection->second);
+        const auto active = activeConnections_.find(*connection->second.userId);
         if (active == activeConnections_.end() || active->second != connectionId)
         {
             return std::nullopt;
         }
-        return connection->second;
+        return connection->second.userId;
     }
 
     CommandContext ServerProtocol::makeContext(ConnectionId connectionId) const
@@ -448,15 +441,15 @@ namespace golarion::play
         {
             throw ProtocolError(ProtocolErrorCode::NotAdmitted, "connection is not registered or is no longer active");
         }
-        if (connection->second)
+        if (connection->second.userId)
         {
-            const auto active = activeConnections_.find(*connection->second);
+            const auto active = activeConnections_.find(*connection->second.userId);
             if (active == activeConnections_.end() || active->second != connectionId)
             {
                 throw ProtocolError(ProtocolErrorCode::NotAdmitted, "connection no longer matches the active user binding");
             }
         }
-        return CommandContext{connection->second, connectionId};
+        return CommandContext{connection->second.userId, connectionId};
     }
 
     bool ServerProtocol::closeConnection(ConnectionId connectionId)
@@ -466,9 +459,9 @@ namespace golarion::play
         const auto connection = connections_.find(connectionId);
         if (connection == connections_.end()) return false;
         bool wasActive = false;
-        if (connection->second)
+        if (connection->second.userId)
         {
-            const auto active = activeConnections_.find(*connection->second);
+            const auto active = activeConnections_.find(*connection->second.userId);
             if (active != activeConnections_.end() && active->second == connectionId)
             {
                 activeConnections_.erase(active);
@@ -520,6 +513,7 @@ namespace golarion::play
         hosting_.reset();
         {
             const std::lock_guard executionLock(executionMutex_);
+            hostConnectionToken_.reset();
             bool changed;
             {
                 const std::lock_guard connectionsLock(connectionsMutex_);

@@ -1,3 +1,4 @@
+#include "host_client.hpp"
 #include "socket_support.hpp"
 #include "protocol.hpp"
 #include "participants_json.hpp"
@@ -185,10 +186,12 @@ namespace
         SessionServer host("host");
         host.setHostDisplayName("Marta");
         host.registerUser("remembered-offline");
-        const auto initial = query(host);
+        const auto initial = host.toView().participants;
         check(initial == ParticipantsSnapshot{1, {{"host", true, "Marta"}}}, "offline membership was advertised as connected");
         host.saveIdentityState(archive);
         const auto port = host.startHosting("127.0.0.1", 0);
+        SessionClient local;
+        test::connectHost(local, host, port);
         const SessionCode code(host.getSessionCode());
         {
             auto pending = connectPeer(port);
@@ -197,14 +200,14 @@ namespace
             const auto reply = readMessage(pending, input);
             check(reply.type == "request.rejected" && reply.payload.at("code") == "FORBIDDEN", "participant listing became public before admission");
         }
-        check(query(host) == initial, "pending connection changed participant presence");
+        check(host.toView().participants == initial, "pending connection changed participant presence");
         SessionClient first;
         SessionClient observer;
         const auto a = completed(first.joinSession("127.0.0.1", port, code, "  Giulia  "));
         eventually([&] { return first.getClientState().participants && first.getClientState().participants->participants.size() == 2; });
         check(first.getClientState().participants->revision == 2, "first admission did not advance presence");
         const auto b = completed(observer.joinSession("127.0.0.1", port, code, "Giulia"));
-        const auto both = query(host);
+        const auto both = host.toView().participants;
         check(both.revision == 3 && both.participants.size() == 3 && both.participants.front() == ParticipantInfo{"host", true, "Marta"}
             && both.participants[1].displayName == "Giulia" && both.participants[2].displayName == "Giulia", "host list lost display names");
         eventually([&] { return first.getClientState().participants == both && observer.getClientState().participants == both; });
@@ -223,17 +226,17 @@ namespace
         bool failedAdmission = false;
         try { completed(failed.joinSession("127.0.0.1", port, code)); }
         catch (const ProtocolError &error) { failedAdmission = error.code() == ProtocolErrorCode::AdmissionFailed; }
-        check(failedAdmission && query(host) == both, "failed admission announced a participant");
+        check(failedAdmission && host.toView().participants == both, "failed admission announced a participant");
         failedAdmission = false;
         try { completed(failed.resumeSession("127.0.0.1", port, code, *a.userToken, "Rename failed")); }
         catch (const ProtocolError &error) { failedAdmission = error.code() == ProtocolErrorCode::AdmissionFailed; }
-        check(failedAdmission && query(host) == both && first.getClientState().state == ClientConnectionState::Connected,
+        check(failedAdmission && host.toView().participants == both && first.getClientState().state == ClientConnectionState::Connected,
             "failed rename changed the live name or replaced the existing connection");
         std::filesystem::remove(archive);
         std::filesystem::rename(backup, archive);
 
         for (const auto flag : {Permission::Permission1, Permission::Permission2, Permission::Permission3})
-            completed(host.sendCommand("permissions.update", {{"targetUserId", b.userId}, {"grant", 0}, {"revoke", static_cast<std::uint64_t>(flag)}}));
+            completed(local.sendCommand("permissions.update", {{"targetUserId", b.userId}, {"grant", 0}, {"revoke", static_cast<std::uint64_t>(flag)}}));
         eventually([&] { return observer.getClientState().permissions == PermissionSet{}; });
         check(query(observer) == both, "zero-permission user cannot read participant presence");
 
@@ -245,18 +248,18 @@ namespace
             if (entry.userId == a.userId) entry.displayName = "Giulia R.";
         eventually([&] { return replacement.getClientState().participants == renamed && observer.getClientState().participants == renamed
             && first.getClientState().state == ClientConnectionState::Disconnected; });
-        check(!first.getClientState().participants && query(host) == renamed && resumed.userId == a.userId
+        check(!first.getClientState().participants && host.toView().participants == renamed && resumed.userId == a.userId
             && resumed.permissions == a.permissions && !resumed.userToken, "rename on resume changed identity or duplicated presence");
         replacement.disconnectFromHost();
         eventually([&] { return observer.getClientState().participants && observer.getClientState().participants->participants.size() == 2; });
-        const auto departed = query(host);
+        const auto departed = host.toView().participants;
         check(departed.revision == 5 && departed.participants == std::vector<ParticipantInfo>{{"host", true, "Marta"}, {b.userId, false, "Giulia"}}, "disconnect removed the wrong participant");
         completed(first.resumeSession("127.0.0.1", port, code, *a.userToken));
         eventually([&] { return observer.getClientState().participants && observer.getClientState().participants->revision == 6; });
-        check(query(host).participants == renamed.participants, "resume without a name did not retain the stored name");
+        check(host.toView().participants.participants == renamed.participants, "resume without a name did not retain the stored name");
         host.stopHosting();
         eventually([&] { return first.getClientState().state == ClientConnectionState::Disconnected && observer.getClientState().state == ClientConnectionState::Disconnected; });
-        check(!first.getClientState().participants && !observer.getClientState().participants && query(host).participants == initial.participants, "stop retained remote participant presence");
+        check(!first.getClientState().participants && !observer.getClientState().participants && host.toView().participants.participants == initial.participants, "stop retained remote participant presence");
         const auto stopped = host.toView();
         check(!stopped.listeningPort && stopped.participants.participants == initial.participants, "stopped view retained listening or presence state");
         check(hostView.listeningPort == port && hostView.participants == both, "previous view changed after stop");
@@ -280,9 +283,9 @@ namespace
         const auto user = reply.payload.at("result").at("userId").get<UserId>();
         const UserToken token(reply.payload.at("result").at("userToken").get<std::string>());
         const auto event = readMessage(peer, input);
-        check(event.type == "session.participantsChanged" && !event.requestId && detail::parseParticipants(event.payload) == query(*host), "initial participant event is missing or invalid");
+        check(event.type == "session.participantsChanged" && !event.requestId && detail::parseParticipants(event.payload) == host->toView().participants, "initial participant event is missing or invalid");
         peer = detail::Socket{};
-        eventually([&] { return query(*host).participants.size() == 1; });
+        eventually([&] { return host->toView().participants.participants.size() == 1; });
         SessionClient client;
         completed(client.resumeSession("127.0.0.1", port, code, token));
         eventually([&] { return client.getClientState().participants.has_value(); });
@@ -291,12 +294,12 @@ namespace
         eventually([&] { return client.getClientState().state == ClientConnectionState::Disconnected; });
         host.emplace("host");
         host->loadIdentityState(archive);
-        check(query(*host).participants == std::vector<ParticipantInfo>{{"host", true, "Host"}}, "restoring identities restored stale connections");
+        check(host->toView().participants.participants == std::vector<ParticipantInfo>{{"host", true, "Host"}}, "restoring identities restored stale connections");
         port = host->startHosting("127.0.0.1", 0);
         code = SessionCode(host->getSessionCode());
         const auto resumed = completed(client.resumeSession("127.0.0.1", port, code, token, "No\xc3\xab" "mie"));
         eventually([&] { return client.getClientState().participants.has_value(); });
-        check(resumed.userId == user && client.getClientState().participants->revision < previousRevision && client.getClientState().participants == query(*host), "client did not reset revisions across host reconstruction");
+        check(resumed.userId == user && client.getClientState().participants->revision < previousRevision && client.getClientState().participants == host->toView().participants, "client did not reset revisions across host reconstruction");
         check(client.getClientState().participants->participants.back().displayName == "No\xc3\xab" "mie", "resume lost the UTF-8 name");
         host->stopHosting();
         client.disconnectFromHost();
@@ -418,14 +421,14 @@ namespace
             admissions.push_back(client.joinSession("127.0.0.1", port, code));
         }
         for (auto &admission : admissions) completed(std::move(admission));
-        const auto all = query(host);
+        const auto all = host.toView().participants;
         check(all.participants.size() == 7, "simultaneous admissions lost participants");
         eventually([&] { return std::all_of(clients.begin(), clients.end(), [&](const auto &client) { return client.getClientState().participants == all; }); });
         std::vector<std::future<void>> disconnects;
         for (std::size_t index = 0; index < 3; ++index) disconnects.push_back(std::async(std::launch::async, [&, index] { clients[index].disconnectFromHost(); }));
         for (auto &disconnected : disconnects) completed(std::move(disconnected));
-        eventually([&] { return query(host).participants.size() == 4; });
-        const auto remaining = query(host);
+        eventually([&] { return host.toView().participants.participants.size() == 4; });
+        const auto remaining = host.toView().participants;
         eventually([&] { return clients[3].getClientState().participants == remaining && clients[4].getClientState().participants == remaining && clients[5].getClientState().participants == remaining; });
     }
 }

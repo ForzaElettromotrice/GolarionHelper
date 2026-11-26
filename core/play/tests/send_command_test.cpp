@@ -1,3 +1,4 @@
+#include "host_client.hpp"
 #include "socket_support.hpp"
 #include "protocol.hpp"
 #include "golarion/play/session_client.hpp"
@@ -65,73 +66,35 @@ namespace
         ServerProtocol protocol{resources};
     };
 
-    void localCommandsAndFacade()
+    void hostAdmission()
     {
-        Host host;
-        host.resources.invoke<ServerProtocol::AddCommandSignature>("protocol.add_command", "actor", Permission::ChangePermissions, [](const auto &context, const auto &payload)
+        Host fixture;
+        auto &host = fixture.protocol;
+        const auto port = host.startHosting("127.0.0.1", 0);
+        const SessionCode code(host.getSessionCode());
+        const auto token = host.issueHostConnectionToken();
+        const auto remote = host.registerConnection();
+        bool denied = false;
+        try { host.dispatch("session.resume", host.makeContext(remote), {{"sessionCode", code.value()}, {"userToken", token.value()}}); }
+        catch (const ProtocolError &e) { denied = e.code() == ProtocolErrorCode::InvalidUserToken; }
+        check(denied && !host.getUserId(remote), "remote peer accepted a host credential");
+        host.closeConnection(remote);
+        check(!host.resolveUserToken(token.value()), "host credential entered the persistent token registry");
+        SessionClient local;
+        const auto admitted = completed(local.resumeSession("127.0.0.1", port, code, token));
+        check(admitted.userId == "actual-host" && admitted.permissions == PermissionSet::all() && !admitted.userToken, "host admission changed identity");
+        SessionClient second;
+        const auto invalid = [&](const UserToken &used)
         {
-            check(!context.connectionId, "local command invented a connection");
-            return Json{{"actor", *context.userId}, {"value", payload.at("value")}};
-        });
-        check(completed(host.protocol.sendCommand(" actor ", {{"value", 4}, {"userId", "forged"}})) == Json{{"actor", "actual-host"}, {"value", 4}}, "local actor or result is wrong");
-        rejected(host.protocol.sendCommand("unknown", Json::object()), ProtocolErrorCode::UnknownCommand);
-        check(rejects<ProtocolError>([&] { host.protocol.sendCommand("actor", Json::array()); }), "non-object local payload accepted");
-        host.protocol.add_command("nested", Permission::Permission2, [&](const auto &context, const auto &)
-        {
-            check(rejects<std::logic_error>([&] { host.protocol.sendCommand("actor", {{"value", 0}}); }), "callback could queue work as the host");
-            return host.protocol.dispatch("actor", context, {{"value", 9}});
-        });
-        check(completed(host.protocol.sendCommand("nested", Json::object())).at("value") == 9, "nested dispatch stopped working");
-        host.protocol.stopHosting();
-        check(completed(host.protocol.sendCommand("actor", {{"value", 7}})).at("value") == 7, "stop disabled offline local commands");
-
-        std::vector<std::future<Json>> pending;
-        {
-            SessionServer session("another-host");
-            for (int i = 0; i < 24; ++i) pending.push_back(session.sendCommand("unknown", Json::object()));
-        }
-        for (auto &result : pending)
-        {
-            check(result.wait_for(1s) == std::future_status::ready, "Session destruction left a local future pending");
-            try { result.get(); check(false, "unknown command succeeded"); }
-            catch (const ProtocolError &error) { check(error.code() == ProtocolErrorCode::UnknownCommand, "provider was destroyed before the command worker"); }
-            catch (const std::system_error &error) { check(error.code() == std::errc::operation_canceled, "wrong local cancellation"); }
-        }
-        SessionClient client;
-        check(rejects<std::logic_error>([&] { client.sendCommand("actor", Json::object()); }), "disconnected client accepted a command");
-    }
-
-    void localQueueBoundsAndDestruction()
-    {
-        ResourceManager resources;
-        PermissionManager permissions(resources, "host");
-        auto protocol = std::make_unique<ServerProtocol>(resources);
-        std::promise<void> started;
-        std::promise<void> release;
-        auto released = release.get_future().share();
-        std::atomic<int> calls{0};
-        protocol->add_command("block", Permission::ChangePermissions, [&](const auto &, const auto &)
-        {
-            ++calls;
-            started.set_value();
-            check(released.wait_for(4s) == std::future_status::ready, "local callback was not released");
-            return Json(42);
-        });
-        auto running = protocol->sendCommand("block", Json::object());
-        check(started.get_future().wait_for(2s) == std::future_status::ready, "local callback did not start");
-        std::vector<std::future<Json>> queued;
-        for (int i = 0; i < 64; ++i) queued.push_back(protocol->sendCommand("block", Json::object()));
-        check(rejects<std::length_error>([&] { protocol->sendCommand("block", Json::object()); }), "local queue is unbounded");
-        auto destroying = std::async(std::launch::async, [&] { protocol.reset(); });
-        const bool canceled = queued.front().wait_for(1s) == std::future_status::ready;
-        release.set_value();
-        check(destroying.wait_for(2s) == std::future_status::ready, "local worker did not join");
-        destroying.get();
-        check(canceled && completed(std::move(running)) == 42 && calls == 1, "destruction executed queued callbacks or canceled active work");
-        for (auto &result : queued)
-        {
-            check(rejects<std::system_error>([&] { completed(std::move(result)); }), "queued local command was not canceled");
-        }
+            try { completed(second.resumeSession("127.0.0.1", port, code, used)); }
+            catch (const ProtocolError &e) { return e.code() == ProtocolErrorCode::InvalidUserToken; }
+            return false;
+        };
+        check(invalid(token), "host token was reusable");
+        const auto unused = host.issueHostConnectionToken();
+        host.stopHosting();
+        host.startHosting("127.0.0.1", port);
+        check(invalid(unused), "unused token survived restart");
     }
 
     void realHostCommandsAndSerialization()
@@ -154,6 +117,8 @@ namespace
         host.protocol.add_command("no-flags", PermissionSet{}, [](const auto &context, const auto &) { return Json(*context.userId); });
         host.protocol.saveIdentityState(directory.path / "identities.json");
         const auto port = host.protocol.startHosting("127.0.0.1", 0);
+        SessionClient local;
+        test::connectHost(local, host.protocol, port);
         SessionClient client;
         const auto user = completed(client.joinSession("127.0.0.1", port, SessionCode(host.protocol.getSessionCode())));
         check(completed(client.sendCommand("echo", {{"value", 5}, {"userId", "actual-host"}, {"permissions", 63}})).at("actor") == user.userId, "payload changed the authenticated actor");
@@ -181,7 +146,7 @@ namespace
         for (int i = 0; i < 20; ++i)
         {
             requests.push_back(client.sendCommand("echo", {{"value", i}}));
-            requests.push_back(host.protocol.sendCommand("echo", {{"value", i}}));
+            requests.push_back(local.sendCommand("echo", {{"value", i}}));
         }
         std::set<int> seen;
         for (std::size_t i = 0; i < requests.size(); ++i)
@@ -207,7 +172,6 @@ namespace
         client.disconnectFromHost();
         check(rejects<std::logic_error>([&] { client.sendCommand("echo", {{"value", 1}}); }), "disconnected client reused the socket");
         host.protocol.stopHosting();
-        check(completed(host.protocol.sendCommand("echo", {{"value", 77}})).at("value") == 77, "network stop stopped local commands");
     }
 
     void hostingStopWithLocalAndRemoteWork()
@@ -230,7 +194,9 @@ namespace
         const SessionCode code(host.protocol.getSessionCode());
         SessionClient client;
         const auto user = completed(client.joinSession("127.0.0.1", port, code));
-        auto local = host.protocol.sendCommand("block", Json::object());
+        SessionClient hostClient;
+        test::connectHost(hostClient, host.protocol, port);
+        auto local = hostClient.sendCommand("block", Json::object());
         check(entered.get_future().wait_for(2s) == std::future_status::ready, "blocking command did not start");
         auto remote = client.sendCommand("remote", Json::object());
         std::this_thread::sleep_for(100ms);
@@ -240,13 +206,13 @@ namespace
         const auto status = stopped.wait_for(100ms);
         release.set_value();
         completed(std::move(stopped));
-        check(status == std::future_status::timeout && completed(std::move(local)) == true, "stop failed to wait for executing local work");
+        try { completed(std::move(local)); } catch (const std::system_error &) {}
+        check(status == std::future_status::timeout, "stop failed to wait for executing local work");
         check(remoteCalls == 0, "stop executed a remote request waiting behind local work");
         check(rejects<std::system_error>([&] { completed(std::move(remote)); }), "host stop left a pending client request");
-        check(completed(host.protocol.sendCommand("remote", Json::object())) == 1, "offline local execution failed after stop");
         host.protocol.startHosting("127.0.0.1", port);
         check(completed(client.resumeSession("127.0.0.1", port, code, *user.userToken)).userId == user.userId, "resume failed after stop");
-        check(completed(client.sendCommand("remote", Json::object())) == 2, "new connection reused an old pending request");
+        check(completed(client.sendCommand("remote", Json::object())) == 1, "new connection reused an old pending request");
     }
 
     bool ready(const detail::Socket &socket, bool writing, Clock::time_point deadline)
@@ -439,8 +405,7 @@ int main()
 {
     try
     {
-        localCommandsAndFacade();
-        localQueueBoundsAndDestruction();
+        hostAdmission();
         realHostCommandsAndSerialization();
         hostingStopWithLocalAndRemoteWork();
         outOfOrderAndFragmentedReplies();

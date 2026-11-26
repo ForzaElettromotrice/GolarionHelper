@@ -11,7 +11,7 @@ flowchart TB
     S --> RM[ResourceManager]
     S --> P[PermissionManager]
     PM --> H[Hosting e thread TCP]
-    PM --> L[LocalCommands e thread locale]
+    App --> CS
     CS[Session client] --> CP[ClientProtocol]
     CP --> C[ClientConnection e thread TCP]
     C -->|richieste JSON con requestId| H
@@ -21,7 +21,6 @@ flowchart TB
     CP --> CCB[Callback del registro client]
     CCB --> Snap[ClientSnapshot aggiornato]
     H -->|handleMessage e dispatch| PM
-    L -->|dispatch come hostId| PM
     P -->|pubblica permissions.*| RM
     PM -->|verifica identità e bit richiesti| RM
     RM --> P
@@ -94,7 +93,7 @@ sequenceDiagram
     participant P as PermissionManager
     participant CB as Callback
     C->>PM: sendCommand(nome, payload)
-    Note over C,PM: Client: richiesta TCP correlata; host: coda locale come hostId
+    Note over C,PM: Richiesta TCP correlata anche per il client locale dell’host
     PM->>PM: mutex esecuzione e contesto corrente
     PM->>RM: permissions.hasPermissions(userId, bit richiesti)
     RM->>P: verifica tutti i bit attuali
@@ -149,7 +148,7 @@ sequenceDiagram
     Note over App,PM: permessi, credenziali, codice e contatore ID restano in memoria
 ```
 
-Stop non drena le richieste bufferizzate e non garantisce l'invio dell'ultima risposta/notifica. I comandi locali restano disponibili senza hosting. La distruzione di Session chiude anche la coda locale, annulla il lavoro in attesa e attende un callback attivo prima di distruggere PermissionManager. Le operazioni di lifecycle e sendCommand dalla stessa callback sono rifiutate. sendEvent è consentita perché accoda senza prendere il mutex del lifecycle o scrivere sul socket. I callback client possono leggere getClientState senza bloccare il thread che sta eseguendo disconnectFromHost.
+Stop non drena le richieste bufferizzate e non garantisce l'invio dell'ultima risposta/notifica. La distruzione del server attende il thread di hosting prima di distruggere PermissionManager. Le operazioni di lifecycle e sendCommand dalla stessa callback sono rifiutate. sendEvent è consentita perché accoda senza prendere il mutex del lifecycle o scrivere sul socket. I callback client possono leggere getClientState senza bloccare il thread che sta eseguendo disconnectFromHost.
 
 ## Esempi JSON correnti
 
@@ -210,14 +209,14 @@ sequenceDiagram
             PM-->>Target: thread Hosting trasmette la notifica
             Target->>Target: processMessages, dispatch e updatePermissions
         end
-        PM-->>App: risultato tramite risposta correlata o future locale
+        PM-->>App: risultato tramite risposta correlata
     else Scrittura fallita
         F-->>P: errore
         P-->>App: COMMAND_FAILED, stato precedente conservato
     end
 ```
 
-I callback di commit non richiamano i manager. La stessa operazione funziona offline sull'host dopo aver configurato un archivio. Solo il bersaglio riceve la notifica; chi esegue il comando riceve il risultato ordinario. Non esiste un ordine globale di consegna fra due connessioni diverse: il diagramma indica la dipendenza dal commit. Un bersaglio offline riceve il valore corrente al resume. Gli errori di autorizzazione del dominio diventano FORBIDDEN, distinti dai payload errati INVALID_REQUEST. Le modifiche dirette ai manager restano operazioni fidate in memoria, senza salvataggio o evento automatico.
+I callback di commit non richiamano i manager. Solo il bersaglio riceve la notifica; chi esegue il comando riceve il risultato ordinario. Non esiste un ordine globale di consegna fra due connessioni diverse: il diagramma indica la dipendenza dal commit. Un bersaglio offline riceve il valore corrente al resume. Gli errori di autorizzazione del dominio diventano FORBIDDEN, distinti dai payload errati INVALID_REQUEST. Le modifiche dirette ai manager restano operazioni fidate in memoria, senza salvataggio o evento automatico.
 
 ## Ricezione di una notifica e convivenza con le risposte
 
@@ -262,7 +261,7 @@ Risposte e notifiche possono arrivare nello stesso blocco TCP o in frammenti. Gl
 | Collegamento client | ClientProtocol::startClient, ClientConnection::start/run/connect/sendRequest/receiveReply | client_protocol.cpp, client_connection.cpp: connessione, ammissione e future. |
 | Ammissione sull'host | Hosting::acceptConnection/processInput, registerConnection, handleMessage/handleCommand, makeContext/dispatch, admitNewUser/resumeUser, bindUser | hosting.cpp, admission.cpp, server_protocol.cpp: contesto, codice/token, persistenza e binding. |
 | Richiesta remota | ClientConnection::sendCommand/monitor, Hosting::receive/processInput, ServerProtocol::handleCommand/dispatch | client_connection.cpp, hosting.cpp, admission.cpp: richiesta correlata e verifica corrente dell'attore. |
-| Richiesta locale dell'host | ServerProtocol::sendCommand, LocalCommands::submit/run, dispatch | server_protocol.cpp, local_commands.cpp: coda separata, esecuzione come hostId senza TCP. |
+| Richiesta locale dell'host | SessionClient::resumeSession, sendCommand | Identità host tramite token monouso in memoria; stessa connessione TCP su loopback. |
 | Mutazione persistente | changePermissions, identity.updateUserPermissions, ServerProtocol::updateUserPermissions, updatePermissionsWithCommit/applyPresetWithCommit, writeIdentityState | permission_commands.cpp, server_protocol.cpp, permission_manager.cpp, identity_storage.cpp: commit prima dello stato confermato e della notifica. |
 | Risposta al comando | makeCommandReply/makeRejection, encodeMessage, Hosting::send, ClientConnection::processMessages | admission.cpp, protocol.cpp, hosting.cpp, client_connection.cpp: risultato/errore e completamento del future corretto. |
 | Notifica mirata | ServerProtocol::sendEvent/takeEvent, Hosting::prepareOutput/send, ClientConnection::processMessages, dispatch | server_protocol.cpp, hosting.cpp, client_connection.cpp: stessa rete, percorso di ricezione distinto dalle risposte. |

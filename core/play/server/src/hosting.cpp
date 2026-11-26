@@ -86,7 +86,9 @@ namespace golarion::play
 
         void acceptConnection()
         {
-            Socket socket(::accept(listener.get(), nullptr, nullptr));
+            sockaddr_in peer{};
+            AddressLength length = sizeof(peer);
+            Socket socket(::accept(listener.get(), reinterpret_cast<sockaddr *>(&peer), &length));
             if (socket.get() == InvalidSocket)
             {
                 if (retryable(socketError())) return;
@@ -96,7 +98,7 @@ namespace golarion::play
             try { configureSocket(socket.get()); }
             catch (const std::exception &) { return; }
             const NativeSocket handle = socket.get();
-            const ConnectionId id = owner.registerConnection();
+            const ConnectionId id = owner.registerConnection((ntohl(peer.sin_addr.s_addr) >> 24) == 127);
             try { connections.emplace(handle, Connection{std::move(socket), id, {}, {}}); }
             catch (...)
             {
@@ -109,7 +111,7 @@ namespace golarion::play
         {
             const std::lock_guard lock(owner.connectionsMutex_);
             const auto logical = owner.connections_.find(connection.id);
-            return logical != owner.connections_.end() && !owner.eventQueueOverflowed(connection.id) && (logical->second || Clock::now() - connection.acceptedAt < std::chrono::seconds(5));
+            return logical != owner.connections_.end() && !owner.eventQueueOverflowed(connection.id) && (logical->second.userId || Clock::now() - connection.acceptedAt < std::chrono::seconds(5));
         }
 
         void processInput(Connection &connection)

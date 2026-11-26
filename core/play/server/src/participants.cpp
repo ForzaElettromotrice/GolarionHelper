@@ -30,7 +30,7 @@ namespace golarion::play
         for (const auto &[userId, connectionId] : activeConnections_)
         {
             const auto connection = connections_.find(connectionId);
-            if (userId != hostId && connection != connections_.end() && connection->second == userId)
+            if (userId != hostId && connection != connections_.end() && connection->second.userId == userId)
                 result.participants.push_back({userId, false, displayNameFor(userId, "Giocatore")});
         }
         std::sort(result.participants.begin() + 1, result.participants.end(), [](const auto &left, const auto &right) { return left.userId < right.userId; });

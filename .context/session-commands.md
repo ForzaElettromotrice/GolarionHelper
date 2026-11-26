@@ -32,19 +32,19 @@ Results may be objects, arrays, scalars or null. Error replies use request.rejec
 
 ## Asynchronous sendCommand
 
-Session::sendCommand(std::string, json) delegates and returns future<json>. Names are normalized and payloads must be objects. Invalid arguments, inactive client admission and queue limits reject synchronously; execution/transport/rejection errors complete the future exceptionally.
+SessionClient::sendCommand(std::string, json) delegates and returns future<json>. Names are normalized and payloads must be objects. Invalid arguments, inactive client admission and queue limits reject synchronously; execution/transport/rejection errors complete the future exceptionally.
 
 - ClientConnection queues at most 64 outstanding requests, allocates unique client-N IDs through ClientProtocol, handles partial I/O and correlates accepted/rejected outcomes, including out-of-order replies. Each request has five seconds from submission; timeout or connection loss fails remaining promises without replay. See session-client.md.
-- Host LocalCommands lazily starts a FIFO worker, capped at 64 waiting requests. It gets the immutable host through permissions.getHostId and dispatches under the common execution mutex. It works before hosting and after stop, without a loopback socket or fabricated connection.
+- The host uses the same client API over loopback. The desktop passes a single-use, memory-only token from the running server to the client for `session.resume`. Only a loopback peer with that token can claim the existing host identity. Stop invalidates any unused token.
 - Same-manager callbacks cannot call sendCommand, avoiding host-actor escalation and worker deadlock. Nested direct dispatch with the original context and command registration remain supported.
 
 ## Synchronization and Stop
 
-Remote callbacks run on Hosting, host async callbacks on LocalCommands, and direct dispatch on its caller. One recursive execution mutex serializes them with registration, binding and close, preserving mutable callback state. Permission lookup is fresh for every request; changes affect subsequent executions, not a callback already begun. Independent provider calls retain their own synchronization rules.
+All network command callbacks run on Hosting; direct dispatch runs on its caller. One recursive execution mutex serializes them with registration, binding and close, preserving mutable callback state. Permission lookup is fresh for every request; changes affect subsequent executions, not a callback already begun. Independent provider calls retain their own synchronization rules.
 
-Remote stop checks run before buffered peers, before/after select and at processInput entry. Immediately before handling a message the worker acquires the execution mutex and rechecks stop. Requests waiting for that mutex are discarded after stop; a request past the checkpoint may finish. Stop closes remaining buffers and peers rather than draining them. Final reply delivery is not guaranteed. Local commands remain usable independently of hosting.
+Remote stop checks run before buffered peers, before/after select and at processInput entry. Immediately before handling a message the worker acquires the execution mutex and rechecks stop. Requests waiting for that mutex are discarded after stop; a request past the checkpoint may finish. Stop closes remaining buffers and peers rather than draining them. Final reply delivery is not guaranteed.
 
-Lifecycle/load calls reject callback reentry before locks. Session destruction shuts networking down and cancels/joins local work before permission providers are destroyed; an active local callback finishes. Providers must outlive both workers, even offline. Registry provider mutation is not concurrent with execution. No socket or permission mutex is held across arbitrary command callbacks.
+Lifecycle/load calls reject callback reentry before locks. Session destruction joins the hosting worker before destroying permission providers. Registry provider mutation is not concurrent with execution. No socket or permission mutex is held across arbitrary command callbacks.
 
 ## Verification
 

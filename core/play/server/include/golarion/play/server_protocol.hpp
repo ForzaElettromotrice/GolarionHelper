@@ -6,6 +6,7 @@
 #include "golarion/play/resource_manager.hpp"
 #include "golarion/play/permission_manager.hpp"
 #include "golarion/play/session_code.hpp"
+#include "golarion/play/user_token.hpp"
 #include "golarion/play/command_context.hpp"
 
 #include <nlohmann/json.hpp>
@@ -15,7 +16,6 @@
 #include <deque>
 #include <filesystem>
 #include <functional>
-#include <future>
 #include <memory>
 #include <mutex>
 #include <optional>
@@ -45,7 +45,7 @@ namespace golarion::play
 
         void add_command(std::string_view name, CommandRequirements requirements, CommandCallback callback);
         nlohmann::json dispatch(std::string_view name, const CommandContext &context, const nlohmann::json &payload) const;
-        std::future<nlohmann::json> sendCommand(std::string name, nlohmann::json payload);
+        UserToken issueHostConnectionToken();
         bool sendEvent(const UserId &userId, std::string_view name, const nlohmann::json &payload);
 
         std::uint16_t startHosting(std::string_view bindAddress, std::uint16_t port);
@@ -79,9 +79,9 @@ namespace golarion::play
         IdentitySaveData identityDataLocked() const;
         void setHostDisplayName(std::string displayName);
         bool commitDisplayNameLocked(const UserId &userId, std::string displayName);
-        std::optional<ConnectionId> bindUser(ConnectionId connectionId, const UserId &userId, std::optional<std::string> displayName);
+        std::optional<ConnectionId> bindUser(ConnectionId connectionId, const UserId &userId, std::optional<std::string> displayName, bool alreadyPresent = false);
+        ConnectionId registerConnection(bool loopback);
         class Hosting;
-        class LocalCommands;
         struct MessageResult;
         struct AdmissionResult;
 
@@ -122,7 +122,8 @@ namespace golarion::play
         mutable std::recursive_mutex executionMutex_;
         std::unordered_map<std::string, Command> commands_;
         mutable std::mutex connectionsMutex_;
-        std::unordered_map<ConnectionId, std::optional<UserId>> connections_;
+        struct Peer { std::optional<UserId> userId; bool loopback; };
+        std::unordered_map<ConnectionId, Peer> connections_;
         std::unordered_map<UserId, ConnectionId> activeConnections_;
         ConnectionId nextConnectionId_ = 1;
         std::uint64_t participantsRevision_ = 0; // Protected by executionMutex_; no separate participant registry.
@@ -131,8 +132,7 @@ namespace golarion::play
         bool acceptingEvents_ = false;
         mutable std::mutex hostingMutex_;
         std::unique_ptr<Hosting> hosting_;
-        std::mutex localCommandsMutex_;
-        std::unique_ptr<LocalCommands> localCommands_;
+        std::optional<UserToken> hostConnectionToken_; // Protected by executionMutex_; never archived.
         mutable std::mutex identityMutex_;
         std::unique_ptr<detail::UserTokens> userTokens_;
         std::optional<std::filesystem::path> identityArchivePath_;

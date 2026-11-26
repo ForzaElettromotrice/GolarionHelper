@@ -54,7 +54,7 @@ namespace golarion::play
         };
     }
 
-    std::future<nlohmann::json> SessionServer::sendCommand(std::string name, nlohmann::json payload) { return protocolManager_.sendCommand(std::move(name), std::move(payload)); }
+    UserToken SessionServer::issueHostConnectionToken() { return protocolManager_.issueHostConnectionToken(); }
     void SessionServer::add_command(std::string_view name, CommandRequirements requirements, ServerProtocol::CommandCallback callback) { protocolManager_.add_command(name, requirements, std::move(callback)); }
     bool SessionServer::sendEvent(const UserId &userId, std::string_view name, const nlohmann::json &payload) { return protocolManager_.sendEvent(userId, name, payload); }
 

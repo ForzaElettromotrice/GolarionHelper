@@ -401,7 +401,7 @@ void SessionController::startHosting(int port, const QString &displayName)
     try
     {
         hostingReply_ = std::async(std::launch::async, &SessionController::launchHosting,
-            campaignDirectory_, hostedCampaigns_.at(*openHostedCampaign_).toData(), port, *name);
+            std::ref(session_), campaignDirectory_, hostedCampaigns_.at(*openHostedCampaign_).toData(), port, *name);
     }
     catch (const std::exception &)
     {
@@ -412,7 +412,7 @@ void SessionController::startHosting(int port, const QString &displayName)
     emit busyChanged();
 }
 
-SessionController::Hosting SessionController::launchHosting(const QString &campaignDirectory, const HostedCampaignData &campaign, int port, const std::string &displayName)
+SessionController::Hosting SessionController::launchHosting(SessionClient &client, const QString &campaignDirectory, const HostedCampaignData &campaign, int port, const std::string &displayName)
 {
     const QDir directory(QDir(campaignDirectory).filePath(QString::fromStdString(campaign.id)));
     Hosting result;
@@ -453,8 +453,8 @@ SessionController::Hosting SessionController::launchHosting(const QString &campa
     {
         try
         {
-            result.session->startHosting("0.0.0.0", static_cast<std::uint16_t>(port));
-            result.port = *result.session->toView().listeningPort;
+            result.port = result.session->startHosting("0.0.0.0", static_cast<std::uint16_t>(port));
+            client.resumeSession("127.0.0.1", result.port, SessionCode(result.session->getSessionCode()), result.session->issueHostConnectionToken()).get();
         }
         catch (const std::exception &)
         {
@@ -463,6 +463,7 @@ SessionController::Hosting SessionController::launchHosting(const QString &campa
     }
     if (!result.error.isEmpty())
     {
+        client.disconnectFromHost();
         result.session.reset();
         result.legacyLock.reset();
         result.lock.reset();
@@ -483,7 +484,8 @@ void SessionController::pollHosting()
         if (result.error.isEmpty())
         {
             hosting_.emplace(std::move(result));
-            updateParticipants(hosting_->session->toView().participants, std::nullopt, true);
+            const auto client = session_.toView();
+            if (client.participants) updateParticipants(*client.participants, client.userId, true);
             pollTimer_.start();
             emit hostingChanged();
         }
@@ -505,6 +507,7 @@ void SessionController::stopHosting()
     pollTimer_.stop();
     permissionsReply_ = {};
     clearError();
+    session_.disconnectFromHost();
     try { hosting_->session->stopHosting(); }
     catch (const std::exception &) { setErrorMessage(tr("Si è verificato un errore durante l’arresto dell’host.")); }
     hosting_.reset();
@@ -597,19 +600,14 @@ void SessionController::pollSession()
         pollHosting();
         return;
     }
-    if (hosting_)
-    {
-        updateParticipants(hosting_->session->toView().participants, std::nullopt, true);
-        pollParticipantPermissions();
-        return;
-    }
     if (!pending_)
     {
         const auto client = session_.toView();
         if (client.state == ClientConnectionState::Disconnected)
         {
+            if (hosting_) stopHosting();
+            else disconnectSession();
             setErrorMessage(tr("La connessione con l’host è stata interrotta."));
-            disconnectSession();
         }
         else
         {
@@ -706,7 +704,7 @@ void SessionController::updateParticipants(const ParticipantsSnapshot &snapshot,
     QVariantList rows;
     for (const auto &participant : snapshot.participants)
     {
-        const bool isSelf = hosting_ ? participant.isHost : localUser == participant.userId;
+        const bool isSelf = localUser == participant.userId;
         rows.append(QVariantMap{
             {QStringLiteral("userId"), QString::fromStdString(participant.userId)},
             {QStringLiteral("displayName"), QString::fromStdString(participant.displayName)},
@@ -751,7 +749,7 @@ void SessionController::requestParticipantPermissions(nlohmann::json payload, bo
     try
     {
         const auto command = saving ? "permissions.update" : "permissions.get";
-        permissionsReply_ = hosting_ ? hosting_->session->sendCommand(command, std::move(payload)) : session_.sendCommand(command, std::move(payload));
+        permissionsReply_ = session_.sendCommand(command, std::move(payload));
         savingPermissions_ = saving;
     }
     catch (const std::exception &)

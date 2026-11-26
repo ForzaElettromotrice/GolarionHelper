@@ -38,7 +38,7 @@ The desktop app creates local campaigns, hosts and joins them with identity-pres
 - Each session owns a ResourceManager and its role-specific protocol; only hosts initialize PermissionManager and SheetManager. All workers are stopped/joined before provider teardown.
 - Accepted sockets start pending; registered NoAuth join/resume callbacks verify code/token, persist/register Player flags or restore current masks, and retain admitted peers. Successful generic public commands do not extend pending expiry. Ordinary admitted errors keep sockets open; framing/pending failures close them.
 - Connection/lifecycle state is synchronized. Stop joins the network worker and releases peers/bindings while retaining permissions, tokens and the ID counter. Local commands remain available; shutdown joins them before provider destruction.
-- Native admission and host/client sendCommand are implemented. The host queues local dispatch even offline; an admitted client sends correlated requests with bounded completion. User events and reconnect policy remain separate.
+- The hosting application starts a server and admits its own client over loopback using a single-use in-memory token. Both host and guests use SessionClient for all requests and notifications.
 - Seventeen native play suites pass through the root CMake build on Windows, including RPC transactions, targeted live events, mixed replies, queue limits, full host reconstruction and prior stop/identity regressions. Outputs are build/core/play; POSIX remains unverified.
 
 ## Desktop Hosted Campaigns

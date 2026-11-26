@@ -12,7 +12,7 @@ SessionServer is the host-only API. SessionClient() constructs the client with o
 | resumeSession(ip, port, SessionCode, UserToken) | Same transport with existing credential; returns current identity/mask without a new token or new-user fallback. |
 | disconnectFromHost() | Cancels and joins the worker; idempotent while disconnected. |
 | getClientState() const | Returns a synchronized detached ClientSnapshot, without credentials. |
-| sendCommand(name, json) | Client requires completed admission and queues a correlated command; returns future<json>. Host queues trusted local dispatch, including offline. |
+| sendCommand(name, json) | Client requires completed admission and queues a correlated command; returns future<json>. The host uses the same client via loopback. |
 | on_event(name, callback) | Client registers an incoming host notification through the client event registry. Host registers commands separately. |
 | sendEvent(userId, name, json) | Host queues a targeted notification without a response future. Not exposed by the client facade. |
 
