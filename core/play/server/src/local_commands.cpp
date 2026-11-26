@@ -10,7 +10,7 @@
 
 namespace golarion::play
 {
-    struct ProtocolManager::LocalCommands::Impl
+    struct ServerProtocol::LocalCommands::Impl
     {
         struct Request
         {
@@ -19,14 +19,14 @@ namespace golarion::play
             std::promise<nlohmann::json> result;
         };
 
-        ProtocolManager &owner;
+        ServerProtocol &owner;
         std::mutex mutex;
         std::condition_variable ready;
         std::deque<Request> requests;
         bool stopping = false;
         std::thread worker;
 
-        explicit Impl(ProtocolManager &manager) : owner(manager), worker([this] { run(); }) {}
+        explicit Impl(ServerProtocol &manager) : owner(manager), worker([this] { run(); }) {}
         ~Impl() { stop(); }
 
         static std::exception_ptr canceled()
@@ -90,8 +90,8 @@ namespace golarion::play
         }
     };
 
-    ProtocolManager::LocalCommands::LocalCommands(ProtocolManager &owner) : impl_(std::make_unique<Impl>(owner)) {}
-    ProtocolManager::LocalCommands::~LocalCommands() = default;
-    std::future<nlohmann::json> ProtocolManager::LocalCommands::submit(std::string name, nlohmann::json payload) { return impl_->submit(std::move(name), std::move(payload)); }
-    void ProtocolManager::LocalCommands::stop() { impl_->stop(); }
+    ServerProtocol::LocalCommands::LocalCommands(ServerProtocol &owner) : impl_(std::make_unique<Impl>(owner)) {}
+    ServerProtocol::LocalCommands::~LocalCommands() = default;
+    std::future<nlohmann::json> ServerProtocol::LocalCommands::submit(std::string name, nlohmann::json payload) { return impl_->submit(std::move(name), std::move(payload)); }
+    void ServerProtocol::LocalCommands::stop() { impl_->stop(); }
 }

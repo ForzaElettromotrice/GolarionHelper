@@ -1,17 +1,17 @@
 #pragma once
 
-#include "golarion/play/protocol_manager.hpp"
+#include "golarion/play/server_protocol.hpp"
 #include "protocol.hpp"
 
 namespace golarion::play
 {
-    struct ProtocolManager::MessageResult
+    struct ServerProtocol::MessageResult
     {
         detail::ProtocolMessage reply;
         bool closeAfterReply = false;
     };
 
-    struct ProtocolManager::AdmissionResult
+    struct ServerProtocol::AdmissionResult
     {
         UserId userId;
         PermissionSet permissions;

@@ -31,7 +31,7 @@ namespace
 
 namespace golarion::play
 {
-    detail::ProtocolMessage ProtocolManager::makeRejection(const std::optional<std::string> &requestId, ProtocolErrorCode error)
+    detail::ProtocolMessage ServerProtocol::makeRejection(const std::optional<std::string> &requestId, ProtocolErrorCode error)
     {
         std::string_view code;
         std::string_view message;
@@ -50,14 +50,14 @@ namespace golarion::play
         return {"request.rejected", requestId, Json{{"code", code}, {"message", message}}};
     }
 
-    ProtocolManager::MessageResult ProtocolManager::handleMessage(ConnectionId connectionId, const detail::ProtocolMessage &message)
+    ServerProtocol::MessageResult ServerProtocol::handleMessage(ConnectionId connectionId, const detail::ProtocolMessage &message)
     {
         const std::lock_guard executionLock(executionMutex_);
         if (!validRequestId(message.requestId)) return {makeRejection(std::nullopt, ProtocolErrorCode::InvalidRequest), true};
         return handleCommand(connectionId, message);
     }
 
-    ProtocolManager::MessageResult ProtocolManager::handleCommand(ConnectionId connectionId, const detail::ProtocolMessage &message)
+    ServerProtocol::MessageResult ServerProtocol::handleCommand(ConnectionId connectionId, const detail::ProtocolMessage &message)
     {
         const std::lock_guard executionLock(executionMutex_);
         bool closeOnFailure = true;
@@ -85,9 +85,9 @@ namespace golarion::play
         }
     }
 
-    void ProtocolManager::registerAdmissionCommands()
+    void ServerProtocol::registerAdmissionCommands()
     {
-        add_command("session.join", Permission::Any, [this](const CommandContext &context, const Json &payload)
+        add_command("session.join", Permission::NoAuth, [this](const CommandContext &context, const Json &payload)
         {
             const auto connectionId = requirePendingAdmission(context, payload, false);
             auto name = normalizeDisplayName(payload.at("displayName").get_ref<const std::string &>());
@@ -95,7 +95,7 @@ namespace golarion::play
             catch (const ProtocolError &) { throw; }
             catch (...) { throw ProtocolError(ProtocolErrorCode::AdmissionFailed, "cannot create and persist the admitted identity"); }
         });
-        add_command("session.resume", Permission::Any, [this](const CommandContext &context, const Json &payload)
+        add_command("session.resume", Permission::NoAuth, [this](const CommandContext &context, const Json &payload)
         {
             const auto connectionId = requirePendingAdmission(context, payload, true);
             std::optional<std::string> name;
@@ -111,7 +111,7 @@ namespace golarion::play
         });
     }
 
-    ConnectionId ProtocolManager::requirePendingAdmission(const CommandContext &context, const Json &payload, bool resume) const
+    ConnectionId ServerProtocol::requirePendingAdmission(const CommandContext &context, const Json &payload, bool resume) const
     {
         if (!context.connectionId) throw ProtocolError(ProtocolErrorCode::InvalidRequest, "admission requires a network connection");
         if (context.userId) throw ProtocolError(ProtocolErrorCode::AlreadyAdmitted, "connection already has an admitted identity");
@@ -123,12 +123,12 @@ namespace golarion::play
         return *context.connectionId;
     }
 
-    detail::ProtocolMessage ProtocolManager::makeCommandReply(const std::optional<std::string> &requestId, Json result)
+    detail::ProtocolMessage ServerProtocol::makeCommandReply(const std::optional<std::string> &requestId, Json result)
     {
         return {"request.accepted", requestId, Json{{"result", std::move(result)}}};
     }
 
-    ProtocolManager::AdmissionResult ProtocolManager::admitNewUser(ConnectionId connectionId, std::string displayName)
+    ServerProtocol::AdmissionResult ServerProtocol::admitNewUser(ConnectionId connectionId, std::string displayName)
     {
         const std::lock_guard executionLock(executionMutex_);
         std::unique_lock identityLock(identityMutex_);
@@ -175,7 +175,7 @@ namespace golarion::play
         return result;
     }
 
-    std::optional<ProtocolManager::AdmissionResult> ProtocolManager::resumeUser(ConnectionId connectionId, std::string_view token, std::optional<std::string> displayName)
+    std::optional<ServerProtocol::AdmissionResult> ServerProtocol::resumeUser(ConnectionId connectionId, std::string_view token, std::optional<std::string> displayName)
     {
         const auto userId = resolveUserToken(token);
         if (!userId) return std::nullopt;
@@ -184,7 +184,7 @@ namespace golarion::play
         return result;
     }
 
-    Json ProtocolManager::makeAdmissionResult(const AdmissionResult &result)
+    Json ServerProtocol::makeAdmissionResult(const AdmissionResult &result)
     {
         Json payload{{"userId", result.userId}, {"permissions", result.permissions.toMask()}};
         if (result.userToken) payload["userToken"] = *result.userToken;

@@ -1,6 +1,7 @@
 #pragma once
 
-#include "golarion/play/session.hpp"
+#include "golarion/play/session_client.hpp"
+#include "golarion/play/session_server.hpp"
 #include "golarion/play/campaign.hpp"
 
 #include <QLockFile>
@@ -90,7 +91,7 @@ private:
         // Shut down the session before releasing the archive lock.
         std::unique_ptr<QLockFile> lock;
         std::unique_ptr<QLockFile> legacyLock;
-        std::unique_ptr<golarion::play::Session> session;
+        std::unique_ptr<golarion::play::SessionServer> session;
         QStringList endpoints;
         QString error;
         int port = 0;
@@ -122,7 +123,7 @@ private:
     std::future<nlohmann::json> infoReply_;
     std::future<nlohmann::json> permissionsReply_;
     bool savingPermissions_ = false;
-    golarion::play::Session session_ = golarion::play::Session::createClient();
+    golarion::play::SessionClient session_;
     QTimer pollTimer_;
     std::optional<int> openHostedCampaign_;
     QString openInviteCode_;

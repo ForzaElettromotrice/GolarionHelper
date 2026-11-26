@@ -1,6 +1,7 @@
 #include "socket_support.hpp"
 #include "protocol.hpp"
-#include "golarion/play/session.hpp"
+#include "golarion/play/session_client.hpp"
+#include "golarion/play/session_server.hpp"
 
 #include <array>
 #include <chrono>
@@ -70,9 +71,9 @@ namespace
         return result.at("permissions").get<std::uint64_t>();
     }
 
-    Json setPayload(const UserId &target, Permission permission, bool enabled)
+    Json updatePayload(const UserId &target, Permission permission, bool enabled)
     {
-        return {{"targetUserId", target}, {"permission", static_cast<std::uint64_t>(permission)}, {"enabled", enabled}};
+        return {{"targetUserId", target}, {"grant", enabled ? static_cast<std::uint64_t>(permission) : 0}, {"revoke", enabled ? 0 : static_cast<std::uint64_t>(permission)}};
     }
 
     std::uint64_t savedMask(const fs::path &path, const UserId &userId)
@@ -88,33 +89,33 @@ namespace
         Directory directory;
         const auto archive = directory.path / "identities.json";
         {
-            auto host = Session::createHost("host");
+            SessionServer host("host");
             host.registerUser("alice");
             check(mask(completed(host.sendCommand("permissions.get", Json::object())), "host") == 63, "own read requires persistence");
-            rejected(host.sendCommand("permissions.setPermission", setPayload("alice", Permission::Permission5, true)), ProtocolErrorCode::CommandFailed);
+            rejected(host.sendCommand("permissions.update", updatePayload("alice", Permission::Permission5, true)), ProtocolErrorCode::CommandFailed);
             check(mask(completed(host.sendCommand("permissions.get", {{"targetUserId", "alice"}})), "alice") == 7, "missing archive changed memory");
             host.saveIdentityState(archive);
-            check(mask(completed(host.sendCommand("permissions.setPermission", setPayload("alice", Permission::Permission5, true))), "alice") == 23, "local mutation returned wrong mask");
+            check(mask(completed(host.sendCommand("permissions.update", updatePayload("alice", Permission::Permission5, true))), "alice") == 23, "local mutation returned wrong mask");
             check(savedMask(archive, "alice") == 23, "local mutation did not autosave");
             host.stopHosting();
             check(mask(completed(host.sendCommand("permissions.applyPreset", {{"targetUserId", "alice"}, {"preset", "master"}})), "alice") == 31, "offline preset failed");
             check(savedMask(archive, "alice") == 31, "offline preset did not autosave");
-            rejected(host.sendCommand("permissions.setPermission", setPayload("host", Permission::Permission1, true)), ProtocolErrorCode::Forbidden);
+            rejected(host.sendCommand("permissions.update", updatePayload("host", Permission::Permission1, true)), ProtocolErrorCode::Forbidden);
             rejected(host.sendCommand("permissions.applyPreset", {{"targetUserId", "host"}, {"preset", "master"}}), ProtocolErrorCode::Forbidden);
         }
-        auto reopened = Session::createHost("host");
+        SessionServer reopened("host");
         reopened.loadIdentityState(archive);
         check(mask(completed(reopened.sendCommand("permissions.get", {{"targetUserId", "alice"}})), "alice") == 31, "local mutation was lost on restart");
 
         ResourceManager resources;
         resources.registerFeature<int()>("identity.updateUserPermissions", [] { return 9; });
-        check(rejects([&] { ProtocolManager failed(resources); }), "identity service collision accepted");
+        check(rejects([&] { ServerProtocol failed(resources); }), "identity service collision accepted");
         check(resources.invoke<int()>("identity.updateUserPermissions") == 9, "rollback removed another identity service");
         resources.registerFeature<void()>("protocol.add_command", [] {});
         resources.unregisterFeature("protocol.add_command");
         resources.unregisterFeature("identity.updateUserPermissions");
         {
-            ProtocolManager protocol(resources);
+            ServerProtocol protocol(resources);
             PermissionManager permissions(resources, "host");
             permissions.registerCommands();
             check(rejects([&] { permissions.registerCommands(); }), "duplicate permission command registration accepted");
@@ -128,30 +129,14 @@ namespace
     {
         Directory directory;
         const auto archive = directory.path / "identities.json";
-        auto host = Session::createHost("host");
+        SessionServer host("host");
         host.registerUser("alice");
         host.saveIdentityState(archive);
         const auto original = readText(archive);
-        std::vector<Json> invalid;
-        for (const auto &value : std::array<Json, 10>{0, 3, 64, -1, 16.0, true, "16", nullptr, Json::object(), Json::array()})
-        {
-            auto payload = setPayload("alice", Permission::Permission5, true);
-            payload["permission"] = value;
-            invalid.push_back(std::move(payload));
-        }
-        for (const auto &value : std::array<Json, 4>{0, "true", nullptr, Json::array()})
-        {
-            auto payload = setPayload("alice", Permission::Permission5, true);
-            payload["enabled"] = value;
-            invalid.push_back(std::move(payload));
-        }
-        invalid.push_back({{"targetUserId", "alice"}, {"permission", 16}});
-        auto spoofed = setPayload("alice", Permission::Permission5, true);
-        spoofed["actorId"] = "host";
-        invalid.push_back(spoofed);
-        invalid.push_back(setPayload("bad id", Permission::Permission5, true));
-        invalid.push_back(setPayload("missing", Permission::Permission5, true));
-        for (const auto &payload : invalid) rejected(host.sendCommand("permissions.setPermission", payload), ProtocolErrorCode::InvalidRequest);
+        rejected(host.sendCommand("permissions.setPermission", {{"targetUserId", "alice"}, {"permission", 16}, {"enabled", true}}), ProtocolErrorCode::UnknownCommand);
+        rejected(host.sendCommand("permissions.update", {{"targetUserId", "alice"}, {"permission", 16}, {"enabled", true}}), ProtocolErrorCode::InvalidRequest);
+        rejected(host.sendCommand("permissions.update", updatePayload("bad id", Permission::Permission5, true)), ProtocolErrorCode::InvalidRequest);
+        rejected(host.sendCommand("permissions.update", updatePayload("missing", Permission::Permission5, true)), ProtocolErrorCode::InvalidRequest);
         for (const auto &preset : std::array<Json, 6>{"Master", "unknown", 1, true, nullptr, Json::array()})
         {
             rejected(host.sendCommand("permissions.applyPreset", {{"targetUserId", "alice"}, {"preset", preset}}), ProtocolErrorCode::InvalidRequest);
@@ -207,41 +192,41 @@ namespace
     {
         Directory directory;
         const auto archive = directory.path / "identities.json";
-        std::optional<Session> host(std::in_place, "host");
+        std::optional<SessionServer> host(std::in_place, "host");
         host->saveIdentityState(archive);
         auto port = host->startHosting("127.0.0.1", 0);
         auto code = SessionCode(host->getSessionCode());
         pendingPeerCannotReadPermissions(port);
-        auto delegate = Session::createClient();
-        auto target = Session::createClient();
-        auto player = Session::createClient();
+        SessionClient delegate;
+        SessionClient target;
+        SessionClient player;
         const auto a = completed(delegate.joinSession("127.0.0.1", port, code));
         const auto b = completed(target.joinSession("127.0.0.1", port, code));
         const auto c = completed(player.joinSession("127.0.0.1", port, code));
-        const auto read = [&](Session &client, const UserId &id) { return client.sendCommand("permissions.get", {{"targetUserId", id}}); };
+        const auto read = [&](SessionClient &client, const UserId &id) { return client.sendCommand("permissions.get", {{"targetUserId", id}}); };
         check(mask(completed(delegate.sendCommand("permissions.get", Json::object())), a.userId) == 7, "own read failed");
         rejected(read(player, a.userId), ProtocolErrorCode::Forbidden);
-        rejected(player.sendCommand("permissions.setPermission", setPayload(b.userId, Permission::Permission5, true)), ProtocolErrorCode::Forbidden);
-        completed(host->sendCommand("permissions.setPermission", setPayload(a.userId, Permission::ChangePermissions, true)));
+        rejected(player.sendCommand("permissions.update", updatePayload(b.userId, Permission::Permission5, true)), ProtocolErrorCode::Forbidden);
+        completed(host->sendCommand("permissions.update", updatePayload(a.userId, Permission::ChangePermissions, true)));
         check(mask(completed(read(delegate, a.userId)), a.userId) == 39 && savedMask(archive, a.userId) == 39, "delegation was not effective and saved");
         check(delegate.getClientState().state == ClientConnectionState::Connected, "permission synchronization disconnected the delegate");
         check(mask(completed(read(delegate, b.userId)), b.userId) == 7, "delegate cannot read another user's permissions");
         completed(host->sendCommand("permissions.applyPreset", {{"targetUserId", b.userId}, {"preset", "spectator"}}));
-        completed(host->sendCommand("permissions.setPermission", setPayload(b.userId, Permission::Permission1, false)));
+        completed(host->sendCommand("permissions.update", updatePayload(b.userId, Permission::Permission1, false)));
         check(mask(completed(target.sendCommand("permissions.get", Json::object())), b.userId) == 0, "authenticated zero-mask user cannot read its permissions");
-        check(mask(completed(delegate.sendCommand("permissions.setPermission", setPayload(b.userId, Permission::Permission5, true))), b.userId) == 16, "delegate mutation failed");
+        check(mask(completed(delegate.sendCommand("permissions.update", updatePayload(b.userId, Permission::Permission5, true))), b.userId) == 16, "delegate mutation failed");
         completed(delegate.sendCommand("permissions.applyPreset", {{"targetUserId", b.userId}, {"preset", "master"}}));
         check(savedMask(archive, b.userId) == 31, "remote preset was not persisted automatically");
-        rejected(delegate.sendCommand("permissions.setPermission", setPayload(a.userId, Permission::Permission5, true)), ProtocolErrorCode::Forbidden);
+        rejected(delegate.sendCommand("permissions.update", updatePayload(a.userId, Permission::Permission5, true)), ProtocolErrorCode::Forbidden);
         rejected(delegate.sendCommand("permissions.applyPreset", {{"targetUserId", a.userId}, {"preset", "master"}}), ProtocolErrorCode::Forbidden);
-        rejected(delegate.sendCommand("permissions.setPermission", setPayload("host", Permission::Permission1, false)), ProtocolErrorCode::Forbidden);
-        rejected(delegate.sendCommand("permissions.setPermission", setPayload(b.userId, Permission::ChangePermissions, true)), ProtocolErrorCode::Forbidden);
-        rejected(delegate.sendCommand("permissions.setPermission", setPayload(b.userId, Permission::ChangePermissions, false)), ProtocolErrorCode::Forbidden);
-        completed(host->sendCommand("permissions.setPermission", setPayload(b.userId, Permission::ChangePermissions, true)));
-        rejected(target.sendCommand("permissions.setPermission", setPayload(c.userId, Permission::ChangePermissions, true)), ProtocolErrorCode::Forbidden);
+        rejected(delegate.sendCommand("permissions.update", updatePayload("host", Permission::Permission1, false)), ProtocolErrorCode::Forbidden);
+        rejected(delegate.sendCommand("permissions.update", updatePayload(b.userId, Permission::ChangePermissions, true)), ProtocolErrorCode::Forbidden);
+        rejected(delegate.sendCommand("permissions.update", updatePayload(b.userId, Permission::ChangePermissions, false)), ProtocolErrorCode::Forbidden);
+        completed(host->sendCommand("permissions.update", updatePayload(b.userId, Permission::ChangePermissions, true)));
+        rejected(target.sendCommand("permissions.update", updatePayload(c.userId, Permission::ChangePermissions, true)), ProtocolErrorCode::Forbidden);
         completed(delegate.sendCommand("permissions.applyPreset", {{"targetUserId", b.userId}, {"preset", "spectator"}}));
         check(savedMask(archive, b.userId) == 33, "preset erased the target's delegation");
-        const auto update = [](Session &client, const UserId &id, int grant, int revoke)
+        const auto update = [](auto &client, const UserId &id, int grant, int revoke)
         {
             return client.sendCommand("permissions.update", {{"targetUserId", id}, {"grant", grant}, {"revoke", revoke}});
         };
@@ -261,7 +246,7 @@ namespace
         const auto original = readText(archive);
         fs::rename(archive, backup);
         check(fs::create_directory(archive), "cannot block archive replacement");
-        rejected(delegate.sendCommand("permissions.setPermission", setPayload(b.userId, Permission::Permission5, true)), ProtocolErrorCode::CommandFailed);
+        rejected(delegate.sendCommand("permissions.update", updatePayload(b.userId, Permission::Permission5, true)), ProtocolErrorCode::CommandFailed);
         rejected(host->sendCommand("permissions.applyPreset", {{"targetUserId", b.userId}, {"preset", "master"}}), ProtocolErrorCode::CommandFailed);
         rejected(update(*host, b.userId, 18, 33), ProtocolErrorCode::CommandFailed);
         check(mask(completed(read(delegate, b.userId)), b.userId) == 33 && readText(backup) == original, "failed storage changed memory or the original archive");
@@ -270,17 +255,17 @@ namespace
         fs::rename(backup, archive);
         check(readText(archive) == original, "restoring the test archive changed its bytes");
 
-        completed(host->sendCommand("permissions.setPermission", setPayload(a.userId, Permission::ChangePermissions, false)));
+        completed(host->sendCommand("permissions.update", updatePayload(a.userId, Permission::ChangePermissions, false)));
         const auto afterRevocation = readText(archive);
         rejected(delegate.sendCommand("permissions.applyPreset", {{"targetUserId", c.userId}, {"preset", "master"}}), ProtocolErrorCode::Forbidden);
         check(readText(archive) == afterRevocation, "denied command wrote to the archive");
-        completed(host->sendCommand("permissions.setPermission", setPayload(a.userId, Permission::ChangePermissions, true)));
+        completed(host->sendCommand("permissions.update", updatePayload(a.userId, Permission::ChangePermissions, true)));
         completed(host->sendCommand("permissions.applyPreset", {{"targetUserId", c.userId}, {"preset", "spectator"}}));
-        completed(host->sendCommand("permissions.setPermission", setPayload(c.userId, Permission::Permission1, false)));
+        completed(host->sendCommand("permissions.update", updatePayload(c.userId, Permission::Permission1, false)));
         std::vector<std::future<Json>> changes;
-        changes.push_back(delegate.sendCommand("permissions.setPermission", setPayload(c.userId, Permission::Permission1, true)));
-        changes.push_back(delegate.sendCommand("permissions.setPermission", setPayload(c.userId, Permission::Permission2, true)));
-        for (const auto permission : {Permission::Permission3, Permission::Permission4, Permission::Permission5}) changes.push_back(host->sendCommand("permissions.setPermission", setPayload(c.userId, permission, true)));
+        changes.push_back(delegate.sendCommand("permissions.update", updatePayload(c.userId, Permission::Permission1, true)));
+        changes.push_back(delegate.sendCommand("permissions.update", updatePayload(c.userId, Permission::Permission2, true)));
+        for (const auto permission : {Permission::Permission3, Permission::Permission4, Permission::Permission5}) changes.push_back(host->sendCommand("permissions.update", updatePayload(c.userId, permission, true)));
         for (auto &change : changes) completed(std::move(change));
         check(savedMask(archive, c.userId) == 31, "concurrent local/remote transactions lost flags");
         const auto saved = Json::parse(readText(archive));

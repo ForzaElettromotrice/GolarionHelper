@@ -1,4 +1,4 @@
-#include "golarion/play/protocol_manager.hpp"
+#include "golarion/play/server_protocol.hpp"
 #include "participants_json.hpp"
 
 #include <algorithm>
@@ -7,18 +7,17 @@
 
 namespace golarion::play
 {
-    void ProtocolManager::registerParticipantCommands()
+    void ServerProtocol::registerParticipantCommands()
     {
-        add_command("session.getParticipants", CommandRequirements{}, [this](const CommandContext &, const nlohmann::json &payload)
+        add_command("session.getParticipants", Permission::Any, [this](const CommandContext &, const nlohmann::json &payload)
         {
             if (!payload.empty()) throw ProtocolError(ProtocolErrorCode::InvalidRequest, "session.getParticipants requires an empty payload");
             return detail::participantsToJson(getParticipants());
         });
     }
 
-    ParticipantsSnapshot ProtocolManager::getParticipants() const
+    ParticipantsSnapshot ServerProtocol::getParticipants() const
     {
-        requireHostMode();
         const std::lock_guard executionLock(executionMutex_);
         const auto hostId = resources_.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId");
         const auto displayNameFor = [this](const UserId &userId, const char *fallback)
@@ -38,7 +37,7 @@ namespace golarion::play
         return result;
     }
 
-    void ProtocolManager::sendParticipantsSnapshot(const UserId &userId) noexcept
+    void ServerProtocol::sendParticipantsSnapshot(const UserId &userId) noexcept
     {
         try
         {
@@ -52,7 +51,7 @@ namespace golarion::play
         catch (...) { failParticipantsDelivery(userId); }
     }
 
-    void ProtocolManager::publishParticipantsChanged() noexcept
+    void ServerProtocol::publishParticipantsChanged() noexcept
     {
         try
         {
@@ -71,7 +70,7 @@ namespace golarion::play
         catch (...) { failParticipantsDelivery(); }
     }
 
-    void ProtocolManager::failParticipantsDelivery(std::optional<std::string_view> userId) noexcept
+    void ServerProtocol::failParticipantsDelivery(std::optional<std::string_view> userId) noexcept
     {
         try
         {

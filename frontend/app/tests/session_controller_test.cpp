@@ -59,7 +59,7 @@ void SessionControllerTest::restoresMembershipAfterRestart()
     constexpr auto name = "La Città Sommersa";
     std::mutex observedMutex;
     std::vector<UserId> observedUsers;
-    const auto registerName = [&](Session &host)
+    const auto registerName = [&](SessionServer &host)
     {
         host.add_command("session.info", CommandRequirements{}, [&](const CommandContext &context, const nlohmann::json &)
         {
@@ -70,7 +70,7 @@ void SessionControllerTest::restoresMembershipAfterRestart()
     };
 
     {
-        auto host = Session::createHost("host");
+        SessionServer host("host");
         host.saveIdentityState(archive);
         registerName(host);
         const auto hostAddress = QStringLiteral("127.0.0.1:%1").arg(host.startHosting("127.0.0.1", 0));
@@ -106,7 +106,7 @@ void SessionControllerTest::restoresMembershipAfterRestart()
         QCOMPARE(controller.campaigns().size(), 1);
     }
 
-    auto reopenedHost = Session::createHost("host");
+    SessionServer reopenedHost("host");
     reopenedHost.loadIdentityState(archive);
     registerName(reopenedHost);
     const auto newAddress = QStringLiteral("127.0.0.1:%1").arg(reopenedHost.startHosting("127.0.0.1", 0));
@@ -134,8 +134,8 @@ void SessionControllerTest::listsMultipleCampaigns()
     QTemporaryDir data;
     QVERIFY(data.isValid());
     const auto archiveDirectory = std::filesystem::u8path(data.path().toStdString());
-    auto firstHost = Session::createHost("host");
-    auto secondHost = Session::createHost("host");
+    SessionServer firstHost("host");
+    SessionServer secondHost("host");
     firstHost.saveIdentityState(archiveDirectory / "first-host.json");
     secondHost.saveIdentityState(archiveDirectory / "second-host.json");
     const auto firstAddress = QStringLiteral("127.0.0.1:%1").arg(firstHost.startHosting("127.0.0.1", 0));
@@ -498,7 +498,7 @@ void SessionControllerTest::hostsAndRestoresPlayer()
     QTemporaryDir data;
     QVERIFY(data.isValid());
     const auto name = QStringLiteral("La città di vetro");
-    auto player = Session::createClient();
+    SessionClient player;
     std::optional<ClientAdmission> joined;
     QString firstCode;
     {

@@ -1,10 +1,11 @@
 #pragma once
 
-#include "golarion/play/protocol_manager.hpp"
+#include "golarion/play/server_protocol.hpp"
 #include "golarion/play/resource_manager.hpp"
 #include "golarion/play/permission_manager.hpp"
 #include "golarion/play/session_data.hpp"
 #include "golarion/play/session_view.hpp"
+#include "golarion/play/sheet_manager.hpp"
 
 #include <cstdint>
 #include <filesystem>
@@ -15,29 +16,21 @@
 
 namespace golarion::play
 {
-    class Session final
+    class SessionServer final
     {
     public:
-        explicit Session(UserId hostId, std::optional<SessionCode> hostCode = std::nullopt);
-        ~Session();
-
-        static Session createHost(UserId hostId);
-        static Session createClient();
+        explicit SessionServer(UserId hostId, std::optional<SessionCode> hostCode = std::nullopt, const std::filesystem::path &campaignDirectory = {});
+        ~SessionServer();
 
         std::uint16_t startHosting(std::string_view bindAddress, std::uint16_t port);
         void stopHosting();
         void registerSessionInfo(std::string name);
         void setHostDisplayName(std::string displayName);
 
-        std::future<ClientAdmission> joinSession(std::string ip, std::uint16_t port, SessionCode code, std::string displayName = "Giocatore");
-        std::future<ClientAdmission> resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token, std::optional<std::string> displayName = std::nullopt);
-        void disconnectFromHost();
-        ClientSnapshot getClientState() const;
-        SessionView toView() const;
+        HostSessionView toView() const;
         SessionData toData() const;
         std::future<nlohmann::json> sendCommand(std::string name, nlohmann::json payload);
-        void add_command(std::string_view name, CommandRequirements requirements, ProtocolManager::CommandCallback callback);
-        void add_command(std::string_view name, ProtocolManager::CommandCallback callback);
+        void add_command(std::string_view name, CommandRequirements requirements, ServerProtocol::CommandCallback callback);
         bool sendEvent(const UserId &userId, std::string_view name, const nlohmann::json &payload);
 
         std::string getSessionCode() const;
@@ -53,10 +46,9 @@ namespace golarion::play
         bool closeConnection(ConnectionId connectionId);
 
     private:
-        Session();
-
         ResourceManager resourceManager_;
-        ProtocolManager protocolManager_;
-        std::optional<PermissionManager> permissionManager_;
+        ServerProtocol protocolManager_;
+        PermissionManager permissionManager_;
+        SheetManager sheetManager_;
     };
 }

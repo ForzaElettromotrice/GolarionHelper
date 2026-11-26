@@ -1,6 +1,7 @@
 #include "socket_support.hpp"
 #include "protocol.hpp"
-#include "golarion/play/session.hpp"
+#include "golarion/play/session_client.hpp"
+#include "golarion/play/session_server.hpp"
 
 #include <array>
 #include <atomic>
@@ -61,13 +62,13 @@ namespace
     {
         ResourceManager resources;
         PermissionManager permissions{resources, "actual-host"};
-        ProtocolManager protocol{resources};
+        ServerProtocol protocol{resources};
     };
 
     void localCommandsAndFacade()
     {
         Host host;
-        host.resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "actor", Permission::ChangePermissions, [](const auto &context, const auto &payload)
+        host.resources.invoke<ServerProtocol::AddCommandSignature>("protocol.add_command", "actor", Permission::ChangePermissions, [](const auto &context, const auto &payload)
         {
             check(!context.connectionId, "local command invented a connection");
             return Json{{"actor", *context.userId}, {"value", payload.at("value")}};
@@ -86,7 +87,7 @@ namespace
 
         std::vector<std::future<Json>> pending;
         {
-            auto session = Session::createHost("another-host");
+            SessionServer session("another-host");
             for (int i = 0; i < 24; ++i) pending.push_back(session.sendCommand("unknown", Json::object()));
         }
         for (auto &result : pending)
@@ -96,7 +97,7 @@ namespace
             catch (const ProtocolError &error) { check(error.code() == ProtocolErrorCode::UnknownCommand, "provider was destroyed before the command worker"); }
             catch (const std::system_error &error) { check(error.code() == std::errc::operation_canceled, "wrong local cancellation"); }
         }
-        auto client = Session::createClient();
+        SessionClient client;
         check(rejects<std::logic_error>([&] { client.sendCommand("actor", Json::object()); }), "disconnected client accepted a command");
     }
 
@@ -104,7 +105,7 @@ namespace
     {
         ResourceManager resources;
         PermissionManager permissions(resources, "host");
-        auto protocol = std::make_unique<ProtocolManager>(resources);
+        auto protocol = std::make_unique<ServerProtocol>(resources);
         std::promise<void> started;
         std::promise<void> release;
         auto released = release.get_future().share();
@@ -153,7 +154,7 @@ namespace
         host.protocol.add_command("no-flags", PermissionSet{}, [](const auto &context, const auto &) { return Json(*context.userId); });
         host.protocol.saveIdentityState(directory.path / "identities.json");
         const auto port = host.protocol.startHosting("127.0.0.1", 0);
-        auto client = Session::createClient();
+        SessionClient client;
         const auto user = completed(client.joinSession("127.0.0.1", port, SessionCode(host.protocol.getSessionCode())));
         check(completed(client.sendCommand("echo", {{"value", 5}, {"userId", "actual-host"}, {"permissions", 63}})).at("actor") == user.userId, "payload changed the authenticated actor");
         rejected(client.sendCommand("privileged", Json::object()), ProtocolErrorCode::Forbidden);
@@ -165,7 +166,7 @@ namespace
         rejected(client.sendCommand("failure", Json::object()), ProtocolErrorCode::CommandFailed);
         rejected(client.sendCommand("session.join", {{"sessionCode", host.protocol.getSessionCode()}}), ProtocolErrorCode::AlreadyAdmitted);
         check(completed(client.sendCommand("null", Json::object())).is_null(), "null command result was lost");
-        for (const auto flag : {Permission::Permission1, Permission::Permission2, Permission::Permission3}) host.permissions.setPermission("actual-host", user.userId, flag, false);
+        for (const auto flag : {Permission::Permission1, Permission::Permission2, Permission::Permission3}) host.permissions.updatePermissions("actual-host", user.userId, PermissionSet{}, flag);
         check(completed(client.sendCommand("no-flags", Json::object())) == user.userId, "authenticated empty-permission user could not execute an empty requirement");
         rejected(client.sendCommand("echo", {{"value", 9}}), ProtocolErrorCode::Forbidden);
         host.protocol.saveIdentityState(directory.path / "identities.json");
@@ -227,7 +228,7 @@ namespace
         host.protocol.saveIdentityState(directory.path / "identities.json");
         const auto port = host.protocol.startHosting("127.0.0.1", 0);
         const SessionCode code(host.protocol.getSessionCode());
-        auto client = Session::createClient();
+        SessionClient client;
         const auto user = completed(client.joinSession("127.0.0.1", port, code));
         auto local = host.protocol.sendCommand("block", Json::object());
         check(entered.get_future().wait_for(2s) == std::future_status::ready, "blocking command did not start");
@@ -358,7 +359,7 @@ namespace
             std::this_thread::sleep_for(10ms);
             writeBytes(peer, {bytes.begin() + 2, bytes.end()});
         });
-        auto client = Session::createClient();
+        SessionClient client;
         completed(client.joinSession("127.0.0.1", server.port(), SessionCode("A7K2Q")));
         const std::array<Json, 3> values{Json(nullptr), Json::array({1, "x"}), Json("text")};
         std::vector<std::future<Json>> requests;
@@ -387,7 +388,7 @@ namespace
                 good.insert(good.end(), bytes.begin(), bytes.end());
                 writeBytes(peer, good);
             });
-            auto client = Session::createClient();
+            SessionClient client;
             completed(client.joinSession("127.0.0.1", server.port(), SessionCode("A7K2Q")));
             auto first = client.sendCommand("echo", Json::object());
             auto second = client.sendCommand("echo", Json::object());
@@ -411,7 +412,7 @@ namespace
                 const auto deadline = Clock::now() + 8s;
                 while (!stop && Clock::now() < deadline) std::this_thread::sleep_for(5ms);
             });
-            auto client = std::unique_ptr<Session>(new Session(Session::createClient()));
+            auto client = std::make_unique<SessionClient>();
             completed(client->joinSession("127.0.0.1", server.port(), SessionCode("A7K2Q")));
             std::vector<std::future<Json>> requests;
             for (int i = 0; i < (action == 3 ? 1 : 64); ++i) requests.push_back(client->sendCommand("unanswered", Json::object()));

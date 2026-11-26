@@ -93,7 +93,7 @@ namespace
 
 namespace golarion::play
 {
-    struct ProtocolManager::ClientConnection::Impl
+    struct ClientProtocol::ClientConnection::Impl
     {
         struct Pending
         {
@@ -108,7 +108,7 @@ namespace golarion::play
             std::size_t sent = 0;
         };
 
-        ProtocolManager &owner;
+        ClientProtocol &owner;
         const ConnectionId connectionId;
         detail::SocketRuntime runtime;
         const sockaddr_in address;
@@ -126,7 +126,7 @@ namespace golarion::play
         std::deque<Outgoing> outgoing;
         std::thread worker;
 
-        Impl(ProtocolManager &manager, ConnectionId connection, std::string ip, std::uint16_t port, SessionCode sessionCode, std::optional<UserToken> userToken, std::optional<std::string> name, std::string id)
+        Impl(ClientProtocol &manager, ConnectionId connection, std::string ip, std::uint16_t port, SessionCode sessionCode, std::optional<UserToken> userToken, std::optional<std::string> name, std::string id)
             : owner(manager), connectionId(connection), address(detail::ipv4Address(ip, port)), code(std::move(sessionCode)), token(std::move(userToken)), displayName(std::move(name)), requestId(std::move(id))
         {
             if (port == 0) throw std::invalid_argument("client port must be nonzero");
@@ -315,7 +315,7 @@ namespace golarion::play
                 {
                     if (reply->type == "request.accepted" || reply->type == "request.rejected") invalidReply();
                     // Dispatch without state/lifecycle locks; callbacks may read the snapshot.
-                    static_cast<void>(owner.dispatch(reply->type, CommandContext{std::nullopt, connectionId}, reply->payload));
+                    owner.dispatchEvent(reply->type, CommandContext{std::nullopt, connectionId}, reply->payload);
                     continue;
                 }
                 auto parsed = parseCommandReply(*reply);
@@ -452,15 +452,15 @@ namespace golarion::play
         }
     };
 
-    ProtocolManager::ClientConnection::ClientConnection(ProtocolManager &owner, ConnectionId connectionId, std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token, std::optional<std::string> displayName, std::string requestId)
+    ClientProtocol::ClientConnection::ClientConnection(ClientProtocol &owner, ConnectionId connectionId, std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token, std::optional<std::string> displayName, std::string requestId)
         : impl_(std::make_unique<Impl>(owner, connectionId, std::move(ip), port, std::move(code), std::move(token), std::move(displayName), std::move(requestId))) {}
-    ProtocolManager::ClientConnection::~ClientConnection() = default;
-    std::future<ClientAdmission> ProtocolManager::ClientConnection::takeResult() { return impl_->admission.get_future(); }
-    void ProtocolManager::ClientConnection::start() { impl_->worker = std::thread([this] { impl_->run(); }); }
-    ClientSnapshot ProtocolManager::ClientConnection::snapshot() const { return impl_->snapshot(); }
-    bool ProtocolManager::ClientConnection::acceptsContext(const CommandContext &context) const { return impl_->acceptsContext(context); }
-    void ProtocolManager::ClientConnection::updatePermissions(PermissionSet permissions) { impl_->updatePermissions(permissions); }
-    void ProtocolManager::ClientConnection::updateParticipants(ParticipantsSnapshot participants) { impl_->updateParticipants(std::move(participants)); }
-    std::future<nlohmann::json> ProtocolManager::ClientConnection::sendCommand(std::string name, nlohmann::json payload, std::string requestId) { return impl_->sendCommand(std::move(name), std::move(payload), std::move(requestId)); }
-    void ProtocolManager::ClientConnection::stop() { impl_->stop(); }
+    ClientProtocol::ClientConnection::~ClientConnection() = default;
+    std::future<ClientAdmission> ClientProtocol::ClientConnection::takeResult() { return impl_->admission.get_future(); }
+    void ClientProtocol::ClientConnection::start() { impl_->worker = std::thread([this] { impl_->run(); }); }
+    ClientSnapshot ClientProtocol::ClientConnection::snapshot() const { return impl_->snapshot(); }
+    bool ClientProtocol::ClientConnection::acceptsContext(const CommandContext &context) const { return impl_->acceptsContext(context); }
+    void ClientProtocol::ClientConnection::updatePermissions(PermissionSet permissions) { impl_->updatePermissions(permissions); }
+    void ClientProtocol::ClientConnection::updateParticipants(ParticipantsSnapshot participants) { impl_->updateParticipants(std::move(participants)); }
+    std::future<nlohmann::json> ClientProtocol::ClientConnection::sendCommand(std::string name, nlohmann::json payload, std::string requestId) { return impl_->sendCommand(std::move(name), std::move(payload), std::move(requestId)); }
+    void ClientProtocol::ClientConnection::stop() { impl_->stop(); }
 }

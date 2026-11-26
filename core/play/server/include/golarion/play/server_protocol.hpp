@@ -1,12 +1,12 @@
 #pragma once
 
-#include "golarion/play/client_state.hpp"
+#include "golarion/play/participants.hpp"
 #include "golarion/play/command_requirements.hpp"
 #include "golarion/play/protocol_error.hpp"
 #include "golarion/play/resource_manager.hpp"
 #include "golarion/play/permission_manager.hpp"
 #include "golarion/play/session_code.hpp"
-#include "golarion/play/session_mode.hpp"
+#include "golarion/play/command_context.hpp"
 
 #include <nlohmann/json.hpp>
 
@@ -29,42 +29,27 @@ namespace golarion::play
     namespace detail { class UserTokens; struct ProtocolMessage; }
     struct IdentitySaveData;
 
-    using ConnectionId = std::uint64_t;
-
-    struct CommandContext
-    {
-        std::optional<UserId> userId = std::nullopt;
-        std::optional<ConnectionId> connectionId = std::nullopt;
-    };
-
-    class ProtocolManager final
+    class ServerProtocol final
     {
     public:
         using CommandCallback = std::function<nlohmann::json(const CommandContext &, const nlohmann::json &)>;
         using AddCommandSignature = void(std::string_view, CommandRequirements, CommandCallback);
-        using AddClientCommandSignature = void(std::string_view, CommandCallback);
         using SendEventSignature = bool(const UserId &, std::string_view, const nlohmann::json &);
 
-        explicit ProtocolManager(ResourceManager &resources, SessionMode mode = SessionMode::Host, std::optional<SessionCode> hostCode = std::nullopt);
-        ~ProtocolManager();
-        ProtocolManager(const ProtocolManager &) = delete;
-        ProtocolManager &operator=(const ProtocolManager &) = delete;
-        ProtocolManager(ProtocolManager &&) = delete;
-        ProtocolManager &operator=(ProtocolManager &&) = delete;
+        explicit ServerProtocol(ResourceManager &resources, std::optional<SessionCode> hostCode = std::nullopt);
+        ~ServerProtocol();
+        ServerProtocol(const ServerProtocol &) = delete;
+        ServerProtocol &operator=(const ServerProtocol &) = delete;
+        ServerProtocol(ServerProtocol &&) = delete;
+        ServerProtocol &operator=(ServerProtocol &&) = delete;
 
         void add_command(std::string_view name, CommandRequirements requirements, CommandCallback callback);
-        void add_command(std::string_view name, CommandCallback callback);
         nlohmann::json dispatch(std::string_view name, const CommandContext &context, const nlohmann::json &payload) const;
         std::future<nlohmann::json> sendCommand(std::string name, nlohmann::json payload);
         bool sendEvent(const UserId &userId, std::string_view name, const nlohmann::json &payload);
 
         std::uint16_t startHosting(std::string_view bindAddress, std::uint16_t port);
         void stopHosting();
-
-        std::future<ClientAdmission> joinSession(std::string ip, std::uint16_t port, SessionCode code, std::string displayName = "Giocatore");
-        std::future<ClientAdmission> resumeSession(std::string ip, std::uint16_t port, SessionCode code, UserToken token, std::optional<std::string> displayName = std::nullopt);
-        void disconnectFromHost();
-        ClientSnapshot getClientState() const;
 
         std::string getSessionCode() const;
         bool verifySessionCode(std::string_view candidate) const noexcept;
@@ -81,7 +66,7 @@ namespace golarion::play
         bool closeConnection(ConnectionId connectionId);
 
     private:
-        friend class Session;
+        friend class SessionServer;
         struct HostingSnapshot
         {
             std::optional<std::uint16_t> listeningPort;
@@ -96,7 +81,6 @@ namespace golarion::play
         bool commitDisplayNameLocked(const UserId &userId, std::string displayName);
         std::optional<ConnectionId> bindUser(ConnectionId connectionId, const UserId &userId, std::optional<std::string> displayName);
         class Hosting;
-        class ClientConnection;
         class LocalCommands;
         struct MessageResult;
         struct AdmissionResult;
@@ -109,8 +93,6 @@ namespace golarion::play
         void sendParticipantsSnapshot(const UserId &userId) noexcept;
         void publishParticipantsChanged() noexcept;
         void failParticipantsDelivery(std::optional<std::string_view> userId = std::nullopt) noexcept;
-        void registerClientCommands();
-        void registerCommand(std::string_view name, CommandRequirements requirements, CommandCallback callback);
         std::optional<std::vector<std::uint8_t>> takeEvent(ConnectionId connectionId);
         bool eventQueueOverflowed(ConnectionId connectionId) const;
         ConnectionId requirePendingAdmission(const CommandContext &context, const nlohmann::json &payload, bool resume) const;
@@ -119,11 +101,8 @@ namespace golarion::play
         static nlohmann::json makeAdmissionResult(const AdmissionResult &result);
         static detail::ProtocolMessage makeCommandReply(const std::optional<std::string> &requestId, nlohmann::json result);
         static detail::ProtocolMessage makeRejection(const std::optional<std::string> &requestId, ProtocolErrorCode code);
-        void requireHostMode() const;
-        void requireClientMode() const;
         void shutdown() noexcept;
         PermissionSet updateUserPermissions(const std::function<PermissionSet(const PermissionManager::PermissionsCommit &)> &mutation);
-        std::future<ClientAdmission> startClient(std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token, std::optional<std::string> displayName);
 
         struct Command
         {
@@ -139,8 +118,7 @@ namespace golarion::play
         };
 
         ResourceManager &resources_;
-        const SessionMode mode_;
-        const std::optional<SessionCode> sessionCode_;
+        const SessionCode sessionCode_;
         mutable std::recursive_mutex executionMutex_;
         std::unordered_map<std::string, Command> commands_;
         mutable std::mutex connectionsMutex_;
@@ -155,10 +133,6 @@ namespace golarion::play
         std::unique_ptr<Hosting> hosting_;
         std::mutex localCommandsMutex_;
         std::unique_ptr<LocalCommands> localCommands_;
-        mutable std::mutex clientMutex_;
-        std::shared_ptr<ClientConnection> client_;
-        std::weak_ptr<ClientConnection> activeClient_; // Protected by executionMutex_; never joins a worker.
-        std::uint64_t nextClientRequestId_ = 1;
         mutable std::mutex identityMutex_;
         std::unique_ptr<detail::UserTokens> userTokens_;
         std::optional<std::filesystem::path> identityArchivePath_;

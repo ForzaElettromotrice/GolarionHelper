@@ -437,7 +437,7 @@ SessionController::Hosting SessionController::launchHosting(const QString &campa
     {
         const auto manifest = directory.filePath(QStringLiteral("campaign.json"));
         const auto code = campaignCode(readCampaignData(manifest));
-        result.session = std::make_unique<Session>(campaign.id, code);
+        result.session = std::make_unique<SessionServer>(campaign.id, code, directory.filesystemAbsolutePath());
         const auto archive = std::filesystem::u8path(directory.filePath(QStringLiteral("identities.json")).toStdString());
         const bool existingArchive = std::filesystem::exists(archive);
         if (existingArchive) result.session->loadIdentityState(archive);
@@ -447,14 +447,14 @@ SessionController::Hosting SessionController::launchHosting(const QString &campa
     }
     catch (const std::exception &)
     {
-        result.error = tr("Impossibile preparare il codice o l’archivio delle identità della campagna.");
+        result.error = tr("Impossibile preparare il codice, le identità o l’elenco delle schede della campagna.");
     }
     if (result.error.isEmpty())
     {
         try
         {
             result.session->startHosting("0.0.0.0", static_cast<std::uint16_t>(port));
-            result.port = *result.session->toView().host->listeningPort;
+            result.port = *result.session->toView().listeningPort;
         }
         catch (const std::exception &)
         {
@@ -483,7 +483,7 @@ void SessionController::pollHosting()
         if (result.error.isEmpty())
         {
             hosting_.emplace(std::move(result));
-            updateParticipants(hosting_->session->toView().host->participants, std::nullopt, true);
+            updateParticipants(hosting_->session->toView().participants, std::nullopt, true);
             pollTimer_.start();
             emit hostingChanged();
         }
@@ -599,13 +599,13 @@ void SessionController::pollSession()
     }
     if (hosting_)
     {
-        updateParticipants(hosting_->session->toView().host->participants, std::nullopt, true);
+        updateParticipants(hosting_->session->toView().participants, std::nullopt, true);
         pollParticipantPermissions();
         return;
     }
     if (!pending_)
     {
-        const auto client = *session_.toView().client;
+        const auto client = session_.toView();
         if (client.state == ClientConnectionState::Disconnected)
         {
             setErrorMessage(tr("La connessione con l’host è stata interrotta."));
@@ -666,7 +666,7 @@ void SessionController::finishAdmission(const QString &name)
     auto &campaign = campaigns_[index];
     campaign.updateConnection(admission.address.toStdString(), admission.code, name.toStdString());
     const bool saved = saveCampaign(campaign.toData());
-    const auto client = *session_.toView().client;
+    const auto client = session_.toView();
 
     if (client.state != ClientConnectionState::Connected)
     {
@@ -750,8 +750,8 @@ void SessionController::requestParticipantPermissions(nlohmann::json payload, bo
     }
     try
     {
-        auto &session = hosting_ ? *hosting_->session : session_;
-        permissionsReply_ = session.sendCommand(saving ? "permissions.update" : "permissions.get", std::move(payload));
+        const auto command = saving ? "permissions.update" : "permissions.get";
+        permissionsReply_ = hosting_ ? hosting_->session->sendCommand(command, std::move(payload)) : session_.sendCommand(command, std::move(payload));
         savingPermissions_ = saving;
     }
     catch (const std::exception &)

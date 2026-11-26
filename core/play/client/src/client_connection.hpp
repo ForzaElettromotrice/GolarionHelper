@@ -1,6 +1,6 @@
 #pragma once
 
-#include "golarion/play/protocol_manager.hpp"
+#include "golarion/play/client_protocol.hpp"
 
 #include <future>
 #include <memory>
@@ -9,10 +9,10 @@
 
 namespace golarion::play
 {
-    class ProtocolManager::ClientConnection final
+    class ClientProtocol::ClientConnection final
     {
     public:
-        ClientConnection(ProtocolManager &owner, ConnectionId connectionId, std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token, std::optional<std::string> displayName, std::string requestId);
+        ClientConnection(ClientProtocol &owner, ConnectionId connectionId, std::string ip, std::uint16_t port, SessionCode code, std::optional<UserToken> token, std::optional<std::string> displayName, std::string requestId);
         ~ClientConnection();
         ClientConnection(const ClientConnection &) = delete;
         ClientConnection &operator=(const ClientConnection &) = delete;

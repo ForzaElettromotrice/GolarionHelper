@@ -1,5 +1,6 @@
 #include "socket_support.hpp"
-#include "golarion/play/session.hpp"
+#include "golarion/play/session_client.hpp"
+#include "golarion/play/session_server.hpp"
 
 #include <array>
 #include <atomic>
@@ -61,7 +62,7 @@ namespace
     struct Host
     {
         ResourceManager resources;
-        ProtocolManager protocol{resources};
+        ServerProtocol protocol{resources};
         PermissionManager permissions{resources, "host"};
         ~Host() { try { protocol.stopHosting(); } catch (...) { } }
     };
@@ -84,23 +85,20 @@ namespace
     void modesAndProviderLifetime()
     {
         ResourceManager resources;
-        ProtocolManager host(resources);
+        ServerProtocol host(resources);
         PermissionManager permissions(resources, "host");
         {
-            check(rejects<std::invalid_argument>([&] { ProtocolManager collision(resources, SessionMode::Client); }), "client replaced another command provider");
+            ClientProtocol peer(resources);
+            check(rejects<std::invalid_argument>([&] { ClientProtocol collision(resources); }), "duplicate event provider accepted");
             ResourceManager clientResources;
-            ProtocolManager client(clientResources, SessionMode::Client);
-            check(!client.verifySessionCode("A7K2Q"), "client generated a host code");
-            check(rejects<std::logic_error>([&] { client.add_command("invalid", Permission::Any, [](const auto &, const auto &) { return Json(true); }); }), "client registered a server command");
-            check(rejects<ProtocolError>([&] { client.dispatch("session.join", CommandContext{"host"}, Json::object()); }), "client dispatched a server command");
-            check(rejects<std::logic_error>([&] { client.resolveUserToken("0123456789abcdef"); }), "client resolved server credentials");
+            ClientProtocol client(clientResources);
+            check(rejects<ProtocolError>([&] { client.dispatchEvent("session.join", CommandContext{"host"}, Json::object()); }), "client dispatched a server command");
         }
-        resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test", Permission::ChangePermissions, [](const auto &, const auto &) { return Json(true); });
+        resources.invoke<ServerProtocol::AddCommandSignature>("protocol.add_command", "test", Permission::ChangePermissions, [](const auto &, const auto &) { return Json(true); });
         check(host.dispatch("test", CommandContext{"host"}, Json::object()) == true, "client teardown removed another provider's registration");
-        check(rejects<std::invalid_argument>([&] { ProtocolManager invalid(resources, static_cast<SessionMode>(99)); }), "unknown Session mode accepted");
         ResourceManager isolated;
-        ProtocolManager client(isolated, SessionMode::Client);
-        isolated.invoke<ProtocolManager::AddClientCommandSignature>("protocol.add_command", "example.changed", [](const auto &, const auto &) { return Json(nullptr); });
+        ClientProtocol client(isolated);
+        isolated.invoke<ClientProtocol::OnEventSignature>("protocol.on_event", "example.changed", [](const auto &, const auto &) {});
         isolated.registerFeature<void()>("permissions.getPermissions", [] {});
     }
 
@@ -111,8 +109,8 @@ namespace
         host.protocol.saveIdentityState(directory.path / "identities.json");
         const auto port = host.protocol.startHosting("127.0.0.1", 0);
         const SessionCode code(host.protocol.getSessionCode());
-        auto first = Session::createClient();
-        auto second = Session::createClient();
+        SessionClient first;
+        SessionClient second;
         auto joining = first.joinSession("127.0.0.1", port, code);
         check(joining.valid(), "join returned no future");
         const auto user = admitted(std::move(joining));
@@ -126,7 +124,7 @@ namespace
         const auto other = admitted(second.joinSession("127.0.0.1", port, code));
         check(other.userId != user.userId && other.userToken->value() != user.userToken->value(), "two clients share an identity");
         host.permissions.applyPreset("host", user.userId, PermissionPreset::Master);
-        auto replacement = Session::createClient();
+        SessionClient replacement;
         const auto resumed = admitted(replacement.resumeSession("127.0.0.1", port, code, *user.userToken));
         check(resumed.userId == user.userId && resumed.permissions == permissionsForPreset(PermissionPreset::Master) && !resumed.userToken, "resume changed identity, permissions or token policy");
         eventually([&] { return first.getClientState().state == ClientConnectionState::Disconnected; });
@@ -146,11 +144,11 @@ namespace
     {
         TestDirectory directory;
         const auto archive = directory.path / "identities.json";
-        auto client = Session::createClient();
+        SessionClient client;
         std::optional<UserToken> token;
         UserId userId;
         {
-            auto host = Session::createHost("host");
+            SessionServer host("host");
             host.saveIdentityState(archive);
             const auto port = host.startHosting("127.0.0.1", 0);
             const auto user = admitted(client.joinSession("127.0.0.1", port, SessionCode(host.getSessionCode())));
@@ -158,7 +156,7 @@ namespace
             userId = user.userId;
         }
         eventually([&] { return client.getClientState().state == ClientConnectionState::Disconnected; });
-        auto reopened = Session::createHost("host");
+        SessionServer reopened("host");
         reopened.loadIdentityState(archive);
         const auto port = reopened.startHosting("127.0.0.1", 0);
         check(admitted(client.resumeSession("127.0.0.1", port, SessionCode(reopened.getSessionCode()), *token)).userId == userId, "reconstructed Session lost client identity");
@@ -174,13 +172,13 @@ namespace
         auto wrong = host.protocol.getSessionCode();
         wrong[0] = wrong[0] == 'A' ? 'B' : 'A';
         const SessionCode code(host.protocol.getSessionCode());
-        auto client = Session::createClient();
+        SessionClient client;
         checkRejected(client.joinSession("127.0.0.1", port, SessionCode(wrong)), ProtocolErrorCode::InvalidSessionCode);
         check(client.getClientState().state == ClientConnectionState::Disconnected && host.permissions.toSaveData().size() == 1, "failed join changed identities or state");
         const auto user = admitted(client.joinSession("127.0.0.1", port, code));
         auto unknown = UserToken("0000000000000000");
         if (host.protocol.resolveUserToken(unknown.value())) unknown = UserToken("1111111111111111");
-        auto returning = Session::createClient();
+        SessionClient returning;
         checkRejected(returning.resumeSession("127.0.0.1", port, code, unknown), ProtocolErrorCode::InvalidUserToken);
         check(client.getClientState().state == ClientConnectionState::Connected && host.permissions.toSaveData().size() == 2, "invalid resume replaced the original client or created another user");
         check(admitted(returning.resumeSession("127.0.0.1", port, code, *user.userToken)).userId == user.userId, "failed resume prevented retry");
@@ -345,7 +343,7 @@ namespace
                     }
                 }
             });
-            auto client = Session::createClient();
+            SessionClient client;
             const auto result = admitted(client.joinSession("127.0.0.1", server.port(), SessionCode("A7K2Q")));
             check(result.userId == "alice" && result.userToken && result.userToken->value() == "0123456789abcdef", "following data invalidated an already complete admission reply");
             if (delivery != 0) release.set_value();
@@ -365,7 +363,7 @@ namespace
             std::this_thread::sleep_for(10ms);
             writeBytes(socket, {bytes.begin() + 2, bytes.end()});
         });
-        auto client = Session::createClient();
+        SessionClient client;
         const auto user = admitted(client.joinSession("127.0.0.1", server.port(), SessionCode("a7k2q")));
         check(user.userId == "alice" && user.permissions == permissionsForPreset(PermissionPreset::Player) && user.userToken->value() == "0123456789abcdef", "fragmented response was corrupted");
         client.disconnectFromHost();
@@ -438,7 +436,7 @@ namespace
                 return reply.dump();
             }
         };
-        auto client = Session::createClient();
+        SessionClient client;
         for (const auto &makeReply : invalid)
         {
             ScriptedHost server([&](const auto &socket, const Json &request) { writeBytes(socket, rawFrame(makeReply(request))); });
@@ -453,7 +451,7 @@ namespace
 
     void partialReplyEofAndMaximumFrame()
     {
-        auto client = Session::createClient();
+        SessionClient client;
         for (const std::size_t cut : {std::size_t{2}, std::size_t{7}, std::size_t{120}})
         {
             std::promise<void> sent;
@@ -503,7 +501,7 @@ namespace
                 writeBytes(socket, {bytes[index]});
             }
         });
-        auto client = Session::createClient();
+        SessionClient client;
         auto pending = client.joinSession("127.0.0.1", server.port(), SessionCode("A7K2Q"));
         check(pending.wait_for(6s) == std::future_status::ready, "partial input kept resetting the admission timeout");
         bool timedOut = false;
@@ -522,7 +520,7 @@ namespace
             reply["payload"]["result"]["permissions"] = 1;
             writeBytes(socket, frame(reply));
         });
-        auto client = Session::createClient();
+        SessionClient client;
         const auto user = admitted(client.resumeSession("127.0.0.1", server.port(), SessionCode("A7K2Q"), UserToken("0123456789abcdef")));
         check(!user.userToken && user.permissions == permissionsForPreset(PermissionPreset::Spectator), "resume issued another token or changed the permissions");
         client.disconnectFromHost();
@@ -552,7 +550,7 @@ namespace
         check(::bind(reserved.get(), reinterpret_cast<const sockaddr *>(&address), sizeof(address)) == 0, "cannot bind a test port");
         detail::AddressLength length = sizeof(address);
         check(getsockname(reserved.get(), reinterpret_cast<sockaddr *>(&address), &length) == 0, "cannot read reserved port");
-        auto client = Session::createClient();
+        SessionClient client;
         auto refused = client.joinSession("127.0.0.1", ntohs(address.sin_port), SessionCode("A7K2Q"));
         check(refused.wait_for(6s) == std::future_status::ready, "connection refusal did not settle within the connect deadline");
         bool networkError = false;
@@ -610,7 +608,7 @@ namespace
         {
             clients.push_back(std::async(std::launch::async, [&, index]
             {
-                auto client = Session::createClient();
+                SessionClient client;
                 auto joining = client.joinSession("127.0.0.1", port, code);
                 check(joining.wait_for(6s) == std::future_status::ready, "parallel join remained pending");
                 initial[index] = joining.get();
@@ -667,7 +665,7 @@ namespace
         host.protocol.saveIdentityState(directory.path / "identities.json");
         const auto port = host.protocol.startHosting("127.0.0.1", 0);
         const SessionCode code(host.protocol.getSessionCode());
-        auto client = Session::createClient();
+        SessionClient client;
         std::promise<void> release;
         auto start = release.get_future().share();
         std::atomic<int> rejected{0};
@@ -724,7 +722,7 @@ namespace
             std::future<ClientAdmission> joining;
             const auto before = Clock::now();
             {
-                auto client = Session::createClient();
+                SessionClient client;
                 joining = client.joinSession("127.0.0.1", stalled.port(), SessionCode("A7K2Q"));
                 check(seen.wait_for(2s) == std::future_status::ready, "client did not reach admission");
                 check(client.getClientState().state == ClientConnectionState::Admitting, "wrong pending client state");
@@ -742,7 +740,7 @@ namespace
         std::promise<void> release;
         auto released = release.get_future().share();
         ScriptedHost stalled([&](const auto &, const Json &) { check(released.wait_for(7s) == std::future_status::ready, "timeout host was not released"); });
-        auto client = Session::createClient();
+        SessionClient client;
         auto joining = client.joinSession("127.0.0.1", stalled.port(), SessionCode("A7K2Q"));
         check(joining.wait_for(6s) == std::future_status::ready, "admission has no bounded timeout");
         bool timedOut = false;

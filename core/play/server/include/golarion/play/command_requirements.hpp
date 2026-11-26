@@ -13,7 +13,11 @@ namespace golarion::play
     struct CommandRequirements
     {
         constexpr CommandRequirements() noexcept = default;
-        constexpr CommandRequirements(Permission permission) : access(permission == Permission::Any ? CommandAccess::Public : CommandAccess::Authenticated), permissions(permission == Permission::Any ? PermissionSet{} : PermissionSet(permission)) {}
+        constexpr CommandRequirements(Permission permission)
+        {
+            if (permission == Permission::NoAuth) access = CommandAccess::Public;
+            else if (permission != Permission::Any) permissions = PermissionSet(permission);
+        }
         constexpr CommandRequirements(PermissionSet required) noexcept : permissions(required) {}
         constexpr CommandRequirements(CommandAccess commandAccess, PermissionSet required = {}) noexcept : access(commandAccess), permissions(required) {}
 

@@ -32,7 +32,7 @@ namespace
 
 namespace golarion::play
 {
-    struct ProtocolManager::Hosting::Impl
+    struct ServerProtocol::Hosting::Impl
     {
         struct Connection
         {
@@ -46,7 +46,7 @@ namespace golarion::play
             Clock::time_point acceptedAt = Clock::now();
         };
 
-        ProtocolManager &owner;
+        ServerProtocol &owner;
         SocketRuntime runtime;
         Socket listener;
         std::uint16_t boundPort = 0;
@@ -55,7 +55,7 @@ namespace golarion::play
         std::exception_ptr workerFailure;
         std::thread worker;
 
-        Impl(ProtocolManager &ownerValue, std::string_view bindAddress, std::uint16_t port) : owner(ownerValue)
+        Impl(ServerProtocol &ownerValue, std::string_view bindAddress, std::uint16_t port) : owner(ownerValue)
         {
             auto address = detail::ipv4Address(bindAddress, port);
             listener = Socket(::socket(AF_INET, SOCK_STREAM, IPPROTO_TCP));
@@ -255,9 +255,9 @@ namespace golarion::play
         }
     };
 
-    ProtocolManager::Hosting::Hosting(ProtocolManager &owner, std::string_view bindAddress, std::uint16_t port) : impl_(std::make_unique<Impl>(owner, bindAddress, port)) {}
-    ProtocolManager::Hosting::~Hosting() = default;
-    std::uint16_t ProtocolManager::Hosting::port() const { return impl_->boundPort; }
-    void ProtocolManager::Hosting::stop() { impl_->stop(); }
-    std::exception_ptr ProtocolManager::Hosting::failure() const { return impl_->workerFailure; }
+    ServerProtocol::Hosting::Hosting(ServerProtocol &owner, std::string_view bindAddress, std::uint16_t port) : impl_(std::make_unique<Impl>(owner, bindAddress, port)) {}
+    ServerProtocol::Hosting::~Hosting() = default;
+    std::uint16_t ServerProtocol::Hosting::port() const { return impl_->boundPort; }
+    void ServerProtocol::Hosting::stop() { impl_->stop(); }
+    std::exception_ptr ServerProtocol::Hosting::failure() const { return impl_->workerFailure; }
 }

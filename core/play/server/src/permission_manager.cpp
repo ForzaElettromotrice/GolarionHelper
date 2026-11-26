@@ -9,10 +9,10 @@
 
 namespace
 {
-    constexpr std::array<std::string_view, 15> FeatureNames{
+    constexpr std::array<std::string_view, 14> FeatureNames{
         "permissions.registerUser", "permissions.getHostId", "permissions.getPermissions", "permissions.hasPermission", "permissions.hasPermissions",
-        "permissions.setPermission", "permissions.applyPreset", "permissions.toSaveData", "permissions.restoreSaveData", "permissions.registerUserWithCommit",
-        "permissions.setPermissionWithCommit", "permissions.applyPresetWithCommit",
+        "permissions.updatePermissions", "permissions.applyPreset", "permissions.toSaveData", "permissions.restoreSaveData", "permissions.registerUserWithCommit",
+        "permissions.applyPresetWithCommit",
         "permissions.getDisplayName", "permissions.setDisplayNameWithCommit", "permissions.updatePermissionsWithCommit"
     };
 
@@ -52,7 +52,7 @@ namespace golarion::play
             ++registeredFeatureCount_;
             resources_.registerFeature<HasPermissionsSignature>(FeatureNames[4], [this](const UserId &userId, PermissionSet required) { return hasPermissions(userId, required); });
             ++registeredFeatureCount_;
-            resources_.registerFeature<SetPermissionSignature>(FeatureNames[5], [this](const UserId &actorId, const UserId &targetId, Permission permission, bool enabled) { setPermission(actorId, targetId, permission, enabled); });
+            resources_.registerFeature<UpdatePermissionsSignature>(FeatureNames[5], [this](const UserId &actorId, const UserId &targetId, PermissionSet grant, PermissionSet revoke) { updatePermissions(actorId, targetId, grant, revoke); });
             ++registeredFeatureCount_;
             resources_.registerFeature<ApplyPresetSignature>(FeatureNames[6], [this](const UserId &actorId, const UserId &targetId, PermissionPreset preset) { applyPreset(actorId, targetId, preset); });
             ++registeredFeatureCount_;
@@ -62,15 +62,13 @@ namespace golarion::play
             ++registeredFeatureCount_;
             resources_.registerFeature<RegisterUserWithCommitSignature>(FeatureNames[9], [this](UserId userId, RegistrationCommit commit, std::string name) { registerUserWithCommit(std::move(userId), commit, std::move(name)); });
             ++registeredFeatureCount_;
-            resources_.registerFeature<SetPermissionWithCommitSignature>(FeatureNames[10], [this](const UserId &actorId, const UserId &targetId, Permission permission, bool enabled, PermissionsCommit commit) { return setPermissionWithCommit(actorId, targetId, permission, enabled, commit); });
+            resources_.registerFeature<ApplyPresetWithCommitSignature>(FeatureNames[10], [this](const UserId &actorId, const UserId &targetId, PermissionPreset preset, PermissionsCommit commit) { return applyPresetWithCommit(actorId, targetId, preset, commit); });
             ++registeredFeatureCount_;
-            resources_.registerFeature<ApplyPresetWithCommitSignature>(FeatureNames[11], [this](const UserId &actorId, const UserId &targetId, PermissionPreset preset, PermissionsCommit commit) { return applyPresetWithCommit(actorId, targetId, preset, commit); });
+            resources_.registerFeature<GetDisplayNameSignature>(FeatureNames[11], [this](const UserId &userId) { return getDisplayName(userId); });
             ++registeredFeatureCount_;
-            resources_.registerFeature<GetDisplayNameSignature>(FeatureNames[12], [this](const UserId &userId) { return getDisplayName(userId); });
+            resources_.registerFeature<SetDisplayNameWithCommitSignature>(FeatureNames[12], [this](const UserId &userId, std::string name, RegistrationCommit commit) { return setDisplayNameWithCommit(userId, std::move(name), commit); });
             ++registeredFeatureCount_;
-            resources_.registerFeature<SetDisplayNameWithCommitSignature>(FeatureNames[13], [this](const UserId &userId, std::string name, RegistrationCommit commit) { return setDisplayNameWithCommit(userId, std::move(name), commit); });
-            ++registeredFeatureCount_;
-            resources_.registerFeature<UpdatePermissionsWithCommitSignature>(FeatureNames[14], [this](const UserId &actorId, const UserId &targetId, PermissionSet grant, PermissionSet revoke, PermissionsCommit commit) { return updatePermissionsWithCommit(actorId, targetId, grant, revoke, commit); });
+            resources_.registerFeature<UpdatePermissionsWithCommitSignature>(FeatureNames[13], [this](const UserId &actorId, const UserId &targetId, PermissionSet grant, PermissionSet revoke, PermissionsCommit commit) { return updatePermissionsWithCommit(actorId, targetId, grant, revoke, commit); });
             ++registeredFeatureCount_;
         }
         catch (...)
@@ -158,21 +156,22 @@ namespace golarion::play
         }
     }
 
-    void PermissionManager::setPermission(const UserId &actorId, const UserId &targetId, Permission permission, bool enabled)
+    void PermissionManager::updatePermissions(const UserId &actorId, const UserId &targetId, PermissionSet grant, PermissionSet revoke)
     {
         const std::lock_guard lock(mutex_);
-        users_.at(targetId).permissions = changedPermissionUnlocked(actorId, targetId, permission, enabled);
+        users_.at(targetId).permissions = updatedPermissionsUnlocked(actorId, targetId, grant, revoke);
     }
 
-    PermissionSet PermissionManager::changedPermissionUnlocked(const UserId &actorId, const UserId &targetId, Permission permission, bool enabled) const
+    PermissionSet PermissionManager::updatedPermissionsUnlocked(const UserId &actorId, const UserId &targetId, PermissionSet grant, PermissionSet revoke) const
     {
-        const PermissionSet selected(permission);
+        if (grant.hasAny(revoke)) throw std::invalid_argument("a permission cannot be granted and revoked together");
         requireCanModifyUnlocked(actorId, targetId);
-        if (permission == Permission::ChangePermissions && actorId != hostId_) throw PermissionDenied("only the host can grant or revoke ChangePermissions");
-        auto target = users_.at(targetId).permissions;
-        if (enabled) target.add(selected);
-        else target.remove(selected);
-        return target;
+        if (actorId != hostId_ && (grant | revoke).hasAny(Permission::ChangePermissions)) throw PermissionDenied("only the host can grant or revoke ChangePermissions");
+
+        auto replacement = users_.at(targetId).permissions;
+        replacement.add(grant);
+        replacement.remove(revoke);
+        return replacement;
     }
 
     void PermissionManager::applyPreset(const UserId &actorId, const UserId &targetId, PermissionPreset preset)
@@ -199,13 +198,6 @@ namespace golarion::play
         return replacement;
     }
 
-    PermissionSet PermissionManager::setPermissionWithCommit(const UserId &actorId, const UserId &targetId, Permission permission, bool enabled, const PermissionsCommit &commit)
-    {
-        if (!commit) throw std::invalid_argument("permission commit callback must not be empty");
-        const std::lock_guard lock(mutex_);
-        return commitPermissionsUnlocked(targetId, changedPermissionUnlocked(actorId, targetId, permission, enabled), commit);
-    }
-
     PermissionSet PermissionManager::applyPresetWithCommit(const UserId &actorId, const UserId &targetId, PermissionPreset preset, const PermissionsCommit &commit)
     {
         if (!commit) throw std::invalid_argument("permission commit callback must not be empty");
@@ -216,15 +208,8 @@ namespace golarion::play
     PermissionSet PermissionManager::updatePermissionsWithCommit(const UserId &actorId, const UserId &targetId, PermissionSet grant, PermissionSet revoke, const PermissionsCommit &commit)
     {
         if (!commit) throw std::invalid_argument("permission commit callback must not be empty");
-        if (grant.hasAny(revoke)) throw std::invalid_argument("a permission cannot be granted and revoked together");
         const std::lock_guard lock(mutex_);
-        requireCanModifyUnlocked(actorId, targetId);
-        if (actorId != hostId_ && (grant | revoke).hasAny(Permission::ChangePermissions)) throw PermissionDenied("only the host can grant or revoke ChangePermissions");
-
-        auto replacement = users_.at(targetId).permissions;
-        replacement.add(grant);
-        replacement.remove(revoke);
-        return commitPermissionsUnlocked(targetId, replacement, commit);
+        return commitPermissionsUnlocked(targetId, updatedPermissionsUnlocked(actorId, targetId, grant, revoke), commit);
     }
 
     std::vector<UserPermissionsSaveData> PermissionManager::toSaveData() const

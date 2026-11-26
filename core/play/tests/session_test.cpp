@@ -1,4 +1,5 @@
-#include "golarion/play/session.hpp"
+#include "golarion/play/session_client.hpp"
+#include "golarion/play/session_server.hpp"
 #include "golarion/play/campaign.hpp"
 
 #include <cassert>
@@ -8,6 +9,14 @@
 namespace
 {
     using namespace golarion::play;
+
+    template<typename T> concept HasClientState = requires(T &session) { session.getClientState(); };
+    template<typename T> concept CanHost = requires(T &session) { session.startHosting("127.0.0.1", 0); };
+
+    template<typename T> concept CanSendEvents = requires(T &p, const nlohmann::json &payload) { p.sendEvent("user", "changed", payload); };
+    static_assert(CanHost<ServerProtocol> && !CanHost<ClientProtocol>);
+    static_assert(HasClientState<ClientProtocol> && !HasClientState<ServerProtocol>);
+    static_assert(CanSendEvents<ServerProtocol> && !CanSendEvents<ClientProtocol>);
 
     template<typename Function>
     bool rejects(Function function)
@@ -19,7 +28,7 @@ namespace
 
     void connectionLifecycleDelegation()
     {
-        Session session("host");
+        SessionServer session("host");
         const ConnectionId first = session.registerConnection();
         assert(first != 0);
         assert(!session.makeContext(first).userId && session.makeContext(first).connectionId == first);
@@ -41,8 +50,8 @@ namespace
 
     void independentSessions()
     {
-        Session first("host");
-        Session second("host");
+        SessionServer first("host");
+        SessionServer second("host");
         const ConnectionId firstId = first.registerConnection();
         const ConnectionId secondId = second.registerConnection();
         first.bindUser(firstId, "alice");
@@ -57,46 +66,25 @@ namespace
 
     void explicitHostAndClientSessions()
     {
-        static_assert(!std::is_copy_constructible_v<Session> && !std::is_move_constructible_v<Session>);
-        auto host = Session::createHost("host");
-        auto client = Session::createClient();
+        static_assert(!std::is_copy_constructible_v<SessionClient> && !std::is_move_constructible_v<SessionClient>);
+        SessionServer host("host");
+        SessionClient client;
         assert(host.getSessionCode().size() == 5);
         const auto hostView = host.toView();
-        assert(hostView.mode == SessionMode::Host && hostView.host && !hostView.client);
-        assert(hostView.host->code.matches(host.getSessionCode()) && !hostView.host->listeningPort);
+        static_assert(std::is_same_v<decltype(host.toView()), HostSessionView>);
+        assert(hostView.code.matches(host.getSessionCode()) && !hostView.listeningPort);
         const auto hostData = host.toData();
         assert(hostData.code.matches(host.getSessionCode()) && hostData.identities.hostId == "host");
         host.registerUser("alice");
         assert(host.toData().identities.users.size() == hostData.identities.users.size() + 1);
         const auto clientView = client.toView();
-        assert(clientView.mode == SessionMode::Client && !clientView.host && clientView.client);
-        assert(clientView.client->state == ClientConnectionState::Disconnected);
+        static_assert(std::is_same_v<decltype(client.toView()), ClientSnapshot>);
+        assert(clientView.state == ClientConnectionState::Disconnected);
         const auto state = client.getClientState();
         assert(state.state == ClientConnectionState::Disconnected && !state.userId && !state.permissions);
         client.disconnectFromHost();
         client.disconnectFromHost();
-        const auto rejectsMode = [](auto function)
-        {
-            try { function(); }
-            catch (const std::logic_error &) { return true; }
-            return false;
-        };
-        assert(rejectsMode([&] { client.startHosting("127.0.0.1", 0); }));
-        assert(rejectsMode([&] { client.stopHosting(); }));
-        assert(rejectsMode([&] { client.getSessionCode(); }));
-        assert(rejectsMode([&] { client.toData(); }));
-        assert(rejectsMode([&] { client.registerUser("alice"); }));
-        assert(rejectsMode([&] { client.issueUserToken("alice"); }));
-        assert(rejectsMode([&] { client.saveIdentityState("unused-client-identities.json"); }));
-        assert(rejectsMode([&] { client.loadIdentityState("unused-client-identities.json"); }));
-        assert(rejectsMode([&] { client.registerConnection(); }));
-        assert(rejectsMode([&] { client.bindUser(1, "alice"); }));
-        assert(rejectsMode([&] { client.makeContext(1); }));
-        assert(rejectsMode([&] { client.closeConnection(1); }));
-        assert(rejectsMode([&] { host.getClientState(); }));
-        assert(rejectsMode([&] { host.disconnectFromHost(); }));
-        assert(rejectsMode([&] { host.joinSession("127.0.0.1", 1, SessionCode("A7K2Q")); }));
-        assert(rejectsMode([&] { host.resumeSession("127.0.0.1", 1, SessionCode("A7K2Q"), UserToken("0123456789abcdef")); }));
+        static_assert(!HasClientState<SessionServer> && !HasClientState<ServerProtocol> && !CanHost<SessionClient>);
     }
 
     void campaignSnapshots()

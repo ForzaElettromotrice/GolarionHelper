@@ -2,7 +2,7 @@
     #define _WIN32_WINNT 0x0601
 #endif
 
-#include "golarion/play/session.hpp"
+#include "golarion/play/session_server.hpp"
 #include "golarion/play/user_token.hpp"
 
 #if defined(_WIN32)
@@ -220,7 +220,7 @@ namespace
     struct Fixture
     {
         ResourceManager resources;
-        ProtocolManager protocol{resources};
+        ServerProtocol protocol{resources};
         PermissionManager permissions{resources, "host"};
         ~Fixture() { try { protocol.stopHosting(); } catch (...) { } }
     };
@@ -249,16 +249,16 @@ namespace
         Fixture fixture;
         const auto archive = directory.path / "identities.json";
         fixture.protocol.saveIdentityState(archive);
-        fixture.resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test.public", Permission::Any, [](const CommandContext &context, const Json &) { return Json(context.userId.has_value()); });
+        fixture.resources.invoke<ServerProtocol::AddCommandSignature>("protocol.add_command", "test.public", Permission::NoAuth, [](const CommandContext &context, const Json &) { return Json(context.userId.has_value()); });
         std::atomic<int> playerCalls{0};
         fixture.protocol.add_command("test.player", Permission::Permission2, [&](const auto &, const auto &) { return Json(++playerCalls); });
-        fixture.protocol.add_command("test.invalid.public", Permission::Any, [](const auto &, const auto &) -> Json { throw std::invalid_argument("invalid public payload"); });
+        fixture.protocol.add_command("test.invalid.public", Permission::NoAuth, [](const auto &, const auto &) -> Json { throw std::invalid_argument("invalid public payload"); });
         const auto port = fixture.protocol.startHosting("127.0.0.1", 0);
         const auto code = fixture.protocol.getSessionCode();
         const auto pending = connectClient(port);
-        check(acceptedResult(exchangeMessage(pending, request(" test.public ", Json::object()))) == false, "anonymous Any command was not dispatched");
+        check(acceptedResult(exchangeMessage(pending, request(" test.public ", Json::object()))) == false, "anonymous NoAuth command was not dispatched");
         const auto saved = Json::parse(readText(archive));
-        check(saved.at("users").size() == 1 && saved.at("tokens").empty(), "Any command created an identity");
+        check(saved.at("users").size() == 1 && saved.at("tokens").empty(), "NoAuth command created an identity");
         checkRejected(exchangeMessage(pending, request("test.player", {{"userId", "host"}, {"permissions", 63}})), "FORBIDDEN");
         checkClosed(pending);
         check(playerCalls == 0, "anonymous user reached an authenticated callback");
@@ -268,14 +268,14 @@ namespace
         const auto client = connectClient(port);
         const auto joined = acceptedResult(exchangeMessage(client, request(" session.join ", {{"sessionCode", code}, {"displayName", "Giocatore"}}, "padded-join")));
         check(joined.at("permissions") == 7 && joined.size() == 3, "padded join did not use the registered command");
-        check(acceptedResult(exchangeMessage(client, request("test.public", Json::object()))) == true, "newly admitted Any context has no identity");
+        check(acceptedResult(exchangeMessage(client, request("test.public", Json::object()))) == true, "newly admitted NoAuth context has no identity");
         check(acceptedResult(exchangeMessage(client, request("test.player", Json::object()))) == 1, "join did not enable the assigned Player permissions");
         checkRejected(exchangeMessage(client, request(" session.resume ", {{"sessionCode", code}, {"userToken", joined.at("userToken")}})), "ALREADY_ADMITTED");
         const auto replacement = connectClient(port);
         const auto resumed = acceptedResult(exchangeMessage(replacement, request(" session.resume ", {{"sessionCode", code}, {"userToken", joined.at("userToken")}}, "padded-resume")));
         check(resumed.size() == 2 && resumed.at("userId") == joined.at("userId") && !resumed.contains("userToken"), "resume result did not preserve the common command contract");
         checkClosed(client);
-        check(acceptedResult(exchangeMessage(replacement, request("test.public", Json::object()))) == true, "resumed Any context lost identity");
+        check(acceptedResult(exchangeMessage(replacement, request("test.public", Json::object()))) == true, "resumed NoAuth context lost identity");
         check(fixture.permissions.toSaveData().size() == 2, "anonymous command handling duplicated participants");
         fixture.protocol.stopHosting();
     }
@@ -443,7 +443,7 @@ namespace
         check(resume(replacement, code, token).at("userId") == userId, "hosting restart lost identity");
         restored.protocol.stopHosting();
 
-        Session session("host");
+        SessionServer session("host");
         session.loadIdentityState(archive);
         const auto throughSession = connectClient(session.startHosting("127.0.0.1", 0));
         check(resume(throughSession, session.getSessionCode(), token).at("userId") == userId, "Session facade did not admit a restored user");
@@ -457,7 +457,7 @@ namespace
         fixture.protocol.saveIdentityState(directory.path / "identities.json");
         int calls = 0;
         fixture.protocol.add_command("test.echo", Permission::Permission2, [&](const CommandContext &, const Json &) { return Json(++calls); });
-        fixture.protocol.add_command("test.public", Permission::Any, [](const CommandContext &context, const Json &) { return Json(context.userId.has_value()); });
+        fixture.protocol.add_command("test.public", Permission::NoAuth, [](const CommandContext &context, const Json &) { return Json(context.userId.has_value()); });
         const auto port = fixture.protocol.startHosting("127.0.0.1", 0);
         const auto client = connectClient(port);
         const auto pending = connectClient(port);
@@ -628,7 +628,7 @@ namespace
         TestDirectory directory;
         Fixture fixture;
         fixture.protocol.saveIdentityState(directory.path / "identities.json");
-        fixture.resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test.echo", Permission::Permission2, [](const CommandContext &context, const Json &payload)
+        fixture.resources.invoke<ServerProtocol::AddCommandSignature>("protocol.add_command", "test.echo", Permission::Permission2, [](const CommandContext &context, const Json &payload)
         {
             return Json{{"actor", *context.userId}, {"connection", *context.connectionId}, {"payload", payload}};
         });
@@ -639,7 +639,7 @@ namespace
         {
             if (!registered)
             {
-                fixture.resources.invoke<ProtocolManager::AddCommandSignature>("protocol.add_command", "test.inner", Permission::Permission2, [count = 0](const auto &, const auto &) mutable { return Json(++count); });
+                fixture.resources.invoke<ServerProtocol::AddCommandSignature>("protocol.add_command", "test.inner", Permission::Permission2, [count = 0](const auto &, const auto &) mutable { return Json(++count); });
                 registered = true;
             }
             return fixture.protocol.dispatch("test.inner", context, payload);
@@ -703,7 +703,7 @@ namespace
         fixture.protocol.add_command("test.nonstandard", Permission::Permission2, [](const auto &, const auto &) -> Json { throw 42; });
         fixture.protocol.add_command("test.lifecycle", Permission::Permission2, [&](const auto &, const auto &) { fixture.protocol.stopHosting(); return Json(true); });
         std::atomic<int> invalidResults{0};
-        fixture.protocol.add_command("test.result", Permission::Any, [&](const auto &, const Json &payload) -> Json
+        fixture.protocol.add_command("test.result", Permission::NoAuth, [&](const auto &, const Json &payload) -> Json
         {
             ++invalidResults;
             const auto kind = payload.at("kind").get<std::string>();

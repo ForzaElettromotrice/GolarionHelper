@@ -9,6 +9,7 @@ namespace golarion::play
     enum class Permission : std::uint64_t
     {
         Any = 0,
+        NoAuth = 1ULL << 63, // Command-only marker, never part of a participant mask.
         Permission1 = 1ULL << 0,
         Permission2 = 1ULL << 1,
         Permission3 = 1ULL << 2,
@@ -60,7 +61,8 @@ namespace golarion::play
         {
             switch (permission)
             {
-                case Permission::Any: throw std::invalid_argument("Any is a command access requirement, not an assignable permission");
+                case Permission::Any:
+                case Permission::NoAuth: throw std::invalid_argument("Command access requirements are not assignable permissions");
                 case Permission::Permission1:
                 case Permission::Permission2:
                 case Permission::Permission3:

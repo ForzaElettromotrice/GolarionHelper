@@ -2,7 +2,7 @@
     #define _WIN32_WINNT 0x0601
 #endif
 
-#include "golarion/play/session.hpp"
+#include "golarion/play/session_server.hpp"
 
 #if defined(_WIN32)
     #include <winsock2.h>
@@ -159,7 +159,7 @@ namespace
 
     void pendingConnectionsAndSessionShutdown()
     {
-        Session session("host");
+        SessionServer session("host");
         const auto code = session.getSessionCode();
         session.stopHosting();
         check(session.getSessionCode() == code, "inactive stop changed session code");
@@ -199,7 +199,7 @@ namespace
 
     void failedStartupAndPortRelease()
     {
-        Session session("host");
+        SessionServer session("host");
         const auto code = session.getSessionCode();
         const auto logical = session.registerConnection();
         session.bindUser(logical, "alice");
@@ -210,7 +210,7 @@ namespace
         check(session.makeContext(logical).userId == "alice", "failed startup changed bindings");
         check(session.getSessionCode() == code, "failed startup changed session code");
         const auto port = session.startHosting("127.0.0.1", 0);
-        Session other("other-host");
+        SessionServer other("other-host");
         check(rejects<std::system_error>([&] { other.startHosting("127.0.0.1", port); }), "occupied port accepted");
         check(other.startHosting("127.0.0.1", 0) != 0, "failed startup prevented retry");
         session.stopHosting();
@@ -218,17 +218,17 @@ namespace
 
         std::uint16_t destroyedPort;
         {
-            Session temporary("host");
+            SessionServer temporary("host");
             destroyedPort = temporary.startHosting("127.0.0.1", 0);
         }
-        Session replacement("host");
+        SessionServer replacement("host");
         check(replacement.startHosting("127.0.0.1", destroyedPort) == destroyedPort, "destruction retained listener");
     }
 
     void invalidMessagesAndNoRemoteDispatch()
     {
         ResourceManager resources;
-        ProtocolManager protocol(resources);
+        ServerProtocol protocol(resources);
         PermissionManager permissions(resources, "host");
         int calls = 0;
         protocol.add_command("test.permission", Permission::Permission1, [&calls](const CommandContext &, const Json &) { return Json(++calls); });
@@ -255,7 +255,7 @@ namespace
     void synchronizedStateAndLifecycle()
     {
         ResourceManager resources;
-        ProtocolManager protocol(resources);
+        ServerProtocol protocol(resources);
         PermissionManager permissions(resources, "host");
         permissions.registerUser("alice");
         permissions.applyPreset("host", "alice", PermissionPreset::Master);
@@ -306,13 +306,13 @@ namespace
     {
         std::optional<Socket> client;
         {
-            Session session("host");
+            SessionServer session("host");
             client.emplace(connectClient(session.startHosting("127.0.0.1", 0)));
         }
         checkClosed(*client);
         ResourceManager resources;
         {
-            ProtocolManager protocol(resources);
+            ServerProtocol protocol(resources);
             client.emplace(connectClient(protocol.startHosting("127.0.0.1", 0)));
         }
         checkClosed(*client);

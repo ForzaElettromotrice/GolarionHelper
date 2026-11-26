@@ -1,6 +1,7 @@
 #include "socket_support.hpp"
 #include "protocol.hpp"
-#include "golarion/play/session.hpp"
+#include "golarion/play/session_client.hpp"
+#include "golarion/play/session_server.hpp"
 
 #include <array>
 #include <atomic>
@@ -152,26 +153,24 @@ namespace
     {
         ResourceManager resources;
         {
-            ProtocolManager client(resources, SessionMode::Client);
-            resources.invoke<ProtocolManager::AddClientCommandSignature>("protocol.add_command", "example.changed", [](const auto &, const auto &) { return Json(nullptr); });
-            check(rejects<std::invalid_argument>([&] { client.add_command(" example.changed ", [](const auto &, const auto &) { return Json(nullptr); }); }), "duplicate notification replaced a callback");
+            ClientProtocol client(resources);
+            resources.invoke<ClientProtocol::OnEventSignature>("protocol.on_event", "example.changed", [](const auto &, const auto &) {});
+            check(rejects<std::invalid_argument>([&] { client.on_event(" example.changed ", [](const auto &, const auto &) {}); }), "duplicate notification replaced a callback");
             for (const auto name : {"", "  ", "permissions.changed", "request.accepted", " request.rejected "})
-                check(rejects<std::invalid_argument>([&] { client.add_command(name, [](const auto &, const auto &) { return Json(nullptr); }); }), "invalid/reserved notification registered");
-            check(rejects<std::invalid_argument>([&] { client.add_command("empty", {}); }), "empty callback registered");
-            check(rejects<ProtocolError>([&] { client.dispatch("example.changed", {}, Json::object()); }), "notification dispatched without an admitted host");
-            check(rejects<std::logic_error>([&] { client.sendEvent("alice", "example.changed", Json::object()); }), "client could send a host notification");
+                check(rejects<std::invalid_argument>([&] { client.on_event(name, [](const auto &, const auto &) {}); }), "invalid/reserved notification registered");
+            check(rejects<std::invalid_argument>([&] { client.on_event("empty", {}); }), "empty callback registered");
+            check(rejects<ProtocolError>([&] { client.dispatchEvent("example.changed", {}, Json::object()); }), "notification dispatched without an admitted host");
         }
-        resources.registerFeature<void()>("protocol.add_command", [] {});
-        resources.unregisterFeature("protocol.add_command");
+        resources.registerFeature<void()>("protocol.on_event", [] {});
+        resources.unregisterFeature("protocol.on_event");
         resources.registerFeature<int()>("protocol.sendEvent", [] { return 9; });
-        check(rejects<std::invalid_argument>([&] { ProtocolManager collision(resources); }), "sendEvent provider collision accepted");
+        check(rejects<std::invalid_argument>([&] { ServerProtocol collision(resources); }), "sendEvent provider collision accepted");
         check(resources.invoke<int()>("protocol.sendEvent") == 9, "rollback removed another provider");
         resources.registerFeature<void()>("protocol.add_command", [] {});
         resources.unregisterFeature("protocol.add_command");
         resources.unregisterFeature("protocol.sendEvent");
-        ProtocolManager host(resources);
+        ServerProtocol host(resources);
         check(!host.sendEvent("offline", "example.changed", Json::object()), "offline notification was queued");
-        check(rejects<std::logic_error>([&] { host.add_command("client-only", [](const auto &, const auto &) { return Json(nullptr); }); }), "host accepted the client overload");
         for (const auto name : {"", "request.accepted", "request.rejected"})
             check(rejects<std::invalid_argument>([&] { host.sendEvent("alice", name, Json::object()); }), "invalid event name accepted");
         check(rejects<std::invalid_argument>([&] { host.sendEvent("alice", "example.changed", Json::array()); }), "non-object event payload accepted");
@@ -181,7 +180,7 @@ namespace
     void targetedNotificationsAndSharedDispatch()
     {
         Directory directory;
-        auto host = Session::createHost("host");
+        SessionServer host("host");
         host.saveIdentityState(directory.path / "identities.json");
         host.add_command("echo", PermissionSet{}, [&](const CommandContext &context, const Json &payload)
         {
@@ -190,11 +189,11 @@ namespace
         });
         const auto port = host.startHosting("127.0.0.1", 0);
         const SessionCode code(host.getSessionCode());
-        auto first = Session::createClient();
-        auto second = Session::createClient();
+        SessionClient first;
+        SessionClient second;
         std::atomic<int> firstCount{0}, secondCount{0};
         CommandContext saved;
-        first.add_command("example.changed", [&](const CommandContext &context, const Json &)
+        first.on_event("example.changed", [&](const CommandContext &context, const Json &)
         {
             check(!context.userId && context.connectionId, "notification fabricated a participant sender");
             check(first.getClientState().state == ClientConnectionState::Connected, "callback cannot read the snapshot");
@@ -202,9 +201,8 @@ namespace
             check(rejects<std::logic_error>([&] { first.sendCommand("echo", {{"value", 0}}); }), "callback could wait on its worker");
             saved = context;
             ++firstCount;
-            return Json("ignored");
         });
-        second.add_command("example.changed", [&](const auto &, const auto &) { ++secondCount; return Json(nullptr); });
+        second.on_event("example.changed", [&](const auto &, const auto &) { ++secondCount; });
         const auto a = completed(first.joinSession("127.0.0.1", port, code));
         completed(second.joinSession("127.0.0.1", port, code));
         check(host.sendEvent(a.userId, " example.changed ", {{"value", -1}}), "idle notification was rejected");
@@ -223,32 +221,32 @@ namespace
         first.disconnectFromHost();
 
         ResourceManager resources;
-        ProtocolManager client(resources, SessionMode::Client);
-        client.add_command("example.changed", [](const auto &, const auto &) { return Json(nullptr); });
-        check(rejects<ProtocolError>([&] { client.dispatch("example.changed", saved, Json::object()); }), "a different client accepted a cached context");
+        ClientProtocol client(resources);
+        client.on_event("example.changed", [](const auto &, const auto &) {});
+        check(rejects<ProtocolError>([&] { client.dispatchEvent("example.changed", saved, Json::object()); }), "a different client accepted a cached context");
     }
 
     void permissionSnapshotsAndTransactionalDelivery()
     {
         Directory directory;
         const auto archive = directory.path / "identities.json";
-        auto host = Session::createHost("host");
+        SessionServer host("host");
         host.saveIdentityState(archive);
         host.registerUser("raw-user");
         const auto rawToken = host.issueUserToken("raw-user");
         const auto port = host.startHosting("127.0.0.1", 0);
         const SessionCode code(host.getSessionCode());
-        auto delegate = Session::createClient();
-        auto target = Session::createClient();
+        SessionClient delegate;
+        SessionClient target;
         const auto a = completed(delegate.joinSession("127.0.0.1", port, code));
         const auto b = completed(target.joinSession("127.0.0.1", port, code));
         const auto change = [](const UserId &userId, Permission flag, bool enabled)
         {
-            return Json{{"targetUserId", userId}, {"permission", static_cast<std::uint64_t>(flag)}, {"enabled", enabled}};
+            return Json{{"targetUserId", userId}, {"grant", enabled ? static_cast<std::uint64_t>(flag) : 0}, {"revoke", enabled ? 0 : static_cast<std::uint64_t>(flag)}};
         };
-        completed(host.sendCommand("permissions.setPermission", change(a.userId, Permission::ChangePermissions, true)));
+        completed(host.sendCommand("permissions.update", change(a.userId, Permission::ChangePermissions, true)));
         eventually([&] { return delegate.getClientState().permissions == PermissionSet::fromMask(39); });
-        completed(delegate.sendCommand("permissions.setPermission", change(b.userId, Permission::Permission5, true)));
+        completed(delegate.sendCommand("permissions.update", change(b.userId, Permission::Permission5, true)));
         eventually([&] { return target.getClientState().permissions == PermissionSet::fromMask(23); });
         check(delegate.getClientState().permissions == PermissionSet::fromMask(39), "target change altered another client's snapshot");
 
@@ -271,13 +269,13 @@ namespace
         const auto backup = directory.path / "backup.json";
         std::filesystem::rename(archive, backup);
         check(std::filesystem::create_directory(archive), "cannot block the archive");
-        auto failed = host.sendCommand("permissions.setPermission", change("raw-user", Permission::Permission4, true));
+        auto failed = host.sendCommand("permissions.update", change("raw-user", Permission::Permission4, true));
         check(rejects<ProtocolError>([&] { completed(std::move(failed)); }), "failed persistence succeeded");
         check(input.empty() && !ready(raw, false, Clock::now() + 100ms), "failed save emitted an event");
         std::filesystem::remove(archive);
         std::filesystem::rename(backup, archive);
         completed(host.sendCommand("permissions.applyPreset", {{"targetUserId", b.userId}, {"preset", "spectator"}}));
-        completed(host.sendCommand("permissions.setPermission", change(b.userId, Permission::Permission1, false)));
+        completed(host.sendCommand("permissions.update", change(b.userId, Permission::Permission1, false)));
         eventually([&] { return target.getClientState().permissions == PermissionSet{}; });
         check(target.getClientState().state == ClientConnectionState::Connected, "zero permissions disconnected a client");
         target.disconnectFromHost();
@@ -308,9 +306,9 @@ namespace
             writeBytes(peer, bytes);
             while (!stop) std::this_thread::sleep_for(5ms);
         });
-        auto client = Session::createClient();
+        SessionClient client;
         std::atomic<int> calls{0};
-        client.add_command("example.changed", [&](const auto &, const auto &payload) { check(payload.at("value") == 4, "wrong event payload"); ++calls; return Json(nullptr); });
+        client.on_event("example.changed", [&](const auto &, const auto &payload) { check(payload.at("value") == 4, "wrong event payload"); ++calls; });
         const auto admission = completed(client.joinSession("127.0.0.1", server.port(), SessionCode("A7K2Q")));
         completed(prefixSent.get_future());
         std::this_thread::sleep_for(75ms);
@@ -335,7 +333,7 @@ namespace
                 writeBytes(peer, detail::encodeMessage({"permissions.changed", std::nullopt, payload}));
                 while (!stop) std::this_thread::sleep_for(5ms);
             });
-            auto client = Session::createClient();
+            SessionClient client;
             completed(client.joinSession("127.0.0.1", server.port(), SessionCode("A7K2Q")));
             eventually([&] { return client.getClientState().state == ClientConnectionState::Disconnected; });
             check(!client.getClientState().permissions, "invalid event left an active permission snapshot");
@@ -343,29 +341,31 @@ namespace
         }
 
         Directory directory;
-        auto host = Session::createHost("host");
+        SessionServer host("host");
         host.saveIdentityState(directory.path / "identities.json");
         const auto port = host.startHosting("127.0.0.1", 0);
         ResourceManager resources;
-        ProtocolManager client(resources, SessionMode::Client);
+        ClientProtocol client(resources);
         std::promise<CommandContext> received;
-        client.add_command("capture", [&](const auto &context, const auto &)
+        std::optional<UserId> inspected;
+        client.on_event("capture", [&](const auto &context, const auto &)
         {
-            check(client.dispatch("inspect", context, Json::object()) == client.getClientState().userId.value(), "nested client dispatch failed");
+            client.dispatchEvent("inspect", context, Json::object());
+            check(inspected == client.getClientState().userId, "nested client dispatch failed");
             received.set_value(context);
-            return Json(nullptr);
         });
-        client.add_command("inspect", [&](const auto &, const auto &) { return Json(client.getClientState().userId.value()); });
+        client.on_event("inspect", [&](const auto &, const auto &) { inspected = client.getClientState().userId; });
         const SessionCode code(host.getSessionCode());
         const auto user = completed(client.joinSession("127.0.0.1", port, code));
         host.sendEvent(user.userId, "capture", Json::object());
         const auto context = completed(received.get_future());
-        check(client.dispatch("inspect", context, Json::object()) == user.userId, "common client dispatcher cannot invoke callbacks");
-        check(rejects<ProtocolError>([&] { client.dispatch("inspect", CommandContext{"host", context.connectionId}, Json::object()); }), "client accepted a claimed participant sender");
+        client.dispatchEvent("inspect", context, Json::object());
+        check(inspected == user.userId, "common client dispatcher cannot invoke callbacks");
+        check(rejects<ProtocolError>([&] { client.dispatchEvent("inspect", CommandContext{"host", context.connectionId}, Json::object()); }), "client accepted a claimed participant sender");
         client.disconnectFromHost();
-        check(rejects<ProtocolError>([&] { client.dispatch("inspect", context, Json::object()); }), "disconnected client accepted an old context");
+        check(rejects<ProtocolError>([&] { client.dispatchEvent("inspect", context, Json::object()); }), "disconnected client accepted an old context");
         completed(client.resumeSession("127.0.0.1", port, code, *user.userToken));
-        check(rejects<ProtocolError>([&] { client.dispatch("inspect", context, Json::object()); }), "resumed client accepted the previous connection context");
+        check(rejects<ProtocolError>([&] { client.dispatchEvent("inspect", context, Json::object()); }), "resumed client accepted the previous connection context");
     }
 
     void boundedQueuesAndReplacement()
@@ -373,13 +373,13 @@ namespace
         Directory directory;
         ResourceManager resources;
         PermissionManager permissions(resources, "host");
-        ProtocolManager protocol(resources);
+        ServerProtocol protocol(resources);
         protocol.saveIdentityState(directory.path / "identities.json");
         std::atomic<int> queued{0};
         protocol.add_command("flood", PermissionSet{}, [&](const CommandContext &context, const auto &)
         {
             for (int value = 0; value < 65; ++value)
-                if (resources.invoke<ProtocolManager::SendEventSignature>("protocol.sendEvent", *context.userId, "example.changed", Json{{"value", value}})) ++queued;
+                if (resources.invoke<ServerProtocol::SendEventSignature>("protocol.sendEvent", *context.userId, "example.changed", Json{{"value", value}})) ++queued;
             return Json(true);
         });
         protocol.add_command("flood-bytes", PermissionSet{}, [&](const CommandContext &context, const auto &)
@@ -390,9 +390,9 @@ namespace
         });
         const auto port = protocol.startHosting("127.0.0.1", 0);
         const SessionCode code(protocol.getSessionCode());
-        auto client = Session::createClient();
+        SessionClient client;
         std::atomic<int> calls{0};
-        client.add_command("example.changed", [&](const auto &, const auto &) { ++calls; return Json(nullptr); });
+        client.on_event("example.changed", [&](const auto &, const auto &) { ++calls; });
         const auto user = completed(client.joinSession("127.0.0.1", port, code));
         eventually([&] { return client.getClientState().participants.has_value(); });
         auto flood = client.sendCommand("flood", Json::object());
@@ -404,8 +404,8 @@ namespace
         auto byteFlood = client.sendCommand("flood-bytes", Json::object());
         check(rejects<std::exception>([&] { completed(std::move(byteFlood)); }), "byte overflow did not disconnect the slow peer");
         check(queued == 4 && calls == 0, "event queue did not bound its total bytes");
-        auto replacement = Session::createClient();
-        replacement.add_command("example.changed", [&](const auto &, const auto &) { ++calls; return Json(nullptr); });
+        SessionClient replacement;
+        replacement.on_event("example.changed", [&](const auto &, const auto &) { ++calls; });
         completed(replacement.resumeSession("127.0.0.1", port, code, *user.userToken));
         check(protocol.sendEvent(user.userId, "example.changed", Json::object()), "replacement did not receive new events");
         eventually([&] { return calls == 1; });
@@ -429,9 +429,9 @@ namespace
             }
             while (!stop) std::this_thread::sleep_for(5ms);
         });
-        auto client = Session::createClient();
+        SessionClient client;
         std::atomic<int> calls{0};
-        client.add_command("tick", [&](const auto &, const auto &) { ++calls; return Json(nullptr); });
+        client.on_event("tick", [&](const auto &, const auto &) { ++calls; });
         completed(client.joinSession("127.0.0.1", server.port(), SessionCode("A7K2Q")));
         const auto before = Clock::now();
         auto request = client.sendCommand("never-replied", Json::object());
@@ -447,19 +447,18 @@ namespace
     void concurrentStopAndCallbackSafety()
     {
         Directory directory;
-        auto host = Session::createHost("host");
+        SessionServer host("host");
         host.saveIdentityState(directory.path / "identities.json");
         const auto port = host.startHosting("127.0.0.1", 0);
-        auto client = Session::createClient();
+        SessionClient client;
         std::promise<void> entered, release;
         auto released = release.get_future().share();
-        client.add_command("blocking", [&](const auto &, const auto &)
+        client.on_event("blocking", [&](const auto &, const auto &)
         {
             entered.set_value();
             check(released.wait_for(3s) == std::future_status::ready, "callback was not released");
             static_cast<void>(client.getClientState());
             check(rejects<std::logic_error>([&] { client.disconnectFromHost(); }), "callback could recursively disconnect");
-            return Json(nullptr);
         });
         const auto user = completed(client.joinSession("127.0.0.1", port, SessionCode(host.getSessionCode())));
         host.sendEvent(user.userId, "blocking", Json::object());
@@ -470,7 +469,7 @@ namespace
         completed(std::move(stopped));
         check(client.getClientState().state == ClientConnectionState::Disconnected, "disconnect left a running callback");
 
-        auto returning = Session::createClient();
+        SessionClient returning;
         completed(returning.resumeSession("127.0.0.1", port, SessionCode(host.getSessionCode()), *user.userToken));
         std::promise<void> localEntered, localRelease;
         auto localReleased = localRelease.get_future().share();

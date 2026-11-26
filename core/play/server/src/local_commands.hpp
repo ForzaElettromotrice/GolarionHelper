@@ -1,13 +1,13 @@
 #pragma once
 
-#include "golarion/play/protocol_manager.hpp"
+#include "golarion/play/server_protocol.hpp"
 
 namespace golarion::play
 {
-    class ProtocolManager::LocalCommands final
+    class ServerProtocol::LocalCommands final
     {
     public:
-        explicit LocalCommands(ProtocolManager &owner);
+        explicit LocalCommands(ServerProtocol &owner);
         ~LocalCommands();
         LocalCommands(const LocalCommands &) = delete;
         LocalCommands &operator=(const LocalCommands &) = delete;

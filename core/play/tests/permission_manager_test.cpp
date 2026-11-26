@@ -14,10 +14,10 @@ namespace
     using namespace golarion::play;
 
     constexpr std::array<Permission, 6> Flags{Permission::Permission1, Permission::Permission2, Permission::Permission3, Permission::Permission4, Permission::Permission5, Permission::ChangePermissions};
-    constexpr std::array<std::string_view, 15> Features{
+    constexpr std::array<std::string_view, 14> Features{
         "permissions.registerUser", "permissions.getHostId", "permissions.getPermissions", "permissions.hasPermission", "permissions.hasPermissions",
-        "permissions.setPermission", "permissions.applyPreset", "permissions.toSaveData", "permissions.restoreSaveData", "permissions.registerUserWithCommit",
-        "permissions.setPermissionWithCommit", "permissions.applyPresetWithCommit", "permissions.getDisplayName", "permissions.setDisplayNameWithCommit",
+        "permissions.updatePermissions", "permissions.applyPreset", "permissions.toSaveData", "permissions.restoreSaveData", "permissions.registerUserWithCommit",
+        "permissions.applyPresetWithCommit", "permissions.getDisplayName", "permissions.setDisplayNameWithCommit",
         "permissions.updatePermissionsWithCommit"
     };
 
@@ -92,7 +92,7 @@ namespace
                             permissions.restoreSaveData({{"host", PermissionSet::all()}, {"actor", actor}, {"target", targetPermissions}});
                             const auto before = permissions.toSaveData();
                             const bool expected = actor.hasAll(Permission::ChangePermissions) && target == "target" && permission != Permission::ChangePermissions;
-                            const bool accepted = !rejects([&] { permissions.setPermission("actor", target, permission, enabled); });
+                            const bool accepted = !rejects([&] { permissions.updatePermissions("actor", target, enabled ? PermissionSet(permission) : PermissionSet{}, enabled ? PermissionSet{} : PermissionSet(permission)); });
                             check(accepted == expected, "delegate mutation policy mismatch");
                             if (!accepted) check(equal(before, permissions.toSaveData()), "denied mutation changed data");
                             else
@@ -113,15 +113,15 @@ namespace
         {
             for (const bool enabled : {false, true})
             {
-                permissions.setPermission("host", "ordinary", permission, enabled);
+                permissions.updatePermissions("host", "ordinary", enabled ? PermissionSet(permission) : PermissionSet{}, enabled ? PermissionSet{} : PermissionSet(permission));
                 check(permissions.hasPermission("ordinary", permission) == enabled, "host cannot freely assign/revoke a permission");
-                check(rejects([&] { permissions.setPermission("host", "host", permission, enabled); }), "host permissions are mutable");
+                check(rejects([&] { permissions.updatePermissions("host", "host", enabled ? PermissionSet(permission) : PermissionSet{}, enabled ? PermissionSet{} : PermissionSet(permission)); }), "host permissions are mutable");
             }
         }
         const auto before = permissions.toSaveData();
-        check(rejects([&] { permissions.setPermission("missing", "ordinary", Permission::Permission1, true); }), "unknown actor changed permissions");
-        check(rejects([&] { permissions.setPermission("host", "missing", Permission::Permission1, true); }), "unknown target changed permissions");
-        check(rejects([&] { permissions.setPermission("host", "ordinary", static_cast<Permission>(3), true); }), "combined enum value accepted as one permission");
+        check(rejects([&] { permissions.updatePermissions("missing", "ordinary", Permission::Permission1, PermissionSet{}); }), "unknown actor changed permissions");
+        check(rejects([&] { permissions.updatePermissions("host", "missing", Permission::Permission1, PermissionSet{}); }), "unknown target changed permissions");
+        check(rejects([&] { permissions.updatePermissions("host", "ordinary", static_cast<Permission>(3), PermissionSet{}); }), "combined enum value accepted as one permission");
         check(equal(before, permissions.toSaveData()), "invalid mutation changed data");
     }
 
@@ -131,18 +131,18 @@ namespace
         PermissionManager permissions(resources, "host");
         permissions.registerUser("delegate");
         permissions.registerUser("target");
-        permissions.setPermission("host", "delegate", Permission::ChangePermissions, true);
+        permissions.updatePermissions("host", "delegate", Permission::ChangePermissions, PermissionSet{});
         for (const auto preset : {PermissionPreset::Master, PermissionPreset::Player, PermissionPreset::Spectator})
         {
             for (const bool delegatedTarget : {false, true})
             {
-                permissions.setPermission("host", "target", Permission::ChangePermissions, delegatedTarget);
-                permissions.setPermission("host", "target", Permission::Permission5, true);
+                permissions.updatePermissions("host", "target", delegatedTarget ? PermissionSet(Permission::ChangePermissions) : PermissionSet{}, delegatedTarget ? PermissionSet{} : PermissionSet(Permission::ChangePermissions));
+                permissions.updatePermissions("host", "target", Permission::Permission5, PermissionSet{});
                 permissions.applyPreset("delegate", "target", preset);
                 auto expected = permissionsForPreset(preset);
                 if (delegatedTarget) expected.add(Permission::ChangePermissions);
                 check(permissions.getPermissions("target") == expected, "preset merged ordinary flags or changed ChangePermissions");
-                permissions.setPermission("host", "target", Permission::Permission1, false);
+                permissions.updatePermissions("host", "target", PermissionSet{}, Permission::Permission1);
                 check(!permissions.hasPermission("target", Permission::Permission1), "preset remained an inherited role");
             }
         }
@@ -154,8 +154,8 @@ namespace
         check(rejects([&] { permissions.applyPreset("missing", "target", PermissionPreset::Master); }), "unknown actor applied preset");
         check(rejects([&] { permissions.applyPreset("host", "missing", PermissionPreset::Master); }), "unknown target accepted a preset");
         check(equal(before, permissions.toSaveData()), "failed preset changed data");
-        permissions.setPermission("host", "delegate", Permission::ChangePermissions, false);
-        check(rejects([&] { permissions.setPermission("delegate", "target", Permission::Permission2, true); }), "revoked authority remained cached");
+        permissions.updatePermissions("host", "delegate", PermissionSet{}, Permission::ChangePermissions);
+        check(rejects([&] { permissions.updatePermissions("delegate", "target", Permission::Permission2, PermissionSet{}); }), "revoked authority remained cached");
         check(rejects([&] { permissions.applyPreset("delegate", "target", PermissionPreset::Master); }), "revoked actor could still apply a preset");
     }
 
@@ -209,7 +209,7 @@ namespace
             PermissionManager permissions(resources, "host");
             check(resources.invoke<PermissionManager::GetHostIdSignature>("permissions.getHostId") == "host", "host feature is wrong");
             resources.invoke<PermissionManager::RegisterUserSignature>("permissions.registerUser", "alice");
-            resources.invoke<PermissionManager::SetPermissionSignature>("permissions.setPermission", "host", "alice", Permission::Permission5, true);
+            resources.invoke<PermissionManager::UpdatePermissionsSignature>("permissions.updatePermissions", "host", "alice", Permission::Permission5, PermissionSet{});
             check(resources.invoke<PermissionManager::HasPermissionSignature>("permissions.hasPermission", "alice", Permission::Permission5), "single permission feature is wrong");
             check(resources.invoke<PermissionManager::HasPermissionsSignature>("permissions.hasPermissions", "alice", Permission::Permission1 | Permission::Permission5), "combined permission feature is wrong");
             resources.invoke<PermissionManager::ApplyPresetSignature>("permissions.applyPreset", "host", "alice", PermissionPreset::Spectator);
@@ -251,7 +251,7 @@ namespace
         PermissionManager permissions(resources, "host");
         permissions.registerUser("delegate");
         permissions.registerUser("target");
-        permissions.setPermission("host", "delegate", Permission::ChangePermissions, true);
+        permissions.updatePermissions("host", "delegate", Permission::ChangePermissions, PermissionSet{});
         const auto original = permissions.toSaveData();
         int commits = 0;
         const PermissionManager::PermissionsCommit failed = [&](const auto &candidate)
@@ -266,20 +266,20 @@ namespace
             try
             {
                 if (preset) permissions.applyPresetWithCommit("delegate", "target", PermissionPreset::Master, failed);
-                else permissions.setPermissionWithCommit("delegate", "target", Permission::Permission5, true, failed);
+                else permissions.updatePermissionsWithCommit("delegate", "target", Permission::Permission5, PermissionSet{}, failed);
             }
             catch (const std::runtime_error &) { propagated = true; }
             check(propagated && equal(original, permissions.toSaveData()), "failed permission commit changed state");
         }
         const auto saved = [&](const auto &candidate) { ++commits; check(candidate.back().permissions.hasAll(Permission::Permission5), "candidate did not contain the requested flag"); };
-        const auto result = resources.invoke<PermissionManager::SetPermissionWithCommitSignature>("permissions.setPermissionWithCommit", "delegate", "target", Permission::Permission5, true, saved);
+        const auto result = resources.invoke<PermissionManager::UpdatePermissionsWithCommitSignature>("permissions.updatePermissionsWithCommit", "delegate", "target", Permission::Permission5, PermissionSet{}, saved);
         check(result.toMask() == 23 && permissions.getPermissions("target") == result, "committed permission result is wrong");
-        permissions.setPermission("host", "target", Permission::ChangePermissions, true);
+        permissions.updatePermissions("host", "target", Permission::ChangePermissions, PermissionSet{});
         const auto presetResult = resources.invoke<PermissionManager::ApplyPresetWithCommitSignature>("permissions.applyPresetWithCommit", "delegate", "target", PermissionPreset::Spectator, [](const auto &) {});
         check(presetResult.toMask() == 33, "transactional preset lost administrative permission");
         const int before = commits;
-        check(rejects([&] { permissions.setPermissionWithCommit("delegate", "target", Permission::ChangePermissions, false, saved); }), "delegate revoked administrative permission through commit");
-        check(rejects([&] { permissions.setPermissionWithCommit("host", "target", Permission::Permission1, false, {}); }), "empty permission commit accepted");
+        check(rejects([&] { permissions.updatePermissionsWithCommit("delegate", "target", PermissionSet{}, Permission::ChangePermissions, saved); }), "delegate revoked administrative permission through commit");
+        check(rejects([&] { permissions.updatePermissionsWithCommit("host", "target", PermissionSet{}, Permission::Permission1, {}); }), "empty permission commit accepted");
         check(rejects([&] { permissions.applyPresetWithCommit("host", "target", PermissionPreset::Master, {}); }), "empty preset commit accepted");
         check(commits == before && permissions.getPermissions("target").toMask() == 33, "denied transaction invoked its commit or changed state");
     }
@@ -302,7 +302,7 @@ namespace
                 }, userId);
                 for (int iteration = 0; iteration < 50; ++iteration)
                 {
-                    permissions.setPermission("host", userId, Permission::Permission5, true);
+                    permissions.updatePermissions("host", userId, Permission::Permission5, PermissionSet{});
                     check(permissions.hasPermission(userId, Permission::Permission5), "concurrent mutation was lost");
                     permissions.applyPreset("host", userId, PermissionPreset::Spectator);
                     check(permissions.getPermissions(userId) == PermissionSet(Permission::Permission1), "concurrent preset left mixed state");
@@ -322,7 +322,7 @@ namespace
         ResourceManager otherResources;
         PermissionManager other(otherResources, "host");
         other.registerUser("user-0");
-        other.setPermission("host", "user-0", Permission::ChangePermissions, true);
+        other.updatePermissions("host", "user-0", Permission::ChangePermissions, PermissionSet{});
         check(!permissions.hasPermission("user-0", Permission::ChangePermissions), "independent managers share state");
     }
 }

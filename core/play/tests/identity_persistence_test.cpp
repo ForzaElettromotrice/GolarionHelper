@@ -1,4 +1,4 @@
-#include "golarion/play/session.hpp"
+#include "golarion/play/session_server.hpp"
 #include "golarion/play/user_token.hpp"
 
 #include <filesystem>
@@ -54,7 +54,7 @@ namespace
     struct Fixture
     {
         ResourceManager resources;
-        ProtocolManager protocol{resources};
+        ServerProtocol protocol{resources};
         PermissionManager permissions{resources, "host"};
     };
 
@@ -203,7 +203,7 @@ namespace
         restored.protocol.loadIdentityState(archive);
         check(restored.protocol.resolveUserToken(next) == "new-user", "failed load replaced configured archive path");
         ResourceManager resources;
-        ProtocolManager otherProtocol(resources);
+        ServerProtocol otherProtocol(resources);
         PermissionManager otherPermissions(resources, "other-host");
         check(fails([&] { otherProtocol.loadIdentityState(archive); }), "restoration reassigned the host identity");
         check(otherPermissions.getPermissions("other-host") == PermissionSet::all(), "failed host restoration changed permissions");
@@ -275,12 +275,12 @@ namespace
         const auto sessionArchive = directory.path / "session.json";
         std::string token;
         {
-            Session session("host");
+            SessionServer session("host");
             session.registerUser("alice");
             session.saveIdentityState(sessionArchive);
             token = session.issueUserToken("alice");
         }
-        Session session("host");
+        SessionServer session("host");
         session.loadIdentityState(sessionArchive);
         check(fails([&] { session.registerUser("alice"); }) && fails([&] { session.issueUserToken("alice"); }), "Session did not delegate identity restoration");
         Fixture reopened;
@@ -310,7 +310,7 @@ namespace
             check(restored.protocol.resolveUserToken(tokens[index]) == userId, "custom mask lost its credential");
             check(restored.permissions.getPermissions(userId).toMask() == masks[index], "custom/empty permission mask was replaced by a preset");
         }
-        check(fails([&] { restored.permissions.setPermission("user-3", "user-0", Permission::ChangePermissions, true); }), "all flags were mistaken for Host identity after restart");
+        check(fails([&] { restored.permissions.updatePermissions("user-3", "user-0", Permission::ChangePermissions, PermissionSet{}); }), "all flags were mistaken for Host identity after restart");
         const auto document = Json::parse(readText(archive));
         check(document.at("hostId") == "host" && document.at("users")[0].at("permissions") == 63, "explicit host identity was lost");
     }

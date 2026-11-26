@@ -3,6 +3,7 @@
 #endif
 
 #include "identity_storage.hpp"
+#include "atomic_file.hpp"
 #include "permission_json.hpp"
 #include "golarion/play/display_name.hpp"
 
@@ -152,7 +153,7 @@ namespace
         }
     };
 
-    void replaceFile(const std::filesystem::path &path, const std::string &document)
+    void replaceFile(const std::filesystem::path &path, const std::string &document, [[maybe_unused]] bool syncParent = true)
     {
         if (path.filename().empty()) throw std::invalid_argument("identity archive path must name a file");
         TemporaryPath cleanup;
@@ -188,6 +189,7 @@ namespace
         if (!MoveFileExW(cleanup.path.c_str(), path.c_str(), MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH)) fail("MoveFileExW");
 #else
         if (::rename(cleanup.path.c_str(), path.c_str()) != 0) fail("rename");
+        if (!syncParent) return;
         const auto parent = path.parent_path().empty() ? std::filesystem::path(".") : path.parent_path();
         File directory(::open(parent.c_str(), O_RDONLY | O_DIRECTORY | O_CLOEXEC));
         if (directory.get() == InvalidFile) fail("open directory");
@@ -198,6 +200,11 @@ namespace
 
 namespace golarion::play::detail
 {
+    void writeAtomicFile(const std::filesystem::path &path, const std::string &document)
+    {
+        replaceFile(path, document, false);
+    }
+
     IdentitySaveData readIdentityState(const std::filesystem::path &path)
     {
         std::ifstream file(path, std::ios::binary);

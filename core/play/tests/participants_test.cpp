@@ -1,7 +1,8 @@
 #include "socket_support.hpp"
 #include "protocol.hpp"
 #include "participants_json.hpp"
-#include "golarion/play/session.hpp"
+#include "golarion/play/session_client.hpp"
+#include "golarion/play/session_server.hpp"
 
 #include <array>
 #include <atomic>
@@ -113,7 +114,7 @@ namespace
         detail::configureSocket(socket.get());
         return socket;
     }
-    ParticipantsSnapshot query(Session &session)
+    ParticipantsSnapshot query(auto &session)
     {
         const auto result = completed(session.sendCommand("session.getParticipants", Json::object()));
         check(result.size() == 2 && result.contains("revision") && result.contains("participants"), "unexpected participant result schema");
@@ -181,7 +182,7 @@ namespace
     {
         Directory directory;
         const auto archive = directory.path / "identities.json";
-        auto host = Session::createHost("host");
+        SessionServer host("host");
         host.setHostDisplayName("Marta");
         host.registerUser("remembered-offline");
         const auto initial = query(host);
@@ -197,8 +198,8 @@ namespace
             check(reply.type == "request.rejected" && reply.payload.at("code") == "FORBIDDEN", "participant listing became public before admission");
         }
         check(query(host) == initial, "pending connection changed participant presence");
-        auto first = Session::createClient();
-        auto observer = Session::createClient();
+        SessionClient first;
+        SessionClient observer;
         const auto a = completed(first.joinSession("127.0.0.1", port, code, "  Giulia  "));
         eventually([&] { return first.getClientState().participants && first.getClientState().participants->participants.size() == 2; });
         check(first.getClientState().participants->revision == 2, "first admission did not advance presence");
@@ -208,8 +209,8 @@ namespace
             && both.participants[1].displayName == "Giulia" && both.participants[2].displayName == "Giulia", "host list lost display names");
         eventually([&] { return first.getClientState().participants == both && observer.getClientState().participants == both; });
         const auto hostView = host.toView();
-        check(hostView.host && hostView.host->listeningPort == port && hostView.host->code.matches(code.value()), "host view omitted the running listener");
-        check(query(observer) == both && hostView.host->participants == both && observer.toView().client->participants == both, "query, view and event snapshots disagree");
+        check(hostView.listeningPort == port && hostView.code.matches(code.value()), "host view omitted the running listener");
+        check(query(observer) == both && hostView.participants == both && observer.toView().participants == both, "query, view and event snapshots disagree");
         auto detached = observer.getClientState();
         detached.participants->participants.clear();
         check(observer.getClientState().participants == both, "client participant snapshot aliases mutable state");
@@ -218,7 +219,7 @@ namespace
         const auto backup = directory.path / "backup.json";
         std::filesystem::rename(archive, backup);
         check(std::filesystem::create_directory(archive), "cannot block admission persistence");
-        auto failed = Session::createClient();
+        SessionClient failed;
         bool failedAdmission = false;
         try { completed(failed.joinSession("127.0.0.1", port, code)); }
         catch (const ProtocolError &error) { failedAdmission = error.code() == ProtocolErrorCode::AdmissionFailed; }
@@ -232,11 +233,11 @@ namespace
         std::filesystem::rename(backup, archive);
 
         for (const auto flag : {Permission::Permission1, Permission::Permission2, Permission::Permission3})
-            completed(host.sendCommand("permissions.setPermission", {{"targetUserId", b.userId}, {"permission", static_cast<std::uint64_t>(flag)}, {"enabled", false}}));
+            completed(host.sendCommand("permissions.update", {{"targetUserId", b.userId}, {"grant", 0}, {"revoke", static_cast<std::uint64_t>(flag)}}));
         eventually([&] { return observer.getClientState().permissions == PermissionSet{}; });
         check(query(observer) == both, "zero-permission user cannot read participant presence");
 
-        auto replacement = Session::createClient();
+        SessionClient replacement;
         const auto resumed = completed(replacement.resumeSession("127.0.0.1", port, code, *a.userToken, "Giulia R."));
         auto renamed = both;
         ++renamed.revision;
@@ -257,8 +258,8 @@ namespace
         eventually([&] { return first.getClientState().state == ClientConnectionState::Disconnected && observer.getClientState().state == ClientConnectionState::Disconnected; });
         check(!first.getClientState().participants && !observer.getClientState().participants && query(host).participants == initial.participants, "stop retained remote participant presence");
         const auto stopped = host.toView();
-        check(stopped.host && !stopped.host->listeningPort && stopped.host->participants.participants == initial.participants, "stopped view retained listening or presence state");
-        check(hostView.host->listeningPort == port && hostView.host->participants == both, "previous view changed after stop");
+        check(!stopped.listeningPort && stopped.participants.participants == initial.participants, "stopped view retained listening or presence state");
+        check(hostView.listeningPort == port && hostView.participants == both, "previous view changed after stop");
         const auto saved = host.toData();
         check(saved.code.matches(code.value()) && saved.identities.users.size() == 4, "disconnect changed the code or deleted persistent users");
     }
@@ -267,7 +268,7 @@ namespace
     {
         Directory directory;
         const auto archive = directory.path / "identities.json";
-        std::optional<Session> host(std::in_place, "host");
+        std::optional<SessionServer> host(std::in_place, "host");
         host->saveIdentityState(archive);
         auto port = host->startHosting("127.0.0.1", 0);
         SessionCode code(host->getSessionCode());
@@ -282,7 +283,7 @@ namespace
         check(event.type == "session.participantsChanged" && !event.requestId && detail::parseParticipants(event.payload) == query(*host), "initial participant event is missing or invalid");
         peer = detail::Socket{};
         eventually([&] { return query(*host).participants.size() == 1; });
-        auto client = Session::createClient();
+        SessionClient client;
         completed(client.resumeSession("127.0.0.1", port, code, token));
         eventually([&] { return client.getClientState().participants.has_value(); });
         const auto previousRevision = client.getClientState().participants->revision;
@@ -373,7 +374,7 @@ namespace
                 writeBytes(peer, detail::encodeMessage({"session.participantsChanged", std::nullopt, invalid}));
                 while (!stop) std::this_thread::sleep_for(5ms);
             });
-            auto client = Session::createClient();
+            SessionClient client;
             const auto admission = completed(client.joinSession("127.0.0.1", server.port(), SessionCode("A7K2Q")));
             completed(prefixSent.get_future());
             check(!client.getClientState().participants, "partial snapshot was applied");
@@ -390,27 +391,27 @@ namespace
     void unrepresentableSnapshotDisconnects()
     {
         Directory directory;
-        auto host = Session::createHost(std::string(65500, 'h'));
+        SessionServer host(std::string(65500, 'h'));
         host.saveIdentityState(directory.path / "identities.json");
         const auto port = host.startHosting("127.0.0.1", 0);
-        auto client = Session::createClient();
+        SessionClient client;
         auto admission = client.joinSession("127.0.0.1", port, SessionCode(host.getSessionCode()));
         check(admission.wait_for(3s) == std::future_status::ready, "unrepresentable snapshot left admission pending");
         try { admission.get(); }
         catch (const std::system_error &) { } // Admission may be committed before its reply can be sent.
         eventually([&] { return client.getClientState().state == ClientConnectionState::Disconnected; });
         check(!client.getClientState().participants, "wire-limit failure left an admitted client with stale presence");
-        eventually([&] { return host.toView().host->participants.participants.size() == 1; });
+        eventually([&] { return host.toView().participants.participants.size() == 1; });
     }
 
     void simultaneousAdmissions()
     {
         Directory directory;
-        auto host = Session::createHost("host");
+        SessionServer host("host");
         host.saveIdentityState(directory.path / "identities.json");
         const auto port = host.startHosting("127.0.0.1", 0);
         const SessionCode code(host.getSessionCode());
-        std::array<Session, 6> clients{Session::createClient(), Session::createClient(), Session::createClient(), Session::createClient(), Session::createClient(), Session::createClient()};
+        std::array<SessionClient, 6> clients{};
         std::vector<std::future<ClientAdmission>> admissions;
         for (auto &client : clients)
         {

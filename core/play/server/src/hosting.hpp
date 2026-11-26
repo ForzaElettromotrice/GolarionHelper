@@ -1,16 +1,16 @@
 #pragma once
 
-#include "golarion/play/protocol_manager.hpp"
+#include "golarion/play/server_protocol.hpp"
 
 #include <exception>
 #include <memory>
 
 namespace golarion::play
 {
-    class ProtocolManager::Hosting final
+    class ServerProtocol::Hosting final
     {
     public:
-        Hosting(ProtocolManager &owner, std::string_view bindAddress, std::uint16_t port);
+        Hosting(ServerProtocol &owner, std::string_view bindAddress, std::uint16_t port);
         ~Hosting();
         Hosting(const Hosting &) = delete;
         Hosting &operator=(const Hosting &) = delete;

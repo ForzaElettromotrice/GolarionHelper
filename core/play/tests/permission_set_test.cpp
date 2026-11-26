@@ -51,6 +51,8 @@ namespace
         for (std::uint64_t mask = 0; mask < 64; ++mask) check(PermissionSet::fromMask(mask).toMask() == mask, "numeric mask did not round-trip");
         for (const std::uint64_t mask : {64ULL, 127ULL, 1ULL << 63, ~0ULL}) check(rejects([&] { PermissionSet::fromMask(mask); }), "numeric import accepted unknown bits");
         check(rejects([] { PermissionSet{Permission::Any}; }), "command-only Any became assignable");
+        check(rejects([] { PermissionSet{Permission::NoAuth}; }), "command-only NoAuth became assignable");
+        check(rejects([] { auto mixed = Permission::NoAuth | Permission::Permission1; static_cast<void>(mixed); }), "NoAuth was combined with assignable flags");
         check(rejects([] { auto mixed = Permission::Any | Permission::Permission1; static_cast<void>(mixed); }), "Any was combined with assignable flags");
     }
 

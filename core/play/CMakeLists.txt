@@ -7,28 +7,34 @@ endif()
 find_package(Threads REQUIRED)
 
 add_library(golarion_play STATIC
-    src/admission.cpp
-    src/client_connection.cpp
-    src/hosting.cpp
-    src/identity_storage.cpp
-    src/local_commands.cpp
-    src/participants.cpp
-    src/permission_commands.cpp
-    src/permission_manager.cpp
+    client/src/client_connection.cpp
+    client/src/session_client.cpp
+    server/src/admission.cpp
+    server/src/hosting.cpp
+    server/src/identity_storage.cpp
+    server/src/local_commands.cpp
+    server/src/participants.cpp
+    server/src/permission_commands.cpp
+    server/src/permission_manager.cpp
+    server/src/session_server.cpp
+    server/src/sheet_manager.cpp
+    server/src/user_tokens.cpp
+    server/src/server_protocol.cpp
+    client/src/client_protocol.cpp
     src/protocol.cpp
-    src/protocol_manager.cpp
     src/resource_manager.cpp
-    src/session.cpp
     src/session_code.cpp
     src/user_token.cpp
-    src/user_tokens.cpp
 )
 
 target_compile_features(golarion_play PUBLIC cxx_std_20)
 set_target_properties(golarion_play PROPERTIES CXX_EXTENSIONS OFF)
-target_include_directories(golarion_play PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(golarion_play
+    PUBLIC include server/include client/include
+    PRIVATE src server/src client/src
+)
 target_link_libraries(golarion_play PUBLIC nlohmann_json::nlohmann_json)
-target_link_libraries(golarion_play PRIVATE Threads::Threads)
+target_link_libraries(golarion_play PRIVATE Threads::Threads golarion_model)
 
 if(WIN32)
     target_link_libraries(golarion_play PRIVATE ws2_32 bcrypt)
@@ -41,6 +47,10 @@ else()
 endif()
 
 if(BUILD_TESTING)
+    add_executable(play_sheet_manager_test tests/sheet_manager_test.cpp)
+    target_link_libraries(play_sheet_manager_test PRIVATE golarion_play)
+    add_test(NAME play_sheet_manager_test COMMAND play_sheet_manager_test)
+
     add_executable(play_participants_test tests/participants_test.cpp)
     target_include_directories(play_participants_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
     target_link_libraries(play_participants_test PRIVATE golarion_play)
@@ -90,7 +100,7 @@ if(BUILD_TESTING)
     add_test(NAME play_user_token_test COMMAND play_user_token_test)
 
     add_executable(play_user_tokens_test tests/user_tokens_test.cpp)
-    target_include_directories(play_user_tokens_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+    target_include_directories(play_user_tokens_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/server/src)
     target_link_libraries(play_user_tokens_test PRIVATE golarion_play)
     add_test(NAME play_user_tokens_test COMMAND play_user_tokens_test)
 
